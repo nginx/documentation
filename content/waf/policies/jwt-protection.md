@@ -1,92 +1,89 @@
 ---
-# We use sentence case and present imperative tone
-title: "JWT protection"
-# Weights are assigned in increments of 100: determines sorting order
+title: JWT protection
 weight: 1650
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 nd-product: NAP-WAF
 ---
 
-JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in a JSON (JavaScript Object Notation) format and is commonly used for authentication and authorization. With NGINX App Protect now it is possible to control access to its application using JWT validation. F5 WAF for NGINX validates the authenticity and well-formedness of JWTs coming from a client, denying access to the service exclusively when the validation process fails. JWT is mainly used for API access.
+JSON Web Token (JWT) is a compact and self-contained way to represent information between two parties in JSON format, commonly used for authentication and authorization.
+F5 WAF for NGINX validates the authenticity and well-formedness of JWTs, denying access when validation fails. JWT is mainly used for API access.
 
-When a user logs in to a web application, they might receive a JWT, which can then be included in subsequent requests to the server. The server can validate the JWT to ensure that the user is authenticated to access the requested resources.
+When a user logs in to an application, they might receive a JWT, which is then included in subsequent requests.
+The server validates the JWT to ensure the user is authorized to access the requested resources.
 
-Now F5 WAF for NGINX provides JSON Web Token (JWT) protection. F5 WAF for NGINX will be placed in the path leading to the application server and will handle the token for the application. This includes:
+F5 WAF for NGINX handles tokens on behalf of the application by:
 
-1. Validating the token's existence and ensuring its correct structure for specific URLs.
-2. Verifying the token's signature based on provisioned certificates.
-3. Check the validity period of the token.
-4. Extract the user identity from the token and use it for logging and session awareness.
+
+1. Validating the token's existence and structure for specific URLs.
+1. Verifying the token's signature using provisioned certificates.
+1. Checking the token validity period (`nbf`, `exp`).
+1. Extracting user identity for logging and session awareness.
 
 The JSON Web Token consists of three parts: the **Header**, **Claims** and **Signature**. The first two parts are in JSON and Base64 encoded when carried in a request. The three parts are separated by a dot "." delimiter and put in the authorization header of type "Bearer", but can also be carried in a query string parameter.
 
-- **Header**: It contains information about the type of token (usually "JWT") and the cryptographic algorithm being used to secure the JSON Web Signature (JWS).
+A JWT consists of three parts: **Header**, **Claims**, and **Signature**.
+The header and claims are JSON objects, Base64 encoded, separated by `.` delimiters, and typically carried in the `Authorization` header of type `Bearer`.
 
-- **Claims**: This part contains claims, which refers to the statements or assertions about an entity (typically, the user) that the token is issued for. Claims are **key/value** pairs contained within the token's payload. The claims is the second part of a JWT and typically looks like this:
+- **Header**: Metadata about the token, for example type and algorithm.
+- **Claims**: Assertions about the entity, for example user. Example claim:
 
-    ```json
+   ```json
     {
-      "sub": "1234567890",
-      "name": "John Doe",
-      "iat": 1654591231,
-      "nbf": 1654607591,
-      "exp": 1654608348
-    }
-    ```
+   "sub": "1234567890",
+   "name": "John Doe",
+   "iat": 1654591231,
+   "nbf": 1654607591,
+   "exp": 1654608348
+   }
+   ```
 
-In example above, the payload contains several claims:
+   In example above, the payload contains several claims:
 
-- sub (Subject) - Represents the subject of the JWT, typically the user or entity for which the token was created.
+   {{< table >}}
+   | Claim | Description                                                                                      |
+   |-------|--------------------------------------------------------------------------------------------------|
+   | `sub` (Subject) | Represents the subject of the JWT, typically the user or entity for which the token was created. |
+   | `name` (Issuer) | Indicates the entity that issued the JWT. It is a string that identifies the issuer of the token. |
+   | `iat` (Issued At) | Indicates the time at which the token was issued. Like `exp`, it is represented as a timestamp. |
+   | `nbf` (Not Before) | Specifies the time before which the token should not be considered valid. |
+   | `exp` (Expiration Time) | Specifies the expiration time of the token. It is represented as a numeric timestamp (for example, `1654608348`), and the token is considered invalid after this time. |
+   {{< /table >}}
 
-- name (Issuer) - Indicates the entity that issued the JWT. It is a string that identifies the issuer of the token.
-
-- iat (Issued At) - Indicates the time at which the token was issued. Like exp, it is represented as a timestamp.
-
-- nbf (Not Before) - Specifies the time before which the token should not be considered valid.
-
-- exp (Expiration Time) - Specifies the expiration time of the token. It is represented as a numeric timestamp (for example, 1654608348), and the token is considered invalid after this time.
-
-These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application.
+   These claims provide information about the JWT and can be used by the recipient to verify the token's authenticity and determine its validity. Additionally, you can include custom claims in the payload to carry additional information specific to your application.
 
 - **Signature** - To create the signature part, the header and payload are encoded using a specified algorithm and a secret key. This signature can be used to verify the authenticity of the token and to ensure that it has not been tampered with during transmission. The signature is computed based on the algorithm and the keys used and also Base64-encoded.
 
-#### F5 WAF for NGINX supports the following types of JWT:
+### Supported algorithms
 
-JSON Web Signature (JWS) - JWT content is digitally signed. The following algorithm can be used for signing:
+Currently supported: `RS256` (RSA/SHA-256).
 
-- RSA/SHA-256 (RS256 for short)
+- Example JWT header:
 
-Here is an example of a Header: describes a JWT signed with HMAC 256 encryption algorithm:
+   ```json
+   {
+   "alg": "RS256",
+   "typ": "JWT"
+   }
+   ```
 
-```json
-{
-  "alg": "RS256",
-  "typ": "JWT"
-}
-```
+### Configure for JWT protection
 
-### Configuring NGINX App Protect WAF to Authenticate JSON Web Token
+#### Access profile
 
-#### Access Profile
+F5 WAF for NGINX introduces a new policy entity known as `accessProfile` to authenticate JSON Web Token. Access profile is added to the F5 WAF for NGINX policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
 
-NGINX App Protect WAF introduces a new policy entity known as "**access profile**" to authenticate JSON Web Token. Access Profile is added to the app protect policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
-
-{{< call-out "note" >}}At present, only one access profile is supported within the App Protect policy. However, the JSON schema for the policy will be designed to accommodate multiple profiles in the future.{{< /call-out >}}
+{{< call-out "note" >}}Currently, only one `accessProfile` is supported per policy{{< /call-out >}}
 
 The access profile includes:
 
-- **Enforcement Settings**: here you can configure the "enforceMaximumLength," "enforceValidityPeriod," and "keyFiles" settings within the scope of this profile, allowing you to enable or disable them as needed.
-- **Location**: here you can modify the location settings, choosing between "header" or "query," as well as specifying the "name" for the header or parameter.
-- **Access Profile Settings**: here you can set the "maximumLength" as well as specify the "name" and "type" for the access profile, with "jwt" representing JSON Web Token.
+- **Enforcement settings**: `enforceMaximumLength`, `enforceValidityPeriod`, `keyFiles`.
+- **Location**: where to expect the enforcement settings (`header` or `query`) and the name of the header parameter.
+- **General settings**: `maximumLength`, `type` (`jwt`), and profile `name`.
 
-Access Profile example:
+#### Access profile example
 
-Refer to the following example where all access profile properties are configured to enforce specific settings within the App Protect policy. In this instance, we have established an access profile named "**access_profile_jwt**" located in the **authorization header**. The "maximumLength" for the token is defined as **2000**, and "verifyDigitalSignature" is set to **true**.
+Refer to the following example where all access profile properties are configured to enforce specific settings within the F5 WAF for NGINX policy. In this instance, we have established an access profile named `access_profile_jwt` located in the `authorization header`. The `maximumLength` for the token is defined as "2000", and `verifyDigitalSignature` is set to "true".
 
 ```shell
 {
@@ -141,15 +138,15 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< call-out "note" >}} For access profile default values and their related field names, see NGINX App Protect WAF [Declarative Policy guide]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} For access profile default values and their related field names, see F5 WAF for NGINX [Policy paramenter reference]({{< ref "/waf/policies/parameter-reference.md" >}}). {{< /call-out >}}
 
-#### Access Profile in URL Settings
+#### Access profile in URL settings
 
 The next step to configure JWT is to define the URL settings. Add the access profile name that you defined previously under the access profiles in the "name" field. From the previous example, we associate the access profile "**access_profile_jwt**" with the "name": **/jwt** in the URLs section to become effective, which means URLs with /jwt name are permitted for this feature and will be used for all JWT API requests.
 
 Please note that the access profile cannot be deleted if it is in use in any URL.
 
-### Authorization Rules in URLs
+### Authorization rules in URLs
 
 A new entity named as `authorizationRules` is introduced under the URL. This entity encompasses an authorization condition essential for "Claims" validation, enabling access to a specific URL based on claims of a JWT.
 The `authorizationRules` entity consists of the following two mandatory fields:
@@ -157,7 +154,10 @@ The `authorizationRules` entity consists of the following two mandatory fields:
 - `name`: a unique descriptive name for the condition predicate
 - `condition`: a boolean expression that defines the conditions for granting access to the URL
 
+#### Authorization rules example
+
 Here is an example of declarative policy using an `authorizationRules` entity under the access profile:
+
 ```json
 {
     "urls": [
@@ -185,16 +185,23 @@ Here is an example of declarative policy using an `authorizationRules` entity un
 }
 ```
 
-#### AuthorizationRules Condition Syntax Usage
+#### AuthorizationRules condition syntax usage
 
-The `authorizationRules` use a Boolean expression to articulate the conditions for granting access to the URL. The conditions use the same syntax as in [Policy Override Rules](#override-rules) with one additional attribute **"claims"**.
-#### Claims Attribute
-The newly introduced attribute "claims" is a mapping of JSON paths for claims from the JWT to their respective values. Only structure nesting is supported using the "." notation.
-A few points to remember regarding JWT claims:
-- Please note that at the moment, accessing individual cells within JSON arrays isn't possible. Instead, the entire array gets serialized as a string, and its elements can be evaluated using string operators like "contains".
-- While it's technically feasible to consolidate all conditions into one with "and" between them, it's not recommended. Dividing them into multiple conditions enhances the readability and clarity of the policy, particularly when explaining the reasons for authorization failure.
-For the full reference of authorizationRules condition syntax and usage see the NGINX App Protect WAF [Declarative Policy guide]({{< ref "nap-waf/v4/declarative-policy/policy.md" >}}/#policy/override-rules).
-See below example for JWT claims:
+The `authorizationRules` use a Boolean expression to articulate the conditions for granting access to the URL.
+
+#### Claims attribute
+
+The `claims` attribute is a mapping of JSON paths for claims from the JWT to their respective values.
+Only structure nesting is supported using the `.` notation.
+
+- Accessing individual cells within JSON arrays is not supported. The entire array is serialized as a string, and its elements can be evaluated using string operators like `contains`.
+- Although it is possible to consolidate all conditions into one with `and`, it is not recommended. Splitting conditions improves readability and helps explain authorization failures.
+
+{{< call-out "note" >}}
+For the full reference of `authorizationRules` condition syntax and usage, see the F5 WAF for NGINX [Policy paramenter reference]({{< ref "/waf/policies/parameter-reference.md" >}}).
+{{< /call-out >}}
+
+See the example below for JWT claims:
 
 ```json
 {
@@ -212,8 +219,10 @@ See below example for JWT claims:
     }
 }
 ```
-then the claims can be:
-```
+
+For the above example, the claims can be:
+
+```text
 claims['scope'] = "top-level:read"
 claims['roles'] = "["inventory-manager", "price-editor]" # the whole array is presented as a string
 claims['address.country'] = "US"
@@ -221,29 +230,35 @@ claims['company'] = null # does not exist
 claims['address'] = "{ \"address\": { .... } }" # JSON structs can be accessed using the dot "." notation
 ```
 
-### Attack Signatures
+### Attack signatures
 
-Attack signatures are detected within the JSON values of the token, i.e. the header and claims parts, but not on the digital signature part of the token. The detection of signatures, and specifically which signatures are recognized, depends on the configuration entity within the Policy. Typically, this configuration entity is the Authorization HTTP header or else, the header or parameter entity configured as the location of the token in the access profile.
+Attack signatures are detected within the JSON values of the token (header and claims), but not in the digital signature.
+The detection of signatures depends on the configuration entity in the policy, typically the `Authorization` header or the header/parameter defined in the `accessProfile`.
 
-If the request doesn't align with a URL associated with an Access Profile, an attempt is made to parse the "bearer" type Authorization header, but no violations are raised, except for Base64. More information can be found below:
+If the request does not match a URL associated with an `accessProfile`, the system attempts to parse the `Authorization` header of type `Bearer`. No violations are raised, except for Base64.
 
-1. Token parsed successfully - No violations are detected when enforced on URL with or without access profile.
+Details:
 
-2. There are more or less than two dots in the token - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
+| Condition                  | Violation(s)                                                                 |
+|----------------------------|-------------------------------------------------------------------------------|
+| **Token parsed successfully** | No violations when enforced on a URL with or without `accessProfile`.           |
+| **Incorrect token structure** | `VIOL_ACCESS_MALFORMED` if enforced on a URL with `accessProfile`.               |
+| **Base64 decoding failure**   | `VIOL_ACCESS_MALFORMED` if enforced on a URL with `accessProfile`; `VIOL_PARAMETER_BASE64` if enforced with `accessProfile`. |
+| **JSON parsing failure**      | `VIOL_ACCESS_MALFORMED` if enforced on a URL with `accessProfile`.               |
 
-3. Base64 decoding failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile. `VIOL_PARAMETER_BASE64` is detected when enforced with access profile.
+### JSON web token violations
 
-4. JSON parsing failure - `VIOL_ACCESS_MALFORMED` is detected when enforced on URL with access profile.
+F5 WAF for NGINX introduces three new violations specific to JWT:
+- `VIOL_ACCESS_INVALID`
+- `VIOL_ACCESS_MISSING`
+- `VIOL_ACCESS_MALFORMED`
 
-### JSON Web Token Violations
+Under `blocking-settings`, you can enable or disable these violations.
+By default, they are enabled. Details are recorded in the security log.
 
-F5 WAF for NGINX introduces three new violations specific to JWT: `VIOL_ACCESS_INVALID`, `VIOL_ACCESS_MISSING` and `VIOL_ACCESS_MALFORMED`.
+Example:
 
-Under the "blocking-settings," user can either enable or disable these violations. Note that these violations will be enabled by default. The details regarding logs will be recorded in the security log.
-
-See the below example for these violations.
-
-```shell
+```json
 {
     "policy": {
         "name": "jwt_policy",
@@ -271,13 +286,15 @@ See the below example for these violations.
 }
 ```
 
-### Violation Rating Calculation
+### Violation rating calculation
 
-The default violation rating is set to the level of **5** regardless of any violation. Any changes to these violation settings here will override the default settings. The details regarding logs will be recorded in the security log. All violations will be disabled on upgrade.
+The default violation rating is set to **5** regardless of the violation.
+Any changes to these violation settings override the default.
 
-See also the [Violations](#violations) section for more details.
+Details are recorded in the security log.
+All violations are disabled after an upgrade.
 
-### Other References
+### Other references
 
 For more information about JSON Web Token (JWT) see below reference links:
 

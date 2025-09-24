@@ -348,9 +348,9 @@ Individual security features can be defined as blocked or transparent in the pol
 
 ### Enabling violations
 
-Adding and enabling additional security features to the policy can be done by specifying the violation name and the `alarm` block state to `true`. 
+Adding and enabling additional security features to the policy can be done by specifying the violation name and the `alarm` block state to `true`.
 
-To set different states for sub-violations within the violation, enable the violation first, then specifying and configure the sub-violations. 
+To set different states for sub-violations within the violation, enable the violation first, then specifying and configure the sub-violations.
 
 A violation may have its own section that provides additional configuration granularity for a specific violation/sub-violation.
 
@@ -364,7 +364,7 @@ It is determined by the combination of the [signature sets]({{< ref "/waf/polici
 
 In this example, we enable a violation and a sub-violation: `VIOL_JSON_FORMAT` and `VIOL_PARAMETER_VALUE_METACHAR`.
 
-The example defines the blocking and alarm setting for each violation.  These settings override the default configuration set above in the `enforcementMode` directive.  
+The example defines the blocking and alarm setting for each violation.  These settings override the default configuration set above in the `enforcementMode` directive.
 
 Be aware, however, that in a transparent policy no violations are blocked, even if specific violations are set to `block: true` in the configuration.
 
