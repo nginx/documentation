@@ -342,7 +342,11 @@ rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
 ```
 #### Bidirectional streams
 
-Where both sides send a sequence of messages using a read-write stream. The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message and then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved.
+Both sides send a sequence of messages using a read-write stream. 
+
+The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message and then write a message, or some other combination of reads and writes. 
+
+The order of messages in each stream is preserved.
 
 ```shell
 rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
@@ -367,7 +371,9 @@ message HelloReply {
 
 ### Enable gRPC protection for bidirectional streaming
 
-To enable gRPC protection, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. All the gRPC messages will be logged in Security Log under the `log_grpc_all.json` file. For more details on how these requests are handled in gRPC, refer to the [gRPC Logging](#grpc-logging) section.
+To enable gRPC protection, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. 
+
+All gRPC messages will be in the security logs under the `log_grpc_all.json` file: for more details, refer to the [gRPC logging](#grpc-logging) section.
 
 ```nginx
 user nginx;
@@ -416,6 +422,57 @@ http {
     }
 }
 ```
+
+### Bidirectional streaming enforcement
+
+Bidirectional enforcement applies per message: each message is buffered and processed (For all inspection actions according to the policy: signatures, metacharacters, and other violations) on its own.
+
+When receiving a client event:
+
+- The request header and each of the messages in the client stream is enforced **separately**.
+- The Enforcer issues a separate security log message per each message containing the violations found on it (if any). Refer to the [gRPC violations](#grpc-violations) section for more details on gRPC violations. There is a separate log message per request headers opening the stream.
+- Then the Enforcer decides on the action that results from the violations just as it does for a regular HTTP request, but in gRPC it is done **per message** rather than the per whole stream. If a message needs to be blocked, a blocking response is sent to the client and the stream is closed, but all the messages that preceded the blocked message have already been sent to the server.
+- If the request headers message has blocking violations, the blocking response is sent right away, ignoring any subsequent client messages. The security log will just reflect the headers in this scenario.
+
+#### Server response flow
+
+gRPC server messages are not processed. All gRPC messages (unary or streaming) including the headers and trailer messages, are sent directly to the client (without sending them to the Enforcer).
+
+With bidirectional streaming, the blocking response comes as the trailers message is sent to the client on behalf of the server. 
+
+At the same time, the server gets the END_STREAM frame to ensure streams on both sides are closed.
+
+#### Size limits
+
+The maximum total request size is applied to each message on its own, rather than to the total stream messages. 
+
+By default, the maximum gRPC message size is 4MB. You can configure different sizes in the declarative policy, like the 100KB in the [content profiles example](#content-profiles).
+
+If a message is sent with a size larger than that value, a _GRPC_FORMAT_ violation is raised. If a message is sent with a size larger than 10MB, a _GRPC_MALFORMED_ and _REQUEST_MAX_LENGTH_ violation is raised.
+
+There is no limit to the number of messages in a stream.
+
+#### Message compression
+
+Message compression is not currently supported. 
+
+It will trigger the violation _VIOL_GRPC_MALFORMED_  and the connection will be blocked if a compressed message is sent.
+
+#### Slow POST attacks
+
+A Slow POST attack or Slow HTTP POST attack is a type of denial of service attack. 
+
+The attacker sends a legitimate HTTP POST request with the header Content-Length specified. The attacker then proceeds to send this content slowly. The server establishes a connection to the client and keeps it open to receive the request that it thinks is legitimate.
+
+The attacker sends several such requests and effectively occupies the server’s entire connection pool. As a result, it blocks the service for other legitimate users and results in a denial of service.
+
+To mitigate this, a client sending messages very slowly for a long time may be cut off by resetting the connection.
+
+In gRPC, a connection is considered “slow” if a message takes more than 10 seconds to process. The slow connection timer will be reset when a message ends and not when the whole request ends. 
+
+This way, a limit is applied on the number of concurrent messages rather than the number of concurrent gRPC connections (streams), as many of them may be idle.
+
+The number of slow connections is limited to 25. Once another connection becomes slow it is reset.
 
 ## gRPC violations
 
