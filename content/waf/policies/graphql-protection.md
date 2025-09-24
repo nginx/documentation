@@ -12,39 +12,36 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-GraphQL is an API technology that has grown rapidly in recent years and is continuing to gain traction. GraphQL is a query language designed for APIs to use in the development of client applications that access large data sets with intricate relations among themselves. It provides an intuitive application and flexible syntax for describing data requirements.
+This topic describes the GraphQL protection feature for F5 WAF for NGINX.
 
-GraphQL provides a more efficient, powerful and flexible alternative to REST APIs. This makes it easier to retrieve the data you require in a single request and helps in overcoming challenges which include under-fetching and over-fetching of data. GraphQL also enables faster front-end development without the need for new API endpoints (GraphQL works on a single endpoint), great backend analytics using GraphQL queries and a structured schema and type system.
+{{< call-out "note" >}}
+GraphQL is supported by F5 WAF for NGINX version 4.2 on.
+{{< /call-out >}}
 
-GraphQL also allows the client to specify exactly what data it needs, reducing the amount of data transferred over the network and improving the overall performance of the application.
+GraphQL is designed for APIs to use in the development of client applications that access large data sets with intricate relations among themselves. It
 
-In the following sections, you will learn more about enabling GraphQL configuration (using basic and advanced configuration) plus GraphQL security, GraphQL profile and URL settings.
+It also allows the client to specify exactly what data it needs, reducing the amount of data transferred over the network and improving the overall performance of the application.
 
-### GraphQL Security
+Securing GraphQL APIs with F5 WAF for NGINX involves using WAF to monitor and protect against security threats and attacks. 
 
-Securing GraphQL APIs with F5 WAF for NGINX involves using WAF to monitor and protect against security threats and attacks. GraphQL, like REST, is usually [served over HTTP](http://graphql.org/learn/serving-over-http/), using GET and POST requests and a proprietary [query language](https://graphql.org/learn/schema/#the-query-and-mutation-types). It is prone to the typical Web APIs security vulnerabilities, such as injection attacks, Denial of Service (DoS) attacks and abuse of flawed authorization.
+GraphQL, like REST, is usually [served over HTTP](http://graphql.org/learn/serving-over-http/), using GET and POST requests and a proprietary [query language](https://graphql.org/learn/schema/#the-query-and-mutation-types). It is vulnerable to common web API security vulnerabilities, such as injection attacks, Denial of Service (DoS) attacks and abuse of flawed authorization.
 
-Unlike REST, where Web resources are identified by multiple URLs, GraphQL server operates on a single URL/endpoint, usually **/graphql**. All GraphQL requests for a given service should be directed to this endpoint.
+Unlike REST, where web resources are identified by multiple URLs, GraphQL servers operates on a single URL/endpoint, usually **/graphql**.
 
-## Enabling GraphQL with Basic Configuration
+## Basic configuration
 
-This section describes how to configure GraphQL with minimal configuration. Refer to the following sections for GraphQL elements definitions and details about advanced configuration options.
+GraphQL policies consists of three basic elements: a GraphQL profile, GraphQL violations and a GraphQL URL.
 
-{{< call-out "note" >}} GraphQL is supported on F5 WAF for NGINX version starting 4.2. Make sure you're running F5 WAF for NGINX version 4.2 or later to get GraphQL to work properly.{{< /call-out >}}
-
-GraphQL policy consists of three basic elements: GraphQL Profile, GraphQL Violations and GraphQL URL.
-
-You can enable GraphQL on App Protect by following these steps:
+You can enable GraphQL protection by following these steps:
 
 1. Create a GraphQL policy that includes the policy name. Note that GraphQL profile and GraphQL violation will be enabled by default in the default policy.
-You can enable GraphQL on App Protect with minimum effort by using the following GraphQL policy example.
 1. Add the GraphQL URL to the policy and associate the GraphQL default profile with it.
-1. Optionally, if the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation. In the example below we assume this is the case.
+1. If the app that uses this policy serves only GraphQL traffic, then delete the wildcard URL "*" from the policy so that requests to any URL other than **/graphql** will trigger a violation.
 1. Update the `nginx.conf` file. To enforce GraphQL settings, update the `app_protect_policy_file` field with the GraphQL policy name in `nginx.conf` file. Perform nginx reload once `nginx.conf` file is updated to enforce the GraphQL settings.
 
-In the following policy example, the GraphQL "policy name" i.e. "graphql_policy", and graphql "urls" settings are defined.
+In the following policy example, the GraphQL "_policy name_" _graphql_policy_ and GraphQL "_urls_" settings are defined:
 
-```shell
+```json
 {
     "name": "graphql_policy",
     "template": {
@@ -79,7 +76,7 @@ In the following policy example, the GraphQL "policy name" i.e. "graphql_policy"
 }
 ```
 
-As described in point 4 above, here is an example `nginx.conf` file:
+This is an example of a customized `nginx.conf` file:
 
 ```nginx
 user nginx;
@@ -126,17 +123,13 @@ http {
 }
 ```
 
-## GraphQL Advanced Configuration
+## Advanced configuration
 
-The below sections provides details about enabling GraphQL with advanced configuration.
+F5 WAF for NGINX has four violations specific to GraphQL: `VIOL_GRAPHQL_FORMAT`, `VIOL_GRAPHQL_MALFORMED`, `VIOL_GRAPHQL_INTROSPECTION_QUERY` and `VIOL_GRAPHQL_ERROR_RESPONSE`.
 
-In advanced configuration, GraphQL policy consists of GraphQL Violations, GraphQL Profile and the URL section.
+Under the "_blocking-settings_", you can selectively enable or disable these violations, which are enabled by default.
 
-### GraphQL Violations
-
-F5 WAF for NGINX introduces four new violations specific to GraphQL: `VIOL_GRAPHQL_FORMAT`, `VIOL_GRAPHQL_MALFORMED`, `VIOL_GRAPHQL_INTROSPECTION_QUERY` and `VIOL_GRAPHQL_ERROR_RESPONSE`. <br>
-
-Under the "blocking-settings," user can either enable or disable these violations. Note that these violations will be enabled by default. Any changes to these violation settings here will override the default settings. The details regarding logs will be recorded in the security log. <br>
+Any changes to these violation settings will override the default settings, and the violation details will be recorded in the security log.
 
 See also the [Violations](#violations) section for more details.
 
