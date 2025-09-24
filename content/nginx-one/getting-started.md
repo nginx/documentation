@@ -126,11 +126,12 @@ Depending on whether this is your first time using NGINX One Console or you've u
 After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install NGINX Agent. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.
 
 {{<call-out "important" "Connecting to NGINX One" >}}
-NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IPs:
+NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IP address ranges:
 
-- `3.135.72.139`
-- `3.133.232.50`
-- `52.14.85.249`
+- `3.135.72.139/32`
+- `3.133.232.50/32`
+- `52.14.85.249/32`
+- `2600:1f16:19c8:d400::/62`
 {{</call-out>}}
 
 To install NGINX Agent on an NGINX instance:

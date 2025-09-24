@@ -74,7 +74,7 @@ This NGINX Ingress Controller release brings initial connectivity to the NGINX O
 
 This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 
-Lastly, in our previous v5.0.0 release, we removed support for OpenTracing. This release replaces that observability capability with native [NGINX OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}) traces, allowing you to monitor the internal traffic of your applications.
+Lastly, in our previous v5.0.0 release, we removed support for OpenTracing. This release replaces that observability capability with native [NGINX OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}) traces, allowing you to monitor the traffic of your applications.
 
 ### <i class="fa-solid fa-rocket"></i> Features
 - [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add [OpenTelemetry support]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}})
