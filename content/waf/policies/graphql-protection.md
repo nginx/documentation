@@ -131,15 +131,13 @@ Under the "_blocking-settings_", you can selectively enable or disable these vio
 
 Any changes to these violation settings will override the default settings, and the violation details will be recorded in the security log.
 
-See also the [Violations](#violations) section for more details.
+Since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". 
 
-While configuring GraphQL, since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". In this manner, the GraphQL profile detects violations but does not block the request. They may contribute to the Violation Rating, which, if raised above 3, will automatically block the request.
+With this configuration the GraphQL profile detects violations but does not block the request. They may still contribute to the Violation Rating, which, if raised above 3, will automatically block the request.
 
-However, setting the alarm and block to `true` will enforce block settings and App Protect will block any violating requests.
+To block violating requests, set the alarm and block to `true`.
 
-See below example for more details:
-
-```shell
+```json
 {
     "name": "graphql_policy",
     "template": {
@@ -175,25 +173,25 @@ See below example for more details:
 }
 ```
 
-### GraphQL Profile
+### GraphQL profile
 
-{{< call-out "note" >}} For GraphQL profile default values and GraphQL violations reference, see NGINX App Protect WAF [Declarative Policy guide.]({{< ref "/nap-waf/v5/declarative-policy/policy.md" >}}) {{< /call-out >}}
+The GraphQL profile defines the GraphQL properties that are enforced by the security policy.
 
-The GraphQL Profile defines the GraphQL properties that are enforced by the security policy.
+The profile can be added by the security engineers to make sure that GraphQL applications are bound to the same security settings defined in the profile. 
 
-The profile can be added by the security engineers to make sure that GraphQL apps are bound to the same security settings defined in the profile. Different GraphQL apps can have different profiles based on the security needs.
+Different GraphQL applications can have different profiles based on their security needs.
 
-The GraphQL Profile includes:
+GraphQL profiles include:
 
-- **Security enforcement**: whether to detect signatures and/or metacharacters and optionally an exception (a.k.a override) list of signatures that need to be disabled in the context of this profile.
-- **Defense attributes**: special restrictions applied to the GraphQL traffic. The below example shows the customized GraphQL properties.
-- **responseEnforcement**: whether to block Disallowed patterns and provide the list of patterns against the `disallowedPatterns` property.
+- **Security enforcement**: Whether to detect signatures and/or metacharacters and an optional override list of signatures that need to be disabled in the context of this profile.
+- **Defense attributes**: Special restrictions applied to the GraphQL traffic.
+- **responseEnforcement**: Whether to block Disallowed patterns and the list of patterns for the `disallowedPatterns` property.
 
-GraphQL profile example:
+In the following GraphQL profile example, the "_defenseAttributes_" have been given custom values. 
 
-In the GraphQL profile example below, we changed the "defenseAttributes" to custom values. You can customize these values under the "defenseAttributes" property. Add a list of disallowed patterns to the "disallowedPatterns" field (for example, here we've added pattern1 and pattern2).
+You can also add a list of disallowed patterns to the "_disallowedPatterns_" field, also visible in the example:
 
-```shell
+```json
 "graphql-profiles" : [
          {
             "attackSignaturesCheck" : true,
@@ -217,9 +215,9 @@ In the GraphQL profile example below, we changed the "defenseAttributes" to cust
      ]
 ```
 
-### Define URL settings
+### URL settings
 
-he second step to configure GraphQL is to define the URL settings. Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section, which means URLs with **/graphql** name are permitted. This path will be used for all GraphQL API requests.
+The second step to configure GraphQL is to define the URL settings. Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section, which means URLs with **/graphql** name are permitted. This path will be used for all GraphQL API requests.
 
 Under the "urlContentProfiles" settings define the GraphQL profile name, headerValue: `*` (wildcard), headerName: `*` (wildcard), headerOrder: `default` (allowing any GraphQL URL request with any headerValue, headerName and type should be `graphql`.
 
@@ -227,7 +225,7 @@ There are no restrictions on the number of GraphQL profiles that can be added by
 
 GraphQL URL example:
 
-```shell
+```json
   "urls": [
         {
             "$action": "delete",
@@ -257,7 +255,7 @@ GraphQL URL example:
     ]
 ```
 
-### Associating GraphQL Profiles with URL
+### Associate GraphQL profiles with URLs
 
 The last step is to associate the GraphQL profiles with the URLs. As with JSON and XML profiles, in order for a GraphQL Profile to become effective, it has to be associated with a URL that represents the service. Add the GraphQL profile name which you defined previously under the GraphQL profiles in the name field. For example, here we have defined two GraphQL profiles with the "name": "Default" and "My Custom Profile" under the urlContentProfiles. Later we also associated these profiles in "graphql-profiles".
 
@@ -265,7 +263,7 @@ GraphQL configuration example:
 
 In this example we define a custom GraphQL profile and use it on one URL, while assigning the default profile to another one.
 
-```shell
+```json
 {
     "name": "graphql_policy",
     "template": {
@@ -362,7 +360,7 @@ In this example we define a custom GraphQL profile and use it on one URL, while 
 }
 ```
 
-### GraphQL Response Pages
+### Response pages
 
 A GraphQL error response page is returned when a request is blocked. This GraphQL response page, like other blocking response pages, can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly. The default page returns the GraphQL status code Blocking Response Page (BRP) and a short JSON error message which includes the support ID.
 
