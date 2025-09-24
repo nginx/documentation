@@ -35,11 +35,9 @@ This is accomplished with the following steps:
 
 ---
 
-## Check compatibility between NGINX Ingress Controller and NGINX App Protect WAF versions
+## Check compatibility between NGINX Ingress Controller and F5 WAF for NGINX versions
 
 {{< include "nic/compatibility-tables/nic-nap.md" >}}
-
----
 
 ## Compile WAF Policy from JSON to Bundle
 
