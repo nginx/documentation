@@ -12,18 +12,30 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
+This topic describes the geolocation feature for F5 WAF for NGINX.
+
 Geolocation refers to the process of assessing or determining the geographic location of an object. This feature helps in identifying the geographic location of a client or web application user.
 
-In F5 WAF for NGINX, the Enforcer will look up the client IP address in the Geolocation file included in the app protect package, and extract the corresponding [ISO 3166](https://www.iso.org/obp/ui/#search) two-letter code, representing the country. For instance, "IL" denotes Israel. This information is denoted as "geolocation" in the condition and is also included in the request reporting.
+The Enforcer will look up the client IP address in the Geolocation file included in the F5 WAF for NGINX, and extract the corresponding [ISO 3166](https://www.iso.org/obp/ui/#search) two-letter code, representing the country. 
 
-For applications protected by app protect, you can use Geolocation enforcement to restrict or allow application use in specific countries. You can adjust the lists of which countries or locations are allowed or disallowed in a app protect security policy. If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered. By default, all locations are allowed, and the alarm and block flags are enabled.
+For instance, "IL" denotes Israel. This information is denoted as "geolocation" in the condition and reported in the request..
 
-Requests from certain locations, such as RFC-1918 addresses or unassigned global addresses, do not include a valid country code. The geolocation is shown as **N/A** in both the request and the list of geolocations. You have the option to disallow N/A requests whose country of origination is unknown.
+Applications protected by F5 WAF for NGINX can use geolocation enforcement to restrict or allow application use in specific countries.  You can adjust the lists of which countries or locations are allowed or disallowed with a security policy. 
 
-For example, in the policy provided below, within the "disallowed-geolocations" section, "countryCode": IL and "countryName": Israel have been included.  This signifies that requests originating from these locations will raise an alarm, trigger the `VIOL_GEOLOCATION` violation and will be blocked.
+If the user tries to access the web application from a location that is not allowed, the `VIOL_GEOLOCATION` violation will be triggered.
+
+By default, all locations are allowed, and the alarm and block flags are enabled.
+
+Requests from certain locations, such as RFC-1918 addresses or unassigned global addresses, do not include a valid country code. 
+
+The geolocation is shown as _N/A_ in both the request and the list of geolocations. You can disallow N/A requests whose country of origination is unknown.
+
+In the follow policy example, _"countryCode": IL_ and _"countryName": Israel_ have been included within the _"disallowed-geolocations"_ section.
+
+This indicates that requests originating from these locations should raise an alarm, trigger the `VIOL_GEOLOCATION` violation and be blocked.
 
 
-```shell
+```json
 "general": {
          "customXffHeaders": [],
          "trustXff": true
@@ -46,13 +58,11 @@ For example, in the policy provided below, within the "disallowed-geolocations" 
 
 ```
 
-The below example represents a security policy for a web application. The policy named as "override_rule_example" is based on a template called "POLICY_TEMPLATE_NGINX_BASE." The policy is set to operate in "blocking" mode, which means it will prevent certain activities.
+The next example represents a security policy override for a web application. The policy is named "_override_rule_example_" and is based on a template called "_POLICY_TEMPLATE_NGINX_BASE_". 
 
-There's a specific configuration under "general" that deals with custom headers for cross-origin requests, specifically the "xff" header. The policy is configured to trust this header.
+The policy is set to operate in _blocking mode_, which means it will prevent certain activities. The policy is configured to trust headers configured under _general_ that deal with custom headers for cross-origin requests, specifically the _xff_ header. 
 
-In the "override-rules" section there is one override rule named "myFirstRule." This rule is set up to trigger when the geolocation of a request is identified as 'IL' (Israel). When this condition is met, the action taken is to extend the policy, but with a change in enforcement mode to "transparent."
-
-In simpler terms, when someone tries to access the web application from Israel ('IL'), the security policy will be adjusted to allow the access but in a more transparent manner, meaning it won't block the access but may monitor it differently.
+In the "_override-rules_" section there is one override rule named "_myFirstRule_". This rule is configured to trigger when the geolocation of a request is identified as 'IL' (Israel). When this condition is met, the action taken is to extend the policy, but with a change in enforcement mode to "transparent."
 
 ```json
 {
