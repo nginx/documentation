@@ -133,6 +133,8 @@ You can copy the JWT license file directly to each NGINX Plus instance.
 
 ### Custom paths {#custom-paths}
 
+<br>
+
 {{< include "licensing-and-reporting/custom-paths-jwt.md" >}}
 
 </details>
@@ -141,42 +143,63 @@ You can copy the JWT license file directly to each NGINX Plus instance.
 
 ## Prepare your environment for reporting {#set-up-environment}
 
-To ensure NGINX Plus R33 or later can send usage reports, follow these steps based on your environment:
+NGINX Plus R33 and later must send usage reports.  
 
-### For internet-connected environments
+Choose the setup steps that match your environment:
 
-1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+<details>
+<summary>Configure reporting in internet-connected environments</summary>
 
-   - `3.135.72.139`
-   - `3.133.232.50`
-   - `52.14.85.249`
+### Internet-connected environments {#internet-connected}
 
-2.  (Optional, R34 and later) If your company enforces a strict outbound traffic policy, you can use an outbound proxy for establishing an end-to-end tunnel to the F5 licensing endpoint. On each NGINX Plus instance, update the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX configuration (`/etc/nginx/nginx.conf`) to point to the company's outbound proxy server:
+<br>
 
+In connected environments, NGINX Plus sends usage reports directly to the F5 licensing endpoint. 
 
-    ```nginx
-    mgmt {
-        proxy          PROXY_ADDR:PORT; #can be http or https
-        proxy_username USER;            #optional
-        proxy_password PASS;            #optional
-    }
-    ```
+<br>
 
-### For network-restricted environments
+Allow the necessary outbound traffic so reports can reach F5.
 
-In environments where NGINX Plus instances cannot access the internet, you'll need NGINX Instance Manager to handle usage reporting.
+1. Allow NGINX Plus instances to connect to the F5 licensing endpoint (`product.connect.nginx.com`) over HTTPS (TCP `443`). Make sure the following IP addresses are allowed:
 
-#### Configure NGINX Plus to report usage to NGINX Instance Manager
+   - `3.135.72.139`  
+   - `3.133.232.50`  
+   - `52.14.85.249`  
 
-To configure NGINX Plus R33 or later to report usage data to NGINX Instance Manager:
+1. *(R34 and later)* If your company restricts outbound traffic, configure NGINX Plus instances to connect through an outbound proxy. Update the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of (`/etc/nginx/nginx.conf`) to point to your proxy server:
 
-{{< include "licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
+   ```nginx
+   mgmt {
+       proxy          PROXY_ADDR:PORT; # can be http or https
+       proxy_username USER;            # optional
+       proxy_password PASS;            # optional
+   }
+   ```
 
-To send NGINX Plus usage reports to F5, follow the instructions in [Submit usage reports to F5 from NGINX Instance Manager](#submit-usage-reports-from-nim).
+</details>
+
+<details>
+<summary>Configure reporting in network-restricted environments</summary>
+
+### Network-restricted environments {#network-restricted}
+
+<br>
+
+In environments without internet access, NGINX Plus sends usage reports to NGINX Instance Manager. NGINX Instance Manager collects the reports and later forwards them to F5. For details on forwarding usage reports from NGINX Instance Manager to F5, see [Submit usage reports to F5 from NGINX Instance Manager](#submit-usage-reports-from-nim).
+
+<br>
+
+To configure NGINX Plus to send usage reports to NGINX Instance Manager:
+
+{{< include "/licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
+
+</details>
 
 ### Postpone reporting enforcement {#postpone-reporting-enforcement}
 
-You can delay reporting by setting [`enforce_initial_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) to `off`. This starts a 180-day grace period where NGINX Plus keeps running while it continues trying to report.
+By default, NGINX Plus requires a successful initial usage report before it continues processing traffic.  
+
+If you need to delay this requirement, you can set [`enforce_initial_report`](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) to `off`. This starts a 180-day grace period where NGINX Plus keeps running while it continues trying to report.
 
 ```nginx
 # Modify this directive to start the 180-day grace period for initial reporting.
@@ -185,7 +208,10 @@ mgmt {
 }
 ```
 
-{{< call-out "important" >}}After 180 days, if usage reporting still hasn’t been established, NGINX Plus will stop processing traffic.{{< /call-out >}}
+{{< call-out "important" "Important" >}}
+Use this option only when necessary. After 180 days, if usage reporting still hasn’t been established,
+NGINX Plus will stop processing traffic.
+{{< /call-out >}}
 
 ---
 
