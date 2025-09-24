@@ -20,6 +20,10 @@ F5 WAF for NGINX can protect applications exposing gRCP APIs by parsing their me
 
 These security restrictions include size limits, detecting attack signatures, threat campaigns, and suspicious metacharacters in message string field values.
 
+Only protocol buffer version 3 is supported. Any obsolete features of version 2, such as message extensions in the IDL files, will be rejected. 
+
+IDL files that have the syntax = "proto2"; statement are also rejected.
+
 ## Unary traffic
 
 ### Content profiles
@@ -140,7 +144,7 @@ F5 WAF for NGINX will identify the file type automatically and handle it accordi
 
 Note the deletion of the `*` URL in the previous example. This is required to accept only requests to the gRPC services exposed by your applications. 
 
-If you leave the wikdcard URL, F5 WAF for NGINX will accept other traffic including gRPC requests, applying policy checks such as signature detection.
+If you leave the wildcard URL, F5 WAF for NGINX will accept other traffic including gRPC requests, applying policy checks such as signature detection.
 
 However, it will not apply to any gRPC-specific protection to them.
 
@@ -216,3 +220,240 @@ For example, you can turn off meta character checks by adding `"metacharsOnUrlCh
 
 ### Response pages
 
+A gRPC error response page is returned when a request is blocked. 
+
+The default page returns gRPC status code `UNKNOWN` (numeric value of 2) and a short text message that includes the support ID. 
+
+You can customize both two by adding a custom gRPC response page in your policy.
+
+```json
+{
+    "policy": {
+        "name": "my-special-grpc-service-policy",
+        "response-pages": [
+            {
+                "responsePageType": "grpc",
+                "grpcStatusCode": "INVALID_ARGUMENT",
+                "grpcStatusMessage": "Operation does not comply with the service requirements. Please contact your administrator with the following number: <%TS.request.ID()%>"
+            }
+        ]
+    }
+}
+```
+
+The `grpcStatusCode` expects one of the [standard gRPC status code values](https://grpc.github.io/grpc/core/md_doc_statuscodes.html).
+
+### Detect Base64 in string values
+
+F5 WAF for NGINX to can detect if values in string fields in gRPC payload are Base64 encoded. 
+
+When a value is detected as Base64 encoded F5 WAF for NGINX will enforce the configured signatures on the decoded value **and** the original value.
+
+This feature is disabled by default and can be enabled by setting `decodeStringValuesAsBase64` to `enabled`.
+
+gRPC protocol buffers are intended to carry binary fields of "bytes" type and trying to decode strings as Base64 may lead to false positives. 
+
+Using Base64-encoded strings for binary data is not considered good practice, but Base64 detection can be enabled for applications that do so.
+
+```json
+{
+    "policy": {
+        "applicationLanguage": "utf-8",
+        "name": "valid_string_encoding_policy",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "idl-files": [
+            {
+                "fileName": "valid_string.proto",
+                "link": "file:///tmp/grpc/valid_string.proto"
+            }
+        ],
+        "grpc-profiles": [
+            {
+                "name": "base64_decode_strings",
+                "description": "My first profile",
+                "idlFiles": [
+                    {
+                        "idlFile": {
+                            "fileName": "valid_string.proto"
+                        }
+                    }],
+                "decodeStringValuesAsBase64": "enabled"
+            }
+        ]
+    }
+}
+```
+
+### Server reflection
+
+[gRPC server reflection](https://grpc.github.io/grpc/core/md_doc_server_reflection_tutorial.html) provides information about publicly-accessible gRPC services on a server, and assists clients at runtime to construct RPC requests and responses without precompiled service information. 
+
+gRPC server reflection is not currently supported by F5 WAF for NGINX. 
+
+If server reflection support is required, F5 WAF for NGINX must be disabled on the reflection URIs by adding a location block:
+
+```nginx
+server {
+    location /grpc.reflection {
+        app_protect_enable off;
+        grpc_pass grpc://grpc_backend;
+    }
+}
+```
+
+## Bidirectional streaming
+
+gRPC can have a stream of messages on each side: client, server, or both. 
+
+Bidirectional streaming leverages HTTP/2 streaming capability, namely the ability to send multiple gRPC messages from either side ended by the message having the `END_STREAM` flag set to 1.
+
+Bidirectional streaming will:
+
+1. Accept streaming services on either or both sides (client or server) and send a sequence of messages using a read-write stream.
+1. Inspect the client messages in the stream and log them one by one.
+1. In case of blocking action:
+    - Send the blocking response.
+    - Close the stream on both directions.
+1. Pass the server messages through without inspection.
+
+### Configure streaming
+
+The only configuration related to streaming is the IDL file using the `rpc` declaration. The keyword `stream` indicates that the message on the respective side is streaming.
+
+#### Client stream
+
+A client writes a sequence of messages and sends them to the server. Once the client has finished writing the messages, it waits for the server to read them and return its response.
+
+gRPC guarantees message ordering within an individual RPC call.
+
+```shell
+rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
+```
+#### Server stream
+
+The client sends a request to the server and gets a stream to read a sequence of messages back. 
+
+The client reads from the returned stream until there are no more messages. gRPC guarantees message ordering within an individual RPC call.
+
+```shell
+rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
+```
+#### Bidirectional streams
+
+Where both sides send a sequence of messages using a read-write stream. The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message and then write a message, or some other combination of reads and writes. The order of messages in each stream is preserved.
+
+```shell
+rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
+```
+
+```proto
+syntax = "proto3";
+package streaming;
+service Greeter {
+  rpc BothUnary (HelloRequest) returns (HelloReply) {}
+  rpc ClientStreaming (stream HelloRequest) returns (HelloReply) {}
+  rpc ServerStreaming (HelloRequest) returns (stream HelloReply) {}
+  rpc BidirectionalStreaming (stream HelloRequest) returns (stream HelloReply) {}
+}
+message HelloRequest {
+  string message = 1;
+}
+message HelloReply {
+  string message = 1;
+}
+```
+
+### Enable gRPC protection for bidirectional streaming
+
+To enable gRPC protection, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. All the gRPC messages will be logged in Security Log under the `log_grpc_all.json` file. For more details on how these requests are handled in gRPC, refer to the [gRPC Logging](#grpc-logging) section.
+
+```nginx
+user nginx;
+worker_processes auto;
+
+load_module modules/ngx_http_app_protect_module.so;
+
+error_log /var/log/nginx/error.log debug;
+working_directory /tmp/cores;
+worker_rlimit_core 1000M;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    keepalive_timeout  30m;
+    client_body_timeout 30m;
+    client_max_body_size 0;
+    send_timeout 30m;
+
+    proxy_connect_timeout  30m;
+    proxy_send_timeout  30m;
+    proxy_read_timeout  30m;
+    proxy_socket_keepalive on;
+
+    server {
+        listen       80 default_server http2;
+        server_name  localhost;
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/grpc_policy.json";
+        app_protect_security_log_enable on;
+        app_protect_security_log "/opt/app_protect/share/defaults/log_grpc_all.json" /tmp/grpc.log;
+
+        grpc_socket_keepalive on;
+        grpc_read_timeout 30m;
+        grpc_send_timeout 30m;
+
+        location / {
+            default_type text/html;
+            grpc_pass grpc://<GRPC_BACKEND_SERVER_IP>:<PORT>;
+        }
+    }
+}
+```
+
+## gRPC violations
+
+There are three violations specific to gRPC, which are all enabled in the default policy
+
+- `VIOL_GRPC_MALFORMED`: This violation is issued when a gRPC message cannot be parsed according to its expected definition. This violation **blocks** in the default policy.
+- `VIOL_GRPC_FORMAT`: This violation is issued when any of the definitions in the `defenseAttributes` of the profile are violated; for example, the maximum total size is exceeded.
+- `VIOL_GRPC_METHOD`: This violation is issued when the gRPC method is unrecognized in the configured IDL.
+
+The violation `VIOL_METHOD` (not to be confused with the above `VIOL_GRPC_METHOD`) is not unique to gRPC, but in the context of a gRPC content profile, it is issued in special circumstances.
+
+Since gRPC mandates the `POST` method on any gRPC request over HTTP, any other HTTP method on a request to URL with gRPC content profile will trigger this violation, even if the respective HTTP method is allowed in the policy. 
+
+In an earlier example, the request `GET /myorg.services.photo_album/get_photos` will trigger `VIOL_METHOD` even though `GET` is among the allowed HTTP methods in the policy (by the base template).
+
+## gRPC logging
+
+Security logs for gRPC requests have three unique fields: `uri`, `grpc_method`, and `grpc_service`.
+
+Since the content of gRPC requests is binary (protocol buffers), they are transferred with Base64 encoding. As a result, it is recommended to use the `headers` and `request_body_base64` fields instead of the `request` field. 
+
+A new predefined log format called `grpc` should be used in all gRPC locations that also use policies with gRPC content profiles.
+
+View the [available security log attributes]({{< ref "/waf/logging/security-logs.md#available-security-log-attributes" >}}) topic for more information.
+
+F5 WAF for NGINX provides three security log bundles for gRPC using the new format: `log_grpc_all`, `log_grpc_illegal` and `log_grpc_blocked` for all requests, illegal requests, and blocked requests respectively. 
+
+Unless you have special requirements, the best practice is to use one of these bundles in all gRPC locations with the `app_protect_security_log` directive.
+
+```nginx
+server {
+    server_name my_grpc_service.com;
+    location / {
+        app_protect_enable on;
+        app_protect_policy_file "/etc/app_protect/conf/policy_with_grpc_profile.tgz";
+        app_protect_security_log_enable on;
+        app_protect_security_log "/etc/app_protect/conf/log_grpc_all.tgz" stderr;
+        grpc_pass grpcs://grpc_backend;
+    }
+}
+```
