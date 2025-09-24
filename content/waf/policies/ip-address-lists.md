@@ -1,6 +1,6 @@
 ---
-title: IP Address Lists
-weight: 1600
+title: IP address lists
+weight: 1500
 toc: true
 nd-content-type: reference
 nd-product: NAP-WAF
