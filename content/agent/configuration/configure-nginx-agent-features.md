@@ -1,6 +1,5 @@
 ---
 title: Features configuration
-draft: false
 weight: 150
 toc: true
 nd-docs: DOCS-000
@@ -17,7 +16,6 @@ Before you start, make sure that you have:
 
 - [NGINX Agent installed]({{< ref "/agent/installation-upgrade/" >}}) in your system.
 - Access to the NGINX Agent configuration file.
-
 
 ## Features
 
@@ -50,7 +48,7 @@ The following table lists the NGINX Agent features:
 
    `sudo vim /etc/nginx-agent/nginx-agent.conf`
 
-1. Add the fetures section: Add the following to the end of the configuration file if it doesn't already exist.
+1. Add the features section: Add the following to the end of the configuration file if it doesn't already exist.
 
    ```nginx
    features:
