@@ -17,31 +17,36 @@ The JWT license:
 - Is tied to your subscription (not to individual instances).  
 - Validates your subscription and sends usage reports to F5’s licensing endpoint (`product.connect.nginx.com`) in connected environments, or through [NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}) in disconnected environments.  
 
+{{< call-out "note" "If you have multiple subscriptions" >}}
 If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to any license. NGINX combines usage reporting across all licensed instances.  
 
-{{< call-out "Note" "Note" >}}Combining licenses with NGINX Instance Manager requires version **2.20 or later**.{{</ call-out >}}  
+Combining licenses with NGINX Instance Manager requires version **2.20 or later**.
+{{</ call-out >}}  
 
 ---
 
 ## Important changes
 
-NGINX Plus requires a valid license and regular usage reporting to run normally.
-
-The conditions below, and the workflow diagram that follows, explain what happens if those requirements aren’t met.  
+NGINX Plus requires a valid license and regular usage reporting to run.  
+The sections below explain the requirements and what happens if they aren’t met.  
+For a visual overview, see the [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).  
 
 ### Starting NGINX Plus
 
-Requires:
+Starting NGINX Plus requires:  
 
-- A valid JWT license. If the license is missing or invalid, NGINX Plus won’t start.  
-- A license that is less than 90 days past expiration. If it’s expired longer, NGINX Plus won’t start.  
+- A valid JWT license.  
+- A license that has not been expired for more than 90 days.  
 
-### Continuing to process traffic
+If either condition is not met, NGINX Plus will not start.  
 
-Requires:
+### Processing traffic
 
-- A successful initial usage report. If the first report fails, NGINX Plus stops processing traffic until the report succeeds. See [Postpone reporting enforcement](#postpone-reporting-enforcement) for how to add a grace period.  
-- At least one usage report every 180 days. If the grace period ends without a report, NGINX Plus stops processing traffic until reporting is restored.   
+Processing traffic requires:  
+
+- A successful initial usage report. If the report fails, NGINX Plus stops processing traffic until the report succeeds.  
+  To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
+- At least one usage report every 180 days. If the grace period ends without a report, NGINX Plus stops processing traffic until reporting resumes.   
 
 ---
 
