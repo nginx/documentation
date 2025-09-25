@@ -217,13 +217,17 @@ You can also add a list of disallowed patterns to the "_disallowedPatterns_" fie
 
 ### URL settings
 
-The second step to configure GraphQL is to define the URL settings. Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section, which means URLs with **/graphql** name are permitted. This path will be used for all GraphQL API requests.
+The second part of configuring GraphQL protection is to define the URL settings. 
 
-Under the "urlContentProfiles" settings define the GraphQL profile name, headerValue: `*` (wildcard), headerName: `*` (wildcard), headerOrder: `default` (allowing any GraphQL URL request with any headerValue, headerName and type should be `graphql`.
+Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section. 
+
+This means URLs with **/graphql** name are permitted, and will be used for all GraphQL API requests.
+
+Under the "urlContentProfiles" settings define the GraphQL profile name, headerValue: `*` (wildcard), headerName: `*` (wildcard), headerOrder: `default`.
+
+These options allow any GraphQL URL request with any headerValue, headerName and type should be `graphql`.
 
 There are no restrictions on the number of GraphQL profiles that can be added by the user.
-
-GraphQL URL example:
 
 ```json
   "urls": [
@@ -257,11 +261,11 @@ GraphQL URL example:
 
 ### Associate GraphQL profiles with URLs
 
-The last step is to associate the GraphQL profiles with the URLs. As with JSON and XML profiles, in order for a GraphQL Profile to become effective, it has to be associated with a URL that represents the service. Add the GraphQL profile name which you defined previously under the GraphQL profiles in the name field. For example, here we have defined two GraphQL profiles with the "name": "Default" and "My Custom Profile" under the urlContentProfiles. Later we also associated these profiles in "graphql-profiles".
+In order for a GraphQL profile to become effective, it has to be associated with a URL that represents the service. 
 
-GraphQL configuration example:
+Add the GraphQL profile name which you defined previously under the GraphQL profiles in the name field. 
 
-In this example we define a custom GraphQL profile and use it on one URL, while assigning the default profile to another one.
+This example has two GraphQL profiles with the "name": "Default" and "My Custom Profile" under the urlContentProfiles.
 
 ```json
 {
@@ -362,9 +366,11 @@ In this example we define a custom GraphQL profile and use it on one URL, while 
 
 ### Response pages
 
-A GraphQL error response page is returned when a request is blocked. This GraphQL response page, like other blocking response pages, can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly. The default page returns the GraphQL status code Blocking Response Page (BRP) and a short JSON error message which includes the support ID.
+A GraphQL error response page is returned when a request is blocked. 
 
-For example:
+This GraphQL response page can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly. 
+
+The default page returns the GraphQL status code Blocking Response Page (BRP) and a short JSON error message which includes the support ID.
 
 ```shell
 "response-pages": [
