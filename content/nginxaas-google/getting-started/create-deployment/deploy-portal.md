@@ -43,6 +43,7 @@ Once you have completed the subscription process and created a network attachmen
 
 - Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
 - Log in to the console with your Google credentials.
+- Select the appropriate Geography to work in, based on the region your network attachment was created in.
 
 ## Create or import an NGINX configuration
 
@@ -57,10 +58,11 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
 
    - Enter a **Name**.
    - Add an optional description for your deployment.
-   - Change the **NCU Capacity** if needed. The default value of `20 NCU` should be adequate for most scenarios.
+   - Change the **NCU Capacity** if needed.
+      - The default value of `20 NCU` should be adequate for most scenarios.
+      - This value must be a multiple of `10`.
    - In the Cloud Details section, enter the Network Attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
-   - Select the **NGINX configuration version** from the list.
    - Select a **Configuration Version** from the list.
    - Select **Submit** to begin the deployment process.
 
@@ -72,8 +74,12 @@ In the NGINXaaS Console,
 
 1. To open the details of your deployment, select its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
-1. Select **Edit** to modify the deployment name, description, and NGINX configuration. Select **Update** to save your changes.
-1. Select the configuration name to see the configuration details. On the **Configuration details** page, select **Edit** to modify the configuration file.
+1. Select **Edit** to modify the deployment name, description, and NCU Capacity.
+   - You can also configure monitoring from here. Detailed instructions can be found in [Enable Monitoring]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
+1. Select **Update** to save your changes.
+1. Select the Configuration tab to view the current NGINX configuration associated with the deployment.
+1. Select **Update Configuration** to change the NGINX configuration associated with the deployment.
+1. To modify the contents of the NGINX configuration, see [Update an NGINX Configuration]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-portal.md#update-an-nginx-configuration" >}}).
 
 ## Set up connectivity to your deployment
 

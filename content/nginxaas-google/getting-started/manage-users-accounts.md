@@ -62,7 +62,7 @@ As an authenticated user, you may modify the authorized domains and name of an N
 
 ## Switch accounts
 
-To switch to a different NGINXaaS Account, select the profile symbol in the top right corner and choose **Switch Account**. This opens a page showing the list of all the NGINXaas Accounts that your Google Identity is linked to; select the account you want to switch to.
+To switch to a different NGINXaaS Account, select the profile symbol in the top right corner and choose **Switch Account**. This opens a page showing the list of all the NGINXaaS Accounts that your Google Identity is linked to; select the account you want to switch to.
 
 ## Delete a user
 
