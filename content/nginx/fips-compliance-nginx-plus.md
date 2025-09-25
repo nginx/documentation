@@ -24,36 +24,42 @@ Some industries such as finance, healthcare, energy, also adopt FIPS to enhance 
 
 Currently, both FIPS 140-2 and FIPS 140-3 certifications are accepted. However, FIPS 140-2 is being phased out as part of the [FIPS 140-3 transition plan](https://csrc.nist.gov/projects/fips-140-3-transition-effort). After September 22, 2026, only FIPS 140-3 certifications will be recognized. Organizations are encouraged to migrate to FIPS 140-3 to meet updated cryptographic security requirements.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm">}}
-| **Program/Regulation/Industry** | **FIPS 140-2/140-3 Requirement** | **Current Status**                                                  |
-|---------------------------------|----------------------------------|---------------------------------------------------------------------|
-| CJIS                          | 140-2 or 140-3               | FIPS required for systems protecting criminal justice data.               |
-| CMMC                          | 140-2 or 140-3               | FIPS required for Levels 2 and 3 compliance.                              |
-| Common Criteria               | 140-2 or 140-3               | Evaluations reference both FIPS versions for cryptographic security.      |
-| Critical Infrastructure       | 140-2 or 140-3               | Utilities and systems accept both versions depending on deployments.      |
-| Department of Veterans Affairs| 140-2 or 140-3               | Both versions used for securing sensitive health and personal data.       |
-| DFARS                         | 140-2 or 140-3               | Cryptographic modules for CUI must be FIPS compliant.                     |
-| DoDIN APL                     | 140-2 or 140-3               | Approved IT products must include FIPS validation.                        |
-| FAA                           | 140-2 transitioning to 140-3 | 140-2 modules common in existing systems; new systems use 140-3.          |
-| FERPA                         | 140-2 or 140-3               | Federal-funded educational systems align with 140-2 or 140-3.             |
-| FedRAMP                       | 140-2 or 140-3               | FIPS required for encryption; both versions accepted.                     |
-| FISMA                         | 140-2 or 140-3               | Both versions accepted; agencies adopt existing 140-2 modules.            |
-| HIPAA                         | 140-2 or 140-3               | FIPS ensures encryption for ePHI; both versions are valid.                |
-| HITECH                        | 140-2 or 140-3               | FIPS use aligns with encryption best practices for ePHI.                  |
-| Intelligence Community        | 140-2 transitioning to 140-3 | Current systems mostly use 140-2; newer systems adopt 140-3.              |
-| Military & Tactical Systems   | 140-2 transitioning to 140-3 | 140-2 used widely; transitioning to 140-3 certifications for future tools.|
-| NSA CSfC                      | 140-2 transitioning to 140-3 | NSA accepts 140-2 but prefers newer certifications under 140-3.           |
-| Nuclear Regulatory Commission | 140-2 or 140-3               | Cryptography for nuclear systems relies on both versions.                 |
-| PCI DSS                       | 140-2 or 140-3               | Both versions recommended but not mandatory.                              |
-| State and Local Gov Programs  | 140-2 or 140-3               | FIPS required for federal grant-funded security systems.                  |
-| TSA                           | 140-2 or 140-3               | Best practice for cryptographic protection; both versions accepted.       |
-{{< /bootstrap-table >}}
+{{< table >}}
+| **Sector / Program**           | **Version**    | **Status**    |
+|--------------------------------|----------------|---------------|
+| **Federal Programs**           |                |               |
+| CJIS                           | 140-2 or 140-3 | Mandatory     |
+| FedRAMP                        | 140-2 or 140-3 | Mandatory     |
+| FISMA                          | 140-2 or 140-3 | Mandatory     |
+| DFARS                          | 140-2 or 140-3 | Mandatory     |
+| DoDIN APL                      | 140-2 or 140-3 | Mandatory     |
+| FAA                            | 140-2 to 140-3 | Transitioning |
+| TSA                            | 140-2 or 140-3 | Recommended   |
+| **Defense & Intelligence**     |                |               |
+| CMMC                           | 140-2 or 140-3 | Mandatory     |
+| Intelligence Community         | 140-2 to 140-3 | Transitioning |
+| NSA CSfC                       | 140-2 to 140-3 | Transitioning |
+| Military & Tactical Systems    | 140-2 to 140-3 | Transitioning |
+| **Healthcare & Education**     |                |               |
+| HIPAA                          | 140-2 or 140-3 | Mandatory     |
+| HITECH                         | 140-2 or 140-3 | Mandatory     |
+| Department of Veterans Affairs | 140-2 or 140-3 | Mandatory     |
+| FERPA                          | 140-2 or 140-3 | Recommended   |
+| **Commercial/Private Sector**  |                |               |
+| PCI DSS                        | 140-2 or 140-3 | Recommended   |
+| Common Criteria                | 140-2 or 140-3 | Recommended   |
+| **Infrastructure & Critical Systems** |         |               |
+| Critical Infrastructure        | 140-2 or 140-3 | Recommended   |
+| Nuclear Regulatory Commission  | 140-2 or 140-3 | Recommended   |
+| **State & Local Government**   |                |               |
+| State and Local Gov Programs   | 140-2 or 140-3 | Mandatory     |
+{{< /table >}}
 
 ### FIPS compliance in other countries
 
 Although FIPS 140 is primarily a North American government cryptographic standard, it is widely recognized as a global benchmark for cryptographic security. Numerous countries outside North America align their cryptographic requirements with FIPS, especially in regulated sectors such as finance, defense, healthcare, and critical infrastructure.
 
-{{<bootstrap-table "table table-striped table-bordered table-sm">}}
+{{< table >}}
 | Country/Region | FIPS Use                                                                    |
 |----------------|-----------------------------------------------------------------------------|
 | Australia      | Referenced for government, defense, and cryptography systems.               |
@@ -74,7 +80,7 @@ Although FIPS 140 is primarily a North American government cryptographic standar
 | UAE            | Trusted in finance, energy, and interoperability with the U.S. cryptography.|
 | United Kingdom | Referenced for defense, health, and procurement standards.                  |
 | United States  | Mandatory for federal government systems and contractors.                   |
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ## FIPS compliant vs FIPS validated
 
@@ -107,6 +113,14 @@ Several operating system vendors have obtained FIPS 140-2 Level 1 and 140-3 Leve
 
 You also can verify whether your operating system or cryptographic module is FIPS-validated using the [NIST database search tool](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules/search).
 
+## FIPS validation of OpenSSL
+
+OpenSSL 3.0 and later versions introduced a FIPS provider that enables cryptographic operations in a FIPS-compliant mode.
+
+FIPS 140-3 validation: starting with OpenSSL 3.1.2, the library has [achieved FIPS 140-3 validation](https://openssl-library.org/post/2025-03-11-fips-140-3/) under certification [#4985](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4985).
+
+FIPS 140-2 validation: the FIPS provider for OpenSSL 3.0.x has been validated for FIPS 140-2 under certifications [#4811](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4811) and [#4282](https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4282).
+
 ## Verification of correct operation of NGINX Plus
 
 The following process describes how to deploy NGINX Plus in a FIPS‑compliant environment and verify that the FIPS operations are functioning correctly. It involves three basic steps:
@@ -121,7 +135,7 @@ The process uses Red Hat Enterprise Linux (RHEL) release 9.6 as an example and c
 
 ### Step 1: Configure the operating system to use FIPS mode {#os-fips-setup}
 
-For the purposes of the following demonstration, we installed and configured a RHEL 9.6 server. The [Red Hat FIPS documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-federal_standards_and_regulations#sec-Enabling-FIPS-Mode) explains how to switch the operating system between FIPS mode and non‑FIPS mode by editing the boot options and restarting the system.
+For the purposes of the following demonstration, we installed and configured a RHEL 9.6 server. The [Red Hat FIPS documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening) explains how to switch the operating system between FIPS mode and non‑FIPS mode by editing the boot options and restarting the system.
 
 For instructions for enabling FIPS mode on other FIPS‑compliant Linux operating systems, see the operating system documentation, for example:
 
@@ -248,7 +262,6 @@ nginx version: nginx/1.29.0 (nginx-plus-r35)
 built by gcc 11.5.0 20240719 (Red Hat 11.5.0-5) (GCC) 
 built with OpenSSL 3.2.2 4 Jun 2024
 ```
-Note that OpenSSL 1.0.x might include the `–fips` suffix to indicate that the library was linked with a FIPS-validated module, but it did not confirm that the library was operating in FIPS mode. Starting with OpenSSL 3.0, the concept of Providers was introduced, allowing explicit verification of FIPS validation by listing providers with the `openssl list -providers | grep fips` command.
 
 **Configure NGINX Plus to serve a simple SSL/TLS‑protected website**: Add the following simple configuration to NGINX Plus:
 
@@ -369,7 +382,7 @@ The `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` algorithm is FIPS 140-3 compliant as
 
 The FIPS 140-2 standard only permits a [subset of the typical SSL and TLS ciphers](https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402annexa.pdf), while FIPS 140-3 [extends this requirements](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf) to enforce stricter cryptographic algorithms.
 
-In the following test, the ciphers presented by NGINX Plus are surveyed using the `nmap` utility (installed separately). In its default configuration, with the [`ssl_ciphers HIGH:!aNULL:!MD5`](nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
+In the following test, the ciphers presented by NGINX Plus are surveyed using the `nmap` utility (installed separately). In its default configuration, with the [`ssl_ciphers HIGH:!aNULL:!MD5`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive, NGINX Plus presents the following ciphers to SSL/TLS clients:
 
 ```shell
 nmap --script ssl-enum-ciphers -p 443 <NGINX-Plus-address>
@@ -515,7 +528,7 @@ The process described above may be used to verify that NGINX Plus is operating i
 
 - **FIPS compliant**: NGINX Plus is compliant with FIPS 140-2 Level 1 and FIPS 140-3 Level 1 within the cryptographic boundary when used with a FIPS‑validated OpenSSL cryptographic module on an operating system running in FIPS mode.
 
-## See also:
+## See also
 
 [FIPS 140-3 Standard in the PDF format](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf)
     
@@ -524,4 +537,8 @@ The process described above may be used to verify that NGINX Plus is operating i
 [F5 NGINX Plus running on Red Hat Enterprise Linux is now FIPS 140-3 compliant](https://www.redhat.com/en/blog/f5-nginx-plus-running-red-hat-enterprise-linux-now-fips-140-3-compliant)
 
 
+## Revision history
 
+- Version 2 (September 2025) - Added information about FIPS 140-3 Level 1 compliance, updated test procedures, updated product versions, updated URLs to operating systems, NIST certificates and other relevant resources.
+
+- Version 1 (August 2019) - Initial version with FIPS 140-2 Level 1 compliance.

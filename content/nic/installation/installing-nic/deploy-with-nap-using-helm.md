@@ -35,12 +35,16 @@ This is accomplished with the following steps:
 
 ---
 
+## Check compatibility between NGINX Ingress Controller and F5 WAF for NGINX versions
+
+{{< include "nic/compatibility-tables/nic-nap.md" >}}
+
 ## Compile WAF Policy from JSON to Bundle
 
 Pull the `waf-compiler` image with:
 
 ```shell
-docker pull private-registry.nginx.com/nap/waf-compiler:5.6.0
+docker pull private-registry.nginx.com/nap/waf-compiler:5.8.0
 ```
 
 Download the [provided WAF Policy JSON](https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/tests/data/ap-waf-v5/wafv5.json):
@@ -49,13 +53,13 @@ Download the [provided WAF Policy JSON](https://raw.githubusercontent.com/nginx/
 curl -L https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/tests/data/ap-waf-v5/wafv5.json -o /tmp/wafv5.json
 ```
 
-Use your pulled NAP Docker image (`private-registry.nginx.com/nap/waf-compiler:5.6.0`) to compile the policy bundle:
+Use your pulled NAP Docker image (`private-registry.nginx.com/nap/waf-compiler:5.8.0`) to compile the policy bundle:
 
 ```shell
 # Using your newly created image
 docker run --rm \
     -v /tmp:/tmp \
-    private-registry.nginx.com/nap/waf-compiler:5.6.0 \
+    private-registry.nginx.com/nap/waf-compiler:5.8.0 \
     -p /tmp/wafv5.json \
     -o /tmp/compiled_policy.tgz
 ```
@@ -157,7 +161,7 @@ kubectl create secret \
 Install the required CRDs for NGINX Ingress Controller:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v5.0.0/deploy/crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
 ```
 
 Using Helm, install NGINX Ingress Controller
@@ -165,7 +169,7 @@ Using Helm, install NGINX Ingress Controller
 ```shell
 helm upgrade --install nic nginx-stable/nginx-ingress \
    --set controller.image.repository="private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress" \
-   --set controller.image.tag="5.0.0-alpine-fips" \
+   --set controller.image.tag="{{< nic-version >}}-alpine-fips" \
    --set controller.nginxplus=true \
    --set controller.appprotect.enable=true \
    --set controller.appprotect.v5=true \

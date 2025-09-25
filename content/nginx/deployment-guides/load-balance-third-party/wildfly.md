@@ -885,7 +885,7 @@ server {
 <span id="resources"></span>
 ## Resources
 
-- [NGINX Plus Overview](https://www.nginx.com/products/nginx)
+- [NGINX Plus Overview](https://www.f5.com/products/nginx/nginx-plus)
 - [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
