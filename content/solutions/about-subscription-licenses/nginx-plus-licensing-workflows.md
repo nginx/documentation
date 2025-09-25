@@ -15,7 +15,7 @@ Use these workflows to see what happens if a license is missing, expired, or not
 Click the image to enlarge.
 
 {{< figure
-    src="/nginx/images/nginx-plus-licensing-workflows.png"
-    link="/nginx/images/nginx-plus-licensing-workflows.png"
+    src="/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.png"
+    link="/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.png"
     alt="Flowchart of NGINX Plus licensing and usage reporting checks (startup, expiration, and connected/disconnected reporting)."
 >}}
