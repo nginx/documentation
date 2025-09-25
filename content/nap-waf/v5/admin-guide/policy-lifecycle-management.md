@@ -2,6 +2,7 @@
 title: Policy Lifecycle Management
 weight: 200
 toc: true
+draft: true
 type: how-to
 product: NAP-WAF
 ---
