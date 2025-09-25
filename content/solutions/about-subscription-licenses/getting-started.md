@@ -1,9 +1,9 @@
 ---
-title: About subscription licenses
+title: Getting started
 toc: true
-weight: 2
+weight: 200
 type:
-- reference
+- tutorial
 product: Solutions
 nd-docs: DOCS-1780
 ---
@@ -43,33 +43,15 @@ Requires:
 - A successful initial usage report. If the first report fails, NGINX Plus stops processing traffic until the report succeeds. See [Postpone reporting enforcement](#postpone-reporting-enforcement) for how to add a grace period.  
 - At least one usage report every 180 days. If the grace period ends without a report, NGINX Plus stops processing traffic until reporting is restored.   
 
-### What you need to do
-
-To keep NGINX Plus running after you install or upgrade to R33 or later:
-
-- **[Add a valid JWT license](#download-jwt)** to each NGINX Plus instance.  
-- **[Set up reporting](#set-up-environment)** so each instance can send usage data.
-
-### Licensing and reporting workflow
-
-The following workflow illustrates the checks NGINX Plus performs and the outcomes if requirements aren’t met.
-
-{{< figure
-    src="/nginx/images/nginx-plus-licensing-workflows.png"
-    link="/nginx/images/nginx-plus-licensing-workflows.png"
-    alt="Flowchart of NGINX Plus licensing and usage reporting checks (startup, expiration, and connected/disconnected reporting)."
-    caption="Figure: NGINX Plus licensing and reporting workflow."
->}}
-
 ---
 
-## Download the license from MyF5 {#download-jwt}
+## Download your license from MyF5 {#download-jwt}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ---
 
-## Deploy the JWT license
+## Deploy the license
 
 After you download the JWT license, you need to deploy it to your NGINX Plus instances. You can do this in one of two ways:
 
@@ -259,56 +241,9 @@ If auto-renewal is not available (for example, in disconnected environments), up
 
 ---
 
-## Understand reported usage metrics {#usage-metrics}
+## Reported usage metrics {#usage-metrics}
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
 
 ---
 
-## Learn more about related topics
-
-### NGINX Plus
-
-#### NGINX Plus installation guide
-
-For detailed instructions on installing or upgrading NGINX Plus, visit the [NGINX Plus installation guide]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
-
-#### `mgmt` module and directives
-
-For full details about the `mgmt` module and its directives, visit the [Module ngx_mgmt_module reference guide](https://nginx.org/en/docs/ngx_mgmt_module.html).
-
-### NGINX Instance Manager
-
-The instructions below use the terms "internet-connected" and "network-restricted" to describe how NGINX Instance Manager accesses the internet.
-
-#### License NGINX Instance Manager
-
-- **Internet-connected**: Follow the steps in [Add license]({{< ref "nim/admin-guide/add-license.md" >}}).
-- **Network-restricted**: Follow the steps in [Add a license in a disconnected environment]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).
-
-#### Submit usage reports to F5 from NGINX Instance Manager {#submit-usage-reports-from-nim}
-
-- **Internet-connected**: Follow the steps in [Report usage to F5]({{< ref "nim/admin-guide/report-usage-connected-deployment.md" >}}).
-- **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
-
-### NGINX App Protect WAF
-
-For details on installing or upgrading NGINX App Protect WAF, visit the guide for the respective version:
-
-- [NGINX App Protect WAF v4 installation guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
-- [NGINX App Protect WAF v5 installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
-
-### NGINX App Protect DoS
-
-For detailed instructions on installing or upgrading NGINX App Protect DoS, visit the [NGINX App Protect DoS installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
-
-## Watch instructional videos
-
-### Submit usage reports in a connected environment
-{{< youtube id="PDnacyh2RUw" >}}
-
-### Submit usage reports in a disconnected environment
-{{< youtube id="4wIM21bR9-g" >}}
-
-### Install or upgrade to NGINX Plus R33
-{{< youtube id="zHd7btagJRM" >}}
