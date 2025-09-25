@@ -24,14 +24,8 @@ If it's your first time using NGINXaaS for Google Cloud, you need to find the of
    based on your expected usage.
 1. Select the billing account you want to use for this deployment.
 1. Agree to the terms of service and privacy policy.
-1. Select **Subscribe**.
-
-### Sign up with F5
-
-To continue with the subscription process, you need to sign up with F5.
-
-1. Select **Subscribe** and on the new page, select **Sign up with F5**.
-1. Complete the registration process by providing the required information.
+1. Select **Subscribe**. You will be presented with a NGINXaaS welcome page upon success.
+1. You can now log into the NGINXaaS for Google Cloud console by selecting **Manage on provider** from the Google Cloud Marketplace.
 
 ## What's next
 
