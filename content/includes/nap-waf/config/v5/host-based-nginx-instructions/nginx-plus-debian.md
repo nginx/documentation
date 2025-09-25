@@ -6,7 +6,7 @@ https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
 sudo tee /etc/apt/sources.list.d/nginx-plus.list
 ```
 
-Add the NGINX App Protect WAF v5 repository:
+Add the F5 WAF for NGINX v5 repository:
 
 ```shell
 printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
@@ -14,7 +14,7 @@ https://pkgs.nginx.com/app-protect-x-plus/debian `lsb_release -cs` nginx-plus\n"
 sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
 ```
 
-Install the NGINX App Protect WAF v5 package:
+Install the F5 WAF for NGINX v5 package:
 
 ```shell
 sudo apt-get update

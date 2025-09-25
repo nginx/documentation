@@ -14,7 +14,7 @@ type:
 
 F5 NGINX Controller [Snippets]({{< ref "/controller/app-delivery/about-snippets.md" >}}) let you customize your NGINX configuration by adding NGINX directives that aren't represented by the NGINX Controller API.
 
-Snippets also let you customize App Security for your Components by adding NGINX App Protect directives that aren't present in the NGINX Controller API. You can use Snippets when [tuning your NGINX App Protect WAF performance]({{< ref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}) as well.
+Snippets also let you customize App Security for your Components by adding NGINX App Protect directives that aren't present in the NGINX Controller API. You can use Snippets when [tuning your F5 WAF for NGINX performance]({{< ref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}) as well.
 
 {{< call-out "caution"  >}}
 When you use Snippets to customize your NGINX configuration, your changes are applied to the `nginx.conf` file *as is*. NGINX Controller does not verify that your configuration is valid before applying the Snippet.
@@ -92,10 +92,10 @@ Using local files as a backup for Security Events may use up disk space and affe
 
 ### Add Location of User-Defined Signature Definition File
 
-When using [Bring Your Own WAF Policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy" >}}) in NGINX Controller, you can define a URI Snippet for a Gateway API to define the location for your User-Defined Signature Definition file. The User-Defined Signature can then be referenced in the custom NGINX App Protect WAF policy that you use for your Components.
+When using [Bring Your Own WAF Policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy" >}}) in NGINX Controller, you can define a URI Snippet for a Gateway API to define the location for your User-Defined Signature Definition file. The User-Defined Signature can then be referenced in the custom F5 WAF for NGINX policy that you use for your Components.
 
 {{< call-out "note" >}}
-The file that contains the signature definition must already exist on your NGINX App Protect WAF instances. For more information regarding User-Defined Signatures, refer to the [NGINX App Protect WAF Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#user-defined-signatures).
+The file that contains the signature definition must already exist on your F5 WAF for NGINX instances. For more information regarding User-Defined Signatures, refer to the [F5 WAF for NGINX Configuration Guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#user-defined-signatures).
 {{< /call-out >}}
 
 The following example adds a URI snippet to the Gateway API definition that provides the location of the User-Defined Signature Definition file.
@@ -197,9 +197,9 @@ We strongly recommend verifying Snippets in a lab environment before making any 
 
 This example adds an HTTP Snippet to a Gateway to control the memory and CPU threshold values which determine when NGINX App Protect enters and exits failure mode.
 
-In *failure mode*, App Protect WAF stops processing app traffic. Traffic is either dropped or passed through, as determined by the `app_protect_failure_mode_action` directive.
+In *failure mode*, F5 WAF for NGINX stops processing app traffic. Traffic is either dropped or passed through, as determined by the `app_protect_failure_mode_action` directive.
 
-The example below directs NGINX App Protect WAF to enter failure mode when memory utilization or CPU utilization reaches 85% and to exit failure mode when memory or CPU utilization drops to 60%.
+The example below directs F5 WAF for NGINX to enter failure mode when memory utilization or CPU utilization reaches 85% and to exit failure mode when memory or CPU utilization drops to 60%.
 
 ```json
 {

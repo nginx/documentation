@@ -39,9 +39,9 @@ See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-n
 
 ## July 15, 2025
 
-### Set up F5 NGINX App Protect WAF security policies
+### Set up F5 WAF for NGINX security policies
 
-You can now incorporate [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
+You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
 
 In NGINX One Console, you can:
 

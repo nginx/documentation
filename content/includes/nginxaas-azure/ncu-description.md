@@ -8,4 +8,4 @@ An NGINX Capacity Unit consists of the following parameters:
 
 * CPU: an NCU provides 20 [Azure Compute Units](https://learn.microsoft.com/en-us/azure/virtual-machines/acu) (ACUs)
 * Bandwidth: an NCU provides 60 Mbps of network throughput
-* Concurrent connections: an NCU provides 400 concurrent connections. This performance is not guaranteed when NGINX App Protect WAF is used with NGINXaaS
+* Concurrent connections: an NCU provides 400 concurrent connections. This performance is not guaranteed when F5 WAF for NGINX is used with NGINXaaS

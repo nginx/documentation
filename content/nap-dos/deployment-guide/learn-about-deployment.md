@@ -1,7 +1,7 @@
 ---
-description: Learn about F5 NGINX App Protect DoS Deployment.
+description: Learn about F5 F5 DoS for NGINX Deployment.
 nd-docs: DOCS-666
-title: NGINX App Protect DoS Deployment
+title: F5 DoS for NGINX Deployment
 toc: true
 weight: 100
 type:
@@ -10,16 +10,16 @@ type:
 
 ## Overview
 
-F5 NGINX App Protect DoS provides behavioral protection against DoS for your web applications. <br><br>
-This guide explains how to deploy NGINX App Protect DoS as well as upgrade App Protect DoS.
+F5 F5 DoS for NGINX provides behavioral protection against DoS for your web applications. <br><br>
+This guide explains how to deploy F5 DoS for NGINX as well as upgrade App Protect DoS.
 
 ## Prerequisites
 
-NGINX App Protect DoS is available to the customers as a downloadable dynamic module at an additional cost. To purchase or add NGINX App Protect DoS to an existing NGINX Plus subscription, contact the NGINX sales team.
+F5 DoS for NGINX is available to the customers as a downloadable dynamic module at an additional cost. To purchase or add F5 DoS for NGINX to an existing NGINX Plus subscription, contact the NGINX sales team.
 
-NGINX Plus Release 24 and later supports NGINX App Protect DoS.
+NGINX Plus Release 24 and later supports F5 DoS for NGINX.
 
-NGINX App Protect DoS supports the following operating systems:
+F5 DoS for NGINX supports the following operating systems:
 
 - [RHEL 8.1+ / Rocky Linux 8](#rhel-8--rocky-linux-8-installation)
 - [RHEL 9.0+ / Rocky Linux 9](#rhel-9--rocky-linux-9-installation)
@@ -33,7 +33,7 @@ NGINX App Protect DoS supports the following operating systems:
 - [AmazonLinux 2023](#amazon-linux-2023-installation)
 
 
-The NGINX App Protect DoS package has the following dependencies:
+The F5 DoS for NGINX package has the following dependencies:
 
 1. **nginx-plus-module-appprotectdos** - NGINX Plus dynamic module for App Protect DoS
 2. **libcurl** - Software library for HTTP access
@@ -42,7 +42,7 @@ The NGINX App Protect DoS package has the following dependencies:
 5. **openssl** - Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocol
 6. **libelf** - Software library for ELF access
 
-See the NGINX Plus full list of prerequisites for more details. NGINX App Protect DoS can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with NGINX App Protect WAF.
+See the NGINX Plus full list of prerequisites for more details. F5 DoS for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with F5 WAF for NGINX.
 
 {{< call-out "note" >}}
 
@@ -55,7 +55,7 @@ See the NGINX Plus full list of prerequisites for more details. NGINX App Protec
 
 When deploying App Protect DoS on NGINX Plus take the following precautions to secure the platform. This avoids the risk of causing a Denial of Service condition or compromising the platform security.
 
-- Restrict permissions to the files on the NGINX App Protect DoS platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
+- Restrict permissions to the files on the F5 DoS for NGINX platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
 - Remove unnecessary remote access services on the platform.
 - Configure a Syslog destination on the same machine as App Protect DoS and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
 
@@ -91,7 +91,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo yum install ca-certificates epel-release wget
     ```
 
-6. Add NGINX Plus and NGINX App Protect DoS repository:
+6. Add NGINX Plus and F5 DoS for NGINX repository:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
@@ -132,19 +132,19 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo nginx -v
     ```
 
-10. Check the NGINX App Protect DoS binary version to ensure that you have the right version installed correctly:
+10. Check the F5 DoS for NGINX binary version to ensure that you have the right version installed correctly:
 
     ```shell
     sudo admd -v
     ```
 
-11. Load the NGINX App Protect DoS module on the main context in the `nginx.conf`:
+11. Load the F5 DoS for NGINX module on the main context in the `nginx.conf`:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-12. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
+12. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_enable on;
@@ -152,7 +152,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-13. Configure the SELinux to allow NGINX App Protect DoS:
+13. Configure the SELinux to allow F5 DoS for NGINX:
 
     a. Using the vi editor, create a file:
 
@@ -271,7 +271,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-7
     ```
 
-7. Add NGINX Plus and NGINX App Protect DoS repository:
+7. Add NGINX Plus and F5 DoS for NGINX repository:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
@@ -318,13 +318,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-12. Load the NGINX App Protect DoS module on the main context in the `nginx.conf`:
+12. Load the F5 DoS for NGINX module on the main context in the `nginx.conf`:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-13. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
+13. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_enable on;
@@ -332,7 +332,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-14. Configure the SELinux to allow NGINX App Protect DoS:
+14. Configure the SELinux to allow F5 DoS for NGINX:
 
     a. Using the vi editor, create a file:
 
@@ -411,7 +411,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo dnf install ca-certificates wget
 
-6. Enable Yum repositories to pull NGINX App Protect DoS dependencies:
+6. Enable Yum repositories to pull F5 DoS for NGINX dependencies:
 
     For RHEL subscription:
 
@@ -481,13 +481,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-12. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+12. Load the F5 DoS for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-13. Enable NGINX App Protect DoS in an `http/server/location` context in the `nginx.conf` file:
+13. Enable F5 DoS for NGINX in an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_enable on;
@@ -625,7 +625,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf install ca-certificates wget
     ```
 
-6. Enable the yum repositories to pull NGINX App Protect DoS dependencies:
+6. Enable the yum repositories to pull F5 DoS for NGINX dependencies:
 
     For RHEL subscription:
 
@@ -699,13 +699,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-12. Load the NGINX App Protect DoS module on the main context in the `nginx.conf`:
+12. Load the F5 DoS for NGINX module on the main context in the `nginx.conf`:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-13. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` file:
+13. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_enable on;
@@ -863,7 +863,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | sudo gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
     ```
 
-7. Add NGINX Plus and NGINX App Protect DoS repository:
+7. Add NGINX Plus and F5 DoS for NGINX repository:
 
     For Debian:
 
@@ -975,13 +975,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-13. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+13. Load the F5 DoS for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-14. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` via:
+14. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` via:
 
     ```nginx
     app_protect_dos_enable on;
@@ -1042,7 +1042,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
     ```
 
-7. Add NGINX App Protect DoS repository to `/etc/apk/repositories` file:
+7. Add F5 DoS for NGINX repository to `/etc/apk/repositories` file:
 
     ```shell
     printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | sudo tee -a /etc/apk/repositories
@@ -1055,7 +1055,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apk del -r nginx
     ```
 
-9. Update the repository and install the most recent version of the NGINX Plus and NGINX App Protect DoS:
+9. Update the repository and install the most recent version of the NGINX Plus and F5 DoS for NGINX:
 
     ```shell
     sudo apk update
@@ -1108,13 +1108,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-13. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+13. Load the F5 DoS for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-14. Enable NGINX App Protect DoS on an `http/server/location` context in the `nginx.conf` via:
+14. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` via:
 
     ```nginx
     app_protect_dos_enable on;
@@ -1163,7 +1163,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```shell
     sudo dnf install ca-certificates wget
 
-6. Add NGINX Plus and NGINX App Protect DoS repository:
+6. Add NGINX Plus and F5 DoS for NGINX repository:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-amazonlinux2023.repo
@@ -1221,13 +1221,13 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo admd -v
     ```
 
-11. Load the NGINX App Protect DoS module on the main context in the `nginx.conf` file:
+11. Load the F5 DoS for NGINX module on the main context in the `nginx.conf` file:
 
     ```nginx
     load_module modules/ngx_http_app_protect_dos_module.so;
     ```
 
-12. Enable NGINX App Protect DoS in an `http/server/location` context in the `nginx.conf` file:
+12. Enable F5 DoS for NGINX in an `http/server/location` context in the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_enable on;
@@ -1284,7 +1284,7 @@ You need root permissions to execute the following steps.
 
 3. Copy the files to the directory where the Dockerfile is located.
 
-4. Add NGINX App Protect DoS to your `nginx.conf`. The configuration below is an example for an `http` and `grpc+tls` servers which has NGINX App Protect DoS enabled. Note that every NGINX App Protect DoS related directive starts with `app_protect_dos_`.
+4. Add F5 DoS for NGINX to your `nginx.conf`. The configuration below is an example for an `http` and `grpc+tls` servers which has F5 DoS for NGINX enabled. Note that every F5 DoS for NGINX related directive starts with `app_protect_dos_`.
 
     `nginx.conf`
 
@@ -1295,7 +1295,7 @@ You need root permissions to execute the following steps.
     worker_rlimit_nofile 65535;
     working_directory /tmp/cores;
 
-    load_module modules/ngx_http_app_protect_dos_module.so; # NGINX App Protect DoS module
+    load_module modules/ngx_http_app_protect_dos_module.so; # F5 DoS for NGINX module
 
     events {
         worker_connections  65535;
@@ -1308,7 +1308,7 @@ You need root permissions to execute the following steps.
                             'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
                             'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
 
-        app_protect_dos_security_log_enable on; # Enable NGINX App Protect DoS's security logger
+        app_protect_dos_security_log_enable on; # Enable F5 DoS for NGINX's security logger
         app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log; # Security logger outputs to a file
         # app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261; # Security logger outputs to a syslog destination
 
@@ -1322,10 +1322,10 @@ You need root permissions to execute the following steps.
             access_log /var/log/nginx/access.log log_napd if=$loggable; # Access log with rate limiting and additional information
             # access_log syslog:server=1.1.1.1:5561 log_napd if=$loggable;
 
-            app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json"; # Policy configuration for NGINX App Protect DoS
+            app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json"; # Policy configuration for F5 DoS for NGINX
 
             location / {
-                app_protect_dos_enable on; # Enable NGINX App Protect DoS in this block
+                app_protect_dos_enable on; # Enable F5 DoS for NGINX in this block
                 app_protect_dos_name "App80"; # PO name
                 app_protect_dos_monitor uri=http://serv80/; # Health monitoring
                 proxy_pass http://1.2.3.4:80;
@@ -1393,7 +1393,7 @@ You need root permissions to execute the following steps.
     DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
     ```
 
-    The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect DoS. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
+    The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 DoS for NGINX. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
    For RHEL8/9 with subctiption manager setup add build arguments:
    
@@ -1480,11 +1480,11 @@ FROM alpine:3.19
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
 
-# Add NGINX Plus/NGINX App Protect Dos repository:
+# Add NGINX Plus/F5 DoS for NGINX repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
     printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the NGINX App Protect Dos package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the F5 DoS for NGINX package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1520,11 +1520,11 @@ FROM amazonlinux:2023
 # Install prerequisite packages:
 RUN dnf -y install ca-certificates
 
-# Add NGINX Plus/NGINX App Protect Dos repository:
+# Add NGINX Plus/F5 DoS for NGINX repository:
 RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/static/files/plus-amazonlinux2023.repo && \
     curl -o  /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo
 
-# Install NGINX App Protect DoS:
+# Install F5 DoS for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1566,7 +1566,7 @@ RUN mkdir -p /etc/ssl/nginx/ /etc/nginx/ && \
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
     wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Install Nginx App Protect Dos
+# Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1604,7 +1604,7 @@ RUN apt-get update && \
     printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
     wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Install Nginx App Protect Dos
+# Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1648,7 +1648,7 @@ RUN subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIV
     curl -o /etc/yum.repos.d/plus-8.repo https://cs.nginx.com/static/files/plus-8.repo && \
     curl -o /etc/yum.repos.d/app-protect-dos-8.repo https://cs.nginx.com/static/files/app-protect-dos-8.repo
 
-# Install Nginx App Protect Dos
+# Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1691,7 +1691,7 @@ RUN curl -o /etc/yum.repos.d/plus-9.repo https://cs.nginx.com/static/files/plus-
     dnf config-manager --set-enabled crb && \
     dnf clean all
 
-# Install NGINX App Protect DoS:
+# Install F5 DoS for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1887,7 +1887,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     ```
 
 **Notes:**
-    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and NGINX App Protect WAF 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
+    - The `--no-cache` option tells Docker/Podman to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 WAF for NGINX 4.x. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the cache.
     - For RHEL:<br>
     The subscription-manager is disabled when running inside containers based on Red Hat Universal Base images. You will need a registered and subscribed RHEL system.
 
@@ -1923,12 +1923,12 @@ RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys
 # Add NGINX Plus repository:
 RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Add NGINX App Protect Waf & Dos repositories:
+# Add F5 WAF for NGINX & Dos repositories:
 RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
     printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the NGINX App Protect DoS package (which includes NGINX Plus):
+# Update the repository and install the most recent version of the F5 DoS for NGINX package (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1970,7 +1970,7 @@ RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/stat
     curl -o /etc/yum.repos.d/app-protect-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo && \
     curl -o /etc/yum.repos.d/dependencies.amazonlinux2023.repo https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
 
-# Install NGINX App Protect WAF:
+# Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -2009,7 +2009,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 debian-archive-keyring && \
     wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
+# Add NGINX Plus, NGINX App Protect and F5 DoS for NGINX repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -2017,7 +2017,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Install Nginx App Protect Dos
+# Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -2052,7 +2052,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring && \
     wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 
-# Add NGINX Plus, NGINX App Protect and NGINX App Protect DoS repository:
+# Add NGINX Plus, NGINX App Protect and F5 DoS for NGINX repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -2060,7 +2060,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Install Nginx App Protect Dos
+# Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -2084,33 +2084,33 @@ STOPSIGNAL SIGQUIT
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-## NGINX App Protect DoS Arbitrator
+## F5 DoS for NGINX Arbitrator
 
 ### Overview
 
-NGINX App Protect DoS arbitrator orchestrates all the running NGINX App Protect DoS instances to synchronize local/global attack start/stop.
+F5 DoS for NGINX arbitrator orchestrates all the running F5 DoS for NGINX instances to synchronize local/global attack start/stop.
 
-NGINX App Protect DoS arbitrator serves as a central coordinating component for managing multiple instances of  App Protect DoS in a network. It is needed when there are more than one NGINX App Protect DoS instances. Its primary function is to ensure that all instances are aware of and share the same state for each protected object. Here's a clearer breakdown of how it works and why it's necessary:
+F5 DoS for NGINX arbitrator serves as a central coordinating component for managing multiple instances of  App Protect DoS in a network. It is needed when there are more than one F5 DoS for NGINX instances. Its primary function is to ensure that all instances are aware of and share the same state for each protected object. Here's a clearer breakdown of how it works and why it's necessary:
 
-How NGINX App Protect DoS Arbitrator Works:
+How F5 DoS for NGINX Arbitrator Works:
 
 - **Collecting State Periodically**: The arbitrator regularly collects the state information from all running instances of App Protect DoS. This collection occurs at set intervals, typically every 10 seconds.
 - **State Initialization for New Instances**: When a new App Protect DoS instance is created, it doesn't start with a blank or uninitialized state for a protected object. Instead, it retrieves the initial state for the protected object from the arbitrator.
 - **Updating State in Case of an Attack**: If an attack is detected by one of the App Protect DoS instances, that instance sends an attack notification to the arbitrator. The arbitrator then updates the state of the affected protected object to indicate that it is under attack. Importantly, this updated state is propagated to all other instances.
 
-### Why NGINX App Protect DoS Arbitrator is Necessary
+### Why F5 DoS for NGINX Arbitrator is Necessary
 
-NGINX App Protect DoS Arbitrator is essential for several reasons:
+F5 DoS for NGINX Arbitrator is essential for several reasons:
 
 - **Global State Management**: Without the arbitrator, each individual instance of App Protect DoS would manage its own isolated state for each protected object. This isolation could lead to inconsistencies. For example, if instance A declared an attack on a protected object named "PO-Example," instance B would remain unaware of this attack, potentially leaving the object vulnerable.
 - **Uniform Attack Detection**: With the arbitrator in place, when instance A detects an attack on "PO-Example" and reports it to the arbitrator, the state of "PO-Example" is immediately updated to indicate an attack. This means that all instances, including instance B, are aware of the attack and can take appropriate measures to mitigate it.
 
-In summary, NGINX App Protect DoS Arbitrator acts as a central coordinator to maintain a consistent and up-to-date global state for protected objects across multiple instances of App Protect DoS. This coordination helps ensure that attacks are properly detected and mitigated, and that knowledge gained by one instance is efficiently shared with others, enhancing the overall security of the network.
+In summary, F5 DoS for NGINX Arbitrator acts as a central coordinator to maintain a consistent and up-to-date global state for protected objects across multiple instances of App Protect DoS. This coordination helps ensure that attacks are properly detected and mitigated, and that knowledge gained by one instance is efficiently shared with others, enhancing the overall security of the network.
 
 
-### NGINX App Protect DoS Arbitrator Deployment
+### F5 DoS for NGINX Arbitrator Deployment
 
-1. Pull the official NGINX App Protect DoS Arbitrator image with the command:
+1. Pull the official F5 DoS for NGINX Arbitrator image with the command:
 
    ```shell
    docker pull docker-registry.nginx.com/nap-dos/app_protect_dos_arb:latest
@@ -2124,22 +2124,22 @@ In summary, NGINX App Protect DoS Arbitrator acts as a central coordinator to ma
 
 3. Verify that the `app-protect-dos-arb` container is up and running with the `docker ps` command.
 
-4. DNS records are required for NGINX App Protect DoS Arbitrator to work properly and be accessible by NGINX App Protect DoS servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator FQDN (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
-This step is necessary only for VM/Docker deployments with arbitrator. When the arbitrator is in the same Kubernetes namespace as NGINX App Protect DoS, this step is not needed.
+4. DNS records are required for F5 DoS for NGINX Arbitrator to work properly and be accessible by F5 DoS for NGINX servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator FQDN (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
+This step is necessary only for VM/Docker deployments with arbitrator. When the arbitrator is in the same Kubernetes namespace as F5 DoS for NGINX, this step is not needed.
 
 ### Multi-VM Deployment
 
-The Arbitrator service is standalone. Once it is down, it can be seamlessly re-started. It will immediately recover all the needed information from NGINX App Protect DoS instances that communicate to it every 10 sec. It’s downtime is around 10-20 seconds which  will not affect the NGINX App Protect DoS working.
+The Arbitrator service is standalone. Once it is down, it can be seamlessly re-started. It will immediately recover all the needed information from F5 DoS for NGINX instances that communicate to it every 10 sec. It’s downtime is around 10-20 seconds which  will not affect the F5 DoS for NGINX working.
 
-NGINX App Protect DoS Arbitrator service connects to port 3000 and can be seen under App Protect DoS instances. All modules try to connect to this service automatically. If it’s not accessible, each instance works in standalone mode.
+F5 DoS for NGINX Arbitrator service connects to port 3000 and can be seen under App Protect DoS instances. All modules try to connect to this service automatically. If it’s not accessible, each instance works in standalone mode.
 
-There is no such option for authentications between NGINX App Protect DoS servers and Arbitrator service like MTLS or password . Currently Arbitrator service is not exposed outside of the namespace. It is customers responsibility to isolate it from outside. It is applicable to any deployment of Arbitrator, not only to multi-VM.
+There is no such option for authentications between F5 DoS for NGINX servers and Arbitrator service like MTLS or password . Currently Arbitrator service is not exposed outside of the namespace. It is customers responsibility to isolate it from outside. It is applicable to any deployment of Arbitrator, not only to multi-VM.
 
 ## Post-Installation Checks
 
-You can run the following commands to ensure that NGINX App Protect DoS enforcement is operational.
+You can run the following commands to ensure that F5 DoS for NGINX enforcement is operational.
 
-1. Check that the three processes needed for NGINX App Protect DoS are running using `ps aux`:
+1. Check that the three processes needed for F5 DoS for NGINX are running using `ps aux`:
 
     - admd
     - nginx: master process
@@ -2195,7 +2195,7 @@ You can run the following commands to ensure that NGINX App Protect DoS enforcem
 
     c. See that the good traffic continue as usual while the attackers receive denial of service.
 
-To check NGINX App Protect WAF along side NGINX App Protect DoS, just perform the normal tests as specified at [Admin Guide](https://docs.nginx.com/nginx-app-protect/admin-guide/)
+To check F5 WAF for NGINX along side F5 DoS for NGINX, just perform the normal tests as specified at [Admin Guide](https://docs.nginx.com/nginx-app-protect/admin-guide/)
 
 ### Compatibility with NGINX Plus Releases
 
@@ -2203,7 +2203,7 @@ A threat campaign package is compatible with the NGINX Plus release supported du
 
 ## Upgrading App Protect DoS
 
-You can upgrade to the latest NGINX Plus and App Protect DoS versions by downloading and installing the latest NGINX App Protect DoS package. When upgrading from this package, App Protect DoS will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
+You can upgrade to the latest NGINX Plus and App Protect DoS versions by downloading and installing the latest F5 DoS for NGINX package. When upgrading from this package, App Protect DoS will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
 
 If you upgrade your NGINX version outside of the App Protect DoS module, App Protect DoS will be uninstalled and you will need to reinstall it. You need to restart NGINX after an upgrade.
 
@@ -2467,7 +2467,7 @@ http {
 
 #### App Protect DoS arb
 
-Arbitrator (arb) is an internal service that is essential for the scaling scenarios. The arbitrator service should be deployed in the same namespace as NGINX App Protect DoS.
+Arbitrator (arb) is an internal service that is essential for the scaling scenarios. The arbitrator service should be deployed in the same namespace as F5 DoS for NGINX.
 
 `appprotect-dos-arb.yaml`:
 
@@ -2531,7 +2531,7 @@ kubectl -n appprotect-dos-wp-diff apply -f ${DIR}/appprotect-dos-arb.yaml
 kubectl -n appprotect-dos-wp-diff apply -f ${DIR}/svc-appprotect-dos-arb.yaml
 ```
 
-`install NGINX App Protect DoS with ARB service`:
+`install F5 DoS for NGINX with ARB service`:
 
 ```shell
 #!/bin/bash

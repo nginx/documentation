@@ -20,6 +20,7 @@ enableGitInfo = true
   nim = '/nginx-instance-manager/:sections[1:]/:contentbasename'
   nms = '/nginx-management-suite/:sections[1:]/:contentbasename'
   unit = '/nginx-unit/:sections[1:]/:contentbasename'
+  waf = '/waf/:sections[1:]/:contentbasename'
 
 [caches]
   [caches.modules]

@@ -38,7 +38,7 @@ Instance Manager provides the following features:
 
 ## Security Monitoring {#security-monitoring}
 
-Security Monitoring allows you to monitor NGINX App Protect WAF with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
+Security Monitoring allows you to monitor F5 WAF for NGINX with analytics dashboards and security log details to get protection insights for analyzing possible threats or areas for tuning policies.
 
 ### Security Monitoring Key Features
 

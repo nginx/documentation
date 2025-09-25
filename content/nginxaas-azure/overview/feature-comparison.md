@@ -57,7 +57,7 @@ Below is a feature breakdown with notes on support and limitations.
 - [JWT authentication](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html)
 - OpenID Connect SSO
 - NGINX as a SAML Service Provider  
-- [NGINX App Protect WAF](https://www.f5.com/products/nginx/nginx-app-protect) (Available at an extra cost)  
+- [F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (Available at an extra cost)  
 
 **Limitations:** 
 

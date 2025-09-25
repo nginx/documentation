@@ -129,13 +129,13 @@ This JSON object should be added to the Component endpoint similar to the follow
 }
 ```
 
-## Enable WAF for a Component Using Your Own NGINX App Protect WAF Policy
+## Enable WAF for a Component Using Your Own F5 WAF for NGINX Policy
 
 Instead of using NGINX Controller's default policy for WAF, you can [bring your own NGINX App Protect Policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) for use in a Security Strategy to protect your app components.
 
-To do so, you first need to upload your NGINX App Protect WAF declarative JSON policy to the Security Policy endpoint and reference it in a Security Strategy. Then, you can reference the Security Strategy in the Component where you are enabling WAF.
+To do so, you first need to upload your F5 WAF for NGINX declarative JSON policy to the Security Policy endpoint and reference it in a Security Strategy. Then, you can reference the Security Strategy in the Component where you are enabling WAF.
 
-### Upload your NGINX App Protect WAF Policy
+### Upload your F5 WAF for NGINX Policy
 
 To upload your NGINX App Protect declarative JSON Policy to NGINX Controller, use an HTTP client like cURL and send a `PUT` request to the [Security Policy REST API}(https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/)
 The JSON object should be similar to the example below:
@@ -154,9 +154,9 @@ The JSON object should be similar to the example below:
 }
 ```
 
-### Create or Update a Security Strategy with a BYO NGINX App Protect WAF Policy
+### Create or Update a Security Strategy with a BYO F5 WAF for NGINX Policy
 
-You can create or update a Security Strategy that references a BYO NGINX App Protect WAF policy by sending a `PUT` request to the [Strategies REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/) endpoint.
+You can create or update a Security Strategy that references a BYO F5 WAF for NGINX policy by sending a `PUT` request to the [Strategies REST API](https://docs.nginx.com/nginx-controller/api/ctlr-adc-api/) endpoint.
 
 The JSON object should be similar to the example below:
 
@@ -181,7 +181,7 @@ The JSON object should be similar to the example below:
 
 ```
 
-### Add a BYO NGINX App Protect WAF policy to an App Component
+### Add a BYO F5 WAF for NGINX policy to an App Component
 
 To add your BYO NGINX App Protect Policy to your App(s), you need to add a reference to the Security Strategy that contains the policy to your App Component.
 

@@ -1,6 +1,6 @@
 ---
 description: Learn how to use F5 NGINX Management Suite Instance Manager to publish
-  NGINX App Protect WAF configurations.
+  F5 WAF for NGINX configurations.
 nd-docs: DOCS-1114
 title: WAF Configuration Management
 toc: true
@@ -9,7 +9,7 @@ weight: 100
 
 ## Overview
 
-You can use F5 NGINX Management Suite Instance Manager to publish configurations to your NGINX App Protect WAF data plane instances.
+You can use F5 NGINX Management Suite Instance Manager to publish configurations to your F5 WAF for NGINX data plane instances.
 
 ## Publish WAF Configurations
 

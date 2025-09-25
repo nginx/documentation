@@ -11,7 +11,7 @@ type:
 
 F5 NGINXaaS for Azure (NGINXaaS) now supports in-place migration from Standard plan to the Standard V2 plan, we encourage you to upgrade your deployment to the Standard V2 plan as soon as possible. **The Standard plan is scheduled for retirement on May 1, 2025**. If you fail to migrate by May 1, 2025, your NGINXaaS deployment will stop receiving automatic updates that address critical security issues.
 
-The Standard V2 plan maintains the same price as the Standard plan for existing capabilities. Enabling new capabilities such as NGINX App Protect WAF or additional listen ports that were added as part of Standard V2 will incur additional charges.
+The Standard V2 plan maintains the same price as the Standard plan for existing capabilities. Enabling new capabilities such as F5 WAF for NGINX or additional listen ports that were added as part of Standard V2 will incur additional charges.
 
 {{< call-out "note" >}} We currently only support in-place migration from Standard plan to the Standard V2 plan. Please avoid updating your Basic plan deployments to Standard V2 plan using this guide. {{< /call-out >}}
 

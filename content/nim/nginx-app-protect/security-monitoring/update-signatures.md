@@ -9,9 +9,9 @@ nd-docs: DOCS-1109
 
 ## Overview
 
-The F5 NGINX Security Monitoring module tracks security violations on NGINX App Protect WAF instances. Its analytics dashboards use a Signature Database to provide details about Attack Signatures, including their name, accuracy, and risk.
+The F5 NGINX Security Monitoring module tracks security violations on F5 WAF for NGINX instances. Its analytics dashboards use a Signature Database to provide details about Attack Signatures, including their name, accuracy, and risk.
 
-If the Signature Database is outdated and doesn’t match the version used in App Protect WAF, new signatures may appear without attributes like a name, risk, or accuracy.
+If the Signature Database is outdated and doesn’t match the version used in F5 WAF for NGINX, new signatures may appear without attributes like a name, risk, or accuracy.
 
 Follow these steps to update the Security Monitoring module with the latest Attack Signature data, ensuring the dashboards display complete and accurate information.
 

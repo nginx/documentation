@@ -201,16 +201,16 @@ The instructions below use the terms "internet-connected" and "network-restricte
 - **Internet-connected**: Follow the steps in [Report usage to F5]({{< ref "nim/admin-guide/report-usage-connected-deployment.md" >}}).
 - **Network-restricted**: Follow the steps in [Report usage to F5 in a disconnected environment]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).
 
-### NGINX App Protect WAF
+### F5 WAF for NGINX
 
-For details on installing or upgrading NGINX App Protect WAF, visit the guide for the respective version:
+For details on installing or upgrading F5 WAF for NGINX, visit the guide for the respective version:
 
-- [NGINX App Protect WAF v4 installation guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
-- [NGINX App Protect WAF v5 installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
+- [F5 WAF for NGINX v4 installation guide]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
+- [F5 WAF for NGINX v5 installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
 
-### NGINX App Protect DoS
+### F5 DoS for NGINX
 
-For detailed instructions on installing or upgrading NGINX App Protect DoS, visit the [NGINX App Protect DoS installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
+For detailed instructions on installing or upgrading F5 DoS for NGINX, visit the [F5 DoS for NGINX installation guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
 
 ## Watch instructional videos
 

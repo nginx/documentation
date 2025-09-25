@@ -201,9 +201,9 @@ The table below summarizes the available annotations.
 | *nginx.org/server-snippets* | *server-snippets* | Sets a custom snippet in server context. | N/A |  |
 {{</bootstrap-table>}}
 
-### App Protect WAF {#app-protect}
+### F5 WAF for NGINX {#app-protect}
 
-{{< call-out "note" >}} The App Protect annotations only work if the App Protect WAF module is [installed]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |
