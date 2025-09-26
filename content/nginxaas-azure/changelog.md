@@ -13,6 +13,11 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## September 26, 2025
+
+- {{% icon-feature %}} **Connectivity test tool**
+
+Users can now test the availability of specific IP addresses from their deployment's dataplane. This is useful for debugging connectivity issues and determining if a problem is in NGINX configuration or Azure network configuration. Please see the docs for the [connectivity test tool]({{< ref "/nginxaas-azure/get-help/connectivity.md" >}}) for further details.
 
 ## September 18, 2025
 
@@ -30,6 +35,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 - {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
 
   - Users can now specify files in their configuration directory to be marked as protected using a new optional Action input called `protected-files`. This new input accepts comma-separated list of file paths relative to the NGINX configuration directory that should be marked as protected. For more information, please visit [NGINXaaS for Azure Deployment Action](https://github.com/marketplace/actions/nginx-configuration-sync) on GitHub actions marketplace. Example:
+
       ```yaml
       - name: Sync NGINX Config to Azure
         uses: nginxinc/nginx-for-azure-deploy-action@v0.5.0
