@@ -163,7 +163,6 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
     ```text
     This is a site protected by OIDC!
     ```
-There is another method to set up OIDC authentication using the native OIDC module, which can be tried out as an experimental method using [this process](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/configurations/native-oidc). We recommend using the above method, which uses the njs module.
 ## Troubleshooting
 
 [Enable NGINX logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}) and [Troubleshooting](https://github.com/nginxinc/nginx-openid-connect/tree/main?tab=readme-ov-file#troubleshooting) the OIDC issues.
