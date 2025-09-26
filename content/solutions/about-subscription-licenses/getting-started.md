@@ -8,17 +8,16 @@ product: Solutions
 nd-docs: DOCS-1780
 ---
 
-## Overview
-
-Starting with NGINX Plus R33, **NGINX Plus instances require a valid JSON Web Token (JWT) license**.  
+Starting with NGINX Plus R33, NGINX Plus instances require a valid JSON Web Token (JWT) license.  
 
 The JWT license:
 
 - Is tied to your subscription (not to individual instances).  
-- Validates your subscription and sends usage reports to F5’s licensing endpoint (`product.connect.nginx.com`) in connected environments, or through [NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}) in disconnected environments.  
+- Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).  
 
 {{< call-out "note" "If you have multiple subscriptions" >}}
-If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to any license. NGINX combines usage reporting across all licensed instances.  
+
+If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to the license you prefer. NGINX combines usage reporting across all licensed instances. 
 
 Combining licenses with NGINX Instance Manager requires version **2.20 or later**.
 {{</ call-out >}}  
@@ -46,7 +45,7 @@ Processing traffic requires:
 
 - A successful initial usage report. If the report fails, NGINX Plus stops processing traffic until the report succeeds.  
   To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
-- At least one usage report every 180 days. If the grace period ends without a report, NGINX Plus stops processing traffic until reporting resumes.   
+- At least one usage report every 180 days. If reporting stops for longer, NGINX Plus stops processing traffic.   
 
 ---
 
@@ -74,26 +73,11 @@ Choose the option that fits your environment:
 
 <br>
 
-If you use the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), the easiest way to deploy your JWT license is with a [Config Sync Group]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}). A Config Sync Group lets you:
-
-- Avoid manual file copying  
-- Keep all instances consistent  
-- Automatically apply the license to new instances  
-
-To deploy the JWT license with a Config Sync Group:
-
 {{< include "/licensing-and-reporting/deploy-jwt-with-csgs.md" >}}
 
-After setup, the license syncs to all NGINX Plus instances in the group.
-
-<br>
-
-{{< include "/licensing-and-reporting/about-renewals-callout.md" >}}
-
-<br>
-
 {{< call-out "note" "If you’re using NGINX Instance Manager" "" >}}
-If you use NGINX Instance Manager instead of the NGINX One Console, the equivalent feature is an *instance group*. You can manage your JWT license the same way by adding or updating the file in the instance group. For details, see [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}).
+In NGINX Instance Manager, _instance groups_ work like Config Sync Groups in the NGINX One Console.
+To create an instance group, see [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}). After that, you can add the JWT license file the same way you would in the NGINX One Console.
 {{< /call-out >}}
 
 </details>
@@ -105,13 +89,9 @@ If you use NGINX Instance Manager instead of the NGINX One Console, the equivale
 
 <br>
 
-You can copy the JWT license file directly to each NGINX Plus instance.
+Copy the JWT license file to each NGINX Plus instance.
 
 {{< include "/licensing-and-reporting/apply-jwt.md" >}}
-
-<br>
-
-{{< include "/licensing-and-reporting/about-renewals-callout.md" >}}
 
 </details>
 
@@ -172,13 +152,18 @@ Allow the necessary outbound traffic so reports can reach F5.
 
 <br>
 
-In environments without internet access, NGINX Plus sends usage reports to NGINX Instance Manager. NGINX Instance Manager collects the reports and later forwards them to F5. For details on forwarding usage reports from NGINX Instance Manager to F5, see [Submit usage reports to F5 from NGINX Instance Manager](#submit-usage-reports-from-nim).
+In environments without internet access, NGINX Plus sends usage reports to NGINX Instance Manager. NGINX Instance Manager collects the reports and later forwards them to F5. 
 
 <br>
 
 To configure NGINX Plus to send usage reports to NGINX Instance Manager:
 
 {{< include "/licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
+
+<br>
+
+{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage date to F5 (disconnected)]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
+
 
 </details>
 
@@ -265,4 +250,6 @@ If automatic updates are not available (for example, in disconnected environment
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
 
 ---
+
+## What's Next
 

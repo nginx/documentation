@@ -18,7 +18,7 @@ docs:
     systemctl reload nginx
     ```
 
-**Extra steps for self-signed certificates:**
-
-- If you use self-signed certificates with NGINX Instance Manager, follow
-[Configure SSL verification for usage reporting with self-signed certificates]({{< ref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}).
+{{<call-out "note" "If you’re using self-signed certificates" >}}
+If you’re using self-signed certificates with NGINX Instance Manager,  
+see [Configure SSL verification for self-signed certificates]({{< ref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}) for additional steps.
+{{</call-out>}}

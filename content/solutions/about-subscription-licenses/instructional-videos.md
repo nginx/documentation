@@ -1,5 +1,5 @@
 ---
-title: "Watch instructional videos"
+title: "Instructional videos"
 weight: 300
 toc: false
 nd-content-type: reference
