@@ -15,7 +15,7 @@ To get up and running, you’ll need to add a valid license to each instance and
 
 The resources below walk you through upgrading, setting up your environment, and understanding how licensing and reporting work in NGINX Plus.
 
-## Subscription licensing
+## Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
   {{<card title="Get started" titleUrl="getting-started/" icon="unplug" isFullSize="true">}}
