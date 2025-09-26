@@ -6,8 +6,6 @@ nd-content-type: reference
 nd-product: Solutions
 ---
 
-## Instructional videos for NGINX Plus subscription licensing
-
 These tutorials show how to complete common subscription licensing tasks in NGINX Plus. They cover setting up usage reporting in connected and disconnected environments, and installing or upgrading to NGINX Plus R33 or later.
 
 ## Submit usage reports in a connected environment
