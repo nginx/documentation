@@ -163,6 +163,7 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
     ```text
     This is a site protected by OIDC!
     ```
+    
 ## Troubleshooting
 
 [Enable NGINX logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}) and [Troubleshooting](https://github.com/nginxinc/nginx-openid-connect/tree/main?tab=readme-ov-file#troubleshooting) the OIDC issues.
