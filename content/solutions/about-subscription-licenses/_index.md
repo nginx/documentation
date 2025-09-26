@@ -1,5 +1,5 @@
 ---
-title: About subscription licensing
+title: About subscription licenses
 nd-docs: null
 weight: 1
 nd-content-type: landing-page
