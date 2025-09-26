@@ -253,3 +253,4 @@ If automatic updates are not available (for example, in disconnected environment
 
 ## What's Next
 
+- [Watch instructional videos]({{< ref "/solutions/about-subscription-licenses/instructional-videos.md" >}}) on how to upgrade to R33 or later, and how to submit usage reports
