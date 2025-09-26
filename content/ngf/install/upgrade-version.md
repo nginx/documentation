@@ -2,8 +2,8 @@
 title: Upgrade NGINX Gateway Fabric
 weight: 700
 toc: true
-type: how-to
-product: NGF
+nd-content-type: how-to
+nd-product: NGF
 nd-docs: DOCS-1852
 ---
 

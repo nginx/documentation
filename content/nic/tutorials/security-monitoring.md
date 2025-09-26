@@ -82,13 +82,24 @@ If you use custom container images, NGINX Agent must be installed along with NGI
 
 {{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
-3. Make sure that the ConfigMap is mounted to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` by adding the following to the NGINX Ingress Controller deployment manifest:
+3. Make sure that the ConfigMap is mounted to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config is mounted at `/var/lib/nginx-agent` by adding the following volumes and volumeMounts to the NGINX Ingress Controller deployment manifest:
 
    ```yaml
-    volumeMounts:
-    - name: agent-conf
-      mountPath: /etc/nginx-agent/nginx-agent.conf
-      subPath: nginx-agent.conf
+   volumes:
+     - name: agent-conf
+       configMap:
+         name: agent-conf
+     - name: agent-dynamic
+       emptyDir: {}
+   ```
+
+   ```yaml
+   volumeMounts:
+     - name: agent-conf
+       mountPath: /etc/nginx-agent/nginx-agent.conf
+       subPath: nginx-agent.conf
+     - name: agent-dynamic
+       mountPath: /var/lib/nginx-agent
    ```
 
 4. Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.

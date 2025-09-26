@@ -53,9 +53,11 @@ The block below shows the code you will look for:
 #      volumes:
 #      - name: nginx-etc
 #        emptyDir: {}
-#      - name: nginx-cache
-#        emptyDir: {}
+#      - name: nginx-cache  # do not set this value in statefulset if volumeclaimtemplate is set
+#        emptyDir: {}       # do not set this value in statefulset if volumeclaimtemplate is set
 #      - name: nginx-lib
+#        emptyDir: {}
+#      - name: nginx-lib-state
 #        emptyDir: {}
 #      - name: nginx-log
 #        emptyDir: {}
@@ -73,6 +75,8 @@ The block below shows the code you will look for:
 #          name: nginx-cache
 #        - mountPath: /var/lib/nginx
 #          name: nginx-lib
+#        - mountPath: /var/lib/nginx/state
+#          name: nginx-lib-state
 #        - mountPath: /var/log/nginx
 #          name: nginx-log
 ```

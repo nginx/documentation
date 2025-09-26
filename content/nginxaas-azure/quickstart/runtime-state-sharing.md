@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports runtime state sharing using the [Zone Synchronization module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) to synchronize shared memory zones across NGINXaaS instances.
+F5 NGINXaaS for Azure (NGINXaaS) supports runtime state sharing using the [Zone Synchronization module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) to synchronize shared memory zones across NGINXaaS instances.
 
 With runtime state sharing, NGINXaaS instances can share some state data between them, including:
 
@@ -16,7 +16,7 @@ With runtime state sharing, NGINXaaS instances can share some state data between
 - [Rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone)
 - [Key‑value store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone)
 
-{{< call-out "note" >}} Can not add the `sync` parameter with a directive describing shared memory zones to an existing memory zone that was not configured to sync. It also cannot be removed from an existing memory zone configured to sync. To switch, remove the directive before reapplying it with the desired parameters.{{< /call-out >}}
+{{< call-out "note" >}} It's not possible to add the `sync` parameter with a directive describing shared memory zones to an existing memory zone that was not configured to sync. It also cannot be removed from an existing memory zone configured to sync. To switch, remove the directive before reapplying it with the desired parameters.{{< /call-out >}}
 
 For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< ref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
 
