@@ -116,7 +116,7 @@ location /some/path/ {
 
 In this case NGINX uses only the buffer configured by [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) to store the current part of a response.
 
-A common use of a reverse proxy is to provide load balancing. Learn how to improve power, performance, and focus on your apps with rapid deployment in the free [Five Reasons to Choose a Software Load Balancer](https://www.nginx.com/resources/library/five-reasons-choose-software-load-balancer/) ebook.
+A common use of a reverse proxy is to provide load balancing. See [HTTP Load Balancing]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP and UDP Load Balancing]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}).
 
 <span id="proxy_bind"></span>
 ## Choosing an Outgoing IP Address
