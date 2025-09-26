@@ -37,7 +37,7 @@ Starting NGINX Plus requires:
 - A valid JWT license.  
 - A license that has not been expired for more than 90 days.  
 
-If either condition is not met, NGINX Plus will not start.  
+If either condition is not met, NGINX Plus won't start.  
 
 ### Processing traffic
 
