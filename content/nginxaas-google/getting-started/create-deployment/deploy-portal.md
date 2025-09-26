@@ -62,6 +62,7 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
       - The default value of `20 NCU` should be adequate for most scenarios.
       - This value must be a multiple of `10`.
    - In the Cloud Details section, enter the Network Attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
+      - The Network Attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
    - Select a **Configuration Version** from the list.
    - Select **Submit** to begin the deployment process.
