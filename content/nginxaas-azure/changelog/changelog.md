@@ -77,8 +77,6 @@ NGINXaaS now supports downloading certificate from Azure Key Vault via Private E
 
 ## April 22, 2025
 
-### What's New
-
 - {{% icon-feature %}} **NGINX App Protect WAF is now generally available**
 
 NGINX App Protect WAF is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "/nginxaas-azure/app-protect/configure-waf.md#custom-policies" >}}).
@@ -96,7 +94,6 @@ NGINX App Protect WAF is now generally available and is no longer a preview feat
 
 ## March 31, 2025
 
-### What's New
 
 - {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
 
