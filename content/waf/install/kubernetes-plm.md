@@ -825,7 +825,7 @@ You should see output similar to this, with `state: ready` and no errors:
 ```yaml
 status:
   bundle:
-    compilerVersion: 11.553.0
+    compilerVersion: 11.559.0
     location: /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250904100458.tgz
     signatures:
       attackSignatures: "2025-08-28T01:16:06Z"
