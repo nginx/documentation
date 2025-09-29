@@ -180,10 +180,10 @@ condition:
 |``variables`` | defines a Variable condition to rate limit against. | [ratelimit.condition.variables](#ratelimitconditionvariables) | No |
 |``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same condition, only one policy can be the default. | ``bool`` | No |
 {{% /table %}}
-{{< call-out "note" >}}
- 
-One condition of type `jwt` or `variables` is required. Each Policy supports only one condition.
 
+{{< call-out "note" >}}
+Conditions (`jwt` or `variables`) are optional, but each policy can only have one. 
+If conditions are used, a request doesn't match any, and a `default` has been defined, the `default` policy applies. Otherwise, if no `default` is set, the request isn't rate limited.
 {{< /call-out >}}
 
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
