@@ -40,8 +40,6 @@ To complete this guide, you will need the following prerequisites:
 - An active F5 WAF for NGINX subscription (Purchased or trial)
 - Credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
 
-Guidance for [disconnected or air-gapped environments](#disconnected-or-air-gapped-environments) is available if it is applicable to your deployment.
-
 ## Download your subscription credentials 
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).
