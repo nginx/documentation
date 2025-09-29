@@ -20,7 +20,7 @@ This page is incomplete, only listing the most recent releases: the remainder wi
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2025.
 
-For older releases, check the changelogs for previous years: [2024](), [2023]().
+<!-- For older releases, check the changelogs for previous years: [2024](), [2023](). -->
 
 ## F5 WAF for NGINX 5.9
 
@@ -28,11 +28,14 @@ _September 29th, 2025_
 
 ### New features
 
-- Added [Policy lifecycle management]({{< ref "/waf/policies/lifecycle-management.md" >}}) as early availability
+- Added [Kubernetes operations improvements]({{< ref "/waf/install/kubernetes-plm" >}}) as early availability
 
 ### Important notes
 
 - Restructured documentation
+    - NGINX App Protect WAF renamed to F5 WAF for NGINX
+    - Versions aligned for packages and other artefacts
+    - No workflow or breaking changes
 - Upgrade Go compiler to 1.23.12
 
 ### Packages

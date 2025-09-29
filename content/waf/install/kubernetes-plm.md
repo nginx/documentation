@@ -1,8 +1,8 @@
 ---
 # We use sentence case and present imperative tone
-title: "Policy lifecycle management"
+title: "Kubernetes operations improvements (Early access)"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 200
+weight: 300
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 nd-banner:

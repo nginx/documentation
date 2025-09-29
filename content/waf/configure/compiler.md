@@ -22,7 +22,7 @@ The compiler is packaged as a Docker image and can executed using the Docker CLI
 
 If you are using a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
 
-If you are using a Helm-based Kubernetes deployment, read the [Policy lifecycle management]({{< ref "/waf/policies/lifecycle-management.md" >}}) topic.
+If you are using a Helm-based Kubernetes deployment, read the [Kubernetes operations improvements (Early access)]({{< ref "/waf/install/kubernetes-plm.md" >}}) topic.
 
 {{< /call-out >}}
 

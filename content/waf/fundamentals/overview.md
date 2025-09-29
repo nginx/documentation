@@ -12,7 +12,7 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-[F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) is an advanced, lightweight and high-performance web application firewall (WAF) for applications and APIs. 
+[F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (formerly NGINX App Protect WAF) is an advanced, lightweight and high-performance web application firewall (WAF) for applications and APIs. 
 
 It provides protection for the OWASP Top 10, with additional functionality:
 
