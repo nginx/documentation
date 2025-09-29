@@ -202,8 +202,8 @@ where:
  - `NGINX_LICENSE_JWT` is your JWT license file from MyF5. The file name should be `license.jwt`.
  - `NGINX_AGENT_SERVER_GRPCPORT` sets a GRPC port used by NGINX Agent to communicate with NGINX Instance Manager.
  - `NGINX_AGENT_SERVER_HOST` sets the domain name or IP address of NGINX Instance Manager. Note that for production environments it is not recommended to expose NGINX Instance Manager to public networks.
- - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys](https://docs.nginx.com/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/) for details.
- - `NGINX_AGENT_TLS_ENABLE` enables mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) for details.
+ - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}) for details.
+ - `NGINX_AGENT_TLS_ENABLE` enables mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication]({{< ref "agent/configuration/encrypt-communication.md" >}}) for details.
  - `YOUR_REGISTRY` is the path to your private registry.
  - `VERSION_TAG` is the tag assigned when pushing to your registry.
 
