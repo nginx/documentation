@@ -23,8 +23,8 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
    - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
-1. Create a Network Attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a Network Attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
-1. Make a note of the Network Attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
+1. Create a network attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
+1. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
 
    {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
 
@@ -61,8 +61,8 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Change the **NCU Capacity** if needed.
       - The default value of `20 NCU` should be adequate for most scenarios.
       - This value must be a multiple of `10`.
-   - In the Cloud Details section, enter the Network Attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
-      - The Network Attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
+   - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
+      - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
    - Select a **Configuration Version** from the list.
    - Select **Submit** to begin the deployment process.
