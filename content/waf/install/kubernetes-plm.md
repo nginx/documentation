@@ -615,13 +615,15 @@ Ensure the `pv` _storageClassName_ matches the `pvc` requirements.
 In totality, you should see the following:
 
 - **Policy Controller pod**: `1/1 Running` status
-- **F5 WAF for NGINX pod**: `4/4 Running` status (nginx, waf-config-mgr, waf-enforcer, waf-ip-intelligence containers)
+- **F5 WAF for NGINX pod**: `3/3 Running` status (nginx, waf-config-mgr, waf-enforcer containers)
 - **All 4 CRDs**: Each CRD should be installed and show creation timestamps
 - **Service**: The NodePort service should be available with assigned port
 
+If you are using the IP intelligence feature, you will have a 4th F5 WAF for NGINX pod (waf-ip-intelligence).
+
 ## Use Policy lifecycle management
 
-### Create policy resources
+### Create custom policy resources
 
 Once Policy lifecycle management is deployed, you can create policy resources using Kubernetes manifests. 
 
@@ -797,10 +799,6 @@ The key information to review is the following:
 - **`Status.Processing.Is Compiled`**: Boolean indicating if compilation completed successfully
 - **`Status.Processing.Datetime`**: Timestamp of the last compilation attempt
 - **`Events`**: Shows any Kubernetes events related to the policy (usually none for successful policies)
-- **`status.bundle.signatures`**: Timestamps showing when security signatures were last updated
-  - `attackSignatures` - Attack signature update timestamp
-  - `botSignatures` - Bot signature update timestamp  
-  - `threatCampaigns` - Threat campaign signature update timestamp
 - **`status.processing.isCompiled`**: Boolean indicating if compilation completed successfully
 - **`status.processing.datetime`**: Timestamp of the last compilation attempt
 
@@ -1025,7 +1023,6 @@ Finally, delete any remaining resources, including the namespace:
 ```shell
 kubectl delete pvc nginx-app-protect-shared-bundles-pvc -n <namespace>
 kubectl delete pv nginx-app-protect-shared-bundles-pv
-kubectl delete crd --all
 kubectl delete ns <namespace>
 ```
 
