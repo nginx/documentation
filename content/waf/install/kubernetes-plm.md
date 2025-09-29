@@ -188,7 +188,7 @@ http {
 
     app_protect_enforcer_address 127.0.0.1:50000;
 
-    # Enable Policy Lifecycle Management
+    # Enable enhancements
     app_protect_default_config_source "custom-resource";
 
     app_protect_security_log_enable on;
@@ -446,7 +446,7 @@ appprotect:
           sendfile on;
           keepalive_timeout 65;
 
-          # Enable Policy Lifecycle Management
+          # Enable enhancements
           # WAF default config source. For policies from CRDs, use "custom-resource"
           # Remove this line to use default bundled policies
           app_protect_default_config_source "custom-resource";
