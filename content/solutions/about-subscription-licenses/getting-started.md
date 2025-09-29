@@ -63,7 +63,7 @@ If either condition is not met, **NGINX Plus stops processing traffic** until re
 After you download the JWT license, you need to deploy it to your NGINX Plus instances. You can do this in one of two ways:
 
 - **Use a Config Sync Group (recommended):** If you manage instances with the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), this method keeps instances consistent, avoids manual copying, and applies license updates automatically.  
-- **Copy the license manually:** Place the license file on each instance yourself.  
+- **Copy the license manually:** Place the license file on each NGINX Plus instance yourself.  
 
 Both methods ensure your NGINX Plus instances have access to the required license file.  
 
@@ -184,7 +184,7 @@ mgmt {
 ```
 
 {{< call-out "important" "Important" >}}
-Use this option only when necessary. After 180 days, if usage reporting still hasn’t been established,
+After 180 days, if usage reporting still hasn’t been established,
 NGINX Plus will stop processing traffic.
 {{< /call-out >}}
 
