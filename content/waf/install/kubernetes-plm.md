@@ -728,7 +728,7 @@ spec:
     # ... policy configuration
 status:
   bundle:
-    compilerVersion: 11.553.0
+    compilerVersion: 11.559.0
     location: /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250914102339.tgz
     signatures:
       attackSignatures: "2025-09-03T08:36:25Z"
