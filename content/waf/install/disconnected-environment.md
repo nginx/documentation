@@ -4,7 +4,6 @@ title: "Disconnected or air-gapped environments"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 500
 # Creates a table of contents and sidebar, useful for large documents
-draft: true
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to

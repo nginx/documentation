@@ -804,45 +804,6 @@ The key information to review is the following:
 - **`status.processing.isCompiled`**: Boolean indicating if compilation completed successfully
 - **`status.processing.datetime`**: Timestamp of the last compilation attempt
 
-### Use specific security update versions
-
-Once Policy lifecycle management is deployed, you can define a specific security update version on a per-feature basis.
-
-This is accomplished by adding a `revision:` parameter to the feature.
-
-The following example is for an _APSignatures_ resource, in a file named `signatures.yaml`:
-
-```yaml {hl_lines=[7,9, 11]}
-apiVersion: appprotect.f5.com/v1
-kind: APSignatures
-metadata:
-  name: signatures
-spec:
-  attack-signatures:
-    revision: "2025.06.19" # Attack signatures revision to be used
-  bot-signatures:
-    revision: "latest" # Bot signatures revision to be used
-  threat-campaigns:
-    revision: "2025.06.24" # Threat campaigns revision to be used
-```
-
-{{< call-out "warning" >}}
-The APSignatures `metadata.name` argument _must_ be `signatures`. 
-
-Only one APSignatures instance can exist.
-{{< /call-out >}}
-
-Apply the Manifest:
-
-```shell
-kubectl apply -f signatures.yaml
-```
-
-Downloading security updates may take several minutes, and the version of security updates available at the time of compilation is always used to compile policies.
-
-If _APSignatures_ is not created or the specified versions are not available, it will default to the version stored in the compiler Docker image.
-
-
 ## Testing policy lifecycle management
 
 ### Apply a policy
@@ -965,6 +926,44 @@ curl "http://[CLUSTER-IP]:80/?a=<script>"
 
 The request should be blocked, confirming that Policy lifecycle management has successfully compiled and deployed the policy.
 
+## Use specific security update versions
+
+Once Policy lifecycle management is deployed, you can define a specific security update version on a per-feature basis.
+
+This is accomplished by adding a `revision:` parameter to the feature.
+
+The following example is for an _APSignatures_ resource, in a file named `signatures.yaml`:
+
+```yaml {hl_lines=[7,9, 11]}
+apiVersion: appprotect.f5.com/v1
+kind: APSignatures
+metadata:
+  name: signatures
+spec:
+  attack-signatures:
+    revision: "2025.06.19" # Attack signatures revision to be used
+  bot-signatures:
+    revision: "latest" # Bot signatures revision to be used
+  threat-campaigns:
+    revision: "2025.06.24" # Threat campaigns revision to be used
+```
+
+{{< call-out "warning" >}}
+The APSignatures `metadata.name` argument _must_ be `signatures`. 
+
+Only one APSignatures instance can exist.
+{{< /call-out >}}
+
+Apply the Manifest:
+
+```shell
+kubectl apply -f signatures.yaml
+```
+
+Downloading security updates may take several minutes, and the version of security updates available at the time of compilation is always used to compile policies.
+
+If _APSignatures_ is not created or the specified versions are not available, it will default to the version stored in the compiler Docker image.
+
 ## Upgrade the Helm chart
 
 Follow these steps to upgrade the Helm chart once installed: they are similar to the initial deployment.
@@ -1030,7 +1029,7 @@ kubectl delete crd --all
 kubectl delete ns <namespace>
 ```
 
-## Disconnected or air-gapped environments
+<!-- ## Disconnected or air-gapped environments
 
 {{< call-out "warning" >}}
 
@@ -1073,7 +1072,7 @@ helm install
    ...
 ```
 
-For more information relevant to this type of deployment, see the [Disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md" >}}) topic.
+For more information relevant to this type of deployment, see the [Disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md" >}}) topic. -->
 
 ## Possible issues
 
