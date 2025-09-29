@@ -12,14 +12,6 @@ type:
 
 Learn how to configure F5 NGINXaaS for Azure with OpenID Connect (OIDC) authentication.
 
-## Prerequisites
-
-1. Configure an NGINXaaS deployment with [SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}).
-
-2. Enable [Runtime State Sharing]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) on the NGINXaaS deployment.
-
-These prerequisites are used for both methods of configuring NGINXaaS for Azure with IdP using Native OIDC and NJS.
-
 There are currently two methods available for setting up OIDC authentication.
 
 1. Using Native OIDC implementation (Introduced from NGINX Plus R35)
@@ -27,6 +19,15 @@ There are currently two methods available for setting up OIDC authentication.
    This method applies to NGINX Plus Release 35 and later. In earlier versions, NGINX Plus relied on an njs-based solution, which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.
 
 2. Using NJS based implementation
+
+## Prerequisites
+
+These prerequisites are used for both methods of configuring NGINXaaS for Azure with IdP using Native OIDC and NJS.
+1. Configure an NGINXaaS deployment with [SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}).
+
+2. Enable [Runtime State Sharing]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) on the NGINXaaS deployment.
+
+
 
 ## Configure NGINXaaS for Azure with IdP using Native OIDC
 
@@ -400,5 +401,7 @@ These features will be added in future releases.
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
 - [Single Sign-On with Microsoft Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id.md" >}})
+
+- [Single Sign-On with OpenID Connect and Identity Providers]({{< ref "nginx/admin-guide/security-controls/configuring-oidc.md" >}})
 
 - [Terraform snippets for sample Native OIDC](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/configurations/native-oidc)
