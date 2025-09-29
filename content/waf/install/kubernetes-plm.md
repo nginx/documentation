@@ -1083,28 +1083,19 @@ For more information relevant to this type of deployment, see the [Disconnected 
 
 F5 WAF for NGINX supports multiple ways to define and reference security policies through APPolicy Custom Resources. 
 
-This flexibility allows you to choose the most appropriate approach based on your deployment architecture, policy management workflow, and operational requirements.
+This flexibility allows you to choose the most appropriate approach based on your requirements.
 
-### Policy Definition Types
+There are three distinct approaches for defining WAF policies:
 
-Policy Lifecycle Management supports three distinct approaches for defining WAF policies:
+1. [Inline policy definition](#inline-policy-definition): Define the complete policy configuration directly within the Custom Resource specification.
+1. [JSON policy reference](#json-policy-reference): Reference a JSON policy file stored in the shared persistent volume.
+1. [Precompiled bundle reference](#precompiled-bundle-reference): Reference a precompiled policy bundle (.tgz file) stored in the shared persistent volume.
 
-### 1. [Inline Policy Definition](#inline-policy-definition)
-Define the complete policy configuration directly within the Custom Resource specification.
-
-### 2. [JSON Policy Reference](#json-policy-reference)
-Reference a JSON policy file stored in the shared persistent volume.
-
-### 3. [Precompiled Bundle Reference](#precompiled-bundle-reference)  
-Reference a precompiled policy bundle (.tgz file) stored in the shared persistent volume.
-
-### Inline Policy Definition
-
-#### Description
+### Inline policy definition
 
 Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource. This approach provides full declarative management through Kubernetes manifests and is ideal for version-controlled policy configurations.
 
-#### Example Configuration
+Example Configuration
 
 Create a file named `inline-policy.yaml`:
 
@@ -1143,15 +1134,15 @@ Apply the policy:
 kubectl apply -f inline-policy.yaml
 ```
 
-### JSON Policy Reference
+### JSON policy reference
 
 JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource. This approach separates policy content from Kubernetes resource management while maintaining compilation automation.
 
-#### Prerequisites
+To use JSON policy reference:
 
-- Policy JSON file must be stored in the shared persistent volume
-- File must be accessible at the specified path within the container
-- Proper file permissions (readable by the Policy Controller)
+- The policy JSON file must be stored in the shared persistent volume
+- The JSON file must be accessible at the specified path within the container
+- The JSON file must have correct file permissions (readable by the Policy Controller)
 
 #### File Change Tracking
 
