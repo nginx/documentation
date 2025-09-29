@@ -7,13 +7,13 @@ nd-content-type: reference
 nd-product: Solutions
 ---
 
-These videos show how to set up usage reporting in connected and disconnected environments, and how to install or upgrade to NGINX Plus R33 or later.
+These videos show how to set up usage reporting in internet-connected and network-restricted environments, and how to install or upgrade to NGINX Plus R33 or later.
 
 ## Submit usage reports in an internet-connected environment
 
 {{< youtube id="PDnacyh2RUw" >}}  
 
-Learn how to configure NGINX Plus to send usage reports directly to the F5 licensing endpoint.  
+See how to configure NGINX Plus to send usage reports directly to the F5 licensing endpoint.  
 
 See also:
 
@@ -23,8 +23,7 @@ See also:
 
 {{< youtube id="4wIM21bR9-g" >}}  
 
-Learn how to configure NGINX Plus to send usage reports to NGINX Instance Manager.  
-NGINX Instance Manager collects the reports and then forwards them to the F5 licensing endpoint.  
+See how to configure NGINX Plus to send usage reports to NGINX Instance Manager. NGINX Instance Manager collects the reports and forwards them to the F5 licensing endpoint.  
 
 See also:
 
@@ -35,7 +34,7 @@ See also:
 
 {{< youtube id="zHd7btagJRM" >}}  
 
-Learn how to install or upgrade to NGINX Plus R33 or later.  
+See how to install or upgrade to NGINX Plus R33 or later.  
 
 See also:
 
