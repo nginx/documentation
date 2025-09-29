@@ -26,7 +26,11 @@ Combining licenses with NGINX Instance Manager requires version **2.20 or later*
 
 ## Important changes
 
-NGINX Plus requires a valid license and regular usage reporting to run. The sections below explain the requirements and what happens if they aren’t met. To see how these requirements work in practice, see the [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).
+NGINX Plus requires a valid license and regular usage reporting to run. The sections below explain the requirements and what happens if they aren’t met.  
+
+{{< call-out "note" "Licensing workflows" >}}
+For flowcharts that show how these requirements work in practice, see [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).
+{{< /call-out >}}
 
 ### Starting NGINX Plus
 
@@ -35,15 +39,16 @@ Starting NGINX Plus requires:
 - A valid JWT license.  
 - A license that has not been expired for more than 90 days.  
 
-If either condition is not met, NGINX Plus won't start.  
+If either condition is not met, **NGINX Plus won't start**.  
 
 ### Processing traffic
 
 Processing traffic requires:  
 
-- A successful initial usage report. If the report fails, NGINX Plus stops processing traffic until the report succeeds.  
-  To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
-- At least one usage report every 180 days. If reporting stops for longer, NGINX Plus stops processing traffic.   
+- A successful initial usage report. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
+- At least one usage report every 180 days.  
+
+If either condition is not met, **NGINX Plus stops processing traffic** until reporting is restored.   
 
 ---
 
