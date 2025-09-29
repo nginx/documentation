@@ -940,7 +940,7 @@ This is accomplished by adding a `revision:` parameter to the feature.
 
 The following example is for an _APSignatures_ resource, in a file named `signatures.yaml`:
 
-```yaml {hl_lines=[7,9, 11]}
+```yaml {hl_lines=[7, 9, 11]}
 apiVersion: appprotect.f5.com/v1
 kind: APSignatures
 metadata:
@@ -967,6 +967,12 @@ kubectl apply -f signatures.yaml
 ```
 
 Downloading security updates may take several minutes, and the version of security updates available at the time of compilation is always used to compile policies.
+
+{{< call-out "note" >}}
+You must re-apply your policy when changing signature revisions.
+
+This ensures the existing policy will be recompiled with the new signatures.
+{{< /call-out >}}
 
 If _APSignatures_ is not created or the specified versions are not available, it will default to the version stored in the compiler Docker image.
 
@@ -1093,11 +1099,11 @@ There are three distinct approaches for defining WAF policies:
 
 ### Inline policy definition
 
-Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource. This approach provides full declarative management through Kubernetes manifests and is ideal for version-controlled policy configurations.
+Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource. 
 
-Example Configuration
+This method provides full declarative management through Kubernetes manifests and is ideal for version-controlled policy configurations.
 
-Create a file named `inline-policy.yaml`:
+An example is as follows, in a file named `inline-policy.yaml`:
 
 ```yaml
 apiVersion: appprotect.f5.com/v1
@@ -1130,13 +1136,16 @@ spec:
 ```
 
 Apply the policy:
-```bash
+
+```shell
 kubectl apply -f inline-policy.yaml
 ```
 
 ### JSON policy reference
 
-JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource. This approach separates policy content from Kubernetes resource management while maintaining compilation automation.
+JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource. 
+
+This method separates policy content from Kubernetes resource management while maintaining compilation automation.
 
 To use JSON policy reference:
 
@@ -1144,18 +1153,14 @@ To use JSON policy reference:
 - The JSON file must be accessible at the specified path within the container
 - The JSON file must have correct file permissions (readable by the Policy Controller)
 
-#### File Change Tracking
-
 The Policy Controller can automatically monitor policy files for changes and trigger recompilation when modifications are detected. This feature is controlled through the `externalReferenceDetails.tracking` configuration:
 
 - **`tracking.enabled`**: Enable/disable automatic file monitoring (default: true)
 - **`tracking.intervalInSeconds`**: Polling interval for file changes (default: 5 seconds)
 
-#### Example Configuration
+To exemplify how this works, first create a policy JSON file in the shared volume. 
 
-**Step 1: Create the policy JSON file**
-
-First, create your policy JSON file and place it in the shared volume. For example, create `/mnt/nap5_bundles_pv_data/dg_policy.json`:
+This policy file is `/mnt/nap5_bundles_pv_data/dg_policy.json`:
 
 ```json
 {
@@ -1193,9 +1198,7 @@ First, create your policy JSON file and place it in the shared volume. For examp
 }
 ```
 
-**Step 2: Create the APPolicy Custom Resource**
-
-Create a file named `json-policy.yaml`:
+Create a second file named `json-policy.yaml`:
 
 ```yaml
 apiVersion: appprotect.f5.com/v1
@@ -1212,65 +1215,70 @@ spec:
       intervalInSeconds: 10
 ```
 
-**Step 3: Apply the Custom Resource**
+Apply the APPolicy resource:
 
-```bash
+```shell
 kubectl apply -f json-policy.yaml
 ```
 
-#### File Path Considerations
+There are a few considerations when creating your policy files:
 
-- **Container Path**: The `$ref` path must be the path as seen from within the Policy Controller container
-- **Shared Volume**: The file must be in the shared persistent volume mounted to both Policy Controller and NGINX containers
-- **Default Mount Path**: The shared volume is typically mounted at `/etc/app_protect/bundles`
-- **Absolute Paths**: Always use absolute paths in the `$ref` field
+- **Container path**: The `$ref` path must be the path as seen from within the Policy Controller container
+- **Shared volume**: The file must be in the shared persistent volume mounted to both Policy Controller and NGINX containers
+- **Default mount path**: The shared volume is typically mounted at `/etc/app_protect/bundles`
+- **Absolute paths**: Always use absolute paths in the `$ref` field
 
-### Updating Policy Files
+Once you have applied the APPolicy custom resource, you can update the policy by modifying the JSON file:
 
-Once the APPolicy Custom Resource has been applied, updating your policy is simple - you only need to modify the JSON file:
+1. Edit the JSON file directly (Such as`/mnt/nap5_bundles_pv_data/dg_policy.json`)
+1. Save your changes
+1. The Policy Controller automatically handles the rest
 
-**To update your policy:**
-1. Edit the JSON file directly (e.g., `/mnt/nap5_bundles_pv_data/dg_policy.json`)
-2. Save your changes
-3. The Policy Controller automatically handles the rest
+The Policy Controller resolves the change with the following steps:
 
-**What happens automatically:**
 1. **Automatic Detection**: If tracking is enabled, file changes are detected automatically
-2. **Recompilation Trigger**: Policy Controller triggers automatic recompilation
-3. **Status Updates**: Custom Resource status reflects the new compilation state
-4. **Bundle Replacement**: New policy bundle replaces the previous version
+1. **Recompilation Trigger**: Policy Controller triggers automatic recompilation
+1. **Status Updates**: Custom Resource status reflects the new compilation state
+1. **Bundle Replacement**: New policy bundle replaces the previous version
 
-{{< call-out "note" >}}
-**No CR Reapplication Needed**: You do NOT need to reapply the APPolicy Custom Resource when updating the JSON file. Simply edit the file and the Policy Controller will detect the changes and recompile automatically.
+{{< call-out "warning" >}}
+
+You do not need to reapply the APPolicy resource when updating the JSON file.
+
+The Policy Controller will detect the file changes and recompile automatically.
+
 {{< /call-out >}}
 
-### Precompiled Bundle Reference
+### Precompiled bundle reference
 
-Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools. This approach is useful for policies compiled outside of the Kubernetes environment or when integrating with external policy management systems.
+Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools. 
 
-#### Prerequisites
+This approach is useful for policies compiled outside of the Kubernetes environment or when integrating with external policy management systems.
 
-- Precompiled bundle (.tgz) file must be stored in the shared persistent volume
-- Bundle must be compatible with the current WAF Enforcer version
-- Proper file permissions (readable by the Policy Controller)
+To use a precompiled bundle reference: 
 
-#### Bundle Validation
+- The precompiled bundle (.tgz) file must be stored in the shared persistent volume
+- The bundle must be compatible with the current WAF Enforcer version
+- The bundle file must have correct file permissions (readable by the Policy Controller)
+
+Bundles are managed at the following stages:
+
+1. **Validation phase**: Policy Controller validates the bundle structure
+1. **Deployment**: Bundle is made available to NGINX containers
+1. **Change detection**: If tracking is enabled, bundle file changes trigger updates
+1. **Status reporting**: Custom Resource status shows bundle deployment state
 
 The Policy Controller performs validation of precompiled bundles using `apcompile --dump` to ensure:
 
-- **Bundle Integrity**: Verification that the bundle is properly formed
-- **Version Compatibility**: Confirmation that the bundle works with current enforcer
-- **Content Validation**: Basic checks on policy structure and syntax
+- **Bundle integrity**: Verification that the bundle is properly formed
+- **Version compatibility**: Confirmation that the bundle works with current enforcer
+- **Content validation**: Basic checks on policy structure and syntax
 
-#### Example Configuration
+To exemplify how this works, first ensure your precompiled policy bundle is available in the shared volume. 
 
-**Step 1: Prepare the precompiled bundle**
+For example, place `policy2.tgz` in `/mnt/nap5_bundles_pv_data/`.
 
-Ensure your precompiled policy bundle is available in the shared volume. For example, place `policy2.tgz` in `/mnt/nap5_bundles_pv_data/`.
-
-**Step 2: Create the APPolicy Custom Resource**
-
-Create a file named `precompiled-bundle-policy.yaml`:
+Then create a file named `precompiled-bundle-policy.yaml`:
 
 ```yaml
 apiVersion: appprotect.f5.com/v1
@@ -1287,53 +1295,45 @@ spec:
       intervalInSeconds: 10
 ```
 
-**Step 3: Apply the Custom Resource**
+Apply the new APPolicy resource:
 
-```bash
+```shell
 kubectl apply -f precompiled-bundle-policy.yaml
 ```
 
-#### Bundle Management
-
-When using precompiled bundles:
-
-1. **Validation Phase**: Policy Controller validates the bundle structure
-2. **Deployment**: Bundle is made available to NGINX containers
-3. **Change Detection**: If tracking is enabled, bundle file changes trigger updates
-4. **Status Reporting**: Custom Resource status shows bundle deployment state
-
-#### Updating Precompiled Bundles
-
 Once the APPolicy Custom Resource has been applied, updating your policy bundle is straightforward:
 
-**To update your bundle:**
 1. Replace the existing bundle file with your new bundle (keeping the same filename)
-2. For example, replace `/mnt/nap5_bundles_pv_data/policy2.tgz` with your updated bundle
-3. The Policy Controller automatically handles the rest
+1. For example, replace `/mnt/nap5_bundles_pv_data/policy2.tgz` with your updated bundle
+1. The Policy Controller automatically handles the rest
 
-**What happens automatically:**
-1. **Change Detection**: If tracking is enabled, the Policy Controller detects the file modification
-2. **Revalidation**: The new bundle is validated using `apcompile --dump`
-3. **Deployment**: If validation passes, the new bundle is deployed
-4. **Status Updates**: Custom Resource status reflects the new validation and deployment state
+The Policy Controller resolves the change with the following steps:
 
-{{< call-out "note" >}}
-**No CR Reapplication Needed**: You do NOT need to reapply the APPolicy Custom Resource when updating the bundle file. Simply replace the bundle file with the same name and the Policy Controller will detect the changes and revalidate automatically.
+1. **Change detection**: If tracking is enabled, the Policy Controller detects the file modification
+1. **Revalidation**: The new bundle is validated using `apcompile --dump`
+1. **Deployment**: If validation passes, the new bundle is deployed
+1. **Status updates**: Custom Resource status reflects the new validation and deployment state
+
+{{< call-out "warning" >}}
+
+You do not need to reapply the APPolicy resource when replacing the file.
+
+Replace the bundle file with another (With the exact same name).
+
+The Policy Controller will detect the file changes and recompile automatically.
+
 {{< /call-out >}}
 
-### Policy Status Monitoring
+### Monitor policy status
 
 Regardless of the policy type used, you can monitor the status of your policies using standard Kubernetes commands:
 
-#### Check Policy Status
 
-```bash
+```shell
 kubectl get appolicy -n <namespace>
 kubectl describe appolicy <policy-name> -n <namespace>
 kubectl get appolicy <policy-name> -n <namespace> -o yaml
 ```
-
-#### Status Fields
 
 All policy types provide similar status information:
 
@@ -1344,7 +1344,7 @@ All policy types provide similar status information:
 - **`status.processing.isCompiled`**: Compilation success indicator
 - **`status.processing.datetime`**: Last processing timestamp
 
-#### Example Status Output
+Status output may look similar to the following:
 
 ```yaml
 status:
