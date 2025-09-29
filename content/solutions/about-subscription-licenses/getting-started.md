@@ -165,7 +165,7 @@ To configure NGINX Plus to send usage reports to NGINX Instance Manager:
 
 <br>
 
-{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage date to F5 (disconnected)]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 
 </details>
