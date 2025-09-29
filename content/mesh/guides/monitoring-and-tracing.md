@@ -57,8 +57,8 @@ To use NGINX Service Mesh with your Prometheus deployment:
    If you are deploying NGINX Plus Ingress Controller with the NGINX Service Mesh, add the `nginx-plus-ingress` scrape config as well.
    Consult the [Metrics]( {{< ref "/mesh/tutorials/kic/deploy-with-kic.md#nginx-plus-ingress-controller-metrics" >}} ) section of the NGINX Ingress Controller Deployment tutorial for more information about the metrics collected.
 
-   - {{< fa "download" >}} {{< link "/examples/nginx-mesh-sidecars-scrape-config.yaml" "`nginx-mesh-sidecars-scrape-config.yaml`" >}}
-   - {{< fa "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
+   - {{< icon "download" >}} {{< link "/examples/nginx-mesh-sidecars-scrape-config.yaml" "`nginx-mesh-sidecars-scrape-config.yaml`" >}}
+   - {{< icon "download" >}} {{< link "/examples/nginx-plus-ingress-scrape-config.yaml" "`nginx-plus-ingress-scrape-config.yaml`" >}}
 
 {{< call-out "note" >}}
 For more information on how to view and understand the metrics that we track, see our [Prometheus Metrics]({{< ref "prometheus-metrics.md" >}}) guide.

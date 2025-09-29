@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-You can manage SSL/TSL certificates for F5 NGINX as a Service for Azure (NGINXaaS) using the Azure portal.
+You can manage SSL/TSL certificates for F5 NGINXaaS for Azure (NGINXaaS) using the Azure portal.
 
 ## Prerequisites
 
@@ -24,26 +24,26 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select **NGINX certificates** in the left menu.
 
-1. Select {{< fa "plus">}}**Add certificate**.
+1. Select {{< icon "plus">}}**Add certificate**.
 
 1. Provide the required information:
 
-   {{<bootstrap-table "table table-striped table-bordered">}}
+   {{< table >}}
    | Field                       | Description                |
    |---------------------------- | ---------------------------- |
    | Name                        | A unique name for the certificate. |
    | Certificate path            | This path can match one or more `ssl_certificate` directive file arguments in your NGINX configuration.<br>The certificate path must be unique within the same deployment. |
    | Key path                    | This path can match one or more `ssl_certificate_key` directive file arguments in your NGINX configuration.<br> The key path must be unique within the same deployment.<br> The key path and certificate path can be the same within the certificate. |
-     {{</bootstrap-table>}}
+     {{< /table >}}
 
      - The **Select certificate** button will take you to a new screen where you will need to provide the following information:
 
-     {{<bootstrap-table "table table-striped table-bordered">}}
+     {{< table >}}
    | Field                  | Description                |
    |----------------------- | ---------------------------- |
    | Key vault                   | Select from the available key vaults. |
    | Certificate            | Select the certificate you want to add from the previously selected key vault. |
-     {{</bootstrap-table>}}
+     {{< /table >}}
 
       If you need to create a new key vault or certificate, you can do so by selecting **Create new key vault** or **Create new** under the **Key Vault** and **Certificate** fields, respectively.
 
@@ -72,7 +72,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select the checkbox next to the certificate you want to edit.
 
-1. Select {{< fa "pencil">}} **Edit**.
+1. Select {{< icon "pencil">}} **Edit**.
 
 1. Update the Name, Certificate path, Key path fields as needed.
 
@@ -86,7 +86,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Select the checkbox next to the certificate you want to delete.
 
-1. Select {{< fa "trash">}}**Delete**.
+1. Select {{< icon "trash">}}**Delete**.
 
 1. Confirm the delete action.
 

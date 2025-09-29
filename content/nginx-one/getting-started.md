@@ -110,20 +110,9 @@ The following instructions include minimal information, sufficient to "get start
 
 ### Generate a data plane key {#generate-data-plane-key}
 
-A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One.
-
-To generate a data plane key:
-
-- **For a new key:** In the **Add Instance** pane, select **Generate Data Plane Key**.
-- **To reuse an existing key:** If you already have a data plane key and want to use it again, select **Use existing key**. Then, enter the key's value in the **Data Plane Key** box.
-
-{{<call-out "caution" "Data plane key guidelines" "fas fa-key" >}}
-Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
-
-Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#change-expiration-date" >}}).
+{{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
 
 [Revoking a data plane key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
-{{</call-out>}}
 
 ### Add an instance
 
@@ -132,17 +121,17 @@ Depending on whether this is your first time using NGINX One Console or you've u
 - **For first-time users:** On the welcome screen, select **Add Instance**.
 - **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
 
-
 ### Install NGINX Agent
 
 After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install NGINX Agent. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.
 
 {{<call-out "important" "Connecting to NGINX One" >}}
-NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IPs:
+NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IP address ranges:
 
-- `3.135.72.139`
-- `3.133.232.50`
-- `52.14.85.249`
+- `3.135.72.139/32`
+- `3.133.232.50/32`
+- `52.14.85.249/32`
+- `2600:1f16:19c8:d400::/62`
 {{</call-out>}}
 
 To install NGINX Agent on an NGINX instance:

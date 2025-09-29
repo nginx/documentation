@@ -15,7 +15,43 @@ In this guide we will configure advanced routing rules for multiple applications
 
 The following image shows the traffic flow that we will be creating with these rules.
 
-{{< img src="/ngf/img/advanced-routing.png" alt="" >}}
+```mermaid
+graph LR
+    users[Users]
+    ngfSvc["Public Endpoint<br>for<br>cafe.example.com"]
+    subgraph cluster [Kubernetes Cluster]
+        subgraph appNs [Namespace<br>default]
+            subgraph nsPadding [" "]
+                nginxPod[Pod<br>NGINX]
+                coffeeV1Pod[Pod<br>coffee v1]
+                coffeeV2Pod[Pod<br>coffee v2]
+                teaPod[Pod<br>tea]
+                teaPostPod[Pod<br>tea-post]
+            end
+        end
+    end
+
+  ngfSvc --> nginxPod
+  nginxPod --/coffee--> coffeeV1Pod
+  nginxPod --/coffee<br>header: version=v2<br>OR<br>/coffee?TEST=v2--> coffeeV2Pod
+  nginxPod --GET /tea--> teaPod
+  nginxPod --POST /tea--> teaPostPod
+  users --> ngfSvc
+
+  class clusterPadding,nsPadding,clusterPadding2 noBorder
+  class gwNS,appNs namespace
+  class ngfSvc,nginxPod nginxNode
+  class coffeeV1Pod,coffeeV2Pod coffeeNode
+  class teaPod,teaPostPod teaNode
+
+  classDef noBorder stroke:none,fill:none
+  classDef default fill:#FFFFFF,stroke:#000000
+  classDef namespace fill:#FFFFFF,stroke:#036ffc,stroke-dasharray: 5 5,text-align:center
+  classDef nginxNode fill:#b4e0ad,stroke:#2AA317
+  classDef coffeeNode fill:#edbd8c,stroke:#D9822B
+  classDef teaNode fill:#ff8f6a,stroke:#e5805f
+
+```
 
 The goal is to create a set of rules that will result in client requests being sent to specific backends based on the request attributes. In this diagram, we have two versions of the `coffee` service. Traffic for v1 needs to be directed to the old application, while traffic for v2 needs to be directed towards the new application. We also have two `tea` services, one that handles GET operations and one that handles POST operations. Both the `tea` and `coffee` applications share the same Gateway.
 

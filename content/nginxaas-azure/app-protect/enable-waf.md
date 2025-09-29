@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-This guide explains how to enable F5 NGINX App Protect WAF on a F5 NGINX as a Service for Azure (NGINXaaS) deployment. [F5 NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/v5) provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard.
+This guide explains how to enable F5 NGINX App Protect WAF on a F5 NGINXaaS for Azure (NGINXaaS) deployment. [F5 NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/v5) provides web application firewall (WAF) security protection for your web applications, including OWASP Top 10; response inspection; Meta characters check; HTTP protocol compliance; evasion techniques; disallowed file types; JSON & XML well-formedness; sensitive parameters & Data Guard.
 
 ## Before you start
 - NGINX App Protect WAF can only be enabled on NGINXaaS for Azure deployments with the **Standard v2** [plan]({{< ref "/nginxaas-azure/billing/overview.md" >}})

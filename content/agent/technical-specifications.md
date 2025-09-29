@@ -11,7 +11,7 @@ This document describes the requirements for NGINX Agent version 2.
 This document provides technical specifications for NGINX Agent. It includes information on supported distributions, deployment environments, NGINX versions, sizing recommendations, and logging.
 
 ## NGINX Agent 3.0 Compatibility
-{{< bootstrap-table "table table-striped table-bordered" >}}
+
 | NGINX Product                | Agent Version  |
 |------------------------------|----------------|
 | **NGINX One Console**        | 3.x            |
@@ -19,25 +19,20 @@ This document provides technical specifications for NGINX Agent. It includes inf
 | **NGINX Plus**               | 2.x, 3.x       |
 | **NGINX Ingress Controller** | 2.x, 3.x       |
 | **NGINX Instance Manager**   | 2.x            |
-{{< /bootstrap-table >}}
 
 ## Supported Distributions
 
 NGINX Agent can run in most environments. We support the following distributions:
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
 | | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2| Debian |
 |-|-----------|--------------|--------------|----------------|--------|
 |**Version**|8 <br><hr>9 <br><hr>10|  3.19<br><hr>3.20<br><hr> 3.21<br><hr> 3.22|  2023|  LTS|  11<br><hr> 12|
 |**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
-{{< /bootstrap-table >}}
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
 | |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |
 |-|--------|--------------|---------------------------------|-------------|-------------------------------------|--------|
 |**Version**|13<br><hr>14|8.1+<br><hr>9<br><hr>10|8.1+<br><hr>9.0+<br><hr>10|8<br><hr>9<br><hr>10|15 SP2|22.04 LTS<br><hr>24.04 LTS<br><hr>25.04 LTS|
 |**Architecture**|amd64|x86_64|x86_64<br><hr>aarch64|x86_64<br><hr>aarch64|x86_64|x86_64<br><hr>aarch64|
-{{< /bootstrap-table >}}
 
 
 ## Supported deployment environments
@@ -57,11 +52,10 @@ NGINX Agent works with all supported versions of NGINX Open Source and NGINX Plu
 ## Sizing recommendations
 
 Minimum system sizing recommendations for NGINX Agent:
-{{< bootstrap-table "table table-striped table-bordered" >}}
+
 | CPU        | Memory   | Network   | Storage |
 |------------|----------|-----------|---------|
 | 1 CPU core | 1 GB RAM | 1 GbE NIC | 20 GB   |
-{{< /bootstrap-table >}}
 
 ## Logging
 

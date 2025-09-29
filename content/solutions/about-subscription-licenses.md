@@ -100,11 +100,12 @@ To ensure NGINX Plus R33 or later can send usage reports, follow these steps bas
 
 ### For internet-connected environments
 
-1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP addresses are allowed:
+1. Allow outbound HTTPS traffic on TCP port `443` to communicate with F5's licensing endpoint (`product.connect.nginx.com`). Ensure that the following IP address ranges are allowed:
 
-   - `3.135.72.139`
-   - `3.133.232.50`
-   - `52.14.85.249`
+   - `3.135.72.139/32`
+   - `3.133.232.50/32`
+   - `52.14.85.249/32`
+   - `2600:1f16:19c8:d400::/62`
 
 2.  (Optional, R34 and later) If your company enforces a strict outbound traffic policy, you can use an outbound proxy for establishing an end-to-end tunnel to the F5 licensing endpoint. On each NGINX Plus instance, update the [`proxy`](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive in the [`mgmt`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX configuration (`/etc/nginx/nginx.conf`) to point to the company's outbound proxy server:
 
@@ -142,6 +143,23 @@ mgmt {
 ```
 
 {{< call-out "important" >}}After 180 days, if usage reporting still hasn’t been established, NGINX Plus will stop processing traffic.{{< /call-out >}}
+
+
+## Update the JWT license {#update-jwt}
+
+Updating the JWT license after renewing your F5 NGINX subscription is a simple and seamless process that does not require manually downloading the JWT or reloading/restarting the NGINX service. This procedure applies both to subscriptions nearing expiration (within 30 days) and to those that have expired but are still within the 90-day grace period.
+
+The update process will work automatically provided that license reporting has been configured and at least one report has been successfully transmitted. If this setup is not configured, follow the [Deploy the JWT license](#deploy-the-jwt-license) steps instead.
+
+The updated JWT license is saved directly as a state file at the path specified by the [`state_path`](https://nginx.org/en/docs/ngx_mgmt_module.html#state_path) directive. The existing JWT license file located at `/etc/nginx/license.jwt` (or a custom path specified by the [`license_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive) will remain unchanged during this process and will not impact the performance or functionality of NGINX Plus in the future. If necessary, you may replace it manually with the updated license from MyF5.
+
+### For internet-connected environments
+
+Once your subscription has been successfully renewed by F5 Sales, all NGINX Plus instances will automatically receive and apply the updated JWT license — no manual action is required.
+
+### For network-restricted environments
+
+In network-restricted environments, there is no change in the JWT update process. It follows the same steps as [adding a new JWT](#for-network-restricted-environments).
 
 ---
 

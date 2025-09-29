@@ -90,14 +90,14 @@ For more information on these policies refer the NGINX App Protect [configuratio
 
 The following table shows the path to the precompiled policy file that needs to be used with the `app_protect_policy_file` directive:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
   | Policy                      | Enforcement Mode             | Path                                         |
   |---------------------------- | ---------------------------- | -------------------------------------------- |
   | Default                     | Strict                       | /etc/app_protect/conf/NginxDefaultPolicy.json |
   | Default                     | Transparent                  | /etc/app_protect/conf/NginxDefaultPolicy_transparent.json |
   | Strict                      | Strict                       | /etc/app_protect/conf/NginxStrictPolicy.json |
   | Strict                      | Transparent                  | /etc/app_protect/conf/NginxStrictPolicy_transparent.json |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 To view the contents of the available security policies, navigate to the azure portal and select the **Security Policies** tab in the App Protect section.
 
@@ -114,7 +114,14 @@ To create a custom security policy in the Azure Portal:
 3. Select **Custom Policies**
 4. Select **Add Custom Security Policy** to open the policy editor
 
-In the policy editor, enter the **Name**, **File path**, your policy content, and then select **Save**. The **File path** is optional and will default to the path "/etc/app_protect/conf/" plus the policy **Name** with a ".json" extension. After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
+In the policy editor:
+
+- Enter the policy **Name**, **File path**, your policy content, and then select **Save**.
+
+    - The **File path** must start with the prefix "/etc/app_protect/conf/".
+    - The **File path** extension must be ".json".
+
+After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
 
 {{< call-out "note" >}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{< /call-out >}}
 

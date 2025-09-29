@@ -27,8 +27,6 @@ This command runs the NGINX Gateway Fabric control plane.
 
 ### Flags
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
-
 | Name                                | Type     | Description                                                                                                                                                                                                                                                                                                                                                                              |
 |-------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _gateway-ctlr-name_                 | _string_ | The name of the Gateway controller. The controller name must be in the form: `DOMAIN/PATH`. The controller's domain is `gateway.nginx.org`.                                                                                                                                                                                                                                              |
@@ -51,13 +49,13 @@ This command runs the NGINX Gateway Fabric control plane.
 | _usage-report-resolver_         | _string_ | The nameserver used to resolve the NGINX Plus usage reporting endpoint. Used with NGINX Instance Manager.                                                                                                                                                                                                                                                                                                     |
 | _usage-report-skip-verify_          | _bool_   | Disable client verification of the NGINX Plus usage reporting server certificate.                                                                                                                                                                                                                                                                                                        |
 | _usage-report-ca-secret_               | _string_ | The name of the Secret containing the NGINX Instance Manager CA certificate. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway)                                                                                                                                                                                                                                                                                              |
-| _usage-report-client-ssl-secret_               | _string_ | TThe name of the Secret containing the client certificate and key for authenticating with NGINX Instance Manager. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway)                                                                                                                                                                                                                                                                                              |
+| _usage-report-client-ssl-secret_               | _string_ | The name of the Secret containing the client certificate and key for authenticating with NGINX Instance Manager. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway)                                                                                                                                                                                                                                                                                              |
 | _snippets-filters_                  | _bool_   | Enable SnippetsFilters feature. SnippetsFilters allow inserting NGINX configuration into the generated NGINX config for HTTPRoute and GRPCRoute resources.                                                                                                                                                                                                                               |
 | _nginx-scc_                  | _string_   | The name of the SecurityContextConstraints to be used with the NGINX data plane Pods. Only applicable in OpenShift.                                                                                                                                                                                                                               |
-
-{{% /bootstrap-table %}}
-
----
+| _nginx-one-dataplane-key-secret_ | _string_ | The name of the secret which holds the dataplane key that is required to authenticate with the NGINX One Console. Secret must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). |
+| _nginx-one-telemetry-endpoint-host_ | _string_ | The endpoint host that the NGINX One Console telemetry metrics will be sent to. |
+| _nginx-one-telemetry-endpoint-port_ | _int_ | The endpoint port that the NGINX One Console telemetry metrics will be sent to. |
+| _nginx-one-tls-skip-verify_ | _bool_ | Skip TLS verification for NGINX One Console connections. |
 
 ## Sleep
 
@@ -69,10 +67,6 @@ _Usage_:
   gateway sleep [flags]
 ```
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
-
 | Name     | Type            | Description                                                                                                                   |
 | -------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | duration | `time.Duration` | Set the duration of sleep. Must be parsable by [`time.ParseDuration`](https://pkg.go.dev/time#ParseDuration). (default `30s`) |
-
-{{% /bootstrap-table %}}

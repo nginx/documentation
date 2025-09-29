@@ -15,15 +15,12 @@ These custom policies follow the Gateway API [Policy Attachment](https://gateway
 Policies are a Kubernetes object that augments the behavior of an object in a standard way. Policies can be attached to one object ([Direct Policy Attachment](#direct-policy-attachment)) or objects in a hierarchy ([Inherited Policy Attachment](#inherited-policy-attachment)).
 The following table summarizes NGINX Gateway Fabric custom policies:
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
 
 | Policy                                                                                      | Description                                             | Attachment Type | Supported Target Object(s)    | Supports Multiple Target Refs | Mergeable | API Version |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------|-------------------------------|-------------------------------|-----------|-------------|
 | [ClientSettingsPolicy]({{< ref "/ngf/traffic-management/client-settings.md" >}})     | Configure connection behavior between client and NGINX  | Inherited       | Gateway, HTTPRoute, GRPCRoute | No                            | Yes       | v1alpha1    |
 | [ObservabilityPolicy]({{< ref "/ngf/monitoring/tracing.md" >}})                      | Define settings related to tracing, metrics, or logging | Direct          | HTTPRoute, GRPCRoute          | Yes                           | No        | v1alpha2    |
 | [UpstreamSettingsPolicy]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}) | Configure connection behavior between NGINX and backend | Direct          | Service                       | Yes                           | Yes       | v1alpha1    |
-
-{{< /bootstrap-table >}}
 
 {{< call-out "important" >}}
 If attaching a Policy to a Route, that Route must not share a hostname:port/path combination with any other Route that is not referenced by the same Policy. If it does, the Policy will be rejected. This is because the Policy would end up affecting other Routes that it is not attached to.

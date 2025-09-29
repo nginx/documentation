@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) leverages a user assigned and a system assigned managed identity for some of its integrations with Azure, such as:
+F5 NGINXaaS for Azure (NGINXaaS) leverages a user assigned and a system assigned managed identity for some of its integrations with Azure, such as:
 
 - Azure Key Vault (AKV): fetch SSL/TLS certificates from AKV to your NGINXaaS deployment, so that they can be referenced by your NGINX configuration.
 

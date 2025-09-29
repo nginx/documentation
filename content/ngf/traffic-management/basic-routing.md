@@ -21,11 +21,25 @@ You can route traffic to your Kubernetes applications using the Gateway API and 
 
 The application we are going to use in this guide is a simple **coffee** application comprised of one service and two pods:
 
-{{<img src="ngf/img/route-all-traffic-app.png" alt="This image shows a single 'coffee' Service connecting to two 'coffee' Pods.">}}
+```mermaid
+graph TB
+  subgraph cluster [Kubernetes Cluster]
+    style cluster fill:#FFFFFF,stroke:#000000
+    svc[Service<br>coffee]
+    pod1[Pod<br>coffee]
+    pod2[Pod<br>coffee]
+  end
+
+  svc --> pod1 & pod2
+
+  class pod1,pod2,svc appNode
+  classDef appNode fill:#edbd8c,stroke:#D9822B
+
+```
 
 Using this architecture, the **coffee** application is not accessible outside the cluster. We want to expose this application on the hostname "cafe.example.com" so that clients outside the cluster can access it.
 
-Install NGINX Gateway Fabric and create two Gateway API resources: a [gateway](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.Gateway) and an [HTTPRoute](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRoute).
+Install NGINX Gateway Fabric and create two Gateway API resources: a [gateway](https://gateway-api.sigs.k8s.io/reference/spec/#gateway) and an [HTTPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#httproute).
 
 Using these resources we will configure a simple routing rule to match all HTTP traffic with the hostname "cafe.example.com" and route it to the **coffee** service.
 
@@ -96,7 +110,49 @@ service/coffee       ClusterIP   198.51.100.1     <none>        80/TCP    77s
 
 To route traffic to the **coffee** application, we will create a Gateway and HTTPRoute. The following diagram shows the configuration we are creating in the next step:
 
-{{<img src="ngf/img/route-all-traffic-config.png" alt="">}}
+```mermaid
+graph LR
+    subgraph config [Namespace default]
+      subgraph padding [" "]
+          direction LR
+          style config fill:#FFFFFF,stroke:#000000
+          subgraph gw[Gateway cafe]
+              subgraph gwPadding [" "]
+                  gwContents[HTTP/80]
+              end
+          end
+          subgraph hr[HTTPRoute coffee]
+              subgraph hrPadding [" "]
+                  hrContents[cafe.example.com]
+                  subgraph describeMatchAll [Match all<br>traffic]
+                      subgraph describeMatchPadding [" "]
+                          matchAll[Host: *<br>Path: *]
+                      end
+                  end
+                  subgraph describeService [Group matching<br>pods within a Service]
+                      subgraph describePadding [" "]
+                          coffeeSvc[Service<br>coffee]
+                      end
+                  end
+              end
+          end
+      end
+    end
+
+  gwContents --> hrContents --> matchAll --> coffeeSvc
+  class padding,gwPadding,hrPadding,describeMatchAll,describeService,describePadding,describeMatchPadding noBorder
+  class gw gateway
+  class hr httpRoute
+  class matchAll,hrContents,coffeeSvc appDevNode
+  class gwContents clusterOppNode
+
+  classDef noBorder stroke:none,fill:none,text-align:center
+  classDef default fill:#FFFFFF,stroke:#000000
+  classDef gateway fill:#FFFFFF,stroke:#blue,stroke-dasharray: 3 3,text-align:center
+  classDef httpRoute fill:#FFFFFF,stroke:#D9822B,stroke-dasharray: 3 3,text-align:center
+  classDef appDevNode fill:#edbd8c,stroke:#D9822B
+  classDef clusterOppNode fill:lightblue,stroke:darkblue
+```
 
 We need a Gateway to create an entry point for HTTP traffic coming into the cluster. The **cafe** Gateway we are going to create will open an entry point to the cluster on port 80 for HTTP traffic.
 
@@ -104,7 +160,41 @@ To route HTTP traffic from the Gateway to the **coffee** service, we need to cre
 
 Once NGINX Gateway Fabric processes the **cafe** Gateway and **coffee** HTTPRoute, it will configure a data plane (NGINX) to route all HTTP requests sent to "cafe.example.com" to the pods that the **coffee** service targets:
 
-{{<img src="ngf/img/route-all-traffic-flow.png" alt="Traffic Flow">}}
+```mermaid
+graph LR
+  style cluster fill:#FFFFFF,stroke:#000000
+  clients[Clients]
+  ngfSvc["Public IP Address for<br>cafe.example.com"]
+    subgraph cluster [Kubernetes Cluster]
+        
+        subgraph appNs [Namespace<br>default]
+            subgraph nsPadding [" "]
+            nginxPod[Pod NGINX]
+                coffeePod1[Pod coffee]
+                coffeePod2[Pod coffee]
+            end
+        end
+    end
+
+  ngfSvc --> nginxPod
+  nginxPod --> coffeePod1 & coffeePod2
+  clients --> ngfSvc
+
+  class clusterPadding,nsPadding,clusterPadding2 noBorder
+  class gwNS,appNs namespace
+  class nginxPod nginxNode
+  class coffeePod1,coffeePod2 coffeeNode
+  class ngfSvc svc
+  class clients clientNode
+
+  classDef noBorder stroke:none,fill:none
+  classDef default fill:#FFFFFF,stroke:#000000
+  classDef namespace fill:#FFFFFF,stroke:#036ffc,stroke-dasharray: 5 5,text-align:center
+  classDef nginxNode fill:#b4e0ad,stroke:#2AA317
+  classDef svc fill:lightblue,stroke:darkblue
+  classDef coffeeNode fill:#edbd8c,stroke:#D9822B
+  classDef clientNode fill:#D3D3D3
+```
 
 The **coffee** service is omitted from the diagram above because the NGINX Pod routes directly to the pods that the **coffee** service targets.
 
@@ -150,10 +240,10 @@ In a production environment, you should have a DNS record for the external IP ad
 
 This Gateway is associated with NGINX Gateway Fabric through the **gatewayClassName** field. The default installation of NGINX Gateway Fabric creates a GatewayClass with the name **nginx**. NGINX Gateway Fabric will only configure Gateways with a **gatewayClassName** of **nginx** unless you change the name via the `--gatewayclass` [command-line flag]({{< ref "/ngf/reference/cli-help.md#controller" >}}).
 
-We specify a [listener](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.Listener) on the Gateway to open an entry point on the cluster. In this case, since the coffee application accepts HTTP requests, we create an HTTP listener, named **http**, that listens on port 80.
+We specify a [listener](https://gateway-api.sigs.k8s.io/reference/spec/#listener) on the Gateway to open an entry point on the cluster. In this case, since the coffee application accepts HTTP requests, we create an HTTP listener, named **http**, that listens on port 80.
 
 By default, Gateways only allow routes (such as HTTPRoutes) to attach if they are in the same namespace as the Gateway. If you want to change this behavior, you can set
-the [**allowedRoutes**](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.AllowedRoutes) field.
+the [**allowedRoutes**](https://gateway-api.sigs.k8s.io/reference/spec/#allowedroutes) field.
 
 Next you will create the HTTPRoute by copying and pasting the following into your terminal:
 
@@ -179,11 +269,11 @@ spec:
 EOF
 ```
 
-To attach the **coffee** HTTPRoute to the **cafe** Gateway, we specify the Gateway name in the [**parentRefs**](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.CommonRouteSpec) field. The attachment will succeed if the hostnames and protocol in the HTTPRoute are allowed by at least one of the Gateway's listeners.
+To attach the **coffee** HTTPRoute to the **cafe** Gateway, we specify the Gateway name in the [**parentRefs**](https://gateway-api.sigs.k8s.io/reference/spec/#parentreference) field. The attachment will succeed if the hostnames and protocol in the HTTPRoute are allowed by at least one of the Gateway's listeners.
 
-The [**hostnames**](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRouteSpec) field allows you to list the hostnames that the HTTPRoute matches. In this case, incoming requests handled by the **http** listener with the HTTP host header "cafe.example.com" will match this HTTPRoute and will be routed according to the rules in the spec.
+The [**hostnames**](https://gateway-api.sigs.k8s.io/reference/spec/#hostname) field allows you to list the hostnames that the HTTPRoute matches. In this case, incoming requests handled by the **http** listener with the HTTP host header "cafe.example.com" will match this HTTPRoute and will be routed according to the rules in the spec.
 
-The [**rules**](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRouteRule) field defines routing rules for the HTTPRoute. A rule is selected if the request satisfies one of the rule's **matches**. To forward traffic for all paths to the coffee service we specify a match with the PathPrefix "/" and target the coffee service using the **backendRef** field.
+The [**rules**](https://gateway-api.sigs.k8s.io/reference/spec/#httprouterule) field defines routing rules for the HTTPRoute. A rule is selected if the request satisfies one of the rule's **matches**. To forward traffic for all paths to the coffee service we specify a match with the PathPrefix "/" and target the coffee service using the **backendRef** field.
 
 ---
 

@@ -8,9 +8,9 @@ type:
 - concept
 ---
 
-## What Is F5 NGINX as a Service for Azure?
+## What Is F5 NGINXaaS for Azure?
 
-NGINX as a Service for Azure is a service offering that is tightly integrated into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
+NGINXaaS for Azure is a service offering that is tightly integrated into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
 NGINXaaS for Azure is available in the Azure Marketplace.
 
 NGINXaaS for Azure is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. Initial use cases covered by NGINXaaS include L4 TCP and L7 HTTP load balancing and reverse proxy which can be managed through various Azure management tools.
@@ -43,11 +43,11 @@ The key capabilities of NGINXaaS for Azure are:
 ## Supported regions
 
 NGINXaaS for Azure is supported in the following regions:
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{< table >}}
 | **North America**                                              | **South America** | **Europe** | **Asia Pacific** |
 |----------------------------------------------------------|--------------------------------------------|--------------------------------------------|-------------------------|
 | West Central US <br> West US <br> East US 2 <br> West US 2 <br> West US 3 <br> East US <br> Central US <br> North Central US <br> Canada Central | Brazil South | West Europe <br> North Europe <br> Sweden Central <br> Germany West Central <br> UK West <br> UK South | Australia East <br> Japan East <br> Korea Central <br> Southeast Asia <br> Central India <br> South India |
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 
 ## NGINXaaS architecture
@@ -82,4 +82,4 @@ With the Standard V2 Plan, NGINXaaS uses the following redundancy features to ke
 
 ## What's next
 
-To get started, check the [NGINX as a Service for Azure prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}})
+To get started, check the [NGINXaaS for Azure prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}})

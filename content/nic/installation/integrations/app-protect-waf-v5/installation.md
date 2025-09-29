@@ -86,16 +86,13 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
 Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, NGINX App Protect WAF v5 and FIPS)
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
 | **alpine-image-nap-v5-plus-fips** | Builds a Alpine-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module with FIPS. | Alpine  |
 | **debian-image-nap-v5-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module. | Debian  |
 | **ubi-image-nap-v5-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module. | OpenShift |
 | **ubi-image-nap-dos-v5-plus** | Builds a UBI-based image with NGINX Plus, [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/), and [NGINX App Protect DoS](/nginx-app-protect-dos/). | OpenShift |
-{{</bootstrap-table>}}
 
-<br>
 
 {{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{< /call-out>}}
 
@@ -135,7 +132,7 @@ docker push <my-docker-registry>/waf-enforcer:<your-tag>
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-{{< call-out "important" >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment or DaemonSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
+{{< important >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
 
 NGINX Ingress Controller **requires** the volume mount path to be `/etc/app_protect/bundles`. {{< /call-out >}}
 
@@ -230,18 +227,18 @@ Create required volumes:
 volumes:
   - name: nginx-etc
     emptyDir: {}
-  - name: nginx-cache
-    emptyDir: {}
+  - name: nginx-cache # do not set this value in statefulset if volumeclaimtemplate is set
+    emptyDir: {}      # do not set this value in statefulset if volumeclaimtemplate is set
   - name: nginx-lib
     emptyDir: {}
   - name: nginx-log
     emptyDir: {}
-  - emptyDir: {}
-    name: app-protect-bd-config
-  - emptyDir: {}
-    name: app-protect-config
-  - emptyDir: {}
-    name: app-protect-bundles
+  - name: app-protect-bd-config
+    emptyDir: {}
+  - name: app-protect-config
+    emptyDir: {}
+  - name: app-protect-bundles
+    emptyDir: {}
 ```
 
 Set `controller.securityContext.readOnlyRootFilesystem` to `true`.
@@ -294,6 +291,7 @@ You have two options for deploying NGINX Ingress Controller:
 
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
+- **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller pods.
 
 ---
 
@@ -380,7 +378,7 @@ Add `waf-enforcer` image to the `containers` section:
 ...
 ```
 
-### Update NIC container in deployment or daemonset
+### Update NIC container in deployment, daemonset, or statefulset
 
 Add `volumeMounts` as below:
 
@@ -467,6 +465,10 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 ...
 ```
 
+{{< call-out "note" >}}
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. App Protect WAF v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+{{< /call-out >}}
+
 ### Using a Deployment
 
 {{< include "/nic/installation/manifests/deployment.md" >}}
@@ -475,13 +477,17 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ### Enable NGINX App Protect WAF module
 
 To enable the NGINX App Protect DoS Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 {{%/tab%}}
 

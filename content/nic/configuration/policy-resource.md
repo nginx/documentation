@@ -44,6 +44,8 @@ spec:
 |``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | No |
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | No |
 |``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
+|``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | No |
+
 {{% /table %}}
 
 \* A policy must include exactly one policy.
@@ -178,10 +180,10 @@ condition:
 |``variables`` | defines a Variable condition to rate limit against. | [ratelimit.condition.variables](#ratelimitconditionvariables) | No |
 |``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same condition, only one policy can be the default. | ``bool`` | No |
 {{% /table %}}
-{{< call-out "note" >}}
- 
-One condition of type `jwt` or `variables` is required. Each Policy supports only one condition.
 
+{{< call-out "note" >}}
+Conditions (`jwt` or `variables`) are optional, but each policy can only have one. 
+If conditions are used, a request doesn't match any, and a `default` has been defined, the `default` policy applies. Otherwise, if no `default` is set, the request isn't rate limited.
 {{< /call-out >}}
 
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
@@ -446,12 +448,14 @@ This feature is implemented using the NGINX Plus directive [auth_jwt_key_request
 {{< /call-out >}}
 
 {{% table %}}
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``jwksURI`` | The remote URI where the request will be sent to retrieve JSON Web Key set| ``string`` | Yes |
-|``keyCache`` | Enables in-memory caching of JWKS (JSON Web Key Sets) that are obtained from the ``jwksURI`` and sets a valid time for expiration. | ``string`` | Yes |
-|``realm`` | The realm of the JWT. | ``string`` | Yes |
-|``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|``jwksURI`` | The remote URI where the request will be sent to retrieve JSON Web Key set| ``string`` | Yes | -- |
+|``keyCache`` | Enables in-memory caching of JWKS (JSON Web Key Sets) that are obtained from the ``jwksURI`` and sets a valid time for expiration. | ``string`` | Yes | -- |
+|``realm`` | The realm of the JWT. | ``string`` | Yes | -- |
+|``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No | -- |
+|``sniEnabled`` | Enables SNI (Server Name Indication) for the JWT policy. This is useful when the remote server requires SNI to serve the correct certificate. | ``bool`` | No | `false` |
+|``sniName`` | The SNI name to use when connecting to the remote server. If not set, the hostname from the ``jwksURI`` will be used. | ``string`` | No | -- |
 {{% /table %}}
 
 {{< call-out "note" >}}
@@ -738,28 +742,56 @@ policies:
 
 In this example NGINX Ingress Controller will use the configuration from the first policy reference `oidc-policy-one`, and ignores `oidc-policy-two`.
 
-## Using Policy
+### Cache
 
-You can use the usual `kubectl` commands to work with Policy resources, just as with built-in Kubernetes resources.
+The cache policy configures proxy caching, which improves performance by storing and serving cached responses to clients without having to proxy every request to upstream servers.
 
-For example, the following command creates a Policy resource defined in `access-control-policy-allow.yaml` with the name `webapp-policy`:
+For example, the following policy creates a cache zone named "my-cache" with 10MB memory allocation and caches all GET response codes for 30 seconds:
 
-```shell
-kubectl apply -f access-control-policy-allow.yaml
-
-policy.k8s.nginx.org/webapp-policy configured
+```yaml
+cache:
+  cacheZoneName: "mycache"
+  cacheZoneSize: "10m"
+  allowedCodes: ["any"]
+  allowedMethods: ["GET"]
+  time: "30s"
 ```
 
-You can get the resource by running:
+Here's an example with more specific configuration:
 
-```shell
-kubectl get policy webapp-policy
-
-NAME            AGE
-webapp-policy   27m
+```yaml
+cache:
+  cacheZoneName: "mycache"
+  cacheZoneSize: "100m"
+  allowedCodes: [200, 301, 302]
+  allowedMethods: ["GET", "POST"]
+  time: "5m"
+  levels: "1:2"
+  overrideUpstreamCache: true
 ```
 
-For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
+{{< call-out "note" >}}
+
+The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) proxy_cache_path and related directives.
+
+{{< /call-out >}}
+
+{{% table %}}
+|Field | Description | Type | Required |
+| --- | ---| ---| --- |
+| ``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter,followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
+|``cacheZoneSize`` | CacheZoneSize defines the size of the cache zone. Must be a number followed by a size unit: 'k' for kilobytes, 'm' for megabytes, or 'g' for gigabytes. Examples: "10m", "1g", "512k". | ``string`` | Yes |
+|``allowedCodes`` | AllowedCodes defines which HTTP response codes should be cached. Accepts either: - The string "any" to cache all response codes (must be the only element) - A list of HTTP status codes as integers (100-599) Examples: ["any"], [200, 301, 404], [200]. Invalid: ["any", 200] (cannot mix "any" with specific codes). | ``[]IntOrString`` | No |
+|``time`` | The default cache time for responses. Required when allowedCodes is specified. Must be a number followed by a time unit: 's' for seconds, 'm' for minutes, 'h' for hours, 'd' for days. Examples: "30s", "5m", "1h", "2d". | ``string`` | No |
+|``allowedMethods`` | AllowedMethods defines which HTTP methods should be cached. Only "GET", "HEAD", and "POST" are supported by NGINX proxy_cache_methods directive. GET and HEAD are always cached by default even if not specified. Maximum of 3 items allowed. Examples: ["GET"], ["GET", "HEAD", "POST"]. Invalid methods: PUT, DELETE, PATCH, etc.  | ``[]string`` | No |
+|``levels`` | Levels defines the cache directory hierarchy levels for storing cached files. Must be in format "X:Y" or "X:Y:Z" where X, Y, Z are either 1 or 2. This controls the number of subdirectory levels and their name lengths. Examples: "1:2", "2:2", "1:2:2". Invalid: "3:1", "1:3", "1:2:3". | ``string`` | No |
+|``overrideUpstreamCache`` | OverrideUpstreamCache controls whether to override upstream cache headers (using proxy_ignore_headers directive). When true, NGINX will ignore cache-related headers from upstream servers like Cache-Control, Expires etc, Default: false. | ``bool`` | No |
+|``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. This feature is only available in NGINX Plus. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
+{{% /table %}}
+
+#### Cache Merging Behavior
+
+A VirtualServer/VirtualServerRoute can reference multiple cache policies. However, only one can be applied: every subsequent reference will be ignored.
 
 ### WAF
 
@@ -807,6 +839,29 @@ policies:
 ```
 
 In this example NGINX Ingress Controller will use the configuration from the first policy reference `waf-policy-one`, and ignores `waf-policy-two`.
+
+## Using Policy
+
+You can use the usual `kubectl` commands to work with Policy resources, just as with built-in Kubernetes resources.
+
+For example, the following command creates a Policy resource defined in `access-control-policy-allow.yaml` with the name `webapp-policy`:
+
+```shell
+kubectl apply -f access-control-policy-allow.yaml
+
+policy.k8s.nginx.org/webapp-policy configured
+```
+
+You can get the resource by running:
+
+```shell
+kubectl get policy webapp-policy
+
+NAME            AGE
+webapp-policy   27m
+```
+
+For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
 
 ### Applying Policies
 

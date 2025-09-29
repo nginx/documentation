@@ -80,7 +80,7 @@ jobs:
     permissions: read-all
     steps:
       - name: Send notification
-        uses:  8398a7/action-slack@1750b5085f3ec60384090fb7c52965ef822e869e # v3.18.0
+        uses:  8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # v3.19.0
         with: 
           status: custom
           custom_payload: |
@@ -116,50 +116,3 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_FRIENDS_OF_DOCS }}
       PREVIEW_URL: ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
-
-
-  lighthouseci:
-    if: github.event.pull_request
-    needs: call-docs-build-push
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_branch }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Installing packages
-        run: npm install
-      - name: Generating lighthouse reports for PR and main...
-        run: | 
-            node lighthouse-script.js
-      - name: Compare the artifacts for negative differences in performance
-        continue-on-error: true
-        run: |
-            FIELDS=("performance" "accessibility") 
-            for FIELD in "${FIELDS[@]}"; do
-                PR_VALUE=$(cat lighthouse-reports/pr-report.json | jq -r ".categories.$FIELD.score")
-                MAIN_VALUE=$(cat lighthouse-reports/main-report.json | jq -r ".categories.$FIELD.score")
-                echo "$FIELD: PR - $PR_VALUE | Main - $MAIN_VALUE"
-
-                if [ $FIELD = "performance" ]; then  
-                  LOWER_BOUND=$(echo "$MAIN_VALUE - 0.05" | bc)
-                  UPPER_BOUND=$(echo "$MAIN_VALUE + 0.05" | bc)
-                  if (( $(echo "$PR_VALUE < $LOWER_BOUND" | bc -l) || $(echo "$PR_VALUE > $UPPER_BOUND" | bc -l) )); then
-                      echo "Error: $FIELD score in PR ($PR_VALUE) is less than in MAIN ($MAIN_VALUE)"
-                      exit 1
-                  fi
-                else
-                  if (( $(echo "$PR_VALUE < $MAIN_VALUE" | bc -l) )); then
-                    echo "Error: $FIELD score in PR ($PR_VALUE) is less than in MAIN ($MAIN_VALUE)"
-                    exit 1
-                  fi
-                fi
-            done
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-            name: lighthouse-reports
-            path: lighthouse-reports/
-            retention-days: 30

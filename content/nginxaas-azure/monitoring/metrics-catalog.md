@@ -8,7 +8,7 @@ type:
 - concept
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Azure in Azure Monitor.
+F5 NGINXaaS for Azure (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Azure in Azure Monitor.
 
 ## Available metrics
 
@@ -32,7 +32,7 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 
 ### NGINXaaS statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**            | **Display Name**            | **Dimensions** | **Type** | **Description**                                                                                                                                                                                                                                                                                                           | **Roll-up per** |
 | --------------------- | --------------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
@@ -48,13 +48,13 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | system.listener_backlog.queue_limit | Listener backlog queue limit | listen_address, file_desc | count | The capacity of a specific backlog queue, labelled by listen address. | deployment |
 | system.listener_backlog.length | Listener backlog length | listen_address, file_desc | count | The number of items in a specific backlog queue, labelled by listen address. | deployment |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 {{< call-out "warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
 
 ### NGINX connections statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name** | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |------------------------------|------------------|----------------|----------|---------------------------------------------------------------------------------------------------------------|-----------------|
@@ -64,11 +64,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | nginx.conn.idle              | Idle connections | build version  | count      | Idle Connections The average number of idle client connections during the aggregation interval.               | deployment      |
 | nginx.conn.current           | Current connections | build version  | count      | Current Connections The average number of active and idle client connections during the aggregation interval. | deployment      |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX requests and response statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name** | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -102,11 +102,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.http.request.location_zone.bytes_rcvd           | Location zone HTTP bytes received | build version location_zone | count | Location Zone Bytes Received The total number of bytes received from clients during the aggregation interval.               | location zone |
 | plus.http.request.location_zone.bytes_sent           | Location zone HTTP bytes sent | build version location_zone | count | Location Zone Bytes Sent The total number of bytes sent to clients during the aggregation interval.                         | location zone |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX SSL statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name** | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -134,11 +134,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.http.ssl.verify_failures.revoked_cert    | Verify failures - revoked cert | build version server_zone | count     | SSL certificate verification errors - a revoked certificate was presented by a client during the aggregation interval.                                                                                                                                                                                                    | server zone |
 | plus.http.ssl.verify_failures.other  | Verify failures - other | build version server_zone | count    | SSL certificate verification errors - other SSL certificate verification errors during the aggregation interval.                                                                                                                                                                                                    | server zone |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX cache statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name** | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -164,11 +164,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.cache.bypass.responses_written | Cache bypass responses written | build version cache_zone | count | The total number of responses that bypassed the cache and were written back to the cache during the aggregation interval. | cache zone |
 | plus.cache.bypass.bytes_written | Cache bypass bytes written | build version cache_zone | count | The total number of bytes that bypassed the cache and were written back to the cache during the aggregation interval. | cache zone |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX worker statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name**              | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|-------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -179,11 +179,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.worker.http.request.total         | Total worker HTTP requests    | build version worker_id    | count | The total number of client requests received by the worker process during the aggregation interval.          | worker         |
 | plus.worker.http.request.current       | Current worker HTTP requests  | build version worker_id    | count | The current number of client requests that are currently being processed by the worker process during the aggregation interval. | worker         |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX upstream statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**              | **Display Name**                  | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |-----------------------------------|-------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -238,11 +238,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.stream.upstream.peers.ssl.verify_failures.hostname_mismatch | Stream verify failure - hostname mismatch | build version upstream peer.address peer.name | count | SSL certificate verification errors - server's certificate doesn't match the hostname during the aggregation interval. | upstream peer   |
 | plus.stream.upstream.peers.ssl.verify_failures.other | Stream SSL verify failure - other       | build version upstream peer.address peer.name | count | SSL certificate verification errors - other SSL certificate verification errors during the aggregation interval. | upstream peer   |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX system statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name** | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -254,11 +254,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | system.interface.total_bytes| Interface total bytes | interface | count | System Interface Total Bytes, sum of bytes_sent and bytes_rcvd. | deployment |
 | system.interface.egress_throughput| Interface egress throughput | interface | count | System Interface Egress Throughput, i.e. bytes sent per second| deployment |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX stream statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                   | **Display Name**                  | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|-------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -310,11 +310,11 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.stream.zone_sync.zones.records_pending | Zone sync records pending    | build, version, shared_memory_zone                    | avg   | The average number of records that need to be sent to the cluster during the aggregation interval. | shared memory zone |
 | plus.stream.zone_sync.zones.records_total | Zone sync records total      | build, version, shared_memory_zone                    | avg   | The average number of records stored in the shared memory zone by all nodes during the aggregation interval. | shared memory zone |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 ### NGINX resolver statistics
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 
 | **Metric**                            | **Display Name**             | **Dimensions**                 | **Type** | **Description**                                                                            | **Roll-up per** |
 |---------------------------------------|------------------------------|--------------------------------|----------|--------------------------------------------------------------------------------------------|-----------------|
@@ -330,4 +330,4 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 | plus.resolvers.responses.timedout     | Timed out requests           | build, version, resolver_zone  | count    | The number of timed out requests during the aggregation interval.                          | resolver zone   |
 | plus.resolvers.responses.unknown      | Unknown error responses      | build, version, resolver_zone  | count    | The number of requests completed with an unknown error during the aggregation interval.    | resolver zone   |
 
-{{</bootstrap-table>}}
+{{< /table >}}
