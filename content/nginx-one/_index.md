@@ -96,10 +96,10 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
   {{</ card >}}
 {{</ card-section >}}
 {{< card-section title="Security">}}
-  {{< card title="NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf" brandIcon="NGINX-App-Protect-WAF-product-icon.svg">}}
+  {{< card title="F5 WAF for NGINX" titleUrl="/nginx-app-protect-waf" brandIcon="NGINX-App-Protect-WAF-product-icon.svg">}}
     Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.
   {{</ card >}}
-  {{< card title="NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos" brandIcon="NGINX-App-Protect-DoS-product-icon.svg">}}
+  {{< card title="F5 DoS for NGINX" titleUrl="/nginx-app-protect-dos" brandIcon="NGINX-App-Protect-DoS-product-icon.svg">}}
     Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
   {{</ card >}}
 {{</ card-section >}}

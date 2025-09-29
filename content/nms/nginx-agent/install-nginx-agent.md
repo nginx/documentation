@@ -349,18 +349,18 @@ NGINX Agent follows NGINX configuration directives to file paths outside the des
 {{< /call-out >}}
 
 
-### Enable NGINX App Protect WAF Status Reporting
+### Enable F5 WAF for NGINX Status Reporting
 
-You can configure NGINX Agent to report the following NGINX App Protect WAF installation information to NGINX Management Suite:
+You can configure NGINX Agent to report the following F5 WAF for NGINX installation information to NGINX Management Suite:
 
-- the current version of NGINX App Protect WAF
-- the current status of NGINX App Protect WAF (active or inactive)
+- the current version of F5 WAF for NGINX
+- the current status of F5 WAF for NGINX (active or inactive)
 - the Attack Signatures package version
 - the Threat Campaigns package version
 
 You can also configure NGINX Agent to enable the publication of precompiled NGINX App Protect policies and log profiles from the NGINX Management Suite.
 
-To enable NGINX App Protect WAF reporting or precompiled publication, edit the `/etc/nginx-agent/nginx-agent.conf` to add the following directives:
+To enable F5 WAF for NGINX reporting or precompiled publication, edit the `/etc/nginx-agent/nginx-agent.conf` to add the following directives:
 
 ```yaml
 # path to aux file dirs can also be added

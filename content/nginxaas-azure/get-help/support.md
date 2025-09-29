@@ -38,9 +38,9 @@ To contact support about F5 NGINXaaS for Azure (NGINXaaS):
 - Date and time of the issue
 - Resource ID
 
-If your deployment is configured to use NGINX App Protect WAF, please collect the following information also:
+If your deployment is configured to use F5 WAF for NGINX, please collect the following information also:
 
-- Package versions from the NGINX App Protect WAF page
+- Package versions from the F5 WAF for NGINX page
 - Security policies in-use and the content of all custom security policies
 
 {{< img src="nginxaas-azure/properties.png" alt="Screenshot of the Azure portal showing the Properties section" >}}

@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot NGINX App Protect WAF
+title: Troubleshoot F5 WAF for NGINX
 weight: 400
 toc: true
 nd-content-type: how-to
@@ -7,15 +7,15 @@ nd-product: NIC
 nd-docs: DOCS-1864
 ---
 
-This document describes how to troubleshoot problems when using NGINX Ingress Controller and the NGINX App Protect WAF module version 5.
+This document describes how to troubleshoot problems when using NGINX Ingress Controller and the F5 WAF for NGINX module version 5.
 
 For general troubleshooting of NGINX Ingress Controller, check the general [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common" >}}) documentation.
 
-{{< call-out "note" >}} You can find more troubleshooting tips in the NGINX App Protect WAF [troubleshooting guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) {{< /call-out>}}.
+{{< call-out "note" >}} You can find more troubleshooting tips in the F5 WAF for NGINX [troubleshooting guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) {{< /call-out>}}.
 
 ## Potential problems
 
-The table below categorizes some potential problems with NGINX Ingress Controller when App Protect WAF module is enabled. It suggests how to troubleshoot those problems, using one or more methods from the next section.
+The table below categorizes some potential problems with NGINX Ingress Controller when F5 WAF for NGINX module is enabled. It suggests how to troubleshoot those problems, using one or more methods from the next section.
 
 {{% table %}}
 |Problem area | Symptom | Troubleshooting method | Common cause |
@@ -106,13 +106,13 @@ curl -w '%{time_total}' http://192.168.100.100/resources/headersettings.txt
 
 ## Run App Protect in debug mode
 
-When you set NGINX Ingress Controller to use debug mode, the setting also applies to the App Protect WAF module.  See  [Running NGINX in the Debug Mode]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
+When you set NGINX Ingress Controller to use debug mode, the setting also applies to the F5 WAF for NGINX module.  See  [Running NGINX in the Debug Mode]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
 
 ## Known issues
 
-When using NGINX Ingress Controller with the App Protect WAF module, the following issues have been reported. The occurrence of these issues is commonly related to a higher number of Ingress Resources with App Protect being enabled in a cluster.
+When using NGINX Ingress Controller with the F5 WAF for NGINX module, the following issues have been reported. The occurrence of these issues is commonly related to a higher number of Ingress Resources with App Protect being enabled in a cluster.
 
-When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the App Protect WAF module enabled, usual reload times are around 150ms. If App Protect WAF module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
+When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the F5 WAF for NGINX module enabled, usual reload times are around 150ms. If F5 WAF for NGINX module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
 
 ### NGINX configuration drift
 
