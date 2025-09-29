@@ -26,9 +26,7 @@ Combining licenses with NGINX Instance Manager requires version **2.20 or later*
 
 ## Important changes
 
-NGINX Plus requires a valid license and regular usage reporting to run.  
-The sections below explain the requirements and what happens if they aren’t met.  
-For a visual overview, see the [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).  
+NGINX Plus requires a valid license and regular usage reporting to run. The sections below explain the requirements and what happens if they aren’t met. To see how these requirements work in practice, see the [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).
 
 ### Starting NGINX Plus
 
