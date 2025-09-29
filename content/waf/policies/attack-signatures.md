@@ -100,11 +100,6 @@ If you want to remove a specific signature set, you must explicitly mention it u
                 "name": "Generic Detection Signatures (High/Medium Accuracy)",
                 "block": false,
                 "alarm": false
-            },
-            {
-                "name": "All Signatures",
-                "block": false,
-                "alarm": false
             }
         ]
     }
