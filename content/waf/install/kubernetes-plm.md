@@ -139,7 +139,7 @@ To obtain the CRDs, log into the Helm registry and pull the chart, changing the 
 
 ```shell
 helm registry login private-registry.nginx.com
-helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <release-version> --untar
+helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version 5.9.0-ea --untar
 ```
 
 Then change into the directory and apply the CRDs using _kubectl apply_:
