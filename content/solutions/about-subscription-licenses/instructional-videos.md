@@ -1,5 +1,6 @@
 ---
-title: "Instructional videos"
+title: "Instructional videos for NGINX Plus subscription licensing"
+linkTitle: "Instructional videos"
 weight: 300
 toc: false
 nd-content-type: reference
