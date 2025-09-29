@@ -16,17 +16,23 @@ nd-content-type: reference
 nd-product: NAP-WAF
 ---
 
-Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments. 
+There are two new features available for Kubernetes through early access:
 
-It extends the WAF compiler capabilities by providing a native Kubernetes operater-based approach for policy orchestration.
+**Security policy orchestration**, which removes the need for compilaton by updating existing JSON security policies.
 
-The policy lifecycle management system revolves around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
+**Automated signature updates**, which can auto-update security signatures.
+
+<!-- Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments.  -->
+
+They extends the WAF compiler capabilities by providing a native Kubernetes operater-based approach for policy orchestration.
+
+These feature revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
 {{< call-out "note" >}}
 
-This system is only available for Helm-based deployments.
+These enhancements are  only available for Helm-based deployments.
 
 {{< /call-out >}}
 
@@ -126,7 +132,7 @@ If you do this, ensure that all corresponding values for persistent volumes poin
 
 ### Download and apply CRDs
 
-Policy lifecycle management requires specific CRDs to be applied before deployment. 
+These enhancements require specific CRDs to be applied before deployment. 
 
 These CRDs define the resources that the Policy Controller manages:
 
@@ -151,9 +157,9 @@ kubectl apply -f crds/
 
 ### Update NGINX configuration
 
-Policy lifecycle management requires NGINX configuration to integrate with the Policy Controller. 
+To activate these enhancements, NGINX requires configuration to integrate with the Policy Controller. 
 
-The directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable PLM integration.
+The directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable the features.
 
 ```nginx
 user nginx;
@@ -214,7 +220,7 @@ http {
 }
 ```
 
-These are the Policy lifecycle management directives:
+These are the directives:
 
 - `app_protect_default_config_source "custom-resource"` - Enables the Policy Controller integration
 - `app_protect_policy_file my-policy-cr` - References a Custom Resource policy name instead of bundle file paths
@@ -222,9 +228,9 @@ These are the Policy lifecycle management directives:
 
 ## Update Helm configuration
 
-Policy lifecycle management is deployed as part of the F5 WAF for NGINX Helm chart. 
+These new enhancements are deployed as part of the F5 WAF for NGINX Helm chart. 
 
-To enable it, you must configure the Policy Controller settings in your `values.yaml` file:
+To enable them, you must configure the Policy Controller settings in your `values.yaml` file:
 
 ```yaml
 # Specify the target namespace for your deployment
@@ -458,7 +464,7 @@ appprotect:
                   app_protect_security_log_enable on;
                   app_protect_security_log log_all stderr;
                   
-                  # WAF policy - use Custom Resource name when PLM is enabled
+                  # WAF policy - use Custom Resource name when these enhancements are enabled
                   app_protect_policy_file app_protect_default_policy;
 
                   client_max_body_size 0;
@@ -621,11 +627,11 @@ In totality, you should see the following:
 
 If you are using the IP intelligence feature, you will have a 4th F5 WAF for NGINX pod (waf-ip-intelligence).
 
-## Use Policy lifecycle management
+## Update security policies
 
 ### Create custom policy resources
 
-Once Policy lifecycle management is deployed, you can create policy resources using Kubernetes manifests. 
+During installation, you can create policy resources using Kubernetes manifests. 
 
 Here are two examples, which you can use to create your own:
 
@@ -802,11 +808,13 @@ The key information to review is the following:
 - **`status.processing.isCompiled`**: Boolean indicating if compilation completed successfully
 - **`status.processing.datetime`**: Timestamp of the last compilation attempt
 
-## Testing policy lifecycle management
+## Validate your installation
 
 ### Apply a policy
 
-Apply one of the sample policy Custom Resources to verify PLM is working correctly. For example, using the dataguard policy you created earlier:
+Apply one of the sample policy Custom Resources to verify your installation is working correctly.
+
+For example, using the dataguard policy you created earlier:
 
 ```shell
 kubectl apply -f dataguard-blocking-policy.yaml -n <namespace>
@@ -922,11 +930,11 @@ Send a test request to trigger the dataguard policy:
 curl "http://[CLUSTER-IP]:80/?a=<script>"
 ```
 
-The request should be blocked, confirming that Policy lifecycle management has successfully compiled and deployed the policy.
+The request should be blocked, confirming the policy was successfully compiled and deployed.
 
-## Use specific security update versions
+## Update security signature versions
 
-Once Policy lifecycle management is deployed, you can define a specific security update version on a per-feature basis.
+Once these enhancements are enabled, you can define specific security update versions on a per-feature basis.
 
 This is accomplished by adding a `revision:` parameter to the feature.
 
