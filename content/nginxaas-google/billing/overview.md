@@ -69,4 +69,4 @@ The standard GCP [network and bandwidth](https://cloud.google.com/vpc/pricing) c
 
 ## Review billing data
 
-NGINXaaS billing data is reported per deployment and can be viewed in the portal under TBD.​
+NGINXaaS billing data is reported per deployment and can be viewed in the console.

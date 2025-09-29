@@ -75,4 +75,4 @@ To delete a user in an NGINXaaS Account:
 1. Select **Delete** in the menu. The deleted user will no longer appear in the **Users** page.
 
 ## What's next
-[Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}})
+[Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})

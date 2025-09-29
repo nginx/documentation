@@ -21,10 +21,10 @@ and reliable with full lifecycle management of advanced NGINX traffic services.
   {{<card title="Prerequisites" titleUrl="/nginxaas/google/getting-started/prerequisites/" icon="power">}}
     Follow these steps to prepare for your NGINXaaS deployment
   {{</card>}}
-  {{<card title="Create a deployment" titleUrl="/nginxaas/google/getting-started/create-deployment/deploy-portal/" icon="cloud-upload">}}
+  {{<card title="Create a deployment" titleUrl="/nginxaas/google/getting-started/create-deployment/deploy-console/" icon="cloud-upload">}}
     Step-by-step instructions to deploy NGINXaaS using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Add certificates" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="lock">}}
+  {{<card title="Add certificates" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
   {{</card>}}
 {{</card-section>}}

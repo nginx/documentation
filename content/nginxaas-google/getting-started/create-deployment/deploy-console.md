@@ -3,7 +3,7 @@ title: Deploy using the NGINXaaS Console
 weight: 100
 toc: true
 nd-docs: DOCS-000
-url: /nginxaas/google/getting-started/create-deployment/deploy-portal/
+url: /nginxaas/google/getting-started/create-deployment/deploy-console/
 type:
 - how-to
 ---
@@ -80,7 +80,7 @@ In the NGINXaaS Console,
 1. Select **Update** to save your changes.
 1. Select the Configuration tab to view the current NGINX configuration associated with the deployment.
 1. Select **Update Configuration** to change the NGINX configuration associated with the deployment.
-1. To modify the contents of the NGINX configuration, see [Update an NGINX Configuration]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-portal.md#update-an-nginx-configuration" >}}).
+1. To modify the contents of the NGINX configuration, see [Update an NGINX Configuration]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md#update-an-nginx-configuration" >}}).
 
 ## Set up connectivity to your deployment
 
@@ -102,7 +102,7 @@ To set up connectivity to your NGINXaaS deployment, you will need to configure a
 
 ## Test your deployment
 
-1. To test your deployment, go to the IP address created in [Set up connectivity to your deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-portal.md#set-up-connectivity-to-your-deployment" >}}) using your favorite web browser.
+1. To test your deployment, go to the IP address created in [Set up connectivity to your deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md#set-up-connectivity-to-your-deployment" >}}) using your favorite web browser.
 
 ## What's next
 

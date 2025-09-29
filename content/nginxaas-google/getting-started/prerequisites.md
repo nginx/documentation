@@ -29,4 +29,4 @@ If it's your first time using NGINXaaS for Google Cloud, you need to find the of
 
 ## What's next
 
-[Create a Deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-portal.md" >}})
+[Create a Deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md" >}})

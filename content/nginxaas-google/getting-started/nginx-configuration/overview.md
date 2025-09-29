@@ -13,9 +13,9 @@ F5 NGINXaaS for Google Cloud deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
-NGINX configurations can be uploaded to your NGINXaaS for Google Cloud deployment using the portal. The following documents provide detailed steps on how to upload NGINX configurations:
+NGINX configurations can be uploaded to your NGINXaaS for Google Cloud deployment using the console. The following documents provide detailed steps on how to upload NGINX configurations:
 
-- [Upload using the portal]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-portal.md" >}})
+- [Upload using the console]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md" >}})
 
 The topics below provide information on NGINX configuration restrictions and directives that are supported by NGINXaaS for Google Cloud when using any of the above workflows.
 

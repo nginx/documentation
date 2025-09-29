@@ -3,7 +3,7 @@ title: Create or upload using the NGINXaaS Console
 weight: 100
 toc: true
 nd-docs: DOCS-000
-url: /nginxaas/google/getting-started/nginx-configuration/nginx-configuration-portal/
+url: /nginxaas/google/getting-started/nginx-configuration/nginx-configuration-console/
 type:
 - how-to
 ---
@@ -16,7 +16,7 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 
 ## Access the NGINXaaS Console
 
-{{< include "/nginxaas-google/access-portal.md" >}}
+{{< include "/nginxaas-google/access-console.md" >}}
 
 ## Create or import an NGINX configuration
 

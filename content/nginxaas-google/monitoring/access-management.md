@@ -64,4 +64,4 @@ In the NGINXaaS Console,
 
 ## What's next
 
-[Add SSL/TLS Certificates]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md" >}})
+[Add SSL/TLS Certificates]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})

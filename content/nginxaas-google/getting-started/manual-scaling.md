@@ -26,7 +26,7 @@ An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX instance based 
 
 ## Manual scaling
 
-To update the capacity of your deployment using the portal,
+To update the capacity of your deployment using the console,
 
 In the NGINXaaS Console,
 
