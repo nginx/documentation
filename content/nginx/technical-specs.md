@@ -27,7 +27,7 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 |--------------|------------|-------|---------|---------------|------------|---------------|
 | **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Alpine Linux 3.17 & 3.18** | ❌ | ✓ | ✓ | ❌ | ❌ | ✓ |
-| **Alpine Linux 3.19, 3.20, 3.21, 3.22 | ✓ (x86_64 only) | ✓ | ✓ | ❌ | ❌ | ✓ |
+| **Alpine Linux 3.19, 3.20, 3.21, 3.22** | ✓ (x86_64 only) | ✓ | ✓ | ❌ | ❌ | ✓ |
 | **Amazon Linux 2** | ❌ | ✓ | ❌ | ❌ | ✓ | ❌ |
 | **Amazon Linux 2023** | ✓ (x86_64 only) | ❌ | ✓ | ❌ | ✓ | ✓ |
 | **Debian 11 & 12** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
