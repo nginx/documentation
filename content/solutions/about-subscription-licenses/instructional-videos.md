@@ -1,17 +1,17 @@
 ---
-title: "Instructional videos for NGINX Plus subscription licensing"
 linkTitle: "Instructional videos"
+title: "NGINX Plus subscription licensing videos"
 weight: 300
 toc: false
 nd-content-type: reference
 nd-product: Solutions
 ---
 
-These tutorials show how to complete common subscription licensing tasks in NGINX Plus. They cover setting up usage reporting in connected and disconnected environments, and installing or upgrading to NGINX Plus R33 or later.
+These videos show how to set up usage reporting in connected and disconnected environments, and how to install or upgrade to NGINX Plus R33 or later.
 
-## Submit usage reports in a connected environment
+## Submit usage reports in an internet-connected environment
 
-{{< youtube id="PDnacyh2RUw" >}} 
+{{< youtube id="PDnacyh2RUw" >}}  
 
 Learn how to configure NGINX Plus to send usage reports directly to the F5 licensing endpoint.  
 
@@ -19,12 +19,12 @@ See also:
 
 - [Prepare your environment for reporting]({{< ref "solutions/about-subscription-licenses/getting-started.md#set-up-environment" >}})
 
-## Submit usage reports in a disconnected environment
+## Submit usage reports in a network-restricted environment
 
-{{< youtube id="4wIM21bR9-g" >}}
+{{< youtube id="4wIM21bR9-g" >}}  
 
-Learn how to configure NGINX Plus to send usage data to NGINX Instance Manager.  
-NGINX Instance Manager collects the reports and later forwards them to the F5 licensing endpoint.  
+Learn how to configure NGINX Plus to send usage reports to NGINX Instance Manager.  
+NGINX Instance Manager collects the reports and then forwards them to the F5 licensing endpoint.  
 
 See also:
 
@@ -35,7 +35,7 @@ See also:
 
 {{< youtube id="zHd7btagJRM" >}}  
 
-Learn how to install or upgrade to NGINX Plus.  
+Learn how to install or upgrade to NGINX Plus R33 or later.  
 
 See also:
 
