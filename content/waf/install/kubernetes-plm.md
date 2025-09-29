@@ -947,11 +947,11 @@ metadata:
   name: signatures
 spec:
   attack-signatures:
-    revision: "2025.06.19" # Attack signatures revision to be used
+    revision: "2025.06.19" # The precise attack-signatures revision to be used
   bot-signatures:
-    revision: "latest" # Bot signatures revision to be used
+    revision: "latest" # "latest" will use the most recent bog-signatures revision
   threat-campaigns:
-    revision: "2025.06.24" # Threat campaigns revision to be used
+    revision: "2025.06.24" # The precise threat-signatures revision to be used
 ```
 
 {{< call-out "warning" >}}
