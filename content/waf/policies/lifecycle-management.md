@@ -844,6 +844,317 @@ Downloading security updates may take several minutes, and the version of securi
 
 If _APSignatures_ is not created or the specified versions are not available, it will default to the version stored in the compiler Docker image.
 
+## Policy Types and References
+
+NGINX App Protect WAF with Policy Lifecycle Management supports multiple ways to define and reference security policies through APPolicy Custom Resources. This flexibility allows you to choose the most appropriate approach based on your deployment architecture, policy management workflow, and operational requirements.
+
+## Policy Definition Types
+
+Policy Lifecycle Management supports three distinct approaches for defining WAF policies:
+
+### 1. [Inline Policy Definition](#inline-policy-definition)
+Define the complete policy configuration directly within the Custom Resource specification.
+
+### 2. [JSON Policy Reference](#json-policy-reference)
+Reference a JSON policy file stored in the shared persistent volume.
+
+### 3. [Precompiled Bundle Reference](#precompiled-bundle-reference)  
+Reference a precompiled policy bundle (.tgz file) stored in the shared persistent volume.
+
+## Inline Policy Definition
+
+### Description
+
+Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource. This approach provides full declarative management through Kubernetes manifests and is ideal for version-controlled policy configurations.
+
+### Example Configuration
+
+Create a file named `inline-policy.yaml`:
+
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: dataguard-blocking-inline
+  namespace: <namespace>
+spec:
+  policy:
+    name: dataguard_blocking_inline
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    applicationLanguage: utf-8
+    enforcementMode: blocking
+    blocking-settings:
+      violations:
+        - name: VIOL_DATA_GUARD
+          alarm: true
+          block: true
+        - name: VIOL_ATTACK_SIGNATURE
+          alarm: true
+          block: true
+    data-guard:
+      enabled: true
+      maskData: true
+      creditCardNumbers: true
+      usSocialSecurityNumbers: true
+      enforcementMode: ignore-urls-in-list
+      enforcementUrls: []
+```
+
+Apply the policy:
+```bash
+kubectl apply -f inline-policy.yaml
+```
+
+## JSON Policy Reference
+
+### Description
+
+JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource. This approach separates policy content from Kubernetes resource management while maintaining compilation automation.
+
+### Prerequisites
+
+- Policy JSON file must be stored in the shared persistent volume
+- File must be accessible at the specified path within the container
+- Proper file permissions (readable by the Policy Controller)
+
+### File Change Tracking
+
+The Policy Controller can automatically monitor policy files for changes and trigger recompilation when modifications are detected. This feature is controlled through the `externalReferenceDetails.tracking` configuration:
+
+- **`tracking.enabled`**: Enable/disable automatic file monitoring (default: true)
+- **`tracking.intervalInSeconds`**: Polling interval for file changes (default: 5 seconds)
+
+### Example Configuration
+
+**Step 1: Create the policy JSON file**
+
+First, create your policy JSON file and place it in the shared volume. For example, create `/mnt/nap5_bundles_pv_data/dg_policy.json`:
+
+```json
+{
+  "name": "dataguard_blocking_json",
+  "template": {
+    "name": "POLICY_TEMPLATE_NGINX_BASE"
+  },
+  "applicationLanguage": "utf-8",
+  "enforcementMode": "blocking",
+  "blocking-settings": {
+    "violations": [
+      {
+        "name": "VIOL_DATA_GUARD",
+        "alarm": true,
+        "block": true
+      },
+      {
+        "name": "VIOL_ATTACK_SIGNATURE", 
+        "alarm": true,
+        "block": true
+      }
+    ]
+  },
+  "data-guard": {
+    "enabled": true,
+    "maskData": true,
+    "creditCardNumbers": true,
+    "usSocialSecurityNumbers": true,
+    "enforcementMode": "ignore-urls-in-list",
+    "enforcementUrls": []
+  },
+  "signature-settings": {
+    "signatureStaging": false
+  }
+}
+```
+
+**Step 2: Create the APPolicy Custom Resource**
+
+Create a file named `json-policy.yaml`:
+
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: dataguard-blocking-ref
+  namespace: <namespace>
+spec:
+  policy:
+    $ref: /etc/app_protect/bundles/dg_policy.json
+  externalReferenceDetails:
+    tracking:
+      enabled: true
+      intervalInSeconds: 10
+```
+
+**Step 3: Apply the Custom Resource**
+
+```bash
+kubectl apply -f json-policy.yaml
+```
+
+### File Path Considerations
+
+- **Container Path**: The `$ref` path must be the path as seen from within the Policy Controller container
+- **Shared Volume**: The file must be in the shared persistent volume mounted to both Policy Controller and NGINX containers
+- **Default Mount Path**: The shared volume is typically mounted at `/etc/app_protect/bundles`
+- **Absolute Paths**: Always use absolute paths in the `$ref` field
+
+### Updating Policy Files
+
+Once the APPolicy Custom Resource has been applied, updating your policy is simple - you only need to modify the JSON file:
+
+**To update your policy:**
+1. Edit the JSON file directly (e.g., `/mnt/nap5_bundles_pv_data/dg_policy.json`)
+2. Save your changes
+3. The Policy Controller automatically handles the rest
+
+**What happens automatically:**
+1. **Automatic Detection**: If tracking is enabled, file changes are detected automatically
+2. **Recompilation Trigger**: Policy Controller triggers automatic recompilation
+3. **Status Updates**: Custom Resource status reflects the new compilation state
+4. **Bundle Replacement**: New policy bundle replaces the previous version
+
+{{< call-out "note" >}}
+**No CR Reapplication Needed**: You do NOT need to reapply the APPolicy Custom Resource when updating the JSON file. Simply edit the file and the Policy Controller will detect the changes and recompile automatically.
+{{< /call-out >}}
+
+## Precompiled Bundle Reference
+
+### Description
+
+Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools. This approach is useful for policies compiled outside of the Kubernetes environment or when integrating with external policy management systems.
+
+### Prerequisites
+
+- Precompiled bundle (.tgz) file must be stored in the shared persistent volume
+- Bundle must be compatible with the current WAF Enforcer version
+- Proper file permissions (readable by the Policy Controller)
+
+### Bundle Validation
+
+The Policy Controller performs validation of precompiled bundles using `apcompile --dump` to ensure:
+
+- **Bundle Integrity**: Verification that the bundle is properly formed
+- **Version Compatibility**: Confirmation that the bundle works with current enforcer
+- **Content Validation**: Basic checks on policy structure and syntax
+
+### Example Configuration
+
+**Step 1: Prepare the precompiled bundle**
+
+Ensure your precompiled policy bundle is available in the shared volume. For example, place `policy2.tgz` in `/mnt/nap5_bundles_pv_data/`.
+
+**Step 2: Create the APPolicy Custom Resource**
+
+Create a file named `precompiled-bundle-policy.yaml`:
+
+```yaml
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: dataguard-tgz
+  namespace: <namespace>
+spec:
+  policy:
+    $ref: /etc/app_protect/bundles/policy2.tgz
+  externalReferenceDetails:
+    tracking:
+      enabled: true
+      intervalInSeconds: 10
+```
+
+**Step 3: Apply the Custom Resource**
+
+```bash
+kubectl apply -f precompiled-bundle-policy.yaml
+```
+
+### Bundle Management
+
+When using precompiled bundles:
+
+1. **Validation Phase**: Policy Controller validates the bundle structure
+2. **Deployment**: Bundle is made available to NGINX containers
+3. **Change Detection**: If tracking is enabled, bundle file changes trigger updates
+4. **Status Reporting**: Custom Resource status shows bundle deployment state
+
+### Updating Precompiled Bundles
+
+Once the APPolicy Custom Resource has been applied, updating your policy bundle is straightforward:
+
+**To update your bundle:**
+1. Replace the existing bundle file with your new bundle (keeping the same filename)
+2. For example, replace `/mnt/nap5_bundles_pv_data/policy2.tgz` with your updated bundle
+3. The Policy Controller automatically handles the rest
+
+**What happens automatically:**
+1. **Change Detection**: If tracking is enabled, the Policy Controller detects the file modification
+2. **Revalidation**: The new bundle is validated using `apcompile --dump`
+3. **Deployment**: If validation passes, the new bundle is deployed
+4. **Status Updates**: Custom Resource status reflects the new validation and deployment state
+
+{{< call-out "note" >}}
+**No CR Reapplication Needed**: You do NOT need to reapply the APPolicy Custom Resource when updating the bundle file. Simply replace the bundle file with the same name and the Policy Controller will detect the changes and revalidate automatically.
+{{< /call-out >}}
+
+## Policy Status Monitoring
+
+Regardless of the policy type used, you can monitor the status of your policies using standard Kubernetes commands:
+
+### Check Policy Status
+
+```bash
+kubectl get appolicy -n <namespace>
+kubectl describe appolicy <policy-name> -n <namespace>
+kubectl get appolicy <policy-name> -n <namespace> -o yaml
+```
+
+### Status Fields
+
+All policy types provide similar status information:
+
+- **`status.bundle.state`**: Policy compilation/validation state (`ready`, `processing`, `error`)
+- **`status.bundle.location`**: Path to the deployed policy bundle
+- **`status.bundle.compilerVersion`**: Version of the compiler used
+- **`status.bundle.signatures`**: Signature package timestamps
+- **`status.processing.isCompiled`**: Compilation success indicator
+- **`status.processing.datetime`**: Last processing timestamp
+
+### Example Status Output
+
+```yaml
+status:
+  bundle:
+    compilerVersion: 11.553.0
+    location: /etc/app_protect/bundles/dataguard-blocking-ref-policy/dataguard-blocking-ref_policy20250925101234.tgz
+    signatures:
+      attackSignatures: "2025-09-20T08:36:25Z"
+      botSignatures: "2025-09-20T10:50:19Z"
+      threatCampaigns: "2025-09-18T07:28:43Z"
+    state: ready
+  processing:
+    datetime: "2025-09-25T10:12:45Z"
+    isCompiled: true
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Policy File Not Found**
+- Verify the file exists in the shared persistent volume
+- Check the file path in the `$ref` field
+- Ensure proper file permissions
+
+**Compilation Failures**
+- Check Policy Controller logs for detailed error messages
+- Validate policy JSON syntax
+- Ensure policy structure matches WAF requirements
+
+**File Change Not Detected**
+- Verify tracking is enabled in `externalReferenceDetails.tracking.enabled`
+- Check the polling interval setting
+- Ensure the file modification time changes when updated
 
 ## Testing policy lifecycle management
 
