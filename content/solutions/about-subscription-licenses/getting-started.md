@@ -60,30 +60,32 @@ If either condition is not met, **NGINX Plus stops processing traffic** until re
 
 ## Deploy the license {#deploy-jwt}
 
-After you download the JWT license, you need to deploy it to your NGINX Plus instances. You can do this in one of two ways:
+After you download the JWT license, deploy it to your NGINX Plus instances in one of two ways:
 
-- **Use a Config Sync Group (recommended):** If you manage instances with the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), this method keeps instances consistent, avoids manual copying, and applies license updates automatically.  
+- **Use a group sync feature (recommended):**  
+  - In the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), use a **Config Sync Group** to keep instances consistent, avoid manual copying, and apply license updates automatically.  
+  - In [NGINX Instance Manager]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}), use an **instance group**, which works the same way as a Config Sync Group.  
 - **Copy the license manually:** Place the license file on each NGINX Plus instance yourself.  
 
 Both methods ensure your NGINX Plus instances have access to the required license file.  
 
-Choose the option that fits your environment:
+Choose the option that fits your environment:  
 
 <details>
-<summary>Deploy with Config Sync Group (NGINX One Console)</summary>
+<summary>Deploy with a group sync feature (recommended)</summary>
 
-### Deploy with a Config Sync Group
+### Deploy with a group sync feature
 
 <br>
 
 {{< include "/licensing-and-reporting/deploy-jwt-with-csgs.md" >}}
 
-{{< call-out "note" "If you’re using NGINX Instance Manager" "" >}}
-In NGINX Instance Manager, _instance groups_ work like Config Sync Groups in the NGINX One Console.
-To create an instance group, see [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}). After that, you can add the JWT license file the same way you would in the NGINX One Console.
+{{< call-out "note" "" >}}
+In NGINX Instance Manager, *instance groups* provide the same sync functionality as Config Sync Groups in the NGINX One Console.  
+See [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}) for setup instructions.
 {{< /call-out >}}
 
-</details>
+</details>  
 
 <details>
 <summary>Deploy manually</summary>
@@ -92,9 +94,9 @@ To create an instance group, see [Manage instance groups]({{< ref "/nim/nginx-in
 
 <br>
 
-Copy the JWT license file to each NGINX Plus instance.
+Copy the JWT license file to each NGINX Plus instance.  
 
-{{< include "/licensing-and-reporting/apply-jwt.md" >}}
+{{< include "/licensing-and-reporting/apply-jwt.md" >}}  
 
 </details>
 
