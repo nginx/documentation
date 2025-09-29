@@ -10,7 +10,7 @@ nd-docs: DOCS-1780
 
 Starting with NGINX Plus R33, NGINX Plus instances require a valid JSON Web Token (JWT) license.  
 
-The JWT license:
+The license:
 
 - Is tied to your subscription (not to individual instances).  
 - Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).  
@@ -36,7 +36,7 @@ For flowcharts that show how these requirements work in practice, see [NGINX Plu
 
 Starting NGINX Plus requires:  
 
-- A valid JWT license.  
+- A valid license.  
 - A license that has not been expired for more than 90 days.  
 
 If either condition is not met, **NGINX Plus won't start**.  
