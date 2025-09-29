@@ -728,7 +728,7 @@ spec:
     # ... policy configuration
 status:
   bundle:
-    compilerVersion: 11.553.0
+    compilerVersion: 11.559.0
     location: /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250914102339.tgz
     signatures:
       attackSignatures: "2025-09-03T08:36:25Z"
@@ -771,7 +771,7 @@ Spec:
       # ... other policy settings
 Status:
   Bundle:
-    Compiler Version:  11.553.0
+    Compiler Version:  11.559.0
     Location:          /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250914102339.tgz
     Signatures:
       Attack Signatures:  2025-09-03T08:36:25Z
@@ -825,7 +825,7 @@ You should see output similar to this, with `state: ready` and no errors:
 ```yaml
 status:
   bundle:
-    compilerVersion: 11.553.0
+    compilerVersion: 11.559.0
     location: /etc/app_protect/bundles/dataguard-blocking-policy/dataguard-blocking_policy20250904100458.tgz
     signatures:
       attackSignatures: "2025-08-28T01:16:06Z"
@@ -891,7 +891,7 @@ Then open your `values.yaml` file in an editor and look for the policy directive
 app_protect_policy_file app_protect_default_policy
 ```
 
-Replace _app_protect_default_polic_y_ with the custom resource name, such as:
+Replace _app_protect_default_policy_ with the custom resource name, such as:
 
 ```yaml
 app_protect_policy_file dataguard-blocking;
