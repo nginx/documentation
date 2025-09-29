@@ -619,11 +619,11 @@ metadata:
   name: signatures
 spec:
   attack-signatures:
-    revision: "2025.06.19" # attack signatures revision to be used
+    revision: "2025.06.19" # Specify the Attack signatures revision to be used
   bot-signatures:
-    revision: "latest" # bot signatures revision to be used
+    revision: "latest" # Specify 'latest' to always use the most recent bot signatures revision
   threat-campaigns:
-    revision: "2025.06.24" # threat campaigns revision to be used
+    revision: "2025.06.24" # Specify the Threat campaigns revision to be used
 ```
 
 {{< call-out "note" >}}
