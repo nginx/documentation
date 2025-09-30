@@ -666,7 +666,7 @@ The default value is `false`.
 
 When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffer_size`, and `proxy_busy_buffers_size` to ensure they work together properly and NGINX can start successfully.
 
-More explanation about this feature can be found in the guide [here]({{< ref "/nic/installation/configuration/proxy-buffers-configuration.md" >}}).
+More explanation about this feature can be found in the guide [here]({{< ref "/nic/configuration/proxy-buffers-configuration.md" >}}).
 
 <a name="cmdoption-enable-directive-autoadjust"></a>
 
