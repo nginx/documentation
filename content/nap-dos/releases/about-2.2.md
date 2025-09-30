@@ -1,17 +1,17 @@
 ---
-title: NGINX App Protect DoS 2.2
+title: F5 DoS for NGINX 2.2
 toc: true
 weight: 180
 nd-docs: DOCS-839
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v2.2. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v2.2. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.2
 
 February 15, 2022
 
-In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
+In this release, support for F5 DoS for NGINX is added to NGINX Plus R26.
 
 ### New Features
 
@@ -50,7 +50,7 @@ In this release, support for NGINX App Protect DoS is added to NGINX Plus R26.
 - Monitor requests are sent in new connections. It improves monitoring health capability and allows better detection of slow POST attacks.
 
 - Adaptive memory allocation by adminstall in order to support maximum cores.
-  The amount of allocated memory for NGINX App Protect DoS is controlled by an argument of adminstall.
+  The amount of allocated memory for F5 DoS for NGINX is controlled by an argument of adminstall.
   The default value is 80 MB. For certain deployments, this amount of memory size is not enough.  The default memory size is adaptive now. If the Virtual Machine (VM) has a big number of CPU cores, then we can also increase the amount of memory. For the case of up to 4 CPU cores, the allocated memory is 80MB, for more than 4 CPU cores, the allocated memory will be calculated as 80MB + CPUs * 2.5MB
 
 

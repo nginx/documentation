@@ -94,7 +94,7 @@ When enforcing signatures on the response, we have the flexibility to restrict t
 
 #### How Does Restrict Response Signature Check Work?
 
-The response signature check is always done on the configured `responseCheckLength` as described above. Usually NGINX App Protect WAF will buffer only that part of the response saving memory and CPU, but in some conditions the whole response may have to be buffered, such as when the response body is compressed.
+The response signature check is always done on the configured `responseCheckLength` as described above. Usually F5 WAF for NGINX will buffer only that part of the response saving memory and CPU, but in some conditions the whole response may have to be buffered, such as when the response body is compressed.
 
 #### Allowed Methods
 
