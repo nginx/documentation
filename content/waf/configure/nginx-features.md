@@ -20,7 +20,7 @@ Certain features do not work well with NGINX, such as modules requiring _subrequ
 
 Modules requiring the _Range_ header (Such as _Slice_) are also unsupported in a scope which enables F5 WAF for NGINX.
 
-The examples below show work arounds for the limitations of these features.
+The examples below show workarounds for the limitations of these features.
 
 For information on configuring NGINX, you should view the [NGINX documentation]({{< ref "/nginx/" >}}).
 
