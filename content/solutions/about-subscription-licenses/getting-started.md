@@ -32,23 +32,12 @@ NGINX Plus requires a valid license and regular usage reporting to run. The sect
 For flowcharts that show how these requirements work in practice, see [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).
 {{< /call-out >}}
 
-### Starting NGINX Plus
-
-Starting NGINX Plus requires:  
-
-- A valid license.  
-- A license that has not been expired for more than 90 days.  
-
-If either condition is not met, **NGINX Plus won't start**.  
-
 ### Processing traffic
 
 Processing traffic requires:  
 
-- A successful initial usage report. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
-- At least one usage report every 180 days.  
-
-If either condition is not met, **NGINX Plus stops processing traffic** until reporting is restored.   
+- A successful initial usage report. If the report isn’t sent, NGINX Plus won’t process traffic until the report is sent successfully. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
+- Ongoing usage reports. If subsequent reporting stops, NGINX Plus continues to run but stops processing traffic after 180 days until reporting resumes.
 
 ---
 
