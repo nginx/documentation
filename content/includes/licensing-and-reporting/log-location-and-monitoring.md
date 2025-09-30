@@ -2,11 +2,11 @@
 docs:
 ---
 
-Monitor the [NGINX error log](https://nginx.org/en/docs/ngx_core_module.html#error_log), usually located at `/var/log/nginx/error.log`, to identify subscription issues early. The log records problems such as failed usage reports or licenses that are close to expiring. Checking regularly helps you avoid downtime and stay compliant.
+Monitor the [NGINX error log](https://nginx.org/en/docs/ngx_core_module.html#error_log), usually at `/var/log/nginx/error.log`, to identify subscription issues early. The log records problems such as failed usage reports or licenses that are about to expire. Check it regularly to avoid downtime and stay compliant.
 
-<br>
+You can also use the [license API endpoint](https://demo.nginx.com/api/9/license) to check license status programmatically. For details, see the [ngx_http_api_module docs](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_license_object).
 
-Examples of log entries include:
+Examples of log entries:
 
 - **Failed usage reports:**
 
@@ -30,4 +30,6 @@ Examples of log entries include:
   [emerg] license expired
   ```
 
-  {{< call-out "important" "Important" >}}When a license expires, NGINX Plus stops processing traffic.{{< /call-out >}}
+{{< call-out "important" "Important" >}}
+NGINX Plus stops processing traffic if the license has been expired for more than 90 days.
+{{< /call-out >}}
