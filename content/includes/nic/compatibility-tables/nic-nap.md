@@ -1,4 +1,4 @@
-The following table shows compatibility between NGINX Ingress Controller (NIC) and NGINX App Protect WAF (NAP-WAF) versions:
+The following table shows compatibility between NGINX Ingress Controller (NIC) and F5 WAF for NGINX (NAP-WAF) versions:
 
 {{< bootstrap-table "table table-striped table-responsive" >}}
 | NIC Version         | NAP-WAF Version | Config Manager | Enforcer |

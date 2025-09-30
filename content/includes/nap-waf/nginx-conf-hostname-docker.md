@@ -6,7 +6,7 @@ nd-docs: "DOCS-1516"
 user  nginx;
 worker_processes  auto;
 
-# NGINX App Protect WAF
+# F5 WAF for NGINX
 load_module modules/ngx_http_app_protect_module.so;
 
 error_log  /var/log/nginx/error.log notice;
@@ -34,7 +34,7 @@ http {
 
     #gzip  on;
 
-    # NGINX App Protect WAF
+    # F5 WAF for NGINX
     app_protect_enforcer_address waf-enforcer:50000;
 
     include /etc/nginx/conf.d/*.conf;

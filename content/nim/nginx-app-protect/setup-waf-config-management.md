@@ -2,7 +2,7 @@
 title: Set up WAF configuration management
 weight: 200
 toc: true
-description: Learn how to set up F5 NGINX Instance Manager to manage NGINX App Protect WAF configurations, including compiler installation, security policy onboarding, and threat update management.
+description: Learn how to set up F5 NGINX Instance Manager to manage F5 WAF for NGINX configurations, including compiler installation, security policy onboarding, and threat update management.
 type: how-to
 product: NIM
 nd-docs: DOCS-996
@@ -10,23 +10,23 @@ nd-docs: DOCS-996
 
 ## Overview
 
-F5 NGINX Instance Manager helps you manage your NGINX App Protect WAF configurations, making it easier to stay secure. This guide walks you through how to set up NGINX Instance Manager to configure and manage NGINX App Protect WAF.
+F5 NGINX Instance Manager helps you manage your F5 WAF for NGINX configurations, making it easier to stay secure. This guide walks you through how to set up NGINX Instance Manager to configure and manage F5 WAF for NGINX.
 
 ### Before you begin
 
 Make sure you've completed the following prerequisites before you get started:
 
-- You have one or more [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) instances running. For supported versions, see [Support for NGINX App Protect WAF]({{< ref "/nim/fundamentals/tech-specs.md#support-for-nginx-app-protect-waf" >}}).
+- You have one or more [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) instances running. For supported versions, see [Support for F5 WAF for NGINX]({{< ref "/nim/fundamentals/tech-specs.md#support-for-nginx-app-protect-waf" >}}).
 
-  {{< call-out "note" >}}If you're using configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your NGINX App Protect WAF instances first.{{< /call-out >}}
+  {{< call-out "note" >}}If you're using configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your F5 WAF for NGINX instances first.{{< /call-out >}}
 
 - You're running NGINX Instance Manager v2.6.0 or later. Make sure it's [installed]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}), licensed, and running.
 
-  If you have a subscription to NGINX App Protect WAF, you can find your license in the subscription details section of [MyF5](https://my.f5.com).
+  If you have a subscription to F5 WAF for NGINX, you can find your license in the subscription details section of [MyF5](https://my.f5.com).
 
 ### Limitations
 
-NGINX Instance Manager doesn’t support the following NGINX App Protect WAF features:
+NGINX Instance Manager doesn’t support the following F5 WAF for NGINX features:
 
 - [Policies with external references]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#external-references" >}})
 - Custom signatures
@@ -35,11 +35,11 @@ NGINX Instance Manager doesn’t support the following NGINX App Protect WAF fea
 
 ## Install the WAF compiler
 
-NGINX Instance Manager can use the WAF compiler to precompile security configurations before deploying them to NGINX App Protect WAF instances. Precompiling configurations improves performance and reduces the risk of runtime errors.
+NGINX Instance Manager can use the WAF compiler to precompile security configurations before deploying them to F5 WAF for NGINX instances. Precompiling configurations improves performance and reduces the risk of runtime errors.
 
 Install the WAF compiler on the NGINX Instance Manager host only if you plan to compile configurations on the management plane. If you’ll compile on the data plane, you can skip this step.
 
-Each version of NGINX App Protect WAF has a matching WAF compiler version. If you're managing multiple versions, install the corresponding WAF compiler for each one on the NGINX Instance Manager host.
+Each version of F5 WAF for NGINX has a matching WAF compiler version. If you're managing multiple versions, install the corresponding WAF compiler for each one on the NGINX Instance Manager host.
 
 The WAF compiler installs to the `/opt` directory. Make sure this directory has the correct permissions so the owner can write to it. A permission setting like `0755` is typically sufficient.
 
@@ -47,13 +47,13 @@ To keep track of instances running the same version, you can create [instance gr
 
 For an overview of how the WAF compiler works, see the [Security bundle compilation]({{< ref "/nim/nginx-app-protect/overview-nap-waf-config-management#security-bundle" >}}) topic.
 
-### WAF compiler and supported NGINX App Protect WAF versions {#nap-waf-compiler-compatibility}
+### WAF compiler and supported F5 WAF for NGINX versions {#nap-waf-compiler-compatibility}
 
-The table below shows which WAF compiler version to use for each version of NGINX App Protect WAF:
+The table below shows which WAF compiler version to use for each version of F5 WAF for NGINX:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| NGINX App Protect WAF version | WAF compiler version       |
+| F5 WAF for NGINX version | WAF compiler version       |
 |-------------------------------|----------------------------|
 | 5.8.0                         | nms-nap-compiler-v5.498.0  |
 | 5.7.0                         | nms-nap-compiler-v5.442.0  |
@@ -211,14 +211,14 @@ To install the WAF compiler manually:
 
 ### Automatically download and install new WAF compiler
 
-After you manually install at least one version of the NGINX App Protect WAF compiler, NGINX Instance Manager can automatically download and install additional versions as needed.
+After you manually install at least one version of the F5 WAF for NGINX compiler, NGINX Instance Manager can automatically download and install additional versions as needed.
 
 This typically happens when:
 
-- A managed instance is upgraded to a new NGINX App Protect WAF version.
-- You add a new instance running a different version of NGINX App Protect WAF.
+- A managed instance is upgraded to a new F5 WAF for NGINX version.
+- You add a new instance running a different version of F5 WAF for NGINX.
 
-To enable this automatic download feature, you need to [upload your NGINX App Protect WAF certificate and key](#upload-the-nginx-app-protect-waf-certificate-and-key) to NGINX Instance Manager. This step allows Instance Manager to securely connect to the NGINX package repository and retrieve the necessary files. You only need to upload the certificate and key once.
+To enable this automatic download feature, you need to [upload your F5 WAF for NGINX certificate and key](#upload-the-nginx-app-protect-waf-certificate-and-key) to NGINX Instance Manager. This step allows Instance Manager to securely connect to the NGINX package repository and retrieve the necessary files. You only need to upload the certificate and key once.
 
 If the certificate is missing or invalid, or if NGINX Instance Manager can’t connect to the repository, you’ll see an error like:
 
@@ -439,9 +439,9 @@ sudo dnf install --disablerepo=* nms-nap-compiler/*.rpm
 
 ## Set up attack signatures and threat campaigns
 
-NGINX App Protect WAF protects your applications using predefined and regularly updated detection patterns:
+F5 WAF for NGINX protects your applications using predefined and regularly updated detection patterns:
 
-- **Attack signatures**: Known threat patterns used to detect common vulnerabilities and exploits. These are included with NGINX App Protect WAF and updated frequently to reflect the latest security threats. See the [attack signatures documentation]({{< ref "nap-waf/v5/configuration-guide/configuration.md#attack-signatures-overview" >}}) for more information.
+- **Attack signatures**: Known threat patterns used to detect common vulnerabilities and exploits. These are included with F5 WAF for NGINX and updated frequently to reflect the latest security threats. See the [attack signatures documentation]({{< ref "nap-waf/v5/configuration-guide/configuration.md#attack-signatures-overview" >}}) for more information.
 
 - **Threat campaigns**: Context-aware threat intelligence based on attack campaigns observed by F5 Threat Labs. These are updated even more frequently than attack signatures and require installation to take effect. Learn more in the [threat campaigns documentation]({{< ref "nap-waf/v5/configuration-guide/configuration.md#threat-campaigns" >}}).
 
@@ -454,15 +454,15 @@ You can either:
 
 ### Automatically Download Latest Packages {#automatically-download-latest-packages}
 
-#### Upload the NGINX App Protect WAF certificate and key
+#### Upload the F5 WAF for NGINX certificate and key
 
-To enable automatic downloads, NGINX Instance Manager must authenticate with the NGINX repository. You do this by uploading the NGINX repository certificate and private key that come with your NGINX App Protect WAF subscription. Once uploaded, NGINX Instance Manager can securely retrieve the latest attack signature and threat campaign packages on your behalf.
+To enable automatic downloads, NGINX Instance Manager must authenticate with the NGINX repository. You do this by uploading the NGINX repository certificate and private key that come with your F5 WAF for NGINX subscription. Once uploaded, NGINX Instance Manager can securely retrieve the latest attack signature and threat campaign packages on your behalf.
 
 Follow these steps to get and upload the certificate and key:
 
 1. Log in to [MyF5](https://account.f5.com/myf5).
 2. Go to **My Products and Plans > Subscriptions**.
-3. Download the following files from your NGINX App Protect WAF subscription:
+3. Download the following files from your F5 WAF for NGINX subscription:
    - `nginx-repo.crt` (certificate)
    - `nginx-repo.key` (private key)
 4. Create a JSON file that includes the contents of both files. Replace newlines (`\n`) in each file with literal `\n` characters so the certificate and key can be formatted correctly inside the JSON.
@@ -570,7 +570,7 @@ NGINX Instance Manager can automatically download the latest Attack Signatures a
 
 5. {{< include "/nim/nap-waf/restart-nms-integrations.md" >}}
 
-If the NGINX App Protect WAF certificate and key are missing, invalid, or expired, you’ll see the following error:
+If the F5 WAF for NGINX certificate and key are missing, invalid, or expired, you’ll see the following error:
 
 ```text
 error when creating the nginx repo retriever - NGINX repo certificates not found
@@ -586,7 +586,7 @@ If you prefer not to enable automatic updates, you can manually update the Attac
 
 1. Log in to [MyF5](https://account.f5.com/myf5) and then go to **My Products and Plans > Subscriptions**.
 
-2. Download the following files from your NGINX App Protect WAF subscription:
+2. Download the following files from your F5 WAF for NGINX subscription:
    - `nginx-repo.crt` (certificate)
    - `nginx-repo.key` (private key)
 
@@ -596,7 +596,7 @@ If you prefer not to enable automatic updates, you can manually update the Attac
       - For **Debian**: /debian/pool/nginx-plus/a/
       - For **RHEL**: /centos/<8 or 9>/x86_64/RPMS/
 
-4. Download the `.deb` or `.rpm` packages from https://pkgs.nginx.com using your NGINX App Protect WAF cert and key:
+4. Download the `.deb` or `.rpm` packages from https://pkgs.nginx.com using your F5 WAF for NGINX cert and key:
     - For Attack Signatures: package starts with `app-protect-attack-signatures`
       - Format for `.deb` package:
       ```text
@@ -729,24 +729,24 @@ NGINX Instance Manager runs the pruning process at startup and every 24 hours af
 
 ---
 
-## Onboard NGINX App Protect WAF instances
+## Onboard F5 WAF for NGINX instances
 
-To onboard your NGINX App Protect WAF instances to NGINX Instance Manager, install and configure the NGINX Agent on each instance.
+To onboard your F5 WAF for NGINX instances to NGINX Instance Manager, install and configure the NGINX Agent on each instance.
 
 ### Install NGINX Agent
 
-1. Use SSH to connect to the NGINX App Protect WAF instance. Repeat these steps for each instance you want to onboard.
+1. Use SSH to connect to the F5 WAF for NGINX instance. Repeat these steps for each instance you want to onboard.
 
 2. Download the NGINX Agent package from the NGINX Instance Manager host and run the installation script.
 
-   You can group instances that use the same version of NGINX App Protect WAF by using the optional `--instance-group` flag in the install command.
+   You can group instances that use the same version of F5 WAF for NGINX by using the optional `--instance-group` flag in the install command.
 
    {{< include "agent/installation/install-agent-api.md" >}}
 
 
 ### Configure NGINX Agent
 
-1. Edit the NGINX Agent configuration file to enable support for NGINX App Protect WAF:
+1. Edit the NGINX Agent configuration file to enable support for F5 WAF for NGINX:
 
     ```shell
     sudo vi /etc/nginx-agent/nginx-agent.conf
@@ -765,7 +765,7 @@ To onboard your NGINX App Protect WAF instances to NGINX Instance Manager, insta
 
     These settings:
 
-    - Allow the agent to access NGINX App Protect WAF configuration directories.
+    - Allow the agent to access F5 WAF for NGINX configuration directories.
     - Enable the agent to detect changes in security configurations.
     - Enable support for precompiled publication of WAF configurations from NGINX Instance Manager.
 
@@ -786,18 +786,18 @@ To onboard your NGINX App Protect WAF instances to NGINX Instance Manager, insta
 
 ### Verify installation
 
-After installing and configuring the NGINX Agent, verify that your NGINX App Protect WAF instances appear in NGINX Instance Manager.
+After installing and configuring the NGINX Agent, verify that your F5 WAF for NGINX instances appear in NGINX Instance Manager.
 
 
 {{<tabs name="agent-verify">}}
 
 {{%tab name="UI"%}}
 
-You should now be able to view your NGINX App Protect WAF instances in the Instance Manager user interface. Take the steps below to verify that NGINX Agent is installed and reporting data to Instance Manager.
+You should now be able to view your F5 WAF for NGINX instances in the Instance Manager user interface. Take the steps below to verify that NGINX Agent is installed and reporting data to Instance Manager.
 
 1. {{< include "nim/webui-nim-login.md" >}}
 2. In the left menu, select **Instances**.
-3. Confirm that each instance shows an NGINX App Protect WAF version in the **NGINX App Protect** column.
+3. Confirm that each instance shows an F5 WAF for NGINX version in the **NGINX App Protect** column.
 4. Select an instance and scroll to the **App Protect Details** section to confirm status and build information.
 
 {{%/tab%}}
@@ -806,7 +806,7 @@ You should now be able to view your NGINX App Protect WAF instances in the Insta
 
 {{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
-Use the REST API to confirm the version and status of NGINX App Protect WAF:
+Use the REST API to confirm the version and status of F5 WAF for NGINX:
 
 {{<bootstrap-table "table">}}
 
@@ -838,7 +838,7 @@ Use the REST API to confirm the version and status of NGINX App Protect WAF:
     }
     ```
 
-- Send a `GET` request to `/api/platform/v1/instances` to check how many instances have NGINX App Protect WAF installed:
+- Send a `GET` request to `/api/platform/v1/instances` to check how many instances have F5 WAF for NGINX installed:
 
     **Example response:**
 
@@ -856,22 +856,22 @@ Use the REST API to confirm the version and status of NGINX App Protect WAF:
 {{%/tab%}}
 {{</tabs>}}
 
-### Configure Docker Compose for NGINX App Protect WAF v5
+### Configure Docker Compose for F5 WAF for NGINX v5
 
 #### Before you begin
 
 Before configuring Docker Compose, make sure you’ve completed the following steps:
 
-- Installed NGINX App Protect WAF v5 using the [official installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}).
+- Installed F5 WAF for NGINX v5 using the [official installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}).
 - Created a `docker-compose.yaml` file during the installation process.
 
-This section explains how to modify that file so NGINX App Protect WAF can work with NGINX Instance Manager.
+This section explains how to modify that file so F5 WAF for NGINX can work with NGINX Instance Manager.
 
 #### Edit the Docker Compose file
 
 1. Edit the `docker-compose.yaml` file created during installation.
 
-   To give NGINX App Protect WAF access to the policy and log profile bundles written by NGINX Instance Manager, make the following changes:
+   To give F5 WAF for NGINX access to the policy and log profile bundles written by NGINX Instance Manager, make the following changes:
 
    - Add the line `user: 101:<group-id>` to each service. The group ID should match the NGINX Agent group on your system. You can find the group ID by running:
 
@@ -932,14 +932,14 @@ This section explains how to modify that file so NGINX App Protect WAF can work 
 
 ## Onboard security policies {#onboard-security-policies}
 
-NGINX Instance Manager provides the same [default security policies](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration) as NGINX App Protect WAF:
+NGINX Instance Manager provides the same [default security policies](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration) as F5 WAF for NGINX:
 
 - **NGINX Default Policy**: Provides [OWASP Top 10](https://owasp.org/www-project-top-ten/) and Bot protection.
 - **NGINX Strict Policy**: Contains more restrictive blocking criteria than the default policy.
 
 If you plan to use these built-in policies, you can skip to [Add WAF configuration to NGINX instances](#add-waf-config).
 
-If you’ve created custom security policies on your NGINX App Protect WAF instances, you can upload them to NGINX Instance Manager using the REST API. These policies must be uploaded so NGINX Instance Manager can compile and publish them across your data plane.
+If you’ve created custom security policies on your F5 WAF for NGINX instances, you can upload them to NGINX Instance Manager using the REST API. These policies must be uploaded so NGINX Instance Manager can compile and publish them across your data plane.
 
 ### Upload custom security policies
 
@@ -992,14 +992,14 @@ To upload a policy, follow these steps:
 
 ## Add WAF configuration to NGINX instances {#add-waf-config}
 
-The [NGINX App Protect WAF configuration guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview) shows where and how to add security directives to your NGINX configuration. NGINX Instance Manager includes the same default security policies as NGINX App Protect WAF:
+The [F5 WAF for NGINX configuration guide](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration-overview) shows where and how to add security directives to your NGINX configuration. NGINX Instance Manager includes the same default security policies as F5 WAF for NGINX:
 
 - **NGINX Default Policy**: Provides [OWASP Top 10](https://owasp.org/www-project-top-ten/) and bot protection out of the box.
 - **NGINX Strict Policy**: Contains more restrictive criteria for blocking traffic, with a higher risk of false positives.
 
 You can use these default policies as-is or customize them for your app. Security Monitoring dashboards can help you fine-tune policy settings.
 
-Keep the following in mind when configuring NGINX App Protect WAF through NGINX Instance Manager:
+Keep the following in mind when configuring F5 WAF for NGINX through NGINX Instance Manager:
 
 - Instance Manager compiles JSON security policies into `.tgz` bundles.
 - Use the `app_protect_policy_file` directive to reference custom policies.
@@ -1007,20 +1007,20 @@ Keep the following in mind when configuring NGINX App Protect WAF through NGINX 
   If you're using precompiled publication with NGINX Agent, make sure to change the file extension from `.json` to `.tgz`. The filename remains the same. NGINX Instance Manager doesn't support referencing both `.json` and `.tgz` in the same NGINX configuration.
 
 - If you're using custom policies, make sure NGINX Agent has permission to access the directories where those policy files are stored. Update the `config_dirs` setting in the NGINX Agent's configuration file if needed.
-- NGINX Instance Manager uses the default log profiles that come with NGINX App Protect WAF. You can reference them with the `app_protect_security_log` directive. Custom log profiles aren't supported.
+- NGINX Instance Manager uses the default log profiles that come with F5 WAF for NGINX. You can reference them with the `app_protect_security_log` directive. Custom log profiles aren't supported.
 
 If you're using different directories on the data plane, update paths accordingly in your NGINX configuration.
 
 ### Edit the NGINX configuration
 
-Add the NGINX App Protect WAF directives in the appropriate context (`http`, `server`, or `location`). Here's an example:
+Add the F5 WAF for NGINX directives in the appropriate context (`http`, `server`, or `location`). Here's an example:
 
 ```nginx
 server {
   ...
 
   location / {
-    # Enable NGINX App Protect WAF
+    # Enable F5 WAF for NGINX
     app_protect_enable on;
 
     # Reference a custom security policy bundle
@@ -1045,7 +1045,7 @@ app_protect_security_log "/etc/nms/secops_dashboard.tgz" syslog:server=127.0.0.1
 
 **Don’t change this value.** See the [Security Monitoring setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) for more details.
 
-If you’re using NGINX App Protect WAF v5:
+If you’re using F5 WAF for NGINX v5:
 
 - You must add the `app_protect_enforcer_address` directive to the `http` context:
 
@@ -1055,7 +1055,7 @@ If you’re using NGINX App Protect WAF v5:
 
 - JSON policies and log profiles aren’t supported. You must precompile and publish them using NGINX Instance Manager. Make sure the precompiled_publication setting in the NGINX Agent configuration is set to true.
 
-    See the [NGINX App Protect WAF configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}) for details.
+    See the [F5 WAF for NGINX configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}) for details.
 
 {{<tabs name="add_security">}}
 {{%tab name="UI"%}}
@@ -1074,7 +1074,7 @@ If you’re using NGINX App Protect WAF v5:
 
 {{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
-You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect WAF configuration.
+You can use the NGINX Instance Manager REST API to deploy your F5 WAF for NGINX configuration.
 
 {{<bootstrap-table "table">}}
 
@@ -1085,7 +1085,7 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
 
 {{</bootstrap-table>}}
 
-{{< call-out "important" >}}Before deploying a configuration to an instance group, make sure all instances in the group are running the same version of NGINX App Protect WAF. Otherwise, the deployment may fail.{{< /call-out >}}
+{{< call-out "important" >}}Before deploying a configuration to an instance group, make sure all instances in the group are running the same version of F5 WAF for NGINX. Otherwise, the deployment may fail.{{< /call-out >}}
 
 1. Send a `GET` request to the `/api/platform/v1/systems/{systemUID}/instances` endpoint to list all instances. This response includes the unique identifier (UID) of the instance that you want to update.
 
@@ -1094,7 +1094,7 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
      -H "Authorization: Bearer <access token>"
     ```
 
-2. Add the NGINX App Protect WAF configuration to your NGINX config file (`nginx.conf` or another config file located in a valid `config_dirs` path on the data plane host):
+2. Add the F5 WAF for NGINX configuration to your NGINX config file (`nginx.conf` or another config file located in a valid `config_dirs` path on the data plane host):
 
     - At a minimum, add the following directive:
 
@@ -1148,25 +1148,25 @@ You can use the NGINX Instance Manager REST API to deploy your NGINX App Protect
 
 ### Verify configuration
 
-After you add NGINX App Protect WAF directives to your NGINX configuration, you can verify the setup in the NGINX Instance Manager web interface.
+After you add F5 WAF for NGINX directives to your NGINX configuration, you can verify the setup in the NGINX Instance Manager web interface.
 
-To confirm that the NGINX App Protect WAF configuration was applied:
+To confirm that the F5 WAF for NGINX configuration was applied:
 
 1. {{< include "nim/webui-nim-login.md" >}}
 2. In the left navigation menu, select **Instances**.
 3. In the **NGINX App Protect** column, confirm that the correct version is listed.
 4. Select the instance. Then, scroll to the **App Protect Details** section.
-5. Confirm that the **App Protect WAF** status is **Active**, and the **Build** matches the version installed on the instance.
+5. Confirm that the **F5 WAF for NGINX** status is **Active**, and the **Build** matches the version installed on the instance.
 
 ---
 
 ## Troubleshooting
 
-If you're having trouble with NGINX App Protect WAF, try the steps below. If these don't solve the issue, reach out to F5 NGINX Customer Support.
+If you're having trouble with F5 WAF for NGINX, try the steps below. If these don't solve the issue, reach out to F5 NGINX Customer Support.
 
-### Check that NGINX App Protect WAF is not installed on the NGINX Instance Manager host
+### Check that F5 WAF for NGINX is not installed on the NGINX Instance Manager host
 
-NGINX App Protect WAF and the WAF compiler shouldn't run on the same host. To check:
+F5 WAF for NGINX and the WAF compiler shouldn't run on the same host. To check:
 
 1. Log in to the NGINX Instance Manager host from a terminal.
 2. Run the command that matches your operating system:
@@ -1183,11 +1183,11 @@ NGINX App Protect WAF and the WAF compiler shouldn't run on the same host. To ch
      rpm -qi | grep app-protect
      ```
 
-If NGINX App Protect WAF is installed, follow the [uninstall instructions]({{< ref "/nap-waf/v4/admin-guide/install.md#uninstall-app-protect" >}}).
+If F5 WAF for NGINX is installed, follow the [uninstall instructions]({{< ref "/nap-waf/v4/admin-guide/install.md#uninstall-app-protect" >}}).
 
-### Check that the WAF compiler version matches the NGINX App Protect WAF version
+### Check that the WAF compiler version matches the F5 WAF for NGINX version
 
-Each NGINX App Protect WAF version has a matching WAF compiler version. To confirm:
+Each F5 WAF for NGINX version has a matching WAF compiler version. To confirm:
 
 1. Log in to the NGINX Instance Manager host.
 2. Run the following command to see installed compiler versions:
@@ -1224,7 +1224,7 @@ Examples:
     /opt/nms-nap-compiler/app_protect-5.498.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
-### Confirm NGINX Agent configuration on the NGINX App Protect WAF instance
+### Confirm NGINX Agent configuration on the F5 WAF for NGINX instance
 
 Open the `/etc/nginx-agent/nginx-agent.conf` file and make sure it includes the right settings.
 
@@ -1287,8 +1287,8 @@ curl --key /etc/ssl/nginx/nginx-repo.key --cert /etc/ssl/nginx/nginx-repo.crt ht
 
 Now that configuration management is set up, you can use the NGINX Instance Manager REST API to:
 
-- Manage NGINX App Protect WAF security policies.
-- View system information about your NGINX App Protect WAF instances.
+- Manage F5 WAF for NGINX security policies.
+- View system information about your F5 WAF for NGINX instances.
 - Update Attack Signatures and Threat Campaigns.
 
 To learn more, see [Manage WAF Security Policies and Security Log Profiles]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md" >}}).

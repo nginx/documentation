@@ -12,10 +12,10 @@ nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document describes how you can configure a security policy in the F5 NGINX One Console. When you add a policy, NGINX One Console includes several UI-based options and presets, based on NGINX App Protect WAF.
+This document describes how you can configure a security policy in the F5 NGINX One Console. When you add a policy, NGINX One Console includes several UI-based options and presets, based on F5 WAF for NGINX.
 
 
-If you already know NGINX App Protect WAF, you can go beyond the options available in the UI. 
+If you already know F5 WAF for NGINX, you can go beyond the options available in the UI. 
 
 ## Add a policy
 
@@ -41,7 +41,7 @@ With NGINX One Console User Interface, you get a default policy. You can also se
 
 ## Save your policy
 
-NGINX One Console includes a Policy JSON section which displays your policy in JSON format. What you configure here is written to your instance of NGINX App Protect WAF. 
+NGINX One Console includes a Policy JSON section which displays your policy in JSON format. What you configure here is written to your instance of F5 WAF for NGINX. 
 
 With the **Edit** option, you can customize this policy. It opens the JSON file in a local editor. When you select **Save Policy**, it saves the latest version of what you've configured. You'll see your new policy under the name you used.
 

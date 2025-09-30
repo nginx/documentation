@@ -1,25 +1,25 @@
 ---
-description: Learn about the F5 NGINX App Protect DoS Live Activity Monitoring.
+description: Learn about the F5 F5 DoS for NGINX Live Activity Monitoring.
 nd-docs: DOCS-1389
-title: NGINX App Protect DoS Live Activity Monitoring
+title: F5 DoS for NGINX Live Activity Monitoring
 toc: true
 weight: 140
 type:
 - how-to
 ---
 
-{{< img src="/dashboard/dos-tab.png" alt="NGINX App Protect DoS Dashboard" >}}
+{{< img src="/dashboard/dos-tab.png" alt="F5 DoS for NGINX Dashboard" >}}
 
 ## Overview
 
-F5 NGINX App Protect DoS offers a variety of application monitoring tools:
+F5 F5 DoS for NGINX offers a variety of application monitoring tools:
 
 - **App Protect DoS Dashboard Page**: This dynamic interface provides real-time monitoring and details of Protected Objects.
-- **NGINX App Protect DoS REST API**: This interface offers comprehensive metrics about the Protected Objects.
+- **F5 DoS for NGINX REST API**: This interface offers comprehensive metrics about the Protected Objects.
 
 ## Prerequisites
 
-- NGINX Plus R26 or later is required for accessing the NGINX App Protect DoS REST API and the DoS Dashboard.
+- NGINX Plus R26 or later is required for accessing the F5 DoS for NGINX REST API and the DoS Dashboard.
 
 ## API Configuration Steps
 
@@ -133,7 +133,7 @@ In multi-instance environments with an arbitrator, these statistics will be comb
 | Mitigations/s  | - | Number of mitigated requests per second  |
 | Requests  | - | Total number of incoming requests  |
 | Mitigations  | - | Total number of mitigated requests  |
-| Learning  | [ready\|ba only\|not ready] | Whether NGINX App Protect DoS collected enough data to protect the Protected Object  |
+| Learning  | [ready\|ba only\|not ready] | Whether F5 DoS for NGINX collected enough data to protect the Protected Object  |
 | Protocol  | [http1\|http2\|grpc] | As defined by the `protocol` argument of the `app_protect_dos_monitor` directive  |
 | Mitigation Mode  | [standard\|conservative\|none]  | As defined by the `mitigation_mode` object in the JSON policy file from the `app_protect_dos_policy_file` directive  |
 | Signatures  | [on\|off] | As defined by the `signatures` object in the JSON policy file from the `app_protect_dos_policy_file` directive. Values - on/off  |
