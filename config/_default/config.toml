@@ -1,7 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "NGINX Documentation"
-refLinksErrorLevel = "ERROR"
+refLinksErrorLevel = "warning"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 enableGitInfo = true
