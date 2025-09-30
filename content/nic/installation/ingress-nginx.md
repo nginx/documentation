@@ -500,7 +500,7 @@ The following table outlines annotation conversions for enabling TLS and gRPC pr
 
 {{% /bootstrap-table %}}
 {{< call-out "important" >}}
-GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_](/nic/configuration/global-configuration/configmap-resource.md#listeners)).
+GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}})).
 {{< /call-out >}}
 
 ### Global configuration with ConfigMaps
