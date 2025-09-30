@@ -95,7 +95,7 @@ The following section describes common errors you might encounter while adding S
 
    - **User assigned managed identity**
 
-      Please ensure the following environment variables are set before copying the below Azure CLI command.
+      Set the following environment variables before copying the below Azure CLI command.
       - `MI_NAME`: the name of the managed identity
       - `MI_RESOURCE_GROUP`: the name of the resource group the managed identity is in
       ```shell
@@ -106,7 +106,7 @@ The following section describes common errors you might encounter while adding S
 
    - **System assigned managed identity**
 
-      Please ensure the following environment variables are set before copying the below Azure CLI command.
+      Set the following environment variables before copying the below Azure CLI command.
       - `DEP_NAME`: the name of the NGINXaaS deployment
       - `DEP_RESOURCE_GROUP`: the name of the resource group the NGINXaaS deployment is in
       ```shell
@@ -116,7 +116,7 @@ The following section describes common errors you might encounter while adding S
       ```
 1. Get the resource ID of the key vault.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
    ```shell
@@ -145,7 +145,7 @@ The following section describes common errors you might encounter while adding S
 
    - **User assigned managed identity**
 
-      Please ensure the following environment variables are set before copying the below Azure CLI command.
+      Set the following environment variables before copying the below Azure CLI command.
       - `MI_NAME`: the name of the managed identity
       - `MI_RESOURCE_GROUP`: the name of the resource group the managed identity is in
       ```shell
@@ -156,7 +156,7 @@ The following section describes common errors you might encounter while adding S
 
    - **System assigned managed identity**
 
-      Please ensure the following environment variables are set before copying the below Azure CLI command.
+      Set the following environment variables before copying the below Azure CLI command.
       - `DEP_NAME`: the name of the NGINXaaS deployment
       - `DEP_RESOURCE_GROUP`: the name of the resource group the NGINXaaS deployment is in
       ```shell
@@ -167,7 +167,7 @@ The following section describes common errors you might encounter while adding S
 
 1. Create the access policy.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
    ```shell
@@ -178,18 +178,21 @@ The following section describes common errors you might encounter while adding S
    ```
 </details>
 
-#### Error code: `ForbiddenByFirewall`
+#### Error code: `ForbiddenByFirewall` or `ForbiddenByConnection`
 
 **Description:** The key vault's firewall is enabled and NGINXaaS is not authorized to fetch certificates.
 
-**Resolution:** [Configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) to allow the subscription of the NGINXaaS deployment to access the key vault.
+**Resolution:**
 
+Allow NGINXaaS to access the key vault through one of these mechanisms:
+
+1. [Configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) to allow the subscription of the NGINXaaS deployment to access the key vault.
 <details>
 <summary>Create a network security perimeter - Azure CLI</summary>
 
 1. Create a network security perimeter.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `NSP_NAME`: the name of the network security perimeter
    - `NSP_RESOURCE_GROUP`: the name of the resource group the network security perimeter will be in
    ```shell
@@ -197,7 +200,7 @@ The following section describes common errors you might encounter while adding S
    ```
 1. Create a profile for the network security perimeter.
 
-   Please ensure the following environment variable is set before copying the below Azure CLI command.
+   Set the following environment variable is set before copying the below Azure CLI command.
    - `PROFILE_NAME`: the name of the network security perimeter profile
    ```shell
    az network perimeter profile create --name $PROFILE_NAME \
@@ -206,7 +209,7 @@ The following section describes common errors you might encounter while adding S
    ```
 1. Get the resource ID of the key vault.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
    ```shell
@@ -230,7 +233,7 @@ The following section describes common errors you might encounter while adding S
    ```
 1. Add an inbound access rule to allow the NGINXaaS deployment's subscription.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `RULE_NAME`: the name of the access rule
    - `DEP_SUBSCRIPTION_ID`: the subscription ID of the NGINXaaS deployment
    ```shell
@@ -240,6 +243,118 @@ The following section describes common errors you might encounter while adding S
       --resource-group $NSP_RESOURCE_GROUP \
       --subscriptions [0].id="/subscriptions/$DEP_SUBSCRIPTION_ID"
    ```
+</details>
+
+2. Integrate with a Private Endpoint to allow NGINXaaS to fetch certificates via Azure Private Link.
+<details>
+<summary>Create a Private Link - Azure CLI</summary>
+
+1. Get the resource ID of the key vault.
+
+   Set the following environment variables before copying the below Azure CLI command.
+   - `KV_NAME`: the name of the key vault
+   - `KV_RESOURCE_GROUP`: the name of tshe resource group the key vault is in
+   ```shell
+   key_vault_id=$(az keyvault show --name $KV_NAME \
+      --resource-group $KV_RESOURCE_GROUP \
+      --query id --output tsv)
+   ```
+
+1. Create a private endpoint.
+
+   Set the following environment variables before copying the below Azure CLI command.
+   - `PE_NAME`: the name of the private endpoint
+   - `PE_RESOURCE_GROUP`: the name of the resource group the private endpoint will be in
+   - `VNET_NAME`: the name of the virtual network that is delegated to NGINXaaS
+   - `VNET_RESOURCE_GROUP`: the name of the resource group the virtual network is in
+   - `SUBNET_NAME`: the name of the subnet for private endpoints
+   - `PE_CONNECTION_NAME`: the name of the private endpoint connection
+   - `LOCATION`: the location of the virtual network
+   ```shell
+   az network private-endpoint create --name $PE_NAME \
+      --resource-group $PE_RESOURCE_GROUP \
+      --vnet-name $VNET_NAME \
+      --subnet $SUBNET_NAME \
+      --private-connection-resource-id $key_vault_id \
+      --group-id vault \
+      --connection-name $PE_CONNECTION_NAME \
+      --location $LOCATION
+   ```
+
+1. Create a private DNS zone and link VNet.
+
+   Set the following environment variables before copying the below Azure CLI command.
+   - `ZONE_RESOURCE_GROUP`: the name of the resource group for the DNS zone
+   - `ZONE_NAME`: the name of the DNS zone
+   - `DNS_LINK_NAME`: the name of the DNS zone link
+   ```shell
+   vnet_id=$(az network vnet show --name $VNET_NAME \
+      --resource-group $VNET_RESOURCE_GROUP \
+      --query id --output tsv)
+   ```
+   ```shell
+   az network private-dns zone create --resource-group $ZONE_RESOURCE_GROUP \
+      --name $ZONE_NAME
+   az network private-dns link vnet create --resource-group $ZONE_RESOURCE_GROUP \
+      --zone-name $ZONE_NAME \
+      --name $DNS_LINK_NAME \
+      --virtual-network $vnet_id \
+      --registration-enabled false
+   ```
+
+1. Add DNS zone group to the private endpoint.
+
+   Set the following environment variables before copying the below Azure CLI command.
+   - `DNS_ZONE_GROUP_NAME`: the name of the resource group for the DNS zone
+   ```shell
+   az network private-endpoint dns-zone-group create \
+      --resource-group $PE_RESOURCE_GROUP \
+      --endpoint-name $PE_NAME \
+      --name $DNS_ZONE_GROUP_NAME \
+      --private-dns-zone $ZONE_NAME \
+      --zone-name $ZONE_NAME
+   ```
+</details>
+
+3. Allow access from Virtual Network delegated to NGINXaaS.
+
+<details>
+<summary>Allow Virtual Network access - Azure CLI</summary>
+
+1. Get the resource ID of the virtual network.
+
+   Set the following environment variables before copying the below Azure CLI command.
+   - `VNET_NAME`: the name of the virtual network that is delegated to NGINXaaS
+   - `VNET_RESOURCE_GROUP`: the name of the resource group the virtual network is in
+   ```shell
+   vnet_id=$(az network vnet show --name $VNET_NAME \
+      --resource-group $VNET_RESOURCE_GROUP \
+      --query id --output tsv)
+   ```
+
+1. Get the resource ID of the subnet.
+
+   Set the following environment variable before copying the below Azure CLI command.
+   - `SUBNET_NAME`: the name of the subnet that is delegated to NGINXaaS
+   ```shell
+   subnet_id=$(az network vnet subnet show --name $SUBNET_NAME \
+      --vnet-name $VNET_NAME \
+      --resource-group $VNET_RESOURCE_GROUP \
+      --query id --output tsv)
+   ```
+
+1. Add the virtual network rule to the key vault.
+
+   Set the following environment variables before copying the below Azure CLI command.
+   - `KV_NAME`: the name of the key vault
+   - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
+   ```shell
+   az keyvault network-rule add --name $KV_NAME \
+      --resource-group $KV_RESOURCE_GROUP \
+      --subnet $subnet_id
+   ```
+
+{{< call-out "note" >}} Ensure that the Network Security Group on the subnet delegated to the NGINXaaS deployment allows outbound traffic to the internet{{< /call-out >}}
 </details>
 
 #### Error code: `AnotherOperationInProgress`
@@ -273,7 +388,7 @@ The following section describes common errors you might encounter while adding S
 
    - **User assigned managed identity**
 
-      Please ensure the following environment variables are set before copying the below Azure CLI command.
+      Set the following environment variables before copying the below Azure CLI command.
       - `MI_NAME`: the name of the managed identity
       - `MI_RESOURCE_GROUP`: the name of the resource group the managed identity is in
       ```shell
@@ -284,7 +399,7 @@ The following section describes common errors you might encounter while adding S
 
    - **System assigned managed identity**
 
-      Please ensure the following environment variables are set before copying the below Azure CLI command.
+      Set the following environment variables before copying the below Azure CLI command.
       - `DEP_NAME`: the name of the NGINXaaS deployment
       - `DEP_RESOURCE_GROUP`: the name of the resource group the NGINXaaS deployment is in
       ```shell
@@ -295,7 +410,7 @@ The following section describes common errors you might encounter while adding S
 
 1. Create the access policy.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `KV_NAME`: the name of the key vault
    - `KV_RESOURCE_GROUP`: the name of the resource group the key vault is in
    ```shell
@@ -323,7 +438,7 @@ The following section describes common errors you might encounter while adding S
 
 1. Get the resource ID of the certificate.
 
-   Please ensure the following environment variables are set before copying the below Azure CLI command.
+   Set the following environment variables before copying the below Azure CLI command.
    - `CERT_NAME`: the name of the certificate
    - `KV_NAME`: the name of the key vault
    ```shell

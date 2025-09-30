@@ -4,7 +4,7 @@
 # Base image
 FROM centos:7
 
-# Install NGINX Plus and NGINX App Protect WAF v5 module
+# Install NGINX Plus and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     yum -y install wget ca-certificates epel-release \

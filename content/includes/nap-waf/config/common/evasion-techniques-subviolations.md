@@ -2,7 +2,7 @@
 nd-docs: "DOCS-1542"
 ---
 
-The following table specifies the Evasion Techniques sub-violation settings. All are supported in NGINX App Protect WAF.
+The following table specifies the Evasion Techniques sub-violation settings. All are supported in F5 WAF for NGINX.
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
 |Sub-Violation | Default Template | Description |

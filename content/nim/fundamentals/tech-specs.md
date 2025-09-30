@@ -184,7 +184,7 @@ The NGINX Instance Manager web interface works best on the latest versions of th
 - [Safari](https://support.apple.com/downloads/safari)
 - [Microsoft Edge](https://www.microsoft.com/en-us/edge)
 
-## Support for NGINX App Protect WAF
+## Support for F5 WAF for NGINX
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 

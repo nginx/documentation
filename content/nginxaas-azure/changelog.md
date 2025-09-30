@@ -13,6 +13,15 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
 
+## September 26, 2025
+
+- {{% icon-feature %}} **Connectivity test tool**
+
+Users can now test the availability of specific IP addresses from their deployment's dataplane. This is useful for debugging connectivity issues and determining if a problem is in NGINX configuration or Azure network configuration. Please see the docs for the [connectivity test tool]({{< ref "/nginxaas-azure/get-help/connectivity.md" >}}) for further details.
+
+- {{% icon-feature %}} **Support for downloading AKV certificates via Private Endpoints**
+
+NGINXaaS now supports downloading certificate from Azure Key Vault via Private Endpoints. This will allow users to increase network security by disabling public access on their Key Vault. For more information, please visit [Integrate with Private Endpoint]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#integrate-with-private-endpoint" >}})
 
 ## September 18, 2025
 
@@ -30,6 +39,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 - {{% icon-feature %}} **Updates to NGINXaaS for Azure GitHub Action**
 
   - Users can now specify files in their configuration directory to be marked as protected using a new optional Action input called `protected-files`. This new input accepts comma-separated list of file paths relative to the NGINX configuration directory that should be marked as protected. For more information, please visit [NGINXaaS for Azure Deployment Action](https://github.com/marketplace/actions/nginx-configuration-sync) on GitHub actions marketplace. Example:
+
       ```yaml
       - name: Sync NGINX Config to Azure
         uses: nginxinc/nginx-for-azure-deploy-action@v0.5.0
@@ -69,9 +79,9 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 ### What's New
 
-- {{% icon-feature %}} **NGINX App Protect WAF is now generally available**
+- {{% icon-feature %}} **F5 WAF for NGINX is now generally available**
 
-NGINX App Protect WAF is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "./app-protect/configure-waf.md#custom-policies" >}}).
+F5 WAF for NGINX is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "./app-protect/configure-waf.md#custom-policies" >}}).
 
 ## April 16, 2025
 
@@ -107,7 +117,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{% icon-info %}} **Retirement of Standard Plan**
 
-   The `Standard` plan for NGINXaaS for Azure has been retired, and you can no longer use it to create new deployments. If you have a deployment running on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}) it to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as NGINX App Protect WAF and additional listen ports. Plan migration does not incur downtime.
+   The `Standard` plan for NGINXaaS for Azure has been retired, and you can no longer use it to create new deployments. If you have a deployment running on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}) it to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as F5 WAF for NGINX and additional listen ports. Plan migration does not incur downtime.
 
 ## February 10, 2025
 
@@ -119,4 +129,4 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{< icon-feature >}} **In-place SKU Migration from Standard to Standard V2**
 
-   You can now migrate NGINXaaS for Azure from the Standard plan to the Standard V2 plan without redeploying. We recommend upgrading to the Standard V2 plan to access features like NGINX App Protect WAF and more listen ports. The Standard plan will be retired soon. For migration details, see [migrate from standard]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}).
+   You can now migrate NGINXaaS for Azure from the Standard plan to the Standard V2 plan without redeploying. We recommend upgrading to the Standard V2 plan to access features like F5 WAF for NGINX and more listen ports. The Standard plan will be retired soon. For migration details, see [migrate from standard]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}).

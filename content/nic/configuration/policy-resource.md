@@ -180,10 +180,10 @@ condition:
 |``variables`` | defines a Variable condition to rate limit against. | [ratelimit.condition.variables](#ratelimitconditionvariables) | No |
 |``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same condition, only one policy can be the default. | ``bool`` | No |
 {{% /table %}}
-{{< call-out "note" >}}
- 
-One condition of type `jwt` or `variables` is required. Each Policy supports only one condition.
 
+{{< call-out "note" >}}
+Conditions (`jwt` or `variables`) are optional, but each policy can only have one. 
+If conditions are used, a request doesn't match any, and a `default` has been defined, the `default` policy applies. Otherwise, if no `default` is set, the request isn't rate limited.
 {{< /call-out >}}
 
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
@@ -795,9 +795,9 @@ A VirtualServer/VirtualServerRoute can reference multiple cache policies. Howeve
 
 ### WAF
 
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
 
-The WAF policy configures NGINX Plus to secure client requests using App Protect WAF policies.
+The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
 For example, the following policy will enable the referenced APPolicy. You can configure multiple APLogConfs with log destinations:
 
@@ -819,12 +819,12 @@ waf:
 {{% table %}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables NGINX App Protect WAF. | ``bool`` | Yes |
-|``apPolicy`` | The [App Protect WAF policy]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [App Protect WAF policy bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
+|``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
+|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
+|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
 |``securityLog.enable`` | Enables security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``securityLog.apLogConf`` | The [F5 WAF for NGINX log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``securityLog.apLogBundle`` | The [F5 WAF for NGINX log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
 |``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 {{% /table %}}
 
