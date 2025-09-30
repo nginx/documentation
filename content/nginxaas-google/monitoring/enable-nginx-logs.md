@@ -13,8 +13,8 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 
 ## Prerequisites
 
-* Grant a project-level role or grant your principal access to the `roles/logging.viewer` role. See [Google's documentation on controlling access to Cloud Logging with IAM](https://cloud.google.com/logging/docs/access-control).
-* Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/monitoring/access-management.md#configure-wif" >}}) for exact steps.
+- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/monitoring/access-management.md#configure-wif" >}}) for exact steps.
+- Grant a project-level role or grant your principal access to the `roles/logging.viewer` role. See [Google's documentation on controlling access to Cloud Logging with IAM](https://cloud.google.com/logging/docs/access-control).
 
 ## Setting up error logs
 

@@ -1,6 +1,6 @@
 ---
 title: Identity and access management
-weight: 375
+weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/access-management/
@@ -14,6 +14,9 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) leverages Workload Identity Federation (
 
 ## Prerequisites
 
+- In the project you're configuring WIF in, you need the following roles to create a workload identity pool, provider, and policy bindings:
+    - [iam.workloadIdentityPoolAdmin](https://cloud.google.com/iam/docs/roles-permissions/iam#iam.workloadIdentityPoolAdmin)
+    - [resourcemanager.projectIamAdmin](https://cloud.google.com/iam/docs/roles-permissions/resourcemanager#resourcemanager.projectIamAdmin)
 - An NGINXaaS deployment. See [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/" >}}) for a step-by-step guide.
 
 ## Configure WIF
