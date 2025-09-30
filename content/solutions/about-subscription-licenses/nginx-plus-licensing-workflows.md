@@ -2,9 +2,9 @@
 title: NGINX Plus licensing workflows
 toc: true
 weight: 100
-type:
+nd-content-type:
 - reference
-product: Solutions
+nd-product: Solutions
 nd-docs:
 ---
 
