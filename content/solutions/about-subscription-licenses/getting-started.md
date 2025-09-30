@@ -2,10 +2,12 @@
 title: Getting started
 toc: true
 weight: 200
-type:
-- tutorial
-product: Solutions
+nd-content-type:
+  - tutorial
+nd-product: Solutions
 nd-docs: DOCS-1780
+nd-resource:
+  - https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
 ---
 
 Starting with NGINX Plus R33, NGINX Plus instances require a valid JSON Web Token (JWT) license.  
@@ -44,7 +46,7 @@ Starting NGINX Plus requires:
 Processing traffic requires:  
 
 - A successful initial usage report. If the initial report isn’t sent, NGINX Plus won’t process traffic until the report is sent successfully. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
-- Ongoing usage reports. If subsequent reporting stops, NGINX Plus continues to run but stops processing traffic after 180 days until reporting resumes.
+- Ongoing usage reports, at least every 180 days. If reporting stops, NGINX Plus keeps running but stops processing traffic after 180 days until reporting resumes.
 
 ---
 
