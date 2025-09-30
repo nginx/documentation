@@ -87,7 +87,7 @@ The table below shows which WAF compiler version to use for each version of F5 W
 {{</bootstrap-table>}}
 
 {{< call-out "note" >}}
-Until recently, packages designed for installation on virtual machines were released as 4.x.x versions (NAP 4.15.0, NAP 4.16.0, etc.), while packages meant for installation on containers were provided as 5.x.x versions (NAP 5.7.0, NAP 5.8.0, and so on.). Beginning with v5.9.0, both the installation packages for virtual machines and those for containers will be categorized under the 5.x.x tag.
+Beginning with v5.9.0, both the installation packages for virtual machines and those for containers are categorized under the 5.x.x tag. For previous releases, packages designed for installation on virtual machines were released as 4.x.x versions (NAP 4.15.0, NAP 4.16.0, etc.), while packages meant for installation on containers were provided as 5.x.x versions (NAP 5.7.0, NAP 5.8.0, and so on.). 
 {{< /call-out >}}
 
 ### Debian or Ubuntu
