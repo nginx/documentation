@@ -29,7 +29,7 @@ The key capabilities of NGINXaaS for Google Cloud are:
 
 ## NGINXaaS for Google Cloud architecture
 
-{{< img src="nginxaas-google/nginxaas-google-cloud-architecture.png" alt="Architecture diagram of NGINXaaS for Google Cloud showing user traffic through load balancers to applications, with control plane management via the NGINXaaS Console, GCP Marketplace, and Identity Provider, plus logging, monitoring, and secret management." >}}
+{{< img src="nginxaas-google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how NGINXaaS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed via UI, API, and Terraform, alongside NGINXaaS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
 - The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
