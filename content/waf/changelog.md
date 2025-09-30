@@ -33,9 +33,10 @@ _September 29th, 2025_
 ### Important notes
 
 - Restructured documentation
-    - NGINX App Protect WAF renamed to F5 WAF for NGINX
-    - Versions aligned for packages and other artefacts
-    - No workflow or breaking changes
+    - NGINX App Protect WAF renamed to F5 WAF for NGINX - no workflow or breaking changes
+    - Packaged NAP version (VM-based or bare-metal deployments) alignment - renamed from v4 to v5 so both packaged and containerized offerings now share the same version number (v5.9).
+          This doesn't introduce breaking changes.
+          For example: Upgrades work exactly the same. Users can upgrade from v4.x (for example, 4.16) to 5.9 just as they did between earlier v4 releases (for example, 4.15 → 4.16).
 - Upgrade Go compiler to 1.23.12
 
 ### Packages

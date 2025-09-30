@@ -18,7 +18,7 @@ nd-product: NAP-WAF
 
 There are two new features available for Kubernetes through early access:
 
-**Security policy orchestration**, which removes the need for compilaton by updating existing JSON security policies.
+**Security policy orchestration**, which removes the need for compilation by updating existing security policies. The supported security policy formats are JSON, YAML (where the security policy is defined inline within the AppPolicy CR), and Bundle.
 
 **Automated signature updates**, which can auto-update security signatures.
 
