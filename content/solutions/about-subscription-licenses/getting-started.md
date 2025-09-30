@@ -43,7 +43,7 @@ Starting NGINX Plus requires:
 
 Processing traffic requires:  
 
-- A successful initial usage report. If the report isn’t sent, NGINX Plus won’t process traffic until the report is sent successfully. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
+- A successful initial usage report. If the initial report isn’t sent, NGINX Plus won’t process traffic until the report is sent successfully. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
 - Ongoing usage reports. If subsequent reporting stops, NGINX Plus continues to run but stops processing traffic after 180 days until reporting resumes.
 
 ---
