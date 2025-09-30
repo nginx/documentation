@@ -32,6 +32,13 @@ NGINX Plus requires a valid license and regular usage reporting to run. The sect
 For flowcharts that show how these requirements work in practice, see [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).
 {{< /call-out >}}
 
+### Starting NGINX Plus
+
+Starting NGINX Plus requires:
+
+- A valid license.
+- A license that has not been expired for more than 90 days.
+
 ### Processing traffic
 
 Processing traffic requires:  
