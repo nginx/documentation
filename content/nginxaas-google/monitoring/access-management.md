@@ -59,7 +59,7 @@ See [Google's documentation on granting access](https://cloud.google.com/iam/doc
 In the NGINXaaS Console,
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
-1. Enter your provider name, for example, `/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`, under **Workload Identity Pool Provider Name**.
+1. Enter your provider name, for example, `projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`, under **Workload Identity Pool Provider Name**.
 1. Select **Update**.
 
 ## What's next
