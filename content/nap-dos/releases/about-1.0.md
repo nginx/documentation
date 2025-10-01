@@ -5,7 +5,7 @@ weight: 260
 nd-docs: DOCS-672
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v1. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v1. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 1.0
 
@@ -69,7 +69,7 @@ July 6, 2021
 
 - `proxy_request_buffering off` is not supported.
 
-- NGINX App Protect DoS does not protect `grpc` and `http2` services. The traffic is bypassed.
+- F5 DoS for NGINX does not protect `grpc` and `http2` services. The traffic is bypassed.
 
 - [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 

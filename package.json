@@ -10,7 +10,7 @@
     "buildTags": "extended"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
-    "hugo-bin": "^0.111.3"
+    "@playwright/test": "1.48.0",
+    "hugo-bin": "0.111.3"
   }
 }

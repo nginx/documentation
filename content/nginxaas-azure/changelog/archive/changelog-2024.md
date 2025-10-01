@@ -75,7 +75,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 - {{< icon-warning >}} **Standard plan retirement**<a name="standard-plan-retirement"></a>
 
-NGINXaaS for Azure now supports the [Standard V2](https://docs.nginx.com/nginxaas/azure/billing/overview) plan. We encourage you to use the Standard V2 plan for all new NGINXaaS deployments from now on to take advantage of additional features like NGINX App Protect WAF and a higher number of listen ports. The Standard V2 plan follows a similar pricing model as the Standard plan.
+NGINXaaS for Azure now supports the [Standard V2](https://docs.nginx.com/nginxaas/azure/billing/overview) plan. We encourage you to use the Standard V2 plan for all new NGINXaaS deployments from now on to take advantage of additional features like F5 WAF for NGINX and a higher number of listen ports. The Standard V2 plan follows a similar pricing model as the Standard plan.
 
 {{< call-out "important" >}}The Standard plan will be deprecated and will not be available for new deployments starting November 1, 2024.{{< /call-out >}}
 
@@ -95,9 +95,9 @@ An NGINXaaS deployment can now be gracefully updated to a new subnet with zero d
 
 ## Aug 22, 2024
 
-- {{% icon-feature %}} **NGINXaaS for Azure now supports NGINX App Protect WAF in Preview**
+- {{% icon-feature %}} **NGINXaaS for Azure now supports F5 WAF for NGINX in Preview**
 
-  NGINXaaS now supports [NGINX App Protect WAF](https://docs.nginx.com/nginx-app-protect-waf/v5) in Preview as part of the [Standard v2 plan]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan">}}). For more information, see [enable WAF]({{< ref "/nginxaas-azure/app-protect/enable-waf.md">}}).
+  NGINXaaS now supports [F5 WAF for NGINX](https://docs.nginx.com/nginx-app-protect-waf/v5) in Preview as part of the [Standard v2 plan]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan">}}). For more information, see [enable WAF]({{< ref "/nginxaas-azure/app-protect/enable-waf.md">}}).
 
 ## Aug 16, 2024
 

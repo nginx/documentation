@@ -2,7 +2,7 @@
 nd-docs: "DOCS-1608"
 ---
 
-NGINX App Protect WAF generates its own cookies and adds them on top of the application cookies.
+F5 WAF for NGINX generates its own cookies and adds them on top of the application cookies.
 
 These are called Enforcer Cookies.
 

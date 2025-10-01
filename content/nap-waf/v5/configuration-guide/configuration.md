@@ -1099,7 +1099,6 @@ In the cases where decompression fails,  NGINX App Protect WAF will continue wit
 
  {{< include "nap-waf/config/common/supported-violations.md" >}}
 
-
 ### HTTP Compliance Sub-Violations
 
 {{< include "nap-waf/config/common/http-compliance-subviolations.md" >}}

@@ -9,7 +9,7 @@ nd-docs: DOCS-1026
 
 ## Overview
 
-F5 NGINX Security Monitoring tracks activity on NGINX App Protect WAF instances. The dashboards and logs show insights, detect threats, and help improve security policies.
+F5 NGINX Security Monitoring tracks activity on F5 WAF for NGINX instances. The dashboards and logs show insights, detect threats, and help improve security policies.
 
 This guide explains how to create a role to give users access to Security Monitoring and assign it to users or groups.
 
