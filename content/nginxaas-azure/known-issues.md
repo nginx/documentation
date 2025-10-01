@@ -7,7 +7,7 @@ url: /nginxaas/azure/known-issues/
 
 ---
 
-List of known issues in the latest release of F5 NGINXaaS for Azure (NGINXaaS).
+List of known issues in the latest releases of F5 NGINXaaS for Azure.
 
 ### {{% icon-bug %}} Certificate failures when managed identities with access is added after deployment creation
 
