@@ -36,8 +36,9 @@ env:
     --ignore-url ^http://backend1.example.com --ignore-url ^http://example.com --ignore-url ^https://my-nginx.example.com
     --ignore-url ^https://www.nginxroute53.com --ignore-url ^http://cafe --ignore-url ^http://192.168.1.23 --ignore-url ^https://company.com
     --ignore-url ^https://my-nginx-plus.example.com --ignore-url ^https://cognito-idp --ignore-url ^https:///www.okta.com
-    --ignore-url ^http://www.maxmind.com --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.opswat.com 
+    --ignore-url ^http://www.maxmind.com --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.opswat.com --ignore-url ^https://grsecurity.net
     --ignore-url ^https://support.pingidentity.com --ignore-url ^https://docs.pingidentity.com --ignore-url ^https://demo.example.com
+    --ignore-url ^https://my-deployment.my-region.nginxaas.net/connectivity
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css
