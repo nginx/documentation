@@ -20,7 +20,7 @@ Examples include credit card numbers (CCN), Social Security numbers (SSN) or cus
 
 Sensitive data is either blocked or masked based on configuration.
 
-Thes following example enables _blocking mode_:
+The following example enables _blocking mode_:
 
 ```json
 {
@@ -90,7 +90,7 @@ Data masking allows a page to load while masking all sensitive data.
 
 This final example shows partial masking using a custom pattern.
 
-Custom patterns are defined in _customPatternsList_, with the numbers of unmaked leading and trailing characters defined by _firstCustomCharactersToExpose_ and _lastCustomCharactersToExpose_, respectively.
+Custom patterns are defined in _customPatternsList_, with the numbers of unmasked leading and trailing characters defined by _firstCustomCharactersToExpose_ and _lastCustomCharactersToExpose_, respectively.
 
 ```json
 {

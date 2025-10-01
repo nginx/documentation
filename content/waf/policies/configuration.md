@@ -29,7 +29,7 @@ The [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) 
 | Feature        | Description |
 | -------------- | ----------- |
 | Blocking pages | The user can customize all blocking pages. By default the AJAX response pages are disabled, but the user can enable them. |
-| Enforcement by violation rating | By default block requests that are declared as threats, which are ated 4 or 5. It is possible to change this behavior: either disable enforcement by Violation Rating or block also request with Violation Rating 3 - needs examination. |
+| Enforcement by violation rating | By default block requests that are declared as threats, which are rated 4 or 5. It is possible to change this behavior: either disable enforcement by Violation Rating or block also request with Violation Rating 3 - needs examination. |
 | Large request blocking | To increase the protection of resources at both the NGINX Plus and upstream application tiers, all requests that are larger than 10 MB in size are blocked.  When these requests are blocked, a `VIOL_REQUEST_MAX_LENGTH` violation will be logged.|
 | Malformed cookie | Requests with cookies that are not RFC compliant are blocked by default. This can be disabled. |
 | Parameter parsing | Support only auto-detect parameter value type and acts according to the result: plain alphanumeric string, XML or JSON. |

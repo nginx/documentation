@@ -252,7 +252,7 @@ The following policy shows examples of both, with all IP intelligence categories
 ```json
 {
     "policy": {
-        "name": "ip_intelligency_policy",
+        "name": "ip_intelligence_policy",
         "template": {
             "name": "POLICY_TEMPLATE_NGINX_BASE"
         },

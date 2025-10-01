@@ -35,7 +35,7 @@ There are three kinds of Docker deployments available:
 - Hybrid configuration
 - Single container configuration
 
-The multi-container configuration is recommended if you are building a new system, and deploys the F5 for WAF module and its components in seperate images, allowing for nuanced version management.
+The multi-container configuration is recommended if you are building a new system, and deploys the F5 for WAF module and its components in separate images, allowing for nuanced version management.
 
 The hybrid configuration is suitable if you want to add F5 WAF for NGINX to an existing virtual environment and wish to use Docker for the F5 WAF components instead of installing and configuring WAF packages as explained in the [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) instructions.
 
@@ -486,7 +486,7 @@ sudo apk add openssl ca-certificates app-protect-module-plus
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-oss.repoo**
+**/etc/yum.repos.d/app-protect-x-oss.repo**
 
 ```shell
 [app-protect-x-oss]
