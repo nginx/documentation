@@ -2,7 +2,7 @@
 nd-docs: DOCS-000
 ---
 
-By default, NGINXaaS for Google Cloud puts the error log at **/var/log/nginx/error.log**. It includes messages with severity **error** and above.
+NGINX error logs are disabled by default. You can enable error logs by adding **error_log** directives to your NGINX configuration to specify the location of the logs and formats. The log path should always be configured to be inside **/var/log/nginx**.
 
 While you should configure log files in the **/var/log/nginx** directory, you can change the filename and severity level. For example, the following line in the NGINX configuration sends errors to the `nginx-error.log` file, and limits messages to a severity level of **emerg**:
 

@@ -35,5 +35,5 @@ http {
 
 To learn more about how to specify `access_log` in different configuration levels and their effect, see [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)
 
-{{< call-out "warning" >}}Unless you use **syslog**, keep NGINX logs in the **/var/log/nginx** directory. Otherwise, you may lose data from your logs.
+{{< call-out "warning" >}}Keep NGINX logs in the **/var/log/nginx** directory. Otherwise, you may lose data from your logs.
 {{< /call-out >}}
