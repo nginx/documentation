@@ -24,7 +24,7 @@ There are two new features available for Kubernetes through early access:
 
 <!-- Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments.  -->
 
-They extends the WAF compiler capabilities by providing a native Kubernetes operater-based approach for policy orchestration.
+They extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
 
 These feature revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
 
