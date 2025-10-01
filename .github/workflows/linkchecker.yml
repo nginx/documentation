@@ -59,6 +59,7 @@ jobs:
           - nginx-service-mesh
           - nginx-amplify
           - nginx-controller
+          - nginx-waf
           - nginx-management-suite
           - nginx-gateway-fabric
           - nginx-agent
