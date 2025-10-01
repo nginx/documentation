@@ -81,7 +81,7 @@ NGINXaaS now supports downloading certificate from Azure Key Vault via Private E
 
 - {{% icon-feature %}} **F5 WAF for NGINX is now generally available**
 
-F5 WAF for NGINX is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "./app-protect/configure-waf.md#custom-policies" >}}).
+F5 WAF for NGINX is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< ref "/nginxaas-azure/app-protect/configure-waf.md#custom-policies" >}}).
 
 ## April 16, 2025
 
