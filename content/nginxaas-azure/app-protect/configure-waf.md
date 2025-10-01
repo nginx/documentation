@@ -125,10 +125,6 @@ After your policy has been saved, you can then reference it in your NGINX config
 
 {{< call-out "note" >}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{< /call-out >}}
 
-{{< call-out "warning" >}}Referencing both custom and precompiled policies in your NGINX configuration is not supported at this time. 
-As a workaround, make a copy of the default policy you want to use, then add it as a custom policy with a different name.
-{{< /call-out >}}
-
 The **Custom Policies** tab shows the status of your custom policies (Compilation and Application Status). Custom policies are automatically compiled when created or modified. Policies that are applied to the NGINX configuration cannot be deleted until they are first removed from the configuration. 
 
 It is highly recommended to use logging to monitor the performance of F5 WAF for NGINX and to help diagnose problems. See [Enable F5 WAF for NGINX Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) for directions to configure security and operational logs.

@@ -23,6 +23,10 @@ Users can now test the availability of specific IP addresses from their deployme
 
 NGINXaaS now supports downloading certificate from Azure Key Vault via Private Endpoints. This will allow users to increase network security by disabling public access on their Key Vault. For more information, please visit [Integrate with Private Endpoint]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#integrate-with-private-endpoint" >}})
 
+- {{% icon-feature %}} **Support for both precompiled and custom WAF policies in the same NGINX config**
+
+NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protect WAF to be referenced within the same NGINX config. This removes a previous restriction.
+
 ## September 18, 2025
 
 - {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**

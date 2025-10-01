@@ -29,21 +29,11 @@ You can also set up policies through the [NGINX One Console API]({{< ref "/nginx
 
 ## Set up NGINX App Protect
 
-You can install and upgrade NGINX App Protect:
-
-Version 4:
-
-- [Install]({{< ref "/nap-waf/v4/admin-guide/install.md" >}})
-- [Upgrade]({{< ref "/nap-waf/v4/admin-guide/upgrade-nap-waf.md" >}})
-
-Version 5:
-
-- [Install]({{< ref "/nap-waf/v5/admin-guide/install.md" >}})
-- [Upgrade]({{< ref "/nap-waf/v5/admin-guide/upgrade-nap-waf.md" >}})
+You can [install and upgrade NGINX App Protect]({{< ref "/waf/install/" >}})
 
 ### Container-related configuration requirements
 
-F5 WAF for NGINX Version 5 has specific requirements for the configuration with Docker containers:
+F5 WAF for NGINX has specific requirements for the configuration with Docker containers:
 
 - Directory associated with the volume, which you may configure in a `docker-compose.yaml` file.
   - You may set it up with the `volumes` directive with a directory like `/etc/nginx/app_protect_policies`.

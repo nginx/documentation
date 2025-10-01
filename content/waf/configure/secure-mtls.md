@@ -82,7 +82,7 @@ stream {
     }
 ```
 
-- _upstream enforcer_ specifices the server, which listens on port 4431 by default
+- _upstream enforcer_ specifies the server, which listens on port 4431 by default
 - _proxy_pass_ indicates that requests should be routed through the enforcer upstream
 - _proxy_ssl_certificate_ and _proxy_ssl_certificate_key_ are for the client (NGINX) credentials
 - _proxy_ssl_trusted_certificate_ enables the server (enforcer) verification
