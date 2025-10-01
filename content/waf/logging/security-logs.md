@@ -98,7 +98,7 @@ Content is mandatory. If the entire content field or any of its attributes are n
 
 #### Default logging content
 
-This is the content of `log_default.json`. It is pre-compield (built-in) and is used by default when `app_protect_security_log_enabled on` is set, but `app_protect_security_log` is not:
+This is the content of `log_default.json`. It is pre-compiled (built-in) and is used by default when `app_protect_security_log_enabled on` is set, but `app_protect_security_log` is not:
 
 ```json
 {
@@ -228,7 +228,7 @@ The table below lists attributes that are generated in the security logs. When u
 | bot_anomalies | Comma-separated list of anomalies that were detected. | default, grpc |
 | bot_category | The category of the detected bot. | default, grpc |
 | bot_signature_name | The name of the detected bot. | default, grpc |
-| client_class | The classification of the client. It can have one of the following values: `N/A`, `Suspicious Browser`, `Malicous Bot`, `Trusted Bot`, `Untrusted Bot`. If the client is classified as standard browser, then the value is `N/A`. | default, grpc |
+| client_class | The classification of the client. It can have one of the following values: `N/A`, `Suspicious Browser`, `Malicious Bot`, `Trusted Bot`, `Untrusted Bot`. If the client is classified as standard browser, then the value is `N/A`. | default, grpc |
 | date_time | The date and time the request was received by App Protect. | default, grpc |
 | dest_port | The port assigned to listen to incoming requests. | default, grpc |
 | enforced_bot_anomalies | Comma-separated list of anomalies that caused the request to be blocked. | default, grpc |
