@@ -53,13 +53,12 @@ jobs:
           - nginx-instance-manager
           - solutions
           - nginx-app-protect-dos
-          - nginx-app-protect-waf
+          - waf
           - nginx-ingress-controller
           - nginxaas/azure
           - nginx-service-mesh
           - nginx-amplify
           - nginx-controller
-          - nginx-waf
           - nginx-management-suite
           - nginx-gateway-fabric
           - nginx-agent
