@@ -18,7 +18,8 @@ A **signature set** is a collection of attack signatures with a specific name an
 
 For example, you might have sets for SQL Injection Signatures, Cross-Site Scripting Signatures, or Buffer Overflow Signatures.
 
-### Signature Exception
+### Signature exception
+
 A **signature exception** allows you to explicitly enable or disable individual attack signatures within a set. This gives you granular control over your policy. For example:
 - If a signature in a set causes false positives (blocking legitimate traffic), you can create an exception to disable just that signature while keeping the rest of the set active.
 - If you want to enable blocking for one specific attack signature rather than an entire set, you can create an exception to enable just that signature.
