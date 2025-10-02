@@ -497,8 +497,7 @@ The following table outlines annotation conversions for enabling TLS and gRPC pr
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "HTTPS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "ssl_service_name" |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPC" | [_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPCS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name"<br />[_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
-
-{{% /bootstrap-table %}}
+{{< /table >}}
 {{< call-out "important" >}}
 GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}})).
 {{< /call-out >}}
