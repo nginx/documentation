@@ -826,7 +826,7 @@ waf:
 |``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
 |``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
-|``securityLogs`` | Add a condition to a rate-limit policy. | [waf.securityLogs](#wafsecurityLogs) | No |
+|``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecurityLogs) | No |
 {{% /table %}}
 
 ### WAF.SecurityLogs
