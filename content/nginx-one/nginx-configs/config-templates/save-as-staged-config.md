@@ -5,6 +5,7 @@ toc: true
 weight: 300
 type:
 - how-to
+nd-product: NGINX One Console
 ---
 
 # Overview
@@ -25,7 +26,7 @@ First, use the [Submit templates]({{< ref "submit-templates.md#make-the-request"
 ## Step 2: Save as staged configuration
 
 {{< call-out "tip" >}}
-You can save an NGINX configuration preview as staged config even if it contains parse errors.
+You can save an NGINX configuration preview as a staged config, even if it contains parse errors.
 {{< /call-out >}}
 
 Use the `config` object from the API response in step 1 to create a staged configuration.
@@ -36,7 +37,7 @@ Use the [Create a staged config]({{< ref "/nginx-one/api/api-reference-guide/#op
 
 ### Request body
 
-Take the entire `config` object from the template submission response and wrap it with a `name` field.
+Take the entire `config` object from the template submission response and wrap it in a `name` field.
 
 **Required fields:**
 - `name` - Descriptive name for the staged configuration

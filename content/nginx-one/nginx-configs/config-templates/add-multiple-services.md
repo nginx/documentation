@@ -5,13 +5,14 @@ toc: true
 weight: 400
 type:
 - how-to
+nd-product: NGINX One Console
 ---
 
 # Overview
 
-This guide shows how to extend working submission from the [Submit Templates Guide]({{< ref "submit-templates.md" >}}) by adding server augments for new services with dedicated location augments.
+This guide shows how to extend a working submission from the [Submit Templates Guide]({{< ref "submit-templates.md" >}}) by adding server augments for new services with dedicated location augments.
 
-**Note: With current limitation to not being able to retrieve previous submissions, you must provide entire request including any updates.**
+{{< call-out "note" "Note" >}}Because you can’t retrieve previous submissions, you must include the full request with any updates.{{< /call-out >}}
 
 ## Import template
 
@@ -19,7 +20,7 @@ If there aren't existing augment templates that fit your needs, you will need to
 
 ### New server augment template
 
-Since we don't have a server augment yet, we need to create one. This template creates dedicated server blocks for each service.
+Because there isn’t a server augment yet, you need to create one. This template creates dedicated server blocks for each service.
 
 `http-server.tmpl`
 
@@ -66,10 +67,10 @@ When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this templat
 
 ### New location augment template
 
-We also need a location augment template to create location blocks within each server.
+Create a location augment template to add location blocks within each server.
 
-{{< call-out "note" >}}
-You may already have a "health-check" location augment from previous steps which can be added to these new servers as well.*
+{{< call-out "note" "Note" >}}
+If you already have a "health-check" location augment from earlier steps, you can add it to the new servers.
 {{< /call-out >}}
 
 `location-proxy.tmpl`
@@ -90,7 +91,7 @@ type: object
 properties:
   path:
     type: string
-    description: "Location path (e.g., /api, /admin)"
+    description: "Location path (for example, /api, /admin)"
     pattern: "^/.*$"
   upstream_url:
     type: string
@@ -123,20 +124,20 @@ When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this templat
 
 ### Request structure
 
-Here's an example of what you need to include with the API request:
+Example API request:
 
 ```json
 {
   "conf_path": "/etc/nginx/nginx.conf",
   "base_template": {
-    "object_id": "<id of your template object>",
+    "object_id": "<ID of your template object>",
     "values": {
       "backend_url": "http://example.com:8080"
     }
   },
   "augments": [
     {
-      "object_id": "<id of your template object>",
+      "object_id": "<ID of your template object>",
       "target_context": "http/server/location",
       "values": {
         "cors_allowed_origins": "https://app.example.com",
@@ -144,11 +145,11 @@ Here's an example of what you need to include with the API request:
       }
     },
     {
-      "object_id": "<id of your template object>",
+      "object_id": "<ID of your template object>",
       "target_context": "http/server"
     },
     {
-      "object_id": "<id of your template object>",
+      "object_id": "<ID of your template object>",
       "target_context": "http",
       "values": {
         "listen_port": 80,
@@ -156,7 +157,7 @@ Here's an example of what you need to include with the API request:
       },
       "child_augments": [
         {
-          "object_id": "<id of your template object>",
+          "object_id": "<ID of your template object>",
           "target_context": "http/server/location",
           "values": {
             "path": "/admin",
@@ -164,7 +165,7 @@ Here's an example of what you need to include with the API request:
           }
         },
         {
-          "object_id": "<id of your template object>",
+          "object_id": "<ID of your template object>",
           "target_context": "http/server/location",
           "values": {
             "health_check_path": "/admin/health"
@@ -176,15 +177,15 @@ Here's an example of what you need to include with the API request:
 }
 ```
 
-### What's in your new config template
+### New config template contents
 
-- **Existing augments remain:** Your CORS headers and health check continue to apply to the main server
-- **New server augments:** You'll see an additional server block
-- **Service-specific routing:** You'll find the new `admin.example.com` server name with its own location blocks and routing rules
+- **Existing augments remain:** CORS headers and the health-check location still apply to the main server.  
+- **New server augments** Adds an extra server block.  
+- **Service-specific routing:** The new `admin.example.com` server name has its own location blocks and routing rules.  
 
 ### Response format
 
-When you submit the request, you'll see the following results if you're successful, along with the rendered NGINX configuration:
+If the request succeeds, the response includes the following output and the rendered NGINX configuration:
 
 #### Successful response (200 OK)
 
@@ -289,15 +290,15 @@ http {
 
 ## Child augments
 
-Child augments allow you to nest augments within other augments, creating hierarchical configurations. This is commonly used when an augment creates a container (like a server block) that needs its own specific sub-configurations (like location blocks).
+Child augments let you nest one augment inside another, creating hierarchical configurations. This is often used when a parent augment creates a container (such as a server block) that requires specific sub-configurations (such as location blocks).
 
-**How Child Augments Work:**
+**How child augments work**
 
-When an augment template includes an `{{ augment_includes "context_path" . }}` extension point, you can provide child augments that target that context path. The child augments render only within their parent augment's output.
+When an augment template includes an `{{ augment_includes "context_path" . }}` extension point, you can provide child augments that target that context path. The child augments render only within their parent augment’s output.
 
-**Key Behavior:**
-- Child locations only apply to their specific parent server
-- Multiple servers can have different location configurations
-- Each server operates independently with its own routing rules
+**Key behaviors**
+- Child location augments apply only to their parent server.  
+- Different servers can have different location configurations.  
+- Each server runs independently with its own routing rules.  
 
-For information on designing templates with extension points, see the [Template Authoring Guide]({{< ref "author-templates.md" >}}).
+For details on designing templates with extension points, see the [Template Authoring Guide]({{< ref "author-templates.md" >}}).

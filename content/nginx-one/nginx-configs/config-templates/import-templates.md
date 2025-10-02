@@ -5,6 +5,7 @@ toc: true
 weight: 100
 type:
 - how-to
+nd-product: NGINX One Console
 ---
 
 ## Overview
@@ -20,10 +21,12 @@ In this guide, you will learn how to:
 
 ## Before you start
 
-- You have access to the NGINX One Console in your organization. For details, see [Before you begin]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}) in our Get started guide.
-- API credentials to use the Templates API. For more information, see [Authenticate with the API]({{< ref "/nginx-one/api/authentication.md" >}}).
-- Access to the `tar` command.
-- The **absolute path** for your NGINX configuration file (for example, `/etc/nginx/nginx.conf`). This is required when submitting templates for preview.
+Make sure you have the following:
+
+- Access to the NGINX One Console in your organization. See [Before you begin]({{< ref "/nginx-one/getting-started.md#before-you-begin" >}}) in the Get started guide.  
+- API credentials for the Templates API. See [Authenticate with the API]({{< ref "/nginx-one/api/authentication.md" >}}).  
+- The `tar` command installed.  
+- The **absolute path** to your NGINX configuration file (for example, `/etc/nginx/nginx.conf`). This path is required when submitting templates for preview.  
 
 ## Create template archives
 
@@ -32,6 +35,7 @@ This section provides step-by-step instructions to create template archives. You
 ### Archive structure requirements
 
 Each template archive must contain:
+
 - **Exactly one `.tmpl` file** (required) - contains your NGINX configuration template
 - **One `schema.yaml` or `schema.json` file** (optional) - required only if your template uses variables. For more information, see [Schema Definitions]({{< ref "author-templates.md#schema-definitions" >}})
 - **No other files** - additional files will be ignored or cause import failure
@@ -44,9 +48,11 @@ Each template archive must contain:
 ```
 
 ### Naming conventions
+
 Use the following convention for archive and template file names:
 
 #### Archive names
+
 Name your archives to clearly reflect their specific use case:
 
 **Good Examples:**
@@ -134,7 +140,7 @@ EOF
 
 #### 3. Create the archive
 
-{{< call-out "important" >}}
+{{< call-out "important" "Important" >}}
 Always create archives from within the template directory to ensure files are at the root level.
 {{< /call-out >}}
 
@@ -161,10 +167,10 @@ ls -la /tmp/verify-archive/
 ```
 
 **Expected contents of the compressed archive:**
-```
+
+``` text
 reverse-proxy.tmpl
 schema.yaml
-```
 
 ### Complete example workflow
 
@@ -280,9 +286,9 @@ ls -la *.tar.gz
    tar -czf template.tar.gz *.tmpl schema.yaml
    ```
 
-3. **Include schema for templates with variables**
-    - If your `.tmpl` file contains `{{ .variable }}`, you must include a schema file
-    - Import will be rejected without proper schema
+3. **Include a schema for templates with variables**
+    - If your `.tmpl` file contains `{{ .variable }}`, you must include a schema file.
+    - The import is rejected without a valid schema.
 
 4. **Do not include multiple template files in one archive**
     - Each archive must contain exactly one `.tmpl` file
@@ -290,21 +296,21 @@ ls -la *.tar.gz
 
 ### Ready to import
 
-Once you have created your archives, you can import them using the [Import a template API]({{< ref "/nginx-one/api/api-reference-guide/#operation/importTemplate" >}}) operation.
+After creating the archives, import them using the [Import a template API]({{< ref "/nginx-one/api/api-reference-guide/#operation/importTemplate" >}}) operation.
 
 #### Required API parameters
 
 In addition to your template archive, the import API requires several parameters. Read the API specification for full details, but the key parameters include:
 
 **name** (required):
-- A unique name for the template within your organization. Use the same as the archive name for clarity without the extension (e.g., `reverse-proxy-base`, `cors-headers`, `health-check`).
+- A unique name for the template within your organization. For clarity, use the same name as the archive (without the extension), for example, `reverse-proxy-base`, `cors-headers`, or `health-check`.
 
 **type** (required):
 - `base` - For main NGINX configuration templates
 - `augment` - For templates that extend base configurations
 
 **For Augment Templates Only**:
-- **allowed_in_contexts** - Specify which contexts this augment can be included in (e.g., `http`, `http/server`, `http/server/location`). Understanding where your augment fits within NGINX configuration structure is crucial for proper integration. See the [Template Authoring Guide]({{< ref "author-templates.md" >}}) for detailed information on contexts and how to design augments that integrate correctly with base templates.
+- **allowed_in_contexts** - Specify which contexts this augment can be included in (for example, `http`, `http/server`, or `http/server/location`). Knowing where an augment fits in the NGINX configuration structure is crucial for integration. See the [Template Authoring Guide]({{< ref "author-templates.md" >}}) for details on contexts and designing augments that integrate with base templates.
 
 #### Import validation
 
@@ -314,15 +320,15 @@ During import, the system will validate:
 - Schema validity (if provided)
 - Variable references match schema definitions
 
-{{< call-out "caution" >}}
-The `allowed_in_contexts` parameter is required when importing augment templates. The import process validates that this parameter is provided, but does not validate whether the contexts are valid for your template's NGINX directives. Context validation occurs during template submission. Ensure your specified contexts match where your NGINX directives can legally appear to avoid submission errors.
+{{< call-out "important" "Important" >}}
+The `allowed_in_contexts` parameter is required to import augment templates. The import process checks that this parameter is included, but it doesn’t confirm whether the contexts are valid for your template’s NGINX directives. Context validation happens during template submission. Ensure your specified contexts match where your NGINX directives are allowed to appear to avoid submission errors.
 {{< /call-out >}}
 
 ### Response format
 
 #### Successful response (200 OK)
 
-When import is successful, you will receive a response similar to the following:
+If the import succeeds, you'll receive a response like this:
 
 ```json
 {
