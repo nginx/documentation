@@ -253,7 +253,7 @@ properties:
       type: string
 ```
 
-## Simple base template example
+## Base template example
 
 Here's a complete, self-contained base template that requires no augmentation. This template is complete and ready to use. It includes all necessary configuration for a reverse proxy with load balancing, health checks, and proxy settings. Users provide values for variables during submission, and the template renders a fully functional NGINX configuration.
 
