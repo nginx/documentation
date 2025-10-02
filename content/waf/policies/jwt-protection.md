@@ -55,16 +55,21 @@ The header and claims are JSON objects, Base64 encoded, separated by `.` delimit
 
 ### Supported algorithms
 
-Currently supported: `RS256` (RSA/SHA-256).
+JWT protection currently supports the following algorithms:
 
-- Example JWT header:
+- `RSA`: RS256, RS384, RS512
+- `PSS`: PS256, PS384, PS512
+- `ECDSA`: ES256, ES256K, ES384, ES512
+- `EdDSA`
 
-   ```json
-   {
-   "alg": "RS256",
-   "typ": "JWT"
-   }
-   ```
+This is a header example:
+
+```json
+{
+"alg": "RS256",
+"typ": "JWT"
+}
+```
 
 ### Configure for JWT protection
 

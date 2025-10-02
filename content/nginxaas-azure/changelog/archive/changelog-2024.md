@@ -2,12 +2,12 @@
 title: "2024"
 weight: 100
 toc: true
-url: /nginxaas/azure/changelog-archive/changelog-2024/
+url: /nginxaas/azure/changelog/archive/changelog-2024/
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2024.
 
-To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog" >}}) page.
+To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog/changelog.md" >}}) page.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 
