@@ -242,7 +242,7 @@ EOF
 tar -czf ../cors-headers.tar.gz *
 cd ..
 
-# Create simple augment without variables
+# Create augment without variables
 mkdir health-check && cd health-check
 cat > health-check.tmpl << 'EOF'
 location /health {
