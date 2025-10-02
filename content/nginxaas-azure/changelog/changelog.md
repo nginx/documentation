@@ -1,6 +1,6 @@
 ---
-title: "Changelog"
-weight: 900
+title: "2025"
+weight: 100
 toc: true
 nd-docs: "DOCS-870"
 url: /nginxaas/azure/changelog/
@@ -11,7 +11,7 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 
-To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog-archive" >}}) section.
+To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
 ## September 26, 2025
 
@@ -22,6 +22,10 @@ Users can now test the availability of specific IP addresses from their deployme
 - {{% icon-feature %}} **Support for downloading AKV certificates via Private Endpoints**
 
 NGINXaaS now supports downloading certificate from Azure Key Vault via Private Endpoints. This will allow users to increase network security by disabling public access on their Key Vault. For more information, please visit [Integrate with Private Endpoint]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#integrate-with-private-endpoint" >}})
+
+- {{% icon-feature %}} **Support for both precompiled and custom WAF policies in the same NGINX config**
+
+NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protect WAF to be referenced within the same NGINX config. This removes a previous restriction.
 
 ## September 18, 2025
 
@@ -81,7 +85,7 @@ NGINXaaS now supports downloading certificate from Azure Key Vault via Private E
 
 - {{% icon-feature %}} **F5 WAF for NGINX is now generally available**
 
-F5 WAF for NGINX is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< relref "./app-protect/configure-waf.md#custom-policies" >}}).
+F5 WAF for NGINX is now generally available and is no longer a preview feature and will therefore be billed as specified in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=PlansAndPrice). This feature now supports the creation and deployment of [custom security policies]({{< ref "/nginxaas-azure/app-protect/configure-waf.md#custom-policies" >}}).
 
 ## April 16, 2025
 
@@ -96,7 +100,6 @@ F5 WAF for NGINX is now generally available and is no longer a preview feature a
 
 ## March 31, 2025
 
-### What's New
 
 - {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
 

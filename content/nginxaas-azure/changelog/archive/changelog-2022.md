@@ -2,12 +2,12 @@
 title: "2022"
 weight: 300
 toc: true
-url: /nginxaas/azure/changelog-archive/changelog-2022/
+url: /nginxaas/azure/changelog/archive/changelog-2022/
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2022.
 
-To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog" >}}) page.
+To see the latest changes, visit the [Changelog]({{< ref "/nginxaas-azure/changelog/changelog.md" >}}) page.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 

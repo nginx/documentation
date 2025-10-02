@@ -1,6 +1,6 @@
 ---
 title: "Module Changelog"
-weight: 950
+weight: 300
 toc: true
 url: /nginxaas/azure/module-changelog/
 ---

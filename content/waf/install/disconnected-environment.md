@@ -30,11 +30,11 @@ To complete this guide, you will need the following prerequisites:
 
 These instructions outline the broad, conceptual steps involved with working with a disconnected environment. You will need to make adjustments based on your specific security requirements.
 
-Some users may be able to use a USB stick to transfer necessary set-up artefacts, whereas other users may be able to use tools such as SSH or SCP.
+Some users may be able to use a USB stick to transfer necessary set-up artifacts, whereas other users may be able to use tools such as SSH or SCP.
 
-In the following sections, the term _connected environment_ refers to the environment with access to the internet you will use to download set-up artefacts.
+In the following sections, the term _connected environment_ refers to the environment with access to the internet you will use to download set-up artifacts.
 
-The term _disconnected environment_ refers to the final environment the F5 WAF for NGINX installation is intended to run in, and is the target to transfer set-up artefacts from the connected environment.
+The term _disconnected environment_ refers to the final environment the F5 WAF for NGINX installation is intended to run in, and is the target to transfer set-up artifacts from the connected environment.
 
 ## Download and run the documentation website locally
 

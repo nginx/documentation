@@ -81,7 +81,7 @@ Since the "All Signatures" set is not included in the default policy, turning OF
 
 The only way to remove signature sets is to remove or disable sets that are part of the [default policy]({{< ref "/waf/policies/configuration.md#default-policy" >}}).
 
-For example, in the below default policy, even though all signature alarm and block settings are set to false, attack signatures enforcement cannot be ignoredas some of the signature sets will be enabled in their strict policy. 
+For example, in the below default policy, even though all signature alarm and block settings are set to false, attack signatures enforcement cannot be ignored as some of the signature sets will be enabled in their strict policy. 
 
 If you want to remove a specific signature set, you must explicitly mention it under the [strict policy]({{< ref "/waf/policies/configuration.md#strict-policy" >}}).
 
