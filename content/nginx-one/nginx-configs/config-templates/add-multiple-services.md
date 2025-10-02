@@ -59,7 +59,7 @@ additionalProperties: false
 
 #### Import parameters
 
-When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this template:
+When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this template allows you to set up:
 
 - name: `http-server`
 - type: `augment` 
@@ -114,7 +114,7 @@ additionalProperties: false
 ```
 
 #### Import parameters
-When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this template:
+When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this template allows you to:
 
 - name: `location-proxy`
 - type: `augment`
