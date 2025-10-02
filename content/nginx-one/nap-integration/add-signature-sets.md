@@ -12,7 +12,7 @@ This document describes how you can configure signature sets and signature excep
 
 Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application. F5 WAF for NGINX includes predefined attack signatures grouped into signature sets.
 
-### Signature Set
+### Signature set
 A **signature set** is a collection of attack signatures with a specific name and purpose. These sets are predefined and can be enabled or disabled in your policy. 
 
 For example, you might have sets for SQL Injection Signatures, Cross-Site Scripting Signatures, or Buffer Overflow Signatures.
