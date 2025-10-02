@@ -1,8 +1,8 @@
 ---
-description: Take the steps in this guide to deploy F5 NGINX App Protect WAF as a
+description: Take the steps in this guide to deploy F5 WAF for NGINX as a
   datapath instance for use with NGINX Controller.
 nd-docs: DOCS-645
-title: Using NGINX App Protect WAF with NGINX Controller
+title: Using F5 WAF for NGINX with NGINX Controller
 toc: true
 weight: 500
 type:
@@ -13,12 +13,12 @@ type:
 
 ## Setup
 
-Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/admin-guide/install#prerequisites" >}}), [Platform Security Considerations]({{< ref "/nap-waf/v4/admin-guide/install#platform-security-considerations" >}}) and [User Permissions]({{< ref "/nap-waf/v4/admin-guide/install#user-permissions" >}}) sections of the NGINX App Protect WAF Admin Guide.
+Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/admin-guide/install#prerequisites" >}}), [Platform Security Considerations]({{< ref "/nap-waf/v4/admin-guide/install#platform-security-considerations" >}}) and [User Permissions]({{< ref "/nap-waf/v4/admin-guide/install#user-permissions" >}}) sections of the F5 WAF for NGINX Admin Guide.
 
 
-## Install NGINX App Protect WAF
+## Install F5 WAF for NGINX
 
-**Note:** If a version of NGINX App Protect WAF prior to 3.6 is required, please contact the NGINX Sales team to assist with this configuration.
+**Note:** If a version of F5 WAF for NGINX prior to 3.6 is required, please contact the NGINX Sales team to assist with this configuration.
 
 {{<tabs name="install-nap-waf">}}
 
@@ -66,19 +66,19 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
    ```
 
-8. Add NGINX App Protect WAF repository by downloading the file app-protect-7.repo to /etc/yum.repos.d:
+8. Add F5 WAF for NGINX repository by downloading the file app-protect-7.repo to /etc/yum.repos.d:
 
    ```shell
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
    ```
 
-9. If NGINX Plus or NGINX App Protect WAF was previously installed on the system, clean up package manager cache information:
+9. If NGINX Plus or F5 WAF for NGINX was previously installed on the system, clean up package manager cache information:
 
    ```shell
    sudo yum clean all
    ```
 
-10. Install the latest NGINX App Protect WAF package.
+10. Install the latest F5 WAF for NGINX package.
 
       **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
@@ -94,7 +94,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
       sudo nginx -v
       ```
 
-12. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+12. Configure SELinux as appropriate per your organization’s security policies. F5 WAF for NGINX applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
       **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
 
@@ -171,7 +171,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
    ```
 
-8. Add NGINX App Protect WAF repository by downloading the file app-protect-7.repo to /etc/yum.repos.d:
+8. Add F5 WAF for NGINX repository by downloading the file app-protect-7.repo to /etc/yum.repos.d:
 
    ```shell
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-7.repo
@@ -204,13 +204,13 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
       gpgkey=http://ftp.heanet.ie/pub/centos/7/os/x86_64/RPM-GPG-KEY-CentOS-7
       ```
 
-10. If NGINX Plus or NGINX App Protect WAF was previously installed on the system, clean up package manager cache information:
+10. If NGINX Plus or F5 WAF for NGINX was previously installed on the system, clean up package manager cache information:
 
     ```shell
     sudo yum clean all
     ```
 
-11. Install the latest NGINX App Protect WAF package.
+11. Install the latest F5 WAF for NGINX package.
 
       **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
@@ -226,7 +226,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
       sudo nginx -v
       ```
 
-13. Configure SELinux as appropriate per your organization’s security policies. NGINX App Protect WAF applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
+13. Configure SELinux as appropriate per your organization’s security policies. F5 WAF for NGINX applies the prebuilt SELinux policy module during the installation. If you encounter any issues, check the [Troubleshooting Guide]({{< ref "/nap-waf/v4/troubleshooting-guide/troubleshooting#selinux" >}}).
 
       **Note:** NGINX Controller has specific [requirements regarding SELinux configuration]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#supported-distributions" >}}).
 
@@ -263,7 +263,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
 
 {{%tab name="Debian"%}}
 
-**Note:** As of NGINX Plus R24, support for Debian 9 is no longer available. As a consequence, NGINX App Protect WAF 3.1 is the final version available for this operating system version.
+**Note:** As of NGINX Plus R24, support for Debian 9 is no longer available. As a consequence, F5 WAF for NGINX 3.1 is the final version available for this operating system version.
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -312,7 +312,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
    printf "deb https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
    ```
 
-9. Add NGINX App Protect WAF repository:
+9. Add F5 WAF for NGINX repository:
 
    ```shell
    printf "deb https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -324,7 +324,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
 
-11. Update the repository and install the lastest supported NGINX App Protect WAF packages.
+11. Update the repository and install the lastest supported F5 WAF for NGINX packages.
 
       **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
@@ -430,7 +430,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
    printf "deb https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-plus.list
    ```
 
-9. Add NGINX App Protect WAF repository:
+9. Add F5 WAF for NGINX repository:
 
    ```shell
    printf "deb https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
@@ -442,7 +442,7 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
       sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
       ```
 
-11. Update the repository and install the latest App Protect WAF package.
+11. Update the repository and install the latest F5 WAF for NGINX package.
 
       **See Also:** Please refer to [NGINX App Protect Compatibility Matrix]({{< ref "/controller/admin-guides/install/nginx-controller-tech-specs.md#nginx-app-protect-compatibility-matrix" >}}) for specific version compatibility.
 
@@ -497,34 +497,34 @@ Before proceeding, you should review the [Prerequisites]({{< ref "/nap-waf/v4/ad
 
 16. To upgrade your signature package to the latest version and obtain the best protection, refer to [Updating App Protect Attack Signatures]({{< ref "/nap-waf/v4/admin-guide/install#ubuntu-1804" >}}).
 
-   **Note:** Ubuntu 20.04 activates **AppArmor** by default, but NGINX App Protect WAF will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for NGINX App Protect WAF, you will have to write your own AppArmor profile for NGINX App Protect WAF executables found in `/opt/app_protect/bin` such that it best suits your environment.
+   **Note:** Ubuntu 20.04 activates **AppArmor** by default, but F5 WAF for NGINX will run in unconfined mode after being installed as it is shipped with no AppArmor profile. To benefit from AppArmor access control capabilities for F5 WAF for NGINX, you will have to write your own AppArmor profile for F5 WAF for NGINX executables found in `/opt/app_protect/bin` such that it best suits your environment.
 
 {{%/tab%}}
 
 {{%tab name="Amazon Linux 2 LTS"%}}
 
-Using NGINX App Protect WAF with NGINX Controller isn't supported on Amazon Linux 2 LTS.
+Using F5 WAF for NGINX with NGINX Controller isn't supported on Amazon Linux 2 LTS.
 
 {{%/tab%}}
 
 {{%tab name="Alpine"%}}
 
-Using NGINX App Protect WAF with NGINX Controller isn't supported on Alpine.
+Using F5 WAF for NGINX with NGINX Controller isn't supported on Alpine.
 
 {{%/tab%}}
 {{</tabs>}}
 
 <hr>
 
-## Add NGINX App Protect WAF to NGINX Controller
+## Add F5 WAF for NGINX to NGINX Controller
 
-If this NGINX Plus instance is already managed by Controller, [restart the Agent]({{< ref "/controller/admin-guides/install/agent-restart" >}}) after NGINX App Protect WAF is installed.
+If this NGINX Plus instance is already managed by Controller, [restart the Agent]({{< ref "/controller/admin-guides/install/agent-restart" >}}) after F5 WAF for NGINX is installed.
 
-Otherwise, complete the tasks in the NGINX Controller [Add an NGINX App Protect WAF Instance]({{< ref "/controller/infrastructure/instances/add-nap-instance.md#add-the-nginx-app-protect-instance" >}}) guide.
+Otherwise, complete the tasks in the NGINX Controller [Add an F5 WAF for NGINX Instance]({{< ref "/controller/infrastructure/instances/add-nap-instance.md#add-the-nginx-app-protect-instance" >}}) guide.
 
-## Use NGINX App Protect WAF with NGINX Controller
+## Use F5 WAF for NGINX with NGINX Controller
 
-**Note:** When configuring NGINX App Protect WAF as a datapath instance for NGINX Controller, **you should not modify the `nginx.conf` file**. The `nginx.conf` file will be automatically updated when enabling WAF on a Component in NGINX Controller.
+**Note:** When configuring F5 WAF for NGINX as a datapath instance for NGINX Controller, **you should not modify the `nginx.conf` file**. The `nginx.conf` file will be automatically updated when enabling WAF on a Component in NGINX Controller.
 
 Refer to the following NGINX Controller user guides for further information about how to secure your apps and/or APIs with NGINX Controller:
 

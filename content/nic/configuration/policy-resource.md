@@ -795,9 +795,9 @@ A VirtualServer/VirtualServerRoute can reference multiple cache policies. Howeve
 
 ### WAF
 
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [NGINX App Protect WAF Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
 
-The WAF policy configures NGINX Plus to secure client requests using App Protect WAF policies.
+The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
 For example, the following policy will enable the referenced APPolicy. You can configure multiple APLogConfs with log destinations:
 
@@ -814,18 +814,31 @@ waf:
     logDest: "syslog:server=syslog-svc-secondary.default:514"
 ```
 
-{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases.It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
+{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables NGINX App Protect WAF. | ``bool`` | Yes |
-|``apPolicy`` | The [App Protect WAF policy]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [App Protect WAF policy bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
-|``securityLog.enable`` | Enables security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
+|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
+|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
+|``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
+|``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecurityLogs) | No |
+{{% /table %}}
+
+#### WAF.SecurityLogs
+
+{{% table %}}
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``enable`` | Enables security log. | ``bool`` | No |
+|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+
 {{% /table %}}
 
 #### WAF Merging Behavior

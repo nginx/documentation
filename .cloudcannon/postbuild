@@ -1,7 +1,0 @@
-#!/bin/bash
-
-## Find and fix broken images and links caused by how the baseURL is set in the config.yml
-find public -type f -name "*.html" -exec sed -i 's/="\/\//="\//g' {} \;
-
-## Add the CloudCannon 'editable' class to content divs
-find public -type f -name "index.html" -exec sed -i 's/class="content/& editable/g' {} \;

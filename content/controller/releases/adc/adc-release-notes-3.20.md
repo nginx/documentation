@@ -51,9 +51,9 @@ Take note of the following considerations when upgrading to this version of the 
 
   For more information, see the AskF5 article [K02089505](https://support.f5.com/csp/article/K02089505).
 
-- **Bring your own custom NGINX App Protect WAF Policy to configure app security**
+- **Bring your own custom F5 WAF for NGINX Policy to configure app security**
 
-  Now, you can [use your own custom NGINX App Protect WAF JSON declarative policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) as your WAF policy with NGINX Controller, in addition to using the default policy. F5 Advanced WAF and BIG-IP Application Security Module (ASM) customers can convert their standardized WAF policy to an App Protect policy to use with NGINX Controller.
+  Now, you can [use your own custom F5 WAF for NGINX JSON declarative policy]({{< ref "/controller/app-delivery/security/concepts/bring-your-own-policy.md" >}}) as your WAF policy with NGINX Controller, in addition to using the default policy. F5 Advanced WAF and BIG-IP Application Security Module (ASM) customers can convert their standardized WAF policy to an App Protect policy to use with NGINX Controller.
 
 ## NAP Vulnerability Fixes
 

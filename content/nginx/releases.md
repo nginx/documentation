@@ -1470,7 +1470,7 @@ NGINX Plus R13 is a feature release:
 - Ability to gracefully shut down all live client connections when restarting NGINX Plus (the [worker_shutdown_timeout](https://nginx.org/en/docs/ngx_core_module.html#worker_shutdown_timeout) directive)
 - Support for adding HTTP trailers (the [add_trailer](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer) directive)
 - Improvement to session persistence: quicker establishment of sticky sessions between clients and upstream groups (the `header` parameter to the [sticky learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) directive)
-- Support for the third‑party [HTTP Substitutions Filter](https://github.com/yaoweibin/ngx_http_substitutions_filter_module) module, distributed in NGINX Plus packages and available on the [Dynamic Modules](https://www.nginx.com/products/modules/) page
+- Support for the third‑party [HTTP Substitutions Filter](https://github.com/yaoweibin/ngx_http_substitutions_filter_module) module, distributed in NGINX Plus packages and available on the [Dynamic Modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) page
 
 NGINX Plus R13 is supported on:
 

@@ -111,7 +111,6 @@ tooling:
       - any-glob-to-any-file:
           - 'layouts/**'
           - '.github/**'
-          - '.cloudcannon/**'
           - 'styles/**'
           - 'layouts/**'
           - 'config/**'

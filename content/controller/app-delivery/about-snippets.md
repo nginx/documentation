@@ -557,7 +557,7 @@ The `reuseport` parameter creates an individual listening socket for each worker
 
 ## Extend App Security with Snippets
 
-When adding [NGINX Controller App Security]({{< ref "add-app-security-with-waf" >}}) to your components, you can use Snippets to add NGINX App Protect directives that aren't represented in the NGINX Controller API. You can also use Snippets to [tune your NGINX App Protect WAF performance]({{< ref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}).
+When adding [NGINX Controller App Security]({{< ref "add-app-security-with-waf" >}}) to your components, you can use Snippets to add NGINX App Protect directives that aren't represented in the NGINX Controller API. You can also use Snippets to [tune your F5 WAF for NGINX performance]({{< ref "/controller/app-delivery/security/tutorials/tune-waf-for-app" >}}).
 
 Refer to [Extend App Security with Snippets]({{< ref "extend-app-security-snippets" >}}) for more information and examples.
 

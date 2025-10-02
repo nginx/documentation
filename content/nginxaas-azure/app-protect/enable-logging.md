@@ -1,5 +1,5 @@
 ---
-title: Enable App Protect WAF Logs
+title: Enable F5 WAF for NGINX Logs
 weight: 300
 url: /nginxaas/azure/app-protect/enable-logging/
 toc: true
