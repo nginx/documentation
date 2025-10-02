@@ -491,7 +491,7 @@ NGINX Ingress Controller has additional annotations for features using NGINX Plu
 
 The following table outlines annotation conversions for enabling TLS and gRPC protocols to backend (upstream) services.
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
+{{< table >}}
 | Ingress-NGINX Controller | NGINX Ingress Controller |
 | ------------------------ | ------------------------ |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "HTTPS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "ssl_service_name" |
