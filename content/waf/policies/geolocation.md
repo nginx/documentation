@@ -66,7 +66,7 @@ In the "_override-rules_" section there is one override rule named "_myFirstRule
 
 ```json
 {
-    "policy": {T
+    "policy": {
         "name": "override_rule_example",
         "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
         "enforcementMode": "blocking",
