@@ -420,7 +420,7 @@ main (root)
 **Why This Matters:**
 When NGINX directive documentation says a directive is valid in "http, server, location" contexts, you would specify `allowed_in_contexts: ["http", "http/server", "http/server/location"]` using path notation. The slash separators (`/`) represent the nesting hierarchy in your actual NGINX configuration.
 
-### Modifying the simple base template
+### Modifying the base template
 
 Here's how to add extension points to the simple base template from the previous section:
 
