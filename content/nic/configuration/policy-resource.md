@@ -814,7 +814,7 @@ waf:
     logDest: "syslog:server=syslog-svc-secondary.default:514"
 ```
 
-{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases.It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
+{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
 
 {{% table %}}
 |Field | Description | Type | Required |
