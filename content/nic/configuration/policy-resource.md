@@ -829,7 +829,7 @@ waf:
 |``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecurityLogs) | No |
 {{% /table %}}
 
-### WAF.SecurityLogs
+#### WAF.SecurityLogs
 
 {{% table %}}
 |Field | Description | Type | Required |
