@@ -6,7 +6,7 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-This document describes how you can configure signature sets and signature exceptions in F5 NGINX App Protect (NAP) policies. When you add a policy, NGINX One Console provides options to customize attack signatures to better protect your applications.
+This document describes how you can configure signature sets and signature exceptions in F5 WAF for NGINX policies. When you add a policy, NGINX One Console provides options to customize attack signatures to better protect your applications.
 
 ## Understanding signature sets and exceptions
 
