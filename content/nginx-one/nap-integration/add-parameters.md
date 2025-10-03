@@ -21,7 +21,7 @@ Each parameter configuration includes:
 For a complete list of configurable cookie properties and options, see the [Parameter Configuration Parameters]({{< ref "/waf/policies/parameter-reference.md" >}}) documentation under the `parameters` section.
 
 ## Parameter Violations
-Click on **Edit Configuration** to configure parameter violations. The following violations can be configured for parameters:
+Select **Edit Configuration** to configure parameter violations. The following violations can be configured for parameters:
 
 - `VIOL_PARAMETER`: Triggered when an illegal parameter is detected
 - `VIOL_PARAMETER_ARRAY_VALUE`: Triggered when an array parameter value is illegal
