@@ -11,7 +11,7 @@ Parameters can be configured and managed directly within the policy editor by se
 
 ## Parameter Properties and Types
 Each parameter configuration includes:
-- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/waf-policy-matching-types.md" >}}) section.
+- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/nap-integration/waf-policy-matching-types.md" >}}) section.
 - `Name`: The name of the parameter
 - `Location`: Where the parameter is expected (URL query string, POST data, etc.)
 - `Value Type`: The expected type of the parameter value (e.g., alpha-numeric, integer, email)

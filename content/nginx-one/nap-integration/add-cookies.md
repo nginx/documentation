@@ -11,7 +11,7 @@ Cookies can be configured and managed directly within the policy editor by selec
 
 ## Cookie Properties and Types
 Each cookie configuration includes:
-- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/waf-policy-matching-types.md" >}}) section.
+- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/nap-integration/waf-policy-matching-types.md" >}}) section.
 - `Cookie Name`: The name of the cookie to be monitored or protected
 - `Enforcement Type`: 
   - **Allow**: Permits the cookie with optional attack signature checks

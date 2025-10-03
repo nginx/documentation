@@ -11,7 +11,7 @@ URLs can be configured and managed directly within the policy editor by selectin
 
 ## URL Properties and Types
 Each URL configuration includes:
-- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/waf-policy-matching-types.md" >}}) section
+- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/nap-integration/waf-policy-matching-types.md" >}}) section.
 - `Method`: Specifies which HTTP methods are allowed (`GET`, `POST`, `PUT`, etc.)
 - `Protocol`: The protocol for the URL (`HTTP`/`HTTPS`)
 - `Enforcement Type`: 
