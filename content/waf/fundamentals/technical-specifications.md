@@ -30,8 +30,8 @@ You can deploy F5 WAF for NGINX in the following environments:
 | Amazon Linux       | 2023         |
 | Debian             | 11, 12       |
 | Oracle Linux       | 8.1          |
-| Ubuntu             | 22.04, 24.04 |
 | RHEL / Rocky Linux | 8, 9         |
+| Ubuntu             | 22.04, 24.04 |
 
 For release-specific packages, view the [Changelog]({{< ref "/waf/changelog.md" >}}).
 
