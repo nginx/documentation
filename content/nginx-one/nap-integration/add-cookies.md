@@ -6,12 +6,12 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-# Managing Cookies in NAP Policy
+# Managing Cookies in F5 WAF Policy
 Cookies can be configured and managed directly within the policy editor by selecting the **Cookies** option.
 
 ## Cookie Properties and Types
 Each cookie configuration includes:
-- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/nap-policy-matching-types.md" >}}) section.
+- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/waf-policy-matching-types.md" >}}) section.
 - `Cookie Name`: The name of the cookie to be monitored or protected
 - `Enforcement Type`: 
   - **Allow**: Permits the cookie with optional attack signature checks
@@ -44,18 +44,17 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 1. Choose Cookie Type:
    - Select either `Explicit` for exact cookie matching or `Wildcard` for pattern-based matching
 
-2. Configure Basic Properties:
+1. Configure Basic Properties:
    - Enter the `Cookie Name`
    - Choose whether to mask the cookie value in logs
 
-3. Set Enforcement:
+1. Set Enforcement:
    - Choose whether to allow or disallow the cookie
    - If `Allow Cookie` is selected, you can optionally enable attack signatures
+   - **⚠️ Important:** Attack signatures cannot be enabled for disallowed cookies.
 
-**⚠️ Important:** Attack signatures cannot be enabled for disallowed cookies.
-
-4. Optional: Configure Attack Signatures
+1. Optional: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific cookie
    - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md/" >}})
 
-5. Click **Add Cookie** to save your configuration
+1. Click **Add Cookie** to save your configuration

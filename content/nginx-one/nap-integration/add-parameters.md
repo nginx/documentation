@@ -6,12 +6,12 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-# Managing Parameters in NAP Policy
+# Managing Parameters in F5 WAF Policy
 Parameters can be configured and managed directly within the policy editor by selecting the **Parameters** option.
 
 ## Parameter Properties and Types
 Each parameter configuration includes:
-- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/nap-policy-matching-types.md" >}}) section.
+- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/waf-policy-matching-types.md" >}}) section.
 - `Name`: The name of the parameter
 - `Location`: Where the parameter is expected (URL query string, POST data, etc.)
 - `Value Type`: The expected type of the parameter value (e.g., alpha-numeric, integer, email)
@@ -50,18 +50,18 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 1. Choose Parameter Type:
    - Select either `Explicit` for exact parameter matching or `Wildcard` for pattern-based matching
 
-2. Configure Basic Properties:
+1. Configure Basic Properties:
    - Enter the parameter `Name`
    - Select the `Location` where the parameter is expected
    - Choose the `Value Type` (alpha-numeric, integer, email, etc.)
    - Set the `Data Type` if applicable
 
-3. Set Security Options:
+1. Set Security Options:
    - Choose whether to enable attack signatures
    - Decide if parameter value should be masked in logs which sets `sensitiveParameter` in [Parameter Configuration Reference]({{< ref "/waf/policies/parameter-reference.md" >}})
 
-4. Optional: Configure Attack Signatures
+1. Optional: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific parameter
    - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md/" >}})
 
-5. Click **Add Parameter** to save your configuration
+1. Click **Add Parameter** to save your configuration

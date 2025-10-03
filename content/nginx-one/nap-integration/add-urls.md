@@ -6,12 +6,12 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-# Managing URLs in NAP Policy
+# Managing URLs in F5 WAF Policy
 URLs can be configured and managed directly within the policy editor by selecting the **URLs** option.
 
 ## URL Properties and Types
 Each URL configuration includes:
-- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/nap-policy-matching-types.md" >}}) section
+- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one/waf-policy-matching-types.md" >}}) section
 - `Method`: Specifies which HTTP methods are allowed (`GET`, `POST`, `PUT`, etc.)
 - `Protocol`: The protocol for the URL (`HTTP`/`HTTPS`)
 - `Enforcement Type`: 
@@ -44,19 +44,18 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 1. Choose URL Type:
    - Select either `Explicit` for exact URL matching or `Wildcard` for pattern-based matching
 
-2. Configure Basic Properties:
+1. Configure Basic Properties:
    - Enter the `URL` path
    - Select allowed `Method(s)` (e.g., `GET`, `POST`, *)
    - Choose the `Protocol` (`HTTP`/`HTTPS`)
 
-3. Set Enforcement:
+1. Set Enforcement:
    - Choose whether to allow or disallow the URL
    - If `Allow URL` is selected, you can optionally enable attack signatures
+   - **⚠️ Important:** Attack signatures cannot be enabled for disallowed URLs.
 
-**⚠️ Important:** Attack signatures cannot be enabled for disallowed URLs.
-
-4. **Optional**: Configure Attack Signatures
+1. **Optional**: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific URL
    - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md/" >}})
 
-5. Click **Add URL** to save your configuration
+1. Click **Add URL** to save your configuration

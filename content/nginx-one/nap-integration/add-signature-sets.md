@@ -29,7 +29,7 @@ A **signature exception** allows you to explicitly enable or disable individual 
 From NGINX One Console, select **App Protect > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
 1. In **General Settings**, name and describe the policy.
-2. Navigate to the **Web Protection** tab and select **Attack Signature Sets**. Here, you can:
+1. Navigate to the **Web Protection** tab and select **Attack Signature Sets**. Here, you can:
    - View all enabled attack signature sets, including the default ones
    - Add new signature sets
    - Modify existing signature sets
@@ -64,58 +64,58 @@ To remove a signature set from your policy, you have two options:
 
 1. Disable the set by setting both `alarm` and `block` to `false`:
 
-```json
-{
-    "policy": {
-        "name": "no_xpath_policy",
-        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
-        "signature-sets": [
-            {
-                "name": "XPath Injection Signatures",
-                "block": false,
-                "alarm": false
-            }
-        ]
+    ```json
+    {
+        "policy": {
+            "name": "no_xpath_policy",
+            "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+            "signature-sets": [
+                {
+                    "name": "XPath Injection Signatures",
+                    "block": false,
+                    "alarm": false
+                }
+            ]
+        }
     }
-}
-```
+    ```
 
-2. Use the `$action` meta-property to delete the set (preferred for better performance):
+1. Use the `$action` meta-property to delete the set (preferred for better performance):
 
-```json
-{
-    "policy": {
-        "name": "no_xpath_policy",
-        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
-        "signature-sets": [
-            {
-                "name": "XPath Injection Signatures",
-                "$action": "delete"
-            }
-        ]
+    ```json
+    {
+        "policy": {
+            "name": "no_xpath_policy",
+            "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
+            "signature-sets": [
+                {
+                    "name": "XPath Injection Signatures",
+                    "$action": "delete"
+                }
+            ]
+        }
     }
-}
-```
+    ```
 
 ## Add signature exceptions
 
 From the **Web Protection** tab, select **Attack Signature Exceptions**. This section allows you to override settings for individual signatures.
 
 1. Click **Add Item** to create a new exception.
-2. Select the signature(s) you want to modify.
-3. Configure the exception. For example, to disable a specific signature:
+1. Select the signature(s) you want to modify.
+1. Configure the exception. For example, to disable a specific signature:
 
-```json
-{
-    "signatures": [
-        {
-            "name": "_mem_bin access",
-            "enabled": false,
-            "signatureId": 200100022
-        }
-    ]
-}
-```
+    ```json
+    {
+        "signatures": [
+            {
+                "name": "_mem_bin access",
+                "enabled": false,
+                "signatureId": 200100022
+            }
+        ]
+    }
+    ```
 
 ### Advanced exception configuration
 
@@ -172,8 +172,8 @@ To exclude multiple signatures, add each as a separate entity:
 After configuring signature sets and exceptions:
 
 1. Select **Save Policy**. The policy JSON will be updated with your changes.
-2. Your policy will appear in the list under the name you provided.
-3. You can then [deploy]({{< ref "/nginx-one/nap-integration/deploy-policy.md/" >}}) the policy to either:
+1. Your policy will appear in the list under the name you provided.
+1. You can then [deploy]({{< ref "/nginx-one/nap-integration/deploy-policy.md/" >}}) the policy to either:
    - An instance
    - A Config Sync Group
 
