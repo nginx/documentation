@@ -23,7 +23,7 @@ Each URL configuration includes:
 For a complete list of configurable URL properties and options, see the [URL Configuration Parameters]({{< ref "/waf/policies/parameter-reference.md" >}}) documentation under the `urls` section.
 
 ## URL Violations
-Click on **Edit Configuration** to configure URL violations. The following violations can be configured for URLs:
+Select **Edit Configuration** to configure URL violations. The following violations can be configured for URLs:
 
 - `VIOL_URL`: Triggered when an illegal URL is accessed
 - `VIOL_URL_CONTENT_TYPE`: Triggered when there's an illegal request content type
