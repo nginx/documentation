@@ -29,7 +29,7 @@ A **signature exception** allows you to explicitly enable or disable individual 
 From NGINX One Console, select **App Protect > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
 1. In **General Settings**, name and describe the policy.
-1. Navigate to the **Web Protection** tab and select **Attack Signature Sets**. Here, you can:
+1. Go to the **Web Protection** tab and select **Attack Signature Sets**. Here, you can:
    - View all enabled attack signature sets, including the default ones
    - Add new signature sets
    - Modify existing signature sets
