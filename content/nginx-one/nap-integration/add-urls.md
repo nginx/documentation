@@ -6,7 +6,6 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-# Managing URLs in F5 WAF Policy
 URLs can be configured and managed directly within the policy editor by selecting the **URLs** option.
 
 ## URL Properties and Types

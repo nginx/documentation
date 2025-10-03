@@ -6,7 +6,6 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-# Managing Parameters in F5 WAF Policy
 Parameters can be configured and managed directly within the policy editor by selecting the **Parameters** option.
 
 ## Parameter Properties and Types

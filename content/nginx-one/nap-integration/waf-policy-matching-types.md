@@ -6,8 +6,6 @@ nd-content-type: how-to
 nd-product: NGINX One Console
 ---
 
-# Matching Types: Explicit vs Wildcard
-
 In F5 WAF for NGINX (formerly known as NGINX App Protect WAF), matching can be defined in two ways:
 
 ## Explicit Matching
