@@ -22,11 +22,9 @@ There are two new features available for Kubernetes through early access:
 
 **Automated signature updates**, which can auto-update security signatures.
 
-<!-- Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments.  -->
+This extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
 
-They extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
-
-These feature revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
+These features revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
@@ -239,11 +237,10 @@ To enable them, you must configure the Policy Controller settings in your `value
 namespace: <namespace>
 
 appprotect:
-  ## Note: This option is useful if you use Nginx Ingress Controller for example.
-  ## Enable/Disable Nginx App Protect Deployment
+  ## Enable/Disable NGINX App Protect Deployment
   enable: true
   
-  ## The number of replicas of the Nginx App Protect deployment
+  ## The number of replicas of the NGINX App Protect deployment
   replicas: 1
   
   ## Configure root filesystem as read-only and add volumes for temporary data
@@ -252,7 +249,7 @@ appprotect:
   ## The annotations for deployment
   annotations: {}
   
-  ## InitContainers for the Nginx App Protect pod
+  ## InitContainers for the NGINX App Protect pod
   initContainers: []
     # - name: init-container
     #   image: busybox:latest
@@ -260,15 +257,15 @@ appprotect:
   
   nginx:
     image:
-      ## The image repository of the Nginx App Protect WAF image you built
+      ## The image repository of the NGINX App Protect WAF image you built
       ## This must reference the Docker image you built following the Docker deployment guide
       ## Replace <your-private-registry> with your actual registry and update the image name/tag as needed
       repository: <your-private-registry>/nginx-app-protect-5
-      ## The tag of the Nginx image
+      ## The tag of the NGINX image
       tag: latest
-    ## The pull policy for the Nginx image
+    ## The pull policy for the NGINX image
     imagePullPolicy: IfNotPresent
-    ## The resources of the Nginx container.
+    ## The resources of the NGINX container.
     resources:
       requests:
         cpu: 10m
@@ -392,7 +389,7 @@ appprotect:
   #   nginxKey: ""
 
   config:
-    ## The name of the ConfigMap used by the Nginx container
+    ## The name of the ConfigMap used by the NGINX container
     name: nginx-config
     ## The annotations of the configmap
     annotations: {}
@@ -509,13 +506,13 @@ appprotect:
     ## Note: It is recommended that you specify your own certificate
     clientCACert: ""
 
-  ## The extra volumes of the Nginx container
+  ## The extra volumes of the NGINX container
   volumes: []
   # - name: extra-conf
   #   configMap:
   #     name: extra-conf
 
-  ## The extra volumeMounts of the Nginx container
+  ## The extra volumeMounts of the NGINX container
   volumeMounts: []
   # - name: extra-conf
   #   mountPath: /etc/nginx/conf.d/extra.conf
