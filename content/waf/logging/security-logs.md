@@ -1,7 +1,7 @@
 ---
 title: Security logs
 toc: true
-weight: 200
+weight: 300
 nd-content-type: reference
 nd-product: NAP-WAF
 ---

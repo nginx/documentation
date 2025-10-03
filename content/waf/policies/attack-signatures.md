@@ -203,7 +203,7 @@ To exclude multiple attack signatures, each signature ID needs to be added as a 
 
 In the previous examples, the signatures were disabled for all the requests that are inspected by the respective policy. You can also exclude signatures for specific URLs or parameters, while still enable them for the other URLs and parameters. 
 
-The topics [User-defined URLs]() and [User-defined parameters]() have more details.
+The topic [User-defined URLs and parameters]({{< ref "/waf/policies/user-urls-parameters.md" >}}) has more details.
 
 In some cases, you may want to remove a whole signature set that was included in the default policy. For example, a protected application may not use XML and is not vulnerable to XPath injection. 
 
