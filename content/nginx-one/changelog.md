@@ -30,6 +30,13 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 2, 2025
+
+### You can now set up config templates
+
+- Start with how you can [Author templates]({{< ref "/nginx-one/nginx-configs/config-templates/author-templates.md" >}})
+- Automate with our **experimental** endpoints for [NGINX One Console templates]({{< ref "/nginx-one/api/api-reference-guide/#tag/Templates" >}})
+
 ## September 16, 2025
 
 ### IPv6 endpoints for NGINX Agent and NGINX Plus usage reporting
