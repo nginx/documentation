@@ -1,3 +1,11 @@
+---
+title: "Advanced configuration for NAP policies"
+weight: 350
+toc: true
+nd-content-type: how-to
+nd-product: NGINX One Console
+---
+
 # Advanced Configuration for NAP Policies
 
 This document consolidates advanced configuration options for parameters, URLs, and cookies in NGINX App Protect (NAP) policies. These configurations allow for fine-tuning security settings to meet specific application requirements. By centralizing these options, this guide provides a unified reference for creating granular and robust security policies.

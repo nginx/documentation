@@ -1,3 +1,11 @@
+---
+title: "Add parameters"
+weight: 350
+toc: true
+nd-content-type: how-to
+nd-product: NGINX One Console
+---
+
 # Managing Parameters in NAP Policy
 Parameters can be configured and managed directly within the policy editor by selecting the **Parameters** option.
 
@@ -34,6 +42,8 @@ For each violation type, you can:
 - Toggle `alarm` and `block` settings
 
 For more details about enforcement modes, see the [Glossary]({{< ref "/nginx-one/glossary.md#nginx-app-protect-waf-terminology" >}}), specifically the entry: **Enforcement mode**.
+
+See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
 # Adding a Parameter to Your Policy
 
