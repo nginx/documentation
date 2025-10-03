@@ -14,32 +14,33 @@ Learn how to configure F5 NGINXaaS for Azure with OpenID Connect (OIDC) authenti
 
 There are currently two methods available for setting up OIDC authentication.
 
-1. Using Native OIDC implementation (Introduced from NGINX Plus R35)
+1. Using Native OIDC implementation (Introduced from NGINX Plus R34)
    
-   This method applies to NGINX Plus Release 35 and later. In earlier versions, NGINX Plus relied on an njs-based solution, which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.
-
 2. Using NJS based implementation
 
 ## Prerequisites
 
 These prerequisites are used for both methods of configuring NGINXaaS for Azure with IdP using Native OIDC and NJS.
+
 1. Configure an NGINXaaS deployment with [SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}).
 
 2. Enable [Runtime State Sharing]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) on the NGINXaaS deployment.
 
 
-
 ## Configure NGINXaaS for Azure with IdP using Native OIDC
 
+This method applies to NGINX Plus Release 34 and later. In earlier versions, NGINX Plus relied on an njs-based solution, which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.
+
 ### Prerequisites
+
 1. Configure the IdP. For example, you can [register a Microsoft Entra Web application]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id/#entra-setup" >}}) as the IdP.
-2. A domain name pointing to your NGINXaaS deployment, for example, `demo.example.com`. This will be referred to as `<nginxaas_deployment_fqdn>` throughout this guide.
+1. A domain name pointing to your NGINXaaS deployment, for example, `demo.example.com`. This will be referred to as `<nginxaas_deployment_fqdn>` throughout this guide.
 
 With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
 
 1. Ensure that you have the values of the **Client ID**, **Client Secret**, and **Tenant ID** obtained during IdP configuration.
 
-2. In your NGINX configuration file, add a public DNS resolver with the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive in the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context:
+1. In your NGINX configuration file, add a public DNS resolver with the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive in the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context:
 
     ```nginx
     http {
@@ -49,7 +50,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     }
     ```
 
-3. In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define your IdP provider by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context. The `session_store` directive stores the session data and we need `keyval_zone` to sync this data in a clustered environment. Include the `state` parameter to persist session data across NGINX restarts. For example, for Microsoft Entra ID:
+1. In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define your IdP provider by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context. The `session_store` directive stores the session data and we need `keyval_zone` to sync this data in a clustered environment. Include the `state` parameter to persist session data across NGINX restarts. For example, for Microsoft Entra ID:
 
     ```nginx
     http {
@@ -78,7 +79,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
 
     {{< call-out "note" >}} The `state=/opt/oidc_sessions.json` parameter enables persistence of OIDC session data across NGINX restarts. The state file path must be placed in a directory accessible to the NGINX worker processes, following [NGINX Filesystem Restrictions]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
 
-4. Configure your server block with OIDC protection. This example uses localhost as the upstream server:
+1. Configure your server block with OIDC protection. The following example uses localhost as the upstream server:
 
     ```nginx
     server {
@@ -116,7 +117,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     }
     ```
 
-5. Add the runtime state sharing configuration to your NGINX configuration as mentioned in the [Prerequisites](#prerequisites). This enables synchronization of OIDC session data across NGINXaaS instances:
+1. Add the runtime state sharing configuration to your NGINX configuration as mentioned in the [Prerequisites]({{< ref "/nginxaas-azure/quickstart/security-controls/oidc.md#prerequisites" >}}). This enables synchronization of OIDC session data across NGINXaaS instances:
 
     ```nginx
     stream {
@@ -209,16 +210,18 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     ```
     </details>
 
-6. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
+1. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
+
 For more detailed steps on this OIDC configuration, please refer to:
 
 - [Single Sign-On with Microsoft Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id.md" >}})
 - [Terraform snippets for Native OIDC use case](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/configurations/native-oidc)
+
 ### Testing
 
 1. Open `https://<nginxaas_deployment_fqdn>/` in a browser. You will be automatically redirected to your IdP sign-in page.
 
-2. Enter valid IdP credentials. Upon successful sign-in, you will be redirected back to NGINXaaS and see your protected application. Using the example configuration, you will see a message displaying the authenticated user's information in the browser:
+1. Enter valid IdP credentials. Upon successful sign-in, you will be redirected back to NGINXaaS and see your protected application. Using the example configuration, you will see a message displaying the authenticated user's information in the browser:
 
     ```text
     Hello, [Name]!
@@ -226,12 +229,14 @@ For more detailed steps on this OIDC configuration, please refer to:
     Entra ID sub: [subject_id]
     ```
 
-3. To test logout, navigate to `https://<nginxaas_deployment_fqdn>/logout`. NGINXaaS initiates an RP-initiated logout, and your IdP ends the session and redirects back to the post-logout page.
+1. To test logout, navigate to `https://<nginxaas_deployment_fqdn>/logout`. NGINXaaS initiates an RP-initiated logout, and your IdP ends the session and redirects back to the post-logout page.
 
 
 
 ## Configure NGINXaaS for Azure with IdP using NJS
+
 ### Prerequisites
+
 1. [Configure the IdP](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#configuring-your-idp). For example, you can [register a Microsoft Entra Web application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) as the IdP.
 
 Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#configuring-nginx-plus) in [nginx-openid-connect](https://github.com/nginxinc/nginx-openid-connect) but it also has its own specific configurations that must be completed to work normally.
