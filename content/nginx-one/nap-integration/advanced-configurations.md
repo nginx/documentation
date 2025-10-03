@@ -1,6 +1,6 @@
 ---
 title: "Advanced configuration for NAP policies"
-weight: 350
+weight: 700
 toc: true
 nd-content-type: how-to
 nd-product: NGINX One Console

@@ -1,6 +1,6 @@
 ---
 title: "Add urls"
-weight: 350
+weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: NGINX One Console
