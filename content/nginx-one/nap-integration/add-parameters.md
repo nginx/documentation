@@ -63,4 +63,4 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
    - If enabled, you can overwrite attack signatures for this specific parameter
    - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md/" >}})
 
-1. Click **Add Parameter** to save your configuration
+1. Select **Add Parameter** to save your configuration
