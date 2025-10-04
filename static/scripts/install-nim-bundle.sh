@@ -364,7 +364,7 @@ installBundleForRPMDistro(){
          echo "Installing nginx plus..."
          yum install -y nginx-plus
          check_last_command_status "yum install -y nginx-plus" $?
-         createNginxMgmtFile
+         create_nginx_mgmt_file
     else
          echo "Installing nginx..."
          yum install -y nginx --repo nginx-stable
