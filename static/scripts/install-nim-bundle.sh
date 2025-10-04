@@ -353,7 +353,7 @@ installBundleForRPMDistro(){
     fi
     printf "[nginx-plus]\nname=nginx-plus repo\nbaseurl=https://pkgs.nginx.com/plus/$os_type/\$releasever/\$basearch/\nsslclientcert=/etc/ssl/nginx/nginx-repo.crt\nsslclientkey=/etc/ssl/nginx/nginx-repo.key\ngpgcheck=0\nenabled=1" >> /etc/yum.repos.d/nginx-plus.repo
 
-    yum install -y yum-utils curl epel-release ca-certificates
+    yum install -y yum-utils curl epel-release ca-certificates dnf-plugins-core
     yum-config-manager --enable  nginx-stable
     yum-config-manager --enable  nginx-plus
 
