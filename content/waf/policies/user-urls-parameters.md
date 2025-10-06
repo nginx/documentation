@@ -14,7 +14,6 @@ nd-product: NAP-WAF
 
 This topic describes the user-defined URLs and parameters feature of F5 WAF for NGINX.
 
-
 ## URLs
 
 User-defined URLs allows you to configure a URL with the following options:
