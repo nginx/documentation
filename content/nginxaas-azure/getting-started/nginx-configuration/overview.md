@@ -166,6 +166,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [disable_symlinks](https://nginx.org/en/docs/http/ngx_http_core_module.html#disable_symlinks)\
 [early_hints](https://nginx.org/en/docs/http/ngx_http_core_module.html#early_hints)\
 [empty_gif](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html#empty_gif)\
+[enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report)\
 [env](https://nginx.org/en/docs/ngx_core_module.html#env)\
 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log)\
 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)\
@@ -367,6 +368,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [least_conn (ngx_stream_upstream_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_conn)\
 [least_time (ngx_http_upstream_module)](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time)\
 [least_time (ngx_stream_upstream_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time)\
+[license_token](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token)\
 [limit_conn (ngx_http_limit_conn_module)](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn)\
 [limit_conn (ngx_stream_limit_conn_module)](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn)\
 [limit_conn_dry_run (ngx_http_limit_conn_module)](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_dry_run)\
