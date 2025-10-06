@@ -23,17 +23,26 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 Dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions), unless noted otherwise in the table below.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Module           | Distribution and details                                                                                   |
-|-------------------|-----------------------------------------------------------------------------------------------------------|
-| [AppProtect]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) | AlmaLinux: **Not supported**<br>Alpine Linux 3.17 & 3.18: **Not supported**<br>Alpine Linux 3.19: **x86_64 only**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **x86_64 only**<br>Debian 11 & 12: **x86_64 only**<br>FreeBSD: **Not supported**<br>Oracle Linux 8: **x86_64 only**<br>RHEL 8 & 9: **x86_64 only**<br>Rocky Linux 8: **Not supported**<br>Rocky Linux 9: **x86_64 only**<br>SLES: **Not supported**<br>Ubuntu 20.04: **Not supported**<br>Ubuntu 22.04 & 24.04: **x86_64 only** |
-| [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9, RHEL 10: **Not supported**<br>FreeBSD: **Not supported**           |
-| [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | Amazon Linux 2: **Not supported**                                            |
-| [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **Not supported** |
-| [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**                                              |
-| [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})| Amazon Linux 2: **Not supported**<br>SLES: **Not supported**                                               |                                                                                |
+| Distribution | **Module:** [AppProtect]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
+|--------------|------------|-------|---------|---------------|------------|---------------|
+| **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Alpine Linux 3.17 & 3.18** | ❌ | ✓ | ✓ | ❌ | ❌ | ✓ |
+| **Alpine Linux 3.19, 3.20, 3.21, 3.22** | ✓ (x86_64 only) | ✓ | ✓ | ❌ | ❌ | ✓ |
+| **Amazon Linux 2** | ❌ | ✓ | ❌ | ❌ | ✓ | ❌ |
+| **Amazon Linux 2023** | ✓ (x86_64 only) | ❌ | ✓ | ❌ | ✓ | ✓ |
+| **Debian 11 & 12** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **FreeBSD** | ❌ | ❌ | ✓ | ❌ | ❌ | ✓ |
+| **Oracle Linux 8** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
+| **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Rocky Linux 8** | ❌ |  ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Rocky Linux 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **SLES** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ |
+| **Ubuntu 20.04** | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Ubuntu 22.04 & 24.04** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
 {{</bootstrap-table>}}
 
 ---
+
 
 ## Supported SSL/TLS versions
 
