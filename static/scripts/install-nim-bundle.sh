@@ -352,14 +352,12 @@ installBundleForRPMDistro(){
           rm -f /etc/yum.repos.d/nginx-plus.repo
     fi
     printf "[nginx-plus]\nname=nginx-plus repo\nbaseurl=https://pkgs.nginx.com/plus/$os_type/\$releasever/\$basearch/\nsslclientcert=/etc/ssl/nginx/nginx-repo.crt\nsslclientkey=/etc/ssl/nginx/nginx-repo.key\ngpgcheck=0\nenabled=1" >> /etc/yum.repos.d/nginx-plus.repo
-
-    yum install -y yum-utils curl epel-release ca-certificates dnf-plugins-core
-    yum-config-manager --enable  nginx-stable
-    yum-config-manager --enable  nginx-plus
-
+  
     yum -y update
     check_last_command_status "yum update" $?
-
+  
+    yum install -y yum-utils curl epel-release ca-certificates
+  
     if [ "${USE_NGINX_PLUS}" == "true" ]; then
          echo "Installing nginx plus..."
          yum install -y nginx-plus
@@ -375,7 +373,7 @@ installBundleForRPMDistro(){
     check_last_command_status "systemctl enable nginx.service" $?
 
     if [[ ${SKIP_CLICKHOUSE_INSTALL} == "false" ]]; then
-        yum-config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
+        dnf config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
         echo "Installing clickhouse-server and clickhouse-client"
 
         yum install -y "clickhouse-common-static-${CLICKHOUSE_VERSION}"
