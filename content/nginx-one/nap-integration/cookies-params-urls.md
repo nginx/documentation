@@ -39,7 +39,7 @@ For more details about enforcement modes, see the [Glossary]({{< ref "/nginx-one
 
 See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
-# Adding a cookie to your policy
+## Adding a cookie to your policy
 
 1. Choose Cookie Type:
    - Select either `Explicit` for exact cookie matching or `Wildcard` for pattern-based matching
@@ -97,7 +97,7 @@ For more details about enforcement modes, see the [Glossary]({{< ref "/nginx-one
 
 See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
-# Adding a parameter to your policy
+## Adding a parameter to your policy
 
 1. Choose Parameter Type:
    - Select either `Explicit` for exact parameter matching or `Wildcard` for pattern-based matching
@@ -151,7 +151,7 @@ For more details about enforcement modes, see the [Glossary]({{< ref "/nginx-one
 
 See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
-# Adding a URL to your policy
+## Adding a URL to your policy
 
 1. Choose URL Type:
    - Select either `Explicit` for exact URL matching or `Wildcard` for pattern-based matching
