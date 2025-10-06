@@ -79,8 +79,6 @@ service:
   pipelines:
     metrics/prometheus-example-pipeline:
       receivers:
-        - containermetrics
-        - hostmetrics
         - nginxplus
       processors:
         - resource/default
@@ -102,8 +100,6 @@ service:
   pipelines:
     metrics/prometheus-example-pipeline:
       receivers:
-        - containermetrics
-        - hostmetrics
         - nginx
       processors:
         - resource/default
@@ -137,8 +133,6 @@ service:
   pipelines:
     metrics/otlp-example-pipeline:
       receivers:
-        - containermetrics
-        - hostmetrics
         - nginxplus
       processors:
         - resource/default
@@ -166,8 +160,6 @@ service:
   pipelines:
     metrics/otlp-example-pipeline:
       receivers:
-        - containermetrics
-        - hostmetrics
         - nginx
       processors:
         - resource/default
@@ -195,8 +187,6 @@ service:
   pipelines:
     metrics/debug-example-pipeline:
       receivers:
-        - containermetrics
-        - hostmetrics
         - nginxplus
       processors:
         - resource/default
@@ -218,8 +208,6 @@ service:
   pipelines:
     metrics/debug-example-pipeline:
       receivers:
-        - containermetrics
-        - hostmetrics
         - nginx
       processors:
         - resource/default
@@ -232,7 +220,7 @@ service:
 
 
 
-### Debug Merging Configs
+### Troubleshooting
 
 To view the merged OpenTelemetry configuration set the Agent log level to debug in `/etc/nginx-agent/nginx-agent.conf` and restart NGINX Agent 
 
