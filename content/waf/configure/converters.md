@@ -12,7 +12,7 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-F5 WAF for NGINX has multiple tools for converting existing resources or configuration files for use from a BIG-IP for use from a BIG-IP environment. 
+This document describes the tools F5 WAF for NGINX has to convert existing resources or configuration files from a BIG-IP environment for use with F5 WAF for NGINX. 
 
 {{< call-out "important" >}}
 
@@ -139,7 +139,7 @@ total 848
 
 ## User Defined Signatures converter
 
-The User Defined Signatures converter tool is used to a User Defined Signatures file from XML to JSON format.
+The User Defined Signatures converter tool is used to convert a User Defined Signatures file from XML to JSON format.
 
 It is a script located on on the path `/opt/app_protect/bin/convert-signatures`.
 
