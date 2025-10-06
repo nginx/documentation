@@ -34,7 +34,6 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 | **FreeBSD** | ❌ | ❌ | ✓ | ❌ | ❌ | ✓ |
 | **Oracle Linux 8** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
 | **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **RHEL 10** | ✓ | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Rocky Linux 8** | ❌ |  ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Rocky Linux 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **SLES** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ |
