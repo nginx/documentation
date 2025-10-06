@@ -64,6 +64,10 @@ collector:
 {{< call-out "important" >}} NGINX Agent uses `/default` for naming its default processors, exporters and pipelines using the same naming in your own config might cause issues with sending metrics to your management plane {{< /call-out >}}
 
 - **Add Prometheus Exporter**
+
+{{< tabs name="prometheus-exporter" >}}
+{{% tab name="NGINX Plus" %}}
+
 ```yaml
 exporters:
   prometheus:
@@ -77,13 +81,109 @@ service:
       receivers:
         - containermetrics
         - hostmetrics
+        - nginxplus
       processors:
         - resource/default
       exporters:
         - prometheus
 ```
 
+{{% /tab %}}
+{{% tab name="NGINX OSS" %}}
+
+```yaml
+exporters:
+  prometheus:
+    endpoint: "127.0.0.1:5643"
+    resource_to_telemetry_conversion:
+      enabled: true
+
+service:
+  pipelines:
+    metrics/prometheus-example-pipeline:
+      receivers:
+        - containermetrics
+        - hostmetrics
+        - nginx
+      processors:
+        - resource/default
+      exporters:
+        - prometheus
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+
+- **Third-party OTel Collector**
+
+{{< tabs name="third-party-collector" >}}
+{{% tab name="NGINX Plus" %}}
+
+```yaml
+exporters:
+  otlp/local-collector:
+    endpoint: "my-local-collector.com:443"
+    timeout: 10s
+    retry_on_failure:
+      enabled: true
+      initial_interval: 10s
+      max_interval: 60s
+      max_elapsed_time: 10m
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    metrics/otlp-example-pipeline:
+      receivers:
+        - containermetrics
+        - hostmetrics
+        - nginxplus
+      processors:
+        - resource/default
+      exporters:
+        - otpl/local-collector
+```
+
+{{% /tab %}}
+{{% tab name="NGINX OSS" %}}
+
+```yaml
+exporters:
+  otlp/local-collector:
+    endpoint: "my-local-collector.com:443"
+    timeout: 10s
+    retry_on_failure:
+      enabled: true
+      initial_interval: 10s
+      max_interval: 60s
+      max_elapsed_time: 10m
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    metrics/otlp-example-pipeline:
+      receivers:
+        - containermetrics
+        - hostmetrics
+        - nginx
+      processors:
+        - resource/default
+      exporters:
+        - otpl/local-collector
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+
 - **Add Debug Exporter**
+
+{{< tabs name="debug-exporter" >}}
+{{% tab name="NGINX Plus" %}}
+
 ```yaml
 exporters:
   debug:
@@ -97,11 +197,39 @@ service:
       receivers:
         - containermetrics
         - hostmetrics
+        - nginxplus
       processors:
         - resource/default
       exporters:
         - debug
 ```
+
+{{% /tab %}}
+{{% tab name="NGINX OSS" %}}
+
+```yaml
+exporters:
+  debug:
+    verbosity: detailed
+    sampling_initial: 5
+    sampling_thereafter: 200
+
+service:
+  pipelines:
+    metrics/debug-example-pipeline:
+      receivers:
+        - containermetrics
+        - hostmetrics
+        - nginx
+      processors:
+        - resource/default
+      exporters:
+        - debug
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 
 
 ### Debug Merging Configs
