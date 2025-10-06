@@ -63,7 +63,7 @@ collector:
 
 {{< call-out "important" >}} NGINX Agent uses `/default` for naming its default processors, exporters and pipelines using the same naming in your own config might cause issues with sending metrics to your management plane {{< /call-out >}}
 
-#### Add Prometheus Exporter
+- **Add Prometheus Exporter**
 ```yaml
 exporters:
   prometheus:
@@ -83,7 +83,7 @@ service:
         - prometheus
 ```
 
-#### Add Debug Exporter
+- **Add Debug Exporter**
 ```yaml
 exporters:
   debug:
@@ -104,7 +104,7 @@ service:
 ```
 
 
-#### Debug Merging Configs
+### Debug Merging Configs
 
 To view the merged OpenTelemetry configuration set the Agent log level to debug in `/etc/nginx-agent/nginx-agent.conf` and restart NGINX Agent 
 
@@ -116,14 +116,3 @@ log:
 ```
 3. Restart NGINX Agent 
 4. View merged OpenTelemetry configuration `cat /var/lib/nginx-agent/opentelemetry-collector-agent-debug.yaml`
-
-
-
-
-
-
-
-
-
-
-
