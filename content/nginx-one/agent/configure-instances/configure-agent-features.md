@@ -1,5 +1,5 @@
 ---
-title: Features configuration
+title: Review and configure features
 weight: 350
 toc: true
 nd-docs: DOCS-000
