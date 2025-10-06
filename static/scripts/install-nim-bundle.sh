@@ -448,7 +448,6 @@ check_nim_dashboard_status(){
     sleep 60
     if ! curl -k -v https://localhost/ui/ 2>/dev/null| grep -q "NGINX"; then
     	echo "NGINX Instance Manager failed to start"
-    	cat /var/log/nms/nms.log
       exit 1
     else
       echo -e "${GREEN}NGINX Instance Manager Successfully Started${NC}"
