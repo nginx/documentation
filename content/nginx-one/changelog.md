@@ -30,6 +30,13 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 7, 2025
+
+### Compare multiple metrics in instance observability
+
+You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI. 
+This feature allows you to visually compare metrics such as network traffic, connections, requests, response codes, memory, and CPU utilization.
+
 ## October 6, 2025
 
 ### Expanded features for configuring NGINX security policies with F5 WAF
