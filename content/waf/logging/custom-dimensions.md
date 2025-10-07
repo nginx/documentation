@@ -10,11 +10,11 @@ F5 WAF for NGINX can configure custom dimensions for log entries using the direc
 
 This directive can be added to the NGINX configuration file in the `http`, `server` and `location` scopes. The custom dimensions become part of every request in the [Security logs]({{< ref "/waf/logging/security-logs.md" >}}) based on the scope used.
 
-The `app_protect_custom_log_attribute` directive takes a key/value pair, such as `app_protect_custom_log_attribute 'customDimension' '1'`. The directive can cascade and override entries based on scope order: _location_, _server_ then. _http_. 
+The `app_protect_custom_log_attribute` directive takes a key/value pair, such as `app_protect_custom_log_attribute 'customDimension' '1'`. The directive can cascade and override entries based on scope order: _location_, _server_ then _http_. 
 
-For example, attributes at the _http_ level applies to all servers and locations unless a specific server or location overrides the same key with a different value.
+For example, attributes at the _http_ level apply to all servers and locations unless a specific server or location overrides the same key with a different value.
 
-When a custom dimension is assigned to a scope, it will appear in the `json_log` field as a new JSON property called "customLogAttributes" at the top level. This properly only appears if the `app_protect_custom_log_attribute` directive is used.
+When a custom dimension is assigned to a scope, it appears in the `json_log` field as a new JSON property called "customLogAttributes" at the top level. This properly appears if the `app_protect_custom_log_attribute` directive is used.
 
 In the configuration example, the "environment" attribute will appear in logs of all locations under that server block.
 
