@@ -437,7 +437,7 @@ paths:
           description: NotFound
 ```
 
-The following request will trigger an `Illegal parameter data type` violation, F5 WAF for NGINX expect to have an integer value in the `query_int` parameter:
+The following request will trigger an `Illegal parameter data type` violation, F5 WAF for NGINX expects to have an integer value in the `query_int` parameter:
 
 ```text
 http://localhost/query?query_int=abc
