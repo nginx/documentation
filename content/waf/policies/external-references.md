@@ -275,7 +275,7 @@ Based on the content of the OpenAPI specification file, F5 WAF for NGINX will au
 * Parameters
 * JSON profiles
 
-A policy template is provided with F5 WAF for NGINX packages containing violations related to OpenAPI configured to block (enforced) and is located in on the path _/etc/app_protect/conf/NginxApiSecurityPolicy.json_.
+A policy template is provided with F5 WAF for NGINX packages containing violations related to OpenAPI configured to block (enforced) and is located on the path _/etc/app_protect/conf/NginxApiSecurityPolicy.json_.
 
 F5 WAF for NGINX supports only one OpenAPI specification file reference per policy.
 
