@@ -11,7 +11,7 @@
 | [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}) | By default all cookies are allowed and not enforced for integrity. The user can add specific cookies, wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response. |
 | [Data guard]({{< ref "/waf/policies/data-guard.md" >}}) | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default. |
 | [Deny and Allow IP lists]({{< ref "/waf/policies/deny-allow-ip.md" >}}) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
-| [Do-nothing]({{< ref "/waf/policies/do-nothing.md" >}}) | Do-nothing allows you to configure the avoidance of inspecting or parsing content of a URL. |
+| [Do-nothing]({{< ref "/waf/policies/do-nothing.md" >}}) | Do-nothing allows you to avoid inspecting or parsing a URL. |
 | [Disallowed file type extensions]({{< ref "/waf/policies/disallowed-extensions.md" >}}) | Support any file type, and includes a predefined list of file types by default |
 | [Evasion techniques]({{< ref "/waf/policies/evasion-techniques.md" >}}) | All evasion techniques are enabled by default, and can be disabled individually. These include directory traversal, bad escaped characters and more. |
 | [Geolocation]({{< ref "/waf/policies/geolocation.md" >}}) | The geolocation feature allows you to configure enforcement based on the location of an object using the two-letter ISO code representing a country. | 

@@ -16,10 +16,10 @@ For example, attributes at the _http_ level apply to all servers and locations u
 
 When a custom dimension is assigned to a scope, it appears in the `json_log` field as a new JSON property called "customLogAttributes" at the top level. This properly appears if the `app_protect_custom_log_attribute` directive is used.
 
-In the configuration example, the "environment" attribute will appear in logs of all locations under that server block.
+In the configuration example, the "environment" attribute appears in logs of all locations under that server block.
 
 ```json
-""customLogAttribute"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
+""customLogAttributes"":[{""name"":""component"",""value"":""comp1""},{""name"":""gateway"",""value"":""gway1""}]}"
 ```
 
 The following example defines the `app_protect_custom_log_attribute` directive at the server and location level, with key/value pairs as strings.
@@ -38,7 +38,7 @@ server {
 
         server_name  localhost;
         proxy_http_version 1.1;
-        app_protect_custom_log_attribute ‘environment' 'env1';
+        app_protect_custom_log_attribute 'environment' 'env1';
 
         location / {
 
@@ -50,7 +50,7 @@ server {
     }
 ```
 
-The key/value pairs are 'environment env1', ‘gateway gway1’ and ‘component comp1’ in the above examples:
+The key/value pairs are 'environment env1', 'gateway gway1' and 'component comp1' in the above examples:
 
 - app_protect_custom_log_attribute environment env1;
 - app_protect_custom_log_attribute gateway gway1;
