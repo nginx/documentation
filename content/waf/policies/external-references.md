@@ -28,7 +28,7 @@ Updating a single file referenced in the policy will not trigger a policy compil
 
 To use external references, replace the direct property in the policy file with the _\<ext-ref\>Reference_ property, where _\<ext-ref\>_ defines the replacement text for the property changed to singular (if originally plural) and notation converted from snake case to camelCase. 
 
-For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` would could be replaced by `dataGuardReference`.
+For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` could be replaced by `dataGuardReference`.
 
 ## External reference types
 
