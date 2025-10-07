@@ -34,7 +34,7 @@ For example, a `modifications` section could be replaced by `modificationsRefere
 
 There are different implementations based on the type of references that are being made.
 
-### External URL reference
+### URL references
 
 URL reference is the method of referencing an external source by providing its full URL. 
 
@@ -43,6 +43,7 @@ This is a useful method when trying to combine or consolidate parts of the polic
 {{< call-out "note" >}} 
 
 You need to make sure that the server where the resource files are located is always available when you are compiling your policy.
+
 {{< /call-out >}}
 
 This example creates a skeleton policy, enabling the file type violation. 
@@ -105,18 +106,18 @@ The referenced `file-types.txt` file contains the following code:
 ]
 ```
 
-### HTTPS references
+#### HTTPS references
 
 HTTPS references are a special case of URL references. It uses the HTTPS protocol instead of the HTTP protocol. Make sure that the webserver you are downloading the resources from does also support HTTPS protocol and has certificates setup properly.
 
 - Certificates must be valid in date (not expired) during the policy compilation.
 - Certificates must be signed by a trusted CA.
-- For Self-signed certificates, you need to make sure to add your certificates to the trusted CA of the machine where App Protect is installed.
+- For Self-signed certificates, you need to make sure to add your certificates to the trusted CA of the machine where F5 WAF for NGINX is installed.
 - Certificates must use the exact domain name that the certificate was issued for. For example, SSL will differentiate between domain.com and www.domain.com, considering each a different domain name.
 
-In this configuration, we are completely satisfied with the basic default policy, and we wish to use it as is. However, we wish to define a custom response page using an external file located on an HTTPS web server. The external reference file contains our custom response page configuration.
+The following configuration builds on the default policy by defining a custom response page using an external file located on an HTTPS web server. 
 
-**Policy configuration:**
+The external reference file contains the custom response page configuration.
 
 ```json
 {
@@ -145,9 +146,7 @@ Content of the referenced file `response-pages.txt`:
 ]
 ```
 
-In this example, we would like to enable all attack signatures. Yet, we want to exclude specific signatures from being enforced.
-
-**Policy configuration:**
+The next example enables all attack signatures while excluding specific signatures from being enforced:
 
 ```json
 {
@@ -193,22 +192,25 @@ Content of the referenced file `modifications.txt`:
 
 ### File references
 
-File references refers to accessing local resources on the same machine, as opposed to accessing a remote resource on another server/machine. The user can specify any location that is accessible by App Protect except for the root folder ("/"). If no full path is provided, the default path `/etc/app_protect/conf` will be assumed. Note that file references can only be on the local machine: you cannot use remote hosts!
+File references access local resources on the same machine, as opposed to accessing a remote resource on another server/machine.
 
-Here are some examples of the typical cases:
+File references do not work with remote hosts.
+
+You can specify any location that is accessible by F5 WAF for NGINX except for the root folder ("/"). 
+
+If a full path is not provided, the default path (_/etc/app_protect/conf_) will be used for resolution.
+
+Here are some examples of typical cases:
 
 | Examples | File path | Notes |
 | -------- | --------- | ----- |
-|<file:///foo.json> | /etc/app_protect/conf/foo.json | Default directory assumed |
-|<file://foo.json> | /etc/app_protect/conf/foo.json | Formally illegal, but tolerated as long as there is no trailing slash. |
-|<file:///etc/app_protect/conf/foo.json> | /etc/app_protect/conf/foo.json | Full path, but still the default one |
-|<file:///bar/foo.json> | /bar/foo.json | Non-default path |
-|<file://etc/app_protect/conf/foo.json> | **Not accepted** | "etc" is interpreted as remote host name |
+| _file:///foo.json_ | /etc/app_protect/conf/foo.json | Default directory assumed |
+| _file://foo.json_ | /etc/app_protect/conf/foo.json | Formally illegal, but tolerated as long as there is no trailing slash. |
+| _file:///etc/app_protect/conf/foo.json_ | /etc/app_protect/conf/foo.json | Full path, using default directory |
+| _file:///bar/foo.json_ | /bar/foo.json | Non-default path |
+| _file://etc/app_protect/conf/foo.json_ | **Not accepted** | "etc" is interpreted as remote host name |
 
-
-In this example, we would like to enable all attack signatures. Yet, we want to exclude specific signatures from being enforced. To do this, we reference a local file on the machine.
-
-**Policy Configuration:**
+The next example enable all attack signatures, excluding specific signatures from enforcement using a reference to a local file on the machine.
 
 ```json
 {
@@ -233,7 +235,7 @@ In this example, we would like to enable all attack signatures. Yet, we want to 
 }
 ```
 
-Content of the referenced file `modifications.txt`:
+Content of the referenced `modifications.txt` file:
 
 ```json
 {
@@ -252,48 +254,40 @@ Content of the referenced file `modifications.txt`:
 }
 ```
 
-If, for any reason, the configuration was done incorrectly, the policy compilation process will fail with the following error:
+If the configuration is incorrect the policy compilation process will fail with the following error:
+
 ```shell
 APP_PROTECT { "event": "configuration_load_failure" ...
 ```
 
-The error details that follow will depend on the exact situation causing the policy compilation to fail.  If the policy compilation process fails, the compiler will revert to the last working policy and all the changes for the last policy compilation attempt will be lost.
+The error will vary based on the conditions of the failure. If the policy compilation process fails, the compiler will revert to the last working policy and the changes for the last policy compilation attempt will be discarded.
 
-## OpenAPI specification file reference
+## OpenAPI references
 
-The OpenAPI Specification defines the spec file format needed to describe RESTful APIs. The spec file can be written either in JSON or YAML. Using a spec file simplifies the work of implementing API protection. Refer to the OpenAPI Specification (formerly called Swagger) for details.
+F5 WAF for NGINX can reference an OpenAPI specification file used to describe restful APIs, using it for API protection.
 
-The simplest way to create an API protection policy is using an OpenAPI Specification file to import the details of the APIs. If you use an OpenAPI Specification file, F5 WAF for NGINX will automatically create a policy for the following properties (depending on what's included in the spec file):
+The specification file can be written in JSON or YAML format: the details can be used to create a protection policy.
+
+Based on the content of the OpenAPI specification file, F5 WAF for NGINX will automatically create a policy for the following properties:
+
 * Methods
 * URLs
 * Parameters
 * JSON profiles
 
-An OpenAPI-ready policy template is provided with the F5 WAF for NGINX packages and is located in: `/etc/app_protect/conf/NginxApiSecurityPolicy.json`
+A policy template is provided with F5 WAF for NGINX packages containing violations related to OpenAPI configured to block (enforced) and is located in on the path _/etc/app_protect/conf/NginxApiSecurityPolicy.json_.
 
-It contains violations related to OpenAPI set to blocking (enforced).
-
-{{< call-out "note" >}} F5 WAF for NGINX supports only one OpenAPI Specification file reference per policy.{{< /call-out >}}
-
-### Types of OpenAPI References
-
-There are different ways of referencing OpenAPI Specification files. The configuration is similar to [External References](#external-references).
+F5 WAF for NGINX supports only one OpenAPI specification file reference per policy.
 
 {{< call-out "note" >}} Any update of an OpenAPI Specification file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration. {{< /call-out >}}
 
-#### URL Reference
+Configuring and referencing OpenAPI specification files are similar to other external references.
 
-URL reference is the method of referencing an external source by providing its full URL.
+### URL references
 
-Make sure to configure certificates prior to using the HTTPS protocol - see the [HTTPS References](#https-reference) under the External References section for more details.
+This example adds an OpenAPI specification file reference using the link `http://127.0.0.1:8088/myapi.yaml`. 
 
-{{< call-out "note" >}} You need to make sure that the server where the resource files are located is always available when you are compiling your policy. {{< /call-out >}}
-
-##### Example Configuration
-
-In this example, we are adding an OpenAPI Specification file reference using the link `http://127.0.0.1:8088/myapi.yaml`. This will configure allowed data types for `query_int` and `query_str` parameters values.
-
-**Policy configuration:**
+The referenced file configures the allowed data types for `query_int` and `query_str` parameters values.
 
 ```json
 {
@@ -443,23 +437,15 @@ paths:
           description: NotFound
 ```
 
-In this case the following request will trigger an `Illegal parameter data type` violation, as we expect to have an integer value in the `query_int` parameter:
+The following request will trigger an `Illegal parameter data type` violation, F5 WAF for NGINX expect to have an integer value in the `query_int` parameter:
 
-```
+```text
 http://localhost/query?query_int=abc
 ```
 
-The request will be blocked.
+The link option is also available with the `openApiFileReference` property and synonymous with the one in `open-api-files`. `openApiFileReference` is not an array.
 
-The link option is also available in the `openApiFileReference` property and synonymous with the one above in `open-api-files`
-
-**Note**: `openApiFileReference` is not an array.
-
-##### Example Configuration
-
-In this example, we reference the same OpenAPI Specification file as in the policy above using the `openApiFileReference` property.
-
-**Policy configuration:**
+This next example references the same OpenAPI specification file as the previous one, using the `openApiFileReference` property.
 
 ```json
 {
@@ -483,15 +469,9 @@ Content of the file `ref.txt`:
 ]
 ```
 
-#### File Reference
+### File references
 
-File reference refers to accessing local resources on the same machine. See the [File References](#file-reference) under the External References section for more details.
-
-##### Example Configuration
-
-In this example, we would like to add an OpenAPI Specification file reference to the default policy.
-
-**Policy Configuration:**
+This example adds an OpenAPI specification file reference to the default policy.
 
 ```json
 {
@@ -554,10 +534,10 @@ Content of the referenced file `myapi2.json`:
 }
 ```
 
-In this case the following request will trigger an `Illegal repeated parameter name` violation, as the OpenAPI Specification doesn't allow repeated parameters.
+The following request will trigger an `Illegal repeated parameter name` violation, as the OpenAPI specification doesn't allow repeated parameters.
 
 ```
 http://localhost/query?a=true&a=false
 ```
 
-The request will not be blocked because this violation is set to alarm in the default policy.
+The request will _not be blocked_ because this violation is set to alarm in the default policy.
