@@ -16,11 +16,11 @@
     - title: "NGINX Agent"
       url: "nginx-agent"
 
-- productGroup: NGINX App Protect
+- productGroup: F5 WAF for NGINX
   products:
-    - title: "NGINX App Protect WAF"
-      url: "nginx-app-protect-waf"
-    - title: "NGINX App Protect DoS"
+    - title: "F5 WAF for NGINX"
+      url: "waf"
+    - title: "F5 DoS for NGINX"
       url: "nginx-app-protect-dos"
 
 - productGroup: NGINX as a Service

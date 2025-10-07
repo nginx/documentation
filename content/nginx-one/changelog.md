@@ -30,11 +30,25 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 2, 2025
+
+### You can now set up config templates
+
+- Start with how you can [Author templates]({{< ref "/nginx-one/nginx-configs/config-templates/author-templates.md" >}})
+- Automate with our **experimental** endpoints for [NGINX One Console templates]({{< ref "/nginx-one/api/api-reference-guide/#tag/Templates" >}})
+
+## September 16, 2025
+
+### IPv6 endpoints for NGINX Agent and NGINX Plus usage reporting
+
+Your instances which run in dual-stack or IPv6-only environments can now communicate with NGINX One Console APIs through IPv6 addresses.
+See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-nginx-agent" >}}) for the IP address ranges you need to allow in your firewalls.
+
 ## July 15, 2025
 
-### Set up F5 NGINX App Protect WAF security policies
+### Set up F5 WAF for NGINX security policies
 
-You can now incorporate [NGINX App Protect WAF]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
+You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
 
 In NGINX One Console, you can:
 

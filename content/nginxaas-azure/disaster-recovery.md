@@ -1,6 +1,6 @@
 ---
 title: Disaster recovery
-weight: 750
+weight: 650
 toc: true
 url: /nginxaas/azure/disaster-recovery/
 type:

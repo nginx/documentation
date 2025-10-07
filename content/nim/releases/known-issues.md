@@ -87,7 +87,7 @@ February 06, 2025
 
 #### Description
 
-In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy from the UI fails if the latest NGINX App Protect WAF compiler v5.264.0 (for NGINX App Protect WAF v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
+In NGINX Instance Manager v2.19.0, publishing an F5 WAF for NGINX policy from the UI fails if the latest F5 WAF for NGINX compiler v5.264.0 (for F5 WAF for NGINX v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
 
 #### Workaround
 
@@ -102,7 +102,7 @@ In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy fr
    - Choose **Select PEM files** or **Manual entry**.
    - If using manual entry, copy and paste your *certificate* and *key* details.
 
-    For detailed steps, see [Upload NGINX App Protect WAF certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
+    For detailed steps, see [Upload F5 WAF for NGINX certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
 
 3. Restart the `nms-integrations` service:
 
@@ -128,7 +128,7 @@ November 08, 2024
 
 #### Description
 
-On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
+On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download F5 WAF for NGINX compiler v5.210.0 (for F5 WAF for NGINX v4.12.0) and v5.264.0 (for F5 WAF for NGINX v4.13.0) from the NGINX repository.
 
 #### Workaround
 
@@ -460,7 +460,7 @@ November 17, 2022
 
 References to external files in a policy are not supported.
 
-For example, in the NGINX App Protect WAF JSON declarative policy, these references are not supported:
+For example, in the F5 WAF for NGINX JSON declarative policy, these references are not supported:
 - User-defined signatures - " not supporting for a while" @dan
 - Security controls in external references
 - Referenced OpenAPI Spec files
