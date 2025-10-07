@@ -264,7 +264,7 @@ The error will vary based on the conditions of the failure. If the policy compil
 
 ## OpenAPI references
 
-F5 WAF for NGINX can reference an OpenAPI specification file used to describe restful APIs, using it for API protection.
+F5 WAF for NGINX can reference an OpenAPI specification file used to describe RESTful APIs, using it for API protection.
 
 The specification file can be written in JSON or YAML format: the details can be used to create a protection policy.
 
