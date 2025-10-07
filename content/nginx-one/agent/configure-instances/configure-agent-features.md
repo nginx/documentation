@@ -26,9 +26,7 @@ The following table lists the NGINX Agent features:
 | ------------------- | --------------------------------------------------------------------------- | ------- |
 | configuration       | Full read/write management of configurations, controlled by DataPlaneConfig ConfigMode. | On      |
 | certificates        | Inclusion of public keys and other certificates in the configurations toggled by DataPlaneConfig CertMode                 | Off     |
-| connection          | Sends an initial connection message reporting instance information on presence of Command ServerConfig Host and Port                 | On      |
 | file-watcher        | Monitoring of file changes in the allowed directories list and references from product configs.             | On      |
-| agent-api           | REST API for NGINX Agent.                                                    | Off     |
 | metrics             | Full metrics reporting.                                                      | On      |
 | > metrics-host      | Host-level metrics (cpu, disk, load, fs, memory, network, paging).           | On      |
 | > metrics-container | Container-level metrics from cgroup information.                             | On      |
@@ -46,7 +44,7 @@ You can enable or disable features using several configuration sources:
 Enable features at launch:
 
    ```shell
-   ./nginx-agent --features=connection,configuration,metrics,file-watcher,agent-api
+   ./nginx-agent --features=configuration,metrics,file-watcher
    ```
 
 ### Environment variables
@@ -54,7 +52,7 @@ Enable features at launch:
 Use environment variables for containerized deployments:
 
    ```shell
-   export NGINX_AGENT_FEATURES="connection,configuration,metrics,file-watcher,agent-api"
+   export NGINX_AGENT_FEATURES="configuration,metrics,file-watcher"
    ```
 
 ### Configuration file
@@ -63,11 +61,9 @@ Define features in the `nginx-agent.conf` file:
 
    ```yaml
    features:
-   - connection
    - configuration
    - metrics
    - file-watcher
-   - agent-api
    ```
 
 ## Use cases
