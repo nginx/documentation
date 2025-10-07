@@ -121,7 +121,7 @@ The external reference file contains the custom response page configuration.
 
 ```json
 {
-    "name": "external_references_custom_respsonse",
+    "name": "external_references_custom_response",
     "template": {
         "name": "POLICY_TEMPLATE_NGINX_BASE"
     },
