@@ -1,6 +1,6 @@
 ---
 title: "Set security policies through the API"
-weight: 700
+weight: 800
 toc: true
 type: reference
 product: NGINX One

@@ -30,6 +30,19 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 6, 2025
+
+### Expanded features for configuring NGINX security policies with F5 WAF
+
+You can now configure the following for F5 WAF policies directly in the NGINX One Console:
+- [Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md" >}})
+- [Signature Exceptions]({{< ref "/nginx-one/nap-integration/add-signature-sets.md#exceptions" >}})
+- [Parameters]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-parameters" >}})
+- [URLs]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-urls" >}})
+- [Cookies]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-cookies" >}})
+
+For more details, see the [F5 WAF Integration Guide ]({{< ref "/nginx-one/nap-integration/" >}}).
+
 ## October 2, 2025
 
 ### You can now set up config templates
