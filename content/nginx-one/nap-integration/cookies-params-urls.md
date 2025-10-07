@@ -116,7 +116,9 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
    - Choose whether to enable attack signatures
    
    {{< call-out "important" >}}
+
    Attack Signatures are only applicable when the Value Type is `User Input` or `Array` **and** the Data Type is either `Alphanumeric` or `Binary`
+
    {{< /call-out >}}
 
    - Decide if parameter value should be masked in logs which sets `sensitiveParameter` in [Parameter Configuration Reference]({{< ref "/waf/policies/parameter-reference.md" >}})
@@ -143,7 +145,9 @@ Each URL configuration includes:
 - `Attack Signatures`: Indicates whether attack signatures and threat campaigns are enabled, disabled, or not applicable
 
 {{< call-out "important" >}}
+
 **⚠️ Important:** Attack Signatures are automatically shown as "Not Applicable" when Enforcement Type is set to `Disallow` since the URL is explicitly blocked and signature checking is unnecessary.
+
 {{< /call-out >}}
 
 For a complete list of configurable URL properties and options, see the [URL Configuration Parameters]({{< ref "/waf/policies/parameter-reference.md" >}}) documentation under the `urls` section.
@@ -181,8 +185,10 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
    - If `Allow URL` is selected, you can optionally enable attack signatures
 
    {{< call-out "important" >}}
+
    **⚠️ Important:** Attack signatures cannot be enabled for disallowed URLs.
-   {{< call-out "important" >}}
+
+   {{< /call-out >}}
 
 1. **Optional**: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific URL
