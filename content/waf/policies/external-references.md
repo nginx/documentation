@@ -210,7 +210,7 @@ Here are some examples of typical cases:
 | _file:///bar/foo.json_ | /bar/foo.json | Non-default path |
 | _file://etc/app_protect/conf/foo.json_ | **Not accepted** | "etc" is interpreted as remote host name |
 
-The next example enable all attack signatures, excluding specific signatures from enforcement using a reference to a local file on the machine.
+The next example enables all attack signatures, excluding specific signatures from enforcement using a reference to a local file on the machine.
 
 ```json
 {
