@@ -11,6 +11,7 @@
 | [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}) | By default all cookies are allowed and not enforced for integrity. The user can add specific cookies, wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response. |
 | [Data guard]({{< ref "/waf/policies/data-guard.md" >}}) | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default. |
 | [Deny and Allow IP lists]({{< ref "/waf/policies/deny-allow-ip.md" >}}) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
+| [Do-nothing]({{< ref "/waf/policies/do-nothing.md" >}}) | Do-nothing allows you to avoid inspecting or parsing a URL. |
 | [Disallowed file type extensions]({{< ref "/waf/policies/disallowed-extensions.md" >}}) | Support any file type, and includes a predefined list of file types by default |
 | [Evasion techniques]({{< ref "/waf/policies/evasion-techniques.md" >}}) | All evasion techniques are enabled by default, and can be disabled individually. These include directory traversal, bad escaped characters and more. |
 | [Geolocation]({{< ref "/waf/policies/geolocation.md" >}}) | The geolocation feature allows you to configure enforcement based on the location of an object using the two-letter ISO code representing a country. | 
@@ -20,10 +21,13 @@
 | [IP address lists]({{< ref "/waf/policies/ip-address-lists.md" >}}) | Organize lists of allowed and forbidden IP addresses across several lists with common attributes. |
 | [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) | Configure the IP Intelligence feature to customize enforcement based on the source IP of the request, limiting access from IP addresses with questionable reputation. |
 | [JWT protection]({{< ref "/waf/policies/jwt-protection.md" >}}) | JWT protection allows you to configure policies based on properties of JSON web tokens, such as their header and signature properties. | 
+| [Override rules]({{< ref "/waf/policies/override-rules.md" >}}) | Override rules allow you to override default policy settings under specific conditions. |
 | [Server technology signatures]({{< ref "/waf/policies/server-technology-signatures.md" >}}) | Support adding signatures per added server technology. |
 | [Time-based signature staging]({{< ref "/waf/policies/time-based-signature-staging.md" >}}) | Time-based signature staging allows you to stage signatures for a specific period of time. During the staging period, violations of staged signatures are logged but not enforced. After the staging period ends, violations of staged signatures are enforced according to the policy's enforcement mode. |
 | [Threat campaigns]({{< ref "/waf/policies/threat-campaigns.md" >}}) | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. |
 | [User-defined HTTP headers]({{< ref "/waf/policies/user-headers.md" >}}) | Handling headers as a special part of requests |
+| [User-defined URLs and parameters]({{< ref "/waf/policies/user-urls-parameters.md" >}}) | Use user-defined properties when configuring violations. |
 | [XFF trusted headers]({{< ref "/waf/policies/xff-headers.md" >}}) | Disabled by default, and can accept an optional list of custom XFF headers. |
 | [XML and JSON content]({{< ref "/waf/policies/xml-json-content.md" >}}) | XML content and JSON content profiles detect malformed content and signatures in the element values. Default policy checks maximum structure depth. It is possible to enable more size restrictions: maximum total length of XML/JSON data, maximum number of elements and more. |
+
 {{< /table >}}
