@@ -12,7 +12,7 @@ F5 NGINXaaS for Google Cloud is deployed into your Google Cloud subscription, wh
 
 ## Pricing plans
 
-F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a [99.95% uptime SLA](https://www.f5.com/pdf/customer-support/eusa-sla.pdf). The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
+F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a 99.95% uptime SLA. The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
 
 ### Pricing components
 {{< table >}}
