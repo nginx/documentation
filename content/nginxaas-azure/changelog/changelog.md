@@ -13,7 +13,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
-## October 10, 2025
+## October 07, 2025
 
 - {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 35 (R35) in the Stable Upgrade Channel**
 
