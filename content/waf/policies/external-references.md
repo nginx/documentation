@@ -254,7 +254,7 @@ Content of the referenced `modifications.txt` file:
 }
 ```
 
-If the configuration is incorrect the policy compilation process will fail with the following error:
+If the configuration is incorrect, the policy compilation process will fail with the following error:
 
 ```shell
 APP_PROTECT { "event": "configuration_load_failure" ...
