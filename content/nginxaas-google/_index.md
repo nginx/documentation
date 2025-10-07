@@ -4,7 +4,7 @@ nd-subtitle: Managed NGINX service for your Google Cloud application stack
 url: /nginxaas/google/
 nd-landing-page: true
 cascade:
-  logo: NGINX-Open-Source-product-icon.svg
+  logo: F5-NGINXaaS-icon.svg
 nd-content-type: landing-page
 nd-product: N4GC
 ---
