@@ -287,7 +287,7 @@ Configuring and referencing OpenAPI specification files are similar to other ext
 
 This example adds an OpenAPI specification file reference using the link `http://127.0.0.1:8088/myapi.yaml`. 
 
-The referenced file configures the allowed data types for `query_int` and `query_str` parameters values.
+The referenced file configures the allowed data types for `query_int` and `query_str` parameter values.
 
 ```json
 {
