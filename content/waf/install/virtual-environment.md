@@ -162,10 +162,10 @@ Add F5 WAF for NGINX dependencies:
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 ```
 
-Enable the _codeready-builder_ repository:
+Enable F5 WAF for NGINX dependencies:
 
 ```shell
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+sudo dnf config-manager --set-enabled crb
 ```
 
 Install the F5 WAF for NGINX package and its dependencies:
