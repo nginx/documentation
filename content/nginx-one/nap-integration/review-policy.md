@@ -37,4 +37,3 @@ From the NGINX One Console, you can also manage existing policies. In the Polici
 {{< call-out "note" >}}
 If you use **Save As** to create a new policy, include the `app_protect_cookie_seed` [directive]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#directives" >}}).
 {{< /call-out >}}
-

@@ -43,4 +43,4 @@ F5 WAF for NGINX has specific requirements for the configuration with Docker con
   - You'll need to set a policy bundle (in compressed tar format) in a configured `volume`.
   - Make sure the directory for [NGINX Agent]({{< ref "/agent/configuration/" >}}) includes `/etc/nginx/app_protect_policies`.
 
-When  you deploy NAP policy through NGINX One Console, do not also use plain JSON policy in the same NGINX instance.
+When you deploy NAP policy through NGINX One Console, do not also use plain JSON policy in the same NGINX instance.

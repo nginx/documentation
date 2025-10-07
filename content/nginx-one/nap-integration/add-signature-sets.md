@@ -29,7 +29,7 @@ A **signature exception** allows you to explicitly enable or disable individual 
 From NGINX One Console, select **App Protect > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
 1. In **General Settings**, name and describe the policy.
-1. Go to the **Web Protection** tab and select **Attack Signature Sets**. Here, you can:
+1. Go to the **Web Protection** section and select **Attack Signature Sets**. Here, you can:
    - View all enabled attack signature sets, including the default ones
    - Add new signature sets
    - Modify existing signature sets
@@ -99,7 +99,7 @@ To remove a signature set from your policy, you have two options:
 
 ## Add signature exceptions
 
-From the **Web Protection** tab, select **Attack Signature Exceptions**. This section allows you to override settings for individual signatures.
+From the **Web Protection** section, select **Attack Signature Exceptions**. This allows you to override settings for individual signatures.
 
 1. Click **Add Item** to create a new exception.
 1. Select the signature(s) you want to modify.
@@ -117,61 +117,11 @@ From the **Web Protection** tab, select **Attack Signature Exceptions**. This se
     }
     ```
 
-### Advanced exception configuration
-
-For more complex scenarios, you can use the `modifications` section:
-
-```json
-{
-    "modifications": [
-        {
-            "entityChanges": {
-                "enabled": false
-            },
-            "entity": {
-                "signatureId": 200001834
-            },
-            "entityType": "signature",
-            "action": "add-or-update"
-        }
-    ]
-}
-```
-
-To exclude multiple signatures, add each as a separate entity:
-
-```json
-{
-    "modifications": [
-        {
-            "entityChanges": {
-                "enabled": false
-            },
-            "entity": {
-                "signatureId": 200001834
-            },
-            "entityType": "signature",
-            "action": "add-or-update"
-        },
-        {
-            "entityChanges": {
-                "enabled": false
-            },
-            "entity": {
-                "signatureId": 200004461
-            },
-            "entityType": "signature",
-            "action": "add-or-update"
-        }
-    ]
-}
-```
-
-## Save and deploy your policy
+## Add and deploy your policy
 
 After configuring signature sets and exceptions:
 
-1. Select **Save Policy**. The policy JSON will be updated with your changes.
+1. Select **Add Policy**. The policy JSON will be updated with your changes.
 1. Your policy will appear in the list under the name you provided.
 1. You can then [deploy]({{< ref "/nginx-one/nap-integration/deploy-policy.md/" >}}) the policy to either:
    - An instance
