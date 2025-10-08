@@ -134,7 +134,7 @@ To add an instance to an instance group when installing the NGINX Agent:
     sudo sh install.sh --instance-group nginx-01
     ```
 
-{{< call-out "important" >}}
+{{< call-out "important" "Important:" >}}
 If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's NGINX config as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.
 {{< /call-out >}}
 
