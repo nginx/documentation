@@ -75,7 +75,7 @@ In the NGINXaaS Console,
 
 1. To open the details of your deployment, select its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
-1. Select **Edit** to modify the deployment name, description, and NCU Capacity.
+1. Select **Edit** to modify the deployment description, and NCU Capacity.
    - You can also configure monitoring from here. Detailed instructions can be found in [Enable Monitoring]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
 1. Select **Update** to save your changes.
 1. Select the Configuration tab to view the current NGINX configuration associated with the deployment.
