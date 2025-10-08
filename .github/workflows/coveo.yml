@@ -25,6 +25,8 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Generating token for ${{matrix.env_name}} ...
+        id: generate-token
+        continue-on-error: true
         env:
           COVEO_API_KEY: ${{secrets[matrix.env_api_key]}}
           COVEO_SEARCH_HUB: "HUB_ES_Nginx_Docs_And_Org"
@@ -61,6 +63,7 @@ jobs:
           echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": \"${{matrix.env_coveo_org_id}}\"}" > coveo/search_token.json
 
       - name: Upload token for ${{matrix.env_name}}
+        if: ${{ steps.generate-token.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{matrix.env_name}}
