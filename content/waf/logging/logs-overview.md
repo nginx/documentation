@@ -101,7 +101,7 @@ F5 WAF for NGINX supports logrotate. It is typically run periodically using a cr
 
 If your system has logrotate available, F5 WAF for NGINX log files will rotate automatically based on the default configuration file.
 
-The default logrotate configuration file is `/var/log/app_protect/*.log`:
+The default logrotate configuration file is `/etc/logrotate.d`:
 
 ```none
 {
