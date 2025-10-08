@@ -34,8 +34,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### Compare multiple metrics in instance observability
 
-You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI. 
-This feature allows you to visually compare metrics such as network traffic, connections, requests, response codes, memory, and CPU utilization.
+You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI.
 
 ## October 6, 2025
 
