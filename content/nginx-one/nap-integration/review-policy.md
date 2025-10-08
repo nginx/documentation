@@ -14,13 +14,13 @@ nd-product: NGINX One
 
 Before you implement a policy on an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a policy for your F5 WAF for NGINX system.
 
-## Review NGINX App Protect policies
+## Review F5 WAF for NGINX policies
 
 From NGINX One Console, select **App Protect** > **Policies**. Select the name of the policy that you want to review. You'll see the following tabs:
 
 - Details, which includes:
   - Policy Details: Descriptions, status, enforcement type, latest version, and last deployed time.
-  - Deployments: List of instances and Config Sync Groups where the NGINX App Protect policy is deployed.
+  - Deployments: List of instances and Config Sync Groups where the F5 WAF for NGINX policy is deployed.
 - Policy JSON: The policy, in JSON format. With the **Edit** button, you can modify this policy.
 - Versions: Policy versions that you've written. You can apply an older policy to your deployments.
 
