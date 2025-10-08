@@ -2,8 +2,8 @@
 title: Support
 weight: 100
 toc: true
-nd-docs: DOCS-882
-url: /nginxaas/azure/get-help/support
+nd-docs: DOCS-000
+url: /nginxaas/googoe/get-help/support
 type:
 - how-to
 ---
