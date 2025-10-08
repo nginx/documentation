@@ -21,7 +21,11 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
   - `nginx-plus-module-njs`
    For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#configuration-directives-list" >}}).
 
+  {{< call-out "important" >}}
+
   The [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature, available in NGINX Plus R35 as a [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}), is not currently supported in NGINXaaS due to active-active deployments.
+
+  {{< /call-out >}}
 
 ## September 26, 2025
 
