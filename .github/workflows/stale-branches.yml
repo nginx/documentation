@@ -1,0 +1,41 @@
+name: Prune stale branches
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 1 * * *' # run every day at 01:30 UTC
+
+jobs:
+  stale-branches:
+    runs-on: ubuntu-latest
+    env:
+      ORG: nginx
+      REPO: documentation
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+    steps:
+      - name: Prune all stale branches
+        run: |
+            HAS_MORE="true"
+
+            while [ "$HAS_MORE" == "true" ]; do
+              RESPONSE=$(curl -L -s \
+              -X GET \
+              -H "Accept: application/json" \
+              -s "https://github.com/${{env.ORG}}/${{env.REPO}}/branches/stale")
+
+              HAS_MORE=$(echo "$RESPONSE" | jq -r '.payload.has_more')
+              BRANCHES=$(echo "$RESPONSE" | jq -r '.payload.branches[].name')
+
+              for BRANCH in $BRANCHES; do
+                echo "Deleting branch $BRANCH..."
+                DELETE_RESPONSE=$(curl -L -s \
+                  -X DELETE \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Authorization: Bearer ${{env.GITHUB_TOKEN}}" \
+                  -H "X-GitHub-Api-Version: 2022-11-28" \
+                  https://api.github.com/repos/${{env.ORG}}/${{env.REPO}}/git/refs/heads/$BRANCH)
+                echo "Delete response for branch $BRANCH: $DELETE_RESPONSE"
+              done
+            done
+

@@ -30,6 +30,32 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 7, 2025
+
+### Compare multiple metrics in instance observability
+
+You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI.
+
+## October 6, 2025
+
+### Expanded features for configuring NGINX security policies with F5 WAF
+
+You can now configure the following for F5 WAF policies directly in the NGINX One Console:
+- [Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md" >}})
+- [Signature Exceptions]({{< ref "/nginx-one/nap-integration/add-signature-sets.md#exceptions" >}})
+- [Parameters]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-parameters" >}})
+- [URLs]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-urls" >}})
+- [Cookies]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-cookies" >}})
+
+For more details, see the [F5 WAF Integration Guide ]({{< ref "/nginx-one/nap-integration/" >}}).
+
+## October 2, 2025
+
+### You can now set up config templates
+
+- Start with how you can [Author templates]({{< ref "/nginx-one/nginx-configs/config-templates/author-templates.md" >}})
+- Automate with our **experimental** endpoints for [NGINX One Console templates]({{< ref "/nginx-one/api/api-reference-guide/#tag/Templates" >}})
+
 ## September 16, 2025
 
 ### IPv6 endpoints for NGINX Agent and NGINX Plus usage reporting
@@ -41,7 +67,7 @@ See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-n
 
 ### Set up F5 WAF for NGINX security policies
 
-You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
+You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with F5 WAF for NGINX]({{< ref "/nginx-one/nap-integration/" >}}).
 
 In NGINX One Console, you can:
 
