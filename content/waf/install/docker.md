@@ -236,6 +236,24 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
+#### Ubuntu
+
+{{< tabs name="ubuntu-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+{{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 #### RHEL 8
 
 {{< tabs name="rhel8-instructions" >}}
@@ -285,24 +303,6 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 {{% tab name="NGINX Plus" %}}
 
 {{< include "/waf/dockerfiles/rocky9-plus.md" >}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-#### Ubuntu
-
-{{< tabs name="ubuntu-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-{{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
 
 {{% /tab %}}
 
