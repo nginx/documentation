@@ -27,12 +27,8 @@ The following table lists the NGINX Agent features:
 | configuration       | Full read/write management of configurations, controlled by DataPlaneConfig ConfigMode. | On      |
 | certificates        | Inclusion of public keys and other certificates in the configurations toggled by DataPlaneConfig CertMode                 | Off     |
 | file-watcher        | Monitoring of file changes in the allowed directories list and references from product configs.             | On      |
-| metrics             | Full metrics reporting.                                                      | On      |
-| > metrics-host      | Host-level metrics (cpu, disk, load, fs, memory, network, paging).           | On      |
-| > metrics-container | Container-level metrics from cgroup information.                             | On      |
-| > metrics-instance  | OSS and Plus metrics depending on NGINX instance.                            | On      |
-| logs                | Collection and reporting of NGINX error logs.                                | Off     |
-| > logs-nap          | F5 WAF for NGINX logs.                                                       | Off     |
+| metrics             | Full metrics reporting.                                                      | On      
+| logs-nap          | F5 WAF for NGINX logs.                                                       | Off     |
 {{< /table >}}
 
 ## Configuration sources
