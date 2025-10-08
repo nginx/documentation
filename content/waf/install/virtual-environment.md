@@ -127,27 +127,6 @@ Install the F5 WAF for NGINX package and its dependencies:
 sudo dnf install app-protect
 ```
 
-### Ubuntu
-
-Add the F5 WAF for NGINX repositories:
-
-```shell
-printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
-sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
-
-printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
-https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
-sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
-```
-
-Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo apt-get update
-sudo apt-get install app-protect
-```
-
 ### RHEL / Rocky Linux 9
 
 Add the F5 WAF for NGINX repository:
@@ -172,6 +151,27 @@ Install the F5 WAF for NGINX package and its dependencies:
 
 ```shell
 sudo dnf install app-protect
+```
+
+### Ubuntu
+
+Add the F5 WAF for NGINX repositories:
+
+```shell
+printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+
+printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg] \
+https://pkgs.nginx.com/app-protect-security-updates/ubuntu `lsb_release -cs` nginx-plus\n" | \
+sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+```
+
+Update the repositories, then install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo apt-get update
+sudo apt-get install app-protect
 ```
 
 ## Update configuration files
