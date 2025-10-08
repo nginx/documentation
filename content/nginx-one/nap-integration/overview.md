@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "NGINX App Protect integration overview"
+title: "F5 WAF for NGINX integration overview"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 100
 # Creates a table of contents and sidebar, useful for large documents
@@ -12,8 +12,8 @@ nd-content-type: concept
 nd-product: NGINX One
 ---
 
-You can now integrate the features of F5 WAF for NGINX v4 and v5 in F5 NGINX One Console. NGINX App Protect offers advanced Web Application Firewall (WAF) capabilities.
-Through the NGINX One Console UI, you can now set up the [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) firewall. This solution provides robust security and scalability.
+You can now integrate the features of F5 WAF for NGINX v4 and v5 in F5 NGINX One Console. F5 WAF for NGINX offers advanced Web Application Firewall (WAF) capabilities.
+Through the NGINX One Console UI, you can now set up the [F5 WAF for NGINX]({{< ref "/waf/" >}}) firewall. This solution provides robust security and scalability.
 
 ## Features
 
@@ -27,9 +27,9 @@ Through the NGINX One Console UI, you can:
 
 You can also set up policies through the [NGINX One Console API]({{< ref "/nginx-one/nap-integration/security-policy-api.md/" >}}).
 
-## Set up NGINX App Protect
+## Set up F5 WAF for NGINX
 
-You can [install and upgrade NGINX App Protect]({{< ref "/waf/install/" >}})
+You can [install and upgrade F5 WAF for NGINX]({{< ref "/waf/install/" >}})
 
 ### Container-related configuration requirements
 
