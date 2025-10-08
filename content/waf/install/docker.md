@@ -381,7 +381,7 @@ server {
 
         client_max_body_size 0;
         default_type text/html;
-        proxy_pass http://127.0.0.1:8080/;
+        proxy_pass http://127.0.0.1:8080;
     }
 }
 
