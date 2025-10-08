@@ -30,7 +30,7 @@ Maintaining the latest version NGINX Plus, operating system (OS), and other soft
 | Channel     | Availablity of NGINX Plus and related modules |
 |-------------|-----------------------------------------------|
 | preview     | No sooner than 14 days of a new NGINX Plus [release](https://docs.nginx.com/nginx/releases/). |
-| stable      | No sooner than 45 days of a new NGINX Plus [release](https://docs.nginx.com/nginx/releases/). |
+| stable      | No sooner than 24 days of a new NGINX Plus [release](https://docs.nginx.com/nginx/releases/). |
 {{< /table >}}
 
 A new version of NGINX Plus and its related modules is first introduced to the **preview** channel, where it is goes through our acceptance testing. Once we have baked the software in the **preview** channel for a reasonable time, it is eventually graduated to the **stable** channel. The actual promotion timelines can vary, and you can view our [Changelog]({{< ref "/nginxaas-azure/changelog/changelog.md" >}}) for latest updates.
