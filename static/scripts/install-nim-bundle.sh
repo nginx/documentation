@@ -414,6 +414,28 @@ installBundleForRPMDistro(){
     sleep 5
     echo "Restarting nginx API gateway"
     systemctl restart nginx
+    
+    sleep 2
+    sudo restorecon -F -R /usr/bin/nms-core
+	  sudo restorecon -F -R /usr/bin/nms-dpm
+	  sudo restorecon -F -R /usr/bin/nms-ingestion
+	  sudo restorecon -F -R /usr/bin/nms-integrations
+	  sudo restorecon -F -R /usr/bin/nms-sm
+	  sudo restorecon -F -R /usr/lib/systemd/system/nms.service
+	  sudo restorecon -F -R /usr/lib/systemd/system/nms-core.service
+	  sudo restorecon -F -R /usr/lib/systemd/system/nms-dpm.service
+	  sudo restorecon -F -R /usr/lib/systemd/system/nms-sm.service
+	  sudo restorecon -F -R /usr/lib/systemd/system/nms-ingestion.service
+	  sudo restorecon -F -R /usr/lib/systemd/system/nms-integrations.service
+	  sudo restorecon -F -R /var/lib/nms/modules/manager.json
+	  sudo restorecon -F -R /var/lib/nms/modules.json
+	  sudo restorecon -F -R /var/lib/nms/secrets
+	  sudo restorecon -F -R /var/lib/nms/streaming
+	  sudo restorecon -F -R /var/lib/nms
+	  sudo restorecon -F -R /var/lib/nms/dqlite
+	  sudo restorecon -F -R /var/run/nms
+	  sudo restorecon -F -R /var/lib/nms/modules
+	  sudo restorecon -F -R /var/log/nms
 }
 
 install_nim_online(){
@@ -807,7 +829,7 @@ printSupportedOS(){
   printf "\n  5. debian12(bookworm)"
   printf "\n  6. centos8(CentOS 8)"
   printf "\n  7. rhel8(Redhat Enterprise Linux Version 8)"
-  printf "\n  8. rhel9( Redhat Enterprise Linux Version 9)"
+  printf "\n  8. rhel9(Redhat Enterprise Linux Version 9)"
   printf "\n  9. oracle8(Oracle Linux Version 8)"
   printf "\n  10. oracle9(Oracle Linux Version 9)\n"
   exit 0
