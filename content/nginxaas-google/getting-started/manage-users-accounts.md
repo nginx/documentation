@@ -27,17 +27,10 @@ An existing NGINXaaS Account user can add additional users following these steps
 1. Access the [NGINXaaS Console](https://console.nginxaas.net/).
 1. Log in to the console with your Google credentials.
 1. Navigate to **Users** page on the left menu, then select **Add User**.
-1. Enter the **Name** and **Email** for the user to be added. The email must match the individual's Google User to be able to authenticate successfully.
+1. Enter the **Email** address for the user to be added. The email must match the individual's Google User to be able to authenticate successfully.
 1. Select **Create User** to save the changes.
 
 The new user will appear in the list of users on the **Users** page. Their **Google Identity Domain** will remain empty until they log in for the first time.
-
-### Edit a user
-
-1. Select **Users** under the **Settings** section on the left menu.
-1. Select the ellipsis (three dots) menu for the user you want to update.
-1. Select **Edit** and update the user details.
-1. Select **Update** to confirm the changes.
 
 ## Modify account settings
 
