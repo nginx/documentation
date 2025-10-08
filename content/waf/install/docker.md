@@ -424,7 +424,7 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 
 {{< include "waf/install-services-compose.md" >}}
 
-Review the operational status of the F5 WAF for NGINX following the [Post-installation checks]({{< ref "/waf/install/docker.md#post-installation-checks" >}}).
+You can now review the operational status of F5 WAF for NGINX using the [Post-installation checks]({{< ref "/waf/install/docker.md#post-installation-checks" >}}).
 
 ## Hybrid configuration
 
