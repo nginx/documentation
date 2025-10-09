@@ -43,11 +43,11 @@ Refer to the [Google's Metrics Explorer](https://cloud.google.com/monitoring/cha
 
 You can retrieve raw time series metrics from the [Cloud Monitoring API](https://cloud.google.com/monitoring/api/v3).
 
-For example, you can use [`projects.timeSeries.list`](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) to list metrics matching filters from a specified time interval. The following `curl` command lists `nginxaas.ncus.provisioned` metrics from the time interval `start_time` to `end_time` in the given `project_id`.
+For example, you can use [`projects.timeSeries.list`](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) to list metrics matching filters from a specified time interval. The following `curl` command lists `nginx.http.requests` metrics from the time interval `start_time` to `end_time` in the given `project_id`.
 
 ```bash
 curl \
-  "https://monitoring.googleapis.com/v3/projects/{project_id}/timeSeries?filter=metric.type%3D%22workload.googleapis.com%2Fnginxaas.ncus.provisioned%22&interval.endTime={end_time}&interval.startTime={start_time}" \
+  "https://monitoring.googleapis.com/v3/projects/{project_id}/timeSeries?filter=metric.type%3D%22workload.googleapis.com%2Fnginx.http.requests%22&interval.endTime={end_time}&interval.startTime={start_time}" \
   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
   --header "Accept: application/json" \
   --compressed
@@ -71,7 +71,7 @@ The following JSON shows an example response body:
           "nginxaas_deployment_name": "test-deployment",
           "nginxaas_namespace": "default"
         },
-        "type": "workload.googleapis.com/nginxaas.ncus.provisioned"
+        "type": "workload.googleapis.com/nginx.http.requests"
       },
       "resource": {
         "type": "generic_node",
@@ -82,7 +82,7 @@ The following JSON shows an example response body:
           "project_id": "{project_id}"
         }
       },
-      "metricKind": "GAUGE",
+      "metricKind": "CUMULATIVE",
       "valueType": "INT64",
       "points": [
         {
@@ -91,7 +91,7 @@ The following JSON shows an example response body:
             "endTime": "{end_time}"
           },
           "value": {
-            "int64Value": "10"
+            "int64Value": "1405"
           }
         }
       ]

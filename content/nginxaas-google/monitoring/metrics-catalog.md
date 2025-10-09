@@ -14,7 +14,6 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) provides a rich set of metrics that you 
 
 - [Available metrics](#available-metrics)
 - [Metrics](#metrics)
-  - [NGINXaaS statistics](#nginxaas-statistics)
   - [NGINX config statistics](#nginx-config-statistics)
   - [NGINX connections statistics](#nginx-connections-statistics)
   - [NGINX requests and response statistics](#nginx-requests-and-response-statistics)
@@ -23,26 +22,11 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) provides a rich set of metrics that you 
   - [NGINX worker statistics](#nginx-worker-statistics)
   - [NGINX upstream statistics](#nginx-upstream-statistics)
   - [NGINX stream statistics](#nginx-stream-statistics)
-  - [System cpu statistics](#system-cpu-statistics)
-  - [System disk statistics](#system-disk-statistics)
-  - [System memory statistics](#system-memory-statistics)
-  - [System filesystem statistics](#system-filesystem-statistics)
-  - [System network statistics](#system-network-statistics)
 
 ## Metrics
 
 The following metrics are reported by NGINXaaS for Google Cloud in Google Cloud Monitoring.
 The metrics are categorized by the namespace used in Google Cloud Monitoring. The labels allow you to filter or split your queries in Google Cloud Monitoring providing you with a granular view over the metrics reported.
-
-### NGINXaaS statistics
-
-{{< table >}}
-
-| **Metric**            | **Labels** | **Type** | **Description**                                                                                                                                                                                                                                                                                                           | **Roll-up per** |
-| --------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| nginxaas.ncus.provisioned| nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count    | The number of successfully provisioned NCUs during the aggregation interval.                                                                                                                                                                                                                                            | deployment      |
-
-{{< /table >}}
 
 ### NGINX config statistics
 
@@ -172,78 +156,5 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 | nginx.stream.upstream.peer.unavailables | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name, nginx_upstream_name, nginx_peer_address, nginx_peer_name | count | How many times the server became unavailable for client connections due to max_fails threshold.                          | peer          |
 | nginx.stream.upstream.peer.state | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_peer_state, nginx_zone_name, nginx_upstream_name, nginx_peer_address, nginx_peer_name | count | Current state of upstream peers in deployment (1 if any peer matches state, 0 if none).                                 | peer          |
 | nginx.stream.upstream.zombie.count | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name, nginx_upstream_name | gauge | The current number of peers removed from the group but still processing active client connections.                       | upstream      |
-
-{{< /table >}}
-
-### System cpu statistics
-
-{{< table >}}
-
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
-|----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
-| system.cpu.time | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, cpu, state | count | Total seconds each logical CPU spent on each mode (idle, interrupt, nice, softirq, steal, system, user, wait). | deployment |
-| system.cpu.utilization | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, cpu, state | gauge | Difference in system.cpu.time since the last measurement per logical CPU, divided by the elapsed time (value in interval [0,1]). | deployment |
-| system.cpu.physical.count | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | Number of available physical CPUs. | deployment |
-| system.cpu.logical.count | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | Number of available logical CPUs. | deployment |
-| system.cpu.frequency | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, cpu | gauge | Current frequency of the CPU core in Hz. | deployment |
-
-{{< /table >}}
-
-### System disk statistics
-
-{{< table >}}
-
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
-|----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
-| system.disk.io | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | Disk bytes transferred (read/write). | deployment |
-| system.disk.operations | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | Disk operations count (read/write). | deployment |
-| system.disk.io_time | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device | count | Time disk spent activated. On Windows, this is calculated as the inverse of disk idle time. | deployment |
-| system.disk.operation_time | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | Time spent in disk operations. | deployment |
-| system.disk.weighted_io_time | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device | count | Time disk spent activated multiplied by the queue length. | deployment |
-| system.disk.pending_operations | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device | count | The queue size of pending I/O operations. | deployment |
-| system.disk.merged | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | The number of disk reads/writes merged into single physical disk access operations. | deployment |
-
-{{< /table >}}
-
-### NGINX memory statistics
-
-{{< table >}}
-
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
-|----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
-| system.memory.limit | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | Total bytes of memory available. | deployment |
-| system.memory.usage | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, state | count | Bytes of memory in use, broken down by type (buffered, cached, inactive, free, slab_reclaimable, slab_unreclaimable, used). | deployment |
-| system.memory.utilization | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, state | gauge | Percentage of memory bytes in use. | deployment |
-| system.memory.page_size | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | gauge | A constant value for the system's configured page size. | deployment |
-| system.linux.memory.available | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | An estimate of how much memory is available for starting new applications, without swapping (Linux only). | deployment |
-| system.linux.memory.dirty | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | The amount of dirty memory according to `/proc/meminfo`. | deployment |
-
-{{< /table >}}
-
-### System filesystem statistics
-
-{{< table >}}
-
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
-|----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
-| system.filesystem.usage | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, mode, mountpoint, type, state | count | Filesystem bytes used, broken down by usage type (free, reserved, used). | deployment |
-| system.filesystem.inodes.usage | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, mode, mountpoint, type, state | count | FileSystem inodes used. | deployment |
-| system.filesystem.utilization | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, mode, mountpoint, type | gauge | Fraction of filesystem bytes used. | deployment |
-
-{{< /table >}}
-
-### NGINX system statistics
-
-{{< table >}}
-
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
-|----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
-| system.network.packets | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | The number of packets transferred (receive/transmit). | deployment |
-| system.network.dropped | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | The number of packets dropped. | deployment |
-| system.network.errors | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | The number of network errors encountered. | deployment |
-| system.network.io | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, device, direction | count | The number of bytes transmitted and received. | deployment |
-| system.network.connections | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, protocol, state | count | The number of network connections by protocol and state. | deployment |
-| system.network.conntrack.count | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | The count of entries in conntrack table. | deployment |
-| system.network.conntrack.max | nginxaas_account_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count | The limit for entries in the conntrack table. | deployment |
 
 {{< /table >}}
