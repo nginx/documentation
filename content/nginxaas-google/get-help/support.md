@@ -3,7 +3,7 @@ title: Support
 weight: 100
 toc: true
 nd-docs: DOCS-000
-url: /nginxaas/googoe/get-help/support
+url: /nginxaas/google/get-help/support
 type:
 - how-to
 ---
@@ -20,7 +20,7 @@ To contact support about F5 NGINXaaS for Google Cloud (NGINXaaS):
 
 1. Select **NGINXaaS for Google Cloud** in the Product dropdown.
 
-1. Fill out the**Subject** and **Description** sections, and include the following details about the specific issue:
+1. Fill out the **Subject** and **Description** sections, and include the following details about the specific issue:
 
     1. Identifying Information:
        - Deployment identifier (Object ID and name)
