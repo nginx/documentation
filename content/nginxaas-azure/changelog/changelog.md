@@ -13,6 +13,20 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## October 07, 2025
+
+- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 35 (R35) in the Stable Upgrade Channel**
+
+  NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have now been automatically upgraded to [NGINX Plus Release 35 (R35)]({{< ref "/nginx/releases.md#nginxplusrelease-35-r35" >}}). This upgrade also includes updates to the following NGINX Plus modules:
+  - `nginx-plus-module-njs`
+   For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#configuration-directives-list" >}}).
+
+  {{< call-out "important" >}}
+
+  The [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature, available in NGINX Plus R35 as a [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}), is not currently supported in NGINXaaS due to active-active deployments.
+
+  {{< /call-out >}}
+
 ## September 26, 2025
 
 - {{% icon-feature %}} **Connectivity test tool**
@@ -80,8 +94,6 @@ NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protec
    NGINXaaS now publishes platform metrics directly to Azure Monitor. Compared to legacy monitoring based on custom metrics, platform metrics offers reduced latency and higher reliability. We strongly recommend migrating your alerts to use platform metrics for improved monitoring and management. For more details on enabling platform metrics, please refer to [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md">}}).
 
 ## April 22, 2025
-
-### What's New
 
 - {{% icon-feature %}} **F5 WAF for NGINX is now generally available**
 

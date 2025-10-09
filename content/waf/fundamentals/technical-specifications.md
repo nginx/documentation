@@ -41,18 +41,19 @@ The F5 WAF for NGINX package has the following dependencies:
 
 | Module name                                | Description |
 | ------------------------------------------ | ----------- |
-| nginx-plus-module-appprotect               | NGINX Plus dynamic module for F5 WAF for NGINX |
-| app-protect-engine                         | The F5 WAF for NGINX enforcement engine        |
-| app-protect-plugin                         | The F5 WAF for NGINX connector API between the engine and the NGINX Plus dynamic module |
+| app-protect-attack-signatures              | The F5 WAF for NGINX attack signatures update package |
+| app-protect-bot-signatures                 | The F5 WAF for NGINX bot signatures update package |
+| app-protect-common                         | The F5 WAF for NGINX shared libraries package |
 | app-protect-compiler                       | The F5 WAF for NGINX enforcement engine compiler agent |
-| app-protect-common                         | The F5 WAF for NGINX shared libraries package | 
+| app-protect-engine                         | The F5 WAF for NGINX enforcement engine |
 | app-protect-geoip                          | The F5 WAF for NGINX geolocation update package |
 | app-protect-graphql                        | The F5 WAF for NGINX shared library package for GraphQL protection |
-| app-protect-attack-signatures              | The F5 WAF for NGINX attack signatures update package |
-| app-protect-threat-campaigns               | The F5 WAF for NGINX threat campaigns update package |
-| app-protect-bot-signatures                 | The F5 WAF for NGINX bot signatures update package |
-| app-protect-selinux (**1**)                | The prebuilt SELinux policy module for F5 WAF for NGINX |
 | app-protect-ip-intelligence (**1**, **2**) | Necessary for the IP intelligence feature |
+| app-protect-plugin                         | The F5 WAF for NGINX connector API between the engine and the NGINX Plus dynamic module |
+| app-protect-selinux (**1**)                | The prebuilt SELinux policy module for F5 WAF for NGINX |
+| app-protect-threat-campaigns               | The F5 WAF for NGINX threat campaigns update package |
+| nginx-plus-module-appprotect               | NGINX Plus dynamic module for F5 WAF for NGINX |
+
 
 1. _Optional dependencies_
 2. _This module needs to be installed separately, and includes a client for downloading and updating the feature's database_
