@@ -3,70 +3,53 @@ title: Billing overview
 weight: 100
 toc: true
 nd-docs: DOCS-000
-draft: true
 url: /nginxaas/google/billing/overview/
 type:
 - concept
 ---
 
-NGINXaaS for Google Cloud is deployed into your Google Cloud Platform subscription and is billed through the Google Cloud Marketplace. The billing is based on the resources provisioned and consumed by your NGINXaaS deployment.
-Your NGINXaaS deployment resource is visible within your subscription, while the underlying infrastructure is managed by F5 and is abstracted away from you.
+F5 NGINXaaS for Google Cloud is deployed into your Google Cloud subscription, where your deployment resource is visible and integrated with Google Cloud’s ecosystem. The underlying infrastructure, software maintenance, availability, and scaling are fully managed by F5, abstracting operational complexities. Billing occurs hourly and is tracked in the Google Cloud Cost Management Dashboard.
 
 ## Pricing plans
 
-NGINXaaS for Google Cloud is billed monthly based on hourly consumption.
+F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a 99.95% uptime SLA. The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
 
-F5 NGINXaaS for Google Cloud (NGINXaaS) provides two pricing plans.
+### Pricing components
+{{< table >}}
 
-### Enterprise
+| Component                   | Cost                          |
+|---------------------------- | ----------------------------- |
+| Fixed price                 | $0.10 per hour                |
+| NGINX Capacity Units (NCU)  | $0.008 per NCU per hour       |
+| Data processing             | $0.0096 per GB processed      |
 
-The Enterprise plan is designed for production workloads offering a [99.95% uptime SLA](https://www.f5.com/pdf/customer-support/eusa-sla.pdf), high availability through active-active deployments, redundancy, autoscaling, lossless rolling upgrades, and more. Choosing the Enterprise plan will result in billing based on metered consumption of NGINX Capacity Units (NCU).
-
-When using the Enterprise plan, NGINXaaS is a consumption-based service, metered hourly, and billed monthly in NGINX Capacity Units (NCUs).
-
-The SKU for the Enterprise pricing plan is `tbd`.
-
-### Basic plan
-
-The Basic plan is ideal for those who are just starting out, as it's intended for early-stage trials, development work, and testing. Please note that it doesn't provide service level agreement (SLA) guarantees, and it lacks both redundancy options and the capability to scale resources as needed.
-
-When using the Basic plan, each NGINXaaS deployment is billed at the rate specified on the Google Cloud marketplace offering.
-
-The SKU for the Basic pricing plan is `tbd`.
-
+{{< /table >}}
 
 ## NGINX Capacity Unit (NCU)
 
-{{< include "/nginxaas-google/ncu-description.md" >}}
+An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. Resources are metered hourly based on the capacity utilized, enabling customers to scale up or down dynamically. The minimum billing interval is 5 min, ensuring accurate alignment of cost and usage. A single NCU consists of:
 
-Each NCU provisioned (not consumed) is billed at the rate specified on the Google Cloud marketplace offer. The minimum usage interval is 1 hour, and the maximum provisioned NCU size is billed for that hour.
+   - Bandwidth – 2.2 Mbps
+   - Connections – 3000
 
-*Billing Example 1*: "I provisioned a 20 NCU NGINXaaS deployment in East US 2 at 9:04AM and then deleted it at 10:45AM."
+## Billing examples
 
-* The hourly rate in East US 2 is `$0.03/NCU/hour`.
-* 9:00 hour: `20 NCU·hour`
-* 10:00 hour: `20 NCU·hour`
-* Total NCU·hours: `40 NCU·hour`
-* Total: `40 NCU·hour * $0.03/NCU/hour = $1.20`.
+### Deployment with 20 NCUs processing 100 GB of data for 1 hour
 
-*Billing Example 2*: "I provisioned a 40 NCU NGINXaaS deployment in West Europe at 9:34AM. At 10:04AM I resized it to 20 NCUs. I then deleted it at 11:45AM."
+- Fixed price: $0.10/hour
+- NCU usage: 20 NCUs * $0.008/hour = $0.16/hour
+- Data processing: 100 GB * $0.0096/GB = $0.96
 
-* The hourly rate in West Europe is `$0.05/NCU/hour`.
-* 9:00 hour: `40 NCU·hour`
-* 10:00 hour: `40 NCU·hour`
-* 11:00 hour: `20 NCU·hour`
-* Total NCU·hours: `100 NCU·hour`
-* Total:  `100 NCU·hours * 0.05$/NCU/hour = $5.00`.
+**Total cost for 1 hour: $0.10 + $0.16 + $0.96 = $1.22**
 
-{{< call-out "note" >}}Further guidance:
-* For how many NCUs should you provision and how to scale to match workload, see the [Scaling Guidance]({{< ref "/nginxaas-google/quickstart/scaling.md" >}})
-{{< /call-out >}}
+### Deployment using 30 NCUs for 2 hours and scaled to 50 NCUs for another hour, processing 200 GB of data
 
+- Fixed price: $0.10/hour * 3 hours = $0.30
+- NCU usage: (30 NCUs * $0.008/hour * 2 hours) + (50 NCUs * $0.008/hour * 1 hour) = $0.88
+- Data processing: 200 GB * $0.0096/GB = $1.92
 
-## Bandwidth
-
-The standard GCP [network and bandwidth](https://cloud.google.com/vpc/pricing) charges apply to NGINX deployments.
+**Total cost for 3 hours: $0.30 + $0.88 + $1.92 = $3.10**
 
 ## Review billing data
 
-NGINXaaS billing data is reported per deployment and can be viewed in the console.
+Billing data for F5 NGINXaaS for Google Cloud is reported per deployment and can be accessed through the Google Cloud Cost Management Dashboard. Usage metrics and costs are updated hourly, allowing customers to monitor and optimize resource allocation effectively.
