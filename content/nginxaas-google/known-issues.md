@@ -2,7 +2,6 @@
 title: "Known issues"
 weight: 1000
 toc: true
-draft: true
 nd-docs: DOCS-000
 url: /nginxaas/google/known-issues/
 
