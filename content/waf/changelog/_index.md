@@ -3,7 +3,7 @@
 title: "Changelog"
 url: /waf/changelog/
 # Weights are assigned in increments of 100: determines sorting order
-weight: 500
+weight: 600
 # Creates a table of contents and sidebar, useful for large documents
 nd-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -27,9 +27,9 @@ _September 29th, 2025_
 
 ### Important notes
 
-- Renamed NGINX App Protect WAF to F5 for NGINX
+- Renamed NGINX App Protect WAF to F5 WAF for NGINX
 - Aligned F5 WAF for NGINX versions
-    - Package and container artefacts now share the same version numbers
+    - Package and container artifacts now share the same version numbers
     - Upgrade processes remain the same as earlier releases
     - No breaking changes
 - Restructured documentation

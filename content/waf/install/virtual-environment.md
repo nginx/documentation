@@ -127,6 +127,32 @@ Install the F5 WAF for NGINX package and its dependencies:
 sudo dnf install app-protect
 ```
 
+### RHEL / Rocky Linux 9
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+```
+
+Add F5 WAF for NGINX dependencies:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+```
+
+Enable F5 WAF for NGINX dependencies:
+
+```shell
+sudo dnf config-manager --set-enabled crb
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect
+```
+
 ### Ubuntu
 
 Add the F5 WAF for NGINX repositories:
@@ -146,32 +172,6 @@ Update the repositories, then install the F5 WAF for NGINX package and its depen
 ```shell
 sudo apt-get update
 sudo apt-get install app-protect
-```
-
-### RHEL / Rocky Linux 9
-
-Add the F5 WAF for NGINX repository:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
-```
-
-Add F5 WAF for NGINX dependencies:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-```
-
-Enable the _codeready-builder_ repository:
-
-```shell
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect
 ```
 
 ## Update configuration files

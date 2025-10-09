@@ -381,7 +381,7 @@ server {
 
         client_max_body_size 0;
         default_type text/html;
-        proxy_pass http://127.0.0.1:8080/;
+        proxy_pass http://127.0.0.1:8080;
     }
 }
 
@@ -424,7 +424,7 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 
 {{< include "waf/install-services-compose.md" >}}
 
-F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).
+You can now review the operational status of F5 WAF for NGINX using the [Post-installation checks]({{< ref "/waf/install/docker.md#post-installation-checks" >}}).
 
 ## Hybrid configuration
 
