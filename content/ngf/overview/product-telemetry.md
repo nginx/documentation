@@ -34,6 +34,7 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 - **Control Plane Pod Count** the count of NGINX Gateway Fabric Pods.
 - **Data Plane Pod Count** the count of NGINX data plane Pods.
 - **NGINX One Console Connection Info** indicates whether the connection to the NGINX One Console is enabled. 
+- **InferencePool Count** the count of InferencePools that are referenced by at least one Route.
 This data is used to identify the following information:
 
 - The flavors of Kubernetes environments that are most popular among our users.
