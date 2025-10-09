@@ -119,7 +119,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Gateway is invalid or not supported.
     - `Programmed/True/Programmed`
     - `Programmed/False/Invalid`
-    - `UnsupportedField/True/UnsupportedField`: Custom reason for when a field in Gateway is not supported
+    - `Accepted/True/UnsupportedField`: Custom reason for when the Gateway is accepted but contains an unsupported field
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -194,7 +194,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
       - `ResolvedRefs/False/UnsupportedProtocol`
       - `PartiallyInvalid/True/UnsupportedValue`
-      - `UnsupportedField/True/UnsupportedField`: Custom reason for when a field in HTTPRoute is not supported
+      - `Accepted/True/UnsupportedField`: Custom reason for when the HTTPRouteRule is accepted but contains an unsupported field
 
       {{< call-out "note" >}} If `name`, `timeouts`, `retry` or `sessionPersistence` are defined for a HTTPRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
 
@@ -242,7 +242,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/BackendNotFound`
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the GRPCRoute rules has a backendRef with an unsupported value.
       - `PartiallyInvalid/True/UnsupportedValue`
-      - `UnsupportedField/True/UnsupportedField`: Custom reason for when a field in GRPCRoute is not supported
+      - `Accepted/True/UnsupportedField`: Custom reason for when the GRPCRouteRule is accepted but contains an unsupported field
 
 {{< call-out "note" >}} If `name` or `sessionPersistence` are defined for a GRPCRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
 
