@@ -8,7 +8,7 @@ nd-docs: DOCS-616
 ---
 ## 5.2.1
 
-XX Oct 2025
+10 Oct 2025
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
 - [8302](https://github.com/nginx/kubernetes-ingress/pull/8302) Remove type field for objects with schema ref
