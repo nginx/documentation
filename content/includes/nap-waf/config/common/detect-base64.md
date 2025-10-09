@@ -2,7 +2,7 @@
 nd-docs: "DOCS-1593"
 ---
 
-The Detect Base64 feature allows NGINX App Protect WAF to detect whether values in headers, cookies, and parameters are Base64 encoded. When an entity is detected as Base64 encoded NGINX App Protect WAF will enforce the configured signatures on the decoded value, instead of on the original value.
+The Detect Base64 feature allows F5 WAF for NGINX to detect whether values in headers, cookies, and parameters are Base64 encoded. When an entity is detected as Base64 encoded F5 WAF for NGINX will enforce the configured signatures on the decoded value, instead of on the original value.
 
 This feature is disabled by default or by setting the `decodeValueAsBase64` to `disabled`.
 

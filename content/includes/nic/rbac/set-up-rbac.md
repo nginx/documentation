@@ -18,7 +18,7 @@ nd-docs: DOCS-1468
 
 <br>
 
-If you're planning to use NGINX App Protect or NGINX App Protect DoS, additional roles and bindings are needed.
+If you're planning to use NGINX App Protect or F5 DoS for NGINX, additional roles and bindings are needed.
 
 1. (NGINX App Protect only) Create the *App Protect* role and binding:
 
@@ -26,7 +26,7 @@ If you're planning to use NGINX App Protect or NGINX App Protect DoS, additional
     kubectl apply -f deployments/rbac/ap-rbac.yaml
     ```
 
-2. (NGINX App Protect DoS only) Create the *App Protect DoS* role and binding:
+2. (F5 DoS for NGINX only) Create the *App Protect DoS* role and binding:
 
     ```shell
     kubectl apply -f deployments/rbac/apdos-rbac.yaml

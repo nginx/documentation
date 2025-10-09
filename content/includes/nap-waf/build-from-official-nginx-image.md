@@ -12,7 +12,7 @@ nd-docs: "DOCS-1509"
 # Base image
 FROM nginx:1.25.5-bookworm
 
-# Install NGINX App Protect WAF v5 module
+# Install F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update \

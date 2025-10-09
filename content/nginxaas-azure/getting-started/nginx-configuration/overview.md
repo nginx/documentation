@@ -8,7 +8,7 @@ type:
 ---
 
 This document provides details about using NGINX configuration files with your
-F5 NGINX as a Service for Azure deployment, restrictions, and available directives.
+F5 NGINXaaS for Azure deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
@@ -25,51 +25,55 @@ The topics below provide information on NGINX configuration restrictions and dir
 NGINX configurations stored in GitHub can be applied to existing NGINXaaS for Azure deployments using custom GitHub Action workflows. See [NGINXaaS for Azure Deployment Action](https://github.com/nginxinc/nginx-for-azure-deploy-action) for documentation and examples on how to incorporate these workflows in your GitHub Actions CI/CD pipelines.
 
 ## NGINX filesystem restrictions
-NGINXaaS for Azure places restrictions on the instance's filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
-  | Allowed Directory | NGINX worker process can read/write to | Files can be written to |
-  |------------------ | ----------------- | ----------------- |
-  | /etc/nginx        |                   | &check;           |
-  | /opt              | &check;           | &check;           |
-  | /srv              | &check;           | &check;           |
-  | /tmp              | &check;           |                   |
-  | /var/cache/nginx  | &check;           |                   |
-  | /var/www          | &check;           | &check;           |
-{{</bootstrap-table>}}
+NGINXaaS for Azure places restrictions on the instance’s filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
+
+ {{< table >}}
+
+| Directory         | Master Read | Master Write | Worker Read | Worker Write | Recommended Use                  |
+|-------------------|:-----------:|:------------:|:-----------:|:------------:|----------------------------------|
+| /etc/nginx/       |     ✔️      |      ✔️      |     ❌      |      ❌      | NGINX configuration, certificates, keys, application files (e.g. Lua or njs scripts)  |
+| /opt/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files (e.g. Lua scripts) |
+| /srv/             |     ✔️      |      ✔️      |     ✔️      |      ❌      | Application files                |
+| /var/www/         |     ✔️      |      ✔️      |     ✔️      |      ❌      | Static files (e.g. index.html)   |
+| /tmp/             |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Temporary files                  |
+| /var/cache/nginx/ |     ✔️      |      ✔️      |     ✔️      |      ✔️      | Cache data                       |
+
+{{< /table >}}
 
 Attempts to access other directories will be denied and result in a `5xx` error.
 
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
   | Disallowed Directive | Reason |
   |------------------ | ----------------- |
   | ssl_engine        | No hardware SSL accelerator is available. |
   | debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
   | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
-  | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
+  | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.
+  | acme_issuer <br /> uri <br /> account_key <br /> contact <br /> ssl_trusted_certificate <br /> ssl_verify <br /> state_path <br />                accept_terms_of_service <br /> acme_shared_zone <br /> acme_certificate <br /> | ACME protocol support for active-active deployments is not supported. 
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 You may find that a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
 
 ## Directives that cannot be overridden
 Some directives cannot be overridden by the user provided configuration.
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
   | Persistent Directive | Value | Reason |
   |------------------ | ----------------------- | -----------------|
   | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
   | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
-  | `worker_connections` |   <ul><li>Standard V2 plan `4000`</li><li>basic plan `3000`</li></ul> | To ensure reasonable performance of the NGINXaaS deployment for Standard V2 plan, the `worker_connections` is fixed at 400/NCU; for basic plan this is set lower.<br><br> Changing the value in the config has no effect on the NGINX process in the deployment. |
+  | `worker_connections` |   <ul><li>Standard V2 plan `4000`</li><li>basic plan `20`</li></ul> | To ensure reasonable performance of the NGINXaaS deployment for Standard V2 plan, the `worker_connections` is fixed at 400/NCU; for basic plan this is set lower.<br><br> Changing the value in the config has no effect on the NGINX process in the deployment. |
   | `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
   | `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
   | `master_process` | `on` | This directive is intended for NGINX developers. |
   | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
 
 ## NGINX listen port restrictions
@@ -122,6 +126,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [auth_jwt_leeway](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_leeway)\
 [auth_jwt_require](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_require)\
 [auth_jwt_type](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_type)\
+[auth_oidc](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#auth_oidc)\
+[auth_require](https://nginx.org/en/docs/http/ngx_http_auth_require_module.html#auth_require)\
 [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request)\
 [auth_request_set](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set)\
 [autoindex](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex)\
@@ -141,8 +147,12 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [client_body_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_timeout)\
 [client_header_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size)\
 [client_header_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout)\
+[client_id](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id)\
 [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)\
+[client_secret](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret)\
+[config_url](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url)\
 [connection_pool_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#connection_pool_size)\
+[cookie_name](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#cookie_name)\
 [create_full_put_path](https://nginx.org/en/docs/http/ngx_http_dav_module.html#create_full_put_path)\
 [daemon](https://nginx.org/en/docs/ngx_core_module.html#daemon)\
 [dav_access](https://nginx.org/en/docs/http/ngx_http_dav_module.html#dav_access)\
@@ -154,13 +164,16 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [directio](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio)\
 [directio_alignment](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio_alignment)\
 [disable_symlinks](https://nginx.org/en/docs/http/ngx_http_core_module.html#disable_symlinks)\
+[early_hints](https://nginx.org/en/docs/http/ngx_http_core_module.html#early_hints)\
 [empty_gif](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html#empty_gif)\
+[enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report)\
 [env](https://nginx.org/en/docs/ngx_core_module.html#env)\
 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log)\
 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)\
 [etag](https://nginx.org/en/docs/http/ngx_http_core_module.html#etag)\
 [events](https://nginx.org/en/docs/ngx_core_module.html#events)\
 [expires](https://nginx.org/en/docs/http/ngx_http_headers_module.html#expires)\
+[extra_auth_args](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args)\
 [f4f](https://nginx.org/en/docs/http/ngx_http_f4f_module.html#f4f)\
 [f4f_buffer_size](https://nginx.org/en/docs/http/ngx_http_f4f_module.html#f4f_buffer_size)\
 [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size)\
@@ -229,6 +242,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [grpc_set_header](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_set_header)\
 [grpc_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_socket_keepalive)\
 [grpc_ssl_certificate](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_certificate)\
+[grpc_ssl_certificate_cache](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_certificate_cache)\
 [grpc_ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_certificate_key)\
 [grpc_ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_ciphers)\
 [grpc_ssl_conf_command](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_conf_command)\
@@ -299,6 +313,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [internal](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal)\
 [internal_redirect](http://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html#internal_redirect)\
 [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash)\
+[issuer](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer)\
 [js_access (ngx_stream_js_module)](https://nginx.org/en/docs/stream/ngx_stream_js_module.html#js_access)\
 [js_body_filter](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_body_filter)\
 [js_content](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_content)\
@@ -340,6 +355,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [js_var (ngx_stream_js_module)](https://nginx.org/en/docs/stream/ngx_stream_js_module.html#js_var)\
 [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive)\
 [keepalive_disable](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_disable)\
+[keepalive_min_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_min_timeout)\
 [keepalive_requests (ngx_http_core_module)](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests)\
 [keepalive_time (ngx_http_core_module)](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_time)\
 [keepalive_timeout (ngx_http_core_module)](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout)\
@@ -352,6 +368,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [least_conn (ngx_stream_upstream_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_conn)\
 [least_time (ngx_http_upstream_module)](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time)\
 [least_time (ngx_stream_upstream_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time)\
+[license_token](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token)\
 [limit_conn (ngx_http_limit_conn_module)](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn)\
 [limit_conn (ngx_stream_limit_conn_module)](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html#limit_conn)\
 [limit_conn_dry_run (ngx_http_limit_conn_module)](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn_dry_run)\
@@ -382,6 +399,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [log_format (ngx_stream_log_module)](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#log_format)\
 [log_not_found](https://nginx.org/en/docs/http/ngx_http_core_module.html#log_not_found)\
 [log_subrequest](https://nginx.org/en/docs/http/ngx_http_core_module.html#log_subrequest)\
+[logout_uri](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri)\
+[logout_token_hint](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_token_hint)\
 [mail](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#mail)\
 [map (ngx_http_map_module)](https://nginx.org/en/docs/http/ngx_http_map_module.html#map)\
 [map (ngx_stream_map_module)](https://nginx.org/en/docs/stream/ngx_stream_map_module.html#map)\
@@ -428,6 +447,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [msie_refresh](https://nginx.org/en/docs/http/ngx_http_core_module.html#msie_refresh)\
 [multi_accept](https://nginx.org/en/docs/ngx_core_module.html#multi_accept)\
 [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm)\
+[oidc_provider](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider)\
 [open_file_cache](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache)\
 [open_file_cache_errors](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache_errors)\
 [open_file_cache_min_uses](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache_min_uses)\
@@ -447,6 +467,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [pop3_auth](https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html#pop3_auth)\
 [pop3_capabilities](https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html#pop3_capabilities)\
 [port_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect)\
+[post_logout_uri](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#post_logout_uri)\
 [postpone_output](https://nginx.org/en/docs/http/ngx_http_core_module.html#postpone_output)\
 [preread_buffer_size (ngx_stream_core_module)](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#preread_buffer_size)\
 [preread_timeout (ngx_stream_core_module)](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#preread_timeout)\
@@ -523,6 +544,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [proxy_ssl (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl)\
 [proxy_ssl_certificate (ngx_http_proxy_module)](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate)\
 [proxy_ssl_certificate (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_certificate)\
+[proxy_ssl_certificate_cache (ngx_http_proxy_module)](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_cache)\
+[proxy_ssl_certificate_cache (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_certificate_cache)\
 [proxy_ssl_certificate_key (ngx_http_proxy_module)](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key)\
 [proxy_ssl_certificate_key (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_certificate_key)\
 [proxy_ssl_ciphers (ngx_http_proxy_module)](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers)\
@@ -567,6 +590,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [real_ip_header](https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header)\
 [real_ip_recursive](https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive)\
 [recursive_error_pages](https://nginx.org/en/docs/http/ngx_http_core_module.html#recursive_error_pages)\
+[redirect_uri](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#redirect_uri)\
 [referer_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_referer_module.html#referer_hash_bucket_size)\
 [referer_hash_max_size](https://nginx.org/en/docs/http/ngx_http_referer_module.html#referer_hash_max_size)\
 [request_pool_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#request_pool_size)\
@@ -630,6 +654,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [scgi_store](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_store)\
 [scgi_store_access](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_store_access)\
 [scgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_temp_file_write_size)\
+[scope](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#scope)\
 [scgi_temp_path](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_temp_path)\
 [secure_link](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link)\
 [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5)\
@@ -651,6 +676,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [session_log](https://nginx.org/en/docs/http/ngx_http_session_log_module.html#session_log)\
 [session_log_format](https://nginx.org/en/docs/http/ngx_http_session_log_module.html#session_log_format)\
 [session_log_zone](https://nginx.org/en/docs/http/ngx_http_session_log_module.html#session_log_zone)\
+[session_store](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#session_store)\
+[session_timeout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#session_timeout)\
 [set (ngx_http_rewrite_module)](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set)\
 [set (ngx_stream_set_module)](https://nginx.org/en/docs/stream/ngx_stream_set_module.html#set)\
 [set_real_ip_from (ngx_http_realip_module)](https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from)\
@@ -680,6 +707,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_certificate (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate)\
 [ssl_certificate (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate)\
 [ssl_certificate (ngx_mgmt_module)](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_certificate)\
+[ssl_certificate_cache (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_cache)\
+[ssl_certificate_cache (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_cache)\
 [ssl_certificate_key (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key)\
 [ssl_certificate_key (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_key)\
 [ssl_certificate_key (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_key)\
@@ -693,6 +722,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_conf_command (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_conf_command)\
 [ssl_conf_command (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_conf_command)\
 [ssl_conf_command (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_conf_command)\
+[ssl_crl (ngx_http_oidc_module)](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_crl)\
 [ssl_crl (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_crl)\
 [ssl_crl (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_crl)\
 [ssl_crl (ngx_mgmt_module)](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_crl)\
@@ -704,6 +734,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_ecdh_curve (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_ecdh_curve)\
 [ssl_handshake_timeout](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_handshake_timeout)\
 [ssl_name](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_name)\
+[ssl_object_cache_inheritable](https://nginx.org/en/docs/ngx_core_module.html#ssl_object_cache_inheritable)\
 [ssl_ocsp](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp)\
 [ssl_ocsp_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp_cache)\
 [ssl_ocsp_responder](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp_responder)\
@@ -736,6 +767,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_stapling_file](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling_file)\
 [ssl_stapling_responder](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling_responder)\
 [ssl_stapling_verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling_verify)\
+[ssl_trusted_certificate (ngx_http_oidc_module)](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate)\
 [ssl_trusted_certificate (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_trusted_certificate)\
 [ssl_trusted_certificate (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_trusted_certificate)\
 [ssl_trusted_certificate (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_trusted_certificate)\
@@ -747,6 +779,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_verify_depth (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_depth)\
 [ssl_verify_depth (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_verify_depth)\
 [ssl_verify_depth (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_verify_depth)\
+[stall_threshold](https://nginx.org/en/docs/ngx_core_module.html#stall_threshold)\
 [ssl_verify_depth (ngx_mgmt_module)](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_verify_depth)\
 [starttls](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#starttls)\
 [state (ngx_http_upstream_module)](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#state)\
@@ -787,6 +820,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [userid_p3p](https://nginx.org/en/docs/http/ngx_http_userid_module.html#userid_p3p)\
 [userid_path](https://nginx.org/en/docs/http/ngx_http_userid_module.html#userid_path)\
 [userid_service](https://nginx.org/en/docs/http/ngx_http_userid_module.html#userid_service)\
+[userinfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo)\
 [uuid_file](https://nginx.org/en/docs/ngx_mgmt_module.html#uuid_file)\
 [uwsgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size)\
 [uwsgi_buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffering)\
@@ -831,6 +865,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [uwsgi_send_timeout](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_send_timeout)\
 [uwsgi_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_socket_keepalive)\
 [uwsgi_ssl_certificate](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_certificate)\
+[uwsgi_ssl_certificate_cache](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_certificate_cache)\
 [uwsgi_ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_certificate_key)\
 [uwsgi_ssl_conf_command](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_conf_command)\
 [uwsgi_ssl_crl](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_crl)\

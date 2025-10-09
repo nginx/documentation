@@ -2,7 +2,7 @@
 nd-docs: "DOCS-1576"
 ---
 
-The following table specifies the HTTP Compliance sub-violation settings. All are supported in NGINX App Protect WAF, but not all are enabled in the default App Protect security template. The table specifies which. Some of the checks are enforced by NGINX Plus and App Protect only gets a notification. **Note:**  In this case, the request is **always** blocked regardless of the App Protect policy.
+The following table specifies the HTTP Compliance sub-violation settings. All are supported in F5 WAF for NGINX, but not all are enabled in the default App Protect security template. The table specifies which. Some of the checks are enforced by NGINX Plus and App Protect only gets a notification. **Note:**  In this case, the request is **always** blocked regardless of the App Protect policy.
 
 
 {{<bootstrap-table "table table-striped table-bordered table-sm table-responsive">}}
