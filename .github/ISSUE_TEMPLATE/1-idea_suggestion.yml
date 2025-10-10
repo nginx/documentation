@@ -34,7 +34,7 @@ body:
   - type: textarea
     attributes: 
       label: What alternative ways have you thought of to implement you idea?
-      description: There are often multiple ways to do one thing: context is important.
+      description: There are often multiple ways to do one thing - context is important.
       validations:
         required: true
   - type: textarea
