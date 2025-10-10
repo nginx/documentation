@@ -59,7 +59,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extens
 
 ## Deploy the InferencePool and Endpoint Picker Extension
 
-The InferencePool is a Gateway API Inference Extension resource that represents a set of Infernece-focused Pods. With InferencePool, you can configure a routing extension as well as inference-specific routing optimizations. For more information on this resource, refer to the Gateway API Inference Extension [InferencePool documentation](https://gateway-api-inference-extension.sigs.k8s.io/api-types/inferencepool/).
+The InferencePool is a Gateway API Inference Extension resource that represents a set of Inference-focused Pods. With InferencePool, you can configure a routing extension as well as inference-specific routing optimizations. For more information on this resource, refer to the Gateway API Inference Extension [InferencePool documentation](https://gateway-api-inference-extension.sigs.k8s.io/api-types/inferencepool/).
 
 Install an InferencePool named `vllm-llama3-8b-instruct` that selects from endpoints with label `app: vllm-llama3-8b-instruct` and listening on port 8000. The Helm install command automatically installs the Endpoint Picker Extension and InferencePool.
 
@@ -73,6 +73,12 @@ helm install vllm-llama3-8b-instruct \
 --set inferencePool.modelServers.matchLabels.app=vllm-llama3-8b-instruct \
 --version $IGW_CHART_VERSION \
 oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
+```
+
+Confirm that the Endpoint Picker was deployed and is running:
+
+```shell
+kubectl describe deployment vllm-llama3-8b-instruct-epp
 ```
 
 ## Deploy an Inference Gateway
