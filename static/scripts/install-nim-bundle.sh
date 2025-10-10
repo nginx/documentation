@@ -429,25 +429,25 @@ installBundleForRPMDistro(){
     
     sleep 2
     check_restorecon /usr/bin/nms-core
-	  check_restorecon /usr/bin/nms-dpm
-	  check_restorecon /usr/bin/nms-ingestion
-	  check_restorecon /usr/bin/nms-integrations
-	  check_restorecon /usr/bin/nms-sm
-	  check_restorecon /usr/lib/systemd/system/nms.service
-	  check_restorecon /usr/lib/systemd/system/nms-core.service
-	  check_restorecon /usr/lib/systemd/system/nms-dpm.service
-	  check_restorecon /usr/lib/systemd/system/nms-sm.service
-	  check_restorecon /usr/lib/systemd/system/nms-ingestion.service
-	  check_restorecon /usr/lib/systemd/system/nms-integrations.service
-	  check_restorecon /var/lib/nms/modules/manager.json
-	  check_restorecon /var/lib/nms/modules.json
-	  check_restorecon /var/lib/nms/secrets
-	  check_restorecon /var/lib/nms/streaming
-	  check_restorecon /var/lib/nms
-	  check_restorecon /var/lib/nms/dqlite
-	  check_restorecon /var/run/nms
-	  check_restorecon /var/lib/nms/modules
-	  check_restorecon /var/log/nms
+    check_restorecon /usr/bin/nms-dpm
+    check_restorecon /usr/bin/nms-ingestion
+    check_restorecon /usr/bin/nms-integrations
+    check_restorecon /usr/bin/nms-sm
+    check_restorecon /usr/lib/systemd/system/nms.service
+    check_restorecon /usr/lib/systemd/system/nms-core.service
+    check_restorecon /usr/lib/systemd/system/nms-dpm.service
+    check_restorecon /usr/lib/systemd/system/nms-sm.service
+    check_restorecon /usr/lib/systemd/system/nms-ingestion.service
+    check_restorecon /usr/lib/systemd/system/nms-integrations.service
+    check_restorecon /var/lib/nms/modules/manager.json
+    check_restorecon /var/lib/nms/modules.json
+    check_restorecon /var/lib/nms/secrets
+    check_restorecon /var/lib/nms/streaming
+    check_restorecon /var/lib/nms
+    check_restorecon /var/lib/nms/dqlite
+    check_restorecon /var/run/nms
+    check_restorecon /var/lib/nms/modules
+    check_restorecon /var/log/nms
 
     sleep 5
 }
