@@ -12,7 +12,7 @@ nd-content-type: tutorial
 nd-product: NGINX-One
 ---
 
-The NGINX Console dashboard and metrics views present system metrics and detailed NGINX metrics gathered through the NGINX Plus API or the Stub Status API (for NGINX Open Source).
+The NGINX One Console dashboard and metrics views present system metrics and detailed NGINX metrics gathered through the NGINX Plus API or the Stub Status API (for NGINX Open Source).
 
 To display metrics, complete the following steps:
 1. Enable the API
