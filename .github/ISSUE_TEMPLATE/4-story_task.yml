@@ -6,7 +6,7 @@ body:
     attributes:
       label: Overview
       description: Use this section to write user stories.
-      placeholder: As a** <user>, **I want** <thing>, **So I can** <action>
+      placeholder: As a user, I want thing, So I can action.
     validations:
       required: true
   - type: dropdown
