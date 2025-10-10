@@ -27,5 +27,5 @@ You may also find the [documentation folder](/documentation/) for the repository
 &copy; [F5, Inc.](https://www.f5.com/) 2025
 
 ## Credits
-
+.
 - [The Good Docs Project](https://www.thegooddocsproject.dev/), whose templates we've adapted for our use.
