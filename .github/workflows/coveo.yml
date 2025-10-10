@@ -8,6 +8,9 @@ jobs:
   generate-coveo-search-token:
     name: Generate Coveo Search Tokens
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read # for 8398a7/action-slack
     strategy:
       matrix:
         include:
