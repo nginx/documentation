@@ -16,7 +16,7 @@ If you're interested in contributing to the [NGINX documentation website](https:
 - [Git conventions](/documentation/git-conventions.md)
 - [Information architecture heuristics](/documentation/ia-heuristics.md)
 - [Maintainers etiquette](/documentation/maintainers-etiquette.md)
-- [Managing content with Hugo](/documentation/writing-hugo.md)
+- [Managing content with Hugo](/documentation/hugo-content.md)
 - [Proposals](/documentation/proposals/README.md)
 - [Set up pre-commit](/documentation/pre-commit.md)
 - [Using include files](/documentation/include-files.md)
