@@ -1,6 +1,6 @@
 name: Epic overview
 description: This template is for planning an epic, which is a large body of effort involving multiple stories or tasks
-title: ""
+title: " "
 body:
   - type: textarea
     attributes:
@@ -17,7 +17,7 @@ body:
   - type: textarea
     attributes:
       label: User stories
-      description: As a <user>, I want <thing>, So I can <action>.
+      description: As a user, I want thing, So I can action.
     validations:
       required: true
   - type: textarea
