@@ -28,16 +28,16 @@ body:
   - type: textarea
     attributes:
       label: Is this idea related to a larger problem?
-      description: If you have identified specific issues, it might be part of a design pattern.
+      description: If you have identified multiple related issues, it might be a design pattern problem.
     validations:
       required: true
   - type: textarea
     attributes: 
-      label: What alternative ways have you thought of to implement you idea?
-      description: There are often multiple ways to do one thing - context is important.
+      label: What alternative ways are there to implement your idea?
+      description: There are often multiple ways to something - context is important.
     validations:
       required: true
   - type: textarea
     attributes: 
       label: Any additional information
-      description: Add any remaining detail for this request not covered by the above questions.
+      description: Add any remaining detail for this idea not covered by the above questions.

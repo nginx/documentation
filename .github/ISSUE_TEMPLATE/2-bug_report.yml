@@ -1,37 +1,49 @@
----
 name: Bug report
-about: Create a report to help us improve
-title: ""
-labels: "bug"
-assignees: ""
----
-
-### Describe the bug
-
-A clear and concise description of what the bug is.
-
-### To reproduce
-
-Steps to reproduce the behavior:
-
-1. Deploy this project using [...]
-2. View output/logs/configuration on [...]
-3. See error
-
-### Expected behavior
-
-A clear and concise description of what you expected to happen.
-
-### Your environment
-
-- Version/release of this project or specific commit
-<!-- - Version/release of any relevant project languages -->
-- Target deployment platform
-
-### Additional context
-
-Add any other context about the problem here.
-
-### Sensitive Information
-
-Remember to redact any sensitive information such as authentication credentials or license keys.
+description: Report an issue with our documentation
+title: "[Bug]: "
+body: 
+  - type: textarea
+    attributes:
+      label: Describe the bug you have identified
+      description: Explain the problem with as much detail as possible.
+    validations:
+      required: true
+  - type: dropdown
+    attributes: 
+      label: Which product or products does this request relate to?
+      multiple: true
+      options:
+        - F5 DoS for NGINX
+        - F5 WAF for NGINX
+        - NGINX Agent
+        - NGINXaaS for Azure
+        - NGINX Gateway Fabric
+        - NGINX Ingress Controller
+        - NGINX Instance Manager
+        - NGINX One Console
+        - NGINX Plus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce the bug
+      description: Describe the where the issue occurs.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What is the expected or desired behaviour?
+      description: Describe what you expected to happen instead of the bug.
+    validations:
+      required: true    
+  - type: textarea
+    attributes:
+      label: What environments or versions does this bug affect?
+      description: Describe the contexts which this bug seems to occur.
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: Any additional information
+      description: Add any remaining detail for this idea not covered by the above questions.
