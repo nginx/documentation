@@ -54,7 +54,7 @@ F5 NGINX One Console makes it easy to manage NGINX instances across locations an
 ### More information
 
 {{<card-section showAsCards="true" >}}
-  {{<card title="Secure with NGINX App Protect" titleUrl="/nginx-one/nap-integration/" >}}
+  {{<card title="Secure with F5 WAF for NGINX" titleUrl="/nginx-one/nap-integration/" >}}
     Set up security policies by instance and group
   {{</card>}}
   {{<card title="Organize users with RBAC" titleUrl="/nginx-one/rbac/" >}}

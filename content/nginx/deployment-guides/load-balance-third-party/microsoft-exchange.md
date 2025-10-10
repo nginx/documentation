@@ -16,13 +16,13 @@ This deployment guide explains how to use F5 NGINX Plus to load balance traffic 
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of the [NGINX Open Source](https://nginx.org/en) software. NGINX Plus is a complete application delivery platform, extending the power of NGINX Open Source with a host of enterprise‑ready capabilities that enhance a Microsoft Exchange server deployment and are instrumental to building web applications at scale:
 
-- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- Full‑featured [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}), [TCP, and UDP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) load balancing
+- [Intelligent session persistence]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md#session-persistence" >}})
 - [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
-- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
-- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- Adaptive streaming to deliver audio and video to any device
+- [Application-aware health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) and [high availability]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}})
+- Advanced activity monitoring available via a [Dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-dashboard" >}}) or [REST API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span style="white-space: nowrap;">[NGINX Plus Release 6 R6](https://www.nginx.com/blog/nginx-plus-r6-released/#tcp-load-balancing)</span> introduced full‑featured load balancing of TCP traffic, with support extended to UDP in [<span style="white-space: nowrap;">NGINX Plus R9</span>](https://www.nginx.com/blog/nginx-plus-r9-released/#udp-lb) and continuing enhancements for both protocols included in subsequent releases (for details, see [NGINX Plus Releases]({{< ref "/nginx/releases.md" >}}). Because NGINX Plus load balances TCP, HTTP, and HTTPS traffic, it's ideal for Microsoft Exchange deployments, which use all three protocols.
