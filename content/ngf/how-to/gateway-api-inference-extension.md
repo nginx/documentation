@@ -79,8 +79,19 @@ oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
 
 1. Deploy Inference Gateway:
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/inference/gateway.yaml
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: inference-gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+EOF
 ```
 
 Confirm that the Gateway was assigned an IP address and reports a `Programmed=True` status:
@@ -98,8 +109,28 @@ GW_PORT=<port number>
 
 2. Deploy the HTTPRoute:
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/snippets-filter/httproute.yaml
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: llm-route
+spec:
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: inference-gateway
+  rules:
+  - backendRefs:
+    - group: inference.networking.k8s.io
+      kind: InferencePool
+      name: vllm-llama3-8b-instruct
+      port: 3000
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+EOF
 ```
 
 Confirm that the HTTPRoute status conditions include `Accepted=True` and `ResolvedRefs=True`:
@@ -143,8 +174,8 @@ kubectl delete -k https://github.com/kubernetes-sigs/gateway-api-inference-exten
 3. Uninstall Inference Gateway and HTTPRoute:
 
 ```shell
-kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/inference/gateway.yaml
-kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/snippets-filter/httproute.yaml
+kubectl delete gateway inference-gateway
+kubectl delete httproute llm-route
 ```
 
 4. Uninstall NGINX Gateway Fabric:
