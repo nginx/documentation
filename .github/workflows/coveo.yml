@@ -79,16 +79,11 @@ jobs:
                 username: 'Github',
                 mention: 'channel',
                 attachments: [{
-                  title: '[${{ github.event.repository.full_name }}] ${{ github.workflow }} pipeline has failed. Token generation for environment ${{matrix.env_name}}',
+                  title: '[${{ github.event.repository.full_name }}] Coveo Token Generation Failed (${{matrix.env_name}} environment)',
                   color: 'danger',
                   fields: [{
-                    title: 'Commit',
-                    "value": "<https://github.com/${{ github.repository }}/commit/${{ github.event.workflow_run.head_commit.id }}|${{ github.event.workflow_run.head_commit.message }}>",
-                    short: false
-                  },
-                  {
                     title: 'Pipeline URL',
-                    value: '<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.run_id }}',
+                    value: '<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.run_id }}>',
                     short: false
                   }]
                 }]
