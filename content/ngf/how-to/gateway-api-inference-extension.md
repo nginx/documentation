@@ -28,7 +28,7 @@ kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/infe
 
 - To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
   - Using Helm: set the `nginxGateway.gwAPIInferenceExtension.enable=true` Helm value.
-  - Using Kubernetes manifests: set the `--gateway-api-inference-extension` flag in the nginx-gateway container argument, update the ClusterRole RBAC to add the `inferncepools`:
+  - Using Kubernetes manifests: set the `--gateway-api-inference-extension` flag in the nginx-gateway container argument, update the ClusterRole RBAC to add the `inferencepools`:
   ```yaml
     - apiGroups:
         - inference.networking.k8s.io
