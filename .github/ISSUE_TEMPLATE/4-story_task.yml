@@ -1,5 +1,5 @@
-name: Story task
-description: This template is for a story or task, encompassing a single work item for completion
+name: User story
+description: This template is for a single story, encompassing a single work item for completion
 title: "[Story]: "
 body:
   - type: textarea
