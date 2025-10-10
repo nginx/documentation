@@ -9,53 +9,53 @@ body:
       description: Please describe your request with as much detail as possible.
     validations:
       required: true
-  # - type: dropdown
-  #   id: what-product
-  #   attributes: 
-  #     label: Which product or products does this relate to?
-  #     multiple: true
-  #     options:
-  #       - F5 DoS for NGINX
-  #       - F5 WAF for NGINX
-  #       - NGINX Agent
-  #       - NGINXaaS for Azure
-  #       - NGINX Gateway Fabric
-  #       - NGINX Ingress Controller
-  #       - NGINX Instance Manager
-  #       - NGINX One Console
-  #       - NGINX Plus
-  #       - Other
-  #   validations:
-  #     required: true
-  # - type: textarea
-  #   id: direct-responsibility
-  #   attributes: 
-  #     label: Who is the person directly responsible for initiating this request?
-  #     description: Name the specific person that made this request.
-  #   validations:
-  #     required: true
-  # - type: textarea
-  #   id: request-scope
-  #   attributes: 
-  #     label: Is this request part of a larger initiative or project?
-  #     description: If it is, name the project the request relates to
-  #   validations:
-  #     required: true
-  # - type: textarea
-  #   id: request-constraints
-  #   attributes: 
-  #     label: Are there important constraints for this request?
-  #     description: If the constraints are particularly complex, you may wish to organise a meeting instead of filing a request
-  #   validations:
-  #     required: true
-  # - type: textarea
-  #   id: request-deadline
-  #   attributes: 
-  #     label: Does this request have a due date?
-  #     description: You should name any specific date you have in mind for this request, or any dependencies/blockers that would determine it.
-  #   validations:
-  #     required: true
-  # - type: textarea
-  #   id: additional-information
-  #   label: Any additional information
-  #   description: Add any remaining detail for this request not covered by the above questions.
+  - type: dropdown
+    id: what-product
+    attributes: 
+      label: Which product or products does this relate to?
+      multiple: true
+      options:
+        - F5 DoS for NGINX
+        - F5 WAF for NGINX
+        - NGINX Agent
+        - NGINXaaS for Azure
+        - NGINX Gateway Fabric
+        - NGINX Ingress Controller
+        - NGINX Instance Manager
+        - NGINX One Console
+        - NGINX Plus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: direct-responsibility
+    attributes: 
+      label: Who is the person directly responsible for initiating this request?
+      description: Name the specific person that made this request.
+    validations:
+      required: true
+  - type: textarea
+    id: request-scope
+    attributes: 
+      label: Is this request part of a larger initiative or project?
+      description: If it is, name the project the request relates to
+    validations:
+      required: true
+  - type: textarea
+    id: request-constraints
+    attributes: 
+      label: Are there important constraints for this request?
+      description: If the constraints are particularly complex, you may wish to organise a meeting instead of filing a request
+    validations:
+      required: true
+  - type: textarea
+    id: request-deadline
+    attributes: 
+      label: Does this request have a due date?
+      description: You should name any specific date you have in mind for this request, or any dependencies/blockers that would determine it.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    label: Any additional information
+    description: Add any remaining detail for this request not covered by the above questions.
