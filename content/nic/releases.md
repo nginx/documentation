@@ -15,7 +15,7 @@ nd-docs: DOCS-616
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
 -  Bump Go dependencies
-- [8280](https://github.com/nginx/kubernetes-ingress/pull/8280), [8291](https://github.com/nginx/kubernetes-ingress/pull/8291) &amp; [8320](https://github.com/nginx/kubernetes-ingress/pull/8320) Bump Docker dependencies
+- [8280](https://github.com/nginx/kubernetes-ingress/pull/8280), [8291](https://github.com/nginx/kubernetes-ingress/pull/8291) & [8320](https://github.com/nginx/kubernetes-ingress/pull/8320) Bump Docker dependencies
 - [8348](https://github.com/nginx/kubernetes-ingress/pull/8348) Update waf 5.9.0
 - [8273](https://github.com/nginx/kubernetes-ingress/pull/8273) Update dependencies
 
