@@ -8,7 +8,7 @@ To make NGINX Plus metrics available on the NGINX One Console, you must enable s
 
 To display [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) servers in NGINX Console, one or more status_zone directives must be defined. The same zone name can be reused across multiple server blocks.
 
-Since [R19]({{< ref "nginx/releases.md#r19" >}}), the status_zone directive can also be applied to location blocks, allowing statistics to be aggregated separately for servers and locations.
+Since [R19]({{< ref "nginx/releases.md#r19" >}}), you can apply the status_zone directive to location blocks, allowing statistics to be aggregated separately for servers and locations.
 
 ```nginx
 server {
