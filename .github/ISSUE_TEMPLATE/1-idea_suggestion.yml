@@ -35,8 +35,8 @@ body:
     attributes: 
       label: What alternative ways have you thought of to implement you idea?
       description: There are often multiple ways to do one thing - context is important.
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     attributes: 
       label: Any additional information
