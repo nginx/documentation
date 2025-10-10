@@ -14,7 +14,7 @@ Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension t
 The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted Generative AI Models on Kubernetes. 
 The project's goal is to improve and standardize routing to inference workloads across the ecosystem. 
 
-Coupled with the provided Endpoint Picker Service, NGINX Gataway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more. 
+Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more. 
 
 {{< call-out "warning" >}} The Gateway API Inference Extension is still in alpha status and should not be used in production yet.{{< /call-out >}}
 
@@ -23,7 +23,7 @@ Coupled with the provided Endpoint Picker Service, NGINX Gataway Fabric becomes 
 - Install the Gateway API Inference Extension CRDs:
 
 ```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/releases/latest/download/manifests.yaml
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-inference-extension-api/?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
 - To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
