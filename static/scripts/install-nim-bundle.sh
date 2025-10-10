@@ -320,6 +320,18 @@ installBundleForDebianDistro() {
   systemctl restart nginx
 }
 
+check_restorecon(){
+  local path="$1"
+
+    if ! sudo restorecon -F -R "$path"; then
+        YELLOW='\033[1;33m'
+        NC='\033[0m'
+        echo -e "${YELLOW}WARNING: Something happened${NC}"
+    else
+        echo "restorecon succeeded for $path"
+    fi
+}
+
 installBundleForRPMDistro(){
     # creating nms group and nms user if it isn't already there
     if ! getent group "${NIM_GROUP}" >/dev/null; then
@@ -416,26 +428,28 @@ installBundleForRPMDistro(){
     systemctl restart nginx
     
     sleep 2
-    sudo restorecon -F -R /usr/bin/nms-core
-	  sudo restorecon -F -R /usr/bin/nms-dpm
-	  sudo restorecon -F -R /usr/bin/nms-ingestion
-	  sudo restorecon -F -R /usr/bin/nms-integrations
-	  sudo restorecon -F -R /usr/bin/nms-sm
-	  sudo restorecon -F -R /usr/lib/systemd/system/nms.service
-	  sudo restorecon -F -R /usr/lib/systemd/system/nms-core.service
-	  sudo restorecon -F -R /usr/lib/systemd/system/nms-dpm.service
-	  sudo restorecon -F -R /usr/lib/systemd/system/nms-sm.service
-	  sudo restorecon -F -R /usr/lib/systemd/system/nms-ingestion.service
-	  sudo restorecon -F -R /usr/lib/systemd/system/nms-integrations.service
-	  sudo restorecon -F -R /var/lib/nms/modules/manager.json
-	  sudo restorecon -F -R /var/lib/nms/modules.json
-	  sudo restorecon -F -R /var/lib/nms/secrets
-	  sudo restorecon -F -R /var/lib/nms/streaming
-	  sudo restorecon -F -R /var/lib/nms
-	  sudo restorecon -F -R /var/lib/nms/dqlite
-	  sudo restorecon -F -R /var/run/nms
-	  sudo restorecon -F -R /var/lib/nms/modules
-	  sudo restorecon -F -R /var/log/nms
+    check_restorecon /usr/bin/nms-core
+	  check_restorecon /usr/bin/nms-dpm
+	  check_restorecon /usr/bin/nms-ingestion
+	  check_restorecon /usr/bin/nms-integrations
+	  check_restorecon /usr/bin/nms-sm
+	  check_restorecon /usr/lib/systemd/system/nms.service
+	  check_restorecon /usr/lib/systemd/system/nms-core.service
+	  check_restorecon /usr/lib/systemd/system/nms-dpm.service
+	  check_restorecon /usr/lib/systemd/system/nms-sm.service
+	  check_restorecon /usr/lib/systemd/system/nms-ingestion.service
+	  check_restorecon /usr/lib/systemd/system/nms-integrations.service
+	  check_restorecon /var/lib/nms/modules/manager.json
+	  check_restorecon /var/lib/nms/modules.json
+	  check_restorecon /var/lib/nms/secrets
+	  check_restorecon /var/lib/nms/streaming
+	  check_restorecon /var/lib/nms
+	  check_restorecon /var/lib/nms/dqlite
+	  check_restorecon /var/run/nms
+	  check_restorecon /var/lib/nms/modules
+	  check_restorecon /var/log/nms
+
+    sleep 5
 }
 
 install_nim_online(){
