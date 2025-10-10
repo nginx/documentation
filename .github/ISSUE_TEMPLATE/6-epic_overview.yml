@@ -1,0 +1,28 @@
+name: Epic overview
+description: This template is for planning an epic, which is a large body of effort involving multiple stories or tasks
+title: " "
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Write a high-level description of what the body of work for this epic includes.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Goals
+      description: Describe the intent of the epic and what the intended impact is for this effort.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: User stories
+      description: As a user, I want thing, So I can action.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Tasks
+      description: Create a simple list of tasks necessary for this epic. Finer details should be kept to sub-issues/tasks/stories.
+    validations:
+      required: true
