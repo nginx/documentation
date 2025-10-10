@@ -23,7 +23,7 @@ Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes 
 - Install the Gateway API Inference Extension CRDs:
 
 ```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-inference-extension-api/?ref=v{{< version-ngf >}}" | kubectl apply -f -
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/inference-extension/?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
 - To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
