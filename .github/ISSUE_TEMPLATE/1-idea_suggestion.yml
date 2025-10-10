@@ -1,0 +1,52 @@
+name: Documentation idea
+description: Suggest an idea for improving documentation
+title: "[Idea]: "
+body:
+  - type: textarea
+    attributes:
+      label: What is your idea for improving documentation?
+      description: Describe your idea with as much information as possible.
+    validations:
+      required: true
+  - type: dropdown
+    attributes: 
+      label: Which product or products does this request relate to?
+      multiple: true
+      options:
+        - F5 DoS for NGINX
+        - F5 WAF for NGINX
+        - NGINX Agent
+        - NGINXaaS for Azure
+        - NGINX Gateway Fabric
+        - NGINX Ingress Controller
+        - NGINX Instance Manager
+        - NGINX One Console
+        - NGINX Plus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Is this idea related to a larger problem?
+      description: If you have identified specific issues, it might be part of a design pattern.
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: What alternative ways have you thought of to implement you idea?
+      description: There are often multiple ways to do one thing: context is important.
+      validations:
+        required: true
+  - type: textarea
+    attributes: 
+      label: Any additional information
+      description: Add any remaining detail for this request not covered by the above questions.
+
+
+### Describe alternatives you've considered
+
+A clear and concise description of any alternative solutions or features you've considered.
+
+### Additional context
+
+Add any other context or screenshots about the feature request here.
