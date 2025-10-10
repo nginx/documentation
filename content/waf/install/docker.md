@@ -236,6 +236,24 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
+#### Ubuntu
+
+{{< tabs name="ubuntu-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+{{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 #### RHEL 8
 
 {{< tabs name="rhel8-instructions" >}}
@@ -285,24 +303,6 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 {{% tab name="NGINX Plus" %}}
 
 {{< include "/waf/dockerfiles/rocky9-plus.md" >}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-#### Ubuntu
-
-{{< tabs name="ubuntu-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-{{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
 
 {{% /tab %}}
 
@@ -381,7 +381,7 @@ server {
 
         client_max_body_size 0;
         default_type text/html;
-        proxy_pass http://127.0.0.1:8080/;
+        proxy_pass http://127.0.0.1:8080;
     }
 }
 
@@ -424,7 +424,7 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 
 {{< include "waf/install-services-compose.md" >}}
 
-F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).
+You can now review the operational status of F5 WAF for NGINX using the [Post-installation checks]({{< ref "/waf/install/docker.md#post-installation-checks" >}}).
 
 ## Hybrid configuration
 

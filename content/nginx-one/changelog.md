@@ -30,6 +30,12 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 7, 2025
+
+### Compare multiple metrics in instance observability
+
+You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI.
+
 ## October 6, 2025
 
 ### Expanded features for configuring NGINX security policies with F5 WAF
@@ -61,7 +67,7 @@ See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-n
 
 ### Set up F5 WAF for NGINX security policies
 
-You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with NGINX App Protect]({{< ref "/nginx-one/nap-integration/" >}}).
+You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with F5 WAF for NGINX]({{< ref "/nginx-one/nap-integration/" >}}).
 
 In NGINX One Console, you can:
 

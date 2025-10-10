@@ -14,25 +14,23 @@ To contact support about F5 NGINXaaS for Azure (NGINXaaS):
 
 1. Go to your NGINXaaS deployment.
 
-2. Select **New Support request** in the left menu.
+1. Select **New Support request** in the left menu.
 
-3. Select **Raise a Support ticket**.
+1. Select **Raise a Support ticket**.
 
    {{< img src="nginxaas-azure/raise-ticket.png" alt="Screenshot of the Azure portal showing the Raise support ticket button" >}}
 
-4. You will be redirected to **MyF5** to create a new case. Log in to MyF5 with your F5 account.
+1. You will be redirected to **MyF5** to create a new case. Log in to MyF5 with your F5 account.
 
 {{< call-out "note" >}}If you can't complete a deployment successfully, the "New support request" option won't be available on the left-hand navigation menu. To raise a support ticket, go to the [MyF5 portal](https://my.f5.com). {{< /call-out >}}
 
-5. Go to the **Case Management** section and select **Create new case**.
+1. Go to the **Support** section and select **Create a Case**.
 
-   {{< img src="nginxaas-azure/new-case.png" alt="Screenshot of the MyF5 portal showing the Create new case button" >}}
+1. Select **NGINX Products** as the product family.
 
-6. Select **NGINXaaS** in the Product dropdown.
+1. Select **NGINXaaS for Azure** in the Product dropdown.
 
-   {{< img src="nginxaas-azure/create-case.png" alt="MyF5 Case form" >}}
-
-7. Complete the request with the relevant information about your issue, bug report, or feedback. If you are contacting us to report an issue, please include the following information, available in the **Properties** section of your deployment, for the support team to begin their investigation:
+1. Complete the request with the relevant information about your issue, bug report, or feedback. If you are contacting us to report an issue, please include the following information, available in the **Properties** section of your deployment, for the support team to begin their investigation:
 
 - Location
 - Date and time of the issue
@@ -45,7 +43,7 @@ If your deployment is configured to use F5 WAF for NGINX, please collect the fol
 
 {{< img src="nginxaas-azure/properties.png" alt="Screenshot of the Azure portal showing the Properties section" >}}
 
-8. Complete the **Additional information** and **Contact details** sections of your case and select **Submit**.
+1. Complete the **Additional information** and **Contact details** sections of your case and select **Submit**.
 
 ## Update support contact information
 
