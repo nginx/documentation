@@ -51,7 +51,6 @@ An action can be configured for each bot class, or configured for each bot signa
 * `alarm`     - Report, raise the violation, but pass the request. The request is marked as `illegal`.
 * `block`     - Report, raise the violation, and block the request
 
-
 This example enables bot signatures using the default bot configuration:
 
 ```json
