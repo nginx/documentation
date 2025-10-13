@@ -2,8 +2,8 @@
 title: Gateway API Inference Extension
 weight: 800
 toc: true
-type: how-to
-product: NGF
+nd-type: how-to
+nd-product: NGF
 nd-docs: DOCS-0000
 ---
 
@@ -20,33 +20,33 @@ Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes 
 
 ## Setup
 
-- Install the Gateway API Inference Extension CRDs:
+Install the Gateway API Inference Extension CRDs:
 
 ```shell
 kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/inference-extension/?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
-- To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
-  - Using Helm: set the `nginxGateway.gwAPIInferenceExtension.enable=true` Helm value.
-  - Using Kubernetes manifests: set the `--gateway-api-inference-extension` flag in the nginx-gateway container argument, update the ClusterRole RBAC to add the `inferencepools`:
-  ```yaml
-    - apiGroups:
-        - inference.networking.k8s.io
-        resources:
-        - inferencepools
-        verbs:
-        - get
-        - list
-        - watch
-    - apiGroups:
-        - inference.networking.k8s.io
-        resources:
-        - inferencepools/status
-        verbs:
-        - update
-  ```
+To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
+- Using Helm: set the `nginxGateway.gwAPIInferenceExtension.enable=true` Helm value.
+- Using Kubernetes manifests: set the `--gateway-api-inference-extension` flag in the nginx-gateway container argument, update the ClusterRole RBAC to add the `inferencepools`:
+```yaml
+- apiGroups:
+    - inference.networking.k8s.io
+    resources:
+    - inferencepools
+    verbs:
+    - get
+    - list
+    - watch
+- apiGroups:
+    - inference.networking.k8s.io
+    resources:
+    - inferencepools/status
+    verbs:
+    - update
+```
 
-  See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/inference/deploy.yaml) for clarification.
+See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/inference/deploy.yaml) for clarification.
 
 
 ## Deploy a sample model server
@@ -83,8 +83,6 @@ kubectl describe deployment vllm-llama3-8b-instruct-epp
 
 ## Deploy an Inference Gateway
 
-1. Deploy Inference Gateway:
-
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: gateway.networking.k8s.io/v1
@@ -113,7 +111,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-2. Deploy the HTTPRoute:
+## Deploy a HTTPRoute:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -160,7 +158,7 @@ curl -i $GW_IP:$GW_PORT/v1/completions -H 'Content-Type: application/json' -d '{
 
 ## Cleanup
 
-1. Uninstall the InferencePool, InferenceObjective, and model server resources:
+Uninstall the InferencePool, InferenceObjective, and model server resources:
 
 
 ```shell
@@ -171,34 +169,34 @@ kubectl delete -f https://github.com/kubernetes-sigs/gateway-api-inference-exten
 kubectl delete -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/sim-deployment.yaml --ignore-not-found
 ```
 
-2. Uninstall the Gateway API Inference Extension CRDs:
+Uninstall the Gateway API Inference Extension CRDs:
 
 ```shell
 kubectl delete -k https://github.com/kubernetes-sigs/gateway-api-inference-extension/config/crd --ignore-not-found
 ```
 
-3. Uninstall Inference Gateway and HTTPRoute:
+Uninstall Inference Gateway and HTTPRoute:
 
 ```shell
 kubectl delete gateway inference-gateway
 kubectl delete httproute llm-route
 ```
 
-4. Uninstall NGINX Gateway Fabric:
+Uninstall NGINX Gateway Fabric:
 
 ```shell
 helm uninstall ngf -n nginx-gateway
 ```
 If needed, replace ngf with your chosen release name.
 
-5. Remove namespace and NGINX Gateway Fabric CRDs:
+Remove namespace and NGINX Gateway Fabric CRDs:
 
 ```shell
 kubectl delete ns nginx-gateway
 kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
-6. Remove the Gateway API CRDs:
+Remove the Gateway API CRDs:
 
 {{< include "/ngf/installation/uninstall-gateway-api-resources.md" >}}
 
