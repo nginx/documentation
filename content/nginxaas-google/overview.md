@@ -60,10 +60,11 @@ NGINXaaS for Google Cloud is supported in the following regions per geography:
 
 ## Limitations
 
-- We currently support two geographies with limited regions only.
+- As mentioned above, we currently support two geographies with limited regions only.
 - We only support authentication via Google acting as an identity provider.
-- User Role Based Access Control (RBAC) is not supported.
-- NGINX Configuration needs a specific snippet for an NGINXaaS deployment to work.
+- User Role Based Access Control (RBAC) is not yet supported.
+- NGINX Configurations require a specific snippet for an NGINXaaS deployment to work.
+   - For specifics see [NGINX configuration required content]({{< ref "nginxaas-google/getting-started/nginx-configuration/overview.md#nginx-configuration-required-content" >}}).
 
 ## What's next
 

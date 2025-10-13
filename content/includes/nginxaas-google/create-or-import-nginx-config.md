@@ -11,7 +11,7 @@ In the NGINXaaS Console,
    - Select **New configuration** to create a new config.
       - Provide a name for your configuration and an optional description.
       - Change the configuration path if needed.
-      - Select to start with the "NGINXaaS Default" (a basic NGINX setup) or an empty configuration file.
+      - Select to start with the "F5 NGINXaaS Default" (a basic NGINX setup) or an empty configuration file.
       - Select **Next**.
    - Select **Copy existing configuration** to use one of the existing configuration files in your account as template.
       - Provide a name for your configuration and an optional description.
@@ -22,3 +22,5 @@ In the NGINXaaS Console,
 
 1. Modify the configuration file as needed and select **Save**.
    - You can import certificates using the **Add file** option.
+
+{{< call-out "warning" >}} If you are not using the "F5 NGINXaaS Default", or if making modifications to the config, please be aware of the [NGINX configuration required content]({{< ref "nginxaas-google/getting-started/nginx-configuration/overview.md#nginx-configuration-required-content" >}}) which must be included. {{< /call-out >}}

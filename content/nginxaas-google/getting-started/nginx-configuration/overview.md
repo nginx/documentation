@@ -19,6 +19,41 @@ NGINX configurations can be uploaded to your NGINXaaS for Google Cloud deploymen
 
 The topics below provide information on NGINX configuration restrictions and directives that are supported by NGINXaaS for Google Cloud when using any of the above workflows.
 
+## NGINX configuration required content
+
+F5 NGINXaaS for Google Cloud requires a few specific configuration statements to be included in order for the NGINXaaS deployment to function properly when applied. All of these are included in the "F5 NGINXaaS Default" config, which is the recommended starting config to create.
+
+1. There must be an http server block (which can be referenced via `include` statement) with the following contents:
+
+    ```nginx
+      server {
+        listen 49151;
+        access_log off;
+        location /api {
+            api write=on;
+            allow 127.0.0.1;
+            deny all;
+        }
+        location /ready {
+            return 200;
+        }
+      }
+    ```
+
+    This server block enables NGINXaaS to access the [NGINX Plus monitoring API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}}) for constant monitoring of the NGINXaaS deployment's health and collection of metrics. It also exposes a simple readiness endpoint for NGINXaaS to regularly validate the availability of the NGINXaaS deployment. Without this content, a deployment using this config will likely report an unhealthy or failed status.
+
+1. The following top-level NGINX directives must exactly match these configuration settings:
+
+    ```nginx
+    user nginx;
+    worker_processes auto;
+    pid /run/nginx/nginx.pid;
+    ```
+
+NGINXaaS deployments must run as the `nginx` user for proper functionality and security.
+`worker_processes` should be explicitly set to `auto` to guarantee optimal performance at any deployment scale.
+
+Using any other file path for the  `pid` directive may result in a failure to apply the config.
 
 ## NGINX filesystem restrictions
 

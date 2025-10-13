@@ -12,3 +12,5 @@ nd-docs: DOCS-000
 1. Review the changes using the "Inline" or "Side-by-side"  views and select **Save**.
 
 You will see a notification confirming that the configuration was updated successfully.
+
+{{< call-out "warning" >}} When updating a NGINX config, please be aware of the [NGINX configuration required content]({{< ref "nginxaas-google/getting-started/nginx-configuration/overview.md#nginx-configuration-required-content" >}}) which must be included. {{< /call-out >}}
