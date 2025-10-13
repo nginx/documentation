@@ -79,9 +79,6 @@ Define features in the `nginx-agent.conf` file:
    ```yaml
    features:
    - metrics
-   - metrics-host
-   - metrics-container
-   - metrics-instance
    ```
 
 1. Restart the NGINX Agent service to apply the changes.
