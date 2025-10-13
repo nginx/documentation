@@ -22,7 +22,7 @@ Although F5 WAF for NGINX provides an optional package with prebuilt a SELinux p
 
 {{< call-out "note" >}}
 
-You may wish to read the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) blog post for more information.
+You may want to read the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) blog post for more information.
 
 {{< /call-out >}}
 
