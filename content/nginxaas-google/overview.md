@@ -3,7 +3,7 @@ title: Overview and architecture
 weight: 100
 toc: true
 nd-docs: DOCS-000
-url: /nginxaas/google/overview/overview/
+url: /nginxaas/google/overview/
 type:
 - concept
 ---
