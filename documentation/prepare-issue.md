@@ -14,15 +14,13 @@ User stories are written in the following format:
 **I want** \<thing\>,  
 **So I** can \<action\>.
 
-It's written from the perspective of a user, whose priorities are often different from your own.
+Write user stories from the user’s perspective. Their goals may not match yours.
 
-The users for each story may map to specific user personas dependent on the required content design complexity.
+For each user story, think about which user persona it maps to. A persona represents a type of person with shared traits like experience level, domain knowledge, or goals. A user story written for a DevOps persona will look different from one written for SecOps.
 
-A user persona reflects a broad set of demographic criteria, representing a type of person who may have different levels of experience, domain knowledge or priorities.
+Use acceptance criteria to define what needs to be true for the story to be complete and the user’s need to be met.
 
-Acceptance criteria are used to determine whether or not the need identified as part of a user story is fulfilled.
-
-Much like the user story, it is the user perspective that defines how acceptance criteria are written.
+Just like user stories, write acceptance criteria from the user’s point of view. Focus on what they expect, not what you want to build.
 
 Here is a good and bad example of acceptance criteria:
 
