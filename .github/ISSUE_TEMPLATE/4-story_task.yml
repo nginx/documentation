@@ -18,6 +18,7 @@ body:
         - F5 WAF for NGINX
         - NGINX Agent
         - NGINXaaS for Azure
+        - NGINXaaS for Google Cloud
         - NGINX Gateway Fabric
         - NGINX Ingress Controller
         - NGINX Instance Manager
