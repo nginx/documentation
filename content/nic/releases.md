@@ -14,9 +14,9 @@ nd-docs: DOCS-616
 - [8302](https://github.com/nginx/kubernetes-ingress/pull/8302) Remove type field for objects with schema ref
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
-- [8321](https://github.com/nginx/kubernetes-ingress/pull/8321), [8330](https://github.com/nginx/kubernetes-ingress/pull/8330), [8352](https://github.com/nginx/kubernetes-ingress/pull/8352), [8358](https://github.com/nginx/kubernetes-ingress/pull/8358) Bump Go dependencies
+- [8321](https://github.com/nginx/kubernetes-ingress/pull/8321), [8330](https://github.com/nginx/kubernetes-ingress/pull/8330), [8352](https://github.com/nginx/kubernetes-ingress/pull/8352) & [8358](https://github.com/nginx/kubernetes-ingress/pull/8358) Bump Go dependencies
 - [8280](https://github.com/nginx/kubernetes-ingress/pull/8280), [8291](https://github.com/nginx/kubernetes-ingress/pull/8291), [8331](https://github.com/nginx/kubernetes-ingress/pull/8331) & [8320](https://github.com/nginx/kubernetes-ingress/pull/8320) Bump Docker dependencies
-- [8348](https://github.com/nginx/kubernetes-ingress/pull/8348) Update waf 5.9.0
+- [8348](https://github.com/nginx/kubernetes-ingress/pull/8348) Update F5 WAF for NGINX 5.9.0
 - [8273](https://github.com/nginx/kubernetes-ingress/pull/8273) Update dependencies
 
 ### <i class="fa-solid fa-download"></i> Upgrade
