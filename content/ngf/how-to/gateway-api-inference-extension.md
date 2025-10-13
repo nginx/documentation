@@ -111,7 +111,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-## Deploy a HTTPRoute:
+## Deploy a HTTPRoute
 
 ```yaml
 kubectl apply -f - <<EOF
