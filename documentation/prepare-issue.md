@@ -39,6 +39,6 @@ Constraints tend to be precise and sensitive in nature, and are used to figure o
 
 - If an issue involves changing a common noun, it may affect other work priorities
 - If an issue is related to an upcoming release, it might need attention soon
-- If an issue leaves users in an operable state, it requires intervention immediately
+- If an issue leaves users in an inoperable state, it requires intervention immediately
 
 Clear constraints reduces or removes time that might otherwise be spent clarifying detail around an issue.
