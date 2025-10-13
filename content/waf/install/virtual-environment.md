@@ -128,6 +128,12 @@ Add F5 WAF for NGINX dependencies:
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 ```
 
+Enable F5 WAF for NGINX dependencies:
+
+```shell
+sudo dnf config-manager --set-enabled crb
+```
+
 Enable the _ol8_codeready_builder_ repository:
 
 ```shell
