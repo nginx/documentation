@@ -1,6 +1,6 @@
 ---
 title: F5 WAF for NGINX
-weight: 200
+weight: 250
 url: /nginxaas/azure/app-protect/
 ---
 
