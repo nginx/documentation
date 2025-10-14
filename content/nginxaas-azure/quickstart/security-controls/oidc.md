@@ -260,7 +260,7 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
         }
         ```
 
-        b. Set a proper path for `proxy_cache_path`, see [Enable content caching]({{< ref "basic-caching.md" >}}).
+        b. Set a proper path for `proxy_cache_path`, see [Enable content caching]({{< ref "/nginxaas-azure/quickstart/basic-caching.md" >}}).
 
         ```nginx
         proxy_cache_path /var/cache/nginx/jwt levels=1 keys_zone=jwk:64k max_size=1m;

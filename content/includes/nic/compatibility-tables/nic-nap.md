@@ -3,7 +3,7 @@ The following table shows compatibility between NGINX Ingress Controller (NIC) a
 {{< bootstrap-table "table table-striped table-responsive" >}}
 | NIC Version         | NAP-WAF Version | Config Manager | Enforcer |
 | ------------------- | --------------- | -------------- | -------- |
-| {{< nic-version >}} | 35+5.498        | 5.8.0          | 5.8.0    |
+| {{< nic-version >}} | 35+5.527        | 5.9.0          | 5.9.0    |
 | 5.1.1               | 35+5.498        | 5.8.0          | 5.8.0    |
 | 5.0.0               | 34+5.342        | 5.6.0          | 5.6.0    |
 | 4.0.1               | 33+5.264        | 5.5.0          | 5.5.0    |

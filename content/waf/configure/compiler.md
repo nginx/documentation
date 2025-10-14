@@ -228,6 +228,27 @@ docker run \
  -dump -bundle $(pwd)/compiled_policy.tgz
 ```
 
+## Debugging bundle errors
+
+When [configuring policies]({{< ref "/waf/policies/configuration.md">}}), you may run into problems.
+
+There are ways to remediate them based on the context:
+
+{{< table >}}
+| Description             | Solution  |
+| ----------------------- | --------  |
+| _Expected declarative policy_ | Ensure the JSON of the policy is well-formed | 
+| _Policy Bundles version is older than the local version_ | You must recompile all your bundles from scratch when installing security updates. |
+| _Policy Bundles version is newer than the local version_ | You must recompile all your bundles from scratch when installing security updates. |
+| _Found mixed content of compiled and raw configuration_ | Only pre-compiled bundles can be used in NGINX configuration: compile JSON to bundles first. |
+| _Compiler is required, but not installed: Missing /opt/app_protect/bin/config_set_compiler_ | Only pre-compiled bundles can be used in NGINX configuration: compile JSON to bundles first. |
+| _Policy Bundles have differing global states_ | Recompile all of your bundles from scratch with your custom compiler. Bundles must be compiled with the same compiler: you cannot mix default and custom bundles. |
+| _Policy Bundles have differing cookie seeds_ | Recompile all of your bundles from scratch with your custom compiler. Bundles must be compiled with the same compiler: you cannot mix default and custom bundles. |
+| _Duplicate policy name found_ | Don't compile multiple policies with the same name, or one policy to multiple bundles. Each policy can be compiled once but a bundle can be re-used. |
+| _Duplicate logging profile name found | Don't compile the same logging profile to multiple bundles. Each profile can be compiled once but a bundle can be re-used. |
+| _Timeout waiting for enforcer_ | Likely an internal issue: [contact Support]({{< ref "/waf/support.md" >}}) |
+{{< /table >}}
+
 ## Global settings
 
 The global settings allows configuration of the following items:
