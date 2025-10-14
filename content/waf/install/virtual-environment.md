@@ -40,6 +40,12 @@ Navigate to your chosen operating system, which are alphabetically ordered.
 
 ### Alpine Linux
 
+Add the F5 WAF for NGINX signing key:
+
+```shell
+sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+```
+
 Add the F5 WAF for NGINX repository:
 
 ```shell
@@ -75,6 +81,13 @@ sudo dnf install app-protect
 ```
 
 ### Debian
+
+Add the F5 WAF for NGINX signing key:
+
+```shell
+wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | gpg --dearmor | \
+sudo tee /usr/share/keyrings/app-protect-security-updates.gpg > /dev/null
+```
 
 Add the F5 WAF for NGINX repositories:
 
@@ -113,6 +126,12 @@ Add F5 WAF for NGINX dependencies:
 
 ```shell
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+```
+
+Enable F5 WAF for NGINX dependencies:
+
+```shell
+sudo dnf config-manager --set-enabled crb
 ```
 
 Enable the _ol8_codeready_builder_ repository:
@@ -154,6 +173,13 @@ sudo dnf install app-protect
 ```
 
 ### Ubuntu
+
+Add the F5 WAF for NGINX signing key:
+
+```shell
+wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg > /dev/null
+```
 
 Add the F5 WAF for NGINX repositories:
 
