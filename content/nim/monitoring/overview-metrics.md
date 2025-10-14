@@ -5,7 +5,7 @@ title: 'Overview: NGINX instance metrics'
 toc: true
 weight: 100
 type:
-- reference
+  - reference
 ---
 
 ## Overview
@@ -17,7 +17,7 @@ F5 NGINX Instance Manager collects two types of data:
 
 The NGINX Agent collects metrics every 15 seconds and publishes them every 60 seconds.
 
-For a full list of available metrics, see the [Metrics Catalog Reference]({{< ref "/nms/reference/catalogs//metrics.md" >}}).
+For a full list of available metrics, see the [Metrics Catalog Reference]({{< ref "/nim/monitoring/catalogs/metrics.md" >}}).
 
 ## How metrics are collected and reported
 
@@ -37,6 +37,12 @@ NGINX Instance Manager stores historical data in an analytics database and appli
 ### NGINX Open Source metrics
 
 {{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+
+After saving the changes, reload NGINX to apply the new configuration:
+
+```shell
+nginx -s reload
+```
 
 ### NGINX access log metrics
 

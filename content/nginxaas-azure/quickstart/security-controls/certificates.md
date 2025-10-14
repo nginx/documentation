@@ -160,9 +160,18 @@ http {
 
 For more information on using NGINX to secure traffic to upstream servers, refer to [Securing HTTP Traffic to Upstream Servers](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/) and [Securing TCP Traffic to Upstream Servers](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-tcp-traffic-upstream/).
 
-## Configure Network Security Perimeter (NSP)
 
-If you want to disable public access to your key vault, you can configure a [Network Security Perimeter (NSP)](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts). This will allow you to configure access rules to allow NGINXaaS to fetch certificates from your key vault while ensuring all other public access is denied.
+## Restrict Public Access to Key Vault
+
+If you want to restrict public access to your key vault, you can configure:
+
+- a [Network Security Perimeter (NSP)](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts). This will allow you to configure access rules to allow NGINXaaS to fetch certificates from your key vault while ensuring all other public access is denied.
+
+- Allow access from a Virtual Network. This will allow you to configure access from the Virtual Network that is delegated to NGINXaaS while ensuring all other public access is denied.
+
+- Integrate Azure Key Vault with [Azure Private Link](https://learn.microsoft.com/en-us/azure/private-link/private-link-overview). To enhance network security, you can configure your vault to only allow connections through private endpoints. Traffic between NGINXaaS and AKV traverses over the Microsoft backbone network.
+
+### Configure Network Security Perimeter (NSP)
 
 1. Follow [Azure's documentation on prerequisites](https://learn.microsoft.com/en-us/azure/private-link/create-network-security-perimeter-portal#prerequisites) to ensure you are registed to create an NSP.
 1. In the Search box, enter **Network Security Perimeters** and select **Network Security Perimeters** from the search results.
@@ -174,7 +183,7 @@ If you want to disable public access to your key vault, you can configure a [Net
   | Subscription                | Select the appropriate Azure subscription that you have access to. |
   | Resource group              | Specify whether you want to create a new resource group or use an existing one.<br> For more information, see [Azure Resource Group overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview).         |
   | Name              | Provide a unique name for your network security perimeter. For this tutorial, we use `nginxaas-nsp`. |
-  | Region                      | Select the region you want to deploy to. Refer to any [regional limitations](https://learn.microsoft.com/en-us/azure/private-link/network-security-perimeter-concepts#regional-limitations) NSP has while in public preview. |
+  | Region                      | Select the region you want to deploy to. |
   | Profile name | Leave the profile name as the default `defaultProfile`. |
    {{< /table >}}
 1. In the **Resources** tab, select {{< icon "plus">}}**Add**.
@@ -197,3 +206,41 @@ By default, the key vault will be associated to the NSP in [Learning mode](https
 1. Select **Change access mode**, set to **Enforced**, and select **Apply**.
 
 {{< call-out "note" >}} If you are using the Azure portal to add certificates, you will also need to add an inbound access rule to allow your IP address, so the portal can list the certificates in your key vault. {{< /call-out >}}
+
+### Integrate with Private Endpoint
+
+1. Go to your key vault, `nginxaas-kv`.
+1. Select **Settings** followed by **Networking** in the left menu.
+1. Select the **Private endpoint connections** tab.
+1. Select {{< icon "plus">}} **Create**
+1. In the **Basics** tab, provide the following information:
+   {{< table >}}
+  | Field                       | Description                |
+  |---------------------------- | ---------------------------- |
+  | Subscription                | Select the appropriate Azure subscription that you have access to. |
+  | Resource group              | Specify whether you want to create a new resource group or use an existing one.<br> For more information, see [Azure Resource Group overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview).         |
+  | Name              | Provide a unique name for your private link. For this tutorial, we use `nginxaas-pl`. |
+  | Region                      | Select the region you want to deploy to.
+   {{< /table >}}
+
+1. In the **Resources** tab, select **Resource Type** as `Microsoft.KeyVault/vaults` and **Resource** as `nginxaas-kv`
+1. In the **Virtual Network** tab, provide the following information
+   {{< table >}}
+  | Field                       | Description                |
+  |---------------------------- | ---------------------------- |
+  | Virtual network              | Select the virtual network delegated to your NGINXaaS deployment. |
+  | Subnet                      | Select a subnet from your virtual network that is not being used.
+   {{< /table >}}
+1. In the **DNS** tab, use the default settings to integrate your private endpoint with a private DNS zone.
+1. Select **Review + Create** and then **Create**.
+
+Once a private link is configured and public access is disabled on Azure Key Vault, any certificates added to the NGINXaaS deployment will be fetched over the private link.
+
+### Allow access from a Virtual Network
+
+1. Go to your key vault, `nginxaas-kv`.
+1. Select **Networking** in the left menu.
+1. Select {{< icon "plus">}} **Add existing virtual network**.
+1. Select the virtual network and subnet that is delegated to the NGINXaaS deployment.
+
+{{< call-out "note" >}} Ensure that the Network Security Group on the subnet delegated to the NGINXaaS deployment allows outbound traffic to the internet{{< /call-out >}}

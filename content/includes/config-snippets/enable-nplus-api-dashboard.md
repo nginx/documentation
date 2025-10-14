@@ -25,7 +25,7 @@ server {
         api write=on;
 
         # To restrict access by network, uncomment and set your network:
-        # allow 192.0.2.0/24   # replace with your network
+        # allow 192.0.2.0/24;   # replace with your network
         # deny  all;
     }
 

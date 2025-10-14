@@ -7,9 +7,9 @@ nd-product: NIC
 nd-docs: DOCS-581
 ---
 
-NGINX App Protect DoS protected resource specification
+F5 DoS for NGINX protected resource specification
 
-{{< call-out "note" >}} This feature is only available using the NGINX Plus [NGINX App Protect DoS Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} This feature is only available using the NGINX Plus [F5 DoS for NGINX Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /call-out >}}
 
 ## DoS Protected resource specification
 
@@ -30,12 +30,12 @@ spec:
 {{% table %}}
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables NGINX App Protect DoS, Default value: false. | ``bool`` | No |
+|``enable`` | Enables F5 DoS for NGINX, Default value: false. | ``bool`` | No |
 |``name`` | Name of the protected object, max of 63 characters. | ``string`` | Yes |
 |``dosAccessLogDest`` | The log destination for the access log with dos log format. Accepted variables are ``<ip-address \| localhost \| fqdn>:<port>`` or ``stderr``. | ``string`` | No |
 |``apDosMonitor.uri`` | The destination to the desired protected object. [App Protect DoS monitor](#dosprotectedresourceapdosmonitor) Default value: None, URL will be extracted from the first request which arrives and taken from "Host" header or from destination ip+port. | ``string`` | No |
 |``apDosMonitor.protocol`` | Determines if the server listens on http1 / http2 / grpc / websocket. [App Protect DoS monitor](#dosprotectedresourceapdosmonitor) Default value: http1. | ``enum`` | No |
-|``apDosMonitor.timeout`` | Determines how long (in seconds) should NGINX App Protect DoS wait for a response. [App Protect DoS monitor](#dosprotectedresourceapdosmonitor) Default value: 10 seconds for http1/http2 and 5 seconds for grpc. | ``int64`` | No |
+|``apDosMonitor.timeout`` | Determines how long (in seconds) should F5 DoS for NGINX wait for a response. [App Protect DoS monitor](#dosprotectedresourceapdosmonitor) Default value: 10 seconds for http1/http2 and 5 seconds for grpc. | ``int64`` | No |
 |``apDosPolicy`` | The [App Protect DoS policy](#dosprotectedresourceapdospolicy) of the dos. Accepts an optional namespace. | ``string`` | No |
 |``dosSecurityLog.enable`` | Enables security log. | ``bool`` | No |
 |``dosSecurityLog.apDosLogConf`` | The [App Protect DoS log conf]({{< ref "/nic/installation/integrations/app-protect-dos/configuration.md#app-protect-dos-logs" >}}) resource. Accepts an optional namespace. | ``string`` | No |
@@ -49,7 +49,7 @@ The `apDosPolicy` is a reference (qualified identifier in the format `namespace/
 
 ### DosProtectedResource.apDosMonitor
 
-This is how NGINX App Protect DoS monitors the stress level of the protected object. The monitor requests are sent from localhost (127.0.0.1).
+This is how F5 DoS for NGINX monitors the stress level of the protected object. The monitor requests are sent from localhost (127.0.0.1).
 
 ### Invalid DoS Protected resources
 

@@ -51,7 +51,7 @@ spec:
   - path: ~ ^/decaf/.*\\.jpg$
     action:
       pass: coffee
-  - path: = /green/tea
+  - path: =/green/tea
     action:
       pass: tea
 ```

@@ -25,7 +25,7 @@ When writing documentation for our project, align with the default guide's voice
 - On the first mention of an enterprise NGINX product in a document, use the full product name. For example:
 
   - F5 NGINX Plus
-  - F5 NGINX App Protect WAF
+  - F5 WAF for NGINX
   - F5 NGINX Instance Manager
 
 - Don't add "F5" to open source products. For example:
@@ -36,7 +36,7 @@ When writing documentation for our project, align with the default guide's voice
 - For subsequent mentions of any enterprise product, you can drop the "F5". You must include the "NGINX" brand name in all uses. For example:
 
   - NGINX Plus
-  - NGINX App Protect WAF
+  - F5 WAF for NGINX
   - NGINX Instance Manager
 
 - When naming multiple products in one document, you only need to include F5 once, on the first mentioned product.
@@ -72,7 +72,7 @@ The table provides guidelines about the terms you should and should not use for 
 | anthropomorphism | Avoid referring to the product or feature as though it were alive. \<br>When referring to products, stay away from words like: decides, knows, sees, listens, and hears.<br>A wizard guides you, it doesn't walk you through the steps. | |
 | application | When referring to applications in general, write out the entire word. For clarity, avoid abbreviating to "app" unless specifically referencing the user interface or product. | |
 | as/because | Use "because" instead of "as" when showing a cause-and-effect relationship. | |
-| attack signature, attack signature set | Refers to elements of the NGINX App Protect WAF package. Do not abbreviate or otherwise shorten. | |
+| attack signature, attack signature set | Refers to elements of the F5 WAF for NGINX package. Do not abbreviate or otherwise shorten. | |
 | backwards | Use backward and forward, not backwards and forwards | |
 | black list<br> blacklist<br> blacklisted | Do not use these terms.<br>Use these terms instead:<br>-black list (noun) = deny list (noun)<br>-blacklist (verb) = denylist (verb)<br>-blacklisted (adjective) = denylisted (adjective) | |
 | boot, boot up, reboot | Use "start" and "restart" if possible.<br>For "boot", use in the context of "boot to a new volume". If the meaning is actually "start", then use "start". Do not use "boot up".<br>Instead of "reboot", use "restart". \<br>When referring to applying configuration changes, use "reload". | |

@@ -26,7 +26,7 @@ To switch an instance between namespaces, you have to deregister an instance fro
 | **Tenant** | A tenant in F5 Distributed Cloud is an entity that owns a specific set of configuration and infrastructure. It is fundamental for isolation, meaning a tenant cannot access objects or infrastructure of other tenants. Tenants can be either individual or enterprise, with the latter allowing multiple users with role-based access control (RBAC). |
 {{</bootstrap-table>}}
 
-## NGINX App Protect WAF terminology
+## F5 WAF for NGINX terminology
 
 {{< include "nap-waf/config/common/nginx-app-protect-waf-terminology.md" >}}
 

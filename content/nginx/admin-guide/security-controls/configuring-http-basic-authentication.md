@@ -155,6 +155,6 @@ http {
 
 When you access your status page, you are prompted to log in:
 
-[![auth_required](https://cdn.wp.nginx.com/wp-content/uploads/2016/10/auth_required.png)](https://cdn.wp.nginx.com/wp-content/uploads/2016/10/auth_required.png)
+![The "Authentication Required" prompt](/nginx/images/auth-required.png)
 
 If the provided name and password do not match the password file, you get the `401 (Authorization Required)` error.

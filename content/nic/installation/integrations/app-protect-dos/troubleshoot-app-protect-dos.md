@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot NGINX App Protect DoS
+title: Troubleshoot F5 DoS for NGINX
 toc: true
 weight: 400
 nd-content-type: how-to
