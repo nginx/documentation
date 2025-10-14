@@ -16,7 +16,7 @@ If it's your first time using NGINXaaS for Google Cloud, you need to find the of
 
 ### Get the offering in the Google Cloud Marketplace
 
-1. Use the link provided by the F5 sales team to access the NGINXaaS for Google Cloud offering in the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace).
+1. Find the [NGINXaaS for Google Cloud product listing in the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud).
 1. Login with your Google Cloud account.
 1. Select **Subscribe** to subscribe to the NGINXaaS for Google Cloud offering.
 1. Select the **Enterprise** plan using the dropdown menu.

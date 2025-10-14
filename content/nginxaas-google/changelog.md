@@ -34,7 +34,7 @@ To learn more, refer to the following resources:
 - **Blogs:** [F5 NGINXaaS for Google Cloud: Delivering resilient, scalable applications ](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
 - **Webinars:** [Why F5 NGINXaaS for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
 
-Visit the Google Cloud Marketplace and start leveraging NGINXaaS for Google Cloud today!
+[Visit the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud) and start leveraging NGINXaaS for Google Cloud today!
 
 
 ## September 18, 2025
