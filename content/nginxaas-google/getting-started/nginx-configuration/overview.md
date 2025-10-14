@@ -66,10 +66,9 @@ There are limits to where files, including NGINX configuration files, certificat
   | /opt                 | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
   | /srv                 | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
   | /tmp                 |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
-  | /spool/nginx         |                      | {{< icon "check" >}} |                      | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /spool/nginx         |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
   | /var/cache/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
-  | /var/log/nginx       |                      | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |
-  | /var/spool/nginx     |                      | {{< icon "check" >}} |                      | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/spool/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
   | /var/www             | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
 {{< /table >}}
 
