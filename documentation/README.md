@@ -4,7 +4,7 @@ This directory contains the documentation for the NGINX Documentation repository
 
 It's used by the documentation team to record how we use our tools and instructions for common tasks.
 
-There's also documentation for our ways of working, and ideas of significance wider than the scope of an issue or pull request.
+There's also documentation about our ways of working, and ideas of significance wider than the scope of an issue or pull request.
 
 We maintain this information publicly as part of NGINX's commitment to transparency and open source.
 
