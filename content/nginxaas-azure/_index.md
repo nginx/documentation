@@ -4,7 +4,7 @@ nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your M
 url: /nginxaas/azure/
 nd-landing-page: true
 cascade:
-  logo: NGINX-for-Azure-icon.svg
+  logo: F5-NGINXaaS-icon.svg
 nd-content-type: landing-page
 nd-product: N4Azure
 ---

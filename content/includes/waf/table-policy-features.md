@@ -7,6 +7,7 @@
 | ----------------------------------- | ----------- |
 | [Allowed methods]({{< ref "/waf/policies/allowed-methods.md" >}}) | Checks allowed HTTP methods. By default, all the standard HTTP methods are allowed. |
 | [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}) | The default policy covers the OWASP top 10 attack patterns. Specific signature sets can be added or disabled. |
+| [Bot signatures]({{< ref "/waf/policies/bot-signatures.md" >}}) | Bot signatures and headers can be inspected to authenticate the identity of a client making a request. |
 | [Brute force attack preventions]({{< ref "/waf/policies/brute-force-attacks.md" >}}) | Configure parameters to secure areas of a web application from brute force attacks. |
 | [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}) | By default all cookies are allowed and not enforced for integrity. The user can add specific cookies, wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response. |
 | [Data guard]({{< ref "/waf/policies/data-guard.md" >}}) | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default. |

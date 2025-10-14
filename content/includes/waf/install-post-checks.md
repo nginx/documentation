@@ -61,3 +61,12 @@ Verify that Enforcement functionality is working by checking the following reque
 ```shell
 curl "localhost/<script>"
 ```
+
+If you notice problems, there are ways to remediate them based on the context:
+
+| Description             | Solution  |
+| ----------------------- | --------  |
+| *NGINX is not running or F5 WAF for NGINX does not behave as expected* | Review warning or error messages within [the log files]({{< ref "/waf/logging/logs-overview.md" >}}) |
+| *unknown directive app_protect_xxx error message* | Ensure F5 WAF for NGINX is [loaded as a module](#update-configuration-files) in the main context of NGINX configuration. |
+| *Too many open files error message* | Increase the maximum amount of open files with the [worker_rlimit_nofile](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile) directive. |
+| *setrlimit ... failed (Permission denied) error message* | Increase the limit by by running the following command as root: `setsebool -P httpd_setrlimit 1` |
