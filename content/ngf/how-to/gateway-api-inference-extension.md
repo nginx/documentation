@@ -18,7 +18,7 @@ Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes 
 
 {{< call-out "warning" >}} The Gateway API Inference Extension is still in alpha status and should not be used in production yet.{{< /call-out >}}
 
-## Setup
+## Set up
 
 Install the Gateway API Inference Extension CRDs:
 
@@ -27,8 +27,10 @@ kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/infe
 ```
 
 To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
+
 - Using Helm: set the `nginxGateway.gwAPIInferenceExtension.enable=true` Helm value.
 - Using Kubernetes manifests: set the `--gateway-api-inference-extension` flag in the nginx-gateway container argument, update the ClusterRole RBAC to add the `inferencepools`:
+
 ```yaml
 - apiGroups:
     - inference.networking.k8s.io
@@ -51,7 +53,7 @@ See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gatewa
 
 ## Deploy a sample model server
 
-The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/dev environments. This sample is configured to simulate the [meta-llama/LLama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) model. To deploy the vLLM simulator, run the following command:
+The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. This sample is configured to simulate the [meta-llama/LLama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) model. To deploy the vLLM simulator, run the following command:
 
 ```shell
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/sim-deployment.yaml
