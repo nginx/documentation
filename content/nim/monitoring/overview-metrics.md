@@ -5,7 +5,7 @@ title: 'Overview: NGINX instance metrics'
 toc: true
 weight: 100
 type:
-- reference
+  - reference
 ---
 
 ## Overview
@@ -37,6 +37,12 @@ NGINX Instance Manager stores historical data in an analytics database and appli
 ### NGINX Open Source metrics
 
 {{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+
+After saving the changes, reload NGINX to apply the new configuration:
+
+```shell
+nginx -s reload
+```
 
 ### NGINX access log metrics
 

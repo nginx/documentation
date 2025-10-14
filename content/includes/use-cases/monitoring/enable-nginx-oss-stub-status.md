@@ -25,9 +25,3 @@ This configuration:
 - Blocks all other requests for security.
 
 For more details, see the [NGINX Stub Status module documentation](https://nginx.org/en/docs/http/ngx_http_stub_status_module.html).
-
-After saving the changes, reload NGINX to apply the new configuration:
-
-```shell
-nginx -s reload
-```
