@@ -26,6 +26,7 @@ server {
 
         # To restrict access by network, uncomment and set your network:
         # allow 192.0.2.0/24;   # replace with your network
+        # allow 127.0.0.1/32;   # allow local NGINX Agent to call the NGINX Plus API to retrieve metrics
         # deny  all;
     }
 
