@@ -1,0 +1,56 @@
+name: General request
+description: Make a general documentation request.
+title: "[Request]: "
+body:
+  - type: textarea
+    attributes: 
+      label: What would you like the documentation team to work on?
+      description: Please describe your request with as much detail as possible.
+    validations:
+      required: true
+  - type: dropdown
+    attributes: 
+      label: Which product or products does this request relate to?
+      multiple: true
+      options:
+        - F5 DoS for NGINX
+        - F5 WAF for NGINX
+        - NGINX Agent
+        - NGINXaaS for Azure
+        - NGINXaaS for Google Cloud
+        - NGINX Gateway Fabric
+        - NGINX Ingress Controller
+        - NGINX Instance Manager
+        - NGINX One Console
+        - NGINX Plus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: Who is the person directly responsible for initiating this request?
+      description: Name the specific person that made this request.
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: Is this request part of a larger initiative or project?
+      description: If it is, name the project the request relates to.
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: Are there important constraints for this request?
+      description: If the constraints are particularly complex, you may wish to organise a meeting before filing a request.
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: Does this request have a due date?
+      description: You should name any specific date or milestones (Such as "Q3") you have in mind for this request, and any dependencies or blockers affecting it.
+    validations:
+      required: true
+  - type: textarea
+    attributes: 
+      label: Any additional information
+      description: Add any remaining detail for this request not covered by the above questions.
