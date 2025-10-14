@@ -16,7 +16,7 @@ The files are located in the [content/includes](https://github.com/nginxinc/docs
 
 Putting the previous example in any Markdown file would embed the contents of `content/includes/use-cases/docker-registry-instructions.md` wherever the shortcode was used.
 
-For guidance on other Hugo shortcodes, read the [Managing content with Hugo](/documentation/writing-hugo.md) document.
+For guidance on other Hugo shortcodes, read the [Managing content with Hugo](/documentation/hugo-content.md) document.
 
 ## Guidelines for include files
 
