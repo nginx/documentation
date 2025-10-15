@@ -84,7 +84,6 @@ server {
     listen 80;
     server_name domain.com;
 
-    proxy_http_version 1.1;
 
     location / {
 
