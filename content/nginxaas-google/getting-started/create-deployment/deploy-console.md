@@ -18,15 +18,7 @@ Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref 
 
 ### Create a network attachment
 
-NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your NGINXaaS deployment to your VPC network.
-
-1. Access the [Google Cloud Console](https://console.cloud.google.com/).
-1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you select for the network attachment determines the region where your NGINXaaS deployment will be created. You do not manually select a region when creating an NGINXaaS deployment; it will automatically be created in the same region as the network attachment.
-1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide.
-   - For **production use cases**, we recommend setting the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This lets you manually approve trusted connections, as this setting cannot be changed later. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
-   - For **development use cases**, you can set the **Connection preference** to **Automatically accept connections from all projects**, which allows connections without manual approval. If you choose this option, you don't need to explicitly allow the NGINXaaS deployment project.
-2. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
+NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your NGINXaaS deployment to your VPC network. The network attachment must be created in a region we support.
 
    {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
 
@@ -38,6 +30,14 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
    {{< /table >}}
 
    {{< /call-out >}}
+
+1. Access the [Google Cloud Console](https://console.cloud.google.com/).
+1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
+   - The region you select for the network attachment determines the region where your NGINXaaS deployment will be created. You do not manually select a region when creating an NGINXaaS deployment; it will automatically be created in the same region as the network attachment.
+1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide.
+   - For **production use cases**, we recommend setting the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This lets you manually approve trusted connections, as this setting cannot be changed later. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
+   - For **development use cases**, you can set the **Connection preference** to **Automatically accept connections from all projects**, which allows connections without manual approval. If you choose this option, you don't need to explicitly allow the NGINXaaS deployment project.
+1. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
 
 ## Access the NGINXaaS Console
 
