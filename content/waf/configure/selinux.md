@@ -12,13 +12,19 @@ nd-content-type: how-to
 nd-product: NAP-WAF
 ---
 
-The default settings for Security-Enhanced Linux (SELinux) on modern Red Hat Enterprise Linux (RHEL) and related distros can be very strict, erring on the side of security rather than convenience.
+The default settings for Security-Enhanced Linux (SELinux) on modern Red Hat Enterprise Linux (RHEL) and related distros can be very strict, prioritizing security over user convenience.
 
 To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
 
 For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
 
 Although F5 WAF for NGINX provides an optional package with prebuilt a SELinux policy (`app-protect-selinux`), your specific configuration might be blocked unless you adjust the policy or modify file labels.
+
+{{< call-out "note" >}}
+
+You may want to read the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) blog post for more information.
+
+{{< /call-out >}}
 
 ## Modifying file labels
 
@@ -44,3 +50,15 @@ semanage port -l | grep syslog
 ```
 
 For more information related to syslog, see the [Security logs]({{< ref "/waf/logging/security-logs.md" >}}) topic.
+
+## Review audits
+
+F5 WAF for NGINX files and processes are labelled with the `nap-compiler_t` and `nap-engine_t` contexts. NGINX Plus is labelled with `httpd_t`.
+
+If SELinux denies access to something, you can search audit denials using one of the above contexts.
+
+```shell
+ausearch --start recent -m avc --raw -se nap-engine_t
+```
+
+The _--start recent_ argument searches the previous 10 minutes.

@@ -34,14 +34,14 @@ If you'd like to discuss something NGINX-related that doesn't involve documentat
 
 ## Submit a pull request
 
-Before making documentation changes, you should view the [documentation style guide](/documentation/style-guide.md) and [Managing content with Hugo](/documentation/writing-hugo.md).
+Before making documentation changes, you should view the [documentation style guide](/documentation/style-guide.md) and [Managing content with Hugo](/documentation/hugo-content.md).
 
 To understand how we use Git in this repository, read our [Git conventions](/documentation/git-conventions.md) documentation.
 
 The broad workflow is as follows:
 
 - Fork the NGINX repository
-  - If you're an F5/NGINX user, you can work from a clone
+  - If you're an F5/NGINX user, you can branch directly with a clone
 - Create a branch
 - Implement your changes in your branch
 - Submit a pull request (PR) when your changes are ready for review
@@ -53,10 +53,9 @@ Alternatively, you're welcome to suggest improvements to highlight problems with
 To ensure a balance between work carried out by the NGINX team while encouraging community involvement on this project, we use the following
 issue lifecycle:
 
-- A new issue is created by a community member
-- An owner on the NGINX team is assigned to the issue; this owner shepherds the issue through the subsequent stages in the issue lifecycle
-- The owner assigns one or more [labels](https://github.com/nginxinc/oss-docs/issues/labels) to the issue
-- The owner, in collaboration with the community member, determines what milestone to attach to an issue. They may be milestones correspond to product releases
+- A new issue is created by 
+- A maintainer from the F5 team is assigned to the issue; this maintainer shepherds the issue through the subsequent stages in the issue lifecycle
+- The maintainer assigns one or more [labels](https://github.com/nginx/documentation/labels) to the issue
 
 ## Additional NGINX documentation
 
