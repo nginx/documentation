@@ -42,13 +42,13 @@ The status of the deployment will be "Pending" while the deployment's capacity i
 
 ## Capacity restrictions
 
-The following table outlines constraints on the specified capacity based on the chosen Marketplace plan, including the minimum capacity required for a deployment to be highly available, the maximum capacity, and what value the capacity must be a multiple of. By default, an NGINXaaS for Google Cloud deployment will be created with a capacity of 20 NCUs.
+The following table outlines constraints on the specified capacity based on the chosen Marketplace plan, including the minimum capacity required for a deployment to be highly available, and the maximum capacity. By default, an NGINXaaS for Google Cloud deployment will be created with a capacity of 20 NCUs.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| **Marketplace Plan**         | **Minimum Capacity (NCUs)** | **Maximum Capacity (NCUs)** | **Multiple of**            |
-|------------------------------|-----------------------------|-----------------------------|----------------------------|
-| Enterprise plan(s)             | 10                          | 100                         | 10                         |
+| **Marketplace Plan**         | **Minimum Capacity (NCUs)** | **Maximum Capacity (NCUs)** |
+|------------------------------|-----------------------------|-----------------------------|
+| Enterprise plan(s)             | 10                          | 100                         |
 
 {{</bootstrap-table>}}
 
