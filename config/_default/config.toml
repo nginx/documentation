@@ -144,6 +144,7 @@ enableGitInfo = true
   ]
   github_repo = "https://github.com/nginx/documentation/"
   enable_qualtrics = false
+  enable_coveo = true
 
 sectionPagesMenu = "docs"
 
