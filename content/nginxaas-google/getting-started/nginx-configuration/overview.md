@@ -59,17 +59,16 @@ Using any other file path for the  `pid` directive may result in a failure to ap
 There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principal of least privilege, and ensure the smooth operation of the system.
 
 {{<table variant="narrow" theme="bordered">}}
-| Allowed Directory   |  User can upload files to | NGINX master process can read | NGINX master process can write | NGINX worker process can read | NGINX worker process can write |
-| -------------------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
-| /etc/nginx           | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |                      |
-| /opt                 | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
-| /srv                 | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
-| /tmp                 |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
-| /spool/nginx         |                      | {{< icon "check" >}} |                      | {{< icon "check" >}} | {{< icon "check" >}} |
-| /var/cache/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
-| /var/log/nginx       |                      | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |
-| /var/spool/nginx     |                      | {{< icon "check" >}} |                      | {{< icon "check" >}} | {{< icon "check" >}} |
-| /var/www             | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
+  | Allowed Directory   |  User can upload files to | NGINX master process can read | NGINX master process can write | NGINX worker process can read | NGINX worker process can write |
+  | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
+  | /etc/nginx           | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |                      |
+  | /opt                 | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /srv                 | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
+  | /tmp                 |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /spool/nginx         |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/cache/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/spool/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
+  | /var/www             | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
 {{< /table >}}
 
 For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.

@@ -108,7 +108,7 @@
 }
 
 #calculator input:invalid + #ncuValidation::after {
-    content: "Must be a multiple of 10, with a minimum of 10";
+    content: "Must be a minimum of 10";
     color: #aa0000;
     padding-left: 5px;
     font-size: 12px;
