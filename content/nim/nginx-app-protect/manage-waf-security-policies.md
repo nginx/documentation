@@ -95,6 +95,7 @@ For example:
 ```shell
 curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @ignore-xss-example.json
 ```
 
@@ -164,6 +165,7 @@ To use `POST`, include the policy metadata and content in your request:
 ```shell
 curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @update-xss-policy.json
 ```
 
@@ -179,7 +181,7 @@ Then include the UID in your PUT request:
 ```shell
 curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid> \
     -H "Authorization: Bearer <access token>" \
-    --Content-Type application/json \
+    -H "Content-Type application/json" \
     -d @update-xss-policy.json
 ```
 
@@ -277,6 +279,7 @@ Example:
 ```shell
 curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @security-policy-bundles.json
 ```
 
@@ -540,6 +543,7 @@ Example:
 ```shell
 curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @default-log-example.json
 ```
 
@@ -600,6 +604,7 @@ To create a new revision:
 ```shell
 curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @update-default-log.json
 ```
 
@@ -610,7 +615,7 @@ To overwrite an existing security log profile:
     ```shell
     curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \
-      --Content-Type application/json \
+      -H "Content-Type application/json" \
       -d @update-log-profile.json
     ```
 
@@ -619,7 +624,7 @@ To overwrite an existing security log profile:
     ```shell
     curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \
-      --Content-Type application/json \
+      -H "Content-Type: application/json" \
       -d @update-log-profile.json
       ```
 
@@ -686,6 +691,7 @@ Example:
 ```shell
 curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @publish-request.json
 ```
 
