@@ -57,7 +57,7 @@ F5 WAF for NGINX can define a limit to the amount of bytes that will be inspecte
 
 Restrictions on known signatures will be enforced by policies independently of response length.
 
-To enable this, set the `responseCheck` parameter to true. Add the `responseCheckLength` attribute to set an alternative length to the default value.
+To enable this, set the `responseCheck` parameter to `true`. Add the `responseCheckLength` attribute to set an alternative length to the default value.
 
 The response length checked refers to the number of uncompressed bytes in the response body. 
 
