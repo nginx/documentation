@@ -88,10 +88,9 @@ Some directives cannot be overridden by the user provided configuration.
 
 ## Configuration directives list
 
-<details close>
-<summary>Alphabetical index of directives</summary>
-
 NGINXaaS for Azure supports a limited set of NGINX directives.
+
+{{< details summary="Alphabetical index of directives">}}
 
 [absolute_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#absolute_redirect)\
 [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex)\
@@ -925,10 +924,10 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [zone_sync_ssl_verify](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_ssl_verify)\
 [zone_sync_ssl_verify_depth](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_ssl_verify_depth)\
 [zone_sync_timeout](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_timeout)
-</details>
 
-<details close>
-<summary>Lua dynamic module directives</summary>
+{{< /details >}}
+
+{{< details summary="Lua dynamic module directives">}}
 
 [lua_load_resty_core](https://github.com/openresty/lua-nginx-module?tab=readme-ov-file#lua_load_resty_core)\
 [lua_use_default_type](https://github.com/openresty/lua-nginx-module?tab=readme-ov-file#lua_use_default_type)\
@@ -1005,14 +1004,14 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [lua_max_running_timers](https://github.com/openresty/lua-nginx-module?tab=readme-ov-file#lua_max_running_timers)\
 [lua_sa_restart](https://github.com/openresty/lua-nginx-module?tab=readme-ov-file#lua_sa_restart)\
 [lua_worker_thread_vm_pool_size](https://github.com/openresty/lua-nginx-module?tab=readme-ov-file#lua_worker_thread_vm_pool_size)
-</details>
 
+{{< /details >}}
 
-<details close>
-<summary>GeoIP2 dynamic module directives</summary>
+{{< details summary="GeoIP2 dynamic module directives">}}
 
 [geoip2 (ngx_http_geo2_module)](https://github.com/leev/ngx_http_geoip2_module#user-content-download-maxmind-geolite2-database-optional)\
 [geoip2 (ngx_stream_geo2_module)](https://github.com/leev/ngx_http_geoip2_module#user-content-download-maxmind-geolite2-database-optional)\
 [geoip2_proxy (ngx_http_geo2_module)](https://github.com/leev/ngx_http_geoip2_module#user-content-download-maxmind-geolite2-database-optional)\
 [geoip2_proxy_recursive (ngx_http_geo2_module)](https://github.com/leev/ngx_http_geoip2_module#user-content-download-maxmind-geolite2-database-optional)\
-</details>
+
+{{< /details >}}

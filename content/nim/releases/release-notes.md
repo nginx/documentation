@@ -2,22 +2,18 @@
 title: Release notes
 weight: 100
 toc: true
-type: reference
-product: NIM
+nd-content-type: reference
+nd-product: NIM
 nd-docs: DOCS-938
 ---
 
 The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
 
-<details open>
-<summary><i class="fa-solid fa-info-circle"></i> Support for F5 WAF for NGINX</summary>
+{{< details summary="Support for F5 WAF for NGINX" >}}
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 
-</details>
-
-
----
+{{< /details >}}
 
 ## 2.20.0
 

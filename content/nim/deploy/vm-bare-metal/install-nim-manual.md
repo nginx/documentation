@@ -1,12 +1,11 @@
 ---
-description: ''
-nd-docs: DOCS-1211
 title: Manually install any version of NGINX Instance Manager
 toc: true
 weight: 10
 noindex: true
-type:
-- tutorial
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-1211
 ---
 
 ## Overview
@@ -29,15 +28,13 @@ To install NGINX Instance Manager, you need the following:
 
 Allow external systems access by opening network firewalls. NGINX Instance Manager uses port `443` for both gRPC and API/web interfaces.
 
----
-
 ## Download Certificate and Key {#download-cert-key}
 
 Follow these steps to download the certificate and private key for NGINX Instance Manager. You'll need these files when adding the official repository for installing NGINX Instance Manager. You can also use the certificate and key when installing NGINX Plus.
 
 1. On the host where you're installing NGINX Instance Manager, create the `/etc/ssl/nginx/` directory:
 
-   ``` bash
+   ```shell
    sudo mkdir -p /etc/ssl/nginx
    ```
 
@@ -45,14 +42,12 @@ Follow these steps to download the certificate and private key for NGINX Instanc
 
 3. Move and rename the `.crt` and `.key` files:
 
-   ```bash
+   ```shell
    sudo mv <nginx-mgmt-suite-trial.crt> /etc/ssl/nginx/nginx-repo.crt
    sudo mv <nginx-mgmt-suite-trial.key> /etc/ssl/nginx/nginx-repo.key
    ```
 
    The downloaded filenames may vary depending on your subscription type. Modify the commands above accordingly to match the actual filenames.
-
----
 
 ## Install NGINX {#install-nginx}
 
@@ -60,27 +55,21 @@ Install NGINX Open Source or NGINX Plus on the host where you'll install NGINX I
 
 - [Installing NGINX and NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
 
-   <br>
-
    If you're installing NGINX Plus, you can use the `nginx-repo.key` and `nginx-repo.crt` that you added in the [previous section](#download-cert-key).
 
-<details open>
-<summary><i class="fa-solid fa-circle-info"></i> Supported NGINX versions</summary>
+{{< details summary="Supported NGINX versions">}}
 
 {{< include "nim/tech-specs/supported-nginx-versions.md" >}}
 
-</details>
+{{< /details >}}
 
-<details open>
-<summary><i class="fa-solid fa-circle-info"></i> Supported Linux distributions</summary>
+{{< details summary="Supported Linux distributions">}}
 
 {{< include "nim/tech-specs/supported-distros.md" >}}
 
-</details>
+{{< /details >}}
 
 Make sure to review the [Technical Specifications]({{< ref "/nim/fundamentals/tech-specs" >}}) guide for sizing requirements and other recommended specs.
-
----
 
 ## Configure metrics collection
 
@@ -104,15 +93,11 @@ NGINX Instance Manager uses the following default values for ClickHouse. To chan
 
 {{< include "nim/clickhouse/clickhouse-defaults.md" >}}
 
----
-
 ## Add NGINX Instance Manager Repository {#add-nms-repo}
 
 To install NGINX Instance Manager, you need to add the official repository to pull the pre-compiled `deb` and `rpm` packages from.
 
 {{< include "installation/add-nms-repo.md" >}}
-
----
 
 ## Install Instance Manager
 
@@ -122,11 +107,13 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 1. To install the latest version of Instance Manager, run the following command:
 
-    ```bash
+    ```shell
     sudo yum install -y nms-instance-manager
     ```
 
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> The Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
+   {{< call-out "warning" >}}
+   NGINX Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
+   {{< /call-out >}}
 
 {{%/tab%}}
 
@@ -134,12 +121,14 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 1. To install the latest version of Instance Manager, run the following commands:
 
-    ```bash
+    ```shell
     sudo apt-get update
     sudo apt-get install -y nms-instance-manager
     ```
 
-    > <span style="color: #c20025;"><i class="fas fa-exclamation-triangle"></i> **IMPORTANT!**</span> The Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
+   {{< call-out "warning" >}}
+   NGINX Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
+   {{< /call-out >}}
 
 {{%/tab%}}
 
@@ -147,7 +136,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 2. Enable and start the NGINX Instance Manager platform services:
 
-    ```bash
+    ```shell
     sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
     ```
 
@@ -155,7 +144,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 3. Restart the NGINX web server:
 
-   ```bash
+   ```shell
    sudo systemctl restart nginx
    ```
 
@@ -169,7 +158,6 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 {{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
 
-
 ### Configure SELinux
 
 {{< include "nim/installation/optional-steps/configure-selinux.md" >}}
@@ -178,12 +166,9 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 {{< include "installation/access-web-ui.md" >}}
 
-
 ## Add License
 
 {{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
-
----
 
 ## Upgrade Instance Manager {#upgrade-nim}
 
@@ -192,7 +177,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 1. To upgrade to the latest version of the Instance Manager, run the following command:
 
-   ```bash
+   ```shell
    sudo yum update -y nms-instance-manager
    ```
 
@@ -202,7 +187,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 1. To upgrade to the latest version of the Instance Manager, run the following command:
 
-   ```bash
+   ```shell
    sudo apt-get update && \
    sudo apt-get install -y --only-upgrade nms-instance-manager
    ```
@@ -212,7 +197,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 2. Restart the NGINX Instance Manager platform services:
 
-    ```bash
+    ```shell
     sudo systemctl restart nms
     ```
 
@@ -220,13 +205,11 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 3. Restart the NGINX web server:
 
-   ```bash
+   ```shell
    sudo systemctl restart nginx
    ```
 
 4. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Management suite.
-
----
 
 ## Next steps
 
