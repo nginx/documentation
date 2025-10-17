@@ -20,8 +20,7 @@ To complete this guide, you'll need to install:
 
 {{< call-out "important" >}} If you’d like to use NGINX Plus, some additional setup is also required: {{< /call-out >}}
 
-<details closed>
-<summary>NGINX Plus JWT setup</summary>
+{{< details summary="NGINX Plus JWT setup" >}}
 
 {{< include "/ngf/installation/jwt-password-note.md" >}}
 
@@ -39,7 +38,7 @@ To complete this guide, you'll need to install:
 
 {{< call-out "note" >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /call-out >}}
 
-</details>
+{{< /details >}}
 
 ## Deploy NGINX Gateway Fabric
 

@@ -1,10 +1,10 @@
 ---
 title: Overview
-weight: 50
-toc: true
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/overview/
-type:
-- how-to
+toc: true
+weight: 50
+nd-content-type: how-to
+nd-product: N4Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.
@@ -62,25 +62,24 @@ For Azure client tools, such as the Azure CLI or Azure Resource Manager, the cer
 
 To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
 
-   {{< table >}}
+{{< table >}}
 
-   | Status        | Description   |
-   | ------------- | ------------- |
-   | `active`      | The certificate was successfully fetched from AKV. |
-   | `unauthorized`| Azure returned a 401/403 error when fetching the certificate from AKV, which usually indicates an issue with the deployment's [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}). |
-   | `not found`   | Azure returned a 404 error when fetching the certificate from AKV. |
-   | `incompatible`| An error occurred while fetching or processing the certificate from AKV. <br><br>The possible reasons include: <br> <br><ul><li>Error while downloading certificate and key</li><li>Missing content type in certificate</li><li>Missing content in certificate</li><li>Unrecognized content type, certificate not in PEM or PKCS12 format</li></ul> |
+| Status        | Description   |
+| ------------- | ------------- |
+| `active`      | The certificate was successfully fetched from AKV. |
+| `unauthorized`| Azure returned a 401/403 error when fetching the certificate from AKV, which usually indicates an issue with the deployment's [Managed Identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}). |
+| `not found`   | Azure returned a 404 error when fetching the certificate from AKV. |
+| `incompatible`| An error occurred while fetching or processing the certificate from AKV. <br><br>The possible reasons include: <br> <br><ul><li>Error while downloading certificate and key</li><li>Missing content type in certificate</li><li>Missing content in certificate</li><li>Unrecognized content type, certificate not in PEM or PKCS12 format</li></ul> |
 
-   {{< /table >}}
+{{< /table >}}
 
-   {{< img src="nginxaas-azure/azure-metrics-nginxaas.certificates.png" alt="Interface screenshot showing the Azure metric nginxaas.certificates" >}}
+{{< img src="nginxaas-azure/azure-metrics-nginxaas.certificates.png" alt="Interface screenshot showing the Azure metric nginxaas.certificates" >}}
 
 ## Common certificate errors
 
 The following section describes common errors you might encounter while adding SSL/TLS certificates to your NGINXaaS deployment and how to resolve them.
 
-<details>
-<summary><b>Expand to view common certificate errors</b></summary>
+{{< details summary="Common certificate errors" >}}
 
 #### Error code: `ForbiddenByRbac`
 
@@ -88,8 +87,7 @@ The following section describes common errors you might encounter while adding S
 
 **Resolution:** Assign the [Key Vault Secrets User](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) role to the managed identity associated with your NGINXaaS deployment.
 
-<details close>
-<summary>Create a role assignment - Azure CLI</summary>
+{{< details summary="Create a role assignment using the CLI" >}}
 
 1. Get the principal ID of the user or system assigned managed identity.
 
@@ -130,7 +128,8 @@ The following section describes common errors you might encounter while adding S
       --role "Key Vault Secrets User" \
       --scope $key_vault_id
    ```
-</details>
+
+{{< /details >}}
 
 #### Error code: `AccessDenied`
 
@@ -138,8 +137,7 @@ The following section describes common errors you might encounter while adding S
 
 **Resolution:** Assign an access policy to the managed identity associated with your NGINXaaS deployment with *Get secrets* permissions or higher. If you are using the Azure portal, assign an additional access policy to your user with *List certificates* permissions or higher.
 
-<details>
-<summary>Create an access policy - Azure CLI</summary>
+{{< details summary="Create an access policy using the CLI" >}}
 
 1. Get the principal ID of the user or system assigned managed identity.
 
@@ -176,7 +174,8 @@ The following section describes common errors you might encounter while adding S
       --object-id $mi_principal_id \
       --secret-permissions get
    ```
-</details>
+
+{{< /details >}}
 
 #### Error code: `ForbiddenByFirewall` or `ForbiddenByConnection`
 
@@ -187,8 +186,8 @@ The following section describes common errors you might encounter while adding S
 Allow NGINXaaS to access the key vault through one of these mechanisms:
 
 1. [Configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) to allow the subscription of the NGINXaaS deployment to access the key vault.
-<details>
-<summary>Create a network security perimeter - Azure CLI</summary>
+
+{{< details summary="Create a network security perimeter using the CLI" >}}
 
 1. Create a network security perimeter.
 
@@ -243,11 +242,12 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
       --resource-group $NSP_RESOURCE_GROUP \
       --subscriptions [0].id="/subscriptions/$DEP_SUBSCRIPTION_ID"
    ```
-</details>
+
+{{< /details >}}
 
 2. Integrate with a Private Endpoint to allow NGINXaaS to fetch certificates via Azure Private Link.
-<details>
-<summary>Create a Private Link - Azure CLI</summary>
+
+{{< details summary="Create a private link using the CLI" >}}
 
 1. Get the resource ID of the key vault.
 
@@ -314,12 +314,12 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
       --private-dns-zone $ZONE_NAME \
       --zone-name $ZONE_NAME
    ```
-</details>
+
+{{< /details >}}
 
 3. Allow access from Virtual Network delegated to NGINXaaS.
 
-<details>
-<summary>Allow Virtual Network access - Azure CLI</summary>
+{{< details summary="Allow Virtual Network access using the CLI" >}}
 
 1. Get the resource ID of the virtual network.
 
@@ -355,7 +355,8 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
    ```
 
 {{< call-out "note" >}} Ensure that the Network Security Group on the subnet delegated to the NGINXaaS deployment allows outbound traffic to the internet{{< /call-out >}}
-</details>
+
+{{< /details >}}
 
 #### Error code: `AnotherOperationInProgress`
 
@@ -381,8 +382,7 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
 
 **Resolution:** Assign an access policy to the managed identity associated with your NGINXaaS deployment with *Get secrets* permissions or higher. If you are using the Azure portal, assign an additional access policy to your user with *List certificates* permissions or higher.
 
-<details>
-<summary>Create an access policy - Azure CLI</summary>
+{{< details summary="Create an access policy using the CLI" >}}
 
 1. Get the principal ID of the user or system assigned managed identity.
 
@@ -419,7 +419,8 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
       --object-id $mi_principal_id \
       --secret-permissions get
    ```
-</details>
+
+{{< /details >}}
 
 #### Error code: `DuplicateFilePathError`
 
@@ -433,8 +434,7 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
 
 **Resolution:** Enable the certificate in the key vault.
 
-<details>
-<summary>Enable a certificate in key vault - Azure CLI</summary>
+{{< details summary="Enable a certificate in the key vault using the CLI" >}}
 
 1. Get the resource ID of the certificate.
 
@@ -451,7 +451,8 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
    ```shell
    az keyvault certificate set-attributes --enabled true --id $certificate_id
    ```
-</details>
+
+{{< /details >}}
 
 #### Error code: `NoCertificateContent`
 
@@ -482,4 +483,5 @@ Allow NGINXaaS to access the key vault through one of these mechanisms:
 **Description:** The PEM certificate could not be parsed.
 
 **Resolution:** Ensure the file is not empty and contains properly formatted PEM certificate data.
-</details>
+
+{{< /details >}}
