@@ -7,409 +7,437 @@ nd-docs: "DOCS-1662"
 ```shell
 #!/bin/bash
 
-# Function to encode the username and password to base64
-encode_base64() {
-  echo -n "$1:$2" | base64
+# Enable strict mode for better error handling
+set -euo pipefail
+IFS=$'\n\t'
+
+# Debug mode
+if [[ "${DEBUG:-false}" == "true" ]]; then
+  set -x  # Enable command tracing
+  echo "Debug mode enabled"
+  echo "Running in directory: $(pwd)"
+  echo "Script arguments: $*"
+  env | grep -E 'JWT_FILE|NIM_IP|USERNAME|PASSWORD|USE_CASE'
+fi
+
+# Set timeouts for operations
+CURL_TIMEOUT=${CURL_TIMEOUT:-30}
+API_POLL_TIMEOUT=${API_POLL_TIMEOUT:-60}
+
+# Function to log with timestamp
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"
 }
 
-# Print help text and exit.
-if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-  echo
-  echo "Usage: $0 -j <path-to-JWT> -i <NIM-IP> -u <username> -p <password> -o <output zip file> -s <step>"
-  echo
-  echo "This script allows you to license NGINX Instance Manager and submit usage reports to F5 in a disconnected environment."
-  echo "It needs to be run on a system that can reach NGINX Instance Manager and the following endpoint on port 443: https://product.apis.f5.com/"
-  echo
-  echo "If NGINX Instance Manager is connected to the internet (Connected Mode), please use the UI."
-  echo "This script is only necessary if NGINX Instance Manager is set to Disconnected Mode."
-  echo
-  echo "For Licensing in Disconnected Mode:"
-  echo "$0 -j my-jwt.jwt -i <NIM-IP> -u admin -p <password> -o report.zip -s initial"
-  echo
-  echo "For Usage Reporting in Disconnected Mode:"
-  echo "$0 -j my-jwt.jwt -i <NIM-IP> -u admin -p <password> -o report.zip -s telemetry"
-  echo
-  echo "Note: Since NGINX Instance Manager comes with self-signed certificates by default, the --insecure flag is set in this script to run specific Curl commands."
-  echo "You can alter this script if you wish to change from self-signed to verified certificates in Instance Manager."
-  echo
-  exit 1
-fi
+log "Script started"
 
-if ! command -v jq &> /dev/null; then
-	echo -e "\nPlease install jq (https://jqlang.github.io/jq/) as it is required to run the script\n"
-	exit 1
-fi
+# Function to display usage
+usage() {
+  echo "Usage: $0 -j <JWT file> -i <NIM IP> -u <username> -p <password> -s <initial|telemetry>"
+  echo
+  echo "Options:"
+  echo "  -j <JWT file>     Path to the JWT (JSON Web Token) file used for authentication."
+  echo "  -i <NIM IP>       IP address of the NIM (NGINX Instance Manager) to connect to."
+  echo "  -u <username>     Username for login/authentication to NIM (NGINX Instance Manager)."
+  echo "  -p <password>     Password corresponding to the username for NIM (NGINX Instance Manager) authentication."
+  echo "  -s <mode>         Script execution mode. One of the following:"
+  echo "                      initial       - Perform Initial License Activation"
+  echo "                      telemetry     - Perform telemetry submission: download usage report from NGINX Instance Manager and submit to F5."
+  exit 1
+}
 
 # Parse command-line arguments
-while getopts ":j:i:u:p:o:s:" opt; do
+while getopts ":j:i:u:p:s:" opt; do
   case $opt in
-    j) jwt_file="$OPTARG" ;;
-    i) ip_address="$OPTARG" ;;
-    u) username="$OPTARG" ;;
-    p) password="$OPTARG" ;;
-    o) output_file="$OPTARG" ;;
-    s) step="$OPTARG" ;;
-    \?) echo "Invalid option -$OPTARG" >&2 ;;
+    j) JWT_FILE="$OPTARG" ;;
+    i) NIM_IP="$OPTARG" ;;
+    u) USERNAME="$OPTARG" ;;
+    p) PASSWORD="$OPTARG" ;;
+    s) USE_CASE="$OPTARG" ;;
+    *) usage ;;
   esac
 done
 
-
-# Check if JWT_FILE is not empty and if the file exists
-if [ -z "$jwt_file" ]; then
-    echo "JWT file path is not defined. Please set the JWT_FILE variable."
-    exit 1
-elif [ ! -f "$jwt_file" ]; then
-    echo "JWT file not found: $jwt_file"
-    exit 1
-else
-    echo "JWT file found: $jwt_file"
+# Check if all required arguments are provided
+if [ -z "${JWT_FILE:-}" ] || [ -z "${NIM_IP:-}" ] || [ -z "${USERNAME:-}" ] || [ -z "${PASSWORD:-}" ] || [ -z "${USE_CASE:-}" ]; then
+  usage
 fi
 
+echo "Running $USE_CASE report"
 
-# Read the Bearer token from the file
-bearer_token=$(<"$jwt_file")
-
-# Encode the username and password to base64 for Basic Authorization
-basic_auth=$(encode_base64 "$username" "$password")
-
-
-# Initialize report_save_path if it's empty
-report_save_path=${output_file:-"report.zip"}
-
-############################################################################
-# Step 1: Upload JWT to NGINX Instance Manager and Download telemetry report
-############################################################################
-echo "###################################################################"
-echo "# (if not already licensed) Upload JWT and Download the Telemetry report from NGINX Instance Manager  #"
-echo "###################################################################"
-if [ "$step" == "initial" ]; then
-
-    # Function to print banner
-    print_banner() {
-        echo "===================================="
-        echo "$1"
-        echo "===================================="
-    }
-
-    # Step 1: POST request
-    print_banner "Executing Step 1: POST request"
-    post_response=$(curl -k --location "https://$ip_address/api/platform/v1/license?telemetry=true" \
-        --header "Origin: https://$ip_address" \
-        --header "Referer: https://$ip_address/ui/settings/license" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: Basic $basic_auth" \
-        --data "{
-            \"metadata\": {
-                \"name\": \"license\"
-            },
-            \"desiredState\": {
-                \"content\": \"$bearer_token\"
-            }
-        }")
-    # Use jq to extract modeOfOperation
-    modeOfOperation=$(jq -r '.currentStatus.modeOfOperation' <<< "$post_response")
-
-    # Output the modeOfOperation
-    echo "Mode of Operation: $modeOfOperation"
-
-    # Parse the modeOfOperation from the response
-    echo $modeOfOperation
-    # Step 2: Polling for the license status with conditional logic based on modeOfOperation
-    while true; do
-        print_banner "Checking License Status"
-
-        response=$(curl -k "https://$ip_address/api/platform/v1/license" \
-            -H "accept: application/json" \
-            -H "authorization: Basic $basic_auth" \
-            -H "referer: https://$ip_address/ui/settings/license" \
-            --insecure)
-        fileType=$(jq -r '.currentStatus.state.currentInstance.fileType' <<< "$response")
-        status=$(jq -r '.currentStatus.state.currentInstance.status' <<< "$response")
-        telemetry=$(jq -r '.currentStatus.state.currentInstance.telemetry' <<< "$response")
-
-        echo $fileType
-        echo $status
-        echo $telemetry
-        if [[ "$modeOfOperation" == "CONNECTED" ]]; then
-        if [[ "$fileType" == "JWT" && "$status" == "ACTIVATED" && "$telemetry" == "true" ]]; then
-                echo "Connected mode: Desired response received!"
-                break
-            else
-                echo "Connected mode: Waiting for the desired response..."
-            fi
-        elif [[ "$modeOfOperation" == "DISCONNECTED" ]]; then
-            if [[ "$fileType" == "JWT" && "$status" == "INITIALIZE_ACTIVATION_COMPLETE" ]]; then
-                echo "Disconnected mode: Desired response received!"
-                break
-            else
-                echo "Disconnected mode: Waiting for the desired response..."
-            fi
-        fi
-
-        sleep 5  # Poll every 5 seconds
-    done
-
-    # Step 3: PUT request
-    print_banner "Executing Step 2: PUT request"
-    put_response=$(curl -k --location --request PUT "https://$ip_address/api/platform/v1/license?telemetry=true" \
-        --header "Origin: https://$ip_address" \
-        --header "Referer: https://$ip_address/ui/settings/license" \
-        --header "Content-Type: application/json" \
-        --header "Authorization: Basic $basic_auth" \
-        --data '{
-            "desiredState": {
-                "content": "",
-                "type": "JWT",
-                "features": [
-                    {"limit": 0, "name": "NGINX_NAP_DOS", "valueType": ""},
-                    {"limit": 0, "name": "IM_INSTANCES", "valueType": ""},
-                    {"limit": 0, "name": "TM_INSTANCES", "valueType": ""},
-                    {"limit": 0, "name": "DATA_PER_HOUR_GB", "valueType": ""},
-                    {"limit": 0, "name": "NGINX_INSTANCES", "valueType": ""},
-                    {"limit": 0, "name": "NGINX_NAP", "valueType": ""},
-                    {"limit": 0, "name": "SUCCESSFUL_API_CALLS_MILLIONS", "valueType": ""},
-                    {"limit": 0, "name": "IC_PODS", "valueType": ""},
-                    {"limit": 0, "name": "IC_K8S_NODES", "valueType": ""}
-                ]
-            },
-            "metadata": {
-                "name": "license"
-            }
-        }')
-
-    echo "Response from Step 2: PUT request:"
-
-    # Step 4: Polling for the desired license status
-    while true; do
-        print_banner "Checking License Validation Status"
-
-        response=$(curl -s "https://$ip_address/api/platform/v1/license" \
-            -H "accept: application/json" \
-            -H "authorization: Basic $basic_auth" \
-            -H "referer: https://$ip_address/ui/settings/license" \
-            --insecure)
-        fileType=$(jq -r '.currentStatus.state.currentInstance.fileType' <<< "$response")
-        status=$(jq -r '.currentStatus.state.currentInstance.status' <<< "$response")
-        telemetry=$(jq -r '.currentStatus.state.currentInstance.telemetry' <<< "$response")
-
-
-        if [[ "$modeOfOperation" == "CONNECTED" ]]; then
-            if [[ "$fileType" == "JWT" && "$status" == "VALID" ]]; then
-                echo "Connected mode: Desired response received!"
-                break
-            else
-                echo "Connected mode: Current license response does not meet conditions. Retrying..."
-            fi
-        elif [[ "$modeOfOperation" == "DISCONNECTED" ]]; then
-            if [[ "$fileType" == "JWT" && "$status" == "CONFIG_REPORT_READY" ]]; then
-                echo "Disconnected mode: Desired response received!"
-                break
-            else
-                echo "Disconnected mode: Current license response does not meet conditions. Retrying..."
-            fi
-        fi
-
-        sleep 5
-    done
-
-    # Step 5: Loop to check if licensed
-    while true; do
-        print_banner "Checking Licensed Status"
-
-        licensed_response=$(curl -s "https://$ip_address/api/platform/v1/modules/licensed" \
-            -H "accept: application/json" \
-            -H "authorization: Basic $basic_auth" \
-            -H "referer: https://$ip_address/ui/settings/license" \
-            --insecure)
-
-        licensed_status=$(jq -r '.licensed' <<< "$licensed_response" )
-        if [[ "$modeOfOperation" == "CONNECTED" ]]; then
-
-            if [[ "$licensed_status" == "true" ]]; then
-                echo "The system is licensed on connected mode!"
-                break
-            else
-                echo "The system is not licensed yet. Retrying..."
-            fi
-        elif [[ "$modeOfOperation" == "DISCONNECTED" ]]; then
-            if [[ "$licensed_status" == "false" ]]; then
-                echo "Upload JWT success on disconnected mode"
-                break
-        fi
-        fi
-
-        sleep 5
-    done
-
-    echo "Requests executed successfully."
-
-#################################################
-# Step 2: Download the telemetry report from NGINX Instance Manager #
-#################################################
-echo "#################################################"
-echo "# Download the telemetry report from NGINX Instance Manager #"
-echo "#################################################"
-
-  echo "Executing for step: initial"
-  download_usage_command="curl --insecure --location 'https://$ip_address/api/platform/v1/report/download?format=zip&reportType=initial' \
-          --header 'accept: */*' \
-          --header 'authorization: Basic $basic_auth' \
-          --output \"$report_save_path\""
-
-elif [ "$step" == "telemetry" ]; then
-  echo "Executing for step: telemetry"
-  prepare_usage_command="curl --insecure --location 'https://$ip_address/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
-          --header 'accept: application/json' \
-          --header 'authorization: Basic $basic_auth' \
-          --header 'referer: https://$ip_address/ui/settings/license'"
-
-  download_usage_command="curl --insecure --location 'https://$ip_address/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
-  --header 'accept: */*' \
-  --header 'authorization: Basic $basic_auth' \
-  --output \"$report_save_path\""
+# Ensure /tmp directory exists or else create it and proceed
+if [ ! -d "/tmp" ]; then
+  echo "/tmp directory does not exist. Creating it now..."
+  mkdir -p /tmp || { echo "Failed to create /tmp directory. Exiting."; exit 1; }
 fi
-if [ "$step" == "telemetry" ]; then
-  echo "Running telemetry stage: "
 
-  # Run the saved command and store the response
-  response=$(eval $prepare_usage_command)
-
-  # Print the response
-  echo "Response: $response"
-  sleep 2
-  # Validate if the response contains "Report generation in progress"
-  if echo "$response" | grep -q '"telemetry":"Report generation in progress"'; then
-    echo "Success: Report generation is in progress."
-  else
-    echo "Failure: Report generation not in progress or unexpected response."
-    exit 1
-  fi
-
-    echo "Running command: $download_usage_command"
-    eval $download_usage_command
-  else
-    echo "Running command: $download_usage_command"
-    eval $download_usage_command
-  fi
-
-############################################################
-# Step 3: Upload the telemetry report to F5's licensing endpoint
-############################################################
-echo "############################################################"
-echo "# Upload the telemetry report to F5's licensing endpoint  #"
-echo "############################################################"
-
-echo "Uploading $report_save_path to telemetry endpoint..."
-upload_command="curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk' \
---header 'Authorization: Bearer $bearer_token' \
---form 'file=@\"$report_save_path\"'"
-
-response=$(eval $upload_command)
-echo "Response from upload: $response"
-
-############################################################
-# Step 4: Extract the status ID from the response
-############################################################
-echo "############################################################"
-echo "# Extract status ID from the response#"
-echo "############################################################"
-
-status_link=$(jq -r '.statusLink | split("/") | last' <<< "$response")
-if [ -z "$status_link" ]; then
-  echo "Failed to extract status link from response. Please try again."
+# Read JWT contents
+if [ ! -f "$JWT_FILE" ]; then
+  echo -e "JWT file '$JWT_FILE' not found.$" >&2
   exit 1
 fi
-echo "Extracted status link ID: $status_link"
+JWT_CONTENT=$(<"$JWT_FILE")
 
-##############################################################
-# Step 5: Check the status to ensure the acknowledgement file is ready to download
-############################################################
-echo "############################################################"
-echo "# Check the status to ensure the acknowledgement file is ready to download     #"
-echo "############################################################"
+# Encode credentials
+AUTH_HEADER=$(echo -n "$USERNAME:$PASSWORD" | base64)
 
-# Initialize variables for the loop
-max_attempts=10
-attempt=0
+# Check connectivity to NGINX Instance Manager IP and the F5 licensing server (product.apis.f5.com)
+echo -e "Checking connectivity to NGINX Instance Manager and F5 licensing server..."
 
-# Loop to check the status until percentageComplete and percentageSuccessful are 100 or the max attempts is reached
-while [ $attempt -lt $max_attempts ]; do
-  echo "Checking status for the upload... (Attempt: $((attempt + 1)))"
+# Function to test ping
+check_ping() {
+  local host=$1
+  echo "Pinging $host... "
+  if ! ping -c 2 -W 2 "$host" > /dev/null 2>&1; then
+    echo -e "Cannot reach $host. Please check your network, DNS or check if any proxy is set.$" >&2
+    exit 1
+  fi
+  echo -e "$host is reachable."
+}
 
-  # Run the curl command to get the status
-  status_command="curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/$status_link' --header 'Authorization: Bearer $bearer_token'"
-
-  status_response=$(eval $status_command)
-
-  # Extract values from the response
-  percentage_complete=$(jq -r '.percentageComplete' <<< "$status_response")
-  percentage_successful=$(jq -r '.percentageSuccessful' <<<  "$status_response")
-  ready_for_download=$(jq -r '.readyForDownload' <<< "$status_response")
-
-  echo "Percentage Complete: $percentage_complete"
-  echo "Percentage Successful: $percentage_successful"
-  echo "Ready for Download: $ready_for_download"
-
-  # Check if the report is ready for download
-  if [ "$percentage_complete" == "100" ] && [ "$percentage_successful" == "100" ] && [ "$ready_for_download" == "true" ]; then
-    echo "File is ready for download."
-    break
+# Call the function for each host
+is_ipv4() {
+  local ip=$1
+  if [[ $ip =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+    IFS='.' read -r -a octets <<< "$ip"
+    for octet in "${octets[@]}"; do
+      if ((octet < 0 || octet > 255)); then
+        return 1
+      fi
+    done
+    return 0
   else
-    echo "File is not ready for download yet. Sleeping for 2 seconds..."
-    sleep 2
+    return 1
+  fi
+}
+echo "Checking connectivity to NGINX Instance Manager using Curl ..."
+if ! curl -sk --output /dev/null --silent --fail --max-time $CURL_TIMEOUT "https://$NIM_IP"; then
+  echo -e "The NGINX Instance Manager UI is not reachable on $NIM_IP"
+  exit 1
+fi 
+echo "Checking connectivity to F5 licensing server..."
+SERVER_RESPONSE=$(curl -v --max-time $CURL_TIMEOUT https://product.apis.f5.com 2>&1)
+
+# Check if the server is reachable by verifying connection was established
+if echo "$SERVER_RESPONSE" | grep -q "Connected to product.apis.f5.com" && echo "$SERVER_RESPONSE" | grep -q "server accepted"; then
+  echo -e "The licensing server is reachable on product.apis.f5.com"
+else
+  echo -e "The licensing server is not reachable on product.apis.f5.com"
+  echo -e "Connection details: $SERVER_RESPONSE"
+  exit 1
+fi 
+
+# NGINX Instance Manager Version check 
+VERSION_JSON=$(curl -sk -X GET "https://$NIM_IP/api/platform/v1/modules/versions" \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Basic $AUTH_HEADER")
+NIM_VER=$(echo "$VERSION_JSON" | sed -E 's/.*"nim"[ \t]*:[ \t]*"([0-9]+\.[0-9]+)(\.[0-9]+)?".*/\1/')
+echo "Current version of NGINX Instance Manager is $NIM_VER"
+
+# Construct JSON payload
+JSON_PAYLOAD=$(cat <<EOF
+  {
+    "metadata": {
+      "name": "license"
+    },
+    "desiredState": {
+      "content": "$JWT_CONTENT"
+    }
+  }
+EOF
+)
+
+# Send GET request and capture response and status code
+response=$(curl -sk -w "%{http_code}" -o /tmp/device_mode.json "https://$NIM_IP/api/platform/v1/report/device_mode" -H 'accept: application/json' -H "Authorization: Basic $AUTH_HEADER")
+
+# Extract status code and response body
+http_code="${response: -3}"
+body=$(cat /tmp/device_mode.json)
+
+# Check response code
+if [[ "$http_code" != "200" ]]; then
+  echo "Request failed with status code $http_code"
+  exit 1
+fi
+
+# Parse device_mode using jq
+device_mode=$(echo "$body" | jq -r '.device_mode')
+
+# Use the value
+echo "Device mode is: $device_mode"
+
+# Check value and act
+if [[ "$device_mode" == "CONNECTED" ]]; then
+  echo "Device mode is CONNECTED. This script is only for DISCONNECTED mode"
+  exit 1
+fi
+
+ORIGIN="https://$NIM_IP"
+REFERER="$ORIGIN/ui/settings/license"
+
+if [[ "$USE_CASE" == "initial" ]]; then
+  echo "Applying JWT license"
+  sleep 5  
+  RESPONSE=$(curl -sS -k --max-time 10 -w "\n%{http_code}" -X POST "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
+    -H "Origin: $ORIGIN" \
+    -H "Referer: $REFERER" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Basic $AUTH_HEADER" \
+    -d "$JSON_PAYLOAD")
+  echo "Uploaded License"
+  HTTP_BODY=$(echo "$RESPONSE" | sed '$d')
+  HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+  if [ "$HTTP_STATUS" -ne 202 ]; then
+    echo -e "HTTP request failed with status code $HTTP_STATUS.\nResponse: $HTTP_BODY$" >&2
+    if echo "$HTTP_BODY" | jq -r '.message' | grep -q "failed to register token. already registered"; then
+      echo -e "NGINX Instance Manager already registered and licensed.\nIf needed, terminate the current license manually in the NGINX Instance Manager UI and re-run the script with the correct license.\nhttps://docs.nginx.com/nginx-instance-manager/disconnected/add-license-disconnected-deployment/"
+    fi
+    exit 1
+  fi
+fi
+
+if [[ "$NIM_VER" < "2.18" ]]; then
+  echo "NGINX Instance Manager version $NIM_VER is not supported by this script. Please use NGINX Instance Manager 2.18 or later"
+  exit 1
+elif [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
+  echo "NGINX Instance Manager version $NIM_VER detected."
+  ORIGIN="https://$NIM_IP"
+
+  # Send the PUT request and separate body and status code
+  PUT_RESPONSE_CODE=$(curl -k -s -w "%{http_code}" -o /tmp/put_response.json --location --request PUT "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
+    --header "Origin: $ORIGIN" \
+    --header "Referer: https://$NIM_IP/ui/settings/license" \
+    --header "Content-Type: application/json" \
+    --header "Authorization: Basic $AUTH_HEADER" \
+    --data '{
+      "desiredState": {
+          "content": "'"$JWT_CONTENT"'",
+          "type": "JWT",
+          "features": [
+              {"limit": 0, "name": "NGINX_NAP_DOS", "valueType": ""},
+              {"limit": 0, "name": "IM_INSTANCES", "valueType": ""},
+              {"limit": 0, "name": "TM_INSTANCES", "valueType": ""},
+              {"limit": 0, "name": "DATA_PER_HOUR_GB", "valueType": ""},
+              {"limit": 0, "name": "NGINX_INSTANCES", "valueType": ""},
+              {"limit": 0, "name": "NGINX_NAP", "valueType": ""},
+              {"limit": 0, "name": "SUCCESSFUL_API_CALLS_MILLIONS", "valueType": ""},
+              {"limit": 0, "name": "IC_PODS", "valueType": ""},
+              {"limit": 0, "name": "IC_K8S_NODES", "valueType": ""}
+          ]
+      },
+      "metadata": {
+          "name": "license"
+      }
+    }')
+
+  echo "Response status code: $PUT_RESPONSE_CODE"
+
+  if [[ "$PUT_RESPONSE_CODE" == "200" ]]; then
+    echo -e "(legacy): License applied successfully in DISCONNECTED mode for version $NIM_VER."
+  else
+    echo -e "(legacy): License PUT request failed. Status code: $PUT_RESPONSE_CODE$"
+    echo "clear the license database and re-trigger the script again"
+    exit 1
+  fi
+fi
+
+if [[ "$USE_CASE" != "telemetry" ]]; then
+  RESPONSE=$(curl -sS -k --max-time 10 -w "\n%{http_code}" -X POST "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
+    -H "Origin: $ORIGIN" \
+    -H "Referer: $REFERER" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Basic $AUTH_HEADER" \
+    -d "$JSON_PAYLOAD")
+
+  HTTP_BODY=$(echo "$RESPONSE" | sed '$d')
+  HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+
+  echo -e "License applied successfully in DISCONNECTED mode."
+fi
+
+sleep 5
+echo "Executing telemetry tasks"
+if [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
+  if [[ "$USE_CASE" == "initial" ]]; then
+    HTTP_RESPONSE=$(curl -k -sS -w "\n%{http_code}" --location "https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=initial" \
+      --header "accept: application/json" \
+      --header "authorization: Basic $AUTH_HEADER" \
+      --header "content-type: application/json" \
+      --header "origin: https://$NIM_IP" \
+      --output /tmp/response.zip)
+  else
+     prepare_usage_command="curl --insecure --location 'https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
+          --header 'accept: application/json' \
+          --header 'authorization: Basic $AUTH_HEADER' \
+          --header 'referer: https://$NIM_IP/ui/settings/license'"
+    report_save_path="${output_file:-/tmp/response.zip}"
+
+    download_usage_command="curl --insecure --location 'https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
+      --header 'accept: */*' \
+      --header 'authorization: Basic $AUTH_HEADER' \
+      --output \"$report_save_path\""
+    
+    if [ "$USE_CASE" == "telemetry" ]; then
+      echo "Running telemetry stage: "
+      response=$(eval $prepare_usage_command)
+      sleep 2
+      if echo "$response" | grep -q '"telemetry":"Report generation in progress"'; then
+        echo -e "Success: Report generation is in progress."
+      else
+        echo -e "Failure: Report generation not in progress or unexpected response."
+        exit 1
+      fi
+      echo "Running command: $download_usage_command"
+      eval $download_usage_command
+    else
+      echo "Running command: $download_usage_command"
+      eval $download_usage_command
+    fi
+  fi
+else
+  HTTP_RESPONSE=$(curl -k -sS -w "\n%{http_code}" --location "https://$NIM_IP/api/platform/v1/report/download?format=zip" \
+  --header "accept: application/json" \
+  --header "authorization: Basic $AUTH_HEADER" \
+  --header "content-type: application/json" \
+  --header "origin: https://$NIM_IP" \
+  --output /tmp/response.zip)
+
+  HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tail -n1)
+  if [ "$HTTP_STATUS" -ne 200 ]; then
+    echo -e "Failed to download usage report from NGINX Instance Manager. HTTP Status Code: $HTTP_STATUS" >&2
+    echo "Please verify that NGINX Instance Manager is reachable and the credentials are correct." >&2
+    echo "(or) Verify that NGINX Instance Manager is licensed before using the 'telemetry' flag (run it with 'initial' first)."
+    rm -f /tmp/response.zip
+    exit 1
+  fi
+fi
+
+echo -e "Usage report downloaded successfully as '/tmp/response.zip'."
+
+echo "Uploading the usage report to F5 Licensing server"
+TEEM_UPLOAD_URL="https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk"
+
+UPLOAD_RESULT=$(curl -sS -w "\n%{http_code}" --location "$TEEM_UPLOAD_URL" \
+  --header "Authorization: Bearer $JWT_CONTENT" \
+  --form "file=@/tmp/response.zip")
+
+UPLOAD_STATUS=$(echo "$UPLOAD_RESULT" | tail -n1)
+UPLOAD_BODY=$(echo "$UPLOAD_RESULT" | sed '$d')
+
+if [ "$UPLOAD_STATUS" -ne 202 ]; then
+  echo -e "Usage report upload failed. HTTP Status: $UPLOAD_STATUS$" >&2
+  echo "Response Body: $UPLOAD_BODY" >&2
+  exit 1
+fi
+
+if ! echo "$UPLOAD_BODY" | jq empty >/dev/null 2>&1; then
+  echo -e "Upload response is not valid JSON. Response: $UPLOAD_BODY$" >&2
+  exit 1
+fi
+
+STATUS_LINK=$(echo "$UPLOAD_BODY" | jq -r '.statusLink // empty')
+if [ -z "$STATUS_LINK" ]; then
+  echo -e "Failed to extract statusLink from the upload response. Response: $UPLOAD_BODY$" >&2
+  exit 1
+fi
+
+echo "StatusLink extracted: $STATUS_LINK"
+STATUS_ID=$(echo "$STATUS_LINK" | sed 's|/ee/v1/entitlements/telemetry/bulk/status/||')
+
+echo "Validating the report status"
+echo "Validating report status using status ID: $STATUS_LINK"
+
+STATUS_URL="https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/$STATUS_ID"
+
+sleep 5
+STATUS_RESPONSE=$(curl -k -sS -w "\n%{http_code}" --location "$STATUS_URL" \
+  --header "Authorization: Bearer $JWT_CONTENT")
+
+STATUS_BODY=$(echo "$STATUS_RESPONSE" | sed '$d')
+STATUS_CODE=$(echo "$STATUS_RESPONSE" | tail -n1)
+
+if [ "$STATUS_CODE" -ne 200 ]; then
+  echo -e "Status check failed. HTTP Status: $STATUS_CODE$" >&2
+  echo "Response Body: $STATUS_BODY" >&2
+  exit 1
+fi
+
+if ! echo "$STATUS_BODY" | jq empty >/dev/null 2>&1; then
+  echo -e "Invalid JSON in status body: $STATUS_BODY$" >&2
+  exit 1
+fi
+
+PERCENTAGE_COMPLETE=$(echo "$STATUS_BODY" | jq -r '.percentageComplete')
+PERCENTAGE_SUCCESSFUL=$(echo "$STATUS_BODY" | jq -r '.percentageSuccessful')
+READY_FOR_DOWNLOAD=$(echo "$STATUS_BODY" | jq -r '.readyForDownload')
+
+TIME_LIMIT=30
+START_TIME=$(date +%s)
+
+elapsed_time() {
+  echo $(($(date +%s) - $START_TIME))
+}
+
+while true; do
+  if [ "$PERCENTAGE_COMPLETE" -eq "100" ] && [ "$READY_FOR_DOWNLOAD" == "true" ]; then
+    echo -e "Validating Report."
+    break
   fi
 
-  # Increment the attempt counter
-  attempt=$((attempt + 1))
+  if [ $(elapsed_time) -ge "$TIME_LIMIT" ]; then
+    echo -e "Time limit exceeded. Report validation failed."
+    echo "  percentageComplete: $PERCENTAGE_COMPLETE"
+    echo "  percentageSuccessful: $PERCENTAGE_SUCCESSFUL"
+    echo "  readyForDownload: $READY_FOR_DOWNLOAD"
+    echo "  F5 upload issue failed even after 30 seconds"
+    echo "  re-run the script"
+    exit 1
+  fi
+
+  echo -e "Report validation failed. Waiting for conditions to be met...$"
+  echo "  percentageComplete: $PERCENTAGE_COMPLETE"
+  echo "  percentageSuccessful: $PERCENTAGE_SUCCESSFUL"
+  echo "  readyForDownload: $READY_FOR_DOWNLOAD"
+
+  sleep 5
 done
 
-# If after 10 attempts it's still not ready, show a message
-if [ $attempt -eq $max_attempts ]; then
-  echo "Reached maximum attempts. The file is not ready for download."
+echo -e "Report validated successfully. All conditions met."
+
+echo "Downloading report from F5 License server..."
+DOWNLOAD_URL="https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/$STATUS_ID"
+DOWNLOAD_RESPONSE=$(curl -sS -w "%{http_code}" --location "$DOWNLOAD_URL" \
+  --header "Authorization: Bearer $JWT_CONTENT" \
+  --output /tmp/response_teem.zip)
+
+HTTP_STATUS=$(echo "$DOWNLOAD_RESPONSE" | tail -n1)
+if [ "$HTTP_STATUS" -ne 200 ]; then
+  echo -e "Failed to download the report from F5. HTTP Status Code: $HTTP_STATUS$" >&2
   exit 1
 fi
 
-############################################################
-# Step 6: Download the acknowledgement file from F5's licensing endpoint
-############################################################
-echo "############################################################"
-echo "# Download the acknowledgement report from F5's licensing endpoint #"
-echo "############################################################"
+echo -e "Report downloaded successfully from F5 as '/tmp/response_teem.zip'."
 
-# Extract downloadLink
-download_link=$(jq -r '.downloadLink | split("/") | last' <<< "$status_response")
-echo $download_link
-# Ensure the report_save_path is not empty
-if [ -z "$report_save_path" ]; then
-  # If the report_save_path is empty, set a default path and filename
-  report_save_path="report_download.zip"
+echo "Uploading the license acknowledgement to NGINX Instance Manager..."
+UPLOAD_URL="https://$NIM_IP/api/platform/v1/report/upload"
+UPLOAD_RESPONSE=$(curl -k -sS --location "$UPLOAD_URL" \
+  --header "Authorization: Basic $AUTH_HEADER" \
+  --form "file=@/tmp/response_teem.zip" \
+  -w "%{http_code}" -o /tmp/temp_response.json)
+
+HTTP_STATUS=$(echo "$UPLOAD_RESPONSE" | tail -n1)
+UPLOAD_MESSAGE=$(cat /tmp/temp_response.json | jq -r '.message')
+
+if ! [[ "$HTTP_STATUS" =~ ^[0-9]+$ ]]; then
+  echo -e "Invalid HTTP status code. Response: $UPLOAD_RESPONSE$" >&2
+  exit 1
 fi
 
-echo "Downloading file from telemetry..."
-
-download_command="curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/$download_link' \
-        --header 'Authorization: Bearer $bearer_token' \
-        --output '$report_save_path'"
-
-curl --location "https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/$download_link" \
---header "Authorization: Bearer $bearer_token" \
---output "$report_save_path"
-
-echo "Downloaded file saved as: $report_save_path"
-
-############################################################
-# Step 7: Upload the acknowledgement report to NGINX Instance Manager
-############################################################
-echo "############################################################"
-echo "# Upload the acknowledgement report to NGINX Instance Manager   #"
-echo "############################################################"
-
-curl --insecure --location "https://$ip_address/api/platform/v1/report/upload" \
---header "Authorization: Basic $basic_auth" \
---form "file=@\"$report_save_path\"" \
---silent --output /dev/null
-
-echo "Report acknowledgement successfully uploaded to NGINX Instance Manager $ip_address."
+if [ "$UPLOAD_MESSAGE" != "Report uploaded successfully." ] || [ "$HTTP_STATUS" -ne 200 ]; then
+  echo -e "Upload failed. Response: $UPLOAD_RESPONSE$" >&2
+  exit 1
+fi
+echo -e "Acknowledgement uploaded successfully to NGINX Instance Manager."
 ```
 
 {{< /details >}}
