@@ -26,8 +26,8 @@ content/nginx/nms/agent/*   @nginx/nginx-agent
 content/nap-dos/*           @nginx/dos-docs-approvers
 
 # F5 WAF for NGINX
-content/nap-waf/*           @nginx/nap-docs-approvers
-data/nap-waf/*              @nginx/nap-docs-approvers
+content/waf/*               @nginx/waf
+content/includes/waf/*      @nginx/waf
 
 # NGINXaaS for Azure 
 content/nginxaas-azure/*          @nginx/n4a-docs-approvers

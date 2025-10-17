@@ -2,10 +2,9 @@
 nd-docs: "DOCS-1662"
 ---
 
-<details closed>
-<summary style="font-weight:bold">View the full contents of the license_usage_offline.sh script</summary>
+{{< details summary="Full license_usage_offline.sh script" >}}
 
-``` bash
+```shell
 #!/bin/bash
 
 # Function to encode the username and password to base64
@@ -413,4 +412,4 @@ curl --insecure --location "https://$ip_address/api/platform/v1/report/upload" \
 echo "Report acknowledgement successfully uploaded to NGINX Instance Manager $ip_address."
 ```
 
-</details>
+{{< /details >}}
