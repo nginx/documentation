@@ -1,17 +1,12 @@
 ---
-description: Follow the steps in this guide to scan for and discover NGINX instances.
-nd-docs: DOCS-828
 title: Scan and discover NGINX instances
+description: Follow the steps in this guide to scan for and discover NGINX instances.
 toc: true
 weight: 110
-type:
-- tutorial
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-828
 ---
-
-<style>
-  h3 {font-weight: 400; padding-top: 20px;}
-  hr {margin-top: 40px; margin-bottom: 40px;}
-</style>
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
@@ -47,8 +42,6 @@ To scan a single address, use the netmask of `/32` after the IP. This is the equ
 
 There's a CVE that's not reported for NGINX that involves [unfiltered logging](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-4487). This CVE won't be fixed, has a severity of "None," and is excluded from our scans' CVE list.
 {{< /call-out >}}
-
----
 
 ## Scan using the API {#scan-api}
 
@@ -92,9 +85,7 @@ curl -X GET "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/v1/servers" -H  "accept: 
 
 The result looks similar to the following:
 
-<details open>
-
-  <summary>Scan JSON response</summary>
+{{< details summary="Scan JSON response" >}}
 
 ```json
 {
@@ -271,9 +262,7 @@ The result looks similar to the following:
 }
 ```
 
-</details>
-
----
+{{< /details >}}
 
 ## Troubleshooting
 

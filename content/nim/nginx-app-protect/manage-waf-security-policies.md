@@ -3,8 +3,8 @@ title: Manage and deploy WAF policies and log profiles
 description: Learn how to use F5 NGINX Instance Manager to manage F5 WAF for NGINX security policies and security log profiles.
 weight: 300
 toc: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIM
 nd-docs: DOCS-1105
 ---
 
@@ -22,8 +22,6 @@ The following capabilities are available only through the Instance Manager REST 
 - Create, read, update, and delete security log profiles
 - Publish security policies, log profiles, attack signatures, and threat campaigns to instances and instance groups
 {{< /call-out >}}
-
----
 
 ## Before you begin
 
@@ -49,8 +47,6 @@ To access the web interface, open a browser and go to the fully qualified domain
 ### Access the REST API
 
 {{< include "nim/how-to-access-nim-api.md" >}}
-
----
 
 ## Create a security policy {#create-security-policy}
 
@@ -81,14 +77,9 @@ To upload a new security policy using the REST API, send a `POST` request to the
 
 You must encode the JSON policy using `base64`. If you send the policy in plain JSON, the request will fail.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                             |
 |--------|--------------------------------------|
 | POST   | `/api/platform/v1/security/policies` |
-
-{{</bootstrap-table>}}
-
 
 For example:
 
@@ -99,8 +90,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
     -d @ignore-xss-example.json
 ```
 
-<details open>
-<summary>JSON Request</summary>
+{{< details summary="JSON request" >}}
 
 ```json
 {
@@ -113,10 +103,9 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
 }
 ```
 
-</details>
+{{< /details >}}
 
-<details open>
-<summary>JSON Response</summary>
+{{< details summary="JSON response" >}}
 
 ```json
 {
@@ -135,30 +124,23 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
 }
 ```
 
+{{< /details >}}
+
 {{%/tab%}}
 
 {{</tabs>}}
 
----
-
 ## Update a security policy
-
 
 To update a security policy, send a `POST` or `PUT` request to the Security Policies API.
 
 - Use `POST` with the `isNewRevision=true` parameter to add a new version of an existing policy.
 - Use `PUT` with the policy UID to overwrite the existing version.
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                |
 |--------|---------------------------------------------------------|
 | POST   | `/api/platform/v1/security/policies?isNewRevision=true` |
 | PUT    | `/api/platform/v1/security/policies/{system_id_string}` |
-
-{{</bootstrap-table>}}
-
 
 To use `POST`, include the policy metadata and content in your request:
 
@@ -187,15 +169,11 @@ curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid> 
 
 After updating the policy, you can [publish it](#publish-policy) to selected instances or instance groups.
 
----
-
 ## Delete a security policy
 
 {{<tabs name="delete-security-policy">}}
 
 {{%tab name="web interface"%}}
-
-<br>
 
 To delete a security policy using the NGINX Instance Manager web interface:
 
@@ -221,15 +199,9 @@ To delete a security policy using the REST API:
 
 2. Send a `DELETE` request using the policy UID:
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                   |
 |--------|------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/policies/{security-policy-uid}` |
-
-{{</bootstrap-table>}}
-
 
 Example:
 
@@ -242,10 +214,7 @@ curl -X DELETE https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-ui
 
 {{</tabs>}}
 
----
-
 ## Create security policy bundles {#create-security-policy-bundles}
-
 
 To create a security policy bundle, send a `POST` request to the Security Policy Bundles API. The policies you want to include in the bundle must already exist in NGINX Instance Manager.
 
@@ -265,14 +234,9 @@ Each bundle includes:
 
 If you don’t include `attackSignatureVersionDateTime` or `threatCampaignVersionDateTime`, the latest versions are used by default. You can also set them explicitly by using `"latest"` as the value.
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                     |
 |--------|----------------------------------------------|
 | POST   | `/api/platform/v1/security/policies/bundles` |
-
-{{</bootstrap-table>}}
 
 Example:
 
@@ -283,8 +247,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
     -d @security-policy-bundles.json
 ```
 
-<details open>
-<summary>JSON Request</summary>
+{{< details summary="JSON request" >}}
 
 ```json
 {
@@ -309,10 +272,9 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
 }
 ```
 
-</details>
+{{< /details >}}
 
-<details open>
-<summary>JSON Response</summary>
+{{< details summary="JSON response" >}}
 
 ```json
 {
@@ -371,7 +333,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
 }
 ```
 
----
+{{< /details >}}
 
 ## List security policy bundles {#list-security-policy-bundles}
 
@@ -389,15 +351,9 @@ You can use the following query parameters to filter results:
 
 If no time range is provided, the API defaults to showing bundles modified in the past 24 hours.
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                     |
 |--------|----------------------------------------------|
 | GET    | `/api/platform/v1/security/policies/bundles` |
-
-{{</bootstrap-table>}}
-
 
 Example:
 
@@ -406,8 +362,7 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
     -H "Authorization: Bearer <access token>"
 ```
 
-<details open>
-<summary>JSON Response</summary>
+{{< details summary="JSON response" >}}
 
 ```json
 {
@@ -466,7 +421,7 @@ curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
 }
 ```
 
----
+{{< /details >}}
 
 ## Get a security policy bundle {#get-security-policy-bundle}
 
@@ -474,14 +429,9 @@ To retrieve a specific security policy bundle, send a `GET` request to the Secur
 
 You must have `"READ"` permission for the bundle to retrieve it.
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                                                        |
 |--------|-------------------------------------------------------------------------------------------------|
 | GET    | `/api/platform/v1/security/policies/{security-policy-uid}/bundles/{security-policy-bundle-uid}` |
-
-{{</bootstrap-table>}}
 
 Example:
 
@@ -494,13 +444,12 @@ The response includes a content field that contains the bundle in base64 format.
 
 Example:
 
-```bash
+```shell
 curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
     -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 
-<details open>
-<summary>JSON Response</summary>
+{{< details summary="JSON response" >}}
 
 ```json
 {
@@ -521,7 +470,7 @@ curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>
 }
 ```
 
----
+{{< /details >}}
 
 ## Create a security log profile {#create-security-log-profile}
 
@@ -529,14 +478,9 @@ To upload a new security log profile, send a `POST` request to the Security Log 
 
 You must encode the log profile in `base64` before sending it. If you send plain JSON, the request will fail.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                |
 |--------|-----------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles` |
-
-{{</bootstrap-table>}}
-
 
 Example:
 
@@ -547,8 +491,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
     -d @default-log-example.json
 ```
 
-<details open>
-<summary>JSON Request</summary>
+{{< details summary="JSON request" >}}
 
 ```json
 {
@@ -559,10 +502,9 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
 }
 ```
 
-</details>
+{{< /details >}}
 
-<details open>
-<summary>JSON Response</summary>
+{{< details summary="JSON response" >}}
 
 ```json
 {
@@ -580,7 +522,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
 }
 ```
 
----
+{{< /details >}}
 
 ## Update a security log profile {#update-security-log-profile}
 
@@ -589,15 +531,10 @@ To update a security log profile, you can either:
 - Use `POST` with the `isNewRevision=true` parameter to add a new version.
 - Use `PUT` with the log profile UID to overwrite the existing version.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                           |
 |--------|--------------------------------------------------------------------|
 | POST   | `/api/platform/v1/security/logprofiles?isNewRevision=true`         |
 | PUT    | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
-
-{{</bootstrap-table>}}
-
 
 To create a new revision:
 
@@ -630,20 +567,13 @@ To overwrite an existing security log profile:
 
 After updating the security log profile, you can [publish it](#publish-policy) to specific instances or instance groups.
 
----
-
 ## Delete a security log profile {#delete-security-log-profile}
 
 To delete a security log profile, send a `DELETE` request to the Security Log Profiles API using the profile’s UID.
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                           |
 |--------|--------------------------------------------------------------------|
 | DELETE | `/api/platform/v1/security/logprofiles/{security-log-profile-uid}` |
-
-{{</bootstrap-table>}}
 
 
 1. Retrieve the UID:
@@ -660,23 +590,15 @@ To delete a security log profile, send a `DELETE` request to the Security Log Pr
         -H "Authorization: Bearer <access token>"
     ```
 
----
-
 ## Publish updates to instances {#publish-policy}
 
 Use the Publish API to push security policies, log profiles, attack signatures, and threat campaigns to NGINX instances or instance groups.
 
 Call this endpoint *after* you've created or updated the resources you want to deploy.
 
-
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                            |
 |--------|-------------------------------------|
 | POST   | `/api/platform/v1/security/publish` |
-
-{{</bootstrap-table>}}
-
 
 Include the following information in your request, depending on what you're publishing:
 
@@ -695,8 +617,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
     -d @publish-request.json
 ```
 
-<details open>
-<summary>JSON Request</summary>
+{{< details summary="JSON request" >}}
 
 ```json
 {
@@ -729,10 +650,9 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
 }
 ```
 
-</details>
+{{< /details >}}
 
-<details open>
-<summary>JSON Response</summary>
+{{< details summary="JSON response" >}}
 
 ```json
 {
@@ -748,9 +668,7 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
 }
 ```
 
-</details>
-
----
+{{< /details >}}
 
 ## Check security policy and security log profile publication status {#check-publication-status}
 
@@ -762,13 +680,9 @@ Use the following endpoints to verify whether the configuration updates were suc
 
 To view deployment status for a specific policy, send a `GET` request to the Security Deployments Associations API using the policy name.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                           |
 |--------|--------------------------------------------------------------------|
 | GET    | `/api/platform/v1/security/deployments/associations/{policy-name}` |
-
-{{</bootstrap-table>}}
 
 Example:
 
@@ -782,13 +696,9 @@ In the response, look for the `lastDeploymentDetails` field under instance or `i
 
 ### Check publication status for a security log profile
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                                            |
 |--------|-------------------------------------------------------------------------------------|
 | GET    | `/api/platform/v1/security/deployments/logprofiles/associations/{log-profile-name}` |
-
-{{</bootstrap-table>}}
 
 Example:
 
@@ -803,13 +713,9 @@ The response also contains `lastDeploymentDetails` for each instance or group.
 
 You can also view the deployment status for a specific instance by providing the system UID and instance UID.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                         |
 |--------|------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/{system-uid}/instances/{instance-uid}` |
-
-{{</bootstrap-table>}}
 
 Example:
 
@@ -824,13 +730,9 @@ In the response, look for the `lastDeploymentDetails` field, which shows the dep
 
 When you use the Publish API to [publish security content](#publish-policy), NGINX Instance Manager creates a deployment ID for the request. You can use this ID to check the result of the publication.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                         |
 |--------|------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/instances/deployments/{deployment-id}` |
-
-{{</bootstrap-table>}}
 
 Example:
 
