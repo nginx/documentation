@@ -346,7 +346,6 @@ kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app
 
 {{% /tabs %}}
 
-
 ## Upload the security policy bundle
 
 Upload the binary file to the NGINX Ingress Controller pods.
