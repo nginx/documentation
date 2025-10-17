@@ -164,7 +164,7 @@ Every instance with a deployed certificate includes paths to certificates in the
 
 Every Config Sync Group also includes paths to certificates in its configuration files. If you remove the deployed path to one certificate, that change affects all instances which belong to that Config Sync Group.
 
-## Delete a deployed certificate
+## Delete a managed certificate
 
 To delete a certificate, find the name in the **Certificates** screen. Find the **Actions** column associated with the certificate. Select the ellipsis (`...`) and then select **Delete**. Before deleting that certificate, you should see a warning.
 
