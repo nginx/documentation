@@ -324,17 +324,50 @@ spec:
 
 Upload the security log bundle binary file to the NGINX Ingress Controller pods.
 
+{{<tabs name="security-log">}}
+
+{{%tab name="Helm"%}}
+
+```shell
+kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-ingress
+```
+
+{{% /tab %}}
+
+{{%tab name="Manifests"%}}
+
 ```shell
 kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-plus-ingress
 ```
+
+{{% /tab %}}
+
+{{% /tabs %}}
+
 
 ## Upload the security policy bundle
 
 Upload the binary file to the NGINX Ingress Controller pods.
 
+{{<tabs name="security-bundle">}}
+
+{{%tab name="Helm"%}}
+
+```shell
+kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-ingress
+```
+
+{{% /tab %}}
+
+{{%tab name="Manifests"%}}
+
 ```shell
 kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-plus-ingress
 ```
+
+{{% /tab %}}
+
+{{% /tabs %}}
 
 ---
 
