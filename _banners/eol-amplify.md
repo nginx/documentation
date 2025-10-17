@@ -9,6 +9,4 @@ NGINX Amplify support ends on January 31, 2026. To continue monitoring your NGIN
 3. [Follow the NGINX One Console getting started guide]({{< ref "/nginx-one/getting-started.md" >}}).
 
 [Professional Services](https://www.f5.com/services) are available to support your transition. Additional fees may apply.
-
-More details: [Read the community announcement](https://blog.nginx.org/blog/nginx-amplify-endoflife).
 {{</ banner >}}

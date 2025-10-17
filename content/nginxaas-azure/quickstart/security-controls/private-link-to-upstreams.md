@@ -1,10 +1,10 @@
 ---
 title: Connect to upstreams with Azure Private Link
-weight: 400
-toc: true
 url: /nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/
-type:
-- how-to
+toc: true
+weight: 400
+nd-content-type: how-to
+nd-product: N4Azure
 ---
 
 [Azure Private Link](https://learn.microsoft.com/en-us/azure/private-link/private-link-overview) eliminates exposure to the public internet by handling traffic over Microsoft's backbone network. This is especially useful if your NGINXaaS deployment and your upstreams are in different virtual networks.
@@ -26,8 +26,7 @@ A Private Link service is an Azure resource that enables Private Link access to 
 
 The following example demonstrates this process using an existing virtual machine as the upstream.
 
-<details close>
-<summary>Create a Private Link service - Azure CLI</summary>
+{{< details summary="Create a Private Link service with the CLI" >}}
 
 ### Prerequisites
 
@@ -137,7 +136,7 @@ $ az network private-link-service create \
     --location $APP_LOCATION
 ```
 
-</details>
+{{< /details >}}
 
 ## Create a private endpoint
 
@@ -149,8 +148,7 @@ A private endpoint is a network interface that connects to a service powered by 
 
 The following example demonstrates this process using an existing NGINXaaS deployment and a Private Link service.
 
-<details close>
-<summary>Create a private endpoint - Azure CLI</summary>
+{{< details summary="Create a private endpoint with the CLI" >}}
 
 ### Prerequisites
 
@@ -220,13 +218,11 @@ upstream {
 }
 ```
 
-</details>
-
+{{< /details >}}
 
 ## Additional Resources
 
 The following guides provide step-by-step instructions to create a Private Link service and a private endpoint with your preferred client tool:
-
 
 * [Azure portal](https://learn.microsoft.com/en-us/azure/private-link/create-private-link-service-portal?tabs=dynamic-ip)
 * [Azure CLI](https://learn.microsoft.com/en-us/azure/private-link/create-private-link-service-cli)

@@ -3,10 +3,9 @@ title: Overview
 weight: 50
 toc: true
 url: /nginxaas/google/getting-started/nginx-configuration/overview/
-type:
-- how-to
+nd-content-type: reference
+nd-product: N4GC
 ---
-
 
 This document provides details about using NGINX configuration files with your
 F5 NGINXaaS for Google Cloud deployment, restrictions, and available directives.
@@ -80,14 +79,13 @@ If you need access to additional directories, please [contact us]({{< ref "/ngin
 
 The following directives are not supported because of specific limitations. If you include any of these directives in your NGINX configuration, you'll get an error.
 
-  {{< table >}}
-  | Disallowed Directive | Reason |
-  |------------------ | ----------------- |
-  | ssl_engine        | No hardware SSL accelerator is available. |
-  | debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
-  | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
-  | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
-
+{{< table >}}
+| Disallowed Directive | Reason |
+|------------------ | ----------------- |
+| ssl_engine        | No hardware SSL accelerator is available. |
+| debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
+| fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
+| quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
 {{< /table >}}
 
 You may find a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
@@ -96,24 +94,22 @@ You may find a few directives are not listed here as either allowed or disallowe
 
 The following directives cannot be overridden by the user provided configuration.
 
-  {{< table >}}
-  | Persistent Directive | Value | Reason |
-  |------------------ | ----------------------- | -----------------|
-  | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
-  | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
-  | `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
-  | `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
-  | `master_process` | `on` | This directive is intended for NGINX developers. |
-  | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
-
+{{< table >}}
+| Persistent Directive | Value | Reason |
+|------------------ | ----------------------- | -----------------|
+| `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
+| `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
+| `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
+| `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
+| `master_process` | `on` | This directive is intended for NGINX developers. |
+| `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
 {{< /table >}}
 
 ## Configuration directives list
 
-<details close>
-<summary>Alphabetical index of directives</summary>
-
 NGINXaaS supports a limited set of NGINX directives.
+
+{{< details summary="Alphabetical index of directives">}}
 
 [absolute_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#absolute_redirect)\
 [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex)\
@@ -915,4 +911,5 @@ NGINXaaS supports a limited set of NGINX directives.
 [xslt_types](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xslt_types)\
 [zone (ngx_http_upstream_module)](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)\
 [zone (ngx_stream_upstream_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone)\
-</details>
+
+{{< /details >}}

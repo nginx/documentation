@@ -2,12 +2,10 @@
 title: Getting started
 toc: true
 weight: 200
-nd-content-type:
-  - tutorial
+nd-content-type: how-to
 nd-product: Solutions
+nd-resource: https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
 nd-docs: DOCS-1780
-nd-resource:
-  - https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
 ---
 
 Starting with NGINX Plus R33, NGINX Plus instances require a valid JSON Web Token (JWT) license.  
@@ -23,8 +21,6 @@ If you have multiple subscriptions, you’ll also have multiple JWT licenses. Yo
 
 Combining licenses with NGINX Instance Manager requires version **2.20 or later**.
 {{</ call-out >}}  
-
----
 
 ## Important changes
 
@@ -48,13 +44,9 @@ Processing traffic requires:
 - A successful initial usage report. If the initial report isn’t sent, NGINX Plus won’t process traffic until the report is sent successfully. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
 - Ongoing usage reports, at least every 180 days. If reporting stops, NGINX Plus keeps running but stops processing traffic once 180 days have passed without a report. To avoid disruption, send usage reports regularly instead of waiting until the 180-day cutoff.
 
----
-
 ## Download your license from MyF5 {#download-jwt}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
-
----
 
 ## Deploy the license {#deploy-jwt}
 
@@ -69,12 +61,9 @@ Both methods ensure your NGINX Plus instances have access to the required licens
 
 Choose the option that fits your environment:  
 
-<details>
-<summary>Deploy with a group sync feature (recommended)</summary>
+{{< details summary="Deploy with a group sync feature (recommended)" >}}
 
 ### Deploy with a group sync feature
-
-<br>
 
 {{< include "/licensing-and-reporting/deploy-jwt-with-csgs.md" >}}
 
@@ -83,33 +72,25 @@ In NGINX Instance Manager, *instance groups* provide the same sync functionality
 See [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}) for setup instructions.
 {{< /call-out >}}
 
-</details>  
+{{< /details >}}
 
-<details>
-<summary>Deploy manually</summary>
+{{< details summary="Deploy manually" >}}
 
 ### Deploy manually
-
-<br>
 
 Copy the JWT license file to each NGINX Plus instance.  
 
 {{< include "/licensing-and-reporting/apply-jwt.md" >}}  
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Use custom paths</summary>
+{{< details summary="Use custom paths" >}}
 
 ### Custom paths {#custom-paths}
 
-<br>
-
 {{< include "licensing-and-reporting/custom-paths-jwt.md" >}}
 
-</details>
-
----
+{{< /details >}}
 
 ## Prepare your environment for reporting {#set-up-environment}
 
@@ -117,16 +98,11 @@ NGINX Plus R33 and later must send usage reports.
 
 Choose the setup steps that match your environment:
 
-<details>
-<summary>Configure reporting in internet-connected environments</summary>
+{{< details summary="Configure reporting in internet-connected environments" >}}
 
 ### Internet-connected environments {#internet-connected}
 
-<br>
-
 In connected environments, NGINX Plus sends usage reports directly to the F5 licensing endpoint. 
-
-<br>
 
 Allow the necessary outbound traffic so reports can reach F5.
 
@@ -146,29 +122,21 @@ Allow the necessary outbound traffic so reports can reach F5.
    }
    ```
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Configure reporting in network-restricted environments</summary>
+{{< details summary="Configure reporting in network-restricted environments" >}}
 
 ### Network-restricted environments {#network-restricted}
 
-<br>
-
 In environments without internet access, NGINX Plus sends usage reports to NGINX Instance Manager. NGINX Instance Manager collects the reports and later forwards them to F5. 
-
-<br>
 
 To configure NGINX Plus to send usage reports to NGINX Instance Manager:
 
 {{< include "/licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
-<br>
-
 {{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
-
-</details>
+{{< /details >}}
 
 ### Postpone reporting enforcement {#postpone-reporting-enforcement}
 
@@ -188,8 +156,6 @@ After 180 days, if usage reporting still hasn’t been established,
 NGINX Plus will stop processing traffic.
 {{< /call-out >}}
 
----
-
 ## Update the license {#update-license}
 
 How you update the JWT license depends on your NGINX Plus release and environment:
@@ -197,12 +163,9 @@ How you update the JWT license depends on your NGINX Plus release and environmen
 - In R35 and later, the license is updated automatically when the subscription renews (if reporting is configured).  
 - In earlier releases or disconnected environments, you need to update the license manually.  
 
-<details>
-<summary>Update the license automatically (R35 and later)</summary>
+{{< details summary="Update the license automatically (R35 and later)" >}}
 
 ### Automatic update (R35 and later) {#automatic-renewal}
-
-<br>
 
 Starting in NGINX Plus R35, [JWT licenses are updated automatically](#automatic-renewal) for instances that report directly to the F5 licensing endpoint. NGINX Plus downloads the new license and applies it without requiring a reload or restart.
 
@@ -224,35 +187,26 @@ Automatic updates only work if:
 If these conditions aren’t met, you must [update the JWT license manually](#manually-update-license).  
 {{< /call-out >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Update the license manually (all releases)</summary>
+{{< details summary="Update the license manually (all releases)" >}}
 
 ### Manual update (all releases) {#manually-update-license}
-
-<br>
 
 If automatic updates are not available (for example, in disconnected environments), update the license manually:
 
 1. [Download the new JWT license](#download-jwt) from MyF5.  
-2. [Deploy the JWT license](#deploy-jwt) to your NGINX Plus instances.
+1. [Deploy the JWT license](#deploy-jwt) to your NGINX Plus instances.
 
-</details>
-
----
+{{< /details >}}
 
 ## Error log location and monitoring {#log-monitoring}
 
 {{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}
 
----
-
 ## Reported usage metrics {#usage-metrics}
 
 {{< include "licensing-and-reporting/reported-usage-data.md" >}}
-
----
 
 ## What's Next
 

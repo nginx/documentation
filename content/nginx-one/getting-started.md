@@ -2,8 +2,8 @@
 title: Get started
 toc: true
 weight: 100
-type: how-to
-product: NGINX One
+nd-content-type: how-to
+nd-product: NGINX One
 ---
 
 The F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more. 
@@ -26,12 +26,10 @@ NGINX One offers the following key benefits:
 
 If you already have accessed F5 Distributed Cloud and have NGINX instances available, you can skip these sections and start to [Add your NGINX instances to NGINX One](#add-your-nginx-instances-to-nginx-one). Otherwise, take these steps to "onboard" yourself to NGINX One Console.
 
-<details>
-<summary>If you want to register for a trial</summary>
+{{< details summary="Register for a trial" >}}
 
 ### Register for a trial subscription
 
-<!-- Make sure to check with sales enablement -->
 If you want to register for a trial, navigate to https://account.f5.com/myf5. If needed, select **Sign up** to get an account. Then follow these steps:
 
 1. Navigate to https://account.f5.com/myf5 and log in.
@@ -39,43 +37,35 @@ If you want to register for a trial, navigate to https://account.f5.com/myf5. If
 1. Find **F5 NGINX**. Sign up for the trial. 
 1. The trial may require approval. 
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Confirm access to the F5 Distributed Cloud</summary>
+{{< details summary="Confirm access to the F5 Distributed Cloud" >}}
 
 ### Confirm access to the F5 Distributed Cloud
 
 {{< include "/nginx-one/cloud-access.md" >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Confirm access to NGINX One Console</summary>
+{{< details summary="Confirm access to NGINX One Console" >}}
 
 ### Confirm access to NGINX One Console
 
 {{< include "/nginx-one/cloud-access-nginx.md" >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Install an instance of NGINX</summary>
+{{< details summary="Install an NGINX instance" >}}
 
 ### Install an instance of NGINX
 
 {{< include "/nginx-one/install-nginx.md" >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Make sure you're running a supported Linux distribution</summary>
-
-NGINX Agent sets up communication between your NGINX Instance and NGINX One Console. Make sure your Linux operating system is listed below. The installation script for NGINX Agent is compatible with these distributions and versions.
+{{< details summary="Check you're running a supported Linux distribution" >}}
 
 ### NGINX Agent installation script: supported distributions
-
-{{<bootstrap-table "table table-striped table-bordered">}}
 
 | Distribution                 | Version              | Architecture    |
 |------------------------------|----------------------|-----------------|
@@ -90,13 +80,7 @@ NGINX Agent sets up communication between your NGINX Instance and NGINX One Cons
 | Rocky Linux                  | 8, 9                 | x86_64, aarch64 |
 | Ubuntu                       | 20.04 LTS, 22.04 LTS | x86_64, aarch64 |
 
-{{</bootstrap-table>}}
-
-</span>
-
-</details>
-
----
+{{< /details >}}
 
 ## Add your NGINX instances to NGINX One
 

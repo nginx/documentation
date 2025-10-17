@@ -29,59 +29,53 @@ Before you install NGINX Agent for the first time on your system, you need to se
 up the `nginx-agent` packages repository. Afterward, you can install and update
 NGINX Agent from the repository.
 
-<details>
-<summary>Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux</summary>
-
-### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux
-
-{{< include "/agent/installation/oss/oss-rhel.md" >}}
-
-</details>
-
-<details>
-<summary>Install NGINX Agent on Ubuntu</summary>
-
-### Install NGINX Agent on Ubuntu
-
-{{< include "/agent/installation/oss/oss-ubuntu.md" >}}
-
-</details>
-
-<details>
-<summary>Install NGINX Agent on Debian</summary>
-
-### Install NGINX Agent on Debian
-
-{{< include "/agent/installation/oss/oss-debian.md" >}}
-
-</details>
-
-<details>
-<summary>Install NGINX Agent on SLES</summary>
-
-### Install NGINX Agent on SLES
-
-{{< include "/agent/installation/oss/oss-sles.md" >}}
-
-</details>
-
-<details>
-<summary>Install NGINX Agent on Alpine Linux</summary>
-
 ### Install NGINX Agent on Alpine Linux
+
+{{< details summary="Expand instructions" >}}
 
 {{< include "/agent/installation/oss/oss-alpine.md" >}}
 
-</details>
-
-<details>
-<summary>Install NGINX Agent on Amazon Linux</summary>
+{{< /details >}}
 
 ### Install NGINX Agent on Amazon Linux
 
+{{< details summary="Expand instructions" >}}
+
 {{< include "/agent/installation/oss/oss-amazon-linux.md" >}}
 
-</details>
+{{< /details >}}
+
+### Install NGINX Agent on Debian
+
+{{< details summary="Expand instructions" >}}
+
+{{< include "/agent/installation/oss/oss-debian.md" >}}
+
+{{< /details >}}
+
+### Install NGINX Agent on RHEL, CentOS, Rocky Linux, AlmaLinux, and Oracle Linux
+
+{{< details summary="Expand instructions" >}}
+
+{{< include "/agent/installation/oss/oss-rhel.md" >}}
+
+{{< /details >}}
+
+### Install NGINX Agent on SLES
+
+{{< details summary="Expand instructions" >}}
+
+{{< include "/agent/installation/oss/oss-sles.md" >}}
+
+{{< /details >}}
+
+### Install NGINX Agent on Ubuntu
+
+{{< details summary="Expand instructions" >}}
+
+{{< include "/agent/installation/oss/oss-ubuntu.md" >}}
+
+{{< /details >}}
 
 ### Manually connect NGINX Agent to NGINX One Console
 

@@ -1,10 +1,10 @@
 ---
 title: Set up WAF configuration management
-weight: 200
-toc: true
 description: Learn how to set up F5 NGINX Instance Manager to manage F5 WAF for NGINX configurations, including compiler installation, security policy onboarding, and threat update management.
-type: how-to
-product: NIM
+toc: true
+weight: 200
+nd-content-type: how-to
+nd-product: NIM
 nd-docs: DOCS-996
 ---
 
@@ -30,8 +30,6 @@ NGINX Instance Manager doesn’t support the following F5 WAF for NGINX features
 
 - [Policies with external references]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#external-references" >}})
 - Custom signatures
-
----
 
 ## Install the WAF compiler
 
@@ -472,24 +470,23 @@ Follow these steps to get and upload the certificate and key:
    - `nginx-repo.key` (private key)
 4. Create a JSON file that includes the contents of both files. Replace newlines (`\n`) in each file with literal `\n` characters so the certificate and key can be formatted correctly inside the JSON.
 
-   <details open>
-   <summary>Example request</summary>
+  {{< details summary="Example request" >}}
 
-   ```json
-    {
-      "name": "nginx-repo",
-      "nginxResourceType": "NginxRepo",
-      "certPEMDetails": {
-        "caCerts": [],
-        "password": "",
-        "privateKey": "-----BEGIN PRIVATE KEY-----\n[content snipped]\n-----END PRIVATE KEY-----\n",
-        "publicCert": "-----BEGIN CERTIFICATE-----\n[content snipped]\n-----END CERTIFICATE-----",
-        "type": "PEM"
-      }
+  ```json
+  {
+    "name": "nginx-repo",
+    "nginxResourceType": "NginxRepo",
+    "certPEMDetails": {
+      "caCerts": [],
+      "password": "",
+      "privateKey": "-----BEGIN PRIVATE KEY-----\n[content snipped]\n-----END PRIVATE KEY-----\n",
+      "publicCert": "-----BEGIN CERTIFICATE-----\n[content snipped]\n-----END CERTIFICATE-----",
+      "type": "PEM"
     }
-   ```
+  }
+  ```
 
-   </details>
+  {{< /details >}}
 
 5. Upload the file to NGINX Instance Manager using the REST API:
 
@@ -502,48 +499,49 @@ Follow these steps to get and upload the certificate and key:
 
 6. If successful, you should see a response similar to this:
 
-    <details open>
-    <summary>Example response</summary>
+  {{< details summary="Example response" >}}
 
-    ```json
-    {
-      "certAssignmentDetails": [],
-      "certMetadata": [
-        {
-          "authorityKeyIdentifier": "<fingerprint>",
-          "commonName": "<subscription name>",
-          "expired": false,
-          "expiry": 59789838,
-          "issuer": "C=US, ST=Washington, L=Seattle, Inc., O=F5 Networks\\, OU=Certificate Authority, CN=F5 PRD Issuing Certificate Authority TEEM V1",
-          "publicKeyType": "RSA (2048 bit)",
-          "serialNumber": "<serial number>",
-          "signatureAlgorithm": "SHA256-RSA",
-          "subject": "CN=<subscription name>",
-          "subjectAlternativeName": "",
-          "subjectKeyIdentifier": "<fingerprint>",
-          "thumbprint": "<thumbprint>",
-          "thumbprintAlgorithm": "SHA256-RSA",
-          "validFrom": "2021-12-21T16:57:55Z",
-          "validTo": "2024-12-20T00:00:00Z",
-          "version": 3
-        }
-      ],
-      "certPEMDetails": {
-        "caCerts": [],
-        "password": "**********",
-        "privateKey": "**********",
-        "publicCert": "[content snipped]",
-        "type": "PEM"
-      },
-      "created": "2023-01-27T23:42:41.587760092Z",
-      "modified": "2023-01-27T23:42:41.587760092Z",
-      "name": "nginx-repo",
-      "serialNumber": "<serial number>",
-      "uid": "d08d9f54-58dd-447a-a71d-6fa5aa0d880c",
-      "validFrom": "2021-12-21T16:57:55Z",
-      "validTo": "2024-12-20T00:00:00Z"
-    }
-    ```
+  ```json
+  {
+    "certAssignmentDetails": [],
+    "certMetadata": [
+      {
+        "authorityKeyIdentifier": "<fingerprint>",
+        "commonName": "<subscription name>",
+        "expired": false,
+        "expiry": 59789838,
+        "issuer": "C=US, ST=Washington, L=Seattle, Inc., O=F5 Networks\\, OU=Certificate Authority, CN=F5 PRD Issuing Certificate Authority TEEM V1",
+        "publicKeyType": "RSA (2048 bit)",
+        "serialNumber": "<serial number>",
+        "signatureAlgorithm": "SHA256-RSA",
+        "subject": "CN=<subscription name>",
+        "subjectAlternativeName": "",
+        "subjectKeyIdentifier": "<fingerprint>",
+        "thumbprint": "<thumbprint>",
+        "thumbprintAlgorithm": "SHA256-RSA",
+        "validFrom": "2021-12-21T16:57:55Z",
+        "validTo": "2024-12-20T00:00:00Z",
+        "version": 3
+      }
+    ],
+    "certPEMDetails": {
+      "caCerts": [],
+      "password": "**********",
+      "privateKey": "**********",
+      "publicCert": "[content snipped]",
+      "type": "PEM"
+    },
+    "created": "2023-01-27T23:42:41.587760092Z",
+    "modified": "2023-01-27T23:42:41.587760092Z",
+    "name": "nginx-repo",
+    "serialNumber": "<serial number>",
+    "uid": "d08d9f54-58dd-447a-a71d-6fa5aa0d880c",
+    "validFrom": "2021-12-21T16:57:55Z",
+    "validTo": "2024-12-20T00:00:00Z"
+  }
+  ```
+
+  {{< /details >}}
 
 #### Enable automatic downloads
 
