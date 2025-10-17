@@ -15,7 +15,7 @@
 | [Do-nothing]({{< ref "/waf/policies/do-nothing.md" >}}) | Do-nothing allows you to avoid inspecting or parsing a URL. |
 | [Disallowed file type extensions]({{< ref "/waf/policies/disallowed-extensions.md" >}}) | Support any file type, and includes a predefined list of file types by default |
 | [Evasion techniques]({{< ref "/waf/policies/evasion-techniques.md" >}}) | All evasion techniques are enabled by default, and can be disabled individually. These include directory traversal, bad escaped characters and more. |
-| [Filetypes]({{< ref "/waf/policies/filetypes.md" >}}) | | The filetype feature allows you to selectively allow filetypes |
+| [Filetypes]({{< ref "/waf/policies/filetypes.md" >}}) | | The filetype feature allows you to selectively allow filetypes. |
 | [Geolocation]({{< ref "/waf/policies/geolocation.md" >}}) | The geolocation feature allows you to configure enforcement based on the location of an object using the two-letter ISO code representing a country. | 
 | [GraphQL protection]({{< ref "/waf/policies/graphql-protection.md" >}}) | GraphQL protection allows you to configure enforcement for GraphQL, an API query language. | 
 | [gRPC protection]({{< ref "/waf/policies/evasion-techniques.md" >}}) | gRPC protection detects malformed content, parses well-formed content, and extracts the text fields for detecting attack signatures and disallowed meta-characters. In addition, it enforces size restrictions and prohibition of unknown fields. The Interface Definition Language (IDL) files for the gRPC API must be attached to the profile. gRPC protection is available for unary or bidirectional traffic. |
