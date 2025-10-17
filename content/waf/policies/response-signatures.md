@@ -63,7 +63,7 @@ The response length checked refers to the number of uncompressed bytes in the re
 
 Usually F5 WAF for NGINX will buffer only that part of the response saving memory and CPU, but in some conditions the whole response may have to be buffered, such as when the response body is compressed.
 
-The following example enables the `responseCheck` parameter with `responseCheckLength` set to 1000, signifying that only the initial 1000 bytes of the response body should be inspected.
+The following example enables the `responseCheck` parameter with `responseCheckLength` set to `1000`, signifying that only the initial 1000 bytes of the response body should be inspected.
 
 It is nested within a [filetypes]({{< ref "/waf/policies/response-signatures.md" >}}) block.
 
