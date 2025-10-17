@@ -56,6 +56,7 @@ In the same directory you created `simple-policy.json`, create a POST request fo
 ```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @simple-policy.json
 ```
 
@@ -122,6 +123,7 @@ Send a POST request to create the bundle through the API:
 ```shell
 curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies/bundles \
     -H "Authorization: Bearer <access token>" \
+    -H "Content-Type: application/json" \
     -d @security-policy-bundles.json
 ```
 
