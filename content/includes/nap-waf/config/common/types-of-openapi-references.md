@@ -24,7 +24,7 @@ In this example, we are adding an OpenAPI Specification file reference using the
 {
     "policy": {
         "name": "petstore_api_security_policy",
-        "description": "NGINX App Protect WAF API Security Policy for the Petstore API",
+        "description": "F5 WAF for NGINX API Security Policy for the Petstore API",
         "template": {
             "name": "POLICY_TEMPLATE_NGINX_BASE"
         },

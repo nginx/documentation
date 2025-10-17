@@ -16,7 +16,7 @@ The files are located in the [content/includes](https://github.com/nginxinc/docs
 
 Putting the previous example in any Markdown file would embed the contents of `content/includes/use-cases/docker-registry-instructions.md` wherever the shortcode was used.
 
-For guidance on other Hugo shortcodes, read the [Managing content with Hugo](/documentation/writing-hugo.md) document.
+For guidance on other Hugo shortcodes, read the [Managing content with Hugo](/documentation/hugo-content.md) document.
 
 ## Guidelines for include files
 
@@ -31,9 +31,12 @@ To make sure includes are effective and easy to maintain, follow these guideline
 
 ## Include file index
 
-To aid in discoverability of include files, this index is maintained to offer contributors a reference for existing entries.
+To aid in discoverability of include files, see the [include section](https://docs.nginx.com/stats#include) of our [shortcode report page](https://docs.nginx.com/stats).
+This page is updated as part of every documentation build.
 
 When viewing an include file, you may also see the `files`: parameter in the frontmatter, which shows where the file is currently in use.
+
+Examples of commonly used includes:
 
 | **_File name_** | **_Description_** |
 | ----------------| ------------------ |

@@ -11,8 +11,7 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 
 ## Summary
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource                              | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |---------------------------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
 | [GatewayClass](#gatewayclass)         | Supported           | Not supported          | Supported                             | v1          | Standard            |
@@ -25,8 +24,7 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 | [UDPRoute](#udproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
 | [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1alpha3    | Experimental        |
 | [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ## Terminology
 
@@ -49,13 +47,11 @@ For a description of each field, visit the [Gateway API documentation](https://g
 
 ### GatewayClass
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource     | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |--------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | GatewayClass | Supported          | Not supported          | Supported                             | v1          | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command.
 
@@ -77,13 +73,11 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 
 ### Gateway
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | Gateway  | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 NGINX Gateway Fabric supports multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
 
@@ -144,14 +138,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 
 ### HTTPRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource  | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | HTTPRoute | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-
-{{< /bootstrap-table >}}
-
+{{< /table >}}
 **Fields**:
 
 - `spec`
@@ -183,7 +174,6 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/False/NotAllowedByListeners`
       - `Accepted/False/UnsupportedValue`: Custom reason for when the HTTPRoute includes an invalid or unsupported value.
       - `Accepted/False/InvalidListener`: Custom reason for when the HTTPRoute references an invalid listener.
-      - `Accepted/False/GatewayNotProgrammed`: Custom reason for when the Gateway is not Programmed. HTTPRoute can be valid and configured, but will maintain this status as long as the Gateway is not Programmed.
       - `Accepted/False/GatewayIgnored`: Custom reason for when the Gateway is ignored by NGINX Gateway Fabric. NGINX Gateway Fabric only supports one Gateway.
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
@@ -196,13 +186,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 
 ### GRPCRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource  | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | GRPCRoute | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 **Fields**:
 
@@ -231,7 +219,6 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/False/NotAllowedByListeners`
       - `Accepted/False/UnsupportedValue`: Custom reason for when the GRPCRoute includes an invalid or unsupported value.
       - `Accepted/False/InvalidListener`: Custom reason for when the GRPCRoute references an invalid listener.
-      - `Accepted/False/GatewayNotProgrammed`: Custom reason for when the Gateway is not Programmed. GRPCRoute can be valid and configured, but will maintain this status as long as the Gateway is not Programmed.
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
       - `ResolvedRefs/False/RefNotPermitted`
@@ -241,13 +228,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 
 ### ReferenceGrant
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource       | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | ReferenceGrant | Supported          | N/A                    | Not supported                         | v1beta1     | Standard            |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 Fields:
 
@@ -263,13 +248,11 @@ Fields:
 
 ### TLSRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | TLSRoute | Supported          | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 **Fields**:
 
@@ -290,7 +273,6 @@ Fields:
       - `Accepted/False/NotAllowedByListeners`
       - `Accepted/False/UnsupportedValue`: Custom reason for when the TLSRoute includes an invalid or unsupported value.
       - `Accepted/False/InvalidListener`: Custom reason for when the TLSRoute references an invalid listener.
-      - `Accepted/False/GatewayNotProgrammed`: Custom reason for when the Gateway is not Programmed. TLSRoute can be valid and configured, but will maintain this status as long as the Gateway is not Programmed.
       - `Accepted/False/HostnameConflict`: Custom reason for when the TLSRoute has a hostname that conflicts with another TLSRoute on the same port.
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
@@ -303,33 +285,27 @@ Fields:
 
 ### TCPRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | TCPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ### UDPRoute
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 ### BackendTLSPolicy
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource         | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
 | BackendTLSPolicy | Partially Supported | Supported              | Partially Supported                   | v1alpha3    | Experimental        |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 Fields:
 
@@ -359,13 +335,11 @@ Fields:
 
 ### Custom Policies
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
-
+{{< table >}}
 | Resource        | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | Custom policies | N/A                | N/A                    | Supported                             | N/A         | N/A                 |
-
-{{< /bootstrap-table >}}
+{{< /table >}}
 
 Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definitions) that support features such as tracing, and client connection settings. These important data-plane features are not part of the Gateway API specifications.
 While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/references/policy-attachment/).

@@ -51,7 +51,7 @@ To add a license and submit the initial usage report in a disconnected environme
 
 <br>
 
-1. {{<fa "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
+1. {{<icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
 
     ```bash
@@ -65,7 +65,7 @@ To add a license and submit the initial usage report in a disconnected environme
       -j <license-filename>.jwt \
       -i <NIM-IP-address> \
       -u admin \
-      -p <password> \      
+      -p <password> \
       -s initial
     ```
 
@@ -85,7 +85,7 @@ To license NGINX Instance Manager, complete each of the following steps in order
 
 Run these `curl` commands on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-{{< call-out "important" >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{< /call-out >}}
+{{< call-out "important" "TLS certificate validation">}} The -k flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system. {{< /call-out >}}
 
 1. **Add the license to NGINX Instance Manager**:
 
@@ -221,11 +221,11 @@ Download the initial usage report to send to F5:
 
 #### Submit usage report to F5
 
-You need to submit the usage report to F5 and download the acknowledgment over REST. To do do, follow steps 5–7 in the [**REST**](#add-license-submit-initial-usage-report) tab in this section.
+You need to submit the usage report to F5 and download the acknowledgment over REST. To do so, follow steps 5–7 in the [**REST**](#add-license-submit-initial-usage-report) tab in this section.
 
 #### Upload the usage acknowledge to NGINX Instance Manager
 
-To upload the the usage acknowledgement:
+To upload the usage acknowledgement:
 
 1. On the **License > Overview** page, select **Upload Usage Acknowledgement**.
 2. Upload the acknowledgement by selecting **Browse** or dragging the file into the form.
@@ -235,7 +235,3 @@ To upload the the usage acknowledgement:
 
 
 {{</tabs>}}
-
-
-
-

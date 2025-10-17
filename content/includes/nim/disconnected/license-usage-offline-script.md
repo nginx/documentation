@@ -2,10 +2,9 @@
 nd-docs: "DOCS-1662"
 ---
 
-<details closed>
-<summary style="font-weight:bold">View the full contents of the license_usage_offline.sh script</summary>
+{{< details summary="Full license_usage_offline.sh script" >}}
 
-``` bash
+```shell
 #!/bin/bash
 
 # Enable strict mode for better error handling
@@ -441,4 +440,4 @@ fi
 echo -e "Acknowledgement uploaded successfully to NGINX Instance Manager."
 ```
 
-</details>
+{{< /details >}}

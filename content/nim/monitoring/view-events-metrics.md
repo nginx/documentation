@@ -1,11 +1,11 @@
 ---
-description: Learn how to view events and metrics in F5 NGINX Instance Manager.
-nd-docs: DOCS-847
 title: View events and metrics
+description: Learn how to view events and metrics in F5 NGINX Instance Manager.
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-847
 ---
 
 ## Overview
@@ -19,9 +19,9 @@ F5 NGINX Instance Manager provides events and metrics data for your instances. Y
 To view events in the NGINX Instance Manager user interface, take the following steps:
 
 1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
-2. In the **Platform** section, select **Events**. The **Events** overview page lists the events from the last six hours, with the most recent event listed first.
-3. You can use the filters to filter events by level and time range, and sort events by selecting the column heading.
-4. Select an event from the list to view the details.
+1. In the **Platform** section, select **Events**. The **Events** overview page lists the events from the last six hours, with the most recent event listed first.
+1. You can use the filters to filter events by level and time range, and sort events by selecting the column heading.
+1. Select an event from the list to view the details.
 
 ## Access Events data by using the REST API
 
@@ -37,8 +37,7 @@ To query the Events API, send a GET request similar to the following example to 
 curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events" -H "Authorization: Bearer <access token>"
 ```
 
-<details closed>
-<summary>Example Response</summary>
+{{< details summary="Example response" >}}
 
 ```json
 {
@@ -112,7 +111,7 @@ curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events" -H "Auth
 }
 ```
 
-</details>
+{{< /details >}}
 
 ### Filter Events with Query Parameters
 
@@ -234,8 +233,7 @@ Querying for a unique event requires only the event's UUID.
 curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events/7cb91de6-49ae-4ddc-a8b3-3255e00b9346" -H "Authorization: Bearer <access token>"
 ```
 
-<details closed>
-<summary>Example response</summary>
+{{< details summary="Example response" >}}
 
 ```json
 {
@@ -255,8 +253,7 @@ curl -X GET --url "https://<NMS_FQDN>/api/platform/v1/analytics/events/7cb91de6-
 }
 ```
 
-</details>
----
+{{< /details >}}
 
 ## View Metrics in the User Interface
 
@@ -267,10 +264,10 @@ The **Metrics Summary** page includes a highlights section of the most important
 To view the metrics summary for an NGINX instance, take the following steps:
 
 1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
-2. Under **Modules**, select the **Instance Manager**.
-3. Select an instance on the **Instances** detail page.
-4. Select the **Metrics Summary** tab.
-5. To view detailed metrics as graphs, select the **Metrics** tab.
+1. Under **Modules**, select the **Instance Manager**.
+1. Select an instance on the **Instances** detail page.
+1. Select the **Metrics Summary** tab.
+1. To view detailed metrics as graphs, select the **Metrics** tab.
 
 {{< call-out "note" >}}
 Select a time range to change the period for the metrics display. The metrics data refreshes every 30 seconds.

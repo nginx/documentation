@@ -198,25 +198,71 @@ In a text editor, open the NGINX Plus configuration file:
   - `/etc/nginx/nginx.conf` for Linux
   - `/usr/local/etc/nginx/nginx.conf` for FreeBSD
 
-For a complete list of directives, embedded variables, default span attributes, refer to the `ngx_http_acme_module` official documentation.
 
-List of directives:
+For a complete list of directives and variables refer to the `ngx_http_acme_module` [official documentation](https://nginx.org/en/docs/http/ngx_http_acme_module.html) and [NGINX ACME module GitHub project](https://github.com/nginx/nginx-acme).
 
-[`https://nginx.org/en/docs/http/ngx_http_acme_module.html#directives`](https://nginx.org/en/docs/ngx_otel_module.html#directives)
+1. To enable ACME functionality, specify the directory URL of the ACME server with the [`uri`](https://nginx.org/en/docs/http/ngx_http_acme_module.html#uri) directive.
 
-List of variables:
+   Additionally, you can provide information regarding how to contact the client in case of certificate-related issues or where to store module data with the [`contact`](https://nginx.org/en/docs/http/ngx_http_acme_module.html#contact) and [`state_path`](https://nginx.org/en/docs/http/ngx_http_acme_module.html#state_path) directives.
 
-[`https://nginx.org/en/docs/http/ngx_http_acme_module.html#variables`](https://nginx.org/en/docs/ngx_otel_module.html#variables)
+   ```nginx
+   acme_issuer letsencrypt {
+       uri         https://acme-v02.api.letsencrypt.org/directory;
+       # contact   admin@example.test;
+       state_path  /var/cache/nginx/acme-letsencrypt;
+
+       accept_terms_of_service;
+   }
+   ```
+
+2. If necessary, you can increase the default shared memory zone that stores certificates, private keys, and challenge data for all the configured certificate issuers with the [`acme_shared_zone`](https://nginx.org/en/docs/http/ngx_http_acme_module.html#acme_shared_zone) directive. The default  zone size is `256k`.
+
+   ```nginx
+   acme_shared_zone zone=acme_shared:1M;
+   ```
+
+3. Configure Challenges by defining a listener on port 80 in the nginx configuration to process ACME HTTP-01 challenges:
+
+   ```nginx
+   server {
+       # listener on port 80 is required to process ACME HTTP-01 challenges
+       listen 80;
+
+       location / {
+           #Serve a basic 404 response while listening for challenges
+           return 404;
+        }
+   }
+   ```
+
+4. Automate the issuance or renewal of TLS certificates with the [`acme_certificate`](https://nginx.org/en/docs/http/ngx_http_acme_module.html#acme_certificate) directive in the respective [`server`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block. The directive requires the list of identifiers (domains) for which the certificates need to be dynamically issued that can be defined with the [`server_name`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive. The [`$acme_certificate`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_acme_certificate_key) and [`$acme_certificate_key`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_acme_certificate_key) variables are used to pass the SSL certificate and key information for the associated domain:
+
+   ```nginx
+   server {
+
+       listen 443 ssl;
+
+       server_name  .example.com;
+
+       acme_certificate letsencrypt;
+
+       ssl_certificate       $acme_certificate;
+       ssl_certificate_key   $acme_certificate_key;
+       ssl_certificate_cache max=2;
+   }
+   ```
+
+   Note that not all values accepted by the [`server_name`](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive are valid identifiers. Wildcards and regular expressions are not supported.
 
 
-## Usage example
+## Full example
 
-```shell
+```nginx
 resolver 127.0.0.1:53;
 
 acme_issuer example {
     uri         https://acme.example.com/directory;
-    # contact     admin@example.test;
+    # contact   admin@example.test;
     state_path  /var/cache/nginx/acme-example;
     accept_terms_of_service;
 }

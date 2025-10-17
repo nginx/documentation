@@ -1,15 +1,14 @@
 {{/* This shortcode **requires** that the document uses the _default/catalogs.html layout */}}
-<main class="content col-xl-6 d-block align-top" role="main">
+<main class="content col-xl-6 d-block align-top catalog" role="main">
   <h1>NGINX Management Suite Metrics Catalog</h1>
   <p>Information about all of the Metrics collected by NGINX Agent</p>
   &nbsp;
   {{ range .Site.Data.nms.catalogs.metrics }}
   <a name="{{.name}}"></a>
   <h2 id={{.name}}>{{.name}}
-    <a class="headerlink float-right" href="#{{.name}}" title="{{.name}}"><i class="fas fa-link fa-xs"
-        aria-hidden="true"></i></a>
+    <a class="headerlink float-right" href="#{{.name}}" title="{{.name}}"></a>
   </h2>
-  <table>
+  <table class="catalog__table">
     <tbody>
       <tr>
         <td style="width: 200px; padding-bottom:5px">description</td>
@@ -55,6 +54,5 @@
       </tr>
     </tbody>
   </table>
-  <hr>
   {{ end }}
 </main>

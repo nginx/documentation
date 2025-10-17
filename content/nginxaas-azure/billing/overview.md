@@ -14,7 +14,7 @@ NGINXaaS for Azure is deployed into your Azure subscription. Your NGINXaaS deplo
 
 NGINXaaS for Azure is billed monthly based on hourly consumption.
 
-F5 NGINX as a Service for Azure (NGINXaaS) provides two pricing plans.
+F5 NGINXaaS for Azure (NGINXaaS) provides two pricing plans.
 
 ### Standard V2 plan
 
@@ -24,7 +24,7 @@ When using the Standard V2 plan, NGINXaaS is a consumption-based service, metere
 
 The SKU for the Standard V2 pricing plan is `standardv2_Monthly`.
 
-The Standard V2 plan allows for configuration of NGINX App Protect WAF and a higher number of listen ports.
+The Standard V2 plan allows for configuration of F5 WAF for NGINX and a higher number of listen ports.
 
 
 ### Basic plan

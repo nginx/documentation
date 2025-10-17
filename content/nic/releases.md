@@ -6,6 +6,65 @@ nd-content-type: reference
 nd-product: NIC
 nd-docs: DOCS-616
 ---
+## 5.2.1
+
+10 Oct 2025
+
+### <i class="fa-solid fa-bug-slash"></i> Fixes
+- [8302](https://github.com/nginx/kubernetes-ingress/pull/8302) Remove type field for objects with schema ref
+
+### <i class="fa-solid fa-upload"></i> Dependencies
+- [8321](https://github.com/nginx/kubernetes-ingress/pull/8321), [8330](https://github.com/nginx/kubernetes-ingress/pull/8330), [8352](https://github.com/nginx/kubernetes-ingress/pull/8352) & [8358](https://github.com/nginx/kubernetes-ingress/pull/8358) Bump Go dependencies
+- [8280](https://github.com/nginx/kubernetes-ingress/pull/8280), [8291](https://github.com/nginx/kubernetes-ingress/pull/8291), [8331](https://github.com/nginx/kubernetes-ingress/pull/8331) & [8320](https://github.com/nginx/kubernetes-ingress/pull/8320) Bump Docker dependencies
+- [8348](https://github.com/nginx/kubernetes-ingress/pull/8348) Update F5 WAF for NGINX 5.9.0
+- [8273](https://github.com/nginx/kubernetes-ingress/pull/8273) Update dependencies
+
+### <i class="fa-solid fa-download"></i> Upgrade
+- For NGINX, use the 5.2.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.2.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.2.1 images from the F5 Container registry or build your own image using the 5.2.1 source code.
+- For Helm, use version 2.3.1 of the chart.
+
+### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.34.
+
+---
+## 5.2.0
+
+15 Sept 2025
+
+This NGINX Ingress Controller release focuses on enhancing performance, simplifying configurations, and improving security to better support modern application needs. The highlights of this release are as follows:
+- NGINX Content Cache using policies: This new feature introduces policy configurations that enable proxy caching.
+- Support for Kubernetes `StatefulSet` Objects: Added support for Kubernetes `StatefulSet` objects, which can also be used to provide persistent storage for cached content.
+- Auto-Adjusting incompatible proxy buffer directive values: A new `-enable-directive-autoadjust` parameter has been added. When enabled, this feature automatically resolves common proxy buffer configuration dependencies that could cause issues during NGINX reloads.
+- Server Name Indication (SNI) support in JWT Policies: Users can now configure sniName and sniEnabled for scenarios where the remote server requires SNI to present the correct certificate
+
+### <i class="fa-solid fa-rocket"></i> Features
+- [8005](https://github.com/nginx/kubernetes-ingress/pull/8005) Add nginx content cache as NIC cache policy
+- [8159](https://github.com/nginx/kubernetes-ingress/pull/8159) Statefulset support
+- [8133](https://github.com/nginx/kubernetes-ingress/pull/8133) Add support for automatic adjustment of buffer related directives
+- [8011](https://github.com/nginx/kubernetes-ingress/pull/8011) Allow startupprobe to be configured via helm 
+- [7993](https://github.com/nginx/kubernetes-ingress/pull/7993) Add sni to NIC jwt policy
+- [8093](https://github.com/nginx/kubernetes-ingress/pull/8093) Add viol_bot_client and viol_geolocation violations support
+- [8229](https://github.com/nginx/kubernetes-ingress/pull/8229) Add N+ license expiry to prometheus metrics
+- [8142](https://github.com/nginx/kubernetes-ingress/pull/8142) Add globalconfigurationcustomname parameter
+- [8195](https://github.com/nginx/kubernetes-ingress/pull/8195) Add support for fips 140-3 compliance
+
+
+
+### <i class="fa-solid fa-upload"></i> Dependencies
+- [8208](https://github.com/nginx/kubernetes-ingress/pull/8208) Update Nginx agent to 3.3
+- [7959](https://github.com/nginx/kubernetes-ingress/pull/7959), [7983](https://github.com/nginx/kubernetes-ingress/pull/7983), [8037](https://github.com/nginx/kubernetes-ingress/pull/8037), [8057](https://github.com/nginx/kubernetes-ingress/pull/8057), [8083](https://github.com/nginx/kubernetes-ingress/pull/8083), [8096](https://github.com/nginx/kubernetes-ingress/pull/8096), [8126](https://github.com/nginx/kubernetes-ingress/pull/8126), [8143](https://github.com/nginx/kubernetes-ingress/pull/8143), [8183](https://github.com/nginx/kubernetes-ingress/pull/8183), [8186](https://github.com/nginx/kubernetes-ingress/pull/8186), [8200](https://github.com/nginx/kubernetes-ingress/pull/8200), [8231](https://github.com/nginx/kubernetes-ingress/pull/8231) Bump Go dependencies
+- [7946](https://github.com/nginx/kubernetes-ingress/pull/7946), [7961](https://github.com/nginx/kubernetes-ingress/pull/7961), [7977](https://github.com/nginx/kubernetes-ingress/pull/7977), [7979](https://github.com/nginx/kubernetes-ingress/pull/7979), [7978](https://github.com/nginx/kubernetes-ingress/pull/7978), [7984](https://github.com/nginx/kubernetes-ingress/pull/7984), [7996](https://github.com/nginx/kubernetes-ingress/pull/7996), [8012](https://github.com/nginx/kubernetes-ingress/pull/8012), [8036](https://github.com/nginx/kubernetes-ingress/pull/8036), [8044](https://github.com/nginx/kubernetes-ingress/pull/8044), [8063](https://github.com/nginx/kubernetes-ingress/pull/8063), [8085](https://github.com/nginx/kubernetes-ingress/pull/8085), [8107](https://github.com/nginx/kubernetes-ingress/pull/8107), [8114](https://github.com/nginx/kubernetes-ingress/pull/8114), [8128](https://github.com/nginx/kubernetes-ingress/pull/8128), [8134](https://github.com/nginx/kubernetes-ingress/pull/8134), [8147](https://github.com/nginx/kubernetes-ingress/pull/8147), [8154](https://github.com/nginx/kubernetes-ingress/pull/8154), [8173](https://github.com/nginx/kubernetes-ingress/pull/8173), [8188](https://github.com/nginx/kubernetes-ingress/pull/8188), [8228](https://github.com/nginx/kubernetes-ingress/pull/8228), [8239](https://github.com/nginx/kubernetes-ingress/pull/8239), [8235](https://github.com/nginx/kubernetes-ingress/pull/8235), [8246](https://github.com/nginx/kubernetes-ingress/pull/8246) Bump Docker dependencies
+
+### <i class="fa-solid fa-download"></i> Upgrade
+- For NGINX, use the 5.2.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.2.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.2.0 images from the F5 Container registry or build your own image using the 5.2.0 source code.
+- For Helm, use version 2.3.0 of the chart.
+
+### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.26-1.34.
+
+---
 ## 5.1.1
 
 15 Aug 2025
@@ -18,7 +77,7 @@ nd-docs: DOCS-616
 ### <i class="fa-solid fa-upload"></i> Dependencies
 - [8115](https://github.com/nginx/kubernetes-ingress/pull/8115) & [8131](https://github.com/nginx/kubernetes-ingress/pull/8131) Bump Go dependencies
 - [8030](https://github.com/nginx/kubernetes-ingress/pull/8030), [8080](https://github.com/nginx/kubernetes-ingress/pull/8080) & [8112](https://github.com/nginx/kubernetes-ingress/pull/8112) Bump Docker dependencies
-- [8139](https://github.com/nginx/kubernetes-ingress/pull/8139) Update to nginx oss 1.29.1, plus r35, agent v3.2, app protect and alpine 3.22
+- [8139](https://github.com/nginx/kubernetes-ingress/pull/8139) Update to NGINX OSS 1.29.1, NGINX Plus r35, NGINX Agent v3.2, NGINX App Protect 4.16.0 & 5.8.0, and Alpine Linux 3.22
 
 ### <i class="fa-solid fa-download"></i> Upgrade
 - For NGINX, use the 5.1.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.1.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
@@ -37,7 +96,7 @@ This NGINX Ingress Controller release brings initial connectivity to the NGINX O
 
 This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 
-Lastly, in our previous v5.0.0 release, we removed support for OpenTracing. This release replaces that observability capability with native [NGINX OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}) traces, allowing you to monitor the internal traffic of your applications.
+Lastly, in our previous v5.0.0 release, we removed support for OpenTracing. This release replaces that observability capability with native [NGINX OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}) traces, allowing you to monitor the traffic of your applications.
 
 ### <i class="fa-solid fa-rocket"></i> Features
 - [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add [OpenTelemetry support]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}})
@@ -113,7 +172,7 @@ Open Source NGINX Ingress Controller architectures `armv7`, `s390x` & `ppc64le` 
 - [7205](https://github.com/nginx/kubernetes-ingress/pull/7205), [7238](https://github.com/nginx/kubernetes-ingress/pull/7238), [7390](https://github.com/nginx/kubernetes-ingress/pull/7390) & [7393](https://github.com/nginx/kubernetes-ingress/pull/7393) Tiered Rate limit groups with JWT claim
 - [7239](https://github.com/nginx/kubernetes-ingress/pull/7239), [7347](https://github.com/nginx/kubernetes-ingress/pull/7347), [7445](https://github.com/nginx/kubernetes-ingress/pull/7445), [7468](https://github.com/nginx/kubernetes-ingress/pull/7468), [7521](https://github.com/nginx/kubernetes-ingress/pull/7521) & [7654](https://github.com/nginx/kubernetes-ingress/pull/7654) Zone Sync support
 - [7560](https://github.com/nginx/kubernetes-ingress/pull/7560) Add forward proxy support for NGINX Plus licensing connectivity
-- [7299](https://github.com/nginx/kubernetes-ingress/pull/7299) & [7597](https://github.com/nginx/kubernetes-ingress/pull/7597) Add support for NGINX OSS 1.27.4, NGINX Plus R34 & App Protect WAF 4.13 & 5.6
+- [7299](https://github.com/nginx/kubernetes-ingress/pull/7299) & [7597](https://github.com/nginx/kubernetes-ingress/pull/7597) Add support for NGINX OSS 1.27.4, NGINX Plus R34 & F5 WAF for NGINX 4.13 & 5.6
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
 - [7121](https://github.com/nginx/kubernetes-ingress/pull/7121) Clean up and fix for NIC Pod failing to bind when NGINX exits unexpectedly
@@ -434,7 +493,7 @@ versions: 1.25-1.30.
 25 Jun 2024
 
 Added support for the latest generation of NGINX App Protect Web Application Firewall, v5. NGINX Ingress Controller will continue to support the NGINX App Protect v4 family to allow customers to implement new Policy Bundle workflow at their own pace.
-NGINX App Protect WAF v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler]({{< ref "/nap-waf/v5/admin-guide/compiler/" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [NGINX App Protect WAF V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
+F5 WAF for NGINX v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler]({{< ref "/nap-waf/v5/admin-guide/compiler/" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [F5 WAF for NGINX V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
 
 With this release, NGINX Ingress Controller is implementing a new image maintenance policy. Container images for subscribed users will be updated on a regular basis in-between releases to reduce the CVE vulnerabilities.
 Customers can observe the 3.6.x tag when listing images in the registry and select the latest image to update to for the current release.
@@ -540,7 +599,7 @@ versions: 1.23-1.29.
 
 26 Mar 2024
 
-NGINX Ingress Controller and NGINX App Protect WAF users can can now view violations through NGINX Instance Manager Security Monitor.  Security Monitor can be used to build Policy bundles, reducing reload time impacts on NGINX Ingress Controller.  Read more information in [NGINX App Protect WAF Bundles]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) and Security Monitoring.
+NGINX Ingress Controller and F5 WAF for NGINX users can can now view violations through NGINX Instance Manager Security Monitor.  Security Monitor can be used to build Policy bundles, reducing reload time impacts on NGINX Ingress Controller.  Read more information in [F5 WAF for NGINX Bundles]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) and Security Monitoring.
 
 When using NGINX Plus for two version [split rollouts]({{ ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#split" }}), you can now control progressive rollouts of a new backend version without reloading NGINX using the [**-weight-changes-dynamic-reload**]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#-weight-changes-dynamic-reload" >}}) command line argument.
 
@@ -548,7 +607,7 @@ The [**use-cluster-ip**]({{< ref "/nic/configuration/ingress-resources/advanced-
 **use-cluster-ip** supports service meshes and specific use cases where the backend service should be the target instead of individual backend service pods, bypassing upstream load balancing.
 
 ### <i class="fa-solid fa-rocket"></i> Features
-- [5179](https://github.com/nginx/kubernetes-ingress/pull/5179) & [5051](https://github.com/nginx/kubernetes-ingress/pull/5051) Add NIM Security Dashboard integration for App Protect WAF security violations
+- [5179](https://github.com/nginx/kubernetes-ingress/pull/5179) & [5051](https://github.com/nginx/kubernetes-ingress/pull/5051) Add NIM Security Dashboard integration for F5 WAF for NGINX security violations
 - [5212](https://github.com/nginx/kubernetes-ingress/pull/5212) Weight changes Dynamic Reload
 - [4862](https://github.com/nginx/kubernetes-ingress/pull/4862) Add use-cluster-ip annotation for ingress resources
 - [4660](https://github.com/nginx/kubernetes-ingress/pull/4660) Add annotations for controlling request rate limiting
@@ -686,7 +745,7 @@ A number of Helm enhancements have come directly from our community and range fr
 
 To make sure NGINX Ingress Controller follows Helm best practices, we've refactored our helm chart location. You can now find our helm charts under `charts\nginx-ingress`.
 
-We’ve added the functionality to define App Protect WAF bundles for VirtualServers by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
+We’ve added the functionality to define F5 WAF for NGINX bundles for VirtualServers by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
 
 ### <i class="fa-solid fa-rocket"></i> Features
 
@@ -1120,8 +1179,8 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 ### <i class="fa-solid fa-upload"></i> Dependencies
 
 - Update NGINX Plus version to R28.
-- Update NGINX App Protect WAF version to 4.0.
-- Update NGINX App Protect DoS version to 3.1.
+- Update F5 WAF for NGINX version to 4.0.
+- Update F5 DoS for NGINX version to 3.1.
 
 ### <i class="fa-solid fa-download"></i> Upgrade
 
@@ -1456,7 +1515,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 
 ### <i class="fa-solid fa-magnifying-glass"></i> Overview
 
-- Support for NGINX App Protect Denial of Service protection with NGINX Ingress Controller. More information about [NGINX App Protect DoS](https://www.nginx.com/products/nginx-app-protect/denial-of-service/). Examples for configuring NGINX App Protect DoS with NGINX Ingress Controller can be found [here](https://github.com/nginx/kubernetes-ingress/tree/v2.1.1/examples/appprotect-dos).
+- Support for NGINX App Protect Denial of Service protection with NGINX Ingress Controller. More information about [F5 DoS for NGINX](https://www.nginx.com/products/nginx-app-protect/denial-of-service/). Examples for configuring F5 DoS for NGINX with NGINX Ingress Controller can be found [here](https://github.com/nginx/kubernetes-ingress/tree/v2.1.1/examples/appprotect-dos).
 
 - Full support for gRPC services using the NGINX Ingress Controller [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) custom resource definitions.  This makes configuring and supporting gRPC services much easier, giving a simple YAML configuration and removing the need for snippets. Resource definition examples for gRPC can be found [here](https://github.com/nginx/kubernetes-ingress/tree/v2.1.1/examples/custom-resources/grpc-upstreams).
 
@@ -1468,7 +1527,7 @@ More about the [NGINX Plus mandatory and persistent health check features]({{< r
 ### <i class="fa-solid fa-rocket"></i> Features
 
 - [2251](https://github.com/nginx/kubernetes-ingress/pull/2251) Enable setting mandatory and persistent in upstream healthchecks in VS and VSR.
-- [2241](https://github.com/nginx/kubernetes-ingress/pull/2241) Add support for NGINX App Protect DoS.
+- [2241](https://github.com/nginx/kubernetes-ingress/pull/2241) Add support for F5 DoS for NGINX.
 - [2200](https://github.com/nginx/kubernetes-ingress/pull/2200) Add Alpine image with OpenTracing.
 - [2178](https://github.com/nginx/kubernetes-ingress/pull/2178) Support healthchecks in gRPC upstreams.
 - [2110](https://github.com/nginx/kubernetes-ingress/pull/2110) Support gRPC in the Upstreams of the virtual server resources. Particular thanks to [Chiyu Zhong](https://github.com/CatTail) for all their work.

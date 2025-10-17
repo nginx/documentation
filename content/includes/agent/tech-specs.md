@@ -31,6 +31,18 @@ and performance aligned with the NGINX core platform:
 To see the detailed technical specifications for NGINX Plus, refer to the official
 [NGINX Plus documentation]({{< ref "/nginx/technical-specs.md" >}}).
 
+### Supported telemetry
+
+NGINX Agent runs with an embedded OpenTelemetry Collector that provides the following telemetry:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Product               | Metrics | Logs | Traces |
+|-----------------------|---------|------|--------|
+| **NGINX Open Source** | Yes     | No   | No     |
+| **NGINX Plus**        | Yes     | No   | No     |
+| **NGINX App Protect** | No      | Yes  | No     |
+| **NGINX Agent**       | No      | No   | No     |
+{{</bootstrap-table>}}
 
 ### Recommended hardware
 

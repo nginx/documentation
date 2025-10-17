@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 NGINX App Protect DoS Troubleshooting Guide.
+description: Learn about the F5 F5 DoS for NGINX Troubleshooting Guide.
 nd-docs: DOCS-675
-title: NGINX App Protect DoS Troubleshooting Guide
+title: F5 DoS for NGINX Troubleshooting Guide
 toc: true
 weight: 200
 type:
@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 NGINX App Protect DoS. It may also be useful to IT.
+This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 F5 DoS for NGINX. It may also be useful to IT.
 
 ## Resolving Known Problems
 
@@ -22,11 +22,11 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 |-------|--------|
 | NGINX is not running (ps -aux) <br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`. <br> Fix the problem and re-run NGINX.|
 | No original source IP in logs|1. XFF is not configured (or not configured correctly) <br>2. External Load Balancer doesn't forward XFF |
-| NGINX App Protect DoS functionality is not as expected| NGINX App Protect DoS has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-dos/monitoring/types-of-logs.md">}})|
+| F5 DoS for NGINX functionality is not as expected| F5 DoS for NGINX has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-dos/monitoring/types-of-logs.md">}})|
 | `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) |
 | `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error) |
-| More protected objects than expected | The `app_protect_dos_enable` directive is inherited by all server and location blocks beneath it, each block will be a protected object. <br> Consider moving this directive from outer to inner block. <br> Refer to: [NGINX App Protect DoS - Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) |
-| `No DOS protection for ngx_worker at idx X` warning message | There are more nginx processes than allowed. <br> Either decrease the number of nginx processes (ngx_processes directive in `nginx.conf` file) or increase the number of supported workers for NGINX App Protect DoS using the flag `--max-workers NUM` for `/usr/bin/adminstall`. |
+| More protected objects than expected | The `app_protect_dos_enable` directive is inherited by all server and location blocks beneath it, each block will be a protected object. <br> Consider moving this directive from outer to inner block. <br> Refer to: [F5 DoS for NGINX - Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) |
+| `No DOS protection for ngx_worker at idx X` warning message | There are more nginx processes than allowed. <br> Either decrease the number of nginx processes (ngx_processes directive in `nginx.conf` file) or increase the number of supported workers for F5 DoS for NGINX using the flag `--max-workers NUM` for `/usr/bin/adminstall`. |
 | `unknown directive 'app_protect_dos_xxx'` error message | App Protect DOS module is not loaded. Add this line to the main (global) context of nginx.conf: <br>  `load_module "/etc/nginx/modules/ngx_http_app_protect_dos_module.so";` |
 | NGINX struggles handling a high rate of incoming connections | Linux machine should be tuned for optimal performance. <br> Refer to [Tuning NGINX for Performance](https://www.nginx.com/blog/tuning-nginx/) |
 | Error in `adminstall` process, such as `Failed to allocate` | Insufficient memory to allocate all the required resources. <br> Increase the `--memory` size or decrease the number of nginx workers (`--max_workers`) if not all of them are going to be in use. <br> Use the `--help` flag for more info. |
@@ -35,11 +35,11 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 
 ### ELK issues
 
-ELK issues are addressed directly in GitHub by posting the issue to Kibana dashboards for [NGINX App Protect DoS GitHub repo](https://github.com/f5devcentral/nap-dos-elk-dashboards).
+ELK issues are addressed directly in GitHub by posting the issue to Kibana dashboards for [F5 DoS for NGINX GitHub repo](https://github.com/f5devcentral/nap-dos-elk-dashboards).
 
 ### SELinux
 
-Configure SELinux to allow NGINX App Protect DoS.
+Configure SELinux to allow F5 DoS for NGINX.
 
 The configuration steps are found in the [SELinux configuration]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md#selinux-configuration" >}}) section of the deployment guide.
 
@@ -79,7 +79,7 @@ If there are any problems, collect the troubleshooting information in a tarball 
 
 1. Get package version:
 
-   a. Get NGINX App Protect DoS version:<br>
+   a. Get F5 DoS for NGINX version:<br>
 
    ```shell
    /usr/bin/admd -v > package_versions.txt
@@ -103,7 +103,7 @@ If there are any problems, collect the troubleshooting information in a tarball 
    cat /etc/os-release > system_version.txt && uname -r >> system_version.txt && cat /proc/version >> system_version.txt
    ```
 
-   d. Get NGINX App Protect DoS shared memory dump:<br>
+   d. Get F5 DoS for NGINX shared memory dump:<br>
 
    ```shell
    admd -c > napd_shmem.txt

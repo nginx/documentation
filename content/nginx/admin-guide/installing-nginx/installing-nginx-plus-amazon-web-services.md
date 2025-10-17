@@ -38,7 +38,7 @@ To quickly set up an NGINX Plus environment on AWS:
 	/etc/init.d/nginx status
 	```
 
-See [NGINX Plus on the AWS Cloud Quick Start](https://aws.amazon.com/blogs/apn/introducing-a-new-aws-quick-start-nginx-plus-on-the-aws-cloud-in-15-minutes/) deployment guide for details.
+See [NGINX Plus on the AWS Cloud Quick Start](https://aws.amazon.com/about-aws/whats-new/2017/08/quick-start-update-deploy-nginx-plus-on-the-aws-cloud/) deployment guide for details.
 
 ## What If I Need Help?
 

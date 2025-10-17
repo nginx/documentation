@@ -1,6 +1,6 @@
 ---
 title: NGINXaaS Load Balancer for Kubernetes
-weight: 250
+weight: 275
 toc: true
 url: /nginxaas/azure/loadbalancer-kubernetes/
 type:
@@ -103,7 +103,7 @@ Make sure to write down the key value in a safe location after creation, as you 
 
 Set shell variables about the name of the NGINXaaS you've already created:
 
-```bash
+```shell
 ## Customize this to provide the details about my already created NGINXaaS deployment
 nginxName=myNginx
 nginxGroup=myNginxGroup
@@ -111,7 +111,7 @@ nginxGroup=myNginxGroup
 
 Generate a new random data plane API key:
 
-```bash
+```shell
 # Generate a new random key or specify a value for it.
 keyName=myKey
 keyValue=$(uuidgen --random)
@@ -119,7 +119,7 @@ keyValue=$(uuidgen --random)
 
 Create the key for your NGINXaaS deployment:
 
-```bash
+```shell
 az nginx deployment api-key create --name $keyName --secret-text $keyValue --deployment-name $nginxName --resource-group  $nginxGroup
 ```
 
@@ -135,7 +135,7 @@ The data plane API endpoint can be retrieved using the Azure CLI or portal.
 
 ##### View NGINXaaS data plane API endpoint using the Azure CLI
 
-```bash
+```shell
 dataplaneAPIEndpoint=$(az nginx deployment show -g "$nginxGroup" -n "$nginxName" --query properties.dataplaneApiEndpoint -o tsv)
 ```
 
@@ -147,8 +147,8 @@ The NLK controller can be installed in your Kubernetes cluster using either Helm
 
 Install the NLK controller using `helm install`. Be sure your kubectl context is pointed at the desired cluster.
 
-```bash
-helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.1.1 \
+```shell
+helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.3 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
   --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus" \
   --set "nlk.config.tls.mode=ca-tls"
@@ -158,7 +158,7 @@ helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-ku
 
 Install the NLK controller using `az k8s-extension`.
 
-```bash
+```shell
 ## Customize this to provide the details about my already created AKS cluster
 aksName=myCluster
 aksGroup=myClusterGroup
@@ -186,18 +186,18 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
 - Select **Continue** to proceed with the installation.
 - On the **Basics** tab, provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
 
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Subscription                | Select the appropriate Azure subscription. |
   | Resource group              | Select the AKS cluster's resource group.   |
-  {{</bootstrap-table>}}
+  {{< /table >}}
 
 - Select **Cluster Details**, and provide the AKS cluster name. You can select an existing AKS cluster or create a new one.
 - Select **Application Details**, and provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
 
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
@@ -206,7 +206,7 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
   | Allow minor version upgrades of extension   | Select whether to allow the extension to be upgraded automatically to the latest minor version.   |
   | NGINXaaS Dataplane API Key                  | Provide the previously generated data plane API key value: `{keyValue}`                            |
   | NGINXaaS Dataplane API Endpoint             | Provide the previously retrieved data plane API endpoint value:  `{dataplaneAPIEndpoint}nplus`     |
-  {{</bootstrap-table>}}
+  {{< /table >}}
 
 - Select **Review + Create** to continue.
 - Azure will validate the extension settings. This page will provide a summary of the provided information. Select **Create**.

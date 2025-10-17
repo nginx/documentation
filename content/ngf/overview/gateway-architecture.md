@@ -55,7 +55,7 @@ Users can have multiple gateways running side-by-side in the same cluster. This 
 
 This figure depicts an example of NGINX Gateway Fabric exposing three web applications within a Kubernetes cluster to clients on the internet:
 
-```mermaid
+```mermaid {grid="wide"}
 graph LR
     %% Nodes and Relationships
     subgraph KubernetesCluster["Kubernetes Cluster"]

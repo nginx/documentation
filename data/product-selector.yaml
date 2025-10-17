@@ -1,0 +1,31 @@
+- productGroup: NGINX One
+  products:
+    - title: "NGINX One Console"
+      url: "nginx-one"
+    - title: "NGINX Plus"
+      url: "nginx"
+    - title: "NGINX Instance Manager"
+      url: "nginx-instance-manager"
+    - title: "NGINX Ingress Controller"
+      url: "nginx-ingress-controller"
+    - title: "NGINX Gateway Fabric"
+      url: "nginx-gateway-fabric"
+    - title: "NGINX Open Source"
+      url: "https://nginx.org/en/docs/"
+      extUrl: true
+    - title: "NGINX Agent"
+      url: "nginx-agent"
+
+- productGroup: F5 WAF for NGINX
+  products:
+    - title: "F5 WAF for NGINX"
+      url: "waf"
+    - title: "F5 DoS for NGINX"
+      url: "nginx-app-protect-dos"
+
+- productGroup: NGINX as a Service
+  products:
+    - title: "NGINXaaS for Azure"
+      url: "nginxaas/azure/"
+    - title: "NGINXaaS for Google Cloud"
+      url: "nginxaas/google/"

@@ -92,7 +92,7 @@ Likewise, you can get a full list of the available dimensions by querying the Ca
 curl -X GET --url "<NMS_FQDN>/api/platform/v1/analytics/catalogs/dimensions" -H "Authorization: Bearer <access token>"
 ```
 
-This information is also provided in the [Catalogs Reference]({{< ref "/nms/reference/catalogs//_index.md" >}})).
+This information is also provided in the [Catalogs Reference]({{< ref "/nim/monitoring/catalogs/" >}})).
 
 ### Querying the Metrics API
 
@@ -168,7 +168,7 @@ You must define a `startTime` when using aggregate functions.
 {{< /call-out >}}
 
 {{< call-out "note" >}}
-The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< ref "/nms/reference/catalogs//metrics.md" >}})).
+The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< ref "/nim/monitoring/catalogs/metrics.md" >}})).
 {{< /call-out>}}
 
 For example, the following query returns a single value (per dimension set), which is the sum of the metric values for the last 12 hours. To get proper values, ensure that the `endTime` is greater than the `startTime`.
