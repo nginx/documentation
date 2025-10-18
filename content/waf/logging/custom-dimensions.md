@@ -37,7 +37,6 @@ server {
         listen       80;
 
         server_name  localhost;
-        proxy_http_version 1.1;
         app_protect_custom_log_attribute 'environment' 'env1';
 
         location / {

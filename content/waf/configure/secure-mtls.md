@@ -133,7 +133,6 @@ http {
     server {
         listen 80;
         server_name localhost;
-        proxy_http_version 1.1;
 
         app_protect_enable on;
         app_protect_policy_file app_protect_default_policy;

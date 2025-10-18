@@ -92,7 +92,6 @@ http {
     server {
         listen 80;
         server_name app.example.com;
-        proxy_http_version 1.1;
 
         app_protect_enable on;
         app_protect_security_log_enable on;
@@ -371,8 +370,6 @@ http {
 server {
     listen 80;
     server_name domain.com;
-
-    proxy_http_version 1.1;
 
     location / {
 
@@ -783,7 +780,6 @@ http {
     server {
         listen 80;
         server_name app.example.com;
-        proxy_http_version 1.1;
 
         app_protect_enable on;
         app_protect_security_log_enable on;
@@ -1274,8 +1270,6 @@ http {
 server {
     listen 80;
     server_name domain.com;
-
-    proxy_http_version 1.1;
 
     location / {
 

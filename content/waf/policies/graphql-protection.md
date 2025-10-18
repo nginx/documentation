@@ -105,7 +105,6 @@ http {
     server {
         listen       80;
         server_name  localhost;
-        proxy_http_version 1.1;
 
         location / {
             client_max_body_size 0;
