@@ -106,7 +106,7 @@ Create the file `security-policy-bundles.json`:
 {
   "bundles": [
     {
-      "appProtectWAFVersion": "4.815.0",
+      "appProtectWAFVersion": "{{< appprotect-compiler-version >}}",
       "policyName": "Nginxbundletest",
       "policyUID": "",
       "attackSignatureVersionDateTime": "latest",
@@ -139,7 +139,7 @@ You should receive a response similar to the following:
             },
             "content": "",
             "metadata": {
-                "appProtectWAFVersion": "4.815.0",
+                "appProtectWAFVersion": "{{< appprotect-compiler-version >}}",
                 "attackSignatureVersionDateTime": "2024.02.21",
                 "created": "2024-06-12T13:28:20.023775785-07:00",
                 "modified": "2024-06-12T13:28:20.023775785-07:00",
@@ -169,7 +169,7 @@ curl --location 'https://127.0.0.1/api/platform/v1/security/policies/bundles' \
             },
             "content": "",
             "metadata": {
-                "appProtectWAFVersion": "4.815.0",
+                "appProtectWAFVersion": "{{< appprotect-compiler-version >}}",
                 "attackSignatureVersionDateTime": "2024.02.21",
                 "created": "2024-06-13T09:09:10.809-07:00",
                 "modified": "2024-06-13T09:09:20-07:00",
@@ -193,7 +193,7 @@ It is one of two unique IDs we will use to download the bundle: it will be refer
 
 ---
 
-## Download the security bundle
+## Download the security policy bundle
 
 Use a GET request to download the security bundle using the policy and bundle IDs:
 
@@ -207,6 +207,14 @@ This GET request uses the policy and bundle IDs from the previous examples:
 curl -X GET -k 'https://127.0.0.1/api/platform/v1/security/policies/6af9f261-658b-4be1-b07a-cebd83e917a1/bundles/de08b324-99d8-4155-b2eb-fe687b21034e' \
     -H "Authorization: Basic <auth token>" \
      | jq -r '.content' | base64 -d > security-policy-bundle.tgz
+```
+
+## Download the security log bundle
+
+Use a GET request to download the `secops_dashboard` security log bundle.  The security log bundle adjusts the format of the policy events to be compatible with NGINX Instance Manager:
+
+```shell
+curl -X GET "https://{NMS_FQDN}/api/platform/v1/security/logprofiles/secops_dashboard/{{< appprotect-compiler-version >}}/bundle" -H "Authorization: Bearer <access token>" | jq -r .compiledBundle | base64 -d > secops_dashboard.tgz
 ```
 
 ---
@@ -314,11 +322,61 @@ spec:
 
 ---
 
+## Upload the security log bundle
+
+Upload the security log bundle binary file to the NGINX Ingress Controller pods.
+
+{{<tabs name="security-log">}}
+
+{{%tab name="Helm"%}}
+
+```shell
+kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-ingress
+```
+
+{{% /tab %}}
+
+{{%tab name="Manifests"%}}
+
+```shell
+kubectl cp /your/local/path/secops_dashboard.tgz  <namespace>/<pod-name>:etc/app_protect/bundles/secops_dashboard.tgz -c nginx-plus-ingress
+```
+
+{{% /tab %}}
+
+{{% /tabs %}}
+
+## Upload the security policy bundle
+
+Upload the binary file to the NGINX Ingress Controller pods.
+
+{{<tabs name="security-bundle">}}
+
+{{%tab name="Helm"%}}
+
+```shell
+kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-ingress
+```
+
+{{% /tab %}}
+
+{{%tab name="Manifests"%}}
+
+```shell
+kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-plus-ingress
+```
+
+{{% /tab %}}
+
+{{% /tabs %}}
+
+---
+
 ## Create WAF policy
 
 To process a bundle, you must create a new WAF policy. This policy is added to `/etc/app_protect/bundles`, allowing NGINX Ingress Controller to load it into WAF.
 
-The example below shows the required WAF policy, and the *apBundle* and *apLogConf* fields you must use for the security bundle binary file (A tar ball).
+The example below shows the required WAF policy, for the *apBundle* field you must use the [security bundle](#download-the-security-policy-bundle) binary file (a tarball).  The *apLogBundle* field contains the `secops_dashboard.tgz` [file](#download-the-security-log-bundle).
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -331,7 +389,7 @@ spec:
     apBundle: "<bundle-name>.tgz"
     securityLogs:
     - enable: true
-        apLogBundle: "<bundle-name>.tgz"
+        apLogBundle: "secops_dashboard.tgz"
         logDest: "<security-log-destination-URL>"
 ```
 
@@ -360,14 +418,4 @@ spec:
       pass: webapp
 ```
 
----
-
-## Upload the security bundle
-
-To finish adding a security bundle, upload the binary file to the NGINX Ingress Controller pods.
-
-```shell
-kubectl cp /your/local/path/<bundle_name>.tgz  <namespace>/<pod-name>:etc/app_protect/bundles<bundle_name>.tgz -c nginx-plus-ingress
-```
-
-Once the bundle has been uploaded to the cluster, NGINX Ingress Controller will detect and automatically load the new WAF policy.
+Your `VirtualServer` should now apply the generated security policy to your traffic and emit security events to NGINX Instance Manager.
