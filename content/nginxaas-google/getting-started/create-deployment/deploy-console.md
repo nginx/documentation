@@ -18,15 +18,9 @@ Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref 
 
 ### Create a network attachment
 
-NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network.
+NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network. The network attachment must be created in a region we support.
 
-1. Access the [Google Cloud Console](https://console.cloud.google.com/).
-1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
-1. Create a network attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
-1. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
-
-   {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
+{{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
 
    {{< table "table" >}}
    |NGINXaaS Geography | Google Cloud Regions |
@@ -36,6 +30,12 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
    {{< /table >}}
 
    {{< /call-out >}}
+
+1. Access the [Google Cloud Console](https://console.cloud.google.com/).
+1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
+   - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
+1. Create a network attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
+1. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
 
 ## Access the NGINXaaS Console
 
