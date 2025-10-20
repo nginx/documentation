@@ -1,5 +1,5 @@
 ---
-docs: DOCS-937
+nd-docs: DOCS-937
 type: reference
 title: Known issues
 toc: true
@@ -8,7 +8,7 @@ weight: 200
 
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.
 
-{{< tip >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< call-out "tip" >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /call-out >}}
 
 ---
 
@@ -16,12 +16,12 @@ This document lists and describes the known issues and possible workarounds in F
 
 June 16, 2025
 
-### {{% icon-resolved %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
+### {{% icon-bug %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-46177 | Fixed in Instance Manager 2.21.0  |
+| 46177 | Open  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -39,7 +39,11 @@ Fetching latest CVE data from internet might fail if you enable "ssl_verify" in 
    ```
 
 2. Download the latest security advisories file from the [nginx.org repository]( https://raw.githubusercontent.com/nginx/nginx.org/main/xml/en/security_advisories.xml) and save them with "cve.xml" as filename in "/usr/share/nms/cve.xml”
-3. Restart the `nms` service. 
+3. Restart the `nms` service.
+
+   ```shell
+   sudo systemctl restart nms
+   ```
 
 After the restart you will see the line “loading CVE data from file” in the "nms.log" file.
 
@@ -55,7 +59,7 @@ March 27, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45991 | Fixed in Instance Manager 2.20.0  |
+| 45991 | Fixed in Instance Manager 2.20.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -78,30 +82,30 @@ February 06, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45845 | Fixed in Instance Manager 2.19.1  |
+| 45845 | Fixed in Instance Manager 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
 
-In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy from the UI fails if the latest NGINX App Protect WAF compiler v5.264.0 (for NGINX App Protect WAF v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
+In NGINX Instance Manager v2.19.0, publishing an F5 WAF for NGINX policy from the UI fails if the latest F5 WAF for NGINX compiler v5.264.0 (for F5 WAF for NGINX v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
 
 #### Workaround
 
 1. Download the NGINX repository certificate and key:
-   - Log in to [MyF5](https://account.f5.com/myf5).  
-   - Go to **My Products and Plans > Subscriptions**.  
+   - Log in to [MyF5](https://account.f5.com/myf5).
+   - Go to **My Products and Plans > Subscriptions**.
    - Download the SSL certificate (*nginx-repo.crt*) and private key (*nginx-repo.key*) for your NGINX App Protect subscription.
 
-2. Upload the certificate and key using the NGINX Instance Manager web interface:  
-   - Go to **Settings > NGINX Repo Connect**.  
-   - Select **Add Certificate**.  
-   - Choose **Select PEM files** or **Manual entry**.  
+2. Upload the certificate and key using the NGINX Instance Manager web interface:
+   - Go to **Settings > NGINX Repo Connect**.
+   - Select **Add Certificate**.
+   - Choose **Select PEM files** or **Manual entry**.
    - If using manual entry, copy and paste your *certificate* and *key* details.
 
-    For detailed steps, see [Upload NGINX App Protect WAF certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
+    For detailed steps, see [Upload F5 WAF for NGINX certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
 
 3. Restart the `nms-integrations` service:
-   
+
     ```shell
     sudo systemctl restart nms-integrations
     ```
@@ -119,12 +123,12 @@ November 08, 2024
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45846 | Fixed in Instance Manager 2.19.1  |
+| 45846 | Fixed in Instance Manager 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
 
-On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
+On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download F5 WAF for NGINX compiler v5.210.0 (for F5 WAF for NGINX v4.12.0) and v5.264.0 (for F5 WAF for NGINX v4.13.0) from the NGINX repository.
 
 #### Workaround
 
@@ -137,7 +141,7 @@ Manually install the missing compiler by following the instructions in [Install 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45573 | Fixed in Instance Manager 2.19.0  |
+| 45573 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -151,7 +155,7 @@ Saving templates as “staged configs” causes syntax errors due to Augment tem
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45570 | Fixed in Instance Manager 2.19.0  |
+| 45570 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -166,7 +170,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45301 | Fixed in Instance Manager 2.19.0  |
+| 45301 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -180,7 +184,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| nim-45024 | Fixed in Instance Manager 2.19.0  |
+| 45024 | Fixed in Instance Manager 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -207,7 +211,7 @@ July 10, 2024
 
 When using NGINX Instance Manager, you configure OIDC by manually editing the /etc/nginx/conf.d/nms-http.conf and /etc/nms/nms.conf files.
 
-During the upgrade to 2.17.0, the user is asked if they would like to keep their own nms-http.conf, or replace it with the new default. As Web Analytics are enabled via the /etc/nginx/conf.d/nms-http.conf file, if a user decides to keep their own config when prompted during upgrade, these will not get enabled. 
+During the upgrade to 2.17.0, the user is asked if they would like to keep their own nms-http.conf, or replace it with the new default. As Web Analytics are enabled via the /etc/nginx/conf.d/nms-http.conf file, if a user decides to keep their own config when prompted during upgrade, these will not get enabled.
 
 #### Workaround
 
@@ -340,9 +344,9 @@ Users might not have permission to access the built-in policies (NginxDefaultPol
 #### Workaround
 
 Use RBAC to assign the following permissions to the user:
-- (At minimum) READ access to any other custom security policy 
+- (At minimum) READ access to any other custom security policy
 or
-- READ access to the security policy feature: `/api/platform/v1/security/policies`   
+- READ access to the security policy feature: `/api/platform/v1/security/policies`
 
 ---
 
@@ -439,7 +443,6 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 ---
 
-
 ## 2.6.0
 
 November 17, 2022
@@ -455,15 +458,14 @@ November 17, 2022
 {{</bootstrap-table>}}
 #### Description
 
-References to external files in a policy are not supported. 
+References to external files in a policy are not supported.
 
-For example, in the NGINX App Protect WAF JSON declarative policy, these references are not supported:
-- User-defined signatures - " not supporting for a while" @dan 
+For example, in the F5 WAF for NGINX JSON declarative policy, these references are not supported:
+- User-defined signatures - " not supporting for a while" @dan
 - Security controls in external references
 - Referenced OpenAPI Spec files
 
 ---
-
 
 ## 2.3.0
 
@@ -480,13 +482,13 @@ June 30, 2022
 {{</bootstrap-table>}}
 #### Description
 
-NGINX Instance Manager reports metrics at a per-minute interval and includes dimensions for describing the metric data's characteristics. 
+NGINX Instance Manager reports metrics at a per-minute interval and includes dimensions for describing the metric data's characteristics.
 
 An issue has been identified in which metric data is aggregated across all dimensions, not just for existing metrics data. When querying the Metrics API with aggregations like `SUM(metric-name)`, the aggregated data causes the API to over count the metric. This overcounting skews some of the metrics dashboards.
 
 #### Workaround
 
-When querying the Metrics API, you can exclude the data for an aggregated dimension by specifying the dimension name in the `filterBy` query parameter. 
+When querying the Metrics API, you can exclude the data for an aggregated dimension by specifying the dimension name in the `filterBy` query parameter.
 
 ```none
 filterBy=<dimension-name>!= ''
@@ -515,3 +517,4 @@ In the web interface, when uploading a config file that's larger than 50 MB (max
 #### Workaround
 
 Keep config files under 50 MB.
+
