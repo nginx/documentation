@@ -228,7 +228,7 @@ Here are two examples of how these additions could look in configuration files:
 
 The default path for this file is `_/etc/nginx/nginx.conf_`.
 
-```nginx {hl_lines=[5, 33]}
+```nginx {hl_lines=[5]}
 user  nginx;
 worker_processes  auto;
 
