@@ -260,8 +260,6 @@ http {
 
     #gzip  on;
 
-    # F5 WAF for NGINX
-
     include /etc/nginx/conf.d/*.conf;
 }
 ```
