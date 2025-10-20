@@ -270,7 +270,7 @@ http {
 
 The default path for this file is `_/etc/nginx/conf.d/default.conf_`.
 
-```nginx {hl_lines=[10]}
+```nginx {hl_lines=[9]}
 server {
     listen 80;
     server_name domain.com;
