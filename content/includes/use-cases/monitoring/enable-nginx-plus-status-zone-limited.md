@@ -1,5 +1,4 @@
 ---
-docs:
 files:
   - content/nginx-one/nginx-configs/metrics/enable-metrics.md 
 ---

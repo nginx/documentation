@@ -1,5 +1,4 @@
 ---
-docs:
 files:
    - content/agent/install-upgrade/install-from-github.md
    - content/agent/install-upgrade/install-from-oss-repo.md

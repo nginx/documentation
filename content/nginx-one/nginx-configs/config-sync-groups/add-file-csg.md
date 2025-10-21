@@ -1,5 +1,5 @@
 ---
-nd-docs: null
+nd-docs: DOCS-000
 title: Add a file to a Config Sync Group
 toc: true
 weight: 400

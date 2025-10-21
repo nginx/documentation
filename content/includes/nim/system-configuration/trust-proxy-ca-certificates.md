@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 1. Copy the proxy CA certificate into the system’s trusted certificate directory, for example **/usr/local/share/ca-certificates/** or **/etc/ssl/certs/** (path varies by distribution).
