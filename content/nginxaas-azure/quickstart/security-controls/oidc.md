@@ -1,11 +1,11 @@
 ---
 title: Set up OIDC authentication
-weight: 300
-toc: true
-nd-docs: DOCS-1646
 url: /nginxaas/azure/quickstart/security-controls/oidc/
-type:
-- how-to
+toc: true
+weight: 300
+nd-content-type: how-to
+nd-product: N4Azure
+nd-docs: DOCS-1646
 ---
 
 ## Overview
@@ -25,7 +25,6 @@ These prerequisites are used for both methods of configuring NGINXaaS for Azure 
 1. Configure an NGINXaaS deployment with [SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}).
 
 2. Enable [Runtime State Sharing]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) on the NGINXaaS deployment.
-
 
 ## Configure NGINXaaS for Azure with IdP using Native OIDC
 
@@ -132,9 +131,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     ```
 
 
-
-    <details close>
-    <summary>Complete configuration example of nginx.conf using the localhost as a upstream server</summary>
+    {{< details summary="Configuration example with localhost as an upstream server" >}}
 
     ```nginx
     http {
@@ -208,7 +205,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
         }
     }
     ```
-    </details>
+    {{< /details >}}
 
 1. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
 
@@ -293,8 +290,7 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
 
         b. Add `include conf.d/openid_connect_configuration.conf;` in the http block before the server block.
 
-    <details close>
-    <summary> Example of nginx.conf using the localhost as a upstream server</summary>
+   {{< details summary="Configuration example with localhost as an upstream server" >}}
 
     ```nginx
     load_module modules/ngx_http_js_module.so;
@@ -370,7 +366,7 @@ Configuring NGINXaaS for Azure with OIDC is similar as [Configuring NGINX Plus](
         }
     }
     ```
-    </details>
+    {{< /details >}}
 
 3. Upload the NGINX configurations. See [Upload an NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/" >}}) for more details.
 

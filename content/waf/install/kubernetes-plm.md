@@ -195,7 +195,6 @@ http {
     server {
         listen       80;
         server_name  localhost;
-        proxy_http_version 1.1;
 
         location / {
             app_protect_enable on;
@@ -454,7 +453,6 @@ appprotect:
           server {
               listen       80;
               server_name  localhost;
-              proxy_http_version 1.1;
 
               location / {
                   app_protect_enable on;
