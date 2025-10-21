@@ -32,7 +32,7 @@ Here are two examples of how these additions could look in configuration files:
 
 {{% tab name="nginx.conf" %}}
 
-The default path for this file is `_/etc/nginx/nginx.conf_`.
+The default path for this file is `/etc/nginx/nginx.conf`.
 
 ```nginx {hl_lines=[5, 33]}
 user  nginx;
@@ -77,7 +77,7 @@ http {
 
 {{% tab name="default.conf" %}}
 
-The default path for this file is `_/etc/nginx/conf.d/default.conf_`.
+The default path for this file is `/etc/nginx/conf.d/default.conf`.
 
 ```nginx {hl_lines=[10]}
 server {
