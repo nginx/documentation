@@ -4,7 +4,6 @@ weight: 800
 toc: true
 type: reference
 product: NGINX One
-docs: DOCS-000
 ---
 
 You can use F5 NGINX One Console API to manage security policies. With our API, you can:

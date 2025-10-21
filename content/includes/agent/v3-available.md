@@ -1,5 +1,4 @@
 ---
-docs:
 files:
    - content/nginx-one/agent/overview/about.md
    - content/nginx-one/agent/changelog.md

@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Create the **/etc/ssl/nginx** directory:
