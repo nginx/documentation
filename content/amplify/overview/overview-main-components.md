@@ -8,7 +8,7 @@ nd-docs: DOCS-976
 
 ## What Is F5 NGINX Amplify?
 
-[NGINX Amplify](https://amplify.nginx.com/signup/) offers in-depth monitoring for NGINX-based web applications. It simplifies the process of analyzing and resolving issues related to performance and scalability.
+[NGINX Amplify](https://amplify.nginx.com/) offers in-depth monitoring for NGINX-based web applications. It simplifies the process of analyzing and resolving issues related to performance and scalability.
 
 With NGINX Amplify, you can:
 

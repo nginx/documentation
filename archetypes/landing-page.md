@@ -14,11 +14,12 @@ nd-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
+# AGE, DOS, NAZ, NGC, NGF, NIC, NIM, NGF, ONE, NOS, NPL, SOL, WAF
 nd-product:
 ---
 
 ## About
+
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."
 [//]: # "Use underscores for _italics_, and double asterisks for **bold**."
 [//]: # "Backticks are for `monospace`, used sparingly and reserved mostly for executable names - they can cause formatting problems. Avoid them in tables: use italics instead."
@@ -27,6 +28,7 @@ nd-product:
 [//]: # "Name specific functionality it provides: avoid ambiguous descriptions such as 'enables efficiency', focus on what makes it unique."
 
 ## Featured content
+
 [//]: # "You can add a maximum of three cards: any extra will not display."
 [//]: # "One card will take full width page: two will take half width each. Three will stack like an inverse pyramid."
 [//]: # "Some examples of content could be the latest release note, the most common install path, and a popular new feature."
