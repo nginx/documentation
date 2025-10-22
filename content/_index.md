@@ -33,17 +33,20 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
   {{</card >}}
 {{</card-section>}}
 
-{{<card-section showAsCards="true" title="F5 NGINX App Protect">}}
-  {{<card title="F5 NGINX App Protect WAF" titleUrl="/nginx-app-protect-waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg" isLanding="true">}}
+{{<card-section showAsCards="true" title="F5 WAF for NGINX">}}
+  {{<card title="F5 WAF for NGINX" titleUrl="/waf/" brandIcon="NGINX-App-Protect-WAF-product-icon.svg" isLanding="true">}}
     Lightweight, high-performance, advanced protection against Layer 7 attacks on your apps and APIs.
   {{</card >}}
-  {{<card title="F5 NGINX App Protect DoS" titleUrl="/nginx-app-protect-dos/" brandIcon="NGINX-App-Protect-DoS-product-icon.svg" isLanding="true">}}
+  {{<card title="F5 DoS for NGINX" titleUrl="/nginx-app-protect-dos/" brandIcon="NGINX-App-Protect-DoS-product-icon.svg" isLanding="true">}}
     Defend, adapt, and mitigate against Layer 7 denial-of-service attacks on your apps and APIs.
   {{</card >}}
 {{</card-section>}}
 
 {{<card-section showAsCards="true" title="F5 NGINX as a Service">}}
-  {{<card title="F5 NGINXaaS for Azure" titleUrl="/nginxaas/azure/" brandIcon="NGINX-for-Azure-product-icon.svg" isLanding="true">}}
+  {{<card title="F5 NGINXaaS for Azure" titleUrl="/nginxaas/azure/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
     Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack.
+  {{</card >}}
+  {{<card title="F5 NGINXaaS for Google Cloud" titleUrl="/nginxaas/google/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
+    Managed NGINX service for your Google Cloud application stack.
   {{</card >}}
 {{</card-section>}}

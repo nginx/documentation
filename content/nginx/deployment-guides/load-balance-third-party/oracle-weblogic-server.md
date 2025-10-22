@@ -19,13 +19,13 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, extending the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities that enhance an Oracle WebLogic Server deployment and are instrumental to building web applications at scale:
 
-- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- Full‑featured [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}), [TCP, and UDP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) load balancing
+- [Intelligent session persistence]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md#session-persistence" >}})
 - [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
-- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
-- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- Adaptive streaming to deliver audio and video to any device
+- [Application-aware health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) and [high availability]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}})
+- [Advanced activity monitoring available via a dashboard or API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="about-weblogic"></span>
@@ -39,7 +39,7 @@ Oracle WebLogic Server is also available on [Oracle Cloud](https://www.oracle.co
 
 You can use the WebLogic Server Administration Control graphical user interface to deploy and undeploy an application to an Oracle Java Cloud Service instance, just as you would deploy and undeploy the application to an on‑premises service instance.
 
-For more information about deploying a Java application on Oracle Java Cloud Service, see [Administering Oracle Java Cloud Service](https://docs.oracle.com/en/cloud/paas/java-cloud/jscug/toc.htm).
+For more information about deploying a Java application on Oracle Java Cloud Service, see [Administering Oracle Java Cloud Service](https://docs.oracle.com/cloud/131/developer_services/CSJSU/java-admin.htm).
 
 <span id="prereqs"></span>
 ## Prerequisites and System Requirements
@@ -918,7 +918,7 @@ server {
 <span id="resources"></span>
 ## Resources
 
-- [NGINX Plus Overview](https://www.nginx.com/products/nginx)
+- [NGINX Plus Overview](https://www.f5.com/products/nginx/nginx-plus)
 - [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 

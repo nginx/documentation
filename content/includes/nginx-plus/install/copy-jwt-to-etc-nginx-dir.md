@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Copy the downloaded JWT file to the **/etc/nginx/** directory and make sure it is named **license.jwt**:

@@ -1,6 +1,6 @@
 
 
-NGINX App Protect WAF provides an IP Intelligence feature, which allows customizing the enforcement based on the source IP of the request to limit access from IP addresses with questionable reputation. Please note that:
+F5 WAF for NGINX provides an IP Intelligence feature, which allows customizing the enforcement based on the source IP of the request to limit access from IP addresses with questionable reputation. Please note that:
 - The IP intelligence feature is **disabled** by default and needs to be installed, enabled, and configured within the policy.
 - To review the installation steps, please refer to the administration guide: [App Protect v4]({{< ref "/nap-waf/v4/admin-guide/install.md#Prerequisites" >}}) / [App Protect v5]({{< ref "/nap-waf/v5/admin-guide/install.md#Prerequisites" >}})
 - The system must have an active Internet connection and a working DNS.

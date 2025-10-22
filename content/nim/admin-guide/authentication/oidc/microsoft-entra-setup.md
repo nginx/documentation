@@ -1,10 +1,10 @@
 ---
-nd-docs: DOCS-795
 title: 'Microsoft Entra: Set up OIDC authentication'
 toc: true
 weight: 100
-type:
-- tutorial
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-795
 ---
 
 ## Overview
@@ -18,21 +18,21 @@ To configure Microsoft Entra as an OIDC IdP, follow these steps:
 **Configure Microsoft Entra:**
 
 1. Create an Application Registration for NGINX Instance Manager.
-2. Add owners (users) and their email addresses to Microsoft Entra.
-3. Create groups in Microsoft Entra and assign user membership.
+1. Add owners (users) and their email addresses to Microsoft Entra.
+1. Create groups in Microsoft Entra and assign user membership.
 
 **Configure NGINX Instance Manager:**
 
 1. Add user groups to NGINX Instance Manager, using the same group names as in Microsoft Entra.
-2. Configure NGINX Plus in NGINX Instance Manager to use Microsoft Entra as the designated identity provider.
+1. Configure NGINX Plus in NGINX Instance Manager to use Microsoft Entra as the designated identity provider.
 
-## Requirements
+## Before you begin
 
 To successfully follow the instructions in this guide, you must complete the following requirements:
 
 1. Create a [Microsoft Entra premium account](https://azure.microsoft.com/en-us/pricing/details/active-directory/). If you have a standard account, you'll need to upgrade.
-2. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R25 or a newer version installed]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
-3. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is necessary for managing communications between NGINX Plus and the identity provider.
+1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R25 or a newer version installed]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+1. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is necessary for managing communications between NGINX Plus and the identity provider.
 
 ## Configure Microsoft Entra {#configur-entra}
 
@@ -43,18 +43,18 @@ Complete the steps in the section to configure Microsoft Entra for use with NGIN
 To register an application with Microsoft Entra:
 
 1. Go to the [Azure portal](https://portal.azure.com/#home) and log in.
-2. Select **Microsoft Entra** from the list of Azure services.
-3. On the left navigation menu, under the **Manage** section, select **App registrations**.
-4. Select **New registration**.
-5. Provide the following details:
+1. Select **Microsoft Entra** from the list of Azure services.
+1. On the left navigation menu, under the **Manage** section, select **App registrations**.
+1. Select **New registration**.
+1. Provide the following details:
    - Enter a name for the application in the **Name** field, such as "NGINX Instance Manager".
    - Select **Account in this organizational directory only** from the list of account types.
    - Under the **Redirect URI** section, choose **Web** and enter the redirect URI, for example, `https://<my-nginx-instance-manager>/_codexch`.
 
    {{< img src="/security/oidc/azure-register-app.png" alt="Azure: register an application." width="600" height="415" >}}
 
-6. Select **Register**.
-7. On the confirmation page, make a note of the following information. You'll need to provide this information later to complete the setup:
+1. Select **Register**.
+1. On the confirmation page, make a note of the following information. You'll need to provide this information later to complete the setup:
    - Application (client) ID
    - Directory (tenant) ID
 
@@ -65,10 +65,10 @@ To register an application with Microsoft Entra:
 To create a client secret:
 
 1. On the left navigation menu, under the **Manage** section, select **Certificates & secrets**.
-2. Select **New client secret**.
-3. In the **Description** box, type a description for the client secret.
-4. Select **Add**. The client secret will be added to the list with a unique secret string value and ID.
-5. Copy the value for the client secret.
+1. Select **New client secret**.
+1. In the **Description** box, type a description for the client secret.
+1. Select **Add**. The client secret will be added to the list with a unique secret string value and ID.
+1. Copy the value for the client secret.
 
 ### Add Owners {#az-ad-owners}
 
@@ -87,9 +87,9 @@ To add owners (users):
 To include the user's group membership information in the token for authentication and authorization, follow these steps:
 
 1. On the left navigation menu, under the **Manage** section, select **Token configuration**.
-2. Select **Add groups claim**.
-3. Select **Groups assigned to the application**.
-4. Select **Add**.
+1. Select **Add groups claim**.
+1. Select **Groups assigned to the application**.
+1. Select **Add**.
 
 ### Assign Group to Application {#az-ad-group}
 
@@ -98,13 +98,13 @@ To include the user's group membership information in the token for authenticati
 Adding a group to the registered application will give all group members the same access.
 
 1. On the left navigation menu, under the **Manage** section, select **Overview**.
-2. In the **Essentials** section, select the link next to **Managed application in local directory**.
-3. In the **Getting Started** section, select **Assign users and groups**.
-4. Select **Add user/group**.
-5. On the **Add Assignment** form, under the **Users and groups** section, select **None Selected**.
-6. In the search box in the **Users and groups** drawer, type the name of the group you want to associate with the application.
-7. Select the group from the list, and select **Select**.
-8. Finally, select **Assign**.
+1. In the **Essentials** section, select the link next to **Managed application in local directory**.
+1. In the **Getting Started** section, select **Assign users and groups**.
+1. Select **Add user/group**.
+1. On the **Add Assignment** form, under the **Users and groups** section, select **None Selected**.
+1. In the search box in the **Users and groups** drawer, type the name of the group you want to associate with the application.
+1. Select the group from the list, and select **Select**.
+1. Finally, select **Assign**.
 
 ## Configure NGINX Instance Manager {#configure-nginx-instance-manager}
 
@@ -123,12 +123,12 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
 1. Install the NGINX JavaScript module (njs) on your NGINX Instance Manager server by running the appropriate command. This module is required for handling the interaction between NGINX Plus and Microsoft Entra (IdP).
 
    - CentOS, RHEL:
-     ```bash
+     ```shell
      sudo yum install nginx-plus-module-njs
      ```
 
    - Debian, Ubuntu:
-     ```bash
+     ```shell
      sudo apt install nginx-plus-module-njs
      ```
 
@@ -142,8 +142,7 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
    - `{tenant_key}`: Replace with the **Directory (tenant) ID** obtained when [registering the application](#az-ad-register-app).
    - `{client_secret}`: Replace with the encoded client secret that was generated when [creating the client secret](#az-ad-client-secret).
 
-    <details open>
-    <summary><i class="far fa-file-code"></i> Example openid_configuration.conf</summary>
+    {{< details summary="Example openid_configuration.conf" >}}
 
     ```yaml
     # NGINX Instance Manager - OpenID Connect configuration
@@ -174,12 +173,11 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     }
     ```
 
-    </details>
+    {{< /details >}}
 
 4. Using a text editor, open the `/etc/nginx/conf.d/nms-http.conf` configuration file and uncomment the OIDC settings starting with `#OIDC`. Comment out the Basic Authentication settings. Save the changes.
 
-    <details open>
-    <summary><i class="far fa-file-code"></i> Example nms-http.conf</summary>
+    {{< details summary="Example nms-http.conf" >}}
 
     ```yaml
     # NGINX Instance Manager - Instance Manager configuration
@@ -195,19 +193,19 @@ Configure NGINX Plus to use Microsoft Entra as the identity provider.
     include /etc/nms/nginx/oidc/openid_connect.conf;
     ```
 
-    </details>
+    {{< /details >}}
 
 5. Verify that the configuration file does not contain any errors:
-   ```bash
+   ```shell
    sudo nginx -t
    ```
 
 6. Reload NGINX and apply the configuration:
-   ```bash
+   ```shell
    sudo nginx -s reload
    ```
 
-## Try It Out
+## Test Entrana OIDC
 
 1. Open a web browser and go to the FQDN of your NGINX Instance Manager host. You will be redirected to the Microsoft Entra login page.
-2. Enter your Microsoft Entra email address and password to log in.
+1. Enter your Microsoft Entra email address and password to log in.

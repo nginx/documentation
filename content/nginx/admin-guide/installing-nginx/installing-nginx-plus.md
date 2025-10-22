@@ -1,12 +1,12 @@
 ---
+title: Installing NGINX Plus
 description: Install and upgrade F5 NGINX Plus with step-by-step instructions for
   the base package and dynamic modules on all supported Linux distributions.
-nd-docs: DOCS-414
-title: Installing NGINX Plus
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGINX+
+nd-docs: DOCS-414
 ---
 
 This article explains how to install NGINX Plus on different operating systems, upgrade existing NGINX Plus installation, install and enable dynamic modules, install in rootless mode or when offline.
@@ -98,10 +98,13 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     ```
 
-    <details open>
-    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
-    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}{{</call-out>}}
-    </details>
+    {{< details summary="Pin NGINX Plus to a specific version" >}}
+    
+    {{< call-out "note">}}
+        {{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}
+    {{< /call-out >}}
+
+    {{< /details >}}
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
@@ -135,10 +138,13 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
     ```
 
-    <details open>
-    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
-    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{</call-out>}}
-    </details>
+    {{< details summary="Pin NGINX Plus to a specific version" >}}
+    
+    {{< call-out "note">}}
+        {{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}   
+    {{< /call-out >}}
+    
+    {{< /details >}}
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
@@ -216,10 +222,13 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
         | sudo tee /etc/apt/sources.list.d/nginx-plus.list
         ```
 
-    <details open>
-    <summary style="font-weight:bold;">Learn how to pin NGINX Plus to a specific version</summary>
-    {{<call-out "tip" "Tip: Pin NGINX Plus to a specific version" "fa-solid fa-thumbtack">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{</call-out>}}
-    </details>
+    {{< details summary="Pin NGINX Plus to a specific version" >}}
+    
+    {{< call-out "note">}}
+        {{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}
+    {{< /call-out >}}
+    
+    {{< /details >}}
 
 1. Download the **nginx-plus** apt configuration to **/etc/apt/apt.conf.d**:
 
@@ -294,7 +303,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
-1. {{< include "nginx-plus/install/configure-usage-reporting.md" >}}
+1. Make sure license reporting to F5 licensing endpoint is configured. By default, no configuration is required. However, it becomes necessary when NGINX Plus is installed in a disconnected environment, uses NGINX Instance Manager for usage reporting, or uses a custom path for the license file. Configuration can be done in the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX Plus configuration file (`/usr/local/etc/nginx/nginx.conf`). For more information, see [About Subscription Licenses](https://docs.nginx.com/solutions/about-subscription-licenses/).
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
@@ -398,7 +407,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. {{< include "nginx-plus/install/install-nginx-agent-for-nim.md" >}}
 
-## Install Dynamically Loadable Modules {#install_modules}
+## Install dynamically loadable modules {#install_modules}
 
 NGINX Plus functionality can be extended with dynamically loadable modules. They can be added or updated independently of the core binary, enabling powerful capabilities such as advanced security, traffic shaping, telemetry, embedded scripting, geolocation, and many more.
 
@@ -515,7 +524,7 @@ After installing the module, you will need to:
 - enable it with the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive
 - configure it according to the module's documentation
 
-### Enabling Dynamic Modules {#enable_dynamic}
+### Enabling dynamic modules {#enable_dynamic}
 
 To enable a dynamic module:
 
@@ -694,7 +703,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
 
-## NGINX Plus Unprivileged Installation {#unpriv_install}
+## NGINX Plus unprivileged installation {#unpriv_install}
 
 In some environments, access to the root account is restricted for security reasons. On Linux systems, this limitation prevents the use of package managers to install NGINX Plus without root privileges.
 
@@ -787,7 +796,7 @@ With this script, you can also upgrade an existing unprivileged installation of 
 ./ngxunprivinst.sh upgrade [-y] -p <path> <file1.rpm> <file2.rpm>
 ```
 
-## NGINX Plus Offline Installation {#offline_install}
+## NGINX Plus offline installation {#offline_install}
 
 This section explains how to install NGINX Plus and its [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) on a server with limited or no Internet access.
 
@@ -982,7 +991,7 @@ To upgrade your NGINX Plus installation to the newest version:
    nginx version: nginx/1.29.0 (nginx-plus-r35)
    ```
 
-## Upgrade NGINX Plus Modules {#upgrade_modules}
+## Upgrade NGINX Plus modules {#upgrade_modules}
 
 The upgrade procedure depends on how the module was supplied and installed.
 
@@ -992,7 +1001,7 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 - [Community](#community-dynamic-modules) dynamic modules must be recompiled against the corresponding NGINX Open Source  version. See [Installing NGINX Community Modules](#install_modules_oss).
 
-## Explore Related Topics
+## Explore related topics
 
 ### Install NGINX App Protect
 

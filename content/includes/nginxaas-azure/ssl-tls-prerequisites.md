@@ -12,12 +12,14 @@ NGINXaaS natively integrates with [Azure Key Vault (AKV)](https://azure.microsof
 
   - If using Access Policies for AKV, ensure that your MI has *GET secrets* or higher permissions.
 
+- Access to AKV through a public or private endpoint. If public access to AKV needs to be restricted, refer to [Restrict Public Access to Key Vault]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#restrict-public-access-to-key-vault" >}}).
+
 - In addition to the MI permissions, if using the Azure portal to manage certificates, ensure that you have read access to list certificates inside the Key Vault:
 
   - If using Azure RBAC for AKV, ensure that you have [Key Vault Reader](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-reader) or higher permissions.
 
   - If using Access Policies for AKV, ensure that you have *LIST certificates* or higher permissions.
 
-  - If public access is disabled on your key vault, [configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}}) and add an inbound access rule to allow your client IP address.
+  - If public access is disabled on your key vault, add an inbound access rule to allow your client IP address.
 
 - If you're unfamiliar with Azure Key Vault, check out the [Azure Key Vault concepts](https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts) documentation from Microsoft.

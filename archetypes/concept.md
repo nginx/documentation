@@ -8,7 +8,7 @@ toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: concept
 # Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
+# AGE, DOS, NAZ, NGC, NGF, NIC, NIM, NGF, ONE, NOS, NPL, SOL, WAF
 nd-product:
 ---
 
@@ -42,7 +42,7 @@ It is an example of a <other concept>, and is closely related to <third concept>
 # Read their documentation for usage: https://mermaid.js.org/intro/
 ```
 
-Starting from the <top/left> of the diagram, you can see that <thing> is connected to <other thing>: this relationship is established when configuring <parameter> as part of <file name>.
+Starting from the \<top/left\> of the diagram, you can see that \<thing\> is connected to \<other thing\>: this relationship is established when configuring \<parameter\> as part of \<file name\>.
 
 [//]: # "End a particular use case section with links to other pages, such as instructional documentation, other concepts, or reference information (Such as API specifications)."
 
@@ -51,7 +51,6 @@ Starting from the <top/left> of the diagram, you can see that <thing> is connect
 - Additional reading 3
 
 ### Use case 2
-
 
 ## Conclusion
 

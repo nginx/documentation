@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

@@ -15,10 +15,8 @@ file:
    systemctl reload nginx
    ```
 
-**If SELinux is enabled**: 
+1. If SELinux is enabled, set the correct file context so NGINX can read the license:
 
-Set the correct file context so NGINX can read the license:
-
-```shell
-chcon -t httpd_config_t /etc/nginx/license.jwt
-```
+   ```shell
+   chcon -t httpd_config_t /etc/nginx/license.jwt
+   ```

@@ -10,7 +10,7 @@ gpgkey=https://nginx.org/keys/nginx_signing.key
 module_hotfixes=true
 ```
 
-Create the NGINX App Protect WAF v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
+Create the F5 WAF for NGINX v5 repository file, named `/etc/yum.repos.d/app-protect-x-oss.repo` with the following contents:
 
 ```none
 [app-protect-x-oss]
@@ -22,7 +22,7 @@ gpgcheck=0
 enabled=1
 ```
 
-Install the NGINX App Protect WAF v5 package.
+Install the F5 WAF for NGINX v5 package.
 
 ```shell
 sudo dnf install app-protect-module-oss

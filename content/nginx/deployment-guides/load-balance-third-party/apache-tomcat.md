@@ -19,13 +19,13 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, that extends the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities, improving Tomcat deployments and supporting the development of web applications at scale:
 
-- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- Full‑featured [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}), [TCP, and UDP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) load balancing
+- [Intelligent session persistence]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md#session-persistence" >}})
 - [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
-- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
-- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- Adaptive streaming to deliver audio and video to any device
+- [Application-aware health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) and [high availability]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}})
+- Advanced activity monitoring available via a [Dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-dashboard" >}}) or [REST API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="about-tomcat"></span>
@@ -440,7 +440,7 @@ HTTP/2 is fully supported in both <span style="white-space: nowrap;">NGINX Open 
 
 - In <span style="white-space: nowrap;">NGINX Plus R8</span> and later, NGINX Plus supports HTTP/2 by default. (Support for SPDY is deprecated as of that release). Specifically:
 
-  In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.nginx.com/products/nginx/dynamic-modules/).
+  In <span style="white-space: nowrap;">NGINX Plus R11</span> and later, the {{<nb>}}**nginx-plus**{{</nb>}} package continues to support HTTP/2 by default, but the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by [dynamic modules](https://www.f5.com/go/product/nginx-modules/).
 
   For <span style="white-space: nowrap;">NGINX Plus R8</span> through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
@@ -962,7 +962,7 @@ server {
 <span id="resources"></span>
 ## Resources
 
-- [NGINX Plus Overview](https://www.nginx.com/products/nginx)
+- [NGINX Plus Overview](https://www.f5.com/products/nginx/nginx-plus)
 - [NGINX Plus Admin Guide]({{< ref "/nginx/admin-guide/_index.md" >}})
 - [NGINX Wiki](https://www.nginx.com/resources/wiki/)
 
