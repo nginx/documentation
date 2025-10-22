@@ -1,5 +1,4 @@
 ---
-docs:
 files:
   - content/nim/monitoring/overview-metrics.md
   - content/nginx-one/getting-started.md  

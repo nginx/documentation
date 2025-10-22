@@ -1,6 +1,6 @@
 ---
 title: About subscription licenses
-nd-docs: null
+nd-docs: DOCS-000
 weight: 1
 nd-content-type: landing-page
 nd-landing-page: true

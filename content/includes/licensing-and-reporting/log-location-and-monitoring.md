@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Monitor the [NGINX error log](https://nginx.org/en/docs/ngx_core_module.html#error_log), usually at `/var/log/nginx/error.log`, to identify subscription issues early. The log records problems such as failed usage reports or licenses that are about to expire. Check it regularly to avoid downtime and stay compliant.

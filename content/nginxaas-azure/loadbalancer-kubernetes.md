@@ -148,7 +148,7 @@ The NLK controller can be installed in your Kubernetes cluster using either Helm
 Install the NLK controller using `helm install`. Be sure your kubectl context is pointed at the desired cluster.
 
 ```shell
-helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.3 \
+helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.4 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
   --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus" \
   --set "nlk.config.tls.mode=ca-tls"
@@ -180,7 +180,10 @@ az k8s-extension create \
 
 ##### Install the AKS Extension using the Azure portal
 
-You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps.
+You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps. 
+{{< call-out "note" >}}
+If you are creating a new AKS cluster as part of this installation, note that we will enable the [Azure CNI Node Subnet plugin](https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview). This causes Cluster IP addresses to be exposed within your VNET.
+{{< /call-out >}}
 
 - Select **Get it now**.
 - Select **Continue** to proceed with the installation.
@@ -251,7 +254,7 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 - Add the annotation: `nginx.com/nginxaas: nginxaas` to mark the service to be monitored by NLK.
 - Choose one of the following `Service` types:
   - `NodePort`: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.
-  - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.
+  - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET. If you created a new AKS cluster through the AKS Extenstion installation, this is configured automatically.
   - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.
 - The port name must be formatted as `{{NGINX Context}}-{{NGINX upstream name}}`. For example:
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`

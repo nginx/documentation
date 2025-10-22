@@ -143,7 +143,8 @@ enableGitInfo = true
     "3.22.8"
   ]
   github_repo = "https://github.com/nginx/documentation/"
-  enable_qualtrics = false
+  [params.featureFlags]
+    disable_qualtrics = true
 
 sectionPagesMenu = "docs"
 
