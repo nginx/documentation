@@ -30,6 +30,12 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 22, 2025
+
+### Network IO Rate is now presented as a rate in instance observability
+
+The system traffic in and out values presented within the instance details view and metrics tab are now presented as a rate of bits per second as labeled instead of a cumulative value.
+
 ## October 7, 2025
 
 ### Compare multiple metrics in instance observability
