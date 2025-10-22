@@ -1,5 +1,4 @@
 ---
-docs:
 files:
   - content/nginx-one/agent/configure-instances/configure-selinux.md
   - content/nim/system-configuration/configure-selinux.md

@@ -2,7 +2,6 @@
 title: Add users to nginx-agent group
 toc: true
 weight: 400
-docs: DOCS-000
 nd-docs: DOCS-1881
 ---
 
