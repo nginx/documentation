@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 By default, NGINX Plus sends usage data to F5 every hour in a `POST` request. The report includes information such as traffic volume, runtime, and instance activity.  

@@ -1,5 +1,4 @@
 ---
-docs:
 files:
   - content/nginx-one/connect-instances/add-instance.md
   - content/nginx-one/getting-started.md

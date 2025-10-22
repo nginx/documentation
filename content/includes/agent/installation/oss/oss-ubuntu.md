@@ -1,5 +1,4 @@
 ---
-docs:
 files:
    - content/agent/install-upgrade/install-from-oss-repo.md
    - content/nginx-one/agent/install-upgrade/install-from-oss-repo.md

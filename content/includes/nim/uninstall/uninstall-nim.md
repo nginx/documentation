@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Follow the steps below to uninstall NGINX Instance Manager and ClickHouse.

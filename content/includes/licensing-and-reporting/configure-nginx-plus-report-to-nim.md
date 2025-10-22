@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 1. Allow NGINX Plus instances to connect to NGINX Instance Manager over HTTPS (TCP `443`).

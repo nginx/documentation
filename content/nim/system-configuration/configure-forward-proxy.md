@@ -4,7 +4,6 @@ weight: 2
 toc: true
 type: how-to
 product: NIM
-docs:
 ---
 
 ## Overview
