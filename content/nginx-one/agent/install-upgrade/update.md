@@ -2,7 +2,6 @@
 title: Upgrade NGINX Agent
 toc: true
 weight: 400
-docs: DOCS-000
 nd-docs: DOCS-1875
 ---
 

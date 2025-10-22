@@ -36,7 +36,10 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 - _Not supported_. The resource or field is not yet supported. It will become partially or fully supported in future
   releases.
 
-{{< call-out "note" >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. {{< /call-out >}}
+{{< call-out "note" >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. 
+
+Please note that while we make every effort to reflect the support status of experimental fields in our code and documentation, there may be instances where this is not explicitly 
+indicated. Support for such fields is provided on a best-effort basis.{{< /call-out >}}
 
 
 ## Resources
@@ -101,7 +104,9 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`. Only a single reference is supported.
       - `options`: Not supported.
     - `allowedRoutes`: Supported.
-  - `addresses`: Not supported.
+  - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
+      - `type`: Partially supported. Allowed value: `IPAddress`.
+      - `value`: Partially supported. Dynamic address allocation when value is unspecified is not supported.
   - `backendTLS`: Not supported.
   - `allowedListeners`: Not supported.
 - `status`
@@ -114,6 +119,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Gateway is invalid or not supported.
     - `Programmed/True/Programmed`
     - `Programmed/False/Invalid`
+    - `Accepted/True/UnsupportedField`: Custom reason for when the Gateway is accepted but contains an unsupported field
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -146,7 +152,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 **Fields**:
 
 - `spec`
-  - `parentRefs`: Partially supported. Port not supported.
+  - `parentRefs`: Supported.
   - `hostnames`: Supported.
   - `rules`
     - `matches`
@@ -163,6 +169,10 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
+    - `name`: Not supported.
+    - `timeouts`: Not supported.
+    - `retry`: Not supported.
+    - `sessionPersistence`: Not supported.
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -183,6 +193,9 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
       - `ResolvedRefs/False/UnsupportedProtocol`
       - `PartiallyInvalid/True/UnsupportedValue`
+      - `Accepted/True/UnsupportedField`: Custom reason for when the HTTPRouteRule is accepted but contains an unsupported field
+
+      {{< call-out "note" >}} If `name`, `timeouts`, `retry` or `sessionPersistence` are defined for a HTTPRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
 
 ### GRPCRoute
 
@@ -195,7 +208,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 **Fields**:
 
 - `spec`
-  - `parentRefs`: Partially supported. Port not supported.
+  - `parentRefs`: Supported.
   - `hostnames`: Supported.
   - `rules`
     - `matches`
@@ -208,6 +221,8 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestMirror`: Supported. Multiple mirrors can be specified.
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
+    - `name`: Not supported.
+    - `sessionPersistence`: Not supported.
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -225,6 +240,9 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/BackendNotFound`
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the GRPCRoute rules has a backendRef with an unsupported value.
       - `PartiallyInvalid/True/UnsupportedValue`
+      - `Accepted/True/UnsupportedField`: Custom reason for when the GRPCRouteRule is accepted but contains an unsupported field
+
+{{< call-out "note" >}} If `name` or `sessionPersistence` are defined for a GRPCRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
 
 ### ReferenceGrant
 
@@ -257,7 +275,7 @@ Fields:
 **Fields**:
 
 - `spec`
-  - `parentRefs`: Partially supported. Port not supported.
+  - `parentRefs`: Supported.
   - `hostnames`: Supported.
   - `rules`
     - `backendRefs`: Partially supported. Only one backend ref allowed.

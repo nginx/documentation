@@ -2,7 +2,6 @@
 title: Configuration overview
 toc: true
 weight: 300
-docs: DOCS-1229
 nd-docs: DOCS-1879
 ---
 

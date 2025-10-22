@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Download the SSL certificate, private key, and the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
