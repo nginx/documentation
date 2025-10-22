@@ -1,42 +1,40 @@
-default: true
+# markdownlint enables all rules by default
+# Setting default to false means that rules are
+# instead enabled on a case-by-case basis
+default: false
 
-MD002: false
+# Heading levels should only increment by one level at a time
+MD001: true
 
-MD003: false
+# Detects if link brackets are in the wrong order: ()[]
+MD011: true
 
-MD004:
-  style: dash
+# No multiple consecutive blank lines
+MD012: true
 
-MD009: false
+# Headings should be surrounded by blank lines
+MD022: true
 
-MD010: false
+# Headings must start at the beginning of a line
+MD023: true
 
-MD012: false
+# No trailing punctuation in headings
+MD026: true
 
-MD013:
-  line_length: 5000
-  heading_line_length: 60
-  code_block_line_length: 80
-  code_blocks: true
-  tables: false
-  headings: true
-  headers: true
-  strict: false
-  stern: false
+# Code blocks should be surrounded by blank lines
+MD031: true
 
-MD022: false
+# Lists should be surrounded by blank lines
+MD032: true
 
-MD024:
-  siblings_only: true
+# Emphasis should not be used instead of headings
+MD036: true
 
-MD029: false
+# No spaces on the outside of link text
+MD039: true
 
-MD033: false
+# All images should have alt text
+MD045: true
 
-MD034: false
-
-MD041: false
-
-MD046: false
-
-MD051: false
+# Tables shou ld be surrounded by blank lines
+MD058: true
