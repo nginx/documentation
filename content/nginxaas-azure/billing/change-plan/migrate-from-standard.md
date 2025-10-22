@@ -1,8 +1,8 @@
 ---
 title: Migrate from Standard to Standard V2
-weight: 1000
+weight: 100
 toc: true
-url: /nginxaas/azure/getting-started/migrate-from-standard/
+url: /nginxaas/azure/billing/change-plan/migrate-from-standard/
 type:
 - how-to
 ---
