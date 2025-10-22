@@ -3,8 +3,9 @@ title: Basic configuration
 draft: false
 weight: 100
 toc: true
-nd-docs: DOCS-1229
 nd-content-type: how-to
+nd-product: Agent
+nd-docs: DOCS-1229
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.
@@ -27,8 +28,7 @@ The default locations of configuration files for NGINX Agent are `/etc/nginx-age
 
 Examples of the configuration files are provided below:
 
-<details open>
-    <summary>example nginx-agent.conf</summary>
+{{< details summary="Open nginx-agent.conf example">}}
 
 {{< call-out "note" >}}
 In the following example `nginx-agent.conf` file, you can change the `server.host` and `server.grpcPort` to connect to the control plane.
@@ -112,11 +112,9 @@ nginx_app_protect:
   precompiled_publication: true
 ```
 
-</details>
+{{< /details >}}
 
-
-<details open>
-    <summary>example dynamic-agent.conf</summary>
+{{< details summary="Open dynamic-agent.conf example">}}
 
 {{< call-out "note" >}}
 Default location in Linux environments: `/var/lib/nginx-agent/agent-dynamic.conf`
@@ -146,7 +144,7 @@ tags:
   - qa
 ```
 
-</details>
+{{< /details >}}
 
 ## CLI Flags & Environment Variables
 
@@ -239,8 +237,7 @@ Default location in FreeBSD environments: `/var/db/nginx-agent/agent-dynamic.con
 
 By default, NGINX Agent rotates logs daily using logrotate with the following configuration:
 
-<details open>
-  <summary>NGINX Agent Logrotate Configuration</summary>
+{{< details summary="Logrotate configuration example" >}}
 
 ``` yaml
 /var/log/nginx-agent/*.log
@@ -263,7 +260,7 @@ By default, NGINX Agent rotates logs daily using logrotate with the following co
    notifempty
 }
 ```
-</details>
+{{< /details >}}
 
 If you need to change the default configuration, update the file at `/etc/logrotate.d/nginx-agent`.
 

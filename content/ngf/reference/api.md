@@ -899,6 +899,7 @@ longer necessary.</p>
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAlive">ClientKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAliveTimeout">ClientKeepAliveTimeout</a>,
 <a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>,
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>,
 <a href="#gateway.nginx.org/v1alpha2.TelemetryExporter">TelemetryExporter</a>)
 </p>
 <p>
@@ -1869,6 +1870,21 @@ int32
 Default is 1024.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>dnsResolver</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">
+DNSResolver
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DNSResolver specifies the DNS resolver configuration for external name resolution.
+This enables support for routing to ExternalName Services.</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -2244,6 +2260,155 @@ ReadinessProbeSpec
 </td>
 </tr>
 </tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DNSResolver" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>DNSResolver specifies the DNS resolver configuration for NGINX.
+This enables dynamic DNS resolution for ExternalName Services.
+Corresponds to the NGINX resolver directive: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver">https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver</a></p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout specifies the timeout for name resolution.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>cacheTTL</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>CacheTTL specifies how long to cache DNS responses.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableIPv6</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableIPv6 disables IPv6 lookups.
+If not specified, or set to false, IPv6 lookups will be enabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>addresses</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolverAddress">
+[]DNSResolverAddress
+</a>
+</em>
+</td>
+<td>
+<p>Addresses specifies the list of DNS server addresses.
+Each address can be an IP address or hostname.
+Example: [{&ldquo;type&rdquo;: &ldquo;IPAddress&rdquo;, &ldquo;value&rdquo;: &ldquo;8.8.8.8&rdquo;}, {&ldquo;type&rdquo;: &ldquo;Hostname&rdquo;, &ldquo;value&rdquo;: &ldquo;dns.google&rdquo;}]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DNSResolverAddress">DNSResolverAddress
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DNSResolverAddress" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>)
+</p>
+<p>
+<p>DNSResolverAddress specifies the address type and value for a DNS resolver address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolverAddressType">
+DNSResolverAddressType
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies the type of address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>value</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Value specifies the address value.
+When Type is &ldquo;IPAddress&rdquo;, this must be a valid IPv4 or IPv6 address.
+When Type is &ldquo;Hostname&rdquo;, this must be a valid hostname.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DNSResolverAddressType">DNSResolverAddressType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DNSResolverAddressType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolverAddress">DNSResolverAddress</a>)
+</p>
+<p>
+<p>DNSResolverAddressType specifies the type of DNS resolver address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Hostname&#34;</p></td>
+<td><p>DNSResolverHostnameType specifies that the address is a hostname.</p>
+</td>
+</tr><tr><td><p>&#34;IPAddress&#34;</p></td>
+<td><p>DNSResolverIPAddressType specifies that the address is an IP address.</p>
+</td>
+</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DaemonSetSpec" title="Permanent link">¶</a>
@@ -3039,6 +3204,21 @@ int32
 <em>(Optional)</em>
 <p>WorkerConnections specifies the maximum number of simultaneous connections that can be opened by a worker process.
 Default is 1024.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dnsResolver</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">
+DNSResolver
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DNSResolver specifies the DNS resolver configuration for external name resolution.
+This enables support for routing to ExternalName Services.</p>
 </td>
 </tr>
 </tbody>

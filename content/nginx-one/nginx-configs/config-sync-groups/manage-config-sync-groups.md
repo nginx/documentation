@@ -1,5 +1,5 @@
 ---
-nd-docs: null
+nd-docs: DOCS-000
 title: Manage Config Sync Groups
 toc: true
 weight: 300

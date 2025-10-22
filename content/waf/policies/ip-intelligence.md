@@ -113,6 +113,7 @@ services:
       - "50000:50000"
     volumes:
       - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+      - /var/IpRep:/var/IpRep
     networks:
       - waf_network
     restart: always
@@ -218,7 +219,7 @@ spec:
             - name: app-protect-bundles
               mountPath: /etc/app_protect/bundles
         - name: waf-ip-intelligence
-          image: private-registry.nginx.com/napwaf-ip-intelligence:<version-tag>
+          image: private-registry.nginx.com/nap/waf-ip-intelligence:<version-tag>
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false

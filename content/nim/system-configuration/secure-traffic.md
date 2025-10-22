@@ -1,10 +1,10 @@
 ---
-nd-docs: DOCS-794
 title: Secure client access and network traffic
 toc: true
 weight: 600
-type:
-- tutorial
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-794
 ---
 
 {{< include "nim/decoupling/note-legacy-nms-references.md" >}}
@@ -17,11 +17,9 @@ With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoi
 
 {{< call-out "important" >}}Never expose your management server to the public internet. The settings in this guide reduce risk, but they can't replace keeping your server inaccessible to unauthorized users.{{< /call-out >}}
 
-{{< call-out "tip" "See also:" "fa-solid fa-book" >}}
+{{< call-out "tip" "See also:" >}}
 - To learn how to secure traffic for NGINX Agent, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 - For details on NGINX Plus entitlement and usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).{{< /call-out >}}
-
----
 
 ## NGINX Proxy SSL Termination
 
@@ -33,8 +31,7 @@ Starting with NGINX Plus R33, you must also enable `ssl_verify` to verify the SS
 
 The example below shows how to set up SSL termination for NGINX Instance Manager:
 
-<details open>
-    <summary>/etc/nginx/conf.d/nms-http.conf</summary>
+{{< details summary="/etc/nginx/conf.d/nms-http.conf" >}}
 
 ```nginx
 # Main external HTTPS server, needs port 443
@@ -55,11 +52,7 @@ server {
     ssl_client_certificate  /etc/nms/certs/ca.pem;
 ```
 
-</details>
-
-<br>
-
----
+{{< /details >}}
 
 ## Mutual Client Certificate Authentication Setup (mTLS)
 
@@ -86,15 +79,15 @@ Follow these steps to set up mTLS using a Public Key Infrastructure (PKI) system
 To generate the necessary certificates, follow these steps. You can modify these instructions to suit your specific environment.
 
 1. **Install OpenSSL** (if it isn't installed already).
-2. **Create the certificate generation script**:
+1. **Create the certificate generation script**:
    - Use the following example script to generate the certificates for your CA, server, and client. Save the script as `make_certs.sh`.
 
 
-    <details>
-        <summary>make_certs.sh</summary>
+    {{< details summary="make_certs.sh" >}}
 
-    ```bash
-    #!/bin/bash
+
+    ```shell
+    #!/bin/shell
     set -e
 
     make_ca() {
@@ -186,13 +179,12 @@ To generate the necessary certificates, follow these steps. You can modify these
     make_agent
     ```
 
-    </details><br/>
+    {{< /details >}}
 
 3. **Place the configuration files**:
    - Put the following OpenSSL `.cnf` files in the same directory as the `make_certs.sh` script. These files are needed to configure the certificate authority and generate the appropriate certificates.
 
-    <details>
-        <summary>ca.cnf</summary>
+    {{< details summary="ca.cnf" >}}
 
     {{<icon "download">}} {{<link "/admin/encrypt/ca.cnf" "ca.cnf">}}
 
@@ -218,10 +210,9 @@ To generate the necessary certificates, follow these steps. You can modify these
     subjectKeyIdentifier = hash
     ```
 
-    </details>
+    {{< /details >}}
 
-    <details>
-        <summary>ca-intermediate.cnf</summary>
+    {{< details summary="intermediate.cnf" >}}
 
     ``` yaml
     [req]
@@ -245,10 +236,9 @@ To generate the necessary certificates, follow these steps. You can modify these
     subjectKeyIdentifier = hash
     ```
 
-    </details>
+    {{< /details >}}
 
-    <details>
-        <summary>server.cnf</summary>
+    {{< details summary="server.cnf" >}}
 
     ``` yaml
     [req]
@@ -279,10 +269,9 @@ To generate the necessary certificates, follow these steps. You can modify these
     IP.1 = <NGINX-INSTANCE-MANAGER-IP>
     ```
 
-    </details>
+    {{< /details >}}
 
-    <details>
-        <summary>agent.cnf</summary>
+    {{< details summary="agent.cnf" >}}
 
     ``` yaml
     [req]
@@ -307,12 +296,12 @@ To generate the necessary certificates, follow these steps. You can modify these
     extendedKeyUsage = critical, clientAuth
     ```
 
-    </details><br/>
+    {{< /details >}}
 
 4. **Run the script**:
     - After saving the script, make it executable and run it to generate the certificates.
 
-    ```bash
+    ```shell
     sudo chmod +x ./make_certs.sh
     sudo ./make_certs.sh
     ```
@@ -320,7 +309,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 5. **Copy the certificates to the NGINX instance**:
     - Once generated, copy the ca.pem, agent.crt, and agent.key files to the NGINX instance where the NGINX Agent certificates will be installed.
 
-    ```bash
+    ```shell
     sudo mkdir -p /etc/nms/certs
     sudo cp ca.pem /etc/nms/certs/
     sudo cp agent.crt /etc/nms/certs/
@@ -334,8 +323,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 
     {{< call-out "note" >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /call-out>}}
 
-    <details>
-        <summary>/etc/nginx-agent/nginx-agent.conf</summary>
+   {{< details summary="/etc/nginx-agent/nginx-agent.conf" >}}
 
     ```yaml {hl_lines=[8,22,23,24,25]}
     #
@@ -383,7 +371,7 @@ To generate the necessary certificates, follow these steps. You can modify these
         bulk_size: 20
         # specify metrics poll interval
         report_interval: 1m
-        collection_interval: 15s
+        collection_interval: 15s 
         mode: aggregated
 
     # OSS NGINX default config path
@@ -391,11 +379,11 @@ To generate the necessary certificates, follow these steps. You can modify these
     config_dirs: "/etc/nginx:/usr/local/etc/nginx"
     ```
 
-    </details>
+    {{< /details >}}
 
 7. Copy `ca.pem`, `server.crt`, and `server.key` to NGINX Instance Manager.
 
-    ```bash
+    ```shell
     sudo cp ca.pem /etc/nms/certs/
     sudo cp server.crt /etc/nms/certs/
     sudo cp server.key /etc/nms/certs/
@@ -452,18 +440,16 @@ To generate the necessary certificates, follow these steps. You can modify these
 9. **Reload NGINX proxy configuration**:
    - Apply the new settings by reloading NGINX proxy configuration.
 
-    ```bash
+    ```shell
     sudo nginx -s reload
     ```
 
 10. **Restart NGINX Agent**:
     - Start or restart NGINX Agent to apply the changes.
 
-    ```bash
+    ```shell
     sudo systemctl restart nginx-agent
     ```
-
----
 
 ## Configure SSL verification for usage reporting with self-signed certificates {#configure-ssl-verify}
 
@@ -508,8 +494,6 @@ mgmt {
     ssl_verify off;
 }
 ```
-
----
 
 ## Troubleshooting
 
