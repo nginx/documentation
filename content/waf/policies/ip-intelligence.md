@@ -55,14 +55,14 @@ To enable IP intelligence on a virtual machine or bare metal installation, you m
 
 Review the [virtual machine installation instructions]({{< ref "/waf/install/virtual-environment.md" >}}) for information on how to use the package manager for a specific operating system.
 
-| Operating system                    | Package name                  |
-| ----------------------------------- | ----------------------------- |
-| Alpine Linux                        | _app-protect-ip-intelligence_ |
-| Amazon Linux                        | _app-protect-ip-intelligence_ |
-| Debian                              | _app-protect-ip-intelligence_ |
-| Oracle Linux / RHEL / Rocky Linux 8 | _app-protect-ip-intelligence_ |
-| Ubuntu                              | _app-protect-ip-intelligence_ |
-| RHEL / Rocky Linux 9                | _app-protect-ip-intelligence_ |
+| Operating system                    | Install command                         |
+| ----------------------------------- | --------------------------------------- |
+| Alpine Linux                        | apk add app-protect-ip-intelligence     |
+| Amazon Linux                        | dnf install app-protect-ip-intelligence |
+| Debian                              | apt install app-protect-ip-intelligence |
+| Oracle Linux / RHEL / Rocky Linux 8 | dnf install app-protect-ip-intelligence |
+| Ubuntu                              | apt install app-protect-ip-intelligence |
+| RHEL / Rocky Linux 9                | dnf install app-protect-ip-intelligence |
 
 After installing the package, run the client:
 
