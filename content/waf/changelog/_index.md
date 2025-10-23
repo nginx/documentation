@@ -17,6 +17,18 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2024]({{< ref "/waf/changelog/2024.md" >}}).
 
+## F5 WAF for NGINX 5.10
+
+_November 18th, 2025_
+
+### New features
+
+- TBD
+
+### Important notes
+
+- Alpine 3.19 is no longer supported
+
 ## F5 WAF for NGINX 5.9
 
 _September 29th, 2025_

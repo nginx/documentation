@@ -26,7 +26,6 @@ You can deploy F5 WAF for NGINX in the following environments:
 
 | Distribution       | Version      |
 | ------------------ | ------------ |
-| Alpine Linux       | 3.19         |
 | Amazon Linux       | 2023         |
 | Debian             | 11, 12       |
 | Oracle Linux       | 8.1          |
