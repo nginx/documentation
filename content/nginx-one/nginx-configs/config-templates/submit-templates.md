@@ -1,10 +1,9 @@
 ---
-nd-docs: DOCS-000
 title: Submit templates
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: ONE
 ---
 
 # Template submission and preview guide
@@ -12,6 +11,7 @@ type:
 This guide explains how to submit templates for rendering NGINX configurations and preview the results using the Templates API.
 
 Before submitting templates for preview, you need to import templates into NGINX One Console. 
+
 - See the [Import Templates Guide]({{< ref "import-templates.md" >}}) for instructions on creating templates. 
 - For guidance on writing templates, see the [Template Authoring Guide]({{< ref "author-templates.md" >}}).
 
@@ -20,11 +20,11 @@ Before submitting templates for preview, you need to import templates into NGINX
 Template submission allows you to compose templates that generate complete NGINX configuration. The process involves:
 
 1. **Discovering templates** - Find base and augment templates that match your infrastructure needs
-2. **Understanding capabilities** - Review what contexts and features the base template supports
-3. **Selecting augments** - Choose augments for additional features (CORS, rate limiting, SSL, etc.)
-4. **Providing values** - Supply values for all template variables
-5. **Preview and validate** - Generate and review the complete NGINX configuration
-6. **Save as staged config** - Use NGINX One Console to save the preview as a staged configuration for deployment
+1. **Understanding capabilities** - Review what contexts and features the base template supports
+1. **Selecting augments** - Choose augments for additional features (CORS, rate limiting, SSL, etc.)
+1. **Providing values** - Supply values for all template variables
+1. **Preview and validate** - Generate and review the complete NGINX configuration
+1. **Save as staged config** - Use NGINX One Console to save the preview as a staged configuration for deployment
 
 ## Current limitations
 
@@ -41,7 +41,8 @@ Before creating a submission, find base and augment templates that match your in
 
 Use the [List Templates]({{< ref "/nginx-one/api/api-reference-guide/#operation/listTemplates" >}}) API operation to find templates organized by use case.
 
-**Example Response:**
+**Example response:**
+
 ```json
 {
   "count": 3,
@@ -89,11 +90,13 @@ Use the [List Templates]({{< ref "/nginx-one/api/api-reference-guide/#operation/
 ```
 
 **Use Case Identification:**
+
 - **Base templates** represent primary NGINX use cases (reverse proxy, load balancer, static site, API gateway)
 - **Template descriptions** help identify which base template matches your infrastructure need
 - **augment_includes** shows what additional features each base template supports
 
 **Information Available In API Response:**
+
 - **object_id** - A unique identifier of a template to use in submission requests
 - **type** - Identifies base templates (use exactly one) vs augment templates (use zero or more)
 - **allowed_in_contexts** - Shows where augment templates can be applied within a base template
@@ -106,12 +109,14 @@ The API response contains all information needed for creating a submission to re
 Use the [Retrieve a Template]({{< ref "/nginx-one/api/api-reference-guide/#operation/getTemplate" >}}) API operation only when you need to examine template content or detailed variable requirements.
 
 **When to use template details:**
+
 - Review the actual template code and structure
 - Examine detailed schema definitions for variable validation
 - Understand specific variable names and constraints
 - Debug template behavior or compatibility issues
 
-**Example Response:**
+**Example response:**
+
 ```json
 {
   "allowed_in_contexts": [],
@@ -149,6 +154,7 @@ Use the [Retrieve a Template]({{< ref "/nginx-one/api/api-reference-guide/#opera
 ```
 
 **Details:**
+
 - **Template content** - Shows `augment_includes` placeholders and variable usage (e.g., `{{ .backend_url }}`)
 - **Schema definition** - Shows required variables (`backend_url`) and their validation rules
 - **Variable constraints** - Data types, descriptions, and any pattern requirements
@@ -164,31 +170,41 @@ The following sections describe what you need for the request:
 ### Required parameters
 
 **Query Parameter:**
+
 - `preview_only=true` - Currently the only supported mode. Renders configuration for preview without creating a submission object.
 
 ### Configuration path (`conf_path`)
 
-**Required.** The absolute path where the main NGINX configuration file should be placed.
+{{< call-out "important" >}}
 
-**Examples:**
-- `/etc/nginx/nginx.conf` (standard installation)
-- `/opt/nginx/nginx.conf` (custom installation)
+This path determines where augment configurations are rendered:
 
-**Important:** This path determines where augment configurations are rendered:
 - Base template → renders to the exact `conf_path`
 - Augment templates → render to `{base_dir}/conf.d/augments/{filename}.{hash}.conf`
 
 Where `base_dir` is derived from `conf_path`:
+
 - `conf_path: /etc/nginx/nginx.conf` → augments in `/etc/nginx/conf.d/augments/`
 - `conf_path: /opt/nginx/nginx.conf` → augments in `/opt/nginx/conf.d/augments/`
+
+{{< /call-out >}}
+
+**Required.** The absolute path where the main NGINX configuration file should be placed.
+
+**Examples:**
+
+- `/etc/nginx/nginx.conf` (standard installation)
+- `/opt/nginx/nginx.conf` (custom installation)
 
 ### Template properties
 
 **Base Template:**
+
 - `object_id` - Template unique identifier (use a template where `type` is `base`)
 - `values` - Key-value pairs for template variables
 
 **Augment Templates:**
+
 - `object_id` - Template unique identifier (use a template where `type` is `augment`)
 - `target_context` - NGINX context where the augment should be applied
 - `values` - Key-value pairs for template variables (optional if template has no variables)
@@ -199,6 +215,7 @@ Where `base_dir` is derived from `conf_path`:
 Augment templates must specify a `target_context` that determines where the augment will be placed in the base template.
 
 **Validation:**
+
 - The augment's `target_context` must be listed in the augment template's `allowed_in_contexts` (specified during import)
 
 **Available Contexts:**
@@ -206,6 +223,7 @@ Augment templates must specify a `target_context` that determines where the augm
 See the [Template Authoring Guide]({{< ref "author-templates.md#config-templates-contexts" >}}) for detailed information about context paths and how they map to NGINX configuration structure.
 
 **Rendering Behavior:**
+
 - If the base template has an `augment_includes` placeholder for the target context, the augment content is injected there
 - If the base template doesn't have a matching placeholder, the augment is ignored (no error)
 - If the base template has placeholders but no matching augments are provided, those placeholders render as empty strings
@@ -352,15 +370,18 @@ Parse errors indicate the rendered configuration has NGINX syntax issues, often 
 When templates are successfully rendered, the system creates multiple files:
 
 ### Base template output
+
 - **File:** Exact path specified in `conf_path`
 - **Content:** Rendered base template with augment content injected at `augment_includes` points
 
 ### Augment template outputs
+
 - **Location:** `{base_dir}/conf.d/augments/`
 - **Filename:** `{template-name}.{content-hash}.conf`
 - **Content:** Individual augment template rendered output
 
 **Example structure:**
+
 ```
 /etc/nginx/
 ├── nginx.conf                           # Base template output
@@ -417,6 +438,7 @@ Template rendering follows predictable ordering rules at two levels:
 Directives render in the exact order they appear in the template file. This includes the placement of `{{ augment_includes "context_path" . }}` extension points.
 
 **Example:**
+
 ```nginx
 http {
     # This renders first
@@ -435,6 +457,7 @@ http {
 When multiple augments target the same context, they render in the order specified in the submission request's augments array.
 
 **Example submission:**
+
 ```json
 {
   "conf_path": "/etc/nginx/nginx.conf",
@@ -458,6 +481,7 @@ When multiple augments target the same context, they render in the order specifi
 ```
 
 **Rendered output:**
+
 ```text
 http {
     # First augment renders first
