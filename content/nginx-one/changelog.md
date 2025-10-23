@@ -30,6 +30,12 @@ h2 {
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## October 22, 2025
+
+### Observability: Network IO is now presented as a rate
+
+For each instance, you can now review system traffic, in and out, in bits per second. NGINX One Console no longer uses a cumulative value.
+
 ## October 7, 2025
 
 ### Compare multiple metrics in instance observability
