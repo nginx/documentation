@@ -97,7 +97,7 @@ This is an example of a call-out shortcode:
 
 Here are some other shortcodes:
 
-- `include`: Include the content of a file in another file: read the [Re-use content with includes](#re-use-content-with-includes) instructions
+- `include`: Include the content of a file in another file: read the [Using include files](/documentation/include-files.md) topic
 - `tabs`: Create mutually exclusive tabbed window panes, useful for parallel instructions
 - `table`: Add scrollbars to wide tables for browsers with smaller viewports
 - `icon`: Add a [Lucide icon](https://lucide.dev/icons/) by using its name as a parameter
@@ -120,6 +120,7 @@ If you do, and things break, don't say we didn't warn you.
 The first parameter determines the type of call-out, which defines the colour given to it.
 
 Supported types:
+
 - `note`
 - `tip`
 - `important`
@@ -150,35 +151,14 @@ You can also use the `ghcode` shortcode to embed a single file directly from Git
 
 An example of this can be seen in [/content/ngf/get-started.md](https://github.com/nginx/documentation/blob/af8a62b15f86a7b7be7944b7a79f44fd5e526c15/content/ngf/get-started.md?plain=1#L233C1-L233C128), which embeds a YAML file.
 
-#### Re-use content with includes
-
-The includes are a custom shortcode that allows you to embed content stored in the [`/content/includes` directory](https://github.com/nginx/documentation/tree/main/content/includes).
-
-It allows for content to be defined once and display in multiple places without duplication, creating consistency and simplifying the maintenance of items such as reference tables.
-
-For example, the [`licensing-and-reporting/apply-jwt.md`](https://github.com/nginx/documentation/blob/main/content/includes/licensing-and-reporting/apply-jwt.md) file contains instructions for where to add a JWT license file to an NGINX instance.
-
-To add it to a documentation page, use the path as a parameter for the `include` shortcode:
-
-```md
-{{< include "licensing-and-reporting/apply-jwt.md" >}}
-```
-
-This particular include file is used in the following pages:
-
-- [About subscription licenses](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/solutions/about-subscription-licenses.md?plain=1#L54)
-- [R33 pre-release guidance for automatic upgrades](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/solutions/r33-pre-release-guidance-for-automatic-upgrades.md?plain=1#L62)
-- [Installing F5 WAF for NGINX](https://github.com/nginx/documentation/blob/77939c1f9f41ae1984ddfc43c65c3b743836057a/content/nap-waf/v5/admin-guide/install.md?plain=1#L132)
-
-View the [Guidelines for includes](/templates/style-guide.md#guidelines-for-includes) for instructions on how to write effective include files.
-
 #### Add images to documentation pages
+
+> [!IMPORTANT]
+> We have strict guidelines for using images. Review them in our [style guide](/documentation/style-guide.md#guidelines-for-screenshots).
 
 Use the `img` shortcode to add images to documentation pages. It has the same parameters as the Hugo [figure shortcode](https://gohugo.io/content-management/shortcodes/#figure).
 
 1. Add the image to the `/static/img` directory.
-2. Add the `img` shortcode:
-  - `{{< img src="<img-file.png>" alt="<Alternative text>">}}`
-  - Do not include a forward slash at the beginning of the file path or it will [break the image](https://gohugo.io/functions/relurl/#input-begins-with-a-slash).
+2. Add the `img` shortcode: `{{< img src="<img-file.png>" alt="<Alternative text>">}}`
 
-> **Important**: We have strict guidelines for using images. Review them in our [style guide](/documentation/style-guide.md#guidelines-for-screenshots).
+Do not include a forward slash at the beginning of the file path or it will [break the image](https://gohugo.io/functions/relurl/#input-begins-with-a-slash).

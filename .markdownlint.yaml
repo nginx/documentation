@@ -36,5 +36,5 @@ MD039: true
 # All images should have alt text
 MD045: true
 
-# Tables shou ld be surrounded by blank lines
+# Tables should be surrounded by blank lines
 MD058: true

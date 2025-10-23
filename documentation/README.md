@@ -13,6 +13,7 @@ If you're interested in contributing to the [NGINX documentation website](https:
 ## Content workflows
 
 - [Set up pre-commit](/documentation/pre-commit.md)
+- [Linting tools](/documentation/linting-tools.md)
 - [Git conventions](/documentation/git-conventions.md)
 - [Managing content with Hugo](/documentation/hugo-content.md)
 - [Using include files](/documentation/include-files.md)
@@ -25,6 +26,6 @@ If you're interested in contributing to the [NGINX documentation website](https:
 
 # Ways of working
 
-- [Maintainers etiquette](/documentation/maintainers-etiquette.md)
 - [Preparing a good issue](/documentation/prepare-issue.md)
+- [Maintainers etiquette](/documentation/maintainers-etiquette.md)
 - [Proposals](/documentation/proposals/README.md)
