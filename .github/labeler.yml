@@ -23,6 +23,12 @@ product/amplify:
   - changed-files:
       - any-glob-to-any-file: 'content/amplify/**'
 
+product/dos:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/nap-dos/**'
+          - 'content/includes/nap-dos/**'
+
 product/controller:
   - changed-files:
       - any-glob-to-any-file:
@@ -36,18 +42,6 @@ product/mesh:
 product/modsec-waf:
   - changed-files:
       - any-glob-to-any-file: 'content/modsec-waf/**'
-
-product/nap-dos:
-  - changed-files:
-      - any-glob-to-any-file:
-          - 'content/nap-dos/**'
-          - 'content/includes/nap-dos/**'
-
-product/nap-waf:
-  - changed-files:
-      - any-glob-to-any-file:
-          - 'content/nap-waf/**'
-          - 'content/includes/nap-waf/**'
 
 product/ngf:
   - changed-files:
@@ -97,12 +91,19 @@ product/unit:
           - 'content/unit/**'
           - 'content/includes/unit/**'
 
+product/waf:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'content/waf/**'
+          - 'content/includes/waf/**'
+
 # Other labels
 
 process documentation:
   - changed-files:
       - any-glob-to-any-file:
           - 'templates/**'
+          - 'documentation/**'
           - '*.md'
           - 'LICENSE'
 
@@ -122,6 +123,8 @@ tooling:
           - '*.sh'
           - '*.js'
           - 'Makefile'
-          - '.vale.ini'
-          - '.gitignore'
           - '.gitattributes'
+          - '.gitignore'
+          - '.gitlint'
+          - '.markdownlint.yaml'
+          - '.vale.ini'

@@ -1,18 +1,16 @@
 ---
-description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Auth0 as the identity provider (IdP).
-type:
-- how-to
-product: NGINX-PLUS
 title: Single Sign-On With Auth0
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Auth0 as the identity provider (IdP).
 toc: true
 weight: 100
+nd-content-type: how-to
+nd-product: NPL
 nd-docs: DOCS-1686
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Auth0](https://auth0.com/features/single-sign-on) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
 {{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
-
 
 ## Prerequisites
 
@@ -21,7 +19,6 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 - An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35]({{< ref "nginx/releases.md#r35" >}}) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
-
 
 ## Create a new Auth0 Application {#auth0-create}
 
@@ -64,7 +61,8 @@ Check the OpenID Connect Discovery URL. By default, Auth0 publishes the `.well-k
    ```shell
    curl https://yourTenantId.us.auth0.com/.well-known/openid-configuration | jq
    ```
-   where:
+   
+   Where:
 
    - the `yourTenantId` is your Auth0 [Tenant ID](https://auth0.com/docs/get-started/tenant-settings/find-your-tenant-name-or-tenant-id)
 
@@ -73,7 +71,6 @@ Check the OpenID Connect Discovery URL. By default, Auth0 publishes the `.well-k
    - the `/.well-known/openid-configuration` is the default address for Auth0 for document location
 
    - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
-
 
    The configuration metadata is returned in the JSON format:
 
@@ -90,11 +87,9 @@ Check the OpenID Connect Discovery URL. By default, Auth0 publishes the `.well-k
    }
    ```
 
-   <span id="auth0-setup-issuer"></span>
 2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Auth0 is `https://yourTenantId.us.auth0.com/` (including the trailing slash). To verify the accuracy of the endpoints, refer to the [Auth0 official documentation](https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery).
 
 {{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
-
 
 ## Set up NGINX Plus {#nginx-plus-setup}
 
@@ -105,6 +100,7 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     ```shell
     nginx -v
     ```
+
     The output should match NGINX Plus Release 35 or later:
 
     ```none
@@ -160,8 +156,7 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
     - If the **userinfo** directive is set to `on`, NGINX Plus will fetch `/userinfo` from the Auth0 and append the claims from userinfo to the `$oidc_claims_` variables.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate.
-
+    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate. {{< /call-out >}}
 
     ```nginx
     http {
@@ -242,7 +237,6 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     # ...
     ```
 
-    <span id="oidc_app"></span>
 10. Provide endpoint for completing logout:
 
     ```nginx
@@ -253,6 +247,7 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     }
     # ...
     ```
+
 11. Create a simple test application referenced by the `proxy_pass` directive which returns the authenticated user's full name and email upon successful authentication:
 
     ```nginx
@@ -266,7 +261,9 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         }
     }
     ```
+
 12. Save the NGINX configuration file and reload the configuration:
+
     ```nginx
     nginx -s reload
     ```
@@ -347,13 +344,11 @@ http {
 
 If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Auth0 Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/auth0.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
 
-
 ## See Also
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
 - [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
-
 
 ## Revision History
 

@@ -1,18 +1,16 @@
 ---
-description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Microsoft AD FS as the identity provider (IdP).
-type:
-- how-to
 title: Single Sign-On with Microsoft Active Directory FS
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Microsoft AD FS as the identity provider (IdP).
 toc: true
 weight: 300
-product: NGINX-PLUS
+nd-content-type: how-to
+nd-product: NPL
 nd-docs: DOCS-1683
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) (AD FS) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.
 
 {{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
-
 
 ## Prerequisites
 
@@ -21,7 +19,6 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 - An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35]({{< ref "nginx/releases.md#r35" >}}) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
-
 
 ## Configure the AD FS Server {#adfs-setup}
 
@@ -80,14 +77,14 @@ Check the OpenID Connect endpoint URL. By default, AD FS publishes the `.well-kn
    ```shell
    curl https://adfs-server-address/adfs/.well-known/openid-configuration | jq .
    ```
-   where:
+   
+   Where:
 
    - the `adfs-server-address` is your AD FS server address
 
    - the `/adfs/.well-known/openid-configuration` is the default address for AD FS for document location
 
    - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
-
 
    The configuration metadata is returned in the JSON format:
 
@@ -109,23 +106,21 @@ Check the OpenID Connect endpoint URL. By default, AD FS publishes the `.well-kn
 
    `https://adfs-server-address/adfs`.
 
-
 {{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
-
 
 ## Set up NGINX Plus {#nginx-plus-setup}
 
 With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
-
 
 1.  Ensure that you are using the latest version of NGINX Plus by running the `nginx -v` command in a terminal:
 
     ```shell
     nginx -v
     ```
+
     The output should match NGINX Plus Release 35 or later:
 
-    ```none
+    ```text
     nginx version: nginx/1.29.0 (nginx-plus-r35)
     ```
 
@@ -142,7 +137,7 @@ With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         # ...
     }
     ```
-    <span id="adfs-setup-oidc-provider"></span>
+
 5.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define the AD FS OIDC provider named `adfs` by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context:
 
     ```nginx
@@ -177,7 +172,7 @@ With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
     - If the **userinfo** directive is set to `on`, NGINX Plus will fetch `/userinfo` from the AD FS and append the claims from userinfo to the `$oidc_claims_` variables.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate.
+    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate. {{< /call-out >}}
 
     ```nginx
     http {
@@ -288,7 +283,9 @@ With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
         }
     }
     ```
+    
 12. Save the NGINX configuration file and reload the configuration:
+
     ```nginx
     nginx -s reload
     ```
@@ -368,18 +365,15 @@ http {
 
 4. Refresh `https://demo.example.com/` again. You should be redirected to AD FS for a fresh sign‑in, proving the session has been terminated.
 
-
 ## Legacy njs-based AD FS Solution {#legacy-njs-guide}
 
 If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Microsoft AD FS Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/active-directory-federation-services.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
-
 
 ## See Also
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
 - [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
-
 
 ## Revision History
 
