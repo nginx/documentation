@@ -32,6 +32,8 @@ To switch an instance between namespaces, you have to deregister an instance fro
 
 ## NGINX Alerts
 
+To set up NGINX Alerts through the F5 Distributed Cloud, follow the procedure in [Set up security alerts]({{< ref "/nginx-one/secure-your-fleet/set-up-security-alerts/" >}}).
+
 {{< include "/nginx-one/alert-labels.md" >}}
 
 ## Legal notice: Licensing agreements for NGINX products

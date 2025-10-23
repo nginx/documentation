@@ -1,18 +1,16 @@
 ---
-description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Okta as the identity provider (IdP).
-type:
-- how-to
-product: NGINX-PLUS
 title: Single Sign-On with Okta
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Okta as the identity provider (IdP).
 toc: true
 weight: 700
+nd-content-type: how-to
+nd-product: NPL
 nd-docs: DOCS-1689
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Okta](https://www.okta.com/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
 {{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
-
 
 ## Prerequisites
 
@@ -21,7 +19,6 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 - An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35]({{< ref "nginx/releases.md#r35" >}}) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
-
 
 ## Configure Okta {#okta-setup}
 
@@ -78,7 +75,8 @@ Check the OpenID Connect Discovery URL. By default, Okta publishes the `.well-kn
    ```shell
    curl https://dev-123456.okta.com/oauth2/default/.well-known/openid-configuration | jq
    ```
-   where:
+
+   Where:
 
    - the `dev-123456.okta.com` is your Okta domain
 
@@ -87,7 +85,6 @@ Check the OpenID Connect Discovery URL. By default, Okta publishes the `.well-kn
    - the `/.well-known/openid-configuration` is the default address for Okta for document location
 
    - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
-
 
    The configuration metadata is returned in the JSON format:
 
@@ -120,7 +117,6 @@ By default, Okta might limit application access to certain users or groups. To a
 
 4. Add or remove users and groups that can access this application.
 
-
 ## Set up NGINX Plus {#nginx-plus-setup}
 
 With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
@@ -130,6 +126,7 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
     ```shell
     nginx -v
     ```
+
     The output should match NGINX Plus Release 35 or later:
 
     ```none
@@ -150,7 +147,6 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
     }
     ```
 
-    <span id="okta-setup-oidc-provider"></span>
 5.  In the [`http {}`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context, define the Okta provider named `okta` by specifying the [`oidc_provider {}`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider) context:
 
     ```nginx
@@ -187,7 +183,7 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
 
     - If the **userinfo** directive is set to `on`, NGINX Plus will fetch `/oauth2/default/v1/userinfo` from the Okta and append the claims from userinfo to the `$oidc_claims_` variables.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate.
+    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate. {{< /call-out >}}
 
     ```nginx
     http {
@@ -268,7 +264,6 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
     # ...
     ```
 
-    <span id="oidc_app"></span>
 10. Provide endpoint for completing logout:
 
     ```nginx
@@ -293,7 +288,9 @@ With Okta configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as th
         }
     }
     ```
+
 12. Save the NGINX configuration file and reload the configuration:
+
     ```nginx
     nginx -s reload
     ```
@@ -377,18 +374,15 @@ http {
 
 {{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
 
-
 ## Legacy njs-based Okta Solution {#legacy-njs-guide}
 
 If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Okta Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/okta.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
-
 
 ## See Also
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
 - [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
-
 
 ## Revision History
 

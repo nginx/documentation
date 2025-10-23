@@ -1,4 +1,4 @@
-# Using Include files
+# Using include files
 
 _Include files_, often referred to as _includes_, are Markdown files with self-contained text fragments used by Hugo for content re-use.
 
@@ -8,7 +8,7 @@ We use them to [avoid repeating ourselves](https://en.wikipedia.org/wiki/Don%27t
 
 Include files are designed to be context-agnostic and should not rely on or assume any prior content.
 
-The files are located in the [content/includes](https://github.com/nginxinc/docs/tree/main/content/includes) folder, and are implemented using the Hugo `include` shortcode:
+The files are located in the [content/includes](https://github.com/nginx/documentation/tree/main/content/includes) folder, and are implemented using the Hugo `include` shortcode:
 
 ```text
 {{< include "use-cases/docker-registry-instructions.md" >}}
@@ -29,18 +29,8 @@ To make sure includes are effective and easy to maintain, follow these guideline
 - **Don't start documents with includes**: The opening of most documents is the introduction which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
 - **Do not add the F5 prefix to product names in includes**: The brand name is required only on [the first mention in a document](/documentation/style-guide.md#f5-brand-trademarks-and-product-names).
 
-## Include file index
+## Understanding include file usage
 
-To aid in discoverability of include files, see the [include section](https://docs.nginx.com/stats#include) of our [shortcode report page](https://docs.nginx.com/stats).
-This page is updated as part of every documentation build.
+To view how include files are being used, see the [include section](https://docs.nginx.com/stats#include) of the shortcode report page.
 
-When viewing an include file, you may also see the `files`: parameter in the frontmatter, which shows where the file is currently in use.
-
-Examples of commonly used includes:
-
-| **_File name_** | **_Description_** |
-| ----------------| ------------------ |
-| [_licensing-and-reporting/download-jwt-from-myf5.md_](/content/includes/licensing-and-reporting/download-jwt-from-myf5.md) | Instructions for downloading a JSON Web Token from MyF5 |
-| [_licensing-and-reporting/download-certificates-from-myf5.md_](/content/includes/licensing-and-reporting/download-certificates-from-myf5.md) | Instructions for downloading certificate files from MyF5 |
-| [_use-cases/credential-download-instructions.md_](/content/includes/use-cases/credential-download-instructions.md) | Parallel tabbed instructions for downloading credential files from MyF5 |
-| [_use-cases/docker-registry-instructions.md_](/content/includes/use-cases/docker-registry-instructions.md) | Parallel tabbed instructions for listing Docker images from the F5 Registry |
+This page is updated as part of every documentation build. It shows how often certain shortcodes are used and where, including specific include files.

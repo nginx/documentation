@@ -1,11 +1,10 @@
 ---
-description: ''
-nd-docs: DOCS-1267
 title: Get started with OIDC
 toc: true
 weight: 1
-type:
-- tutorial
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-1267
 ---
 
 ## Overview
@@ -25,7 +24,7 @@ When using OIDC for authentication, administrators don't need to create and mana
 To grant users access using OIDC, follow these steps:
 
 1. Create a role in NGINX Instance Manager.
-2. Create a user group and assign a role to it. **Important**: The group name must exactly match a group name in your IdP.
+2. Create a user group and assign a role to it. **The group name must exactly match a group name in your IdP**.
 3. Set up OIDC.
 
 ### Create a role {#create-role}
@@ -95,7 +94,6 @@ The sections below provide detailed descriptions of the OIDC configuration value
 #### Custom configuration for well-known endpoints
 
 For custom settings, adjust parameters such as `$oidc_authz_path_params_enable`, `$oidc_logout_query_params`, and others to match your IdP’s needs.
-
 
 ## Set up specific IdPs for OIDC {#oidc-specific-idps}
 

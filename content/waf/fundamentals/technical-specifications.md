@@ -14,6 +14,10 @@ nd-product: NAP-WAF
 
 This page outlines the technical specifications for F5 WAF for NGINX, which includes the minimum requirements and supported platforms.
 
+## Resource limitations
+
+- F5 WAF for NGINX supports a **maximum** of **127** CPU cores.
+
 ## Supported deployment environments
 
 You can deploy F5 WAF for NGINX in the following environments:
@@ -54,9 +58,8 @@ The F5 WAF for NGINX package has the following dependencies:
 | app-protect-threat-campaigns               | The F5 WAF for NGINX threat campaigns update package |
 | nginx-plus-module-appprotect               | NGINX Plus dynamic module for F5 WAF for NGINX |
 
-
 1. _Optional dependencies_
-2. _This module needs to be installed separately, and includes a client for downloading and updating the feature's database_
+1. _This module needs to be installed separately, and includes a client for downloading and updating the feature's database_
 
 ## Supported security policy features
 
