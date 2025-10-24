@@ -39,7 +39,7 @@ NGINXaaS now supports downloading certificate from Azure Key Vault via Private E
 
 - {{% icon-feature %}} **Support for both precompiled and custom WAF policies in the same NGINX config**
 
-NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protect WAF to be referenced within the same NGINX config. This removes a previous restriction.
+NGINXaaS now allows both precompiled and custom policies for F5 WAF for NGINX to be referenced within the same NGINX config. This removes a previous restriction.
 
 ## September 18, 2025
 

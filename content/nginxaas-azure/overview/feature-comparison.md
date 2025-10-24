@@ -61,7 +61,7 @@ Below is a feature breakdown with notes on support and limitations.
 
 **Limitations:** 
 
-- Internal redirect and App Protect DoS are not available
+- Internal redirect and F5 WAF for NGINX DoS are not available
 
 ---
 

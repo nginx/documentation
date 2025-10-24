@@ -9,11 +9,11 @@ type:
 
 ## Overview
 
-F5 NGINXaaS for Azure (NGINXaaS) supports exporting NGINX App Protect logs to an Azure Storage account or to a Log Analytics workspace.
+F5 NGINXaaS for Azure (NGINXaaS) supports exporting F5 WAF for NGINX logs to an Azure Storage account or to a Log Analytics workspace.
 
 ## Setting up operational logs
 
-NGINX App Protect operational logs are sent to the NGINX error logs. See [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) to configure error logs.
+F5 WAF for NGINX operational logs are sent to the NGINX error logs. See [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) to configure error logs.
 
 ## Setting up security logs
 
@@ -93,7 +93,7 @@ The following table shows the path to the log configuration file that needs to b
   | log_grpc_blocked            | /etc/app_protect/conf/log_grpc_blocked.json |
    {{< /table >}}
 
-To view the contents of the available log configuration, navigate to the azure portal and select the Log Configurations tab in the App Protect section.
+To view the contents of the available log configuration, navigate to the azure portal and select the Log Configurations tab in the F5 WAF for NGINX section.
 
 ### Logging Destinations
 
