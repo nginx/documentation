@@ -1,49 +1,51 @@
 ---
 title: Install NGINX Gateway Fabric on OpenShift using OperatorHub
-description: Deploy NGINX Gateway Fabric on Red Hat OpenShift via OperatorHub and configure it using the NginxGatewayFabric custom resource.
-weight: 20
+description: Deploy F5 NGINX Gateway Fabric on Red Hat OpenShift through OperatorHub and configure it using the NginxGatewayFabric custom resource.
+weight: 500
 toc: true
+nd-content-type: how-to
+nd-product: NGF
+nd-docs: DOCS-1851
 ---
 
 ## Overview
 
-This guide explains how to install F5 NGINX Gateway Fabric on Red Hat OpenShift using OperatorHub and configure it with the `NginxGatewayFabric` custom resource. 
+This guide explains how to install F5 NGINX Gateway Fabric (NGF) on Red Hat OpenShift through OperatorHub and configure it with the `NginxGatewayFabric` custom resource. 
 
 On this page
 
 - Prerequisites for OpenShift
-- Installing the NGF Operator from OperatorHub
-- Creating the NGF instance using the `NginxGatewayFabric` CR
-- OpenShift-specific considerations (images, service exposure, SCC)
-- Operator-specific configuration options available in the CR
-- Validation and troubleshooting
+- Install NGINX Gateway Fabric Operator from OperatorHub
+- Create the NginxGatewayFabric custom resource
+- Review OpenShift considerations (images, service exposure, SCC)
+- Configure operator options in the custom resource
+- Validate the installation and troubleshoot issues
 
 ## Prerequisites
 
-- A running Red Hat OpenShift cluster with cluster-admin privileges.
+- A running Red Hat OpenShift cluster with cluster administrator privileges.
 - Access to OperatorHub in the OpenShift Web Console.
-- `oc` CLI installed and logged in to your cluster.
+- The oc command-line tool is installed, and you are logged in to your cluster.
 - Ability to pull images from `ghcr.io` (or a mirrored registry if required by your environment).
 - Optional:
-  - NGINX One dataplane API key if you plan to integrate with NGINX One.
-  - NGINX Plus entitlements if you plan to run NGF with NGINX Plus.
+  - F5 NGINX One dataplane API key if you plan to integrate with NGINX One.
+  - F5 NGINX Plus entitlements if you plan to run NGF with NGINX Plus.
 - Network exposure model decided:
   - LoadBalancer Services (recommended where available)
   - Or OpenShift Routes/NodePorts (if LoadBalancer is not available)
 
-## Note on OpenShift support and images
+### Review OpenShift support and images
 
-NGF provides first-class OpenShift support with UBI-based images. Use the `-ubi` tags shown in the CR examples below. Security constraints, such as running as non-root, are handled by defaults compatible with OpenShift SCCs in most environments. If your cluster enforces custom SCCs or policies, see the "Pod scheduling and security" options under operator-specific configuration.
+NGF provides first-class OpenShift support with Universal Base Image (UBI)-based images. Use the `-ubi` tags shown in the custom resource definition (CRD) examples below. Security constraints, such as running as non-root, are handled by defaults compatible with OpenShift Security Context Constraints (SCCs) in most environments. If your cluster enforces custom SCCs or policies, see the "Pod scheduling and security" options under operator-specific configuration.
 
-## Install the NGF Operator from OperatorHub
+## Install NGINX Gateway Fabric Operator from OperatorHub
 
-Install via the OpenShift Web Console:
-
-1. Navigate to Operators → OperatorHub.
-2. Search for "NGINX Gateway Fabric".
-3. Select the NGF Operator (provider: NGINX, Inc) and click Install.
-4. Choose an update channel (for example, stable 2.x), installation mode (All namespaces or a specific namespace), and approve automatic updates as desired.
-5. Complete the installation. Wait until the Operator shows the "Installed" status.
+1. Go to the Red Hat Catalog: https://catalog.redhat.com/en
+2. Search for "NGINX Gateway Fabric Operator".
+3. Select NGINX Gateway Fabric Operator (provider: F5, Inc.).
+4. Select **Deploy & use**.
+5. Choose the appropriate architecture and release tag.
+6. Complete the installation. Wait until the Operator status shows Installed.
 
 If you prefer CLI-based installation (Subscription/OperatorGroup), consult OpenShift documentation for creating `OperatorGroup` and `Subscription` resources in your chosen namespace. The Web Console path above is recommended.
 
@@ -51,7 +53,7 @@ If you prefer CLI-based installation (Subscription/OperatorGroup), consult OpenS
 
 Create a dedicated project (namespace) for NGF components, for example:
 
-```bash
+```shell
 oc new-project nginx-gateway-fabric
 ```
 
@@ -60,11 +62,11 @@ oc new-project nginx-gateway-fabric
 NGF can generate internal certificates for agent/server by default, or you can provide your own secrets.
 
 Option A: Let NGF generate the certificates
-- Use the default `certGenerator` settings from the sample CR (no additional steps needed).
+- Use the default `certGenerator` settings from the sample custom resource (no additional steps needed).
 - `certGenerator.overwrite: false` means NGF will not overwrite existing secrets if present.
 
 Option B: Provide your own secrets (example)
-```bash
+```shell
 # Agent TLS (used by internal agent)
 oc create secret tls agent-tls \
   --cert=agent.crt \
@@ -82,7 +84,7 @@ oc create secret tls server-tls \
 
 If you want NGF to connect to NGINX One, create a secret for the dataplane key (replace VALUE with your key):
 
-```bash
+```shell
 oc create secret generic nginxone-dataplane-key \
   --from-literal=key=VALUE \
   -n nginx-gateway-fabric
@@ -95,9 +97,9 @@ You will reference this secret in the `spec.nginx.nginxOneConsole.dataplaneKeySe
 If you plan to use NGINX Plus, you will need to:
 - Set `spec.nginx.nginxOneConsole.plus: true`
 - Provide appropriate image repository/registry credentials in `imagePullSecret(s)`
-- Optionally create a secret for license/entitlement artifacts (name by convention below):
+- Optionally create a secret for license and entitlement artifacts (name by convention below):
 
-```bash
+```shell
 # Example license secret name referenced by usage.secretName
 oc create secret generic nplus-license \
   --from-file=nginx-repo.crt=/path/to/nginx-repo.crt \
@@ -107,7 +109,7 @@ oc create secret generic nplus-license \
 
 Consult your subscription details for the exact files/registry access used for NGINX Plus images in your environment.
 
-## Create the NginxGatewayFabric CR
+## Create the NginxGatewayFabric custom resource
 
 Minimal example for OpenShift:
 
@@ -184,24 +186,24 @@ spec:
       enable: false
 ```
 
-Apply the CR:
+Apply the custom resource:
 
-```bash
+```shell
 oc apply -f nginx-gateway-fabric.yaml
 ```
 
 Wait for the Operator to reconcile. It will provision the NGF controller and data plane deployments, services, and related resources.
 
-## OpenShift-specific exposure options
+## Configure exposure options for OpenShift
 
 - LoadBalancer Service (preferred where available): Use `spec.nginx.service.type: LoadBalancer`. You can also configure:
   - `externalTrafficPolicy: Local` to preserve source IPs (useful for client IP-based policies).
   - `loadBalancerClass`, `loadBalancerIP`, and `loadBalancerSourceRanges` per your environment.
 
-- Routes / NodePort (if LoadBalancer is not available):
+- Routes/NodePort (if a LoadBalancer is not available):
   - Set `spec.nginx.service.type: NodePort` and create an OpenShift Route to the NGF front-end service (for HTTP/HTTPS traffic).
   - Example (edge termination route; replace service name and ports appropriately):
-    ```bash
+    ```shell
     oc create route edge ngf \
       --service=nginx-gateway-fabric-nginx \
       --port=http \
@@ -211,7 +213,7 @@ Wait for the Operator to reconcile. It will provision the NGF controller and dat
 
 ## Operator-specific configuration options (NginxGatewayFabric spec)
 
-Below is a summary of key fields exposed by the Operator via the `NginxGatewayFabric` CR. Defaults align with NGF Helm values.
+Below is a summary of key fields in the `NginxGatewayFabric` custom resource. Defaults align with NGF Helm values.
 
 - Global
   - `clusterDomain`: Kubernetes cluster domain (default `cluster.local`).
@@ -238,7 +240,7 @@ Below is a summary of key fields exposed by the Operator via the `NginxGatewayFa
     - `loadBalancerClass`, `loadBalancerIP`, `loadBalancerSourceRanges`: Cloud/provider-specific LB tuning.
     - `nodePorts`: Fixed NodePorts if you need deterministic port numbers.
     - `patches`: Strategic merge patches to customize the Service shape beyond the exposed fields.
-  - `autoscaling.enable`: If true, enable HPA for the data plane (configure metrics/thresholds according to your policy).
+  - `autoscaling.enable`: If true, enable the Horizontal Pod Autoscaler (HPA) for the data plane (configure metrics and thresholds according to your policy).
   - `pod`: Raw Pod-level overrides (labels, annotations).
   - `nginxOneConsole`:
     - `dataplaneKeySecretName`: Secret providing the NGINX One dataplane key.
@@ -247,7 +249,7 @@ Below is a summary of key fields exposed by the Operator via the `NginxGatewayFa
     - `patches`: Additional customization patches.
     - `plus`: Set `true` when using NGINX Plus data plane.
   - `usage`:
-    - `secretName`: License/usage reporting secret name (e.g., `nplus-license`).
+    - `secretName`: License and usage reporting secret name (for example, `nplus-license`).
     - `endpoint`, `resolver`, `skipVerify`, `clientSSLSecretName`, `caSecretName`, `enforceInitialReport`: Advanced usage/telemetry controls.
 
 - `nginxGateway` (controller)
@@ -283,27 +285,27 @@ Below is a summary of key fields exposed by the Operator via the `NginxGatewayFa
 ## Pod scheduling and security (OpenShift)
 
 - Use `nodeSelector`, `tolerations`, and `topologySpreadConstraints` to adhere to your cluster’s workload placement policies.
-- OpenShift SCCs typically require running as non-root. NGF UBI images are compatible; avoid setting hostPorts unless you have an SCC permitting them.
+- OpenShift Security Context Constraints (SCCs) typically require running as non-root. NGF UBI images are compatible; avoid setting hostPorts unless you have an SCC that permits them.
 - If your environment enforces custom SCCs, bind the appropriate SCC to the NGF service accounts and use `pod`/`serviceAccount` fields to reference them.
 
-## Validation
+## Validate the installation
 
-After applying the CR, verify that deployments and services are running:
+After applying the custom resource, verify that deployments and services are running:
 
-```bash
+```shell
 oc get pods -n nginx-gateway-fabric
 oc get svc -n nginx-gateway-fabric
 ```
 
 Check the installed GatewayClass:
 
-```bash
+```shell
 oc get gatewayclass
 ```
 
 Logs for troubleshooting:
 
-```bash
+```shell
 # Controller logs
 oc logs deploy/ngf-nginx-gateway -n nginx-gateway-fabric
 
@@ -311,7 +313,7 @@ oc logs deploy/ngf-nginx-gateway -n nginx-gateway-fabric
 oc logs deploy/ngf-nginx -n nginx-gateway-fabric
 ```
 
-## Optional: Functional check
+## Perform a functional check (optional)
 
 Create a simple Gateway and HTTPRoute to validate routing:
 
@@ -348,17 +350,14 @@ spec:
           port: 8080
 ```
 
-Ensure you have a Service/Deployment named `echo` on port 8080. If using a LoadBalancer Service, curl the LB IP (or use an OpenShift Route if you configured one).
+Ensure you have a Service and Deployment named `echo` that expose port 8080. If you are using a LoadBalancer Service, send a request to the load balancer IP address. Otherwise, use an OpenShift Route as configured.
 
 ## References
 
-- Red Hat OperatorHub (OpenShift Web Console → OperatorHub)
-- NGINX Gateway Fabric CRD sample (Operator-managed):
-  https://github.com/nginx/nginx-gateway-fabric/blob/main/operators/config/samples/gateway_v1alpha1_nginxgatewayfabric.yaml
-
-- NGF Helm chart defaults (values): See `helm-charts/nginx-gateway-fabric/values.yaml` in the NGF repository.
+- Red Hat Catalog (https://catalog.redhat.com/en)
+- NGINX Gateway Fabric custom resource sample (https://github.com/nginx/nginx-gateway-fabric/blob/main/operators/config/samples/gateway_v1alpha1_nginxgatewayfabric.yaml)
 
 ## Notes
 
-- The Operator-specific options listed above reflect the fields exposed in the `NginxGatewayFabric` CR and their defaults in the referenced sample. Your environment and Operator channel may introduce additional fields or defaults. Always review the installed Operator’s CRD and documentation in your cluster for the authoritative schema.
+- The Operator-specific options listed above reflect the fields exposed in the `NginxGatewayFabric` custom resource and their defaults in the referenced sample. Your environment and Operator channel may introduce additional fields or defaults. Always review the installed Operator’s CRD and documentation in your cluster for the authoritative schema.
 - If your OpenShift environment does not support external LoadBalancer, prefer Route-based exposure. Configure TLS policies (edge/reencrypt/passthrough) consistent with your application’s needs.
