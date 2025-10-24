@@ -45,7 +45,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Create a project
 
 2. Create a dedicated project (namespace) for NGF components.
-   ```bash
+   ```shell
    oc new-project nginx-gateway-fabric
    ```
 
@@ -54,7 +54,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Create TLS secrets for internal communication (optional)
 
 3. If you want NGF to auto-generate internal certificates, skip this step. To provide your own TLS secrets, create the following:
-   ```bash
+   ```shell
    # Agent TLS (used by internal agent)
    oc create secret tls agent-tls \
      --cert=agent.crt \
@@ -73,7 +73,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Integrate with NGINX One (optional)
 
 4. If you want NGF to connect to NGINX One, create a secret for the dataplane key (replace VALUE with your key).
-   ```bash
+   ```shell
    oc create secret generic nginxone-dataplane-key \
      --from-literal=key=VALUE \
      -n nginx-gateway-fabric
@@ -85,7 +85,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Configure NGINX Plus licensing (optional)
 
 5. If you plan to use NGINX Plus, set `spec.nginx.plus: true`, add image pull credentials, and create a license secret if needed.
-   ```bash
+   ```shell
    # Example license secret name referenced by usage.secretName
    oc create secret generic nplus-license \
      --from-file=nginx-repo.crt=/path/to/nginx-repo.crt \
@@ -124,7 +124,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
        replicas: 1
    ```
    Apply the custom resource:
-   ```bash
+   ```shell
    oc apply -f nginx-gateway-fabric.yaml
    ```
 
@@ -139,7 +139,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
      - `loadBalancerClass`, `loadBalancerIP`, and `loadBalancerSourceRanges` per your environment.
 
    - If a LoadBalancer is not available, set `spec.nginx.service.type: NodePort`, then create an OpenShift Route to the NGF front-end Service (for HTTP/HTTPS traffic):
-     ```bash
+     ```shell
      oc create route edge ngf \
        --service=nginx-gateway-fabric-nginx \
        --port=http \
@@ -152,13 +152,13 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Validate the installation
 
 8. Verify that deployments and services are running, and confirm the GatewayClass:
-   ```bash
+   ```shell
    oc get pods -n nginx-gateway-fabric
    oc get svc -n nginx-gateway-fabric
    oc get gatewayclass
    ```
    If troubleshooting is required, review logs:
-   ```bash
+   ```shell
    # Controller logs
    oc logs deploy/ngf-nginx-gateway -n nginx-gateway-fabric
 
