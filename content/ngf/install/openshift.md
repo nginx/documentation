@@ -95,7 +95,7 @@ You will reference this secret in the `spec.nginx.nginxOneConsole.dataplaneKeySe
 ## Optional: NGINX Plus licensing
 
 If you plan to use NGINX Plus, you will need to:
-- Set `spec.nginx.nginxOneConsole.plus: true`
+- Set `spec.nginx.plus: true`
 - Provide appropriate image repository/registry credentials in `imagePullSecret(s)`
 - Optionally create a secret for license and entitlement artifacts (name by convention below):
 
@@ -120,43 +120,13 @@ metadata:
   name: ngf
   namespace: nginx-gateway-fabric
 spec:
-  # Cluster-wide defaults
-  clusterDomain: cluster.local
-
-  # Optionally provide cert secrets if you do not want NGF to generate them
-  certGenerator:
-    agentTLSSecretName: agent-tls
-    serverTLSSecretName: server-tls
-    overwrite: false
-    ttlSecondsAfterFinished: 30
-
   # Data plane (NGINX)
   nginx:
     replicas: 2
-    debug: false
     image:
       repository: ghcr.io/nginx/nginx-gateway-fabric/nginx
       tag: 2.2.0-ubi
       pullPolicy: IfNotPresent
-    service:
-      type: LoadBalancer
-      externalTrafficPolicy: Local
-    metrics:
-      # metrics are configured under nginxGateway, but data plane health can be probed via readinessProbe
-      # configure additional metrics/sidecars as needed
-    readinessProbe: {}
-    autoscaling:
-      enable: false
-    imagePullSecrets: []
-    container:
-      hostPorts: []
-    # Optional NGINX One console integration
-    nginxOneConsole:
-      dataplaneKeySecretName: ""       # set to "nginxone-dataplane-key" if you created it
-      endpointHost: agent.connect.nginx.com
-      endpointPort: 443
-      skipVerify: false
-      plus: false
 
   # Controller
   nginxGateway:
@@ -167,23 +137,6 @@ spec:
       tag: 2.2.0-ubi
       pullPolicy: IfNotPresent
     replicas: 1
-    metrics:
-      enable: true
-      port: 9113
-      secure: false
-    readinessProbe:
-      enable: true
-      initialDelaySeconds: 3
-      port: 8081
-    leaderElection:
-      enable: true
-      lockName: ""
-    productTelemetry:
-      enable: true
-    gwAPIExperimentalFeatures:
-      enable: false
-    snippetsFilters:
-      enable: false
 ```
 
 Apply the custom resource:
@@ -213,74 +166,17 @@ Wait for the Operator to reconcile. It will provision the NGF controller and dat
 
 ## Operator-specific configuration options (NginxGatewayFabric spec)
 
-Below is a summary of key fields in the `NginxGatewayFabric` custom resource. Defaults align with NGF Helm values.
+To view all Operator-specific configurations avaialbe, run this command
 
-- Global
-  - `clusterDomain`: Kubernetes cluster domain (default `cluster.local`).
-  - `gateways`: Optional list to seed Gateway resources managed by the Operator (empty by default).
+```shell
+oc explain NginxGatewayFabric
+```
 
-- `certGenerator`
-  - `agentTLSSecretName` / `serverTLSSecretName`: Secret names for internal agent/server TLS.
-  - `overwrite`: If true, Operator may overwrite existing secrets during generation.
-  - `annotations`: Add annotations to generated objects.
-  - `nodeSelector`, `tolerations`, `topologySpreadConstraints`, `affinity`: Pod scheduling controls for cert jobs.
-  - `ttlSecondsAfterFinished`: TTL for certificate generation jobs (default 30 seconds).
+Example output:
 
-- `nginx` (data plane)
-  - `image`: Repository/tag/pullPolicy. Use `ghcr.io/nginx/nginx-gateway-fabric/nginx` with `2.2.0-ubi` for OpenShift.
-  - `replicas`: Desired number of data plane replicas.
-  - `debug`: Enables verbose NGINX debugging.
-  - `container.hostPorts`: Optional host port bindings (normally disabled on OpenShift).
-  - `readinessProbe`, `lifecycle`, `resources`, `volumeMounts`: Pod behavior and resources.
-  - `imagePullSecret` / `imagePullSecrets`: For private registries or NGINX Plus artifacts.
-  - `kind`: Deployment (default) — data plane runs as a Deployment.
-  - `service`:
-    - `type`: `LoadBalancer` | `NodePort` | `ClusterIP`
-    - `externalTrafficPolicy`: `Local` or `Cluster`
-    - `loadBalancerClass`, `loadBalancerIP`, `loadBalancerSourceRanges`: Cloud/provider-specific LB tuning.
-    - `nodePorts`: Fixed NodePorts if you need deterministic port numbers.
-    - `patches`: Strategic merge patches to customize the Service shape beyond the exposed fields.
-  - `autoscaling.enable`: If true, enable the Horizontal Pod Autoscaler (HPA) for the data plane (configure metrics and thresholds according to your policy).
-  - `pod`: Raw Pod-level overrides (labels, annotations).
-  - `nginxOneConsole`:
-    - `dataplaneKeySecretName`: Secret providing the NGINX One dataplane key.
-    - `endpointHost` / `endpointPort`: NGINX One agent endpoint.
-    - `skipVerify`: Disable TLS verification (not recommended).
-    - `patches`: Additional customization patches.
-    - `plus`: Set `true` when using NGINX Plus data plane.
-  - `usage`:
-    - `secretName`: License and usage reporting secret name (for example, `nplus-license`).
-    - `endpoint`, `resolver`, `skipVerify`, `clientSSLSecretName`, `caSecretName`, `enforceInitialReport`: Advanced usage/telemetry controls.
+```shell
 
-- `nginxGateway` (controller)
-  - `gatewayClassName`: Name of the GatewayClass to install (default `nginx`).
-  - `gatewayControllerName`: Controller name (`gateway.nginx.org/nginx-gateway-controller`).
-  - `image`: Repository/tag/pullPolicy (`ghcr.io/nginx/nginx-gateway-fabric:2.2.0-ubi` recommended for OpenShift).
-  - `replicas`: Desired controller replica count.
-  - `metrics`:
-    - `enable`: Expose controller metrics (default true).
-    - `port`: Default `9113`.
-    - `secure`: If true, expose metrics over TLS.
-  - `readinessProbe`:
-    - `enable`: Default true.
-    - `initialDelaySeconds`: Default 3 seconds.
-    - `port`: Default `8081`.
-  - `leaderElection`:
-    - `enable`: Default true.
-    - `lockName`: Optional. Leave empty for automatic naming.
-  - `productTelemetry.enable`: Enable product telemetry (default true).
-  - `gwAPIExperimentalFeatures.enable`: Enable Gateway API experimental features (default false).
-  - `config.logging.level`: Controller logging verbosity (default `info`).
-  - `configAnnotations`: Extra annotations to inject into managed resources.
-  - `extraVolumes` / `extraVolumeMounts`: Mount additional volumes into the controller.
-  - `gatewayClassAnnotations`: Annotate the installed GatewayClass.
-  - `labels`, `podAnnotations`: Customize labels and annotations on controller Pods.
-  - `service`: Customize the controller Service (annotations/labels).
-  - `serviceAccount`: Customize the controller service account and its annotations.
-  - `imagePullSecret` / `imagePullSecrets`: Private registry credentials.
-  - `snippetsFilters.enable`: Enable filters around user-provided NGINX config snippets (default false).
-  - `terminationGracePeriodSeconds`: Default 30 seconds.
-  - `topologySpreadConstraints`, `tolerations`, `nodeSelector`, `affinity`: Pod scheduling controls.
+```
 
 ## Pod scheduling and security (OpenShift)
 
@@ -355,9 +251,4 @@ Ensure you have a Service and Deployment named `echo` that expose port 8080. If 
 ## References
 
 - Red Hat Catalog (https://catalog.redhat.com/en)
-- NGINX Gateway Fabric custom resource sample (https://github.com/nginx/nginx-gateway-fabric/blob/main/operators/config/samples/gateway_v1alpha1_nginxgatewayfabric.yaml)
-
-## Notes
-
-- The Operator-specific options listed above reflect the fields exposed in the `NginxGatewayFabric` custom resource and their defaults in the referenced sample. Your environment and Operator channel may introduce additional fields or defaults. Always review the installed Operator’s CRD and documentation in your cluster for the authoritative schema.
-- If your OpenShift environment does not support external LoadBalancer, prefer Route-based exposure. Configure TLS policies (edge/reencrypt/passthrough) consistent with your application’s needs.
+- NGINX Gateway Fabric custom resource sample (https://github.com/nginx/nginx-gateway-fabric/blob/{{< version-ngf >}}/operators/config/samples/gateway_v1alpha1_nginxgatewayfabric.yaml)
