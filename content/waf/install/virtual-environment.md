@@ -260,9 +260,6 @@ http {
 
     #gzip  on;
 
-    # F5 WAF for NGINX
-    app_protect_enforcer_address 127.0.0.1:50000;
-
     include /etc/nginx/conf.d/*.conf;
 }
 ```
