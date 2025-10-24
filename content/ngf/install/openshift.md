@@ -10,7 +10,7 @@ nd-docs: DOCS-1851
 
 ## Overview
 
-This guide details how to install F5 NGINX Gateway Fabric on Red Hat OpenShift through OperatorHub and configure it with the `NginxGatewayFabric` custom resource.
+This guide details how to install F5 NGINX Gateway Fabric on Red Hat OpenShift through OperatorHub. You can then configure it with the `NginxGatewayFabric` custom resource.
 
 ## Before you begin
 
@@ -66,9 +66,9 @@ oc create secret tls server-tls \
   -n nginx-gateway-fabric
 ```
 
-### Integrate with NGINX One (optional)
+### Integrate with NGINX One Console (optional)
 
-If you want NGINX Gateway Fabric to connect to NGINX One, create a secret for the dataplane key (replace VALUE with your key).
+If you want to use NGINX One Console to monitor NGINX Gateway Fabric, create a secret for the dataplane key (replace VALUE with your key).
 
 ```shell
 oc create secret generic nginxone-dataplane-key \
@@ -93,7 +93,7 @@ oc create secret generic nplus-license \
 
 ### Create the NginxGatewayFabric custom resource
 
-Create a minimal `NginxGatewayFabric` custom resource for OpenShift.
+Create a minimal `NginxGatewayFabric` custom resource for OpenShift. Include this code in a file named `nginx-gateway-fabric.yaml`.
 
 ```yaml
    apiVersion: gateway.nginx.org/v1alpha1
@@ -175,7 +175,7 @@ oc logs deploy/ngf-nginx -n nginx-gateway-fabric
 
 ### Perform a functional check (optional)
 
-9. Create a simple Gateway and HTTPRoute to validate routing:
+Create a Gateway and HTTPRoute to validate routing:
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
