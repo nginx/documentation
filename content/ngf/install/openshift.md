@@ -10,245 +10,206 @@ nd-docs: DOCS-1851
 
 ## Overview
 
-This guide explains how to install F5 NGINX Gateway Fabric (NGF) on Red Hat OpenShift through OperatorHub and configure it with the `NginxGatewayFabric` custom resource. 
+Use this guide to install F5 NGINX Gateway Fabric (NGF) on Red Hat OpenShift through OperatorHub and configure it with the `NginxGatewayFabric` custom resource. Install NGF with OperatorHub when you want lifecycle management integrated into OpenShift and a straightforward, recommended path to deploy NGF components.
 
-On this page
+## Before you begin
 
-- Prerequisites for OpenShift
-- Install NGINX Gateway Fabric Operator from OperatorHub
-- Create the NginxGatewayFabric custom resource
-- Review OpenShift considerations (images, service exposure, SCC)
-- Configure operator options in the custom resource
-- Validate the installation and troubleshoot issues
-
-## Prerequisites
+Ensure you have:
 
 - A running Red Hat OpenShift cluster with cluster administrator privileges.
-- Access to OperatorHub in the OpenShift Web Console.
-- The oc command-line tool is installed, and you are logged in to your cluster.
 - Ability to pull images from `ghcr.io` (or a mirrored registry if required by your environment).
-- Optional:
+- A decided network exposure model:
+  - LoadBalancer Services (recommended where available), or
+  - OpenShift Routes and NodePorts (if a LoadBalancer is not available).
+
+- Optional integrations
   - F5 NGINX One dataplane API key if you plan to integrate with NGINX One.
   - F5 NGINX Plus entitlements if you plan to run NGF with NGINX Plus.
-- Network exposure model decided:
-  - LoadBalancer Services (recommended where available)
-  - Or OpenShift Routes/NodePorts (if LoadBalancer is not available)
 
-### Review OpenShift support and images
+Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)-based images. Use the `-ubi` tags shown in the custom resource definition (CRD) examples. Defaults are compatible with OpenShift Security Context Constraints (SCCs) for non-root operation. If your cluster enforces custom SCCs or policies, bind the appropriate SCC to NGF service accounts.
 
-NGF provides first-class OpenShift support with Universal Base Image (UBI)-based images. Use the `-ubi` tags shown in the custom resource definition (CRD) examples below. Security constraints, such as running as non-root, are handled by defaults compatible with OpenShift Security Context Constraints (SCCs) in most environments. If your cluster enforces custom SCCs or policies, see the "Pod scheduling and security" options under operator-specific configuration.
+## Steps
 
-## Install NGINX Gateway Fabric Operator from OperatorHub
+### Install NGINX Gateway Fabric Operator from OperatorHub
 
-1. Go to the Red Hat Catalog: https://catalog.redhat.com/en
-2. Search for "NGINX Gateway Fabric Operator".
-3. Select NGINX Gateway Fabric Operator (provider: F5, Inc.).
-4. Select **Deploy & use**.
-5. Choose the appropriate architecture and release tag.
-6. Complete the installation. Wait until the Operator status shows Installed.
+1. To install the Operator, do the following:
+   1.1. Go to the Red Hat Catalog: https://catalog.redhat.com/en  
+   1.2. Search for "NGINX Gateway Fabric Operator".  
+   1.3. Select NGINX Gateway Fabric Operator (provider: F5, Inc.).  
+   1.4. Select **Deploy & use**.  
+   1.5. Choose the appropriate architecture and release tag.  
+   1.6. Complete the installation. Wait until the Operator status shows Installed.
 
-If you prefer CLI-based installation (Subscription/OperatorGroup), consult OpenShift documentation for creating `OperatorGroup` and `Subscription` resources in your chosen namespace. The Web Console path above is recommended.
+   Result: The NGF Operator is installed and available in your cluster.
 
-## Create a project and required secrets
+### Create a project
 
-Create a dedicated project (namespace) for NGF components, for example:
+2. Create a dedicated project (namespace) for NGF components.
+   ```bash
+   oc new-project nginx-gateway-fabric
+   ```
 
-```shell
-oc new-project nginx-gateway-fabric
-```
+   Result: The `nginx-gateway-fabric` project is created.
 
-## TLS secrets for internal communication
+### Create TLS secrets for internal communication (optional)
 
-NGF can generate internal certificates for agent/server by default, or you can provide your own secrets.
+3. If you want NGF to auto-generate internal certificates, skip this step. To provide your own TLS secrets, create the following:
+   ```bash
+   # Agent TLS (used by internal agent)
+   oc create secret tls agent-tls \
+     --cert=agent.crt \
+     --key=agent.key \
+     -n nginx-gateway-fabric
 
-Option A: Let NGF generate the certificates
-- Use the default `certGenerator` settings from the sample custom resource (no additional steps needed).
-- `certGenerator.overwrite: false` means NGF will not overwrite existing secrets if present.
+   # Server TLS (used by internal server)
+   oc create secret tls server-tls \
+     --cert=server.crt \
+     --key=server.key \
+     -n nginx-gateway-fabric
+   ```
 
-Option B: Provide your own secrets (example)
-```shell
-# Agent TLS (used by internal agent)
-oc create secret tls agent-tls \
-  --cert=agent.crt \
-  --key=agent.key \
-  -n nginx-gateway-fabric
+   Result: The `agent-tls` and `server-tls` secrets are available in the project.
 
-# Server TLS (used by internal server)
-oc create secret tls server-tls \
-  --cert=server.crt \
-  --key=server.key \
-  -n nginx-gateway-fabric
-```
+### Integrate with NGINX One (optional)
 
-## Optional: Integrate with NGINX One
+4. If you want NGF to connect to NGINX One, create a secret for the dataplane key (replace VALUE with your key).
+   ```bash
+   oc create secret generic nginxone-dataplane-key \
+     --from-literal=key=VALUE \
+     -n nginx-gateway-fabric
+   ```
+   Next, reference this secret in `spec.nginx.nginxOneConsole.dataplaneKeySecretName`.
 
-If you want NGF to connect to NGINX One, create a secret for the dataplane key (replace VALUE with your key):
+   Result: NGF can authenticate to NGINX One using the dataplane key.
 
-```shell
-oc create secret generic nginxone-dataplane-key \
-  --from-literal=key=VALUE \
-  -n nginx-gateway-fabric
-```
+### Configure NGINX Plus licensing (optional)
 
-You will reference this secret in the `spec.nginx.nginxOneConsole.dataplaneKeySecretName` field.
+5. If you plan to use NGINX Plus, set `spec.nginx.plus: true`, add image pull credentials, and create a license secret if needed.
+   ```bash
+   # Example license secret name referenced by usage.secretName
+   oc create secret generic nplus-license \
+     --from-file=nginx-repo.crt=/path/to/nginx-repo.crt \
+     --from-file=nginx-repo.key=/path/to/nginx-repo.key \
+     -n nginx-gateway-fabric
+   ```
 
-## Optional: NGINX Plus licensing
+   Result: NGF is configured to use NGINX Plus images and license artifacts.
 
-If you plan to use NGINX Plus, you will need to:
-- Set `spec.nginx.plus: true`
-- Provide appropriate image repository/registry credentials in `imagePullSecret(s)`
-- Optionally create a secret for license and entitlement artifacts (name by convention below):
+### Create the NginxGatewayFabric custom resource
 
-```shell
-# Example license secret name referenced by usage.secretName
-oc create secret generic nplus-license \
-  --from-file=nginx-repo.crt=/path/to/nginx-repo.crt \
-  --from-file=nginx-repo.key=/path/to/nginx-repo.key \
-  -n nginx-gateway-fabric
-```
+6. Create a minimal `NginxGatewayFabric` custom resource for OpenShift.
+   ```yaml
+   apiVersion: gateway.nginx.org/v1alpha1
+   kind: NginxGatewayFabric
+   metadata:
+     name: ngf
+     namespace: nginx-gateway-fabric
+   spec:
+     # Data plane (NGINX)
+     nginx:
+       replicas: 2
+       image:
+         repository: ghcr.io/nginx/nginx-gateway-fabric/nginx
+         tag: 2.2.0-ubi
+         pullPolicy: IfNotPresent
 
-Consult your subscription details for the exact files/registry access used for NGINX Plus images in your environment.
+     # Controller
+     nginxGateway:
+       gatewayClassName: nginx
+       gatewayControllerName: gateway.nginx.org/nginx-gateway-controller
+       image:
+         repository: ghcr.io/nginx/nginx-gateway-fabric
+         tag: 2.2.0-ubi
+         pullPolicy: IfNotPresent
+       replicas: 1
+   ```
+   Apply the custom resource:
+   ```bash
+   oc apply -f nginx-gateway-fabric.yaml
+   ```
 
-## Create the NginxGatewayFabric custom resource
+   Result: The Operator reconciles the custom resource and provisions the NGF controller and data plane.
 
-Minimal example for OpenShift:
+### Configure exposure options for OpenShift (optional)
 
-```yaml
-apiVersion: gateway.nginx.org/v1alpha1
-kind: NginxGatewayFabric
-metadata:
-  name: ngf
-  namespace: nginx-gateway-fabric
-spec:
-  # Data plane (NGINX)
-  nginx:
-    replicas: 2
-    image:
-      repository: ghcr.io/nginx/nginx-gateway-fabric/nginx
-      tag: 2.2.0-ubi
-      pullPolicy: IfNotPresent
+7. Choose one exposure option:
 
-  # Controller
-  nginxGateway:
-    gatewayClassName: nginx
-    gatewayControllerName: gateway.nginx.org/nginx-gateway-controller
-    image:
-      repository: ghcr.io/nginx/nginx-gateway-fabric
-      tag: 2.2.0-ubi
-      pullPolicy: IfNotPresent
-    replicas: 1
-```
+   - If a LoadBalancer is available, set `spec.nginx.service.type: LoadBalancer`. Optionally set:
+     - `externalTrafficPolicy: Local` to preserve client source IPs.
+     - `loadBalancerClass`, `loadBalancerIP`, and `loadBalancerSourceRanges` per your environment.
 
-Apply the custom resource:
+   - If a LoadBalancer is not available, set `spec.nginx.service.type: NodePort`, then create an OpenShift Route to the NGF front-end Service (for HTTP/HTTPS traffic):
+     ```bash
+     oc create route edge ngf \
+       --service=nginx-gateway-fabric-nginx \
+       --port=http \
+       -n nginx-gateway-fabric
+     ```
+     For TLS passthrough, add `--passthrough` and target the appropriate Service port.
 
-```shell
-oc apply -f nginx-gateway-fabric.yaml
-```
+   Result: NGF is reachable according to your cluster’s exposure model.
 
-Wait for the Operator to reconcile. It will provision the NGF controller and data plane deployments, services, and related resources.
+### Validate the installation
 
-## Configure exposure options for OpenShift
+8. Verify that deployments and services are running, and confirm the GatewayClass:
+   ```bash
+   oc get pods -n nginx-gateway-fabric
+   oc get svc -n nginx-gateway-fabric
+   oc get gatewayclass
+   ```
+   If troubleshooting is required, review logs:
+   ```bash
+   # Controller logs
+   oc logs deploy/ngf-nginx-gateway -n nginx-gateway-fabric
 
-- LoadBalancer Service (preferred where available): Use `spec.nginx.service.type: LoadBalancer`. You can also configure:
-  - `externalTrafficPolicy: Local` to preserve source IPs (useful for client IP-based policies).
-  - `loadBalancerClass`, `loadBalancerIP`, and `loadBalancerSourceRanges` per your environment.
+   # Data plane logs
+   oc logs deploy/ngf-nginx -n nginx-gateway-fabric
+   ```
 
-- Routes/NodePort (if a LoadBalancer is not available):
-  - Set `spec.nginx.service.type: NodePort` and create an OpenShift Route to the NGF front-end service (for HTTP/HTTPS traffic).
-  - Example (edge termination route; replace service name and ports appropriately):
-    ```shell
-    oc create route edge ngf \
-      --service=nginx-gateway-fabric-nginx \
-      --port=http \
-      -n nginx-gateway-fabric
-    ```
-  - For TLS passthrough, use `--passthrough` and target the appropriate service port.
+   Result: NGF components are running and reporting readiness.
 
-## Operator-specific configuration options (NginxGatewayFabric spec)
+### Perform a functional check (optional)
 
-To view all Operator-specific configurations avaialbe, run this command
+9. Create a simple Gateway and HTTPRoute to validate routing:
+   ```yaml
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: Gateway
+   metadata:
+     name: http
+     namespace: nginx-gateway-fabric
+   spec:
+     gatewayClassName: nginx
+     listeners:
+       - name: http
+         port: 80
+         protocol: HTTP
+         hostname: example.com
+         allowedRoutes:
+           namespaces:
+             from: Same
+   ---
+   apiVersion: gateway.networking.k8s.io/v1
+   kind: HTTPRoute
+   metadata:
+     name: echo
+     namespace: nginx-gateway-fabric
+   spec:
+     parentRefs:
+       - name: http
+     hostnames:
+       - example.com
+     rules:
+       - backendRefs:
+           - name: echo
+             port: 8080
+   ```
+   Ensure you have a Service and Deployment named `echo` that expose port 8080. If you are using a LoadBalancer Service, send a request to the load balancer IP address. Otherwise, use an OpenShift Route as configured.
 
-```shell
-oc explain NginxGatewayFabric
-```
+   Result: Requests to `example.com` route to the `echo` backend through NGF.
 
-Example output:
+## See also
 
-```shell
-
-```
-
-## Pod scheduling and security (OpenShift)
-
-- Use `nodeSelector`, `tolerations`, and `topologySpreadConstraints` to adhere to your cluster’s workload placement policies.
-- OpenShift Security Context Constraints (SCCs) typically require running as non-root. NGF UBI images are compatible; avoid setting hostPorts unless you have an SCC that permits them.
-- If your environment enforces custom SCCs, bind the appropriate SCC to the NGF service accounts and use `pod`/`serviceAccount` fields to reference them.
-
-## Validate the installation
-
-After applying the custom resource, verify that deployments and services are running:
-
-```shell
-oc get pods -n nginx-gateway-fabric
-oc get svc -n nginx-gateway-fabric
-```
-
-Check the installed GatewayClass:
-
-```shell
-oc get gatewayclass
-```
-
-Logs for troubleshooting:
-
-```shell
-# Controller logs
-oc logs deploy/ngf-nginx-gateway -n nginx-gateway-fabric
-
-# Data plane logs
-oc logs deploy/ngf-nginx -n nginx-gateway-fabric
-```
-
-## Perform a functional check (optional)
-
-Create a simple Gateway and HTTPRoute to validate routing:
-
-```yaml
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: http
-  namespace: nginx-gateway-fabric
-spec:
-  gatewayClassName: nginx
-  listeners:
-    - name: http
-      port: 80
-      protocol: HTTP
-      hostname: example.com
-      allowedRoutes:
-        namespaces:
-          from: Same
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: echo
-  namespace: nginx-gateway-fabric
-spec:
-  parentRefs:
-    - name: http
-  hostnames:
-    - example.com
-  rules:
-    - backendRefs:
-        - name: echo
-          port: 8080
-```
-
-Ensure you have a Service and Deployment named `echo` that expose port 8080. If you are using a LoadBalancer Service, send a request to the load balancer IP address. Otherwise, use an OpenShift Route as configured.
-
-## References
-
+- Install NGINX Gateway Fabric with Helm: /ngf/install/helm/
+- Secure certificates for NGF: /ngf/install/secure-certificates/
 - Red Hat Catalog (https://catalog.redhat.com/en)
 - NGINX Gateway Fabric custom resource sample (https://github.com/nginx/nginx-gateway-fabric/blob/{{< version-ngf >}}/operators/config/samples/gateway_v1alpha1_nginxgatewayfabric.yaml)
