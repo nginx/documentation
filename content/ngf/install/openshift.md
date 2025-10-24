@@ -45,6 +45,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Create a project
 
 2. Create a dedicated project (namespace) for NGF components.
+
    ```shell
    oc new-project nginx-gateway-fabric
    ```
@@ -54,6 +55,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Create TLS secrets for internal communication (optional)
 
 3. If you want NGF to auto-generate internal certificates, skip this step. To provide your own TLS secrets, create the following:
+
    ```shell
    # Agent TLS (used by internal agent)
    oc create secret tls agent-tls \
@@ -73,11 +75,13 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Integrate with NGINX One (optional)
 
 4. If you want NGF to connect to NGINX One, create a secret for the dataplane key (replace VALUE with your key).
+
    ```shell
    oc create secret generic nginxone-dataplane-key \
      --from-literal=key=VALUE \
      -n nginx-gateway-fabric
    ```
+
    Next, reference this secret in `spec.nginx.nginxOneConsole.dataplaneKeySecretName`.
 
    Result: NGF can authenticate to NGINX One using the dataplane key.
@@ -85,6 +89,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Configure NGINX Plus licensing (optional)
 
 5. If you plan to use NGINX Plus, set `spec.nginx.plus: true`, add image pull credentials, and create a license secret if needed.
+
    ```shell
    # Example license secret name referenced by usage.secretName
    oc create secret generic nplus-license \
@@ -98,6 +103,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Create the NginxGatewayFabric custom resource
 
 6. Create a minimal `NginxGatewayFabric` custom resource for OpenShift.
+
    ```yaml
    apiVersion: gateway.nginx.org/v1alpha1
    kind: NginxGatewayFabric
@@ -123,7 +129,9 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
          pullPolicy: IfNotPresent
        replicas: 1
    ```
+
    Apply the custom resource:
+
    ```shell
    oc apply -f nginx-gateway-fabric.yaml
    ```
@@ -139,12 +147,14 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
      - `loadBalancerClass`, `loadBalancerIP`, and `loadBalancerSourceRanges` per your environment.
 
    - If a LoadBalancer is not available, set `spec.nginx.service.type: NodePort`, then create an OpenShift Route to the NGF front-end Service (for HTTP/HTTPS traffic):
+
      ```shell
      oc create route edge ngf \
        --service=nginx-gateway-fabric-nginx \
        --port=http \
        -n nginx-gateway-fabric
      ```
+
      For TLS passthrough, add `--passthrough` and target the appropriate Service port.
 
    Result: NGF is reachable according to your cluster’s exposure model.
@@ -152,12 +162,15 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Validate the installation
 
 8. Verify that deployments and services are running, and confirm the GatewayClass:
+
    ```shell
    oc get pods -n nginx-gateway-fabric
    oc get svc -n nginx-gateway-fabric
    oc get gatewayclass
    ```
+
    If troubleshooting is required, review logs:
+
    ```shell
    # Controller logs
    oc logs deploy/ngf-nginx-gateway -n nginx-gateway-fabric
@@ -171,6 +184,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
 ### Perform a functional check (optional)
 
 9. Create a simple Gateway and HTTPRoute to validate routing:
+
    ```yaml
    apiVersion: gateway.networking.k8s.io/v1
    kind: Gateway
@@ -203,6 +217,7 @@ Note: NGF provides first-class OpenShift support with Universal Base Image (UBI)
            - name: echo
              port: 8080
    ```
+
    Ensure you have a Service and Deployment named `echo` that expose port 8080. If you are using a LoadBalancer Service, send a request to the load balancer IP address. Otherwise, use an OpenShift Route as configured.
 
    Result: Requests to `example.com` route to the `echo` backend through NGF.
