@@ -101,7 +101,7 @@ jobs:
     needs: generate-coveo-search-token
     steps:
       - name: Download Coveo search token
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
 
       - name: View files
         run: ls -R
