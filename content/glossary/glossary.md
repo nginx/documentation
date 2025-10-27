@@ -1,13 +1,13 @@
 ---
 description: ''
-title: F5 NGINX Glossary
+title: Glossary
 nd-docs: DOCS-602
 weight: 1000
 toc: true
 nd-content-type: reference
 ---
 
-This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
+This glossary defines terms used in the F5 NGINX and F5 Distributed Cloud.
 
 ## General terms
 
