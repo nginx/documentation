@@ -50,3 +50,11 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
     Managed NGINX service for your Google Cloud application stack.
   {{</card >}}
 {{</card-section>}}
+
+{{<card-section showAsCards="true" title="Glossary">}}
+  {{<card title="F5 NGINX Glossary" titleUrl="/glossary/glossary/" brandIcon="NGINX-product-icon.svg" isLanding="true">}}
+  Glossary of common terms and definitions for all F5 NGINX products.
+  {{</card >}}
+{{</card-section>}}
+
+
