@@ -13,7 +13,7 @@ This guide explains how to configure the F5 WAF for NGINX security features.
 
 ## Configure
 
-To use NGINX App Protect apply the following changes to the NGINX config file.
+To use F5 WAF for NGINX apply the following changes to the NGINX config file.
 
 1. Load the F5 WAF for NGINX module on the main context:
 
@@ -27,7 +27,7 @@ load_module modules/ngx_http_app_protect_module.so;
 app_protect_enforcer_address 127.0.0.1:50000;
 ```
 
-{{< call-out "note" >}} The app_protect_enforcer_address directive is a required directive for Nginx App Protect to work and must match 127.0.0.1:50000{{< /call-out >}}
+{{< call-out "note" >}} The app_protect_enforcer_address directive is a required directive for F5 WAF for NGINX to work and must match 127.0.0.1:50000{{< /call-out >}}
 
 
 3. Enable F5 WAF for NGINX with the `app_protect_enable` directives in the appropriate scope. The `app_protect_enable` directive may be set in the `http`, `server`, and `location` contexts.
@@ -44,7 +44,7 @@ app_protect_enable on;
 app_protect_policy_file /etc/app_protect/conf/NginxDefaultPolicy.json;
 ```
 
-Sample Config with App Protect configured:
+Sample Config with F5 WAF for NGINX configured:
 
 ```nginx
 user nginx;
@@ -85,8 +85,8 @@ http {
 
 ## Precompiled Policies
 
-NGINXaaS for Azure ships with the two reference policies (Default and Strict) supported in NGINX App Protect. These policies are supported in both the blocking and transparent enforcement modes.
-For more information on these policies refer the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
+NGINXaaS for Azure ships with the two reference policies (Default and Strict) supported in F5 WAF for NGINX. These policies are supported in both the blocking and transparent enforcement modes.
+For more information on these policies refer the F5 WAF for NGINX [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
 
 The following table shows the path to the precompiled policy file that needs to be used with the `app_protect_policy_file` directive:
 
@@ -99,11 +99,11 @@ The following table shows the path to the precompiled policy file that needs to 
   | Strict                      | Transparent                  | /etc/app_protect/conf/NginxStrictPolicy_transparent.json |
 {{< /table >}}
 
-To view the contents of the available security policies, navigate to the azure portal and select the **Security Policies** tab in the App Protect section.
+To view the contents of the available security policies, navigate to the azure portal and select the **Security Policies** tab in the F5 WAF for NGINX section.
 
 ## Custom policies
 
-NGINXaas for Azure also supports custom security policies. You can create and modify custom security policies to deploy to NGINX App Protect Instances using the API or Azure Portal.
+NGINXaas for Azure also supports custom security policies. You can create and modify custom security policies to deploy to F5 WAF for NGINX Instances using the API or Azure Portal.
 
 ### Manage custom policies
 
@@ -121,7 +121,7 @@ In the policy editor:
     - The **File path** must start with the prefix "/etc/app_protect/conf/".
     - The **File path** extension must be ".json".
 
-After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the NGINX App Protect [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
+After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the F5 WAF for NGINX [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
 
 {{< call-out "note" >}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{< /call-out >}}
 

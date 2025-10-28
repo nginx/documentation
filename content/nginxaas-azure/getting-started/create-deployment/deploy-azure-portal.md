@@ -65,22 +65,23 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
    - If you plan on using an IPv6 address on the frontend, make sure the subnet is dual-stack, i.e., the subnet has both IPv4 and IPv6 address spaces. Attempting to use a subnet that is not dual-stack will cause deployment creation to fail.
    - Changes to a virtual network's DNS settings will not be applied automatically to your NGINXaaS deployment. To ensure DNS settings are applied, you must add any custom DNS servers to the VNET's DNS settings before creating an NGINXaaS deployment. As a workaround for existing deployments, we recommend using the [`resolver` directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) to explicitly specify your name server(s) and the [`resolve` parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) to automatically re-resolve the domain name of the server without restarting NGINX.
 
-      {{< details summary="Resolver directive example" >}}
+   {{<details summary="Resolver directive example">}}
 
-      ```nginx
-      resolver 10.0.0.2 valid=10s;
-      upstream backends {
-         zone backends 64k;
-         server backends.example.com:8080 resolve;
-      }
+   ```nginx
+   resolver 10.0.0.2 valid=10s;
+   upstream backends {
+      zone backends 64k;
+      server backends.example.com:8080 resolve;
+   }
 
-      server {
-         location / {
-            proxy_pass http://backends;
-         }
+   server {
+      location / {
+         proxy_pass http://backends;
       }
-      ```
-      {{< /details >}}
+   }
+   ```
+      
+   {{</details>}}
 
 
 1. Next, select **Tags**.
