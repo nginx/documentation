@@ -127,8 +127,6 @@ Apply the custom resource:
 oc apply -f nginx-gateway-fabric.yaml
 ```
 
-Result: The Operator reconciles the custom resource and provisions the NGINX Gateway Fabric controller and data plane.
-
 ### Configure exposure options for OpenShift (optional)
 
 Choose one exposure option:
