@@ -14,6 +14,45 @@ This document lists and describes the known issues and possible workarounds in F
 
 ## 2.20.0
 
+Oct 28, 2025
+
+### {{% icon-bug %}} Upload of license server acknowledgement results in continuous UI loading in NIM {#46235}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46179 | Fixed  |
+{{</bootstrap-table>}}
+
+#### Description
+
+When uploading the acknowledgement file from F5 license servers to NGINX Instance Manager (NIM), the UI might continue to display a loading state indefinitely.
+This issue occurs due to the nms-integrations service not refreshing properly after the upload process completes.
+
+#### Workaround
+For affected users, the following steps can be taken to restore normal UI operation:
+
+1. For VM-based Instances: Restart the nms-integrations service manually.
+
+   ```shell
+   sudo systemctl restart nms-integrations
+   ```
+
+2. For Kubernetes-based Deployments: Delete the integrations pod to allow Kubernetes to automatically create a new one.
+   Run the delete command:
+   ```shell
+   kubectl delete pod integrations-*-* -n <namespace>
+   ```
+   💡 Replace <namespace> with the namespace where NIM is deployed (for example: nim or default).
+
+   After a few seconds, check that a new integrations pod has been created and is running:
+   ```shell
+   kubectl get pods -n <namespace> | grep integrations
+   ```
+
+After the service or pod restart, the UI will resume normal operation and the upload will complete successfully.
+---
+
 June 16, 2025
 
 ### {{% icon-bug %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
