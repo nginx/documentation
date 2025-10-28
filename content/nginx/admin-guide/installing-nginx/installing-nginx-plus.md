@@ -98,11 +98,7 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
     ```
 
-    {{< details summary="Pin NGINX Plus to a specific version" >}}
-    
-    {{< call-out "note">}}
-        {{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}
-    {{< /call-out >}}
+    {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}{{< /call-out >}}
 
     {{< /details >}}
 
@@ -138,13 +134,7 @@ This article explains how to install NGINX Plus on different operating systems,
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
     ```
 
-    {{< details summary="Pin NGINX Plus to a specific version" >}}
-    
-    {{< call-out "note">}}
-        {{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}   
-    {{< /call-out >}}
-    
-    {{< /details >}}
+    {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
@@ -222,13 +212,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
         | sudo tee /etc/apt/sources.list.d/nginx-plus.list
         ```
 
-    {{< details summary="Pin NGINX Plus to a specific version" >}}
-    
-    {{< call-out "note">}}
-        {{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}
-    {{< /call-out >}}
-    
-    {{< /details >}}
+    {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. Download the **nginx-plus** apt configuration to **/etc/apt/apt.conf.d**:
 
