@@ -228,7 +228,7 @@ Here are two examples of how these additions could look in configuration files:
 
 The default path for this file is `/etc/nginx/nginx.conf`.
 
-```nginx {hl_lines=[5, 33]}
+```nginx {hl_lines=[5]}
 user  nginx;
 worker_processes  auto;
 
@@ -270,7 +270,7 @@ http {
 
 The default path for this file is `/etc/nginx/conf.d/default.conf`.
 
-```nginx {hl_lines=[10]}
+```nginx {hl_lines=[9]}
 server {
     listen 80;
     server_name domain.com;
