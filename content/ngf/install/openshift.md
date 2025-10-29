@@ -25,18 +25,18 @@ Before starting, we recommend you have the following:
 
 NGINX Gateway Fabric provides first-class OpenShift support with Universal Base Image (UBI)-based images. Use the `-ubi` tags shown in the custom resource definition (CRD) examples. Defaults are compatible with OpenShift Security Context Constraints (SCCs) for non-root operation. If your cluster enforces custom SCCs or policies, bind the appropriate SCC to NGINX Gateway Fabric service accounts.
 
-## Steps
+This section covers the necessary steps to have NGINX Gateway Fabric fully running in an OpenShift environment when installing through the OperatorHub
 
-### Install NGINX Gateway Fabric Operator from OperatorHub
+## Install NGINX Gateway Fabric Operator from OperatorHub
 
   1. Navigate to the Red Hat Catalog: https://catalog.redhat.com/en  
-  2. Search for "NGINX Gateway Fabric Operator" in the searchbar at the top
-  3. Select NGINX Gateway Fabric Operator
-  4. Select **Deploy & use**. 
-  5. Choose the appropriate architecture and release tag
-  6. Complete the installation. Wait until the Operator status shows Installed
+  1. Search for "NGINX Gateway Fabric Operator" in the searchbar at the top
+  1. Select NGINX Gateway Fabric Operator
+  1. Select **Deploy & use**. 
+  1. Choose the appropriate architecture and release tag
+  1. Complete the installation. Wait until the Operator status shows Installed
 
-### Create a project
+## Create a project
 
 In your cluster, create a dedicated project (namespace) for NGINX Gateway Fabric components.
 
@@ -44,7 +44,7 @@ In your cluster, create a dedicated project (namespace) for NGINX Gateway Fabric
 oc new-project nginx-gateway-fabric
 ```
 
-### Create TLS secrets for internal communication (optional)
+## Create TLS secrets for internal communication (optional)
 
 If you want NGINX Gateway Fabric to auto-generate internal certificates, skip this step. To provide your own TLS secrets, create the following:
 
@@ -66,7 +66,7 @@ oc create secret tls server-tls \
   -n nginx-gateway-fabric
 ```
 
-### Integrate with NGINX One Console (optional)
+## Integrate with NGINX One Console (optional)
 
 If you want to use NGINX One Console to monitor NGINX Gateway Fabric, create a secret for the dataplane key (replace VALUE with your key).
 
@@ -78,7 +78,7 @@ oc create secret generic nginxone-dataplane-key \
 
 Reference this secret in `spec.nginx.nginxOneConsole.dataplaneKeySecretName`.
 
-### Configure NGINX Plus licensing (optional)
+## Configure NGINX Plus licensing (optional)
 
 If you plan to use NGINX Plus, set `spec.nginx.plus: true`, add image pull credentials, and create a license secret if needed.
 
@@ -91,7 +91,7 @@ oc create secret generic nplus-license \
   -n nginx-gateway-fabric
 ```
 
-### Create the NginxGatewayFabric custom resource
+## Create the NginxGatewayFabric custom resource
 
 1. Navigate to the "Installed Operators" section and select the "NGINX Gateway Fabric" Operator
 1. To create a new `NginxGatewayFabric` resource, select the tab labeled "NginxGatewayFabric"
@@ -100,8 +100,7 @@ oc create secret generic nplus-license \
 1. You will now see a YAML configuration for the `NginxGatewayFabric` resource
 1. Near the bottom, press the "Create" button
 
-
-### Configure exposure options for OpenShift (optional)
+## Configure exposure options for OpenShift (optional)
 
 Choose one exposure option:
 
@@ -121,7 +120,7 @@ oc create route edge ngf \
 
 For TLS passthrough, add `--passthrough` and target the appropriate Service port.
 
-### Validate the installation
+## Validate the installation
 
 Verify that deployments and services are running, and confirm the GatewayClass:
 
@@ -145,7 +144,7 @@ Data plane logs
 oc logs deploy/ngf-nginx -n nginx-gateway-fabric
 ```
 
-### Perform a functional check (optional)
+## Perform a functional check (optional)
 
 Create a Gateway and HTTPRoute to validate routing:
 
