@@ -20,7 +20,7 @@ F5 NGINXaaS for Azure (NGINXaaS) can serve static content stored in Azure Blob S
 
 ### Step 1: Upload static files to the $web container
 
-Place your static files in the `$web` container in your storage account. This is the standard container used for static website hosting in Azure.
+Upload your static files to the `$web` container in your storage account. This is the standard container used for static website hosting in Azure.
 
 ### Step 2: Configure network access
 
@@ -40,7 +40,7 @@ Place your static files in the `$web` container in your storage account. This is
 4. Optionally, set an **Error document path** for 404 errors.
 5. Click **Save**.
 
-Note the **Primary endpoint** URL that appears after enabling static website hosting. You'll need this for your NGINX configuration.
+Note the **Primary endpoint** URL that appears after enabling static website hosting. You'll use this URL in your NGINX configuration.
 
 ## Configure NGINXaaS
 
@@ -99,10 +99,10 @@ Upload your NGINX configuration to your NGINXaaS deployment following the instru
 
 ## Verify traffic routing
 
-You can verify that requests are properly routed through your NGINXaaS deployment by checking the Azure Storage logs:
+You can verify that requests are properly routed through your NGINXaaS deployment by examining the Azure Storage logs:
 
 1. Enable logging for your storage account if not already enabled.
-2. In the storage logs, you should see requests coming from the private IP address of your NGINXaaS deployment, not from public Internet addresses.
+2. In the storage logs, you should see requests originating from the private IP address of your NGINXaaS deployment, not from public Internet addresses.
 
 ## Benefits of this approach
 
