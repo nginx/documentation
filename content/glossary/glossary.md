@@ -7,7 +7,7 @@ toc: true
 nd-content-type: reference
 ---
 
-This glossary defines terms used in the F5 NGINX and F5 Distributed Cloud.
+This glossary defines terms used in F5 NGINX.
 
 ## General terms
 
