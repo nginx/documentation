@@ -112,6 +112,10 @@ You can verify that requests are properly routed through your NGINXaaS deploymen
 - **Cost-effective**: Azure Blob Storage offers cost-effective storage for static content
 - **Global availability**: Leverage Azure's global infrastructure for content delivery
 
+## Security considerations
+
+In this example, we are using anonymous access to the blob storage, but if you want to increase security further, you can add authorization instead. This [Microsoft document](https://learn.microsoft.com/en-us/azure/storage/common/authorize-data-access?tabs=blobs#authorization-for-data-operations) shows the various ways you can authorize your requests to Azure Storage.
+
 ## Limitations
 
 - Requires network connectivity between your NGINXaaS deployment and the storage account
