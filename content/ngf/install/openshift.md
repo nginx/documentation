@@ -93,39 +93,13 @@ oc create secret generic nplus-license \
 
 ### Create the NginxGatewayFabric custom resource
 
-Create a minimal `NginxGatewayFabric` custom resource for OpenShift. Include this code in a file named `nginx-gateway-fabric.yaml`.
+1. Navigate to the "Installed Operators" section and select the "NGINX Gateway Fabric" Operator
+1. To create a new `NginxGatewayFabric` resource, select the tab labeled "NginxGatewayFabric"
+1. Next, select "Create NginxGatewayFabric"
+1. In this menue you will see "Forum view" and "YAML view". Select "YAML view"
+1. You will now see a YAML configuration for the `NginxGatewayFabric` resource
+1. Near the bottom, press the "Create" button
 
-```yaml
-   apiVersion: gateway.nginx.org/v1alpha1
-   kind: NginxGatewayFabric
-   metadata:
-     name: ngf
-     namespace: nginx-gateway-fabric
-   spec:
-     # Data plane (NGINX)
-     nginx:
-       replicas: 2
-       image:
-         repository: ghcr.io/nginx/nginx-gateway-fabric/nginx
-         tag: 2.2.0-ubi
-         pullPolicy: IfNotPresent
-
-     # Controller
-     nginxGateway:
-       gatewayClassName: nginx
-       gatewayControllerName: gateway.nginx.org/nginx-gateway-controller
-       image:
-         repository: ghcr.io/nginx/nginx-gateway-fabric
-         tag: 2.2.0-ubi
-         pullPolicy: IfNotPresent
-       replicas: 1
-   ```
-
-Apply the custom resource:
-
-```shell
-oc apply -f nginx-gateway-fabric.yaml
-```
 
 ### Configure exposure options for OpenShift (optional)
 
