@@ -113,6 +113,7 @@ Replace `<path-to-your-nginx-repo.key>` with the location of your client key and
 ```shell
 curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt>
 ```
+
 ```json
 {
   "name": "nap/waf-compiler",
@@ -245,7 +246,7 @@ There are ways to remediate them based on the context:
 | _Policy Bundles have differing global states_ | Recompile all of your bundles from scratch with your custom compiler. Bundles must be compiled with the same compiler: you cannot mix default and custom bundles. |
 | _Policy Bundles have differing cookie seeds_ | Recompile all of your bundles from scratch with your custom compiler. Bundles must be compiled with the same compiler: you cannot mix default and custom bundles. |
 | _Duplicate policy name found_ | Don't compile multiple policies with the same name, or one policy to multiple bundles. Each policy can be compiled once but a bundle can be re-used. |
-| _Duplicate logging profile name found | Don't compile the same logging profile to multiple bundles. Each profile can be compiled once but a bundle can be re-used. |
+| _Duplicate logging profile name found_ | Don't compile the same logging profile to multiple bundles. Each profile can be compiled once but a bundle can be re-used. |
 | _Timeout waiting for enforcer_ | Likely an internal issue: [contact Support]({{< ref "/waf/support.md" >}}) |
 {{< /table >}}
 
@@ -287,7 +288,6 @@ The global settings allows configuration of the following items:
 When deploying multiple scalability instances (Such as Kubernetes deployment replicas), ensure that all policy bundles are compiled with the same global settings and security updates.
 
 {{< /call-out >}}
-
 
 ## Using the compiler in a CI/CD process
 
