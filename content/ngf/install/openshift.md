@@ -32,7 +32,7 @@ This section covers the necessary steps to have NGINX Gateway Fabric fully runni
   1. Navigate to the Red Hat Catalog: https://catalog.redhat.com/en  
   1. Search for "NGINX Gateway Fabric Operator" in the searchbar at the top
   1. Select NGINX Gateway Fabric Operator
-  1. Select **Deploy & use**. 
+  1. Select **Deploy & use**
   1. Choose the appropriate architecture and release tag
   1. Complete the installation. Wait until the Operator status shows Installed
 
