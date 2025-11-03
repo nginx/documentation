@@ -66,6 +66,15 @@ oc create secret tls server-tls \
   -n nginx-gateway-fabric
 ```
 
+## Create the NginxGatewayFabric custom resource
+
+1. Navigate to the "Installed Operators" section and select the "NGINX Gateway Fabric" Operator
+1. To create a new `NginxGatewayFabric` resource, select the tab labeled "NginxGatewayFabric"
+1. Next, select "Create NginxGatewayFabric"
+1. In this menue you will see "Forum view" and "YAML view". Select "YAML view"
+1. You will now see a YAML configuration for the `NginxGatewayFabric` resource
+1. Near the bottom, press the "Create" button
+
 ## Integrate with NGINX One Console (optional)
 
 If you want to use NGINX One Console to monitor NGINX Gateway Fabric, create a secret for the dataplane key (replace VALUE with your key).
@@ -76,11 +85,11 @@ oc create secret generic nginxone-dataplane-key \
   -n nginx-gateway-fabric
 ```
 
-Reference this secret in `spec.nginx.nginxOneConsole.dataplaneKeySecretName`.
+Reference this secret in `spec.nginx.nginxOneConsole.dataplaneKeySecretName` in your `NginxGatewayFabric` resource.
 
 ## Configure NGINX Plus licensing (optional)
 
-If you plan to use NGINX Plus, set `spec.nginx.plus: true`, add image pull credentials, and create a license secret if needed.
+If you plan to use NGINX Plus, set `spec.nginx.plus: true` in your `NginxGatewayFabric` resource. Add image pull credentials, and create a license secret if needed.
 
 Example license secret name referenced by `usage.secretName`
 
@@ -90,15 +99,6 @@ oc create secret generic nplus-license \
   --from-file=nginx-repo.key=/path/to/nginx-repo.key \
   -n nginx-gateway-fabric
 ```
-
-## Create the NginxGatewayFabric custom resource
-
-1. Navigate to the "Installed Operators" section and select the "NGINX Gateway Fabric" Operator
-1. To create a new `NginxGatewayFabric` resource, select the tab labeled "NginxGatewayFabric"
-1. Next, select "Create NginxGatewayFabric"
-1. In this menue you will see "Forum view" and "YAML view". Select "YAML view"
-1. You will now see a YAML configuration for the `NginxGatewayFabric` resource
-1. Near the bottom, press the "Create" button
 
 ## Configure exposure options for OpenShift (optional)
 
