@@ -272,6 +272,48 @@ of a few arguments. {{< /call-out >}}
 
 ---
 
+## Configure the data plane log format
+
+NGINX records client requests immediately after each request is processed. You can use the `NginxProxy` resource to dynamically configure the access log format.
+
+The following command creates a basic `NginxProxy` that defines a custom log format `$remote_addr - [$time_local] "$request" $status $body_bytes_sent`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    logFormat:
+      name: custom_format
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
+    accessLog:
+      path: /dev/stdout
+      format: custom_format
+EOF
+```
+
+You can disable access logging entirely with the following configuration:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      path: off
+EOF
+```
+
+{{< call-out "note" >}} File destinations in `logging.accessLog.path` are not currently supported. Any value other than `off` is replaced with `/dev/stdout`. {{< /call-out >}}
+
+---
+
 ### Run NGINX Gateway Fabric with NGINX in debug mode
 
 To run NGINX Gateway Fabric with NGINX in debug mode, during [installation]({{< ref "/ngf/install/" >}}), follow these additional steps:
