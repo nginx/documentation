@@ -27,3 +27,5 @@
   products:
     - title: "NGINXaaS for Azure"
       url: "nginxaas/azure/"
+    - title: "NGINXaaS for Google Cloud"
+      url: "nginxaas/google/"

@@ -188,7 +188,7 @@ map $request_method $purge_method {
 }
 ```
 
-In this example, NGINX checks if the `PURGE` method is used in a request, and, if so, analyzes the client IP address. If the IP address is whitelisted, then the `$purge_method` is set to `$purge_allowed`: `1` permits purging, and `0` denies it.
+In this example, NGINX checks if the `PURGE` method is used in a request, and, if so, analyzes the client IP address. If the IP address is allowed to, then the `$purge_method` is set to `$purge_allowed`: `1` permits purging, and `0` denies it.
 
 <span id="purge_remove"></span>
 ### Completely Remove Files from the Cache

@@ -2,7 +2,6 @@
 title: Troubleshooting
 toc: true
 weight: 700
-docs: DOCS-000
 nd-docs: DOCS-1878
 ---
 

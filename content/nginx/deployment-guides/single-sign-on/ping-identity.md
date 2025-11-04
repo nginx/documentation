@@ -1,18 +1,16 @@
 ---
-description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Ping Identity as the identity provider (IdP).
-type:
-- how-to
-product: NGINX-PLUS
 title: Single Sign-On with Ping Identity
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Ping Identity as the identity provider (IdP).
 toc: true
 weight: 800
+nd-content-type: how-to
+nd-product: NPL
 nd-docs: DOCS-1684
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Ping Identity](https://www.pingidentity.com/en.html) (PingFederate or PingOne) as the Identity Provider (IdP), and NGINX Plus as the Relying Party.
 
 {{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
-
 
 ## Prerequisites
 
@@ -21,7 +19,6 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 - An NGINX Plus [subscription](https://www.f5.com/products/nginx/nginx-plus) and NGINX Plus [Release 35]({{< ref "nginx/releases.md#r35" >}}) or later. For installation instructions, see [Installing NGINX Plus](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
-
 
 ## Configure PingFederate or PingOne for Enterprise {#ping-create}
 
@@ -80,7 +77,8 @@ For PingFederate: `https://pingfederate.example.com:9031/<realm_path>/.well-know
    ```shell
    curl https://auth.pingone.com/<environment_id>/as/.well-known/openid-configuration | jq
    ```
-   where:
+
+   Where:
 
    - the `auth.pingone.com` is your PingOne server address (or your PingFederate server for on-premises)
 
@@ -91,7 +89,6 @@ For PingFederate: `https://pingfederate.example.com:9031/<realm_path>/.well-know
    - the `/.well-known/openid-configuration` is the default address for Ping Identity for document location
 
    - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
-
 
    The configuration metadata is returned in the JSON format:
 
@@ -112,7 +109,6 @@ For PingFederate: `https://pingfederate.example.com:9031/<realm_path>/.well-know
 
 {{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
-
 ## Set up NGINX Plus {#nginx-plus-setup}
 
 With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as the Rely Party (RP) application &mdash; a client service that verifies user identity.
@@ -122,6 +118,7 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
     ```shell
     nginx -v
     ```
+
     The output should match NGINX Plus Release 35 or later:
 
     ```none
@@ -182,8 +179,7 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
 
     - If the **userinfo** directive is set to `on`, NGINX Plus will fetch userinfo from Ping Identity and append the claims from userinfo to the `$oidc_claims_` variables.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate.
-
+    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate. {{< /call-out >}}
 
     ```nginx
     http {
@@ -292,7 +288,9 @@ With PingOne or PingFederate configured, you can enable OIDC on NGINX Plus. NGIN
         }
     }
     ```
+    
 12. Save the NGINX configuration file and reload the configuration:
+
     ```nginx
     nginx -s reload
     ```
@@ -371,18 +369,15 @@ http {
 
 4. Refresh `https://demo.example.com/` again. You should be redirected to Ping Identity for a fresh sign‑in, proving the session has been terminated.
 
-
 ## Legacy njs-based Ping Identity Solution {#legacy-njs-guide}
 
 If you are running NGINX Plus R33 and earlier or if you still need the njs-based solution, refer to the [Legacy njs-based Ping Identity Guide]({{< ref "nginx/deployment-guides/single-sign-on/oidc-njs/ping-identity.md" >}}) for details. The solution uses the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repository and NGINX JavaScript files.
-
 
 ## See Also
 
 - [NGINX Plus Native OIDC Module Reference documentation](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 
 - [Release Notes for NGINX Plus R35]({{< ref "nginx/releases.md#r35" >}})
-
 
 ## Revision History
 

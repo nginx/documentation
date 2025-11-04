@@ -2,22 +2,18 @@
 title: Release notes
 weight: 100
 toc: true
-type: reference
-product: NIM
+nd-content-type: reference
+nd-product: NIM
 nd-docs: DOCS-938
 ---
 
 The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
 
-<details open>
-<summary><i class="fa-solid fa-info-circle"></i> Support for F5 WAF for NGINX</summary>
+{{< details summary="Support for F5 WAF for NGINX" >}}
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 
-</details>
-
-
----
+{{< /details >}}
 
 ## 2.20.0
 
@@ -1100,7 +1096,7 @@ This release includes the following security updates:
 
   #### Mitigation
 
-  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nginx-one/agent/configure-instances/configuration-overview/">}}) section of the documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
 
   #### Fixed in
 
@@ -1636,7 +1632,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Modules field added to Metrics and Dimensions catalogs**<a name="2-2-0-whats-new-Modules-field-added-to-Metrics-and-Dimensions-catalogs"></a>
 
-   A `modules` field was added to the [Metics]({{< ref "nms/reference/catalogs/metrics.md" >}}) and [Dimensions]({{< ref "nms/reference/catalogs/dimensions.md" >}}) catalogs. This field indicates which module or modules the metric or dimension belongs to.
+   A `modules` field was added to the [Metics]({{< ref "/nim/monitoring/catalogs/metrics.md" >}}) and [Dimensions]({{< ref "/nim/monitoring/catalogs/dimensions.md" >}}) catalogs. This field indicates which module or modules the metric or dimension belongs to.
 
 - {{% icon-feature %}} **Adds reporting for NGINX worker metrics (API only)**<a name="2-2-0-whats-new-Adds-reporting-for-NGINX-worker-metrics-(API-only)"></a>
 
@@ -1807,7 +1803,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **More metrics and instance dashboards**<a name="2-0-0-whats-new-More-metrics-and-instance-dashboards"></a>
 
-   Instance Manager now collects additional metrics from the NGINX instances. We also added pre-configured dashboards to the web interface for each NGINX instance managed by Instance Manager. See the [Catalog Reference]({{< ref "/nms/reference/catalogs/_index.md" >}}) documentation for a complete list of metrics.
+   Instance Manager now collects additional metrics from the NGINX instances. We also added pre-configured dashboards to the web interface for each NGINX instance managed by Instance Manager. See the [Catalog Reference]({{< ref "/nim/monitoring/catalogs/" >}}) documentation for a complete list of metrics.
 
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 

@@ -1,17 +1,10 @@
 ---
 title: Add a license (disconnected)
-draft: false
-description: ''
 weight: 200
 toc: true
+nd-content-type: how-to
+nd-product: NIM
 nd-docs: DOCS-1657
-personas:
-- devops
-- netops
-- secops
-- support
-type:
-- how-to
 ---
 
 ## Overview
@@ -19,7 +12,6 @@ type:
 This guide shows you how to add a license to NGINX Instance Manager in a disconnected (offline) environment. In this setup, systems don’t have internet access. You’ll download and apply your subscription’s JSON Web Token (JWT) license, then verify your entitlements with F5.
 
 {{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</ call-out >}}
-
 
 ## Before you begin
 
@@ -33,11 +25,7 @@ To configure NGINX Instance Manager for a disconnected environment, you need to 
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-
-<br>
-
 ## Add license and submit initial usage report {#add-license-submit-initial-usage-report}
-
 
 {{< tabs name="submit-usage-report" >}}
 
@@ -47,9 +35,7 @@ To configure NGINX Instance Manager for a disconnected environment, you need to 
 
 To add a license and submit the initial usage report in a disconnected environment, use the provided `license_usage_offline.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-**Important**: The script to add a license won't work if a license has already been added.
-
-<br>
+{{< call-out "important" >}} The script to add a license won't work if a license has already been added. {{< /call-out >}}
 
 1. {{<icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
@@ -81,7 +67,7 @@ To add a license and submit the initial usage report in a disconnected environme
 
 To license NGINX Instance Manager, complete each of the following steps in order.
 
-**Important**: The `curl` command to add a license won't work if a license has already been added.
+{{< call-out "important" >}} The `curl` command to add a license won't work if a license has already been added. {{< /call-out >}}
 
 Run these `curl` commands on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
@@ -218,7 +204,6 @@ Download the initial usage report to send to F5:
 
 - On the **License > Overview** page, select **Download License Report**.
 
-
 #### Submit usage report to F5
 
 You need to submit the usage report to F5 and download the acknowledgment over REST. To do so, follow steps 5–7 in the [**REST**](#add-license-submit-initial-usage-report) tab in this section.
@@ -232,6 +217,5 @@ To upload the usage acknowledgement:
 3. Select **Add**.
 
 {{%/tab%}}
-
 
 {{</tabs>}}

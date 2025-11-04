@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 First you can select the toggle to allow NGINX One Console to manage the new certificate or bundle.

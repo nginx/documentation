@@ -96,7 +96,6 @@ http {
     server {
         listen       80;
         server_name  localhost;
-        proxy_http_version 1.1;
 
         location / {
             client_max_body_size 0;
@@ -218,7 +217,10 @@ Similar to policies, it is customized from the base template, so it detects and 
 To obtain the strict policy, execute the following command:
 
 ```shell
-sudo docker run --rm -v $(pwd):$(pwd) --entrypoint='' private-registry.nginx.com/nap/waf-compiler:1.0.0 cat /etc/app_protect/conf/NginxStrictPolicy.json
+sudo docker run --rm -v $(pwd):$(pwd) \
+    --entrypoint='' \
+    private-registry.nginx.com/nap/waf-compiler:1.0.0 \
+    cat /etc/app_protect/conf/NginxStrictPolicy.json
 ```
 
 Replace the `1.0.0` with the actual release version.

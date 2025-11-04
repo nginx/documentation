@@ -4,7 +4,6 @@ weight: 3
 toc: true
 type: how-to
 product: NGINX Instance Manager
-docs:
 ---
 
 ## Overview

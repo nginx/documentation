@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Create the **/etc/nginx/** directory for the JWT license file:

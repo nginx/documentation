@@ -14,9 +14,9 @@ This guide explains how to enable F5 WAF for NGINX on a F5 NGINX as a Service fo
 ## Before you start
 - F5 WAF for NGINX can only be enabled on NGINXaaS for Azure deployments with the **Standard v2** [plan]({{< ref "/nginxaas-azure/billing/overview.md" >}})
 
-## Enable NGINX App Protect
+## Enable F5 WAF for NGINX
 
-NGINX App Protect is disabled by default and needs to be explicitly enabled on an NGINXaaS deployment. Follow these steps:
+F5 WAF for NGINX is disabled by default and needs to be explicitly enabled on an NGINXaaS deployment. Follow these steps:
 
 ### Using the Microsoft Azure Portal
 
@@ -26,7 +26,7 @@ Access the [Microsoft Azure portal](https://portal.azure.com)
 
 2. Select NGINX app protect in the left menu.
 
-3. Select **Enable App Protect**.
+3. Select **Enable F5 WAF for NGINX**.
 
 ## What's next
 

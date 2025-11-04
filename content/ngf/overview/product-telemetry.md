@@ -27,20 +27,21 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 - **Version:** the version of the NGINX Gateway Fabric Deployment.
 - **Deployment UID:** the UID of the NGINX Gateway Fabric Deployment.
 - **Image Build Source:** whether the image was built by GitHub or locally (values are `gha`, `local`, or `unknown`). The source repository of the images is **not** collected.
+- **Build OS:** the base operating system the image was built on (values are currently `alpine` or `ubi`). 
 - **Deployment Flags:** a list of NGINX Gateway Fabric Deployment flags that are specified by a user. The actual values of non-boolean flags are **not** collected; we only record that they are either `true` or `false` for boolean flags and `default` or `user-defined` for the rest.
-- **Count of Resources:** the total count of resources related to NGINX Gateway Fabric. This includes `GatewayClasses`, `Gateways`, `HTTPRoutes`,`GRPCRoutes`, `TLSRoutes`, `Secrets`, `Services`, `BackendTLSPolicies`, `ClientSettingsPolicies`, `NginxProxies`, `ObservabilityPolicies`, `UpstreamSettingsPolicies`, `SnippetsFilters`, and `Endpoints`. The data within these resources is **not** collected.
+- **Count of Resources:** the total count of resources related to NGINX Gateway Fabric. This includes `GatewayClasses`, `Gateways`, `HTTPRoutes`,`GRPCRoutes`, `TLSRoutes`, `InferencePool`, `Secrets`, `Services`, `BackendTLSPolicies`, `ClientSettingsPolicies`, `NginxProxies`, `ObservabilityPolicies`, `UpstreamSettingsPolicies`, `SnippetsFilters`, and `Endpoints`. The data within these resources is **not** collected.
 - **SnippetsFilters Info** a list of directive-context strings from applied SnippetFilters and a total count per strings. The actual value of any NGINX directive is **not** collected.
 - **Control Plane Pod Count** the count of NGINX Gateway Fabric Pods.
 - **Data Plane Pod Count** the count of NGINX data plane Pods.
 - **NGINX One Console Connection Info** indicates whether the connection to the NGINX One Console is enabled. 
-This data is used to identify the following information:
 
-- The flavors of Kubernetes environments that are most popular among our users.
-- The number of unique NGINX Gateway Fabric installations.
-- The scale of NGINX Gateway Fabric Deployments.
-- The scale of Gateway API resources.
-- The used features of NGINX Gateway Fabric.
-- The cluster is connected to NGINX One Console.
+  This data is used to identify the following information:
+  - The flavors of Kubernetes environments that are most popular among our users.
+  - The number of unique NGINX Gateway Fabric installations.
+  - The scale of NGINX Gateway Fabric Deployments.
+  - The scale of Gateway API resources.
+  - The used features of NGINX Gateway Fabric.
+  - The cluster is connected to NGINX One Console.
 
 Our goal is to publicly discuss data trends to drive roadmap discussions in our [Community Meeting](https://github.com/nginx/nginx-gateway-fabric/discussions/1472).
 

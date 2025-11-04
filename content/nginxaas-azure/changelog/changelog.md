@@ -13,6 +13,20 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## October 07, 2025
+
+- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 35 (R35) in the Stable Upgrade Channel**
+
+  NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have now been automatically upgraded to [NGINX Plus Release 35 (R35)]({{< ref "/nginx/releases.md#nginxplusrelease-35-r35" >}}). This upgrade also includes updates to the following NGINX Plus modules:
+  - `nginx-plus-module-njs`
+   For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#configuration-directives-list" >}}).
+
+  {{< call-out "important" >}}
+
+  The [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature, available in NGINX Plus R35 as a [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}), is not currently supported in NGINXaaS due to active-active deployments.
+
+  {{< /call-out >}}
+
 ## September 26, 2025
 
 - {{% icon-feature %}} **Connectivity test tool**
@@ -25,7 +39,7 @@ NGINXaaS now supports downloading certificate from Azure Key Vault via Private E
 
 - {{% icon-feature %}} **Support for both precompiled and custom WAF policies in the same NGINX config**
 
-NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protect WAF to be referenced within the same NGINX config. This removes a previous restriction.
+NGINXaaS now allows both precompiled and custom policies for F5 WAF for NGINX to be referenced within the same NGINX config. This removes a previous restriction.
 
 ## September 18, 2025
 
@@ -54,9 +68,7 @@ NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protec
            protected-files: protected-1.conf,protected-2.conf
       ```
 
-
   - To enhance security, the service principal used for Azure login prior to running the NGINXaaS for Azure Deployment Action now only requires the Contributor role at the scope of the NGINXaaS for Azure deployment. It no longer needs the Contributor role at the resource group level containing the deployment.
-
 
 ## May 22, 2025
 
@@ -65,7 +77,6 @@ NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protec
   Users can now configure their NGINXaaS deployments with just a single IPv6 frontend IP or in dual-stack (IPv4 + IPv6) mode.
 
   If you plan to use an IPv6 IP address whether standalone or in dual-stack mode, ensure that the subnet used by NGINXaaS has both IPv4 and IPv6 address spaces included. For more information on creating a vnets and subnets with IPv6 address spaces, refer to [Add IPv6 to virtual Network](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/add-dual-stack-ipv6-vm-portal?tabs=azureportal#add-ipv6-to-virtual-network)
-
 
 - {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 33 (R33) in the Stable Upgrade Channel**
 
@@ -80,8 +91,6 @@ NGINXaaS now allows both precompiled and custom policies for F5 NGINX App Protec
    NGINXaaS now publishes platform metrics directly to Azure Monitor. Compared to legacy monitoring based on custom metrics, platform metrics offers reduced latency and higher reliability. We strongly recommend migrating your alerts to use platform metrics for improved monitoring and management. For more details on enabling platform metrics, please refer to [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md">}}).
 
 ## April 22, 2025
-
-### What's New
 
 - {{% icon-feature %}} **F5 WAF for NGINX is now generally available**
 
@@ -99,7 +108,6 @@ F5 WAF for NGINX is now generally available and is no longer a preview feature a
    If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
 
 ## March 31, 2025
-
 
 - {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
 
@@ -120,7 +128,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{% icon-info %}} **Retirement of Standard Plan**
 
-   The `Standard` plan for NGINXaaS for Azure has been retired, and you can no longer use it to create new deployments. If you have a deployment running on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}) it to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as F5 WAF for NGINX and additional listen ports. Plan migration does not incur downtime.
+   The `Standard` plan for NGINXaaS for Azure has been retired and can no longer be used to create new deployments. If you have an existing deployment on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standard.md">}}) to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as F5 WAF for NGINX and additional listen ports. Migrating your plan does not cause downtime.
 
 ## February 10, 2025
 
@@ -132,4 +140,4 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{< icon-feature >}} **In-place SKU Migration from Standard to Standard V2**
 
-   You can now migrate NGINXaaS for Azure from the Standard plan to the Standard V2 plan without redeploying. We recommend upgrading to the Standard V2 plan to access features like F5 WAF for NGINX and more listen ports. The Standard plan will be retired soon. For migration details, see [migrate from standard]({{< ref "/nginxaas-azure/getting-started/migrate-from-standard.md">}}).
+   You can now migrate NGINXaaS for Azure from the `Standard` plan to the `Standard V2` plan without redeploying. We recommend upgrading to the `Standard V2` plan to access features such as F5 WAF for NGINX and additional listen ports. The `Standard` plan will be retired soon. For migration steps, see [Migrate from Standard]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standard.md">}}).

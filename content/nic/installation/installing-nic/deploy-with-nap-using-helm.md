@@ -44,7 +44,7 @@ This is accomplished with the following steps:
 Pull the `waf-compiler` image with:
 
 ```shell
-docker pull private-registry.nginx.com/nap/waf-compiler:5.8.0
+docker pull private-registry.nginx.com/nap/waf-compiler:5.9.0
 ```
 
 Download the [provided WAF Policy JSON](https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/tests/data/ap-waf-v5/wafv5.json):
@@ -53,13 +53,13 @@ Download the [provided WAF Policy JSON](https://raw.githubusercontent.com/nginx/
 curl -L https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/tests/data/ap-waf-v5/wafv5.json -o /tmp/wafv5.json
 ```
 
-Use your pulled NAP Docker image (`private-registry.nginx.com/nap/waf-compiler:5.8.0`) to compile the policy bundle:
+Use your pulled NAP Docker image (`private-registry.nginx.com/nap/waf-compiler:5.9.0`) to compile the policy bundle:
 
 ```shell
 # Using your newly created image
 docker run --rm \
     -v /tmp:/tmp \
-    private-registry.nginx.com/nap/waf-compiler:5.8.0 \
+    private-registry.nginx.com/nap/waf-compiler:5.9.0 \
     -p /tmp/wafv5.json \
     -o /tmp/compiled_policy.tgz
 ```

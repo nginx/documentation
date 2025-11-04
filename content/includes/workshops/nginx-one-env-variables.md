@@ -1,5 +1,4 @@
 ---
-docs:
 files:
 - content/nginx-one/workshops/lab4/config-sync-groups.md
 - content/nginx-one/workshops/lab5/upgrade-nginx-plus-to-r34.md
