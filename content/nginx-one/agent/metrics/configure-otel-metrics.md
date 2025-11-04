@@ -45,13 +45,13 @@ You can validate that metrics are successfully exported by using the methods bel
 NGINX Agent generates a default OpenTelemetry config to send metrics to your management plane located at `/etc/nginx-agent/opentelemetry-collector-agent.yaml`. An option is provided to 
 bring your own OpenTelemetry configs which will be merged with the NGINX Agent default config.
 
-OpenTelemetry will merge your [OpenTelemetry Config](https://opentelemetry.io/). The order of the OpenTelemetry config files matters, 
-the last config in the list will take priority over others listed if they have the same value configured.
+OpenTelemetry will merge your [OpenTelemetry Config](https://opentelemetry.io/docs/collector/configuration/). The **order of the OpenTelemetry config files matters**, the last config in the list will take priority over others listed if they have the same value configured.
 
 To have NGINX Agent use your own OpenTelemetry config:
 
 1. Edit the configuration file `sudo vim /etc/nginx-agent/nginx-agent.conf`
 2. Add the collector property
+3. Save and restart the NGINX agent service `sudo systemctl restart nginx-agent`
 
 ```yaml
 collector:
@@ -59,7 +59,7 @@ collector:
     - "/my_config.yaml"
 ```
 
-### Example usage: 
+#### Example usage
 
 {{< call-out "important" >}} NGINX Agent uses `/default` for naming its default processors, exporters and pipelines using the same naming in your own config might cause issues with sending metrics to your management plane {{< /call-out >}}
 
