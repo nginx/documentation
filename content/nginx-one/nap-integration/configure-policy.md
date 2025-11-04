@@ -12,8 +12,9 @@ nd-content-type: how-to
 nd-product: NGINX One
 ---
 
-This document describes how you can configure a security policy in the F5 NGINX One Console. When you add a policy, NGINX One Console includes several UI-based options and presets, based on F5 WAF for NGINX.
+This document describes how to configure a F5 WAF for NGINX security policy in the F5 NGINX One Console. 
 
+When you add a policy, NGINX One Console includes several UI-based options and presets, based on F5 WAF for NGINX.
 
 If you already know F5 WAF for NGINX, you can go beyond the options available in the UI. 
 
@@ -37,7 +38,7 @@ With NGINX One Console User Interface, you get a default policy. You can also se
 
 ### Basic Configuration and the Default Policy
 
-{{< include "/nap-waf/concept/basic-config-default-policy.md" >}}
+View the F5 WAF for NGINX ["General Configuration"]({{< ref "/waf/policies/configuration.md#general-configuration" >}}) information.
 
 ## Save your policy
 
