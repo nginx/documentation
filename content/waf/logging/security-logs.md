@@ -3,7 +3,7 @@ title: Security logs
 toc: true
 weight: 300
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 **Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how F5 WAF for NGINX processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.
@@ -28,11 +28,11 @@ This directive determines whether security logging will be enabled in the respec
 
 The security log attributes are determined by the `app_protect_security_log` directive. The directive can be at the following contexts: `http`, `server` and `location`. When not present at a certain context, the directive is inherited from the context above it: `location` from `server`, then from `http`. If there is no directive at any of these context levels, then the logging is disabled for the respective context.
 
-•	Syntax: app_protect_security_log_enable on | off
+*	Syntax: app_protect_security_log_enable on | off
 
-•	Levels: http, server, location
+*	Levels: http, server, location
 
-•	Example: app_protect_security_log_enable on
+*	Example: app_protect_security_log_enable on
 
 | Argument | Mandatory | Meaning | Default |
 | ---| ---| ---| --- |
@@ -42,11 +42,10 @@ The security log attributes are determined by the `app_protect_security_log` dir
 
 The security log attributes are determined by the `app_protect_security_log` directive, if it was enabled in the respective context. The directive can be at the following context levels: `http`, `server` and `location`. Multiple occurrences of this directive are allowed in a single context, and all the configured logs in this context will be used. When not present in a certain context, all the directives are inherited from the context above it: `location` from `server`, then from `http`. If there is no directive at any of these context levels, but logging is enabled then the default is used for the respective context.
 
-•	Syntax: app_protect_security_log [LOG-BUNDLE-FILE-OR-NAME] [DESTINATION]
+*	Syntax: app_protect_security_log [LOG-BUNDLE-FILE-OR-NAME] [DESTINATION]
 
-•	Levels: http, server, location
+*	Levels: http, server, location
 
-•	Examples:
 ```nginx
 app_protect_security_log log_default stderr;
 app_protect_security_log /mounted_host_dir/logging_profile_01.tgz /mounted_host_dir/security.log;
@@ -63,13 +62,12 @@ app_protect_security_log /shared_volume/logging_profile_02.tgz syslog:server=my.
 
 ## Security log configuration file
 
-Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/nap-waf/v5/admin-guide/compiler.md#logging-profile-compilation" >}}) into a logging profile bundle (tgz).
+Before applying, the log configuration file (JSON) should be [compiled]({{< ref "/waf/configure/compiler.md#compile-a-logging-profile" >}}) into a logging profile bundle (tgz).
 
 The file is in JSON format and consists of two parts:
-1.	**filter:**, Determining which requests are logged.
-2.	**content:**, Determining how messages are formatted.
 
-**filter**
+1.	**filter:**, Determining which requests are logged.
+1.	**content:**, Determining how messages are formatted.
 
 The filter is mandatory, although it may be left blank.
 
@@ -77,9 +75,7 @@ The filter is mandatory, although it may be left blank.
 | ---| ---| ---| --- |
 |request_type | Log according to what App Protect detected in the request. | Enumerated values:<ul><li>**all:** all requests, both legal and illegal.</li><li>**illegal:** requests with violations (that is, either alerted or blocked).</li><li>**blocked:** requests with violations that were blocked.</li></ul> | all |
 
-**Content**
-
-This part of the configuration file specifies what will be logged, the format of the message, and size restrictions.
+The content part of the configuration file specifies what will be logged, the format of the message, and size restrictions.
 
 Content is mandatory. If the entire content field or any of its attributes are not defined, system-defined default values are used.
 
@@ -186,8 +182,8 @@ This is the content of `log_default.json`. It is pre-compiled (built-in) and is 
 ```
 
 Note that in the last example:
-- any `/` character in list element string in security log will be replaced with `|`. For example: `string/another_string` will become `string|another_string`.
 
+- any `/` character in list element string in security log will be replaced with `|`. For example: `string/another_string` will become `string|another_string`.
 - all lists will start with `[` and end with `]` and each element of the list will be separated with `::`. For example: `first,second,third` will become `[first::second::third]`.
 
 ### NGINX formatted strings

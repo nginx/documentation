@@ -1,17 +1,18 @@
 ---
-description: ''
-nd-docs: DOCS-1396
 title: Glossary
 toc: true
 weight: 1000
 nd-content-type: reference
+nd-product: ONE
+nd-docs: DOCS-1396
 ---
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.
 
 ## General terms
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
+
 | Term        | Definition |
 |-------------|-------------|
 | **Config Sync Group** | A group of NGINX systems (or instances) with identical configurations. They may also share the same certificates. However, the instances in a Config Sync Group could belong to different systems and even different clusters. For more information, see this explanation of [Important considerations]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md#important-considerations" >}}) |
@@ -24,11 +25,12 @@ To switch an instance between namespaces, you have to deregister an instance fro
 | **NGINX Agent**                      | A lightweight software component installed on NGINX instances to enable communication with the NGINX One console.                                      |
 | **Staged Configurations** | Also known as **Staged Configs**. Allows you to save "work in progress." You can create it from scratch, an Instance, another Staged Config, or a Config Sync Group. It does _not_ have to be a working configuration until you publish it to an instance or a Config Sync Group. You can even manage your **Staged Configurations** through our [API]({{< ref "/nginx-one/api/api-reference-guide/#tag/StagedConfigs" >}}). |
 | **Tenant** | A tenant in F5 Distributed Cloud is an entity that owns a specific set of configuration and infrastructure. It is fundamental for isolation, meaning a tenant cannot access objects or infrastructure of other tenants. Tenants can be either individual or enterprise, with the latter allowing multiple users with role-based access control (RBAC). |
-{{</bootstrap-table>}}
+
+{{< /table >}}
 
 ## F5 WAF for NGINX terminology
 
-{{< include "nap-waf/config/common/nginx-app-protect-waf-terminology.md" >}}
+[F5 WAF for NGINX Terminology]({{< ref "waf/fundamentals/terminology.md" >}}).
 
 ## NGINX Alerts
 
@@ -39,8 +41,6 @@ To set up NGINX Alerts through the F5 Distributed Cloud, follow the procedure in
 ## Legal notice: Licensing agreements for NGINX products
 
 Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< ref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX Open Source](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.
-
----
 
 ## References
 
