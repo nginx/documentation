@@ -5,7 +5,6 @@ weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: NGF
-nd-docs: DOCS-1851
 ---
 
 ## Overview
