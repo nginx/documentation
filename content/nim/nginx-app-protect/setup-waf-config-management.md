@@ -16,7 +16,7 @@ F5 NGINX Instance Manager helps you manage your F5 WAF for NGINX configurations,
 
 Make sure you've completed the following prerequisites before you get started:
 
-- You have one or more [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) instances running. For supported versions, see [Support for F5 WAF for NGINX]({{< ref "/nim/fundamentals/tech-specs.md#support-for-nginx-app-protect-waf" >}}).
+- You have one or more [F5 WAF for NGINX]({{< ref "/waf/" >}}) instances running. For supported versions, see [Support for F5 WAF for NGINX]({{< ref "/nim/fundamentals/tech-specs.md#support-for-nginx-app-protect-waf" >}}).
 
   {{< call-out "note" >}}If you're using configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/nginx-app-protect/security-monitoring/set-up-app-protect-instances.md" >}}) to set up your F5 WAF for NGINX instances first.{{< /call-out >}}
 
@@ -28,7 +28,7 @@ Make sure you've completed the following prerequisites before you get started:
 
 NGINX Instance Manager doesn’t support the following F5 WAF for NGINX features:
 
-- [Policies with external references]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#external-references" >}})
+- [Policies with external references]({{< ref "/waf/policies/external-references.md" >}})
 - Custom signatures
 
 ## Install the WAF compiler
@@ -174,7 +174,6 @@ To install the WAF compiler on Oracle Linux 8.1:
 
 4. {{< include "nim/nap-waf/restart-nms-integrations.md" >}}
 
-
 ### Download from MyF5
 
 If you can’t access the public NGINX repository, you can manually download the WAF compiler from [MyF5](https://my.f5.com/).
@@ -245,14 +244,12 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 If needed, you can also [install the WAF compiler manually](#install-the-waf-compiler).
 
-
 ## Install or update the WAF compiler in a disconnected environment
 
 To install the WAF compiler on a system without internet access, complete these steps:
 
 - **Step 1:** Generate the WAF compiler package on a system that has internet access.  
 - **Step 2:** Move the generated package to the offline target system and install it.
-
 
 Note : Version of NAP compiler can be referred from the table at the top of this page. 
 Current latest version 5.527.0 at the point of writing this document is used in below commands.
@@ -261,13 +258,13 @@ Current latest version 5.527.0 at the point of writing this document is used in 
 
 {{%tab name="Ubuntu"%}}
 
-
 ### Install on Ubuntu 24.04, 22.04
 
 #### Step 1: On a system with internet access
 
 Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
-```bash
+
+```shell
 sudo apt-get update -y
 sudo mkdir -p /etc/ssl/nginx/
 sudo mv nginx-repo.crt /etc/ssl/nginx/
@@ -298,7 +295,7 @@ tar -czvf compiler.tar.gz compiler/
 Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
 Move the `compiler.tar.gz` file from Step 1 to this system.
 
-```bash
+```shell
 tar -xzvf compiler.tar.gz
 sudo dpkg -i ./compiler/compiler.deps/*.deb
 sudo dpkg -i ./compiler/*.deb
@@ -313,7 +310,8 @@ sudo dpkg -i ./compiler/*.deb
 #### Step 1: On a system with internet access
 
 Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
-```bash
+
+```shell
 sudo apt-get update -y
 sudo mkdir -p /etc/ssl/nginx/
 sudo mv nginx-repo.crt /etc/ssl/nginx/
@@ -344,14 +342,13 @@ tar -czvf compiler.tar.gz compiler/
 Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
 Move the `compiler.tar.gz` file from Step 1 to this system.
 
-```bash
+```shell
 tar -xzvf compiler.tar.gz
 sudo dpkg -i ./compiler/compiler.deps/*.deb
 sudo dpkg -i ./compiler/*.deb
 ```
 
 {{%/tab%}}
-
 
 {{%tab name="RHEL9, Oracle-9 "%}}
 
@@ -362,7 +359,8 @@ sudo dpkg -i ./compiler/*.deb
 > For RHEL 8, you can skip the `yum-config-manager` line.
 
 Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
-```bash
+
+```shell
 sudo yum update -y
 sudo yum install yum-utils -y
 sudo mkdir -p /etc/ssl/nginx/
@@ -382,14 +380,13 @@ tar -czvf compiler.tar.gz nms-nap-compiler/
 Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
 Move the `compiler.tar.gz` file from Step 1 to this system.
 
-```bash
+```shell
 tar -xzvf compiler.tar.gz
 cd nms-nap-compiler
 sudo dnf install *.rpm --disablerepo=*
 ```
 
 {{%/tab%}}
-
 
 {{%tab name="Redhat-8, Oracle-8"%}}
 
@@ -398,7 +395,8 @@ sudo dnf install *.rpm --disablerepo=*
 #### Step 1: On a system with internet access
 
 Place your `nginx-repo.crt` and `nginx-repo.key` files on this system.
-```bash
+
+```shell
 sudo yum update -y
 sudo yum install yum-utils tar -y
 sudo mkdir -p /etc/ssl/nginx/
@@ -426,27 +424,23 @@ tar -czvf compiler.tar.gz nms-nap-compiler/
 Before running the steps, make sure the OS libraries are up to date, especially `glibc`.  
 Move the `compiler.tar.gz` file from Step 1 to this system.
 
-```bash
+```shell
 sudo yum install tar -y
 tar -xzvf compiler.tar.gz
 sudo dnf install --disablerepo=* nms-nap-compiler/*.rpm
 ```
 
-
 {{%/tab%}}
 
-
 {{</tabs>}}
-
----
 
 ## Set up attack signatures and threat campaigns
 
 F5 WAF for NGINX protects your applications using predefined and regularly updated detection patterns:
 
-- **Attack signatures**: Known threat patterns used to detect common vulnerabilities and exploits. These are included with F5 WAF for NGINX and updated frequently to reflect the latest security threats. See the [attack signatures documentation]({{< ref "nap-waf/v5/configuration-guide/configuration.md#attack-signatures-overview" >}}) for more information.
+- **Attack signatures**: Known threat patterns used to detect common vulnerabilities and exploits. These are included with F5 WAF for NGINX and updated frequently to reflect the latest security threats. See the [attack signatures documentation]({{< ref "/waf/policies/attack-signatures.md" >}}) for more information.
 
-- **Threat campaigns**: Context-aware threat intelligence based on attack campaigns observed by F5 Threat Labs. These are updated even more frequently than attack signatures and require installation to take effect. Learn more in the [threat campaigns documentation]({{< ref "nap-waf/v5/configuration-guide/configuration.md#threat-campaigns" >}}).
+- **Threat campaigns**: Context-aware threat intelligence based on attack campaigns observed by F5 Threat Labs. These are updated even more frequently than attack signatures and require installation to take effect. Learn more in the [threat campaigns documentation]({{< ref "/waf/policies/threat-campaigns.md" >}}).
 
 To take advantage of the latest updates, you must upload the attack signature and threat campaign packages to NGINX Instance Manager.
 
@@ -602,35 +596,50 @@ If you prefer not to enable automatic updates, you can manually update the Attac
 4. Download the `.deb` or `.rpm` packages from https://pkgs.nginx.com using your F5 WAF for NGINX cert and key:
     - For Attack Signatures: package starts with `app-protect-attack-signatures`
       - Format for `.deb` package:
+
       ```text
       https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-attack-signatures/app-protect-attack-signatures_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
       ```
+
       - Example for `.deb` download:
+
       ```shell
       curl --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/ubuntu/pool/nginx-plus/a/app-protect-attack-signatures/app-protect-attack-signatures_2025.07.24-1~noble_amd64.deb --output app-protect-attack-signatures_2025.07.24-1~noble_amd64.deb
       ```
+
       - Format for `.rpm` package:
+
       ```text
       https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-attack-signatures-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
       ```
+
       - Example for `.rpm` download:
+
       ```shell
       curl -v --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/centos/8/x86_64/RPMS/app-protect-attack-signatures-2025.07.24-1.el8.ngx.x86_64.rpm --output app-protect-attack-signatures-2025.07.24-1.el8.ngx.x86_64.rpm
       ```
+
     - For Threat Campaigns: package starts with `app-protect-threat-campaigns`
       - Format for `.deb` package:
+
       ```text
       https://pkgs.nginx.com/app-protect-security-updates/<ubuntu or debian>/pool/nginx-plus/a/app-protect-threat-campaigns/app-protect-threat-campaigns_<Revision Timestamp in YYYY.MM.DD>-<version>~<OS Family>_amd64.deb
       ```
+
       - Example for `.deb` download:
+
       ```shell
       curl --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/ubuntu/pool/nginx-plus/a/app-protect-threat-campaigns/app-protect-threat-campaigns_2025.07.29-1~noble_amd64.deb --output app-protect-threat-campaigns_2025.07.29-1~noble_amd64.deb
       ```
+
       - Format for `.rpm` package:
+
       ```text
       https://pkgs.nginx.com/app-protect-security-updates/centos/<8 or 9>/x86_64/RPMS/app-protect-threat-campaigns-<Revision Timestamp in YYYY.MM.DD>-<version>.el<8 or 9>.ngx.x86_64.rpm
       ```
+      
       - Example for `.rpm` download:
+
       ```shell
       curl -v --key nginx-repo.key --cert nginx-repo.crt https://pkgs.nginx.com/app-protect-security-updates/centos/8/x86_64/RPMS/app-protect-threat-campaigns-2025.07.29-1.el8.ngx.x86_64.rpm --output app-protect-threat-campaigns-2025.07.29-1.el8.ngx.x86_64.rpm
       ```
@@ -680,8 +689,6 @@ To keep the dashboards accurate and up to date, you need to update the Security 
 
 For instructions, see the [update signatures guide]({{< ref "/nim/nginx-app-protect/security-monitoring/update-signatures.md" >}}).
 
----
-
 ## Set up compiler resource pruning
 
 You can configure NGINX Instance Manager to automatically remove unused compiler resources:
@@ -696,8 +703,8 @@ Only the compiled bundles are removed. NGINX Instance Manager does not delete th
 To enable compiler resource pruning:
 
 1. Log in to the NGINX Instance Manager host using SSH.
-2. Open the `/etc/nms/nms.conf` file in a text editor.
-3. Update the `policy_manager` section under `integrations` with time-to-live (TTL) values for each resource type:
+1. Open the `/etc/nms/nms.conf` file in a text editor.
+1. Update the `policy_manager` section under `integrations` with time-to-live (TTL) values for each resource type:
 
    ```yaml
    integrations:
@@ -730,8 +737,6 @@ To enable compiler resource pruning:
 
 NGINX Instance Manager runs the pruning process at startup and every 24 hours after the `nms-integrations` service starts.
 
----
-
 ## Onboard F5 WAF for NGINX instances
 
 To onboard your F5 WAF for NGINX instances to NGINX Instance Manager, install and configure the NGINX Agent on each instance.
@@ -745,7 +750,6 @@ To onboard your F5 WAF for NGINX instances to NGINX Instance Manager, install an
    You can group instances that use the same version of F5 WAF for NGINX by using the optional `--instance-group` flag in the install command.
 
    {{< include "agent/installation/install-agent-api.md" >}}
-
 
 ### Configure NGINX Agent
 
@@ -785,12 +789,9 @@ To onboard your F5 WAF for NGINX instances to NGINX Instance Manager, install an
     sudo systemctl restart nginx-agent
     ```
 
-
-
 ### Verify installation
 
 After installing and configuring the NGINX Agent, verify that your F5 WAF for NGINX instances appear in NGINX Instance Manager.
-
 
 {{<tabs name="agent-verify">}}
 
@@ -811,15 +812,10 @@ You should now be able to view your F5 WAF for NGINX instances in the Instance M
 
 Use the REST API to confirm the version and status of F5 WAF for NGINX:
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                     |
 |--------|------------------------------|
 | GET    | `/api/platform/v1/instances` |
 | GET    | `/api/platform/v1/systems`   |
-
-{{</bootstrap-table>}}
-
 
 - Send a `GET` request to `/api/platform/v1/systems` to check version info:
 
@@ -865,7 +861,7 @@ Use the REST API to confirm the version and status of F5 WAF for NGINX:
 
 Before configuring Docker Compose, make sure you’ve completed the following steps:
 
-- Installed F5 WAF for NGINX v5 using the [official installation guide]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}).
+- Installed F5 WAF for NGINX using the [official installation guide]({{< ref "/waf/install/docker.md" >}}).
 - Created a `docker-compose.yaml` file during the installation process.
 
 This section explains how to modify that file so F5 WAF for NGINX can work with NGINX Instance Manager.
@@ -931,8 +927,6 @@ This section explains how to modify that file so F5 WAF for NGINX can work with 
     docker compose restart
     ```
 
----
-
 ## Onboard security policies {#onboard-security-policies}
 
 NGINX Instance Manager provides the same [default security policies](https://docs.nginx.com/nginx-app-protect/configuration-guide/configuration/#policy-configuration) as F5 WAF for NGINX:
@@ -990,8 +984,6 @@ To upload a policy, follow these steps:
     ```
 
     The response includes a list of all security policies managed by NGINX Instance Manager.
-
----
 
 ## Add WAF configuration to NGINX instances {#add-waf-config}
 
@@ -1058,7 +1050,7 @@ If you’re using F5 WAF for NGINX v5:
 
 - JSON policies and log profiles aren’t supported. You must precompile and publish them using NGINX Instance Manager. Make sure the precompiled_publication setting in the NGINX Agent configuration is set to true.
 
-    See the [F5 WAF for NGINX configuration guide]({{< ref "/nap-waf/v5/configuration-guide/configuration.md" >}}) for details.
+    See the [F5 WAF for NGINX configuration guide]({{< ref "/waf/policies/configuration.md" >}}) for details.
 
 {{<tabs name="add_security">}}
 {{%tab name="UI"%}}
@@ -1079,14 +1071,10 @@ If you’re using F5 WAF for NGINX v5:
 
 You can use the NGINX Instance Manager REST API to deploy your F5 WAF for NGINX configuration.
 
-{{<bootstrap-table "table">}}
-
 | Method | Endpoint                                                            |
 |--------|---------------------------------------------------------------------|
 | GET    | `/api/platform/v1/systems/{systemUID}/instances`                    |
 | POST   | `/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config` |
-
-{{</bootstrap-table>}}
 
 {{< call-out "important" >}}Before deploying a configuration to an instance group, make sure all instances in the group are running the same version of F5 WAF for NGINX. Otherwise, the deployment may fail.{{< /call-out >}}
 
@@ -1161,8 +1149,6 @@ To confirm that the F5 WAF for NGINX configuration was applied:
 4. Select the instance. Then, scroll to the **App Protect Details** section.
 5. Confirm that the **F5 WAF for NGINX** status is **Active**, and the **Build** matches the version installed on the instance.
 
----
-
 ## Troubleshooting
 
 If you're having trouble with F5 WAF for NGINX, try the steps below. If these don't solve the issue, reach out to F5 NGINX Customer Support.
@@ -1186,7 +1172,7 @@ F5 WAF for NGINX and the WAF compiler shouldn't run on the same host. To check:
      rpm -qi | grep app-protect
      ```
 
-If F5 WAF for NGINX is installed, follow the [uninstall instructions]({{< ref "/nap-waf/v4/admin-guide/install.md#uninstall-app-protect" >}}).
+If F5 WAF for NGINX is installed, follow the [uninstall instructions]({{< ref "/waf/install/uninstall.md" >}}).
 
 ### Check that the WAF compiler version matches the F5 WAF for NGINX version
 
@@ -1284,9 +1270,7 @@ curl --key /etc/ssl/nginx/nginx-repo.key --cert /etc/ssl/nginx/nginx-repo.crt ht
 ...
 ```
 
----
-
-## What's Next
+## Next steps
 
 Now that configuration management is set up, you can use the NGINX Instance Manager REST API to:
 
