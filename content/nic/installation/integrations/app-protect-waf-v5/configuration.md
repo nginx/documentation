@@ -9,7 +9,7 @@ nd-docs: DOCS-1866
 
 ## Overview
 
-This document explains how to use F5 NGINX Ingress Controller to configure [F5 WAF for NGINX v5]({{< ref "/nap-waf/v5/" >}}).
+This document explains how to use F5 NGINX Ingress Controller to configure [F5 WAF for NGINX v5]({{< ref "/waf/" >}}).
 
 {{< call-out "note" >}} There are complete NGINX Ingress Controller with F5 WAF for NGINX [example resources on GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5). {{< /call-out >}}
 
@@ -97,13 +97,11 @@ Create the application deployment and service:
 
 Create the syslog service and pod for the F5 WAF for NGINX security logs:
 
-
    ```shell
    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5/syslog.yaml
    ```
 
 ### Deploy the WAF Policy
-
 
 {{< call-out "note" >}} Configuration settings in the Policy resource enable WAF protection by configuring F5 WAF for NGINX with the log configuration created in the previous step. The policy bundle referenced as `your_policy_bundle_name.tgz` need to be created and placed in the `/etc/app_protect/bundles` volume first.{{< /call-out >}}
 
@@ -112,7 +110,6 @@ Create and deploy the WAF policy.
  ```shell
   kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5/waf.yaml
  ```
-
 
 ### Configure load balancing
 
@@ -123,7 +120,6 @@ Create and deploy the WAF policy.
     ```shell
     kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5/virtual-server.yaml
     ```
-
 
 ### Test the application
 

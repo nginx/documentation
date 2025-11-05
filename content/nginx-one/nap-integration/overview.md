@@ -17,7 +17,7 @@ Through the NGINX One Console UI, you can now set up the [F5 WAF for NGINX]({{< 
 
 ## Features
 
-Once you've connected to the NGINX One Console, select **App Protect > Policies**. You can add new policies or edit existing policies, as defined in the [F5 WAF for NGINX Administration Guide]({{< ref "/nap-waf/v5/admin-guide/overview.md" >}})
+Once you've connected to the NGINX One Console, select **App Protect > Policies**. You can add new policies or edit existing policies, as defined in the [F5 WAF for NGINX Configure policies]({{< ref "/waf/policies/configuration.md" >}}) topic.
 
 Through the NGINX One Console UI, you can:
 
@@ -38,7 +38,7 @@ F5 WAF for NGINX has specific requirements for the configuration with Docker con
 - Directory associated with the volume, which you may configure in a `docker-compose.yaml` file.
   - You may set it up with the `volumes` directive with a directory like `/etc/nginx/app_protect_policies`.
   - You need to set up the container volume. So when the policy bundle is referenced in the `nginx` directive, the file path is what the container sees.
-  - You need to also include an `app_protect_policy_file`, as described in [App Protect Specific Directives]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#app-protect-specific-directives" >}})
+  - You need to also include an `app_protect_policy_file`, as described in [F5 WAF for NGINX Directives]({{< ref "/waf/policies/directives.md" >}})
 
   - You'll need to set a policy bundle (in compressed tar format) in a configured `volume`.
   - Make sure the directory for [NGINX Agent]({{< ref "/agent/configuration/" >}}) includes `/etc/nginx/app_protect_policies`.
