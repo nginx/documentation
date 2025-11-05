@@ -22,12 +22,36 @@ You should replace `<product-tag>` with a tag from the following table:
 
 | Product name                           | Tag                  | Date of removal |
 | -------------------------------------- | -------------------- | --------------- |
-| NGINX App Protect WAF[^1]              | `archive-nap`        |                 |
-| NGINX Application Connectivity Manager | `archive-acm`        |                 |
-| NGINX Application Delivery Manager     | `archive-adm`        |                 |
-| NGINX Controller                       | `archive-controller` |                 |
-| NGINX Management Suite[^2]             | `archive-nms`        |                 |
-| NGINX Service Mesh                     | `archive-mesh`       |                 |
+| NGINX App Protect WAF[^1]              | `archive-nap`        | 2025-11-05      |
+| NGINX Controller                       | `archive-controller` | 2025-10-08      |
+| NGINX Management Suite[^2]             | `archive-nms`        | 2025-10-08      |
+| NGINX Service Mesh                     | `archive-mesh`       | 2025-11-05      |
 
-[^1]: NGINX App Protect WAF is now known as F5 WAF for NGINX 
+## Review and add tags
+
+You can review the repository tags using the `git tag` command:
+
+```text
+➜ git tag -l
+archive-controller
+archive-mesh
+archive-nap
+archive-nms
+```
+
+To add a new tag, use the following command:
+
+```shell
+git tag -a <tag-name> <commit-sha>
+```
+
+The tag name should follow the format of _archive-\<product-name\>_, and the commit sha should be the last commit **before** the content was removed.
+
+To add the new tag to the remote repository, you must add it as an explicit argument to `git push`:
+
+```shell
+git push origin <tag-name>
+```
+
+[^1]: NGINX App Protect WAF is now known as F5 WAF for NGINX  
 [^2]: NGINX Management Suite was refactored into NGINX Instance Manager
