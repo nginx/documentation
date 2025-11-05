@@ -185,7 +185,6 @@ Ensure you have a Service and Deployment named `echo` that expose port 8080. If 
 
 ## See also
 
-- Install NGINX Gateway Fabric with Helm: /ngf/install/helm/
-- Secure certificates for NGINX Gateway Fabric: /ngf/install/secure-certificates/
-- Red Hat Catalog (https://catalog.redhat.com/en)
-- NGINX Gateway Fabric custom resource sample (https://github.com/nginx/nginx-gateway-fabric/blob/{{< version-ngf >}}/operators/config/samples/gateway_v1alpha1_nginxgatewayfabric.yaml)
+- [Install NGINX Gateway Fabric with Helm]({{< ref "/ngf/install/helm.md" >}}) 
+- [Secure certificates for NGINX Gateway Fabric]({{< ref "/ngf/install/secure-certificates.md" >}}) 
+- [Red Hat Catalog](https://catalog.redhat.com/en)
