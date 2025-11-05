@@ -11,20 +11,20 @@ This document describes how to troubleshoot problems when using NGINX Ingress Co
 
 For general troubleshooting of NGINX Ingress Controller, check the general [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common" >}}) documentation.
 
-{{< call-out "note" >}} You can find more troubleshooting tips in the F5 WAF for NGINX [troubleshooting guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) {{< /call-out>}}.
-
 ## Potential problems
 
 The table below categorizes some potential problems with NGINX Ingress Controller when F5 WAF for NGINX module is enabled. It suggests how to troubleshoot those problems, using one or more methods from the next section.
 
-{{% table %}}
+{{< table >}}
+
 |Problem area | Symptom | Troubleshooting method | Common cause |
 | ---| ---| ---| --- |
 |Start. | The Ingress Controller fails to start. | Check the logs. | Misconfigured policy bundle. |
 |Start | The configuration is not applied. | Check if a policy bundle is compiled using version of the compiler running in NGINX Ingress Controller. | Policy bundle is invalid. |
 |Start | The configuration is not applied. | Check if bundle is present in a volume. | Policy bundle is not present in the mounted volume. |
 |APLogConf, Policy or Ingress Resource. | The configuration is not applied. | Check the events of the APLogConf, Policy and Ingress Resource, check the logs, replace the policy bundle. | Policy bundle is invalid. |
-{{% /table %}}
+
+{{< /table >}}
 
 ## Troubleshooting methods
 

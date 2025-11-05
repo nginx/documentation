@@ -1,32 +1,11 @@
 ---
-description: ''
-nd-docs: DOCS-1394
 title: Changelog
 toc: true
 weight: 99999
-type:
-- reference
+nd-content-type: reference
+nd-product: ONE
+nd-docs: DOCS-1394
 ---
-
-<style>
-h2 {
-  position: relative;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd; /* A very light line */
-}
-
-/* Adds space above all h2 elements except the first one */
-.content h2:not(:first-of-type) {
-  margin-top: 50px; /* Adjust this value to create the desired space */
-}
-
-.content h3 {
-  margin-top: 25px; /* Space before the h3 */
-  margin-bottom: 10px; /* Space after the h3 */
-}
-
-</style>
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
@@ -47,6 +26,7 @@ You can now graph any two metrics simultaneously on one chart within the Metrics
 ### Expanded features for configuring NGINX security policies with F5 WAF
 
 You can now configure the following for F5 WAF policies directly in the NGINX One Console:
+
 - [Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md" >}})
 - [Signature Exceptions]({{< ref "/nginx-one/nap-integration/add-signature-sets.md#exceptions" >}})
 - [Parameters]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-parameters" >}})
@@ -73,12 +53,12 @@ See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-n
 
 ### Set up F5 WAF for NGINX security policies
 
-You can now incorporate [F5 WAF for NGINX]({{< ref "/nap-waf/" >}}) in NGINX One Console UI. For details, see [Secure with F5 WAF for NGINX]({{< ref "/nginx-one/nap-integration/" >}}).
+You can now incorporate [F5 WAF for NGINX]({{< ref "/waf/" >}}) in NGINX One Console UI. For details, see [Secure with F5 WAF for NGINX]({{< ref "/nginx-one/nap-integration/" >}}).
 
 In NGINX One Console, you can:
 
-- Toggle between [Default policy bundles]({{< ref "/nap-waf/v5/configuration-guide/configuration/#updating-default-policy-bundles" >}})
-- Set a blocking or transparant [Policy enforcement mode]({{< ref "/nap-waf/v5/configuration-guide/configuration/#policy-enforcement-modes" >}})
+- Toggle between [Default policy bundles]({{< ref "/waf/policies/configuration.md#default-policy" >}})
+- Set blocking or transparent [Policy enforcement mode]({{< ref "/waf/policies/configuration.md#policy-enforcement-modes" >}})
 
 ### Monitor F5 NGINX Ingress Controller deployments
 
@@ -119,7 +99,7 @@ We have added API groups that align with the features and functionality in the N
 - Use our narrowly scoped API groups.
 - Tailor access policies with [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles).
 
-#### Highlights:
+#### Highlights
 
 - Custom role assignments: You can set up custom roles for users or service accounts.
 - Namespace-based permissions: With [namespaces](https://docs.cloud.f5.com/docs-v2/platform/concepts/core-concepts#namespaces), you can configure API group permissions to support least privilege.
@@ -148,6 +128,7 @@ You can:
 - Remove a deployed certificate from a Config Sync Group
 
 For more information, including warnings about risks, see our documentation on how you can:
+
 - [Add a file]({{< ref "/nginx-one/nginx-configs/one-instance/add-file.md" >}})
 - [Manage certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md" >}})
 
