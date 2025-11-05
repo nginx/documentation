@@ -6,39 +6,45 @@ nd-content-type: reference
 nd-product: NIC
 nd-docs: DOCS-616
 ---
+
 ## 5.2.1
 
 10 Oct 2025
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [8302](https://github.com/nginx/kubernetes-ingress/pull/8302) Remove type field for objects with schema ref
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [8321](https://github.com/nginx/kubernetes-ingress/pull/8321), [8330](https://github.com/nginx/kubernetes-ingress/pull/8330), [8352](https://github.com/nginx/kubernetes-ingress/pull/8352) & [8358](https://github.com/nginx/kubernetes-ingress/pull/8358) Bump Go dependencies
 - [8280](https://github.com/nginx/kubernetes-ingress/pull/8280), [8291](https://github.com/nginx/kubernetes-ingress/pull/8291), [8331](https://github.com/nginx/kubernetes-ingress/pull/8331) & [8320](https://github.com/nginx/kubernetes-ingress/pull/8320) Bump Docker dependencies
 - [8348](https://github.com/nginx/kubernetes-ingress/pull/8348) Update F5 WAF for NGINX 5.9.0
 - [8273](https://github.com/nginx/kubernetes-ingress/pull/8273) Update dependencies
 
 ### <i class="fa-solid fa-download"></i> Upgrade
+
 - For NGINX, use the 5.2.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.2.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.2.1 images from the F5 Container registry or build your own image using the 5.2.1 source code.
 - For Helm, use version 2.3.1 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.34.
 
----
 ## 5.2.0
 
 15 Sept 2025
 
 This NGINX Ingress Controller release focuses on enhancing performance, simplifying configurations, and improving security to better support modern application needs. The highlights of this release are as follows:
+
 - NGINX Content Cache using policies: This new feature introduces policy configurations that enable proxy caching.
 - Support for Kubernetes `StatefulSet` Objects: Added support for Kubernetes `StatefulSet` objects, which can also be used to provide persistent storage for cached content.
 - Auto-Adjusting incompatible proxy buffer directive values: A new `-enable-directive-autoadjust` parameter has been added. When enabled, this feature automatically resolves common proxy buffer configuration dependencies that could cause issues during NGINX reloads.
 - Server Name Indication (SNI) support in JWT Policies: Users can now configure sniName and sniEnabled for scenarios where the remote server requires SNI to present the correct certificate
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [8005](https://github.com/nginx/kubernetes-ingress/pull/8005) Add nginx content cache as NIC cache policy
 - [8159](https://github.com/nginx/kubernetes-ingress/pull/8159) Statefulset support
 - [8133](https://github.com/nginx/kubernetes-ingress/pull/8133) Add support for automatic adjustment of buffer related directives
@@ -49,45 +55,48 @@ This NGINX Ingress Controller release focuses on enhancing performance, simplify
 - [8142](https://github.com/nginx/kubernetes-ingress/pull/8142) Add globalconfigurationcustomname parameter
 - [8195](https://github.com/nginx/kubernetes-ingress/pull/8195) Add support for fips 140-3 compliance
 
-
-
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [8208](https://github.com/nginx/kubernetes-ingress/pull/8208) Update Nginx agent to 3.3
 - [7959](https://github.com/nginx/kubernetes-ingress/pull/7959), [7983](https://github.com/nginx/kubernetes-ingress/pull/7983), [8037](https://github.com/nginx/kubernetes-ingress/pull/8037), [8057](https://github.com/nginx/kubernetes-ingress/pull/8057), [8083](https://github.com/nginx/kubernetes-ingress/pull/8083), [8096](https://github.com/nginx/kubernetes-ingress/pull/8096), [8126](https://github.com/nginx/kubernetes-ingress/pull/8126), [8143](https://github.com/nginx/kubernetes-ingress/pull/8143), [8183](https://github.com/nginx/kubernetes-ingress/pull/8183), [8186](https://github.com/nginx/kubernetes-ingress/pull/8186), [8200](https://github.com/nginx/kubernetes-ingress/pull/8200), [8231](https://github.com/nginx/kubernetes-ingress/pull/8231) Bump Go dependencies
 - [7946](https://github.com/nginx/kubernetes-ingress/pull/7946), [7961](https://github.com/nginx/kubernetes-ingress/pull/7961), [7977](https://github.com/nginx/kubernetes-ingress/pull/7977), [7979](https://github.com/nginx/kubernetes-ingress/pull/7979), [7978](https://github.com/nginx/kubernetes-ingress/pull/7978), [7984](https://github.com/nginx/kubernetes-ingress/pull/7984), [7996](https://github.com/nginx/kubernetes-ingress/pull/7996), [8012](https://github.com/nginx/kubernetes-ingress/pull/8012), [8036](https://github.com/nginx/kubernetes-ingress/pull/8036), [8044](https://github.com/nginx/kubernetes-ingress/pull/8044), [8063](https://github.com/nginx/kubernetes-ingress/pull/8063), [8085](https://github.com/nginx/kubernetes-ingress/pull/8085), [8107](https://github.com/nginx/kubernetes-ingress/pull/8107), [8114](https://github.com/nginx/kubernetes-ingress/pull/8114), [8128](https://github.com/nginx/kubernetes-ingress/pull/8128), [8134](https://github.com/nginx/kubernetes-ingress/pull/8134), [8147](https://github.com/nginx/kubernetes-ingress/pull/8147), [8154](https://github.com/nginx/kubernetes-ingress/pull/8154), [8173](https://github.com/nginx/kubernetes-ingress/pull/8173), [8188](https://github.com/nginx/kubernetes-ingress/pull/8188), [8228](https://github.com/nginx/kubernetes-ingress/pull/8228), [8239](https://github.com/nginx/kubernetes-ingress/pull/8239), [8235](https://github.com/nginx/kubernetes-ingress/pull/8235), [8246](https://github.com/nginx/kubernetes-ingress/pull/8246) Bump Docker dependencies
 
 ### <i class="fa-solid fa-download"></i> Upgrade
+
 - For NGINX, use the 5.2.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.2.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.2.0 images from the F5 Container registry or build your own image using the 5.2.0 source code.
 - For Helm, use version 2.3.0 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.26-1.34.
 
----
 ## 5.1.1
 
 15 Aug 2025
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [8046](https://github.com/nginx/kubernetes-ingress/pull/8046) Update interval checks for mgmt directive
 - [8079](https://github.com/nginx/kubernetes-ingress/pull/8079) Status updates for vs endpoints 
 - [8125](https://github.com/nginx/kubernetes-ingress/pull/8125) Don't send request headers & body to jwks uri
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [8115](https://github.com/nginx/kubernetes-ingress/pull/8115) & [8131](https://github.com/nginx/kubernetes-ingress/pull/8131) Bump Go dependencies
 - [8030](https://github.com/nginx/kubernetes-ingress/pull/8030), [8080](https://github.com/nginx/kubernetes-ingress/pull/8080) & [8112](https://github.com/nginx/kubernetes-ingress/pull/8112) Bump Docker dependencies
 - [8139](https://github.com/nginx/kubernetes-ingress/pull/8139) Update to NGINX OSS 1.29.1, NGINX Plus r35, NGINX Agent v3.2, NGINX App Protect 4.16.0 & 5.8.0, and Alpine Linux 3.22
 
 ### <i class="fa-solid fa-download"></i> Upgrade
+
 - For NGINX, use the 5.1.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.1.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.1.1 images from the F5 Container registry or build your own image using the 5.1.1 source code.
 - For Helm, use version 2.2.2 of the chart.
 
 ### <i class="fa-solid fa-life-ring"></i> Supported Platforms
+
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.25-1.33.
 
----
 ## 5.1.0
 
 08 Jul 2025
@@ -99,6 +108,7 @@ This release also includes the ability to configure Rate Limiting for your APIs 
 Lastly, in our previous v5.0.0 release, we removed support for OpenTracing. This release replaces that observability capability with native [NGINX OpenTelemetry]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}}) traces, allowing you to monitor the traffic of your applications.
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [7642](https://github.com/nginx/kubernetes-ingress/pull/7642) Add [OpenTelemetry support]({{< ref "/nic/logging-and-monitoring/opentelemetry.md" >}})
 - [7916](https://github.com/nginx/kubernetes-ingress/pull/7916) Add support for NGINX Agent version 3 and NGINX One Console
 - [7884](https://github.com/nginx/kubernetes-ingress/pull/7884) Tiered rate limits with variables
@@ -138,7 +148,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.33.
 
----
 ## 5.0.0
 
 16 Apr 2025
@@ -164,9 +173,11 @@ For users who have previously installed OIDC or used the `zone_sync` directive w
 Open Source NGINX Ingress Controller architectures `armv7`, `s390x` & `ppc64le` are deprecated and will be removed in the next minor release.
 
 ### <i class="fa-solid fa-bomb"></i> Breaking Changes
+
 - [7633](https://github.com/nginx/kubernetes-ingress/pull/7633) & [7567](https://github.com/nginx/kubernetes-ingress/pull/7567) Remove OpenTracing support
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [7054](https://github.com/nginx/kubernetes-ingress/pull/7054) Increase port number range
 - [7175](https://github.com/nginx/kubernetes-ingress/pull/7175) Ratelimit based on JWT claim
 - [7205](https://github.com/nginx/kubernetes-ingress/pull/7205), [7238](https://github.com/nginx/kubernetes-ingress/pull/7238), [7390](https://github.com/nginx/kubernetes-ingress/pull/7390) & [7393](https://github.com/nginx/kubernetes-ingress/pull/7393) Tiered Rate limit groups with JWT claim
@@ -175,15 +186,18 @@ Open Source NGINX Ingress Controller architectures `armv7`, `s390x` & `ppc64le` 
 - [7299](https://github.com/nginx/kubernetes-ingress/pull/7299) & [7597](https://github.com/nginx/kubernetes-ingress/pull/7597) Add support for NGINX OSS 1.27.4, NGINX Plus R34 & F5 WAF for NGINX 4.13 & 5.6
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [7121](https://github.com/nginx/kubernetes-ingress/pull/7121) Clean up and fix for NIC Pod failing to bind when NGINX exits unexpectedly
 - [7185](https://github.com/nginx/kubernetes-ingress/pull/7185) Correct typo in helm lease annotations template
 - [7400](https://github.com/nginx/kubernetes-ingress/pull/7400) Add tracking.info and copy into plus images
 - [7519](https://github.com/nginx/kubernetes-ingress/pull/7519) Add NGINX state directory for ReadOnlyRootFilesystem
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [7318](https://github.com/nginx/kubernetes-ingress/pull/7318) Allow customization of service http and https port names through helm
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [6964](https://github.com/nginx/kubernetes-ingress/pull/6964), [6970](https://github.com/nginx/kubernetes-ingress/pull/6970), [6978](https://github.com/nginx/kubernetes-ingress/pull/6978), [6992](https://github.com/nginx/kubernetes-ingress/pull/6992), [7017](https://github.com/nginx/kubernetes-ingress/pull/7017), [7052](https://github.com/nginx/kubernetes-ingress/pull/7052), [7105](https://github.com/nginx/kubernetes-ingress/pull/7105), [7131](https://github.com/nginx/kubernetes-ingress/pull/7131), [7122](https://github.com/nginx/kubernetes-ingress/pull/7122), [7138](https://github.com/nginx/kubernetes-ingress/pull/7138), [7149](https://github.com/nginx/kubernetes-ingress/pull/7149), [7162](https://github.com/nginx/kubernetes-ingress/pull/7162), [7225](https://github.com/nginx/kubernetes-ingress/pull/7225), [7240](https://github.com/nginx/kubernetes-ingress/pull/7240), [7262](https://github.com/nginx/kubernetes-ingress/pull/7262), [7290](https://github.com/nginx/kubernetes-ingress/pull/7290), [7312](https://github.com/nginx/kubernetes-ingress/pull/7312), [7345](https://github.com/nginx/kubernetes-ingress/pull/7345), [7362](https://github.com/nginx/kubernetes-ingress/pull/7362), [7375](https://github.com/nginx/kubernetes-ingress/pull/7375), [7385](https://github.com/nginx/kubernetes-ingress/pull/7385), [7415](https://github.com/nginx/kubernetes-ingress/pull/7415), [7403](https://github.com/nginx/kubernetes-ingress/pull/7403), [7435](https://github.com/nginx/kubernetes-ingress/pull/7435), [7459](https://github.com/nginx/kubernetes-ingress/pull/7459), [7472](https://github.com/nginx/kubernetes-ingress/pull/7472), [7483](https://github.com/nginx/kubernetes-ingress/pull/7483), [7505](https://github.com/nginx/kubernetes-ingress/pull/7505), [7501](https://github.com/nginx/kubernetes-ingress/pull/7501), [7522](https://github.com/nginx/kubernetes-ingress/pull/7522), [7543](https://github.com/nginx/kubernetes-ingress/pull/7543), [7594](https://github.com/nginx/kubernetes-ingress/pull/7594), [7619](https://github.com/nginx/kubernetes-ingress/pull/7619), [7635](https://github.com/nginx/kubernetes-ingress/pull/7635) & [7650](https://github.com/nginx/kubernetes-ingress/pull/7650) Bump Go dependencies
 - [7607](https://github.com/nginx/kubernetes-ingress/pull/7607) Bump Go version to 1.24.2
 - [7006](https://github.com/nginx/kubernetes-ingress/pull/7006), [7016](https://github.com/nginx/kubernetes-ingress/pull/7016), [7020](https://github.com/nginx/kubernetes-ingress/pull/7020), [7045](https://github.com/nginx/kubernetes-ingress/pull/7045), [7069](https://github.com/nginx/kubernetes-ingress/pull/7069), [7080](https://github.com/nginx/kubernetes-ingress/pull/7080), [7099](https://github.com/nginx/kubernetes-ingress/pull/7099), [7115](https://github.com/nginx/kubernetes-ingress/pull/7115), [7132](https://github.com/nginx/kubernetes-ingress/pull/7132), [7140](https://github.com/nginx/kubernetes-ingress/pull/7140), [7150](https://github.com/nginx/kubernetes-ingress/pull/7150), [7173](https://github.com/nginx/kubernetes-ingress/pull/7173), [7243](https://github.com/nginx/kubernetes-ingress/pull/7243), [7256](https://github.com/nginx/kubernetes-ingress/pull/7256), [7288](https://github.com/nginx/kubernetes-ingress/pull/7288), [7293](https://github.com/nginx/kubernetes-ingress/pull/7293), [7306](https://github.com/nginx/kubernetes-ingress/pull/7306), [7309](https://github.com/nginx/kubernetes-ingress/pull/7309), [7319](https://github.com/nginx/kubernetes-ingress/pull/7319), [7376](https://github.com/nginx/kubernetes-ingress/pull/7376), [7409](https://github.com/nginx/kubernetes-ingress/pull/7409), [7404](https://github.com/nginx/kubernetes-ingress/pull/7404), [7452](https://github.com/nginx/kubernetes-ingress/pull/7452), [7454](https://github.com/nginx/kubernetes-ingress/pull/7454), [7461](https://github.com/nginx/kubernetes-ingress/pull/7461), [7474](https://github.com/nginx/kubernetes-ingress/pull/7474), [7490](https://github.com/nginx/kubernetes-ingress/pull/7490), [7511](https://github.com/nginx/kubernetes-ingress/pull/7511), [7523](https://github.com/nginx/kubernetes-ingress/pull/7523), [7527](https://github.com/nginx/kubernetes-ingress/pull/7527), [7534](https://github.com/nginx/kubernetes-ingress/pull/7534), [7539](https://github.com/nginx/kubernetes-ingress/pull/7539), [7551](https://github.com/nginx/kubernetes-ingress/pull/7551), [7564](https://github.com/nginx/kubernetes-ingress/pull/7564), [7590](https://github.com/nginx/kubernetes-ingress/pull/7590), [7631](https://github.com/nginx/kubernetes-ingress/pull/7631) & [7467](https://github.com/nginx/kubernetes-ingress/pull/7467) Bump Docker dependencies
@@ -208,13 +222,17 @@ versions: 1.25-1.32.
 07 Feb 2025
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [7295](https://github.com/nginx/kubernetes-ingress/pull/7295) Clean up and fix for NIC Pod failing to bind when NGINX exits unexpectedly
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 {{< call-out "warning" >}} From this release onwards, the Helm chart location has changed from `oci://ghcr.io/nginxinc/charts/nginx-ingress` to `oci://ghcr.io/nginx/charts/nginx-ingress`. {{< /call-out >}}
+
 - [7188](https://github.com/nginx/kubernetes-ingress/pull/7188) Correct typo in helm lease annotations template
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [7301](https://github.com/nginx/kubernetes-ingress/pull/7301), [7307](https://github.com/nginx/kubernetes-ingress/pull/7307) & [7310](https://github.com/nginx/kubernetes-ingress/pull/7310) Update to nginx 1.27.4
 - [7163](https://github.com/nginx/kubernetes-ingress/pull/7163) Bump Go version to 1.23.5
 - [7024](https://github.com/nginx/kubernetes-ingress/pull/7024), [7061](https://github.com/nginx/kubernetes-ingress/pull/7061), [7113](https://github.com/nginx/kubernetes-ingress/pull/7113), [7145](https://github.com/nginx/kubernetes-ingress/pull/7145), [7148](https://github.com/nginx/kubernetes-ingress/pull/7148), [7154](https://github.com/nginx/kubernetes-ingress/pull/7154), [7164](https://github.com/nginx/kubernetes-ingress/pull/7164), [7229](https://github.com/nginx/kubernetes-ingress/pull/7229), [7265](https://github.com/nginx/kubernetes-ingress/pull/7265), [7250](https://github.com/nginx/kubernetes-ingress/pull/7250), [7296](https://github.com/nginx/kubernetes-ingress/pull/7296) & [7321](https://github.com/nginx/kubernetes-ingress/pull/7321) Bump Go dependencies
@@ -247,24 +265,28 @@ For full details on updating your resources, see [Update custom resource apiVers
 
 Updates have been made to our logging library. For a while, F5 NGINX Ingress Controller has been using the [golang/glog](https://github.com/golang/glog). For this release, we have moved to the native golang library [log/slog](https://pkg.go.dev/log/slog).
 This change was made for these reasons:
+
 1. By using a standard library, we ensure that updates are more consistent, and any known vulnerabilities are more likely to be addressed in a timely manner.
-2. By moving to `log/slog`, we enable support for a wider range of logging formats, as well as allowing log outputs to be displayed in a Structured format, and for faster log parsing.
+1. By moving to `log/slog`, we enable support for a wider range of logging formats, as well as allowing log outputs to be displayed in a Structured format, and for faster log parsing.
 
 Layer 4 applications got some love this release, with added support for SNI based routing with our TransportServer resource!
 In scenarios where you have multiple applications hosted on a single node, this feature enables routing to those applications through the host header.
 For more details on what this feature does, and how to configure it yourself, please look to our [examples section in Github](https://github.com/nginx/kubernetes-ingress/tree/v4.0.0/examples/custom-resources/transport-server-sni#transportserver-sni)
 
 ### <i class="fa-solid fa-bomb"></i> Breaking Changes
+
 - [6903](https://github.com/nginx/kubernetes-ingress/pull/6903) & [6921](https://github.com/nginx/kubernetes-ingress/pull/6921) Add support for NGINX Plus R33
 - [6800](https://github.com/nginx/kubernetes-ingress/pull/6800) Deprecate v1alpha1 CRDs for GlobalConfiguration, Policy & TransportServer
 - [6520](https://github.com/nginx/kubernetes-ingress/pull/6520) & [6474](https://github.com/nginx/kubernetes-ingress/pull/6474) Add structured logging
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [6605](https://github.com/nginx/kubernetes-ingress/pull/6605) TransportServer SNI
 - [6819](https://github.com/nginx/kubernetes-ingress/pull/6819) Add events to configmap
 - [6878](https://github.com/nginx/kubernetes-ingress/pull/6878) Add events when special secrets update
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [6583](https://github.com/nginx/kubernetes-ingress/pull/6583) Generate valid yaml for ReadOnly FS
 - [6635](https://github.com/nginx/kubernetes-ingress/pull/6635) UpstreamServer Fields Logs Displayed as Memory Addresses
 - [6661](https://github.com/nginx/kubernetes-ingress/pull/6661) Revert to original main-template without pod downtime
@@ -272,10 +294,12 @@ For more details on what this feature does, and how to configure it yourself, pl
 - [6780](https://github.com/nginx/kubernetes-ingress/pull/6780) Use default VS and TS templates when CfgMap obj is deleted
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [6667](https://github.com/nginx/kubernetes-ingress/pull/6667) Helm schema examples
 - [6998](https://github.com/nginx/kubernetes-ingress/pull/6998) Update kubernetes version to v1.32.0 in helm schema
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [6485](https://github.com/nginx/kubernetes-ingress/pull/6485), [6497](https://github.com/nginx/kubernetes-ingress/pull/6497), [6512](https://github.com/nginx/kubernetes-ingress/pull/6512), [6533](https://github.com/nginx/kubernetes-ingress/pull/6533), [6543](https://github.com/nginx/kubernetes-ingress/pull/6543), [6557](https://github.com/nginx/kubernetes-ingress/pull/6557), [6580](https://github.com/nginx/kubernetes-ingress/pull/6580), [6607](https://github.com/nginx/kubernetes-ingress/pull/6607), [6638](https://github.com/nginx/kubernetes-ingress/pull/6638), [6654](https://github.com/nginx/kubernetes-ingress/pull/6654), [6657](https://github.com/nginx/kubernetes-ingress/pull/6657), [6676](https://github.com/nginx/kubernetes-ingress/pull/6676), [6685](https://github.com/nginx/kubernetes-ingress/pull/6685), [6699](https://github.com/nginx/kubernetes-ingress/pull/6699), [6697](https://github.com/nginx/kubernetes-ingress/pull/6697), [6719](https://github.com/nginx/kubernetes-ingress/pull/6719), [6717](https://github.com/nginx/kubernetes-ingress/pull/6717), [6747](https://github.com/nginx/kubernetes-ingress/pull/6747), [6743](https://github.com/nginx/kubernetes-ingress/pull/6743), [6775](https://github.com/nginx/kubernetes-ingress/pull/6775), [6789](https://github.com/nginx/kubernetes-ingress/pull/6789), [6762](https://github.com/nginx/kubernetes-ingress/pull/6762), [6786](https://github.com/nginx/kubernetes-ingress/pull/6786), [6845](https://github.com/nginx/kubernetes-ingress/pull/6845), [6864](https://github.com/nginx/kubernetes-ingress/pull/6864), [6880](https://github.com/nginx/kubernetes-ingress/pull/6880), [6862](https://github.com/nginx/kubernetes-ingress/pull/6862), [6897](https://github.com/nginx/kubernetes-ingress/pull/6897), [6890](https://github.com/nginx/kubernetes-ingress/pull/6890), [6905](https://github.com/nginx/kubernetes-ingress/pull/6905), [6906](https://github.com/nginx/kubernetes-ingress/pull/6906), [6909](https://github.com/nginx/kubernetes-ingress/pull/6909), [6919](https://github.com/nginx/kubernetes-ingress/pull/6919), [6936](https://github.com/nginx/kubernetes-ingress/pull/6936), [6945](https://github.com/nginx/kubernetes-ingress/pull/6945), [6971](https://github.com/nginx/kubernetes-ingress/pull/6971) & [6982](https://github.com/nginx/kubernetes-ingress/pull/6982) Bump the Docker dependencies
 - [6483](https://github.com/nginx/kubernetes-ingress/pull/6483), [6496](https://github.com/nginx/kubernetes-ingress/pull/6496), [6522](https://github.com/nginx/kubernetes-ingress/pull/6522), [6540](https://github.com/nginx/kubernetes-ingress/pull/6540), [6559](https://github.com/nginx/kubernetes-ingress/pull/6559), [6589](https://github.com/nginx/kubernetes-ingress/pull/6589), [6614](https://github.com/nginx/kubernetes-ingress/pull/6614), [6643](https://github.com/nginx/kubernetes-ingress/pull/6643), [6669](https://github.com/nginx/kubernetes-ingress/pull/6669), [6683](https://github.com/nginx/kubernetes-ingress/pull/6683), [6704](https://github.com/nginx/kubernetes-ingress/pull/6704), [6712](https://github.com/nginx/kubernetes-ingress/pull/6712), [6728](https://github.com/nginx/kubernetes-ingress/pull/6728), [6745](https://github.com/nginx/kubernetes-ingress/pull/6745), [6767](https://github.com/nginx/kubernetes-ingress/pull/6767), [6782](https://github.com/nginx/kubernetes-ingress/pull/6782), [6815](https://github.com/nginx/kubernetes-ingress/pull/6815), [6826](https://github.com/nginx/kubernetes-ingress/pull/6826), [6835](https://github.com/nginx/kubernetes-ingress/pull/6835), [6842](https://github.com/nginx/kubernetes-ingress/pull/6842), [6861](https://github.com/nginx/kubernetes-ingress/pull/6861), [6916](https://github.com/nginx/kubernetes-ingress/pull/6916), [6908](https://github.com/nginx/kubernetes-ingress/pull/6908), [6931](https://github.com/nginx/kubernetes-ingress/pull/6931), [6969](https://github.com/nginx/kubernetes-ingress/pull/6969), [6973](https://github.com/nginx/kubernetes-ingress/pull/6973), [6988](https://github.com/nginx/kubernetes-ingress/pull/6988) & [6994](https://github.com/nginx/kubernetes-ingress/pull/6994) Bump the go dependencies
 
@@ -295,8 +319,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.32.
 
-
----
 ## 3.7.2
 
 25 Nov 2024
@@ -311,9 +333,10 @@ To ensure backwards compatibility, we will ensure the existing log format, `glog
 {{< call-out "important" >}}
 CRD version removal notice.
 In our next major release, `v4.0.0`, support for the following apiVersions for these listed CRDs will be dropped:
+
 1. `k8s.nginx.org/v1alpha` for `GlobalConfiguration`
-2. `k8s.nginx.org/v1alpha` for `Policy`
-3. `k8s.nginx.org/v1alpha` for `TransportServer`
+1. `k8s.nginx.org/v1alpha` for `Policy`
+1. `k8s.nginx.org/v1alpha` for `TransportServer`
 
 Prior to upgrading, **please ensure** that any of these resources deployed as `apiVersion: k8s.nginx.org/v1alpha1` are upgraded to `apiVersion: k8s.nginx.org/v1`
 If a resource of `kind: GlobalConfiguration`, `kind: Policy` or `kind: TransportServer` are deployed as `apiVersion: k8s.nginx.org/v1alpha1`, these resources will be **deleted** when upgrading from, at least, `v3.4.0` to `v4.0.0`
@@ -322,9 +345,11 @@ When `v4.0.0` is released, the release notes will contain the required upgrade s
 {{< /call-out >}}
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [6838](https://github.com/nginx/kubernetes-ingress/pull/6838) Update oidc_template and conf
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [6779](https://github.com/nginx/kubernetes-ingress/pull/6779), [6790](https://github.com/nginx/kubernetes-ingress/pull/6790) & [6851](https://github.com/nginx/kubernetes-ingress/pull/6851) Bump the Docker dependencies
 - [6791](https://github.com/nginx/kubernetes-ingress/pull/6791), [6849](https://github.com/nginx/kubernetes-ingress/pull/6849) & [6839](https://github.com/nginx/kubernetes-ingress/pull/6839) Bump the go dependencies
 
@@ -343,16 +368,17 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.31.
 
----
 ## 3.7.1
 
 06 Nov 2024
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [6735](https://github.com/nginx/kubernetes-ingress/pull/6735) Add nil check to apikey suppliedIn
 - [6761](https://github.com/nginx/kubernetes-ingress/pull/6761) Add OIDC fix for ID token nonce claim validation
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [6545](https://github.com/nginx/kubernetes-ingress/pull/6545), [6560](https://github.com/nginx/kubernetes-ingress/pull/6560), [6560](https://github.com/nginx/kubernetes-ingress/pull/6560), [6619](https://github.com/nginx/kubernetes-ingress/pull/6619), [6640](https://github.com/nginx/kubernetes-ingress/pull/6640), [6664](https://github.com/nginx/kubernetes-ingress/pull/6664), [6686](https://github.com/nginx/kubernetes-ingress/pull/6686), [6703](https://github.com/nginx/kubernetes-ingress/pull/6703), [6720](https://github.com/nginx/kubernetes-ingress/pull/6720), [6755](https://github.com/nginx/kubernetes-ingress/pull/6755) & [6751](https://github.com/nginx/kubernetes-ingress/pull/6751) Bump the Docker dependencies
 - [6553](https://github.com/nginx/kubernetes-ingress/pull/6553), [6591](https://github.com/nginx/kubernetes-ingress/pull/6591), [6618](https://github.com/nginx/kubernetes-ingress/pull/6618), [6648](https://github.com/nginx/kubernetes-ingress/pull/6648), [6688](https://github.com/nginx/kubernetes-ingress/pull/6688), [6674](https://github.com/nginx/kubernetes-ingress/pull/6674), [6707](https://github.com/nginx/kubernetes-ingress/pull/6707), [6730](https://github.com/nginx/kubernetes-ingress/pull/6730) & [6751](https://github.com/nginx/kubernetes-ingress/pull/6751) Bump the go dependencies
 - [6570](https://github.com/nginx/kubernetes-ingress/pull/6570) & [6549](https://github.com/nginx/kubernetes-ingress/pull/6549) Bump the go version
@@ -372,7 +398,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.31.
 
----
 ## 3.7.0
 
 30 Sept 2024
@@ -385,6 +410,7 @@ The `access_log` directive can now be configured to point to a syslog log server
 When installing NGINX Ingress Controller via Helm, a uniquely named lease object will be created automatically. This allows for multiple deployments of NGINX Ingress Controller in the same namespace when leader election is enabled, without requiring a unique name to be specified manually for each deployment.
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [5968](https://github.com/nginx/kubernetes-ingress/pull/5968) Add BUILD_OS to Telemetry
 - [6014](https://github.com/nginx/kubernetes-ingress/pull/6014) Sync oidc repo
 - [6092](https://github.com/nginx/kubernetes-ingress/pull/6092) Support End Session Endpoint for OIDC and allow customizable Post-logout Redirect URI
@@ -393,6 +419,7 @@ When installing NGINX Ingress Controller via Helm, a uniquely named lease object
 - [6367](https://github.com/nginx/kubernetes-ingress/pull/6367) Add ip as an option to listeners for TransportServer
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [5786](https://github.com/nginx/kubernetes-ingress/pull/5786) Change log level, to Info and above, before calling prometheus exporter functions
 - [5838](https://github.com/nginx/kubernetes-ingress/pull/5838) Fix api key policy undefined routes
 - [5885](https://github.com/nginx/kubernetes-ingress/pull/5885) Add default telemetry endpoint
@@ -404,11 +431,13 @@ When installing NGINX Ingress Controller via Helm, a uniquely named lease object
 - [6446](https://github.com/nginx/kubernetes-ingress/pull/6446) Disable batch reload when batch finishes
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [5817](https://github.com/nginx/kubernetes-ingress/pull/5817) Remove include-year and includeYear flag
 - [5335](https://github.com/nginx/kubernetes-ingress/pull/5335) Choose NodePort values for controller.service.type = LoadBalancer
 - [6235](https://github.com/nginx/kubernetes-ingress/pull/6235) Update helm docs by @vepatel
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [5789](https://github.com/nginx/kubernetes-ingress/pull/5789), [5804](https://github.com/nginx/kubernetes-ingress/pull/5804), [5821](https://github.com/nginx/kubernetes-ingress/pull/5821), [5870](https://github.com/nginx/kubernetes-ingress/pull/5870), [5880](https://github.com/nginx/kubernetes-ingress/pull/5880), [5907](https://github.com/nginx/kubernetes-ingress/pull/5907), [5949](https://github.com/nginx/kubernetes-ingress/pull/5949), [5959](https://github.com/nginx/kubernetes-ingress/pull/5959), [5993](https://github.com/nginx/kubernetes-ingress/pull/5993), [6010](https://github.com/nginx/kubernetes-ingress/pull/6010), [6071](https://github.com/nginx/kubernetes-ingress/pull/6071), [6105](https://github.com/nginx/kubernetes-ingress/pull/6105), [6132](https://github.com/nginx/kubernetes-ingress/pull/6132), [6186](https://github.com/nginx/kubernetes-ingress/pull/6186), [6195](https://github.com/nginx/kubernetes-ingress/pull/6195), [6200](https://github.com/nginx/kubernetes-ingress/pull/6200), [6215](https://github.com/nginx/kubernetes-ingress/pull/6215), [6229](https://github.com/nginx/kubernetes-ingress/pull/6229), [6266](https://github.com/nginx/kubernetes-ingress/pull/6266), [6283](https://github.com/nginx/kubernetes-ingress/pull/6283), [6287](https://github.com/nginx/kubernetes-ingress/pull/6287), [6299](https://github.com/nginx/kubernetes-ingress/pull/6299), [6310](https://github.com/nginx/kubernetes-ingress/pull/6310), [6358](https://github.com/nginx/kubernetes-ingress/pull/6358), [6364](https://github.com/nginx/kubernetes-ingress/pull/6364), [6397](https://github.com/nginx/kubernetes-ingress/pull/6397), [6412](https://github.com/nginx/kubernetes-ingress/pull/6412), [6459](https://github.com/nginx/kubernetes-ingress/pull/6459) Bump the go dependencies
 - [5929](https://github.com/nginx/kubernetes-ingress/pull/5929), [6337](https://github.com/nginx/kubernetes-ingress/pull/6337), [6350](https://github.com/nginx/kubernetes-ingress/pull/6350) & [6368](https://github.com/nginx/kubernetes-ingress/pull/6368) Bump the go version
 - [6052](https://github.com/nginx/kubernetes-ingress/pull/6052) Replace promlog with go-kit
@@ -430,16 +459,17 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.31.
 
----
 ## 3.6.2
 
 19 Aug 2024
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [6125](https://github.com/nginx/kubernetes-ingress/pull/6125) Don't log errors for not implemented grpc metrics
 - [6223](https://github.com/nginx/kubernetes-ingress/pull/6223) Re-order mounting debian apt source file
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [5974](https://github.com/nginx/kubernetes-ingress/pull/5974), [6021](https://github.com/nginx/kubernetes-ingress/pull/6021), [5998](https://github.com/nginx/kubernetes-ingress/pull/5998), [6081](https://github.com/nginx/kubernetes-ingress/pull/6081), [6120](https://github.com/nginx/kubernetes-ingress/pull/6120), [6141](https://github.com/nginx/kubernetes-ingress/pull/6141), [6196](https://github.com/nginx/kubernetes-ingress/pull/6196), [6204](https://github.com/nginx/kubernetes-ingress/pull/6204), [6211](https://github.com/nginx/kubernetes-ingress/pull/6211), [6222](https://github.com/nginx/kubernetes-ingress/pull/6204) & [6234](https://github.com/nginx/kubernetes-ingress/pull/6234) Go dependencies
 - [5967](https://github.com/nginx/kubernetes-ingress/pull/5967), [6013](https://github.com/nginx/kubernetes-ingress/pull/6013), [6070](https://github.com/nginx/kubernetes-ingress/pull/6070), [6098](https://github.com/nginx/kubernetes-ingress/pull/6098), [6126](https://github.com/nginx/kubernetes-ingress/pull/6126), [6158](https://github.com/nginx/kubernetes-ingress/pull/6158), [6179](https://github.com/nginx/kubernetes-ingress/pull/6179), [6191](https://github.com/nginx/kubernetes-ingress/pull/6191), [6226](https://github.com/nginx/kubernetes-ingress/pull/6226) & [6233](https://github.com/nginx/kubernetes-ingress/pull/6233) Docker base image updates
 
@@ -458,16 +488,17 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.31.
 
----
 ## 3.6.1
 
 04 Jul 2024
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [5921](https://github.com/nginx/kubernetes-ingress/pull/5921) GRPC healthcheck should not have keepalive time
 - [5889](https://github.com/nginx/kubernetes-ingress/pull/5889) Add default telemetry endpoint
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [5930](https://github.com/nginx/kubernetes-ingress/pull/5930) Bump Go version to 1.22.5
 - [5947](https://github.com/nginx/kubernetes-ingress/pull/5947), [5923](https://github.com/nginx/kubernetes-ingress/pull/5923), [5943](https://github.com/nginx/kubernetes-ingress/pull/5943), [5939](https://github.com/nginx/kubernetes-ingress/pull/5939) and [5882](https://github.com/nginx/kubernetes-ingress/pull/5882) Docker image updates
 - [5951](https://github.com/nginx/kubernetes-ingress/pull/5951), [5933](https://github.com/nginx/kubernetes-ingress/pull/5933), [5884](https://github.com/nginx/kubernetes-ingress/pull/5884) and [5877](https://github.com/nginx/kubernetes-ingress/pull/5877) Go dependencies update
@@ -487,18 +518,18 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.30.
 
----
 ## 3.6.0
 
 25 Jun 2024
 
 Added support for the latest generation of NGINX App Protect Web Application Firewall, v5. NGINX Ingress Controller will continue to support the NGINX App Protect v4 family to allow customers to implement new Policy Bundle workflow at their own pace.
-F5 WAF for NGINX v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either App Protect [compiler]({{< ref "/nap-waf/v5/admin-guide/compiler/" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [F5 WAF for NGINX V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
+F5 WAF for NGINX v5 does not accept the JSON based policies, instead requiring users to compile a Policy Bundle outside of the NGINX Ingress Controller pod. Policy bundles contain a combination of custom Policy, signatures, and campaigns. Bundles can be compiled using either the F5 WAF for NGINX [compiler]({{< ref "/waf/configure/compiler.md" >}}), or [NGINX Instance Manager]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#list-security-policy-bundles" >}}). Read more in the [F5 WAF for NGINX V5]({{< ref "/nic/installation/integrations/app-protect-waf-v5/" >}})  topic.
 
 With this release, NGINX Ingress Controller is implementing a new image maintenance policy. Container images for subscribed users will be updated on a regular basis in-between releases to reduce the CVE vulnerabilities.
 Customers can observe the 3.6.x tag when listing images in the registry and select the latest image to update to for the current release.
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [5698](https://github.com/nginx/kubernetes-ingress/pull/5698), [5771](https://github.com/nginx/kubernetes-ingress/pull/5771) & [5784](https://github.com/nginx/kubernetes-ingress/pull/5784) Add support for F5 NGINX AppProtect WAF v5
 - [5580](https://github.com/nginx/kubernetes-ingress/pull/5580) & [5752](https://github.com/nginx/kubernetes-ingress/pull/5752) Add APIKey Authentication policy
 - [5205](https://github.com/nginx/kubernetes-ingress/pull/5205) Preserve valid listeners when invalid listeners are present in GlobalConfiguration
@@ -506,14 +537,17 @@ Customers can observe the 3.6.x tag when listing images in the registry and sele
 - [5406](https://github.com/nginx/kubernetes-ingress/pull/5406), [5408](https://github.com/nginx/kubernetes-ingress/pull/5408), [5418](https://github.com/nginx/kubernetes-ingress/pull/5418), [5404](https://github.com/nginx/kubernetes-ingress/pull/5404) & [5415](https://github.com/nginx/kubernetes-ingress/pull/5415) Add additional telemetry data
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [5350](https://github.com/nginx/kubernetes-ingress/pull/5350) Fix ap-waf flag in error message
 - [5318](https://github.com/nginx/kubernetes-ingress/pull/5318) Don't reload when `use-cluster-ip` endpoints update, and change the ingress `use-cluster-ip` implementation to use the cluster ip instead of the fqdn
 - [5375](https://github.com/nginx/kubernetes-ingress/pull/5375) Fix status for invalid vs and vsr, for weight changes dynamic reload
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [5313](https://github.com/nginx/kubernetes-ingress/pull/5313) Update helm flag in docs for enableWeightChangesDynamicReload
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [5693](https://github.com/nginx/kubernetes-ingress/pull/5693) Bump Go version to v1.22.4
 - [5368](https://github.com/nginx/kubernetes-ingress/pull/5368), [5331](https://github.com/nginx/kubernetes-ingress/pull/5331) & [5423](https://github.com/nginx/kubernetes-ingress/pull/5423) Bump the go dependencies
 - [5298](https://github.com/nginx/kubernetes-ingress/pull/5298), [5344](https://github.com/nginx/kubernetes-ingress/pull/5344), [5345](https://github.com/nginx/kubernetes-ingress/pull/5345),[5371](https://github.com/nginx/kubernetes-ingress/pull/5371), [5378](https://github.com/nginx/kubernetes-ingress/pull/5378), [5379](https://github.com/nginx/kubernetes-ingress/pull/5379), [5398](https://github.com/nginx/kubernetes-ingress/pull/5398), [5397](https://github.com/nginx/kubernetes-ingress/pull/5397), [5399](https://github.com/nginx/kubernetes-ingress/pull/5399) & [5400](https://github.com/nginx/kubernetes-ingress/pull/5400) Bump base Docker images
@@ -533,7 +567,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes
 versions: 1.25-1.30.
 
----
 ## 3.5.2
 
 31 May 2024
@@ -547,7 +580,6 @@ versions: 1.25-1.30.
 - [5654](https://github.com/nginx/kubernetes-ingress/pull/5654) NGINX 1.27.0 and [NGINX Plus R32](https://www.f5.com/company/blog/nginx/nginx-plus-r32-released)
 - [5590](https://github.com/nginx/kubernetes-ingress/pull/5590), [5631](https://github.com/nginx/kubernetes-ingress/pull/5631), [5638](https://github.com/nginx/kubernetes-ingress/pull/5638), [5662](https://github.com/nginx/kubernetes-ingress/pull/5662), [5623](https://github.com/nginx/kubernetes-ingress/pull/5623) Go updates
 - [5579](https://github.com/nginx/kubernetes-ingress/pull/5579), [5642](https://github.com/nginx/kubernetes-ingress/pull/5642), [5573](https://github.com/nginx/kubernetes-ingress/pull/5573), [5630](https://github.com/nginx/kubernetes-ingress/pull/5630), [5665](https://github.com/nginx/kubernetes-ingress/pull/5665), [5673](https://github.com/nginx/kubernetes-ingress/pull/5673) Container base image updates
-
 
 ### <i class="fa-solid fa-download"></i> Upgrade
 
@@ -569,14 +601,17 @@ versions: 1.25-1.30.
 08 May 2024
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [5463](https://github.com/nginx/kubernetes-ingress/pull/5463) Don't reload when use-cluster-ip endpoints update
 - [5464](https://github.com/nginx/kubernetes-ingress/pull/5464) Fix status for invalid vs and vsr, for weight changes dynamic reload
 - [5470](https://github.com/nginx/kubernetes-ingress/pull/5470) Add support for named ports in ingresses which use-cluster-ip
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [5315](https://github.com/nginx/kubernetes-ingress/pull/5315) Update helm flag in docs for enableWeightChangesDynamicReload
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [5511](https://github.com/nginx/kubernetes-ingress/pull/5511) & [5391](https://github.com/nginx/kubernetes-ingress/pull/5391) Go updates
 - [5490](https://github.com/nginx/kubernetes-ingress/pull/5490) Pin app-protect module version to 4.8.1
 
@@ -607,6 +642,7 @@ The [**use-cluster-ip**]({{< ref "/nic/configuration/ingress-resources/advanced-
 **use-cluster-ip** supports service meshes and specific use cases where the backend service should be the target instead of individual backend service pods, bypassing upstream load balancing.
 
 ### <i class="fa-solid fa-rocket"></i> Features
+
 - [5179](https://github.com/nginx/kubernetes-ingress/pull/5179) & [5051](https://github.com/nginx/kubernetes-ingress/pull/5051) Add NIM Security Dashboard integration for F5 WAF for NGINX security violations
 - [5212](https://github.com/nginx/kubernetes-ingress/pull/5212) Weight changes Dynamic Reload
 - [4862](https://github.com/nginx/kubernetes-ingress/pull/4862) Add use-cluster-ip annotation for ingress resources
@@ -617,15 +653,18 @@ The [**use-cluster-ip**]({{< ref "/nic/configuration/ingress-resources/advanced-
 - [4896](https://github.com/nginx/kubernetes-ingress/pull/4896), [5095](https://github.com/nginx/kubernetes-ingress/pull/5095), [5147](https://github.com/nginx/kubernetes-ingress/pull/5147), [5155](https://github.com/nginx/kubernetes-ingress/pull/5155), [5170](https://github.com/nginx/kubernetes-ingress/pull/5170), [5176](https://github.com/nginx/kubernetes-ingress/pull/5176), [5217](https://github.com/nginx/kubernetes-ingress/pull/5217), [5245](https://github.com/nginx/kubernetes-ingress/pull/5245), [5237](https://github.com/nginx/kubernetes-ingress/pull/5237), [5256](https://github.com/nginx/kubernetes-ingress/pull/5256), [5167](https://github.com/nginx/kubernetes-ingress/pull/5167) & [5261](https://github.com/nginx/kubernetes-ingress/pull/5261) Export Telemetry data to XCDF
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [5211](https://github.com/nginx/kubernetes-ingress/pull/5211) Move set above rewrite to fix uninitialized variable
 - [5175](https://github.com/nginx/kubernetes-ingress/pull/5175) Initialize `stopCh` channel for ExternalDNS
 - [5053](https://github.com/nginx/kubernetes-ingress/pull/5053) Ensure `backup` server is removed from upstreams when the Backup Service is deleted
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [5159](https://github.com/nginx/kubernetes-ingress/pull/5159) Refactor volumes and volumeMounts to common helpers
 - [5179](https://github.com/nginx/kubernetes-ingress/pull/5179) Move common pod label definitions to helpers
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [4803](https://github.com/nginx/kubernetes-ingress/pull/4803), [4846](https://github.com/nginx/kubernetes-ingress/pull/4846), [4873](https://github.com/nginx/kubernetes-ingress/pull/4873), [4905](https://github.com/nginx/kubernetes-ingress/pull/4905), [5098](https://github.com/nginx/kubernetes-ingress/pull/5098), [5108](https://github.com/nginx/kubernetes-ingress/pull/5108), [5125](https://github.com/nginx/kubernetes-ingress/pull/5125), [5132](https://github.com/nginx/kubernetes-ingress/pull/5132), [5207](https://github.com/nginx/kubernetes-ingress/pull/5207), [5234](https://github.com/nginx/kubernetes-ingress/pull/5234), [5267](https://github.com/nginx/kubernetes-ingress/pull/5267), [5272](https://github.com/nginx/kubernetes-ingress/pull/5272) & [5218](https://github.com/nginx/kubernetes-ingress/pull/5218) Go Dependency updates
 - [5208](https://github.com/nginx/kubernetes-ingress/pull/5208) Bump Go version to 1.22.1
 
@@ -649,6 +688,7 @@ versions: 1.23-1.29.
 19 Feb 2024
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 - [5008](https://github.com/nginx/kubernetes-ingress/pull/5008) Remove redundant Prometheus variable labels
 - [4744](https://github.com/nginx/kubernetes-ingress/pull/4744) Fixed validation for VSR exact & regex subroutes.  Thanks to [jo-carter](https://github.com/jo-carter).
 - [4832](https://github.com/nginx/kubernetes-ingress/pull/4832) Fix new lines in snippets
@@ -656,9 +696,11 @@ versions: 1.23-1.29.
 - [5041](https://github.com/nginx/kubernetes-ingress/pull/5041) Allow waf users to build without dos repo access
 
 ### <i class="fa-solid fa-box"></i> Helm Chart
+
 - [4953](https://github.com/nginx/kubernetes-ingress/pull/4953) Add docs links to helm NOTES.txt
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 - [5073](https://github.com/nginx/kubernetes-ingress/pull/5073), [5029](https://github.com/nginx/kubernetes-ingress/pull/5029) Bump redhat/ubi8 base image
 - [4992](https://github.com/nginx/kubernetes-ingress/pull/4992) Bump ubi base image
 - [4994](https://github.com/nginx/kubernetes-ingress/pull/4994) Bump redhat/ubi9-minimal base image
@@ -689,6 +731,7 @@ versions: 1.23-1.29.
 16 Jan 2024
 
 ### <i class="fa-solid fa-bug-slash"></i> Fixes
+
 [4934](https://github.com/nginx/kubernetes-ingress/pull/4934) GCR & AWS Plus image publishing fix
 
 ### <i class="fa-solid fa-download"></i> Upgrade
@@ -711,6 +754,7 @@ versions: 1.23-1.29.
 15 Jan 2024
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
+
 [4886](https://github.com/nginx/kubernetes-ingress/pull/4886) Update N+ to R31
 [4886](https://github.com/nginx/kubernetes-ingress/pull/4886) Bump Go dependencies.
 
@@ -1385,7 +1429,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 17 May 2022
 
 ### <i class="fa-solid fa-upload"></i> Dependencies
-the documentation here
 
 - Update Go dependencies.
 
@@ -1938,7 +1981,7 @@ You will find the complete changelog for release 1.11.0, including bug fixes, im
 
 ### <i class="fa-solid fa-download"></i> Upgrade
 
--- For NGINX, use the 1.11.0 image from our DockerHub: `nginx/nginx-ingress:1.11.0`, `nginx/nginx-ingress:1.11.0-alpine` or `nginx-ingress:1.11.0-ubi`
+- For NGINX, use the 1.11.0 image from our DockerHub: `nginx/nginx-ingress:1.11.0`, `nginx/nginx-ingress:1.11.0-alpine` or `nginx-ingress:1.11.0-ubi`
 - For NGINX Plus, please build your own image using the 1.11.0 source code.
 - For Helm, use version 0.9.0 of the chart.
 - [1241](https://github.com/nginx/kubernetes-ingress/pull/1241) improved the Makefile. As a result, the commands for building the Ingress Controller image were changed. See the updated commands [here]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}).
@@ -2116,7 +2159,7 @@ You will find the complete changelog for release 1.9.0, including bug fixes, imp
 - [1120](https://github.com/nginx/kubernetes-ingress/pull/1120) Add RateLimit policy support.
 - [1058](https://github.com/nginx/kubernetes-ingress/pull/1058) Support policies in VS routes and VSR subroutes.
 - [1147](https://github.com/nginx/kubernetes-ingress/pull/1147) Add option to specify other log destinations in AppProtect.
-- [1131](https://github.com/nginx/kubernetes-ingress/pull/1131) Update packages and CRDs to AppProtect 2.0. This update includes features such as: [JSON Schema Validation]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#applying-a-json-schema" >}}), [User-Defined URLs]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-urls" >}}) and [User-Defined Parameters]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#user-defined-parameters" >}}). See the [release notes]({{< ref "/nap-waf/v4/releases/about-2.0.md" >}}) for a complete feature list.
+- [1131](https://github.com/nginx/kubernetes-ingress/pull/1131) Update packages and CRDs to AppProtect 2.0. This update includes features such as [JSON Schema Validation]({{< ref "/waf/policies/xml-json-content.md" >}}) and [User-defined URLs and parameters]({{< ref "/waf/policies/user-urls-parameters.md" >}}). See the [release notes]({{< ref "/waf/changelog.md" >}}) for a complete feature list.
 - [1100](https://github.com/nginx/kubernetes-ingress/pull/1100) Add external references to AppProtect.
 - [1085](https://github.com/nginx/kubernetes-ingress/pull/1085) Add installation of threat campaigns package.
 - [1133](https://github.com/nginx/kubernetes-ingress/pull/1133) Add support for IngressClass resources.

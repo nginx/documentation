@@ -2,8 +2,8 @@
 title: Set up F5 WAF for NGINX instances for Security Monitoring
 weight: 100
 toc: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIM
 nd-docs: DOCS-1107
 ---
 
@@ -14,21 +14,17 @@ F5 NGINX Security Monitoring supports two main use cases:
 - **Security Monitoring only**: Use only the Security Monitoring module to monitor data from F5 WAF for NGINX instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your F5 WAF for NGINX configurations are managed outside of the NGINX Instance Manager context.
 - **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Instance Manager. In addition to monitoring your application security, you will be able to manage your F5 WAF for NGINX  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
 
----
-
 ## Before you begin
 
 Complete the following prerequisites before proceeding with the steps in this guide.
 
 1. If you are new to F5 WAF for NGINX, follow the instructions in the installation and configuration guides to get up and running:
 
-   - [Install F5 WAF for NGINX]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
-   - [Configure F5 WAF for NGINX]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#policy-configuration-overview" >}}) according to your needs on each of the data plane instance.
+   - [Install F5 WAF for NGINX]({{< ref "/waf/install/" >}}) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
+   - [Configure F5 WAF for NGINX]({{< ref "/waf/policies/configuration.md" >}}) according to your needs on each of the data plane instance.
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
 1. [Upload your license]({{< ref "/nim/admin-guide/add-license.md" >}}).
-
----
 
 ## Install NGINX Agent
 
@@ -136,9 +132,6 @@ sudo systemctl restart nginx-agent
 
 {{< /call-out >}}
 
-
----
-
 ## Create instances for Security Monitoring only
 
 Complete the steps in this section if you are only using the Security Monitoring module to monitor your application security. In this use case, you are **not using Instance Manager** to manage your WAF security policies.
@@ -193,8 +186,6 @@ Repeat the steps below on each F5 WAF for NGINX data plane instance.
 
 You should now be able to view data from your NGINX App Protect instances in the NGINX Security Monitoring dashboards.
 
----
-
 ## Create instances for Security Monitoring with Instance Manager
 
 Complete the steps in this section if you want to use the Security Monitoring module **and** Instance Manager. In this use case, you will use NGINX Instance Manager to monitor threats and to manage your F5 WAF for NGINX configurations and security policies.
@@ -230,8 +221,6 @@ Take the steps below to update your F5 WAF for NGINX configurations by using Ins
 1. Select **Publish** to immediately push the configuration file updates out to your NGINX instance or instance group.
 
 You should now be able to view data from your F5 WAF for NGINX instances in the Security Monitoring dashboard.
-
----
 
 ## See also
 
