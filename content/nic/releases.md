@@ -7,6 +7,12 @@ nd-product: NIC
 nd-docs: DOCS-616
 ---
 
+{{< call-out "warning" >}}
+
+Alpine based images of F5 Nginx Ingress Controller with F5 WAF will be discontinued from next major release.
+
+{{< /call-out >}}
+
 ## 5.2.1
 
 10 Oct 2025
