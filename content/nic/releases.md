@@ -7,6 +7,13 @@ nd-product: NIC
 nd-docs: DOCS-616
 ---
 
+{{< call-out "warning" >}}
+
+The next F5 NGINX Ingress Controller release will not include Alpine based images for F5 WAF for NGINX.
+Alpine 3.19 is now end of life, and future F5 WAF for NGINX Alpine support is yet to be determined.
+
+{{< /call-out >}}
+
 ## 5.2.1
 
 10 Oct 2025
