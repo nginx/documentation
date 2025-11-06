@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 With this option, you can incorporate [Managed certificates]({{< ref "/nginx-one/nginx-configs/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).

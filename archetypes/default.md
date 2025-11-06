@@ -8,7 +8,7 @@ toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
+# AGE, DOS, NAZ, NGC, NGF, NIC, NIM, NGF, ONE, NOS, NPL, SOL, WAF
 nd-product:
 ---
 
@@ -39,6 +39,7 @@ To complete this guide, you will need the following prerequisites:
 ```shell
 # We typically show examples of commands or code in one code block, which can be easily copied by a reader using a button connected to the block.
 ```
+
 ```text
 # A second code block is used underneath the first to show what kind of example output to expect from the command. Truncate unnecessary output with ellipses (...).
 ```
@@ -57,16 +58,13 @@ To complete this guide, you will need the following prerequisites:
 
 ### Sub-step 1
 
-
 ### Sub-step 2
-
 
 ## Step 3
 
 [//]: # "The final step of a how-to guide is usually a final test, and summarizes all of the previous steps taken to accomplish the purpose of the guide."
 
 ### Sub-step 1
-
 
 ### Sub-step 2
 

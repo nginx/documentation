@@ -1,13 +1,13 @@
 ---
+title: Technical Specs
 description: Platforms supported by F5 NGINX Plus and dynamically loaded modules,
   supported SSL/TLS versions, supported deployment environments, and list of modules
   built into NGINX Plus.
-nd-docs: DOCS-473
-title: Technical Specs
 toc: true
 weight: 400
-type:
-- concept
+nd-content-type: reference
+nd-product: NPL
+nd-docs: DOCS-473
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).
@@ -16,14 +16,13 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 
 {{< include "nginx-plus/supported-distributions.md" >}}
 
----
-
 ## Dynamic Modules
 
 Dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions), unless noted otherwise in the table below.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Distribution | **Module:** [AppProtect]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
+{{< table >}}
+
+| Distribution | **Module:** [F5 WAF for NGINX]({{< ref "/waf/install" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
 |--------------|------------|-------|---------|---------------|------------|---------------|
 | **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Alpine Linux 3.17 & 3.18** | ❌ | ✓ | ✓ | ❌ | ❌ | ✓ |
@@ -39,14 +38,13 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 | **SLES** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ |
 | **Ubuntu 20.04** | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **Ubuntu 22.04 & 24.04** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
-{{</bootstrap-table>}}
 
----
-
+{{< /table >}}
 
 ## Supported SSL/TLS versions
 
 NGINX Plus supports the following SSL/TLS protocols:
+
 - SSLv2
 - SSLv3
 - TLSv1
@@ -62,8 +60,6 @@ TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in N
 
 TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
----
-
 ## Supported Deployment Environments
 
 - Bare metal
@@ -71,12 +67,9 @@ TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (
 - Public clouds: AWS, Google Cloud Platform, Microsoft Azure
 - Virtual machines
 
----
-
 ## Recommended Hardware
-See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-guide/Sizing-Guide-for-Deploying-NGINX-Plus-in-Virtualized-Environments-2021-06-03.pdf)
 
----
+See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-guide/Sizing-Guide-for-Deploying-NGINX-Plus-in-Virtualized-Environments-2021-06-03.pdf)
 
 ## Modules in the NGINX Plus Package
 

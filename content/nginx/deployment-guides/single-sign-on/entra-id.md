@@ -1,18 +1,16 @@
 ---
-description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Microsoft Entra ID (formerly Azure Active Directory) as the identity provider (IdP).
-type:
-- how-to
-product: NGINX-PLUS
 title: Single Sign-On with Microsoft Entra ID
+description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Microsoft Entra ID (formerly Azure Active Directory) as the identity provider (IdP).
 toc: true
 weight: 400
+nd-content-type: how-to
+nd-product: NPL
 nd-docs: DOCS-1688
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
 {{< call-out "note" >}} This guide applies to [NGINX Plus Release 35]({{< ref "nginx/releases.md#r35" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
-
 
 ## Prerequisites
 
@@ -24,7 +22,6 @@ This guide explains how to enable single sign-on (SSO) for applications being pr
 
 - A domain name pointing to your NGINX Plus instance, for example, `demo.example.com`.
 
-
 ## Configure Entra ID {#entra-setup}
 
 Register a new application in Microsoft Entra ID that will represent NGINX Plus as an OIDC client. This is necessary to obtain unique identifiers and secrets for OIDC, as well as to specify where Azure should return tokens. Ensure you have access to the Azure Portal with Entra ID app administrator privileges.
@@ -33,16 +30,17 @@ Register a new application in Microsoft Entra ID that will represent NGINX Plus 
 
 1. Log in to Azure CLI:
 
-   ```bash
+   ```shell
    az login
    ```
+
    This command will open your default browser for authentication.
 
 2. Register a New Application.
 
    - Create a new application, for example, "Nginx Demo App", with NGINX callback URI `/oidc_callback`:
 
-     ```bash
+     ```shell
      az ad app create --display-name "Nginx Demo App" --web-redirect-uris "https://demo.example.com/oidc_callback"
      ```
 
@@ -83,7 +81,8 @@ Check the OpenID Connect Discovery URL. By default, Microsoft Entra ID publishes
    ```shell
    curl https://login.microsoftonline.com/<tenant_id>/v2.0/.well-known/openid-configuration | jq
    ```
-   where:
+
+   Where:
 
    - the `<tenant_id>` is your Microsoft Entra Tenant ID
 
@@ -92,7 +91,6 @@ Check the OpenID Connect Discovery URL. By default, Microsoft Entra ID publishes
    - the `/v2.0/.well-known/openid-configuration` is the default address for Microsoft Entra ID for document location
 
    - the `jq` command (optional) is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
-
 
    The configuration metadata is returned in the JSON format:
 
@@ -122,6 +120,7 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
     ```shell
     nginx -v
     ```
+
     The output should match NGINX Plus Release 35 or later:
 
     ```none
@@ -182,7 +181,7 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
 
     - If the **userinfo** directive is set to `on`, NGINX Plus will fetch userinfo from Microsoft Graph API and append the claims from userinfo to the `$oidc_claims_` variables.
 
-    - **Important:** All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate.
+    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate. {{< /call-out >}}
 
     ```nginx
     http {
@@ -255,7 +254,6 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
 
     - any other OIDC claim using the [`$oidc_claim_ `](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#var_oidc_claim_) variable
 
-
     ```nginx
     # ...
     location / {
@@ -296,7 +294,9 @@ With Microsoft Entra ID configured, you can enable OIDC on NGINX Plus. NGINX Plu
         }
     }
     ```
+    
 12. Save the NGINX configuration file and reload the configuration:
+
     ```nginx
     nginx -s reload
     ```
@@ -376,7 +376,6 @@ http {
 4. Refresh `https://demo.example.com/` again. You should be redirected to Microsoft Entra ID for a fresh sign‑in, proving the session has been terminated.
 
 {{< call-out "note" >}}If you restricted access to a group of users, be sure to select a user who has access to the application.{{< /call-out >}}
-
 
 ## See Also
 

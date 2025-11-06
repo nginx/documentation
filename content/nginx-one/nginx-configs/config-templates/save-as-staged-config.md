@@ -1,5 +1,5 @@
 ---
-nd-docs: null
+nd-docs: DOCS-000
 title: Save rendered config as staged config
 toc: true
 weight: 300

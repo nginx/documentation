@@ -19,7 +19,7 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/wa
 
 ## F5 WAF for NGINX 5.9
 
-_September 29th, 2025_
+Released _September 29th, 2025_.
 
 ### New features
 
@@ -32,6 +32,21 @@ _September 29th, 2025_
     - Package and container artifacts now share the same version numbers
     - Upgrade processes remain the same as earlier releases
     - No breaking changes
+
+{{< call-out "important" >}}
+
+"_V4_" is now represented in the following pages or sections:
+
+- [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md">}})
+- Docker [Hybrid]({{< ref "/waf/install/docker.md#hybrid-configuration" >}}) and [Single container]({{< ref "/waf/install/docker.md#single-container-configuration" >}}) configuration
+
+"_V5_" is now represented in the following pages or sections:
+
+- [Kubernetes]({{< ref "/waf/install/kubernetes.md">}})
+- Docker [Multi-container]({{< ref "/waf/install/docker.md#multi-container-configuration" >}}) configuration
+
+{{< /call-out >}}
+
 - Restructured documentation
     - Product name change
     - Version alignment
@@ -58,7 +73,7 @@ _September 29th, 2025_
 
 ## NGINX App Protect WAF 5.8 / 4.16
 
-_August 13th, 2025_
+Released _August 13th, 2025_.
 
 ### New features
 
@@ -84,7 +99,7 @@ _August 13th, 2025_
 
 ## NGINX App Protect WAF 5.7 / 4.15
 
-_June 24th, 2025_
+Released _June 24th, 2025_.
 
 ### New features
 
@@ -124,10 +139,9 @@ _June 24th, 2025_
 
 {{< /table >}}
 
-
 ## NGINX App Protect WAF 5.6 / 4.14
 
-_April 1st, 2025_
+Released _April 1st, 2025_.
 
 ### New features
 
@@ -167,7 +181,7 @@ _April 1st, 2025_
 
 ## NGINX App Protect WAF 5.5 / 4.13
 
-_January 30th, 2025_
+Released _January 30th, 2025_.
 
 ### New features
 

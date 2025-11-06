@@ -7,9 +7,7 @@ weight: 200
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This page describes how to install F5 WAF for NGINX using Kubernetes.
@@ -237,6 +235,7 @@ To get the Helm chart, first configure Docker for the F5 Container Registry.
 {{< include "waf/install-services-registry.md" >}}
 
 Then use `helm pull` to get the chart, replacing `<release-version>`:
+
 ```shell
 helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <release-version> --untar
 ```
@@ -305,6 +304,7 @@ This table lists the configurable parameters of the F5 WAF for NGINX Helm chart 
 To understand the _mTLS Configuration_ options, view the [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topic.
 
 {{< table >}}
+
 | **Topic** | **Parameter** | **Description** | **Default value** |
 |-------------|---------|-----------------|-------------------|
 | **Namespace** | _namespace_ | The target Kubernetes namespace where the Helm chart will be deployed. | N/A |
@@ -316,17 +316,17 @@ To understand the _mTLS Configuration_ options, view the [Secure traffic using m
 | | _appprotect.nginx.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.nginx.resources_ | The resources of the NGINX container. | requests: cpu=10m,memory=16Mi |
 | **WAF Config Manager** | _appprotect.wafConfigMgr.image.repository_ | Docker image repository for the WAF Configuration Manager. | private-registry.nginx.com/nap/waf-config-mgr |
-| | _appprotect.wafConfigMgr.image.tag_ | Docker image tag for the WAF Configuration Manager. | 5.6.0 |
+| | _appprotect.wafConfigMgr.image.tag_ | Docker image tag for the WAF Configuration Manager. | {{< version-waf-config-mgr >}} |
 | | _appprotect.wafConfigMgr.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.wafConfigMgr.resources_ | The resources of the WAF Config Manager container. | requests: cpu=10m,memory=16Mi |
 | **WAF Enforcer** | _appprotect.wafEnforcer.image.repository_ | Docker image repository for the WAF Enforcer. | private-registry.nginx.com/nap/waf-enforcer |
-| | _appprotect.wafEnforcer.image.tag_ | Docker image tag for the WAF Enforcer. | 5.6.0 |
+| | _appprotect.wafEnforcer.image.tag_ | Docker image tag for the WAF Enforcer. | {{< version-waf-enforcer >}} |
 | | _appprotect.wafEnforcer.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.wafEnforcer.env.enforcerPort_ | Port for the WAF Enforcer. | 50000 |
 | | _appprotect.wafEnforcer.resources_ | The resources of the WAF Enforcer container. | requests: cpu=20m,memory=256Mi |
 | **WAF IP Intelligence** | _appprotect.wafIpIntelligence.enable | Enable or disable the use of the IP intelligence container | false |
 | | _appprotect.wafIpIntelligence.image.repository_ | Docker image repository for the WAF IP Intelligence. | private-registry.nginx.com/nap/waf-ip-intelligence |
-| | _appprotect.wafIpIntelligence.image.tag_ | Docker image tag for the WAF Enforcer. | 5.6.0 |
+| | _appprotect.wafIpIntelligence.image.tag_ | Docker image tag for the WAF Enforcer. | {{< version-waf-ip-intelligence >}} |
 | | _appprotect.wafIpIntelligence.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.wafIpIntelligence.resources_ | The resources of the WAF Enforcer container. | requests: cpu=10m,memory=256Mi |
 | **Config** | _appprotect.config.name_ | The name of the ConfigMap used by the NGINX container. | nginx-config |
@@ -353,6 +353,7 @@ To understand the _mTLS Configuration_ options, view the [Secure traffic using m
 | | _appprotect.storage.pvc.bundlesPvc.storageClass_ | Storage class for PVC. | manual |
 | | _appprotect.storage.pvc.bundlesPvc.storageRequest_ | Storage request size. | 2Gi |
 | **Docker Configuration** | _dockerConfigJson_ | A base64-encoded string representing the Docker registry credentials in JSON format. | N/A |
+
 {{< /table >}}
 
 ## Use Manifests to install F5 WAF for NGINX
@@ -537,7 +538,6 @@ spec:
 {{% /tab %}}
 
 {{< /tabs >}}
-
 
 ### Start the Manifest deployment
 

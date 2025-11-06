@@ -60,7 +60,6 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Add an optional description for your deployment.
    - Change the **NCU Capacity** if needed.
       - The default value of `20 NCU` should be adequate for most scenarios.
-      - This value must be a multiple of `10`.
    - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
       - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
@@ -88,7 +87,9 @@ To set up connectivity to your NGINXaaS deployment, you will need to configure a
 
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
-1. Create a Network Endpoint Group (NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
+1. Create a Private Service Connect Network Endpoint Group (PSC NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
+   - Set **Network endpoint group type** to **Private Service Connect NEG (Regional)**.
+   - Set **Taget** to **Published service**.
    - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
    - For **Producer port**, enter the port your NGINX server is listening on. If you're using the default NGINX config, enter port `80`.
    - For **Network** and **Subnetwork** select your consumer VPC network and subnet.

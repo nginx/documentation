@@ -1,6 +1,6 @@
 ---
 title: F5 NGINXaaS for Google Cloud
-nd-subtitle: Managed NGINX service for your Google Cloud application stack
+nd-subtitle: Google Cloud native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX
 url: /nginxaas/google/
 nd-landing-page: true
 cascade:
@@ -11,9 +11,9 @@ nd-product: N4GC
 
 ## About
 
-F5 NGINXaaS for Google Cloud is an IaaS offering that is tightly integrated
-into Google Cloud platform and its ecosystem, making applications fast, efficient,
-and reliable with full lifecycle management of advanced NGINX traffic services.
+F5 NGINXaaS for Google Cloud is a SaaS offering that is tightly integrated
+into Google Cloud and its ecosystem of services, making applications fast, efficient,
+and reliable bringing advanced traffic services enabled with the commercial version of NGINX, without any of the operational toil.
 
 ## Featured content
 

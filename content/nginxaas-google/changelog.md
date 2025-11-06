@@ -28,13 +28,13 @@ To learn more, refer to the following resources:
 - **Product Information:**
 	
     - [F5 NGINXaaS for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
-    - [Overview and architecture]({{< ref "/nginxaas-google/overview/overview.md" >}})
+    - [Overview and architecture]({{< ref "/nginxaas-google/overview.md" >}})
     - [Getting Started]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}})
 	
 - **Blogs:** [F5 NGINXaaS for Google Cloud: Delivering resilient, scalable applications ](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
 - **Webinars:** [Why F5 NGINXaaS for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
 
-Visit the Google Cloud Marketplace and start leveraging NGINXaaS for Google Cloud today!
+[Visit the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud) and start leveraging NGINXaaS for Google Cloud today!
 
 
 ## September 18, 2025
@@ -43,5 +43,5 @@ Visit the Google Cloud Marketplace and start leveraging NGINXaaS for Google Clou
 
    NGINXaaS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.
 
-   - To learn more about NGINXaaS for Google Cloud, see the [Overview and architecture]({{< ref "/nginxaas-google/overview/overview.md" >}}) topic.
+   - To learn more about NGINXaaS for Google Cloud, see the [Overview and architecture]({{< ref "/nginxaas-google/overview.md" >}}) topic.
    - To deploy NGINXaaS, see the [Getting Started]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}}) guide.
