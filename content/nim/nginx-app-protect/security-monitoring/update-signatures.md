@@ -15,22 +15,18 @@ If the Signature Database is outdated and doesn’t match the version used in F5
 
 Follow these steps to update the Security Monitoring module with the latest Attack Signature data, ensuring the dashboards display complete and accurate information.
 
----
-
 ## Before you begin
 
 Ensure the following prerequisites are met:
 
-- NGINX App Protect is configured, and the Security Monitoring dashboard is collecting security violations.
-
----
+- F5 WAF for NGINX is configured, and the Security Monitoring dashboard is collecting security violations.
 
 ## Update the Signature Database
 
 1. Open an SSH connection to the data plane host and log in.
-1. Generate a Signature Report file using the [Attack Signature Report Tool]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#attack-signature-report-tool" >}}). Save the file as `signature-report.json`:
+1. Generate a Signature Report file using the [Attack Signature Report Tool]({{< ref "/waf/policies/attack-signatures.md" >}}). Save the file as `signature-report.json`:
 
-    ```bash
+    ```shell
     sudo /opt/app_protect/bin/get-signatures -o ./signature-report.json
     ```
 
@@ -43,7 +39,7 @@ Ensure the following prerequisites are met:
 
 1. Restart the NGINX Instance Manager services to apply the update:
 
-    ```bash
+    ```shell
     sudo systemctl restart nms-ingestion
     sudo systemctl restart nms-core
     ```

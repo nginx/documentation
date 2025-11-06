@@ -35,5 +35,5 @@ From the NGINX One Console, you can also manage existing policies. In the Polici
 - **Delete** the policy. Once confirmed, you'll lose all work you've done on that policy.
 
 {{< call-out "note" >}}
-If you use **Save As** to create a new policy, include the `app_protect_cookie_seed` [directive]({{< ref "/nap-waf/v5/configuration-guide/configuration.md#directives" >}}).
+If you use **Save As** to create a new policy, include the `app_protect_cookie_seed` [directive]({{< ref "/waf/policies/directives.md" >}}).
 {{< /call-out >}}

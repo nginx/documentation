@@ -67,7 +67,7 @@ jobs:
 
       - name: Upload token for ${{matrix.env_name}}
         if: ${{ steps.generate-token.outcome == 'success' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{matrix.env_name}}
           path: "./"
@@ -101,7 +101,7 @@ jobs:
     needs: generate-coveo-search-token
     steps:
       - name: Download Coveo search token
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
 
       - name: View files
         run: ls -R
