@@ -25,7 +25,7 @@ This guide shows how to configure HA for NGINX Instance Manager using `keepalive
 
 Before setting up high availability (HA) for NGINX Instance Manager, make sure you have:
 
-- Two physical servers with NGINX Instance Manager installed
+- Two servers with NGINX Instance Manager installed
 - A reserved virtual IP address (VIP) that always points to the active instance
 - An NFS share that both servers can access
 - Permissions to manage IP addresses at the operating system level
