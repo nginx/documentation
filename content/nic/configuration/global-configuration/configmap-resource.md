@@ -178,6 +178,16 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*zone-sync-resolver-ipv6* | Configures whether the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will look up IPv6 addresses. NGINX Plus & `zone-sync` Required | `true` |
 |*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |
 
+### OIDC (OpenID Connect) Timeouts
+For more information on timeouts, see [here](https://github.com/nginxinc/nginx-openid-connect/issues/110?tab=readme-ov-file#configuring-the-key-value-store)
+|ConfigMap Key | Description | Default |
+| ---| ---| ---|
+| *oidc-pkce-timeout* | Sets the timeout for PKCE (Proof Key for Code Exchange) in OIDC. | `90s` |
+| *oidc-id-tokens-timeout* | Sets the timeout for ID tokens in OIDC. | `1h` |
+| *oidc-access-tokens-timeout* | Sets the timeout for access tokens in OIDC. | `1h` |
+| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `24h` |
+| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `24h` |
+
 
 ### Snippets and custom templates
 
