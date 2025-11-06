@@ -7,9 +7,7 @@ weight: 400
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This page describes how to install F5 WAF for NGINX using Docker. 
@@ -466,7 +464,7 @@ services:
 
   waf-enforcer:
     container_name: waf-enforcer
-    image: waf-enforcer:5.2.0
+    image: waf-enforcer:{{< version-waf-enforcer >}}
     environment:
       - ENFORCER_PORT=50000
     ports:
@@ -479,7 +477,7 @@ services:
 
   waf-config-mgr:
     container_name: waf-config-mgr
-    image: waf-config-mgr:5.2.0
+    image: waf-config-mgr:{{< version-waf-config-mgr >}}
     volumes:
       - /opt/app_protect/bd_config:/opt/app_protect/bd_config
       - /opt/app_protect/config:/opt/app_protect/config

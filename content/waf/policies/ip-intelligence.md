@@ -7,9 +7,7 @@ weight: 1600
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 F5 WAF for NGINX has an IP intelligence feature which allows you to customize enforcement based on the source IP address of a request. This allows you to limit access from specific IP addresses. 
@@ -106,7 +104,7 @@ Modify the _original docker-compose.yml_ file to include the IP intelligence con
 services:
   waf-enforcer:
     container_name: waf-enforcer
-    image: waf-enforcer:5.7.0
+    image: waf-enforcer:{{< version-waf-enforcer >}}
     environment:
       - ENFORCER_PORT=50000
     ports:
@@ -122,7 +120,7 @@ services:
 
   waf-config-mgr:
     container_name: waf-config-mgr
-    image: waf-config-mgr:5.7.0
+    image: waf-config-mgr:{{< version-waf-config-mgr >}}
     volumes:
       - /opt/app_protect/bd_config:/opt/app_protect/bd_config
       - /opt/app_protect/config:/opt/app_protect/config
@@ -135,7 +133,7 @@ services:
 
    waf-ip-intelligence:
     container_name: waf-ip-intelligence
-    image: waf-ip-intelligence:5.7.0
+    image: waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
     volumes:
       - /var/IpRep:/var/IpRep
     networks:
@@ -237,7 +235,6 @@ spec:
           persistentVolumeClaim:
             claimName: nap5-bundles-pvc
 ```
-
 
 Once complete, you can now [Configure policies for IP intelligence](#configure-policies-for-ip-intelligence).
 
