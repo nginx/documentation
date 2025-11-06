@@ -179,7 +179,7 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |
 
 ### OIDC (OpenID Connect) Timeouts
-For more information on timeouts, see [here](https://github.com/nginxinc/nginx-openid-connect/issues/110?tab=readme-ov-file#configuring-the-key-value-store)
+For more information on timeouts, see [here](https://github.com/nginxinc/nginx-openid-connect?tab=readme-ov-file#configuring-the-key-value-store)
 
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
