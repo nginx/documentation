@@ -286,12 +286,8 @@ metadata:
   name: ngf-proxy-config
 spec:
   logging:
-    logFormat:
-      name: custom_format
-      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
     accessLog:
-      path: /dev/stdout
-      format: custom_format
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
 EOF
 ```
 
@@ -306,11 +302,11 @@ metadata:
 spec:
   logging:
     accessLog:
-      path: off
+      disabled: true
 EOF
 ```
 
-{{< call-out "note" >}} File destinations in `logging.accessLog.path` are not currently supported. Any value other than `off` is replaced with `/dev/stdout`. {{< /call-out >}}
+{{< call-out "note" >}} File destinations in `logging.accessLog` are not currently supported it is always set to `/dev/stdout`. {{< /call-out >}}
 
 ---
 
