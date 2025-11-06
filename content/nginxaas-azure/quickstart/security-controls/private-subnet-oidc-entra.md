@@ -11,12 +11,12 @@ nd-product: N4Azure
 
 Learn how to configure F5 NGINXaaS for Azure with OpenID Connect (OIDC) authentication using Microsoft Entra ID when your NGINXaaS deployment is in a private subnet. This guide addresses the networking requirements to enable authentication traffic to reach Microsoft Entra ID endpoints while maintaining security controls.
 
-When NGINXaaS is deployed in a private subnet, authentication traffic must reach external Microsoft Entra ID endpoints at `login.microsoftonline.com`. This guide provides two solutions to enable this connectivity while controlling outbound traffic:
+When NGINXaaS is deployed in a private subnet, authentication traffic must reach external Microsoft Entra ID endpoints at `login.microsoftonline.com`. This guide provides the following solutions to enable this connectivity while controlling outbound traffic:
 
 1. **Azure NAT Gateway with NSG rules** - Lower cost, simpler configuration
 1. **Azure Firewall** - Higher security, more granular control
 
-## Before you begin
+## To complete this guide, you need to set up the following:
 
 - [An NGINXaaS deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment" >}}) with a private IP address
 - A configured Microsoft Entra ID application registration. See [Configure Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id/#entra-setup" >}}) for detailed setup instructions.
@@ -30,7 +30,7 @@ Choose the networking solution that best fits your security and cost requirement
 {{< table >}}
 | Feature | Azure NAT Gateway | Azure Firewall |
 |---------|-------------------|----------------|
-| **Hourly Cost** | Lower ($0.045+ per hour) | Higher ($1.25+ per hour) |
+| **Hourly Cost** | Lower - see [NAT Gateway pricing](https://azure.microsoft.com/en-us/pricing/details/azure-nat-gateway/) | Higher - see [Firewall pricing](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/) |
 | **Address Space** | Less required | More required (2 additional /26 subnets) |
 | **Security** | Less secure - broader IP range filtering | More secure - precise FQDN-based filtering |
 | **Configuration** | Simple setup, less overhead | More complex configuration, more overhead |
@@ -58,7 +58,6 @@ Both solutions require these initial steps:
    {{< call-out "note" >}}The `oidc_jwt_keyfile` endpoint is not listed in the Microsoft App Registration's endpoints pane but is required for proper OIDC configuration.{{< /call-out >}}
 
 1. Configure DNS resolution appropriately:
-   - For IPv4-only deployments, set `ipv6=off` in your resolver directive in the `openid_connect.server_conf` file
    - For dual-stack subnets, ensure both IPv4 and IPv6 address spaces are configured
    - Use Azure DNS (127.0.0.1:49153) or configure firewall rules for your preferred DNS service
 
@@ -288,14 +287,14 @@ If authentication fails, check the following:
 1. **Timeout Settings**: Increase timeout values if experiencing slow authentication responses.
 1. **Route Configuration**: Confirm the route table is properly associated with the NGINXaaS subnet.
 
-## Security considerations
+## To secure your systems, address the following:
 
 - **Principle of Least Privilege**: Both solutions limit outbound connectivity to only required Microsoft endpoints.
 - **Monitoring**: Implement logging and monitoring for authentication traffic.
 - **Regular Updates**: Keep Microsoft IP address ranges updated in your NSG rules.
 - **Network Segmentation**: Consider additional network segmentation for enhanced security.
 
-## Cost optimization
+## To optimize your systems, we recommend:
 
 - **NAT Gateway**: More cost-effective for basic filtering needs.
 - **Azure Firewall**: Better ROI when you need advanced filtering capabilities.
@@ -309,5 +308,3 @@ Both solutions enable the minimal connectivity required between NGINXaaS and Mic
 - [Single Sign-On with Microsoft Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id.md" >}})
 - [Private Link to Upstreams]({{< ref "/nginxaas-azure/quickstart/security-controls/private-link-to-upstreams.md" >}})
 - [Microsoft 365 URLs and IP address ranges](https://learn.microsoft.com/en-us/microsoft-365/enterprise/urls-and-ip-address-ranges)
-- [Azure NAT Gateway pricing](https://azure.microsoft.com/en-us/pricing/details/virtual-network/)
-- [Azure Firewall pricing](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/)
