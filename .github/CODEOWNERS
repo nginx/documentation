@@ -30,12 +30,12 @@ content/waf/*               @nginx/waf
 content/includes/waf/*      @nginx/waf
 
 # NGINXaaS for Azure 
-content/nginxaas-azure/*          @nginx/nginxaas-dev
-content/includes/nginxaas-azure/* @nginx/nginxaas-dev
+content/nginxaas-azure/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas-azure/* @nginx/nginxaas-docs-approvers
 
 # NGINXaaS for Google Cloud 
-content/nginxaas-google/*          @nginx/nginxaas-dev
-content/includes/nginxaas-google/* @nginx/nginxaas-dev
+content/nginxaas-google/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas-google/* @nginx/nginxaas-docs-approvers
 
 # NGINX Gateway Fabric
 content/ngf/*               @nginx/nginx-gateway-fabric
