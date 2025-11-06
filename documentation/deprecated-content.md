@@ -26,6 +26,7 @@ You should replace `<product-tag>` with a tag from the following table:
 | NGINX Controller                       | `archive-controller` | 2025-10-08      |
 | NGINX Management Suite[^2]             | `archive-nms`        | 2025-10-08      |
 | NGINX Service Mesh                     | `archive-mesh`       | 2025-11-05      |
+| NGINX Unit                             | `archive-unit`       | 2025-10-08      |
 
 ## Review and add tags
 
@@ -37,6 +38,7 @@ archive-controller
 archive-mesh
 archive-nap
 archive-nms
+archive-unit
 ```
 
 To add a new tag, use the following command:
