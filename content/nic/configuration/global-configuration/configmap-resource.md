@@ -180,6 +180,7 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 
 ### OIDC (OpenID Connect) Timeouts
 For more information on timeouts, see [here](https://github.com/nginxinc/nginx-openid-connect/issues/110?tab=readme-ov-file#configuring-the-key-value-store)
+
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
 | *oidc-pkce-timeout* | Sets the timeout for PKCE (Proof Key for Code Exchange) in OIDC. | `90s` |
