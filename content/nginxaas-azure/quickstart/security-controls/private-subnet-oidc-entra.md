@@ -16,29 +16,31 @@ When NGINXaaS is deployed in a private subnet, authentication traffic must reach
 1. **Azure NAT Gateway with NSG rules** - Lower cost, simpler configuration
 1. **Azure Firewall** - Higher security, more granular control
 
-## To complete this guide, you need to set up the following:
+## Before you begin
+
+To complete this guide, you need to set up the following:
 
 - [An NGINXaaS deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment" >}}) with a private IP address
 - A configured Microsoft Entra ID application registration. See [Configure Entra ID]({{< ref "/nginx/deployment-guides/single-sign-on/entra-id/#entra-setup" >}}) for detailed setup instructions.
 - [SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/" >}}) configured for your NGINXaaS deployment
 - [Runtime State Sharing]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}) enabled on the NGINXaaS deployment
 
-## Solution Comparison
+## Solution comparison
 
 Choose the networking solution that best fits your security and cost requirements:
 
 {{< table >}}
 | Feature | Azure NAT Gateway | Azure Firewall |
 |---------|-------------------|----------------|
-| **Hourly Cost** | Lower - see [NAT Gateway pricing](https://azure.microsoft.com/en-us/pricing/details/azure-nat-gateway/) | Higher - see [Firewall pricing](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/) |
-| **Address Space** | Less required | More required (2 additional /26 subnets) |
+| **Hourly cost** | Lower - see [NAT Gateway pricing](https://azure.microsoft.com/en-us/pricing/details/azure-nat-gateway/) | Higher - see [Firewall pricing](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/) |
+| **Address space** | Less required | More required (2 additional /26 subnets) |
 | **Security** | Less secure - broader IP range filtering | More secure - precise FQDN-based filtering |
 | **Configuration** | Simple setup, less overhead | More complex configuration, more overhead |
 | **Public IPs** | 1 required | 2 required |
-| **Filtering Precision** | Generic rules enabling broader filtering | Surgical precision for traffic filtering |
+| **Filtering precision** | Generic rules enabling broader filtering | Surgical precision for traffic filtering |
 {{< /table >}}
 
-## Common Configuration Steps
+## Common configuration steps
 
 Both solutions require these initial steps:
 
@@ -94,12 +96,12 @@ When you create an NGINXaaS deployment, Azure automatically creates and attaches
 
    {{< call-out "important" >}}The default `AllowInternetOutBound` rule cannot be edited, so you must create a higher-priority rule to deny general internet access while allowing the specific Microsoft IP ranges. The priority of the custom deny rule should be a higher numerical value (lower priority) than the Microsoft IP allow rules.{{< /call-out >}}
 
-### Create and configure NAT Gateway
+### Create and configure Azure NAT Gateway
 
 1. Create an Azure NAT Gateway:
 
    ```bash
-   # Create NAT Gateway
+   # Create Azure NAT Gateway
    az network nat gateway create \
      --resource-group <resource-group> \
      --name <nat-gateway-name> \
@@ -107,10 +109,10 @@ When you create an NGINXaaS deployment, Azure automatically creates and attaches
      --public-ip-addresses <public-ip-name>
    ```
 
-1. Associate the NAT Gateway with your NGINXaaS subnet:
+1. Associate the Azure NAT Gateway with your NGINXaaS subnet:
 
    ```bash
-   # Associate NAT Gateway with subnet
+   # Associate Azure NAT Gateway with subnet
    az network vnet subnet update \
      --resource-group <resource-group> \
      --vnet-name <vnet-name> \
@@ -120,13 +122,13 @@ When you create an NGINXaaS deployment, Azure automatically creates and attaches
 
 This configuration allows NGINXaaS to reach Microsoft Entra ID endpoints while blocking general internet access.
 
-{{< call-out "note" >}}Using NAT Gateway with NSG rules still requires allowing broad IP address ranges. Based on Microsoft's documentation, you need to allow at least two /18 subnets and two /19 subnets for complete Microsoft Entra ID connectivity. For more precise filtering, consider using Azure Firewall instead.{{< /call-out >}}
+{{< call-out "note" >}}Using Azure NAT Gateway with NSG rules still requires allowing broad IP address ranges. Based on Microsoft's documentation, you need to allow at least two /18 subnets and two /19 subnets for complete Microsoft Entra ID connectivity. For more precise filtering, consider using Azure Firewall instead.{{< /call-out >}}
 
 ## Configure connectivity using Azure Firewall
 
 This solution provides more granular control using Azure Firewall with DNS-based filtering.
 
-{{< call-out "note" >}}Azure Firewall provides DNS-based filtering capabilities but comes at a significantly higher cost compared to NAT Gateway (approximately 28x cost increase). However, it enables more precise firewall rules for better security.{{< /call-out >}}
+{{< call-out "note" >}}Azure Firewall provides DNS-based filtering capabilities but comes at a significantly higher cost compared to Azure NAT Gateway (approximately 28x cost increase). However, it enables more precise firewall rules for better security.{{< /call-out >}}
 
 ### Create firewall subnets
 
@@ -296,7 +298,7 @@ If authentication fails, check the following:
 
 ## To optimize your systems, we recommend:
 
-- **NAT Gateway**: More cost-effective for basic filtering needs.
+- **Azure NAT Gateway**: More cost-effective for basic filtering needs.
 - **Azure Firewall**: Better ROI when you need advanced filtering capabilities.
 - **Public IP Management**: Minimize the number of public IP addresses to reduce costs.
 
