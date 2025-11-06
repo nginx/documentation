@@ -63,6 +63,7 @@ docker run -it --rm \
   -o /tmp/convert/policy.json \
   --full-export
 ```
+
 ```json
 {
 "completed_successfully": true,
@@ -184,6 +185,7 @@ Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 ```shell
 docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures waf-compiler-<version-tag>:custom -i /path/to/signatures.xml -o /path/to/signatures.json | jq
 ```
+
 ```json
 {
     "filename": "/path/to/signatures.json",
@@ -193,6 +195,7 @@ docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-sig
 ```
 
 **signatures.json**
+
 ```json
 {
     "tag": "user-defined-signatures",
@@ -346,6 +349,7 @@ This command example generates a signature report with all signature details:
 ```shell
 /opt/app_protect/bin/get-signatures -o /path/to/signature-report.json
 ```
+
 ```json
 {
     "file_size": 1868596,
@@ -353,7 +357,9 @@ This command example generates a signature report with all signature details:
     "completed_successfully": true
 }
 ```
+
 **signature-report.json**
+
 ```json
 {
     "signatures": [

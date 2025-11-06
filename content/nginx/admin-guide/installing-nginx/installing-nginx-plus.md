@@ -187,6 +187,7 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
                          gnupg2 \
                          ubuntu-keyring
         ```
+        
 1. Download and add NGINX signing key:
 
     ```shell
@@ -397,22 +398,25 @@ NGINX Plus functionality can be extended with dynamically loadable modules. They
 
 Dynamic modules are shared object files (`.so`) that can be loaded at runtime using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the NGINX configuration.
 
- ### Types of dynamic modules
+### Types of dynamic modules
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{< table >}}
+
 | Type                    | Description        | Distribution Method   | F5 NGINX Support|
 |-------------------------|--------------------|-----------------------|-----------------|
 | [NGINX-authored](#nginx-authored-dynamic-modules) | Developed and distributed by NGINX | Packaged binaries from `nginx-plus` official repo | Full support |
 | [NGINX-certified Community](#nginx-certified-community-dynamic-modules) | Tested and distributed by NGINX | Packaged binaries from `nginx-plus` official repo | Installation and basic configuration support |
 | [NGINX Certified Partner](#nginx-certified-partner-dynamic-modules) | Partner-built modules verified through [NGINX’s certification](https://www.f5.com/go/partner/nginx-certified-module-program-documentation) | Provided by partners | Provided by partners |
 | [Community](#community-dynamic-modules) | Developed and distributed by third‑party contributors | [Self-compiled](#install_modules_oss) | No support|
-{{< /bootstrap-table >}}
 
- ### NGINX-authored dynamic modules
+{{< /table >}}
+
+### NGINX-authored dynamic modules
 
 NGINX-authored dynamic modules are developed and officially maintained by the F5 NGINX team. These modules are available as packaged binaries for various operating systems and can be installed [from the `nginx-plus` repository](#install-from-official-repository).
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{< table >}}
+
 | Name                            | Description                       | Package name       |
 |---------------------------------|-----------------------------------|--------------------|
 | [ACME](https://github.com/nginx/nginx-acme) | Automatic certificate management ([ACMEv2](https://www.rfc-editor.org/rfc/rfc8555.html)) protocol support. | [`nginx-plus-module-acme`]({{< ref "nginx/admin-guide/dynamic-modules/acme.md" >}}) |
@@ -422,13 +426,15 @@ NGINX-authored dynamic modules are developed and officially maintained by the F5
 | [OpenTelemetry](https://github.com/nginxinc/nginx-otel) | Adds distributed tracing support via OpenTelemetry. | [`nginx-plus-module-otel`]({{< ref "nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
 | [Perl](https://nginx.org/en/docs/http/ngx_http_perl_module.html)| Integrates Perl scripting for advanced customization. | [`nginx-plus-module-perl`]({{< ref "nginx/admin-guide/dynamic-modules/perl.md" >}}) |
 | [XSLT](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) | Applies XSLT transformations to XML responses. | [`nginx-plus-module-xslt`]({{< ref "nginx/admin-guide/dynamic-modules/xslt.md" >}}) |
-{{< /bootstrap-table >}}
 
- ### NGINX-certified community dynamic modules
+{{< /table >}}
+
+### NGINX-certified community dynamic modules
 
 NGINX-certified community dynamic modules are popular third‑party modules tested and distributed by F5 NGINX, with installation and basic configuration support provided. They are also distributed as precompiled packages for various operating systems and can be installed [from the `nginx-plus` repository](#install-from-official-repository).
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{< table >}}
+
 | Name                            | Description                       | Package name     |
 |---------------------------------|-----------------------------------|--------------------|
 | [Brotli](https://github.com/google/ngx_brotli) | Brotli compression support with modules for dynamic compression and for serving pre-compressed `.br` files. | [`nginx-plus-module-brotli`]({{< ref "nginx/admin-guide/dynamic-modules/brotli.md" >}}) |
@@ -444,9 +450,11 @@ NGINX-certified community dynamic modules are popular third‑party modules test
 | [RTMP](https://github.com/arut/nginx-rtmp-module) | Adds streaming capabilities (RTMP, HLS, MPEG-DASH, FFmpeg support).| [`nginx-plus-module-rtmp`]({{< ref "nginx/admin-guide/dynamic-modules/rtmp.md" >}}) |
 | [Set-Misc](https://github.com/openresty/set-misc-nginx-module) | Adds `set_*` directives for scripting (extend NGINX [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module). | [`nginx-plus-module-set-misc`]({{< ref "nginx/admin-guide/dynamic-modules/set-misc.md" >}}) |
 | [SPNEGO for Kerberos](https://github.com/stnoonan/spnego-http-auth-nginx-module) | Adds support for [GSS‑API based](https://www.rfc-editor.org/rfc/rfc2743) SPNEGO/Kerberos authentication. | [`nginx-plus-module-auth-spnego`]({{< ref "nginx/admin-guide/dynamic-modules/spnego.md" >}}) |
-{{< /bootstrap-table >}}
+
+{{< /table >}}
 
 ### Install from official repository
+
 [NGINX‑authored](#nginx-authored-dynamic-modules) and [NGINX‑certified community](#nginx-certified-community-dynamic-modules) dynamic modules can be installed as packaged binaries directly from the official `nginx-plus` repository.
 
 To install a binary package, run the command in a terminal that corresponds to your operating system, replacing `<MODULE-NAME>` with the actual binary package name, for example, `nginx-plus-module-njs`.
@@ -457,6 +465,7 @@ To install a binary package, run the command in a terminal that corresponds to y
   sudo yum update && \
   sudo yum install <MODULE-NAME>
   ```
+
   The resulting  `.so` file will be installed to: `/usr/lib64/nginx/modules/`
 
 - For Amazon Linux 2023,  AlmaLinux and Rocky Linux:
@@ -465,6 +474,7 @@ To install a binary package, run the command in a terminal that corresponds to y
   sudo dnf update && \
   sudo dnf install <MODULE-NAME>
   ```
+
   The resulting  `.so` file will be installed to: `/usr/lib64/nginx/modules/`
 
 - For Debian and Ubuntu:
@@ -473,6 +483,7 @@ To install a binary package, run the command in a terminal that corresponds to y
   sudo apt update && \
   sudo apt install <MODULE-NAME>
   ```
+
   The resulting  `.so` file will be installed to: `/usr/lib/nginx/modules`
 
 - For FreeBSD:
@@ -481,6 +492,7 @@ To install a binary package, run the command in a terminal that corresponds to y
   sudo pkg update && \
   sudo pkg install <MODULE-NAME>
   ```
+
   The resulting  `.so` file will be installed to: `/usr/local/etc/nginx/modules`
 
 - For SUSE Linux Enterprise:
@@ -489,6 +501,7 @@ To install a binary package, run the command in a terminal that corresponds to y
   sudo zypper refresh && \
   sudo zypper install <MODULE-NAME>
   ```
+
   The resulting  `.so` file will be installed to: `/usr/lib64/nginx/modules/`
 
 - For Alpine Linux:
@@ -497,6 +510,7 @@ To install a binary package, run the command in a terminal that corresponds to y
   sudo apk update && \
   sudo apk add <MODULE-NAME>
   ```
+
   The resulting  `.so` file will be installed to: `/usr/lib/nginx/modules`
 
 For detailed description and installation steps for each dynamic module, see [NGINX Plus Dynamic Modules]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}).
@@ -553,16 +567,17 @@ To enable a dynamic module:
 
    After installing the module, you will need to configure the module in the NGINX Plus configuration file. Follow the usage and setup instructions provided in the module’s official documentation.
 
- ### NGINX Certified Partner dynamic modules
+### NGINX Certified Partner dynamic modules
 
 NGINX Certified Partner dynamic modules are partner-built extensions that enhance NGINX Plus with advanced features such as security, identity and access management, device detection, application delivery, and many more. These modules are verified through [NGINX’s certification process](https://www.f5.com/go/partner/nginx-certified-module-program-documentation). Installation packages, documentation, and support are provided directly by the partners.
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{< table >}}
+
 | Name                            | Description                       | Commercial Support |
 |---------------------------------|-----------------------------------|--------------------|
 | [CQ botDefence](https://www.cequence.ai/contact-us/) | Simplify traffic analysis to prevent fraud and theft that may result from automated bot attacks against your public-facing web, mobile, and API-based applications. | [Support](https://www.cequence.ai/demo/) provided by [Cequence](https://www.cequence.ai) |
 | [Curity Identity Server](https://developer.curity.io/) | Powerful OAuth and OpenID Connect server, used for logging in and securing millions of users, access to API and mobile apps over APIs and microservices. | [Support](https://curity.io/support/professional-services/) and docs [[1]](https://curity.io/resources/learn/nginx-phantom-token-module/), [[2]](https://curity.io/resources/learn/nginx-oauth-proxy/) provided by [Curity](https://curity.io/support/professional-services/) |
-| [DeviceAtlas ](https://deviceatlas.com/deviceatlas-nginx-module) | Detect what devices users are using, including smartphones, laptops, and weareable devices, and use this data to deliver customized experiences. | [Support](https://deviceatlas.com/resources/support) and [docs](https://docs.deviceatlas.com/apis/enterprise/c/3.1.3/README.Nginx.html) provided by [DeviceAtlas](https://deviceatlas.com/resources/support) |
+| [DeviceAtlas](https://deviceatlas.com/deviceatlas-nginx-module) | Detect what devices users are using, including smartphones, laptops, and weareable devices, and use this data to deliver customized experiences. | [Support](https://deviceatlas.com/resources/support) and [docs](https://docs.deviceatlas.com/apis/enterprise/c/3.1.3/README.Nginx.html) provided by [DeviceAtlas](https://deviceatlas.com/resources/support) |
 | [ForgeRock Policy Agent](https://backstage.forgerock.com/downloads/browse/am/featured/web-agents) | In conjunction with ForgeRock Access Management, allows you to authenticate your application and API access. | [Support](https://support.pingidentity.com/s/) and [docs](https://backstage.forgerock.com/docs/openam-web-policy-agents/2023.9/installation-guide/install-nginx.html) provided by [PingIdentity](https://www.pingidentity.com) |
 | [HUMAN Security for F5 NGINX](https://www.humansecurity.com/contact-us/) | Provides the required enforcement layer to protect websites and apps from modern automated security threats. | Support provided by [HUMAN Security](https://www.humansecurity.com/) |
 | [IDFConnect SSO/Rest](http://www.idfconnect.com/about/contact/) | Integrates your web access management platform's full capabilities with NIGNX Plus. | [Support](http://www.idfconnect.com/about/contact/) and [docs](https://www.idfconnect.com/nginx-ssorest-plugin/) provided by [IDFConnect](http://www.idfconnect.com) |
@@ -575,11 +590,12 @@ NGINX Certified Partner dynamic modules are partner-built extensions that enhanc
 | [Wallarm](https://docs.wallarm.com/updating-migrating/nginx-modules/) | The Wallarm WAF provides enterprise-grade protection against advanced Layer 7 application attacks. | [Support](https://www.wallarm.com/support) and [docs](https://docs.wallarm.com/installation/nginx/all-in-one/) provided by [Wallarm](https://wallarm.com/) |
 | [WURFL InFuse](https://www.scientiamobile.com/secondary-products/wurfl-infuze-module-for-nginx-plus/) | Give developers the most advanced, accurate, and high-performance device detection in the industry. | [Support](https://www.scientiamobile.com/support/) and [docs](https://docs.scientiamobile.com/documentation/infuze/infuze-nginx-plus-module-user-guide) provided by [Scientiamobile](https://www.scientiamobile.com/) |
 | [51Degrees Device Detection](https://github.com/51Degrees/device-detection-nginx) | Improve speed of response and accuracy, delivering an optimal user experience and high-fidelity analysis. | [Support](https://51degrees.com/pricing/index) and [docs](https://github.com/51Degrees/device-detection-nginx/blob/main/README.md) provided by [51Degrees](https://51degrees.com/about-us) |
-{{< /bootstrap-table >}}
+
+{{< /table >}}
 
 The complete list of Certified Partner Modules can be found on the [F5.com Dynamic Modules](https://www.f5.com/go/product/nginx-modules?filter=module-author%3Anginx-certified-partner) page.
 
- ### Community dynamic modules
+### Community dynamic modules
 
 Community dynamic modules are open source extensions developed and distributed by third‑party contributors of the NGINX community.
 
@@ -596,6 +612,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    ```shell
    nginx -v
    ```
+
    Expected output of the command:
 
    ```shell
@@ -663,6 +680,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    ```
 
    Expected command output:
+
    ```shell
    objs/ngx_http_hello_world_module.so
    ```
@@ -987,6 +1005,6 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 ## Explore related topics
 
-### Install NGINX App Protect
+### Install F5 WAF for NGINX
 
-To install NGINX App Protect, follow the steps in the [NGINX App Protect installation guide]({{< ref "nap-waf/v5/admin-guide/install.md" >}}).
+To install F5 WAF for NGINX, follow the steps in the [F5 WAF for NGINX install section]({{< ref "/waf/install/" >}}).
