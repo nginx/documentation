@@ -40,13 +40,13 @@ To add a license and submit the initial usage report in a disconnected environme
 1. {{<icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
 
-    ```bash
+    ```shell
     chmod +x <path-to-script>/license_usage_offline.sh
     ```
 
 1. Run the script. Replace each placeholder with your specific values:
 
-    ``` bash
+    ```shell
     ./license_usage_offline.sh \
       -j <license-filename>.jwt \
       -i <NIM-IP-address> \
@@ -75,7 +75,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Add the license to NGINX Instance Manager**:
 
-    ``` bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/license?telemetry=true' \
     --header 'Origin: https://<NIM-FQDN>' \
     --header 'Referer: https://<NIM-FQDN>/ui/settings/license' \
@@ -95,7 +95,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
    Use this command to check the current license status. Look for `INITIALIZE_ACTIVATION_COMPLETE` or `CONFIG_REPORT_READY` in the status field. Poll periodically if necessary.
 
-    ```bash
+    ```shell
     curl -k "https://<NIM-FQDN>/api/platform/v1/license" \
     --header "accept: application/json" \
     --header "authorization: Basic <base64-encoded-credentials>" \
@@ -106,7 +106,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
    This step ensures that the license configuration is fully applied.
 
-    ```bash
+    ```shell
     curl -k --location --request PUT "https://<NIM-FQDN>/api/platform/v1/license?telemetry=true" \
     --header "Origin: https://<NIM-FQDN>" \
     --header "Referer: https://<NIM-FQDN>/ui/settings/license" \
@@ -136,7 +136,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Download the initial usage report**:
 
-    ```bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=initial' \
     --header 'accept: */*' \
     --header 'Authorization: Basic <base64-encoded-credentials>' \
@@ -145,7 +145,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Submit the usage report to F5 for verification**:
 
-    ```bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
     --form 'file=@"<path-to-report>.zip"'
@@ -165,14 +165,14 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
     Replace `<report-id>` with your specific ID from the previous response.
 
-    ``` bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/<report-id>' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)"
     ```
 
 3. **Download the usage acknowledgement from F5**:
 
-    ``` bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/<report-id>' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
     --output <path-to-acknowledgement>.zip
@@ -180,7 +180,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 4. **Upload the usage acknowledgement to NGINX Instance Manager**:
 
-    ``` bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/upload' \
     --header 'Authorization: Basic <base64-encoded-credentials>' \
     --form 'file=@"<path-to-acknowledgement>.zip"'

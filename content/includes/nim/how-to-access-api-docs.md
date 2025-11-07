@@ -2,8 +2,8 @@
 nd-docs: DOCS-991
 ---
 
-You can access the NGINX Instance Manager API documentation from the web interface:
+Access the NGINX Instance Manager API documentation from the web interface:
 
-1. Log in to the FQDN of your NGINX Instance Manager host.
-2. Select **API Documentation** from the Launchpad menu.
-3. On the left menu, select **NIM and Platform API**.
+1. Go to the FQDN of your NGINX Instance Manager host and log in.  
+2. From the Launchpad menu, select **API Documentation**.  
+3. In the left menu, choose **NIM and Platform API**.
