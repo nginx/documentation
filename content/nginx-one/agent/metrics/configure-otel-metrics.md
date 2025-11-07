@@ -42,21 +42,21 @@ You can validate that metrics are successfully exported by using the methods bel
 
 ### Custom OTel Configuration 
 
-NGINX Agent generates a default OpenTelemetry config to send metrics to your management plane located at `/etc/nginx-agent/opentelemetry-collector-agent.yaml`. An option is provided to 
-bring your own OpenTelemetry configs which will be merged with the NGINX Agent default config.
+NGINX Agent generates a default OpenTelemetry config (located at `/etc/nginx-agent/opentelemetry-collector-agent.yaml`) to send metrics to your management plane. An option is provided to 
+bring your own [OpenTelemetry configs](https://opentelemetry.io/docs/collector/configuration/) which will be merged with the NGINX Agent default config.
 
-OpenTelemetry will merge your [OpenTelemetry Config](https://opentelemetry.io/docs/collector/configuration/). The **order of the OpenTelemetry config files matters**, the last config in the list will take priority over others listed if they have the same value configured.
+The **order of the OpenTelemetry config files matters**: the last config in the list will take priority over others listed, if they have the same value configured.
 
 To have NGINX Agent use your own OpenTelemetry config:
 
-1. Edit the configuration file `sudo vim /etc/nginx-agent/nginx-agent.conf`
+1. Edit the configuration file as root `vim /etc/nginx-agent/nginx-agent.conf`
 2. Add the collector property
 3. Save and restart the NGINX agent service `sudo systemctl restart nginx-agent`
 
 ```yaml
 collector:
   additional_config_paths:
-    - "/my_config.yaml"
+    - "/etc/nginx-agent/my_config.yaml"
 ```
 
 #### Example usage
@@ -74,6 +74,7 @@ exporters:
     endpoint: "127.0.0.1:5643"
     resource_to_telemetry_conversion:
       enabled: true
+      namespace: test-space
 
 service:
   pipelines:
@@ -95,6 +96,7 @@ exporters:
     endpoint: "127.0.0.1:5643"
     resource_to_telemetry_conversion:
       enabled: true
+      namespace: test-space
 
 service:
   pipelines:
@@ -222,13 +224,10 @@ service:
 
 ### Troubleshooting
 
-To view the merged OpenTelemetry configuration set the Agent log level to debug in `/etc/nginx-agent/nginx-agent.conf` and restart NGINX Agent 
+To view the merged OpenTelemetry configuration set the NGINX Agent log level to "debug" in `/etc/nginx-agent/nginx-agent.conf`, and restart NGINX Agent:
 
 1. Edit the configuration file `sudo vim /etc/nginx-agent/nginx-agent.conf`
-2. Change the log property
-```yaml
-log:
-  level: debug 
-```
-3. Restart NGINX Agent 
-4. View merged OpenTelemetry configuration `cat /var/lib/nginx-agent/opentelemetry-collector-agent-debug.yaml`
+1. Change the log property
+   ```yaml
+   log:
+     level: debug 
