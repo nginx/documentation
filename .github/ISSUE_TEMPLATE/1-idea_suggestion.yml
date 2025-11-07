@@ -10,7 +10,7 @@ body:
       required: true
   - type: dropdown
     attributes: 
-      label: Which product or products does this request relate to?
+      label: Which product or products does this idea relate to?
       multiple: true
       options:
         - F5 DoS for NGINX
@@ -28,16 +28,12 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Is this idea related to a larger problem?
+      label: Does this idea relate to other issues?
       description: If you have identified multiple related issues, it might be a design pattern problem.
-    validations:
-      required: true
   - type: textarea
     attributes: 
-      label: What alternative ways are there to implement your idea?
-      description: There are often multiple ways to something - context is important.
-    validations:
-      required: true
+      label: Are there alternative ideas for improving the same topic?
+      description: If you already identified reasons not to go with other solutions, we'd like to know why!
   - type: textarea
     attributes: 
       label: Any additional information

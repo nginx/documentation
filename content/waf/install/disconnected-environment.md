@@ -7,9 +7,7 @@ weight: 500
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This topic describes how to install F5 WAF for NGINX in a disconnected or air-gapped environment.
@@ -47,7 +45,6 @@ In addition to accessing F5 WAF for NGINX documentation, you will be able to acc
 You will need `git` and `wget` in your connected environment.
 
 Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.147.8):
-
 
 ```shell
 git clone git@github.com:nginx/documentation.git
@@ -97,10 +94,10 @@ Once you've obtained the package files and transferred them to your disconnected
 After pulling or building Docker images in a connected environment, you can save them to `.tar` files:
 
 ```shell
-docker save -o waf-enforcer.tar waf-enforcer:5.2.0
-docker save -o waf-config-mgr.tar waf-config-mgr:5.2.0
+docker save -o waf-enforcer.tar waf-enforcer:{{< version-waf-enforcer >}}
+docker save -o waf-config-mgr.tar waf-config-mgr:{{< version-waf-config-mgr >}}
 # Optional, if using IP intelligence
-docker save -o waf-ip-intelligence.tar waf-ip-intelligence:5.2.0
+docker save -o waf-ip-intelligence.tar waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
 ```
 
 You can then transfer the files and load the images in your disconnected environment:
@@ -113,4 +110,3 @@ docker load -i waf-ip-intelligence.tar
 ```
 
 Ensure your Docker compose files use the tagged images you've transferred.
-
