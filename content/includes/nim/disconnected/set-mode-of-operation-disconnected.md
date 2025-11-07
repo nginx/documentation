@@ -12,6 +12,6 @@ nd-docs: "DOCS-1663"
 
 2.	Restart NGINX Instance Manager:
 
-    ``` bash
+    ```shell
     sudo systemctl restart nms
     ```

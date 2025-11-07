@@ -17,7 +17,7 @@ You can deploy it in two ways:
 - **Standard mode** includes full metrics and dashboards. This setup runs ClickHouse in a separate container.
 - **Lightweight mode** (new in 2.20.0) skips ClickHouse entirely. It’s ideal if you don’t need monitoring data or want a simpler setup. This reduces system requirements and avoids the work of managing a metrics database. You can add ClickHouse later if your needs change.
 
-Both modes use a pre-built Docker image that includes NGINX Instance Manager, Security Monitoring, and the latest NGINX App Protect compilers.
+Both modes use a pre-built Docker image that includes NGINX Instance Manager, Security Monitoring, and the latest F5 WAF for NGINX compilers.
 
 If you use the standard setup, ClickHouse runs in its own container. This helps with fault tolerance and keeps data separate. You can also use persistent storage.
 
@@ -48,7 +48,7 @@ Your system needs enough resources to run NGINX Instance Manager based on the mo
 | Standard        | 4         | 4 GB   | Yes                 |
 | Lightweight     | (Lower)   | (Lower)| No                  |
 
-Standard mode requires a minimum of 4 CPU cores and 4 GB of memory. This setup includes ClickHouse, which handles metrics and dashboards. Depending on your NGINX footprint, you may need more resources, especially for environments with many configuration files or NGINX App Protect enabled.
+Standard mode requires a minimum of 4 CPU cores and 4 GB of memory. This setup includes ClickHouse, which handles metrics and dashboards. Depending on your NGINX footprint, you may need more resources, especially for environments with many configuration files or F5 WAF for NGINX enabled.
 
 Lightweight mode removes ClickHouse, which lowers memory and CPU usage. While there’s no official minimum, users with basic instance management needs may see success with fewer resources. Test in your environment before committing to a smaller footprint.
 

@@ -15,6 +15,114 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 {{< /details >}}
 
+## 2.21.0
+
+November 07, 2025
+
+### Upgrade Paths {#2-21-0-upgrade-paths}
+
+NGINX Instance Manager 2.21.0 supports upgrades from these previous versions:
+
+- 2.18.0 - 2.20.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's New {#2-21-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Added support for bot signatures management in NGINX Instance Manager**
+
+   This release adds bot signature management to NGINX Instance Manager through both the web interface and the API. This update improves web application firewall (WAF) policy protection by detecting and mitigating automated bot traffic and integrates bot signature workflows with existing attack signature and threat campaign management.
+
+   **What’s new**
+
+  - Automatically download bot signatures from the NGINX repository at a configurable interval (set in `nms.conf`).
+  - Include the latest bot signatures when publishing a WAF policy to an instance or instance group.
+  - View bot signature deployment associations across instances and instance groups in the web interface.
+  - Roll out the latest bot signatures to all previously published policies with one click.
+  - See the bot signatures version on the Instance WAF details page.
+  - Automatically prune unused bot signatures every 24 hours, with a configurable time-to-live (TTL) value (set in `nms.conf`).
+  
+  **API-only operations:**
+
+    - Upload a bot signature package downloaded from the NGINX repository.
+    - Delete unused bot signatures from NGINX Instance Manager.
+    - List all bot signatures stored in NGINX Instance Manager.
+
+  **Upgrade and compatibility**
+
+  - No breaking changes. Existing policies continue using their current bot signatures until you re-publish the policy or publish a bot signatures update to the target instance or instance group.
+  - Bot signatures are compatible with older agents, but **we recommend upgrading to NGINX Agent v2.43.0 or later** for the best results.
+
+  **Notes and limitations**
+
+  - After upgrade, the Instance WAF details page won’t display the bot signatures version for existing policies until you re-publish the policy or publish a bot signatures update. The page will show:
+    *“Available after publishing Bot Signatures from Instance Manager.”*
+  - Auto-pruning removes only bot signatures that aren’t associated with any deployed policy. Configure the TTL setting to meet your retention and compliance requirements.
+
+- {{% icon-feature %}} **On-demand WAF policy bundle download in NGINX Instance Manager web interface**
+
+   This release adds on-demand download of compiled web application firewall (WAF) policy bundles from the NGINX Instance Manager web interface. Previously available only through the API, this feature lets you retrieve the compiled bundle for use cases such as NGINX Ingress Controller deployments in Kubernetes. You can now reference the bundle directly and avoid compilation on the data plane.
+
+   **What’s new**
+
+   - You can now download a compiled policy bundle directly from the web interface.
+     Go to **WAF > Policies**, select a policy with **Compilation Status = Compiled**, and choose **Download Bundle** to retrieve the latest compiled version.
+
+   **Upgrade and compatibility**
+
+   - No breaking changes. Existing workflows continue to function as before. Web interface–based bundle download complements the existing API and is especially useful for NGINX Ingress Controller deployments in Kubernetes.
+
+   **Limitations**
+
+   - Only the latest version of a WAF policy bundle can be downloaded on demand.
+   - The **Download Bundle** action is available only for policies that have been successfully compiled.
+
+- {{% icon-feature %}} **On-demand WAF policy compilation (bundle creation) in NGINX Instance Manager web interface**
+
+   This release adds on-demand compilation of WAF policies in the NGINX Instance Manager web interface. Pre-compiling policies helps reduce publish times and improve reliability.
+
+   Previously, NGINX Instance Manager reused compiled bundles when available and compiled policies during publish if no bundle existed. This could slow down or occasionally fail. You can now compile policies in advance so they’re ready for immediate deployment to instances or instance groups.
+
+   **What’s new**
+
+   - **Web interface support for policy compilation:** Under **WAF > Policies**, select a policy and choose **Compile (bundle creation)** to start compilation on demand.
+   - **Compilation status visibility:** A new **Compilation Status** column shows which policies are already compiled and which need compilation.
+   - **Faster publishing:** When a compiled bundle exists for a selected policy, NGINX Instance Manager uses it to speed up publishing to instances and instance groups.
+
+   **Upgrade and compatibility**
+
+   - No breaking changes. Existing workflows continue to function as before. On-demand compilation through the web interface complements the existing API and can improve publish speed and reduce failures during WAF policy deployment.
+
+   **Limitations**
+
+   - By default, the **Compile** action uses the latest revision of the selected policy, the most recent compiler version, and the newest versions of attack signatures, bot signatures, and threat campaigns.
+
+- {{% icon-feature %}} **Expanded options for configuring security policies with F5 WAF for NGINX**
+
+   You can now configure additional policy settings for F5 WAF for NGINX directly in the NGINX Instance Manager web interface, including:
+
+   - Signature sets
+   - Signature exceptions
+   - Parameters
+   - URLs
+   - Cookies
+
+   For more information, see the [F5 WAF for NGINX Integration Guide](https://docs.nginx.com/nginx-instance-manager/waf-integration/).
+
+### Resolved Issues {#2-21-0-resolved-issues}
+
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+
+- {{% icon-resolved %}} Failing to fetch CVE data when using forward proxy in K8s environments (46177)
+
+### Known Issues {#2-21-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
+---
+
 ## 2.20.0
 
 June 16, 2025
@@ -621,7 +729,7 @@ This release includes the following updates:
 - {{% icon-feature %}} **Work with NGINX App Protect Bundles from Instance Manager**<a name="2-14-0-whats-new-Work-with-NGINX-App-Protect-Bundles-from-Instance-Manager"></a>
 
    Starting with Instance Manager 2.14, you can now use the "/security/policies/bundles" endpoint to create, read, update, and delete NGINX App Protect bundles, which allow faster deployment through pre-compilation of security policies, attack signatures, and threat-campaign.  For additional information on how to use the API endpoint, refer to your product API documentation.
-    To learn more about this feature, see the [Manage WAF Security Policies]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md" >}}) documentation.
+    To learn more about this feature, see the [Manage WAF Security Policies]({{< ref "/nim/waf-integration/policies-and-logs/_index.md" >}}) documentation.
 
 - {{% icon-feature %}} **Clickhouse LTS 23.8 support**<a name="2-14-0-whats-new-Clickhouse-LTS-23-8-support"></a>
 
@@ -1148,11 +1256,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Automatic retrieval of Attack Signatures and Threat Campaign updates to Instance Manager**<a name="2-8-0-whats-new-Automatic-retrieval-of-Attack-Signatures-and-Threat-Campaign-updates-to-Instance-Manager"></a>
 
-   Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md##automatically-download-latest-packages" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
+   Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< ref "/nim/waf-integration/configuration/setup-signatures-and-threats/_index.md" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
 
 - {{% icon-feature %}} **Improved WAF Compiler error messages**<a name="2-8-0-whats-new-Improved-WAF-Compiler-error-messages"></a>
 
-   The messaging around [security policy compilation errors]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#check-for-compilation-errors" >}}) has been improved by providing more detailed information and alerting users if the required compiler version is missing.
+   The messaging around security policy compilation errors has been improved by providing more detailed information and alerting users if the required compiler version is missing.
 
 ### Changes in Default Behavior{#2-8-0-changes-in-behavior}
 
@@ -1265,7 +1373,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Manage and deploy configurations to F5 WAF for NGINX Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
 
-   This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< ref "/nim/nginx-app-protect/overview-nap-waf-config-management.md" >}}):
+   This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< ref "/nim/waf-integration/overview.md" >}}):
 
   - Create, upsert, and delete F5 WAF for NGINX security policies
   - Manage F5 WAF for NGINX security configurations by using the NGINX Management Suite user interface or REST API

@@ -165,7 +165,7 @@ To remove a resource from a resource group via the REST API, send an HTTP `DELET
 
 ##### Example request
 
-```bash
+```shell
 DELETE https://<NIM_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}/resources/{resourceUid}?moduleName=Instance Manager
 ```
 
@@ -193,7 +193,7 @@ To delete a resource group via the REST API, send an HTTP `DELETE` request.
 
 ##### Example request
 
-```bash
+```shell
 DELETE https://<NIM_FQDN>/api/platform/v1/resource-groups/{resourceGroupUid}
 ```
 
@@ -227,7 +227,7 @@ To retrieve a list of resource groups with resource details:
 
 ##### Example request (showing resource details)
 
-```bash
+```shell
 GET https://<NIM_FQDN>/api/platform/v1/resource-groups?showDetails=true
 ```
 
