@@ -828,7 +828,7 @@ A VirtualServer/VirtualServerRoute can reference multiple cache policies. Howeve
 
 ### WAF
 
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
 
 The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
