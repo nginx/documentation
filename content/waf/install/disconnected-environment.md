@@ -46,7 +46,7 @@ In addition to accessing F5 WAF for NGINX documentation, you will be able to acc
 
 You will need `git` and `wget` in your connected environment.
 
-Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.147.8):
+Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.152.2):
 
 
 ```shell
