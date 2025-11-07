@@ -47,7 +47,16 @@ This glossary defines terms used in F5 NGINX.
 | **Ingress Controller** | Ingress Controllers are applications within a Kubernetes cluster that enable [Ingress]({{< ref "/nic/glossary.md#ingress">}}) resources to function. They are not automatically deployed with a Kubernetes cluster, and can vary in implementation based on intended use, such as load balancing algorithms for Ingress resources. [The design of NGINX Ingress Controller]({{< ref "/nic/overview/design.md">}}) explains the technical details of NGINX Ingress Controller. |
 {{</table>}}
 
-## F5 WAF for NGINX terminology
+## F5 WAF for NGINX 
+This section defines terminology used when describing functionality of F5 WAF for NGINX.
+
+It assumes you are familiar with various layer 7 (L7) hypertext transfer protocol (HTTP) concepts such as:
+
+- Cookies
+- HTTP methods and status codes
+- HTTP headings, requests, responses, and parameters
+- Uniform Resource Identifier (URI)
+- Uniform Resource Location (URL)
 
 {{< include "waf/terminology.md" >}}
 
