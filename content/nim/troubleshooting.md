@@ -22,7 +22,7 @@ The NGINX service must be running **before** you start the NGINX Agent.
 
 - To resolve the issue, try restarting the NGINX Agent:
 
-  ``` bash
+  ```shell
   sudo systemctl restart nginx-agent
   ```
 
@@ -51,28 +51,28 @@ Ensure there isn't a process bound to port `80` or `443`.
 
 1. To stop processes bound to ports `80` and `443`, run the following commands:
 
-    ```bash
+    ```shell
     sudo fuser -k 80/tcp
     sudo fuser -k 443/tcp
     ```
 
 2. Restart the NGINX service:
 
-    ```bash
+    ```shell
     sudo service nginx restart
     ```
 
 ---
 
-## Scan reports NGINX versions as `undefined` when NGINX App Protect is enabled
+## Scan reports NGINX versions as `undefined` when F5 WAF for NGINX is enabled
 
 ### Description
 
-When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances" >}}), the NGINX version is reported as `undefined` when NGINX App protect is installed.
+When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances" >}}), the NGINX version is reported as `undefined` when F5 WAF for NGINX is installed.
 
 ### Resolution
 
-This behavior is **by design**. As a security precaution when NGINX App Protect is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and NGINX App Protect versions.
+This behavior is **by design**. As a security precaution when F5 WAF for NGINX is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and F5 WAF for NGINX versions.
 
 ---
 

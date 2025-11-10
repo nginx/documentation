@@ -16,13 +16,13 @@ To install SQLite on your system, run the appropriate command(s) for your Linux 
 
 #### For RHEL and RPM-based distributions (excluding CentOS 7, Amazon Linux 2, and Oracle Linux 7):
 
-```bash
+```shell
 sudo yum install -y sqlite
 ```
 
 #### For CentOS 7, Amazon Linux 2, and Oracle Linux 7:
 
-```bash
+```shell
 sudo su
 yum install -y gcc \
     make \
@@ -50,14 +50,14 @@ To install SQLite on your system, run the appropriate command(s) for your Linux 
 
 #### For Debian, Ubuntu, and Deb-based distributions (excluding Debian (buster/sid) and Ubuntu 18.04):
 
-```bash
+```shell
 sudo apt-get update
 sudo apt-get install -y sqlite3
 ```
 
 #### For Debian (buster/sid) and Ubuntu 18.04:
 
-```bash
+```shell
 sudo su
 apt-get install -y gcc \
       make \
