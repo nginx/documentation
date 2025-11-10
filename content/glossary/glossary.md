@@ -31,7 +31,7 @@ This glossary defines terms used in F5 NGINX.
 {{< table >}}
 
 | Term        | Definition |
-|-------------|-------------|
+| ---- | ---------- |
 | **Access Token** | Defined in OAuth2, this (optional) short lifetime token provides access to specific user resources as defined in the scope values in the request to the authorization server (can be a JSON token as well). |
 | **ID Token** | Specific to OIDC, the primary use of the token in JWT format is to provide information about the authentication operation's outcome. |
 | **Identity Provider (IdP)** | A service that authenticates users and verifies their identity for client applications. |
