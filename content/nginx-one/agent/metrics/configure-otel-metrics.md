@@ -50,8 +50,8 @@ The **order of the OpenTelemetry config files matters**: the last config in the 
 To have NGINX Agent use your own OpenTelemetry config:
 
 1. Edit the configuration file as root `vim /etc/nginx-agent/nginx-agent.conf`
-2. Add the collector property
-3. Save and restart the NGINX agent service `sudo systemctl restart nginx-agent`
+1. Add the collector property
+1. Save and restart the NGINX agent service `sudo systemctl restart nginx-agent`
 
 ```yaml
 collector:
@@ -63,7 +63,7 @@ collector:
 
 {{< call-out "important" >}} NGINX Agent uses `/default` for naming its default processors, exporters and pipelines using the same naming in your own config might cause issues with sending metrics to your management plane {{< /call-out >}}
 
-- **Add Prometheus Exporter**
+To add a Prometheus exporter:
 
 {{< tabs name="prometheus-exporter" >}}
 {{% tab name="NGINX Plus" %}}
@@ -113,7 +113,7 @@ service:
 {{< /tabs >}}
 
 
-- **Third-party OTel Collector**
+To add a third-party OpenTelemetry Collector:
 
 {{< tabs name="third-party-collector" >}}
 {{% tab name="NGINX Plus" %}}
@@ -173,7 +173,7 @@ service:
 {{< /tabs >}}
 
 
-- **Add Debug Exporter**
+To add a debug exporter:
 
 {{< tabs name="debug-exporter" >}}
 {{% tab name="NGINX Plus" %}}
@@ -224,10 +224,8 @@ service:
 
 ### Troubleshooting
 
-To view the merged OpenTelemetry configuration set the NGINX Agent log level to "debug" in `/etc/nginx-agent/nginx-agent.conf`, and restart NGINX Agent:
+To view the merged OpenTelemetry configuration, change the NGINX Agent log level to "debug" in `/etc/nginx-agent/nginx-agent.conf`:
 
-1. Edit the configuration file `sudo vim /etc/nginx-agent/nginx-agent.conf`
-1. Change the log property
-   ```yaml
-   log:
-     level: debug 
+```yaml
+ log:
+   level: debug 
