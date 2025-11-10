@@ -1,16 +1,16 @@
 name: Bug report
-description: Report an issue with our documentation
+description: Report an issue with our content or website
 title: "[Bug]: "
 body: 
   - type: textarea
     attributes:
-      label: Describe the bug you have identified
+      label: Describe the problem you have identified
       description: Explain the problem with as much detail as possible.
     validations:
       required: true
   - type: dropdown
     attributes: 
-      label: Which product or products does this request relate to?
+      label: Which product or products does this problem relate to?
       multiple: true
       options:
         - F5 DoS for NGINX
@@ -28,22 +28,16 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Steps to reproduce the bug
+      label: If necessary, explain any additional steps to reproduce the problem.
       description: Describe the where the issue occurs.
-    validations:
-      required: true
   - type: textarea
     attributes:
       label: What is the expected or desired behaviour?
-      description: Describe what you expected to happen instead of the bug.
-    validations:
-      required: true    
+      description: Describe what you expected to happen instead of the problem
   - type: textarea
     attributes:
-      label: What environments or versions does this bug affect?
-      description: Describe the contexts which this bug seems to occur.
-    validations:
-      required: true
+      label: Is this problem specific to a particular platform or software version?
+      description: Describe the context in which this problem appears.
   - type: textarea
     attributes: 
       label: Any additional information

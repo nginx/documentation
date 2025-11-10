@@ -241,13 +241,13 @@ bash install-nim-bundle.sh -r
 
 1. To upgrade to the latest version of the NGINX Instance Manager, run the following command:
 
-   ```bash
+   ```shell
    sudo yum update -y nms-instance-manager --allowerasing
    ```
 
 1. To upgrade to the latest version of Clickhouse, run the following command:
 
-   ```bash
+   ```shell
    sudo yum update -y clickhouse-server clickhouse-client
    ```
 
@@ -257,14 +257,14 @@ bash install-nim-bundle.sh -r
 
 1. To upgrade to the latest version of the NGINX Instance Manager, run the following commands:
 
-   ```bash
+   ```shell
    sudo apt-get update
    sudo apt-get install -y --only-upgrade nms-instance-manager
    ```
 
 1. To upgrade to the latest version of ClickHouse, run the following commands:
 
-   ```bash
+   ```shell
    sudo apt-get update
    sudo apt-get install -y --only-upgrade clickhouse-server clickhouse-client
    ```
@@ -274,7 +274,7 @@ bash install-nim-bundle.sh -r
 
 2. Restart the NGINX Instance Manager platform services:
 
-    ```bash
+    ```shell
     sudo systemctl restart nms
     ```
 
@@ -282,13 +282,13 @@ bash install-nim-bundle.sh -r
 
 3. Restart the NGINX web server:
 
-   ```bash
+   ```shell
    sudo systemctl restart nginx
    ```
 
 4. Restart the Clickhouse server:
 
-   ```bash
+   ```shell
    sudo systemctl restart clickhouse-server
    ```
 

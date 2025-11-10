@@ -1,0 +1,26 @@
+---
+docs:
+files:
+  - /nim/security-monitoring/update-signatures.md
+---
+
+1. Open an SSH connection to the data plane host and log in.
+1. Generate a Signature Report file using the [Attack Signature Report Tool]({{< ref "/waf/configure/converters.md#attack-signature-report-tool" >}}). Save the file as `signature-report.json`:
+
+    ```shell
+    sudo /opt/app_protect/bin/get-signatures -o ./signature-report.json
+    ```
+
+1. Open an SSH connection to the management plane host and log in.
+1. Copy the `signature-report.json` file to the NGINX Instance Manager control plane at `/usr/share/nms/sigdb/`:
+
+    ```shell
+    sudo scp /path/to/signature-report.json {user}@{host}:/usr/share/nms/sigdb/signature-report.json
+    ```
+
+1. Restart the NGINX Instance Manager services to apply the update:
+
+    ```shell
+    sudo systemctl restart nms-ingestion
+    sudo systemctl restart nms-core
+    ```
