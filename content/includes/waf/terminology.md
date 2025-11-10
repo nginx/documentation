@@ -7,7 +7,7 @@ files:
 {{<table>}}
 
 | Term | Definition |
-| ---| --- |
+| ---- | ---------- |
 | Alarm | If selected, the F5 WAF for NGINX system records requests that trigger the violation in the remote log (depending on the settings of the logging profile). |
 | Attack signature | Textual patterns which can be applied to HTTP requests and/or responses by F5 WAF for NGINX to determine if traffic is malicious. For example, the string `<script>` inside an HTTP request triggers an attack signature violation. |
 | Attack signature set | A collection of attack signatures designed for a specific purpose (such as Apache). |
