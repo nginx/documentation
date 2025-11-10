@@ -112,7 +112,6 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-
 To add a third-party OpenTelemetry Collector:
 
 {{< tabs name="third-party-collector" >}}
@@ -122,14 +121,6 @@ To add a third-party OpenTelemetry Collector:
 exporters:
   otlp/local-collector:
     endpoint: "my-local-collector.com:443"
-    timeout: 10s
-    retry_on_failure:
-      enabled: true
-      initial_interval: 10s
-      max_interval: 60s
-      max_elapsed_time: 10m
-    tls:
-      insecure: true
 
 service:
   pipelines:
@@ -149,14 +140,6 @@ service:
 exporters:
   otlp/local-collector:
     endpoint: "my-local-collector.com:443"
-    timeout: 10s
-    retry_on_failure:
-      enabled: true
-      initial_interval: 10s
-      max_interval: 60s
-      max_elapsed_time: 10m
-    tls:
-      insecure: true
 
 service:
   pipelines:
@@ -171,7 +154,6 @@ service:
 
 {{% /tab %}}
 {{< /tabs >}}
-
 
 To add a debug exporter:
 
@@ -219,8 +201,6 @@ service:
 
 {{% /tab %}}
 {{< /tabs >}}
-
-
 
 ### Troubleshooting
 
