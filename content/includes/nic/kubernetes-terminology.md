@@ -4,7 +4,7 @@ files:
   - content/nic/glossary.md
 ---
 
-{{<table>}}
+{{< table >}}
 
 | Term        | Definition |
 |-------------|-------------|
