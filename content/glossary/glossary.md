@@ -40,7 +40,7 @@ This glossary defines terms used in F5 NGINX.
 | **Refresh Token** | Coming from OAuth2 specs, the token is usually long-lived and may be used to obtain new access tokens. |
 | **Relying Party (RP)** | A client service required to verify user identity. |
 
-{{</table>}}
+{{< /table >}}
 
 ## Kubernetes and Ingress Controller terms
 
