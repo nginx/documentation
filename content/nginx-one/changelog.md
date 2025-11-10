@@ -26,14 +26,13 @@ You can now graph any two metrics simultaneously on one chart within the Metrics
 ### Expanded features for configuring NGINX security policies with F5 WAF
 
 You can now configure the following for F5 WAF policies directly in the NGINX One Console:
+- [Signature Sets]({{< ref "/nginx-one/waf-integration/add-signature-sets.md" >}})
+- [Signature Exceptions]({{< ref "/nginx-one/waf-integration/add-signature-sets.md#exceptions" >}})
+- [Parameters]({{< ref "/nginx-one/waf-integration/cookies-params-urls.md#add-parameters" >}})
+- [URLs]({{< ref "/nginx-one/waf-integration/cookies-params-urls.md#add-urls" >}})
+- [Cookies]({{< ref "/nginx-one/waf-integration/cookies-params-urls.md#add-cookies" >}})
 
-- [Signature Sets]({{< ref "/nginx-one/nap-integration/add-signature-sets.md" >}})
-- [Signature Exceptions]({{< ref "/nginx-one/nap-integration/add-signature-sets.md#exceptions" >}})
-- [Parameters]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-parameters" >}})
-- [URLs]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-urls" >}})
-- [Cookies]({{< ref "/nginx-one/nap-integration/cookies-params-urls.md#add-cookies" >}})
-
-For more details, see the [F5 WAF Integration Guide ]({{< ref "/nginx-one/nap-integration/" >}}).
+For more details, see the [F5 WAF Integration Guide ]({{< ref "/nginx-one/waf-integration/" >}}).
 
 ## October 2, 2025
 
@@ -53,7 +52,7 @@ See the [Getting Started Guide]({{< ref "/nginx-one/getting-started.md#install-n
 
 ### Set up F5 WAF for NGINX security policies
 
-You can now incorporate [F5 WAF for NGINX]({{< ref "/waf/" >}}) in NGINX One Console UI. For details, see [Secure with F5 WAF for NGINX]({{< ref "/nginx-one/nap-integration/" >}}).
+You can now incorporate [F5 WAF for NGINX]({{< ref "/waf/" >}}) in NGINX One Console UI. For details, see [Secure with F5 WAF for NGINX]({{< ref "/nginx-one/waf-integration/" >}}).
 
 In NGINX One Console, you can:
 

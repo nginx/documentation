@@ -12,7 +12,7 @@ nd-docs: "DOCS-1666"
 
 2. Log in to the Docker registry using the contents of the JSON Web Token file:
 
-   ```bash
+   ```shell
    docker login private-registry.nginx.com --username=<JWT_CONTENTS> --password=none
    ```
 

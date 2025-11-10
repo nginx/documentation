@@ -27,7 +27,7 @@ To align with the worker connection count, you should also adjust the maximum nu
 
 1. Open the NGINX configuration file on the NGINX Instance Manager host:
 
-    ```bash
+    ```shell
     sudo nano /etc/nginx/nginx.conf
     ```
 
@@ -43,7 +43,7 @@ To align with the worker connection count, you should also adjust the maximum nu
 
 3. Save the changes and restart NGINX:
 
-    ```bash
+    ```shell
     sudo systemctl restart nginx
     ```
 
@@ -61,7 +61,7 @@ By default, the NGINX Instance Manager's NGINX configuration (`/etc/nginx/conf.d
 
 1. Open the gRPC configuration file on the NGINX Instance Manager host:
 
-    ```bash
+    ```shell
     sudo nano /etc/nginx/conf.d/nms-http.conf
     ```
 
@@ -95,6 +95,6 @@ By default, the NGINX Instance Manager's NGINX configuration (`/etc/nginx/conf.d
 
 3. Save the changes and restart NGINX:
 
-    ```bash
+    ```shell
     sudo systemctl restart nginx
     ```

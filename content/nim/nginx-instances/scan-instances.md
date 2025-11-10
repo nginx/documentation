@@ -266,12 +266,12 @@ The result looks similar to the following:
 
 ## Troubleshooting
 
-### Scan reports NGINX versions as "undefined" when NGINX App Protect is enabled
+### Scan reports NGINX versions as "undefined" when F5 WAF for NGINX is enabled
 
 #### Description
 
-- When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
+- When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances.md" >}}), the NGINX version is reported as `undefined` when F5 WAF for NGINX is installed.
 
 #### Resolution
 
-- This behavior is **by design**. As a security precaution when NGINX App Protect is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and NGINX App Protect versions.
+- This behavior is **by design**. As a security precaution when F5 WAF for NGINX is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and F5 WAF for NGINX versions.
