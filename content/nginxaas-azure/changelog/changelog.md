@@ -13,6 +13,16 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## November 13, 2025
+
+- {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
+
+  NGINXaaS for Azure is now available in the following additional regions:
+
+  - South Central US
+
+See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
+
 ## October 07, 2025
 
 - {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 35 (R35) in the Stable Upgrade Channel**

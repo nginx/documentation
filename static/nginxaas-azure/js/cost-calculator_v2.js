@@ -31,6 +31,7 @@
       southindia: { label: "South India", tier: 3 },
       ukwest: { label: "UK West", tier: 3 },
       uksouth: { label: "UK South", tier: 3 },
+      southcentralus: { label: "South Central US", tier: 1 },
     },
     // cost per NCU
     tiersCosts: {
