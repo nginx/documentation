@@ -302,7 +302,7 @@ metadata:
 spec:
   logging:
     accessLog:
-      disabled: true
+      disable: true
 EOF
 ```
 
