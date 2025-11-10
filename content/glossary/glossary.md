@@ -14,7 +14,7 @@ This glossary defines terms used in F5 NGINX.
 {{< table  >}}
 
 | Term        | Definition |
-|-------------|-------------|
+| ---- | ---------- |
 | **Config Sync Group** / **Instance Group** | A group of NGINX systems (or instances) with identical configurations. They may also share the same certificates. However, the instances in a Config Sync Group could belong to different systems and even different clusters. Also known as an Instance Group in NGINX Instance Manager. For more information, see this explanation of [Important considerations]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups.md#important-considerations" >}}) |
 | **Control Plane** | The control plane is the part of a network architecture that manages and controls the flow or data or traffic (the Data Plane). It is responsible for system-level tasks such as routing and traffic management. |
 | **Data Plane** | The data plane is the part of a network architecture that carries user traffic. It handles tasks like forwarding data packets between devices and managing network communication. In the context of NGINX, the data plane is responsible for tasks such as load balancing, caching, and serving web content. |
