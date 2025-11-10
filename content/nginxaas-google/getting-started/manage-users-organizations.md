@@ -59,7 +59,7 @@ To switch to a different NGINXaaS Organization, select the profile symbol in the
 
 ## Delete a user
 
-An authenticated user can delete other users (other than their own user account). Deletion is irreversible; the deleted user will no longer be able to access the NGINXaaS Account.
+An authenticated user can delete other users (other than their own user account). Deletion is irreversible; the deleted user will no longer be able to access the NGINXaaS Organization.
 
 To delete a user in an NGINXaaS Organization:
 
