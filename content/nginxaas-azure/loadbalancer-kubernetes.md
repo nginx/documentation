@@ -46,7 +46,7 @@ The NLK controller monitors [Kubernetes Services](https://kubernetes.io/docs/con
 
 ### Example use cases
 
-- You can use NGINXaaS for Azure to enforce rate limiting and application security with NGINX App Protect, then forward all accepted traffic to your Kubernetes applications.
+- You can use NGINXaaS for Azure to enforce rate limiting and application security with F5 WAF for NGINX, then forward all accepted traffic to your Kubernetes applications.
 - You can use NGINXaaS for Azure to receive traffic on `api.example.com` and route requests by URL path - for example, forwarding `/login` to a Kubernetes-based login service, `/graph` to a Kubernetes-hosted graph service, and `/process` to an application server on a standalone VM.
 
 ## Getting Started

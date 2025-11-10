@@ -108,7 +108,7 @@ Additionally, complete the following steps:
 
 1. Send a `POST` request to the Microsoft Entra token endpoint:
 
-    ```bash
+    ```shell
     https://login.microsoftonline.com/<your-azure-tenant-id>/oauth2/v2.0/token
     ```
 
@@ -160,7 +160,7 @@ Additionally, complete the following steps:
 
 To access the NGINX Management Suite API using the access token, send the token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
 
-```bash
+```shell
 curl -v -k --header "Authorization: Bearer <access-token>" https://<nms-ip>/api/platform/v1/userinfo
 ```
 

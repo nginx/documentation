@@ -7,9 +7,7 @@ weight: 2150
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This topic describes the user-defined URLs and parameters feature of F5 WAF for NGINX.
@@ -17,13 +15,14 @@ This topic describes the user-defined URLs and parameters feature of F5 WAF for 
 ## URLs
 
 User-defined URLs allows you to configure a URL with the following options:
+
 - Define a protected URL configuration with an explicitly path or implicit wildcard
 - Define a list of allowed/disallowed methods per URL that will override the list defined in the policy level.
 - Define the content-types `json/xml/form-data` for a user-defined URL.
 - Define an Allowed/Disallowed for user-defined URL.
 - Add user-defined URLs to the Signature/Metacharacters override list.
 
-For `urlContentProfiles` default values, see F5 WAF for NGINX [Declarative Policy guide.]({{< ref "/nap-waf/v4/declarative-policy/policy.md" >}})
+For `urlContentProfiles` default values, see the [Policy parameter reference]({{< ref "/waf/policies/parameter-reference.md" >}}).
 
 This example configures allowed meta-characters for a user-defined URL:
 

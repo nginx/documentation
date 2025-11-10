@@ -8,7 +8,7 @@ type:
 ---
 
 
-F5 NGINXaaS for Google Cloud (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Google Cloud Secret Manager, rotate certificates, and provide observability on the status of your certificates.
+F5 NGINXaaS for Google Cloud (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment.
 
 This document provides details about using SSL/TLS certificates with your F5 NGINXaaS for Google Cloud deployment.
 
@@ -31,7 +31,6 @@ Encrypt your certificates, keys, and PEM files using one of these standards:
 
 - RSA
 - ECC/ECDSA
-
 
 ## Add SSL/TLS certificates
 

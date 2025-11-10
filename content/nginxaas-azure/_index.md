@@ -1,6 +1,6 @@
 ---
 title: F5 NGINXaaS for Azure
-nd-subtitle: Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack
+nd-subtitle: Azure native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX 
 url: /nginxaas/azure/
 nd-landing-page: true
 cascade:
@@ -12,9 +12,9 @@ nd-product: N4Azure
 
 ## About
 
-F5 NGINXaaS for Azure is an IaaS offering that is tightly integrated
-into Microsoft Azure public cloud and its ecosystem, making applications fast, efficient,
-and reliable with full lifecycle management of advanced NGINX traffic services.
+F5 NGINXaaS for Azure is a SaaS offering that is tightly integrated
+into Microsoft Azure and its ecosystem of services, making applications fast, efficient,
+and reliable bringing advanced traffic services enabled with the commercial version of NGINX, without any of the operational toil.
 
 ## Featured content
 
