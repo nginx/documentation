@@ -203,7 +203,7 @@ helm install nim nginx-stable/nim \
 
 - Replace `<your-password>` with your preferred admin password.
 - Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.0.0`).
+- Replace `<chart-version>` with the version you want to install (for example, `2.1.0`).
 
 **Note:** You can set the ClickHouse mode at install time instead of editing `values.yaml`:
 
@@ -270,7 +270,7 @@ helm upgrade nim nginx-stable/nim \
 
 - Replace `<your-password>` with your preferred admin password.
 - Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.0.0`).
+- Replace `<chart-version>` with the version you want to install (for example, `2.1.0`).
 
 
 {{< call-out "important" "Save the password!" >}}
@@ -424,7 +424,7 @@ nms nginx-stable/nms-hybrid \
 To upgrade:
 
 1. [Update the Helm repository list](#add-repository).
-2. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
+2. [Adjust your `values.yaml` file](#configure-values-yaml) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
 4. Replace `<chart-version>` with the desired chart version of NGINX Instance Manager 2.19.x referring the Helm chart table. 
 
@@ -526,7 +526,7 @@ nms nginx-stable/nms \
 To upgrade:
 
 1. [Update the Helm repository list](#add-repository).
-2. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
+2. [Adjust your `values.yaml` file](#configure-values-yaml) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
 4. Replace `<chart-version>` with the desired chart version 1.15.0 or lower. If omitted, it will lead to an unsuccessful deployment as it will try to upgrade to the latest vesrion 1.16.0 or later.
 
