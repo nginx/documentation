@@ -12,16 +12,77 @@ This document lists and describes the known issues and possible workarounds in F
 
 ---
 
-## 2.20.0
+## 2.21.0
 
-June 16, 2025
+November 07, 2025
 
-### {{% icon-bug %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
+### {{% icon-bug %}} Security Monitoring dashboard doesn't load for custom users {#46763}
+
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46763 | Open  |
+{{< /bootstrap-table >}}
+
+#### Description
+
+When you sign in using a custom user account that has:
+
+- read permissions for Security Monitoring
+- create, read, update, and delete (CRUD) permissions for Security Policies
+
+the Security Monitoring dashboard shows the message: **Metrics are disabled**
+
+This happens even when ClickHouse is enabled.
+
+#### Workaround
+
+Add license read permission to the custom role or user. This allows the Security Monitoring dashboard to complete its license check and load as expected.
+
+---
+
+### {{% icon-bug %}} Duplicate security policies appear during RBAC role creation when an F5 WAF for NGINX policy has more than one version {#46754}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 46177 | Open  |
+| 46754 | Open  |
+{{</bootstrap-table>}}
+
+#### Description
+
+If an F5 WAF for NGINX policy has more than one version, the same policy name may appear more than once when you’re assigning access during RBAC role creation. This happens because the system doesn’t show which version is which.
+
+---
+
+## 2.20.0
+
+June 16, 2025
+
+### {{% icon-bug %}} NGINX configuration editor shows errors for instance group configs created with augment templates {#46726}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46726 | Open  |
+{{</bootstrap-table>}}
+
+#### Description
+
+The NGINX configuration editor may show errors for files in the `conf.d` directory when a configuration created with augment templates is published to an instance group. The configuration is valid, but the editor doesn’t recognize all template-generated files.
+
+#### Workaround
+
+To avoid this issue, use a standalone `nginx.conf` file instead of augment templates when publishing to instance groups.
+
+---
+
+### {{% icon-resolved %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46177 | Fixed in 2.21.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -59,7 +120,7 @@ March 27, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45991 | Fixed in Instance Manager 2.20.0  |
+| 45991 | Fixed in 2.20.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -82,7 +143,7 @@ February 06, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45845 | Fixed in Instance Manager 2.19.1  |
+| 45845 | Fixed in 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -123,7 +184,7 @@ November 08, 2024
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45846 | Fixed in Instance Manager 2.19.1  |
+| 45846 | Fixed in 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -132,7 +193,7 @@ On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automaticall
 
 #### Workaround
 
-Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< ref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< ref "nim/waf-integration/configuration/install-waf-compiler/_index.md" >}}).
 
 ---
 
@@ -141,7 +202,7 @@ Manually install the missing compiler by following the instructions in [Install 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45573 | Fixed in Instance Manager 2.19.0  |
+| 45573 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -155,7 +216,7 @@ Saving templates as “staged configs” causes syntax errors due to Augment tem
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45570 | Fixed in Instance Manager 2.19.0  |
+| 45570 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -170,7 +231,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45301 | Fixed in Instance Manager 2.19.0  |
+| 45301 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -184,7 +245,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45024 | Fixed in Instance Manager 2.19.0  |
+| 45024 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
