@@ -11,7 +11,7 @@ This glossary defines terms used in F5 NGINX.
 
 ## General terms
 
-{{<table>}}
+{{< table  >}}
 
 | Term        | Definition |
 |-------------|-------------|
