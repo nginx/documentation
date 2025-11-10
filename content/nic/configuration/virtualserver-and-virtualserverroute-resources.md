@@ -493,20 +493,6 @@ See the [`sticky`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html?
 |``secure`` | Adds the ``Secure`` attribute to the cookie. | ``boolean`` | No |
 |``samesite`` | Adds the ``SameSite`` attribute to the cookie. The allowed values are: ``strict``, ``lax``, ``none`` | ``string`` | No |
 
-### Header
-
-The header defines an HTTP Header:
-
-```yaml
-name: Host
-value: example.com
-```
-
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``name`` | The name of the header. | ``string`` | Yes |
-|``value`` | The value of the header. | ``string`` | No |
-
 ### Action
 
 The action defines an action to perform for a request.

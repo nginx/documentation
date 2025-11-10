@@ -26,7 +26,7 @@ You need to create a certificate before you can add one to NGINX Instance Manage
 
 If you’re uploading a **PKCS12** certificate, make sure to encode it in base64 before adding it to NGINX Instance Manager. Use the following command to encode the certificate:
 
-   ```bash
+   ```shell
     cat <filename>.pkcs12 | base64 > <new-filename>.pkcs12
    ```
 
@@ -77,7 +77,7 @@ To replace a certificate using the web interface:
 
 To replace a certificate using the NGINX Instance Manager REST API, send a `PUT` request like the following to the Certificates API endpoint:
 
-```bash
+```shell
 curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_with_ca" \
   -H "accept: application/json" \
   -H "Content-Type: application/json" \
@@ -115,7 +115,7 @@ To delete a certificate using the web interface:
 
 To delete a certificate using the NGINX Instance Manager REST API, send a `DELETE` request like the following to the Certificates API endpoint:
 
-```bash
+```shell
 curl -X DELETE "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_with_ca" \
   -H "accept: application/json"
 ```
@@ -128,7 +128,7 @@ curl -X DELETE "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert
 
 To convert a remote certificate to a managed certificate using the NGINX Instance Manager REST API, send a `PUT` request to the Certificates API endpoint. This request should include both the public certificate and private key, like in the following example:
 
-```bash
+```shell
 curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_with_ca" \
   -H "accept: application/json" \
   -H "Content-Type: application/json" \
@@ -160,13 +160,13 @@ To rotate the certificate encryption key:
 1. Open an SSH connection to the F5 NGINX Management Suite host.
 2. Run the following command to stop the `nms` service:
 
-      ```bash
+      ```shell
       sudo systemctl stop nms
       ```
 
 3.	Run the following command to rotate the encryption keys:
 
-      ```bash
+      ```shell
       sudo runuser -u nms -- nms-core secret rotate
       ```
 
@@ -181,6 +181,6 @@ To rotate the certificate encryption key:
 
 4. Now that you've rotated encryption keys, start the `nms` service:
 
-   ```bash
+   ```shell
    sudo systemctl start nms
    ```

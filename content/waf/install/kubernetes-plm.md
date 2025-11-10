@@ -11,9 +11,7 @@ nd-banner:
     md: /_banners/waf-early-availability.md
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 There are two new features available for Kubernetes through early access:
@@ -278,7 +276,7 @@ appprotect:
       ## The image repository of the WAF Config Mgr
       repository: private-registry.nginx.com/nap/waf-config-mgr
       ## The tag of the WAF Config Mgr image
-      tag: 5.9.0
+      tag: {{< version-waf-config-mgr >}}
     ## The pull policy for the WAF Config Mgr image
     imagePullPolicy: IfNotPresent
     ## The resources of the Waf Config Manager container
@@ -295,7 +293,7 @@ appprotect:
       ## The image repository of the WAF Enforcer
       repository: private-registry.nginx.com/nap/waf-enforcer
       ## The tag of the WAF Enforcer image
-      tag: 5.9.0
+      tag: {{< version-waf-enforcer >}}
     ## The pull policy for the WAF Enforcer image
     imagePullPolicy: IfNotPresent
     ## The environment variable for enforcer port to be set on the WAF Enforcer container
@@ -316,7 +314,7 @@ appprotect:
       ## The image repository of the WAF IP Intelligence
       repository: private-registry.nginx.com/nap/waf-ip-intelligence
       ## The tag of the WAF IP Intelligence
-      tag: 5.9.0
+      tag: {{< version-waf-ip-intelligence >}}
     ## The pull policy for the WAF IP Intelligence
     imagePullPolicy: IfNotPresent
     ## The resources of the WAF IP Intelligence container
@@ -336,8 +334,8 @@ appprotect:
     ## The image repository of the WAF Policy Controller
     image:
       repository: private-registry.nginx.com/nap/waf-policy-controller
-      ## The tag of the WAF Policy COntroller
-      tag: 5.9.0
+      ## The tag of the WAF Policy Controller
+      tag: {{< version-waf-policy-controller >}}
       ## The pull policy for the WAF Policy Controller
       imagePullPolicy: IfNotPresent
     wafCompiler:
@@ -345,7 +343,7 @@ appprotect:
       image:
         repository: private-registry.nginx.com/nap/waf-compiler
          ## The tag of the WAF Compiler image
-        tag: 5.9.0
+        tag: {{< version-waf-compiler >}}
     ## Save logs before deleting a job or not
     enableJobLogSaving: false
     ## The resources of the WAF Policy Controller
@@ -710,6 +708,7 @@ kubectl apply -f apple-usersig.yaml -n <namespace>
 You can check the status of your resources using `kubectl get` or `kubectl describe`.
 
 The Policy Controller will show status information including:
+
 - Bundle location
 - Compilation status
 - Signature update timestamps
@@ -717,6 +716,7 @@ The Policy Controller will show status information including:
 ```shell
 kubectl get appolicy dataguard-blocking -n <namespace> -o yaml
 ```
+
 ```yaml
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
@@ -744,6 +744,7 @@ status:
 ```shell
 kubectl describe appolicy dataguard-blocking -n <namespace>
 ```
+
 ```text
 Name:         dataguard-blocking
 Namespace:    localenv-plm
@@ -1323,7 +1324,6 @@ The Policy Controller will detect the file changes and recompile automatically.
 
 Regardless of the policy type used, you can monitor the status of your policies using standard Kubernetes commands:
 
-
 ```shell
 kubectl get appolicy -n <namespace>
 kubectl describe appolicy <policy-name> -n <namespace>
@@ -1358,19 +1358,19 @@ status:
 
 ## Possible issues
 
-**Policy Controller does not start**
+_Policy Controller does not start:_
 
 - Verify the CRDs are installed: `kubectl get crds | grep appprotect.f5.com`
 - Check the pod logs: `kubectl logs <policy-controller-pod> -n <namespace>`
 - Ensure proper RBAC permissions are configured
 
-**Policies fail to compile**
+_Policies fail to compile:_
 
 - Check Policy Controller logs for compilation errors
 - Verify the WAF compiler image is accessible
 - Ensure the policy syntax is valid
 
-**Issues with bundle storage**
+_Issues with bundle storage:_
 
 - Verify the persistent volume is properly mounted
 - Check storage permissions (Should be 101:101)

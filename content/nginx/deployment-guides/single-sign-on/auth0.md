@@ -149,7 +149,7 @@ With Auth0 configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
     
     - The **logout_uri** is URI that a user visits to start an RP‑initiated logout flow.
 
-    - The **post_logout_uri** is absolute HTTPS URL where Auth0 should redirect the user after a successful logout. This value **must also be whitelisted** in **Allowed Logout URLs** on the Auth0 side.
+    - The **post_logout_uri** is absolute HTTPS URL where Auth0 should redirect the user after a successful logout. This value **must also be specified** in **Allowed Logout URLs** on the Auth0 side.
 
     - If the **logout_token_hint** directive set to `on`, NGINX Plus sends the user’s ID token as a *hint* to Auth0.
       This directive is **optional**, however, if it is omitted the Auth0 may display an extra confirmation page asking the user to approve the logout request.

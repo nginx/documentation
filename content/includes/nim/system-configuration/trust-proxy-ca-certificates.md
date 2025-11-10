@@ -6,7 +6,7 @@
 
     - **Debian/Ubuntu**:
 
-       ```bash
+       ```shell
        sudo update-ca-certificates
        ``` 
 

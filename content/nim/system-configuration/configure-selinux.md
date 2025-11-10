@@ -47,14 +47,14 @@ To load the SELinux policy included with NGINX Instance Manager:
 
 1. Load the NGINX Instance Manager policy:
 
-    ```bash
+    ```shell
     sudo semodule -n -i /usr/share/selinux/packages/nms.pp
     sudo /usr/sbin/load_policy
     ```
 
 2. Restore default SELinux labels for related files and directories:
 
-    ```bash
+    ```shell
     sudo restorecon -F -R /usr/bin/nms-core
     sudo restorecon -F -R /usr/bin/nms-dpm
     sudo restorecon -F -R /usr/bin/nms-ingestion
@@ -76,7 +76,7 @@ To load the SELinux policy included with NGINX Instance Manager:
 
 3. Restart NGINX Instance Manager services:
 
-    ```bash
+    ```shell
     sudo systemctl restart nms
     ```
 
@@ -86,21 +86,21 @@ NGINX Instance Manager uses the `nms_t` context in the policy module. To add new
 
 1. Add TCP ports `10000` and `11000` to the `nms_port_t` context:
 
-    ```bash
+    ```shell
     sudo semanage port -a -t nms_port_t -p tcp 10000
     sudo semanage port -a -t nms_port_t -p tcp 11000
     ```
 
 2. If the port context is already defined, use `-m` to modify it:
 
-    ```bash
+    ```shell
     sudo semanage port -m -t nms_port_t -p tcp 10000
     sudo semanage port -m -t nms_port_t -p tcp 11000
     ```
 
 3. Verify the port has the correct label:
 
-    ```bash
+    ```shell
     seinfo --portcon=10000
     seinfo --portcon=11000
     ```
@@ -109,7 +109,7 @@ NGINX Instance Manager uses the `nms_t` context in the policy module. To add new
 
 If you uninstall NGINX Instance Manager, remove the associated ports:
 
-```bash
+```shell
 sudo semanage port -d -t nms_t 10000
 sudo semanage port -d -t nms_t 11000
 ```
