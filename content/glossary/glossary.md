@@ -28,7 +28,7 @@ This glossary defines terms used in F5 NGINX.
 
 ## Authentication and Authorization terms
 
-{{<table>}}
+{{< table >}}
 
 | Term        | Definition |
 |-------------|-------------|
