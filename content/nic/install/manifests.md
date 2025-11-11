@@ -263,7 +263,7 @@ kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{
 Delete custom resource definitions for the F5 WAF for NGINX module:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
+kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
 ```
 
 Delete custom resource definitions for the F5 DoS for NGINX module:
