@@ -1,6 +1,6 @@
 ---
 title: Authentication
 weight: 100
-url: /nginx-management-suite/admin-guide/authentication/
+url: /nginx-instance-manager/admin-guide/authentication/
 
 ---

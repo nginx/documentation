@@ -6,7 +6,7 @@ You can access the NGINX Instance Manager web interface using the external IP ad
 
 1. To look up the external IP address for the API Gateway, run the following command:
 
-   ```bash
+   ```shell
    kubectl -n nim get svc apigw
    ```
 

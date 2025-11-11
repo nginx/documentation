@@ -34,7 +34,7 @@ The F5 NGINX Instance Manager Helm chart includes the `k8s-support-package.sh` s
 
 1. Download the latest NGINX Instance Manager Helm chart:
 
-    ```bash
+    ```shell
     helm repo add nginx-stable https://helm.nginx.com/stable
     helm repo update
     helm pull nginx-stable/nms
@@ -51,7 +51,7 @@ The F5 NGINX Instance Manager Helm chart includes the `k8s-support-package.sh` s
 
 3. Extract the package using the `tar` command:
 
-    ```bash
+    ```shell
     tar -xvf k8s-support-pkg-<timestamp>.tar.gz
     ```
 
