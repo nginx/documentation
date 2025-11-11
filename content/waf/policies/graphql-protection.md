@@ -84,7 +84,7 @@ worker_processes  4;
 
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections  65536;
