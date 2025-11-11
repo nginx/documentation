@@ -4,7 +4,7 @@ files:
   - content/waf/fundamentals/terminology.md
 ---
 
-{{<table>}}
+{{< table >}}
 
 | Term | Definition |
 | ---- | ---------- |
@@ -27,4 +27,4 @@ files:
 | URI/URL | The Uniform Resource Identifier (URI) specifies the name of a web object in a request. A Uniform Resource Locator (URL) specifies the location of an object on the Internet. For example, in the web address, `http://www.siterequest.com/index.html`, index.html is the URI, and the URL is `http://www.siterequest.com/index.html`. In F5 WAF for NGINX, the terms URI and URL are used interchangeably. |
 | Violation | Violations occur when some aspect of a request or response does not comply with the security policy. You can configure the blocking settings for any violation in a security policy. When a violation occurs, the system can Alarm or Block a request (blocking is only available when the enforcement mode is set to Blocking). |
 
-{{</table>}}
+{{< /table >}}
