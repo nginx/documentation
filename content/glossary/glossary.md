@@ -67,10 +67,6 @@ To set up NGINX Alerts through the F5 Distributed Cloud, follow the procedure in
 {{< include "/nginx-one/alert-labels.md" >}}
 
 
-## Legal notice: Licensing agreements for NGINX products
-
-Using NGINX One is subject to our End User Service Agreement (EUSA). For [NGINX Plus]({{< ref "/nginx" >}}), usage is governed by the End User License Agreement (EULA). Open source projects, including [NGINX Agent](https://github.com/nginx/agent) and [NGINX Open Source](https://github.com/nginx/nginx), are covered under their respective licenses. For more details on these licenses, follow the provided links.
-
 ## References
 
 - [F5 Glossary](https://www.f5.com/glossary)
