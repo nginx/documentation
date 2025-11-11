@@ -1,6 +1,6 @@
 ---
 title: Export NGINX instance metrics
-weight: 450
+weight: 500
 toc: true
 nd-docs: DOCS-1882
 ---
@@ -109,7 +109,7 @@ service:
   pipelines:
     metrics/prometheus-example-pipeline:
       receivers:
-        - nginxplus/nginx # Use nginxplus for NGINX Plus or nginx for OSS
+        - <nginxplus or nginx> # Use nginxplus for NGINX Plus or nginx for OSS
       processors:
         - resource/default
       exporters:
