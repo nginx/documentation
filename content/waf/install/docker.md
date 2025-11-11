@@ -71,7 +71,7 @@ user nginx;
 worker_processes auto;
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections 10240;
@@ -839,7 +839,7 @@ user nginx;
 worker_processes auto;
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections 10240;
