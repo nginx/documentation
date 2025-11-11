@@ -202,7 +202,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 Your folder should contain the following files:
 
-- _nginx-repo.cert_
+- _nginx-repo.crt_
 - _nginx-repo.key_
 - _Dockerfile_
 
