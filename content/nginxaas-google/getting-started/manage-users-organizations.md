@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-This document explains how to manage users and accounts in F5 NGINXaaS for Google Cloud using the NGINXaaS console.
+This document explains how to manage users and organizations in F5 NGINXaaS for Google Cloud using the NGINXaaS console.
 
 Before you start, ensure you understand the following concepts:
 
