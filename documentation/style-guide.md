@@ -389,34 +389,45 @@ When writing new documentation, use the following [templates](/templates):
 
 ## Language guidelines
 
-- Prefer active voice and goal-oriented phrases:
+### Write for global readers
 
-   | Do | Don't |
-   |----|-------|
-   | _To restart the system, run the following command.__ |_ For the system to be restarted, run the following command._ <br> Restarting the system can be achieved, if necessary, by running the following command._ |
+Write at an 8th–9th grade reading level. Use clear, simple language. Choose everyday words instead of technical terms when possible. Avoid jargon unless it’s needed and defined in context. This helps people around the world understand our content, including those who speak English as a second language or use machine translation.
 
-- Prefer that for essential clauses, which for non-defining details.
+- Use the active voice and write goal-oriented instructions.
 
-- For optional, required, and forbidden actions, use proper modal verbs instead of ambiguous conditionals:
+   | Do | Don’t |
+   |----|--------|
+   | _To restart the system, run the following command._ | _For the system to be restarted, run the following command._<br>_Restarting the system can be achieved by running the following command._ |
 
-   | Do | Don't |
-   |----|-------|
-   | _You may/should/must add additional security by following this guide._ | _If more security is necessary, follow this guide._ |
+- Use **that** for essential information and **which** for extra details.
 
-   For more information about modal verb semantics, see [RFC-2119](https://tools.ietf.org/html/rfc2119).
+   | Do | Don’t |
+   |----|--------|
+   | _Restart the services that failed during the update._<br>_Open the folder that contains your configuration files._ | _Restart the services, which failed during the update._<br>_Open the folder, which contains your configuration files._ |
 
-- In code snippets, follow established style conventions of respective languages, including indentation, line breaks, and naming.
+   Use **which** only when the clause adds nonessential information:<br>
+   _The log file, which records all system activity, can grow large over time._
 
-- Omit unnecessary words and phrases, courtesy sugaring in particular.
+- Use clear modal verbs to show when actions are optional, required, or forbidden.
 
-   | Do | Don't |
-   |----|-------|
-   | _To enable this feature, do that._ | _Oops! To enable this feature, please do that._ |
+   | Do | Don’t |
+   |----|--------|
+   | _You may/should/must add more security by following this guide._ | _If more security is necessary, follow this guide._ |
 
-- Use hyphens to join compound adjectives before nouns, not after.
+   For more information about modal verbs, see [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-   | Do | Don't |
-   |----|-------|
+- In code snippets, follow the standard code style for each language. Keep indentation, line breaks, and naming consistent.
+
+- Cut extra words and politeness phrases that don’t add value.
+
+   | Do | Don’t |
+   |----|--------|
+   | _To enable this feature, run this command._ | _To enable this feature, please run this command._ |
+
+- Use hyphens in compound adjectives before nouns, not after.
+
+   | Do | Don’t |
+   |----|--------|
    | _A well-known feature._ | _A feature well-known._ |
    | _The feature is well known._ | _The feature is well-known._ |
 
