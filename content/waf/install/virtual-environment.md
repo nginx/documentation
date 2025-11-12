@@ -40,6 +40,12 @@ Navigate to your chosen operating system, which are alphabetically ordered.
 
 ### Alpine Linux
 
+Add the F5 WAF for NGINX signing key:
+
+```shell
+sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+```
+
 Add the F5 WAF for NGINX repository:
 
 ```shell
@@ -75,6 +81,13 @@ sudo dnf install app-protect
 ```
 
 ### Debian
+
+Add the F5 WAF for NGINX signing key:
+
+```shell
+wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | gpg --dearmor | \
+sudo tee /usr/share/keyrings/app-protect-security-updates.gpg > /dev/null
+```
 
 Add the F5 WAF for NGINX repositories:
 
@@ -115,6 +128,12 @@ Add F5 WAF for NGINX dependencies:
 sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 ```
 
+Enable F5 WAF for NGINX dependencies:
+
+```shell
+sudo dnf config-manager --set-enabled crb
+```
+
 Enable the _ol8_codeready_builder_ repository:
 
 ```shell
@@ -127,7 +146,40 @@ Install the F5 WAF for NGINX package and its dependencies:
 sudo dnf install app-protect
 ```
 
+### RHEL / Rocky Linux 9
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
+```
+
+Add F5 WAF for NGINX dependencies:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+```
+
+Enable F5 WAF for NGINX dependencies:
+
+```shell
+sudo dnf config-manager --set-enabled crb
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect
+```
+
 ### Ubuntu
+
+Add the F5 WAF for NGINX signing key:
+
+```shell
+wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | \
+gpg --dearmor | sudo tee /usr/share/keyrings/app-protect-security-updates.gpg > /dev/null
+```
 
 Add the F5 WAF for NGINX repositories:
 
@@ -148,35 +200,120 @@ sudo apt-get update
 sudo apt-get install app-protect
 ```
 
-### RHEL / Rocky Linux 9
-
-Add the F5 WAF for NGINX repository:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
-```
-
-Add F5 WAF for NGINX dependencies:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-```
-
-Enable the _codeready-builder_ repository:
-
-```shell
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect
-```
-
 ## Update configuration files
 
-{{< include "waf/install-update-configuration.md" >}}
+Once you have installed F5 WAF for NGINX, you must load it as a module in the main context of your NGINX configuration.
+
+```nginx
+load_module modules/ngx_http_app_protect_module.so;
+```
+
+And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ context:
+
+```nginx
+app_protect_enable on;
+```
+
+{{< call-out "warning" >}}
+
+You should only enable F5 WAF for NGINX on _proxy_pass_ and _grpc_pass_ locations.
+
+{{< /call-out >}}
+
+Here are two examples of how these additions could look in configuration files:
+
+{{< tabs name="configuration-examples" >}}
+
+{{% tab name="nginx.conf" %}}
+
+The default path for this file is `/etc/nginx/nginx.conf`.
+
+```nginx {hl_lines=[5]}
+user  nginx;
+worker_processes  auto;
+
+# F5 WAF for NGINX
+load_module modules/ngx_http_app_protect_module.so;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}
+```
+
+{{% /tab %}}
+
+{{% tab name="default.conf" %}}
+
+The default path for this file is `/etc/nginx/conf.d/default.conf`.
+
+```nginx {hl_lines=[9]}
+server {
+    listen 80;
+    server_name domain.com;
+
+
+    location / {
+
+        # F5 WAF for NGINX
+        app_protect_enable on;
+
+        client_max_body_size 0;
+        default_type text/html;
+        proxy_pass http://127.0.0.1:8080/;
+    }
+}
+
+server {
+    listen 8080;
+    server_name localhost;
+
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+    }
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
+
+- `nginx -s reload`
+- `sudo systemctl reload nginx`
 
 ## Post-installation checks
 

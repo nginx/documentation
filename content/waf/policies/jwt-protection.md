@@ -1,6 +1,6 @@
 ---
 title: JWT protection
-weight: 1650
+weight: 1700
 toc: true
 nd-content-type: reference
 nd-product: NAP-WAF

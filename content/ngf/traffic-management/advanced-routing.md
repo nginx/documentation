@@ -11,7 +11,7 @@ Learn how to deploy multiple applications and HTTPRoutes with request conditions
 
 ## Overview
 
-In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path, headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
+In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path (including prefix, exact, and regex patterns), headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
 The following image shows the traffic flow that we will be creating with these rules.
 
@@ -320,6 +320,67 @@ Server name: tea-post-b59b8596b-g586r
 ```
 
 This request should receive a response from the `tea-post` pod. Any other type of method, such as PATCH, will result in a `404 Not Found` response.
+
+## Path matching types
+
+NGINX Gateway Fabric supports three types of path matching:
+
+- **PathPrefix**: Matches based on a URL path prefix split by `/`. For example, `/coffee` matches `/coffee`, `/coffee/`, and `/coffee/latte`.
+- **Exact**: Matches the exact path in the request. For example, `/coffee` matches only `/coffee`.
+- **RegularExpression**: Matches based on RE2-compatible regular expressions. For example, `/coffee/[a-z]+` matches `/coffee/latte` and `/coffee/mocha` but not `/coffee/123`.
+
+{{< call-out "note" >}} Regular expression path matching uses the RE2 syntax. Patterns are automatically anchored to the beginning of the path. {{< /call-out >}}
+
+### Example: Using regex path matching
+
+To route requests based on regex patterns in the path, use `type: RegularExpression`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: coffee-regex
+spec:
+  parentRefs:
+  - name: cafe
+  hostnames:
+  - cafe.example.com
+  rules:
+  - matches:
+    - path:
+        type: RegularExpression
+        value: /coffee/[a-z]+
+    backendRefs:
+    - name: coffee-v1-svc
+      port: 80
+EOF
+```
+
+This configuration routes requests like `/coffee/latte` or `/coffee/mocha` to the `coffee-v1-svc` backend, while paths like `/coffee/123` or `/coffee` will not match.
+
+#### Send traffic using regex paths
+
+You can test the regex path matching with curl:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee/latte
+```
+
+This request should receive a response from the `coffee-v1` Pod since `/coffee/latte` matches the pattern `/coffee/[a-z]+`.
+
+```text
+Server address: 10.244.0.9:8080
+Server name: coffee-v1-76c7c85bbd-cf8nz
+```
+
+However, a request with a numeric path segment will not match:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee/123
+```
+
+This will result in a `404 Not Found` response since `/coffee/123` does not match the pattern `/coffee/[a-z]+`.
 
 ## Troubleshooting
 

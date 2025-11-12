@@ -1,5 +1,4 @@
 ---
-docs:
 files:
 - content/nim/deploy/vm-bare-metal/install.md
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md

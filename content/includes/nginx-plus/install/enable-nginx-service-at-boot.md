@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 To enable the NGINX service to start at boot, run the following command:

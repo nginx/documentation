@@ -1,0 +1,41 @@
+name: User story
+description: This template is for a single story, encompassing a single work item for completion
+title: "[Story]: "
+body:
+  - type: textarea
+    attributes:
+      label: Overview
+      description: Use this section to write user stories.
+      placeholder: As a user, I want thing, So I can action.
+    validations:
+      required: true
+  - type: dropdown
+    attributes: 
+      label: Which product or products does this request relate to?
+      multiple: true
+      options:
+        - F5 DoS for NGINX
+        - F5 WAF for NGINX
+        - NGINX Agent
+        - NGINXaaS for Azure
+        - NGINXaaS for Google Cloud
+        - NGINX Gateway Fabric
+        - NGINX Ingress Controller
+        - NGINX Instance Manager
+        - NGINX One Console
+        - NGINX Plus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Add the finer details of what this task involves and is trying to accomplish.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Acceptance criteria
+      description: Acceptance criteria are written from a user perspective, and should map to the user stories.
+    validations:
+      required: true

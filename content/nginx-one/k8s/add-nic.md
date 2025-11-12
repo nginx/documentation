@@ -155,7 +155,7 @@ kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
 ```
   
 If nginx-agent version is v3, continue with the following steps.
-Otherwise, make sure you are using an image that does not include NGINX App Protect. 
+Otherwise, make sure you are using an image that does not include F5 WAF for NGINX. 
 
 Check the NGINX Agent configuration:
 

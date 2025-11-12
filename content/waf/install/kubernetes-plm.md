@@ -11,9 +11,7 @@ nd-banner:
     md: /_banners/waf-early-availability.md
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 There are two new features available for Kubernetes through early access:
@@ -22,11 +20,9 @@ There are two new features available for Kubernetes through early access:
 
 **Automated signature updates**, which can auto-update security signatures.
 
-<!-- Policy lifecycle management (PLM) is a system for managing, compiling and deploying security policies in Kubernetes environments.  -->
+This extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
 
-They extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
-
-These feature revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
+These features revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
@@ -197,7 +193,6 @@ http {
     server {
         listen       80;
         server_name  localhost;
-        proxy_http_version 1.1;
 
         location / {
             app_protect_enable on;
@@ -239,11 +234,10 @@ To enable them, you must configure the Policy Controller settings in your `value
 namespace: <namespace>
 
 appprotect:
-  ## Note: This option is useful if you use Nginx Ingress Controller for example.
-  ## Enable/Disable Nginx App Protect Deployment
+  ## Enable/Disable NGINX App Protect Deployment
   enable: true
   
-  ## The number of replicas of the Nginx App Protect deployment
+  ## The number of replicas of the NGINX App Protect deployment
   replicas: 1
   
   ## Configure root filesystem as read-only and add volumes for temporary data
@@ -252,7 +246,7 @@ appprotect:
   ## The annotations for deployment
   annotations: {}
   
-  ## InitContainers for the Nginx App Protect pod
+  ## InitContainers for the NGINX App Protect pod
   initContainers: []
     # - name: init-container
     #   image: busybox:latest
@@ -260,15 +254,15 @@ appprotect:
   
   nginx:
     image:
-      ## The image repository of the Nginx App Protect WAF image you built
+      ## The image repository of the NGINX App Protect WAF image you built
       ## This must reference the Docker image you built following the Docker deployment guide
       ## Replace <your-private-registry> with your actual registry and update the image name/tag as needed
       repository: <your-private-registry>/nginx-app-protect-5
-      ## The tag of the Nginx image
+      ## The tag of the NGINX image
       tag: latest
-    ## The pull policy for the Nginx image
+    ## The pull policy for the NGINX image
     imagePullPolicy: IfNotPresent
-    ## The resources of the Nginx container.
+    ## The resources of the NGINX container.
     resources:
       requests:
         cpu: 10m
@@ -282,7 +276,7 @@ appprotect:
       ## The image repository of the WAF Config Mgr
       repository: private-registry.nginx.com/nap/waf-config-mgr
       ## The tag of the WAF Config Mgr image
-      tag: 5.9.0
+      tag: {{< version-waf-config-mgr >}}
     ## The pull policy for the WAF Config Mgr image
     imagePullPolicy: IfNotPresent
     ## The resources of the Waf Config Manager container
@@ -299,7 +293,7 @@ appprotect:
       ## The image repository of the WAF Enforcer
       repository: private-registry.nginx.com/nap/waf-enforcer
       ## The tag of the WAF Enforcer image
-      tag: 5.9.0
+      tag: {{< version-waf-enforcer >}}
     ## The pull policy for the WAF Enforcer image
     imagePullPolicy: IfNotPresent
     ## The environment variable for enforcer port to be set on the WAF Enforcer container
@@ -320,7 +314,7 @@ appprotect:
       ## The image repository of the WAF IP Intelligence
       repository: private-registry.nginx.com/nap/waf-ip-intelligence
       ## The tag of the WAF IP Intelligence
-      tag: 5.9.0
+      tag: {{< version-waf-ip-intelligence >}}
     ## The pull policy for the WAF IP Intelligence
     imagePullPolicy: IfNotPresent
     ## The resources of the WAF IP Intelligence container
@@ -340,8 +334,8 @@ appprotect:
     ## The image repository of the WAF Policy Controller
     image:
       repository: private-registry.nginx.com/nap/waf-policy-controller
-      ## The tag of the WAF Policy COntroller
-      tag: 5.9.0
+      ## The tag of the WAF Policy Controller
+      tag: {{< version-waf-policy-controller >}}
       ## The pull policy for the WAF Policy Controller
       imagePullPolicy: IfNotPresent
     wafCompiler:
@@ -349,7 +343,7 @@ appprotect:
       image:
         repository: private-registry.nginx.com/nap/waf-compiler
          ## The tag of the WAF Compiler image
-        tag: 5.9.0
+        tag: {{< version-waf-compiler >}}
     ## Save logs before deleting a job or not
     enableJobLogSaving: false
     ## The resources of the WAF Policy Controller
@@ -392,7 +386,7 @@ appprotect:
   #   nginxKey: ""
 
   config:
-    ## The name of the ConfigMap used by the Nginx container
+    ## The name of the ConfigMap used by the NGINX container
     name: nginx-config
     ## The annotations of the configmap
     annotations: {}
@@ -457,7 +451,6 @@ appprotect:
           server {
               listen       80;
               server_name  localhost;
-              proxy_http_version 1.1;
 
               location / {
                   app_protect_enable on;
@@ -509,13 +502,13 @@ appprotect:
     ## Note: It is recommended that you specify your own certificate
     clientCACert: ""
 
-  ## The extra volumes of the Nginx container
+  ## The extra volumes of the NGINX container
   volumes: []
   # - name: extra-conf
   #   configMap:
   #     name: extra-conf
 
-  ## The extra volumeMounts of the Nginx container
+  ## The extra volumeMounts of the NGINX container
   volumeMounts: []
   # - name: extra-conf
   #   mountPath: /etc/nginx/conf.d/extra.conf
@@ -715,6 +708,7 @@ kubectl apply -f apple-usersig.yaml -n <namespace>
 You can check the status of your resources using `kubectl get` or `kubectl describe`.
 
 The Policy Controller will show status information including:
+
 - Bundle location
 - Compilation status
 - Signature update timestamps
@@ -722,6 +716,7 @@ The Policy Controller will show status information including:
 ```shell
 kubectl get appolicy dataguard-blocking -n <namespace> -o yaml
 ```
+
 ```yaml
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
@@ -749,6 +744,7 @@ status:
 ```shell
 kubectl describe appolicy dataguard-blocking -n <namespace>
 ```
+
 ```text
 Name:         dataguard-blocking
 Namespace:    localenv-plm
@@ -1328,7 +1324,6 @@ The Policy Controller will detect the file changes and recompile automatically.
 
 Regardless of the policy type used, you can monitor the status of your policies using standard Kubernetes commands:
 
-
 ```shell
 kubectl get appolicy -n <namespace>
 kubectl describe appolicy <policy-name> -n <namespace>
@@ -1363,19 +1358,19 @@ status:
 
 ## Possible issues
 
-**Policy Controller does not start**
+_Policy Controller does not start:_
 
 - Verify the CRDs are installed: `kubectl get crds | grep appprotect.f5.com`
 - Check the pod logs: `kubectl logs <policy-controller-pod> -n <namespace>`
 - Ensure proper RBAC permissions are configured
 
-**Policies fail to compile**
+_Policies fail to compile:_
 
 - Check Policy Controller logs for compilation errors
 - Verify the WAF compiler image is accessible
 - Ensure the policy syntax is valid
 
-**Issues with bundle storage**
+_Issues with bundle storage:_
 
 - Verify the persistent volume is properly mounted
 - Check storage permissions (Should be 101:101)

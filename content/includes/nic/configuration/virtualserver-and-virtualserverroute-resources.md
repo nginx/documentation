@@ -286,7 +286,7 @@ Note that each subroute must have a `path` that starts with the same prefix (her
 |``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. Must be the same as the ``host`` of the VirtualServer that references this resource. | ``string`` | Yes |
 |``upstreams`` | A list of upstreams. | [[]upstream](#upstream) | No |
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
-|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string``_ | No |
+|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string`` | No |
 {{</bootstrap-table>}}
 
 ### VirtualServerRoute.Subroute

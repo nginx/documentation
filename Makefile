@@ -1,16 +1,16 @@
 HUGO?=hugo
 HUGO_VERSION?=$(shell hugo version 2>/dev/null | awk '{print $$2}' | cut -d '.' -f 2)
-HUGO_IMG?=hugomods/hugo:std-go-git-0.147.8
+HUGO_IMG?=hugomods/hugo:std-go-git-0.152.2
 
-THEME_MODULE = github.com/nginxinc/nginx-hugo-theme
+THEME_MODULE = github.com/nginxinc/nginx-hugo-theme/v2
 
 ifeq ($(shell [ $(HUGO_VERSION) -gt 146 2>/dev/null ] && echo true || echo false), true)
     $(info Hugo is available and has a version greater than 146. Proceeding with build.)
 else
-    $(warning Hugo is not available or using a version less than 147. Attempting to use docker. HUGO_VERSION=$(HUGO_VERSION))
+    $(warning Hugo is not available or using a version less than 151. Attempting to use docker. HUGO_VERSION=$(HUGO_VERSION))
     HUGO=docker run --rm -it -v ${CURDIR}:/src -p 1313:1313 ${HUGO_IMG} /src/hugo-entrypoint.sh
     ifeq (, $(shell docker version 2> /dev/null))
-        $(error Hugo (>0.147) or Docker are required to build the local previews.)
+        $(error Hugo (>0.151) or Docker are required to build the local previews.)
     endif
 endif
 
@@ -50,7 +50,7 @@ clean:
 	[ -d "public" ] && rm -rf "public" 
 
 hugo-get:
-	hugo mod get -u github.com/nginxinc/nginx-hugo-theme
+	hugo mod get -u github.com/nginxinc/nginx-hugo-theme/v2
 
 hugo-tidy:
 	hugo mod tidy

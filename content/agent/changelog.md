@@ -1,6 +1,5 @@
 ---
 title: Changelog
-toc: false
 url: /agent/changelog
 weight: 1200
 toc: true

@@ -118,7 +118,7 @@ To set the Keycloak secret as an environment variable:
 1. Open an SSH connection to your NGINX Instance Manager host and log in.
 2. Run the following command, replacing `<secret>` with the secret value you copied:
 
-    ```bash
+    ```shell
     export KEYCLOAK_SECRET=<secret>
     ```
 
@@ -130,7 +130,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
   - **For Keycloak versions earlier than 18.x**:
 
-    ```bash
+    ```shell
     # Either the FQDN or the IP address is suitable for these environment variables.
     export KEYCLOAK_IP="<insert-keycloak-IP>"
     export NIM_IP="<insert-NIM-IP>"
@@ -147,7 +147,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
   - **For Keycloak versions 18.x and later**:
 
-    ```bash
+    ```shell
     # Either the FQDN or the IP address is suitable for these environment variables.
     export KEYCLOAK_IP="<insert-keycloak-IP>"
     export NIM_IP="<insert-NIM-IP>"
@@ -172,14 +172,14 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
 - Back up the original configuration files:
 
-    ```bash
+    ```shell
     sudo cp /etc/nms/nginx/oidc/openid_configuration.conf ~/openid_configuration.conf.orig
     sudo cp /etc/nginx/conf.d/nms-http.conf ~/nms-http.conf.orig
     ```
 
 - Copy the OpenID configuration for NGINX to `/tmp` so you can replace the necessary values:
 
-    ```bash
+    ```shell
     sudo cp /etc/nms/nginx/oidc/openid_configuration.conf /tmp/openid_configuration.conf
     sudo sed -i'.bak' \
     -e "s%OIDC_CLIENT_ID%${KEYCLOAK_CLIENT_ID}%"  \
@@ -209,7 +209,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
 - Copy the `nms-http.conf` file to `/tmp` to replace the necessary values:
 
-    ```bash
+    ```shell
     sudo cp /etc/nginx/conf.d/nms-http.conf /tmp/nms-http.conf
     ```
 
@@ -263,7 +263,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
 - Copy the modified configuration files back to their original locations:
 
-    ```bash
+    ```shell
     sudo cp /tmp/nms-http.conf /etc/nginx/conf.d/nms-http.conf
     sudo cp /tmp/openid_configuration.conf /etc/nms/nginx/oidc/openid_configuration.conf
     ```
@@ -275,7 +275,7 @@ To configure NGINX Instance Manager with the necessary OIDC settings, follow the
 
 To revert to Basic Auth for troubleshooting authentication issues, run:
 
-```bash
+```shell
 sudo cp ~/openid_configuration.conf.orig /etc/nms/nginx/oidc/openid_configuration.conf
 sudo cp ~/nms-http.conf.orig /etc/nginx/conf.d/nms-http.conf
 sudo nginx -s reload
