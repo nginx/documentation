@@ -502,6 +502,19 @@ nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=t
 NGINX Ingress Controller has additional annotations for features using NGINX Plus that have no Ingress-NGINX Controller equivalent, such as active health checks and authentication using JSON Web Tokens (JWTs).
 {{< /call-out >}}
 
+The following table outlines annotation conversions for enabling TLS and gRPC protocols to backend (upstream) services.
+
+{{< table >}}
+| Ingress-NGINX Controller | NGINX Ingress Controller |
+| ------------------------ | ------------------------ |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "HTTPS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "ssl_service_name" |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPC" | [_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
+| [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPCS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name"<br />[_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
+{{< /table >}}
+{{< call-out "important" >}}
+GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}})).
+{{< /call-out >}}
+
 ### Global configuration with ConfigMaps
 
 This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Controller's equivalent ConfigMap keys.
