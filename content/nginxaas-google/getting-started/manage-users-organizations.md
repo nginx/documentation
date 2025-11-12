@@ -50,8 +50,8 @@ As an authenticated user, you may modify the authorized domains and name of an N
 ### Modify the name of an organization
 
 1. Select **Organization Details** under the **Settings** section on the left menu.
-2. Select **Edit** in the **Organization Info** section.
-3. Enter new name in **Organization Name** field, then select **Update** to save changes.
+1. Select **Edit** in the **Organization Info** section.
+1. Enter new name in **Organization Name** field, then select **Update** to save changes.
 
 ## Switch organizations
 
