@@ -393,6 +393,9 @@ When writing new documentation, use the following [templates](/templates):
 
 Write at an 8th–9th grade reading level. Use clear, simple language. Choose everyday words instead of technical terms when possible. Avoid jargon unless it’s needed and defined in context. This helps people around the world understand our content, including those who speak English as a second language or use machine translation.
 
+Use the [Flesch-Kincaid readability calculator](https://goodcalculators.com/flesch-kincaid-calculator/) to check your writing if needed.
+
+
 - Use the active voice and write goal-oriented instructions.
 
    | Do | Don’t |
