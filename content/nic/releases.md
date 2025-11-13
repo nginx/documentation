@@ -7,6 +7,11 @@ nd-product: NIC
 nd-docs: DOCS-616
 ---
 
+{{< details summary="Support for F5 WAF for NGINX" >}}
+
+{{< include "/nic/compatibility-tables/nic-nap.md" >}}
+
+{{< /details >}}
 
 ## 5.2.1
 
