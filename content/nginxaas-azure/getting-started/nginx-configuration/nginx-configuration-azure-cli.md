@@ -63,7 +63,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
 {{%tab name="Validate a tarball package"%}}
 
-If you are using a `.tar.gz` archive, encode it and pass it through the `--package` parameter instead:
+If you are using a `.tar.gz` archive, encode it and pass it through the `--package` parameter:
 
 ```shell
 TAR_DATA=$(base64 -i nginx.tar.gz)
