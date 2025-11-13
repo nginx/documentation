@@ -2,20 +2,124 @@
 title: Release notes
 weight: 100
 toc: true
-type: reference
-product: NIM
+nd-content-type: reference
+nd-product: NIM
 nd-docs: DOCS-938
 ---
 
 The release notes for F5 NGINX Instance Manager highlight the latest features, improvements, and bug fixes in each release. This document helps you stay up to date with the changes and enhancements introduced to improve stability, performance, and usability. For each version, you’ll find details about new features, known issues, and resolved problems, ensuring you get the most out of your NGINX instance management experience.
 
-<details open>
-<summary><i class="fa-solid fa-info-circle"></i> Support for NGINX App Protect WAF</summary>
+{{< details summary="Support for F5 WAF for NGINX" >}}
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 
-</details>
+{{< /details >}}
 
+## 2.21.0
+
+November 07, 2025
+
+### Upgrade Paths {#2-21-0-upgrade-paths}
+
+NGINX Instance Manager 2.21.0 supports upgrades from these previous versions:
+
+- 2.18.0 - 2.20.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's New {#2-21-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Added support for bot signatures management in NGINX Instance Manager**
+
+   This release adds bot signature management to NGINX Instance Manager through both the web interface and the API. This update improves web application firewall (WAF) policy protection by detecting and mitigating automated bot traffic and integrates bot signature workflows with existing attack signature and threat campaign management.
+
+   **What’s new**
+
+  - Automatically download bot signatures from the NGINX repository at a configurable interval (set in `nms.conf`).
+  - Include the latest bot signatures when publishing a WAF policy to an instance or instance group.
+  - View bot signature deployment associations across instances and instance groups in the web interface.
+  - Roll out the latest bot signatures to all previously published policies with one click.
+  - See the bot signatures version on the Instance WAF details page.
+  - Automatically prune unused bot signatures every 24 hours, with a configurable time-to-live (TTL) value (set in `nms.conf`).
+  
+  **API-only operations:**
+
+    - Upload a bot signature package downloaded from the NGINX repository.
+    - Delete unused bot signatures from NGINX Instance Manager.
+    - List all bot signatures stored in NGINX Instance Manager.
+
+  **Upgrade and compatibility**
+
+  - No breaking changes. Existing policies continue using their current bot signatures until you re-publish the policy or publish a bot signatures update to the target instance or instance group.
+  - Bot signatures are compatible with older agents, but **we recommend upgrading to NGINX Agent v2.43.0 or later** for the best results.
+
+  **Notes and limitations**
+
+  - After upgrade, the Instance WAF details page won’t display the bot signatures version for existing policies until you re-publish the policy or publish a bot signatures update. The page will show:
+    *“Available after publishing Bot Signatures from Instance Manager.”*
+  - Auto-pruning removes only bot signatures that aren’t associated with any deployed policy. Configure the TTL setting to meet your retention and compliance requirements.
+
+- {{% icon-feature %}} **On-demand WAF policy bundle download in NGINX Instance Manager web interface**
+
+   This release adds on-demand download of compiled web application firewall (WAF) policy bundles from the NGINX Instance Manager web interface. Previously available only through the API, this feature lets you retrieve the compiled bundle for use cases such as NGINX Ingress Controller deployments in Kubernetes. You can now reference the bundle directly and avoid compilation on the data plane.
+
+   **What’s new**
+
+   - You can now download a compiled policy bundle directly from the web interface.
+     Go to **WAF > Policies**, select a policy with **Compilation Status = Compiled**, and choose **Download Bundle** to retrieve the latest compiled version.
+
+   **Upgrade and compatibility**
+
+   - No breaking changes. Existing workflows continue to function as before. Web interface–based bundle download complements the existing API and is especially useful for NGINX Ingress Controller deployments in Kubernetes.
+
+   **Limitations**
+
+   - Only the latest version of a WAF policy bundle can be downloaded on demand.
+   - The **Download Bundle** action is available only for policies that have been successfully compiled.
+
+- {{% icon-feature %}} **On-demand WAF policy compilation (bundle creation) in NGINX Instance Manager web interface**
+
+   This release adds on-demand compilation of WAF policies in the NGINX Instance Manager web interface. Pre-compiling policies helps reduce publish times and improve reliability.
+
+   Previously, NGINX Instance Manager reused compiled bundles when available and compiled policies during publish if no bundle existed. This could slow down or occasionally fail. You can now compile policies in advance so they’re ready for immediate deployment to instances or instance groups.
+
+   **What’s new**
+
+   - **Web interface support for policy compilation:** Under **WAF > Policies**, select a policy and choose **Compile (bundle creation)** to start compilation on demand.
+   - **Compilation status visibility:** A new **Compilation Status** column shows which policies are already compiled and which need compilation.
+   - **Faster publishing:** When a compiled bundle exists for a selected policy, NGINX Instance Manager uses it to speed up publishing to instances and instance groups.
+
+   **Upgrade and compatibility**
+
+   - No breaking changes. Existing workflows continue to function as before. On-demand compilation through the web interface complements the existing API and can improve publish speed and reduce failures during WAF policy deployment.
+
+   **Limitations**
+
+   - By default, the **Compile** action uses the latest revision of the selected policy, the most recent compiler version, and the newest versions of attack signatures, bot signatures, and threat campaigns.
+
+- {{% icon-feature %}} **Expanded options for configuring security policies with F5 WAF for NGINX**
+
+   You can now configure additional policy settings for F5 WAF for NGINX directly in the NGINX Instance Manager web interface, including:
+
+   - Signature sets
+   - Signature exceptions
+   - Parameters
+   - URLs
+   - Cookies
+
+   For more information, see the [F5 WAF for NGINX Integration Guide](https://docs.nginx.com/nginx-instance-manager/waf-integration/).
+
+### Resolved Issues {#2-21-0-resolved-issues}
+
+This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
+
+- {{% icon-resolved %}} Failing to fetch CVE data when using forward proxy in K8s environments (46177)
+
+### Known Issues {#2-21-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
 ---
 
@@ -32,6 +136,7 @@ NGINX Instance Manager 2.20.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-20-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Added support to report on multiple NGINX One subscriptions using a single instance of NGINX Instance Manager**<a name="2-20-0-whats-new-Added-support-to-report-on-multiple-NGINX-One-subscriptions-using-a-single-instance-of-NGINX-Instance-Manager"></a>
@@ -54,8 +159,8 @@ This release includes the following updates:
 
    NGINX Instance Manager now sends improved web analytics to F5. This helps F5 understand common use cases of NGINX Instance Manager and improve functionality.
 
-
 ### Changes in Default Behavior{#2-20-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Breadcrumbs added for Overview, Manage, and Config templates**<a name="2-20-0-changes-in-behavior-Breadcrumbs-added-for-Overview,-Manage,-and-Config-templates"></a>
@@ -74,12 +179,9 @@ This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Automatic feature enablement in disconnected instances on license upload**<a name="2-20-0-changes-in-behavior-Automatic-feature-enablement-in-disconnected-instances-on-license-upload"></a>
 
-
   NGINX Instance Manager now enables all features by default when you upload a license to a disconnected instance. This update ensures customers can begin using the full capabilities of the system without additional configuration.
 
   Customers have a 90-day window to complete the full license process. If they don’t complete it within this period, the instance is automatically deactivated.
-
-
 
 ### Resolved Issues{#2-20-0-resolved-issues}
 
@@ -87,12 +189,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 - {{% icon-resolved %}} The certificate stats are not displayed correctly in the Certificates and Keys page as well as the Dashboard page. (45991)
 
-
 ### Known Issues{#2-20-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.19.2
 
@@ -107,19 +206,16 @@ NGINX Instance Manager 2.19.2 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-19-2-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-19-2-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements for a more reliable experience.
 
-
-
 ### Known Issues{#2-19-2-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.19.1
 
@@ -134,12 +230,12 @@ NGINX Instance Manager 2.19.1 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-19-1-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-19-1-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements for a more reliable experience.
-
 
 ### Resolved Issues{#2-19-1-resolved-issues}
 
@@ -148,12 +244,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Publishing the NAP policy fails with the error “The attack signatures with the given version was not found” (45845)
 - {{% icon-resolved %}} Automatic downloading of NAP compiler versions 5.210.0 and 5.264.0 fails on Ubuntu 24.04 (45846)
 
-
 ### Known Issues{#2-19-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.19.0
 
@@ -174,6 +267,7 @@ NGINX Instance Manager 2.19 is the first iteration of NGINX Instance Manager as 
 Instance Manager 2.19 will not be compatible or supported with EoS API Connectivity Manager. API Connectivity Manager users get support of Instance Manager up to 2.18 and upgrades to Instance Manager 2.19 will not succeed if API Connectivity Manager is installed.
 
 ### What's New{#2-19-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **NGINX Instance Manager is now a standalone product**<a name="2-19-0-whats-new-NGINX-Instance-Manager-is-now-a-standalone-product"></a>
@@ -206,15 +300,15 @@ This release includes the following updates:
 
    We have added a new option to export templates using the NGINX Instance Manager web interface.
 
-
 ### Changes in Default Behavior{#2-19-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Prompt to specify an FQDN for NIM when generating SSL certificates during installation**<a name="2-19-0-changes-in-behavior-Prompt-to-specify-an-FQDN-for-NIM-when-generating-SSL-certificates-during-installation"></a>
 
   When installing, users will be prompted to enter a fully qualified domain name (FQDN) to include in the Subject Alternative Name (SAN) of the NGINX Instance Manager's self-signed certificate generated during installation. This FQDN can serve as the server name for NGINX Instance Manager. Users can also specify this FQDN in the Installation Script
 
-  {{< note >}}Starting with NGINX Plus R33, usage data reporting requires validating the SSL certificate of NGINX Instance Manager via the `ssl_verify` directive in the `mgmt` block. Proper SAN configuration ensures seamless SSL verification.{{< /note >}}
+  {{< call-out "note" >}}Starting with NGINX Plus R33, usage data reporting requires validating the SSL certificate of NGINX Instance Manager via the `ssl_verify` directive in the `mgmt` block. Proper SAN configuration ensures seamless SSL verification.{{< /call-out >}}
 
 - {{% icon-feature %}} **Watchdog enhancements to improve stability**<a name="2-19-0-changes-in-behavior-Watchdog-enhancements-to-improve-stability"></a>
 
@@ -223,7 +317,6 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Expired unmanaged certificates are eventually removed from the web interface**<a name="2-19-0-changes-in-behavior-Expired-unmanaged-certificates-are-eventually-removed-from-the-web-interface"></a>
 
   Starting in 2.19.0, remote certificates that are expired are removed from the web interface after 30 days.
-
 
 ### Resolved Issues{#2-19-0-resolved-issues}
 
@@ -235,12 +328,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} NGINX configuration error messages overlap outside the error window (45570)
 - {{% icon-resolved %}} Syntax errors while saving template configuration (45573)
 
-
 ### Known Issues{#2-19-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.18.0
 
@@ -255,6 +345,7 @@ NGINX Instance Manager 2.18.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-18-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Resilient Docker Compose NGINX Instance Manager deployment**<a name="2-18-0-whats-new-Resilient-Docker-Compose-NGINX-Instance-Manager-deployment"></a>
@@ -273,7 +364,7 @@ This release includes the following updates:
   - **Send the report to F5**: Submit the report to F5 for verification from a location with internet access.
   - **Upload the acknowledgment**: After verification, upload the acknowledgment from F5 to NGINX Instance Manager.
 
-- {{% icon-feature %}} **Ridiculously easy NGINX Instance Manager installation script (Bash)**<a name="2-18-0-whats-new-Ridiculously-easy-NGINX-Instance-Manager-installation-script-(Bash)"></a>
+- {{% icon-feature %}} **Ridiculously easy NGINX Instance Manager installation script (shell)**<a name="2-18-0-whats-new-Ridiculously-easy-NGINX-Instance-Manager-installation-script-(shell)"></a>
 
    Reduce the number of steps to deploy all NGINX Instance Manager components, including prerequisites, using a single [installation script]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}). The script supports every OS that NGINX Instance Manager supports in the [technical specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}).
 
@@ -281,20 +372,19 @@ This release includes the following updates:
 
   Support for [offline installations]({{< ref "nim/disconnected/offline-install-guide.md" >}}) is also available for air-gapped environments.
 
-- {{% icon-feature %}} **Adds support for NGINX App Protect WAF v5.3 and v4.11**<a name="2-18-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5-3-and-v4-11"></a>
+- {{% icon-feature %}} **Adds support for F5 WAF for NGINX v5.3 and v4.11**<a name="2-18-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5-3-and-v4-11"></a>
 
-     NGINX Instance Manager 2.18.0 adds support for [NGINX App Protect WAF v5.3 and v4.11]({{< relref "nap-waf/v5/admin-guide/overview.md" >}}).
+     NGINX Instance Manager 2.18.0 adds support for [F5 WAF for NGINX v5.3 and v4.11]({{< ref "/waf/changelog" >}}).
 
-    NGINX App Protect WAF v5, designed for both NGINX Open Source and NGINX Plus environments, includes a dynamic NGINX module and containerized WAF services. It provides robust security and scalability.
-
+    F5 WAF for NGINX v5, designed for both NGINX Open Source and NGINX Plus environments, includes a dynamic NGINX module and containerized WAF services. It provides robust security and scalability.
 
 ### Changes in Default Behavior{#2-18-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **The NGINX Usage page now only shows instances configured with the NGINX Plus R33 mgmt block.**<a name="2-18-0-changes-in-behavior-The-NGINX-Usage-page-now-only-shows-instances-configured-with-the-NGINX-Plus-R33-mgmt-block-"></a>
 
   The “NGINX Usage” page previously displayed instances connected to NGINX Instance Manager through multiple methods, including the NGINX Agent, health checks, and the `mgmt` block in NGINX Plus R31-R32. With the introduction of native reporting in NGINX Plus R33, only instances using this feature appear on the page, preventing duplicates. For more information on R33 usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).
-
 
 ### Resolved Issues{#2-18-0-resolved-issues}
 
@@ -304,12 +394,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Failure to notify user when template configuration publish fails (44975)
 - {{% icon-resolved %}} Mismatch in date formats in custom date selection on NGINX usage graph (45512)
 
-
 ### Known Issues{#2-18-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.17.4
 
@@ -324,19 +411,16 @@ NGINX Instance Manager 2.17.4 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-4-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-17-4-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements.
 
-
-
 ### Known Issues{#2-17-4-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.17.3
 
@@ -351,13 +435,12 @@ NGINX Instance Manager 2.17.3 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-3-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **GPG key update for NGINX Agent packages**<a name="2-17-3-whats-new-GPG-key-update-for-NGINX-Agent-packages"></a>
 
    Previous releases of NGINX Instance Manager included NGINX Agent packages signed with an expired GPG key. This release of NGINX Instance Manager includes updated keys, allowing users to successfully download the NGINX Agent from NGINX Instance Manager.
-
-
 
 ### Known Issues{#2-17-3-known-issues}
 
@@ -378,19 +461,16 @@ NGINX Instance Manager 2.17.2 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-2-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-17-2-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements for a more reliable experience.
 
-
-
 ### Known Issues{#2-17-2-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.17.1
 
@@ -405,19 +485,16 @@ NGINX Instance Manager 2.17.1 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-1-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-17-1-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements for a more reliable experience.
 
-
-
 ### Known Issues{#2-17-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.17.0
 
@@ -432,13 +509,14 @@ NGINX Instance Manager 2.17.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-17-0-whats-new}
+
 This release includes the following updates:
 
-- {{% icon-feature %}} **Adds support for NGINX App Protect WAF v5**<a name="2-17-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5"></a>
+- {{% icon-feature %}} **Adds support for F5 WAF for NGINX v5**<a name="2-17-0-whats-new-Adds-support-for-NGINX-App-Protect-WAF-v5"></a>
 
-   NGINX Instance Manager 2.17.0 adds support for [NGINX App Protect WAF v5.](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/overview/).
+   NGINX Instance Manager 2.17.0 adds support for [F5 WAF for NGINX v5.](https://docs.nginx.com/nginx-app-protect-waf/v5/admin-guide/overview/).
 
-  NGINX App Protect WAF v5 (designed for both NGINX Open Source and NGINX Plus environments) consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
+  F5 WAF for NGINX v5 (designed for both NGINX Open Source and NGINX Plus environments) consists of a dynamic NGINX module and containerized WAF services, providing robust security and scalability.
 
 - {{% icon-feature %}} **Hosted Docker images for Kubernetes Helm charts**<a name="2-17-0-whats-new-Hosted-Docker-images-for-Kubernetes-Helm-charts"></a>
 
@@ -460,8 +538,8 @@ This release includes the following updates:
 
    This release includes access to a single Docker image for running NGINX Instance Manager as a container. This allows customers to deploy Instance Manager locally with a single "docker run" command. For more details, see [Deploy NGINX Instance Manager in a Single Docker Container]({{< ref "/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}).
 
-
 ### Changes in Default Behavior{#2-17-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Web Analytics**<a name="2-17-0-changes-in-behavior-Web-Analytics"></a>
@@ -482,7 +560,6 @@ This release has the following changes in default behavior:
 
   Please upgrade your environment to one of the [supported distributions]({{< ref "/nim/fundamentals/tech-specs.md#supported-distributions" >}}) to continue using NGINX Instance Manager.
 
-
 ### Resolved Issues{#2-17-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -492,12 +569,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}}  Editing template submissions uses the latest versions, may cause "malformed" errors (44961)
 - {{% icon-resolved %}} Editing template submissions now allows for using most recent template version (44971)
 
-
 ### Known Issues{#2-17-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.16.0
 
@@ -512,6 +586,7 @@ NGINX Instance Manager 2.16.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-16-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Introducing configuration templates for simplifying NGINX configurations and self-service workflows**<a name="2-16-0-whats-new-Introducing-configuration-templates-for-simplifying-NGINX-configurations-and-self-service-workflows"></a>
@@ -524,14 +599,13 @@ This release includes the following updates:
 
    This release enhances system stability and performance.
 
-
 ### Changes in Default Behavior{#2-16-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Change in NGINX Agent upgrade behavior**<a name="2-16-0-changes-in-behavior-Change-in-NGINX-Agent-upgrade-behavior"></a>
 
   Starting from version v2.31.0, the NGINX Agent will automatically restart itself during an upgrade.
-
 
 ### Resolved Issues{#2-16-0-resolved-issues}
 
@@ -539,12 +613,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 - {{% icon-resolved %}} Upgrading to 2.12 disables telemetry (43606)
 
-
 ### Known Issues{#2-16-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.15.1
 
@@ -559,12 +630,12 @@ NGINX Instance Manager 2.15.1 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-15-1-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-15-1-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements.
-
 
 ### Resolved Issues{#2-15-1-resolved-issues}
 
@@ -573,12 +644,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Helm chart backup and restore is broken in NIM 2.15.0 (44758)
 - {{% icon-resolved %}} Unable to use NMS Predefined Log Profiles for NAP 4.7 (44759)
 
-
 ### Known Issues{#2-15-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.15.0
 
@@ -593,12 +661,12 @@ NGINX Instance Manager 2.15.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-15-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Support for CA Certificates added**<a name="2-15-0-whats-new-Support-for-CA-Certificates-added"></a>
 
    Instance Manager now allows for managing CA Certificates to fully support NGINX directives such as _proxy_ssl_trusted_ and _proxy_ssl_verify_. The main difference after this change is that you no longer need a corresponding key to upload a certificate to Instance Manager.
-
 
 ### Resolved Issues{#2-15-0-resolved-issues}
 
@@ -610,12 +678,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Missing Data when ClickHouse services are not running (44586)
 - {{% icon-resolved %}} NGINX App Protect Attack Signature, Threat Campaign and Compiler fail to download (44603)
 
-
 ### Known Issues{#2-15-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.14.1
 
@@ -630,19 +695,16 @@ NGINX Instance Manager 2.14.1 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-14-1-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Stability and performance improvements**<a name="2-14-1-whats-new-Stability-and-performance-improvements"></a>
 
    This release includes stability and performance improvements.
 
-
-
 ### Known Issues{#2-14-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.14.0
 
@@ -657,6 +719,7 @@ NGINX Instance Manager 2.14.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-14-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Instance Manager Dashboard**<a name="2-14-0-whats-new-Instance-Manager-Dashboard"></a>
@@ -666,20 +729,19 @@ This release includes the following updates:
 - {{% icon-feature %}} **Work with NGINX App Protect Bundles from Instance Manager**<a name="2-14-0-whats-new-Work-with-NGINX-App-Protect-Bundles-from-Instance-Manager"></a>
 
    Starting with Instance Manager 2.14, you can now use the "/security/policies/bundles" endpoint to create, read, update, and delete NGINX App Protect bundles, which allow faster deployment through pre-compilation of security policies, attack signatures, and threat-campaign.  For additional information on how to use the API endpoint, refer to your product API documentation.
-    To learn more about this feature, see the [Manage WAF Security Policies]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md" >}}) documentation.
+    To learn more about this feature, see the [Manage WAF Security Policies]({{< ref "/nim/waf-integration/policies-and-logs/_index.md" >}}) documentation.
 
 - {{% icon-feature %}} **Clickhouse LTS 23.8 support**<a name="2-14-0-whats-new-Clickhouse-LTS-23-8-support"></a>
 
    This release of Instance Manager has been tested and is compatible with Clickhouse LTS versions 22.3.15.33 to 23.8.
 
-
 ### Changes in Default Behavior{#2-14-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Inactive NGINX instances are automatically removed over time**<a name="2-14-0-changes-in-behavior-Inactive-NGINX-instances-are-automatically-removed-over-time"></a>
 
   If an NGINX instance has been inactive (NGINX Agent not reporting to NGINX Management Suite) for a fixed amount of time, it is now automatically removed from the instances list. Instances deployed in a virtual machine or hardware are removed after 72 hours of inactivity, and those deployed in a container are removed after 12 hours.
-
 
 ### Resolved Issues{#2-14-0-resolved-issues}
 
@@ -691,12 +753,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} NGINX Agent does not report NGINX App Protect status (44531)
 - {{% icon-resolved %}} Issues sorting HTTP errors in the dashboard (44536)
 
-
 ### Known Issues{#2-14-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.13.1
 
@@ -717,12 +776,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Validation errors in Resource Groups for certificates uploaded before 2.13 upgrade (44254)
 - {{% icon-resolved %}} Access levels cannot be assigned to certain RBAC features (44277)
 
-
 ### Known Issues{#2-13-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.13.0
 
@@ -737,6 +793,7 @@ NGINX Instance Manager 2.13.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-13-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Easily manage access to specific objects with Resource Groups**<a name="2-13-0-whats-new-Easily-manage-access-to-specific-objects-with-Resource-Groups"></a>
@@ -773,7 +830,6 @@ This release includes the following updates:
 
    In the log output, extra whitespace has been removed, and brackets have been removed from the log `level` field. This results in clean, parsable log output, particularly when using JSON log encoding.
 
-
 ### Resolved Issues{#2-13-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -782,12 +838,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Error: "Failed to create secret" when reinstalling or upgrading NGINX Management Suite in Kubernetes (42967)
 - {{% icon-resolved %}} An "unregistered clickhouse-adapter" failure is logged every few seconds if logging is set to debug. (43438)
 
-
 ### Known Issues{#2-13-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.12.0
 
@@ -802,12 +855,12 @@ NGINX Instance Manager 2.12.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-12-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **New support for license tokens for automatic entitlement updates, renewals, and Flexible Consumption Reporting**<a name="2-12-0-whats-new-New-support-for-license-tokens-for-automatic-entitlement-updates,-renewals,-and-Flexible-Consumption-Reporting"></a>
 
    NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}) topic.
-
 
 ### Resolved Issues{#2-12-0-resolved-issues}
 
@@ -821,12 +874,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} A JWT license for an expired subscription cannot be terminated from the web interface (43580)
 - {{% icon-resolved %}} On Kubernetes, uploading a JWT license for NGINX Management Suite results in the error "secret not found" (43655)
 
-
 ### Known Issues{#2-12-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.11.0
 
@@ -841,15 +891,16 @@ NGINX Instance Manager 2.11.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-11-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **The config editor now lets you see auxiliary files**<a name="2-11-0-whats-new-The-config-editor-now-lets-you-see-auxiliary-files"></a>
 
    Auxiliary files, such as certificate files and other non-config files on managed instances or instance groups, are now visible in the file tree of the config editor view. This improvement makes it easier to reference these files within a configuration.
 
-- {{% icon-feature %}} **Introducing new predefined log profiles for NGINX App Protect WAF**<a name="2-11-0-whats-new-Introducing-new-predefined-log-profiles-for-NGINX-App-Protect-WAF"></a>
+- {{% icon-feature %}} **Introducing new predefined log profiles for F5 WAF for NGINX**<a name="2-11-0-whats-new-Introducing-new-predefined-log-profiles-for-NGINX-App-Protect-WAF"></a>
 
-   Now, managing your NGINX App Protect WAF configuration is even easier with new predefined log profiles. In addition to the existing log_all, log_blocked, log_illegal, and log_secops log profiles, the following new predefined log profiles are now available:
+   Now, managing your F5 WAF for NGINX configuration is even easier with new predefined log profiles. In addition to the existing log_all, log_blocked, log_illegal, and log_secops log profiles, the following new predefined log profiles are now available:
 
   - log_f5_arcsight
   - log_f5_splunk
@@ -857,7 +908,7 @@ This release includes the following updates:
   - log_grpc_blocked
   - log_grpc_illegal
 
-  These new log profiles make it even easier to integrate NGINX App Protect WAF with other logging systems, such as Splunk, ArcSight, and gRPC.
+  These new log profiles make it even easier to integrate F5 WAF for NGINX with other logging systems, such as Splunk, ArcSight, and gRPC.
 
 - {{% icon-feature %}} **You can now install Advanced Metrics automatically when you install NGINX Agent**<a name="2-11-0-whats-new-You-can-now-install-Advanced-Metrics-automatically-when-you-install-NGINX-Agent"></a>
 
@@ -867,8 +918,8 @@ This release includes the following updates:
 
    In order to enhance product development and support the success of our users with NGINX Management Suite, we offer the option to send limited telemetry data to F5 NGINX. This data provides valuable insights into software usage and adoption. By default, telemetry is enabled, but you have the flexibility to disable it through the web interface or API. For detailed information about the transmitted data, please refer to our documentation.
 
-
 ### Changes in Default Behavior{#2-11-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **The location of agent-dynamic.conf has changed**<a name="2-11-0-changes-in-behavior-The-location-of-agent-dynamic-conf-has-changed"></a>
@@ -895,7 +946,6 @@ This release has the following changes in default behavior:
 
   These changes aim to improve the overall security of the system by restricting access to sensitive configuration files while maintaining necessary privileges for authorized users.
 
-
 ### Resolved Issues{#2-11-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -907,12 +957,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Certificate file is not updated automatically under certain conditions (42425)
 - {{% icon-resolved %}} Certificate updates allow for multiples certs to share the same serial number (42429)
 
-
 ### Known Issues{#2-11-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.10.1
 
@@ -932,12 +979,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 - {{% icon-resolved %}} Valid licenses incorrectly identified as invalid (42598)
 
-
 ### Known Issues{#2-10-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.10.0
 
@@ -952,15 +996,16 @@ NGINX Instance Manager 2.10.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-10-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **New "Category" Filter in the Events web interface**<a name="2-10-0-whats-new-New-"Category"-Filter-in-the-Events-web-interface"></a>
 
    You can now filter entries in the Events web interface using a new "Category" filter. Categories for event entries include "Certs", "Instance Groups", and "Templates".
 
-- {{% icon-feature %}} **New NGINX Agent install flag for NGINX App Protect WAF**<a name="2-10-0-whats-new-New-NGINX-Agent-install-flag-for-NGINX-App-Protect-WAF"></a>
+- {{% icon-feature %}} **New NGINX Agent install flag for F5 WAF for NGINX**<a name="2-10-0-whats-new-New-NGINX-Agent-install-flag-for-NGINX-App-Protect-WAF"></a>
 
-   The NGINX Agent installation script now has a flag to enable the default configuration required for NGINX App Protect WAF. It is used to retrieve the deployment status and `precompiled_publication` mode, with an option for the NGINX App Protect WAF instance to use the mode for policies.
+   The NGINX Agent installation script now has a flag to enable the default configuration required for F5 WAF for NGINX. It is used to retrieve the deployment status and `precompiled_publication` mode, with an option for the F5 WAF for NGINX instance to use the mode for policies.
 
 - {{% icon-feature %}} **NGINX Management Suite version now visible in the web interface and API**<a name="2-10-0-whats-new-NGINX-Management-Suite-version-now-visible-in-the-web-interface-and-API"></a>
 
@@ -977,7 +1022,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Instance Manager can now automatically retrieve WAF compilers associated with NGINX App Protect instances**<a name="2-10-0-whats-new-Instance-Manager-can-now-automatically-retrieve-WAF-compilers-associated-with-NGINX-App-Protect-instances"></a>
 
-   Using a user-provided NGINX repository certificate & key after the first set-up of the WAF compiler, Instance Manager can automatically retrieve WAF compilers associated with NGINX App Protect instances. These can be used to publish App Protect WAF configurations in `precompiled_publication` mode.
+   Using a user-provided NGINX repository certificate & key after the first set-up of the WAF compiler, Instance Manager can automatically retrieve WAF compilers associated with NGINX App Protect instances. These can be used to publish F5 WAF for NGINX configurations in `precompiled_publication` mode.
 
 - {{% icon-feature %}} **Add option to toggle ICMP scanning in the web interface**<a name="2-10-0-whats-new-Add-option-to-toggle-ICMP-scanning-in-the-web-interface"></a>
 
@@ -987,8 +1032,8 @@ This release includes the following updates:
 
    The NGINX Agent installation script now has a flag to enable the default configuration required for the Security Monitoring module.
 
-
 ### Changes in Default Behavior{#2-10-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Improvements to Role Based Access Control for SSL Certificate and Key management**<a name="2-10-0-changes-in-behavior-Improvements-to-Role-Based-Access-Control-for-SSL-Certificate-and-Key-management"></a>
@@ -999,7 +1044,6 @@ This release has the following changes in default behavior:
 
   When NGINX Management Suite is installed using a Helm Chart, it now defaults to a ClusterIP without an external IP address.
 
-
 ### Resolved Issues{#2-10-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -1008,12 +1052,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Configuration changes for NGINX Agent take longer than expected. (41257)
 - {{% icon-resolved %}} SELinux errors encountered when starting NGINX Management Suite on RHEL9 with the SELinux policy installed (41327)
 
-
 ### Known Issues{#2-10-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.9.1
 
@@ -1032,7 +1073,6 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 - {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager (41557)
-
 
 ### Known Issues{#2-9-1-known-issues}
 
@@ -1053,6 +1093,7 @@ NGINX Instance Manager 2.9.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-9-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **New webpages for viewing Attack Signature and Threat Campaigns**<a name="2-9-0-whats-new-New-webpages-for-viewing-Attack-Signature-and-Threat-Campaigns"></a>
@@ -1081,12 +1122,11 @@ This release includes the following updates:
   - [Publish Configs with Hash Versioning to Instances]({{< ref "/nim/nginx-configs/publish-configs.md#publish-configs-instances-hash-versioning" >}})
   - [Publish Configs with Hash Versioning to Instance Groups]({{< ref "/nim/nginx-configs/publish-configs.md#publish-configs-instance-groups-hash-versioning" >}})
 
-
 ### Security Updates{#2-9-0-security-updates}
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, NGINX doesn’t disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 
@@ -1100,7 +1140,7 @@ This release includes the following security updates:
 
   #### Mitigation
 
-  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nms/nginx-agent/install-nginx-agent.md#configuring-the-nginx-agent ">}}) section of NGINX Management Suite documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nginx-one/agent/configure-instances/configuration-overview/">}}) section of the documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
 
   #### Fixed in
 
@@ -1109,8 +1149,8 @@ This release includes the following security updates:
 
   For more information, refer to the MyF5 article [K000133135](https://my.f5.com/manage/s/article/K000133135).
 
-
 ### Changes in Default Behavior{#2-9-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **SSL Certificates can be associated with Instance Groups**<a name="2-9-0-changes-in-behavior-SSL-Certificates-can-be-associated-with-Instance-Groups"></a>
@@ -1143,17 +1183,15 @@ This release has the following changes in default behavior:
   1. Save the file.
   1. Restart NGINX Management Suite:
 
-      ```bash
+      ```shell
       sudo systemctl restart nms
       ```
 
   1. Restart the NGINX web server:
 
-      ```bash
+      ```shell
       sudo systemctl restart nginx
       ```
-
-  <br>
 
   #### Option 2
 
@@ -1168,16 +1206,15 @@ This release has the following changes in default behavior:
   1. After the upgrade finishes replace `etc/nms/nginx/oidc/openid_connect.js` with `openid_connect.js.dpkg-dist`.
   1. Restart NGINX Management Suite:
 
-      ```bash
+      ```shell
       sudo systemctl restart nms
       ```
 
   1. Restart the NGINX web server:
 
-      ```bash
+      ```shell
       sudo systemctl restart nginx
       ```
-
 
 ### Resolved Issues{#2-9-0-resolved-issues}
 
@@ -1193,12 +1230,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Precompiled Publication setting is reverted to false after error publishing NGINX App Protect policy  (40484)
 - {{% icon-resolved %}} Upgrading NGINX Management Suite may remove the OIDC configuration for the platform (41328)
 
-
 ### Known Issues{#2-9-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.8.0
 
@@ -1213,6 +1247,7 @@ NGINX Instance Manager 2.8.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-8-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Enhanced details page for SSL Certificates**<a name="2-8-0-whats-new-Enhanced-details-page-for-SSL-Certificates"></a>
@@ -1221,14 +1256,14 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Automatic retrieval of Attack Signatures and Threat Campaign updates to Instance Manager**<a name="2-8-0-whats-new-Automatic-retrieval-of-Attack-Signatures-and-Threat-Campaign-updates-to-Instance-Manager"></a>
 
-   Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< ref "/nim/nginx-app-protect/setup-waf-config-management.md##automatically-download-latest-packages" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
+   Instance Manager now allows you to [set up automatic downloads of the most recent Attack Signature and Threat Campaign packages]({{< ref "/nim/waf-integration/configuration/setup-signatures-and-threats/_index.md" >}}). By publishing these updates to your App Protect instances from Instance Manager, you can ensure your applications are shielded from all recognized attack types.
 
 - {{% icon-feature %}} **Improved WAF Compiler error messages**<a name="2-8-0-whats-new-Improved-WAF-Compiler-error-messages"></a>
 
-   The messaging around [security policy compilation errors]({{< ref "/nim/nginx-app-protect/manage-waf-security-policies.md#check-for-compilation-errors" >}}) has been improved by providing more detailed information and alerting users if the required compiler version is missing.
-
+   The messaging around security policy compilation errors has been improved by providing more detailed information and alerting users if the required compiler version is missing.
 
 ### Changes in Default Behavior{#2-8-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Switching between storing secrets on disk and using Vault migrates secrets**<a name="2-8-0-changes-in-behavior-Switching-between-storing-secrets-on-disk-and-using-Vault-migrates-secrets"></a>
@@ -1252,7 +1287,6 @@ This release has the following changes in default behavior:
          precompiled_publication: true
   ```
 
-
 ### Resolved Issues{#2-8-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -1272,12 +1306,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Automatic downloads of attack signatures and threat campaigns are not supported on CentOS 7, RHEL 7, or Amazon Linux 2 (40396)
 - {{% icon-resolved %}} The API Connectivity Manager module won't load if the Security Monitoring module is enabled (44433)
 
-
 ### Known Issues{#2-8-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.7.0
 
@@ -1292,11 +1323,12 @@ NGINX Instance Manager 2.7.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### Changes in Default Behavior{#2-7-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **NGINX App Protect upgrades are supported**<a name="2-7-0-changes-in-behavior-NGINX-App-Protect-upgrades-are-supported"></a>
 
-  You can upgrade NGINX App Protect WAF on managed instances where Instance Manager publishes NGINX App Protect policies and configurations. For example, upgrade from App Protect release 3.12.2 to release 4.0.
+  You can upgrade F5 WAF for NGINX on managed instances where Instance Manager publishes NGINX App Protect policies and configurations. For example, upgrade from App Protect release 3.12.2 to release 4.0.
 
 - {{% icon-feature %}} **NGINX Management Suite Config file is now in YAML format**<a name="2-7-0-changes-in-behavior-NGINX-Management-Suite-Config-file-is-now-in-YAML-format"></a>
 
@@ -1305,7 +1337,6 @@ This release has the following changes in default behavior:
 - {{% icon-feature %}} **Existing NGINX Agent configuration kept during upgrade to the latest version**<a name="2-7-0-changes-in-behavior-Existing-NGINX-Agent-configuration-kept-during-upgrade-to-the-latest-version"></a>
 
   When upgrading NGINX Agent, the existing NGINX Agent configuration is maintained during the upgrade. If the Agent configuration is not present in `/etc/nginx-agent/nginx-agent.conf`, a default configuration is provided after NGINX Agent installation.
-
 
 ### Resolved Issues{#2-7-0-resolved-issues}
 
@@ -1320,12 +1351,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} When upgrading a multi-node NMS deployment with helm charts the ingestion pod may report a "Mismatched migration version" error (38880)
 - {{% icon-resolved %}} After a version upgrade of NGINX Instance Manager, NMS Data Plane Manager crashes if you publish NGINX configuration with App Protect enablement directive (app_protect_enable) set to ON (38904)
 
-
 ### Known Issues{#2-7-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.6.0
 
@@ -1340,16 +1368,17 @@ NGINX Instance Manager 2.6.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-6-0-whats-new}
+
 This release includes the following updates:
 
-- {{% icon-feature %}} **Manage and deploy configurations to NGINX App Protect WAF Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
+- {{% icon-feature %}} **Manage and deploy configurations to F5 WAF for NGINX Instances**<a name="2-6-0-whats-new-Manage-and-deploy-configurations-to-NGINX-App-Protect-WAF-Instances"></a>
 
-   This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< ref "/nim/nginx-app-protect/overview-nap-waf-config-management.md" >}}):
+   This release introduces the following features to [manage and deploy configurations to NGINX App Protect instances]({{< ref "/nim/waf-integration/overview.md" >}}):
 
-  - Create, upsert, and delete NGINX App Protect WAF security policies
-  - Manage NGINX App Protect WAF security configurations by using the NGINX Management Suite user interface or REST API
+  - Create, upsert, and delete F5 WAF for NGINX security policies
+  - Manage F5 WAF for NGINX security configurations by using the NGINX Management Suite user interface or REST API
   - Update Signatures and Threat Campaign packages
-  - Compile security configurations into a binary bundle that can be consumed by NGINX App Protect WAF instances
+  - Compile security configurations into a binary bundle that can be consumed by F5 WAF for NGINX instances
 
 - {{% icon-feature %}} **Adds support for RHEL 9**<a name="2-6-0-whats-new-Adds-support-for-RHEL-9"></a>
 
@@ -1367,28 +1396,24 @@ This release includes the following updates:
 
    Oracle 8 is now [a supported distribution]({{< ref "/nim/fundamentals/tech-specs#distributions" >}}) starting with Instance Manager 2.6. You can use the RedHat/CentOS distro to install the Oracle 8 package.
 
-
 ### Changes in Default Behavior{#2-6-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **GET Roles API responses now include user and group associations**<a name="2-6-0-changes-in-behavior-GET-Roles-API-responses-now-include-user-and-group-associations"></a>
 
   `GET /roles` and `GET/roles/{roleName}` API responses include any user(s) or group(s) associated with a role now.
 
-
 ### Resolved Issues{#2-6-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 - {{% icon-resolved %}} Password error "option unknown" occurs when installing NGINX Instance Manager on Ubuntu with OpenSSL v1.1.0 (33055)
-- {{% icon-resolved %}} Instance Manager reports the NGINX App Protect WAF build number as the version (37510)
-
+- {{% icon-resolved %}} Instance Manager reports the F5 WAF for NGINX build number as the version (37510)
 
 ### Known Issues{#2-6-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.5.1
 
@@ -1408,12 +1433,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 - {{% icon-resolved %}} Extended NGINX metrics aren't reported for NGINX Plus R26 and earlier (37738)
 
-
 ### Known Issues{#2-5-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.5.0
 
@@ -1428,6 +1450,7 @@ NGINX Instance Manager 2.5.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-5-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time"></a>
@@ -1438,7 +1461,6 @@ This release includes the following updates:
 
    Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
 
-
 ### Resolved Issues{#2-5-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -1447,12 +1469,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Managed certificates may be overwritten if they have the same name on different datapath certificates (36240)
 - {{% icon-resolved %}} Scan overview page doesn't scroll to show the full list of instances (36514)
 
-
 ### Known Issues{#2-5-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.4.0
 
@@ -1467,6 +1486,7 @@ NGINX Instance Manager 2.4.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-4-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Get notified about critical events**<a name="2-4-0-whats-new-Get-notified-about-critical-events"></a>
@@ -1477,8 +1497,8 @@ This release includes the following updates:
 
    Now, when you [view your NGINX Plus inventory]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
 
-
 ### Changes in Default Behavior{#2-4-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **You no longer need to associate a certificate with an instance using the web interface**<a name="2-4-0-changes-in-behavior-You-no-longer-need-to-associate-a-certificate-with-an-instance-using-the-web-interface"></a>
@@ -1489,19 +1509,15 @@ This release has the following changes in default behavior:
 
   This release adds a new service called `nms-integerations`. This service is for future integrations; no user management or configuration is needed at this time.
 
-
 ### Resolved Issues{#2-4-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 - {{% icon-resolved %}} Unable to publish config changes to a custom nginx.conf location (35276)
 
-
 ### Known Issues{#2-4-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.3.1
 
@@ -1517,9 +1533,9 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 
 ### Security Updates{#2-3-1-security-updates}
 
-{{< important >}}
+{{< call-out "important" >}}
 For the protection of our customers, NGINX doesn’t disclose security issues until an investigation has occurred and a fix is available.
-{{< /important >}}
+{{< /call-out >}}
 
 This release includes the following security updates:
 
@@ -1531,13 +1547,9 @@ This release includes the following security updates:
 
   For more information, refer to the AskF5 article [K37080719](https://support.f5.com/csp/article/K37080719).
 
-
-
 ### Known Issues{#2-3-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.3.0
 
@@ -1552,14 +1564,15 @@ NGINX Instance Manager 2.3.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-3-0-whats-new}
+
 This release includes the following updates:
 
-- {{% icon-feature %}} **Instance Manager provides information about your NGINX App Protect WAF installations**<a name="2-3-0-whats-new-Instance-Manager-provides-information-about-your-NGINX-App-Protect-WAF-installations"></a>
+- {{% icon-feature %}} **Instance Manager provides information about your F5 WAF for NGINX installations**<a name="2-3-0-whats-new-Instance-Manager-provides-information-about-your-NGINX-App-Protect-WAF-installations"></a>
 
-   You can configure NGINX Agent to report the following NGINX App Protect WAF installation information to NGINX Management Suite:
+   You can configure NGINX Agent to report the following F5 WAF for NGINX installation information to NGINX Management Suite:
 
-  - The current version of NGINX App Protect WAF
-  - The current status of NGINX App Protect WAF (active or inactive)
+  - The current version of F5 WAF for NGINX
+  - The current status of F5 WAF for NGINX (active or inactive)
   - The Attack Signatures package version
   - The Threat Campaigns package version
 
@@ -1585,14 +1598,13 @@ This release includes the following updates:
 
   Refer to the [Technical Specifications Guide]({{< ref "/nim/fundamentals/tech-specs" >}}) for details.
 
-
 ### Changes in Default Behavior{#2-3-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **New login screen**<a name="2-3-0-changes-in-behavior-New-login-screen"></a>
 
   Sometimes it's the small things that count. Now, when logging in to NGINX Instance Manager, you're treated to an attractive-looking login screen instead of a bland system prompt. 🤩
-
 
 ### Resolved Issues{#2-3-0-resolved-issues}
 
@@ -1600,12 +1612,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 - {{% icon-resolved %}} Post-install steps to load SELinux policy are in the wrong order (34276)
 
-
 ### Known Issues{#2-3-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.2.0
 
@@ -1620,6 +1629,7 @@ NGINX Instance Manager 2.2.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-2-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **New events for NGINX processes and configuration rollbacks**<a name="2-2-0-whats-new-New-events-for-NGINX-processes-and-configuration-rollbacks"></a>
@@ -1636,7 +1646,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Modules field added to Metrics and Dimensions catalogs**<a name="2-2-0-whats-new-Modules-field-added-to-Metrics-and-Dimensions-catalogs"></a>
 
-   A `modules` field was added to the [Metics]({{< ref "nms/reference/catalogs/metrics.md" >}}) and [Dimensions]({{< ref "nms/reference/catalogs/dimensions.md" >}}) catalogs. This field indicates which module or modules the metric or dimension belongs to.
+   A `modules` field was added to the [Metics]({{< ref "/nim/monitoring/catalogs/metrics.md" >}}) and [Dimensions]({{< ref "/nim/monitoring/catalogs/dimensions.md" >}}) catalogs. This field indicates which module or modules the metric or dimension belongs to.
 
 - {{% icon-feature %}} **Adds reporting for NGINX worker metrics (API only)**<a name="2-2-0-whats-new-Adds-reporting-for-NGINX-worker-metrics-(API-only)"></a>
 
@@ -1647,19 +1657,15 @@ This release includes the following updates:
   - The count of NGINX workers
   - CPU, IO, and memory usage
 
-
 ### Resolved Issues{#2-2-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
 
 - {{% icon-resolved %}} Running Agent install script with sh returns “not found” error  (33385)
 
-
 ### Known Issues{#2-2-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.1.0
 
@@ -1674,6 +1680,7 @@ NGINX Instance Manager 2.1.0 supports upgrades from these previous versions:
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
 ### What's New{#2-1-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **Adds Docker support for NGINX Agent**<a name="2-1-0-whats-new-Adds-Docker-support-for-NGINX-Agent"></a>
@@ -1684,7 +1691,7 @@ This release includes the following updates:
 
   Refer to the [NGINX Agent Docker Support](https://docs.nginx.com/nginx-agent/installation-upgrade/container-environments/docker-support/) guide for details.
 
-  {{< note >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /note >}}
+  {{< call-out "note" >}}Containerizing the NGINX Agent is supported only with Docker at the moment. Look for additional container support in future releases of Instance Manager.{{< /call-out >}}
 
 - {{% icon-feature %}} **Redesigned metrics views in the web interface**<a name="2-1-0-whats-new-Redesigned-metrics-views-in-the-web-interface"></a>
 
@@ -1716,8 +1723,8 @@ This release includes the following updates:
 
   For instructions, see [Install from a Helm Chart]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}).
 
-
 ### Changes in Default Behavior{#2-1-0-changes-in-behavior}
+
 This release has the following changes in default behavior:
 
 - {{% icon-feature %}} **Tags are no longer enforced for RBAC or set when creating or updating a role**<a name="2-1-0-changes-in-behavior-Tags-are-no-longer-enforced-for-RBAC-or-set-when-creating-or-updating-a-role"></a>
@@ -1749,7 +1756,6 @@ This release has the following changes in default behavior:
           }
   ```
 
-
 ### Resolved Issues{#2-1-0-resolved-issues}
 
 This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic for more information on the latest resolved issues. Use your browser's search function to find the issue ID in the page.
@@ -1760,12 +1766,9 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} When using Instance Groups, tag-based access controls are not enforced (31267)
 - {{% icon-resolved %}} Bad Gateway (502) errors with Red Hat 7 (31277)
 
-
 ### Known Issues{#2-1-0-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.0.1
 
@@ -1786,19 +1789,16 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Unable to access the NGINX Instance Manager web interface after loading SELinux policy (31583)
 - {{% icon-resolved %}} The `nms-dpm` service restarts when registering multiple NGINX Agents with the same identity (31612)
 
-
 ### Known Issues{#2-0-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
-
----
 
 ## 2.0.0
 
 December 21, 2021
 
-
 ### What's New{#2-0-0-whats-new}
+
 This release includes the following updates:
 
 - {{% icon-feature %}} **(Experimental) Share a configuration across multiple instances**<a name="2-0-0-whats-new-(Experimental)-Share-a-configuration-across-multiple-instances"></a>
@@ -1807,7 +1807,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **More metrics and instance dashboards**<a name="2-0-0-whats-new-More-metrics-and-instance-dashboards"></a>
 
-   Instance Manager now collects additional metrics from the NGINX instances. We also added pre-configured dashboards to the web interface for each NGINX instance managed by Instance Manager. See the [Catalog Reference]({{< ref "/nms/reference/catalogs/_index.md" >}}) documentation for a complete list of metrics.
+   Instance Manager now collects additional metrics from the NGINX instances. We also added pre-configured dashboards to the web interface for each NGINX instance managed by Instance Manager. See the [Catalog Reference]({{< ref "/nim/monitoring/catalogs/" >}}) documentation for a complete list of metrics.
 
 - {{% icon-feature %}} **New architecture!**<a name="2-0-0-whats-new-New-architecture!"></a>
 
@@ -1816,8 +1816,6 @@ This release includes the following updates:
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control"></a>
 
    Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#rbac" >}}) guide for more details.
-
-
 
 ### Known Issues{#2-0-0-known-issues}
 

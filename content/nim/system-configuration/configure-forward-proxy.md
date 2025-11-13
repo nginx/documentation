@@ -4,7 +4,6 @@ weight: 2
 toc: true
 type: how-to
 product: NIM
-docs:
 ---
 
 ## Overview
@@ -127,7 +126,7 @@ kubectl edit cm nms-conf -n <namespace>
 If you’re deploying NGINX Instance Manager with Docker Compose, update the `docker-compose.yaml` file to configure a forward proxy.
 
 1. **Before you begin**: Follow the [Docker Compose deployment guide]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) to set up Docker for the NGINX container registry. The deployment guide also covers additional environment variables you may want to consider before deployment.
-2. {{<fa "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the preconfigured docker-compose.yaml file">}}
+2. {{<icon "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the preconfigured docker-compose.yaml file">}}
 3. Update `docker-compose.yaml` with the proxy settings:
 
     Modify the `services.nim.environment` section to include the proxy configuration:
@@ -187,7 +186,7 @@ If you’re deploying NGINX Instance Manager with Docker Compose, update the `do
 
 If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance Manager expects the proxy’s CA certificate to be trusted. If the proxy certificate is self-signed or issued by an untrusted Certificate Authority (CA), you must manually add it to the system’s trusted store.
 
-{{<note>}}For Kubernetes deployments, perform these steps inside the **integrations pod**.{{</note>}}
+{{< call-out "note" >}}For Kubernetes deployments, perform these steps inside the **integrations pod**.{{< /call-out >}}
 
 1. Copy the proxy CA certificate into the system’s trusted certificate directory. The path varies by distribution:
    - **Debian/Ubuntu**: `/usr/local/share/ca-certificates/`
@@ -197,13 +196,13 @@ If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance
 
    - **Debian/Ubuntu**:
 
-     ```bash
+     ```shell
      sudo update-ca-certificates
      ```
 
    - **RHEL/CentOS**:
 
-     ```bash
+     ```shell
      sudo update-ca-trust
      ```
 
@@ -211,7 +210,7 @@ If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance
 
     - **VM/bare-metal**: Restart NGINX Instance Manager:
 
-       ```bash
+       ```shell
        sudo systemctl restart nms
        ```
 

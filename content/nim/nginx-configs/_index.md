@@ -1,6 +1,5 @@
 ---
-title: NGINX configs
-weight: 15
+title: Manage NGINX configs
 url: /nginx-instance-manager/nginx-configs/
 weight: 70
 ---

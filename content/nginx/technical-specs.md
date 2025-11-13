@@ -1,13 +1,13 @@
 ---
+title: Technical Specs
 description: Platforms supported by F5 NGINX Plus and dynamically loaded modules,
   supported SSL/TLS versions, supported deployment environments, and list of modules
   built into NGINX Plus.
-nd-docs: DOCS-473
-title: Technical Specs
 toc: true
 weight: 400
-type:
-- concept
+nd-content-type: reference
+nd-product: NPL
+nd-docs: DOCS-473
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).
@@ -16,28 +16,35 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 
 {{< include "nginx-plus/supported-distributions.md" >}}
 
----
-
 ## Dynamic Modules
 
 Dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions), unless noted otherwise in the table below.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Module           | Distribution and details                                                                                   |
-|-------------------|-----------------------------------------------------------------------------------------------------------|
-| [AppProtect]({{< ref "/nap-waf/v5/admin-guide/install.md" >}}) | AlmaLinux: **Not supported**<br>Alpine Linux 3.17 & 3.18: **Not supported**<br>Alpine Linux 3.19: **x86_64 only**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **x86_64 only**<br>Debian 11 & 12: **x86_64 only**<br>FreeBSD: **Not supported**<br>Oracle Linux 8: **x86_64 only**<br>RHEL 8 & 9: **x86_64 only**<br>Rocky Linux 8: **Not supported**<br>Rocky Linux 9: **x86_64 only**<br>SLES: **Not supported**<br>Ubuntu 20.04: **Not supported**<br>Ubuntu 22.04 & 24.04: **x86_64 only** |
-| [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | Amazon Linux 2023  **Not supported**<br>RHEL/Oracle Linux/AlmaLinux/Rocky Linux 8.0+, 9: **Not supported**<br>FreeBSD: **Not supported**           |
-| [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | Amazon Linux 2: **Not supported**                                            |
-| [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**<br>Amazon Linux 2: **Not supported**<br>Amazon Linux 2023: **Not supported** |
-| [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | FreeBSD: **Not supported**<br>Alpine Linux: **Not supported**                                              |
-| [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}})| Amazon Linux 2: **Not supported**<br>SLES: **Not supported**                                               |                                                                                |
-{{</bootstrap-table>}}
+{{< table >}}
 
----
+| Distribution | **Module:** [F5 WAF for NGINX]({{< ref "/waf/install" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
+|--------------|------------|-------|---------|---------------|------------|---------------|
+| **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Alpine Linux 3.17 & 3.18** | ❌ | ✓ | ✓ | ❌ | ❌ | ✓ |
+| **Alpine Linux 3.19, 3.20, 3.21, 3.22** | ✓ (x86_64 only) | ✓ | ✓ | ❌ | ❌ | ✓ |
+| **Amazon Linux 2** | ❌ | ✓ | ❌ | ❌ | ✓ | ❌ |
+| **Amazon Linux 2023** | ✓ (x86_64 only) | ❌ | ✓ | ❌ | ✓ | ✓ |
+| **Debian 11 & 12** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **FreeBSD** | ❌ | ❌ | ✓ | ❌ | ❌ | ✓ |
+| **Oracle Linux 8** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
+| **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Rocky Linux 8** | ❌ |  ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Rocky Linux 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **SLES** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ |
+| **Ubuntu 20.04** | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Ubuntu 22.04 & 24.04** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+{{< /table >}}
 
 ## Supported SSL/TLS versions
 
 NGINX Plus supports the following SSL/TLS protocols:
+
 - SSLv2
 - SSLv3
 - TLSv1
@@ -53,21 +60,16 @@ TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in N
 
 TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
----
-
 ## Supported Deployment Environments
 
 - Bare metal
-- Container
-- Public cloud: AWS, Google Cloud Platform, Microsoft Azure
-- Virtual machine
-
----
+- Containers and Kubernetes
+- Public clouds: AWS, Google Cloud Platform, Microsoft Azure
+- Virtual machines
 
 ## Recommended Hardware
-See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.nginx.com/resources/datasheets/nginx-plus-sizing-guide/)
 
----
+See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-guide/Sizing-Guide-for-Deploying-NGINX-Plus-in-Virtualized-Environments-2021-06-03.pdf)
 
 ## Modules in the NGINX Plus Package
 
@@ -104,6 +106,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Auth Basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) – Implement HTTP Basic Authentication scheme
 - [Auth JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) – Validate JSON Web Tokens
 - [Auth Request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) – Determine client authorization using subrequests to external authentication server
+- [Auth Require](https://nginx.org/en/docs/http/ngx_http_auth_require_module.html) – Variable-based access control support
 - [OIDC](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) – Implement authentication as a Relying Party in OpenID Connect solution
 - [Referer](https://nginx.org/en/docs/http/ngx_http_referer_module.html) – Control access based on `Referer` field in HTTP request header
 - [Secure Link](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) – Process encrypted, time-limited links to content
@@ -179,7 +182,7 @@ See [Sizing Guide for Deploying NGINX Plus on Bare Metal Servers](https://www.ng
 - [Limit Conn](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) – Limit concurrent connections by key
 - [Log](https://nginx.org/en/docs/stream/ngx_stream_log_module.html) – Log TCP and UDP transactions
 - [Map](https://nginx.org/en/docs/stream/ngx_stream_map_module.html) – Create variables based on other variables in requests
-- [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing	 it
+- [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing it
 - [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) – Process Message Queuing Telemetry Transport protocol (MQTT) protocol
 - [Proxy](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html) – Proxy requests to TCP and UDP servers
 - [Pass](https://nginx.org/en/docs/stream/ngx_stream_pass_module.html) – Pass any accepted client connection to any configured listening socket in http, stream, mail, and other similar modules

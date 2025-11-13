@@ -7,11 +7,11 @@ nd-product: NIC
 nd-docs: DOCS-580
 ---
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 Check out the complete [NGINX Ingress Controller with App Protect DoS example for VirtualServer](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-dos) and the [NGINX Ingress Controller with App Protect DoS example for Ingress](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-dos).
 
-{{< /tip >}}
+{{< /call-out >}}
 
 ## App Protect DoS Configuration
 
@@ -161,4 +161,4 @@ Then add a reference in the `DosProtectedResource` to the `APDosLogConf`:
 
 ## Global Configuration
 
-NGINX Ingress Controller has a set of global configuration parameters that align with those available in the NGINX App Protect DoS module. See [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}) for the complete list. The App Protect parameters use the `app-protect-dos*` prefix.
+NGINX Ingress Controller has a set of global configuration parameters that align with those available in the F5 DoS for NGINX module. See [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}) for the complete list. The App Protect parameters use the `app-protect-dos*` prefix.

@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot NGINX App Protect WAF
+title: Troubleshoot F5 WAF for NGINX
 weight: 400
 toc: true
 nd-content-type: how-to
@@ -7,24 +7,24 @@ nd-product: NIC
 nd-docs: DOCS-1864
 ---
 
-This document describes how to troubleshoot problems when using NGINX Ingress Controller and the NGINX App Protect WAF module version 5.
+This document describes how to troubleshoot problems when using NGINX Ingress Controller and the F5 WAF for NGINX module version 5.
 
 For general troubleshooting of NGINX Ingress Controller, check the general [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common" >}}) documentation.
 
-{{< see-also >}} You can find more troubleshooting tips in the NGINX App Protect WAF [troubleshooting guide]({{< ref "/nap-waf/v5/troubleshooting-guide/troubleshooting.md" >}}) {{< /see-also >}}.
-
 ## Potential problems
 
-The table below categorizes some potential problems with NGINX Ingress Controller when App Protect WAF module is enabled. It suggests how to troubleshoot those problems, using one or more methods from the next section.
+The table below categorizes some potential problems with NGINX Ingress Controller when F5 WAF for NGINX module is enabled. It suggests how to troubleshoot those problems, using one or more methods from the next section.
 
-{{% table %}}
+{{< table >}}
+
 |Problem area | Symptom | Troubleshooting method | Common cause |
 | ---| ---| ---| --- |
 |Start. | The Ingress Controller fails to start. | Check the logs. | Misconfigured policy bundle. |
 |Start | The configuration is not applied. | Check if a policy bundle is compiled using version of the compiler running in NGINX Ingress Controller. | Policy bundle is invalid. |
 |Start | The configuration is not applied. | Check if bundle is present in a volume. | Policy bundle is not present in the mounted volume. |
 |APLogConf, Policy or Ingress Resource. | The configuration is not applied. | Check the events of the APLogConf, Policy and Ingress Resource, check the logs, replace the policy bundle. | Policy bundle is invalid. |
-{{% /table %}}
+
+{{< /table >}}
 
 ## Troubleshooting methods
 
@@ -78,7 +78,7 @@ The events section has a *Normal* event with the *AddedOrUpdated reason*, indica
 
 ### Replace the policy
 
-{{< note >}} This method only applies if using [external references](/nginx-app-protect/v4/configuration/#external-references) {{< /note >}}
+{{< call-out "note" >}} This method only applies if using [external references](/nginx-app-protect/v4/configuration/#external-references) {{< /call-out >}}
 
 If items on the external reference change but the spec of the APPolicy remains unchanged (even when re-applying the policy), Kubernetes will not detect the update.
 In this case you can force-replace the resource. This will remove the resource and add it again, triggering a reload. For example:
@@ -89,7 +89,7 @@ kubectl replace appolicy -f your-policy-manifest.yaml --force
 
 ### Check the availability of APPolicy external references
 
-{{< note >}} This method only applies if you're using [external references](/nginx-app-protect/v4/configuration/#external-references) in NGINX App Protect policies. {{< /note >}}
+{{< call-out "note" >}} This method only applies if you're using [external references](/nginx-app-protect/v4/configuration/#external-references) in NGINX App Protect policies. {{< /call-out >}}
 
 To check which servers host the external references of a policy:
 
@@ -106,13 +106,13 @@ curl -w '%{time_total}' http://192.168.100.100/resources/headersettings.txt
 
 ## Run App Protect in debug mode
 
-When you set NGINX Ingress Controller to use debug mode, the setting also applies to the App Protect WAF module.  See  [Running NGINX in the Debug Mode]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
+When you set NGINX Ingress Controller to use debug mode, the setting also applies to the F5 WAF for NGINX module.  See  [Running NGINX in the Debug Mode]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
 
 ## Known issues
 
-When using NGINX Ingress Controller with the App Protect WAF module, the following issues have been reported. The occurrence of these issues is commonly related to a higher number of Ingress Resources with App Protect being enabled in a cluster.
+When using NGINX Ingress Controller with the F5 WAF for NGINX module, the following issues have been reported. The occurrence of these issues is commonly related to a higher number of Ingress Resources with App Protect being enabled in a cluster.
 
-When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the App Protect WAF module enabled, usual reload times are around 150ms. If App Protect WAF module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
+When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the F5 WAF for NGINX module enabled, usual reload times are around 150ms. If F5 WAF for NGINX module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
 
 ### NGINX configuration drift
 

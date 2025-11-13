@@ -1,17 +1,10 @@
 ---
 title: Add a license (disconnected)
-draft: false
-description: ''
 weight: 200
 toc: true
+nd-content-type: how-to
+nd-product: NIM
 nd-docs: DOCS-1657
-personas:
-- devops
-- netops
-- secops
-- support
-type:
-- how-to
 ---
 
 ## Overview
@@ -19,7 +12,6 @@ type:
 This guide shows you how to add a license to NGINX Instance Manager in a disconnected (offline) environment. In this setup, systems don’t have internet access. You’ll download and apply your subscription’s JSON Web Token (JWT) license, then verify your entitlements with F5.
 
 {{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</ call-out >}}
-
 
 ## Before you begin
 
@@ -33,11 +25,7 @@ To configure NGINX Instance Manager for a disconnected environment, you need to 
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
-
-<br>
-
 ## Add license and submit initial usage report {#add-license-submit-initial-usage-report}
-
 
 {{< tabs name="submit-usage-report" >}}
 
@@ -47,25 +35,23 @@ To configure NGINX Instance Manager for a disconnected environment, you need to 
 
 To add a license and submit the initial usage report in a disconnected environment, use the provided `license_usage_offline.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-**Important**: The script to add a license won't work if a license has already been added.
+{{< call-out "important" >}} The script to add a license won't work if a license has already been added. {{< /call-out >}}
 
-<br>
-
-1. {{<fa "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
+1. {{<icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
 
-    ```bash
+    ```shell
     chmod +x <path-to-script>/license_usage_offline.sh
     ```
 
 1. Run the script. Replace each placeholder with your specific values:
 
-    ``` bash
+    ```shell
     ./license_usage_offline.sh \
       -j <license-filename>.jwt \
       -i <NIM-IP-address> \
       -u admin \
-      -p <password> \      
+      -p <password> \
       -s initial
     ```
 
@@ -81,15 +67,15 @@ To add a license and submit the initial usage report in a disconnected environme
 
 To license NGINX Instance Manager, complete each of the following steps in order.
 
-**Important**: The `curl` command to add a license won't work if a license has already been added.
+{{< call-out "important" >}} The `curl` command to add a license won't work if a license has already been added. {{< /call-out >}}
 
 Run these `curl` commands on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-{{< important >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{</ important >}}
+{{< call-out "important" "TLS certificate validation">}} The -k flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system. {{< /call-out >}}
 
 1. **Add the license to NGINX Instance Manager**:
 
-    ``` bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/license?telemetry=true' \
     --header 'Origin: https://<NIM-FQDN>' \
     --header 'Referer: https://<NIM-FQDN>/ui/settings/license' \
@@ -109,7 +95,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
    Use this command to check the current license status. Look for `INITIALIZE_ACTIVATION_COMPLETE` or `CONFIG_REPORT_READY` in the status field. Poll periodically if necessary.
 
-    ```bash
+    ```shell
     curl -k "https://<NIM-FQDN>/api/platform/v1/license" \
     --header "accept: application/json" \
     --header "authorization: Basic <base64-encoded-credentials>" \
@@ -120,7 +106,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
    This step ensures that the license configuration is fully applied.
 
-    ```bash
+    ```shell
     curl -k --location --request PUT "https://<NIM-FQDN>/api/platform/v1/license?telemetry=true" \
     --header "Origin: https://<NIM-FQDN>" \
     --header "Referer: https://<NIM-FQDN>/ui/settings/license" \
@@ -150,7 +136,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Download the initial usage report**:
 
-    ```bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=initial' \
     --header 'accept: */*' \
     --header 'Authorization: Basic <base64-encoded-credentials>' \
@@ -159,7 +145,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Submit the usage report to F5 for verification**:
 
-    ```bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
     --form 'file=@"<path-to-report>.zip"'
@@ -179,14 +165,14 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
     Replace `<report-id>` with your specific ID from the previous response.
 
-    ``` bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/<report-id>' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)"
     ```
 
 3. **Download the usage acknowledgement from F5**:
 
-    ``` bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/<report-id>' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
     --output <path-to-acknowledgement>.zip
@@ -194,7 +180,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 4. **Upload the usage acknowledgement to NGINX Instance Manager**:
 
-    ``` bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/upload' \
     --header 'Authorization: Basic <base64-encoded-credentials>' \
     --form 'file=@"<path-to-acknowledgement>.zip"'
@@ -218,14 +204,13 @@ Download the initial usage report to send to F5:
 
 - On the **License > Overview** page, select **Download License Report**.
 
-
 #### Submit usage report to F5
 
-You need to submit the usage report to F5 and download the acknowledgment over REST. To do do, follow steps 5–7 in the [**REST**](#add-license-submit-initial-usage-report) tab in this section.
+You need to submit the usage report to F5 and download the acknowledgment over REST. To do so, follow steps 5–7 in the [**REST**](#add-license-submit-initial-usage-report) tab in this section.
 
 #### Upload the usage acknowledge to NGINX Instance Manager
 
-To upload the the usage acknowledgement:
+To upload the usage acknowledgement:
 
 1. On the **License > Overview** page, select **Upload Usage Acknowledgement**.
 2. Upload the acknowledgement by selecting **Browse** or dragging the file into the form.
@@ -233,9 +218,4 @@ To upload the the usage acknowledgement:
 
 {{%/tab%}}
 
-
 {{</tabs>}}
-
-
-
-

@@ -17,7 +17,7 @@ This requirement is part of F5’s broader licensing program and aligns with ind
 
 The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint.  In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). By default usage is reported every hour and also whenever NGINX is reloaded.
 
-{{< note >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{</ note >}}
+{{< call-out "note" >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{< /call-out >}}
 
 ## Set up your NGINX Plus license
 

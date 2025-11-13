@@ -1,10 +1,10 @@
 ---
 nd-docs: DOCS-1031
 files:
-  - content/nim/nginx-app-protect/setup-waf-config-management.md
+  - content/nim/waf-integration/configuration/setup-waf-config-management.md
 ---
 
-{{<note>}}Make sure `gpg` is installed on your system before continuing. You can install NGINX Agent using command-line tools like `curl` or `wget`.{{</note>}}
+{{< call-out "note" >}}Make sure `gpg` is installed on your system before continuing. You can install NGINX Agent using command-line tools like `curl` or `wget`.{{< /call-out >}}
 
 If your NGINX Instance Manager host doesn't use valid TLS certificates, you can use the insecure flags to bypass verification. Here are some example commands:
 

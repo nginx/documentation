@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) configurations can be managed using the Azure CLI. This document outlines common Azure CLI workflows to validate, create, and update NGINX configurations.
+F5 NGINXaaS for Azure (NGINXaaS) configurations can be managed using the Azure CLI. This document outlines common Azure CLI workflows to validate, create, and update NGINX configurations.
 
 ## Prerequisites
 
@@ -23,33 +23,70 @@ F5 NGINX as a Service for Azure (NGINXaaS) configurations can be managed using t
 
 To create a new NGINX configuration, use the `az nginx deployment configuration create` command:
 
-```bash
+There are two supported ways to upload your configuration:
+
+1. **Plain file upload** — Upload one or more configuration files directly using the `--files` parameter.
+1. **Tarball upload** — Package your configuration files into a `.tar.gz` archive and upload it using the `--package` parameter.
+
+Both methods are valid and can be used depending on how your configuration is structured.
+
+```shell
 az nginx deployment configuration create --configuration-name
-                                         --deployment-name
-                                         --resource-group
-                                         [--files]
-                                         [--location]
-                                         [--no-wait {0, 1, f, false, n, no, t, true, y, yes}]
-                                         [--package]
-                                         [--protected-files]
-                                         [--root-file]
+                                      --deployment-name
+                                      --resource-group
+                                      [--files]
+                                      [--location]
+                                      [--no-wait {0, 1, f, false, n, no, t, true, y, yes}]
+                                      [--package]
+                                      [--protected-files]
+                                      [--root-file]
 ```
 
 ### Validate your configuration
 
 You can use the `analyze` command to validate your configuration before submitting it to the deployment:
 
-```bash
+<div data-testid="validation_tabs">
+{{<tabs name="validate_configuration_examples" >}}
+
+{{%tab name="Validate plain files"%}}
+
+If you are uploading individual configuration files, you can pass them as base64-encoded content through the `--files` parameter:
+
+```shell
 az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
    --resource-group $RESOURCE_GROUP --root-file /etc/nginx/nginx.conf \
    --name default --files "$FILES_CONTENT"
-````
+```
 
-### Examples
+{{%/tab%}}
+
+{{%tab name="Validate a tarball package"%}}
+
+If you are using a `.tar.gz` archive, encode it and pass it through the `--package` parameter:
+
+```shell
+TAR_DATA=$(base64 -i nginx.tar.gz)
+az nginx deployment configuration analyze --deployment-name myDeployment \
+   --resource-group myResourceGroup --root-file nginx.conf \
+   --name default --package data="$TAR_DATA"
+```
+
+{{%/tab%}}
+{{< /tabs >}}
+</div>
+
+### Upload a configuration
+
+{{<tabs name="upload_configuration_examples" >}}
+
+{{%tab name="Upload plain files"%}}
+
+The following examples show how to upload plain configuration files directly to your deployment:
 
 - Create a single file configuration:
 
-   ```bash
+   ```shell
    az nginx deployment configuration create --name default \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --root-file /etc/nginx/nginx.conf \
@@ -70,7 +107,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
 - Create a multiple file configuration:
 
-   ```bash
+   ```shell
    az nginx deployment configuration create --name default \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --root-file /etc/nginx/nginx.conf \
@@ -90,9 +127,15 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       'virtual-path':'/etc/nginx/conf.d/proxy.conf'}]"
    ```
 
-- Upload package with config files:
+{{%/tab%}}
 
-   ```bash
+{{%tab name="Upload a tarball package"%}}
+
+You can bundle your configuration files into a `.tar.gz` archive and upload it as a single package.
+
+Upload package with config files:
+
+   ```shell
    $ tar -czf nginx.tar.gz nginx
    $ tar -tzf nginx.tar.gz
    nginx/
@@ -106,7 +149,7 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
    Where `nginx` is a directory with the following structure:
 
-   ```bash
+   ```shell
    $ tree nginx
    nginx
    ├── nginx.conf
@@ -120,16 +163,25 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
 
    Encode your tar.gz file and create your NGINXaaS configuration
 
-   ```bash
+   ```shell
    TAR_DATA=$(base64 -i nginx.tar.gz)
    az nginx deployment configuration create --deployment-name myDeployment \
       --resource-group myResourceGroup --root-file nginx.conf --name default \
       --package data="$TAR_DATA"
    ```
 
+   Upload a package with config files and protected files:
+
+   ```shell
+   az nginx deployment configuration create --deployment-name myDeployment \
+      --resource-group myResourceGroup --root-file nginx.conf --name default \
+      --package data="$TAR_DATA" \
+      protected-files="['nginx/servers/server1.conf','nginx/servers/server2.conf']"
+   ```
+
 - Multiple file configuration with protected files:
 
-   ```bash
+   ```shell
    az nginx deployment configuration create --name default \
       --deployment-name 0102242023test --resource-group azclitest-geo \
       --root-file /etc/nginx/nginx.conf \
@@ -163,9 +215,10 @@ az nginx deployment configuration analyze --deployment-name $DEPLOYMENT_NAME \
       'virtual-path':'/etc/nginx/conf.d/proxyprot.conf'}]"
    ```
 
+{{%/tab%}}
+{{< /tabs >}}
+
 See the [Azure CLI Configuration Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-create) for more details on the available parameters.
-
-
 
 ## Update a configuration
 
@@ -173,7 +226,7 @@ Update a configuration for a deployment using a gzipped archive.
 
 Use the `az nginx deployment configuration update` command to update an existing NGINX configuration:
 
-```bash
+```shell
 az nginx deployment configuration update [--add]
                                          [--configuration-name]
                                          [--deployment-name]
@@ -193,7 +246,7 @@ az nginx deployment configuration update [--add]
 
 - Update content of the first file in a configuration:
 
-   ```bash
+   ```shell
    az nginx deployment configuration update --name default \
       --deployment-name myDeployment --resource-group myResourceGroup \
       --files [0].content="aHR0cCB7CiAgICB1cHN0cmVhbSBhcHAgewogICAgICAgIHpvbmUg \
@@ -214,7 +267,7 @@ az nginx deployment configuration update [--add]
 See the [Azure CLI Configuration Update Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-update) for more details on the available parameters.
 
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
@@ -225,4 +278,4 @@ to learn more about:
 - [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
 - [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
-{{< /tip >}}
+{{< /call-out >}}

@@ -22,16 +22,20 @@
 # NGINX Agent
 content/nginx/nms/agent/*   @nginx/nginx-agent 
 
-# NGINX App Protect DoS
+# F5 DoS for NGINX
 content/nap-dos/*           @nginx/dos-docs-approvers
 
-# NGINX App Protect WAF
-content/nap-waf/*           @nginx/nap-docs-approvers
-data/nap-waf/*              @nginx/nap-docs-approvers
+# F5 WAF for NGINX
+content/waf/*               @nginx/waf
+content/includes/waf/*      @nginx/waf
 
 # NGINXaaS for Azure 
-content/nginxaas-azure/*          @nginx/n4a-docs-approvers
-content/includes/nginxaas-azure/* @nginx/n4a-docs-approvers
+content/nginxaas-azure/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas-azure/* @nginx/nginxaas-docs-approvers
+
+# NGINXaaS for Google Cloud 
+content/nginxaas-google/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas-google/* @nginx/nginxaas-docs-approvers
 
 # NGINX Gateway Fabric
 content/ngf/*               @nginx/nginx-gateway-fabric

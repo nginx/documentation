@@ -1,5 +1,5 @@
 ---
-title: Build NGINX Ingress Controller with NGINX App Protect WAF
+title: Build NGINX Ingress Controller with F5 WAF for NGINX
 weight: 100
 toc: true
 type: how-to
@@ -7,13 +7,13 @@ product: NIC
 nd-docs: DOCS-1865
 ---
 
-This document explains how to build a F5 NGINX Ingress Controller image with NGINX App Protect WAF v5 from source code.
+This document explains how to build a F5 NGINX Ingress Controller image with F5 WAF for NGINX v5 from source code.
 
 {{<call-out "tip" "Pre-built image alternatives" >}} If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.{{</call-out>}}
 
 ## Before you begin
 
-- To use NGINX App Protect WAF with NGINX Ingress Controller, you must have NGINX Plus.
+- To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.
 
 {{< include "/nic/compatibility-tables/nic-nap.md" >}}
 
@@ -21,7 +21,7 @@ This document explains how to build a F5 NGINX Ingress Controller image with NGI
 
 ## Prepare the environment
 
-Get your system ready for building and pushing the NGINX Ingress Controller image with NGINX App Protect WAF v5.
+Get your system ready for building and pushing the NGINX Ingress Controller image with F5 WAF for NGINX v5.
 
 1. Sign in to your private registry. Replace `<my-docker-registry>` with the path to your own private registry.
 
@@ -52,7 +52,7 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
 
 ## Build the image
 
-Follow these steps to build the NGINX Controller Image with NGINX App Protect WAF v5.
+Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX v5.
 
 1. Place your NGINX Plus license files (_nginx-repo.crt_ and _nginx-repo.key_) in the project's root folder. To verify they're in place, run:
 
@@ -72,7 +72,7 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
     make <makefile target> PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
     ```
 
-   For example, to build a Debian-based image with NGINX Plus and NGINX App Protect WAF v5, run:
+   For example, to build a Debian-based image with NGINX Plus and F5 WAF for NGINX v5, run:
 
     ```shell
     make debian-image-nap-v5-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
@@ -80,37 +80,34 @@ Follow these steps to build the NGINX Controller Image with NGINX App Protect WA
 
    **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{<note>}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{</note>}}
+{{< call-out "note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
-Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, NGINX App Protect WAF v5 and FIPS)
+Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, F5 WAF for NGINX v5 and FIPS)
 
-{{<bootstrap-table "table table-striped table-bordered">}}
 | Makefile Target           | Description                                                       | Compatible Systems  |
 |---------------------------|-------------------------------------------------------------------|---------------------|
-| **alpine-image-nap-v5-plus-fips** | Builds a Alpine-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module with FIPS. | Alpine  |
-| **debian-image-nap-v5-plus** | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module. | Debian  |
-| **ubi-image-nap-v5-plus**    | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/) module. | OpenShift |
-| **ubi-image-nap-dos-v5-plus** | Builds a UBI-based image with NGINX Plus, [NGINX App Protect WAF v5](/nginx-app-protect-waf/v5/), and [NGINX App Protect DoS](/nginx-app-protect-dos/). | OpenShift |
-{{</bootstrap-table>}}
+| **alpine-image-nap-v5-plus-fips** | Builds a Alpine-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module with FIPS. | Alpine  |
+| **debian-image-nap-v5-plus** | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module. | Debian  |
+| **ubi-image-nap-v5-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module. | OpenShift |
+| **ubi-image-nap-dos-v5-plus** | Builds a UBI-based image with NGINX Plus, [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
 
-<br>
 
-{{<see-also>}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{</see-also>}}
+{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md#makefile-details" >}}) guide. {{< /call-out>}}
 
-If you intend to use [external references](/nginx-app-protect-waf/v5/configuration-guide/configuration/#external-references) in NGINX App Protect WAF policies, you may want to provide a custom CA certificate to authenticate with the hosting server.
+If you intend to use [external references](/nginx-app-protect-waf/v5/configuration-guide/configuration/#external-references) in F5 WAF for NGINX policies, you may want to provide a custom CA certificate to authenticate with the hosting server.
 
 To do so, place the `*.crt` file in the build folder and uncomment the lines following this comment:
 `#Uncomment the lines below if you want to install a custom CA certificate`
 
-{{<warning>}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{</warning>}}
+{{< call-out "warning" >}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{< /call-out >}}
 
 ---
 
 ## Push the images to your private registry
 
-Once you've successfully pulled the WAF v5 manager and enforcer images and built the NGINX Ingress Controller image with NGINX App Protect WAF v5, the next step is to upload them to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
+Once you've successfully pulled the WAF v5 manager and enforcer images and built the NGINX Ingress Controller image with F5 WAF for NGINX v5, the next step is to upload them to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
 
 To upload the image, run the following command. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
 
@@ -135,9 +132,9 @@ docker push <my-docker-registry>/waf-enforcer:<your-tag>
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-{{< important >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment or DaemonSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
+{{< important >}} NGINX Ingress Controller with the AppProtect WAF v5 module works only with policy bundles. You need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes, volume mounts and two WAF 5 docker images: `waf-config-mgr` and `waf-enforcer`.
 
-NGINX Ingress Controller **requires** the volume mount path to be `/etc/app_protect/bundles`. {{< /important >}}
+NGINX Ingress Controller **requires** the volume mount path to be `/etc/app_protect/bundles`. {{< /call-out >}}
 
 {{<tabs name="deploy-nic">}}
 
@@ -166,21 +163,21 @@ volumeMounts:
 
 ### Enabling WAF v5
 
-Start by setting `controller.appprotect.enable` to `true` in your Helm values. This will the standard App Protect WAF features.
+Start by setting `controller.appprotect.enable` to `true` in your Helm values. This will the standard F5 WAF for NGINX features.
 Afterwords, set `controller.approtect.v5` to `true`.
 This ensures that both the `waf-enforcer` and `waf-config-mgr` containers are deployed alongside the NGINX Ingress Controller containers.
-These two additional containers are required when using App Protect WAF v5.
+These two additional containers are required when using F5 WAF for NGINX v5.
 
 Your Helm values should look something like this:
 
 ```yaml
 controller:
   ...
-  ## Support for App Protect WAF
+  ## Support for F5 WAF for NGINX
   appprotect:
-    ## Enable the App Protect WAF module in the Ingress Controller.
+    ## Enable the F5 WAF for NGINX module in the Ingress Controller.
     enable: true
-    ## Enables App Protect WAF v5.
+    ## Enables F5 WAF for NGINX v5.
     v5: true
 ```
 
@@ -204,7 +201,7 @@ controller:
 ...
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 By default, `emptyDir` mounts are used.
 Bundles that are added to these kind of volume mounts will **NOT** persist across pod restarts.
 
@@ -220,7 +217,7 @@ controller:
      emptyDir: {}
 ...
 ```
-{{< /note >}}
+{{< /call-out >}}
 
 ### Configuring `readOnlyRootFilesystem`
 
@@ -230,18 +227,18 @@ Create required volumes:
 volumes:
   - name: nginx-etc
     emptyDir: {}
-  - name: nginx-cache
-    emptyDir: {}
+  - name: nginx-cache # do not set this value in statefulset if volumeclaimtemplate is set
+    emptyDir: {}      # do not set this value in statefulset if volumeclaimtemplate is set
   - name: nginx-lib
     emptyDir: {}
   - name: nginx-log
     emptyDir: {}
-  - emptyDir: {}
-    name: app-protect-bd-config
-  - emptyDir: {}
-    name: app-protect-config
-  - emptyDir: {}
-    name: app-protect-bundles
+  - name: app-protect-bd-config
+    emptyDir: {}
+  - name: app-protect-config
+    emptyDir: {}
+  - name: app-protect-bundles
+    emptyDir: {}
 ```
 
 Set `controller.securityContext.readOnlyRootFilesystem` to `true`.
@@ -294,6 +291,7 @@ You have two options for deploying NGINX Ingress Controller:
 
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
+- **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller pods.
 
 ---
 
@@ -380,7 +378,7 @@ Add `waf-enforcer` image to the `containers` section:
 ...
 ```
 
-### Update NIC container in deployment or daemonset
+### Update NIC container in deployment, daemonset, or statefulset
 
 Add `volumeMounts` as below:
 
@@ -467,6 +465,10 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 ...
 ```
 
+{{< call-out "note" >}}
+**StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. F5 WAF for NGINX v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
+{{< /call-out >}}
+
 ### Using a Deployment
 
 {{< include "/nic/installation/manifests/deployment.md" >}}
@@ -475,13 +477,17 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
-### Enable NGINX App Protect WAF module
+### Enable F5 WAF for NGINX module
 
-To enable the NGINX App Protect DoS Module:
+To enable the F5 DoS for NGINX Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment or DaemonSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 {{%/tab%}}
 

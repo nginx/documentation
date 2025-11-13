@@ -6,10 +6,52 @@ toc: true
 weight: 200
 ---
 
-{{<rn-styles>}}
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.
 
-{{< tip >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /tip >}}
+{{< call-out "tip" >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /call-out >}}
+
+---
+
+## 2.21.0
+
+November 07, 2025
+
+### {{% icon-bug %}} Security Monitoring dashboard doesn't load for custom users {#46763}
+
+{{< bootstrap-table "table table-striped table-bordered" >}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46763 | Open  |
+{{< /bootstrap-table >}}
+
+#### Description
+
+When you sign in using a custom user account that has:
+
+- read permissions for Security Monitoring
+- create, read, update, and delete (CRUD) permissions for Security Policies
+
+the Security Monitoring dashboard shows the message: **Metrics are disabled**
+
+This happens even when ClickHouse is enabled.
+
+#### Workaround
+
+Add license read permission to the custom role or user. This allows the Security Monitoring dashboard to complete its license check and load as expected.
+
+---
+
+### {{% icon-bug %}} Duplicate security policies appear during RBAC role creation when an F5 WAF for NGINX policy has more than one version {#46754}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46754 | Open  |
+{{</bootstrap-table>}}
+
+#### Description
+
+If an F5 WAF for NGINX policy has more than one version, the same policy name may appear more than once when you’re assigning access during RBAC role creation. This happens because the system doesn’t show which version is which.
 
 ---
 
@@ -17,12 +59,30 @@ This document lists and describes the known issues and possible workarounds in F
 
 June 16, 2025
 
-### {{% icon-bug %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
+### {{% icon-bug %}} NGINX configuration editor shows errors for instance group configs created with augment templates {#46726}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 46177 | Open  |
+| 46726 | Open  |
+{{</bootstrap-table>}}
+
+#### Description
+
+The NGINX configuration editor may show errors for files in the `conf.d` directory when a configuration created with augment templates is published to an instance group. The configuration is valid, but the editor doesn’t recognize all template-generated files.
+
+#### Workaround
+
+To avoid this issue, use a standalone `nginx.conf` file instead of augment templates when publishing to instance groups.
+
+---
+
+### {{% icon-resolved %}} Failing to fetch CVE data when using forward proxy in K8s environments {#46177}
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| Issue ID       | Status |
+|----------------|--------|
+| 46177 | Fixed in 2.21.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -50,22 +110,6 @@ After the restart you will see the line “loading CVE data from file” in the 
 
 ---
 
-### {{% icon-bug %}} New warning message when no usage data or report is available {#46022}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-| Issue ID       | Status |
-|----------------|--------|
-| 46022 | Won't be resolved  |
-{{</bootstrap-table>}}
-
-#### Description
-
-Users now see a warning message when they click the **Send Usage To F5** button if no new usage data or report is available. The message reads:
-
-> "Usage data is not available at the moment. Please try submitting usage details again later."
-
----
-
 
 ## 2.19.1
 
@@ -76,7 +120,7 @@ March 27, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45991 | Fixed in Instance Manager 2.20.0  |
+| 45991 | Fixed in 2.20.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -99,12 +143,12 @@ February 06, 2025
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45845 | Fixed in Instance Manager 2.19.1  |
+| 45845 | Fixed in 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
 
-In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy from the UI fails if the latest NGINX App Protect WAF compiler v5.264.0 (for NGINX App Protect WAF v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
+In NGINX Instance Manager v2.19.0, publishing an F5 WAF for NGINX policy from the UI fails if the latest F5 WAF for NGINX compiler v5.264.0 (for F5 WAF for NGINX v4.13.0 or v5.5.0) is manually installed without adding the NGINX repository certificate and key.
 
 #### Workaround
 
@@ -119,7 +163,7 @@ In NGINX Instance Manager v2.19.0, publishing an NGINX App Protect WAF policy fr
    - Choose **Select PEM files** or **Manual entry**.
    - If using manual entry, copy and paste your *certificate* and *key* details.
 
-    For detailed steps, see [Upload NGINX App Protect WAF certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
+    For detailed steps, see [Upload F5 WAF for NGINX certificate and key](https://docs.nginx.com/nginx-instance-manager/nginx-app-protect/setup-waf-config-management/#upload-nginx-app-protect-waf-certificate-and-key).
 
 3. Restart the `nms-integrations` service:
 
@@ -140,16 +184,16 @@ November 08, 2024
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45846 | Fixed in Instance Manager 2.19.1  |
+| 45846 | Fixed in 2.19.1  |
 {{</bootstrap-table>}}
 
 #### Description
 
-On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download NGINX App Protect WAF compiler v5.210.0 (for NGINX App Protect WAF v4.12.0) and v5.264.0 (for NGINX App Protect WAF v4.13.0) from the NGINX repository.
+On Ubuntu 24.04, NGINX Instance Manager v2.18.0 and v2.19.0 fail to automatically download F5 WAF for NGINX compiler v5.210.0 (for F5 WAF for NGINX v4.12.0) and v5.264.0 (for F5 WAF for NGINX v4.13.0) from the NGINX repository.
 
 #### Workaround
 
-Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< ref "nim/nginx-app-protect/setup-waf-config-management.md#install-the-waf-compiler" >}}).
+Manually install the missing compiler by following the instructions in [Install the WAF compiler]({{< ref "nim/waf-integration/configuration/install-waf-compiler/_index.md" >}}).
 
 ---
 
@@ -158,7 +202,7 @@ Manually install the missing compiler by following the instructions in [Install 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45573 | Fixed in Instance Manager 2.19.0  |
+| 45573 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -172,7 +216,7 @@ Saving templates as “staged configs” causes syntax errors due to Augment tem
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45570 | Fixed in Instance Manager 2.19.0  |
+| 45570 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -187,7 +231,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45301 | Fixed in Instance Manager 2.19.0  |
+| 45301 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -201,7 +245,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Issue ID       | Status |
 |----------------|--------|
-| 45024 | Fixed in Instance Manager 2.19.0  |
+| 45024 | Fixed in 2.19.0  |
 {{</bootstrap-table>}}
 
 #### Description
@@ -460,120 +504,9 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 ---
 
-### {{% icon-bug %}} When upgrading to Instance Manager 2.10, there may be warnings from the Ingestion service {#42133}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 42133 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-When upgrading to 2.10 you may see a warning like the below message for the NGINX Management Suite Ingestion service. It can be safely ignored.
-
-```none
-[WARN] #011/usr/bin/nms-ingestion               #011start/start.go:497                 #011error checking migrations Mismatched migration version for ClickHouse, expected 39 migrations to be applied, currently have only 44 migrations applied.
-```
-
----
-
-### {{% icon-bug %}} When upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configurations {#42119}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 42119 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-After upgrading to Instance Manager 2.10, the API does not return lastDeploymentDetails for existing configuration blocks. This is then reflected as "Invalid Date" in the UI (See #42108).
-
-#### Workaround
-
-Republish the configuration for the affected configuration blocks.
-
----
-
-
 ## 2.6.0
 
 November 17, 2022
-
-### {{% icon-bug %}} App Protect Policies page fails when deployed via Helm chart {#38782}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 38782 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-When installing NGINX Instance Manager on Kubernetes via Helm Chart, the App Protect page shows an error banner, and no default policies are displayed.
-
----
-
-### {{% icon-bug %}} Config deployment could fail when referencing remote cert inside allowed directories {#38596}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 38596 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-Deploying NGINX config with references to remote cert that resides in allowed directories could fail, with the following error:
-`BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory`.
-
-This can also be diagnosed with log entries in `/var/log/nginx-agent/agent.log`, noting the removal of the referenced certificate.
-
-#### Workaround
-
-- Add the referenced cert to NMS as managed certificate and publish the config again.
-- Move the referenced remote certificate to a directory that's not in the allowed directory list.
-
----
-
-### {{% icon-bug %}} Unreferenced NGINX App Protect policy file in /etc/nms {#38488}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 38488 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-When using NGINX Instance Manager with App Protect policies, previously referenced policies in the NGINX configuration may not be removed after they are no longer referenced in the NGINX config.
-
-#### Workaround
-
-Unreferenced policy files may be removed manually from /etc/nms.
-
----
-
-### {{% icon-bug %}} HTTP version schema returns incorrect value in Advanced metrics module {#38041}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 38041 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-The values currently populated for http.version_schema are incorrect. The response is "4" for HTTP traffic and "6" for HTTPS traffic.
-
----
 
 ### {{% icon-bug %}} External references are not supported in App Protect policies {#36265}
 
@@ -588,61 +521,12 @@ The values currently populated for http.version_schema are incorrect. The respon
 
 References to external files in a policy are not supported.
 
-For example, in the NGINX App Protect WAF JSON declarative policy, these references are not supported:
+For example, in the F5 WAF for NGINX JSON declarative policy, these references are not supported:
 - User-defined signatures - " not supporting for a while" @dan
 - Security controls in external references
 - Referenced OpenAPI Spec files
 
 ---
-
-
-## 2.5.0
-
-October 04, 2022
-
-### {{% icon-bug %}} Aux data fails to upload if the size is greater than 3145728 characters {#37498}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 37498 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-Updating a config with an aux data file exceeding 3145728 characters fails with a validation error similar to the following example:
-
-Request body has an error: doesn't match the schema: Error at "/auxFiles/files/3/contents": maximum string length is 3145728
-
----
-
-### {{% icon-bug %}} "Deployment Not Found" error when publishing NGINX config to NATS server {#37437}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 37437 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-Occasionally, when publishing an NGINX config to a NATS server, the system returns a `Deployment Not Found` error, and the `nms.log` file includes the error `http failure with code '131043': <nil>`.
-
-#### Workaround
-
-Remove the existing NATs working directory and restart the NMS Data Plane Manager (`nms-dpm`) service as root.
-
-{{<caution>}}Restarting the `nms-dpm` service is disruptive and may result in the loss of event data. You should schedule a maintenance window for restarting the service.{{</caution>}}
-
-```bash
-rm -rf /var/lib/nms/streaming
-systemctl restart nms-dpm
-```
-
----
-
 
 ## 2.3.0
 
@@ -674,101 +558,9 @@ filterBy=<dimension-name>!= ''
 ---
 
 
-## 2.2.0
-
-May 25, 2022
-
-### {{% icon-bug %}} Giving long names (255+ characters) to certificates causes internal error {#34185}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 34185 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-When adding certificates, an internal error (error code: 134018) is returned if the name given for the certificate exceeds 255 characters.
-
-#### Workaround
-
-Use a name that is 255 or fewer characters.
-
----
-
-
-## 2.1.0
-
-April 05, 2022
-
-### {{% icon-bug %}} An unexpected number of instances are shown after upgrading nginx-agent to 2.1.0 {#33307}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 33307 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-After upgrading to NGINX Instance Manager 2.1.0, and updating nginx-agent from platform packaging, duplicate instances may appear on the Instance overview page. This issue is caused by a change in how the NGINX Agent generates the `system_uid`.
-
-#### Workaround
-
-You can safely delete the older entries or wait for them to expire.
-
----
-
-### {{% icon-bug %}} “No such process” error occurs when publishing a configuration {#33160}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 33160 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-When publishing a configuration, you might encounter an error similar to the following example:
-
-``` text
-config action failed: Config apply failed (write): no such process
-```
-
-This error can occur when there is a desyncronization between the NGINX Agent and NGINX PID, often after manually restarting NGINX when the Agent is running.
-
-#### Workaround
-
-Restart the NGINX Agent:
-
-``` bash
-sudo systemctl restart nginx-agent
-```
-
----
-
-
 ## 2.0.0
 
 December 21, 2021
-
-### {{% icon-bug %}} NGINX App Protect WAF blocks NGINX Instance Manager from publishing configurations {#32718}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 32718 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-NGINX Instance Manager does not currently support managing NGINX App Protect WAF instances. NGINX App Protect WAF may block attempts to publish configurations to NGINX App Protect WAF instances.
-
----
 
 ### {{% icon-bug %}} Web interface doesn’t report error when failing to upload large config files {#31081}
 
@@ -787,44 +579,3 @@ In the web interface, when uploading a config file that's larger than 50 MB (max
 
 Keep config files under 50 MB.
 
----
-
-### {{% icon-bug %}} CentOS 7, RHEL 7, and Amazon Linux 2 package managers allow unsupported NGINX/NGINX Plus versions {#28758}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 28758 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-When installing on CentOS 7, RHEL 7, and Amazon Linux 2, the package manager doesn't prevent installing NGINX Instance Manager with unsupported versions of NGINX or NGINX Plus. As a consequence, it is possible that `nms-instance-manager` is installed without an NGINX gateway. Resulting in a less than optimal experience.
-
-#### Workaround
-
-Install a supported version of NGINX (v1.18 or later) or NGINX Plus (R22 or later). See the [Technical Specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}) guide for details.
-
----
-
-### {{% icon-bug %}} gRPC errors occur when starting NGINX Instance Manager {#28683}
-
-{{<bootstrap-table "table table-striped table-bordered">}}
-
-| Issue ID       | Status |
-|----------------|--------|
-| 28683 | Won't be resolved  |
-
-{{</bootstrap-table>}}
-#### Description
-
-  When starting NGINX Instance Manager, you may see errors similar to the following in `/etc/nginx/conf.d/nms-http.conf:227`:
-
-  ```text
-  nginx[1234]: nginx: [emerg] unknown directive "grpc_socket_keepalive"
-  ```
-
-#### Workaround
-
-Make sure your version of NGINX is v1.18 or later.

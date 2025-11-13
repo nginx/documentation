@@ -1,5 +1,4 @@
 ---
-docs: DOCS-000
 files:
   - content/nginx-one/getting-started.md
   - content/nginx-one/agent/containers/run-agent-container.md

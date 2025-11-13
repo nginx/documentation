@@ -1,5 +1,5 @@
 ---
-title: Hosting static content
+title: Hosting static content locally
 weight: 200
 toc: true
 nd-docs: DOCS-1344
@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports hosting static content which allows users to serve static websites from their deployment.
+F5 NGINXaaS for Azure (NGINXaaS) supports hosting static content locally on the deployment, which allows users to serve static websites directly from their deployment.
 
 ## Uploading static files as a tarball
 
@@ -30,9 +30,9 @@ http {
 
 2. Store your static files alongside the NGINX configuration.
 
-The following shows the structure of a directory containing an NGINX configuration and an `index.html` file that we will be served from the deployment.
+The following shows the structure of a directory containing an NGINX configuration and an `index.html` file that will be served from the deployment.
 
-```bash
+```shell
 test-static-files $ tree .
 .
 ├── nginx.conf
@@ -42,11 +42,11 @@ test-static-files $ tree .
 2 directories, 2 files
 ```
 
-{{<note>}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{</note>}}
+{{< call-out "note" >}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
 
 3. Create the tarball.
 
-```bash
+```shell
 test-static-files $ tar -cvzf <path to store tarball>/test.tar.gz *
 ```
 
@@ -65,3 +65,5 @@ You can also upload static files directly to the deployment. See [Adding NGINX C
 ## Limitations
 
 NGINX Configuration payload larger than 3 MB is not supported.
+
+For hosting larger static content or to avoid the payload size limitation, consider [hosting static content in Azure Blob Storage]({{< ref "/nginxaas-azure/quickstart/hosting-static-content-blob-storage.md" >}}).

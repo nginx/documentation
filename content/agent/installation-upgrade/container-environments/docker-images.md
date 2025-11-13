@@ -27,7 +27,7 @@ This guide provides instructions on how to build images with NGINX Agent and NGI
 
 You can use [Docker](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/docs/installation) to manage NGINX Agent container images. Follow the installation instructions for your preferred container engine and be sure the service is running before proceeding with the instructions in this document.
 
-{{<note>}}The examples in this document primarily use Docker commands. You can adapt these using the appropriate [Podman commands](https://docs.podman.io/en/latest/Commands.html) if you're not using Docker.{{</note>}}
+{{< call-out "note" >}}The examples in this document primarily use Docker commands. You can adapt these using the appropriate [Podman commands](https://docs.podman.io/en/latest/Commands.html) if you're not using Docker.{{< /call-out >}}
 
 ### Install the GNU Make package
 
@@ -77,7 +77,7 @@ git clone git@github.com:nginx/agent.git
 
 ### Download the NGINX Plus certificate and key {#myf5-download}
 
-{{< fa "circle-info" "text-muted" >}} **This step is required if you are using NGINX Plus. If you are using NGINX open source, you can skip this section.**
+{{< icon "circle-info" "text-muted" >}} **This step is required if you are using NGINX Plus. If you are using NGINX open source, you can skip this section.**
 
 In order to build a container image with NGINX Plus, you must provide the SSL certificate and private key files provided with your NGINX Plus license. These files grant access to the package repository from which the script will download the NGINX Plus package.
 
@@ -112,7 +112,7 @@ docker tag docker-registry.nginx.com/nginx/agent:mainline nginx-agent
 docker run --name nginx-agent -d nginx-agent
 ```
 
-{{<note>}}To learn more about the configuration options, refer to the NGINX Agent [Configuration Overview]({{< ref "/agent/configuration/configuration-overview" >}}).{{</note>}}
+{{< call-out "note" >}}To learn more about the configuration options, refer to the NGINX Agent [Configuration Overview]({{< ref "/agent/configuration/configuration-overview" >}}).{{< /call-out >}}
 
 ### Enable the gRPC interface
 
@@ -166,7 +166,7 @@ If the REST Interface is configured correctly, then you should see a JSON object
 
 ## Build the NGINX Agent images for specific OS targets
 
-{{<important>}}The only **officially supported** base operating system is **Alpine**. The instructions below for other operating systems are provided for informational and **testing purposes only**.{{</important>}}
+{{< call-out "important" >}}The only **officially supported** base operating system is **Alpine**. The instructions below for other operating systems are provided for informational and **testing purposes only**.{{< /call-out >}}
 
 The NGINX Agent GitHub repo has a set of Make commands that you can use to build a container image for an specific operating system and version:
 
@@ -175,14 +175,11 @@ The NGINX Agent GitHub repo has a set of Make commands that you can use to build
 
 You can pass the following arguments when running the **make** command to build an NGINX Agent container image.
 
-{{<bootstrap-table "table table-striped table-border">}}
 | Argument | Definition |
 | ---------------- | -------------------------|
 | OS_RELEASE      | The Linux distribution to use as the base image. <br>Can also be set in the repo Makefile.|
 | OS_VERSION      | The version of the Linux distribution to use as the base image. <br>Can also be set in the repo Makefile.|
 | AGENT_VERSION      | The versions of NGINX agent that you want installed on the image.|
-
-{{</bootstrap-table>}}
 
 ### Build NGINX open source images
 
@@ -200,7 +197,7 @@ IMAGE_BUILD_TARGET=install-agent-repo NGINX_AGENT_VERSION=2.37.0~bullseye OS_REL
 
 ### Build NGINX Plus images
 
-{{<important>}}You need a license to use NGINX Agent with NGINX Plus. You must complete the steps in the [Download the certificate and key files from MyF5](#myf5-download) section before proceeding.{{</important>}}
+{{< call-out "important" >}}You need a license to use NGINX Agent with NGINX Plus. You must complete the steps in the [Download the certificate and key files from MyF5](#myf5-download) section before proceeding.{{< /call-out >}}
 
 Run the following `make` command to build the default image, which uses Ubuntu 24.04 (Noble) as the base image.
 
@@ -213,6 +210,3 @@ To build an image with Debian and an older version of NGINX Agent you can run th
 ```shell
 IMAGE_BUILD_TARGET=install-agent-repo NGINX_AGENT_VERSION=2.37.0~bullseye OS_RELEASE=debian OS_VERSION=bullseye-slim make image
 ```
-
-
-

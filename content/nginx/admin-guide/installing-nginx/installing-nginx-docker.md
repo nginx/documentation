@@ -35,7 +35,7 @@ The registry contains the following image types:
 - [NGINX Plus]({{< ref "/nginx/releases.md" >}}):</br>
   `https://private-registry.nginx.com/v2/nginx-plus/base`
 
-- [Unprivileged]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-plus-unprivileged-installation" >}}) installation of NGINX Plus:</br>
+- [Unprivileged]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#unpriv_install" >}}) installation of NGINX Plus:</br>
   `https://private-registry.nginx.com/v2/nginx-plus/rootless-base`
 
 - NGINX Plus bundled with [NGINX Agent](https://docs.nginx.com/nginx-agent/overview/):</br>
@@ -170,7 +170,7 @@ docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 
 ### Run the NGINX Plus container
 
-{{< note >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /note >}}
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 To start the Docker container with NGINX Plus, you will need to pass your JWT license file named `license.jwt` as the `NGINX_LICENSE_JWT` environment variable. If the license file needs to be located in a non-default directory, specify its full path using the `NGINX_LICENSE_PATH` variable (default path: `/etc/nginx/license.jwt`).
 
@@ -202,8 +202,8 @@ where:
  - `NGINX_LICENSE_JWT` is your JWT license file from MyF5. The file name should be `license.jwt`.
  - `NGINX_AGENT_SERVER_GRPCPORT` sets a GRPC port used by NGINX Agent to communicate with NGINX Instance Manager.
  - `NGINX_AGENT_SERVER_HOST` sets the domain name or IP address of NGINX Instance Manager. Note that for production environments it is not recommended to expose NGINX Instance Manager to public networks.
- - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys](https://docs.nginx.com/nginx-one/how-to/data-plane-keys/create-manage-data-plane-keys/) for details.
- - `NGINX_AGENT_TLS_ENABLE` enables mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) for details.
+ - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}) for details.
+ - `NGINX_AGENT_TLS_ENABLE` enables mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication]({{< ref "agent/configuration/encrypt-communication.md" >}}) for details.
  - `YOUR_REGISTRY` is the path to your private registry.
  - `VERSION_TAG` is the tag assigned when pushing to your registry.
 

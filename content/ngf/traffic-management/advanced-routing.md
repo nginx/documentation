@@ -11,11 +11,47 @@ Learn how to deploy multiple applications and HTTPRoutes with request conditions
 
 ## Overview
 
-In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path, headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
+In this guide we will configure advanced routing rules for multiple applications. These rules will showcase request matching by path (including prefix, exact, and regex patterns), headers, query parameters, and method. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
 The following image shows the traffic flow that we will be creating with these rules.
 
-{{< img src="/ngf/img/advanced-routing.png" alt="" >}}
+```mermaid
+graph LR
+    users[Users]
+    ngfSvc["Public Endpoint<br>for<br>cafe.example.com"]
+    subgraph cluster [Kubernetes Cluster]
+        subgraph appNs [Namespace<br>default]
+            subgraph nsPadding [" "]
+                nginxPod[Pod<br>NGINX]
+                coffeeV1Pod[Pod<br>coffee v1]
+                coffeeV2Pod[Pod<br>coffee v2]
+                teaPod[Pod<br>tea]
+                teaPostPod[Pod<br>tea-post]
+            end
+        end
+    end
+
+  ngfSvc --> nginxPod
+  nginxPod --/coffee--> coffeeV1Pod
+  nginxPod --/coffee<br>header: version=v2<br>OR<br>/coffee?TEST=v2--> coffeeV2Pod
+  nginxPod --GET /tea--> teaPod
+  nginxPod --POST /tea--> teaPostPod
+  users --> ngfSvc
+
+  class clusterPadding,nsPadding,clusterPadding2 noBorder
+  class gwNS,appNs namespace
+  class ngfSvc,nginxPod nginxNode
+  class coffeeV1Pod,coffeeV2Pod coffeeNode
+  class teaPod,teaPostPod teaNode
+
+  classDef noBorder stroke:none,fill:none
+  classDef default fill:#FFFFFF,stroke:#000000
+  classDef namespace fill:#FFFFFF,stroke:#036ffc,stroke-dasharray: 5 5,text-align:center
+  classDef nginxNode fill:#b4e0ad,stroke:#2AA317
+  classDef coffeeNode fill:#edbd8c,stroke:#D9822B
+  classDef teaNode fill:#ff8f6a,stroke:#e5805f
+
+```
 
 The goal is to create a set of rules that will result in client requests being sent to specific backends based on the request attributes. In this diagram, we have two versions of the `coffee` service. Traffic for v1 needs to be directed to the old application, while traffic for v2 needs to be directed towards the new application. We also have two `tea` services, one that handles GET operations and one that handles POST operations. Both the `tea` and `coffee` applications share the same Gateway.
 
@@ -62,11 +98,11 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< note >}}
+{{< call-out "note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
-{{< /note >}}
+{{< /call-out >}}
 
 The [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) is typically deployed by the [application developer](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1). To deploy the `coffee` HTTPRoute:
 
@@ -137,14 +173,14 @@ This HTTPRoute has a few important properties:
   - Request with the path prefix `/coffee` and header `version=v2`.
   - Request with the path prefix `/coffee` and the query parameter `TEST=v2`.
 
-  {{< note >}} The match type is `Exact` for both header and query param, by default. {{< /note >}}
+  {{< call-out "note" >}} The match type is `Exact` for both header and query param, by default. {{< /call-out >}}
 
 - The third rule defines two matching conditions. If *either* of these conditions match, requests are forwarded to the `coffee-v3` Service:
 
   - Request with the path prefix `/coffee` and header `HeaderRegex=Header-[a-z]{1}`.
   - Request with the path prefix `/coffee` and the query parameter `QueryRegex=Query-[a-z]{1}`.
 
-  {{< note >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /note >}}
+  {{< call-out "note" >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /call-out >}}
 
   If you want both conditions to be required, you can define headers and queryParams in the same match object.
 
@@ -152,7 +188,7 @@ This HTTPRoute has a few important properties:
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our coffee applications.
 
-{{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
+{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
@@ -259,7 +295,7 @@ The properties of this HTTPRoute include:
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our tea applications.
 
-{{< note >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /note >}}
+{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
@@ -284,6 +320,67 @@ Server name: tea-post-b59b8596b-g586r
 ```
 
 This request should receive a response from the `tea-post` pod. Any other type of method, such as PATCH, will result in a `404 Not Found` response.
+
+## Path matching types
+
+NGINX Gateway Fabric supports three types of path matching:
+
+- **PathPrefix**: Matches based on a URL path prefix split by `/`. For example, `/coffee` matches `/coffee`, `/coffee/`, and `/coffee/latte`.
+- **Exact**: Matches the exact path in the request. For example, `/coffee` matches only `/coffee`.
+- **RegularExpression**: Matches based on RE2-compatible regular expressions. For example, `/coffee/[a-z]+` matches `/coffee/latte` and `/coffee/mocha` but not `/coffee/123`.
+
+{{< call-out "note" >}} Regular expression path matching uses the RE2 syntax. Patterns are automatically anchored to the beginning of the path. {{< /call-out >}}
+
+### Example: Using regex path matching
+
+To route requests based on regex patterns in the path, use `type: RegularExpression`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: coffee-regex
+spec:
+  parentRefs:
+  - name: cafe
+  hostnames:
+  - cafe.example.com
+  rules:
+  - matches:
+    - path:
+        type: RegularExpression
+        value: /coffee/[a-z]+
+    backendRefs:
+    - name: coffee-v1-svc
+      port: 80
+EOF
+```
+
+This configuration routes requests like `/coffee/latte` or `/coffee/mocha` to the `coffee-v1-svc` backend, while paths like `/coffee/123` or `/coffee` will not match.
+
+#### Send traffic using regex paths
+
+You can test the regex path matching with curl:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee/latte
+```
+
+This request should receive a response from the `coffee-v1` Pod since `/coffee/latte` matches the pattern `/coffee/[a-z]+`.
+
+```text
+Server address: 10.244.0.9:8080
+Server name: coffee-v1-76c7c85bbd-cf8nz
+```
+
+However, a request with a numeric path segment will not match:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee/123
+```
+
+This will result in a `404 Not Found` response since `/coffee/123` does not match the pattern `/coffee/[a-z]+`.
 
 ## Troubleshooting
 

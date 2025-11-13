@@ -15,8 +15,8 @@ HashiCorp's Vault is a popular solution for storing secrets. While F5 NGINX Inst
 
 To complete the steps in this guide, you need:
 
-- A working understanding of [Vault](https://www.vaultproject.io) and its operations.
-- A running version of [Vault 1.8.8 or later](https://www.vaultproject.io/docs/install).
+- A working understanding of [Vault](https://developer.hashicorp.com/vault) and its operations.
+- A running version of [Vault 1.8.8 or later](https://developer.hashicorp.com/vault/install).
 
 ---
 
@@ -24,7 +24,7 @@ To complete the steps in this guide, you need:
 
 Access to a Vault requires a renewable token.
 
-{{<note>}}If you attempt to use the Vault's Root Token, NGINX Instance Manager won't start the secrets driver, as that token is not renewable.{{</note>}}
+{{< call-out "note" >}}If you attempt to use the Vault's Root Token, NGINX Instance Manager won't start the secrets driver, as that token is not renewable.{{< /call-out >}}
 
 To create a periodic service token for NGINX Instance Manager:
 
@@ -40,7 +40,7 @@ To create a periodic service token for NGINX Instance Manager:
 
 2. Create a renewable service token. We recommend a period of 24 hours. NGINX Instance Manager renews tokens automatically, so shorter periods also work. Run the following, replacing `$VAULT_ROOT_TOKEN` with your Vault's Root Token and `$VAULT_ADDR` with your Vault's address:
 
-    ```bash
+    ```shell
     curl -X POST --header "X-Vault-Token: $VAULT_ROOT_TOKEN" \
       --data '{"policies": "nms_secrets", "period": "24h"}' \
       $VAULT_ADDR/v1/auth/token/create | jq -r ".auth.client_token" > periodic_token.txt
@@ -48,14 +48,14 @@ To create a periodic service token for NGINX Instance Manager:
 
 3. Verify the token works:
 
-    ```bash
+    ```shell
     curl --header "X-Vault-Token: $(cat periodic_token.txt)" \
       $VAULT_ADDR/v1/auth/token/lookup-self | jq .data
     ```
 
 4. If everything works, stop the `nms-core` service and configure NGINX Instance Manager to use the token:
 
-    ```bash
+    ```shell
     sudo systemctl stop nms-core
     sudo NMS_VAULT_TOKEN=$(cat periodic_token.txt) nms-core secret vault-token
     sudo systemctl restart nms-core
@@ -91,7 +91,7 @@ To create a periodic service token for NGINX Instance Manager:
 3. Save the changes and close the file.
 4. Restart the NGINX Instance Manager services to start using Vault:
 
-   ```bash
+   ```shell
    sudo systemctl restart nms
    ```
 
@@ -105,13 +105,13 @@ After setting up Vault, you can switch between local encryption and Vault.
 
 1. Stop NGINX Instance Manager:
 
-   ```bash
+   ```shell
    sudo systemctl stop nms
    ```
 
 2. Migrate secrets to local storage:
 
-   ```bash
+   ```shell
    sudo nms-core secret migrate-secrets-to-local
    ```
 
@@ -123,7 +123,7 @@ After setting up Vault, you can switch between local encryption and Vault.
 
 4. Restart NGINX Instance Manager:
 
-   ```bash
+   ```shell
    sudo systemctl start nms
    ```
 
@@ -133,13 +133,13 @@ To switch from using local encryption back to Vault:
 
 1. Stop NGINX Instance Manager:
 
-   ```bash
+   ```shell
    sudo systemctl stop nms
    ```
 
 2. Migrate secrets to Vault:
 
-   ```bash
+   ```shell
    sudo nms-core secret migrate-secrets-to-vault
    ```
 
@@ -151,7 +151,7 @@ To switch from using local encryption back to Vault:
 
 4. Restart NGINX Instance Manager:
 
-   ```bash
+   ```shell
    sudo systemctl start nms
    ```
 

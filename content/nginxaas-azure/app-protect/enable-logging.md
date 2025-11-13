@@ -1,5 +1,5 @@
 ---
-title: Enable App Protect WAF Logs
+title: Enable F5 WAF for NGINX Logs
 weight: 300
 url: /nginxaas/azure/app-protect/enable-logging/
 toc: true
@@ -9,11 +9,11 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports exporting NGINX App Protect logs to an Azure Storage account or to a Log Analytics workspace.
+F5 NGINXaaS for Azure (NGINXaaS) supports exporting F5 WAF for NGINX logs to an Azure Storage account or to a Log Analytics workspace.
 
 ## Setting up operational logs
 
-NGINX App Protect operational logs are sent to the NGINX error logs. See [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) to configure error logs.
+F5 WAF for NGINX operational logs are sent to the NGINX error logs. See [Enable NGINX Logs]({{< ref "/nginxaas-azure/monitoring/enable-logging/">}}) to configure error logs.
 
 ## Setting up security logs
 
@@ -81,7 +81,7 @@ NGINXaaS for Azure ships with several pre-compiled log configuration bundles. Mo
 
 The following table shows the path to the log configuration file that needs to be used with the app_protect_security_log directive:
 
- {{<bootstrap-table "table table-striped table-bordered">}}
+ {{< table >}}
   | Profile                     | Path                                         |
   |---------------------------- | -------------------------------------------- |
   | log_default                 | /etc/app_protect/conf/log_default.json |
@@ -91,9 +91,9 @@ The following table shows the path to the log configuration file that needs to b
   | log_grpc_all                | /etc/app_protect/conf/log_grpc_all.json |
   | log_grpc_illegal            | /etc/app_protect/conf/log_grpc_illegal.json |
   | log_grpc_blocked            | /etc/app_protect/conf/log_grpc_blocked.json |
-   {{</bootstrap-table>}}
+   {{< /table >}}
 
-To view the contents of the available log configuration, navigate to the azure portal and select the Log Configurations tab in the App Protect section.
+To view the contents of the available log configuration, navigate to the azure portal and select the Log Configurations tab in the F5 WAF for NGINX section.
 
 ### Logging Destinations
 
@@ -105,8 +105,8 @@ NGINXaaS for Azure supports a local syslog server running on port 5140. Syslogs 
 app_protect_security_log "/etc/app_protect/conf/log_all.json" syslog:server=localhost:5140;
 ```
 
-{{<note>}} When using a NGINXaaS syslog destination, the syslog server destination needs to match localhost:5140. Configuring log directives to other syslog locations will result in an error in the NGINX config.
-{{</note>}}
+{{< call-out "note" >}} When using a NGINXaaS syslog destination, the syslog server destination needs to match localhost:5140. Configuring log directives to other syslog locations will result in an error in the NGINX config.
+{{< /call-out >}}
 
 2. File Logging
 
@@ -116,15 +116,15 @@ NGINXaaS for Azure supports logging to a file path. Any logs written under `/var
 app_protect_security_log "/etc/app_protect/conf/log_all.json" /var/log/app_protect/security.log;
 ```
 
-{{<note>}}When using a file destination, the configured path for nginx security logs has to be within `/var/log/app_protect`. Configuring log directives to other file locations will result in an error in the NGINX config.
-{{</note>}}
+{{< call-out "note" >}}When using a file destination, the configured path for nginx security logs has to be within `/var/log/app_protect`. Configuring log directives to other file locations will result in an error in the NGINX config.
+{{< /call-out >}}
 
 
 ## Analyzing NGINX security logs in Azure Log Analytics workspaces.
 
 If the diagnostic setting destination details included a Logs Analytics workspace, logs appear in the "NGXSecurityLogs" table with the following columns:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
 | **Attribute**               | **Description** |
 |-----------------------------|-----------------|
 | **Location**                  | The location of the NGINXaaS resource.|
@@ -133,7 +133,7 @@ If the diagnostic setting destination details included a Logs Analytics workspac
 | **Tag**                 | The tag with which NGINX security logs are generated if syslog-based log configuration is used. |
 | **Facility**                 | The syslog facility that generates the NGINX security logs if syslog-based log configuration is being used. |
 | **Severity**                | The syslog severity with which NGINX security logs were generated if syslog-based log configuration is used. |
-{{</bootstrap-table>}}
+{{< /table >}}
 
 To view the raw data in the NGINX security log, run the following KQL query:
 ```
@@ -187,4 +187,4 @@ NGXSecurityLogs
 
 To add a visualization to a dashboard, select the **Pin to dashboard** icon in the top right of the log analytics workspace.
 
-{{<note>}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{</note>}}
+{{< call-out "note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}

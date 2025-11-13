@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) configurations can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.
+F5 NGINXaaS for Azure (NGINXaaS) configurations can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ You can find examples of Terraform configurations in the [NGINXaaS for Azure Sni
 
 To create a deployment and add a configuration, run the following commands:
 
-   ```bash
+   ```shell
    terraform init
    terraform plan
    terraform apply --auto-approve
@@ -31,7 +31,7 @@ To create a deployment and add a configuration, run the following commands:
 
 NGINX configuration files are uploaded and returned as base64 encoded data. We recommend using git or other version control systems to view human-readable differences between configuration files during `terraform plan`. Alternatively, you can decode the file contents to view the whole file. For example,
 
-```bash
+```shell
 $ terraform plan
 ...
 - config_file {
@@ -60,7 +60,7 @@ http {
 
 Once the deployment is no longer needed, run the following to clean up the deployment and related resources:
 
-   ```bash
+   ```shell
    terraform destroy --auto-approve
    ```
 
@@ -70,7 +70,7 @@ Once the deployment is no longer needed, run the following to clean up the deplo
 
 {{< include "/nginxaas-azure/terraform-resources.md" >}}
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:
@@ -81,4 +81,4 @@ to learn more about:
 - [Directives that cannot be overridden]({{< ref "overview.md#directives-that-cannot-be-overridden" >}})
 - [Configuration directives list]({{< ref "overview.md#configuration-directives-list" >}})
 
-{{< /tip >}}
+{{< /call-out >}}

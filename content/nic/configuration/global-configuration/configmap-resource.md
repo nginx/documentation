@@ -28,7 +28,7 @@ that make sense for your setup:
       client-max-body-size: "2m"
     ```
 
-    See the section [Summary of ConfigMap Keys](#summary-of-configmap-keys) for the explanation of the available ConfigMap keys (such as `proxy-connect-timeout` in this example).
+    See the section [Summary of ConfigMap Keys](#configmap-keys) for the explanation of the available ConfigMap keys (such as `proxy-connect-timeout` in this example).
 
 1. Create a new (or update the existing) ConfigMap resource:
 
@@ -60,17 +60,12 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 ### Ingress Controller (Unrelated to NGINX Configuration)
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*external-status-address* | Sets the address to be reported in the status of Ingress resources. Requires the *-report-status* command-line argument. Overrides the *-external-service* argument. | N/A | [Reporting resource status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status" >}}) |
-{{</bootstrap-table>}}
-
----
 
 ### General customization
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*proxy-connect-timeout* | Sets the value of the [proxy_connect_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout) and [grpc_connect_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_connect_timeout) directive. | *60s* |  |
@@ -80,6 +75,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*proxy-buffering* | Enables or disables [buffering of responses](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) from the proxied server. | *True* |  |
 |*proxy-buffers* | Sets the value of the [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directive. | Depends on the platform. |  |
 |*proxy-buffer-size* | Sets the value of the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [grpc_buffer_size](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size) directives. | Depends on the platform. |  |
+|*proxy-busy-buffers-size* | Sets the value of the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. | Depends on the platform. |  |
 |*proxy-max-temp-file-size* | Sets the value of the  [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive. | *1024m* |  |
 |*set-real-ip-from* | Sets the value of the [set_real_ip_from](https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from) directive. | N/A |  |
 |*real-ip-header* | Sets the value of the [real_ip_header](https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header) directive. | *X-Real-IP* |  |
@@ -103,13 +99,10 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*keepalive-requests* | Sets the value of the [keepalive_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests) directive. | *1000* |  |
 |*variables-hash-bucket-size* | Sets the value of the [variables_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#variables_hash_bucket_size) directive. | *256* |  |
 |*variables-hash-max-size* | Sets the value of the [variables-hash-max-size](https://nginx.org/en/docs/http/ngx_http_core_module.html#variables_hash_max_size) directive. | *1024* |  |
-{{</bootstrap-table>}}
 
----
 
 ### Logging
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*error-log-level* | Sets the global [error log level](https://nginx.org/en/docs/ngx_core_module.html#error_log) for NGINX. | *notice* |  |
@@ -121,64 +114,46 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*log-format-escaping* | Sets the characters escaping for the variables of the log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
 |*stream-log-format* | Sets the custom [log format](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#log_format) for TCP, UDP, and TLS Passthrough traffic. For convenience, it is possible to define the log format across multiple lines (each line separated by *\n*). In that case, the Ingress Controller will replace every *\n* character with a space character. All *'* characters must be escaped. | See the [template file](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/internal/configs/version1/nginx.tmpl). |  |
 |*stream-log-format-escaping* | Sets the characters escaping for the variables of the stream log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
-{{</bootstrap-table>}}
-
----
 
 ### Request URI/Header manipulation
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|ConfigMap Key | Description | Default | Example |
-| ---| ---| ---| --- |
-|*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |  |
-|*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |  |
-{{</bootstrap-table>}}
+|ConfigMap Key | Description | Default |
+| ---| ---| ---|
+|*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |
+|*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
 
----
 
 ### Auth and SSL/TLS
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|ConfigMap Key | Description | Default | Example |
-| ---| ---| ---| --- |
-|*redirect-to-https* | Sets the 301 redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115) | *False* |  |
-|*ssl-redirect* | Sets an unconditional 301 redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS. | *True* |  |
-|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. | *False* |  |
-|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. | *2592000* (1 month) |  |
-|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. | *False* |  |
-|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. | *False* |  |
-|*ssl-protocols* | Sets the value of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive. | *TLSv1 TLSv1.1 TLSv1.2* |  |
-|*ssl-prefer-server-ciphers* | Enables or disables the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) directive. | *False* |  |
-|*ssl-ciphers* | Sets the value of the [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive. | *HIGH:!aNULL:!MD5* |  |
-|*ssl-dhparam-file* | Sets the content of the dhparam file. The controller will create the file and set the value of the [ssl_dhparam](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam) directive with the path of the file. | N/A |  |
-{{</bootstrap-table>}}
-
----
+|ConfigMap Key | Description | Default |
+| ---| ---| ---|
+|*redirect-to-https* | Sets the 301 redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115) | *False* |
+|*ssl-redirect* | Sets an unconditional 301 redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS. | *True* |
+|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. | *False* |
+|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. | *2592000* (1 month) |
+|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. | *False* | 
+|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. | *False* |
+|*ssl-protocols* | Sets the value of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive. | *TLSv1 TLSv1.1 TLSv1.2* | 
+|*ssl-prefer-server-ciphers* | Enables or disables the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) directive. | *False* |
+|*ssl-ciphers* | Sets the value of the [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive. | *HIGH:!aNULL:!MD5* |
+|*ssl-dhparam-file* | Sets the content of the dhparam file. The controller will create the file and set the value of the [ssl_dhparam](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam) directive with the path of the file. | N/A |  
 
 ### Listeners
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*http2* | Enables HTTP/2 in servers with SSL enabled. | *False* |  |
 |*proxy-protocol* | Enables PROXY Protocol for incoming connections. | *False* | [Proxy Protocol](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/shared-examples/proxy-protocol). |
-{{</bootstrap-table>}}
-
----
 
 ### Backend services (Upstreams)
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|ConfigMap Key | Description | Default | Example |
-| ---| ---| ---| --- |
-|*lb-method* | Sets the [load balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify *"round_robin"*. | *"random two least_conn"* |  |
-|*max-fails* | Sets the value of the [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) parameter of the *server* directive. | *1* |  |
-|*upstream-zone-size* | Sets the size of the shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) for upstreams. For NGINX, the special value 0 disables the shared memory zones. For NGINX Plus, shared memory zones are required and cannot be disabled. The special value 0 will be ignored. | *256k* for NGINX, *512k* for NGINX Plus  |  |
-|*fail-timeout* | Sets the value of the [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) parameter of the *server* directive. | *10s* |  |
-|*keepalive* | Sets the value of the [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive. Note that *proxy_set_header Connection "";* is added to the generated configuration when the value > 0. | *0* |  |
-{{</bootstrap-table>}}
-
----
+|ConfigMap Key | Description | Default |
+| ---| ---| ---|
+|*lb-method* | Sets the [load balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify *"round_robin"*. | *"random two least_conn"* |
+|*max-fails* | Sets the value of the [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) parameter of the *server* directive. | *1* |
+|*upstream-zone-size* | Sets the size of the shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) for upstreams. For NGINX, the special value 0 disables the shared memory zones. For NGINX Plus, shared memory zones are required and cannot be disabled. The special value 0 will be ignored. | *256k* for NGINX, *512k* for NGINX Plus  |
+|*fail-timeout* | Sets the value of the [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) parameter of the *server* directive. | *10s* |
+|*keepalive* | Sets the value of the [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive. Note that *proxy_set_header Connection "";* is added to the generated configuration when the value > 0. | *0* |
 
 ### Zone Sync
 
@@ -188,28 +163,24 @@ Zone synchronization with TLS for NGINX Ingress Controller is not yet available 
 
 You will also need to manually add the headless service, such as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml).
 
-{{< caution >}}
+{{< call-out "caution"  >}}
 If you previously installed OIDC or used the `zone_sync` directive with `stream-snippets` in [v4.0.1](https://github.com/nginx/kubernetes-ingress/tree/v4.0.1) or earlier, and you plan to enable the `zone-sync` ConfigMap key, the `zone_sync` directive should be removed from `stream-snippets`.
 
 If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplicate in /etc/nginx/nginx.conf:164` it is likely due to `zone_sync` being enabled in both `stream-snippets` and the ConfigMap. Once upgraded, remove the [old headless service](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml) deployed for OIDC.
-{{< /caution >}}
+{{< /call-out >}}
 
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
-|ConfigMap Key | Description | Default | Example |
-| ---| ---| ---| --- |
-|*zone-sync* | Enables zone synchronization between NGINX Ingress Controller Pods. This autogenerates a [zone_sync_server](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_server) and a headless service using the `ReplicaSet` or `DaemonSet` name. Please note that this headless service will be automatically cleaned up when uninstalling via Helm or by removing the value from the ConfigMap. The headless service will need to be manually removed if the `controller.customConfigMap` value is set via Helm or the deployment is uninstalled via Manifests. Each Ingress Controller manages its own headless service.  NGINX Plus Required. | *False* |  |
-|*zone-sync-port* | Specifies the optional port on which NGINX Ingress Controller listens for zone sync traffic. NGINX Plus & `zone-sync` Required. | *12345* |  |
-|*zone-sync-resolver-addresses* | Configures optional addresses used in the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync. This field takes a comma separated list of addresses. NGINX Plus & `zone-sync` Required | `kube-dns.kube-system.svc.cluster.local` |  |
-|*zone-sync-resolver-ipv6* | Configures whether the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will look up IPv6 addresses. NGINX Plus & `zone-sync` Required | `true` |  |
-|*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |  |
-{{</bootstrap-table>}}
+|ConfigMap Key | Description | Default |
+| ---| ---| ---| 
+|*zone-sync* | Enables zone synchronization between NGINX Ingress Controller Pods. This autogenerates a [zone_sync_server](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_server) and a headless service using the `ReplicaSet`, `DaemonSet` or `StatefulSet` name. Please note that this headless service will be automatically cleaned up when uninstalling via Helm or by removing the value from the ConfigMap. The headless service will need to be manually removed if the `controller.customConfigMap` value is set via Helm or the deployment is uninstalled via Manifests. Each Ingress Controller manages its own headless service.  NGINX Plus Required. | *False* |
+|*zone-sync-port* | Specifies the optional port on which NGINX Ingress Controller listens for zone sync traffic. NGINX Plus & `zone-sync` Required. | *12345* |
+|*zone-sync-resolver-addresses* | Configures optional addresses used in the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync. This field takes a comma separated list of addresses. NGINX Plus & `zone-sync` Required | `kube-dns.kube-system.svc.cluster.local` |
+|*zone-sync-resolver-ipv6* | Configures whether the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will look up IPv6 addresses. NGINX Plus & `zone-sync` Required | `true` |
+|*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |
 
----
 
 ### Snippets and custom templates
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*main-snippets* | Sets a custom snippet in main context. | N/A |  |
@@ -221,13 +192,10 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*ingress-template* | Sets the NGINX configuration template for an Ingress resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
 |*virtualserver-template* | Sets the NGINX configuration template for an VirtualServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
 |*transportserver-template* | Sets the NGINX configuration template for a TransportServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}) |
-{{</bootstrap-table>}}
-
----
 
 ### Modules
 
-{{<bootstrap-table "table table-striped table-bordered table-responsive">}}
+{{< table >}}
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*otel-exporter-endpoint* | OTLP/gRPC endpoint that will accept [OpenTelemetry](https://opentelemetry.io) data. Set `otel-trace-in-http` to *"true"* to enable OpenTelemetry at the global level. | N/A | *"https://otel-collector:4317"* |
@@ -247,4 +215,4 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*app-protect-dos-log-format* | Sets the custom [log format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) for Dos Access log traffic. For convenience, it is possible to define the log format across multiple lines (each line separated by *\n*). In that case, the Ingress Controller will replace every *\n* character with a space character. All *'* characters must be escaped. | `, vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, policy_name=$app_protect_dos_policy_name, dos_version=$app_protect_dos_version, ip_tls=$remote_addr:$app_protect_dos_tls_fp,` | |
 |*app-protect-dos-log-format-escaping* | Sets the characters escaping for the variables of the stream log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
 |*app-protect-dos-arb-fqdn* | Sets the *app-protect-dos-arb-fqdn* [directive](/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn). | *svc-appprotect-dos-arb* |  |
-{{</bootstrap-table>}}
+{{< /table >}}

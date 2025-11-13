@@ -2,8 +2,8 @@
 title: Get started
 toc: true
 weight: 100
-type: how-to
-product: NGINX One
+nd-content-type: how-to
+nd-product: NGINX One
 ---
 
 The F5 NGINX One Console makes it easy to manage NGINX instances across locations and environments. The console lets you monitor and control your NGINX fleet from one place—you can check configurations, track performance metrics, identify security vulnerabilities, manage SSL certificates, and more. 
@@ -26,12 +26,10 @@ NGINX One offers the following key benefits:
 
 If you already have accessed F5 Distributed Cloud and have NGINX instances available, you can skip these sections and start to [Add your NGINX instances to NGINX One](#add-your-nginx-instances-to-nginx-one). Otherwise, take these steps to "onboard" yourself to NGINX One Console.
 
-<details>
-<summary>If you want to register for a trial</summary>
+{{< details summary="Register for a trial" >}}
 
 ### Register for a trial subscription
 
-<!-- Make sure to check with sales enablement -->
 If you want to register for a trial, navigate to https://account.f5.com/myf5. If needed, select **Sign up** to get an account. Then follow these steps:
 
 1. Navigate to https://account.f5.com/myf5 and log in.
@@ -39,43 +37,35 @@ If you want to register for a trial, navigate to https://account.f5.com/myf5. If
 1. Find **F5 NGINX**. Sign up for the trial. 
 1. The trial may require approval. 
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Confirm access to the F5 Distributed Cloud</summary>
+{{< details summary="Confirm access to the F5 Distributed Cloud" >}}
 
 ### Confirm access to the F5 Distributed Cloud
 
 {{< include "/nginx-one/cloud-access.md" >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Confirm access to NGINX One Console</summary>
+{{< details summary="Confirm access to NGINX One Console" >}}
 
 ### Confirm access to NGINX One Console
 
 {{< include "/nginx-one/cloud-access-nginx.md" >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Install an instance of NGINX</summary>
+{{< details summary="Install an NGINX instance" >}}
 
 ### Install an instance of NGINX
 
 {{< include "/nginx-one/install-nginx.md" >}}
 
-</details>
+{{< /details >}}
 
-<details>
-<summary>Make sure you're running a supported Linux distribution</summary>
-
-NGINX Agent sets up communication between your NGINX Instance and NGINX One Console. Make sure your Linux operating system is listed below. The installation script for NGINX Agent is compatible with these distributions and versions.
+{{< details summary="Check you're running a supported Linux distribution" >}}
 
 ### NGINX Agent installation script: supported distributions
-
-{{<bootstrap-table "table table-striped table-bordered">}}
 
 | Distribution                 | Version              | Architecture    |
 |------------------------------|----------------------|-----------------|
@@ -90,13 +80,7 @@ NGINX Agent sets up communication between your NGINX Instance and NGINX One Cons
 | Rocky Linux                  | 8, 9                 | x86_64, aarch64 |
 | Ubuntu                       | 20.04 LTS, 22.04 LTS | x86_64, aarch64 |
 
-{{</bootstrap-table>}}
-
-</span>
-
-</details>
-
----
+{{< /details >}}
 
 ## Add your NGINX instances to NGINX One
 
@@ -110,20 +94,9 @@ The following instructions include minimal information, sufficient to "get start
 
 ### Generate a data plane key {#generate-data-plane-key}
 
-A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One.
-
-To generate a data plane key:
-
-- **For a new key:** In the **Add Instance** pane, select **Generate Data Plane Key**.
-- **To reuse an existing key:** If you already have a data plane key and want to use it again, select **Use existing key**. Then, enter the key's value in the **Data Plane Key** box.
-
-{{<call-out "caution" "Data plane key guidelines" "fas fa-key" >}}
-Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
-
-Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#change-expiration-date" >}}).
+{{< include "/nginx-one/how-to/generate-data-plane-key.md" >}}
 
 [Revoking a data plane key]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) disconnects all instances that were registered with that key.
-{{</call-out>}}
 
 ### Add an instance
 
@@ -132,17 +105,17 @@ Depending on whether this is your first time using NGINX One Console or you've u
 - **For first-time users:** On the welcome screen, select **Add Instance**.
 - **For returning users:** If you've added instances previously and want to add more, select **Instances** on the left menu, then select **Add Instance**.
 
-
 ### Install NGINX Agent
 
 After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install NGINX Agent. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.
 
 {{<call-out "important" "Connecting to NGINX One" >}}
-NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IPs:
+NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IP address ranges:
 
-- `3.135.72.139`
-- `3.133.232.50`
-- `52.14.85.249`
+- `3.135.72.139/32`
+- `3.133.232.50/32`
+- `52.14.85.249/32`
+- `2600:1f16:19c8:d400::/62`
 {{</call-out>}}
 
 To install NGINX Agent on an NGINX instance:

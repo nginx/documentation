@@ -16,4 +16,4 @@ In the rightmost column of the **Inventory**, you will find the settings and the
 
 You can apply sorting, search, and filters to the **Inventory** to quickly find the system in question. You can search and filter by hostname, IP address, architecture, etc. You can use regular expressions with the search function.
 
-{{< note >}} When removing an object from monitoring, keep in mind that you also need to stop or uninstall NGINX Amplify Agent on the systems being removed; otherwise, the objects will reappear in the User Interface. Be sure to delete any system-specific alert rules too.{{< /note >}}
+{{< call-out "note" >}} When removing an object from monitoring, keep in mind that you also need to stop or uninstall NGINX Amplify Agent on the systems being removed; otherwise, the objects will reappear in the User Interface. Be sure to delete any system-specific alert rules too.{{< /call-out >}}

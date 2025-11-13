@@ -23,8 +23,8 @@ Before you start, make sure that:
 
 - NGINX Instance Manager is [installed]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}).
 
-  {{<note>}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
-  {{</note>}}
+  {{< call-out "note" >}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
+  {{< /call-out >}}
 - You have the JSON Web Token (JWT) from MyF5 Customer Portal. The [download instructions](#download-jwt) are below.
 - The [Docker Engine](https://docs.docker.com/engine/install/) command-line tool is installed.
 - Your private Docker registry is configured and running.
@@ -159,7 +159,7 @@ where:
  - `<my-docker-registry>` is the path to your private registry.
  - `<my-version-tag>` is the tag assigned when pushing to your registry.
 
-Full list of CLI flags with their default values can be found in [CLI flags and environment variables]({{< ref "/nms/nginx-agent/install-nginx-agent.md#cli-flags-and-environment-variables" >}}).
+Full list of CLI flags with their default values can be found in [CLI flags and environment variables]({{< ref "/agent/configuration/configuration-overview.md#cli-flags-and-environment-variables" >}}).
 <br>
 
 ## Connecting NGINX Plus from container to NGINX Instance Manager
@@ -198,4 +198,4 @@ If the instance appears as "unmanaged", check if:
 ## See also
 
 - [Deploying NGINX and NGINX Plus with Docker]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}})
-- [Full list of agent environment variables]({{< ref "/nms/nginx-agent/install-nginx-agent.md#cli-flags-and-environment-variables" >}})
+- [Full list of agent environment variables]({{< ref "/agent/configuration/configuration-overview.md#cli-flags-and-environment-variables" >}})

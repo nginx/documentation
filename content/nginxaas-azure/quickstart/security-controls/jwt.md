@@ -8,7 +8,7 @@ type:
 - how-to
 ---
 
-F5 NGINX as a Service for Azure (NGINXaaS) provides the option to control access to your resources using JWT authentication. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service. This document will explain how to validate tokens using Microsoft Entra as the remote service.
+F5 NGINXaaS for Azure (NGINXaaS) provides the option to control access to your resources using JWT authentication. With JWT authentication, a client provides a JSON Web Token, and the token will be validated against a local key file or a remote service. This document will explain how to validate tokens using Microsoft Entra as the remote service.
 
 For more information on JWT authentication with NGINX+, please refer to [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) and [NGINX Plus Setting up JWT Authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-jwt-authentication/).
 
@@ -40,9 +40,9 @@ server {
 }
 ```
 
-{{<warning>}}
+{{< call-out "warning" >}}
 When using the common Microsoft Entra signing keys you will need to increase the size of the subrequest output buffer as the key file will not fit in the default buffer.
-If the buffer is not sized properly, requests will result in empty responses. If [error logging is enabled]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}), you will see an error in the error log.{{</warning>}}
+If the buffer is not sized properly, requests will result in empty responses. If [error logging is enabled]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}), you will see an error in the error log.{{< /call-out >}}
 
 Enabling JWT key caching is recommended to achieve optimal performance. This can be done with the [auth_jwt_key_cache](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache) directive. Note that caching of keys obtained from variables is not supported. If you are using Microsoft Entra as an identity provider for JWT authentication, please be aware that [keys are rotated frequently](https://learn.microsoft.com/en-us/entra/identity-platform/signing-key-rollover), and it is recommended to take that into consideration before using it as a static file or caching the response from the subrequest.
 

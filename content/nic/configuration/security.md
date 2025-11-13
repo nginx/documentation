@@ -28,16 +28,19 @@ By default, the ServiceAccount has access to all Secret resources in the cluster
 
 [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) are required by NGINX Ingress Controller for certificates and privacy keys, which Kubernetes stores unencrypted by default. We recommend following the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) to store these Secrets using at-rest encryption.
 
-
 ## NGINX Ingress Controller recommendations
 
 ### Configure root filesystem as read-only
 
-{{< caution >}}
- This feature is compatible with [NGINX App Protect WAF v5]({{< ref "/nap-waf/v5/" >}}). It is not compatible with [NGINX App Protect WAF v4]({{< ref "/nap-waf/v4/" >}}) or [NGINX App Protect DoS]({{< ref "/nap-dos/" >}}).
-{{< /caution >}}
+{{< call-out "caution"  >}}
 
-NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when NGINX App Protect WAFv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.
+This feature has its own documentation in [F5 WAF for NGINX]({{< ref "/waf/configure/kubernetes-read-only.md" >}}) documentation.
+
+It is compatible with a Kubernetes deployment: it **is not** compatible with [F5 DoS for NGINX]({{< ref "/nap-dos/" >}}).
+
+{{< /call-out >}}
+
+NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when F5 WAF for NGINXv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.
 
 This is not enabled by default, but can be enabled with **Helm** using the [**readOnlyRootFilesystem**]({{< ref "/nic/installation/installing-nic/installation-with-helm.md#configuration" >}}) argument in security contexts on all containers: `nginx-ingress-controller`, `waf_enforcer` and `waf_config_mgr`.
 
@@ -53,9 +56,11 @@ The block below shows the code you will look for:
 #      volumes:
 #      - name: nginx-etc
 #        emptyDir: {}
-#      - name: nginx-cache
-#        emptyDir: {}
+#      - name: nginx-cache  # do not set this value in statefulset if volumeclaimtemplate is set
+#        emptyDir: {}       # do not set this value in statefulset if volumeclaimtemplate is set
 #      - name: nginx-lib
+#        emptyDir: {}
+#      - name: nginx-lib-state
 #        emptyDir: {}
 #      - name: nginx-log
 #        emptyDir: {}
@@ -73,6 +78,8 @@ The block below shows the code you will look for:
 #          name: nginx-cache
 #        - mountPath: /var/lib/nginx
 #          name: nginx-lib
+#        - mountPath: /var/lib/nginx/state
+#          name: nginx-lib-state
 #        - mountPath: /var/log/nginx
 #          name: nginx-log
 ```
@@ -90,9 +97,9 @@ Snippets allow raw NGINX configuration to be inserted into resources. They are i
 
 Snippets are disabled by default. To use snippets, set the [**enable-snippets**]({{< ref"/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument.
 
-{{< caution >}}
+{{< call-out "caution"  >}}
  Snippets are **always** enabled for ConfigMap.
-{{< /caution >}}
+{{< /call-out >}}
 
 For more information, read the following:
 

@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 A valid license is required to make full use of all the features in NGINX Instance Manager.

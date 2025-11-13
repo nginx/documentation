@@ -59,7 +59,7 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
 
 After setting up your environment, follow these steps to build the NGINX Ingress Controller image.
 
-{{< note >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /note >}}
+{{< call-out "note" >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /call-out >}}
 
 ### For NGINX
 
@@ -103,7 +103,7 @@ make debian-image-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=dow
 
 **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_](#makefile-details). This version number is used for tracking and deployment purposes.
 
-{{<note>}} If a patch for NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{</note>}}
+{{< call-out "note" >}} If a patch for NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ---
 
@@ -135,61 +135,60 @@ This section provides comprehensive information on the targets and variables ava
 
 ### Key Makefile targets {#key-makefile-targets}
 
-{{<tip>}}To view available _Makefile_ targets, run `make` with no target or type `make help`.{{</tip>}}
+{{< call-out "tip" >}}To view available _Makefile_ targets, run `make` with no target or type `make help`.{{< /call-out >}}
 
 Key targets include:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| <div style="width:200px">Target | Description                                                                                                                                                                                                  |
+| Target | Description                                                                                                                                                                                                  |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _build_                       | Creates the NGINX Ingress Controller binary with your local Go environment.                                                                                                                                  |
 | _alpine-image_                | Builds an Alpine-based image with NGINX.                                                                                                                                                                     |
 | _alpine-image-plus_           | Builds an Alpine-based image with NGINX Plus.                                                                                                                                                                |
 | _alpine-image-plus-fips_      | Builds an Alpine-based image with NGINX Plus and FIPS.                                                                                                                                                       |
-| _alpine-image-nap-v5-plus-fips_      | Builds an Alpine-based image with NGINX Plus, the [NGINX App Protect WAF v5](/nginx-app-protect/) module and FIPS.                                                                                                                                                       |
+| _alpine-image-nap-v5-plus-fips_      | Builds an Alpine-based image with NGINX Plus, the [F5 WAF for NGINX v5](/nginx-app-protect/) module and FIPS.                                                                                                                                                       |
 | _debian-image_                | Builds a Debian-based image with NGINX.                                                                                                                                                                      |
 | _debian-image-plus_           | Builds a Debian-based image with NGINX Plus.                                                                                                                                                                 |
-| _debian-image-nap-plus_       | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect/) module.                                                                                                     |
-| _debian-image-nap-v5-plus_       | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect/) module.                                                                                                     |
-| _debian-image-dos-plus_       | Builds a Debian-based image with NGINX Plus and the [NGINX App Protect DoS](/nginx-app-protect-dos/) module.                                                                                                 |
-| _debian-image-nap-dos-plus_   | Builds a Debian-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect/) and [NGINX App Protect DoS](/nginx-app-protect-dos/) modules.                                                      |
+| _debian-image-nap-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect/) module.                                                                                                     |
+| _debian-image-nap-v5-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect/) module.                                                                                                     |
+| _debian-image-dos-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module.                                                                                                 |
+| _debian-image-nap-dos-plus_   | Builds a Debian-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect/) and [F5 DoS for NGINX](/nginx-app-protect-dos/) modules.                                                      |
 | _ubi-image_                   | Builds a UBI-based image with NGINX for [OpenShift](https://www.openshift.com/) clusters.                                                                                                                    |
 | _ubi-image-plus_              | Builds a UBI-based image with NGINX Plus for [OpenShift](https://www.openshift.com/) clusters.                                                                                                               |
-| _ubi-image-nap-plus_          | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF](/nginx-app-protect/) module for [OpenShift](https://www.openshift.com/) clusters.                                                   |
-| _ubi-image-nap-v5-plus_          | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect WAF v5](/nginx-app-protect/) module for [OpenShift](https://www.openshift.com/) clusters.                                                   |
-| _ubi-image-dos-plus_          | Builds a UBI-based image with NGINX Plus and the [NGINX App Protect DoS](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.                                               |
-| _ubi-image-nap-dos-plus_      | <p>Builds a UBI-based image with NGINX Plus, [NGINX App Protect WAF](/nginx-app-protect/) and the [NGINX App Protect DoS](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.</p> <p> **Important**: Save your RHEL organization and activation keys in a file named _rhel_license_ at the project root.</p> <p> For instance:</p> <pre>RHEL_ORGANIZATION=1111111<br />RHEL_ACTIVATION_KEY=your-key</pre>|
-{{</bootstrap-table>}}
+| _ubi-image-nap-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect/) module for [OpenShift](https://www.openshift.com/) clusters.                                                   |
+| _ubi-image-nap-v5-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect/) module for [OpenShift](https://www.openshift.com/) clusters.                                                   |
+| _ubi-image-dos-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.                                               |
+| _ubi-image-nap-dos-plus_      | <p>Builds a UBI-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect/) and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.|
 
----
+{{< call-out "important" >}}
+
+For RHEL, save your organization and activation keys in a file named _rhel_license_ at the project root. Ensure they are on separate lines, such as:
+
+- RHEL_ORGANIZATION=1111111 
+- RHEL_ACTIVATION_KEY=your-key
+
+{{< /call-out >}}
 
 ### Additional useful targets {#other-makefile-targets}
 
 A few other useful targets:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| <div style="width:200px">Target</div> | Description   |
+| Target | Description   |
 |---------------------------------------|---------------|
 | _push_                              | Pushes the built image to the Docker registry. Configures with `PREFIX` and `TAG`.  |
 | _all_                               | Runs `test`, `lint`, `verify-codegen`, `update-crds`, and `debian-image`. Stops and reports an error if any of these targets fail.  |
 | _test_                              | Runs unit tests.  |
-{{</bootstrap-table>}}
 
 ### Makefile variables you can customize {#makefile-variables}
 
 The _Makefile_ includes several key variables. You have the option to either modify these variables directly in the _Makefile_ or override them when you run the `make` command.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-| <div style="width:200px">Variable</div> | Description   |
+| Variable | Description   |
 |-----------------------------------------|---------------|
 | _ARCH_                                | Defines the architecture for the image and binary. The default is `amd64`, but you can also use `arm64`. |
 | _PREFIX_                              | Gives the image its name. The default is `nginx/nginx-ingress`.  |
 | _TAG_                                 | Adds a tag to the image. This is often the version of NGINX Ingress Controller.   |
 | _DOCKER\_BUILD\_OPTIONS_                | Allows for additional [options](https://docs.docker.com/engine/reference/commandline/build/#options) during the `docker build` process, like `--pull`.  |
 | _TARGET_                              | <p>Determines the build environment. NGINX Ingress Controller compiles locally in a Golang environment by default. Ensure the NGINX Ingress Controller repo resides in your `$GOPATH` if you select this option.</p><p>Alternatively, you can set `TARGET=container` to build using a Docker [Golang](https://hub.docker.com/_/golang/) container. To skip compiling the binary if you're on a specific tag or the latest `main` branch commit, set `TARGET=download`.</p>  |
-{{</bootstrap-table>}}
-
----
 
 ## Alternatives to building your own image {#pre-built-images}
 

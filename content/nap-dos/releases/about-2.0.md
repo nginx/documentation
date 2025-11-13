@@ -1,11 +1,11 @@
 ---
-title: NGINX App Protect DoS 2.0
+title: F5 DoS for NGINX 2.0
 toc: true
 weight: 220
 nd-docs: DOCS-674
 ---
 
-Here you can find the release information for F5 NGINX App Protect DoS v2.0. NGINX App Protect DoS provides behavioral protection against Denial of Service (DoS) for your web applications.
+Here you can find the release information for F5 F5 DoS for NGINX v2.0. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
 
 ## Release 2.0
 
@@ -72,7 +72,7 @@ October 20, 2021
 
 - gRPC and HTTP/2 protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for these use cases, otherwise, the attack will not be detected.
 
-- gRPC and HTTP/2 protection are available only on Debian 10, Ubuntu 18.04 and Ubuntu 20.04 platforms. For the rest of the platforms, NGINX App Protect DoS does not protect gRPC and HTTP/2 services. The traffic is bypassed.
+- gRPC and HTTP/2 protection are available only on Debian 10, Ubuntu 18.04 and Ubuntu 20.04 platforms. For the rest of the platforms, F5 DoS for NGINX does not protect gRPC and HTTP/2 services. The traffic is bypassed.
 
 - [TLS fingerprint]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#policy-directive-app_protect_dos_policy_file" >}}) feature is not used in CentOS 7.4 due to the old OpenSSL version. The required OpenSSL version is 1.1.1 or higher.
 
@@ -85,4 +85,4 @@ October 20, 2021
   - `successful_responses` instead of `successful_transactions` <br>
   - `unsuccessful_requests` instead of `unsuccessful_requests_count`.
 
-- In the case of an upgrade from the previous `app-protect-dos` version, it's necessary to remove the old `nginx-plus` and install the new `app-protect-dos` that will install a correspondent version of `nginx-plus` as described in the [NGINX App Protect DoS Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).
+- In the case of an upgrade from the previous `app-protect-dos` version, it's necessary to remove the old `nginx-plus` and install the new `app-protect-dos` that will install a correspondent version of `nginx-plus` as described in the [F5 DoS for NGINX Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}).

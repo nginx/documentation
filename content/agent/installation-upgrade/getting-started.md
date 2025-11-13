@@ -71,7 +71,7 @@ tls:
   skip_verify: true
 ```
 
-For more information, see [Agent Protocol Definitions and Documentation](https://github.com/nginx/agent/tree/main/docs/proto/README.md).
+For more information, see [Agent Protocol Definitions and Documentation](https://github.com/nginx/agent/blob/dev-v2/docs/proto/README.md).
 
 ### Enable the REST interface
 
@@ -152,7 +152,7 @@ Open a web browser to view the mock control plane at [http://localhost:54790](ht
 - **configs/raw** - shows the actual configuration as it would live on the data plane
 - **metrics** - shows a buffer of metrics sent to the management plane (similar to what will be sent back in the REST API)
 
-For more NGINX Agent use cases, refer to the [NGINX Agent SDK examples](https://github.com/nginx/agent/tree/main/sdk/examples).
+For more NGINX Agent use cases, refer to the [NGINX Agent SDK examples](https://github.com/nginx/agent/tree/dev-v2/sdk/examples).
 
 ## Start and Enable Start on Boot
 
@@ -172,8 +172,8 @@ sudo systemctl enable nginx-agent
 
 NGINX Agent uses formatted log files to collect metrics. Expanding log formats and instance counts will also increase the size of the NGINX Agent log files. We recommend adding a separate partition for `/var/log/nginx-agent`.
 
-{{< important >}}
+{{< call-out "important" >}}
 Without log rotation or storage on a separate partition, log files could use up all the free drive space and cause your system to become unresponsive to certain services.
 
 For more information, see [NGINX Agent Log Rotation]({{< ref "/agent/configuration/configuration-overview.md#nginx-agent-log-rotation" >}}).
-{{< /important >}}
+{{< /call-out >}}

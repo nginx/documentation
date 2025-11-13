@@ -40,10 +40,10 @@ To create an instance group:
 
 5. Select **Save**.
 
-{{<note>}}
+{{< call-out "note" >}}
 When an Instance Group is initially created via the UI/API, its NGINX config will be empty. Adding an Instance to the Instance Group will populated
 the Instance Group NGINX nginx with the first member's NGINX config.
-{{</note>}}
+{{< /call-out >}}
 
 ---
 
@@ -62,11 +62,11 @@ You can assign NGINX instances to instance groups in the following ways:
 
 ### Specify Instance Group in Agent-Dynamic.Conf
 
-You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< ref "/nms/nginx-agent/install-nginx-agent.md" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
+You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< ref "/nginx-one/agent/install-upgrade/" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
 
-{{<note>}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{</note>}}
+{{< call-out "note" >}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
 
-{{< important >}}If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.{{< /important >}}
+{{< call-out "important" "Important:" >}}If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.{{< /call-out >}}
 
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
 2. Open the `/var/lib/nginx-agent/agent-dynamic.conf` for editing.
@@ -97,7 +97,7 @@ You can easily add instances to a default instance group that you specify. To do
 4. Save the changes and exit the editor.
 5. Restart the NGINX Agent:
 
-    ```bash
+    ```shell
     sudo systemctl restart nginx-agent
     ```
 
@@ -118,25 +118,25 @@ To add an instance to an instance group when installing the NGINX Agent:
 1. Open a secure shell (SSH) connection to the NGINX instance and log in.
 2. Download the NGINX Agent installation script:
 
-    ```bash
+    ```shell
     curl https://<NMS_FQDN>/install/nginx-agent > install.sh
     ```
 
 3. Install the NGINX Agent and specify the instance group by using the `--instance_group` flag:
 
-    ```bash
+    ```shell
     sudo sh ./install.sh --instance-group <group name>
     ```
 
     For example, the following command adds the instance to an instance group called `nginx-01`.
 
-    ```bash
+    ```shell
     sudo sh install.sh --instance-group nginx-01
     ```
 
-{{< important >}}
+{{< call-out "important" "Important:" >}}
 If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's NGINX config as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.
-{{< /important >}}
+{{< /call-out >}}
 
 {{%/tab%}}
 {{</tabs>}}
@@ -193,7 +193,7 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 4. Save the changes and exit the editor.
 5. Restart the NGINX Agent:
 
-    ```bash
+    ```shell
     sudo systemctl restart nginx-agent
     ```
 
@@ -203,9 +203,9 @@ If the instance group you deleted was specified in the `agent-dynamic.conf` file
 
 See [Set Up RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}), for detail information on setting up role-based access control (RBAC) for Instance Groups.
 
-{{<note>}}
+{{< call-out "note" >}}
 Members of Instance Group automatically inherit role-based access control (RBAC) permissions from their parent.
-{{</note>}}
+{{< /call-out >}}
 
 ## Publishing to Instance Groups
 
@@ -221,9 +221,9 @@ A NGINX config update to Instance Group is considered "successful" with one of t
 - Instance Group does not have a member Instance online
 - Any Instance Group member reported "successful" to the NGINX config update
 
-{{<note>}}
+{{< call-out "note" >}}
 Check the Instance details page for the last NGINX config publish status.
-{{</note>}}
+{{< /call-out >}}
 
 ### Common Usage of Instance Groups
 

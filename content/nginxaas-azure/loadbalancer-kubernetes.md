@@ -1,6 +1,6 @@
 ---
 title: NGINXaaS Load Balancer for Kubernetes
-weight: 250
+weight: 275
 toc: true
 url: /nginxaas/azure/loadbalancer-kubernetes/
 type:
@@ -46,7 +46,7 @@ The NLK controller monitors [Kubernetes Services](https://kubernetes.io/docs/con
 
 ### Example use cases
 
-- You can use NGINXaaS for Azure to enforce rate limiting and application security with NGINX App Protect, then forward all accepted traffic to your Kubernetes applications.
+- You can use NGINXaaS for Azure to enforce rate limiting and application security with F5 WAF for NGINX, then forward all accepted traffic to your Kubernetes applications.
 - You can use NGINXaaS for Azure to receive traffic on `api.example.com` and route requests by URL path - for example, forwarding `/login` to a Kubernetes-based login service, `/graph` to a Kubernetes-hosted graph service, and `/process` to an application server on a standalone VM.
 
 ## Getting Started
@@ -69,7 +69,7 @@ The steps in this section must be completed once for each new setup. We will ins
 
 #### Create an NGINXaaS data plane API key
 
-{{<note>}}
+{{< call-out "note" >}}
 The data plane API key has the following requirements:
 
 - The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
@@ -82,7 +82,7 @@ The data plane API key has the following requirements:
 
 A good example of an API key that will satisfy the requirements is UUIDv4.
 
-{{</note>}}
+{{< /call-out >}}
 
 The data plane API key can be created using the Azure CLI or portal.
 
@@ -95,15 +95,15 @@ The data plane API key can be created using the Azure CLI or portal.
 1. Select the **Add API Key** button.
 1. Copy the value of the new API key.
 
-{{<note>}}
+{{< call-out "note" >}}
 Make sure to write down the key value in a safe location after creation, as you cannot retrieve it again. If you lose the generated value, delete the existing key and create a new one.
-{{</note>}}
+{{< /call-out >}}
 
 ##### Create an NGINXaaS data plane API key using the Azure CLI
 
 Set shell variables about the name of the NGINXaaS you've already created:
 
-```bash
+```shell
 ## Customize this to provide the details about my already created NGINXaaS deployment
 nginxName=myNginx
 nginxGroup=myNginxGroup
@@ -111,7 +111,7 @@ nginxGroup=myNginxGroup
 
 Generate a new random data plane API key:
 
-```bash
+```shell
 # Generate a new random key or specify a value for it.
 keyName=myKey
 keyValue=$(uuidgen --random)
@@ -119,7 +119,7 @@ keyValue=$(uuidgen --random)
 
 Create the key for your NGINXaaS deployment:
 
-```bash
+```shell
 az nginx deployment api-key create --name $keyName --secret-text $keyValue --deployment-name $nginxName --resource-group  $nginxGroup
 ```
 
@@ -135,7 +135,7 @@ The data plane API endpoint can be retrieved using the Azure CLI or portal.
 
 ##### View NGINXaaS data plane API endpoint using the Azure CLI
 
-```bash
+```shell
 dataplaneAPIEndpoint=$(az nginx deployment show -g "$nginxGroup" -n "$nginxName" --query properties.dataplaneApiEndpoint -o tsv)
 ```
 
@@ -147,8 +147,8 @@ The NLK controller can be installed in your Kubernetes cluster using either Helm
 
 Install the NLK controller using `helm install`. Be sure your kubectl context is pointed at the desired cluster.
 
-```bash
-helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.1.1 \
+```shell
+helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.4 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
   --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus" \
   --set "nlk.config.tls.mode=ca-tls"
@@ -158,7 +158,7 @@ helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-ku
 
 Install the NLK controller using `az k8s-extension`.
 
-```bash
+```shell
 ## Customize this to provide the details about my already created AKS cluster
 aksName=myCluster
 aksGroup=myClusterGroup
@@ -180,24 +180,27 @@ az k8s-extension create \
 
 ##### Install the AKS Extension using the Azure portal
 
-You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps.
+You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps. 
+{{< call-out "note" >}}
+If you are creating a new AKS cluster as part of this installation, note that we will enable the [Azure CNI Node Subnet plugin](https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview). This causes Cluster IP addresses to be exposed within your VNET.
+{{< /call-out >}}
 
 - Select **Get it now**.
 - Select **Continue** to proceed with the installation.
 - On the **Basics** tab, provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
 
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
   | Subscription                | Select the appropriate Azure subscription. |
   | Resource group              | Select the AKS cluster's resource group.   |
-  {{</bootstrap-table>}}
+  {{< /table >}}
 
 - Select **Cluster Details**, and provide the AKS cluster name. You can select an existing AKS cluster or create a new one.
 - Select **Application Details**, and provide the following information:
 
-  {{<bootstrap-table "table table-striped table-bordered">}}
+  {{< table >}}
 
   | Field                       | Description                |
   |---------------------------- | ---------------------------- |
@@ -206,14 +209,14 @@ You can also install the NLK controller AKS extension by navigating to [F5 NGINX
   | Allow minor version upgrades of extension   | Select whether to allow the extension to be upgraded automatically to the latest minor version.   |
   | NGINXaaS Dataplane API Key                  | Provide the previously generated data plane API key value: `{keyValue}`                            |
   | NGINXaaS Dataplane API Endpoint             | Provide the previously retrieved data plane API endpoint value:  `{dataplaneAPIEndpoint}nplus`     |
-  {{</bootstrap-table>}}
+  {{< /table >}}
 
 - Select **Review + Create** to continue.
 - Azure will validate the extension settings. This page will provide a summary of the provided information. Select **Create**.
 
-{{<note>}}
+{{< call-out "note" >}}
 The NGINXaaS data plane API that NLK uses is mounted at `${dataplaneAPIEndpoint}nplus`. For example, if the data plane API endpoint is `https://mynginx-75b3bf22a555.eastus2.nginxaas.net/` then the value for `nlk.config.nginxHosts` should be `https://mynginx-75b3bf22a555.eastus2.nginxaas.net/nplus`.
-{{</note>}}
+{{< /call-out >}}
 
 ### Create an NGINX configuration with dynamic upstream
 
@@ -251,18 +254,18 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
 - Add the annotation: `nginx.com/nginxaas: nginxaas` to mark the service to be monitored by NLK.
 - Choose one of the following `Service` types:
   - `NodePort`: To route external traffic into the cluster using a well defined port exposed on each AKS worker node.
-  - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET.
+  - `ClusterIP`: To route traffic to pods directly if you are running an Azure Container Networking Interface (CNI) that lets you expose the pods on the Azure VNET. If you created a new AKS cluster through the AKS Extenstion installation, this is configured automatically.
   - `LoadBalancer`: To route traffic to the cluster's external load balancer. The load balancer routes traffic into the cluster as normal.
 - The port name must be formatted as `{{NGINX Context}}-{{NGINX upstream name}}`. For example:
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
 
-{{< note >}}
+{{< call-out "note" >}}
 **NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
 
 - Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
 - Modify the `service.httpPort.name` or `service.httpsPort.name` values to provide the expected port name format, as above.
-{{</ note >}}
+{{< /call-out >}}
 
 The following example uses a service of type `NodePort`:
 
@@ -345,10 +348,10 @@ flowchart TB
    accDescr:A diagram showing NGINXaaS directing separate user GET requests for `/tea` and `/coffee` to respective Kubernetes-based services "TeaSvc" and "CoffeeSvc" that are running in separate Azure Kubernetes Clusters. An NLK controller in each cluster is independently updating the NGINXaaS with dynamic upstream configuration.
 ```
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - Configuring multiple NLK controllers to update the same upstream isn't supported and will result in unpredictable behavior.
-{{</note>}}
+{{< /call-out >}}
 
 ### Multiple NGINXaaS deployments
 
@@ -356,10 +359,10 @@ Multiple NLK controllers can be installed in the same AKS cluster to update sepa
 
 Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`. Each NLK will only watch services that have the matching annotation.
 
-{{<note>}}
+{{< call-out "note" >}}
 
 - Consider using `helm` to install multiple NLK controllers on an AKS cluster. Installing multiple copies of the controller on the same AKS cluster is not supported via the [AKS Extension](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview).
-{{</note>}}
+{{< /call-out >}}
 
 ## Troubleshooting
 

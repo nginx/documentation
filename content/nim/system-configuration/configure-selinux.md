@@ -15,7 +15,7 @@ You can use the optional SELinux policy module included in the package to secure
 
 The scope of the SELinux policy allows NGINX Instance Manager to perform all operations needed to support the default configuration. This includes inter-process communication on the default Unix sockets and TCP as an alternative. Other changes may require manual adjustments to the default policy for the application to work.
 
-{{< important >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /important >}}
+{{< call-out "important" >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /call-out >}}
 
 ---
 
@@ -27,7 +27,7 @@ Take these preparatory steps before configuring SELinux:
 2. Install the tools `load_policy`, `semodule`, and `restorecon`.
 3. [Install NGINX Instance Manager]({{< ref "/nim/deploy/_index.md" >}}) with SELinux module files in place.
 
-{{< important >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /important >}}
+{{< call-out "important" >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /call-out >}}
 
 ---
 
@@ -47,14 +47,14 @@ To load the SELinux policy included with NGINX Instance Manager:
 
 1. Load the NGINX Instance Manager policy:
 
-    ```bash
+    ```shell
     sudo semodule -n -i /usr/share/selinux/packages/nms.pp
     sudo /usr/sbin/load_policy
     ```
 
 2. Restore default SELinux labels for related files and directories:
 
-    ```bash
+    ```shell
     sudo restorecon -F -R /usr/bin/nms-core
     sudo restorecon -F -R /usr/bin/nms-dpm
     sudo restorecon -F -R /usr/bin/nms-ingestion
@@ -76,7 +76,7 @@ To load the SELinux policy included with NGINX Instance Manager:
 
 3. Restart NGINX Instance Manager services:
 
-    ```bash
+    ```shell
     sudo systemctl restart nms
     ```
 
@@ -86,21 +86,21 @@ NGINX Instance Manager uses the `nms_t` context in the policy module. To add new
 
 1. Add TCP ports `10000` and `11000` to the `nms_port_t` context:
 
-    ```bash
+    ```shell
     sudo semanage port -a -t nms_port_t -p tcp 10000
     sudo semanage port -a -t nms_port_t -p tcp 11000
     ```
 
 2. If the port context is already defined, use `-m` to modify it:
 
-    ```bash
+    ```shell
     sudo semanage port -m -t nms_port_t -p tcp 10000
     sudo semanage port -m -t nms_port_t -p tcp 11000
     ```
 
 3. Verify the port has the correct label:
 
-    ```bash
+    ```shell
     seinfo --portcon=10000
     seinfo --portcon=11000
     ```
@@ -109,7 +109,7 @@ NGINX Instance Manager uses the `nms_t` context in the policy module. To add new
 
 If you uninstall NGINX Instance Manager, remove the associated ports:
 
-```bash
+```shell
 sudo semanage port -d -t nms_t 10000
 sudo semanage port -d -t nms_t 11000
 ```

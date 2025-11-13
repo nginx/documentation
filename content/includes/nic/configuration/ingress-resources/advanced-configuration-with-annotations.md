@@ -86,7 +86,7 @@ Events:
 
 Note how the events section includes a Warning event with the Rejected reason.
 
-{{< note >}} If you make an existing Ingress invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX. {{< /note >}}
+{{< call-out "note" >}} If you make an existing Ingress invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX. {{< /call-out >}}
 
 The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
@@ -94,7 +94,7 @@ The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
 The table below summarizes the available annotations.
 
-{{< note >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. {{< /note >}}
+{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. {{< /call-out >}}
 
 ### General customization
 
@@ -108,6 +108,7 @@ The table below summarizes the available annotations.
 | *nginx.org/proxy-buffering* | *proxy-buffering* | Enables or disables [buffering of responses](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) from the proxied server. | *True* |  |
 | *nginx.org/proxy-buffers* | *proxy-buffers* | Sets the value of the [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directive. | Depends on the platform. |  |
 | *nginx.org/proxy-buffer-size* | *proxy-buffer-size* | Sets the value of the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [grpc_buffer_size](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size) directives. | Depends on the platform. |  |
+| *nginx.org/proxy-busy-buffers-size* | *proxy-busy-buffers-size* | Sets the value of the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. | Depends on the platform. |  |
 | *nginx.org/proxy-max-temp-file-size* | *proxy-max-temp-file-size* | Sets the value of the  [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive. | *1024m* |  |
 | *nginx.org/server-tokens* | *server-tokens* | Enables or disables the [server_tokens](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) directive. Additionally, with the NGINX Plus, you can specify a custom string value, including the empty string value, which disables the emission of the “Server” field. | *True* |  |
 | *nginx.org/path-regex* | N/A | Enables regular expression modifiers for Ingress path parameter. This translates to the NGINX [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive. You can specify one of these values: "case_sensitive", "case_insensitive", or "exact". The annotation is applied to the entire Ingress resource and its paths. While using Master and Minion Ingresses i.e. Mergeable Ingresses, this annotation can be specified on Minion types. The `path-regex` annotation specified on Master is ignored, and has no effect on paths defined on Minions.   | N/A |  [path-regex](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/path-regex) |
@@ -200,9 +201,9 @@ The table below summarizes the available annotations.
 | *nginx.org/server-snippets* | *server-snippets* | Sets a custom snippet in server context. | N/A |  |
 {{</bootstrap-table>}}
 
-### App Protect WAF {#app-protect}
+### F5 WAF for NGINX {#app-protect}
 
-{{< note >}} The App Protect annotations only work if the App Protect WAF module is [installed]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}). {{< /note >}}
+{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< relref "installation/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |
@@ -216,7 +217,7 @@ The table below summarizes the available annotations.
 
 ### App Protect DoS
 
-{{< note >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< relref "installation/integrations/app-protect-dos/installation.md" >}}). {{< /note >}}
+{{< call-out "note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< relref "installation/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered table-responsive">}}
 |Annotation | ConfigMap Key | Description | Default | Example |

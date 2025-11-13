@@ -138,4 +138,4 @@ publish_config_to_instance "$@"
 
 To publish configuration changes, modify the configuration files (`nginx.conf`) and push your changes upstream to trigger the pipeline. The process is the same whether you are pushing changes to individual instances or to instance groups. You can modify the script and pipeline rules based on whether you're targeting instances or instance groups.
 
-{{< note >}}You can find a sample template to modify as required in our [public repository](https://github.com/nginxinc/git-automation/).{{</note>}}
+{{< call-out "note" >}}You can find a sample template to modify as required in our [public repository](https://github.com/nginxinc/git-automation/).{{< /call-out >}}

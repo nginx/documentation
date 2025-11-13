@@ -299,7 +299,7 @@ Format: `[1024 - 65535]` (default `8080`)
 
 ### -proxy `<string>`
 
-{{< warning >}} This argument is intended for testing purposes only. {{< /warning >}}
+{{< call-out "warning" >}} This argument is intended for testing purposes only. {{< /call-out >}}
 
 Use a proxy server to connect to Kubernetes API started with `kubectl proxy`.
 
@@ -655,6 +655,20 @@ The default value is `false`.
 - If the argument is set, but `nginx-plus` is set to false, NGINX Ingress Controller will ignore the flag.
 
 <a name="cmdoption-weight-changes-dynamic-reload"></a>
+
+---
+
+### -enable-directive-autoadjust
+
+Automatically adjusts NGINX buffer directives to prevent configuration errors.
+
+The default value is `false`.
+
+When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffer_size`, and `proxy_busy_buffers_size` to ensure they work together properly and NGINX can start successfully.
+
+More explanation about this feature can be found in the guide [here]({{< ref "/nic/configuration/proxy-buffers-configuration.md" >}}).
+
+<a name="cmdoption-enable-directive-autoadjust"></a>
 
 ---
 

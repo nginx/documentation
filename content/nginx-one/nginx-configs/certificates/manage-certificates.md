@@ -1,5 +1,5 @@
 ---
-nd-docs: null
+nd-docs: DOCS-000
 title: Manage certificates
 toc: true
 weight: 100
@@ -38,11 +38,11 @@ You can manage the certificates for:
 - For all instances that are members of a [Config Sync Group]({{< ref "/nginx-one/nginx-configs/config-sync-groups/manage-config-sync-groups/#configuration-management" >}})
 
 
-{{< tip >}}
+{{< call-out "tip" >}}
 
 If you are managing the certificate from NGINX One Console, we recommend that you avoid directly manipulating the files on the data plane.
 
-{{< /tip >}}
+{{< /call-out >}}
 
 ## Before you start
 
@@ -164,13 +164,13 @@ Every instance with a deployed certificate includes paths to certificates in the
 
 Every Config Sync Group also includes paths to certificates in its configuration files. If you remove the deployed path to one certificate, that change affects all instances which belong to that Config Sync Group.
 
-## Delete a deployed certificate
+## Delete a managed certificate
 
 To delete a certificate, find the name in the **Certificates** screen. Find the **Actions** column associated with the certificate. Select the ellipsis (`...`) and then select **Delete**. Before deleting that certificate, you should see a warning.
 
 If that certificate is managed and is part of a Config Sync Group, that change affects all instances in that group.
 
-{{< warning >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /warning >}}
+{{< call-out "warning" >}} Be cautious if you want to delete certificates that are being used by an instance or a Config Sync Group. Deleting such certificates leads to failure in affected NGINX deployments. {{< /call-out >}}
 
 ## Managed and unmanaged certificates
 

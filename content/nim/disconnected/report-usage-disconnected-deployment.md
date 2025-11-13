@@ -47,16 +47,16 @@ To submit a usage report in a disconnected environment, use the provided `licens
 
 <br>
 
-1. {{<fa "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
+1. {{<icon "download">}}[Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
 
-    ```bash
+    ```shell
     chmod +x <path-to-script>/license_usage_offline.sh
     ```
 
 1. Run the script. Replace each placeholder with your specific values:
 
-    ``` bash
+    ```shell
     ./license_usage_offline.sh \
       -j <license-filename>.jwt \
       -i <NIM-IP-address> \
@@ -80,11 +80,11 @@ To submit a usage report using `curl`, complete each of the following steps in o
 
 Run these `curl` commands on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-{{<important>}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{</important>}}
+{{< call-out "important" >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{< /call-out >}}
 
 1. **Prepare the usage report**:
 
-    ```bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
     --header 'accept: application/json' \
     --header 'authorization: Basic <base64-encoded-credentials>' \
@@ -93,7 +93,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Download the usage report from NGINX Instance Manager**:
 
-    ```bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
     --header 'accept: */*' \
     --header 'authorization: Basic <base64-encoded-credentials>' \
@@ -102,7 +102,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Submit the usage report to F5 for verification**:
 
-    ```bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
     --form 'file=@"<path-to-report>.zip"'
@@ -122,14 +122,14 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
     Replace `<report-id>` with your specific ID from the previous response.
 
-    ```bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/<report-id>' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)"
     ```
 
 1. **Download the usage acknowledgement from F5**:
 
-    ```bash
+    ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/<report-id>' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
     --output <path-to-acknowledgement>.zip
@@ -137,7 +137,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Upload the usage acknowledgement to NGINX Instance Manager**:
 
-    ```bash
+    ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/upload' \
     --header 'Authorization: Basic <base64-encoded-credentials>' \
     --form 'file=@"<path-to-acknowledgement>.zip"'

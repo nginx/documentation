@@ -8,7 +8,7 @@ toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
+# AGE, DOS, NAZ, NGC, NGF, NIC, NIM, NGF, ONE, NOS, NPL, SOL, WAF
 nd-product:
 ---
 
@@ -18,16 +18,16 @@ nd-product:
 
 [//]: # "Begin each document with a sentence or two explaining what the purpose of the guide is, and what high-level actions to expect. No need to adhere precisely the example text given anywhere in this template."
 
-This guide is a tutorial on how to set up <thing>. While going through the steps of this tutorial, <concept 1>, <concept 2> and <concept 3> will be introduced and explained to understand how <thing> works.
+This guide is a tutorial on how to set up \<thing\>. While going through the steps of this tutorial, \<concept 1\>, \<concept 2\> and \<concept 3\> will be introduced and explained to understand how \<thing\> works.
 
-By the end of the tutorial, you should have enough working knowledge of <thing> to develop your own <configuration/application/etc>.
+By the end of the tutorial, you should have enough working knowledge of \<thing\> to develop your own \<configuration/application/etc\>.
 
 ## Background
 
 [//]: # "The largest difference between a tutorial and a how-to document is the scope of detail included. While working on the tutorial, consider what overlap might exist with a concept document."
 [//]: # "We want to reduce the amount of context switching a reader has to go through, so it might be beneficial to convert some text content into an include for re-use between a tutorial and a concept document."
 
-<thing> is a common use for <product>: it enables the ability to use <feature 1>, <feature 2> and <feature 3>, which are important when configuring <product> for <use case>.
+\<thing\> is a common use for \<product\>: it enables the ability to use \<feature 1\>, \<feature 2\> and \<feature 3\>, which are important when configuring \<product\> for \<use case\>.
 
 ## Before you begin
 
@@ -46,7 +46,7 @@ To complete this guide, you will need the following prerequisites:
 [//]: # "The text immediately following a heading in a tutorial should likely explain a concept to build a mental model of what the reader is about to do."
 [//]: # "If it's a successive step (One after the first), you might refer to work already done to follow the sequence of operations."
 
-The first thing required for setting up <thing> is <step name>. This is the <service/host/etcetera> that the <thing> will run on. The <component> that is set-up from this step is necessary for <requirement>, and will be connected to <other component> and <third component> in a later step. The <thing> we are configuring will look something along the lines of this by the end:
+The first thing required for setting up \<thing\> is \<step name\>. This is the \<service/host/etcetera\> that the \<thing\> will run on. The \<component\> that is set-up from this step is necessary for \<requirement\>, and will be connected to \<other component\> and \<third component\> in a later step. The \<thing\> we are configuring will look something along the lines of this by the end:
 
 [//]: # "If it helps, include a diagram of some kind. Ensure your description provides all the context required, however: a diagram is an aid to explain things, not a replacement."
 
@@ -55,7 +55,7 @@ The first thing required for setting up <thing> is <step name>. This is the <ser
 # Read their documentation for usage: https://mermaid.js.org/intro/
 ```
 
-Starting from the <top/left> of the diagram, you can see that <thing> is connected to <other thing>: this relationship is established when configuring <parameter> as part of <file name>.
+Starting from the \<top/left\> of the diagram, you can see that \<thing\> is connected to \<other thing\>: this relationship is established when configuring \<parameter\> as part of \<file name\>.
 
 ### Sub-step 1
 
@@ -63,20 +63,22 @@ Starting from the <top/left> of the diagram, you can see that <thing> is connect
 [//]: # "Though there may be multiple ways to accomplish a task, focus on showing the reader the exact way to do one."
 [//]: # "You can mention alternative paths, but do not give unnecessary detail: it detracts from the task at hand."
 
-To set up <component>, start by running the following command. It will create <dependency 1>: take note of the <unique identifier> value, as it will be used for connecting <other component> in later steps.
+To set up \<component\>, start by running the following command. It will create \<dependency 1\>: take note of the \<unique identifier\> value, as it will be used for connecting \<other component\> in later steps.
 
 ```shell
 # We typically show examples of commands or code in one code block, which can be easily copied by a reader using a button connected to the block.
 ```
+
 ```text
 # A second code block is used underneath the first to show what kind of example output to expect from the command. Truncate unnecessary output with ellipses (...).
 ```
 
-To verify the creation of <component>, you can also inspect information about it using <command>. The output should look something like this:
+To verify the creation of \<component\>, you can also inspect information about it using \<command\>. The output should look something like this:
 
 ```shell
 <a copyable, single line command>
 ```
+
 ```
 <the output of that command, possibly truncated and with changed IPs or domains>
 ```
@@ -89,16 +91,13 @@ To verify the creation of <component>, you can also inspect information about it
 
 ### Sub-step 1
 
-
 ### Sub-step 2
-
 
 ## Conclusion
 
 [//]: # "Summarize everything that the reader will have learned and accomplished by the end of this tutorial."
 [//]: # "It should fulfill the promise made by the introductory paragraph at the top of the document."
 [//]: # "You may wish to link to another tutorial as the next logical step, but that could also be part of the 'See also' section."
-
 
 ## Next steps
 

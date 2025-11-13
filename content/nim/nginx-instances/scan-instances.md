@@ -1,17 +1,12 @@
 ---
-description: Follow the steps in this guide to scan for and discover NGINX instances.
-nd-docs: DOCS-828
 title: Scan and discover NGINX instances
+description: Follow the steps in this guide to scan for and discover NGINX instances.
 toc: true
 weight: 110
-type:
-- tutorial
+nd-content-type: how-to
+nd-product: NIM
+nd-docs: DOCS-828
 ---
-
-<style>
-  h3 {font-weight: 400; padding-top: 20px;}
-  hr {margin-top: 40px; margin-bottom: 40px;}
-</style>
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
@@ -20,9 +15,9 @@ type:
 1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}).
 2. Start and enable Instance Manager.
 
-{{<note>}}
+{{< call-out "note" >}}
 To update the CVE list manually or offline, refer to the [Offline Installation]({{<ref "/nim/disconnected/offline-install-guide.md#cve-check">}}) guide.
-{{</note>}}
+{{< /call-out >}}
 
 Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The Instance Manager API provides a method for disabling host discovery in scanning.
 
@@ -42,13 +37,11 @@ If no host discovery options are provided, Instance Manager sends an ICMP echo r
 2. In the left menu, select **Scan**.
 3. Enter subnets and masks that correspond to your network.
 
-{{<note>}}
+{{< call-out "note" >}}
 To scan a single address, use the netmask of `/32` after the IP. This is the equivalent of scanning a single subnet. If you enter the wrong subnet, the scan may take longer than expected before erroring.
 
 There's a CVE that's not reported for NGINX that involves [unfiltered logging](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-4487). This CVE won't be fixed, has a severity of "None," and is excluded from our scans' CVE list.
-{{</note>}}
-
----
+{{< /call-out >}}
 
 ## Scan using the API {#scan-api}
 
@@ -92,9 +85,7 @@ curl -X GET "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/v1/servers" -H  "accept: 
 
 The result looks similar to the following:
 
-<details open>
-
-  <summary>Scan JSON response</summary>
+{{< details summary="Scan JSON response" >}}
 
 ```json
 {
@@ -271,18 +262,16 @@ The result looks similar to the following:
 }
 ```
 
-</details>
-
----
+{{< /details >}}
 
 ## Troubleshooting
 
-### Scan reports NGINX versions as "undefined" when NGINX App Protect is enabled
+### Scan reports NGINX versions as "undefined" when F5 WAF for NGINX is enabled
 
 #### Description
 
-- When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances.md" >}}), the NGINX version is reported as `undefined` when NGINX App Protect is installed.
+- When [scanning for NGINX instances]({{< ref "/nim/nginx-instances/scan-instances.md" >}}), the NGINX version is reported as `undefined` when F5 WAF for NGINX is installed.
 
 #### Resolution
 
-- This behavior is **by design**. As a security precaution when NGINX App Protect is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and NGINX App Protect versions.
+- This behavior is **by design**. As a security precaution when F5 WAF for NGINX is installed, the NGINX server does not report its version in any HTTP headers. The **NGINX Plus** and **Instances** pages in the web interface will continue to report the NGINX and F5 WAF for NGINX versions.

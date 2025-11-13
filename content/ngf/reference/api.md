@@ -899,6 +899,7 @@ longer necessary.</p>
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAlive">ClientKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAliveTimeout">ClientKeepAliveTimeout</a>,
 <a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>,
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>,
 <a href="#gateway.nginx.org/v1alpha2.TelemetryExporter">TelemetryExporter</a>)
 </p>
 <p>
@@ -1827,6 +1828,23 @@ If not specified, or set to false, http2 will be enabled for all servers.</p>
 </tr>
 <tr>
 <td>
+<code>disableSNIHostValidation</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableSNIHostValidation disables the validation that ensures the SNI hostname
+matches the Host header in HTTPS requests. When disabled, HTTPS connections can
+be reused for requests to different hostnames covered by the same certificate.
+This resolves HTTP/2 connection coalescing issues with wildcard certificates but
+introduces security risks as described in Gateway API GEP-3567.
+If not specified, defaults to false (validation enabled).</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>kubernetes</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">
@@ -1837,6 +1855,34 @@ KubernetesSpec
 <td>
 <em>(Optional)</em>
 <p>Kubernetes contains the configuration for the NGINX Deployment and Service Kubernetes objects.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>workerConnections</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WorkerConnections specifies the maximum number of simultaneous connections that can be opened by a worker process.
+Default is 1024.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dnsResolver</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">
+DNSResolver
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DNSResolver specifies the DNS resolver configuration for external name resolution.
+This enables support for routing to ExternalName Services.</p>
 </td>
 </tr>
 </table>
@@ -1988,6 +2034,114 @@ sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
 </td>
 </tr></tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.AutoscalingSpec">AutoscalingSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.AutoscalingSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>)
+</p>
+<p>
+<p>AutoscalingSpec is the configuration for the Horizontal Pod Autoscaling.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>behavior</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#horizontalpodautoscalerbehavior-v2-autoscaling">
+Kubernetes autoscaling/v2.HorizontalPodAutoscalerBehavior
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Behavior configures the scaling behavior of the target
+in both Up and Down directions (scaleUp and scaleDown fields respectively).
+If not set, the default HPAScalingRules for scale up and scale down are used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetCPUUtilizationPercentage</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Target cpu utilization percentage of HPA.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetMemoryUtilizationPercentage</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Target memory utilization percentage of HPA.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>minReplicas</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Minimum number of replicas.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>metrics</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#metricspec-v2-autoscaling">
+[]Kubernetes autoscaling/v2.MetricSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Metrics configures additional metrics options.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>maxReplicas</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Maximum number of replicas.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>enable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>Enable or disable Horizontal Pod Autoscaler.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ContainerSpec" title="Permanent link">¶</a>
 </h3>
@@ -2065,6 +2219,34 @@ until the action is complete, unless the container process fails, in which case 
 </tr>
 <tr>
 <td>
+<code>readinessProbe</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ReadinessProbeSpec">
+ReadinessProbeSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ReadinessProbe defines the readiness probe for the NGINX container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>hostPorts</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.HostPort">
+[]HostPort
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HostPorts are the list of ports to expose on the host.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>volumeMounts</code><br/>
 <em>
 <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volumemount-v1-core">
@@ -2078,6 +2260,155 @@ until the action is complete, unless the container process fails, in which case 
 </td>
 </tr>
 </tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DNSResolver" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>DNSResolver specifies the DNS resolver configuration for NGINX.
+This enables dynamic DNS resolution for ExternalName Services.
+Corresponds to the NGINX resolver directive: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver">https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver</a></p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout specifies the timeout for name resolution.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>cacheTTL</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>CacheTTL specifies how long to cache DNS responses.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableIPv6</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableIPv6 disables IPv6 lookups.
+If not specified, or set to false, IPv6 lookups will be enabled.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>addresses</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolverAddress">
+[]DNSResolverAddress
+</a>
+</em>
+</td>
+<td>
+<p>Addresses specifies the list of DNS server addresses.
+Each address can be an IP address or hostname.
+Example: [{&ldquo;type&rdquo;: &ldquo;IPAddress&rdquo;, &ldquo;value&rdquo;: &ldquo;8.8.8.8&rdquo;}, {&ldquo;type&rdquo;: &ldquo;Hostname&rdquo;, &ldquo;value&rdquo;: &ldquo;dns.google&rdquo;}]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DNSResolverAddress">DNSResolverAddress
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DNSResolverAddress" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>)
+</p>
+<p>
+<p>DNSResolverAddress specifies the address type and value for a DNS resolver address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolverAddressType">
+DNSResolverAddressType
+</a>
+</em>
+</td>
+<td>
+<p>Type specifies the type of address.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>value</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Value specifies the address value.
+When Type is &ldquo;IPAddress&rdquo;, this must be a valid IPv4 or IPv6 address.
+When Type is &ldquo;Hostname&rdquo;, this must be a valid hostname.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.DNSResolverAddressType">DNSResolverAddressType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DNSResolverAddressType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolverAddress">DNSResolverAddress</a>)
+</p>
+<p>
+<p>DNSResolverAddressType specifies the type of DNS resolver address.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Hostname&#34;</p></td>
+<td><p>DNSResolverHostnameType specifies that the address is a hostname.</p>
+</td>
+</tr><tr><td><p>&#34;IPAddress&#34;</p></td>
+<td><p>DNSResolverIPAddressType specifies that the address is an IP address.</p>
+</td>
+</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.DaemonSetSpec" title="Permanent link">¶</a>
@@ -2099,6 +2430,20 @@ until the action is complete, unless the container process fails, in which case 
 <tbody>
 <tr>
 <td>
+<code>container</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">
+ContainerSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Container defines container fields for the NGINX container.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>pod</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.PodSpec">
@@ -2113,16 +2458,16 @@ PodSpec
 </tr>
 <tr>
 <td>
-<code>container</code><br/>
+<code>patches</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">
-ContainerSpec
+<a href="#gateway.nginx.org/v1alpha2.Patch">
+[]Patch
 </a>
 </em>
 </td>
 <td>
 <em>(Optional)</em>
-<p>Container defines container fields for the NGINX container.</p>
+<p>Patches are custom patches to apply to the NGINX DaemonSet.</p>
 </td>
 </tr>
 </tbody>
@@ -2159,6 +2504,20 @@ int32
 </tr>
 <tr>
 <td>
+<code>autoscaling</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.AutoscalingSpec">
+AutoscalingSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Autoscaling defines the configuration for Horizontal Pod Autoscaling.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>pod</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.PodSpec">
@@ -2183,6 +2542,20 @@ ContainerSpec
 <td>
 <em>(Optional)</em>
 <p>Container defines container fields for the NGINX container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>patches</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Patch">
+[]Patch
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Patches are custom patches to apply to the NGINX Deployment.</p>
 </td>
 </tr>
 </tbody>
@@ -2237,6 +2610,48 @@ routing only to endpoints on the same node as the traffic was received on
 (dropping the traffic if there are no local endpoints).</p>
 </td>
 </tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.HostPort">HostPort
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.HostPort" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec</a>)
+</p>
+<p>
+<p>HostPort exposes an nginx container port on the host.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Port to expose on the host.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>containerPort</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>ContainerPort is the port on the nginx container to map to the HostPort.</p>
+</td>
+</tr>
+</tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.IPFamilyType">IPFamilyType
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.IPFamilyType" title="Permanent link">¶</a>
@@ -2749,6 +3164,23 @@ If not specified, or set to false, http2 will be enabled for all servers.</p>
 </tr>
 <tr>
 <td>
+<code>disableSNIHostValidation</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableSNIHostValidation disables the validation that ensures the SNI hostname
+matches the Host header in HTTPS requests. When disabled, HTTPS connections can
+be reused for requests to different hostnames covered by the same certificate.
+This resolves HTTP/2 connection coalescing issues with wildcard certificates but
+introduces security risks as described in Gateway API GEP-3567.
+If not specified, defaults to false (validation enabled).</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>kubernetes</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.KubernetesSpec">
@@ -2759,6 +3191,34 @@ KubernetesSpec
 <td>
 <em>(Optional)</em>
 <p>Kubernetes contains the configuration for the NGINX Deployment and Service Kubernetes objects.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>workerConnections</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WorkerConnections specifies the maximum number of simultaneous connections that can be opened by a worker process.
+Default is 1024.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dnsResolver</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.DNSResolver">
+DNSResolver
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DNSResolver specifies the DNS resolver configuration for external name resolution.
+This enables support for routing to ExternalName Services.</p>
 </td>
 </tr>
 </tbody>
@@ -2791,9 +3251,7 @@ int32
 </em>
 </td>
 <td>
-<p>Port is the NodePort to expose.
-kubebuilder:validation:Minimum=1
-kubebuilder:validation:Maximum=65535</p>
+<p>Port is the NodePort to expose.</p>
 </td>
 </tr>
 <tr>
@@ -2804,9 +3262,7 @@ int32
 </em>
 </td>
 <td>
-<p>ListenerPort is the Gateway listener port that this NodePort maps to.
-kubebuilder:validation:Minimum=1
-kubebuilder:validation:Maximum=65535</p>
+<p>ListenerPort is the Gateway listener port that this NodePort maps to.</p>
 </td>
 </tr>
 </tbody>
@@ -2861,6 +3317,84 @@ be unique across all targetRef entries in the ObservabilityPolicy.</p>
 </td>
 </tr>
 </tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.Patch">Patch
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.Patch" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.ServiceSpec">ServiceSpec</a>)
+</p>
+<p>
+<p>Patch defines a patch to apply to a Kubernetes object.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.PatchType">
+PatchType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Type is the type of patch. Defaults to StrategicMerge.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>value</code><br/>
+<em>
+k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1.JSON
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Value is the patch data as raw JSON.
+For StrategicMerge and Merge patches, this should be a JSON object.
+For JSONPatch patches, this should be a JSON array of patch operations.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.PatchType">PatchType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.PatchType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.Patch">Patch</a>)
+</p>
+<p>
+<p>PatchType specifies the type of patch.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;JSONPatch&#34;</p></td>
+<td><p>PatchTypeJSONPatch uses JSON patch (RFC 6902).</p>
+</td>
+</tr><tr><td><p>&#34;Merge&#34;</p></td>
+<td><p>PatchTypeMerge uses merge patch (RFC 7386).</p>
+</td>
+</tr><tr><td><p>&#34;StrategicMerge&#34;</p></td>
+<td><p>PatchTypeStrategicMerge uses strategic merge patch.</p>
+</td>
+</tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.PodSpec">PodSpec
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.PodSpec" title="Permanent link">¶</a>
@@ -3002,6 +3536,53 @@ isn&rsquo;t present and the pull fails.</p>
 image isn&rsquo;t present.</p>
 </td>
 </tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.ReadinessProbeSpec">ReadinessProbeSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.ReadinessProbeSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec</a>)
+</p>
+<p>
+<p>ReadinessProbeSpec defines the configuration for the NGINX readiness probe.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Port is the port on which the readiness endpoint is exposed.
+If not specified, the default port is 8081.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>initialDelaySeconds</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InitialDelaySeconds is the number of seconds after the container has
+started before the readiness probe is initiated.
+If not specified, the default is 3 seconds.</p>
+</td>
+</tr>
+</tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.RewriteClientIP">RewriteClientIP
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.RewriteClientIP" title="Permanent link">¶</a>
@@ -3284,6 +3865,20 @@ Requires service type to be LoadBalancer.</p>
 <p>NodePorts are the list of NodePorts to expose on the NGINX data plane service.
 Each NodePort MUST map to a Gateway listener port, otherwise it will be ignored.
 The default NodePort range enforced by Kubernetes is 30000-32767.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>patches</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Patch">
+[]Patch
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Patches are custom patches to apply to the NGINX Service.</p>
 </td>
 </tr>
 </tbody>

@@ -78,7 +78,7 @@ There are two places to configure more verbose logging for NGINX Ingress Control
 
 **Command line arguments**
 
-When using `manifest` for deployment, use the command line argument `-nginx-debug` in your deployment or daemonset.
+When using `manifest` for deployment, use the command line argument `-nginx-debug` in your deployment, daemonset, or statefulset.
 
 You can add the `-log-level` parameter to increase the verbosity of the NGINX Ingress Controller process.
 
@@ -156,7 +156,7 @@ controller:
 
 Enable the `nginx-debug` CLI argument and change the `error-log-level` to `debug` to capture more output for debugging.
 
-{{< note >}} It is recommended to only enable `nginx-debug` CLI and the `error-log-level` when debugging. {{< /note >}}
+{{< call-out "note" >}} It is recommended to only enable `nginx-debug` CLI and the `error-log-level` when debugging. {{< /call-out >}}
 
 #### Example debug NGINX Ingress Controller Output
 

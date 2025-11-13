@@ -71,14 +71,14 @@ To use App Protect DoS, install the App Protect DoS Arbitrator using the provide
 
 ### Create optional custom resources
 
-There are optional CRDs that are necessary if you want to use NGINX App Protect WAF or NGINX App Protect DoS.
+There are optional CRDs that are necessary if you want to use F5 WAF for NGINX or F5 DoS for NGINX.
 
-**NGINX App Protect WAF**:
+**F5 WAF for NGINX**:
 - `APPolicy`
 - `APLogConf`
 - `APUserSig`
 
-**NGINX App Protect DoS**:
+**F5 DoS for NGINX**:
 - `APDosPolicy`
 - `APDosLogConf`
 - `DosProtectedResource`
@@ -88,15 +88,15 @@ There are optional CRDs that are necessary if you want to use NGINX App Protect 
 {{%tab name="Install CRDs from single YAML"%}}
 
 
-**NGINX App Protect WAF**
+**F5 WAF for NGINX**
 
-{{<  note >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{<  /note >}}
+{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
 ```
 
-**NGINX App Protect DoS**:
+**F5 DoS for NGINX**:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-dos.yaml
@@ -106,9 +106,9 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{%tab name="Install CRDs after cloning the repo"%}}
 
-**NGINX App Protect WAF**
+**F5 WAF for NGINX**
 
-{{<  note >}} This step can be skipped if you are using App Protect WAF module with policy bundles. {{<  /note >}}
+{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml
@@ -116,7 +116,7 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_appolicies.yaml
 kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 ```
 
-**NGINX App Protect DoS**:
+**F5 DoS for NGINX**:
 
 ```shell
 kubectl apply -f config/crd/bases/appprotectdos.f5.com_apdoslogconfs.yaml
@@ -132,10 +132,11 @@ kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yam
 
 ## Deploy NGINX Ingress Controller {#deploy-ingress-controller}
 
-You have two options for deploying NGINX Ingress Controller:
+You have three options for deploying NGINX Ingress Controller:
 
 - **Deployment**. Choose this method for the flexibility to dynamically change the number of NGINX Ingress Controller replicas.
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller to run on all nodes or a subset of nodes.
+- **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller pods.
 
 Before you start, update the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller container in the relevant manifest file to meet your specific requirements.
 
@@ -147,6 +148,10 @@ Before you start, update the [command-line arguments]({{< ref "/nic/configuratio
 
 {{< include "/nic/installation/manifests/daemonset.md" >}}
 
+### Using a StatefulSet
+
+{{< include "/nic/installation/manifests/statefulset.md" >}}
+
 ---
 
 ## Confirm NGINX Ingress Controller is running
@@ -157,9 +162,9 @@ Before you start, update the [command-line arguments]({{< ref "/nic/configuratio
 
 ## How to access NGINX Ingress Controller
 
-### Using a Deployment
+### Using a Deployment or StatefulSet
 
-For Deployments, you have two options for accessing NGINX Ingress Controller pods.
+For Deployments and StatefulSets, you have two options for accessing NGINX Ingress Controller pods.
 
 #### Option 1: Create a NodePort service
 
@@ -209,7 +214,7 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
          kubectl apply -f deployments/common/nginx-config.yaml
          ```
 
-    {{<note>}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{</note>}}
+    {{< call-out "note" >}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{< /call-out >}}
 
 3. To access NGINX Ingress Controller, get the public IP of your load balancer.
 
@@ -241,7 +246,7 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
 
 ## Uninstall NGINX Ingress Controller
 
-{{<warning>}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{</warning>}}
+{{< call-out "warning" >}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{< /call-out >}}
 
 1. **Delete the nginx-ingress namespace**: To remove NGINX Ingress Controller and all auxiliary resources, run:
 
@@ -266,13 +271,13 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
     ```shell
     kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
     ```
-   2. Delete custom resource definitions for the NGINX App Protect WAF module:
+   2. Delete custom resource definitions for the F5 WAF for NGINX module:
 
    ```shell
     kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
     ```
 
-   3. Delete custom resource definitions for the NGINX App Protect DoS module:
+   3. Delete custom resource definitions for the F5 DoS for NGINX module:
    ```shell
     kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-dos.yaml
     ```
@@ -284,13 +289,13 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
 ```shell
 kubectl delete -f config/crd/bases/crds.yaml
 ```
-2. Delete custom resource definitions for the NGINX App Protect WAF module:
+2. Delete custom resource definitions for the F5 WAF for NGINX module:
 
 ```shell
 kubectl apply -f config/crd/bases/crds-nap-waf.yaml
 ```
 
-3. Delete custom resource definitions for the NGINX App Protect DoS module:
+3. Delete custom resource definitions for the F5 DoS for NGINX module:
 ```shell
 kubectl apply -f config/crd/bases/crds-nap-dos.yaml
 ```

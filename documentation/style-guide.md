@@ -25,7 +25,7 @@ When writing documentation for our project, align with the default guide's voice
 - On the first mention of an enterprise NGINX product in a document, use the full product name. For example:
 
   - F5 NGINX Plus
-  - F5 NGINX App Protect WAF
+  - F5 WAF for NGINX
   - F5 NGINX Instance Manager
 
 - Don't add "F5" to open source products. For example:
@@ -36,7 +36,7 @@ When writing documentation for our project, align with the default guide's voice
 - For subsequent mentions of any enterprise product, you can drop the "F5". You must include the "NGINX" brand name in all uses. For example:
 
   - NGINX Plus
-  - NGINX App Protect WAF
+  - F5 WAF for NGINX
   - NGINX Instance Manager
 
 - When naming multiple products in one document, you only need to include F5 once, on the first mentioned product.
@@ -72,7 +72,7 @@ The table provides guidelines about the terms you should and should not use for 
 | anthropomorphism | Avoid referring to the product or feature as though it were alive. \<br>When referring to products, stay away from words like: decides, knows, sees, listens, and hears.<br>A wizard guides you, it doesn't walk you through the steps. | |
 | application | When referring to applications in general, write out the entire word. For clarity, avoid abbreviating to "app" unless specifically referencing the user interface or product. | |
 | as/because | Use "because" instead of "as" when showing a cause-and-effect relationship. | |
-| attack signature, attack signature set | Refers to elements of the NGINX App Protect WAF package. Do not abbreviate or otherwise shorten. | |
+| attack signature, attack signature set | Refers to elements of the F5 WAF for NGINX package. Do not abbreviate or otherwise shorten. | |
 | backwards | Use backward and forward, not backwards and forwards | |
 | black list<br> blacklist<br> blacklisted | Do not use these terms.<br>Use these terms instead:<br>-black list (noun) = deny list (noun)<br>-blacklist (verb) = denylist (verb)<br>-blacklisted (adjective) = denylisted (adjective) | |
 | boot, boot up, reboot | Use "start" and "restart" if possible.<br>For "boot", use in the context of "boot to a new volume". If the meaning is actually "start", then use "start". Do not use "boot up".<br>Instead of "reboot", use "restart". \<br>When referring to applying configuration changes, use "reload". | |
@@ -389,34 +389,48 @@ When writing new documentation, use the following [templates](/templates):
 
 ## Language guidelines
 
-- Prefer active voice and goal-oriented phrases:
+### Write for global readers
 
-   | Do | Don't |
-   |----|-------|
-   | _To restart the system, run the following command.__ |_ For the system to be restarted, run the following command._ <br> Restarting the system can be achieved, if necessary, by running the following command._ |
+Write at an 8th–9th grade reading level. Use clear, simple language. Choose everyday words instead of technical terms when possible. Avoid jargon unless it’s needed and defined in context. This helps people around the world understand our content, including those who speak English as a second language or use machine translation.
 
-- Prefer that for essential clauses, which for non-defining details.
+Use the [Flesch-Kincaid readability calculator](https://goodcalculators.com/flesch-kincaid-calculator/) to check your writing if needed.
 
-- For optional, required, and forbidden actions, use proper modal verbs instead of ambiguous conditionals:
 
-   | Do | Don't |
-   |----|-------|
-   | _You may/should/must add additional security by following this guide._ | _If more security is necessary, follow this guide._ |
+- Use the active voice and write goal-oriented instructions.
 
-   For more information about modal verb semantics, see [RFC-2119](https://tools.ietf.org/html/rfc2119).
+   | Do | Don’t |
+   |----|--------|
+   | _To restart the system, run the following command._ | _For the system to be restarted, run the following command._<br>_Restarting the system can be achieved by running the following command._ |
 
-- In code snippets, follow established style conventions of respective languages, including indentation, line breaks, and naming.
+- Use **that** for essential information and **which** for extra details.
 
-- Omit unnecessary words and phrases, courtesy sugaring in particular.
+   | Do | Don’t |
+   |----|--------|
+   | _Restart the services that failed during the update._<br>_Open the folder that contains your configuration files._ | _Restart the services, which failed during the update._<br>_Open the folder, which contains your configuration files._ |
 
-   | Do | Don't |
-   |----|-------|
-   | _To enable this feature, do that._ | _Oops! To enable this feature, please do that._ |
+   Use **which** only when the clause adds nonessential information:<br>
+   _The log file, which records all system activity, can grow large over time._
 
-- Use hyphens to join compound adjectives before nouns, not after.
+- Use clear modal verbs to show when actions are optional, required, or forbidden.
 
-   | Do | Don't |
-   |----|-------|
+   | Do | Don’t |
+   |----|--------|
+   | _You may/should/must add more security by following this guide._ | _If more security is necessary, follow this guide._ |
+
+   For more information about modal verbs, see [RFC 2119](https://tools.ietf.org/html/rfc2119).
+
+- In code snippets, follow the standard code style for each language. Keep indentation, line breaks, and naming consistent.
+
+- Cut extra words and politeness phrases that don’t add value.
+
+   | Do | Don’t |
+   |----|--------|
+   | _To enable this feature, run this command._ | _To enable this feature, please run this command._ |
+
+- Use hyphens in compound adjectives before nouns, not after.
+
+   | Do | Don’t |
+   |----|--------|
    | _A well-known feature._ | _A feature well-known._ |
    | _The feature is well known._ | _The feature is well-known._ |
 

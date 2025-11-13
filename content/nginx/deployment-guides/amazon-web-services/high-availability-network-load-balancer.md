@@ -31,13 +31,13 @@ NGINX Plus complements AWS NLB. It operates at Layer 7 (the application layer)
 
 NGINX Plus also provides reverse‑proxy and load balancing features, including:
 
-- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- Full‑featured [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}), [TCP, and UDP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) load balancing
+- [Intelligent session persistence]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md#session-persistence" >}})
 - [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
-- [Adaptive streaming to deliver audio and video to any device](https://www.nginx.com/products/nginx/streaming-media/)
-- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
-- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- Adaptive streaming to deliver audio and video to any device
+- [Application-aware health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) and [high availability]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}})
+- Advanced activity monitoring available via a [Dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-dashboard" >}}) or [REST API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="overview"></span>
@@ -56,7 +56,7 @@ Together, these provide an HA, all-active NGINX and NGINX Plus solution.
 
 AWS NLB uses a flow hash routing algorithm to balance traffic and handle Layer 4 TCP connections. AWS NLB listens for incoming connections as defined by its listeners. Each listener forwards a new connection to one of the available instances in a target group. AWS NLB uses the flow hash routing algorithm to chose an available instance.
 
-{{< note >}} By default, an AWS NLB uses a DNS name with a dynamic IP address. As an option, you can attach an Elastic IP address to the AWS NLB. This ensures that the AWS NLB is always reachable at the same IP address.  {{< /note >}}
+{{< call-out "note" >}} By default, an AWS NLB uses a DNS name with a dynamic IP address. As an option, you can attach an Elastic IP address to the AWS NLB. This ensures that the AWS NLB is always reachable at the same IP address.  {{< /call-out >}}
 
 These instructions assume a target group consists of two NGINX Plus load balancer instances. You can register an unlimited number of instances in the target group. Or, you can use an [AWS Auto Scaling group](https://aws.amazon.com/autoscaling/) to dynamically adjust the number of NGINX Plus instances.
 
@@ -248,7 +248,7 @@ The deployed solution in these instructions uses six EC2 instances. Two instance
 
 *Step‑by‑step* instructions for creating EC2 instances and installing NGINX Open Source and NGINX Plus are available. Refer to our deployment guide, [Creating Amazon EC2 Instances for NGINX Open Source and NGINX Plus]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).
 
-{{< note >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< /note >}}
+{{< call-out "note" >}} When installing NGINX Open Source or NGINX Plus, you connect to each instance over SSH. To save time, leave the SSH connection to each instance open after installing the software. This way, you can reuse the connection when configuring the instance. {{< /call-out >}}
 
 Assign the following names to the instances, then install the indicated NGINX software. The screenshot below shows the resulting **Instances** table.
 
@@ -303,7 +303,7 @@ You can automate set up of the six instances described in these instructions. Au
 
 These scripts also create a new set of networking rules and security group settings. These rules and settings help avoid conflicts with any pre‑existing network settings. After you run the scripts, continue to the [instructions for creating an AWS NLB](#nlb-configure). No further setup is required.
 
-{{< note >}} These scripts also create a new VPC. They do not use the default VPC described in the [instructions in our Deployment Guide]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).  {{< /note >}}
+{{< call-out "note" >}} These scripts also create a new VPC. They do not use the default VPC described in the [instructions in our Deployment Guide]({{< ref "/nginx/deployment-guides/amazon-web-services/ec2-instances-for-nginx.md" >}}).  {{< /call-out >}}
 
 To run the scripts, follow these instructions:
 

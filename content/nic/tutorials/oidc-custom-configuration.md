@@ -92,7 +92,7 @@ data:
         # Rest of configuration file truncated
 ```
 
-{{< important >}}
+{{< call-out "important" >}}
 
 In the next step, NGINX Ingress Controller will be deployed using this ConfigMap.
 
@@ -100,7 +100,7 @@ Any changes made to this ConfigMap must be made **before** deploying or updating
 
 Applying any updates to the data in this ConfigMap will require NGINX Ingress Controller to be re-deployed.
 
-{{< /important >}}
+{{< /call-out >}}
 
 ## Step 3 - Add Volume and VolumeMount to the Ingress Controller deployment
 
@@ -111,7 +111,7 @@ This document will demonstrate how to add the `Volume` and `VolumeMount` using b
 
 ### Manifest
 
-The below configuration shows where the `Volume` and `VolumeMount` can be added to your Deployment/Daemonset file.
+The below configuration shows where the `Volume` and `VolumeMount` can be added to your Deployment, Daemonset, or StatefulSet file.
 
 The `VolumeMount` must be added the `spec.template.spec.containers` section.
 
@@ -119,7 +119,7 @@ The `Volume` must be added the `spec.template.spec` section:
 
 ```yaml
 apiVersion: apps/v1
-kind: <Deployment/Daemonset>
+kind: <Deployment/DaemonSet/StatefulSet>
 metadata:
   name: <name>
   namespace: <ic-namespace>
@@ -157,7 +157,7 @@ kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /etc/nginx/oid
 ### Helm
 
 Deployments using helm will need to edit their existing
-Edit the NGINX Ingress Controller Deployment/Daemonset yaml to include a `Volume` and `VolumeMount`.
+Edit the NGINX Ingress Controller Deployment/DaemonSet/StatefulSet yaml to include a `Volume` and `VolumeMount`.
 
 The `Volume` should be within the `spec.template.spec` section.
 
@@ -169,15 +169,21 @@ For Deployments:
 kubectl edit deployments <name-of-deployment> -n <ic-namespace>
 ```
 
-For Daemonsets:
+For DaemonSets:
 
 ```shell
 kubectl edit daemonset <name-of-daemonset> -n <ic-namespace>
 ```
 
+For StatefulSets:
+
+```shell
+kubectl edit statefulset <name-of-statefulset> -n <ic-namespace>
+```
+
 ```yaml
 apiVersion: apps/v1
-kind: <Deployment/Daemonset>
+kind: <Deployment/DaemonSet/StatefulSet>
 metadata:
   name: <name>
   namespace: <ic-namespace>
@@ -204,7 +210,7 @@ spec:
           readOnly: true
 ```
 
-Once the Deployment/Daemonset has been edited, save the file and exit.
+Once the Deployment/DaemonSet/StatefulSet has been edited, save the file and exit.
 
 Confirm the `oidc.conf` file has been updated:
 

@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 NGINX App Protect DoS Request Log Mechanism.
+description: Learn about the F5 F5 DoS for NGINX Request Log Mechanism.
 nd-docs: DOCS-668
-title: NGINX App Protect DoS Access Log Request Mechanism
+title: F5 DoS for NGINX Access Log Request Mechanism
 toc: true
 weight: 160
 type:
@@ -35,9 +35,9 @@ These are the variables added to Access Log. They are a subset of the Security l
 
 {{</bootstrap-table>}}
 
-   {{< note >}}
+   {{< call-out "note" >}}
 Many of the other Security log attributes that are not included here have exact or similar parallels among the NGINX variables also available for access log. For example, `$request` is parallel to the `request` security log attribute. See the full list of [NGINX variables](https://nginx.org/en/docs/http/ngx_http_log_module.html).
-   {{< /note >}}
+   {{< /call-out >}}
 
 
 ## Logging Rate Limit - mandatory configuration
