@@ -62,7 +62,7 @@ You can assign NGINX instances to instance groups in the following ways:
 
 ### Specify Instance Group in Agent-Dynamic.Conf
 
-You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< ref "/nginx-one/agent/install-upgrade/" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
+You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< ref "/nginx-one-console/agent/install-upgrade/" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
 
 {{< call-out "note" >}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
 

@@ -315,9 +315,9 @@ The following tables lists the configurable parameters of the NGINX Ingress Cont
 | **serviceNameOverride** | Used to prevent cloud load balancers from being replaced due to service name change during helm upgrades. | "" |
 | **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
 | **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the NGINX Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
-|**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
+|**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
 |**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
-|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
+|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
 |**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. Requires NGINX Agent 3.x. | "agent.connect.nginx.com" |
 |**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | 443 |
 |**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | false |
