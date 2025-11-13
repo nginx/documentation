@@ -30,17 +30,17 @@ There are two supported ways to upload your configuration:
 
 Both methods are valid and can be used depending on how your configuration is structured.
 
-   ```shell
-   az nginx deployment configuration create --configuration-name
-                                          --deployment-name
-                                          --resource-group
-                                          [--files]
-                                          [--location]
-                                          [--no-wait {0, 1, f, false, n, no, t, true, y, yes}]
-                                          [--package]
-                                          [--protected-files]
-                                          [--root-file]
-   ```
+```shell
+az nginx deployment configuration create --configuration-name
+                                      --deployment-name
+                                      --resource-group
+                                      [--files]
+                                      [--location]
+                                      [--no-wait {0, 1, f, false, n, no, t, true, y, yes}]
+                                      [--package]
+                                      [--protected-files]
+                                      [--root-file]
+```
 
 ### Validate your configuration
 
