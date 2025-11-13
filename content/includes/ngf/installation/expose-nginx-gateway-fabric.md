@@ -4,7 +4,7 @@ weight: 300
 nd-docs: "DOCS-1427"
 ---
 
-When a Gateway resource is created, the NGINX Gateway Fabric control plane will provision an NGINX service. By default, this is a LoadBalancer service.
+When a Gateway resource is created, the NGINX Gateway Fabric control plane will provision an NGINX service in the same namespace as the Gateway. By default, this is a LoadBalancer service. This is not the same service that is deployed when NGINX Gateway Fabric is first installed. The NGINX Gateway Fabric control plane has its own ClusterIP service for internal communication with the NGINX data planes.
 
 There are two options for accessing the NGINX service depending on the type of LoadBalancer service you chose during installation:
 
