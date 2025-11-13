@@ -26,7 +26,7 @@ To create a new NGINX configuration, use the `az nginx deployment configuration 
 There are two supported ways to upload your configuration:
 
 1. **Plain file upload** — Upload one or more configuration files directly using the `--files` parameter.
-2. **Tarball upload** — Package your configuration files into a `.tar.gz` archive and upload it using the `--package` parameter.
+1. **Tarball upload** — Package your configuration files into a `.tar.gz` archive and upload it using the `--package` parameter.
 
 Both methods are valid and can be used depending on how your configuration is structured.
 
