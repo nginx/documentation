@@ -367,10 +367,7 @@
       if (curEl.tagName.toLowerCase() === "input" || curEl.tagName.toLowerCase() === "select") {
         curEl.value = values[elName];
       } else {
-        const inputEl = curEl.querySelector("input");
-        if (inputEl) {
-          inputEl.value = values[elName];
-        }
+        $(curEl).children("input").first().value = values[elName];
       }
     });
   };
@@ -386,10 +383,7 @@
       if (curEl.tagName.toLowerCase() === "input" || curEl.tagName.toLowerCase() === "select") {
         curEl.value = values[elName];
       } else {
-        const inputEl = curEl.querySelector("input");
-        if (inputEl) {
-          inputEl.value = values[elName];
-        }
+        $(curEl).children("input").first().value = values[elName];
       }
     });
 
