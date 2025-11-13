@@ -136,7 +136,6 @@
      * @returns {string}
      */
     currencyFormatter: (n, significantDigits = 5) => {
-      console.log('Formatting number to currency:', n, 'with significantDigits:', significantDigits);
       const options = {
         style: "currency",
         currency: "USD"
@@ -369,7 +368,10 @@
       if (curEl.tagName.toLowerCase() === "input" || curEl.tagName.toLowerCase() === "select") {
         curEl.value = values[elName];
       } else {
-        $(curEl).children("input").first().value = values[elName];
+        const inputEl = curEl.querySelector("input");
+        if (inputEl) {
+          inputEl.value = values[elName];
+        }
       }
     });
   };
@@ -385,7 +387,10 @@
       if (curEl.tagName.toLowerCase() === "input" || curEl.tagName.toLowerCase() === "select") {
         curEl.value = values[elName];
       } else {
-        $(curEl).children("input").first().value = values[elName];
+        const inputEl = curEl.querySelector("input");
+        if (inputEl) {
+          inputEl.value = values[elName];
+        }
       }
     });
 
