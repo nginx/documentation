@@ -133,7 +133,7 @@ The following examples show how to upload plain configuration files directly to 
 
 You can bundle your configuration files into a `.tar.gz` archive and upload it as a single package.
 
-- Upload package with config files:
+Upload package with config files:
 
    ```shell
    $ tar -czf nginx.tar.gz nginx
