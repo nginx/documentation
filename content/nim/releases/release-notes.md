@@ -358,7 +358,7 @@ This release includes the following updates:
   - **Send the report to F5**: Submit the report to F5 for verification from a location with internet access.
   - **Upload the acknowledgment**: After verification, upload the acknowledgment from F5 to NGINX Instance Manager.
 
-- {{% icon-feature %}} **Ridiculously easy NGINX Instance Manager installation script (Bash)**<a name="2-18-0-whats-new-Ridiculously-easy-NGINX-Instance-Manager-installation-script-(Bash)-45294"></a>
+- {{% icon-feature %}} **Ridiculously easy NGINX Instance Manager installation script (Shell)**<a name="2-18-0-whats-new-Ridiculously-easy-NGINX-Instance-Manager-installation-script-(Shell)-45294"></a>
 
    Reduce the number of steps to deploy all NGINX Instance Manager components, including prerequisites, using a single [installation script]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}). The script supports every OS that NGINX Instance Manager supports in the [technical specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}).
   
