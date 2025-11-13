@@ -16,6 +16,18 @@ NGINXaaS for Azure is billed monthly based on hourly consumption.
 
 F5 NGINXaaS for Azure (NGINXaaS) provides two pricing plans.
 
+### Standard V3 plan
+
+The Standard V3 plan is an upgraded, purpose-built solution for modern enterprises looking to simplify application traffic management and scale workloads effortlessly. This improved plan offers a [99.95% uptime SLA](https://www.f5.com/pdf/customer-support/eusa-sla.pdf), high availability through active-active deployments, redundancy, lossless rolling upgrades, and dynamic autoscaling capabilities to optimize both performance and cost.
+
+The Standard V3 plan introduces dynamic autoscaling that ensures consumption pricing - customers pay only for what they use. Each NGINX Capacity Unit (NCU) delivers 2.2 Mbps bandwidth and 3,000 connections, providing unmatched flexibility and scalability to suit diverse workloads.
+
+The Standard V3 pricing model is designed to optimize efficiency and transparency: customers benefit from an affordable fixed price per deployment ($0.25/hour) that covers baseline overhead, while NCU usage ($0.008/hour/unit) and data processing ($0.005/GB) allow costs to scale precisely with demand. NGINXaaS is a consumption-based service, metered hourly, and billed monthly in NGINX Capacity Units (NCUs).
+
+The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
+
+The Standard V3 plan allows for optional Web Application Firewall (WAF) configuration and a higher number of listen ports, offering enhanced security and connectivity options for enterprise applications.
+
 ### Standard V2 plan
 
 The Standard V2 plan is designed for production workloads offering a [99.95% uptime SLA](https://www.f5.com/pdf/customer-support/eusa-sla.pdf), high availability through active-active deployments, redundancy, autoscaling, lossless rolling upgrades, and more. Choosing the Standard V2 plan will result in billing based on metered consumption of NGINX Capacity Units (NCU).
@@ -44,22 +56,32 @@ The SKU for the Basic pricing plan is `basic_Monthly`.
 
 Each NCU provisioned (not consumed) is billed at the rate specified on the [Azure Marketplace Offer](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=Overview). The minimum usage interval is 1 hour, and the maximum provisioned NCU size is billed for that hour.
 
-*Billing Example 1*: "I provisioned a 20 NCU NGINXaaS deployment in East US 2 at 9:04AM and then deleted it at 10:45AM."
+*Billing Example 1*: "I provisioned a 20 NCU NGINXaaS deployment in East US 2 at 9:04AM and then deleted it at 10:45AM. Assuming 1GB data processed"
 
-* The hourly rate in East US 2 is `$0.03/NCU/hour`.
+* The hourly fixed price per deployment is `$0.25/hour`
+* The hourly NCU rate in East US 2 is `$0.008/NCU/hour`
+* The data processing price is `$0.005/GB`
 * 9:00 hour: `20 NCU·hour`
 * 10:00 hour: `20 NCU·hour`
 * Total NCU·hours: `40 NCU·hour`
-* Total: `40 NCU·hour * $0.03/NCU/hour = $1.20`.
+* Fixed deployment cost: `2 hours * $0.25/hour = $0.50`
+* NCU usage cost: `40 NCU·hour * $0.008/NCU/hour = $0.32`
+* Data processing cost: `1 GB * $0.0096/GB = $0.005`
+* Total: `$0.50 + $0.32 + $0.005 = $0.87`
 
-*Billing Example 2*: "I provisioned a 40 NCU NGINXaaS deployment in West Europe at 9:34AM. At 10:04AM I resized it to 20 NCUs. I then deleted it at 11:45AM."
+*Billing Example 2*: "I provisioned a 40 NCU NGINXaaS deployment in West Europe at 9:34AM. At 10:04AM I resized it to 20 NCUs. I then deleted it at 11:45AM. Assuming 2.5GB data processed"
 
-* The hourly rate in West Europe is `$0.05/NCU/hour`.
+* The hourly fixed price per deployment is `$0.25/hour`
+* The hourly NCU rate in West Europe is `$0.008/NCU/hour`
+* The data processing price is `$0.005/GB`
 * 9:00 hour: `40 NCU·hour`
 * 10:00 hour: `40 NCU·hour`
 * 11:00 hour: `20 NCU·hour`
 * Total NCU·hours: `100 NCU·hour`
-* Total:  `100 NCU·hours * 0.05$/NCU/hour = $5.00`.
+* Fixed deployment cost: `3 hours * $0.25/hour = $0.75`
+* NCU usage cost: `100 NCU·hour * $0.008/NCU/hour = $0.80`
+* Data processing cost: `2.5 GB * $0.005/GB = $0.125`
+* Total: `$0.75 + $0.80 + $0.125 = $1.675`
 
 {{< call-out "note" >}}Further guidance:
 * For how many NCUs should you provision and how to scale to match workload, see the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}})
