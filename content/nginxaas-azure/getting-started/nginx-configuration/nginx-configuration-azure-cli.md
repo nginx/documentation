@@ -78,13 +78,11 @@ az nginx deployment configuration analyze --deployment-name myDeployment \
 
 ### Upload a configuration
 
-
-<div data-testid="examples_tabs">
 {{<tabs name="upload_configuration_examples" >}}
 
 {{%tab name="Upload plain files"%}}
 
-The following examples show how to upload plain configuration files directly to your deployment.
+The following examples show how to upload plain configuration files directly to your deployment:
 
 - Create a single file configuration:
 
@@ -219,11 +217,8 @@ You can bundle your configuration files into a `.tar.gz` archive and upload it a
 
 {{%/tab%}}
 {{< /tabs >}}
-</div>
 
 See the [Azure CLI Configuration Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-create) for more details on the available parameters.
-
-
 
 ## Update a configuration
 
