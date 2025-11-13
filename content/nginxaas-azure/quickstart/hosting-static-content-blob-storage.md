@@ -24,37 +24,37 @@ Upload your static files to a container in your storage account. In this example
 
 ### Disable public network access
 
-1. In your storage account, navigate to **Networking** under **Security + networking**.
+1. In your storage account, in the **Security + networking** section, go to **Networking**.
 1. Under **Public network access**, select **Disable**.
-1. Click **Save**.
+1. Select **Save**.
 
 ### Disable anonymous blob access
 
-1. In your storage account, navigate to **Configuration** under **Settings**.
+1. In your storage account, in the **Settings** section, go to **Configuration**.
 1. Find the **Allow Blob anonymous access** setting and set it to **Disabled**.
-1. Click **Save**.
+1. Select **Save**.
 
 ### Set container access level to private
 
-1. Navigate to **Containers** under **Data management**.
+1. In the **Data management** section, go to **Containers**.
 1. Select your container (for example, `content`).
-1. Click **Change access level**.
+1. Select **Change access level**.
 1. Set **Anonymous access level** to **Private (no anonymous access)**.
-1. Click **OK**.
+1. Select **OK**.
 
 ### Create a new subnet for private endpoint NICs
 
 1. Navigate to your virtual network where NGINXaaS is deployed.
 1. Go to **Subnets** under **Settings**.
-1. Click **+ Subnet**.
+1. Select **+ Subnet**.
 1. Create a new subnet which will be used to assign IP address to your Private Endpoint NIC.
-1. Make a note of the subnet name for the next step.
+1. Make a note of the subnet name; you will need it in the next step.
 
 ### Create a private endpoint
 
-1. In your storage account, navigate to **Networking** under **Security + networking**.
+1. In your storage account, in the **Security + networking** section, go to **Networking**.
 1. Go to the **Private endpoint connections** tab.
-1. Click **+ Private endpoint**.
+1. Select **+ Private endpoint**.
 1. Configure the private endpoint:
    - **Name**: Provide a descriptive name for the private endpoint
    - **Network Interface Name**: Provide a name for the network interface
@@ -65,14 +65,14 @@ Upload your static files to a container in your storage account. In this example
 
 ### Generate a Shared Access Signature (SAS) token
 
-1. In your storage account, navigate to **Shared access signature** under **Security + networking**.
+1. In your storage account, in the **Security + networking** section, go to **Shared access signature**.
 1. Configure the SAS token with minimal required permissions:
    - **Allowed services**: Check **Blob**
    - **Allowed resource types**: Check **Object**
    - **Allowed permissions**: Check **Read** only
    - **Start and expiry date/time**: Set appropriate validity period
    - **Allowed protocols**: Select **HTTPS only**
-1. Click **Generate SAS and connection string**.
+1. Select **Generate SAS and connection string**.
 1. Copy the **SAS token** (the part starting with `?sv=`).
 
 {{< call-out "important" >}}Store the SAS token securely and regenerate it regularly according to your security policies. Grant only the minimum permissions required for your use case.{{< /call-out >}}
@@ -136,7 +136,7 @@ Upload your NGINX configuration to your NGINXaaS deployment following the instru
 ## Test the configuration
 
 1. Go to `https://<NGINXaaS IP>/static/<your-file-name>` to access your static content.
-1. For example, if you have an `index.html` file in your `content` container, access it via `https://<NGINXaaS IP>/static/index.html`.
+   - For example, if you have an `index.html` file in your `content` container, access it via `https://<NGINXaaS IP>/static/index.html`.
 1. Your content should be served from Azure Blob Storage through the private endpoint.
 
 ## Verify private endpoint connectivity
