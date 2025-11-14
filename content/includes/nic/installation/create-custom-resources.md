@@ -32,10 +32,9 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{< call-out "note" >}} 
 
-Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
+Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/install/upgrade.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
 
 {{< /call-out >}}
-
 
 ```shell
 kubectl apply -f config/crd/bases/k8s.nginx.org_virtualservers.yaml

@@ -4071,7 +4071,7 @@
         "x-nginx-one-action": "export",
         "x-nginx-one-entity": "NGINX staged config",
         "summary": "Export staged configuration",
-        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one/how-to/staged-configs/import-export-staged-config/).\n",
+        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one-console/nginx-configs/staged-configs/import-export-staged-config/).\n",
         "operationId": "exportStagedConfig",
         "responses": {
           "200": {
