@@ -13,7 +13,7 @@ The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/co
 
 This document is the reference documentation for the Policy resource. An example of a Policy for access control is available in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/access-control).
 
-## Prerequisites
+## Before you begin
 
 Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}), which you need to create separately.
 
@@ -33,6 +33,7 @@ spec:
 ```
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | No |
@@ -43,7 +44,7 @@ spec:
 |``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | No |
 |``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | No |
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
+|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
 |``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | No |
 
 {{% /table %}}
@@ -69,6 +70,7 @@ accessControl:
   deny:
   - 10.0.0.0/8
 ```
+
 {{< call-out "note" >}}
 
 The feature is implemented using the NGINX [ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html). NGINX Ingress Controller access control policy supports either allow or deny rules, but not both (as the module does).
@@ -76,10 +78,12 @@ The feature is implemented using the NGINX [ngx_http_access_module](http://nginx
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``allow`` | Allows access for the specified networks or addresses. For example, ``192.168.1.1`` or ``10.1.1.0/16``. | ``[]string`` | No |
 |``deny`` | Denies access for the specified networks or addresses. For example, ``192.168.1.1`` or ``10.1.1.0/16``. | ``[]string`` | No | \* an accessControl must include either `allow` or `deny`. |
+
 {{% /table %}}
 
 #### AccessControl Merging Behavior
@@ -115,6 +119,7 @@ rateLimit:
   zoneSize: 10M
   key: ${binary_remote_addr}
 ```
+
 {{< call-out "note" >}}
 
 The feature is implemented using the NGINX [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html).
@@ -128,6 +133,7 @@ When the [Zone Sync feature]({{< ref "/nic/configuration/global-configuration/co
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``rate`` | The rate of requests permitted. The rate is specified in requests per second (r/s) or requests per minute (r/m). | ``string`` | Yes |
@@ -141,6 +147,7 @@ When the [Zone Sync feature]({{< ref "/nic/configuration/global-configuration/co
 |``rejectCode`` | Sets the status code to return in response to rejected requests. Must fall into the range ``400..599``. Default is ``503``. | ``int`` | No |
 |``scale`` | Enables a constant rate-limit by dividing the configured rate by the number of nginx-ingress pods currently serving traffic. This adjustment ensures that the rate-limit remains consistent, even as the number of nginx-pods fluctuates due to autoscaling. **This will not work properly if requests from a client are not evenly distributed across all ingress pods** (Such as with sticky sessions, long lived TCP Connections with many requests, and so forth). In such cases using [zone-sync]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) instead would give better results.  Enabling `zone-sync` will suppress this setting. | ``bool`` | No |
 |``condition`` | Add a condition to a rate-limit policy. | [ratelimit.condition](#ratelimitcondition) | No |
+
 {{% /table %}}
 
 {{< call-out "note" >}}
@@ -174,11 +181,13 @@ condition:
 ```
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``jwt`` | defines a JWT condition to rate limit against. | [ratelimit.condition.jwt](#ratelimitconditionjwt) | No |
 |``variables`` | defines a Variable condition to rate limit against. | [ratelimit.condition.variables](#ratelimitconditionvariables) | No |
 |``default`` | sets the rate limit in this policy to be the default if no conditions are met. In a group of policies with the same condition, only one policy can be the default. | ``bool`` | No |
+
 {{% /table %}}
 
 {{< call-out "note" >}}
@@ -189,6 +198,7 @@ If conditions are used, a request doesn't match any, and a `default` has been de
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
 
 ### RateLimit.Condition.JWT
+
 {{< call-out "note" >}}
 
 This feature is only available with NGINX Plus.
@@ -215,10 +225,12 @@ The rate limit policy will only apply to requests that contain a JWT with the sp
 ```
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``claim`` | Claim is the JWT claim to be rate limit by. Nested claims should be separated by ".". | ``string`` | Yes |
 |``match`` | the value of the claim to match against. | ``string`` | Yes |
+
 {{% /table %}}
 
 ### RateLimit.Condition.Variables
@@ -236,10 +248,12 @@ Only one variable at a time is supported at present.
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``name`` | the name of the NGINX variable to be rate limit by. | ``string`` | Yes |
 |``match`` | the value of the NGINX variable to match against.  Values prefixed with the `~` character denote the following is a [regular expression](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).  | ``string`` | Yes |
+
 {{% /table %}}
 
 ### APIKey
@@ -281,12 +295,14 @@ data:
 ```
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``suppliedIn`` | `header` or `query`. | | Yes |
 |``suppliedIn.header`` | An array of headers that the API Key may appear in. | ``string[]`` | No |
 |``suppliedIn.query`` | An array of query params that the API Key may appear in. | ``string[]`` | No |
 |``clientSecret`` | The name of the Kubernetes secret that stores the API Key(s). It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/apikey``, and the API Key(s) must be stored in a key: val format where each key is a unique clientID and each value is a unique base64 encoded API Key  | ``string`` | Yes |
+
 {{% /table %}}
 
 {{< call-out "important" >}}An APIKey Policy must include a minimum of one of the `suppliedIn.header` or `suppliedIn.query` parameters.  Both can also be supplied.{{< /call-out >}}
@@ -335,15 +351,18 @@ basicAuth:
   secret: htpasswd-secret
   realm: "My API"
 ```
+
 {{< call-out "note" >}}
 The feature is implemented using the NGINX [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html).
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``secret`` | The name of the Kubernetes secret that stores the Htpasswd configuration. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/htpasswd``, and the config must be stored in the secret under the key ``htpasswd``, otherwise the secret will be rejected as invalid. | ``string`` | Yes |
 |``realm`` | The realm for the basic authentication. | ``string`` | No |
+
 {{% /table %}}
 
 #### BasicAuth Merging Behavior
@@ -402,11 +421,13 @@ This feature is implemented using the NGINX Plus [ngx_http_auth_jwt_module](http
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``secret`` | The name of the Kubernetes secret that stores the JWK. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/jwk``, and the JWK must be stored in the secret under the key ``jwk``, otherwise the secret will be rejected as invalid. | ``string`` | Yes |
 |``realm`` | The realm of the JWT. | ``string`` | Yes |
 |``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
+
 {{% /table %}}
 
 #### JWT Merging Behavior
@@ -448,6 +469,7 @@ This feature is implemented using the NGINX Plus directive [auth_jwt_key_request
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required | Default |
 | ---| ---| ---| --- | --- |
 |``jwksURI`` | The remote URI where the request will be sent to retrieve JSON Web Key set| ``string`` | Yes | -- |
@@ -459,6 +481,7 @@ This feature is implemented using the NGINX Plus directive [auth_jwt_key_request
 |``sslVerify`` | Enables verification of the JWKS server SSL certificate. | ``bool`` | No | `false` |
 |``sslVerifyDepth`` | Sets the verification depth in the JWKS server certificates chain. | ``int`` | No | `1` |
 |``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for JWKS server verification. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored in the secret under the key ``ca.crt``. | ``string`` | No | -- |
+
 {{% /table %}}
 
 {{< call-out "note" >}}
@@ -585,7 +608,7 @@ ingressMTLS:
     verifyDepth: 1
 ```
 
-**IMPORTANT NOTE**
+{{< call-out "important" >}}
 When configuring a CRL with the `ingressMTLS.crlFileName` field, there is additional context to keep in mind:
 
 1. NGINX Ingress Controller will expect the CRL, in this case `webapp.crl`, will be in `/etc/nginx/secrets`. A volume mount will need to be added to NGINX Ingress Controller deployment add your CRL to `/etc/nginx/secrets`
@@ -593,13 +616,17 @@ When configuring a CRL with the `ingressMTLS.crlFileName` field, there is additi
 
 Please refer to the Kubernetes documentation on [volumes](https://kubernetes.io/docs/concepts/storage/volumes/) to find the best implementation for your environment.
 
+{{< /call-out >}}
+
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``clientCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored in the secret under the key ``ca.crt``, otherwise the secret will be rejected as invalid. | ``string`` | Yes |
 |``verifyClient`` | Verification for the client. Possible values are ``"on"``, ``"off"``, ``"optional"``, ``"optional_no_ca"``. The default is ``"on"``. | ``string`` | No |
 |``verifyDepth`` | Sets the verification depth in the client certificates chain. The default is ``1``. | ``int`` | No |
 |``crlFileName`` | The file name of the Certificate Revocation List. NGINX Ingress Controller will look for this file in `/etc/nginx/secrets` | ``string`` | No |
+
 {{% /table %}}
 
 #### IngressMTLS Merging Behavior
@@ -635,6 +662,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``tlsSecret`` | The name of the Kubernetes secret that stores the TLS certificate and key. It must be in the same namespace as the Policy resource. The secret must be of the type ``kubernetes.io/tls``, the certificate must be stored in the secret under the key ``tls.crt``, and the key must be stored under the key ``tls.key``, otherwise the secret will be rejected as invalid. | ``string`` | No |
@@ -646,6 +674,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 |``sslName`` | Allows overriding the server name used to verify the certificate of the upstream HTTPS server. | ``string`` | No |
 |``ciphers`` | Specifies the enabled ciphers for requests to an upstream HTTPS server. The default is ``DEFAULT``. | ``string`` | No |
 |``protocols`` | Specifies the protocols for requests to an upstream HTTPS server. The default is ``TLSv1 TLSv1.1 TLSv1.2``. | ``string`` | No | > Note: the value of ``ciphers`` and ``protocols`` is not validated by NGINX Ingress Controller. As a result, NGINX can fail to reload the configuration. To ensure that the configuration for a VirtualServer/VirtualServerRoute that references the policy was successfully applied, check its [status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md#virtualserver-and-virtualserverroute-resources" >}}). The validation will be added in the future releases. |
+
 {{% /table %}}
 
 #### EgressMTLS Merging Behavior
@@ -710,6 +739,7 @@ The configuration in the example doesn't enable TLS and the synchronization betw
 The OIDC policy defines a few internal locations that can't be customized: `/_jwks_uri`, `/_token`, `/_refresh`, `/_id_token_validation`, `/logout`. In addition, as explained below, `/_codexch` is the default value for redirect URI, and `/_logout` is the default value for post logout redirect URI, both of which can be customized. Specifying one of these locations as a route in the VirtualServer or VirtualServerRoute will result in a collision and NGINX Plus will fail to reload.
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``clientID`` | The client ID provided by your OpenID Connect provider. | ``string`` | Yes |
@@ -725,6 +755,7 @@ The OIDC policy defines a few internal locations that can't be customized: `/_jw
 |``zoneSyncLeeway`` | Specifies the maximum timeout in milliseconds for synchronizing ID/access tokens and shared values between Ingress Controller pods. The default is ``200``. | ``int`` | No |
 |``accessTokenEnable`` | Option of whether Bearer token is used to authorize NGINX to access protected backend. | ``boolean`` | No |
 |``pkceEnable`` | Switches Proof Key for Code Exchange on. The OpenID client needs to be in public mode. `clientSecret` is not used in this mode. | ``boolean`` | No |
+
 {{% /table %}}
 
 {{< call-out "note" >}}
@@ -780,6 +811,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | --- | ---| ---| --- |
 | ``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter,followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
@@ -790,6 +822,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 |``levels`` | Levels defines the cache directory hierarchy levels for storing cached files. Must be in format "X:Y" or "X:Y:Z" where X, Y, Z are either 1 or 2. This controls the number of subdirectory levels and their name lengths. Examples: "1:2", "2:2", "1:2:2". Invalid: "3:1", "1:3", "1:2:3". | ``string`` | No |
 |``overrideUpstreamCache`` | OverrideUpstreamCache controls whether to override upstream cache headers (using proxy_ignore_headers directive). When true, NGINX will ignore cache-related headers from upstream servers like Cache-Control, Expires etc, Default: false. | ``bool`` | No |
 |``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. This feature is only available in NGINX Plus. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
+
 {{% /table %}}
 
 #### Cache Merging Behavior
@@ -798,7 +831,7 @@ A VirtualServer/VirtualServerRoute can reference multiple cache policies. Howeve
 
 ### WAF
 
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX Module]({{< ref "/nap-waf/" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
 
 The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
@@ -817,18 +850,34 @@ waf:
     logDest: "syslog:server=syslog-svc-secondary.default:514"
 ```
 
-{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases.It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
+{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
 
 {{% table %}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
-|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
-|``securityLog.enable`` | Enables security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | The [F5 WAF for NGINX log conf]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | The [F5 WAF for NGINX log bundle]({{< ref "/nic/installation/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
+|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
+|``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
+|``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+|``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecurityLogs) | No |
+
+{{% /table %}}
+
+#### WAF.SecurityLogs
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``enable`` | Enables security log. | ``bool`` | No |
+|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
+|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+
 {{% /table %}}
 
 #### WAF Merging Behavior

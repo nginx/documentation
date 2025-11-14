@@ -3,7 +3,7 @@
 
 Your folder should contain the following files:
 
-- _nginx-repo.cert_
+- _nginx-repo.crt_
 - _nginx-repo.key_
 - _nginx.conf_
 - _entrypoint.sh_
@@ -13,13 +13,13 @@ Your folder should contain the following files:
 To build an image, use the following command, replacing `<your-image-name>` as appropriate:
 
 ```shell
-sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.cert --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
+sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
 ```
 
 A RHEL-based system would use the following command instead:
 
 ```shell
-podman build --no-cache --secret id=nginx-crt,src=nginx-repo.cert --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
+podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
 ```
 
 {{< call-out "note" >}}

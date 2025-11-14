@@ -1,0 +1,44 @@
+name: Bug report
+description: Report an issue with our content or website
+title: "[Bug]: "
+body: 
+  - type: textarea
+    attributes:
+      label: Describe the problem you have identified
+      description: Explain the problem with as much detail as possible.
+    validations:
+      required: true
+  - type: dropdown
+    attributes: 
+      label: Which product or products does this problem relate to?
+      multiple: true
+      options:
+        - F5 DoS for NGINX
+        - F5 WAF for NGINX
+        - NGINX Agent
+        - NGINXaaS for Azure
+        - NGINXaaS for Google Cloud
+        - NGINX Gateway Fabric
+        - NGINX Ingress Controller
+        - NGINX Instance Manager
+        - NGINX One Console
+        - NGINX Plus
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: If necessary, explain any additional steps to reproduce the problem.
+      description: Describe the where the issue occurs.
+  - type: textarea
+    attributes:
+      label: What is the expected or desired behaviour?
+      description: Describe what you expected to happen instead of the problem
+  - type: textarea
+    attributes:
+      label: Is this problem specific to a particular platform or software version?
+      description: Describe the context in which this problem appears.
+  - type: textarea
+    attributes: 
+      label: Any additional information
+      description: Add any remaining detail for this idea not covered by the above questions.

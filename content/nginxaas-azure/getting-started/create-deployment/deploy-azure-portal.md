@@ -1,11 +1,11 @@
 ---
 title: Deploy using the Azure portal
-weight: 100
-toc: true
-nd-docs: DOCS-878
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
-type:
-- how-to
+toc: true
+weight: 100
+nd-content-type: how-to
+nd-product: N4Azure
+nd-docs: DOCS-878
 ---
 
 ## Overview
@@ -19,7 +19,6 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 1. [Sign in](https://portal.azure.com/) to the Azure portal with your Azure account.
 1. Use the search field to find "NGINXaaS" in the Azure Portal. In the Services results, select **NGINXaaS**.
 1. Select **+ Create** on the **NGINXaaS** page to start the deployment process.
-
 
 ## Create a deployment
 
@@ -66,24 +65,23 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
    - If you plan on using an IPv6 address on the frontend, make sure the subnet is dual-stack, i.e., the subnet has both IPv4 and IPv6 address spaces. Attempting to use a subnet that is not dual-stack will cause deployment creation to fail.
    - Changes to a virtual network's DNS settings will not be applied automatically to your NGINXaaS deployment. To ensure DNS settings are applied, you must add any custom DNS servers to the VNET's DNS settings before creating an NGINXaaS deployment. As a workaround for existing deployments, we recommend using the [`resolver` directive](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) to explicitly specify your name server(s) and the [`resolve` parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) to automatically re-resolve the domain name of the server without restarting NGINX.
 
-      <details>
-      <summary>Example of using the resolver directive</summary>
-      For example,
+   {{<details summary="Resolver directive example">}}
 
-      ```nginx
-      resolver 10.0.0.2 valid=10s;
-      upstream backends {
-         zone backends 64k;
-         server backends.example.com:8080 resolve;
-      }
+   ```nginx
+   resolver 10.0.0.2 valid=10s;
+   upstream backends {
+      zone backends 64k;
+      server backends.example.com:8080 resolve;
+   }
 
-      server {
-         location / {
-            proxy_pass http://backends;
-         }
+   server {
+      location / {
+         proxy_pass http://backends;
       }
-      ```
-      </details>
+   }
+   ```
+      
+   {{</details>}}
 
 
 1. Next, select **Tags**.
@@ -109,7 +107,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. To test your deployment, you can go to the IP address noted on the overview page. The default NGINX welcome screen should load.
 
-   {{< call-out "note" >}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< ref "create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< ref "nginx-configuration.md#networking-tab" >}}) section.{{< /call-out >}}
+   {{< call-out "note" >}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< ref "/nginxaas-azure/getting-started/create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration.md#networking-tab" >}}) section.{{< /call-out >}}
 
    {{< img src="nginxaas-azure/test-deployment.png" alt="NGINXaaS Overview page showing the IP address of the deployment in the Essentials section." >}}
 

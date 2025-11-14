@@ -19,8 +19,8 @@ For other deployment methods, you should read [Build and use the compiler tool](
 Signatures are divided into three groups:
 
 - [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}})
+- [Bot signatures]({{< ref "/waf/policies/bot-signatures.md" >}})
 - [Threat campaigns]({{< ref "/waf/policies/threat-campaigns.md" >}})
-- Bot signatures
 
 F5 WAF for NGINX signature updates are released at a higher frequency than F5 WAF for NGINX itself, and are subsequently available in their own packages.
 
@@ -35,7 +35,7 @@ Installing these packages also installed their dependencies, which includes the 
 They will be named something in the following list:
 
 - `app-protect-attack-signatures`
-- `app-protect-threat-campaigns`
 - `app-protect-bot-signatures`
+- `app-protect-threat-campaigns`
 
 You can update these packages independently of the core F5 WAF for NGINX packages, ensuring you always have the latest signatures.

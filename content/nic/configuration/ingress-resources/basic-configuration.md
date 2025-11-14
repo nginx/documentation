@@ -2,8 +2,8 @@
 title: Basic configuration
 weight: 100
 toc: true
-type: reference
-product: NIC
+nd-content-type: reference
+nd-product: NIC
 nd-docs: DOCS-593
 ---
 
@@ -26,8 +26,6 @@ Here is a breakdown of what this Ingress resource definition means:
 To learn more about the Ingress resource, view [the official Kubernetes documentation for Ingress resources](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 {{< call-out "note" >}} For complete instructions on deploying Ingress and Secret resources in the cluster, see the [complete example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/complete-example) in the GitHub repository. {{< /call-out >}}
-
----
 
 ## New features available in Kubernetes 1.18
 
@@ -76,9 +74,7 @@ Starting from Kubernetes 1.18, you can use the following new features:
     . . .
   ```
 
-  When using this field you need to create the `IngressClass` resource with the corresponding `name`. View the [Create common resources]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md#create-common-resources" >}}) section of the Installation with Manifests topic for more information.
-
----
+  When using this field you need to create the `IngressClass` resource with the corresponding `name`. View the [Create common resources]({{< ref "/nic/install/manifests.md#create-common-resources" >}}) section of the Installation with Manifests topic for more information.
 
 ## Restrictions
 
@@ -88,8 +84,6 @@ NGINX Ingress Controller imposes the following restrictions on Ingress resources
 - The `host` value needs to be unique among all Ingress and VirtualServer resources unless the Ingress resource is a [mergeable minion]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}). View the [Host and Listener collisions]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}) topic for more information.
 - The `path` field in `spec.rules[].http.paths[]` is required for `Exact` and `Prefix` `pathTypes`.
 - The ImplementationSpecific `pathType` is treated as equivalent to `Prefix` `pathType`, with the exception that when this `pathType` is configured, the `path` field in `spec.rules[].http.paths[]` is not mandatory. `path` defaults to `/` if not set but the `pathType` is set to ImplementationSpecific.
-
----
 
 ## Advanced configuration
 

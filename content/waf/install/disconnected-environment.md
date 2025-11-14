@@ -7,9 +7,7 @@ weight: 500
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This topic describes how to install F5 WAF for NGINX in a disconnected or air-gapped environment.
@@ -30,11 +28,11 @@ To complete this guide, you will need the following prerequisites:
 
 These instructions outline the broad, conceptual steps involved with working with a disconnected environment. You will need to make adjustments based on your specific security requirements.
 
-Some users may be able to use a USB stick to transfer necessary set-up artefacts, whereas other users may be able to use tools such as SSH or SCP.
+Some users may be able to use a USB stick to transfer necessary set-up artifacts, whereas other users may be able to use tools such as SSH or SCP.
 
-In the following sections, the term _connected environment_ refers to the environment with access to the internet you will use to download set-up artefacts.
+In the following sections, the term _connected environment_ refers to the environment with access to the internet you will use to download set-up artifacts.
 
-The term _disconnected environment_ refers to the final environment the F5 WAF for NGINX installation is intended to run in, and is the target to transfer set-up artefacts from the connected environment.
+The term _disconnected environment_ refers to the final environment the F5 WAF for NGINX installation is intended to run in, and is the target to transfer set-up artifacts from the connected environment.
 
 ## Download and run the documentation website locally
 
@@ -46,8 +44,7 @@ In addition to accessing F5 WAF for NGINX documentation, you will be able to acc
 
 You will need `git` and `wget` in your connected environment.
 
-Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.147.8):
-
+Run the following two commands: replace `<hugo-release>` with the tarball appropriate to the environment from [the release page](https://github.com/gohugoio/hugo/releases/tag/v0.152.2):
 
 ```shell
 git clone git@github.com:nginx/documentation.git
@@ -97,10 +94,10 @@ Once you've obtained the package files and transferred them to your disconnected
 After pulling or building Docker images in a connected environment, you can save them to `.tar` files:
 
 ```shell
-docker save -o waf-enforcer.tar waf-enforcer:5.2.0
-docker save -o waf-config-mgr.tar waf-config-mgr:5.2.0
+docker save -o waf-enforcer.tar waf-enforcer:{{< version-waf-enforcer >}}
+docker save -o waf-config-mgr.tar waf-config-mgr:{{< version-waf-config-mgr >}}
 # Optional, if using IP intelligence
-docker save -o waf-ip-intelligence.tar waf-ip-intelligence:5.2.0
+docker save -o waf-ip-intelligence.tar waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
 ```
 
 You can then transfer the files and load the images in your disconnected environment:
@@ -113,4 +110,3 @@ docker load -i waf-ip-intelligence.tar
 ```
 
 Ensure your Docker compose files use the tagged images you've transferred.
-

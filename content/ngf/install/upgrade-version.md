@@ -68,7 +68,8 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{% tab name="Helm" %}}
 
-{{< call-out "important" >}} If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`. {{< /call-out >}}
+
+{{< call-out "important" "Important" >}}If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`.{{< /call-out >}}
 
 To upgrade the release with Helm, you can use the OCI registry, or download the chart and upgrade from the source.
 

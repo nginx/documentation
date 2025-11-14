@@ -81,14 +81,14 @@ To download external dependencies:
 
     - **For RHEL and RPM-Based systems**:
 
-        ```bash
+        ```shell
         tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
         sudo rpm -ivh *.rpm
         ```
 
     - **For Debian, Ubuntu, Deb-based systems**:
 
-        ```bash
+        ```shell
         tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
         sudo dpkg -i ./*.deb
         ```
@@ -107,19 +107,19 @@ The administrator username (default: **admin**) and the generated password are d
 
    - **For RHEL and RPM-based systems**:
 
-        ```bash
+        ```shell
         sudo rpm -ivh --nosignature /home/<user>/nms-instance-manager_<version>.x86_64.rpm
         ```
 
    - **For Debian, Ubuntu, Deb-based systems**:
 
-        ```bash
+        ```shell
         sudo apt-get -y install -f /home/<user>/nms-instance-manager_<version>_amd64.deb
         ```
 
 3. Enable and start NGINX Instance Manager services:
 
-    ```bash
+    ```shell
     sudo systemctl enable nms nms-core nms-dpm nms-ingestion nms-integrations --now
     ```
 
@@ -127,7 +127,7 @@ The administrator username (default: **admin**) and the generated password are d
 
 4. Restart the NGINX web server:
 
-   ```bash
+   ```shell
    sudo systemctl restart nginx
    ```
 
@@ -167,7 +167,7 @@ To upgrade NGINX Instance Manager to a newer version:
 2. Upgrade the package:
    - **For RHEL and RPM-based systems**:
 
-        ``` bash
+        ```shell
         sudo rpm -Uvh --nosignature /home/user/nms-instance-manager_<version>.x86_64.rpm
         sudo systemctl restart nms
         sudo systemctl restart nginx
@@ -175,7 +175,7 @@ To upgrade NGINX Instance Manager to a newer version:
 
    - **For Debian, Ubuntu, Deb-based systems**:
 
-        ```bash
+        ```shell
         sudo apt-get -y install -f /home/user/nms-instance-manager_<version>_amd64.deb
         sudo systemctl restart nms
         sudo systemctl restart nginx
@@ -191,7 +191,7 @@ To upgrade NGINX Instance Manager to a newer version:
 
 To manually update the CVE list in an air-gapped environment, follow these steps to download and overwrite the `cve.xml` file in the `/usr/share/nms` directory and restart the Data Plane Manager service:
 
-```bash
+```shell
 sudo chmod 777 /usr/share/nms/cve.xml && \
 sudo curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nms/cve.xml && \
 sudo chmod 644 /usr/share/nms/cve.xml && \

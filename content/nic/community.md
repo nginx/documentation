@@ -1,6 +1,6 @@
 ---
 title: Community and contributing
-weight: 2200
+weight: 10000
 nd-content-type: reference
 nd-product: NIC
 nd-docs: DOCS-1447

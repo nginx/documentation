@@ -320,6 +320,18 @@ installBundleForDebianDistro() {
   systemctl restart nginx
 }
 
+check_restorecon(){
+  local path="$1"
+
+    if ! sudo restorecon -F -R "$path"; then
+        YELLOW='\033[1;33m'
+        NC='\033[0m'
+        echo -e "${YELLOW}WARNING: Something happened${NC}"
+    else
+        echo "restorecon succeeded for $path"
+    fi
+}
+
 installBundleForRPMDistro(){
     # creating nms group and nms user if it isn't already there
     if ! getent group "${NIM_GROUP}" >/dev/null; then
@@ -352,19 +364,17 @@ installBundleForRPMDistro(){
           rm -f /etc/yum.repos.d/nginx-plus.repo
     fi
     printf "[nginx-plus]\nname=nginx-plus repo\nbaseurl=https://pkgs.nginx.com/plus/$os_type/\$releasever/\$basearch/\nsslclientcert=/etc/ssl/nginx/nginx-repo.crt\nsslclientkey=/etc/ssl/nginx/nginx-repo.key\ngpgcheck=0\nenabled=1" >> /etc/yum.repos.d/nginx-plus.repo
-
-    yum install -y yum-utils curl epel-release ca-certificates
-    yum-config-manager --enable  nginx-stable
-    yum-config-manager --enable  nginx-plus
-
+  
     yum -y update
     check_last_command_status "yum update" $?
-
+  
+    yum install -y yum-utils curl epel-release ca-certificates
+  
     if [ "${USE_NGINX_PLUS}" == "true" ]; then
          echo "Installing nginx plus..."
          yum install -y nginx-plus
          check_last_command_status "yum install -y nginx-plus" $?
-         createNginxMgmtFile
+         create_nginx_mgmt_file
     else
          echo "Installing nginx..."
          yum install -y nginx --repo nginx-stable
@@ -375,7 +385,7 @@ installBundleForRPMDistro(){
     check_last_command_status "systemctl enable nginx.service" $?
 
     if [[ ${SKIP_CLICKHOUSE_INSTALL} == "false" ]]; then
-        yum-config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
+        dnf config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
         echo "Installing clickhouse-server and clickhouse-client"
 
         yum install -y "clickhouse-common-static-${CLICKHOUSE_VERSION}"
@@ -416,6 +426,30 @@ installBundleForRPMDistro(){
     sleep 5
     echo "Restarting nginx API gateway"
     systemctl restart nginx
+    
+    sleep 2
+    check_restorecon /usr/bin/nms-core
+    check_restorecon /usr/bin/nms-dpm
+    check_restorecon /usr/bin/nms-ingestion
+    check_restorecon /usr/bin/nms-integrations
+    check_restorecon /usr/bin/nms-sm
+    check_restorecon /usr/lib/systemd/system/nms.service
+    check_restorecon /usr/lib/systemd/system/nms-core.service
+    check_restorecon /usr/lib/systemd/system/nms-dpm.service
+    check_restorecon /usr/lib/systemd/system/nms-sm.service
+    check_restorecon /usr/lib/systemd/system/nms-ingestion.service
+    check_restorecon /usr/lib/systemd/system/nms-integrations.service
+    check_restorecon /var/lib/nms/modules/manager.json
+    check_restorecon /var/lib/nms/modules.json
+    check_restorecon /var/lib/nms/secrets
+    check_restorecon /var/lib/nms/streaming
+    check_restorecon /var/lib/nms
+    check_restorecon /var/lib/nms/dqlite
+    check_restorecon /var/run/nms
+    check_restorecon /var/lib/nms/modules
+    check_restorecon /var/log/nms
+
+    sleep 5
 }
 
 install_nim_online(){
@@ -450,7 +484,6 @@ check_nim_dashboard_status(){
     sleep 60
     if ! curl -k -v https://localhost/ui/ 2>/dev/null| grep -q "NGINX"; then
     	echo "NGINX Instance Manager failed to start"
-    	cat /var/log/nms/nms.log
       exit 1
     else
       echo -e "${GREEN}NGINX Instance Manager Successfully Started${NC}"
@@ -810,7 +843,7 @@ printSupportedOS(){
   printf "\n  5. debian12(bookworm)"
   printf "\n  6. centos8(CentOS 8)"
   printf "\n  7. rhel8(Redhat Enterprise Linux Version 8)"
-  printf "\n  8. rhel9( Redhat Enterprise Linux Version 9)"
+  printf "\n  8. rhel9(Redhat Enterprise Linux Version 9)"
   printf "\n  9. oracle8(Oracle Linux Version 8)"
   printf "\n  10. oracle9(Oracle Linux Version 9)\n"
   exit 0

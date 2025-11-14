@@ -36,6 +36,11 @@ enableGitInfo = true
       unsafe = true
     [markup.highlight]
       guessSyntax = true
+    [markup.goldmark.extensions.typographer]
+      rightDoubleQuote = '&quot;'
+      leftDoubleQuote = '&quot;'
+      rightSingleQuote = '&apos;'
+      leftSingleQuote = '&apos;'
 
 [params]
   useSectionPageLists = "false"

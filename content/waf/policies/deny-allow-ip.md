@@ -20,7 +20,7 @@ This feature allows you to define IP addresses or ranges for which the traffic w
 2. **Always Denied** (`"blockRequests": "always"`) - Requests from this IP range will be always blocked even if they have no other blocking violations. The `VIOL_BLACKLISTED_IP` violation will be triggered in this case and its block flag must be set to `true` in order for the request to be actually blocked.
 3. **Never Log** (`"neverLogRequests": true`) - Requests from this IP range will not be logged even if defined by logging configuration. This is independent of the other settings, so the same IP range can be both denied (or allowed) and yet never logged.
 
-In this IPv4 example, the default configuratio is used while enabling the deny list violation. The configuration section defines:
+In this IPv4 example, the default configuration is used while enabling the deny list violation. The configuration section defines:
 
 - An always allowed IP, 1.1.1.1
 - An always denied IP, 2.2.2.2

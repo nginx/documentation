@@ -30,11 +30,11 @@ You can deploy NGINX Instance Manager in the following environments:
 
 ## Sizing recommendations for Managing NGINX Instances {#system-sizing}
 
-The following recommendations provide the minimum guidelines for NGINX Instance Manager. These guidelines ensure adequate performance, but for optimal results, we strongly recommend using solid-state drives (SSDs) for storage. If you set up [deployments with NGINX App Protect](#system-sizing-app-protect), you may need additional memory and CPU.
+The following recommendations provide the minimum guidelines for NGINX Instance Manager. These guidelines ensure adequate performance, but for optimal results, we strongly recommend using solid-state drives (SSDs) for storage. If you set up [deployments with F5 WAF for NGINX](#system-sizing-app-protect), you may need additional memory and CPU.
 
 ### Standard NGINX configuration deployments
 
-This section outlines the recommendations for NGINX Instance Manager deployments with data plane instances using standard configurations, without NGINX App Protect. **Standard configurations** typically support up to **40 upstream servers** with associated location and server blocks, and up to **350 certificates**. This is ideal for medium-sized environments or applications with moderate traffic.
+This section outlines the recommendations for NGINX Instance Manager deployments with data plane instances using standard configurations, without F5 WAF for NGINX. **Standard configurations** typically support up to **40 upstream servers** with associated location and server blocks, and up to **350 certificates**. This is ideal for medium-sized environments or applications with moderate traffic.
 
 We recommend using SSDs to enhance storage performance.
 
@@ -50,7 +50,7 @@ These values represent the minimum resources needed for deployments that fall un
 
 ### Large NGINX configuration deployments
 
-For environments requiring more resources, **large configurations** are suitable. These configurations can support up to **300 upstream servers** and are designed for enterprise environments or applications handling high traffic and complex configurations, without NGINX App Protect.
+For environments requiring more resources, **large configurations** are suitable. These configurations can support up to **300 upstream servers** and are designed for enterprise environments or applications handling high traffic and complex configurations, without F5 WAF for NGINX.
 
 {{< bootstrap-table "table table-striped table-bordered" >}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
@@ -59,9 +59,9 @@ For environments requiring more resources, **large configurations** are suitable
 | 250                            | 4 vCPU | 8 GB RAM | 1 GbE NIC | 2 TB    |
 {{</ bootstrap-table >}}
 
-### NGINX configuration deployments with NGINX App Protect {#system-sizing-app-protect}
+### NGINX configuration deployments with F5 WAF for NGINX {#system-sizing-app-protect}
 
-If using NGINX App Protect features in NGINX Instance Manager, this requires additional CPU and Memory for policy compilation and security monitoring features. At a minimum, 8gb Memory and 4 CPUs are required for a standard NGINX App Protect use case (under 20 NGINX Plus instances). The requirements are heavily dependent on the number of policies being managed, the frequency of updates and the number of events being that occur in the security monitoring feature.
+If using F5 WAF for NGINX features in NGINX Instance Manager, this requires additional CPU and Memory for policy compilation and security monitoring features. At a minimum, 8gb Memory and 4 CPUs are required for a standard F5 WAF for NGINX use case (under 20 NGINX Plus instances). The requirements are heavily dependent on the number of policies being managed, the frequency of updates and the number of events being that occur in the security monitoring feature.
 
 ### Lightweight mode {#lightweight-mode}
 
@@ -84,7 +84,7 @@ When used only for licensing and usage reporting, NGINX Instance Manager has min
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
 |--------------------------------|--------|----------|-----------|---------|
 | n/a                            | 2 vCPU | 4 GB RAM | 1 GbE NIC | 20 GB   |
-{{</bootstrap-table>}}
+{{< /bootstrap-table >}}
 
 ### Sizing benchmarks for storage
 
@@ -99,6 +99,7 @@ The following benchmarks focus on **disk storage** requirements for NGINX Instan
 The table below provides storage estimates for **NGINX Plus** based on configuration size, number of instances, and a 14-day data retention period. Larger configurations and longer retention periods will require proportionally more storage.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Config Size         | Instances | Retention (days) | Estimated Disk Usage (NGINX Plus) |
 |---------------------|-----------|------------------|-----------------------------------|
 | **Small Size**       | 10        | 14               | 5 GiB                             |
@@ -113,9 +114,10 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 |                     | 50        | 14               | 426 GiB                           |
 |                     | 100       | 14               | 850 GiB                           |
 |                     | 250       | 14               | 2 TiB                             |
+
 {{</bootstrap-table>}}
 
-{{< call-out "note" >}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{< /call-out >}}
+{{< call-out "note" "Note" >}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{< /call-out >}}
 
 #### Storage requirements for NGINX OSS
 
@@ -124,12 +126,14 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 The table below shows the estimated storage requirements for **NGINX OSS**, based on the number of instances and a 14-day retention period.
 
 {{<bootstrap-table "table table-striped table-bordered">}}
+
 | Config Size           | Instances | Retention (days) | Estimated Disk Usage (NGINX OSS) |
 |-----------------------|-----------|------------------|----------------------------------|
 | **Generic Large Size** | 10        | 14               | 200 MiB                          |
 |                       | 50        | 14               | 850 MiB                          |
 |                       | 100       | 14               | 1.75 GiB                         |
 |                       | 250       | 14               | 4 GiB                            |
+
 {{</bootstrap-table>}}
 
 ## Directory Requirements for NGINX Instance Manager
@@ -151,7 +155,7 @@ If you're concerned solely on usage reporting, you do not need NGINX Agent. Requ
 | Directory path           | Content | Recommendation |
 |-----------------------|-----------------|----------------------------------|
 | /usr/bin |    Stores NIM binaries            | 500MB                         |
-| /var/lib/nms/dqlite |    Stores DQLite database data| 2GiB without NGINX App Protect; 5GiB with NGINX App Protect enabled and large compiled bundles    |
+| /var/lib/nms/dqlite |    Stores DQLite database data| 2GiB without F5 WAF for NGINX; 5GiB with F5 WAF for NGINX enabled and large compiled bundles    |
 | /var/lib/nms/streaming |    Stores NATS streaming messages           | 500MiB                         |
 | /var/lib/nms/secrets |    Stores secrets for LLM license handshakes         | 10MiB                         |
 | /var/lib/nms/modules |    Stores static content like manager.json           | 100KiB (12KiB minimum)                        |
@@ -184,7 +188,7 @@ The NGINX Instance Manager web interface works best on the latest versions of th
 - [Safari](https://support.apple.com/downloads/safari)
 - [Microsoft Edge](https://www.microsoft.com/en-us/edge)
 
-## Support for F5 WAF for NGINX
+## Support for F5 WAF for NGINX {#f5-waf}
 
 {{< include "nim/tech-specs/nim-app-protect-support.md" >}}
 

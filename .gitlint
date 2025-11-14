@@ -3,7 +3,7 @@ ignore = body-is-missing
 contrib = contrib-title-conventional-commits
 
 [title-max-length] 
-line-length = 50
+line-length = 60
 
 [title-min-length]
 min-length = 5

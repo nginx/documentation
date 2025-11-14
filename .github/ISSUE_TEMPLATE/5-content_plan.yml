@@ -1,0 +1,28 @@
+name: Content release plan
+description: This template is for a content release plan, typically tied to a product release
+title: "<product> v#.# content release plan"
+body:
+  - type: textarea
+    attributes:
+      label: Overview
+      description: A content release plan establishes and tracks the documentation work for a product related to a release.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Write a high-level summary of changes expected in this release.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: User stories
+      description: As a user, I want thing, So I can action.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Tasks
+      description: Create a simple list of tasks necessary for this content plan. Finer details can be kept to sub-issues.
+    validations:
+      required: true
