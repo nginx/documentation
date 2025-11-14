@@ -7,9 +7,7 @@ weight: 100
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This page describes the security features available with F5 WAF for NGINX and how to configure policies. 
@@ -76,7 +74,7 @@ worker_processes  4;
 
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections  65536;
@@ -141,6 +139,7 @@ By default, other requests which have a lower violation rating are not blocked, 
 For example, if you want to add blocking on a violation rating of 3 as well, enable blocking for the `VIOL_RATING_NEED_EXAMINATION` violation.
 
 The following violations and signature sets have a low chance of being false positives and are, therefore, configured by default to block the request regardless of its Violation Rating:
+
 - High accuracy attack signatures
 - Threat campaigns
 - Malformed request: unparsable header, malformed cookie and malformed body (JSON or XML).
@@ -249,6 +248,7 @@ In addition, the Strict policy also enables the following features in **alarm on
 The policy JSON file specifies the settings that are different from the base template, such as enabling more signatures, disabling some violations, adding server technologies, etc. These will be shown in the next sections.
 
 There are two ways to tune those settings:
+
 - Within the `policy` structure property, the organic structure of the policy.
 - Within the `modifications` structure property that contains a list of changes expressed in a generic manner.
 
@@ -297,6 +297,7 @@ The same configuration in the `modifications` array looks like this:
 Note the generic schema that can express manipulation in any policy element: `entity`, `entityType`, `action` etc. The `modifications` array is a flat list of individual changes applied to the policy after evaluating the `policy` block.
 
 So when to use `policy` and when to use `modifications`? There are some recommended practice guidelines for that:
+
 - Use `policy` to express the security policy as you intended it to be: the features you want to enable, disable, the signature sets, server technologies and other related configuration attributes. This part of the policy is usually determined when the application is deployed and changes at a relatively slow pace.
 - Use `modifications` to express **exceptions** to the intended policy. These exceptions are usually the result of fixing false positive incidents and failures in tests applied to those policies. Usually these are granular modifications, typically disabling checks of individual signatures, metacharacters and sub-violations. These changes are more frequent.
 - Use `modifications` also for **removing** individual collection elements from the base template, for example disallowed file types.

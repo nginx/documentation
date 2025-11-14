@@ -7,9 +7,7 @@ weight: 1200
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This topic describes the gRPC protection feature for F5 WAF for NGINX.
@@ -35,7 +33,6 @@ They include:
 - **The IDL files** of the protected gRPC service. This is essential for F5 WAF for NGINX to be able to parse the API messages and determine whether they are legal and what needs to be inspected for security.
 - **Security enforcement**, which detect signatures and/or metacharacters and optionally an exception list of signatures (Such as overrides) that need to be disabled in the context of a profile.
 - **Defense attributes**, special restrictions applied to the gRPC traffic. This includes a size limit for the gRPC messages in the request, and whether to tolerate fields that are not defined in the definition of the Protocol Buffer messages.
-
 
 An example service might have the following IDL file:
 
@@ -65,7 +62,6 @@ message PhotoResult {
 The definitions of `OperationResult` and `Condition` messages are in the imported file found in `common/messages.proto` .
 
 Both files need to be referenced in the gRPC content profile:
-
 
 ```json
 {
@@ -331,6 +327,7 @@ gRPC guarantees message ordering within an individual RPC call.
 ```shell
 rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
 ```
+
 #### Server stream
 
 The client sends a request to the server and gets a stream to read a sequence of messages back. 
@@ -340,6 +337,7 @@ The client reads from the returned stream until there are no more messages. gRPC
 ```shell
 rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
 ```
+
 #### Bidirectional streams
 
 Both sides send a sequence of messages using a read-write stream. 
@@ -381,7 +379,7 @@ worker_processes auto;
 
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 working_directory /tmp/cores;
 worker_rlimit_core 1000M;
 
