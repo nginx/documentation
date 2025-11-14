@@ -33,7 +33,7 @@ To add tags to the configuration file, take the following steps:
 
 2. Restart the NGINX Agent service:
 
-    ```bash
+    ```shell
     sudo systemctl restart nginx-agent
     ```
 

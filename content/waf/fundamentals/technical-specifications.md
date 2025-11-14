@@ -14,6 +14,8 @@ nd-product: NAP-WAF
 
 This page outlines the technical specifications for F5 WAF for NGINX, which includes the minimum requirements and supported platforms.
 
+The latest version of F5 WAF for NGINX is {{< version-waf >}}.
+
 ## Resource limitations
 
 - F5 WAF for NGINX supports a **maximum** of **127** CPU cores.
