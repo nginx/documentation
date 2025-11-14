@@ -31,13 +31,13 @@ NGINX Plus complements AWS NLB. It operates at Layer 7 (the application layer)
 
 NGINX Plus also provides reverse‑proxy and load balancing features, including:
 
-- [Full‑featured HTTP, TCP, and UDP load balancing](https://www.nginx.com/products/nginx/load-balancing/)
-- [Intelligent session persistence](https://www.nginx.com/products/nginx/load-balancing/#session-persistence)
+- Full‑featured [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}), [TCP, and UDP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) load balancing
+- [Intelligent session persistence]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md#session-persistence" >}})
 - [High‑performance reverse proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})
 - [Caching and offload of dynamic and static content]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}})
 - Adaptive streaming to deliver audio and video to any device
-- [Application-aware health checks](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/) and [high availability](https://docs.nginx.com/nginx/admin-guide/high-availability/)
-- [Advanced activity monitoring available via a dashboard or API](https://www.nginx.com/products/nginx/live-activity-monitoring/)
+- [Application-aware health checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) and [high availability]({{< ref "nginx/admin-guide/high-availability/ha-keepalived.md" >}})
+- Advanced activity monitoring available via a [Dashboard]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-dashboard" >}}) or [REST API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md#using-the-rest-api" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
 <span id="overview"></span>

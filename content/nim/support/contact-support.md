@@ -37,7 +37,7 @@ The Support team might ask you to run one or both of the following scripts to tr
 1. Open an SSH connection to the NGINX Instance Manager host and log in.
 2. Run the following command:
 
-    ```bash
+    ```shell
     /usr/share/nginx-manager/support.sh
     ```
 
@@ -46,7 +46,7 @@ The Support team might ask you to run one or both of the following scripts to tr
 1. Open an SSH connection to the data plane instance and log in.
 2. Run the following command:
 
-    ```bash
+    ```shell
     /usr/share/nginx-agent/support.sh
     ```
 
@@ -76,7 +76,7 @@ The script creates a file in the `/tmp` directory, such as `/tmp/nginx-manager-l
 
 For example, if your `/etc/nginx-manager` directory contains private keys or certificates, remove them using:
 
-```bash
+```shell
 gzip -d /tmp/nginx-manager-log.tar.gz
 
 tar -f /tmp/nginx-manager-log.tar.gz \

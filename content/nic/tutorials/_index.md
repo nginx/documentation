@@ -1,7 +1,7 @@
 ---
 title: Tutorials
 description:
-weight: 1900
+weight: 800
 menu:
   docs:
     parent: NGINX Ingress Controller

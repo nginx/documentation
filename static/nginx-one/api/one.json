@@ -18,6 +18,14 @@
           "default": "tenant-example"
         }
       }
+    },
+    {
+      "url": "/api/v1/namespaces/{namespace}",
+      "variables": {
+        "namespace": {
+          "default": "default"
+        }
+      }
     }
   ],
   "tags": [
@@ -74,6 +82,11 @@
       "name": "NGINX App Protect",
       "description": "Manage and publish security policies on your NGINX data plane instances.\n",
       "x-displayName": "NGINX App Protect"
+    },
+    {
+      "name": "Templates",
+      "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\n\n* Import, list, and retrieve NGINX configuration templates.\n* Generate and preview full NGINX configurations by composing templates, before saving it as a staged config.\n",
+      "x-displayName": "Templates"
     }
   ],
   "paths": {
@@ -558,6 +571,58 @@
           }
         }
       },
+      "patch": {
+        "x-nginx-one-action": "bulk",
+        "x-nginx-one-entity": "NGINX certificate",
+        "tags": [
+          "Certificates"
+        ],
+        "summary": "Bulk operation on multiple managed certificates",
+        "operationId": "bulkCertificates",
+        "description": "Performs bulk operation on one or more managed certificates, only delete is supported.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateBulkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX certificate",
@@ -965,7 +1030,70 @@
         }
       }
     },
-    "/config-report": {},
+    "/config-report": {
+      "post": {
+        "x-nginx-one-action": "analyze",
+        "x-nginx-one-entity": "NGINX configuration",
+        "tags": [
+          "Staged Configs"
+        ],
+        "summary": "Generate an analysis report for the provided NGINX configuration",
+        "operationId": "analyzeNginxConfig",
+        "description": "Returns an analysis report for the provided NGINX configuration. This report includes insights, identified issues, and recommendations for optimizing and troubleshooting. Note that this operation is for analysis purposes only and does not affect any resources. The report is not stored and is provided only in the API response.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NginxConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully analyzed the provided NGINX configuration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NginxConfigReports"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/config-sync-groups": {
       "get": {
         "tags": [
@@ -3315,7 +3443,6 @@
     },
     "/staged-configs": {
       "get": {
-        "x-feature-flag": "staged-configs",
         "tags": [
           "Staged Configs"
         ],
@@ -3381,8 +3508,59 @@
           }
         }
       },
+      "patch": {
+        "x-nginx-one-action": "bulk",
+        "x-nginx-one-entity": "NGINX staged configs",
+        "tags": [
+          "Staged Configs"
+        ],
+        "summary": "Bulk operation on multiple staged configs",
+        "operationId": "bulkStagedConfigs",
+        "description": "Performs bulk operation on one or more staged configs, only delete is supported.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StagedConfigBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigBulkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
-        "x-feature-flag": "staged-configs",
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX staged configs",
         "tags": [
@@ -3447,7 +3625,6 @@
     },
     "/staged-configs/{stagedConfigObjectID}": {
       "delete": {
-        "x-feature-flag": "staged-configs",
         "x-nginx-one-action": "delete",
         "x-nginx-one-entity": "NGINX staged config",
         "tags": [
@@ -3493,7 +3670,6 @@
         }
       },
       "get": {
-        "x-feature-flag": "staged-configs",
         "tags": [
           "Staged Configs"
         ],
@@ -3554,7 +3730,6 @@
         "tags": [
           "Staged Configs"
         ],
-        "x-feature-flag": "staged-configs",
         "summary": "Retrieve an NGINX staged config",
         "description": "Retrieve the details for an NGINX staged config.\n",
         "operationId": "getStagedConfig",
@@ -3610,7 +3785,6 @@
         "tags": [
           "Staged Configs"
         ],
-        "x-feature-flag": "staged-configs",
         "x-nginx-one-action": "update",
         "x-nginx-one-entity": "NGINX staged config",
         "summary": "Apply partial updates to staged config",
@@ -3693,7 +3867,6 @@
         "tags": [
           "Staged Configs"
         ],
-        "x-feature-flag": "staged-configs",
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX staged config",
         "summary": "Replace existing state",
@@ -3768,7 +3941,6 @@
         "tags": [
           "Staged Configs"
         ],
-        "x-feature-flag": "staged-configs",
         "summary": "Retrieve an analysis report for the NGINX staged config",
         "description": "Analyzes the NGINX staged config and returns a detailed report.\nThe report includes insights, identified issues, and recommendations for optimizing and troubleshooting.\n",
         "operationId": "getStagedConfigReport",
@@ -3814,7 +3986,6 @@
         }
       ],
       "patch": {
-        "x-feature-flag": "staged-configs",
         "x-nginx-one-action": "analyze",
         "x-nginx-one-entity": "NGINX staged configuration",
         "tags": [
@@ -3866,6 +4037,151 @@
           },
           "404": {
             "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staged-configs/{stagedConfigObjectID}/export": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/StagedConfigParamObjectID"
+          }
+        ],
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-nginx-one-action": "export",
+        "x-nginx-one-entity": "NGINX staged config",
+        "summary": "Export staged configuration",
+        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one/how-to/staged-configs/import-export-staged-config/).\n",
+        "operationId": "exportStagedConfig",
+        "responses": {
+          "200": {
+            "description": "Successfully exported the staged configuration.",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "example": "my-staged-config-2025-01-01T20_25_03.tar.gz"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX staged config with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staged-configs/import": {
+      "post": {
+        "tags": [
+          "Staged Configs"
+        ],
+        "x-nginx-one-action": "import",
+        "x-nginx-one-entity": "NGINX staged config",
+        "summary": "Import staged configuration\n",
+        "description": "Imports a gzipped tar archive (.tar.gz) containing configuration and aux files into NGINX One. \nOnly non-hidden files are included in the import.\n\nMaximum compressed archive size: **5 MB**\nMaximum uncompressed individual file size: **10 MB**\n\nIf `parse_only` is set to `true`, the configuration is only validated and not staged.\nBy default, validation is performed and a staged configuration is created upon success.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/StagedConfigImportParseOnly"
+          }
+        ],
+        "operationId": "importStagedConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/StagedConfigImportRequest"
+              },
+              "encoding": {
+                "file": {
+                  "contentType": "application/gzip, application/x-gzip"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return if `parse_only` is `true`: Returns data matching `StagedConfigCreateRequest` that can be used to create the staged config later.  \n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigCreateRequest"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Return if `parse_only` is `false` or omitted: Confirms the import parsed successfully and the staged config was created.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StagedConfigCreateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied",
             "content": {
               "application/json": {
                 "schema": {
@@ -4771,6 +5087,469 @@
           }
         }
       }
+    },
+    "/app-protect/signature-sets": {
+      "get": {
+        "x-feature-flag": "nap-waf-m3",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect signature sets",
+        "description": "Returns NGINX App Protect signature sets. Signature sets are predefined or user-defined groups of detection mechanisms (signatures) \nthat identify specific attack types, such as SQL injection, Cross-Site Scripting (XSS), or other web-based threats.\n",
+        "operationId": "listSignatureSets",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapSignatureSets"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapSignatureSets"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned signature sets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapSignatureSetListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/signature-sets/{signatureSetObjectID}": {
+      "get": {
+        "x-feature-flag": "nap-waf-m3",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Retrieve a NGINX App Protect signature set",
+        "description": "Returns a NGINX App Protect signature set. Signature sets are predefined or user-defined groups of detection \nmechanisms (signatures) that identify specific attack types, such as SQL injection, Cross-Site Scripting (XSS), \nor other web-based threats.\n",
+        "operationId": "getSignatureSet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapSignatureSetObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned Signature Sets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapSignatureSet"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/signature-sets/{signatureSetObjectID}/signatures": {
+      "get": {
+        "x-feature-flag": "nap-waf-m3",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect signatures in the specified signature set.",
+        "description": "Returns a list of signatures in the NGINX App Protect signature set.\n",
+        "operationId": "listSignatureSetSignatures",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapSignatureSetObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned signatures for signature set.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NapSignatureMeta"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/signatures": {
+      "get": {
+        "x-feature-flag": "nap-waf-m3",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List Signatures",
+        "description": "Returns signatures. A signature is a predefined detection rule that identifies specific attack patterns or\ncharacteristics commonly associated with web application security threats.\n",
+        "operationId": "listSignatures",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapSignatures"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapSignatures"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned list of signatures.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapSignatureListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/signatures/{signatureID}": {
+      "get": {
+        "x-feature-flag": "nap-waf-m3",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Retrieve a NGINX App Protect signature.",
+        "description": "A signature is a predefined detection rule that identifies specific attack patterns or characteristics commonly \nassociated with web application security threats.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapSignatureID"
+          }
+        ],
+        "operationId": "getSignature",
+        "responses": {
+          "200": {
+            "description": "Successfully returned the specified signature.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapSignature"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates": {
+      "get": {
+        "x-feature-flag": "templates-m1",
+        "tags": [
+          "Templates"
+        ],
+        "summary": "List Templates",
+        "description": "Retrieves a list of templates.\n",
+        "operationId": "listTemplates",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameTemplates"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned list of templates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplatesListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/{templateObjectID}": {
+      "delete": {
+        "x-feature-flag": "templates-m1",
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Delete a Template",
+        "description": "Deletes an NGINX configuration template by its unique identifier.\n",
+        "operationId": "deleteTemplate",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the template."
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Template with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "x-feature-flag": "templates-m1",
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Retrieve a Template",
+        "description": "Retrieves detailed information about a template by its unique identifier.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          }
+        ],
+        "operationId": "getTemplate",
+        "responses": {
+          "200": {
+            "description": "Successfully returned details of the specified template.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/import": {
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "x-feature-flag": "templates-m1",
+        "x-nginx-one-action": "import",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Import a template\n",
+        "description": "Imports a new template from a `.tar.gz` archive.\n\nUpon successful validation, the template will be created and made available for use.\n\n**Size limits:**\n- Maximum compressed archive size: 1 MB\n- Maximum uncompressed file size (per file): 5 MB\n\nRefer to the [Template Authoring Guide](**link**) for best practices on writing Go-based NGINX templates.\n",
+        "operationId": "importTemplate",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateImportRequest"
+              },
+              "encoding": {
+                "file": {
+                  "contentType": "application/gzip, application/x-gzip"
+                }
+              },
+              "examples": {
+                "TemplateBaseExample": {
+                  "$ref": "#/components/examples/TemplateBaseSummary"
+                },
+                "TemplateAugmentExample": {
+                  "$ref": "#/components/examples/TemplateAugmentSummary"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully imported and created the template.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/submissions": {
+      "post": {
+        "x-feature-flag": "templates-m1",
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Submit templates for previewing NGINX configuration.",
+        "description": "Submits a set of templates for rendering NGINX configuration.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `true`, the API validates template parameters and renders the full NGINX configuration for preview **without creating a template submission object**. (**Currently, only this mode is supported.**)\n  - When `preview_only` is `false` or omitted, the API is intended to render and create a submission. This feature is **not supported yet**.\n\n**Note:** Currently, only preview mode is implemented. Submission creation will be supported in a future release.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionPreviewOnly"
+          }
+        ],
+        "operationId": "submitTemplates",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateSubmissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returned only when the `preview_only` flag is set to `true`.\nResponds with the rendered NGINX configuration that can be used for preview or to create/replace a staged configuration manually.\n\nNote: If `preview_only` is `false` or omitted, this operation is not yet supported and will return an error instead.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreviewNginxConfig"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "405": {
+            "description": "This operation is not yet implemented. Please use preview mode (`preview_only=true`).\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -5194,6 +5973,94 @@
         "description": "A globally unique identifier for the NGINX staged config.\n",
         "required": true
       },
+      "StagedConfigImportParseOnly": {
+        "name": "parseOnly",
+        "in": "query",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": "Optional flag to control how the request is processed.\n  - When `false` or omitted (by default), the request creates a Staged Config directly. (`StagedConfigCreateResponse`)\n  - When `true`, the request parses the import and returns metadata you can use to create a Staged Config through a POST. ( `StagedConfigCreateRequest`)\n",
+        "required": false
+      },
+      "NapSignatureID": {
+        "name": "signatureID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapSignatureID"
+        },
+        "description": "An unique identifier for the NGINX App Protect signature.\n",
+        "required": true
+      },
+      "NapSignatureSetObjectID": {
+        "name": "signatureSetObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapSignatureSetObjectID"
+        },
+        "description": "A globally unique identifier for the NGINX App Protect signature set.\n",
+        "required": true
+      },
+      "SortNameNapSignatures": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort NGINX App Protect signatures by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "signature_id"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_signatures_name",
+              "sort_name_nap_signatures_signature_id"
+            ]
+          }
+        }
+      },
+      "SortNameNapSignatureSets": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort NGINX App Protect signature sets by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "signature_count"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_signature_sets_name",
+              "sort_name_nap_signature_sets_signature_count"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapSignatures": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `accuracy`, `risk`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapSignatures"
+          }
+        }
+      },
+      "FilterFieldNapSignatureSets": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `type`, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapSignatureSets"
+          }
+        }
+      },
       "SortNameNapPolicies": {
         "name": "sort_nap_policies",
         "in": "query",
@@ -5321,6 +6188,44 @@
         },
         "description": "A globally unique identifier for the App Protect policy version.\n",
         "required": true
+      },
+      "TemplateParamObjectID": {
+        "name": "templateObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/TemplateObjectID"
+        },
+        "description": "A globally unique identifier for the template.\n",
+        "required": true
+      },
+      "SortNameTemplates": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort the list of templates by the specified fields.\nThe default sort order is ascending. To sort in descending order, use the `sort_dir` parameter.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "type"
+            ],
+            "x-enum-varnames": [
+              "sort_name_templates_name",
+              "sort_name_templates_type"
+            ]
+          }
+        }
+      },
+      "TemplateSubmissionPreviewOnly": {
+        "name": "preview_only",
+        "in": "query",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": "Optional flag to control how a template submission request is processed.\n  - When `true`, the request renders the full NGINX configuration for preview **without creating a template submission object** (this is currently the only supported mode).\n  - When `false` or omitted (the default), the request is intended to render the configuration **and create a submission object**, but this feature is **not supported yet** and will return an error.\nNote: Currently, only preview (stateless render) mode is supported. Submission creation is not yet implemented.\n",
+        "required": false
       }
     },
     "schemas": {
@@ -6147,6 +7052,51 @@
           "created_at": "2023-10-01T00:00:00Z"
         }
       },
+      "CertificateBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a certificate, only `delete` is supported.",
+        "required": [
+          "action",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/CertificateObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "cert_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
+        }
+      },
+      "CertificateBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CertificateBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "cert_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "cert_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "CertificateBulkResponse": {
+        "description": "The certificate bulk operation outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
+        }
+      },
       "PublicationBulkResponse": {
         "description": "The publication bulk operation outcome.\n",
         "type": "array",
@@ -6347,6 +7297,255 @@
           ]
         }
       },
+      "ConfigPath": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096,
+        "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
+        "example": "/etc/nginx/nginx.conf."
+      },
+      "FileDataRequest": {
+        "type": "object",
+        "description": "Details about a file, name, and content.",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The file's relative path to the parent directory, absolute path also accepted.",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "contents": {
+            "type": "string",
+            "format": "byte",
+            "description": "The base64-encoded contents of the file.",
+            "maxLength": 3145728
+          }
+        }
+      },
+      "DirectoryRequestWithFileContent": {
+        "type": "object",
+        "description": "Represents a directory and its contents, detailing the directory's full path, and the files within it.",
+        "required": [
+          "name",
+          "files"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The complete path of the directory."
+          },
+          "files": {
+            "type": "array",
+            "description": "The list of files in the directory.",
+            "items": {
+              "$ref": "#/components/schemas/FileDataRequest"
+            }
+          }
+        }
+      },
+      "NginxConfigObjectRequest": {
+        "type": "object",
+        "description": "Details of an NGINX configuration, the main configuration path, and the configuration directories.\n",
+        "required": [
+          "conf_path",
+          "configs"
+        ],
+        "properties": {
+          "config_version": {
+            "type": "string",
+            "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
+          },
+          "conf_path": {
+            "$ref": "#/components/schemas/ConfigPath"
+          },
+          "configs": {
+            "type": "array",
+            "description": "An array of directories containing NGINX configuration files.",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
+            }
+          },
+          "aux": {
+            "type": "array",
+            "description": "An array of auxiliary directory contents related to the NGINX configuration. When auxiliary contents are\nprovided, they become the authoritative source of non-NGINX configuration content. Please ensure the\nprovided contents are complete, missing files that are referenced in the NGINX configuration can cause\nNGINX reload failure. When not provided, the previous known auxiliary contents will be used as part of\npublish.\n",
+            "items": {
+              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
+            }
+          }
+        }
+      },
+      "PayloadObjectID": {
+        "description": "A globally unique identifier for the valid payload object reference.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^(cert|pv)_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "NginxConfigPayload": {
+        "type": "object",
+        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n",
+        "required": [
+          "type",
+          "paths"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n  - nap_policy_version - indicates a version of NAP policy managed by NGINX One Console. A valid policy_version object\n",
+            "enum": [
+              "inline_secret",
+              "inline_content",
+              "unmanaged_certificate",
+              "managed_certificate",
+              "managed_key",
+              "nap_policy_version"
+            ],
+            "x-enum-varnames": [
+              "nginx_config_payload_inline_secret",
+              "nginx_config_payload_inline_content",
+              "nginx_config_payload_unmanaged_certificate",
+              "nginx_config_payload_managed_certificate",
+              "nginx_config_payload_managed_key",
+              "nginx_config_payload_nap_policy_version"
+            ]
+          },
+          "contents": {
+            "type": "string",
+            "format": "base64",
+            "description": "The base64-encoded contents of the file.",
+            "maxLength": 3145728
+          },
+          "object_id": {
+            "$ref": "#/components/schemas/PayloadObjectID"
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "type": "inline_content",
+          "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
+          "paths": [
+            "/etc/nginx/ssl/server.crt"
+          ]
+        }
+      },
+      "NginxConfigPayloads": {
+        "type": "array",
+        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
+        "items": {
+          "$ref": "#/components/schemas/NginxConfigPayload"
+        },
+        "example": [
+          {
+            "type": "managed_certificate",
+            "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+            "paths": [
+              "/etc/nginx/cert.pem"
+            ]
+          },
+          {
+            "type": "managed_key",
+            "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+            "paths": [
+              "/etc/nginx/key.pem"
+            ]
+          },
+          {
+            "type": "inline_content",
+            "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
+            "paths": [
+              "/etc/nginx/inline_cert.crt"
+            ]
+          }
+        ]
+      },
+      "NginxConfigRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NginxConfigObjectRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "payloads": {
+                "$ref": "#/components/schemas/NginxConfigPayloads"
+              }
+            }
+          }
+        ]
+      },
+      "NginxConfigProblem": {
+        "type": "object",
+        "description": "Representation of a problem found during NGINX configuration analysis.",
+        "properties": {
+          "directive": {
+            "description": "Directive in the NGINX configuration where the issue is identified.",
+            "type": "string"
+          },
+          "file": {
+            "description": "File where the issue is detected.",
+            "type": "string"
+          },
+          "line": {
+            "description": "Line number in the configuration where the issue is found.",
+            "type": "integer"
+          }
+        }
+      },
+      "NginxConfigReport": {
+        "type": "object",
+        "description": "An analysis of the NGINX configuration, highlighting issues and their severity, and offering recommendations.",
+        "properties": {
+          "rule": {
+            "description": "The name of the configuration rule that was violated.",
+            "type": "string"
+          },
+          "info": {
+            "description": "A detailed description of the issue.",
+            "type": "string"
+          },
+          "severity": {
+            "description": "The severity level of the issue.",
+            "type": "string"
+          },
+          "category": {
+            "description": "Classification category of the issue.",
+            "type": "string"
+          },
+          "documentation": {
+            "description": "Links to documentation that can assist in resolving the identified issue.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "where": {
+            "description": "Specific locations in the configuration where issues were detected.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NginxConfigProblem"
+            }
+          }
+        }
+      },
+      "NginxConfigReports": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NginxConfigReport"
+        }
+      },
       "FilterNameConfigSyncGroups": {
         "type": "string",
         "description": "Keywords for config sync groups filters.\nWhen filtering on `config_status`, only the following `filter_values` are supported:\n  * in_sync\n  * out_of_sync\n  * sync_in_progress\n  * unknown\n",
@@ -6504,7 +7703,8 @@
             "type": "string",
             "description": "A name to uniquely identify the NGINX config sync group in a given tenant namespace.",
             "minLength": 1,
-            "maxLength": 256
+            "maxLength": 256,
+            "pattern": "^[a-zA-Z0-9]([a-zA-Z0-9-_]{0,254}[a-zA-Z0-9])?$"
           }
         },
         "example": {
@@ -7236,13 +8436,6 @@
           }
         ]
       },
-      "ConfigPath": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 4096,
-        "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
-        "example": "/etc/nginx/nginx.conf."
-      },
       "FileData": {
         "type": "object",
         "description": "Details about a file, including its path, content, size, and last modified time.",
@@ -7382,99 +8575,6 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
-      "PayloadObjectID": {
-        "description": "A globally unique identifier for the valid payload object reference.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^(cert|pv)_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
-      "NginxConfigPayload": {
-        "type": "object",
-        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n",
-        "required": [
-          "type",
-          "paths"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n  - nap_policy_version - indicates a version of NAP policy managed by NGINX One Console. A valid policy_version object\n",
-            "enum": [
-              "inline_secret",
-              "inline_content",
-              "unmanaged_certificate",
-              "managed_certificate",
-              "managed_key",
-              "nap_policy_version"
-            ],
-            "x-enum-varnames": [
-              "nginx_config_payload_inline_secret",
-              "nginx_config_payload_inline_content",
-              "nginx_config_payload_unmanaged_certificate",
-              "nginx_config_payload_managed_certificate",
-              "nginx_config_payload_managed_key",
-              "nginx_config_payload_nap_policy_version"
-            ]
-          },
-          "contents": {
-            "type": "string",
-            "format": "base64",
-            "description": "The base64-encoded contents of the file.",
-            "maxLength": 3145728
-          },
-          "object_id": {
-            "$ref": "#/components/schemas/PayloadObjectID"
-          },
-          "paths": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "example": {
-          "type": "inline_content",
-          "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
-          "paths": [
-            "/etc/nginx/ssl/server.crt"
-          ]
-        }
-      },
-      "NginxConfigPayloads": {
-        "type": "array",
-        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
-        "items": {
-          "$ref": "#/components/schemas/NginxConfigPayload"
-        },
-        "example": [
-          {
-            "type": "managed_certificate",
-            "object_id": "cert_rto8NYiCQputrIasNx2NOA",
-            "paths": [
-              "/etc/nginx/cert.pem"
-            ]
-          },
-          {
-            "type": "managed_key",
-            "object_id": "cert_rto8NYiCQputrIasNx2NOA",
-            "paths": [
-              "/etc/nginx/key.pem"
-            ]
-          },
-          {
-            "type": "inline_content",
-            "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
-            "paths": [
-              "/etc/nginx/inline_cert.crt"
-            ]
-          }
-        ]
-      },
       "NginxConfig": {
         "description": "Details of an NGINX configuration, including its unique identifier, the main configuration path, the \nconfiguration directories, and the NGINX configuration payloads that indicate where managed SSL certificates\nand keys were deployed to on the data plane instance.\n",
         "allOf": [
@@ -7490,95 +8590,6 @@
               "object_id": {
                 "$ref": "#/components/schemas/NginxConfigObjectID"
               },
-              "payloads": {
-                "$ref": "#/components/schemas/NginxConfigPayloads"
-              }
-            }
-          }
-        ]
-      },
-      "FileDataRequest": {
-        "type": "object",
-        "description": "Details about a file, name, and content.",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The file's relative path to the parent directory, absolute path also accepted.",
-            "minLength": 1,
-            "maxLength": 4096
-          },
-          "contents": {
-            "type": "string",
-            "format": "byte",
-            "description": "The base64-encoded contents of the file.",
-            "maxLength": 3145728
-          }
-        }
-      },
-      "DirectoryRequestWithFileContent": {
-        "type": "object",
-        "description": "Represents a directory and its contents, detailing the directory's full path, and the files within it.",
-        "required": [
-          "name",
-          "files"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1,
-            "description": "The complete path of the directory."
-          },
-          "files": {
-            "type": "array",
-            "description": "The list of files in the directory.",
-            "items": {
-              "$ref": "#/components/schemas/FileDataRequest"
-            }
-          }
-        }
-      },
-      "NginxConfigObjectRequest": {
-        "type": "object",
-        "description": "Details of an NGINX configuration, the main configuration path, and the configuration directories.\n",
-        "required": [
-          "conf_path",
-          "configs"
-        ],
-        "properties": {
-          "config_version": {
-            "type": "string",
-            "description": "A hash that uniquely identifies the contents of the config object. Can be used to detect change when updating the NginxConfig.\n"
-          },
-          "conf_path": {
-            "$ref": "#/components/schemas/ConfigPath"
-          },
-          "configs": {
-            "type": "array",
-            "description": "An array of directories containing NGINX configuration files.",
-            "items": {
-              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
-            }
-          },
-          "aux": {
-            "type": "array",
-            "description": "An array of auxiliary directory contents related to the NGINX configuration. When auxiliary contents are\nprovided, they become the authoritative source of non-NGINX configuration content. Please ensure the\nprovided contents are complete, missing files that are referenced in the NGINX configuration can cause\nNGINX reload failure. When not provided, the previous known auxiliary contents will be used as part of\npublish.\n",
-            "items": {
-              "$ref": "#/components/schemas/DirectoryRequestWithFileContent"
-            }
-          }
-        }
-      },
-      "NginxConfigRequest": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/NginxConfigObjectRequest"
-          },
-          {
-            "type": "object",
-            "properties": {
               "payloads": {
                 "$ref": "#/components/schemas/NginxConfigPayloads"
               }
@@ -7732,66 +8743,6 @@
           "modified_at": "2024-05-14T20:36:06.272704Z",
           "object_id": "pub_vfr5Oqv-AhxGzyqTXW-Ubw",
           "status": "pending"
-        }
-      },
-      "NginxConfigProblem": {
-        "type": "object",
-        "description": "Representation of a problem found during NGINX configuration analysis.",
-        "properties": {
-          "directive": {
-            "description": "Directive in the NGINX configuration where the issue is identified.",
-            "type": "string"
-          },
-          "file": {
-            "description": "File where the issue is detected.",
-            "type": "string"
-          },
-          "line": {
-            "description": "Line number in the configuration where the issue is found.",
-            "type": "integer"
-          }
-        }
-      },
-      "NginxConfigReport": {
-        "type": "object",
-        "description": "An analysis of the NGINX configuration, highlighting issues and their severity, and offering recommendations.",
-        "properties": {
-          "rule": {
-            "description": "The name of the configuration rule that was violated.",
-            "type": "string"
-          },
-          "info": {
-            "description": "A detailed description of the issue.",
-            "type": "string"
-          },
-          "severity": {
-            "description": "The severity level of the issue.",
-            "type": "string"
-          },
-          "category": {
-            "description": "Classification category of the issue.",
-            "type": "string"
-          },
-          "documentation": {
-            "description": "Links to documentation that can assist in resolving the identified issue.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "where": {
-            "description": "Specific locations in the configuration where issues were detected.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NginxConfigProblem"
-            }
-          }
-        }
-      },
-      "NginxConfigReports": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/NginxConfigReport"
         }
       },
       "NginxConfigMeta": {
@@ -9152,6 +10103,51 @@
           "object_id": "sc_Tet21AeYTHCj7taOwVfzyw"
         }
       },
+      "StagedConfigBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a staged config, only `delete` is supported.",
+        "required": [
+          "action",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/StagedConfigObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "sc_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
+        }
+      },
+      "StagedConfigBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StagedConfigBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "sc_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "sc_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "StagedConfigBulkResponse": {
+        "description": "The staged config bulk outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
+        }
+      },
       "StagedConfigResponse": {
         "description": "Get an NGINX staged config.",
         "required": [
@@ -9228,6 +10224,35 @@
               }
             ]
           }
+        }
+      },
+      "StagedConfigImportRequest": {
+        "type": "object",
+        "description": "Body to import a NGINX staged config",
+        "required": [
+          "name",
+          "file",
+          "conf_path"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/StagedConfigName"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "example": "my-staged-config.tar.gz",
+            "maxLength": 5242880
+          },
+          "conf_path": {
+            "$ref": "#/components/schemas/ConfigPath"
+          }
+        },
+        "example": {
+          "name": "my-nginx-config",
+          "file": "my-staged-config.tar.gz",
+          "conf_path": "/etc/nginx/nginx.conf",
+          "parse_only": true
         }
       },
       "MetricQueryResultEx": {
@@ -9428,7 +10453,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions:\n  * `display_name` - Display name of the NGINX instance.\n  * `file_path` - Path to the file.\n  * `parent_hostname` - Hostname of the NGINX Plus instance.\n  * `instance_object_id` - Unique ID of the instance registered with NGINX One Console.\n  * `location_zone` - Name of an HTTP location zone.\n  * `mount_point` - Filesystem mount point.\n  * `namespace` - Namespace for the metric data.\n  * `network_interface` - Server network interface.\n  * `nginx_id` - Unique ID of the NGINX instance running on the data plane.\n  * `server_zone` - Name of an HTTP or Stream server zone.\n  * `system_id` - Unique ID of the operating system running nginx-agent.\n  * `tenant` - Tenant for the metric data.\n  * `csg_object_id` - Unique ID of the Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value for metric `system.cpu.utilization`.\n  * `state` - Variant value for metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value for metric `system.network.io`.\n  * `status_range` - Variant value for metric `nginx.http.response.count`.\n  * `logical_number` - Variant value for metrics that return a processor number.\n  * `outcome` - Variant value for metrics that return an outcome.\n",
+        "description": "Static list of all metric dimensions:\n  * `display_name` - Display name of the NGINX instance.\n  * `file_path` - Path to the file.\n  * `parent_hostname` - Hostname of the NGINX Plus instance.\n  * `instance_object_id` - Unique ID of the instance registered with NGINX One Console.\n  * `location_zone` - Name of an HTTP location zone.\n  * `mount_point` - Filesystem mount point.\n  * `namespace` - Namespace for the metric data.\n  * `network_interface` - Server network interface.\n  * `nginx_id` - Unique ID of the NGINX instance running on the data plane.\n  * `server_zone` - Name of an HTTP or Stream server zone.\n  * `system_id` - Unique ID of the operating system running nginx-agent.\n  * `tenant` - Tenant for the metric data.\n  * `csg_object_id` - Unique ID of the Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value for metric `system.cpu.utilization`.\n  * `state` - Variant value for metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value for metric `system.network.io`.\n  * `status_range` - Variant value for metric `nginx.http.response.count`.\n  * `logical_number` - Variant value for metrics that return a processor number.\n  * `outcome` - Variant value for metrics that return an outcome.\n  * `upstream_zone` - upstream zone for the metric data.\n  * `upstream_name` - upstream name for the metric data.\n  * `peer_state` - Variant value for metric peer state for the metric `nginx.http.upstream.peer.count`.\n  * `peer_health_check` - Variant value for metric peer health check for the metric `nginx.http.upstream.peer.health_checks`.\n  * `peer_address` - peer address for metric data.\n  * `peer_name` - peer name for metric data.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -9448,7 +10473,13 @@
           "io_direction",
           "status_range",
           "logical_number",
-          "outcome"
+          "outcome",
+          "upstream_zone",
+          "upstream_name",
+          "peer_state",
+          "peer_health_check",
+          "peer_address",
+          "peer_name"
         ],
         "x-enum-varnames": [
           "metric_dimension_display_name",
@@ -9469,7 +10500,13 @@
           "metric_dimension_io_direction",
           "metric_dimension_status_range",
           "metric_dimension_logical_number",
-          "metric_dimension_outcome"
+          "metric_dimension_outcome",
+          "metric_dimension_upstream_zone",
+          "metric_dimension_upstream_name",
+          "metric_dimension_peer_state",
+          "metric_dimension_peer_health_check",
+          "metric_dimension_peer_address",
+          "metric_dimension_peer_name"
         ]
       },
       "BaseMetricQueryRequest": {
@@ -9778,6 +10815,18 @@
           },
           {
             "$ref": "#/components/schemas/MetricNginxHttpConnectionCount"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpConnections"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpUpstreamPeerCount"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpUpstreamPeerHealthChecks"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxStreamUpstreamPeerHealthChecks"
           }
         ]
       },
@@ -9811,9 +10860,37 @@
       },
       "MetricNginxHttpConnectionCount": {
         "type": "string",
-        "description": "Number of connections grouped by outcome ('ACCEPTED', 'DROPPED', 'ACTIVE', 'IDLE').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
+        "description": "Number of connections grouped by outcome ('ACTIVE', 'IDLE', 'READING', 'WRITING', 'WAITING').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
         "enum": [
           "nginx.http.connection.count"
+        ]
+      },
+      "MetricNginxHttpConnections": {
+        "type": "string",
+        "description": "Total connections grouped by outcome ('ACCEPTED', 'HANDLED', 'DROPPED').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
+        "enum": [
+          "nginx.http.connections"
+        ]
+      },
+      "MetricNginxHttpUpstreamPeerCount": {
+        "type": "string",
+        "description": "Number of upstream peers grouped by state ('CHECKING', 'DOWN', 'DRAINING', 'UNAVAILABLE', 'UNHEALTHY', 'UP').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_state\n",
+        "enum": [
+          "nginx.http.upstream.peer.count"
+        ]
+      },
+      "MetricNginxHttpUpstreamPeerHealthChecks": {
+        "type": "string",
+        "description": "The total number of health check requests made to a HTTP upstream peer.\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_health_check\n  * peer_address\n  * peer_name\n",
+        "enum": [
+          "nginx.http.upstream.peer.health_checks"
+        ]
+      },
+      "MetricNginxStreamUpstreamPeerHealthChecks": {
+        "type": "string",
+        "description": "The total number of health check requests made to a stream upstream peer.\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_health_check\n  * peer_address\n  * peer_name\n",
+        "enum": [
+          "nginx.stream.upstream.peer.health_checks"
         ]
       },
       "MetricSystemNetworkIo": {
@@ -10030,6 +11107,48 @@
         "enum": [
           "k8s.cluster.nodes"
         ]
+      },
+      "FilterNameNapSignatures": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect signature filters.\nWhen filtering on `accuracy`, only the following `filter_values` are supported:\n  * high\n  * medium\n  * low\nWhen filtering on `risk`, only the following `filter_values` are supported:\n  * high\n  * medium\n  * low\nWhen filtering on `signature_type`, only the following `filter_values` are supported:\n  * request\n  * response\n",
+        "enum": [
+          "accuracy",
+          "risk",
+          "signature_type"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_signature_accuracy",
+          "filter_name_nap_signature_risk",
+          "filter_name_nap_signature_signature_type"
+        ]
+      },
+      "FilterNameNapSignatureSets": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect signature set filters.\nWhen filtering on `type`, only the following `filter_values` are supported:\n  * filter-based\n  * manual\n",
+        "enum": [
+          "type",
+          "name"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_signature_set_type",
+          "filter_name_nap_signature_set_name"
+        ]
+      },
+      "NapSignatureID": {
+        "description": "An unique identifier for the NGINX App Protect signature.",
+        "type": "integer",
+        "pattern": "^\\d{9}"
+      },
+      "NapSignatureSetObjectID": {
+        "description": "A globally unique identifier for the NGINX App Protect signature set.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^sigset_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
       },
       "VersionsList": {
         "type": "object",
@@ -10676,6 +11795,7 @@
         }
       },
       "NapSignature": {
+        "description": "Detail information for NGINX App Protect signatures. Note: `description` is omitted for list operation.\n",
         "allOf": [
           {
             "$ref": "#/components/schemas/NapSignatureMeta"
@@ -10683,7 +11803,6 @@
           {
             "type": "object",
             "required": [
-              "description",
               "signature_type",
               "risk",
               "accuracy",
@@ -10808,30 +11927,55 @@
       "NapSignatureSet": {
         "type": "object",
         "required": [
-          "id",
+          "object_id",
           "name",
+          "type",
+          "category",
           "signature_count",
+          "accuracy",
           "default_alarm",
           "default_block",
           "default_learn",
+          "systems",
           "modified_at"
         ],
         "properties": {
-          "id": {
-            "type": "string"
+          "object_id": {
+            "$ref": "#/components/schemas/NapSignatureSetObjectID"
           },
           "name": {
             "type": "string"
           },
+          "accuracy": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "x-enum-varnames": [
+                "nap_signature_set_accuracy_low",
+                "nap_signature_set_accuracy_medium",
+                "nap_signature_set_accuracy_high"
+              ]
+            }
+          },
           "signature_count": {
             "type": "integer"
           },
-          "assign_to_policy_by_default": {
-            "default": false,
-            "type": "boolean"
-          },
           "category": {
-            "default": "User-defined",
+            "enum": [
+              "User-defined",
+              "Basic",
+              "Attack Type Specific"
+            ],
+            "x-enum-varnames": [
+              "nap_signature_set_category_user_defined",
+              "nap_signature_set_category_basic",
+              "nap_signature_set_category_attack_type_specific"
+            ],
             "type": "string"
           },
           "default_alarm": {
@@ -10857,10 +12001,10 @@
                   "le"
                 ],
                 "x-enum-varnames": [
-                  "nap_signature_set_accuracy_filter_all",
-                  "nap_signature_set_accuracy_filter_eq",
-                  "nap_signature_set_accuracy_filter_ge",
-                  "nap_signature_set_accuracy_filter_le"
+                  "nap_signature_set_filter_accuracy_filter_all",
+                  "nap_signature_set_filter_accuracy_filter_eq",
+                  "nap_signature_set_filter_accuracy_filter_ge",
+                  "nap_signature_set_filter_accuracy_filter_le"
                 ],
                 "type": "string"
               },
@@ -10873,10 +12017,10 @@
                   "medium"
                 ],
                 "x-enum-varnames": [
-                  "nap_signature_set_accuracy_value_all",
-                  "nap_signature_set_accuracy_value_high",
-                  "nap_signature_set_accuracy_value_low",
-                  "nap_signature_set_accuracy_value_medium"
+                  "nap_signature_set_filter_accuracy_value_all",
+                  "nap_signature_set_filter_accuracy_value_high",
+                  "nap_signature_set_filter_accuracy_value_low",
+                  "nap_signature_set_filter_accuracy_value_medium"
                 ],
                 "type": "string"
               },
@@ -10990,15 +12134,7 @@
           },
           "systems": {
             "items": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
+              "type": "string"
             },
             "type": "array"
           },
@@ -11034,9 +12170,10 @@
           },
           "assign_to_policy_by_default": false,
           "default_alarm": true,
+          "accuracy": [],
           "type": "filter-based",
           "name": "XML External Entities (XXE) Signatures",
-          "id": "sigset_-ZMshmi83MBL97dr5d0a9w",
+          "object_id": "sigset_-ZMshmi83MBL97dr5d0a9w",
           "category": "User-defined",
           "modified_at": "2023-08-10T16:59:15Z",
           "systems": []
@@ -11157,6 +12294,590 @@
           "name": "objects",
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
+      },
+      "TemplateName": {
+        "type": "string",
+        "description": "The name of the template.\nMust be suitable for use as a file name and as an NGINX configuration include.\nOnly alphanumeric characters, underscores, dashes, and dots are allowed.\nNo spaces, slashes, or special characters.\n",
+        "minLength": 1,
+        "maxLength": 255,
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$",
+        "example": "reverse-proxy"
+      },
+      "TemplateObjectID": {
+        "description": "A globally unique identifier for template.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^tmpl_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        },
+        "example": "tmpl_-uvR3F2TQGm18jnl7bpaGw"
+      },
+      "TemplateType": {
+        "type": "string",
+        "description": "The type of the template.\n- `base`: A base template that defines the structure of an NGINX configuration.\n- `augment`: An augment template that extends or modifies an existing NGINX configuration defined by a base template.\n",
+        "enum": [
+          "base",
+          "augment"
+        ],
+        "x-enum-varnames": [
+          "template_type_base",
+          "template_type_augment"
+        ],
+        "example": "base"
+      },
+      "TemplateContextPath": {
+        "type": "string",
+        "description": "Specifies the full hierarchical context path within the NGINX configuration, using '/' as a separator.\n* \"main\": Refers to the top-level context of the NGINX configuration.\n* \"http\": Indicates the `http` block within the main context.\n* \"http/server\": Indicates the `server` block within the `http` context.\n* \"http/server/location\": Indicates the `location` block within the `server` context of the `http` block.\n* \"http/upstream\": Indicates the `upstream` block within the `http` context.\n* \"stream\": Indicates the `stream` block within the main context.\n* \"stream/server\": Indicates the `server` block within the `stream` context.\n* \"stream/upstream\": Indicates the `upstream` block within the `stream` context.\n",
+        "enum": [
+          "main",
+          "http",
+          "http/server",
+          "http/server/location",
+          "http/upstream",
+          "stream",
+          "stream/server",
+          "stream/upstream"
+        ],
+        "x-enum-varnames": [
+          "template_context_path_main",
+          "template_context_path_http",
+          "template_context_path_http_server",
+          "template_context_path_http_server_location",
+          "template_context_path_http_upstream",
+          "template_context_path_stream",
+          "template_context_path_stream_server",
+          "template_context_path_stream_upstream"
+        ],
+        "example": "http/server/location"
+      },
+      "TemplateImportRequest": {
+        "type": "object",
+        "description": "A request to import a template into the system. This can be either a *base template* or an *augment template*,\nas determined by the `type` field in the request body.\n\nBase templates define the structure of an NGINX configuration and may include hook points\nfor augment templates using custom Go template functions.\n\nAugment templates are reusable configuration snippets that can be applied to specific NGINX contexts\nwithin a base template, such as `http`, `http/server`, `stream` or `stream/server`.\n\nNginx One supports custom Go template functions for advanced configuration generation.\nSee [Template Functions](https://yourdocs.com/templates/functions) for a complete list of supported functions.\n",
+        "required": [
+          "name",
+          "file",
+          "type"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/TemplateName"
+          },
+          "file": {
+            "type": "string",
+            "description": "A .tar.gz archive containing a template and any necessary supporting files for generating an NGINX configuration.\n\nThe archive must include the following at its root:\n- A template file (e.g., reverse_proxy_base.tmpl) written in valid Go template syntax for NGINX.\n- If the template uses input variables, a schema file is also required. This file defines and validates the expected input data.\n- The schema file could be a JSON schema or YAML (e.g., schema.json, schema.yaml).\n\nFile structure:\n├── reverse_proxy_base.tmpl          # Required Go template file\n├── schema.json or schema.yaml       # Required only if input variables are used\n",
+            "format": "binary",
+            "maxLength": 1000000,
+            "example": "template.tar.gz"
+          },
+          "type": {
+            "$ref": "#/components/schemas/TemplateType"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional human-readable description of the template."
+          },
+          "allowed_in_contexts": {
+            "type": "array",
+            "description": "Required when type is `augment`. Specifies the full hierarchical context path(s) within the NGINX configuration where the augment template output can be placed.\n",
+            "items": {
+              "$ref": "#/components/schemas/TemplateContextPath"
+            }
+          }
+        }
+      },
+      "TemplatesListResponse": {
+        "description": "List of all templates.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "description": "List of config templates.",
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of templates.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TemplateSummary"
+                }
+              }
+            },
+            "example": {
+              "total": 101,
+              "count": 4,
+              "start_index": 1,
+              "items_per_page": 100,
+              "items": [
+                {
+                  "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+                  "name": "reverse-proxy",
+                  "description": "A base template for setting up a reverse proxy",
+                  "type": "base",
+                  "allowed_in_contexts": [],
+                  "augment_includes": [
+                    "http",
+                    "http/server",
+                    "http/upstream",
+                    "http/server/location",
+                    "stream",
+                    "stream/upstream",
+                    "stream/server"
+                  ],
+                  "created_at": "2023-09-01T12:00:00Z"
+                },
+                {
+                  "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+                  "name": "gzip",
+                  "description": "Augment template for enabling gzip compression",
+                  "type": "augment",
+                  "allowed_in_contexts": [
+                    "http",
+                    "http/server"
+                  ],
+                  "augment_includes": [],
+                  "created_at": "2023-09-01T12:00:00Z"
+                },
+                {
+                  "object_id": "tmpl_-abR3F2TQGm18jnl7bpaXw",
+                  "name": "rate-limiting-http",
+                  "description": "Add rate limiting to HTTP requests",
+                  "type": "augment",
+                  "allowed_in_contexts": [
+                    "http",
+                    "http/server"
+                  ],
+                  "augment_includes": [],
+                  "created_at": "2023-09-01T12:00:00Z"
+                },
+                {
+                  "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+                  "name": "limit-request",
+                  "description": "Limit requests per second for a location",
+                  "type": "augment",
+                  "allowed_in_contexts": [
+                    "http/server/location"
+                  ],
+                  "augment_includes": [],
+                  "created_at": "2023-09-01T12:00:00Z"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "TemplateSummary": {
+        "description": "A summary of a template object, including its metadata, allowed contexts and augment includes.\n",
+        "type": "object",
+        "required": [
+          "object_id",
+          "name",
+          "type",
+          "augment_includes",
+          "created_at"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/TemplateObjectID"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the template."
+          },
+          "type": {
+            "$ref": "#/components/schemas/TemplateType"
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description of the template."
+          },
+          "allowed_in_contexts": {
+            "type": "array",
+            "description": "Specifies the full hierarchical context path(s) within the NGINX configuration where this template output can be placed.\n\nFor base templates, this list is empty. Instead, refer to `augment_includes` to see where augment output can be injected within the base template.\n",
+            "items": {
+              "$ref": "#/components/schemas/TemplateContextPath"
+            }
+          },
+          "augment_includes": {
+            "type": "array",
+            "description": "Lists the explicit hierarchical context paths within the NGINX configuration where augment template output can be injected.\n\nEach entry corresponds to a location in the template where an `augment_includes` function is used, indicating a supported point for augment insertion (e.g., \"http/server\", \"stream/server\").\n",
+            "items": {
+              "$ref": "#/components/schemas/TemplateContextPath"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the template."
+          }
+        },
+        "example": {
+          "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "reverse-proxy",
+          "description": "A base template for setting up a reverse proxy",
+          "type": "base",
+          "allowed_in_contexts": [],
+          "augment_includes": [
+            "http",
+            "http/server",
+            "http/upstream",
+            "http/server/location"
+          ],
+          "created_at": "2023-09-01T12:00:00Z"
+        }
+      },
+      "TemplateFileData": {
+        "type": "object",
+        "description": "Details about the file in the template.\n",
+        "required": [
+          "name",
+          "contents",
+          "file_type",
+          "file_format",
+          "mime_type",
+          "size",
+          "ctime"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of a file inside a template archive (.tar.gz). File names must not be absolute paths or contain directory traversal components. For safety, leading slashes or \"..\" are not allowed.\n",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[a-zA-Z0-9_.\\-\\/]+$",
+            "example": "gzip-http.tmpl"
+          },
+          "contents": {
+            "type": "string",
+            "description": "The contents of the file.\n- If `file_format` is \"plain\", this is a UTF-8 encoded string.\n- If `file_format` is \"bytes\", this is a Base64-encoded string.\n",
+            "maxLength": 1000000
+          },
+          "file_type": {
+            "type": "string",
+            "description": "The contents type of the file.\n* template: The file contains a Go template.\n* schema: The file contains a JSON or YAML schema for validating input data for the template. Optional if the template does not require input variables.\n",
+            "enum": [
+              "template",
+              "schema"
+            ],
+            "x-enum-varnames": [
+              "template_file_type_template",
+              "template_file_type_schema"
+            ]
+          },
+          "file_format": {
+            "type": "string",
+            "description": "The encoding format of the contents in the file for transport.\n\n- `plain`: Human-readable content (plain UTF-8 string).\n- `bytes`: Base64-encoded binary content.\n",
+            "enum": [
+              "plain",
+              "bytes"
+            ],
+            "x-enum-varnames": [
+              "template_file_format_plain",
+              "template_file_format_bytes"
+            ]
+          },
+          "mime_type": {
+            "type": "string",
+            "description": "The MIME type of the file, indicating its content type.\nFor example, `text/plain`, `application/json`, `application/gzip`.\n",
+            "enum": [
+              "text/plain",
+              "application/json",
+              "application/yaml"
+            ]
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the file, in bytes."
+          },
+          "ctime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the file was created."
+          }
+        },
+        "example": {
+          "name": "nginx.tmpl",
+          "file_type": "template",
+          "file_format": "plain",
+          "mime_type": "text/plain",
+          "contents": "http {\n  {{ augment_includes \"http\" . }}\n\n  upstream backend {\n    {{- range .upstream_servers }}\n    server {{ . }};\n    {{- end }}\n  }\n\n  server {\n    listen 80;\n    server_name {{ .server_name }};\n\n    location / {\n      proxy_pass {{ default \"http://backend\" .proxy_pass }};\n    }\n  }\n}",
+          "size": 345,
+          "ctime": "2023-09-01T12:00:00Z"
+        }
+      },
+      "TemplateDetails": {
+        "description": "Detailed information about a template object including summary and file contents.",
+        "type": "object",
+        "required": [
+          "object_id",
+          "name",
+          "type",
+          "allowed_in_contexts",
+          "augment_includes",
+          "created_at",
+          "items"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TemplateSummary"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "A list of files in the template.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TemplateFileData"
+                }
+              }
+            }
+          }
+        ],
+        "example": {
+          "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "name": "reverse-proxy",
+          "type": "base",
+          "allowed_in_contexts": [],
+          "augment_includes": [
+            "http"
+          ],
+          "created_at": "2023-09-01T12:00:00Z",
+          "items": [
+            {
+              "name": "nginx.tmpl",
+              "file_type": "template",
+              "file_format": "bytes",
+              "mime_type": "text/plain",
+              "contents": "aHR0cCB7XG4gIHt7IGF1Z21lbnRfaW5jbHVkZXMgXCJodHRwXCIgLiB9fVxuXG4gdXBzdHJlYW0gYmFja2VuZCB7XG4gIC17LSByYW5nZSAudXBzdHJlYW1fc2VydmVycyB9XG4gICAgc2VydmVyIHsgLiB9O1xuICB7LSBlbmQgfVxuIH1cblxuIHNlcnZlciB7XG4gIGxpc3RlbiA4MDtcbiAgc2VydmVyX25hbWUge3sgLnNlcnZlcl9uYW1lIH19O1xuXG4gIGxvY2F0aW9uIC8ge1xuICAgIHByb3h5X3Bhc3Mge3sgZGVmYXVsdCBcImh0dHA6Ly9iYWNrZW5kXCIgLnByb3h5X3Bhc3MgfX07XG4gIH1cbn1cbiIs",
+              "size": 1234,
+              "ctime": "2023-09-01T12:00:00Z"
+            },
+            {
+              "name": "schema.json",
+              "file_type": "schema",
+              "file_format": "bytes",
+              "mime_type": "application/json",
+              "contents": "ewogICIkc2NoZW1hIjogImh0dHA6Ly9qc29uLXNjaGVtYS5vcmcvZHJhZnQtMDcvc2NoZW1hIyIsCiAgInR5cGUiOiAib2JqZWN0IiwKICAicHJvcGVydGllcyI6IHsKICAgICJ1cHN0cmVhbV9zZXJ2ZXJzIjogewogICAgICAidHlwZSI6ICJhcnJheSIsCiAgICAgICJpdGVtcyI6IHsKICAgICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAgICJmb3JtYXQiOiAiaG9zdG5hbWUiLAogICAgICAgICJwYXR0ZXJuIjogIl5bYS1aQS1aMC05Li1dKyg6WzAtOV0rKT8kIgogICAgICB9LAogICAgICAibWluSXRlbXMiOiAxCiAgICB9LAogICAgInNlcnZlcl9uYW1lIjogewogICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAicGF0dGVybiI6ICJeW2EtWkEtWjAtOS4tXSskIgogICAgfSwKICAgICJwcm94eV9wYXNzIjogewogICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAiZm9ybWF0IjogInVyaSIKICAgIH0KICB9LAogICJyZXF1aXJlZCI6IFsidXBzdHJlYW1fc2VydmVycyIsICJzZXJ2ZXJfbmFtZSJdLAogICJhZGRpdGlvbmFsUHJvcGVydGllcyI6IGZhbHNlCn0=",
+              "size": 456,
+              "ctime": "2023-09-01T12:00:00Z"
+            }
+          ]
+        }
+      },
+      "TemplateValuesRequest": {
+        "type": "object",
+        "description": "Key-value pairs for template rendering.",
+        "additionalProperties": true
+      },
+      "TemplateSubmissionRequest": {
+        "type": "object",
+        "description": "Defines a request to render an NGINX configuration by combining a single base template \nwith zero or more augment templates.\n\n### Validations and Constraints:\n- All templates referenced by Object ID must be available in the system before submission.\n- Only one base template can be submitted.\n- The base template must explicitly use custom Go function `augment_includes (\"<context_path>\", .)` to apply `augments`.\n- Its not required to include all augments in the request that base template supports.\n- The order of augments in the list determines the order in which they are rendered and applied.\n- Each augment must specify its `target_context`, indicating where it should be applied in \n  the base template.\n- Input values for each template are passed independently via the `values` \n  object, and validated against each template’s Schema.\n\n### Processing:\n- The `base_template` defines the starting point of the NGINX configuration rendering.\n- `conf_path` determines where the rendered configuration from base and augments should be placed within the NGINX directory structure.\n- Each `augment` template is applied in the order provided, inserted at the appropriate target context\n  using the `augment_includes (\"<context_path>\", .)` function declared in the base template.\n- The system validates that each augment is compatible with the specified target context.\n- The final composed configuration is validated to ensure correctness and prevent conflicts or misconfigurations.\n\n### External Template Documentation:\nFor more information on template functions and best practices, refer to:\n  - [Template Function Reference](https://yourdocs.com/templates/functions)\n  - [Template Authoring Guide](https://yourdocs.com/templates/guide)\n",
+        "required": [
+          "conf_path",
+          "base_template",
+          "augments"
+        ],
+        "properties": {
+          "conf_path": {
+            "$ref": "#/components/schemas/ConfigPath"
+          },
+          "base_template": {
+            "$ref": "#/components/schemas/BaseTemplateSubmissionRequest"
+          },
+          "augments": {
+            "type": "array",
+            "description": "Ordered list of augment templates to apply to the base template.\nAugments are rendered in the order provided.\n",
+            "items": {
+              "$ref": "#/components/schemas/AugmentTemplateSubmissionRequest"
+            }
+          }
+        },
+        "example": {
+          "conf_path": "/etc/nginx/nginx.conf",
+          "base_template": {
+            "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+            "values": {
+              "upstream_servers": [
+                "10.0.0.1:8080",
+                "10.0.0.2:8080"
+              ],
+              "server_name": "example.com"
+            }
+          },
+          "augments": [
+            {
+              "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+              "target_context": "http/upstream",
+              "values": {
+                "upstream_servers": [
+                  "10.0.0.1:8080",
+                  "10.0.0.2:8080"
+                ],
+                "server_name": "example.com"
+              }
+            },
+            {
+              "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+              "target_context": "http",
+              "values": {
+                "enabled": "on",
+                "types": "text/plain application/json"
+              }
+            },
+            {
+              "object_id": "tmpl_-abR3F2TQGm18jnl7bpaXw",
+              "target_context": "http",
+              "values": {
+                "zone_name": "req_limit",
+                "memory": "10m",
+                "rate": "10r/s"
+              }
+            },
+            {
+              "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+              "target_context": "http/server",
+              "values": {
+                "zone_name": "req_limit",
+                "burst": 5
+              },
+              "child_augments": [
+                {
+                  "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+                  "target_context": "http/server/location",
+                  "values": {
+                    "zone_name": "req_limit",
+                    "burst": 5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "BaseTemplateSubmissionRequest": {
+        "type": "object",
+        "required": [
+          "object_id",
+          "values"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/TemplateObjectID"
+          },
+          "values": {
+            "$ref": "#/components/schemas/TemplateValuesRequest"
+          }
+        },
+        "example": {
+          "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "values": {
+            "upstream_servers": [
+              "10.0.0.1:8080",
+              "10.0.0.2:8080"
+            ],
+            "server_name": "example.com"
+          }
+        }
+      },
+      "AugmentTemplateSubmissionRequest": {
+        "type": "object",
+        "description": "Defines a request to apply an augment template to a specific target context within the base template.\n\nThis extends the `BaseTemplateSubmissionRequest`. Additionally adding,\n- `target_context`: Specifies the context within the base template where this augment should be applied.\n- `child_augments`: Optionally, an ordered list of nested augment templates to apply as children of this template.\n",
+        "required": [
+          "object_id",
+          "target_context"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/TemplateObjectID"
+          },
+          "values": {
+            "$ref": "#/components/schemas/TemplateValuesRequest"
+          },
+          "target_context": {
+            "$ref": "#/components/schemas/TemplateContextPath"
+          },
+          "child_augments": {
+            "type": "array",
+            "description": "Ordered list of nested augment templates to apply as children of this template.\n",
+            "items": {
+              "$ref": "#/components/schemas/AugmentTemplateSubmissionRequest"
+            }
+          }
+        },
+        "example": {
+          "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+          "target_context": "http/server",
+          "values": {
+            "enabled": "on",
+            "types": "text/plain application/json"
+          },
+          "child_augments": [
+            {
+              "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+              "target_context": "http/server/location",
+              "values": {
+                "zone_name": "req_limit",
+                "burst": 5
+              }
+            }
+          ]
+        }
+      },
+      "PreviewNginxConfig": {
+        "type": "object",
+        "description": "The rendered NGINX configuration preview, along with any errors encountered during rendering.\n",
+        "required": [
+          "config"
+        ],
+        "properties": {
+          "config": {
+            "$ref": "#/components/schemas/NginxConfigObject"
+          },
+          "errors": {
+            "type": "array",
+            "description": "List of NGINX config parse errors encountered during rendering.",
+            "items": {
+              "$ref": "#/components/schemas/NginxConfigParseError"
+            }
+          }
+        }
+      },
+      "NginxConfigParseError": {
+        "type": "object",
+        "description": "Details about an error encountered during NGINX configuration rendering.",
+        "required": [
+          "file",
+          "error"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "The name of the file where the error occurred."
+          },
+          "line": {
+            "type": "integer",
+            "description": "The line number in the file where the error occurred."
+          },
+          "error": {
+            "type": "string",
+            "description": "A human-readable error message describing the issue."
+          }
+        },
+        "example": {
+          "file": "nginx.conf",
+          "line": 1,
+          "error": "\"upstream\" directive is not allowed here in /etc/nginx/nginx.conf:1"
+        }
       }
     },
     "examples": {
@@ -11258,6 +12979,25 @@
             }
           ]
         }
+      },
+      "TemplateBaseSummary": {
+        "value": {
+          "name": "reverse_proxy",
+          "file": "reverse-proxy.tar.gz",
+          "type": "base",
+          "description": "A base template for setting up a reverse proxy"
+        }
+      },
+      "TemplateAugmentSummary": {
+        "value": {
+          "name": "http_rate_limit",
+          "file": "http-rate-limit.tar.gz",
+          "type": "augment",
+          "description": "Augment template for defining rate limit settings in HTTP context",
+          "allowed_in_contexts": [
+            "http"
+          ]
+        }
       }
     },
     "responses": {
@@ -11345,6 +13085,12 @@
       "name": "NGINX One App Protect",
       "tags": [
         "NGINX App Protect"
+      ]
+    },
+    {
+      "name": "NGINX One Templates",
+      "tags": [
+        "Templates"
       ]
     }
   ]

@@ -7,9 +7,7 @@ weight: 400
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This page describes how to install F5 WAF for NGINX using Docker. 
@@ -35,7 +33,7 @@ There are three kinds of Docker deployments available:
 - Hybrid configuration
 - Single container configuration
 
-The multi-container configuration is recommended if you are building a new system, and deploys the F5 for WAF module and its components in seperate images, allowing for nuanced version management.
+The multi-container configuration is recommended if you are building a new system, and deploys the F5 for WAF module and its components in separate images, allowing for nuanced version management.
 
 The hybrid configuration is suitable if you want to add F5 WAF for NGINX to an existing virtual environment and wish to use Docker for the F5 WAF components instead of installing and configuring WAF packages as explained in the [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) instructions.
 
@@ -67,13 +65,13 @@ You should now move to the section based on your configuration type:
 
 {{% tab name="nginx.conf" %}}
 
-```nginx
+```nginx {hl_lines=[4, 26, 27, 28]}
 user nginx;
 
 worker_processes auto;
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections 10240;
@@ -92,7 +90,6 @@ http {
     server {
         listen 80;
         server_name app.example.com;
-        proxy_http_version 1.1;
 
         app_protect_enable on;
         app_protect_security_log_enable on;
@@ -236,6 +233,24 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
+#### Ubuntu
+
+{{< tabs name="ubuntu-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+{{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 #### RHEL 8
 
 {{< tabs name="rhel8-instructions" >}}
@@ -290,39 +305,45 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
-#### Ubuntu
-
-{{< tabs name="ubuntu-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-{{< include "/waf/dockerfiles/ubuntu-oss.md" >}}
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
 ### Build the Docker image
 
 {{< include "waf/install-build-image.md" >}}
 
 ### Update configuration files
 
-{{< include "waf/install-update-configuration.md" >}}
+Once you have installed F5 WAF for NGINX, you must load it as a module in the main context of your NGINX configuration.
 
-{{<tabs name="example-configuration-files-multi">}}
+```nginx
+load_module modules/ngx_http_app_protect_module.so;
+```
+
+The Enforcer address must be added at the _http_ context:
+
+```nginx
+app_protect_enforcer_address 127.0.0.1:50000;
+```
+
+And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ context:
+
+```nginx
+app_protect_enable on;
+```
+
+{{< call-out "warning" >}}
+
+You should only enable F5 WAF for NGINX on _proxy_pass_ and _grpc_pass_ locations.
+
+{{< /call-out >}}
+
+Here are two examples of how these additions could look in configuration: some of them may already exist from when you created the files.
+
+{{< tabs name="example-configuration-files-multi" >}}
 
 {{% tab name="nginx.conf" %}}
 
-`/etc/nginx/nginx.conf`
+The default path for this file is `/etc/nginx/nginx.conf`.
 
-```nginx
+```nginx {hl_lines=[5, 33]}
 user  nginx;
 worker_processes  auto;
 
@@ -331,6 +352,7 @@ load_module modules/ngx_http_app_protect_module.so;
 
 error_log  /var/log/nginx/error.log notice;
 pid        /var/run/nginx.pid;
+
 
 events {
     worker_connections  1024;
@@ -360,19 +382,17 @@ http {
 }
 ```
 
-
 {{% /tab %}}
 
 {{% tab name="default.conf" %}}
 
-`/etc/nginx/conf.d/default.conf`
+The default path for this file is `/etc/nginx/conf.d/default.conf`.
 
-```nginx
+```nginx {hl_lines=[10]}
 server {
     listen 80;
     server_name domain.com;
 
-    proxy_http_version 1.1;
 
     location / {
 
@@ -388,6 +408,7 @@ server {
 server {
     listen 8080;
     server_name localhost;
+
 
     location / {
         root /usr/share/nginx/html;
@@ -422,9 +443,63 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 
 #### Create and run a Docker Compose file
 
-{{< include "waf/install-services-compose.md" >}}
+Create a _docker-compose.yml_ file with the following contents in your host environment, replacing image tags as appropriate:
 
-F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).
+```yaml
+services:
+  nginx:
+    container_name: nginx
+    image: nginx-app-protect-5
+    volumes:
+    - app_protect_bd_config:/opt/app_protect/bd_config
+    - app_protect_config:/opt/app_protect/config
+    - app_protect_etc_config:/etc/app_protect/conf
+    - /conf/nginx.conf:/etc/nginx/nginx.conf
+    - /conf/default.conf:/etc/nginx/conf.d/default.conf
+    - ./license.jwt:/etc/nginx/license.jwt # Only necessary when using NGINX Plus
+    networks:
+    - waf_network
+    ports:
+    - "80:80"
+
+  waf-enforcer:
+    container_name: waf-enforcer
+    image: waf-enforcer:{{< version-waf-enforcer >}}
+    environment:
+      - ENFORCER_PORT=50000
+    ports:
+      - "50000:50000"
+    volumes:
+      - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+    networks:
+      - waf_network
+    restart: always
+
+  waf-config-mgr:
+    container_name: waf-config-mgr
+    image: waf-config-mgr:{{< version-waf-config-mgr >}}
+    volumes:
+      - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+      - /opt/app_protect/config:/opt/app_protect/config
+      - /etc/app_protect/conf:/etc/app_protect/conf
+    restart: always
+    network_mode: none
+    depends_on:
+      waf-enforcer:
+        condition: service_started
+
+networks:
+  waf_network:
+    driver: bridge
+```
+
+To start the F5 WAF for NGINX services, use `docker compose up` in the same folder as the _docker-compose.yml_ file:
+
+```shell
+sudo docker compose up -d
+```
+
+You can now review the operational status of F5 WAF for NGINX using the [Post-installation checks]({{< ref "/waf/install/docker.md#post-installation-checks" >}}).
 
 ## Hybrid configuration
 
@@ -486,7 +561,7 @@ sudo apk add openssl ca-certificates app-protect-module-plus
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-oss.repoo**
+`/etc/yum.repos.d/app-protect-x-oss.repo`
 
 ```shell
 [app-protect-x-oss]
@@ -510,7 +585,7 @@ sudo dnf install app-protect-module-oss
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-plus.repo**
+`/etc/yum.repos.d/app-protect-x-plus.repo`
 
 ```shell
 [app-protect-x-plus]
@@ -590,7 +665,7 @@ The steps are identical for these platforms due to their similar architecture.
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-oss.repo**
+`/etc/yum.repos.d/app-protect-x-oss.repo`
 
 ```shell
 [app-protect-x-oss]
@@ -614,7 +689,7 @@ sudo yum install app-protect-module-oss
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-plus.repo**
+`/etc/yum.repos.d/app-protect-x-plus.repo`
 
 ```shell
 [app-protect-x-plus]
@@ -688,7 +763,7 @@ sudo apt-get install app-protect-module-plus
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-oss.repo**
+`/etc/yum.repos.d/app-protect-x-oss.repo`
 
 ```shell
 [app-protect-x-oss]
@@ -712,7 +787,7 @@ sudo yum install app-protect-module-oss
 
 Create a file for the F5 WAF for NGINX repository:
 
-**/etc/yum.repos.d/app-protect-x-plus.repo**
+`/etc/yum.repos.d/app-protect-x-plus.repo`
 
 ```shell
 [app-protect-x-plus]
@@ -758,13 +833,13 @@ F5 WAF for NGINX should now be operational, and you can move onto [Post-installa
 
 {{% tab name="nginx.conf" %}}
 
-```nginx
+```nginx {hl_lines=[4, 26, 27, 28]}
 user nginx;
 
 worker_processes auto;
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections 10240;
@@ -783,7 +858,6 @@ http {
     server {
         listen 80;
         server_name app.example.com;
-        proxy_http_version 1.1;
 
         app_protect_enable on;
         app_protect_security_log_enable on;
@@ -906,14 +980,14 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amaz
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
     && dnf clean all \
     && rm -rf /var/cache/yum
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect-ip-intelligence
 
@@ -963,12 +1037,12 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
 # Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && apt-get install -y app-protect
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
@@ -1007,14 +1081,14 @@ RUN dnf config-manager --set-enabled ol8_codeready_builder \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1050,14 +1124,14 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1092,14 +1166,14 @@ RUN dnf config-manager --set-enabled crb \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1134,14 +1208,14 @@ RUN dnf config-manager --set-enabled crb \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1191,12 +1265,12 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
 # Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
@@ -1218,102 +1292,6 @@ CMD ["sh", "/root/entrypoint.sh"]
 ### Update configuration files
 
 {{< include "waf/install-update-configuration.md" >}}
-
-{{<tabs name="example-configuration-files-single">}}
-
-{{% tab name="nginx.conf" %}}
-
-`/etc/nginx/nginx.conf`
-
-```nginx
-user  nginx;
-worker_processes  auto;
-
-# F5 WAF for NGINX
-load_module modules/ngx_http_app_protect_module.so;
-
-error_log  /var/log/nginx/error.log notice;
-pid        /var/run/nginx.pid;
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                    '$status $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log  /var/log/nginx/access.log  main;
-
-    sendfile        on;
-    #tcp_nopush     on;
-
-    keepalive_timeout  65;
-
-    #gzip  on;
-
-    # F5 WAF for NGINX
-    app_protect_enforcer_address 127.0.0.1:50000;
-
-    include /etc/nginx/conf.d/*.conf;
-}
-```
-
-
-{{% /tab %}}
-
-{{% tab name="default.conf" %}}
-
-`/etc/nginx/conf.d/default.conf`
-
-```nginx
-server {
-    listen 80;
-    server_name domain.com;
-
-    proxy_http_version 1.1;
-
-    location / {
-
-        # F5 WAF for NGINX
-        app_protect_enable on;
-
-        client_max_body_size 0;
-        default_type text/html;
-        proxy_pass http://127.0.0.1:8080/;
-    }
-}
-
-server {
-    listen 8080;
-    server_name localhost;
-
-    location / {
-        root /usr/share/nginx/html;
-        index index.html index.htm;
-    }
-
-    # redirect server error pages to the static page /50x.html
-    #
-    error_page 500 502 503 504 /50x.html;
-    location = /50x.html {
-        root /usr/share/nginx/html;
-    }
-}
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
-
-- `nginx -s reload`
-- `sudo systemctl reload nginx`
 
 F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).
 

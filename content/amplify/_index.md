@@ -4,5 +4,9 @@ description: Lightweight SaaS monitoring and static analysis for NGINX Open Sour
 url: /nginx-amplify/
 cascade:
   logo: "NGINX-Amplify-product-icon-RGB.svg"
+  nd-banner:
+    enabled: true
+    type: deprecation
+    md: _banners/eol-amplify.md
 ---
 

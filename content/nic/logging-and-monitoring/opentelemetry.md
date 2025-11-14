@@ -18,7 +18,7 @@ This topic describes how to enable [OpenTelemetry](https://opentelemetry.io/) fo
 
 To complete this guide, you need the following pre-requisites:
 
-- An [NGINX Ingress Controller installation]({{< ref "/nic/installation/" >}}) with OpenTelemetry (v5.1.0+)
+- An [NGINX Ingress Controller installation]({{< ref "/nic/install/" >}}) with OpenTelemetry (v5.1.0+)
 
 ## Load the OpenTelemetry module
 

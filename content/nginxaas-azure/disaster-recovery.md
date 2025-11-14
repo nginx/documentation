@@ -1,28 +1,22 @@
 ---
 title: Disaster recovery
-weight: 650
-toc: true
 url: /nginxaas/azure/disaster-recovery/
-type:
-- how-to
+toc: true
+weight: 650
+nd-content-type: how-to
+nd-product: N4Azure
 ---
-
 
 This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if the primary NGINXaaS deployment in a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable. The solution leverages Terraform, Azure Traffic Manager, Azure Virtual Network (VNet) peering, and unique subnets to support failover.
-
----
 
 **Architecture Overview**
 
 {{< img src="nginxaas-azure/n4a-dr-topology.png" alt="The diagram illustrates the configuration of F5 NGINXaaS for Azure deployments for disaster recovery. It shows how the end users can still access the applications provided by AppServer - Primary1 and AppServer - Primary2 if the primary NGINXaaS deployment goes down." >}}
 
-
 - Each region has its own VNet, subnet, and NGINXaaS for Azure deployment.
 - The NGINXaaS for Azure deployment needs to have a public frontend to leverage Azure Traffic Manager.
 - Cross region connectivity ensures that upstreams are reachable from either deployment. We use VNet peering in this guide to establish that connectivity.
 - Upstreams (for example, VMs) are accessible from either NGINX deployment.
-
----
 
 ## Prerequisites
 
@@ -35,8 +29,6 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for
   - Primary Region Virtual Network Address Space: `10.0.0.0/16`
   - Secondary Region Virtual Network Address Space: `172.16.0.0/16`
 {{< /call-out >}}
-
----
 
 ## Configure disaster recovery
 
@@ -65,8 +57,7 @@ terraform apply --auto-approve
 
 Each region requires its own VNet, subnet(s), public IP and network security group.
 
-<details closed>
-<summary style="font-weight:bold">This sample Terraform code creates the prerequisite resources.</summary>
+{{< details summary="Terraform code for necessary resources" >}}
 
 ```hcl
 # Primary Region
@@ -168,16 +159,14 @@ resource "azurerm_subnet_network_security_group_association" "secondary_virtual_
   network_security_group_id = azurerm_network_security_group.secondary_virtual_network_nsg.id
 }
 ```
-</details>
 
----
+{{< /details >}}
 
 ### Step 3: Configure app servers (upstreams)
 
 You may already have upstreams in the primary region that you wish to reverse proxy using NGINXaaS. For the sake of completion, the following example shows creation of Primary Subnet 2, NICs for the upstreams and the upstreams themselves. The upstream VMs need to be in a subnet separate from the NGINXaaS deployment subnet in the **primary region**.
 
-<details closed>
-<summary style="font-weight:bold">This sample Terraform code creates and configures the upstreams.</summary>
+{{< details summary="Terraform code for creating and configuring upstreams" >}}
 
 ```hcl
 resource "azurerm_subnet" "primary_subnet_2" {
@@ -228,19 +217,20 @@ resource "azurerm_linux_virtual_machine" "nginx_upstream_vm" {
   )
 }
 ```
-</details>
-<br>
 
-> **Note**: As a best practice, maintain identical upstream resources in your secondary region as in your primary region to ensure full protection and availability in the event of a region-wide outage or disaster.
+{{< /details >}}
 
----
+{{< call-out "note" >}}
+
+As a best practice, maintain identical upstream resources in your secondary region as in your primary region to ensure full protection and availability in the event of a region-wide outage or disaster.
+
+{{< /call-out >}}
 
 ### Step 4: Peer the VNets
 
 Peer the virtual networks so that the upstream app servers are accessible from either primary or secondary NGINXaaS deployment.
 
-<details closed>
-<summary style="font-weight:bold">This sample Terraform code configures peering for the virtual networks.</summary>
+{{< details summary="Terraform code for configuring virtual network peeting" >}}
 
 ```hcl
 resource "azurerm_virtual_network_peering" "primary_vnet_to_secondary_vnet" {
@@ -257,22 +247,20 @@ resource "azurerm_virtual_network_peering" "secondary_vnet_to_primary_vnet" {
   remote_virtual_network_id = azurerm_virtual_network.primary_virtual_network.id
 }
 ```
-</details>
-<br>
+
+{{< /details >}}
 
 - **Subnet Peering for Overlapping VNets:**
 If overlapping address spaces are unavoidable, use subnet-level peering to selectively peer only the required subnets.
 
    {{< call-out "note" >}}As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).{{< /call-out >}}
 
----
 
 ### Step 5: Deploy NGINXaaS for Azure in each region
 
 Reverse proxy your upstreams using NGINXaaS. Since the virtual networks are peered, both deployments would be able to access the upstreams.
 
-<details closed>
-<summary style="font-weight:bold">This sample Terraform code deploys and configures both primary and secondary NGINXaaS deployments.</summary>
+{{< details summary="Terraform code for deploying and configuring primary and secondary NGINXaaS deployments" >}}
 
 ```hcl
 resource "azurerm_nginx_deployment" "primary_nginxaas_deployment" {
@@ -391,17 +379,15 @@ EOT
   }
 }
 ```
-</details>
 
----
+{{< /details >}}
 
 ### Step 6: DNS and failover
 
 - Use Azure Traffic Manager to direct traffic to the primary NGINXaaS deployment.
 - When the primary deployment is detected as being unhealthy, Azure Traffic Manager updates the public DNS record of your service to point to the public IP of the NGINXaaS deployment in the secondary region.
 
-<details closed>
-<summary style="font-weight:bold">This sample Terraform code configures Azure Traffic Manager to point to both NGINXaaS deployments.</summary>
+{{< details summary="Terraform code for configuring Azure Traffic Manager to point to both NGINXaaS deployments" >}}
 
 ```hcl
 resource "azurerm_traffic_manager_profile" "nginxaas_failover_monitor" {
@@ -439,17 +425,14 @@ resource "azurerm_traffic_manager_external_endpoint" "secondary" {
   target              = azurerm_nginx_deployment.secondary_nginxaas_deployment.ip_address
 }
 ```
-</details>
 
----
+{{< /details >}}
 
 ## Failover process
 
 1. **Monitor**: `/health` endpoint continuously monitors NGINXaaS deployment reachability in both regions.
 1. **Failover**: If the primary region deployment is deemed unhealthy, Azure Traffic Manager updates the DNS record for the service to route traffic to the secondary region's NGINXaaS deployment.
 1. **Recovery**: Once the primary region deployment recovers, Azure Traffic Manager automatically restores DNS records to the primary endpoint when its health probes detect recovery and confirm the primary endpoint is healthy again.
-
----
 
 ## Summary
 

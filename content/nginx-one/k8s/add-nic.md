@@ -66,7 +66,7 @@ Upgrade or install NGINX Ingress Controller with the following command to config
 The `dataplaneKeySecretName` is used to authenticate the agent with NGINX One Console. See the [NGINX One Console Docs]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}})
 for instructions on how to generate your dataplane key from the NGINX One Console.
 
-Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller.
+Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller.
 
 {{%/tab%}}
 {{%tab name="Manifests"%}}
@@ -134,7 +134,7 @@ volumes:
     secretName: "<data_plane_key_secret_name>"
 ```
 
-Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
+Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller.
 
 {{%/tab%}}
 {{</tabs>}}
@@ -155,7 +155,7 @@ kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
 ```
   
 If nginx-agent version is v3, continue with the following steps.
-Otherwise, make sure you are using an image that does not include NGINX App Protect. 
+Otherwise, make sure you are using an image that does not include F5 WAF for NGINX. 
 
 Check the NGINX Agent configuration:
 

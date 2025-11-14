@@ -4,7 +4,6 @@ weight: 2
 toc: true
 type: how-to
 product: NIM
-docs:
 ---
 
 ## Overview
@@ -197,13 +196,13 @@ If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance
 
    - **Debian/Ubuntu**:
 
-     ```bash
+     ```shell
      sudo update-ca-certificates
      ```
 
    - **RHEL/CentOS**:
 
-     ```bash
+     ```shell
      sudo update-ca-trust
      ```
 
@@ -211,7 +210,7 @@ If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance
 
     - **VM/bare-metal**: Restart NGINX Instance Manager:
 
-       ```bash
+       ```shell
        sudo systemctl restart nms
        ```
 
