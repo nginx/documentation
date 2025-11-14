@@ -1,6 +1,6 @@
 ---
 files:
-  - content/nginx-one/nginx-configs/metrics/enable-metrics.md 
+  - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md 
 ---
 
 To make NGINX Plus metrics available on the NGINX One Console, you must enable shared memory zones for the virtual servers being monitored. Shared memory zones store configuration and runtime state information shared across NGINX worker processes.

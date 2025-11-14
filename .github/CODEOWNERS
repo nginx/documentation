@@ -53,5 +53,5 @@ content/nim/*               @nginx/nim-docs-approvers
 content/nginx/*             @nginx/plus-docs-approvers
 
 # NGINX One
-content/nginx-one/*         @nginx/one-docs-approvers
+content/nginx-one-console/*         @nginx/one-docs-approvers
 
