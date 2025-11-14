@@ -28,6 +28,12 @@ To complete this guide, you will need the following prerequisites:
 - Administrator access to a Kubernetes cluster.
 - [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
 
+## Install Gateway API CRDs
+
+```shell
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
+```
+
 ## Install cert-manager
 
 Add the Helm repository:
