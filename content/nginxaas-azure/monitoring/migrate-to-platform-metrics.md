@@ -26,10 +26,8 @@ Follow the steps in this section to migrate your deployment monitoring from Cust
    3. Select the alert rule you want to migrate, then select **Edit**.
    4. In the **Conditions** tab, select the current **Signal name** to modify it.
    5. Replace the Custom metrics signal with the corresponding Platform metrics signal:
-      - Custom metrics signals use the `Azure.ApplicationInsights` namespace
-      - Platform metrics signals use the `Standard Metrics` namespace
-   6. Update the signal name to point to the equivalent Platform metric. For example:
-      - Replace `nginx.http.request.count` (Custom metric) with `nginx.http.request.count` (Platform metric)
+      - Platform metrics signals use the `NGINXaaS Standard Metrics` namespace
+   6. The metric name remains the same between Custom and Platform metrics (for example, `nginx.http.request.count`). No update to the signal name is needed.
    7. Review and adjust the alert logic, thresholds, and conditions as needed.
    8. Select **Review + create**, then **Create** to save the updated alert rule.
 
