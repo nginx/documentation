@@ -1,5 +1,5 @@
 ---
 title: Configuration
-weight: 1400
+weight: 500
 url: /nginx-ingress-controller/configuration
 ---
