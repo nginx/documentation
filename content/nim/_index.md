@@ -84,7 +84,7 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
     {{</ card >}}
   {{</ card-section >}}
   {{< card-section title="Cloud Console Option">}}
-    {{< card title="NGINX One Console" titleUrl="/nginx-one/" brandIcon="NGINX-One-product-icon.svg">}}
+    {{< card title="NGINX One Console" titleUrl="/nginx-one-console/" brandIcon="NGINX-One-product-icon.svg">}}
       Manage, monitor, and secure your NGINX fleet from a centralized web-based interface.
     {{</ card >}}
   {{</ card-section >}}

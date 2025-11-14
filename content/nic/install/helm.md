@@ -305,9 +305,9 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.enableSSLDynamicReload** | Enable lazy loading for SSL Certificates. | true |
 | **controller.telemetryReporting.enable** | Enable telemetry reporting. | true |
 | **controller.enableWeightChangesDynamicReload** | Enable weight changes without reloading the NGINX configuration. May require increasing `map_hash_bucket_size`, `map_hash_max_size`, `variable_hash_bucket_size`, and `variable_hash_max_size` in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) if there are many two-way splits. Requires `controller.nginxplus` | false |
-|**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
+|**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
 |**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
-|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
+|**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
 |**nginxAgent.endpointHost** | Domain or IP address for the NGINX One Console. Requires NGINX Agent 3.x. | "agent.connect.nginx.com" |
 |**nginxAgent.endpointPort** | Port for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | 443 |
 |**nginxAgent.tlsSkipVerify** | Skip TLS verification for the NGINX One Console endpoint. Requires NGINX Agent 3.x. | false |

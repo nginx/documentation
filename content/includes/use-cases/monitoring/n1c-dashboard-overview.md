@@ -1,7 +1,7 @@
 ---
 files:
-  - content/nginx-one/metrics/enable-metrics.md
-  - content/nginx-one/getting-started.md
+  - content/nginx-one-console/metrics/enable-metrics.md
+  - content/nginx-one-console/getting-started.md
 ---
 
 Navigating the dashboard:
