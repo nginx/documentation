@@ -285,7 +285,7 @@ kubectl delete -f config/crd/bases/crds.yaml
 Delete custom resource definitions for the F5 WAF for NGINX module:
 
 ```shell
-kubectl apply -f config/crd/bases/crds-nap-waf.yaml
+kubectl delete -f config/crd/bases/crds-nap-waf.yaml
 ```
 
 Delete custom resource definitions for the F5 DoS for NGINX module:
