@@ -15,15 +15,9 @@ In this guide, we will show how to specify the TLS configuration of the connecti
 
 The intended use-case is when a service or backend owner is managing their own TLS and NGINX Gateway Fabric needs to know how to connect to this backend pod that has its own certificate over HTTPS.
 
-## Note on Gateway API Experimental Features
-
-{{< call-out "important" >}} BackendTLSPolicy is a Gateway API resource from the experimental release channel. {{< /call-out >}}
-
-{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
-
 ## Before you begin
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Set up
 
@@ -200,7 +194,7 @@ curl --resolve secure-app.example.com:$GW_PORT:$GW_IP http://secure-app.example.
 <body>
 <center><h1>400 Bad Request</h1></center>
 <center>The plain HTTP request was sent to HTTPS port</center>
-<hr><center>nginx/1.25.3</center>
+<hr><center>nginx/1.29.2</center>
 </body>
 </html>
 ```
@@ -262,7 +256,7 @@ Next, we create the Backend TLS Policy which targets our `secure-app` Service an
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1alpha3
+apiVersion: gateway.networking.k8s.io/v1
 kind: BackendTLSPolicy
 metadata:
   name: backend-tls
@@ -291,21 +285,21 @@ Name:         backend-tls
 Namespace:    default
 Labels:       <none>
 Annotations:  <none>
-API Version:  gateway.networking.k8s.io/v1alpha3
+API Version:  gateway.networking.k8s.io/v1
 Kind:         BackendTLSPolicy
 Metadata:
-  Creation Timestamp:  2024-05-15T12:02:38Z
+  Creation Timestamp:  2025-11-13T23:28:36Z
   Generation:          1
-  Resource Version:    19380
-  UID:                 b3983a6e-92f1-4a98-b2af-64b317d74528
+  Resource Version:    1288
+  UID:                 d7e3f026-afe3-44d1-aed5-c168e954b52f
 Spec:
   Target Refs:
-    Group:
-    Kind:       Service
-    Name:       secure-app
+    Group:  
+    Kind:   Service
+    Name:   secure-app
   Validation:
     Ca Certificate Refs:
-      Group:
+      Group:   
       Kind:    ConfigMap
       Name:    backend-cert
     Hostname:  secure-app.example.com
@@ -317,8 +311,15 @@ Status:
       Name:       gateway
       Namespace:  default
     Conditions:
-      Last Transition Time:  2024-05-15T12:02:38Z
-      Message:               BackendTLSPolicy is accepted by the Gateway
+      Last Transition Time:  2025-11-13T23:28:37Z
+      Message:               All CACertificateRefs are resolved
+      Observed Generation:   1
+      Reason:                ResolvedRefs
+      Status:                True
+      Type:                  ResolvedRefs
+      Last Transition Time:  2025-11-13T23:28:37Z
+      Message:               The Policy is accepted
+      Observed Generation:   1
       Reason:                Accepted
       Status:                True
       Type:                  Accepted
