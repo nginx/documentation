@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 description:
-weight: 1800
+weight: 700
 url: /nginx-ingress-controller/troubleshooting
 menu:
   docs:
