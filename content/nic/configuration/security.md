@@ -28,18 +28,21 @@ By default, the ServiceAccount has access to all Secret resources in the cluster
 
 [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) are required by NGINX Ingress Controller for certificates and privacy keys, which Kubernetes stores unencrypted by default. We recommend following the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) to store these Secrets using at-rest encryption.
 
-
 ## NGINX Ingress Controller recommendations
 
 ### Configure root filesystem as read-only
 
 {{< call-out "caution"  >}}
- This feature is compatible with [F5 WAF for NGINX v5]({{< ref "/nap-waf/v5/" >}}). It is not compatible with [F5 WAF for NGINX v4]({{< ref "/nap-waf/v4/" >}}) or [F5 DoS for NGINX]({{< ref "/nap-dos/" >}}).
+
+This feature has its own documentation in [F5 WAF for NGINX]({{< ref "/waf/configure/kubernetes-read-only.md" >}}) documentation.
+
+It is compatible with a Kubernetes deployment: it **is not** compatible with [F5 DoS for NGINX]({{< ref "/nap-dos/" >}}).
+
 {{< /call-out >}}
 
 NGINX Ingress Controller is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when F5 WAF for NGINXv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.
 
-This is not enabled by default, but can be enabled with **Helm** using the [**readOnlyRootFilesystem**]({{< ref "/nic/installation/installing-nic/installation-with-helm.md#configuration" >}}) argument in security contexts on all containers: `nginx-ingress-controller`, `waf_enforcer` and `waf_config_mgr`.
+This is not enabled by default, but can be enabled with **Helm** using the [**readOnlyRootFilesystem**]({{< ref "/nic/install/helm.md#configuration" >}}) argument in security contexts on all containers: `nginx-ingress-controller`, `waf_enforcer` and `waf_config_mgr`.
 
 For **Manifests**, uncomment the following sections of the deployment and add sections for `waf-enforcer` and `waf-config-mgr` containers:
 

@@ -14,7 +14,7 @@ type:
 
 The support package script can be used to collect information about your system for troubleshooting and debugging issues.
 
-The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< ref "/nms/support/contact-support.md" >}}).
+The script collects system and service information and then packages the data into a tar archive, which you can share with [NGINX Customer Support]({{< ref "/nim/support/contact-support.md" >}}).
 
 ## Usage
 
@@ -42,7 +42,7 @@ To create a support package:
 
 2. To extract the package, use the `tar` command:
 
-    ```bash
+    ```shell
     tar -xvf support-pkg-<timestamp>.tar.gz
     ```
 
@@ -83,7 +83,7 @@ The logs of the Instance Manager processes.
 
 You can pipe the logs to `grep` to view entries belonging to only one of the three `nms` processes. For example, to view `nms-core` logs, run the following command:
 
-```bash
+```shell
 cat nms.log | grep 'COR'
 ```
 

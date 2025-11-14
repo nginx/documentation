@@ -28,12 +28,12 @@ It is platform-agnostic and supports a range of deployment options:
 1. [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}})
     - NGINX and WAF components operate on the host system
     - Ideal for existing NGINX virtual environments
-1. [Kubernetes]({{< ref "/waf/install/kubernetes.md" >}})
-    - Integrates NGINX and WAF components in a single pod
-    - Ideal for scalable, cloud-native environments
 1. [Docker]({{< ref "/waf/install/docker.md" >}})
     - NGINX and WAF components are deployed as containers
     - Ideal for environments with multiple deployment stages
+1. [Kubernetes]({{< ref "/waf/install/kubernetes.md" >}})
+    - Integrates NGINX and WAF components in a single pod
+    - Ideal for scalable, cloud-native environments
 
 For more details, see the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}).
 

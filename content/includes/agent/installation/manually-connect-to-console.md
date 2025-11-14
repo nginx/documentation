@@ -1,5 +1,4 @@
 ---
-docs:
 files:
    - content/nginx-one/agent/install-upgrade/install-from-github.md
    - content/nginx-one/agent/install-upgrade/install-from-oss-repo.md

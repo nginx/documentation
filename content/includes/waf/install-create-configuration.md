@@ -11,7 +11,7 @@ In the same folder, create three files:
 
 {{< call-out "note" >}}
 
-If you are not using using `custom_log_format.json`, you should remove any references to it from your nginx.conf and entrypoint.sh files.
+If you are not using `custom_log_format.json`, you should remove any references to it from your nginx.conf and entrypoint.sh files.
 
 {{< /call-out >}}
 

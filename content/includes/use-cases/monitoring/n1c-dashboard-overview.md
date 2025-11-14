@@ -1,5 +1,4 @@
 ---
-docs:
 files:
   - content/nginx-one/metrics/enable-metrics.md
   - content/nginx-one/getting-started.md

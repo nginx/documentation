@@ -1,6 +1,6 @@
 ---
 title: JWT protection
-weight: 1650
+weight: 1700
 toc: true
 nd-content-type: reference
 nd-product: NAP-WAF
@@ -55,16 +55,21 @@ The header and claims are JSON objects, Base64 encoded, separated by `.` delimit
 
 ### Supported algorithms
 
-Currently supported: `RS256` (RSA/SHA-256).
+JWT protection currently supports the following algorithms:
 
-- Example JWT header:
+- `RSA`: RS256, RS384, RS512
+- `PSS`: PS256, PS384, PS512
+- `ECDSA`: ES256, ES256K, ES384, ES512
+- `EdDSA`
 
-   ```json
-   {
-   "alg": "RS256",
-   "typ": "JWT"
-   }
-   ```
+This is a header example:
+
+```json
+{
+"alg": "RS256",
+"typ": "JWT"
+}
+```
 
 ### Configure for JWT protection
 
@@ -137,7 +142,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< call-out "note" >}} For access profile default values and their related field names, see F5 WAF for NGINX [Policy paramenter reference]({{< ref "/waf/policies/parameter-reference.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} For access profile default values and their related field names, see F5 WAF for NGINX [Policy parameter reference]({{< ref "/waf/policies/parameter-reference.md" >}}). {{< /call-out >}}
 
 #### Access profile in URL settings
 
@@ -197,7 +202,7 @@ Only structure nesting is supported using the `.` notation.
 - Although it is possible to consolidate all conditions into one with `and`, it is not recommended. Splitting conditions improves readability and helps explain authorization failures.
 
 {{< call-out "note" >}}
-For the full reference of `authorizationRules` condition syntax and usage, see the F5 WAF for NGINX [Policy paramenter reference]({{< ref "/waf/policies/parameter-reference.md" >}}).
+For the full reference of `authorizationRules` condition syntax and usage, see the F5 WAF for NGINX [Policy parameter reference]({{< ref "/waf/policies/parameter-reference.md" >}}).
 {{< /call-out >}}
 
 See the example below for JWT claims:

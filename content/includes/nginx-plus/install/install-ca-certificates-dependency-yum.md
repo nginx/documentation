@@ -1,5 +1,4 @@
 ---
-docs:
 ---
 
 Install the **ca-certificates** dependency:

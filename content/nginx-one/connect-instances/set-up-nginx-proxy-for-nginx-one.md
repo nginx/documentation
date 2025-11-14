@@ -1,6 +1,6 @@
 ---
 description: ''
-nd-docs: null
+nd-docs: DOCS-000
 title: Prepare - Set up NGINX as a proxy
 toc: true
 weight: 200

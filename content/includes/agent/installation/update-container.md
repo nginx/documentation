@@ -1,5 +1,4 @@
 ---
-docs:
 files:
    - content/agent/install-upgrade/update.md
    - content/nginx-one/agent/install-upgrade/update.md

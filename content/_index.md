@@ -43,7 +43,18 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
 {{</card-section>}}
 
 {{<card-section showAsCards="true" title="F5 NGINX as a Service">}}
-  {{<card title="F5 NGINXaaS for Azure" titleUrl="/nginxaas/azure/" brandIcon="NGINX-for-Azure-product-icon.svg" isLanding="true">}}
+  {{<card title="F5 NGINXaaS for Azure" titleUrl="/nginxaas/azure/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
     Infrastructure-as-a-Service (IaaS) version of NGINX Plus for your Microsoft Azure application stack.
   {{</card >}}
+  {{<card title="F5 NGINXaaS for Google Cloud" titleUrl="/nginxaas/google/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
+    Managed NGINX service for your Google Cloud application stack.
+  {{</card >}}
 {{</card-section>}}
+
+{{<card-section showAsCards="true" title="Glossary">}}
+  {{<card title="F5 NGINX Glossary" titleUrl="/glossary/glossary/" brandIcon="NGINX-product-icon.svg" isLanding="true">}}
+  Glossary of common terms and definitions for all F5 NGINX products.
+  {{</card >}}
+{{</card-section>}}
+
+

@@ -7,7 +7,7 @@ url: /nginxaas/azure/known-issues/
 
 ---
 
-List of known issues in the latest release of F5 NGINXaaS for Azure (NGINXaaS).
+List of known issues in the latest releases of F5 NGINXaaS for Azure.
 
 ### {{% icon-bug %}} Certificate failures when managed identities with access is added after deployment creation
 
@@ -16,12 +16,6 @@ This issue occurs when public access is disabled on Azure Key Vault (AKV) and th
 Updating managed identities on an NGINXaaS deployment after creation may result in the managed identity not being correctly delegated to the dataplane, which can cause certificate fetch failures.
 
 **Workaround**: To avoid this issue, when you create an NGINXaaS deployment, make sure that the managed identity with access to AKV is assigned during initial creation. If managed identities need to be updated after creation, enable public access to AKV or [configure Network Security Perimeter]({{< ref "/nginxaas-azure/quickstart/security-controls/certificates.md#configure-network-security-perimeter-nsp" >}})
-
-### {{% icon-bug %}} Custom and precompiled security policies cannot both be referenced in an NGINX configuration
-
-When using F5 WAF for NGINX, you can only reference default or custom security policies in your NGINX configuration, not both.
-
-**Workaround**: Make a copy of the default policy you want to use, then add it as a custom policy with a different name.
 
 ### {{% icon-bug %}} Terraform fails to apply due to validation errors, but creates "Failed" resources in Azure (ID-4424)
 
@@ -73,7 +67,7 @@ Inner Errors:
 
 ### {{% icon-bug %}} Not all NGINX Plus directives and use-cases are supported in NGINXaaS (ID-4331)
 
-NGINXaaS currently does not support all NGINX Plus directives and use-cases. We are continually adding new NGINX Plus capabilities into NGINXaaS to close the gap in functionality. You can follow the updates to the supported use-cases by visiting the [Changelog]({{< relref "./changelog.md" >}}). For a comprehensive list of currently allowed directives, please see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+NGINXaaS currently does not support all NGINX Plus directives and use-cases. We are continually adding new NGINX Plus capabilities into NGINXaaS to close the gap in functionality. You can follow the updates to the supported use-cases by visiting the [Changelog]({{< relref "/nginxaas-azure/changelog/changelog.md" >}}). For a comprehensive list of currently allowed directives, please see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
 
 ### {{% icon-bug %}} Terraform errors using `package_data` (ID-2752)
 

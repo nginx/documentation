@@ -27,3 +27,10 @@
   products:
     - title: "NGINXaaS for Azure"
       url: "nginxaas/azure/"
+    - title: "NGINXaaS for Google Cloud"
+      url: "nginxaas/google/"
+
+- productGroup: Glossary
+  products:
+    - title: "F5 NGINX Glossary"
+      url: "glossary"
