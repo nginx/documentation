@@ -18,13 +18,14 @@ Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref 
 
 ### Create a network attachment
 
-NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your consumer Virtual Private Cloud (VPC) network and your NGINXaaS deployment's VPC network.
+NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your NGINXaaS deployment to your VPC network.
 
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you choose in this step must match the region where your NGINXaaS deployment will be created.
-1. Create a network attachment in your new subnet that automatically accepts connections. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#console_1) for a step-by-step guide.
-1. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
+   - The region you choose in this step **must be the same** as the region where you plan to create your NGINXaaS deployment.
+1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide.
+   - We recommend you configure your network attachment to manually accept trusted connections for **production use cases**, as this setting cannot be changed later. For now, you can leave the list of accepted projects empty, and come back to add the NGINXaaS deployment project once created. You can choose to automatically accept connections on the network attachment for **development use cases**. If you choose to do so, you do not need to explicitly allow the NGINXaaS deployment project on the network attachment.
+2. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
 
    {{< call-out "caution" >}}NGINXaaS for Google Cloud currently supports the following regions:
 
@@ -67,6 +68,8 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Select **Submit** to begin the deployment process.
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
+
+{{< call-out "important" >}}**If your network attachment has a list of allowed Google project IDs**, you will have to allow the **NGINXaaS deployment project** in the network attachment for the deployment to provision successfully. The NGINXaaS deployment project ID can be found under the `Cloud Info` section for your deployment. Failing to do so will leave the deployment in a `pending` state, with details provided on the necessary actions required to proceed.{{< /call-out >}}
 
 ## Configure your deployment
 
