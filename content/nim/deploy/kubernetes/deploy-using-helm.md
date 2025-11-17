@@ -174,7 +174,7 @@ utility:
     repository: private-registry.nginx.com/nms/utility
 ```
 
-The values required to pull images from the NGINX private registry are now automatically resolved, including image tags. Each image’s `tag:` is set by default to the latest NGINX Instance Manager version. See the Helm chart table for version details.
+The values required to pull images from the NGINX private registry are now automatically resolved, including image tags. Each image’s `tag:` is set by default to the latest NGINX Instance Manager version. See the [Helm chart table in the chart installation section]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#install-the-chart" >}}) for version details.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
