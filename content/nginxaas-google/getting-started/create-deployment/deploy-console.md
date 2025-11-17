@@ -107,4 +107,4 @@ To set up connectivity to your NGINXaaS deployment, you will need to configure a
 
 ## What's next
 
-[Manage your NGINXaaS users]({{< ref "/nginxaas-google/getting-started/manage-users-accounts.md" >}})
+[Manage your NGINXaaS users]({{< ref "/nginxaas-google/getting-started/manage-users-organizations.md" >}})
