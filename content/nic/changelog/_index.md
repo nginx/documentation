@@ -14,7 +14,9 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 {{< details summary="Support for F5 WAF for NGINX" >}}
 
-{{< include "nim/tech-specs/nim-app-protect-support.md" >}}
+To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.
+
+{{< include "/nic/compatibility-tables/nic-nap.md" >}}
 
 {{< /details >}}
 
