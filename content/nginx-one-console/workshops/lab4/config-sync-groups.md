@@ -139,7 +139,7 @@ Instead of registering containers manually, you can set the sync group in your C
 6. Instances automatically sync the existing NGINX config. When sync finishes, the **Config Sync Status** shows `In Sync`.  
 
 <span style="display: inline-block;">
-{{< img src="nginx-one/images/config-sync-status.png"
+{{< img src="nginx-one-console/images/config-sync-status.png"
     alt="Table showing hostnames, NGINX versions, operating systems, availability status, and green In Sync indicators for each instance in the config sync group." >}}
 </span>
 
@@ -163,7 +163,7 @@ Modify the shared configuration and apply the changes to all group members.
    ```
 
    <span style="display: inline-block;">
-   {{< img src="nginx-one/images/config-sync-edits.png" alt="Editor showing modifications to default.conf with validator status 'NGINX Config OK'." >}}
+   {{< img src="nginx-one-console/images/config-sync-edits.png" alt="Editor showing modifications to default.conf with validator status 'NGINX Config OK'." >}}
    </span>
 
    The file is marked **modified** and the validator shows **NGINX Config OK**.  
