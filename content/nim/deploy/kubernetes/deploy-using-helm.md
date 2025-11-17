@@ -136,7 +136,8 @@ https://docs.nginx.com/nginx-instance-manager/deploy/kubernetes/helm-config-sett
 {{< /call-out >}}
 
 ```yaml
-# when openshift.enabled is set, the chart deploys to OpenShift. If it’s unset or left as-is, it defaults to a Kubernetes deployment.
+# When openshift.enabled is set, the chart deploys to OpenShift.
+# If it’s unset or left as-is, it defaults to a Kubernetes deployment.
 # openshift:
 #   enabled: false
 
