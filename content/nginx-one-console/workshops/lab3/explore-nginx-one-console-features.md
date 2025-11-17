@@ -48,7 +48,7 @@ Make sure you have:
 Open NGINX One Console and select **Overview**. Here are the key metrics and what they mean:
 
 <span style="display: inline-block;">
-{{< img src="nginx-one/images/nginx-one-dashboard.png"
+{{< img src="nginx-one-console/images/nginx-one-dashboard.png"
     alt="Overview dashboard showing panels for instance availability, NGINX versions, operating systems, certificates status, configuration recommendations, CVE severity, CPU and memory utilization, disk space usage, unsuccessful response codes, and network usage." >}}
 </span>
 
@@ -147,7 +147,7 @@ The **Configuration Recommendations** panel provides suggestions:
 8. Select **Next** to preview your changes, then select **Save and Publish** to apply them.  
 
 <span style="display: inline-block;">
-{{< img src="nginx-one/images/config-recommendation.png"
+{{< img src="nginx-one-console/images/config-recommendation.png"
     alt="Configuration recommendation panel showing a Best Practice warning: 'log should not be set to off on line 34', with a pencil icon to edit." >}}
 </span>
 
@@ -170,7 +170,7 @@ Try it on:
 - `$upstream_response_time`  
 
 <span style="display: inline-block;">
-{{< img src="nginx-one/images/ai-assistant.png"
+{{< img src="nginx-one-console/images/ai-assistant.png"
     alt="AI Assistant panel showing a highlighted $upstream_response_time snippet alongside the assistant's response with Purpose and Guidance headings." >}}
 </span>
 

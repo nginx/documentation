@@ -9,5 +9,5 @@ tags:
 title: API reference guide
 toc: false
 weight: null
-nd-api-reference: "./nginx-one/api/one.json"
+nd-api-reference: "./nginx-one-console/api/one.json"
 ---
