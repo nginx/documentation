@@ -115,7 +115,7 @@ When you recreate containers, old entries remain in NGINX One Console. Clean the
 5. Remove the filter by selecting the **X** next to the filter tag.  
 
 <span style="display: inline-block;">
-{{< img src="nginx-one/images/unavailable-instances.png"
+{{< img src="nginx-one-console/images/unavailable-instances.png"
     alt="Table of three NGINX One Console instances filtered to 'Availability = Unavailable.' Shows hostnames, NGINX versions, grey Unavailable icons, and the Delete selected button." >}}
 </span>
 
