@@ -12,7 +12,7 @@ This changelog lists all of the information for F5 NGINX Ingress Controller rele
 
 For older releases, check the changelogs for previous years: [2024]({{< ref "/nic/changelog/2024.md" >}}), [2023]({{< ref "/nic/changelog/2023.md" >}}), [2022]({{< ref "/nic/changelog/2022.md" >}}), [2021]({{< ref "/nic/changelog/2021.md" >}}), [2020]({{< ref "/nic/changelog/2020.md" >}}), [2019]({{< ref "/nic/changelog/2019.md" >}}).
 
-{{< details summary="Support for F5 WAF for NGINX" >}}
+{{< details summary="Support for F5 WAF for NGINX" open=true >}}
 
 To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.
 
