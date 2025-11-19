@@ -2002,7 +2002,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ### Debian Docker Deployment Example
 
 ```Dockerfile
-# Where verionn can be: bullseye/bookworm
+# Where version can be: bullseye/bookworm
 FROM debian:bullseye
 
 # Install prerequisite packages:
