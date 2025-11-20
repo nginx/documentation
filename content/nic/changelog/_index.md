@@ -12,6 +12,18 @@ This changelog lists all of the information for F5 NGINX Ingress Controller rele
 
 For older releases, check the changelogs for previous years: [2024]({{< ref "/nic/changelog/2024.md" >}}), [2023]({{< ref "/nic/changelog/2023.md" >}}), [2022]({{< ref "/nic/changelog/2022.md" >}}), [2021]({{< ref "/nic/changelog/2021.md" >}}), [2020]({{< ref "/nic/changelog/2020.md" >}}), [2019]({{< ref "/nic/changelog/2019.md" >}}).
 
+{{< details summary="NGINX Ingress Controller compatibility matrix" open=false >}}
+
+{{< include "/nic/compatibility-tables/nic-k8s.md" >}}
+
+### Supported F5 WAF for NGINX versions
+
+{{<call-out "note" "Note">}}To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.{{< /call-out >}}
+
+{{< include "/nic/compatibility-tables/nic-nap.md" >}}
+
+{{< /details >}}
+
 ## 5.2.1
 
 10 Oct 2025
@@ -106,7 +118,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 
 08 Jul 2025
 
-This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to monitor NGINX instances that are part of your NGINX Ingress Controller cluster. See [here]({{< ref "/nginx-one/k8s/add-nic.md" >}}) to configure NGINX One Console with NGINX Ingress Controller.
+This NGINX Ingress Controller release brings initial connectivity to the NGINX One Console! You can now use NGINX One Console to monitor NGINX instances that are part of your NGINX Ingress Controller cluster. See [here]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) to configure NGINX One Console with NGINX Ingress Controller.
 
 This release also includes the ability to configure Rate Limiting for your APIs based on a specific NGINX variable and its value. This allows you more granular control over how frequently specific users access your resources.
 

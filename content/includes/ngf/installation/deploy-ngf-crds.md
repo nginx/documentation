@@ -2,7 +2,7 @@
 nd-docs: "DOCS-000"
 files:
 - content/ngf/install/manifests.md
-- content/nginx-one/ngf/add-ngf-manifests.md
+- content/nginx-one-console/ngf/add-ngf-manifests.md
 ---
 
 #### Stable release

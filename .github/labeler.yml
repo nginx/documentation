@@ -55,11 +55,11 @@ product/nginx-plus:
           - 'content/nginx/**'
           - 'content/includes/nginx-plus/**'
 
-product/nginx-one:
+product/nginx-one-console:
   - changed-files:
       - any-glob-to-any-file:
-          - 'content/nginx-one/**'
-          - 'content/includes/nginx-one/**'
+          - 'content/nginx-one-console/**'
+          - 'content/includes/nginx-one-console/**'
 
 product/nginxaas-azure:
   - changed-files:

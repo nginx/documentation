@@ -1130,7 +1130,7 @@ This release includes the following security updates:
   
   #### Mitigation
     
-  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nginx-one/agent/configure-instances/configuration-overview/">}} section of the documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
+  - Avoid configuring trace-level logging in the NGINX Agent configuration file. For more information, refer to the [Configuring the NGINX Agent]({{< ref "/nginx-one-console/agent/configure-instances/configuration-overview/">}} section of the documentation. If trace-level logging is required, ensure only trusted users have access to the log files.
   
   #### Fixed in
   

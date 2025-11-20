@@ -3,8 +3,8 @@ files:
    - content/agent/install-upgrade/install-from-github.md
    - content/agent/install-upgrade/install-from-oss-repo.md
    - content/agent/install-upgrade/install-from-plus-repo.md
-   - content/nginx-one/agent/install-upgrade/install-from-oss-repo.md
-   - content/nginx-one/agent/install-upgrade/install-from-plus-repo.md
+   - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
+   - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
 ---
 
 To start NGINX Agent on `systemd` systems, run the following command:
