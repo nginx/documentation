@@ -1,6 +1,6 @@
 ---
 files:
-  - content/nginx-one/rbac/overview.md
+  - content/nginx-one-console/rbac/overview.md
   - content/nim/admin-guide/rbac/overview-rbac.md
 nd-docs: DOCS-000
 ---
