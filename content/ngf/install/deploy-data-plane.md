@@ -13,7 +13,7 @@ This document describes how to use a Gateway to deploy the NGINX data plane, and
 
 [A Gateway](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
 
-When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, it creates a Service and an NGINX deployment. This forms the NGINX data plane, handling requests.
+When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, it creates a Service and an NGINX deployment in the same namespace as the Gateway. This forms the NGINX data plane, handling requests.
 
 A single GatewayClass can have multiple Gateways: each Gateway will create a separate Service and NGINX deployment.
 
@@ -93,10 +93,10 @@ kubectl get services
 ```
 ```text
 NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-cafe-nginx   LoadBalancer    10.96.125.117   <pending>     80:30180/TCP   5m2s
+cafe-nginx   LoadBalancer    10.96.125.117   35.36.37.38   80:30180/TCP   5m2s
 ```
 
-The Service type can be changed, as explained in the next section.
+The Service type can be changed, as explained in the next section. NGINX Gateway Fabric uses the created Service to update the **Addresses** field in the **Gateway Status** resource. Using a **LoadBalancer** Service sets this field to the IP address and/or hostname of that service. Without a Service, the pod IP address is used.
 
 ## Modify provisioned NGINX instances
 
@@ -170,7 +170,7 @@ Use `kubectl edit` to modify the default NginxProxy and insert the following und
 type: NodePort
 ```
 
-After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to `LoadBalancer`.
+After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to `NodePort`.
 
 ```shell
 kubectl get service cafe-nginx
