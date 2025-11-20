@@ -93,7 +93,7 @@ kubectl get services
 ```
 ```text
 NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-cafe-nginx   LoadBalancer    10.96.125.117   35.36.37.38   80:30180/TCP   5m2s
+cafe-nginx   LoadBalancer    10.96.125.117   192.0.2.1   80:30180/TCP   5m2s
 ```
 
 The Service type can be changed, as explained in the next section. NGINX Gateway Fabric uses the created Service to update the **Addresses** field in the **Gateway Status** resource. Using a **LoadBalancer** Service sets this field to the IP address and/or hostname of that service. Without a Service, the pod IP address is used.
