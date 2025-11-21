@@ -145,3 +145,129 @@ Max(
 </div>
 <script type="module" src="/nginxaas-azure/js/cost-calculator_v2.js"></script>
 {{< /raw-html >}}
+
+<h2>Cost Analysis Tool for Standard V3 Plan</h2>
+
+<h3>Overview</h3>
+
+The NGINXaaS for Azure cost analysis tool provides a detailed hourly cost breakdown of your NGINXaaS deployment usage for each component (NCU, WAF, Ports, Data). It fetches real-time metrics directly from Azure Monitor using the Azure SDK and calculates costs based on actual usage.
+
+<h3>Prerequisites</h3>
+
+Before using the cost analysis script:
+
+1. **Python 3.7+** installed on your system
+2. **pip3** (Python package manager) installed
+3. **Azure SDK for Python** installed:
+
+    ```bash
+    pip3 install azure-identity azure-mgmt-monitor
+    ```
+  
+4. **NGINXaaS for Azure deployment** with monitoring enabled
+5. **Azure AD Tenant ID** (required for authentication)
+6. **Monitoring Reader permissions** on your NGINXaaS resource
+
+<h4>Setting up Azure Permissions</h4>
+
+<strong>Get Tenant ID:</strong>
+
+1. Go to Azure Portal → Microsoft Entra ID → Overview
+2. Copy the <strong>Tenant ID</strong>
+
+<strong>Grant Access:</strong>
+
+1. Go to your NGINX resource → Access control (IAM) → Add role assignment
+2. Role: <strong>Monitoring Reader</strong> → Assign to your user account
+
+<h3>Download and Usage</h3>
+
+#### Download Script
+
+{{<icon "download">}} {{<link "/scripts/nginxaas_cost_analysis.py" "Download nginxaas_cost_analysis.py script">}}
+
+#### Basic Usage
+
+Run the script with the required parameters:
+
+```bash
+python3 nginxaas_cost_analysis.py \
+        --resource-id "/subscriptions/xxx/resourceGroups/my-rg/providers/Nginx.NginxPlus/nginxDeployments/my-nginx" \
+        --location "eastus2" \
+        --date-range "2025-11-18T00:00:00Z/2025-11-19T23:59:59Z" \
+        --tenant-id "your-tenant-id" \
+        --output "my-cost-analysis.csv"
+```
+
+#### Required Parameters
+
+| Parameter         | Description                                 | Example                                      |
+|-------------------|---------------------------------------------|----------------------------------------------|
+| `--resource-id`   | Azure resource ID of NGINXaaS deployment    | `/subscriptions/.../my-nginx`                |
+| `--location`      | Azure region for pricing tier                | `eastus2`, `westus2`                         |
+| `--date-range`    | Analysis period (max 30 days)                | `2025-11-18T00:00:00Z/2025-11-19T23:59:59Z`  |
+| `--tenant-id`     | Azure AD Tenant ID (required for login)      | `12345678-1234-...`                          |
+| `--output`        | Output CSV filename (optional)               | `my-cost-analysis.csv`                       |
+
+#### Sample Output
+
+{{< details "View sample output" >}}
+
+```
+🌐 Using InteractiveBrowserCredential with tenant: d106871e-7b91-4733-8423-f98586303b68
+📈 Processing 72 hours of data...
+============================================================
+📈 COST ANALYSIS SUMMARY
+============================================================
+Total Analysis Period: 72 hours
+Total Cost: $32.40
+
+🕐 HOURLY COST BREAKDOWN (First 5 hours):
+------------------------------------------------------------
+Hour 1 - 2025-11-18T00:00:00Z
+    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
+    Ports: $0.000 | Data: $0.000 | Total: $0.410
+
+Hour 2 - 2025-11-18T01:00:00Z
+    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
+    Ports: $0.000 | Data: $0.000 | Total: $0.410
+
+Hour 3 - 2025-11-18T02:00:00Z
+    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
+    Ports: $0.000 | Data: $0.000 | Total: $0.410
+
+Hour 4 - 2025-11-18T03:00:00Z
+    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
+    Ports: $0.000 | Data: $0.000 | Total: $0.410
+
+Hour 5 - 2025-11-18T04:00:00Z
+    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
+    Ports: $0.000 | Data: $0.000 | Total: $0.410
+
+... and 67 more hours
+
+✅ Cost breakdown exported to nginxaas_cost_breakdown.csv
+     📊 Summary: 72 hours, Total cost: $32.40
+✅ Cost analysis completed successfully!
+```
+
+{{< /details >}}
+
+<h3>Understanding the Results</h3>
+
+<h4>Cost Components</h4>
+
+- **Fixed costs**: Fixed deployment cost (varies by region and WAF usage)
+- **NCU costs**: Variable costs based on actual NCU consumption
+- **WAF costs**: Additional costs when Web Application Firewall is enabled
+- **Port costs**: Additional costs for listen ports beyond the first 5
+- **Data processing**: Costs for data processed ($0.005/GB across all regions)
+
+<h3>Additional Billing Resources</h3>
+
+For comprehensive billing information and cost planning, refer to these additional resources:
+
+- **[Usage and Cost Estimator]({{< relref "usage-and-cost-estimator.md" >}})**: Interactive tool for planning and estimating costs before deployment
+- **[Billing Overview]({{< relref "overview.md" >}})**: Complete billing model explanation and pricing details
+
+This cost analysis tool helps you understand your actual NGINX for Azure spending by analyzing real usage metrics, enabling you to optimize costs and plan future deployments effectively.
