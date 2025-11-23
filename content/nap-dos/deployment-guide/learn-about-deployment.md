@@ -2236,9 +2236,9 @@ Review the syslog ports by entering the following command:
 semanage port -l | grep syslog
 ```
 
-### Kubernetes Deployment Examples
+## Kubernetes Deployment Examples
 
-#### App Protect DoS
+### App Protect DoS
 
 `appprotect-dos.yaml`:
 
@@ -2465,7 +2465,7 @@ http {
 }
 ```
 
-#### App Protect DoS arb
+### App Protect DoS arb
 
 Arbitrator (arb) is an internal service that is essential for the scaling scenarios. The arbitrator service should be deployed in the same namespace as F5 DoS for NGINX.
 
