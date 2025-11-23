@@ -135,17 +135,18 @@
      * @param {number} significantDigits
      * @returns {string}
      */
-    currencyFormatter: (n, significantDigits = 5) => {
+    currencyFormatter: (n, significantDigits) => {
+      const isWhole = Number.isInteger(n);
       const options = {
         style: "currency",
         currency: "USD"
       };
-      
-      // Only add maximumSignificantDigits if significantDigits is provided and valid
-      if (significantDigits && significantDigits > 0) {
+      if (significantDigits !== undefined) {
         options.maximumSignificantDigits = significantDigits;
+      } else {
+        options.minimumFractionDigits = isWhole ? 0 : 2;
+        options.maximumFractionDigits = isWhole ? 0 : 2;
       }
-      
       return new Intl.NumberFormat("en-US", options).format(n);
     },
   };
@@ -334,10 +335,10 @@
       
       const tier = regionsTiers[tierKey].tier;
       
-      const formattedWithoutWAF = utils.currencyFormatter(tiersCosts[tier].withoutWAF);
-      const formattedWithWAF = utils.currencyFormatter(tiersCosts[tier].withWAF);
-      const formattedDeploymentWithoutWAF = utils.currencyFormatter(costs.deploymentFee[tier].withoutWAF);
-      const formattedDeploymentWithWAF = utils.currencyFormatter(costs.deploymentFee[tier].withWAF);
+      const formattedWithoutWAF = utils.currencyFormatter(tiersCosts[tier].withoutWAF, 5);
+      const formattedWithWAF = utils.currencyFormatter(tiersCosts[tier].withWAF, 5);
+      const formattedDeploymentWithoutWAF = utils.currencyFormatter(costs.deploymentFee[tier].withoutWAF, 5);
+      const formattedDeploymentWithWAF = utils.currencyFormatter(costs.deploymentFee[tier].withWAF, 5);
       
       col1.innerText = `${regionsTiers[tierKey].label}`;
       col2.innerText = `${tier}`;
