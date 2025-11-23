@@ -28,8 +28,8 @@ F5 DoS for NGINX supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R35)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
-- [Alpine 3.19](#alpine-installation)
 - [Alpine 3.21](#alpine-installation)
+- [Alpine 3.22](#alpine-installation)
 - [AmazonLinux 2023](#amazon-linux-2023-installation)
 
 
@@ -1474,8 +1474,8 @@ You need root permissions to execute the following steps.
 
 ```Dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.19:
-FROM alpine:3.19
+# For Alpine 3.22:
+FROM alpine:3.22
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
@@ -1913,8 +1913,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.19:
-FROM alpine:3.19
+# For Alpine 3.22:
+FROM alpine:3.22
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub && \
