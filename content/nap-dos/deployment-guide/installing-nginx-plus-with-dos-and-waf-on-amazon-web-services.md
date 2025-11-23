@@ -28,27 +28,30 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
 1. Follow the instructions in [Getting Started with Amazon EC2 Linux Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) to sign up on AWS and get more information about EC2 itself.
 2. Proceed to the product page for the appropriate AMI at the AWS Marketplace, and launch the AMI.
 
-    - [NGINX Plus with F5 DoS for NGINX – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-bjdboufufnb7g?sr=0-4&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – AmazonLinux 2023 AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-x5nkvphsrg6ag)
 
-    - [NGINX Plus with F5 DoS for NGINX – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+	- [NGINX Plus with F5 DoS for NGINX – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
 
-    - [NGINX Plus with F5 DoS for NGINX – CentOS 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-deeny2oe7izti?sr=0-12&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX – RHEL9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm)
 
     - [NGINX Plus with F5 DoS for NGINX – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
 
     - [NGINX Plus with F5 DoS for NGINX – Ubuntu 20.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-gsoln2vnsgpr4?sr=0-5&ref_=beagle&applicationId=AWSMPContessa)
 
     - [NGINX Plus with F5 DoS for NGINX – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
-
-    - [NGINX Plus with F5 WAF for NGINX + DoS – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-jedbygo6xbvto?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
-
+      
+	- [NGINX Plus with F5 DoS for NGINX – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-osz3wmirx5zqg)
+    
     - [NGINX Plus with F5 WAF for NGINX + DoS – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co?sr=0-18&ref_=beagle&applicationId=AWSMPContessa)
-
-    - [NGINX Plus with F5 WAF for NGINX + DoS – CentOS 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-jedbygo6xbvto?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
 
     - [NGINX Plus with F5 WAF for NGINX + DoS – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu?sr=0-3&ref_=beagle&applicationId=AWSMPContessa)
 
     - [NGINX Plus with F5 WAF for NGINX + DoS – Ubuntu 20.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-zhxmqlcoylkca?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
+
+    - [NGINX Plus with F5 WAF for NGINX + DoS – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-os7tw2atlkwpg)
+
+    - [NGINX Plus with F5 WAF for NGINX + DoS – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
+
 
     Click the **Continue to Subscribe** button to proceed to the **Launch on EC2** page.
 
