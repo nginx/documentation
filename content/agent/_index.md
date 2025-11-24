@@ -7,8 +7,8 @@ cascade:
     enabled: true
     type: deprecation
     start-date: 2025-05-29
-    end-date: 2025-09-09
-    md: /_banners/agent-v3-release.md
+    end-date: 2026-09-09
+    md: /_banners/agent-v2-note.md
 # The subtitle displays directly underneath the heading of a given page
 nd-subtitle:
 # Indicates that this is a custom landing page
