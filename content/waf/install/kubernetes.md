@@ -102,7 +102,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/debian-oss.md" >}}
+{{< include "/waf/dockerfiles/debian-plus.md" >}}
 
 {{% /tab %}}
 
