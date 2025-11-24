@@ -164,7 +164,7 @@ Before using the cost analysis script:
     pip3 install azure-identity azure-mgmt-monitor
     ```
   
-4. **NGINXaaS for Azure deployment** with monitoring enabled
+4. **NGINXaaS for Azure deployment on Standard V3 Plan** with monitoring enabled
 5. **Azure AD Tenant ID** (required for authentication)
 6. **Monitoring Reader permissions** on your NGINXaaS resource
 
@@ -214,41 +214,9 @@ python3 nginxaas_cost_analysis.py \
 {{< details "View sample output" >}}
 
 ```
-🌐 Using InteractiveBrowserCredential with tenant: d106871e-7b91-4733-8423-f98586303b68
-📈 Processing 72 hours of data...
-============================================================
-📈 COST ANALYSIS SUMMARY
-============================================================
-Total Analysis Period: 72 hours
-Total Cost: $32.40
-
-🕐 HOURLY COST BREAKDOWN (First 5 hours):
-------------------------------------------------------------
-Hour 1 - 2025-11-18T00:00:00Z
-    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
-    Ports: $0.000 | Data: $0.000 | Total: $0.410
-
-Hour 2 - 2025-11-18T01:00:00Z
-    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
-    Ports: $0.000 | Data: $0.000 | Total: $0.410
-
-Hour 3 - 2025-11-18T02:00:00Z
-    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
-    Ports: $0.000 | Data: $0.000 | Total: $0.410
-
-Hour 4 - 2025-11-18T03:00:00Z
-    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
-    Ports: $0.000 | Data: $0.000 | Total: $0.410
-
-Hour 5 - 2025-11-18T04:00:00Z
-    Fixed: $0.250 | WAF: $0.000 | NCU: $0.160
-    Ports: $0.000 | Data: $0.000 | Total: $0.410
-
-... and 67 more hours
-
-✅ Cost breakdown exported to nginxaas_cost_breakdown.csv
-     📊 Summary: 72 hours, Total cost: $32.40
-✅ Cost analysis completed successfully!
+Cost breakdown exported to nginxaas_cost_breakdown.csv
+Summary: 96 hours, Total cost: $71.66
+Cost analysis completed successfully!
 ```
 
 {{< /details >}}
