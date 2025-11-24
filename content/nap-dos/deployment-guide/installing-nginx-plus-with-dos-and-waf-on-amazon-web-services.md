@@ -30,21 +30,21 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
 
     - [NGINX Plus with F5 DoS for NGINX Plus – AmazonLinux 2023 AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-x5nkvphsrg6ag)
 
-	- [NGINX Plus with F5 DoS for NGINX Plus – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+	- [NGINX Plus with F5 DoS for NGINX Plus – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm)
 
-    - [NGINX Plus with F5 DoS for NGINX Plus – RHEL9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm)
+    - [NGINX Plus with F5 DoS for NGINX Plus – RHEL9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-eoddgsaqujgkm)
 
-    - [NGINX Plus with F5 DoS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq)
 
-    - [NGINX Plus with F5 DoS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy)
       
 	- [NGINX Plus with F5 DoS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-osz3wmirx5zqg)
     
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co?sr=0-18&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co)
 
     - [NGINX Plus with F5 WAF & DOS for NGINX Plus – RHEL 9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-kmtitev2hhrym)
 
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu?sr=0-3&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu)
 
     - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-os7tw2atlkwpg)
 
