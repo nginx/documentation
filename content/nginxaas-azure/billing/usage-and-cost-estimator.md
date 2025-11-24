@@ -150,7 +150,7 @@ Max(
 
 <h3>Overview</h3>
 
-The NGINXaaS for Azure cost analysis tool provides a detailed hourly cost breakdown of your NGINXaaS deployment usage for each component (NCU, WAF, Ports, Data). It fetches real-time metrics directly from Azure Monitor using the Azure SDK and calculates costs based on actual usage.
+The NGINXaaS for Azure cost analysis tool provides a detailed hourly cost breakdown of your NGINXaaS deployment usage for each component (NCU, WAF, Ports, Data). It fetches real-time metrics directly from Azure Monitor and calculates costs based on actual usage.
 
 <h3>Prerequisites</h3>
 
