@@ -1,6 +1,6 @@
 ---
 files:
-   - content/nginx-one/agent/configure-instances/configure-selinux.md
+   - content/nginx-one-console/agent/configure-instances/configure-selinux.md
    - content/nim/system-configuration/configure-selinux.md
    - content/nms/nginx-agent/install-nginx-agent.md
 ---

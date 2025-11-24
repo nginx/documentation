@@ -1878,7 +1878,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     For Debian/Ubuntu/Alpine/Amazon Linux:
 
     ```shell
-    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .    ```
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    ```
 
     For RHEL:
 
@@ -2001,7 +2002,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ### Debian Docker Deployment Example
 
 ```Dockerfile
-# Where verionn can be: bullseye/bookworm
+# Where version can be: bullseye/bookworm
 FROM debian:bullseye
 
 # Install prerequisite packages:

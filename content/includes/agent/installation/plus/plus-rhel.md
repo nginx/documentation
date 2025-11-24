@@ -1,7 +1,7 @@
 ---
 files:
    - content/agent/install-upgrade/install-from-plus-repo.md
-   - content/nginx-one/agent/install-upgrade/install-from-plus-repo.md
+   - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
 ---
 
 1. Create the `/etc/ssl/nginx` directory:

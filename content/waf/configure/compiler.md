@@ -7,9 +7,7 @@ weight: 300
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This document describes how to use the F5 WAF for NGINX compiler, a tool for converting security policies and logging profiles from JSON to a bundle file that F5 WAF can process and apply.
@@ -64,7 +62,7 @@ This example Dockerfile is based on a Debian image.
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-ARG BASE_IMAGE=private-registry.nginx.com/nap/waf-compiler:<version-tag>
+ARG BASE_IMAGE=private-registry.nginx.com/nap/waf-compiler:{{< version-waf-compiler >}}
 FROM ${BASE_IMAGE}
 
 # Installing packages as root
@@ -113,23 +111,6 @@ Replace `<path-to-your-nginx-repo.key>` with the location of your client key and
 ```shell
 curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt>
 ```
-
-```json
-{
-  "name": "nap/waf-compiler",
-  "tags": [
-    "1.0.0",
-    "5.1.0",
-    "5.2.0"
-  ]
-}
-```
-
-{{< call-out "note" >}}
-
-The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
-
-{{< /call-out >}}
 
 ## Build the container image
 
@@ -190,7 +171,7 @@ To compile a policy with global settings, add the `-g` parameter:
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -199,7 +180,7 @@ You can incorporate the source of the policy (as `policy.json`) or logging profi
 ```shell
 docker run --rm \
  -v $(pwd):$(pwd) \
- waf-compiler-1.0.0:custom \
+ waf-compiler-<version-tag>:custom \
  -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
@@ -236,6 +217,7 @@ When [configuring policies]({{< ref "/waf/policies/configuration.md">}}), you ma
 There are ways to remediate them based on the context:
 
 {{< table >}}
+
 | Description             | Solution  |
 | ----------------------- | --------  |
 | _Expected declarative policy_ | Ensure the JSON of the policy is well-formed | 
@@ -248,6 +230,7 @@ There are ways to remediate them based on the context:
 | _Duplicate policy name found_ | Don't compile multiple policies with the same name, or one policy to multiple bundles. Each policy can be compiled once but a bundle can be re-used. |
 | _Duplicate logging profile name found_ | Don't compile the same logging profile to multiple bundles. Each profile can be compiled once but a bundle can be re-used. |
 | _Timeout waiting for enforcer_ | Likely an internal issue: [contact Support]({{< ref "/waf/support.md" >}}) |
+
 {{< /table >}}
 
 ## Global settings

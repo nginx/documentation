@@ -4,13 +4,13 @@ nd-docs: DOCS-1295
 
 To use basic authentication for API requests, include your base64-encoded credentials as a "Basic" token in the "Authorization" header. To create the base64-encoded credentials, run the following command:
 
-```bash
+```shell
 echo -n <username>:<password> | base64
 ```
 
 Once you've generated the credentials, you can include them in your API request. Here's how to do it with `curl`:
 
-```bash
+```shell
 curl -X GET "https://<NIM_FQDN>/api/platform/<API_VERSION>/systems" -H "Authorization: Basic <base64_encoded_credentials>"
 ```
 

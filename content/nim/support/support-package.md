@@ -42,7 +42,7 @@ To create a support package:
 
 2. To extract the package, use the `tar` command:
 
-    ```bash
+    ```shell
     tar -xvf support-pkg-<timestamp>.tar.gz
     ```
 
@@ -83,7 +83,7 @@ The logs of the Instance Manager processes.
 
 You can pipe the logs to `grep` to view entries belonging to only one of the three `nms` processes. For example, to view `nms-core` logs, run the following command:
 
-```bash
+```shell
 cat nms.log | grep 'COR'
 ```
 

@@ -7,9 +7,7 @@ weight: 400
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 This page describes how to install F5 WAF for NGINX using Docker. 
@@ -73,7 +71,7 @@ user nginx;
 worker_processes auto;
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections 10240;
@@ -466,7 +464,7 @@ services:
 
   waf-enforcer:
     container_name: waf-enforcer
-    image: waf-enforcer:5.2.0
+    image: waf-enforcer:{{< version-waf-enforcer >}}
     environment:
       - ENFORCER_PORT=50000
     ports:
@@ -479,7 +477,7 @@ services:
 
   waf-config-mgr:
     container_name: waf-config-mgr
-    image: waf-config-mgr:5.2.0
+    image: waf-config-mgr:{{< version-waf-config-mgr >}}
     volumes:
       - /opt/app_protect/bd_config:/opt/app_protect/bd_config
       - /opt/app_protect/config:/opt/app_protect/config
@@ -841,7 +839,7 @@ user nginx;
 worker_processes auto;
 load_module modules/ngx_http_app_protect_module.so;
 
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections 10240;
@@ -982,14 +980,14 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amaz
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
     && dnf clean all \
     && rm -rf /var/cache/yum
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect-ip-intelligence
 
@@ -1039,12 +1037,12 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
 # Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && apt-get install -y app-protect
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
@@ -1083,14 +1081,14 @@ RUN dnf config-manager --set-enabled ol8_codeready_builder \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1126,14 +1124,14 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install --enablerepo=codeready-builder-for-rhel-8-x86_64-rpms -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1168,14 +1166,14 @@ RUN dnf config-manager --set-enabled crb \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1210,14 +1208,14 @@ RUN dnf config-manager --set-enabled crb \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
@@ -1267,12 +1265,12 @@ RUN printf "deb [signed-by=/usr/share/keyrings/app-protect-security-updates.gpg]
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
 # Update the repository and install the most recent version of the F5 WAF for NGINX package (which includes NGINX Plus):
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect
 
 # Only use if you want to install and use the IP intelligence feature:
-RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.cert,mode=0644 \
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 

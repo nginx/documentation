@@ -1,7 +1,7 @@
 ---
 files:
-  - content/nginx-one/metrics/enable-metrics.md
-  - content/nginx-one/getting-started.md
+  - content/nginx-one-console/metrics/enable-metrics.md
+  - content/nginx-one-console/getting-started.md
 ---
 
 Navigating the dashboard:
@@ -10,7 +10,7 @@ Navigating the dashboard:
 - **Refine metric timeframe**: Metrics show the last hour's data by default. To view data from a different period, select the time interval you want from the drop-down menu.
 
 <span style="display: inline-block; margin-top: 20px; margin-bottom: 50px;">
-{{< img src="nginx-one/images/nginx-one-dashboard.png">}}
+{{< img src="nginx-one-console/images/nginx-one-dashboard.png">}}
 </span>
 
 {{<bootstrap-table "table table-striped table-bordered">}}

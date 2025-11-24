@@ -30,8 +30,12 @@ content/waf/*               @nginx/waf
 content/includes/waf/*      @nginx/waf
 
 # NGINXaaS for Azure 
-content/nginxaas-azure/*          @nginx/n4a-docs-approvers
-content/includes/nginxaas-azure/* @nginx/n4a-docs-approvers
+content/nginxaas-azure/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas-azure/* @nginx/nginxaas-docs-approvers
+
+# NGINXaaS for Google Cloud 
+content/nginxaas-google/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas-google/* @nginx/nginxaas-docs-approvers
 
 # NGINX Gateway Fabric
 content/ngf/*               @nginx/nginx-gateway-fabric
@@ -49,5 +53,5 @@ content/nim/*               @nginx/nim-docs-approvers
 content/nginx/*             @nginx/plus-docs-approvers
 
 # NGINX One
-content/nginx-one/*         @nginx/one-docs-approvers
+content/nginx-one-console/*         @nginx/one-docs-approvers
 

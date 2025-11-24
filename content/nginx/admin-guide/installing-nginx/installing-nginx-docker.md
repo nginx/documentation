@@ -184,7 +184,7 @@ sudo docker run \
 ```
 
 To start the Docker container with NGINX Plus and NGINX Agent,
-you will need to additionally pass the NGINX One data plane key as the `NGINX_AGENT_SERVER_TOKEN` environment variable. For more information, see [Create and manage data plane keys]({{< ref "/nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}):
+you will need to additionally pass the NGINX One data plane key as the `NGINX_AGENT_SERVER_TOKEN` environment variable. For more information, see [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}):
 
 ```sh
 sudo docker run \
@@ -202,7 +202,7 @@ where:
  - `NGINX_LICENSE_JWT` is your JWT license file from MyF5. The file name should be `license.jwt`.
  - `NGINX_AGENT_SERVER_GRPCPORT` sets a GRPC port used by NGINX Agent to communicate with NGINX Instance Manager.
  - `NGINX_AGENT_SERVER_HOST` sets the domain name or IP address of NGINX Instance Manager. Note that for production environments it is not recommended to expose NGINX Instance Manager to public networks.
- - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys]({{< ref "nginx-one/connect-instances/create-manage-data-plane-keys.md" >}}) for details.
+ - `NGINX_AGENT_SERVER_TOKEN` sets NGINX One data plane key. See [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) for details.
  - `NGINX_AGENT_TLS_ENABLE` enables mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication]({{< ref "agent/configuration/encrypt-communication.md" >}}) for details.
  - `YOUR_REGISTRY` is the path to your private registry.
  - `VERSION_TAG` is the tag assigned when pushing to your registry.

@@ -18,6 +18,8 @@ If you're interested in contributing to the [NGINX documentation website](https:
 - [Managing content with Hugo](/documentation/hugo-content.md)
 - [Using include files](/documentation/include-files.md)
 - [Contributing closed content](/documentation/closed-contributions.md)
+- [Review deprecated content](/documentation/deprecated-content.md)
+- [nginx.org content](/documentation/nginx-org-source.md)
 
 ## Writing guidance
 

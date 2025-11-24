@@ -12,7 +12,7 @@ For guidance around how to write content, please check [the style guide](/docume
 
 You will need to install Hugo _or_ Docker to build or preview documentation in your local development environment.
 
-Read the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information: we are currently running [Hugo v0.147.8](https://github.com/gohugoio/hugo/releases/tag/v0.147.8) in production.
+Read the [Hugo installation instructions](https://gohugo.io/getting-started/installing/) for more information: we are currently running [Hugo v0.152.2](https://github.com/gohugoio/hugo/releases/tag/v0.152.2) in production.
 
 If you have [Docker](https://www.docker.com/get-started/) installed, there are fallbacks for all requirements in the [Makefile](Makefile), meaning you don't need to install them.
 

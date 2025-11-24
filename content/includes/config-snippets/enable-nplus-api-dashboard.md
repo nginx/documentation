@@ -1,6 +1,6 @@
 ---
 files:
-- content/nginx-one/workshops/lab5/upgrade-nginx-plus-to-latest-version.md
+- content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-latest-version.md
 - content/includes/use-cases/monitoring/enable-nginx-plus-api.md
 ---
 

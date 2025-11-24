@@ -3,7 +3,7 @@ title: Custom dimensions for log entries
 toc: false
 weight: 200
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: WAF
 ---
 
 F5 WAF for NGINX can configure custom dimensions for log entries using the directive `app_protect_custom_log_attribute`.
@@ -27,7 +27,7 @@ The following example defines the `app_protect_custom_log_attribute` directive a
 ```nginx
 user nginx;
 load_module modules/ngx_http_app_protect_module.so;
-error_log /var/log/nginx/error.log debug;
+error_log /var/log/nginx/error.log warn;
 
 events {
     worker_connections  65536;
@@ -86,5 +86,3 @@ The log will specify the precise issue:
 ```text
 app_protect_custom_log_attribute directive is invalid. Number of app_protect_custom_log_attribute directives exceeds maximum
 ```
-
-

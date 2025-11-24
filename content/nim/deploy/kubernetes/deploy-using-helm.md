@@ -136,6 +136,11 @@ https://docs.nginx.com/nginx-instance-manager/deploy/kubernetes/helm-config-sett
 {{< /call-out >}}
 
 ```yaml
+# When openshift.enabled is set, the chart deploys to OpenShift.
+# If it’s unset or left as-is, it defaults to a Kubernetes deployment.
+# openshift:
+#   enabled: false
+
 nmsClickhouse:
   mode: internal # options: internal, external, disabled
 
@@ -149,34 +154,27 @@ imagePullSecrets:
 apigw:
   image:
     repository: private-registry.nginx.com/nms/apigw
-    tag: <version>
 core:
   image:
     repository: private-registry.nginx.com/nms/core
-    tag: <version>
 dpm:
   image:
     repository: private-registry.nginx.com/nms/dpm
-    tag: <version>
 ingestion:
   image:
     repository: private-registry.nginx.com/nms/ingestion
-    tag: <version>
 integrations:
   image:
     repository: private-registry.nginx.com/nms/integrations
-    tag: <version>
 secmon:
   image:
     repository: private-registry.nginx.com/nms/secmon
-    tag: <version>
 utility:
   image:
     repository: private-registry.nginx.com/nms/utility
-    tag: <version>
 ```
 
-These values are required when pulling images from the NGINX private registry. The chart doesn't auto-resolve image tags. Set each `tag:` value to match the NGINX Instance Manager version you want to install. Refer to the Helm chart table for version details.
+The values required to pull images from the NGINX private registry are now automatically resolved, including image tags. Each image’s `tag:` is set by default to the latest NGINX Instance Manager version. See the [Helm chart table in the chart installation section]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#install-the-chart" >}}) for version details.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
@@ -203,7 +201,7 @@ helm install nim nginx-stable/nim \
 
 - Replace `<your-password>` with your preferred admin password.
 - Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.0.0`).
+- Replace `<chart-version>` with the version you want to install (for example, `2.1.0`).
 
 **Note:** You can set the ClickHouse mode at install time instead of editing `values.yaml`:
 
@@ -270,7 +268,7 @@ helm upgrade nim nginx-stable/nim \
 
 - Replace `<your-password>` with your preferred admin password.
 - Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.0.0`).
+- Replace `<chart-version>` with the version you want to install (for example, `2.1.0`).
 
 
 {{< call-out "important" "Save the password!" >}}
@@ -424,7 +422,7 @@ nms nginx-stable/nms-hybrid \
 To upgrade:
 
 1. [Update the Helm repository list](#add-repository).
-2. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
+2. [Adjust your `values.yaml` file](#configure-values-yaml) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
 4. Replace `<chart-version>` with the desired chart version of NGINX Instance Manager 2.19.x referring the Helm chart table. 
 
@@ -526,7 +524,7 @@ nms nginx-stable/nms \
 To upgrade:
 
 1. [Update the Helm repository list](#add-repository).
-2. [Adjust your `values.yaml` file](#create-a-helm-deployment-values.yaml-file) if needed.
+2. [Adjust your `values.yaml` file](#configure-values-yaml) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
 4. Replace `<chart-version>` with the desired chart version 1.15.0 or lower. If omitted, it will lead to an unsuccessful deployment as it will try to upgrade to the latest vesrion 1.16.0 or later.
 
