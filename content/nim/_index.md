@@ -51,7 +51,7 @@ NGINX Instance Manager is part of NGINX One, which includes [NGINX One component
   {{<card title="Monitor metrics and events" titleUrl="/nginx-instance-manager/monitoring/" >}}
       Track performance, system health, and changes using built-in metrics, logs, and the REST API.
     {{</card>}}
-    {{<card title="Secure with F5 WAF for NGINX" titleUrl="/nginx-instance-manager/nginx-app-protect/" >}}
+    {{<card title="Secure with F5 WAF for NGINX" titleUrl="/nginx-instance-manager/waf-integration/" >}}
       Apply WAF policies and monitor activity from a centralized view.
   {{</card>}}
 {{</card-section>}}
