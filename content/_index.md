@@ -25,7 +25,10 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
   {{<card title="NGINX Open Source" titleUrl="https://nginx.org/en/docs/" brandIcon="NGINX-Open-Source-product-icon.svg" isLanding="true">}}
     The open source all-in-one load balancer, content cache, and web server.
   {{</card >}}
-  {{<card title="NGINX Agent" titleUrl="/nginx-agent/" brandIcon="NGINX-Agent-product-icon.svg" isLanding="true">}}
+  {{<card title="NGINX Agent version 3" titleUrl="/nginx-one-console/agent/" brandIcon="NGINX-Agent-product-icon.svg" isLanding="true">}}
+    A daemon designed to work with NGINX One Console and enable remote management of NGINX instances.
+  {{</card >}}
+    {{<card title="NGINX Agent version 2" titleUrl="/nginx-agent/" brandIcon="NGINX-Agent-product-icon.svg" isLanding="true">}}
     A daemon providing observability data and remote configuration for NGINX Open Source and NGINX Plus instances.
   {{</card >}}
   {{<card title="Subscription licensing & solutions" titleUrl="/solutions/" brandIcon="NGINX-product-icon.svg" isLanding="true">}}
