@@ -1,5 +1,9 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-terraform.md
 ---
 
 1. File-based logs must be configured to use the path **/var/log/nginx**.

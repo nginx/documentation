@@ -2,7 +2,7 @@
 title: API reference
 weight: 100
 type: reference
-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1855
 ---
 ## Overview

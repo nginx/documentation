@@ -1,8 +1,9 @@
 ---
 file:
-  - content/solutions/about-subscription-licenses.md
+- content/solutions/about-subscription-licenses.md
+nd-files:
+- content/solutions/about-subscription-licenses/getting-started.md
 ---
-
 
 {{<call-out "note" "Before you begin">}}
 Before you deploy with a Config Sync Group, you need to create one in the NGINX One Console.  

@@ -4,7 +4,7 @@ description: Configure attack signature sets and exceptions in F5 WAF for NGINX 
 weight: 400
 toc: true
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 ---
 
 This topic describes how to configure signature sets and signature exceptions in F5 WAF for NGINX policies. When you add or edit a policy, NGINX Instance Manager provides options to customize attack signatures to better protect your applications.

@@ -1,5 +1,8 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
+- content/waf/install/kubernetes.md
 ---
 
 Once you have installed F5 WAF for NGINX, you must load it as a module in the main context of your NGINX configuration.

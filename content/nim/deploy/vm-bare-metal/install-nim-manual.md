@@ -4,7 +4,7 @@ toc: true
 weight: 10
 noindex: true
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-1211
 ---
 

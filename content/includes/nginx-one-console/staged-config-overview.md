@@ -1,8 +1,9 @@
 ---
-nd-docs: DOCS-000
-files:
-  - content/nginx-one-console/how-to/staged-configs/add-staged-config.md
-  - content/nginx-one-console/how-to/staged-configs/edit-staged-config.md
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/nginx-configs/staged-configs/add-staged-config.md
+- content/nginx-one-console/nginx-configs/staged-configs/edit-staged-config.md
+- content/nginx-one-console/nginx-configs/staged-configs/import-export-staged-config.md
 ---
 
 It takes time to set up NGINX configuration files. Staged Configurations can help. They work like a draft that uses the features of NGINX One Console. The Staged Configuration does not have to be valid.

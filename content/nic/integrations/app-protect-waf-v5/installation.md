@@ -3,7 +3,7 @@ title: Build NGINX Ingress Controller with F5 WAF for NGINX
 weight: 100
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1865
 ---
 

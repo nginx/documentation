@@ -3,7 +3,7 @@ title: Migrate from Ingress-NGINX Controller to NGINX Ingress Controller
 toc: true
 weight: 1000
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1469
 ---
 

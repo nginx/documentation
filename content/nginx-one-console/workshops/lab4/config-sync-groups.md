@@ -3,7 +3,7 @@ title: "Lab 4: Config Sync Groups"
 weight: 400
 toc: true
 nd-content-type: tutorial
-nd-product: nginx-one
+nd-product: NONECO
 ---
 
 ## Introduction
@@ -29,7 +29,7 @@ Make sure you have:
 - {{< include "/nginx-one-console/workshops/xc-account.md" >}}
 - Completed [Lab 2: Run workshop components with Docker]({{< ref "/nginx-one-console/workshops/lab2/run-workshop-components-with-docker.md" >}})  
 - Docker and Docker Compose installed and running  
-- {{< include "workshops/nginx-one-env-variables.md" >}}  
+- {{< include "nginx-one-console/workshops/nginx-one-env-variables.md" >}}  
 - Basic familiarity with Linux command line and NGINX concepts  
 
 ---

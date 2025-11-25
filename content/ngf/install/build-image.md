@@ -3,7 +3,7 @@ title: Build NGINX Gateway Fabric
 weight: 500
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1431
 ---
 

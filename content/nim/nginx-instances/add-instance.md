@@ -3,7 +3,7 @@ title: "Add an NGINX instance"
 weight: 100
 toc: false
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 ---
 
 This guide shows you how to add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager so you can manage them from a central dashboard.

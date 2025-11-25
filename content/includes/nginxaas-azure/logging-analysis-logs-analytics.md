@@ -1,5 +1,9 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-terraform.md
 ---
 
 If the diagnostic setting destination details included a Logs Analytics workspace, logs show up in the table "NGXOperationLogs" with the following non-standard attributes:

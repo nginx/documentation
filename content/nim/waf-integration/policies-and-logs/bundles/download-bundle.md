@@ -4,7 +4,7 @@ description: Download a compiled F5 WAF for NGINX security bundle from NGINX Ins
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

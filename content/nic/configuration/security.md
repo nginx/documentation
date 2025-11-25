@@ -3,7 +3,7 @@ title: Security recommendations
 toc: true
 weight: 300
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-597
 ---
 

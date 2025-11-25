@@ -3,7 +3,7 @@ title: Enable OpenTracing (Removed in v5.0.0)
 toc: true
 weight: 700
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-618
 ---
 

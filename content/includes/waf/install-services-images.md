@@ -1,5 +1,7 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
 ---
 
 Download the `waf-enforcer` and `waf-config-mgr` images. 
