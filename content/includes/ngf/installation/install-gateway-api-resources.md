@@ -1,5 +1,10 @@
 ---
-nd-docs: "DOCS-1438"
+nd-docs: DOCS-1438
+nd-files:
+- content/ngf/install/helm.md
+- content/ngf/install/manifests.md
+- content/nginx-one-console/k8s/add-ngf-helm.md
+- content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 
 {{< call-out "note" >}} The [Gateway API resources](https://github.com/kubernetes-sigs/gateway-api) from the standard channel must be installed before deploying NGINX Gateway Fabric. If they are already installed in your cluster, please ensure they are the correct version as supported by the NGINX Gateway Fabric - [see the Technical Specifications](https://github.com/nginx/nginx-gateway-fabric/blob/v{{< version-ngf >}}/README.md#technical-specifications). {{< /call-out >}}

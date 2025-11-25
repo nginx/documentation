@@ -2,7 +2,7 @@
 title: Product telemetry
 weight: 500
 nd-content-type: reference
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1836
 ---
 

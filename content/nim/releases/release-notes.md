@@ -3,7 +3,7 @@ title: Release notes
 weight: 100
 toc: true
 nd-content-type: reference
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-938
 ---
 

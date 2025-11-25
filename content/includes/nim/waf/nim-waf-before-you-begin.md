@@ -1,9 +1,9 @@
 ---
-docs:
-files:
-  - content/nim/waf-integration/configuration/_index.md
-  - content/nim/waf-integration/configuration/install-waf-compiler/install.md
-  - content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
+docs: null
+nd-files:
+- content/nim/waf-integration/configuration/_index.md
+- content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
+- content/nim/waf-integration/configuration/install-waf-compiler/install.md
 ---
 
 Make sure you’ve completed the following tasks:

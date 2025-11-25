@@ -4,7 +4,7 @@ weight: 450
 toc: true
 nd-content-type:
   - how-to
-product: Agent
+nd-product: NAGENT
 nd-docs: DOCS-1781
 ---
 

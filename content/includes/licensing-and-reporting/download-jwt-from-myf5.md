@@ -1,15 +1,14 @@
 ---
-files:
+nd-files:
 - content/includes/nim/docker/docker-registry-login.md
 - content/includes/use-cases/credential-download-instructions.md
-- content/nap-waf/v5/admin-guide/install.md
-- content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
+- content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/nim/admin-guide/add-license.md
 - content/nim/install/docker/deploy-nginx-plus-and-agent-docker.md
 - content/nim/disconnected/add-license-disconnected-deployment.md
-- content/solutions/about-subscription-licenses.md
-- content/solutions/r33-pre-release-guidance-for-automatic-upgrades.md
+- content/solutions/about-subscription-licenses/getting-started.md
+- content/waf/install/kubernetes.md
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).

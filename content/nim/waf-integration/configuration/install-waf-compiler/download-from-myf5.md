@@ -4,7 +4,7 @@ description: Download and install the WAF compiler manually from MyF5 when your 
 toc: true
 weight: 400
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

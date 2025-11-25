@@ -3,7 +3,7 @@ title: Security logs
 toc: true
 weight: 300
 nd-content-type: reference
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 **Security logs** (also known as **Request logs** or **Traffic logs**) contain information on HTTP requests and responses, how F5 WAF for NGINX processes them, and the final decision made based on the configured policy parameters. The policy configuration defines the information contained in the Security log, such as whether requests are passed, blocked or alerted, due to violations, attack signatures, and other criteria.

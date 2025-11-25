@@ -3,7 +3,7 @@ title: Support
 weight: 800
 toc: true
 nd-content-type: reference
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1411
 ---
 

@@ -3,7 +3,7 @@ title: HTTP redirects and rewrites
 weight: 400
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1424
 ---
 

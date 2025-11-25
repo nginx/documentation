@@ -1,6 +1,8 @@
 ---
-files:
-  - content/nginx-one-console/getting-started.md
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/getting-started.md
+- content/nginx-one-console/workshops/lab1/getting-started-with-nginx-one-console.md
 ---
 
 1. Go to `https://<TENANT_NAME>.console.ves.volterra.io/` to access F5 Distributed Cloud, and sign in.

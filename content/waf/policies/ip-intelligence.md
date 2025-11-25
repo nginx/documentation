@@ -7,7 +7,7 @@ weight: 1600
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 F5 WAF for NGINX has an IP intelligence feature which allows you to customize enforcement based on the source IP address of a request. This allows you to limit access from specific IP addresses. 

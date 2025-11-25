@@ -3,7 +3,7 @@ title: Use the SnippetsFilter API
 weight: 800
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1848
 ---
 

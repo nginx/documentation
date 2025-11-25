@@ -4,7 +4,7 @@ description: Review and manage stored F5 WAF for NGINX policies and their versio
 toc: true
 weight: 600
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

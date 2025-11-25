@@ -1,5 +1,7 @@
 ---
 nd-docs: DOCS-1323
+nd-files:
+- content/nim/deploy/kubernetes/deploy-using-helm.md
 ---
 
 You can access the NGINX Instance Manager web interface using the external IP address for the API Gateway.

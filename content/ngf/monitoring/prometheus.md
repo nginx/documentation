@@ -3,7 +3,7 @@ title: Monitoring with Prometheus and Grafana
 weight: 200
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1418
 ---
 

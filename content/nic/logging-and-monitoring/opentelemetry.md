@@ -9,7 +9,7 @@ toc: true
 nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NIC
+nd-product: INGRESS
 ---
 
 This topic describes how to enable [OpenTelemetry](https://opentelemetry.io/) for F5 NGINX Ingress Controller using the [native NGINX module](https://nginx.org/en/docs/ngx_otel_module.html).

@@ -3,7 +3,7 @@ title: Compile F5 WAF for NGINX policies using NGINX Instance Manager
 weight: 300
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1863
 ---
 

@@ -5,7 +5,7 @@ toc: true
 weight: 100
 type:
 - how-to
-nd-product: NGINX One Console
+nd-product: NONECO
 ---
 
 ## Overview

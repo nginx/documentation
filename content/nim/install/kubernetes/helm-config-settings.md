@@ -5,7 +5,7 @@ toc: true
 weight: 300
 nd-content-type:
 - reference
-nd-product: NIM
+nd-product: NIMNGR
 ---
 
 This reference guide lists the configurable Helm chart parameters and default settings for NGINX Instance Manager.

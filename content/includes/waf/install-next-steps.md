@@ -1,5 +1,9 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
+- content/waf/install/kubernetes.md
+- content/waf/install/virtual-environment.md
 ---
 
 Once you have successfully installed F5 WAF for NGINX, there are some topics you may want to follow afterwards:

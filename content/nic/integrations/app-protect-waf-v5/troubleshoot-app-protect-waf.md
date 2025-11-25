@@ -3,7 +3,7 @@ title: Troubleshoot F5 WAF for NGINX
 weight: 400
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1864
 ---
 

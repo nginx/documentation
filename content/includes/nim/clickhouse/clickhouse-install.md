@@ -1,6 +1,6 @@
 ---
-files:
-- content/nim/install/vm-bare-metal/install-manually-online.md
+nd-files:
+- content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---
 
 NGINX Instance Manager uses [ClickHouse](https://clickhouse.com) to store metrics, events, alerts, and configuration settings.

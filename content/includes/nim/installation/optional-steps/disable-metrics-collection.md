@@ -1,6 +1,6 @@
 ---
-files:
-- content/nim/install/vm-bare-metal/install.md
+nd-files:
+- content/nim/deploy/vm-bare-metal/install.md
 - content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/install/vm-bare-metal/install-with-bash-script-online.md
 ---

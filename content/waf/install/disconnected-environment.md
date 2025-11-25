@@ -7,7 +7,7 @@ weight: 500
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 This topic describes how to install F5 WAF for NGINX in a disconnected or air-gapped environment.

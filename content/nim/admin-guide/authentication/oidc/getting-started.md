@@ -3,7 +3,7 @@ title: Get started with OIDC
 toc: true
 weight: 1
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-1267
 ---
 
