@@ -1,8 +1,8 @@
 ---
 nd-product: MSC
-files:
+nd-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
-- content/nic/installation/nic-images/registry-download.md
+- content/nic/install/images/registry-download.md
 ---
 
 This step describes how to use Docker to communicate with the F5 Container Registry located at `private-registry.nginx.com`.

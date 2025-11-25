@@ -1,5 +1,8 @@
 ---
 nd-product: NONECO
+nd-files:
+- content/nginx-one-console/nginx-configs/config-sync-groups/add-file-csg.md
+- content/nginx-one-console/nginx-configs/one-instance/add-file.md
 ---
 
 First you can select the toggle to allow NGINX One Console to manage the new certificate or bundle.

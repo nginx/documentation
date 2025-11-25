@@ -1,4 +1,6 @@
 ---
+nd-files:
+- content/nginx/technical-specs.md
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

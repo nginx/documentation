@@ -1,5 +1,7 @@
 ---
 nd-docs: DOCS-1243
+nd-files:
+- content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---
 
 Select the tab matching your Linux distribution, then follow the instructions to add the NGINX Instance Manager repository.

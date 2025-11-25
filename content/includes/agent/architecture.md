@@ -1,8 +1,7 @@
 ---
 nd-product: NAGENT
-files:
-   - content/agent/about.md
-   - content/nginx-one-console/agent/overview/about.md
+nd-files:
+- content/nginx-one-console/agent/overview/about.md
 ---
 
 The figure shows:

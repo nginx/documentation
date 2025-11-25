@@ -1,5 +1,8 @@
 ---
 nd-docs: DOCS-1295
+nd-files:
+- content/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md
+- content/nim/fundamentals/api-overview.md
 ---
 
 To use basic authentication for API requests, include your base64-encoded credentials as a "Basic" token in the "Authorization" header. To create the base64-encoded credentials, run the following command:

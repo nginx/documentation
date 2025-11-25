@@ -1,8 +1,8 @@
 ---
 nd-product: NONECO
-files:
-- content/nginx-one-console/k8s/add-ngf-manifests.md
+nd-files:
 - content/nginx-one-console/k8s/add-ngf-helm.md
+- content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 
 To create a Kubernetes secret, you'll need:

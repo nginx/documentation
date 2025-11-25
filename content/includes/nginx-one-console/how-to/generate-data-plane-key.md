@@ -1,11 +1,10 @@
 ---
 nd-product: NONECO
-files:
-  - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
-  - content/nginx-one-console/getting-started.md
-  - content/nginx-one-console/ngf/add-nic.md
-  - content/nginx-one-console/ngf/add-ngf-helm.md
-  - content/nginx-one-console/ngf/add-ngf-manifests.md
+nd-files:
+- content/nginx-one-console/getting-started.md
+- content/nginx-one-console/k8s/add-ngf-helm.md
+- content/nginx-one-console/k8s/add-ngf-manifests.md
+- content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
 ---
 
 A data plane key is a security token that ensures only trusted NGINX instances can register and communicate with NGINX One.

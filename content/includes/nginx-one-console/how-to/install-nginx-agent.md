@@ -1,8 +1,7 @@
 ---
 nd-product: NONECO
-files:
-  - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
-  - content/nginx-one-console/getting-started.md
+nd-files:
+- content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
 ---
 
 After entering your data plane key, you'll see a `curl` command to install NGINX Agent, similar to the one below. Copy and run this command on each NGINX instance. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.

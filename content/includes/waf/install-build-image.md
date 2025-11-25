@@ -1,4 +1,6 @@
 ---
+nd-files:
+- content/waf/install/docker.md
 ---
 
 Your folder should contain the following files:

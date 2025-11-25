@@ -1,5 +1,8 @@
 ---
-nd-docs: "DOCS-1660"
+nd-docs: DOCS-1660
+nd-files:
+- content/nim/admin-guide/add-license.md
+- content/nim/disconnected/add-license-disconnected-deployment.md
 ---
 
 1. Go to the FQDN of your NGINX Instance Manager host and log in.

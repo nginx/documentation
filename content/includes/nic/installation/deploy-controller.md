@@ -1,5 +1,8 @@
 ---
 nd-docs: DOCS-1462
+nd-files:
+- content/nic/integrations/app-protect-dos/installation.md
+- content/nic/integrations/app-protect-waf/installation.md
 ---
 
 You have two options for deploying NGINX Ingress Controller:

@@ -1,11 +1,9 @@
 ---
 nd-product: NAGENT
-files:
-   - content/agent/install-upgrade/install-from-github.md
-   - content/agent/install-upgrade/install-from-oss-repo.md
-   - content/agent/install-upgrade/install-from-plus-repo.md
-   - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
-   - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
+nd-files:
+- content/nginx-one-console/agent/install-upgrade/install-from-github.md
+- content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
+- content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
 ---
 
 Once you have installed NGINX Agent, you can verify that it is running with the

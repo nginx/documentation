@@ -1,5 +1,8 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/nic/install/images/add-image-to-cluster.md
+- content/nic/install/license-secret.md
 ---
 
 {{< call-out "note" >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:

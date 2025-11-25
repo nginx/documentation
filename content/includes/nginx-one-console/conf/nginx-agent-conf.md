@@ -1,8 +1,8 @@
 ---
 nd-product: NONECO
-files:
-  - content/nginx-one-console/getting-started.md
-  - content/nginx-one-console/agent/containers/run-agent-container.md
+nd-files:
+- content/nginx-one-console/agent/containers/run-agent-container.md
+- content/nginx-one-console/getting-started.md
 ---
 
 ```yaml

@@ -1,10 +1,8 @@
 ---
 nd-product: NAGENT
-files:
-   - content/agent/install-upgrade/update.md
-   - content/nginx-one-console/agent/install-upgrade/update.md
+nd-files:
+- content/nginx-one-console/agent/install-upgrade/update.md
 ---
-
 
 {{< call-out "note" >}} If you are using a version **older than NGINX Agent v2.31.0**, you must stop NGINX Agent before updating:
 

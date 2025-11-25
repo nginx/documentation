@@ -1,8 +1,10 @@
 ---
 nd-product: MSC
-files:
-  - content/nim/monitoring/overview-metrics.md
-  - content/nginx-one-console/getting-started.md  
+nd-files:
+- content/nginx-one-console/getting-started.md
+- content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
+- content/nim/monitoring/overview-metrics.md
+- content/nim/nginx-instances/add-instance.md
 ---
 
 To collect basic metrics about server activity for NGINX Open Source, add the following to your NGINX configuration file:

@@ -1,8 +1,7 @@
 ---
 nd-product: NAGENT
-files:
-   - content/agent/about.md
-   - content/nginx-one-console/agent/overview/about.md
+nd-files:
+- content/nginx-one-console/agent/overview/about.md
 ---
 
 F5 NGINX Agent is a lightweight companion daemon designed to work with NGINX One and enable remote management of NGINX instances. It also gathers performance metrics from NGINX and transmits them to the NGINX One Console for enhanced monitoring and control.
