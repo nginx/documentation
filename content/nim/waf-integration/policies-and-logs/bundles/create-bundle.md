@@ -4,7 +4,7 @@ description: Create a precompiled security bundle that packages your F5 WAF for 
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

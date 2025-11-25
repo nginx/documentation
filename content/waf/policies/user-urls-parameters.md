@@ -7,7 +7,7 @@ weight: 2150
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 This topic describes the user-defined URLs and parameters feature of F5 WAF for NGINX.

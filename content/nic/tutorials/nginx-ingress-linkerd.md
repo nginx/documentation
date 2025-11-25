@@ -3,7 +3,7 @@ title: NGINX Ingress Controller and Linkerd
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1450
 ---
 

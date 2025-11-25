@@ -4,7 +4,7 @@ url: /nginxaas/azure/quickstart/security-controls/oidc/
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: N4Azure
+nd-product: NAZURE
 nd-docs: DOCS-1646
 ---
 

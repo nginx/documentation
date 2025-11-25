@@ -1,5 +1,7 @@
 ---
 nd-docs: DOCS-000
+nd-files:
+- content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 ---
 
 To pin NGINX Plus to a specific version (for example, R33):

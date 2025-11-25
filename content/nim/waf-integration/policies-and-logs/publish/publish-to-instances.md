@@ -4,7 +4,7 @@ description: Deploy updated F5 WAF for NGINX security policies, log profiles, si
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

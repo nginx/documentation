@@ -1,5 +1,9 @@
 ---
 nd-docs: DOCS-1468
+nd-files:
+- content/nic/install/manifests.md
+- content/nic/integrations/app-protect-dos/installation.md
+- content/nic/integrations/app-protect-waf/installation.md
 ---
 
 {{<call-out "important" "Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}

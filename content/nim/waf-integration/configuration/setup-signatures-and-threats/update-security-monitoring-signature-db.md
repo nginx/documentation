@@ -4,7 +4,7 @@ description: Keep your Security Monitoring dashboards accurate by updating the a
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

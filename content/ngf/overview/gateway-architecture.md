@@ -3,7 +3,7 @@ title: Gateway architecture
 weight: 100
 toc: true
 nd-content-type: reference
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1413
 ---
 

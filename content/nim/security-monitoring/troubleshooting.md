@@ -41,4 +41,4 @@ F5 WAF for NGINX supports logging to multiple destinations. This allows users to
 
 ## How to get support
 
-{{< include "support/how-to-get-support.md" >}}
+{{< include "nim/support/how-to-get-support.md" >}}

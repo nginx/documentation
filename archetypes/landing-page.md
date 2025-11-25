@@ -14,7 +14,7 @@ nd-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
-# AGE, DOS, NAZ, NGC, NGF, NIC, NIM, NGF, ONE, NOS, NPL, SOL, WAF
+# NAGENT, NAZURE, NGOOGL, FABRIC, INGRESS, NIMNGR, NONECO, NGPLUS, SOLUTI, F5WAFN, F5DOSN, MISCEL
 nd-product:
 ---
 

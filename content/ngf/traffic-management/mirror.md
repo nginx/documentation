@@ -3,7 +3,7 @@ title: Configure Request Mirroring
 toc: true
 weight: 700
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1847
 ---
 

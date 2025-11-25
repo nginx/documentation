@@ -3,7 +3,7 @@ title: Configure NGINX App Protect with NGINX Ingress Controller
 weight: 200
 toc: true
 type: how-to
-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-578
 ---
 

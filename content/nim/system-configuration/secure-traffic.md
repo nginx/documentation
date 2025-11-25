@@ -3,7 +3,7 @@ title: Secure client access and network traffic
 toc: true
 weight: 600
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-794
 ---
 
