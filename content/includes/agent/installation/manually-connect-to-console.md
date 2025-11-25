@@ -1,8 +1,8 @@
 ---
 files:
-   - content/nginx-one/agent/install-upgrade/install-from-github.md
-   - content/nginx-one/agent/install-upgrade/install-from-oss-repo.md
-   - content/nginx-one/agent/install-upgrade/install-from-plus-repo.md
+   - content/nginx-one-console/agent/install-upgrade/install-from-github.md
+   - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
+   - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
 ---
 
 If you have installed NGINX Agent manually, you will need to connect it to the

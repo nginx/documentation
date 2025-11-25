@@ -14,15 +14,13 @@ nd-product: NAP-WAF
 
 This document shows example of how to modify your NGINX configuration to enable F5 WAF for NGINX features. 
 
-It is intended as a reference for, small self-contained examples of how F5 WAF for NGINX is configured. 
+It is intended as a reference for small, self-contained examples of how F5 WAF for NGINX can be configured. 
 
-Certain features do not work well with NGINX, such as modules requiring _subrequest_ when calling or being called from a scope that contains `app_protect_enable on`.
+F5 WAF for NGINX will secure and inspect client-facing requests, but will not inspect internal subrequests triggered by modules.
 
-Modules requiring the _Range_ header (Such as _Slice_) are also unsupported in a scope which enables F5 WAF for NGINX.
+Modules requiring the _Range_ header (Such as _Slice_) are also unsupported in a scope which enables F5 WAF for NGINX. The examples below work around the contraints of these modules.
 
-The examples below show workarounds for the limitations of these features.
-
-For information on configuring NGINX, you should view the [NGINX documentation]({{< ref "/nginx/" >}}).
+For additional information on configuring NGINX, you should view the [NGINX documentation]({{< ref "/nginx/" >}}).
 
 ## Static location
 
