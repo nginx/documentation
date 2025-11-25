@@ -2,7 +2,7 @@
 nd-docs: DOCS-1238
 files:
 - content/nim/system-configuration/configure-clickhouse.md
-- content/nim/deploy/vm-bare-metal/install-nim-manual.md
+- content/nim/install/vm-bare-metal/install-manually-online.md
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

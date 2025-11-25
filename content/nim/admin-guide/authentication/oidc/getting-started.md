@@ -59,7 +59,7 @@ When you configure OIDC for NGINX Instance Manager, basic authentication will be
 
 The following requirements must be met before you can use OIDC with NGINX Instance Manager:
 
-1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R21 or newer]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) installed. Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+1. [Install Instance Manager]({{< ref "/nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}) on a server that also has [NGINX Plus R21 or newer]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) installed. Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
 
 2. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is required for managing communications between NGINX Plus and the identity provider.
 

@@ -1,9 +1,9 @@
 ---
 files:
-- content/nim/deploy/vm-bare-metal/install-nim-manual.md
-- content/nim/deploy/vm-bare-metal/install.md
+- content/nim/install/vm-bare-metal/install-manually-online.md
+- content/nim/install/vm-bare-metal/install.md
 - content/nim/disconnected/offline-install-guide-manual.md
-- content/nim/disconnected/offline-install-guide.md
+- content/nim/install/vm-bare-metal/install-with-bash-script-online.md
 ---
 
 SELinux helps secure your deployment by enforcing mandatory access control policies.

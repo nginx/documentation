@@ -1,7 +1,7 @@
 ---
-title: Install the latest NGINX Instance Manager with a script (disconnected)
+title: Install using a bash script (offline)
 toc: true
-weight: 100
+weight: 30
 type: how-to
 product: NIM
 nd-docs: DOCS-803
@@ -21,7 +21,7 @@ The script installs:
 
 NGINX Plus is not supported in disconnected mode.
 
-If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}) instead.
+If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}) instead.
 
 ---
 
@@ -49,7 +49,7 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 #### Use the manual installation steps if needed
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
 ### Download the SSL Certificate and Private Key from MyF5
 
@@ -165,7 +165,7 @@ You can find the latest dependencies with one of the following commands:
 
 ### Configure ClickHouse
 
-{{< include "nim/installation/optional-steps/configure-clickhouse.md" >}}
+
 
 ### Disable metrics collection
 
@@ -174,7 +174,6 @@ You can find the latest dependencies with one of the following commands:
 
 ### Install and configure Vault {#install-vault}
 
-{{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
 
 
 ### Configure SELinux

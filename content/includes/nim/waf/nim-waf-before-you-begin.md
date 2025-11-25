@@ -15,7 +15,7 @@ Make sure you’ve completed the following tasks:
   If you plan to use configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/security-monitoring/set-up-app-protect-instances.md" >}}) before continuing.
   {{< /call-out >}}
 
-- NGINX Instance Manager is [installed]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}), licensed, and running.  
+- NGINX Instance Manager is [installed]({{< ref "nim/install/vm-bare-metal/_index.md" >}}), licensed, and running.  
   
   The latest version of NGINX Instance Manager is recommended to ensure full compatibility and access to the newest features.
 

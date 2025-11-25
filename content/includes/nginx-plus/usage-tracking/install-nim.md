@@ -8,9 +8,9 @@ To start reporting on your [NGINX Plus]({{< ref "nginx/" >}}) installations, you
 
 #### Virtual Machine or Bare Metal
 
-- [Prerequisites]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}})
-- [Install NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}})
+- [Prerequisites]({{< ref "/nim/install/vm-bare-metal/install-with-bash-script-online.md" >}})
+- [Install NGINX Instance Manager]({{< ref "/nim/install/vm-bare-metal/install-with-bash-script-online.md" >}})
 
 #### Kubernetes
 
-- [Deploy Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}})
+- [Deploy Instance Manager on Kubernetes]({{< ref "nim/install/kubernetes/deploy-using-helm.md" >}})

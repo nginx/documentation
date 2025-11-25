@@ -125,7 +125,7 @@ kubectl edit cm nms-conf -n <namespace>
 
 If you’re deploying NGINX Instance Manager with Docker Compose, update the `docker-compose.yaml` file to configure a forward proxy.
 
-1. **Before you begin**: Follow the [Docker Compose deployment guide]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) to set up Docker for the NGINX container registry. The deployment guide also covers additional environment variables you may want to consider before deployment.
+1. **Before you begin**: Follow the [Docker Compose deployment guide]({{< ref "nim/install/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) to set up Docker for the NGINX container registry. The deployment guide also covers additional environment variables you may want to consider before deployment.
 2. {{<icon "download">}} {{<link "/scripts/docker-compose/docker-compose.yaml" "Download the preconfigured docker-compose.yaml file">}}
 3. Update `docker-compose.yaml` with the proxy settings:
 

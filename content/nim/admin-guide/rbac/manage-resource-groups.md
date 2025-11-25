@@ -15,7 +15,7 @@ Resource groups are containers that help you manage multiple resources collectiv
 
 To complete the steps in this guide, ensure you have:
 
-- A running version of [NGINX Instance Manager]({{< ref "/nim/deploy/_index.md" >}}).
+- A running version of [NGINX Instance Manager]({{< ref "nim/install/_index.md" >}}).
 - One or more registered NGINX data plane instances.
 
 {{< include "/nim/how-to-access-api-docs.md" >}}

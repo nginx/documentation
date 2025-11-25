@@ -26,7 +26,7 @@ To follow the instructions in this guide, ensure you have the following setup fo
 On the NGINX Instance Manager host, complete the following:
 
 - [Install NGINX Plus R25 or a later version]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
-- [Install NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}).
+- [Install NGINX Instance Manager]({{< ref "/nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}).
 - [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/). This module is needed for managing communications between NGINX Plus and the identity provider.
 
 ## Configure Keycloak {#configure-keycloak}

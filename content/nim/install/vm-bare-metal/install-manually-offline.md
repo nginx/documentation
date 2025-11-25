@@ -1,6 +1,6 @@
 ---
-title: Manually install any version of NGINX Instance Manager (disconnected)
-weight: 100
+title: Install manually (offline)
+weight: 40
 toc: true
 noindex: true
 type: how-to

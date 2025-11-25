@@ -107,14 +107,14 @@ To complete the steps in this guide, ensure the following:
 - **Utility Pod**:
   Ensure the `utility` pod is installed in your Kubernetes cluster:
 
-  1. Update your [Helm Deployment values.yaml file]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}), adding the following line to enable the utility pod:
+  1. Update your [Helm Deployment values.yaml file]({{< ref "nim/install/kubernetes/deploy-using-helm.md#configure-chart" >}}), adding the following line to enable the utility pod:
 
     ```yaml
     global:
         utility: true
     ```
 
-  2. [Upgrade your NGINX Instance Manager deployment]({{< ref "/nim/deploy/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}).
+  2. [Upgrade your NGINX Instance Manager deployment]({{< ref "nim/install/kubernetes/deploy-using-helm#helm-upgrade-nim" >}}).
 
   3. Download the Helm chart for the installed version of NGINX Instance Manager:
 

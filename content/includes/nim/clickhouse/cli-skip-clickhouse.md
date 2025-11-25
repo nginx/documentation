@@ -1,7 +1,7 @@
 ---
 files:
-- content/nim/deploy/vm-bare-metal/install.md
-- content/nim/disconnected/offline-install-guide.md
+- content/nim/install/vm-bare-metal/install.md
+- content/nim/install/vm-bare-metal/install-with-bash-script-online.md
 ---
 
 If you skip installing ClickHouse, you need NGINX Agent {{< lightweight-nim-nginx-agent-version >}}.

@@ -1,7 +1,7 @@
 ---
-title: Manually install any version of NGINX Instance Manager
+title: Install manually (online)
 toc: true
-weight: 10
+weight: 20
 noindex: true
 nd-content-type: how-to
 nd-product: NIM

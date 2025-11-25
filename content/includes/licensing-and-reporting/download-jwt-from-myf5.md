@@ -6,7 +6,7 @@ files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
 - content/nim/admin-guide/add-license.md
-- content/nim/deploy/docker/deploy-nginx-plus-and-agent-docker.md
+- content/nim/install/docker/deploy-nginx-plus-and-agent-docker.md
 - content/nim/disconnected/add-license-disconnected-deployment.md
 - content/solutions/about-subscription-licenses.md
 - content/solutions/r33-pre-release-guidance-for-automatic-upgrades.md

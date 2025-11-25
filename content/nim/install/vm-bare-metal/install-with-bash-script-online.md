@@ -1,15 +1,11 @@
 ---
 description: ''
-title: Install the latest NGINX Instance Manager with a script
+title: Install using a bash script (online)
 toc: true
 weight: 10
 type:
 - tutorial
 ---
-
-{{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
-
-## Overview
 
 This guide shows you how to install and upgrade F5 NGINX Instance Manager on a virtual machine or bare metal system using the installation script in online mode.
 
@@ -20,34 +16,13 @@ The script installs:
 - ClickHouse by default, unless you choose to skip it
 - Optionally, NGINX Plus (requires a license and additional flags)
 
-The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}}) instead.
+The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/install/vm-bare-metal/install-manually-online.md" >}}) instead.
 
----
+## Download the installation script
 
-## Before you begin
+{{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
-Follow these steps to prepare for installing NGINX Instance Manager:
-
-- **Download the installation script**:
-
-  {{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
-
-- **Download the certificate and private key** (see the steps [below](#download-cert-key)):
-  Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).
-  - Ensure the files have `.crt` and `.key` extensions.
-  - Save them to the target system. The default locations are:
-    - `/etc/ssl/nginx/nginx-repo.crt`
-    - `/etc/ssl/nginx/nginx-repo.key`
-
-- **Check for previous deployments**:
-  Ensure that NGINX Instance Manager and its components are not already installed.
-
-  If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
-
-- **(Optional) Install and configure Vault**:
-  If you plan to use Vault, set it up before proceeding.
-
-### Supported NGINX versions and Linux distributions
+## View supported NGINX versions and Linux distributions
 
 The installation script installs the latest version of [NGINX Open Source](https://nginx.org/news.html) or [NGINX Plus](https://docs.nginx.com/nginx/releases/).
 
@@ -56,15 +31,6 @@ To see the list of supported distributions, run:
 ```shell
 install-nim-bundle.sh -l
 ```
-
-### Security considerations
-
-To ensure that your NGINX Instance Manager deployment remains secure, follow these recommendations:
-
-- Install NGINX Instance Manager on a dedicated machine (bare metal, container, cloud, or VM).
-- Ensure that no other services are running on the same machine.
-
----
 
 ## Download certificate and key {#download-cert-key}
 
@@ -85,7 +51,16 @@ Download the certificate and private key required for NGINX Instance Manager. Th
     sudo mv nginx-<subscription id>.key /etc/ssl/nginx/nginx-repo.key
     ```
 
----
+## Check for previous deployments
+
+  Ensure that NGINX Instance Manager and its components are not already installed.
+
+  If NGINX Instance Manager or its components (such as ClickHouse or NGINX) are detected, either follow the [upgrade instructions](#upgrade-nim) to update them or [manually remove the components](#uninstall-nim) before proceeding with the installation.
+
+- **(Optional) Install and configure Vault**:
+  If you plan to use Vault, set it up before proceeding.
+
+
 
 ## Prepare the system and run the installation script {#download-install}
 
@@ -117,7 +92,7 @@ In 2.20.0, we introduced Lightweight mode, which means you can skip the ClickHou
 
 #### Use the manual installation steps if needed
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/install/vm-bare-metal/install-manually-online.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
 ### Run the installation script
 
@@ -207,30 +182,6 @@ bash install-nim-bundle.sh -r
 ```
 
 ---
-
-## Optional post-installation steps
-
-### Configure ClickHouse
-
-{{< include "nim/installation/optional-steps/configure-clickhouse.md" >}}
-
-### Disable metrics collection
-
-{{< include "nim/installation/optional-steps/disable-metrics-collection.md" >}}
-
-
-### Install and configure Vault {#install-vault}
-
-{{< include "nim/installation/optional-steps/install-configure-vault.md" >}}
-
-
-### Configure SELinux
-
-{{< include "nim/installation/optional-steps/configure-selinux.md" >}}
-
-## License NGINX Instance Manager
-
-{{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
 
 ---
 

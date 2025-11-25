@@ -31,7 +31,7 @@ To configure Microsoft Entra as an OIDC IdP, follow these steps:
 To successfully follow the instructions in this guide, you must complete the following requirements:
 
 1. Create a [Microsoft Entra premium account](https://azure.microsoft.com/en-us/pricing/details/active-directory/). If you have a standard account, you'll need to upgrade.
-1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R25 or a newer version installed]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+1. [Install Instance Manager]({{< ref "/nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}) on a server that also has [NGINX Plus R25 or a newer version installed]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). Make sure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
 1. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is necessary for managing communications between NGINX Plus and the identity provider.
 
 ## Configure Microsoft Entra {#configur-entra}

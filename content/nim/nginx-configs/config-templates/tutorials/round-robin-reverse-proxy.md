@@ -34,7 +34,7 @@ F5 NGINX Instance Manager simplifies the management of NGINX configurations acro
 
 Before you start the tutorial, you should:
 
-- [Install NGINX Instance Manager 2.16 or later]({{< ref "/nim/deploy/" >}}). If you're using an earlier version, you'll need to upgrade to access the features needed for this tutorial.
+- [Install NGINX Instance Manager 2.16 or later]({{< ref "nim/install/" >}}). If you're using an earlier version, you'll need to upgrade to access the features needed for this tutorial.
 - Have administrative access to NGINX Instance Manager.
 - Understand basic concepts of web servers and reverse proxies.
 - Have basic knowledge of [Go templates](https://pkg.go.dev/text/template), [JSON schema](https://json-schema.org), and the [NGINX configuration syntax](https://nginx.org/en/docs/beginners_guide.html).

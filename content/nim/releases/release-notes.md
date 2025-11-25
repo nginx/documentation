@@ -282,7 +282,7 @@ This release includes the following updates:
 
    Added an `OpenShift` flag to the Helm charts that creates a security context constraint resource to support NGINX Instance Manager in OpenShift.
   
-  - Documentation: [Deploy NGINX Instance Manager using Helm]({{< ref "nim/deploy/kubernetes/deploy-using-helm.md" >}})
+  - Documentation: [Deploy NGINX Instance Manager using Helm]({{< ref "nim/install/kubernetes/deploy-using-helm.md" >}})
 
 - {{% icon-feature %}} **VM-based active-passive HA Support with keepalived**<a name="2-19-0-whats-new-VM-based-active-passive-HA-Support-with-keepalived-45576"></a>
 
@@ -344,9 +344,9 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Resilient Docker Compose NGINX Instance Manager deployment**<a name="2-18-0-whats-new-Resilient-Docker-Compose-NGINX-Instance-Manager-deployment-44926"></a>
 
-   In 2.17, we released a [bundled container image]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) with all NGINX Instance Manager components. While this is a great option for demos and lab environments, it is not the most fault-tolerant for production.
+   In 2.17, we released a [bundled container image]({{< ref "nim/install/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) with all NGINX Instance Manager components. While this is a great option for demos and lab environments, it is not the most fault-tolerant for production.
   
-  This [Docker Compose option]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
+  This [Docker Compose option]({{< ref "nim/install/docker/deploy-nginx-instance-manager-docker-compose.md" >}}) unlocks another easy, production-ready installation method for customers using Docker. It will also make upgrades easier when new Docker images are released by F5 NGINX. This option includes health checking, NGINX App Protect compilation support, and security monitoring.
 
 - {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for disconnected environments**<a name="2-18-0-whats-new-Entitlement-and-visibility-for-NGINX-Plus-R33-–-Telemetry-reporting-for-disconnected-environments-45106"></a>
 
@@ -360,11 +360,11 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Ridiculously easy NGINX Instance Manager installation script (Shell)**<a name="2-18-0-whats-new-Ridiculously-easy-NGINX-Instance-Manager-installation-script-(Shell)-45294"></a>
 
-   Reduce the number of steps to deploy all NGINX Instance Manager components, including prerequisites, using a single [installation script]({{< ref "nim/deploy/vm-bare-metal/install.md" >}}). The script supports every OS that NGINX Instance Manager supports in the [technical specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}).
+   Reduce the number of steps to deploy all NGINX Instance Manager components, including prerequisites, using a single [installation script]({{< ref "nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}). The script supports every OS that NGINX Instance Manager supports in the [technical specifications]({{< ref "nim/fundamentals/tech-specs.md" >}}).
   
   The script installs NGINX (Plus or Open Source), ClickHouse, and NGINX Instance Manager. Customers only need their NGINX Plus certificate, key, and, for NGINX Plus R33 or later, a JWT downloaded from MyF5. Support for offline installations will be added in a future update.
   
-  Support for [offline installations]({{< ref "nim/disconnected/offline-install-guide.md" >}}) is also available for air-gapped environments.
+  Support for [offline installations]({{< ref "nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}) is also available for air-gapped environments.
 
 - {{% icon-feature %}} **Adds support for F5 WAF for NGINX v5.3 and v4.11**<a name="2-18-0-whats-new-Adds-support-for-F5-WAF-for-NGINX-v5-3-and-v4-11-45325"></a>
 
@@ -514,7 +514,7 @@ This release includes the following updates:
 
    Prior to this release, users had to download NGINX Instance Manager docker images and push them to their local container registry for use in the Kubernetes Helm charts. This was not very turnkey and required multiple steps before being able to use the Helm charts. Now all Instance Manager container images are available from F5's public docker repository, simplifying the installation in Kubernetes.
   
-  See the [Deploy Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}) documentation for more information.
+  See the [Deploy Instance Manager on Kubernetes]({{< ref "nim/install/kubernetes/deploy-using-helm.md" >}}) documentation for more information.
 
 - {{% icon-feature %}} **Ansible role to deploy NGINX Instance Manager**<a name="2-17-0-whats-new-Ansible-role-to-deploy-NGINX-Instance-Manager-44922"></a>
 
@@ -522,13 +522,13 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **NGINX Instance Manager IaC using Packer and Terraform**<a name="2-17-0-whats-new-NGINX-Instance-Manager-IaC-using-Packer-and-Terraform-44923"></a>
 
-   This release improves the [Infrastructure as Code (IaC) project]({{< ref "/nim/deploy/infrastructure-as-code/overview.md#nginx-management-suite-infrastructure-as-code" >}}) to help you quickly get started with NGINX Instance Manager using Packer and Terraform.
+   This release improves the [Infrastructure as Code (IaC) project]({{< ref "nim/install/infrastructure-as-code/overview.md#nginx-management-suite-infrastructure-as-code" >}}) to help you quickly get started with NGINX Instance Manager using Packer and Terraform.
   
   The project uses Packer to create images and Terraform to deploy these images to your preferred cloud provider, including GCP, Azure, or vSphere.
 
 - {{% icon-feature %}} **Single docker image with all the NGINX Instance Manager services and dependencies**<a name="2-17-0-whats-new-Single-docker-image-with-all-the-NGINX-Instance-Manager-services-and-dependencies-45086"></a>
 
-   This release includes access to a single Docker image for running NGINX Instance Manager as a container. This allows customers to deploy Instance Manager locally with a single "docker run" command. For more details, see [Deploy NGINX Instance Manager in a Single Docker Container]({{< ref "/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}).
+   This release includes access to a single Docker image for running NGINX Instance Manager as a container. This allows customers to deploy Instance Manager locally with a single "docker run" command. For more details, see [Deploy NGINX Instance Manager in a Single Docker Container]({{< ref "nim/install/docker/deploy-nginx-instance-manager-docker-compose.md" >}}).
 
 ### Changes in default behavior{#2-17-0-changes-in-behavior}
 
@@ -1449,7 +1449,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager-34880"></a>
 
-   Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
+   Each release of Instance Manager now includes a helm chart, which you can use to easily [install Instance Manager on Kubernetes]({{< ref "nim/install/kubernetes/deploy-using-helm.md" >}}). You can download the helm charts from [MyF5](https://my.f5.com/manage/s/downloads).
 
 ### Resolved issues {#2-5-0-resolved-issues}
 
@@ -1711,7 +1711,7 @@ This release includes the following updates:
   
   Among the benefits of deploying from a helm chart, the chart includes the required services, which you can scale independently as needed; upgrades can be done with a single helm command; and there's no requirement for root privileges.
   
-  For instructions, see [Install from a Helm Chart]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md" >}}).
+  For instructions, see [Install from a Helm Chart]({{< ref "nim/install/kubernetes/deploy-using-helm.md" >}}).
 
 ### Changes in default behavior{#2-1-0-changes-in-behavior}
 

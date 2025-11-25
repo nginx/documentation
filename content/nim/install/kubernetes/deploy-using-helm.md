@@ -174,7 +174,7 @@ utility:
     repository: private-registry.nginx.com/nms/utility
 ```
 
-The values required to pull images from the NGINX private registry are now automatically resolved, including image tags. Each image’s `tag:` is set by default to the latest NGINX Instance Manager version. See the [Helm chart table in the chart installation section]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#install-the-chart" >}}) for version details.
+The values required to pull images from the NGINX private registry are now automatically resolved, including image tags. Each image’s `tag:` is set by default to the latest NGINX Instance Manager version. See the [Helm chart table in the chart installation section]({{< ref "nim/install/kubernetes/deploy-using-helm.md#install-the-chart" >}}) for version details.
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
@@ -435,7 +435,7 @@ To upgrade:
     --wait
    ```
 
-   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "nim/install/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `<your-password>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
@@ -537,7 +537,7 @@ To upgrade:
     --wait
    ```
 
-   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "nim/install/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `YourPassword123#` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}

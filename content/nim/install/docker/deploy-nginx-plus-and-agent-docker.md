@@ -21,7 +21,7 @@ This guide explains how to:
 
 Before you start, make sure that:
 
-- NGINX Instance Manager is [installed]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}).
+- NGINX Instance Manager is [installed]({{< ref "/nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}).
 
   {{< call-out "note" >}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
   {{< /call-out >}}
