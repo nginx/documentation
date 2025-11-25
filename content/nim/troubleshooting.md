@@ -144,5 +144,5 @@ For a failure when publishing a certificate to an instance or instance group, en
 
 ## How to Get Support
 
-{{< include "support/how-to-get-support.md" >}}
+{{< include "nim/support/how-to-get-support.md" >}}
 
