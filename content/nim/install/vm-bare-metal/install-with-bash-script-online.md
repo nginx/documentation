@@ -15,7 +15,7 @@ This guide shows you how to install or upgrade NGINX Instance Manager on a virtu
 
 ## Download the installation script
 
-{{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
+{{< include "/nim/install/script-download.md" >}}
 
 ## View supported NGINX versions and Linux distributions
 
@@ -27,9 +27,10 @@ To see the list of supported distributions, run:
 install-nim-bundle.sh -l
 ```
 
-## Download SSL certificate, private key, and JWT {#download-crt-key-jwt}
+## Download the SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
 {{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
+
 
 ---
 

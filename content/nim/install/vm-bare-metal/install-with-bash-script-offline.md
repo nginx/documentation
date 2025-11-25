@@ -43,14 +43,14 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
-### Download SSL certificate, private key, and JWT {#download-crt-key-jwt}
+### Download the SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
 {{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
 
 
 ### Download the installation script
 
-{{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download the install-nim-bundle.sh script.">}}
+{{< include "/nim/install/script-download.md" >}}
 
 ## Package NGINX Instance Manager and dependencies for offline installation
 
