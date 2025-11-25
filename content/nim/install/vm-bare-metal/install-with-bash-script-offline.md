@@ -17,6 +17,18 @@ The script doesn't install NGINX Plus in offline mode. To install NGINX Plus, ru
 
 ---
 
+## Download the SSL certificate, private key, and JWT {#download-crt-key-jwt}
+
+{{< include "/nim/install/temporary-internet-required-note.md" >}}
+
+{{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
+
+## Download the installation script
+
+{{< include "/nim/install/temporary-internet-required-note.md" >}}
+
+{{< include "/nim/install/script-download.md" >}}
+
 ## Before you begin
 
 You’ll need internet access for the steps in this section.
@@ -43,14 +55,7 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
-### Download the SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
-{{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
-
-
-### Download the installation script
-
-{{< include "/nim/install/script-download.md" >}}
 
 ## Package NGINX Instance Manager and dependencies for offline installation
 
