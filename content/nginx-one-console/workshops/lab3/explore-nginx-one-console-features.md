@@ -3,7 +3,7 @@ title: "Lab 3: Explore NGINX One Console features"
 weight: 300
 toc: true
 nd-content-type: tutorial
-nd-product: nginx-one
+nd-product: NONECO
 ---
 
 ## Introduction

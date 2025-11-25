@@ -3,7 +3,7 @@ title: Troubleshoot F5 DoS for NGINX
 toc: true
 weight: 400
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1456
 ---
 

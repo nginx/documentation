@@ -4,7 +4,7 @@ description: Apply F5 WAF for NGINX directives in your NGINX configuration files
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

@@ -3,7 +3,7 @@ title: Policy resources
 weight: 500
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-596
 ---
 

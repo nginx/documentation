@@ -3,7 +3,7 @@ title: Connect F5 WAF for NGINX to NGINX Security Monitoring
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1856
 ---
 

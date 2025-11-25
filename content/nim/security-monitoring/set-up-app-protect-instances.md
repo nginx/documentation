@@ -3,7 +3,7 @@ title: Set up F5 WAF for NGINX instances for Security Monitoring
 weight: 100
 toc: true
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-1107
 ---
 

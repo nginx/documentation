@@ -4,7 +4,7 @@ description: Follow the steps in this guide to scan for and discover NGINX insta
 toc: true
 weight: 110
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-828
 ---
 

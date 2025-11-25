@@ -4,7 +4,7 @@ description: NGINX Gateway Fabric technical specifications.
 weight: 200
 toc: true
 type: reference
-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1842
 ---
 

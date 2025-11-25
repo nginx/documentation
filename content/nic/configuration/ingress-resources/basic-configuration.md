@@ -3,7 +3,7 @@ title: Basic configuration
 weight: 100
 toc: true
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-593
 ---
 

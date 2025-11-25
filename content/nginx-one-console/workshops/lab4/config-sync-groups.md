@@ -3,7 +3,7 @@ title: "Lab 4: Config Sync Groups"
 weight: 400
 toc: true
 nd-content-type: tutorial
-nd-product: nginx-one
+nd-product: NONECO
 ---
 
 ## Introduction

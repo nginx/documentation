@@ -3,7 +3,7 @@ title: GlobalConfiguration resource
 toc: true
 weight: 200
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-588
 ---
 

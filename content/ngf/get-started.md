@@ -3,7 +3,7 @@ title: Get started
 weight: 200
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1834
 ---
 

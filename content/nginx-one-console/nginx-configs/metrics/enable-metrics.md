@@ -9,7 +9,7 @@ toc: true
 nd-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NGINX-One
+nd-product: NONECO
 ---
 
 The NGINX One Console dashboard and metrics views present system metrics and detailed NGINX metrics gathered through the NGINX Plus API or the Stub Status API (for NGINX Open Source).
