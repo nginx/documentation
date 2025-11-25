@@ -7,16 +7,9 @@ type:
 - tutorial
 ---
 
-This guide shows you how to install and upgrade F5 NGINX Instance Manager on a virtual machine or bare metal system using the installation script in online mode.
+This guide shows you how to install or upgrade NGINX Instance Manager on a virtual machine or bare metal system using the installation script in **online mode**.
 
-The script installs:
-
-- The latest version of NGINX Open Source
-- The latest version of NGINX Instance Manager
-- ClickHouse by default, unless you choose to skip it
-- Optionally, NGINX Plus (requires a license and additional flags)
-
-The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/install/vm-bare-metal/install-manually-online.md" >}}) instead.
+{{< include "/nim/install/script-install-details.md" >}}
 
 ## Download the installation script
 

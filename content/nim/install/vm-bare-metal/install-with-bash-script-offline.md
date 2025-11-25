@@ -7,21 +7,13 @@ product: NIM
 nd-docs: DOCS-803
 ---
 
-{{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
+This guide shows you how to install or upgrade NGINX Instance Manager on a virtual machine or bare metal system using the installation script in **offline (disconnected)** mode.
 
-## Overview
+{{< include "/nim/install/script-install-details.md" >}}
 
-This guide shows you how to install and upgrade F5 NGINX Instance Manager in disconnected environments.
-
-The script installs:
-
-- The latest version of NGINX Open Source
-- The latest version of NGINX Instance Manager
-- ClickHouse by default, unless you choose to skip it
-
-NGINX Plus is not supported in disconnected mode.
-
-If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}) instead.
+{{< call-out "note" "NGINX Plus not supported in offline mode" >}}
+The script doesn't install NGINX Plus in offline mode. To install NGINX Plus, run the script in [online mode]({{< ref "nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}) with a valid license and the required flags.
+{{< /call-out >}}
 
 ---
 
