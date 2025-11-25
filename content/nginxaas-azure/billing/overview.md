@@ -66,7 +66,7 @@ Each NCU provisioned (not consumed) is billed at the rate specified on the [Azur
 * Total NCU·hours: `40 NCU·hour`
 * Fixed deployment cost: `2 hours * $0.25/hour = $0.50`
 * NCU usage cost: `40 NCU·hour * $0.008/NCU/hour = $0.32`
-* Data processing cost: `1 GB * $0.0096/GB = $0.005`
+* Data processing cost: `1 GB * $0.005/GB = $0.005`
 * Total: `$0.50 + $0.32 + $0.005 = $0.87`
 
 *Billing Example 2*: "I provisioned a 40 NCU NGINXaaS deployment in West Europe at 9:34AM. At 10:04AM I resized it to 20 NCUs. I then deleted it at 11:45AM. Assuming 2.5GB data processed"
