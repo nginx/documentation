@@ -11,6 +11,8 @@ This guide shows you how to install or upgrade NGINX Instance Manager on a virtu
 
 {{< include "/nim/install/script-install-details.md" >}}
 
+---
+
 ## Download the installation script
 
 {{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
@@ -25,24 +27,11 @@ To see the list of supported distributions, run:
 install-nim-bundle.sh -l
 ```
 
-## Download certificate and key {#download-cert-key}
+## Download SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
-Download the certificate and private key required for NGINX Instance Manager. These files are necessary for adding the official repository during installation and can also be used when installing NGINX Plus.
+{{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
 
-1. On the host where you're installing NGINX Instance Manager, create the **/etc/ssl/nginx/** directory:
-
-    ```shell
-    sudo mkdir -p /etc/ssl/nginx
-    ```
-
-2. Download the **SSL Certificate**, **Private Key** and ***JSON Web Token*** files from [MyF5](https://account.f5.com/myf5) or use the download link provided in your trial activation email.
-
-3. Move and rename the cert and key files to the correct directory:
-
-    ```shell
-    sudo mv nginx-<subscription id>.crt /etc/ssl/nginx/nginx-repo.crt
-    sudo mv nginx-<subscription id>.key /etc/ssl/nginx/nginx-repo.key
-    ```
+---
 
 ## Check for previous deployments
 

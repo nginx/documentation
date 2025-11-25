@@ -43,14 +43,10 @@ Ensure that the required `.crt` and `.key` files are available, preferably in th
 
 If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
 
-### Download the SSL Certificate and Private Key from MyF5
+### Download SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
-Download the SSL certificate and private key required for NGINX Instance Manager:
+{{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
 
-1. Log in to [MyF5](https://my.f5.com/manage/s/).
-1. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-1. Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-1. Download the **SSL Certificate** and **Private Key** files.
 
 ### Download the installation script
 

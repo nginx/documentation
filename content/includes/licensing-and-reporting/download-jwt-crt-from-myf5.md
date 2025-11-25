@@ -2,14 +2,10 @@
 nd-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
+- content/includes/nim/install/nim-download-crt-key-jwt.md
 ---
 
-Download the SSL certificate, private key, and the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
-
-- Log in to [MyF5](https://my.f5.com/manage/s/).
-- Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-- Find your NGINX products or services subscription, and select the **Subscription ID** for details.
-- Download the **nginx-repo.crt** and **nginx-repo.key** from the subscription page.
-- Download the **JSON Web Token** (JWT) from the subscription page.
-
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+1. Log in to [MyF5](https://my.f5.com/manage/s/).
+1. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
+1. Find your NGINX subscription, and select the **Subscription ID** for details.
+2. Download the **SSL Certificate**, **Private Key**, and **JSON Web Token** files from the subscription page.
