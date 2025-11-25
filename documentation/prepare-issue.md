@@ -6,6 +6,15 @@ We strive to make each issue a single source of truth: as a result, each ticket 
 
 This document exists to explain concepts you may be unfamiliar with, and provide examples of the types and amount of detail preferred.
 
+Here are examples of well-formed issues using the templates:
+
+- [\[Request\]: Clarify NGINX configuration limitations for F5 WAF for NGINX](https://github.com/nginx/documentation/issues/1436)
+- [\[Story\]: Replace examples of sensitive values with explicit placeholders](https://github.com/nginx/documentation/issues/1363)
+
+*General request* and *Bug report* are the most common issue types, with *Documentation idea* available for conceptual improvements.
+
+The *User story* and *Content release plans* are largely for maintainer use, though we do have [guidance for user stories](#user-stories-and-acceptance-criteria) in this document.
+
 ## Use active voice
 
 Much like writing user-facing documentation, we prefer [active voice](https://developers.google.com/tech-writing/one/active-voice) when describing an issue.
