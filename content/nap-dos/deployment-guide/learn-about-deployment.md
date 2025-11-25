@@ -28,8 +28,8 @@ F5 DoS for NGINX supports the following operating systems:
 - [Ubuntu 20.04 (Focal)](#debian--ubuntu-installation) - (Deprecated starting from NGINX Plus R35)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
-- [Alpine 3.19](#alpine-installation)
 - [Alpine 3.21](#alpine-installation)
+- [Alpine 3.22](#alpine-installation)
 - [AmazonLinux 2023](#amazon-linux-2023-installation)
 
 
@@ -1474,8 +1474,8 @@ You need root permissions to execute the following steps.
 
 ```Dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.19:
-FROM alpine:3.19
+# For Alpine 3.22:
+FROM alpine:3.22
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub
@@ -1867,7 +1867,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /bin/su -s /bin/bash -c "/opt/app_protect/bin/bd_agent &" ${USER} 
     /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     /usr/sbin/nginx -g 'daemon off;'
@@ -1914,8 +1915,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.19:
-FROM alpine:3.19
+# For Alpine 3.22:
+FROM alpine:3.22
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub && \
@@ -2237,9 +2238,9 @@ Review the syslog ports by entering the following command:
 semanage port -l | grep syslog
 ```
 
-### Kubernetes Deployment Examples
+## Kubernetes Deployment Examples
 
-#### App Protect DoS
+### App Protect DoS
 
 `appprotect-dos.yaml`:
 
@@ -2466,7 +2467,7 @@ http {
 }
 ```
 
-#### App Protect DoS arb
+### App Protect DoS arb
 
 Arbitrator (arb) is an internal service that is essential for the scaling scenarios. The arbitrator service should be deployed in the same namespace as F5 DoS for NGINX.
 
