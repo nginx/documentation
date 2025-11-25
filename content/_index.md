@@ -7,7 +7,7 @@ description: Learn how to deliver, manage, and protect your applications using F
 Learn how to deliver, manage, and protect your applications using F5 NGINX products. 
 
 {{<card-section showAsCards="true" title="F5 NGINX One">}}
-  {{<card title="F5 NGINX One Console" titleUrl="/nginx-one/" brandIcon="NGINX-One-product-icon.svg" isLanding="true">}}
+  {{<card title="F5 NGINX One Console" titleUrl="/nginx-one-console/" brandIcon="NGINX-One-product-icon.svg" isLanding="true">}}
     Monitor your infrastructure, address security vulnerabilities, and assess the health of your NGINX fleet, all from a single console.
   {{</card >}}
   {{<card title="F5 NGINX Plus" titleUrl="/nginx/" brandIcon="NGINX-Plus-product-icon.svg" isLanding="true">}}

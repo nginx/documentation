@@ -14,7 +14,7 @@ The mock interface is useful when developing NGINX Agent, as it allows you to vi
 
 To begin this task, you will require the following:
 
-- A [working NGINX Agent instance]({{< ref "/nginx-one/agent/install-upgrade/" >}}).
+- A [working NGINX Agent instance]({{< ref "/nginx-one-console/agent/install-upgrade/" >}}).
 - A [Go installation](https://go.dev/dl/) of version 1.22.2 or newer.
 - A [go-swagger](https://goswagger.io/go-swagger/install/) installation.
 
