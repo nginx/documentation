@@ -1,4 +1,5 @@
 ---
+nd-product: NONECO
 files:
   - content/nginx-one-console/getting-started.md
 ---

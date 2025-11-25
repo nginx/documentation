@@ -1,4 +1,5 @@
 ---
+nd-product: MSC
 files:
   - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md 
 ---

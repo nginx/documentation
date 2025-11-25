@@ -1,4 +1,5 @@
 ---
+nd-product: NAGENT
 files:
    - content/agent/install-upgrade/uninstall.md
    - content/nginx-one-console/agent/install-upgrade/uninstall.md

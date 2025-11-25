@@ -1,4 +1,5 @@
 ---
+nd-product: MSC
 files:
   - content/nim/monitoring/overview-metrics.md
   - content/nginx-one-console/getting-started.md  

@@ -1,4 +1,5 @@
 ---
+nd-product: NONECO
 ---
 
 With this option, you can incorporate [Managed certificates]({{< ref "/nginx-one-console/nginx-configs/certificates/manage-certificates.md#managed-and-unmanaged-certificates" >}}).

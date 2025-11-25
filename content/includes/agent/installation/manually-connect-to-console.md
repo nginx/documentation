@@ -1,4 +1,5 @@
 ---
+nd-product: NAGENT
 files:
    - content/nginx-one-console/agent/install-upgrade/install-from-github.md
    - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md

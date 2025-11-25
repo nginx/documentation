@@ -3,7 +3,7 @@ title: Install from NGINX Plus repo
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NGINX One
+nd-product: NONECO
 nd-docs: DOCS-1877
 ---
 

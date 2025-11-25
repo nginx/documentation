@@ -1,4 +1,5 @@
 ---
+nd-product: NAGENT
 files:
    - content/nginx-one-console/agent/overview/about.md
    - content/nginx-one-console/agent/changelog.md

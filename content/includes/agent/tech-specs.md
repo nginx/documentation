@@ -1,4 +1,5 @@
 ---
+nd-product: NAGENT
 files:
    - content/agent/tech-specs.md
    - content/nginx-one-console/agent/overview/tech-specs.md

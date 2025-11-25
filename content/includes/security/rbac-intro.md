@@ -3,6 +3,7 @@ files:
   - content/nginx-one-console/rbac/overview.md
   - content/nim/admin-guide/rbac/overview-rbac.md
 nd-docs: DOCS-000
+nd-product: MSC
 ---
 Role-based access control (RBAC) is a security system that governs access to resources within a software application. By assigning specific roles to users or groups, RBAC ensures that only authorized individuals have the ability to perform certain actions or access particular areas.
 

@@ -1,4 +1,5 @@
 ---
+nd-product: NONECO
 files:
 - content/nginx-one-console/workshops/lab4/config-sync-groups.md
 - content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-r34.md

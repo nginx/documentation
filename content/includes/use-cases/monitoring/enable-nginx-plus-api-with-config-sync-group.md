@@ -1,4 +1,5 @@
 ---
+nd-product: MSC
 files:
 - content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-latest-version.md
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
@@ -11,7 +12,7 @@ files:
 5. In the **File name** box, enter `/etc/nginx/conf.d/dashboard.conf`, then select **Add**.  
 6. Paste the following into the new file workspace:
 
-{{< include "config-snippets/enable-nplus-api-dashboard.md" >}}
+{{< include "nginx-one-console/config-snippets/enable-nplus-api-dashboard.md" >}}
 
 7. Select **Next**, review the diff, then select **Save and Publish**.
 8. Open your browser to `http://<instance-ip>:9000/dashboard.html` (replace `<instance-ip>` with the IP or hostname of one of your group members). You should see the NGINX Plus dashboard.
