@@ -14,7 +14,8 @@ It explains the common steps necessary for any Kubernetes-based deployment, then
 
 To complete this guide, you will need the following pre-requisites:
 
-- A functional Kubernetes cluster
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/)
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster
 - An active F5 WAF for NGINX subscription (Purchased or trial)
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 
@@ -32,7 +33,7 @@ To review supported operating systems, read the [Technical specifications]({{< r
 
 ## Create a Dockerfile
 
-In the same folder as your credential files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+In the same folder as your credential files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
 Alternatively, you may want make your own image based on a Dockerfile using the official NGINX image:
 
