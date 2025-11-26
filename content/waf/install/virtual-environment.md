@@ -19,8 +19,8 @@ To complete this guide, you will need the following prerequisites:
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - An active F5 WAF for NGINX subscription (Purchased or trial).
 - A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) optional if not yet installed (NGINX will be installed automatically during App Protect installation)
-- [NGINX Plus JWT license]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#obtaining-and-installing-the-license" >}}) — required if NGINX Plus is used
 - this is a test
+
 Depending on your deployment type, you may have additional requirements:
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
