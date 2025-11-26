@@ -13,7 +13,9 @@ F5 NGINXaaS for Azure (NGINXaaS) now supports in-place migration from Standard V
 
 The Standard V3 plan is an upgraded, purpose-built solution for modern enterprises looking to simplify application traffic management and scale workloads effortlessly. The Standard V3 pricing model is designed to optimize efficiency and transparency: customers benefit from an affordable fixed price per deployment ($0.25/hour) that covers baseline overhead, while NCU usage ($0.008/hour/unit) and data processing ($0.005/GB) allow costs to scale precisely with demand.
 
-{{< call-out "note" >}} We currently only support in-place migration from Standard V2 plan to the Standard V3 plan and from Standard to Standard V3 plan. {{< /call-out >}}
+{{< call-out "note" >}} 
+We currently only support in-place migration from Standard V2 plan to the Standard V3 plan and from Standard to Standard V3 plan. You cannot update your Basic plan deployments to Standard V3 plan using this guide.
+{{< /call-out >}}
 
 ## Migration Steps
 
