@@ -4,7 +4,7 @@ description: View and filter the list of compiled F5 WAF for NGINX security bund
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

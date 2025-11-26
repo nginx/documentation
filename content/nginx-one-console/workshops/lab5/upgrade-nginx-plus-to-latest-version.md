@@ -42,7 +42,7 @@ Make sure you have:
 - Docker and Docker Compose installed and running (for Docker scenario)  
 - A trial or paid NGINX One JWT license (saved as `nginx-repo.jwt`) from [MyF5](https://my.f5.com/manage/s/)  
 - A VM with NGINX Plus R32 (or earlier), SSH access, and NGINX Agent installed (for VM scenario)  
-- {{< include "workshops/nginx-one-env-variables.md" >}}  
+- {{< include "nginx-one-console/workshops/nginx-one-env-variables.md" >}}  
 - Basic familiarity with Linux and NGINX  
 
 ---

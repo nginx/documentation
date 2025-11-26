@@ -1,8 +1,8 @@
 ---
-docs:
-files:
-  - /nim/waf-integration/configuration/install-waf-compiler/install.md
-  - /nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
+docs: null
+nd-files:
+- content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
+- content/nim/waf-integration/configuration/install-waf-compiler/install.md
 ---
 
 | F5 WAF for NGINX version | WAF compiler version       |

@@ -1,5 +1,9 @@
 ---
-nd-docs:
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
+- content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
+- content/nim/fundamentals/api-overview.md
 ---
 
 {{<call-out "important" "Protect sensitive data" "fas fa-shield-alt" >}}

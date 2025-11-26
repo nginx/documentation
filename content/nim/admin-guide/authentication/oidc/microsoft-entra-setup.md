@@ -3,7 +3,7 @@ title: 'Microsoft Entra: Set up OIDC authentication'
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-795
 ---
 

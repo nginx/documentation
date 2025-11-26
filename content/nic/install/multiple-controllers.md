@@ -3,7 +3,7 @@ title: Run multiple NGINX Ingress Controllers
 toc: true
 weight: 800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-606
 ---
 

@@ -1,7 +1,7 @@
 ---
-files:
-  - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
-  - content/nginx-one-console/getting-started.md
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/getting-started.md
 ---
 
 If you need to set up an instance of NGINX, you can do so in one of the following ways:

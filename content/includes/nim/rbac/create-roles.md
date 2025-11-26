@@ -1,5 +1,11 @@
 ---
 nd-docs: DOCS-1028
+nd-files:
+- content/nim/admin-guide/authentication/oidc/getting-started.md
+- content/nim/admin-guide/authentication/oidc/keycloak-setup.md
+- content/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md
+- content/nim/admin-guide/rbac/create-roles.md
+- content/nim/security-monitoring/give-access-to-security-monitoring-dashboards.md
 ---
 
 Roles in NGINX Instance Manager are a critical part of [role-based access control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}). By creating roles, you define the access levels and permissions for different user groups that correspond to groups in your Identity Provider (IdP).

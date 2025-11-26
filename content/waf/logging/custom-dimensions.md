@@ -3,7 +3,7 @@ title: Custom dimensions for log entries
 toc: false
 weight: 200
 nd-content-type: reference
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 F5 WAF for NGINX can configure custom dimensions for log entries using the directive `app_protect_custom_log_attribute`.

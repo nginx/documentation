@@ -4,7 +4,7 @@ description: Create and customize F5 WAF for NGINX security policies in NGINX In
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

@@ -4,7 +4,7 @@ description: Create and upload a new F5 WAF for NGINX security log profile to NG
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

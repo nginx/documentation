@@ -1,7 +1,7 @@
 ---
-files:
-   - content/agent/install-upgrade/uninstall.md
-   - content/nginx-one-console/agent/install-upgrade/uninstall.md
+nd-product: NAGENT
+nd-files:
+- content/nginx-one-console/agent/install-upgrade/uninstall.md
 ---
 
 Complete the following steps on each host where you've installed NGINX agent:

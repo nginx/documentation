@@ -4,7 +4,7 @@ description: Resolve common issues with F5 WAF for NGINX and NGINX Instance Mana
 toc: true
 weight: 1000
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

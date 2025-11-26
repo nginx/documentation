@@ -3,7 +3,7 @@ title: Ingresses Path Matching Using Path-Regex Annotation
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1451
 ---
 

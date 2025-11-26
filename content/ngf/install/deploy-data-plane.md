@@ -3,7 +3,7 @@ title: Deploy a Gateway for data plane instances
 weight: 600
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1854
 ---
 

@@ -3,7 +3,7 @@ title: Custom annotations
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-595
 ---
 

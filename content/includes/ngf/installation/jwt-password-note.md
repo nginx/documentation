@@ -1,5 +1,9 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/ngf/install/helm.md
+- content/ngf/install/manifests.md
+- content/ngf/install/nginx-plus.md
 ---
 
 {{< call-out "note" >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:

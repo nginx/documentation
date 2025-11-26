@@ -6,7 +6,7 @@ nd-landing-page: true
 cascade:
   logo: "NGINX-One-product-icon.svg"
 nd-content-type: landing-page
-nd-product: NGINX One
+nd-product: NONECO
 ---
 
 ## About
