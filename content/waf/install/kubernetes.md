@@ -17,8 +17,8 @@ To complete this guide, you will need the following pre-requisites:
 - [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/)
 - [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
-- [Docker](https://docs.docker.com/get-started/get-docker/)
-- Docker registry credentials — needed to access private-registry.nginx.com
+- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
+- Docker registry credentials are needed to access private-registry.nginx.com
 
 You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 

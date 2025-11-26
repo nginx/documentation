@@ -13,7 +13,8 @@ This page describes how to install F5 WAF for NGINX using Docker.
 To complete this guide, you will need the following prerequisites:
 
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
-- [Docker](https://docs.docker.com/get-started/get-docker/)
+- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
+- Docker registry credentials are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
@@ -438,7 +439,7 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 {{< include "waf/install-services-docker.md" >}}
 
 #### Download Docker images
-
+[Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#Configure Docker for the F5 Container Registry" >}}) is needed to pull the following container images
 {{< include "waf/install-services-images.md" >}}
 
 #### Create and run a Docker Compose file
@@ -814,7 +815,7 @@ sudo dnf install app-protect-module-plus
 {{< include "waf/install-services-docker.md" >}}
 
 #### Download Docker images
-
+[Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#Configure Docker for the F5 Container Registry" >}}) is needed to pull the following container images
 {{< include "waf/install-services-images.md" >}}
 
 #### Create and run a Docker Compose file
@@ -1307,3 +1308,10 @@ F5 WAF for NGINX should now be operational, and you can move onto [Post-installa
 ## Next steps
 
 {{< include "waf/install-next-steps.md" >}}
+
+## Remove NGINX docker image
+Before removing any Docker image, it’s important to ensure that the image is no longer needed and is not in use.
+
+[docker image rm](https://docs.docker.com/reference/cli/docker/image/rm/) tool
+
+TODO
