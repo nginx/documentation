@@ -1,5 +1,9 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md
+- content/nginxaas-azure/monitoring/enable-logging/logging-using-terraform.md
 ---
 
 If the diagnostic setting destination details included a storage account, logs show up in the storage container "insights-logs-nginxlogs" with the following format: `resourceID=/<NGINXaaS-resourceID>/y=<YYYY>/m=<MM>/d=<DD>/h=<HH>/PT1H.json`

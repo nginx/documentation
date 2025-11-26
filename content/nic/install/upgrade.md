@@ -9,7 +9,7 @@ toc: true
 nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NIC 
+nd-product: INGRESS 
 ---
 
 This document describes how to upgrade F5 NGINX Ingress Controller when a new version releases. 

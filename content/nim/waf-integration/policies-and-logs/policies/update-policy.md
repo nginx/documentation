@@ -4,7 +4,7 @@ description: Update an existing F5 WAF for NGINX policy using the NGINX Instance
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

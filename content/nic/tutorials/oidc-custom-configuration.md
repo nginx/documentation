@@ -3,7 +3,7 @@ title: Customize OIDC Configuration with NGINX Ingress Controller
 weight: 1800
 toc: true
 type: how-to
-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1448
 ---
 

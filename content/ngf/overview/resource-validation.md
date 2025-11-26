@@ -3,7 +3,7 @@ title: Resource validation
 weight: 400
 toc: true
 nd-content-type: reference
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1414
 ---
 

@@ -3,7 +3,7 @@ title: Control plane configuration
 weight: 400
 toc: true
 type: how-to
-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1839
 ---
 

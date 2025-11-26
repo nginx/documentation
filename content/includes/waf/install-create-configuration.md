@@ -1,4 +1,6 @@
 ---
+nd-files:
+- content/waf/install/docker.md
 ---
 
 Copy or move your subscription files into a new folder.

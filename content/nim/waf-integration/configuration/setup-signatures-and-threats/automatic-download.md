@@ -4,7 +4,7 @@ description: Enable automatic updates in NGINX Instance Manager to keep F5 WAF f
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

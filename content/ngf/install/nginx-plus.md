@@ -3,7 +3,7 @@ title: Install NGINX Gateway Fabric with NGINX Plus
 weight: 300
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1853
 ---
 

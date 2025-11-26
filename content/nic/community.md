@@ -2,7 +2,7 @@
 title: Community and contributing
 weight: 10000
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1447
 ---
 

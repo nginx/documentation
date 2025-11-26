@@ -5,7 +5,7 @@ weight: 1800
 noindex: true
 headless: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1445
 ---
 

@@ -1,4 +1,7 @@
 ---
+nd-files:
+- content/waf/fundamentals/technical-specifications.md
+- content/waf/policies/configuration.md
 ---
 
 {{< table >}}

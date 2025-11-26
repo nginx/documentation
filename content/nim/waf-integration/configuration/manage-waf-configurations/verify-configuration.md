@@ -4,7 +4,7 @@ description: Confirm that F5 WAF for NGINX is active and running correctly on yo
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

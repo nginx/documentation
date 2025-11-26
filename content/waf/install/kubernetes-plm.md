@@ -11,7 +11,7 @@ nd-banner:
     md: /_banners/waf-early-availability.md
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 There are two new features available for Kubernetes through early access:

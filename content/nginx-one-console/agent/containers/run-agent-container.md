@@ -3,7 +3,7 @@ title: Run the NGINX Agent in a container
 weight: 100
 toc: true
 nd-content-type: how-to
-product: Agent
+nd-product: NAGENT
 nd-docs: DOCS-1872
 ---
 
