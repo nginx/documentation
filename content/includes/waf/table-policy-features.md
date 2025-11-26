@@ -11,7 +11,7 @@
 | [Brute force attack preventions]({{< ref "/waf/policies/brute-force-attacks.md" >}}) | Configure parameters to secure areas of a web application from brute force attacks. |
 | [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}) | By default all cookies are allowed and not enforced for integrity. The user can add specific cookies, wildcards or explicit, that will be enforced for integrity. It is also possible to set the cookie attributes: HttpOnly, Secure and SameSite for cookies found in the response. |
 | [Data guard]({{< ref "/waf/policies/data-guard.md" >}}) | Detects and masks Credit Card Number (CCN) and/or U.S. Social Security Number (SSN) and/or custom patterns in HTTP responses. Disabled by default. |
-| [Deny and Allow IP lists]({{< ref "/waf/policies/deny-allow-ip.md" >}}) | Manually define denied & allowed IP addresses as well as IP addresses to never log. |
+| [Deny and Allow IP lists]({{< ref "/waf/policies/deny-allow-ip.md" >}}) | **Deprecated**. See [IP address lists]({{< ref "/waf/policies/ip-address-lists.md" >}}) |
 | [Do-nothing]({{< ref "/waf/policies/do-nothing.md" >}}) | Do-nothing allows you to avoid inspecting or parsing a URL. |
 | [Disallowed file type extensions]({{< ref "/waf/policies/disallowed-extensions.md" >}}) | Support any file type, and includes a predefined list of file types by default |
 | [Evasion techniques]({{< ref "/waf/policies/evasion-techniques.md" >}}) | All evasion techniques are enabled by default, and can be disabled individually. These include directory traversal, bad escaped characters and more. |
@@ -28,6 +28,7 @@
 | [Server technology signatures]({{< ref "/waf/policies/server-technology-signatures.md" >}}) | Support adding signatures per added server technology. |
 | [Time-based signature staging]({{< ref "/waf/policies/time-based-signature-staging.md" >}}) | Time-based signature staging allows you to stage signatures for a specific period of time. During the staging period, violations of staged signatures are logged but not enforced. After the staging period ends, violations of staged signatures are enforced according to the policy's enforcement mode. |
 | [Threat campaigns]({{< ref "/waf/policies/threat-campaigns.md" >}}) | These are patterns that detect all the known attack campaigns. They are very accurate and have almost no false positives, but are very specific and do not detect malicious traffic that is not part of those campaigns. The default policy enables threat campaigns but it is possible to disable it through the respective violation. |
+| [User-defined browser control]({{< ref "/waf/policies/user-browers.md" >}}) | Allow or deny specific browsers, and define custom browsers |
 | [User-defined HTTP headers]({{< ref "/waf/policies/user-headers.md" >}}) | Handling headers as a special part of requests |
 | [User-defined URLs and parameters]({{< ref "/waf/policies/user-urls-parameters.md" >}}) | Use user-defined properties when configuring violations. |
 | [XFF trusted headers]({{< ref "/waf/policies/xff-headers.md" >}}) | Disabled by default, and can accept an optional list of custom XFF headers. |

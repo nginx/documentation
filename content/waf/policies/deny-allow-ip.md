@@ -14,6 +14,14 @@ nd-product: NAP-WAF
 
 This page describes the Deny and Allow IP lists feature of F5 WAF for NGINX.
 
+{{< call-out "warning" >}}
+
+This feature is deprecated in the latest F5 WAF for NGINX versions.
+
+We recommend you use the [IP address lists]({{< ref "/waf/policies/ip-address-lists.md" >}}) feature instead.
+
+{{< /call-out>}}
+
 This feature allows you to define IP addresses or ranges for which the traffic will always be allowed, denied or never logged , overriding other configuration settings.
 
 1. **Always Allowed** (`"blockRequests": "never"`) - Requests from this IP range will be passed even if they have blocking violations.

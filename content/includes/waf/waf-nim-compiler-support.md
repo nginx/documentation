@@ -5,8 +5,6 @@ files:
   - /nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
 ---
 
-{{<bootstrap-table "table table-striped table-bordered">}}
-
 | F5 WAF for NGINX version | WAF compiler version       |
 |---------------------------|----------------------------|
 | 5.9.0                     | nms-nap-compiler-v5.527.0  |
@@ -27,5 +25,3 @@ files:
 | 4.10.0                    | nms-nap-compiler-v5.48.0   |
 | 4.9.0                     | nms-nap-compiler-v5.17.0   |
 | 4.8.1                     | nms-nap-compiler-v4.815.0  |
-
-{{</bootstrap-table>}}
