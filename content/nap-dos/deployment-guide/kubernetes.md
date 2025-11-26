@@ -336,9 +336,9 @@ It will apply all the configuration defined in the files to your Kubernetes clus
 You can then check the status of the deployment with `kubectl get`:
 
 ```shell
-kubectl get deployments
-kubectl get pods
-kubectl get services
+kubectl -n dos get deployments
+kubectl -n dos get pods
+kubectl -n dos get services
 ```
 
 You should see output similar to the following:
@@ -356,14 +356,5 @@ At this stage, you have finished deploying F5 WAF for NGINX and can look at [Pos
 
 ## Post-installation checks
 
-{{< include "dos/install-post-checks.md" >}}
-
-Or from an external host:
-
-```shell
-curl "<node-external-ip>:<node-port>/<script>"
-```
 
 ## Next steps
-
-{{< include "dos/install-next-steps.md" >}}
