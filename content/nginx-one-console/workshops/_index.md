@@ -5,7 +5,7 @@ weight: 710
 url: /nginx-one-console/workshops
 nd-landing-page: true
 nd-content-type: landing-page
-nd-product: NGINX One
+nd-product: NONECO
 ---
 
 Welcome to the NGINX One Console workshops.

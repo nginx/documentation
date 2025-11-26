@@ -1,5 +1,9 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md
+- content/nginxaas-azure/getting-started/nginx-configuration/nginx-configurations-terraform.md
+- content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform.md
 ---
 
 - Confirm that you meet the [NGINXaaS Prerequisites]({{< ref "/nginxaas-azure/getting-started/prerequisites.md" >}}).

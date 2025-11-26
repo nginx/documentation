@@ -4,7 +4,7 @@ description: Update the NGINX Agent configuration to enable F5 WAF for NGINX.
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

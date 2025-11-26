@@ -4,7 +4,7 @@ description: Learn how explicit and wildcard matching determine how F5 WAF for N
 toc: true
 weight: 700
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

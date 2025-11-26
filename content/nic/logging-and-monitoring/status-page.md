@@ -3,7 +3,7 @@ title: View the NGINX status page
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-615
 ---
 

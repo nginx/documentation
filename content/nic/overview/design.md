@@ -3,7 +3,7 @@ title: The design of NGINX Ingress Controller
 toc: true
 weight: 200
 nd-content-type: concept
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-609
 ---
 

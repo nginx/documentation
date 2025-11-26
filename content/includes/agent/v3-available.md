@@ -1,7 +1,7 @@
 ---
-files:
-   - content/nginx-one-console/agent/overview/about.md
-   - content/nginx-one-console/agent/changelog.md
+nd-product: NAGENT
+nd-files:
+- content/nginx-one-console/agent/overview/about.md
 ---
 
 {{<call-out "note" "F5 NGINX Agent v3.0 is available now">}}

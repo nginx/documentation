@@ -3,7 +3,7 @@ title: Install NGINX Ingress Controller with NGINX Ingress Operator
 toc: true
 weight: 500
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-604
 ---
 

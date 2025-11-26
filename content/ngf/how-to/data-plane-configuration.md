@@ -3,7 +3,7 @@ title: Data plane configuration
 weight: 500
 toc: true
 type: how-to
-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1838
 ---
 

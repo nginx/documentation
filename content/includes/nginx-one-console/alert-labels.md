@@ -1,9 +1,9 @@
 ---
-files:
-  - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
-  - content/nginx-one-console/glossary.md
+nd-product: NONECO
+nd-files:
+- content/glossary/glossary.md
+- content/nginx-one-console/glossary.md
 ---
-
 
 You can configure a variety of NGINX alerts in the F5 Distributed Cloud. If you have access to the [F5 Distributed Cloud]({{< ref "/nginx-one-console/getting-started.md#confirm-access-to-the-f5-distributed-cloud" >}}), log in and select the **Audit Logs & Alerts** tile. 
 

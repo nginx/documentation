@@ -1,7 +1,8 @@
 ---
-files:
-  - content/nginx-one-console/connect-instances/add-instance.md
-  - content/nginx-one-console/getting-started.md
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/connect-instances/add-instance.md
+- content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
 ---
 
 You can add an instance to NGINX One Console in the following ways:

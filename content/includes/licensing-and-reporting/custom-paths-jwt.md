@@ -1,4 +1,7 @@
 ---
+nd-files:
+- content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
+- content/solutions/about-subscription-licenses/getting-started.md
 ---
 
 If you’re upgrading from NGINX Plus R32 or earlier to R33 or later and plan to use a custom path for the license file, note that the custom path isn’t recognized until after the upgrade. You must first create a placeholder file at `/etc/nginx/license.jwt` (or `/usr/local/etc/nginx/license.jwt` on FreeBSD).  

@@ -4,7 +4,7 @@ description: Verify the deployment status of published F5 WAF for NGINX security
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

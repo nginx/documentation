@@ -1,5 +1,9 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/ngf/install/helm.md
+- content/ngf/install/manifests.md
+- content/ngf/install/nginx-plus.md
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).

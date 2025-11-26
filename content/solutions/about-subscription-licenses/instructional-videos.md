@@ -4,7 +4,7 @@ title: "NGINX Plus subscription licensing videos"
 weight: 300
 toc: false
 nd-content-type: reference
-nd-product: Solutions
+nd-product: SOLUTI
 ---
 
 These videos show how to set up usage reporting in internet-connected and network-restricted environments, and how to install or upgrade to NGINX Plus R33 or later.

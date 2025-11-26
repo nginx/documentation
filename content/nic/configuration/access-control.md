@@ -3,7 +3,7 @@ title: Deploy a Policy for access control
 weight: 900
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1858
 ---
 

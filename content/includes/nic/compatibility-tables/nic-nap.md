@@ -1,3 +1,11 @@
+---
+nd-files:
+- content/nic/changelog/_index.md
+- content/nic/install/waf-helm.md
+- content/nic/integrations/app-protect-waf-v5/installation.md
+- content/nic/technical-specifications.md
+---
+
 NGINX Ingress Controller supports the following versions of [F5 WAF for NGINX](https://docs.nginx.com/waf/):
 
 {{< table >}}

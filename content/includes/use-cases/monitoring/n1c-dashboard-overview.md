@@ -1,7 +1,8 @@
 ---
-files:
-  - content/nginx-one-console/metrics/enable-metrics.md
-  - content/nginx-one-console/getting-started.md
+nd-product: MSC
+nd-files:
+- content/nginx-one-console/getting-started.md
+- content/nginx-one-console/nginx-configs/metrics/review-metrics.md
 ---
 
 Navigating the dashboard:
