@@ -1,5 +1,18 @@
 ---
 nd-docs: DOCS-1050
+nd-files:
+- content/nim/disconnected/add-license-disconnected-deployment.md
+- content/nim/disconnected/report-usage-disconnected-deployment.md
+- content/nim/nginx-instances/manage-certificates.md
+- content/nim/waf-integration/configuration/manage-waf-configurations/edit-waf-configuration.md
+- content/nim/waf-integration/configuration/manage-waf-configurations/onboard-custom-security-policies.md
+- content/nim/waf-integration/configuration/onboard-instances/verify-installation.md
+- content/nim/waf-integration/policies-and-logs/_index.md
+- content/nim/waf-integration/policies-and-logs/log-profiles/create-log-profile.md
+- content/nim/waf-integration/policies-and-logs/log-profiles/delete-log-profile.md
+- content/nim/waf-integration/policies-and-logs/log-profiles/update-log-profile.md
+- content/nim/waf-integration/policies-and-logs/publish/check-publication-status.md
+- content/nim/waf-integration/policies-and-logs/publish/publish-to-instances.md
 ---
 
 Use tools such as `curl` or [Postman](https://www.postman.com) to send requests to the NGINX Instance Manager REST API.

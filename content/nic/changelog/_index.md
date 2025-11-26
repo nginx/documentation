@@ -4,7 +4,7 @@ url: /nginx-ingress-controller/changelog
 weight: 10200
 nd-landing-page: true
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-616
 ---
 

@@ -3,7 +3,7 @@ title: Enable Prometheus metrics
 toc: true
 weight: 400
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-614
 ---
 

@@ -1,5 +1,9 @@
 ---
 nd-docs: DOCS-1464
+nd-files:
+- content/nic/install/manifests.md
+- content/nic/integrations/app-protect-dos/installation.md
+- content/nic/integrations/app-protect-waf/installation.md
 ---
 
 In this section, you'll create resources that most NGINX Ingress Controller installations require:

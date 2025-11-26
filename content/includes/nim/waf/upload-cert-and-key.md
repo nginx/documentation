@@ -1,7 +1,8 @@
 ---
-doc:
-files:
-  - content/nim/waf-integration/configuration/setup-signatures-and-threats/automatic-download.md
+doc: null
+nd-files:
+- content/nim/waf-integration/configuration/install-waf-compiler/automatic-download.md
+- content/nim/waf-integration/configuration/setup-signatures-and-threats/automatic-download.md
 ---
 
 Follow these steps to get and upload the certificate and key:

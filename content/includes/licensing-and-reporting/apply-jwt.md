@@ -1,7 +1,9 @@
 ---
 file:
-  - content/solutions/about-subscription-licenses.md
-  - content/nap-waf/v5/admin-guide/install.md
+- content/solutions/about-subscription-licenses.md
+- content/nap-waf/v5/admin-guide/install.md
+nd-files:
+- content/solutions/about-subscription-licenses/getting-started.md
 ---
 
 1. Copy the license file to:

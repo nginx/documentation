@@ -9,7 +9,7 @@ toc: false
 nd-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NGINX One
+nd-product: NONECO
 ---
 
 Before you implement a policy on an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a policy for your F5 WAF for NGINX system.

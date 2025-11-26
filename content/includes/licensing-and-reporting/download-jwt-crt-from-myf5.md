@@ -1,4 +1,7 @@
 ---
+nd-files:
+- content/nap-dos/deployment-guide/learn-about-deployment.md
+- content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 ---
 
 Download the SSL certificate, private key, and the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:

@@ -1,7 +1,8 @@
 ---
-docs:
-files:
-  - /nim/security-monitoring/update-signatures.md
+docs: null
+nd-files:
+- content/nim/security-monitoring/update-signatures.md
+- content/nim/waf-integration/configuration/setup-signatures-and-threats/update-security-monitoring-signature-db.md
 ---
 
 1. Open an SSH connection to the data plane host and log in.

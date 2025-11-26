@@ -1,5 +1,7 @@
 ---
 nd-docs: DOCS-1324
+nd-files:
+- content/nim/deploy/kubernetes/deploy-using-helm.md
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

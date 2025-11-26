@@ -4,7 +4,7 @@ description: Configure cookie, parameter, and URL protections in your F5 WAF for
 toc: true
 weight: 500
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 

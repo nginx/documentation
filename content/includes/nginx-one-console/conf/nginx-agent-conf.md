@@ -1,7 +1,8 @@
 ---
-files:
-  - content/nginx-one-console/getting-started.md
-  - content/nginx-one-console/agent/containers/run-agent-container.md
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/agent/containers/run-agent-container.md
+- content/nginx-one-console/getting-started.md
 ---
 
 ```yaml

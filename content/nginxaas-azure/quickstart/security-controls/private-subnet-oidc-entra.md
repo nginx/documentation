@@ -4,7 +4,7 @@ url: /nginxaas/azure/quickstart/security-controls/private-subnet-oidc-entra/
 toc: true
 weight: 350
 nd-content-type: how-to
-nd-product: N4Azure
+nd-product: NAZURE
 ---
 
 ## Overview

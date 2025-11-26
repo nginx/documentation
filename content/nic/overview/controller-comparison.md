@@ -4,7 +4,7 @@ toc: true
 draft: true
 weight: 400
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-610
 ---
 

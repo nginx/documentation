@@ -1,5 +1,8 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md
+- content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md
 ---
 
 NGINXaaS natively integrates with [Azure Key Vault (AKV)](https://azure.microsoft.com/en-us/products/key-vault), so you can bring your own certificates and manage them in a centralized location. You will need:

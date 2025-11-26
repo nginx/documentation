@@ -3,7 +3,7 @@ title: Changelog
 toc: true
 weight: 900
 nd-content-type: reference
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1359
 ---
 

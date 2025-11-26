@@ -3,7 +3,7 @@ title: Command-line arguments
 toc: true
 weight: 100
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-585
 ---
 

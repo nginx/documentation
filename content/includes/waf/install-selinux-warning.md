@@ -1,4 +1,7 @@
 ---
+nd-files:
+- content/waf/install/docker.md
+- content/waf/install/virtual-environment.md
 ---
 
 {{< call-out "caution" >}}
