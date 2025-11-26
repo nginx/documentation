@@ -42,10 +42,12 @@ The single container configuration only supports NGINX Plus and requires a build
 The steps you should follow on this page are dependent on your configuration type: after the shared steps, links will guide you to the next appropriate section.
 
 ## Download your subscription credentials 
+### Shared Requirements
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
-[NGINX Plus JWT license]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#obtaining-and-installing-the-license" >}}) — required if NGINX Plus is used
+### Additional Requirement for NGINX Plus Users
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ## Configure Docker for the F5 Container Registry
 
@@ -956,7 +958,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -998,7 +1000,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1053,7 +1055,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1099,7 +1101,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1142,7 +1144,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1184,7 +1186,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1226,7 +1228,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1281,7 +1283,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
