@@ -1289,6 +1289,11 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< include "waf/install-update-configuration.md" >}}
 
+Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
+
+- `nginx -s reload`
+- `sudo systemctl reload nginx`
+
 F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).
 
 ## Post-installation checks
