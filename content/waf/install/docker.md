@@ -12,7 +12,7 @@ This page describes how to install F5 WAF for NGINX using Docker.
 
 To complete this guide, you will need the following prerequisites:
 
-- An active F5 WAF for NGINX subscription (Purchased or trial)
+- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
