@@ -17,8 +17,9 @@ This page describes how to install F5 WAF for NGINX in a virtual machine or bare
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) optional if not yet installed (NGINX will be installed automatically during App Protect installation)
 - An active F5 WAF for NGINX subscription (Purchased or trial).
+- A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) optional if not yet installed (NGINX will be installed automatically during App Protect installation)
+    - [NGINX Plus JWT license]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#obtaining-and-installing-the-license" >}}) — required if NGINX Plus is used
 
 Depending on your deployment type, you may have additional requirements:
 
