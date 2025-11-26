@@ -13,27 +13,11 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
-## December 13, 2025
-
-{{< icon-warning >}} **Standard V2 plan retirement**<a name="standard-plan-v2-retirement"></a>
-
-NGINXaaS for Azure now supports the [Standard V3](https://docs.nginx.com/nginxaas/azure/billing/overview) plan. We encourage you to use the Standard V3 plan for all new NGINXaaS deployments to take advantage of modern features like F5 WAF for NGINX and additional listen ports. The Standard V3 plan introduces an efficient and transparent pricing model: $0.25/hour fixed per deployment, $0.008/hour per NGINX Capacity Unit (NCU), and $0.005/GB for data processing. This allows costs to scale precisely with demand.
-
-{{< call-out "important" >}}The Standard V2 plan will be deprecated and will not be available for new deployments starting January 1, 2026.{{< /call-out >}}
-
-Your current deployments on the Standard V2 plan will continue to function but won't include any of the new features we've introduced in the Standard V3 plan. We intend to phase out the Standard V2 plan in the future.
-
-- **Recommended action:**
-   - [Migrate]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}})  NGINXaaS for Azure from the `Standard` or `Standard V2` plan to the `Standard V3`
-   - Update your automation scripts to use the Standard V3 plan. The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
-
-If you have any questions or concerns, please [contact us](https://portal.azure.com/#view/Microsoft_Azure_Support/HelpAndSupportBlade/~/overview).
-
-## December 13, 2025
+## December 20, 2025
 
 {{< icon-feature >}} **In-place SKU Migration to Standard V3**
 
-   You can now migrate NGINXaaS for Azure from the `Standard` or `Standard V2` plan to the `Standard V3` plan without redeploying. We recommend upgrading to the `Standard V3` plan to access features such as F5 WAF for NGINX, additional listen ports, and the new pricing model. The previous plans will be retired soon. For migration steps, see [Migrate from Standard V2 to Standard V3]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}}).
+   You can now migrate NGINXaaS for Azure deployments from the `Standard` or `Standard V2` plan to the `Standard V3` plan without any downtime. We encourage you to migrate your existing deployments to the new plan as the `Standard V2` plan will be deprecated soon. For migration steps, see [Migrate from Standard V2 to Standard V3]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}}).
 
 ## November 13, 2025
 
