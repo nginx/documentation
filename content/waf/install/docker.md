@@ -139,7 +139,7 @@ http {
 
 ### Create a Dockerfile
 
-In the same folder as your credential and configuration files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+In the same folder as your credential and configuration files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
 Alternatively, you may want make your own image based on a Dockerfile using the official NGINX image:
 
@@ -909,7 +909,7 @@ http {
 
 Copy or move your subscription files into a new folder.
 
-In the same folder as the subscription files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+In the same folder as the subscription files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
 {{< call-out "note" >}}
 

@@ -32,7 +32,8 @@ These enhancements are  only available for Helm-based deployments.
 
 To complete this guide, you will need the following prerequisites:
 
-- [A functional Kubernetes cluster]({{< ref "/waf/install/kubernetes.md" >}})
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/)
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster
 - [Helm](https://helm.sh/docs/intro/install/)
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 - An active F5 WAF for NGINX subscription (Purchased or trial)
