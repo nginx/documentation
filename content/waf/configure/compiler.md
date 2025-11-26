@@ -7,7 +7,7 @@ weight: 300
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 This document describes how to use the F5 WAF for NGINX compiler, a tool for converting security policies and logging profiles from JSON to a bundle file that F5 WAF can process and apply.

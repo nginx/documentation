@@ -3,7 +3,7 @@ title: Submit templates
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: ONE
+nd-product: NONECO
 ---
 
 # Template submission and preview guide

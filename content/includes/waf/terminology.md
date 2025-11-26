@@ -1,7 +1,7 @@
 ---
-files:
-  - content/glossary/glossary.md
-  - content/waf/fundamentals/terminology.md
+nd-files:
+- content/glossary/glossary.md
+- content/waf/fundamentals/terminology.md
 ---
 
 {{< table >}}

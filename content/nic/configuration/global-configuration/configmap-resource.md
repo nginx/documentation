@@ -3,7 +3,7 @@ title: ConfigMap resources
 weight: 300
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-586
 ---
 

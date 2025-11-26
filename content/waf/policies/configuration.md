@@ -7,7 +7,7 @@ weight: 100
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 This page describes the security features available with F5 WAF for NGINX and how to configure policies. 

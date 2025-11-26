@@ -3,7 +3,7 @@ title: Add a license (disconnected)
 weight: 200
 toc: true
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: DOCS-1657
 ---
 

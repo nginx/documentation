@@ -1,3 +1,9 @@
+---
+nd-files:
+- content/nic/changelog/_index.md
+- content/nic/technical-specifications.md
+---
+
 NGINX Ingress Controller supports the following versions of [NGINX Plus]({{< ref "/nginx/" >}}) and [Kubernetes](https://kubernetes.io/):
 
 {{< table >}}

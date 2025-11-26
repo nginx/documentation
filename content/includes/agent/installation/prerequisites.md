@@ -1,10 +1,9 @@
 ---
-files:
-   - content/agent/install-upgrade/install-from-github.md
-   - content/agent/install-upgrade/install-from-oss-repo.md
-   - content/agent/install-upgrade/install-from-plus-repo.md
-   - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
-   - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
+nd-product: NAGENT
+nd-files:
+- content/nginx-one-console/agent/install-upgrade/install-from-github.md
+- content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
+- content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
 ---
 
 - You must use one of the [supported operating system and architectures]({{< ref "/nginx-one-console/agent/overview/tech-specs.md#supported-distributions" >}})

@@ -1,5 +1,8 @@
 ---
 nd-docs: DOCS-1025
+nd-files:
+- content/nim/admin-guide/rbac/assign-roles.md
+- content/nim/security-monitoring/give-access-to-security-monitoring-dashboards.md
 ---
 
 To assign roles to a user in NGINX Instance Manager, follow these steps:

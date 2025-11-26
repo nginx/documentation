@@ -1,7 +1,7 @@
 ---
-files:
-  - content/glossary/glossary.md
-  - content/nic/glossary.md
+nd-files:
+- content/glossary/glossary.md
+- content/nic/glossary.md
 ---
 
 {{< table >}}

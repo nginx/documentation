@@ -3,7 +3,7 @@ title: Support
 weight: 800
 toc: false
 nd-content-type: reference
-product: Agent
+nd-product: NAGENT
 nd-docs: DOCS-1883
 ---
 
