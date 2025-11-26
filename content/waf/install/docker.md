@@ -41,6 +41,8 @@ The steps you should follow on this page are dependent on your configuration typ
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
+[NGINX Plus JWT license]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#obtaining-and-installing-the-license" >}}) — required if NGINX Plus is used
+
 ## Configure Docker for the F5 Container Registry
 
 {{< include "waf/install-services-registry.md" >}}
