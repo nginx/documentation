@@ -8,6 +8,7 @@ Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
+- _license.jwt_ (Only necessary when using NGINX Plus)
 - _nginx.conf_
 - _entrypoint.sh_
 - _Dockerfile_
