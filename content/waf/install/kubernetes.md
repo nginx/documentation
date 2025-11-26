@@ -222,6 +222,8 @@ From this point, the steps change based on your installation method:
 
 ### Download your JSON web token
 
+To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ### Get the Helm chart
