@@ -8,7 +8,7 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 This page describes the User-defined browser control feature for F5 WAF for NGINX.
