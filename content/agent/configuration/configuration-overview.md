@@ -4,7 +4,7 @@ draft: false
 weight: 100
 toc: true
 nd-content-type: how-to
-nd-product: Agent
+nd-product: NGAGENT
 nd-docs: DOCS-1229
 ---
 

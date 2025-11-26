@@ -1,4 +1,8 @@
 ---
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/nginx-configs/config-sync-groups/add-file-csg.md
+- content/nginx-one-console/nginx-configs/one-instance/add-file.md
 ---
 
 From this window, select the file of your choice. If you want to delete this

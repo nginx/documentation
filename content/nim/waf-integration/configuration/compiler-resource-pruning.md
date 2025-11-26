@@ -4,7 +4,7 @@ description: Automatically remove unused compiled security resources in NGINX In
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

@@ -3,7 +3,7 @@ title: VirtualServer and VirtualServerRoute resources
 toc: true
 weight: 700
 nd-content-type: reference
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-599
 ---
 

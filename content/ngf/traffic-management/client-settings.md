@@ -3,7 +3,7 @@ title: Client Settings Policy API
 toc: true
 weight: 800
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1846
 ---
 

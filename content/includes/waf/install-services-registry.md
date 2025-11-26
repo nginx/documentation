@@ -1,5 +1,8 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
+- content/waf/install/kubernetes.md
 ---
 
 Create a directory and copy your certificate and key to this directory:

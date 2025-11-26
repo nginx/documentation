@@ -4,7 +4,7 @@ description: Install the WAF compiler on the NGINX Instance Manager host to prec
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

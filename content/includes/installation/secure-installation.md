@@ -1,5 +1,7 @@
 ---
 nd-docs: DOCS-1405
+nd-files:
+- content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---
 
 To ensure that your NGINX Instance Manager deployment remains secure, follow the recommendations in this section:

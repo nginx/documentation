@@ -3,7 +3,7 @@ title: "Lab 3: Explore NGINX One Console features"
 weight: 300
 toc: true
 nd-content-type: tutorial
-nd-product: nginx-one
+nd-product: NONECO
 ---
 
 ## Introduction
@@ -38,7 +38,7 @@ Make sure you have:
 
 - {{< include "/nginx-one-console/workshops/xc-account.md" >}}
 - All containers from [Lab 2: Run workshop components with Docker]({{< ref "/nginx-one-console/workshops/lab2/run-workshop-components-with-docker.md" >}}) running and registered  
-- {{< include "workshops/nginx-one-env-variables.md" >}}  
+- {{< include "nginx-one-console/workshops/nginx-one-env-variables.md" >}}  
 - Basic NGINX and Linux knowledge  
 
 ---

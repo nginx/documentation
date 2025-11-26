@@ -1,8 +1,7 @@
 ---
-nd-docs: "DOCS-000"
-files:
-- content/ngf/install/manifests.md
-- content/nginx-one-console/ngf/add-ngf-manifests.md
+nd-docs: DOCS-000
+nd-files:
+- content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 
 {{< call-out "note" >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /call-out >}}

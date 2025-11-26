@@ -1,5 +1,7 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
 ---
 
 Create a _docker-compose.yml_ file with the following contents in your host environment, replacing image tags as appropriate:

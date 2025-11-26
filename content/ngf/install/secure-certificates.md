@@ -3,7 +3,7 @@ title: Add certificates for secure authentication
 weight: 100
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1851
 ---
 

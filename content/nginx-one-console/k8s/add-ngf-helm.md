@@ -3,7 +3,7 @@ title: Connect NGINX Gateway Fabric with Helm
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NGINX One
+nd-product: NONECO
 ---
 
 This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console with Helm.

@@ -1,5 +1,8 @@
 ---
 nd-docs: DOCS-1068
+nd-files:
+- content/nim/fundamentals/tech-specs.md
+- content/nim/releases/release-notes.md
 ---
 
 NGINX Instance Manager supports the following versions of [F5 WAF for NGINX](https://docs.nginx.com/waf/):

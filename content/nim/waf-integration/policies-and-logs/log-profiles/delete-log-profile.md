@@ -4,7 +4,7 @@ description: Remove an existing F5 WAF for NGINX security log profile from NGINX
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs: 
 ---
 
