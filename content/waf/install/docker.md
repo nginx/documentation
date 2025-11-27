@@ -954,12 +954,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk update && apk add app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -996,12 +1000,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1051,12 +1059,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1097,12 +1109,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1140,12 +1156,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1186,8 +1206,12 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1224,12 +1248,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
@@ -1279,12 +1307,16 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json license.jwt /etc/nginx/
+COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
