@@ -17,13 +17,13 @@ Your folder should contain the following files:
 To build an image, use the following command, replacing `<your-image-name>` as appropriate:
 
 ```shell
-sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
+sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
 ```
 
 A RHEL-based system would use the following command instead:
 
 ```shell
-podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
+podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
 ```
 
 {{< call-out "note" >}}
