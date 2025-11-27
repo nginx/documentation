@@ -817,7 +817,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 
 |Field | Description | Type | Required |
 | --- | ---| ---| --- |
-| ``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter,followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
+|``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter,followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
 |``cacheZoneSize`` | CacheZoneSize defines the size of the cache zone. Must be a number followed by a size unit: 'k' for kilobytes, 'm' for megabytes, or 'g' for gigabytes. Examples: "10m", "1g", "512k". | ``string`` | Yes |
 |``allowedCodes`` | AllowedCodes defines which HTTP response codes should be cached. Accepts either: - The string "any" to cache all response codes (must be the only element) - A list of HTTP status codes as integers (100-599) Examples: ["any"], [200, 301, 404], [200]. Invalid: ["any", 200] (cannot mix "any" with specific codes). | ``[]IntOrString`` | No |
 |``time`` | The default cache time for responses. Required when allowedCodes is specified. Must be a number followed by a time unit: 's' for seconds, 'm' for minutes, 'h' for hours, 'd' for days. Examples: "30s", "5m", "1h", "2d". | ``string`` | No |
@@ -825,6 +825,26 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 |``levels`` | Levels defines the cache directory hierarchy levels for storing cached files. Must be in format "X:Y" or "X:Y:Z" where X, Y, Z are either 1 or 2. This controls the number of subdirectory levels and their name lengths. Examples: "1:2", "2:2", "1:2:2". Invalid: "3:1", "1:3", "1:2:3". | ``string`` | No |
 |``overrideUpstreamCache`` | OverrideUpstreamCache controls whether to override upstream cache headers (using proxy_ignore_headers directive). When true, NGINX will ignore cache-related headers from upstream servers like Cache-Control, Expires etc, Default: false. | ``bool`` | No |
 |``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. This feature is only available in NGINX Plus. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
+|``cacheKey`` | CacheKey defines a key for caching (proxy_cache_key). By default, "$scheme$proxy_host$uri". Must not contain command execution patterns: $(, `, ;, &&, || | ``string`` | No |
+|``cacheUseStale`` | CacheUseStale determines in which cases a stale cached response can be used (proxy_cache_use_stale). Valid parameters: error, timeout, invalid_header, updating, http_500, http_502, http_503, http_504, http_403, http_404, http_429, off. | ``[]string`` | No |
+|``cacheRevalidate`` | CacheRevalidate enables revalidation of expired cache items using conditional requests (proxy_cache_revalidate). Uses "If-Modified-Since" and "If-None-Match" header fields. | ``bool`` | No |
+|``cacheBackgroundUpdate`` | CacheBackgroundUpdate allows starting a background subrequest to update an expired cache item (proxy_cache_background_update). A stale cached response is returned to the client while the cache is being updated. | ``bool`` | No |
+|``cacheMinUses`` | CacheMinUses sets the number of requests after which the response will be cached (proxy_cache_min_uses). | ``integer`` | No |
+|``inactive`` | Inactive sets the time after which cached data that are not accessed get removed from the cache (inactive parameter). By default, inactive is set to 10 minutes. | ``string`` | No |
+|``maxSize`` | MaxSize sets the maximum cache size (max_size parameter). When the size is exceeded, the cache manager removes the least recently used data. | ``string`` | No |
+|``minFree`` | MinFree sets the minimum amount of free space required on the file system with cache (min_free parameter). When there is not enough free space, the cache manager removes the least recently used data. | ``string`` | No |
+|``useTempPath`` | UseTempPath controls whether temporary files and the cache are put on different file systems (use_temp_path parameter). If set to false, temporary files will be put directly in the cache directory (use_temp_path=off). Default: false (use_temp_path=off, which puts temp files directly in cache directory for better performance). | ``bool`` | No |
+|``manager`` | Manager configures the cache manager process parameters (manager_files, manager_sleep, manager_threshold). | ``object`` | No |
+|``manager.files`` | Files sets the maximum number of files that will be deleted in one iteration by the cache manager. During one iteration no more than manager_files items are deleted (by default, 100). | ``integer`` | No |
+|``manager.sleep`` | Sleep sets the pause between cache manager iterations. Between iterations, a pause configured by manager_sleep (by default, 50 milliseconds) is made. | ``string`` | No |
+|``manager.threshold`` | Threshold sets the maximum duration of one cache manager iteration. The duration of one iteration is limited by manager_threshold (by default, 200 milliseconds). | ``string`` | No |
+|``lock`` | Lock configures cache locking to prevent multiple identical requests from populating the same cache element simultaneously. | ``object`` | No |
+|``lock.enable`` | Enable sets whether cache locking is enabled (proxy_cache_lock). When enabled, only one request at a time will be allowed to populate a new cache element according to the proxy_cache_key. | ``bool`` | No |
+|``lock.timeout`` | Timeout sets a timeout for proxy_cache_lock. When the time expires, the request will be passed to the proxied server, however, the response will not be cached. | ``string`` | No |
+|``lock.age`` | Age sets the maximum time a cache lock can be held (proxy_cache_lock_age). If the last request passed to the proxied server for populating a new cache element has not completed for the specified time, one more request may be passed. | ``string`` | No |
+|``conditions`` | Conditions defines when responses should not be cached or taken from cache. | ``object`` | No |
+|``conditions.noCache`` | NoCache defines conditions under which the response will not be saved to a cache (proxy_no_cache). If at least one value of the string parameters is not empty and is not equal to "0" then the response will not be saved. | ``[]string`` | No |
+|``conditions.bypass`` | Bypass defines conditions under which the response will not be taken from a cache (proxy_cache_bypass). If at least one value of the string parameters is not empty and is not equal to "0" then the response will not be taken from the cache. | ``[]string`` | No |
 
 {{% /table %}}
 
