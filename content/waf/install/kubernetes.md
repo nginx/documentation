@@ -32,6 +32,12 @@ To review supported operating systems, read the [Technical specifications]({{< r
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
+### Download your JSON web token
+
+To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
 ## Create a Dockerfile
 
 In the same folder as your credential files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
@@ -202,9 +208,20 @@ Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
+- _license.jwt_ (Only necessary when using NGINX Plus)
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-image-name>` as appropriate:
+To build an image for NGINX Pluse, use the following command, replacing `<your-image-name>` as appropriate:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 \
+  --secret id=nginx-crt,src=nginx-repo.crt \
+  --secret id=nginx-key,src=nginx-repo.key \
+  --secret id=license-jwt,src=license.jwt \
+  -t <your-image-name> .
+```
+
+To build an image for NGINX Open Source, use the following command, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
@@ -221,12 +238,6 @@ From this point, the steps change based on your installation method:
 - [Use Manifests to install F5 WAF for NGINX](#use-manifests-to-install-f5-waf-for-nginx)
 
 ## Use Helm to install F5 WAF for NGINX
-
-### Download your JSON web token
-
-To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
-
-{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ### Get the Helm chart
 
