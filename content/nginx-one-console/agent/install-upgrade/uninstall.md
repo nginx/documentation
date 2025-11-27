@@ -3,7 +3,7 @@ title: Uninstall NGINX Agent
 toc: false
 weight: 500
 nd-content-type: how-to
-nd-product: NGINX One
+nd-product: NONECO
 nd-docs: DOCS-1874
 ---
 

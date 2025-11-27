@@ -3,7 +3,7 @@ title: Add an NGINX Ingress Controller image to your cluster
 toc: true
 weight: 150
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1454
 ---
 

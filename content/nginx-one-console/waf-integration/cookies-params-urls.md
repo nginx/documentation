@@ -3,7 +3,7 @@ title: "Add cookies, parameters and URLs"
 weight: 400
 toc: true
 nd-content-type: how-to
-nd-product: NGINX One Console
+nd-product: NONECO
 ---
 
 ## Add cookies

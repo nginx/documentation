@@ -1,5 +1,8 @@
 ---
-nd-docs: "DOCS-000"
+nd-docs: DOCS-000
+nd-files:
+- content/ngf/traffic-management/tls-passthrough.md
+- content/ngf/traffic-security/secure-backend.md
 ---
 
 To use Gateway API experimental resources, the Gateway API resources from the experimental channel must be installed before deploying NGINX Gateway Fabric. Additionally, NGINX Gateway Fabric must have experimental features enabled.

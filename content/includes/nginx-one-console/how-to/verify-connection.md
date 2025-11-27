@@ -1,8 +1,8 @@
 ---
-nd-docs: "DOCS-000"
-files:
-- content/nginx-one-console/k8s/add-ngf-manifests.md
+nd-product: NONECO
+nd-files:
 - content/nginx-one-console/k8s/add-ngf-helm.md
+- content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 
 After deploying NGINX Gateway Fabric with NGINX Agent, you can verify the connection to NGINX One Console.

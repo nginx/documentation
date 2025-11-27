@@ -6,7 +6,7 @@ nd-landing-page: true
 cascade:
   logo: F5-NGINXaaS-icon.svg
 nd-content-type: landing-page
-nd-product: N4Azure
+nd-product: NAZURE
 ---
 
 

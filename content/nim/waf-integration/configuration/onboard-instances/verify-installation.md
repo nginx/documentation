@@ -4,7 +4,7 @@ description: Verify that F5 WAF for NGINX instances are connected and reporting 
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

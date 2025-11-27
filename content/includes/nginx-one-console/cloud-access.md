@@ -1,8 +1,9 @@
 ---
-files:
-  - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
-  - content/nginx-one-console/getting-started.md
-  - content/nginx-one-console/workshops/lab1/getting-started-with-nginx-one-console.md
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/getting-started.md
+- content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
+- content/nginx-one-console/workshops/lab1/getting-started-with-nginx-one-console.md
 ---
 
 Confirm that an F5 Distributed Cloud tenant has been provisioned for you. To do so:

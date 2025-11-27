@@ -3,7 +3,7 @@ title: Configuring VirtualServer with custom HTTP and HTTPS listener ports
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1452
 ---
 
