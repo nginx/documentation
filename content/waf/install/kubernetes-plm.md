@@ -38,7 +38,6 @@ To complete this guide, you will need the following prerequisites:
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
 - Docker registry credentials are needed to access private-registry.nginx.com
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
-- Credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
 
 ## Download your subscription credentials 
 
