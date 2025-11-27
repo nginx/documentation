@@ -805,6 +805,26 @@ cache:
   time: "5m"
   levels: "1:2"
   overrideUpstreamCache: true
+  inactive: "60m"
+  useTempPath: false
+  maxSize: "10g"
+  minFree: "1g"
+  manager:
+    files: 100
+    sleep: "50ms"
+    threshold: "200ms"
+  cacheKey: "$scheme$host$request_uri"
+  cacheUseStale: [ "error", "timeout", "updating", "http_500" ]
+  cacheRevalidate: true
+  cacheBackgroundUpdate: true
+  cacheMinUses: 1
+  lock:
+    enable: true
+    timeout: "5s"
+    age: "30s"
+  conditions:
+    noCache: [ "$cookie_nocache", "$arg_nocache" ]
+    bypass: [ "$http_authorization" ]
 ```
 
 {{< call-out "note" >}}
