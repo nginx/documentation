@@ -421,7 +421,7 @@ timeout: 60s
 
 See [`queue`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) directive for additional information.
 
-{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{ /call-out }}
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
 {{< table >}}
 
@@ -463,7 +463,7 @@ healthCheck:
   keepalive-time: 60s
 ```
 
-{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{ /call-out }}
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
 {{< table >}}
 
@@ -513,7 +513,7 @@ sessionCookie:
 
 See the [`sticky`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html?#sticky) directive for additional information. The session cookie corresponds to the `sticky cookie` method.
 
-{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{ /call-out }}
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
