@@ -54,6 +54,10 @@ When running NGINX Ingress Controller, you have the following options with regar
 
 These options allow you to run multiple NGINX Ingress Controllers, each handling a different set of configuration resources.
 
-{{< call-out "note" >}}[Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}){{< /call-out>}}
+{{< call-out "note" >}}
 
-{{< call-out "note" >}}All the mentioned command-line arguments are also available as parameters in the [Helm chart]({{< ref "/nic/install/helm" >}}).{{< /call-out >}}
+There is a reference available for all [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}})
+
+Every command-line argument is also available as a parameter for the [Helm chart]({{< ref "/nic/install/helm/parameters.md" >}})
+
+{{< /call-out >}}
