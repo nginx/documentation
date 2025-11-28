@@ -3,7 +3,7 @@ title: Enable Service Insight
 toc: true
 weight: 600
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1180
 ---
 
@@ -31,7 +31,7 @@ If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) t
       containerPort: 9114
     ```
 
-If you're using *Helm* to install the Ingress Controller, to enable Service Insight endpoint, configure the `serviceInsight.*` parameters of the Helm chart. See the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) doc.
+If you're using *Helm* to install the Ingress Controller, to enable Service Insight endpoint, configure the `serviceInsight.*` parameters of the Helm chart. See the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) doc.
 
 ## Available Statistics and HTTP Response Codes
 

@@ -1,5 +1,9 @@
 ---
 nd-docs: DOCS-991
+nd-files:
+- content/nim/admin-guide/rbac/manage-resource-groups.md
+- content/nim/fundamentals/api-overview.md
+- content/nim/waf-integration/overview.md
 ---
 
 Access the NGINX Instance Manager API documentation from the web interface:

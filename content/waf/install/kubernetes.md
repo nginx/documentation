@@ -7,7 +7,7 @@ weight: 200
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-nd-product: WAF
+nd-product: F5WAFN
 ---
 
 This page describes how to install F5 WAF for NGINX using Kubernetes.
@@ -102,7 +102,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/debian-oss.md" >}}
+{{< include "/waf/dockerfiles/debian-plus.md" >}}
 
 {{% /tab %}}
 

@@ -3,7 +3,7 @@ title: Customize OIDC Configuration with NGINX Ingress Controller
 weight: 1800
 toc: true
 type: how-to
-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1448
 ---
 
@@ -13,7 +13,7 @@ This guide will walk through how to customize and configure this default impleme
 
 ## Prerequisites
 
-This guide assumes that you have an F5 NGINX Ingress Controller deployed. If not, please follow the installation steps using either the [Manifest]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) or [Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) approach.
+This guide assumes that you have an F5 NGINX Ingress Controller deployed. If not, please follow the installation steps using either the [Manifest]({{< ref "/nic/install/manifests.md" >}}) or [Helm]({{< ref "/nic/install/helm.md" >}}) approach.
 
 To customize the NGINX OpenID Connect Reference implementation, you will need to:
 

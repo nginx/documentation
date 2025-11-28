@@ -1,5 +1,10 @@
 ---
 nd-docs: DOCS-000
+nd-files:
+- content/nic/install/manifests.md
+- content/nic/integrations/app-protect-dos/installation.md
+- content/nic/integrations/app-protect-waf-v5/installation.md
+- content/nic/integrations/app-protect-waf/installation.md
 ---
 
 For additional context on managing containers using Kubernetes StatefulSets, refer to the official Kubernetes [StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) documentation.

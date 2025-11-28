@@ -1,5 +1,10 @@
 ---
 nd-docs: DOCS-1463
+nd-files:
+- content/nic/install/manifests.md
+- content/nic/integrations/app-protect-dos/installation.md
+- content/nic/integrations/app-protect-waf-v5/installation.md
+- content/nic/integrations/app-protect-waf/installation.md
 ---
 
 To make sure your NGINX Ingress Controller pods reach the `Ready` state, you'll need to create custom resource definitions (CRDs) for various components.
@@ -32,10 +37,9 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{< call-out "note" >}} 
 
-Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/installation/upgrade-version.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
+Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/install/upgrade.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
 
 {{< /call-out >}}
-
 
 ```shell
 kubectl apply -f config/crd/bases/k8s.nginx.org_virtualservers.yaml

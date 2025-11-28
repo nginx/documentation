@@ -3,10 +3,9 @@ title: NGINX Ingress Controller and Open Service Mesh
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1181
 ---
-
 
 This document outlines how to integrate F5 NGINX Ingress Controller with Open Service Mesh (OSM)
 
@@ -17,7 +16,7 @@ Open Service Mesh will work with both versions of [F5 NGINX Ingress controller](
 There are two ways to integrate NGINX Ingress Controller with Open Service Mesh (OSM):
 
 1. Injecting an envoy sidecar directly with NGINX Ingress Controller.
-2. Using the Open Service Mesh `ingressBackend` "proxy" feature.
+1. Using the Open Service Mesh `ingressBackend` "proxy" feature.
 
 # NGINX Ingress controller and OSM with sidecar proxy injected
 
@@ -27,9 +26,17 @@ Install OSM in the cluster
 osm install --mesh-name osm-nginx --osm-namespace osm-system
 ```
 
-### Mark the F5 NGINX Ingress controller namespace for sidecar injection
+## Mark the F5 NGINX Ingress controller namespace for sidecar injection
 
-*NOTE:* Depending on how you install NGINX Ingress controller, you might need to create the `namespace`. For example, if you are using manifests to install NGINX Ingress controller, you can complete all of the steps on our documentation page, *EXCEPT*, actually deploying NGINX Ingress controller. This is because, when using the sidecar approach, OSM needs to "manage" the namespace so it knows what `namespaces` it needs to inject sidecars into.
+{{< call-out "warning" >}} 
+
+Depending on how you install NGINX Ingress controller, you might need to create the `namespace`. 
+
+For example, if you are using Manifests to install NGINX Ingress controller, you can complete all of the steps except actually deploying NGINX Ingress controller. 
+
+This is because with the sidecar approach, OSM needs to "manage" the namespace so it knows what `namespaces` it needs to inject sidecars into.
+
+{{< /call-out >}} 
 
 Next thing we need to do is install OSM into the `NGINX Ingress controller` namespace so that the `envoy` sidecar will be injected into NGINX Ingress controller.
 First, create the `nginx-ingress` namespace:
@@ -50,8 +57,8 @@ The above command will use the mark the `nginx-ingress` namespace, where OSM wil
 
 Links to the complete install guides:
 
-[Using Helm to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}})
-[Using Manifests to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}})
+[Using Helm to install NGINX Ingress]({{< ref "/nic/install/helm.md" >}})
+[Using Manifests to install NGINX Ingress]({{< ref "/nic/install/manifests.md" >}})
 
 When using the sidecar method, ensure that you add the correct annotations listed below. This ensures proper integration of NGINX Ingress Controller with the envoy sidecar proxy.
 
@@ -221,12 +228,12 @@ osm namespace add nginx-ingress --mesh-name osm-nginx --disable-sidecar-injectio
 
 Links to the complete install guides:
 
-[Using Helm to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}})
-[Using Manifests to install NGINX Ingress]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}})
+[Using Helm to install NGINX Ingress]({{< ref "/nic/install/helm.md" >}})
+[Using Manifests to install NGINX Ingress]({{< ref "/nic/install/manifests.md" >}})
 
 *NOTE*: This method does NOT require annotations added to the deployment, compared to the sidecar install method.
 
-### Install a Test Application
+## Install a Test Application
 
 To test the integration, we will use the `httpbin` sample application from the [Ingress With Kubernetes NGINX Ingress Controller](https://release-v1-2.docs.openservicemesh.io/docs/demos/ingress_k8s_nginx/) guide.
 

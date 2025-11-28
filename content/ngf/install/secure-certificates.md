@@ -3,7 +3,7 @@ title: Add certificates for secure authentication
 weight: 100
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1851
 ---
 
@@ -27,6 +27,12 @@ To complete this guide, you will need the following prerequisites:
 
 - Administrator access to a Kubernetes cluster.
 - [Helm](https://helm.sh) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
+
+## Install Gateway API CRDs
+
+```shell
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
+```
 
 ## Install cert-manager
 

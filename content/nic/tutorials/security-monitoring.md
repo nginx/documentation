@@ -3,13 +3,13 @@ title: Connect F5 WAF for NGINX to NGINX Security Monitoring
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1856
 ---
 
 This document explains how to use NGINX Ingress Controller to configure NGINX Agent for sending F5 WAF for NGINX metrics to NGINX Security Monitoring.
 
-## Prerequisites
+## Before you begin
 
 This guide assumes that you have an installation of NGINX Instance Manager with NGINX Security Monitoring which is reachable from the Kubernetes cluster on which NGINX Ingress Controller is deployed.
 
@@ -22,6 +22,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
 {{%tab name="Using Helm"%}}
 
 1. Add the below arguments to the `values.yaml` file:
+
     ```yaml
     nginxAgent:
         enable: true
@@ -29,7 +30,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
             host: "<FQDN or IP address of NGINX Instance Manager>"
     ```
 
-2. Follow the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
+2. Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
 
 {{%/tab%}}
 
@@ -44,6 +45,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
     ```
 
 2. Create a ConfigMap with an `nginx-agent.conf` file which must be mounted to `/etc/nginx-agent/nginx-agent.conf` in the NGINX Ingress Controller pod.
+
    ```yaml
     kind: ConfigMap
     apiVersion: v1
@@ -78,6 +80,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
           syslog_ip: 127.0.0.1
           syslog_port: 1514
    ```
+
    See the [NGINX Agent Configuration Overview]({{< ref "/agent/configuration/configuration-overview.md" >}}) for more configuration options.
 
 {{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
@@ -102,7 +105,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
        mountPath: /var/lib/nginx-agent
    ```
 
-4. Follow the [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
+4. Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
 {{%/tab%}}
 

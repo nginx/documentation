@@ -1,4 +1,7 @@
 ---
+nd-files:
+- content/nim/deploy/vm-bare-metal/install-nim-manual.md
+- content/nim/deploy/vm-bare-metal/install.md
 ---
 
 A valid license is required to make full use of all the features in NGINX Instance Manager.

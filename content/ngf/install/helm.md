@@ -3,7 +3,7 @@ title: Install NGINX Gateway Fabric with Helm
 weight: 200
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1430
 ---
 
@@ -133,7 +133,7 @@ kubectl wait --timeout=5m -n nginx-gateway deployment/ngf-nginx-gateway-fabric -
 
 #### Service type
 
-By default, the NGINX Gateway Fabric helm chart deploys a LoadBalancer Service.
+By default, the NGINX Gateway Fabric control plane deploys a LoadBalancer Service when a Gateway is created.
 
 To use a NodePort Service instead:
 

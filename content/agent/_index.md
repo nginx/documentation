@@ -7,8 +7,8 @@ cascade:
     enabled: true
     type: deprecation
     start-date: 2025-05-29
-    end-date: 2025-09-09
-    md: /_banners/agent-v3-release.md
+    end-date: 2026-09-09
+    md: /_banners/agent-v2-note.md
 # The subtitle displays directly underneath the heading of a given page
 nd-subtitle:
 # Indicates that this is a custom landing page
@@ -17,7 +17,7 @@ nd-landing-page: true
 nd-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: Agent
+nd-product: NGAGENT
 ---
 
 ## About

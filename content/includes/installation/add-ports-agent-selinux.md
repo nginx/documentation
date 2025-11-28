@@ -1,8 +1,7 @@
 ---
-files:
-  - content/nginx-one/agent/configure-instances/configure-selinux.md
-  - content/nim/system-configuration/configure-selinux.md
-  - content/nms/nginx-agent/install-nginx-agent.md
+nd-files:
+- content/nginx-one-console/agent/configure-instances/configure-selinux.md
+- content/nim/system-configuration/configure-selinux.md
 ---
 
 Make sure to add external ports to the firewall exception list.

@@ -3,7 +3,7 @@ title: Getting started
 toc: true
 weight: 200
 nd-content-type: how-to
-nd-product: Solutions
+nd-product: SOLUTI
 nd-resource: https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
 nd-docs: DOCS-1780
 ---
@@ -53,7 +53,7 @@ Processing traffic requires:
 After you download the JWT license, deploy it to your NGINX Plus instances in one of two ways:
 
 - **Use a group sync feature (recommended):**  
-  - In the [NGINX One Console]({{< ref "/nginx-one/getting-started.md" >}}), use a **Config Sync Group** to keep instances consistent, avoid manual copying, and apply license updates automatically.  
+  - In the [NGINX One Console]({{< ref "/nginx-one-console/getting-started.md" >}}), use a **Config Sync Group** to keep instances consistent, avoid manual copying, and apply license updates automatically.  
   - In [NGINX Instance Manager]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}), use an **instance group**, which works the same way as a Config Sync Group.  
 - **Copy the license manually:** Place the license file on each NGINX Plus instance yourself.  
 

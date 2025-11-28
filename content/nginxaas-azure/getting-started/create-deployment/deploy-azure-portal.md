@@ -4,7 +4,7 @@ url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: N4Azure
+nd-product: NAZURE
 nd-docs: DOCS-878
 ---
 

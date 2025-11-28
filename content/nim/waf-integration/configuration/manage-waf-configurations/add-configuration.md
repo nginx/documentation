@@ -4,7 +4,7 @@ description: Add default or custom WAF policies to your NGINX instances.
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

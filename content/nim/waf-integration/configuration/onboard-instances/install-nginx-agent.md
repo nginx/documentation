@@ -4,7 +4,7 @@ description: Install NGINX Agent on each F5 WAF for NGINX instance to connect it
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

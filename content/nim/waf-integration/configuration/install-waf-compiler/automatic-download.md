@@ -4,7 +4,7 @@ description: Enable NGINX Instance Manager to automatically download and install
 toc: true
 weight: 300
 nd-content-type: how-to
-nd-product: NIM
+nd-product: NIMNGR
 nd-docs:
 ---
 

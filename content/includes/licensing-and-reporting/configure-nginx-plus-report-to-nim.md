@@ -1,4 +1,8 @@
 ---
+nd-files:
+- content/nim/admin-guide/report-usage-connected-deployment.md
+- content/nim/disconnected/report-usage-disconnected-deployment.md
+- content/solutions/about-subscription-licenses/getting-started.md
 ---
 
 1. Allow NGINX Plus instances to connect to NGINX Instance Manager over HTTPS (TCP `443`).

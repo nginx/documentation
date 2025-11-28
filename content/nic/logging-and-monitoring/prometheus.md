@@ -3,7 +3,7 @@ title: Enable Prometheus metrics
 toc: true
 weight: 400
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-614
 ---
 
@@ -17,7 +17,7 @@ The metrics exposed include NGINX Ingress Controller data, as well as NGINX Open
 
 To enable Prometheus metrics when using *Helm* to install NGINX Ingress Controller, configure the `prometheus.*` parameters of the Helm chart. 
 
-See the [Installation with Helm]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) topic.
+See the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) topic.
 
 #### Using ServiceMonitor
 
@@ -35,6 +35,7 @@ curl https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/$
 ```
 
 ### Using Manifests
+
 If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) to install the Ingress Controller, to enable Prometheus metrics:
 
 1. Run the Ingress Controller with the `-enable-prometheus-metrics` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}). As a result, the Ingress Controller will expose NGINX or NGINX Plus metrics in the Prometheus format via the path `/metrics` on port `9113` (customizable via the `-prometheus-metrics-listen-port` command-line argument).

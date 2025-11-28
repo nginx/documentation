@@ -1,5 +1,7 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
 ---
 
 First, create new directories for the services:

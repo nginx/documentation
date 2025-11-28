@@ -1378,7 +1378,7 @@ You need root permissions to execute the following steps.
 
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod55 /var/run/adm /tmp/cores ${LOGDIR}
+    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
@@ -1867,7 +1867,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}/bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
+    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
+    /bin/su -s /bin/bash -c '/opt/app_protect/bin/bd_agent &' ${USER}
     /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
     /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
     /usr/sbin/nginx -g 'daemon off;'
@@ -1878,7 +1879,8 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     For Debian/Ubuntu/Alpine/Amazon Linux:
 
     ```shell
-    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .    ```
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    ```
 
     For RHEL:
 
@@ -2001,7 +2003,7 @@ CMD ["sh", "/root/entrypoint.sh"]
 ### Debian Docker Deployment Example
 
 ```Dockerfile
-# Where verionn can be: bullseye/bookworm
+# Where version can be: bullseye/bookworm
 FROM debian:bullseye
 
 # Install prerequisite packages:
@@ -2236,9 +2238,9 @@ Review the syslog ports by entering the following command:
 semanage port -l | grep syslog
 ```
 
-### Kubernetes Deployment Examples
+## Kubernetes Deployment Examples
 
-#### App Protect DoS
+### App Protect DoS
 
 `appprotect-dos.yaml`:
 
@@ -2424,6 +2426,9 @@ http {
     app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log;
     # app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261;
 
+    app_protect_dos_liveness on;    # uri:/app_protect_dos_liveness port:8090
+    app_protect_dos_readiness on;   # uri:/app_protect_dos_readiness port:8090
+
     server {
         listen 80 reuseport;
         server_name serv;
@@ -2446,9 +2451,6 @@ http {
         listen 8090;
         server_name probe;
 
-        app_protect_dos_liveness on;    # uri:/app_protect_dos_liveness port:8090
-        app_protect_dos_readiness on;   # uri:/app_protect_dos_readiness port:8090
-
         location / {
             proxy_pass http://localhost:8091;
         }
@@ -2465,7 +2467,7 @@ http {
 }
 ```
 
-#### App Protect DoS arb
+### App Protect DoS arb
 
 Arbitrator (arb) is an internal service that is essential for the scaling scenarios. The arbitrator service should be deployed in the same namespace as F5 DoS for NGINX.
 

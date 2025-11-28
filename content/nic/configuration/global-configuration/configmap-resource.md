@@ -3,7 +3,7 @@ title: ConfigMap resources
 weight: 300
 toc: true
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-586
 ---
 
@@ -11,7 +11,7 @@ When using F5 NGINX Ingress Controller, you can customize or fine tune NGINX beh
 
 ## Using ConfigMap
 
-1. The [Installation with Manifests]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md" >}}) documentation deploy an empty ConfigMap while the default installation manifests specify it in the command-line arguments of the Ingress Controller. However, if you customized the manifests, to use ConfigMap, make sure to specify the ConfigMap resource to use the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}) of NGINX Ingress Controller.
+1. The [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) documentation deploy an empty ConfigMap while the default installation manifests specify it in the command-line arguments of the Ingress Controller. However, if you customized the manifests, to use ConfigMap, make sure to specify the ConfigMap resource to use the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}) of NGINX Ingress Controller.
 
 1. Create a ConfigMap file with the name *nginx-config.yaml* and set the values
 that make sense for your setup:
@@ -46,15 +46,11 @@ ConfigMap applies globally, meaning that it affects every Ingress resource. In c
 
 For more information, view the [Advanced configuration with annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations" >}}) topic.
 
----
-
 ## ConfigMap and VirtualServer/VirtualServerRoute resources
 
 The ConfigMap affects every VirtualServer and VirtualServerRoute resources. However, the fields of those resources allow overriding some ConfigMap keys. For example, the `connect-timeout` field of the `upstream` overrides the `proxy-connect-timeout` ConfigMap key.
 
 For more information, view the [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources" >}}) topic.
-
----
 
 ## ConfigMap keys
 
@@ -100,7 +96,6 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*variables-hash-bucket-size* | Sets the value of the [variables_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#variables_hash_bucket_size) directive. | *256* |  |
 |*variables-hash-max-size* | Sets the value of the [variables-hash-max-size](https://nginx.org/en/docs/http/ngx_http_core_module.html#variables_hash_max_size) directive. | *1024* |  |
 
-
 ### Logging
 
 |ConfigMap Key | Description | Default | Example |
@@ -121,7 +116,6 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 | ---| ---| ---|
 |*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |
 |*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
-
 
 ### Auth and SSL/TLS
 
@@ -169,7 +163,6 @@ If you previously installed OIDC or used the `zone_sync` directive with `stream-
 If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplicate in /etc/nginx/nginx.conf:164` it is likely due to `zone_sync` being enabled in both `stream-snippets` and the ConfigMap. Once upgraded, remove the [old headless service](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml) deployed for OIDC.
 {{< /call-out >}}
 
-
 |ConfigMap Key | Description | Default |
 | ---| ---| ---| 
 |*zone-sync* | Enables zone synchronization between NGINX Ingress Controller Pods. This autogenerates a [zone_sync_server](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_server) and a headless service using the `ReplicaSet`, `DaemonSet` or `StatefulSet` name. Please note that this headless service will be automatically cleaned up when uninstalling via Helm or by removing the value from the ConfigMap. The headless service will need to be manually removed if the `controller.customConfigMap` value is set via Helm or the deployment is uninstalled via Manifests. Each Ingress Controller manages its own headless service.  NGINX Plus Required. | *False* |
@@ -177,7 +170,6 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*zone-sync-resolver-addresses* | Configures optional addresses used in the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync. This field takes a comma separated list of addresses. NGINX Plus & `zone-sync` Required | `kube-dns.kube-system.svc.cluster.local` |
 |*zone-sync-resolver-ipv6* | Configures whether the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will look up IPv6 addresses. NGINX Plus & `zone-sync` Required | `true` |
 |*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |
-
 
 ### Snippets and custom templates
 
@@ -196,6 +188,7 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 ### Modules
 
 {{< table >}}
+
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
 |*otel-exporter-endpoint* | OTLP/gRPC endpoint that will accept [OpenTelemetry](https://opentelemetry.io) data. Set `otel-trace-in-http` to *"true"* to enable OpenTelemetry at the global level. | N/A | *"https://otel-collector:4317"* |
@@ -215,4 +208,5 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*app-protect-dos-log-format* | Sets the custom [log format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) for Dos Access log traffic. For convenience, it is possible to define the log format across multiple lines (each line separated by *\n*). In that case, the Ingress Controller will replace every *\n* character with a space character. All *'* characters must be escaped. | `, vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, policy_name=$app_protect_dos_policy_name, dos_version=$app_protect_dos_version, ip_tls=$remote_addr:$app_protect_dos_tls_fp,` | |
 |*app-protect-dos-log-format-escaping* | Sets the characters escaping for the variables of the stream log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
 |*app-protect-dos-arb-fqdn* | Sets the *app-protect-dos-arb-fqdn* [directive](/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn). | *svc-appprotect-dos-arb* |  |
+
 {{< /table >}}

@@ -3,13 +3,11 @@ title: NGINX Ingress Controller and Linkerd
 toc: true
 weight: 1800
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-1450
 ---
 
 This document explains how to integrate NGINX Ingress Controller with Linkerd using Linkerd's sidecar proxy. Linkerd works with both NGINX Ingress Controller open source and NGINX Ingress Controller using NGINX Plus.
-
----
 
 ## Before you Begin
 
@@ -23,21 +21,15 @@ If you are adding Linkerd to an existing installation, these are the requirement
 - A working NGINX Ingress Controller instance.
 - A working [Linkerd installation](https://linkerd.io/2.13/getting-started/).
 
----
-
 ## Integrating Linkerd
 
 Linkerd integrates with NGINX Ingress Controller using its control plane utility through injection.
 
 You can do this through the use of NGINX Ingress Controller's custom resource definitions (CRDs) in a Kubernetes Manifest, or Helm.
 
----
-
 ### During Installation
 
-**Using Manifests**
-
-When installing NGINX Ingress Controller, you can [create a custom resource]({{< ref "/nic/installation/installing-nic/installation-with-manifests.md#create-optional-custom-resources" >}}) for Linkerd.
+When installing NGINX Ingress Controller with Manifests, you can [create a custom resource]({{< ref "/nic/install/manifests.md#create-optional-custom-resources" >}}) for Linkerd.
 
 ```yaml
 apiVersion: apps/v1
@@ -59,9 +51,7 @@ spec:
         app.kubernetes.io/name: nginx-ingress
 ```
 
-**Using Helm**
-
-Add the following annotation to your Helm deployment:
+When installing NGINX Ingress Controller with Helm, add the following annotation to your Helm deployment:
 
 ```yaml
 controller:
@@ -72,30 +62,25 @@ controller:
 
 This annotation will instruct `helm` to tell `Linkerd` to automatically inject its sidecar during the installation of NGINX Ingress Controller.
 
----
-
-### With an Existing Installation
+### With an existing installation
 
 To integrate Linkerd with an existing NGINX Ingress Controller installation, you will need to inject the `Linkerd` sidecar, using its `linkerd` control plane utility.
 
-**Using Manifests**
-
 If you want to inject into an existing Manifest-based installation, you can run the following:
 
-```bash
+```shell
 kubectl get deployment -n nginx-ingress nginx-ingress -o yaml | linkerd inject - | kubectl apply -f -
 ```
 
-**Using Helm**
 If you want to inject into an existing `Helm` installation, you can run the following:
 
-```bash
+```shell
 kubectl get deployment -n <name_of_namespace> <name_of_helm_release> -o yaml | linkerd inject - | kubectl apply -f -
 ```
 
 In this example, the `helm` release named `kic01-nginx-ingress-controller` is injected into the `nginx-ingress` namespace:
 
-```bash
+```shell
 kubectl get deploy -n nginx-ingress kic01-nginx-ingress-controller -o yaml | linkerd inject - | kubectl apply -f -
 ```
 
@@ -103,7 +88,7 @@ kubectl get deploy -n nginx-ingress kic01-nginx-ingress-controller -o yaml | lin
 
 Once NGINX Ingress Controller has been integrated with Linkerd, we can check the number of pods to confirm that the sidecar has successfully injected.
 
-```bash
+```shell
 kubectl get pods -n nginx-ingress
 
 NAME                                              READY   STATUS    RESTARTS   AGE
@@ -114,7 +99,7 @@ In the above example, `2/2` displays the number of pods, and confirms the `Linke
 
 For additional testing, we can install an example application. In this case, we'll use the `httpbin` image.
 
-```bash
+```shell
 kubectl create ns httpbin
 curl -sL https://raw.githubusercontent.com/openservicemesh/osm-docs/release-v1.2/manifests/samples/httpbin/httpbin.yaml
 kubectl apply -f httpbin.yaml
@@ -122,13 +107,13 @@ kubectl apply -f httpbin.yaml
 
 Once `httpbin` has been created and applied, we can inject it into an existing deployment with the following command:
 
-```bash
+```shell
 kubectl get deployment -n httpbin httpbin -o yaml | linkerd inject - | kubectl apply -f -
 ```
 
 Like the main installation, you can check the number of pods to confirm that the application has been successfully injected using the `linkerd` sidecar:
 
-```bash
+```shell
 kubectl get pods -n httpbin
 NAME                       READY   STATUS    RESTARTS   AGE
 httpbin-66df5bfbc9-ffhdp   2/2     Running   0          67s
@@ -161,7 +146,7 @@ The `use-cluster-ip` is required when using the Linkerd sidecar proxy.
 
 We can now start sending traffic to NGINX Ingress Controller, to verify that `Linkerd` is handling the sidecar traffic connections.
 
-```bash
+```shell
 curl -k https://httpbin.example.com -I
 
 HTTP/1.1 200 OK
@@ -176,6 +161,6 @@ access-control-allow-origin: *
 
 You can additionally view the status of NGINX Ingress Controller and Linkerd by using the Viz dashboard provided by Linkerd.
 
-```bash
+```shell
 linkerd viz dashboard
 ```

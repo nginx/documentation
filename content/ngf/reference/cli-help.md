@@ -3,7 +3,7 @@ title: Command-line reference guide
 weight: 100
 toc: true
 type: reference
-product: NGF
+nd-product: FABRIC
 nd-docs: DOCS-1843
 ---
 
@@ -59,6 +59,8 @@ This command runs the NGINX Gateway Fabric control plane.
 | _nginx-one-tls-skip-verify_         | _bool_   | Skip TLS verification for NGINX One Console connections. |
 | _gateway-api-inference-extension_   | _bool_   | Enable Gateway API Inference Extension support. Allows for configuring InferencePools to route traffic to AI workloads. (Default: `false`) |
 | _agent-tls-secret_                  | _string_ | The name of the base Secret containing TLS CA, certificate, and key for the NGINX Agent to securely communicate with the NGINX Gateway Fabric control plane. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). (Default `agent-tls`) |
+| _endpoint-picker-disable-tls_       | _bool_   | Disables TLS when connecting to the EndpointPicker. Set to true only for development/testing or when using a service mesh for encryption. (Default: `false`) | 
+| _endpoint-picker-tls-skip-verify_   | _bool_   | Disables server certificate verification when connecting to the EndpointPicker, if TLS is enabled. REQUIRED: Must be true until Gateway API Inference Extension EndpointPicker supports mounting certificates. (Default `true`) |
 
 ## Sleep
 

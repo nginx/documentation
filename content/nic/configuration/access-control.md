@@ -2,6 +2,8 @@
 title: Deploy a Policy for access control
 weight: 900
 toc: true
+nd-content-type: how-to
+nd-product: INGRESS
 nd-docs: DOCS-1858
 ---
 
@@ -11,7 +13,7 @@ This topic describes how to use F5 NGINX Ingress Controller to apply and update 
 
 ## Before you begin
 
-You should have a [working NGINX Ingress Controller]({{< ref "/nic/installation/installing-nic/installation-with-helm.md" >}}) instance.
+You should have a [working NGINX Ingress Controller]({{< ref "/nic/install/helm.md" >}}) instance.
 
 For ease of use in shell commands, set two shell variables:
 
@@ -78,6 +80,7 @@ Use `curl` to attempt to access the application:
 ```shell
 curl --resolve webapp.example.com:$IC_HTTP_PORT:$IC_IP http://webapp.example.com:$IC_HTTP_PORT
 ```
+
 ```text
 <html>
 <head><title>403 Forbidden</title></head>
@@ -112,6 +115,7 @@ Attempt to access the application again:
 ```shell
 curl --resolve webapp.example.com:$IC_HTTP_PORT:$IC_IP http://webapp.example.com:$IC_HTTP_PORT
 ```
+
 ```text
 Server address: 10.64.0.13:8080
 Server name: webapp-5cbbc7bd78-wf85w

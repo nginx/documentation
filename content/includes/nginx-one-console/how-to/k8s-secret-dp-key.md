@@ -1,0 +1,20 @@
+---
+nd-product: NONECO
+nd-files:
+- content/nginx-one-console/k8s/add-ngf-helm.md
+- content/nginx-one-console/k8s/add-ngf-manifests.md
+---
+
+To create a Kubernetes secret, you'll need:
+
+- The Data Plane Key
+- The `nginx-gateway` namespace must exist. You can create it with the following command: `kubectl create namespace nginx-gateway`
+
+   - Then create the secret with the following command. The key must be named `dataplane.key`:
+
+   ```shell
+   kubectl create secret generic dataplane-key \
+     --from-literal=dataplane.key=<Your Dataplane Key> \
+     -n nginx-gateway
+   ```
+

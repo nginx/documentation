@@ -1,4 +1,6 @@
 ---
+nd-files:
+- content/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}

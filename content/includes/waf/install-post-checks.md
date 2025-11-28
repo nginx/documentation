@@ -1,5 +1,9 @@
 ---
-nd-docs:
+nd-docs: null
+nd-files:
+- content/waf/install/docker.md
+- content/waf/install/kubernetes.md
+- content/waf/install/virtual-environment.md
 ---
 
 The following steps check that F5 WAF for NGINX enforcement is operational.

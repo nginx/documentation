@@ -3,7 +3,7 @@ title: Migrate from NGINX Ingress Controller to NGINX Gateway Fabric
 weight: 800
 toc: true
 nd-content-type: how-to
-nd-product: NGF
+nd-product: FABRIC
 nd-docs:
 ---
 

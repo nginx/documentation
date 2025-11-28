@@ -3,7 +3,7 @@ title: Enable OpenTracing (Removed in v5.0.0)
 toc: true
 weight: 700
 nd-content-type: how-to
-nd-product: NIC
+nd-product: INGRESS
 nd-docs: DOCS-618
 ---
 
@@ -24,7 +24,7 @@ From v5.1.0 onwards, you should follow the guidance in [Configure OpenTelemetry]
 1. Use a NGINX Ingress Controller image that contains OpenTracing.
 
     - You can find the images that include OpenTracing listed [in the technical specs doc]({{< ref "/nic/technical-specifications.md#supported-docker-images" >}}).
-    - Alternatively, you follow [Build NGINX Ingress Controller]({{< ref "/nic/installation/build-nginx-ingress-controller.md" >}}) using `debian-image` (or `alpine-image`) for NGINX or `debian-image-plus` (or `alpine-image-plus`) for NGINX Plus.
+    - Alternatively, you follow [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md" >}}) using `debian-image` (or `alpine-image`) for NGINX or `debian-image-plus` (or `alpine-image-plus`) for NGINX Plus.
     - [Jaeger](https://github.com/jaegertracing/jaeger-client-cpp), [Zipkin](https://github.com/rnburn/zipkin-cpp-opentracing) and [Datadog](https://github.com/DataDog/dd-opentracing-cpp/) tracers are installed by default.
 
 1. Enable snippets annotations by setting the [`enable-snippets`]({{< ref "/nic/configuration/global-configuration/command-line-arguments#cmdoption-enable-snippets" >}}) command-line argument to true.
