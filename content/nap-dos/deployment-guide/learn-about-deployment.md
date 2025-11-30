@@ -1,5 +1,5 @@
 ---
-description: Learn about F5 F5 DoS for NGINX Deployment.
+description: Learn about F5 DoS for NGINX Deployment.
 nd-docs: DOCS-666
 title: F5 DoS for NGINX Deployment
 toc: true
@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-F5 F5 DoS for NGINX provides behavioral protection against DoS for your web applications. <br><br>
+F5 DoS for NGINX provides behavioral protection against DoS for your web applications. <br><br>
 This guide explains how to deploy F5 DoS for NGINX as well as upgrade App Protect DoS.
 
 ## Prerequisites
