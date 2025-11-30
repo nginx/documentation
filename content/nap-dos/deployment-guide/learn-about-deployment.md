@@ -246,7 +246,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
-    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /call-out >}}
+    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) article for details.{{< /call-out >}}
 
 16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
@@ -463,7 +463,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting-guide/how-to-troubleshoot.md" >}}).
 
-    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) article for details.{{< /call-out >}}
+    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/) article for details.{{< /call-out >}}
 
 16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
