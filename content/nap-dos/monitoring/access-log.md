@@ -1,5 +1,5 @@
 ---
-description: Learn about the F5 F5 DoS for NGINX Request Log Mechanism.
+description: Learn about the F5 DoS for NGINX Request Log Mechanism.
 nd-docs: DOCS-668
 title: F5 DoS for NGINX Access Log Request Mechanism
 toc: true
