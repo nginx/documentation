@@ -1,7 +1,7 @@
 ---
 description: Learn about the F5 DoS for NGINX Operation Log.
 nd-docs: DOCS-669
-title: F5 DoS for NGINX Operation Log
+title: Operation Log
 toc: true
 weight: 180
 type:

@@ -1,7 +1,7 @@
 ---
 description: Learn about F5 DoS for NGINX Deployment.
 nd-docs: DOCS-666
-title: F5 DoS for NGINX Deployment
+title: Deployment
 toc: true
 weight: 100
 type:
@@ -1853,7 +1853,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
 
     c. See that the good traffic continue as usual while the attackers receive denial of service.
 
-To check F5 WAF for NGINX along side F5 DoS for NGINX, just perform the normal tests as specified at [Admin Guide](https://docs.nginx.com/nginx-app-protect/admin-guide/)
+To check F5 WAF for NGINX alongside F5 DoS for NGINX, just perform the normal tests as specified at [Admin Guide](https://docs.nginx.com/waf/install/virtual-environment/#post-installation-checks)
 
 ### Compatibility with NGINX Plus Releases
 
@@ -1863,7 +1863,7 @@ A threat campaign package is compatible with the NGINX Plus release supported du
 
 You can upgrade to the latest NGINX Plus and App Protect DoS versions by downloading and installing the latest F5 DoS for NGINX package. When upgrading from this package, App Protect DoS will be uninstalled and reinstalled. The old default security policy is deleted and the new default security policy is installed. If you have created a custom security policy, the policy persists and you will need to update `nginx.conf` and point to the custom security policy by referencing the json file (using the full path).
 
-If you upgrade your NGINX version outside of the App Protect DoS module, App Protect DoS will be uninstalled and you will need to reinstall it. You need to restart NGINX after an upgrade.
+If you upgrade your NGINX version outside the App Protect DoS module, App Protect DoS will be uninstalled and you will need to reinstall it. You need to restart NGINX after an upgrade.
 
 ## SELinux
 

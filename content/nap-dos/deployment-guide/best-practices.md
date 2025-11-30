@@ -1,14 +1,14 @@
 ---
 description:  F5 DoS for NGINX Best Practices Deployment.
 nd-docs: DOCS-666
-title: F5 DoS for NGINX Best Practices Deployment
+title: Best Practices Deployment
 toc: true
 weight: 100
 type:
 - how-to
 ---
 
-This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure NAPDOS to protect a proxy server.
+This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure F5 DoS For NGINX to protect a proxy server.
 
 ## F5 DoS configuration
 

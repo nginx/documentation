@@ -1,5 +1,5 @@
 ---
-title: F5 DoS for NGINX Directives and Policy
+title: Directives and Policy
 toc: true
 weight: 120
 nd-docs: DOCS-667
