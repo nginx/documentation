@@ -4,7 +4,7 @@ description: Install F5 NGINX Plus, F5 WAF & DOS for NGINX Plus on Amazon Web Se
   behavioral DoS detection and mitigation that works seamlessly in DevOps environments
   for your apps running on AmazonLinux 2023, RHEL, Debian and Ubuntu Linux OS.
 nd-docs: DOCS-1204
-title: Installing F5 WAF & DOS for NGINX AMIs on Amazon EC2
+title: F5 WAF & DOS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 110
 type:

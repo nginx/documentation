@@ -10,22 +10,22 @@ type:
 
 This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure F5 DoS For NGINX to protect a proxy server.
 
-## Configuration
+## F5 DoS Configuration
 
-### Load the F5 DoS for NGINX module
+### Load Module
 
 ```nginx
 load_module modules/ngx_http_app_protect_dos_module.so;
 ```
 
-### Enable F5 DoS for NGINX
+### Enable
 Add the directive in the appropriate context, You can set it in location, server, or http blocks:
 
 ```nginx
 app_protect_dos_enable on;
 ```
 
-#### Set a Protected Object name
+#### Set a Protected Object Name
 Choose a unique name. You can set it in location, server, or http blocks.
 
 ```nginx
