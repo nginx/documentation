@@ -58,7 +58,10 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 - Remove unnecessary remote access services on the platform.
 - Configure a Syslog destination on the same machine as App Protect DoS and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
 
-## RHEL 8+ / Rocky Linux 8 Installation
+
+## Virtual machine or bare metal Deployment
+
+### RHEL 8+ / Rocky Linux 8 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -271,7 +274,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start app-protect-dos-ebpf-manager
     ```
 
-## RHEL 9+ / Rocky Linux 9 Installation
+### RHEL 9+ / Rocky Linux 9 Installation
 
 1. If you already have NGINX packages on your system, back up your configs and logs:
 
@@ -489,7 +492,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 
-## Debian / Ubuntu Installation
+### Debian / Ubuntu Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -658,7 +661,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
      sudo systemctl start app-protect-dos-ebpf-manager
     ```
 
-## Alpine Installation
+### Alpine Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
@@ -792,7 +795,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     rc-service app-protect-dos-ebpf-manager start
     ```
 
-## Amazon Linux 2023 Installation
+### Amazon Linux 2023 Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
 
