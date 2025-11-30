@@ -191,9 +191,9 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
 
 If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 
-If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
+If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting/how-to-troubleshoot/).
 
-If you encounter any problems with F5 WAF for NGINX configuration, documentation is available at the [F5 WAF for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/v4/troubleshooting-guide/troubleshooting/).
+If you encounter any problems with F5 WAF for NGINX configuration, documentation is available at the [F5 WAF for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/).
 
 
 Customers who purchase an NGINX Plus AMI at the AWS Marketplace are eligible for the AWS support provided by the NGINX, Inc. engineering team. To activate support, submit the [AMI Support Activation](https://www.nginx.com/ami-support-activation/) form (you need your AWS account number). When you request support, we’ll ask you to provide the AWS account number that you registered, along with the IDs of your EC2 instances in some cases.
