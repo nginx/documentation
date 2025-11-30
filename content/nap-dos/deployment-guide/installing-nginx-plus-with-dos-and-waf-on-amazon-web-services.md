@@ -48,7 +48,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
 
     - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-os7tw2atlkwpg)
 
-    - [NGINX Plus with F5 WAF & DOSfor NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
+    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
 
 
     Click the **Continue to Subscribe** button to proceed to the **Launch on EC2** page.

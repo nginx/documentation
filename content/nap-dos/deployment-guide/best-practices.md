@@ -88,14 +88,14 @@ A full example with upstream:<br>
  
     server {
         listen       80 reuseport;
-        server_name  example.com;
+        server_name  example_srv;
  
         location / {
             app_protect_dos_enable  on;
             app_protect_dos_name    "main_app";
  
             # ✅ Good: monitor hits NGINX using server_name and is proxied to the upstream
-            app_protect_dos_monitor uri=example.com:80/ protocol=http1 timeout=7;
+            app_protect_dos_monitor uri=example_srv:80/ protocol=http1 timeout=7;
  
             # ❌ Bad: do NOT point the monitor directly at the upstream IP
             # app_protect_dos_monitor uri=10.197.24.136:3000/ protocol=http1 timeout=7;
@@ -216,7 +216,7 @@ http {
 
     server {
         listen       80 reuseport;
-        server_name  www.example.com;
+        server_name  example_srv;
 
         access_log /var/log/nginx/access.log log_dos if=$loggable;
         app_protect_dos_security_log_enable on;
@@ -228,7 +228,7 @@ http {
             app_protect_dos_name "main_app";
             set $loggable '0';
             access_log syslog:server=10.97.30.219:5561 log_dos if=$loggable;
-            app_protect_dos_monitor uri=http://www.example.com:80/ protocol=http1 timeout=7;
+            app_protect_dos_monitor uri=example_srv:80/ protocol=http1 timeout=7;
             proxy_pass http://10.197.24.136:3000;
         }
     }
