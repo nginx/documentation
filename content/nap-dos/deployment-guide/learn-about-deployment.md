@@ -58,7 +58,6 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 - Remove unnecessary remote access services on the platform.
 - Configure a Syslog destination on the same machine as App Protect DoS and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
 
-
 ## Virtual machine or bare metal Deployment
 
 ### RHEL 8+ / Rocky Linux 8 Installation
@@ -2123,7 +2122,7 @@ http {
 }
 ```
 
-### App Protect DoS arb
+### App Protect DoS Arbitrator
 
 Arbitrator (arb) is an internal service that is essential for the scaling scenarios. The arbitrator service should be deployed in the same namespace as F5 DoS for NGINX.
 

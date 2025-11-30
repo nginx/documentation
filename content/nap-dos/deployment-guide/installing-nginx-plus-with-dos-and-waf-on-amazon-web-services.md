@@ -21,7 +21,7 @@ The AMIs contain combination of the following components:
 - Latest version of [F5 WAF for NGINX](https://docs.nginx.com/nginx-app-protect-waf/), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
-## Install NGINX Plus F5 WAF & DOS for NGINX Plus
+## Install
 
 To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS for NGINX on AWS:
 

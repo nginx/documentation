@@ -10,7 +10,7 @@ type:
 
 This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure F5 DoS For NGINX to protect a proxy server.
 
-## F5 DoS configuration
+## Configuration
 
 ### Load the F5 DoS for NGINX module
 
@@ -110,7 +110,7 @@ A full example with upstream:<br>
 - Monitor traffic originates from `127.0.0.1`. Exclude it from rate and connection limits as needed.<br>
 - Define the monitor inside each protected `location` block.<br>
 
-## F5 DoS for NGINX Arbitrator
+## Arbitrator
 It is required when more than one F5 DoS for NGINX instance is deployed. Its primary function is to ensure that all instances are aware of—and share—the same state for each Protected Object.<br>
 A complete guide on configuring  F5 DoS for NGINX Arbitrator  be found here: [F5 DoS for NGINX Arbitrator](https://docs.nginx.com/nginx-app-protect-dos/deployment-guide/learn-about-deployment/#f5-dos-for-nginx-arbitrator) <br>
 Enable the F5 DoS for NGINX Arbitrator in the `http` context of the `nginx.conf` file:
@@ -119,7 +119,7 @@ Enable the F5 DoS for NGINX Arbitrator in the `http` context of the `nginx.conf`
 app_protect_dos_arb_fqdn 10.1.10.22;
 ```
 
-## F5 DoS eBPF manager
+## EBPF manager
 The eBPF Manager is a high-performance component that simplifies and secures the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases.
 Enable the L4-accelerated mitigation feature in the http context of the nginx.conf file:
 
@@ -127,7 +127,7 @@ Enable the L4-accelerated mitigation feature in the http context of the nginx.co
 app_protect_dos_accelerated_mitigation on;
 ```
 
-## F5 DoS for NGINX ELK Dashboards
+## ELK Dashboards
 ELK stands for Elasticsearch, Logstash, and Kibana. Logstash receives logs from F5 DoS, normalizes them, and stores them in the Elasticsearch index. Kibana allows you to visualize and navigate the logs using purpose-built dashboards.<br>
 A complete guide on configuring ELK can be found here: [F5 DoS for NGINX ELK Dashboards](https://github.com/f5devcentral/nap-dos-elk-dashboards) <br>
 F5 DoS directives should appear in your `nginx.conf` as shown. Replace `ip_kibana` with the hostname of the server running your ELK Docker container:<br>
@@ -156,7 +156,7 @@ http {
 }
 ```
 
-## F5 DoS for NGINX Live Activity Monitoring
+## Live Activity Monitoring
 
 F5 DoS for NGINX provides a range of application monitoring tools:
 
