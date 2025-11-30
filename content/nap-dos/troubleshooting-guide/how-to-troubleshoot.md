@@ -23,8 +23,8 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 | NGINX is not running (ps -aux) <br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`. <br> Fix the problem and re-run NGINX.|
 | No original source IP in logs|1. XFF is not configured (or not configured correctly) <br>2. External Load Balancer doesn't forward XFF |
 | F5 DoS for NGINX functionality is not as expected| F5 DoS for NGINX has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-dos/monitoring/types-of-logs.md">}})|
-| `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://www.nginx.com/blog/using-nginx-plus-with-selinux/) |
-| `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.nginx.com/blog/using-nginx-plus-with-selinux/#Issue-4:-%3Ccode%3EToo-many-files-are-open%3C/code%3E-Error) |
+| `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile) |
+| `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/) |
 | More protected objects than expected | The `app_protect_dos_enable` directive is inherited by all server and location blocks beneath it, each block will be a protected object. <br> Consider moving this directive from outer to inner block. <br> Refer to: [F5 DoS for NGINX - Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) |
 | `No DOS protection for ngx_worker at idx X` warning message | There are more nginx processes than allowed. <br> Either decrease the number of nginx processes (ngx_processes directive in `nginx.conf` file) or increase the number of supported workers for F5 DoS for NGINX using the flag `--max-workers NUM` for `/usr/bin/adminstall`. |
 | `unknown directive 'app_protect_dos_xxx'` error message | App Protect DOS module is not loaded. Add this line to the main (global) context of nginx.conf: <br>  `load_module "/etc/nginx/modules/ngx_http_app_protect_dos_module.so";` |
@@ -71,7 +71,7 @@ Add all the missing commands to the nginx.te file and repeat the SELinux configu
 semanage permissive -d httpd_t
 ```
 
-For more information about how to use NGINX Plus with SELinux - check our [blog](https://www.nginx.com/blog/using-nginx-plus-with-selinux/)
+For more information about how to use NGINX Plus with SELinux - check our [blog](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/)
 
 ### Send Logs to Support
 
