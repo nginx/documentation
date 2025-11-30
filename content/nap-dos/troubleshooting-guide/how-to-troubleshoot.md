@@ -1,5 +1,5 @@
 ---
-description: Learn about the F5 F5 DoS for NGINX Troubleshooting Guide.
+description: Learn about the F5 DoS for NGINX Troubleshooting Guide.
 nd-docs: DOCS-675
 title: F5 DoS for NGINX Troubleshooting Guide
 toc: true
@@ -10,7 +10,7 @@ type:
 
 ## Overview
 
-This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 F5 DoS for NGINX. It may also be useful to IT.
+This Troubleshooting Guide is intended to provide guidance to customers in the detection and correction of programming issues in F5 DoS for NGINX. It may also be useful to IT.
 
 ## Resolving Known Problems
 
