@@ -1031,7 +1031,7 @@ You need root permissions to execute the following steps.
 
     # prepare environment
     mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod55 /var/run/adm /tmp/cores ${LOGDIR}
+    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
     chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
 
     # run processes
@@ -2079,6 +2079,9 @@ http {
     app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" /var/log/adm/logger.log;
     # app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=1.2.3.4:5261;
 
+    app_protect_dos_liveness on;    # uri:/app_protect_dos_liveness port:8090
+    app_protect_dos_readiness on;   # uri:/app_protect_dos_readiness port:8090
+
     server {
         listen 80 reuseport;
         server_name serv;
@@ -2100,9 +2103,6 @@ http {
     server {
         listen 8090;
         server_name probe;
-
-        app_protect_dos_liveness on;    # uri:/app_protect_dos_liveness port:8090
-        app_protect_dos_readiness on;   # uri:/app_protect_dos_readiness port:8090
 
         location / {
             proxy_pass http://localhost:8091;
