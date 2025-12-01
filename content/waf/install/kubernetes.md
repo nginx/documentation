@@ -35,6 +35,7 @@ To review supported operating systems, read the [Technical specifications]({{< r
 ### Download your JSON web token
 
 To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+> **Note:** If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
@@ -208,7 +209,7 @@ Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
-- _license.jwt_ (Only necessary when using NGINX Plus)
+- _license.jwt_
 - _Dockerfile_
 
 To build an image, use the following command, replacing <your-image-name> as appropriate:
