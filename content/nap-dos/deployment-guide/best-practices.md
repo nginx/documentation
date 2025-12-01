@@ -1,31 +1,31 @@
 ---
 description:  F5 DoS for NGINX Best Practices Deployment.
 nd-docs: DOCS-666
-title: F5 DoS for NGINX Best Practices Deployment
+title: Best Practices
 toc: true
 weight: 100
 type:
 - how-to
 ---
 
-This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure NAPDOS to protect a proxy server.
+This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure F5 DoS For NGINX to protect a proxy server.
 
-## F5 DoS configuration
+## F5 DoS Configuration
 
-### Load the F5 DoS for NGINX module
+### Load Module
 
 ```nginx
 load_module modules/ngx_http_app_protect_dos_module.so;
 ```
 
-### Enable F5 DoS for NGINX
+### Enable
 Add the directive in the appropriate context, You can set it in location, server, or http blocks:
 
 ```nginx
 app_protect_dos_enable on;
 ```
 
-#### Set a Protected Object name
+#### Set a Protected Object Name
 Choose a unique name. You can set it in location, server, or http blocks.
 
 ```nginx
@@ -88,14 +88,14 @@ A full example with upstream:<br>
  
     server {
         listen       80 reuseport;
-        server_name  example.com;
+        server_name  example_srv;
  
         location / {
             app_protect_dos_enable  on;
             app_protect_dos_name    "main_app";
  
             # ✅ Good: monitor hits NGINX using server_name and is proxied to the upstream
-            app_protect_dos_monitor uri=example.com:80/ protocol=http1 timeout=7;
+            app_protect_dos_monitor uri=example_srv:80/ protocol=http1 timeout=7;
  
             # ❌ Bad: do NOT point the monitor directly at the upstream IP
             # app_protect_dos_monitor uri=10.197.24.136:3000/ protocol=http1 timeout=7;
@@ -110,7 +110,7 @@ A full example with upstream:<br>
 - Monitor traffic originates from `127.0.0.1`. Exclude it from rate and connection limits as needed.<br>
 - Define the monitor inside each protected `location` block.<br>
 
-## F5 DoS for NGINX Arbitrator
+## Arbitrator
 It is required when more than one F5 DoS for NGINX instance is deployed. Its primary function is to ensure that all instances are aware of—and share—the same state for each Protected Object.<br>
 A complete guide on configuring  F5 DoS for NGINX Arbitrator  be found here: [F5 DoS for NGINX Arbitrator](https://docs.nginx.com/nginx-app-protect-dos/deployment-guide/learn-about-deployment/#f5-dos-for-nginx-arbitrator) <br>
 Enable the F5 DoS for NGINX Arbitrator in the `http` context of the `nginx.conf` file:
@@ -119,7 +119,7 @@ Enable the F5 DoS for NGINX Arbitrator in the `http` context of the `nginx.conf`
 app_protect_dos_arb_fqdn 10.1.10.22;
 ```
 
-## F5 DoS eBPF manager
+## EBPF manager
 The eBPF Manager is a high-performance component that simplifies and secures the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases.
 Enable the L4-accelerated mitigation feature in the http context of the nginx.conf file:
 
@@ -127,7 +127,7 @@ Enable the L4-accelerated mitigation feature in the http context of the nginx.co
 app_protect_dos_accelerated_mitigation on;
 ```
 
-## F5 DoS for NGINX ELK Dashboards
+## ELK Dashboards
 ELK stands for Elasticsearch, Logstash, and Kibana. Logstash receives logs from F5 DoS, normalizes them, and stores them in the Elasticsearch index. Kibana allows you to visualize and navigate the logs using purpose-built dashboards.<br>
 A complete guide on configuring ELK can be found here: [F5 DoS for NGINX ELK Dashboards](https://github.com/f5devcentral/nap-dos-elk-dashboards) <br>
 F5 DoS directives should appear in your `nginx.conf` as shown. Replace `ip_kibana` with the hostname of the server running your ELK Docker container:<br>
@@ -156,7 +156,7 @@ http {
 }
 ```
 
-## F5 DoS for NGINX Live Activity Monitoring
+## Live Activity Monitoring
 
 F5 DoS for NGINX provides a range of application monitoring tools:
 
@@ -216,7 +216,7 @@ http {
 
     server {
         listen       80 reuseport;
-        server_name  www.example.com;
+        server_name  example_srv;
 
         access_log /var/log/nginx/access.log log_dos if=$loggable;
         app_protect_dos_security_log_enable on;
@@ -228,7 +228,7 @@ http {
             app_protect_dos_name "main_app";
             set $loggable '0';
             access_log syslog:server=10.97.30.219:5561 log_dos if=$loggable;
-            app_protect_dos_monitor uri=http://www.example.com:80/ protocol=http1 timeout=7;
+            app_protect_dos_monitor uri=example_srv:80/ protocol=http1 timeout=7;
             proxy_pass http://10.197.24.136:3000;
         }
     }
