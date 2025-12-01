@@ -1,5 +1,5 @@
 ---
 title: Container images
-weight: 600
+weight: 400
 url: /nginx-ingress-controller/install/images
 ---
