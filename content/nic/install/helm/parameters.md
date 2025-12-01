@@ -1,149 +1,37 @@
 ---
-title: Install NGINX Ingress Controller with Helm
+title: NGINX Ingress Controller Helm chart parameters
+linkTitle: Helm chart parameters
 toc: true
-weight: 100
+weight: 400
 nd-content-type: how-to
 nd-product: INGRESS
-nd-docs: DOCS-602
 ---
 
-This document explains how to install F5 NGINX Ingress Controller using [Helm](https://helm.sh/).
+This page describes the Helm chart parameters of F5 NGINX Ingress Controllers.
 
-Following these steps will deploy NGINX Ingress Controller in your Kubernetes cluster with the default configuration.
+It is a reference for each parameter name, a description of the parameter, and any default values.
 
-The [Helm chart parameters](#helm-chart-parameters) lists the parameters that can be configured during installation.
-
-## Before you begin
-
-{{< call-out "note" >}} We recommend the most recent stable version of NGINX Ingress Controller, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
-
-- A [Kubernetes Version Supported by NGINX Ingress Controller]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
-- Helm 3.0+.
-
-{{< call-out "note" >}} Helm version 3.18.5 has a [bug that returns an error when charts are referenced on a remote https url](https://github.com/helm/helm/issues/31136). Use versions up to 3.18.4 until they fix it. {{< /call-out >}}
-
-If you would like to use NGINX Plus, there are few options: you will need to update the `controller.image.repository` field of `values-plus.yaml` accordingly.
-
-- [Download NGINX Ingress Controller from the F5 Registry]({{< ref "/nic/install/images/registry-download.md" >}})
-- [Add an NGINX Ingress Controller image to your cluster]({{< ref "/nic/install/images/add-image-to-cluster.md" >}})
-
-## Install the Helm chart using the OCI Registry
-
-Run the following commands to install the chart with the release name _my-release_ (Which you can customize):
-
-{{< tabs name="registry-chart-versions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-```shell
-helm install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}}
-```
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-This assumes you have pushed NGINX Ingress Controller image `nginx-plus-ingress` to your private registry `myregistry.example.com`:
-
-```shell
-helm install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} --set controller.image.repository=myregistry.example.com/nginx-plus-ingress --set controller.nginxplus=true
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-If you'd like to test the latest changes in NGINX Ingress Controller before a new release, you can install the `edge` version, which is built from the `main` branch of the [NGINX Ingress Controller repository](https://github.com/nginx/kubernetes-ingress).
-
-You can install the `edge` version by specifying the `--version` flag with the value `0.0.0-edge`:
-
-```shell
-helm install my-release oci://ghcr.io/nginx/charts/nginx-ingress --version 0.0.0-edge
-```
-
-{{< call-out "warning" >}} The `edge` version is not intended for production use. It is intended for testing and development purposes only. {{< /call-out >}}
-
-## Install the Helm chart from source
-
-This section covers the steps involved with installing the Helm chart from the source, instead of using the registry.
-
-It also manages required the custom resource definitions (CRDs) for NGINX Ingress Controller.
-
-Pull the chart sources, which are also required for upgrading or deleting the CRDs:
-
-```shell
-helm pull oci://ghcr.io/nginx/charts/nginx-ingress --untar --version {{< nic-helm-version >}}
-```
-
-Change your working directory to nginx-ingress:
-
-```shell
-cd nginx-ingress
-```
-
-Install the chart with the release name _my-release_ (Which you can customize):
-
-{{< tabs name="source-chart-versions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-```shell
-helm install my-release . 
-```
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-```shell
-helm install my-release . --set controller.image.repository=myregistry.example.com/nginx-plus-ingress --set controller.nginxplus=true
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-## Custom Resource Definitions
-
-When installing the NGINX Ingress Controller chart, Helm will also install the required custom resource definitions (CRDs).
-
-If the CRDs are not installed, NGINX Ingress Controller pods will not become _Ready_.
-
-If you do not use the custom resources that require those CRDs (With `controller.enableCustomResources`, `controller.appprotect.enable` and `controller.appprotectdos.enable` set to `false`), the installation of the CRDs can be skipped by specifying `--skip-crds` in your _helm install_ command.
-
-{{< call-out "caution" "Running multiple NGINX Ingress Controller instances">}}
-
-If you are running multiple NGINX Ingress Controller releases in your cluster with custom resources enabled, the releases will share a single version of the CRDs.
-
-Ensure the NGINX Ingress Controller versions match the version of the CRDs. When uninstalling a release, ensure that you don’t remove the CRDs until there are no other NGINX Ingress Controller releases running in the cluster.
-
-The [Run multiple NGINX Ingress Controllers]({{< ref "/nic/install/multiple-controllers.md" >}}) topic has more details.
-
-{{< /call-out >}}
-
-## Helm chart parameters
-
-The following table lists the configurable parameters of the NGINX Ingress Controller chart and their default values.
+## NGINX Ingress Controller Helm chart parameters
 
 {{< call-out "note" >}}
 
 The [values.yaml](https://github.com/nginx/kubernetes-ingress/blob/main/charts/nginx-ingress/values.yaml) file of the Helm chart is a single source of truth and includes parameter descriptions: the table may become outdated.
 
-The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/charts/nginx-ingress/values.schema.json) file can be used to inspect the formatting of values.
+The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/charts/nginx-ingress/values.schema.json) file can be used to inspect how values are formatted.
 
 {{< /call-out >}}
 
 {{< table >}}
 
-|Parameter | Description | Default |
-| --- | --- | --- |
-| **controller.name** | The name of the Ingress Controller deployment, daemonset, or statefulset. | Autogenerated |
-| **controller.kind** | The kind of the Ingress Controller installation - deployment, daemonset, or statefulset. | deployment |
+| Parameter | Description | Default |
+| ----------| ----------- | ------- |
+| **controller.name** | The name of the NGINX Ingress Controller deployment, daemonset, or statefulset. | Autogenerated |
+| **controller.kind** | The kind of the NGINX Ingress Controller installation - deployment, daemonset, or statefulset. | deployment |
 | **controller.annotations** | Allows for setting of `annotations` for deployment, daemonset, or statefulset. | {} |
-| **controller.nginxplus** | Deploys the Ingress Controller for NGINX Plus. | false |
+| **controller.nginxplus** | Deploys NGINX Ingress Controller for NGINX Plus. | false |
 | **controller.mgmt.licenseTokenSecretName** | Configures the secret used in the [license_token](https://nginx.org/en/docs/ngx_mgmt_module.html#license_token) directive. This key assumes the secret is in the Namespace that NGINX Ingress Controller is deployed in. The secret must be of type `nginx.com/license` with the base64 encoded JWT in the `license.jwt` key. | license-token |
 | **controller.mgmt.enforceInitialReport** | Configures the [enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report) directive, which enables or disables the 180-day grace period for sending the initial usage report. | false |
-| **controller.mgmt.usageReport.endpoint** | Configures the endpoint of the [usage_report](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive. This is used to configure the endpoint NGINX uses to send usage reports to NIM. | product.connect.nginx.com |
+| **controller.mgmt.usageReport.endpoint** | Configures the endpoint of the [usage_report](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive. This is used to configure the endpoint NGINX uses to send usage reports to NGINX Instance Manager . | product.connect.nginx.com |
 | **controller.mgmt.usageReport.interval** | Configures the interval of the [usage_report](https://nginx.org/en/docs/ngx_mgmt_module.html#usage_report) directive. This specifies the frequency that usage reports are sent. Only seconds(s), minutes(m), and hours(h) are allowed and must be between 60s and 24h. | 1h |
 | **controller.mgmt.usageReport.proxyHost** | Configures the host name of the [proxy](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy) directive with optional port. | N/A |
 | **controller.mgmt.usageReport.proxyCredentialsSecretName** | Configures the [proxy_username](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy_username) directive as well as the [proxy_password](https://nginx.org/en/docs/ngx_mgmt_module.html#proxy_password) directive using a Kubernetes Opaque Secret. The Secret must contain `username` and `password` fields. | N/A |
@@ -155,14 +43,14 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.mgmt.sslTrustedCertificateSecretName** | Configures the secret used to create the file(s) referenced the in [ssl_trusted_certifcate](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_trusted_certificate), and [ssl_crl](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_crl) directives. This key assumes the secret is in the Namespace that NGINX Ingress Controller is deployed in. The secret must be of type `nginx.org/ca`, where the `ca.crt` key contains a base64 encoded trusted cert, and the optional `ca.crl` key can contain a base64 encoded CRL. If the optional `ca.crl` key is supplied, it will configure the NGINX `ssl_crl` directive. | N/A |
 | **controller.mgmt.configMapName** | Allows changing the name of the MGMT config map. The name should not include a namespace| Autogenerated |
 | **controller.nginxReloadTimeout** | The timeout in milliseconds which the NGINX Ingress Controller will wait for a successful NGINX reload after a change or at the initial start. | 60000 |
-| **controller.hostNetwork** | Enables the NGINX Ingress Controller pods to use the host's network namespace. | false |
-| **controller.dnsPolicy** | DNS policy for the NGINX Ingress Controller pods. | ClusterFirst |
+| **controller.hostNetwork** | Enables NGINX Ingress Controller pods to use the host's network namespace. | false |
+| **controller.dnsPolicy** | DNS policy for NGINX Ingress Controller pods. | ClusterFirst |
 | **controller.nginxDebug** | Enables debugging for NGINX. Uses the `nginx-debug` binary. Requires `error-log-level: debug` in the ConfigMap via `controller.config.entries`. | false |
-| **controller.logLevel** | The log level of the NGINX Ingress Controller. | info |
-| **controller.logFormat** | The log format of the NGINX Ingress Controller. | glog |
+| **controller.logLevel** | The log level of NGINX Ingress Controller. | info |
+| **controller.logFormat** | The log format of NGINX Ingress Controller. | glog |
 | **controller.directiveAutoAdjust** | Automatically adjusts NGINX buffer directives to prevent configuration errors. | false |
-| **controller.image.digest** | The image digest of the NGINX Ingress Controller. | None |
-| **controller.image.repository** | The image repository of the NGINX Ingress Controller. | nginx/nginx-ingress |
+| **controller.image.digest** | The image digest of NGINX Ingress Controller. | None |
+| **controller.image.repository** | The image repository of NGINX Ingress Controller. | nginx/nginx-ingress |
 | **controller.image.tag** | The tag of the NGINX Ingress Controller image. | {{< nic-version >}} |
 | **controller.image.pullPolicy** | The pull policy for the NGINX Ingress Controller image. | IfNotPresent |
 | **controller.lifecycle** | The lifecycle of the NGINX Ingress Controller pods. | {} |
@@ -177,27 +65,27 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.wildcardTLS.cert** | The base64-encoded TLS certificate for every Ingress/VirtualServer host that has TLS enabled but no secret specified. If the parameter is not set, for such Ingress/VirtualServer hosts NGINX will break any attempt to establish a TLS connection. | None |
 | **controller.wildcardTLS.key** | The base64-encoded TLS key for every Ingress/VirtualServer host that has TLS enabled but no secret specified. If the parameter is not set, for such Ingress/VirtualServer hosts NGINX will break any attempt to establish a TLS connection. | None |
 | **controller.wildcardTLS.secret** | The secret with a TLS certificate and key for every Ingress/VirtualServer host that has TLS enabled but no secret specified. The value must follow the following format: `<namespace>/<name>`. Used as an alternative to specifying a certificate and key using `controller.wildcardTLS.cert` and `controller.wildcardTLS.key` parameters. | None |
-| **controller.nodeSelector** | The node selector for pod assignment for the NGINX Ingress Controller pods. | {} |
+| **controller.nodeSelector** | The node selector for pod assignment for NGINX Ingress Controller pods. | {} |
 | **controller.terminationGracePeriodSeconds** | The termination grace period of the NGINX Ingress Controller pod. | 30 |
-| **controller.tolerations** | The tolerations of the NGINX Ingress Controller pods. | [] |
-| **controller.affinity** | The affinity of the NGINX Ingress Controller pods. | {} |
+| **controller.tolerations** | The tolerations of NGINX Ingress Controller pods. | [] |
+| **controller.affinity** | The affinity of NGINX Ingress Controller pods. | {} |
 | **controller.topologySpreadConstraints** | The topology spread constraints of the NGINX Ingress Controller pods. | {} |
 | **controller.env** | The additional environment variables to be set on the NGINX Ingress Controller pods. | [] |
-| **controller.volumes** | The volumes of the NGINX Ingress Controller pods. | [] |
-| **controller.volumeMounts** | The volumeMounts of the NGINX Ingress Controller pods. | [] |
-| **controller.initContainers** | InitContainers for the NGINX Ingress Controller pods. | [] |
-| **controller.extraContainers** | Extra (eg. sidecar) containers for the NGINX Ingress Controller pods. | [] |
+| **controller.volumes** | The volumes of NGINX Ingress Controller pods. | [] |
+| **controller.volumeMounts** | The volumeMounts of NGINX Ingress Controller pods. | [] |
+| **controller.initContainers** | InitContainers for NGINX Ingress Controller pods. | [] |
+| **controller.extraContainers** | Extra (eg. sidecar) containers for NGINX Ingress Controller pods. | [] |
 | **controller.podSecurityContext**| The SecurityContext for Ingress Controller pods. | "seccompProfile": {"type": "RuntimeDefault"} |
 | **controller.securityContext** | The SecurityContext for Ingress Controller container. | {} |
-| **controller.initContainerSecurityContext** | The SecurityContext for Ingress Controller init container when `readOnlyRootFilesystem` is enabled by either setting `controller.securityContext.readOnlyRootFilesystem` or `controller.readOnlyRootFilesystem`to `true`. | {} |
-| **controller.resources** | The resources of the NGINX Ingress Controller pods. | requests: cpu=100m,memory=128Mi |
+| **controller.initContainerSecurityContext** | The SecurityContext for NGINX Ingress Controller init container when `readOnlyRootFilesystem` is enabled by either setting `controller.securityContext.readOnlyRootFilesystem` or `controller.readOnlyRootFilesystem`to `true`. | {} |
+| **controller.resources** | The resources of NGINX Ingress Controller pods. | requests: cpu=100m,memory=128Mi |
 | **controller.initContainerResources** | The resources of the init container which is used when `readOnlyRootFilesystem` is enabled by either setting `controller.securityContext.readOnlyRootFilesystem` or `controller.readOnlyRootFilesystem`to `true`. | requests: cpu=100m,memory=128Mi |
 | **controller.replicaCount** | The number of replicas of the NGINX Ingress Controller deployment. | 1 |
-| **controller.ingressClass.name** | A class of the NGINX Ingress Controller. An IngressClass resource with the name equal to the class must be deployed. Otherwise, the NGINX Ingress Controller will fail to start. the NGINX Ingress Controller only processes resources that belong to its class - i.e. have the "ingressClassName" field resource equal to the class. the NGINX Ingress Controller processes all the VirtualServer/VirtualServerRoute/TransportServer resources that do not have the "ingressClassName" field for all versions of Kubernetes. | nginx |
+| **controller.ingressClass.name** | A class of NGINX Ingress Controller. An IngressClass resource with the name equal to the class must be deployed. Otherwise, the NGINX Ingress Controller will fail to start. the NGINX Ingress Controller only processes resources that belong to its class - i.e. have the "ingressClassName" field resource equal to the class. the NGINX Ingress Controller processes all the VirtualServer/VirtualServerRoute/TransportServer resources that do not have the "ingressClassName" field for all versions of Kubernetes. | nginx |
 | **controller.ingressClass.create** | Creates a new IngressClass object with the name `controller.ingressClass.name`. Set to `false` to use an existing ingressClass created using `kubectl` with the same name. If you use `helm upgrade`, do not change the values from the previous release as helm will delete IngressClass objects managed by helm. If you are upgrading from a release earlier than {{< nic-version >}}, do not set the value to false. | true |
 | **controller.ingressClass.setAsDefaultIngress** | New Ingresses without an `"ingressClassName"` field specified will be assigned the class specified in `controller.ingressClass.name`. Requires `controller.ingressClass.create`.  | false |
 | **controller.watchNamespace** | Comma separated list of namespaces the NGINX Ingress Controller should watch for resources. By default the NGINX Ingress Controller watches all namespaces. Mutually exclusive with `controller.watchNamespaceLabel`. Please note that if configuring multiple namespaces using the Helm cli `--set` option, the string needs to wrapped in double quotes and the commas escaped using a backslash - e.g. `--set controller.watchNamespace="default\,nginx-ingress"`. | "" |
-| **controller.watchNamespaceLabel** | Configures the NGINX Ingress Controller to watch only those namespaces with label foo=bar. By default the NGINX Ingress Controller watches all namespaces. Mutually exclusive with `controller.watchNamespace`. | "" |
+| **controller.watchNamespaceLabel** | Configures NGINX Ingress Controller to watch only those namespaces with label foo=bar. By default the NGINX Ingress Controller watches all namespaces. Mutually exclusive with `controller.watchNamespace`. | "" |
 | **controller.watchSecretNamespace** | Comma separated list of namespaces the NGINX Ingress Controller should watch for resources of type Secret. If this arg is not configured, the NGINX Ingress Controller watches the same namespaces for all resources, see `controller.watchNamespace` and `controller.watchNamespaceLabel`. All namespaces included with this argument must be part of either `controller.watchNamespace` or  `controller.watchNamespaceLabel`. Please note that if configuring multiple namespaces using the Helm cli `--set` option, the string needs to wrapped in double quotes and the commas escaped using a backslash - e.g. `--set controller.watchSecretNamespace="default\,nginx-ingress"`. | "" |
 | **controller.enableCustomResources** | Enable the custom resources. | true |
 | **controller.enableOIDC** | Enable OIDC policies. | false |
@@ -213,9 +101,9 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.nginxStatus.enable** | Enable the NGINX stub_status, or the NGINX Plus API. | true |
 | **controller.nginxStatus.port** | Set the port where the NGINX stub_status or the NGINX Plus API is exposed. | 8080 |
 | **controller.nginxStatus.allowCidrs** | Add IP/CIDR blocks to the allow list for NGINX stub_status or the NGINX Plus API. Separate multiple IP/CIDR by commas. | 127.0.0.1,::1 |
-| **controller.priorityClassName** | The PriorityClass of the NGINX Ingress Controller pods. | None |
-| **controller.service.create** | Creates a service to expose the NGINX Ingress Controller pods. | true |
-| **controller.service.type** | The type of service to create for the NGINX Ingress Controller. | LoadBalancer |
+| **controller.priorityClassName** | The PriorityClass of NGINX Ingress Controller pods. | None |
+| **controller.service.create** | Creates a service to expose NGINX Ingress Controller pods. | true |
+| **controller.service.type** | The type of service to create for NGINX Ingress Controller. | LoadBalancer |
 | **controller.service.externalTrafficPolicy** | The externalTrafficPolicy of the service. The value Local preserves the client source IP. | Local |
 | **controller.service.annotations** | The annotations of the NGINX Ingress Controller service. | {} |
 | **controller.service.extraLabels** | The extra labels of the service. | {} |
@@ -345,29 +233,3 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **serviceNameOverride** | Used to prevent cloud load balancers from being replaced due to service name change during helm upgrades. | "" |
 
 {{< /table >}}
-
-## Uninstall NGINX Ingress Controller
-
-To uninstall NGINX Ingress Controller, you must first remove the chart.
-
-To remove a release named _my-release_, use the following command:
-
-```shell
-helm uninstall my-release
-```
-
-The command removes all the Kubernetes components associated with the release and deletes the release.
-
-Uninstalling the release does not remove the CRDs. To do so, first pull the chart sources:
-
-```shell
-helm pull oci://ghcr.io/nginx/charts/nginx-ingress --untar --version {{< nic-helm-version >}}
-```
-
-Then use _kubectl_ to delete the CRDs:
-
-```shell
-kubectl delete -f crds/
-```
-
-{{< call-out "warning" >}} This command will delete all the corresponding custom resources in your cluster across all namespaces. Please ensure there are no custom resources that you want to keep and there are no other NGINX Ingress Controller instances running in the cluster. {{< /call-out >}}
