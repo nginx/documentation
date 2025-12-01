@@ -75,3 +75,31 @@ When uninstalling a release, ensure that you don’t remove the CRDs until there
 The [Run multiple NGINX Ingress Controllers]({{< ref "/nic/install/multiple-controllers.md" >}}) topic has more details.
 
 {{< /call-out >}}
+
+## Remove secrets
+
+If your deployment used NGINX Plus, you should also remove the secrets created for your license and the F5 registry.
+
+```shell
+kubectl delete secret nplus-license
+```
+
+{{< details summary="Example output" >}}
+
+```text
+secret "nplus-license" deleted
+```
+
+{{< /details >}}
+
+```shell
+kubectl delete secret regcred
+```
+
+{{< details summary="Example output" >}}
+
+```text
+secret "regcred" deleted
+```
+
+{{< /details >}}

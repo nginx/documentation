@@ -128,7 +128,7 @@ secret/regcred created
 
 You have two options for installing the Helm chart: directly from the F5 registry, or using the source.
 
-## F5 Registry
+### F5 Registry
 
 To install NGINX Ingress Controller using the F5 registry, run this command with your release name:
 
@@ -164,7 +164,7 @@ Installation and upgrade instructions: https://docs.nginx.com/nginx-ingress-cont
 
 {{< /details >}}
 
-## From source
+### From source
 
 To install NGINX Ingress Controller from source, first pull the chart by running this command:
 
