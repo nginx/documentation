@@ -1,10 +1,10 @@
 ---
-description: Install F5 NGINX Plus, F5 WAF & DOS for NGINX Plus on Amazon Web Services
+description: Install F5 NGINX Plus, F5 WAF & DoS for NGINX Plus on Amazon Web Services
   (AWS), to provide sophisticated Layer 7 load balancing, Modern app security solution,
   behavioral DoS detection and mitigation that works seamlessly in DevOps environments
   for your apps running on AmazonLinux 2023, RHEL, Debian and Ubuntu Linux OS.
 nd-docs: DOCS-1204
-title: F5 WAF & DOS for NGINX AMIs on Amazon EC2
+title: Installing F5 WAF & DoS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 110
 type:
@@ -40,15 +40,15 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       
 	- [NGINX Plus with F5 DoS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-osz3wmirx5zqg)
     
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co)
 
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – RHEL 9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-kmtitev2hhrym)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – RHEL 9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-kmtitev2hhrym)
 
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu)
 
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-os7tw2atlkwpg)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-os7tw2atlkwpg)
 
-    - [NGINX Plus with F5 WAF & DOS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
 
 
     Click the **Continue to Subscribe** button to proceed to the **Launch on EC2** page.
@@ -74,7 +74,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       cat /opt/app_protect/VERSION /opt/app_protect/RELEASE
       ```
 
-     Verify NGINX DoS latest release from <https://docs.nginx.com/nginx-app-protect-dos/releases/> is
+     Verify F5 DoS for NGINX latest release from <https://docs.nginx.com/nginx-app-protect-dos/releases/> is
 
      installed by comparing with installed version from following command on the EC2 machine
 
@@ -92,7 +92,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
     In case NGINX PLUS / F5 DoS for NGINX / F5 WAF for NGINX packages are not latest release then upgrade the following  with these commands:
 
 
-    For App Protect DoS solution based on RedHat / CentOS
+    For F5 DoS for NGINX solution based on RedHat / AmazonLinux 2023
 
       ```shell
       sudo service nginx stop
@@ -100,7 +100,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       sudo systemctl start nginx
       ```
 
-    For App Protect DoS solution based on Debian / Ubuntu
+    For F5 DoS for NGINX solution based on Debian / Ubuntu
 
       ```shell
       sudo service nginx stop
@@ -109,7 +109,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       sudo service nginx start
       ```
 
-     For F5 WAF for NGINX solution based on RedHat / CentOS
+     For F5 WAF for NGINX solution based on RedHat / AmazonLinux 2023
 
       ```shell
       sudo service nginx stop
@@ -171,7 +171,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-    c. Enable the L4 accelerated mitigation feature (for Debian11/Ubuntu20.04/RHEL8) in the `http` context of the `nginx.conf` file:
+    c. Enable the L4 accelerated mitigation feature in the `http` context of the `nginx.conf` file:
 
     ```shell
     app_protect_dos_accelerated_mitigation on;

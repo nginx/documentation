@@ -3,7 +3,7 @@ description: Learn about F5 DoS for NGINX Deployment.
 nd-docs: DOCS-666
 title: Deployment
 toc: true
-weight: 100
+weight: 90
 type:
 - how-to
 ---
