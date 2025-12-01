@@ -25,7 +25,7 @@ Depending on your deployment type, you may have additional requirements:
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 {{< include "waf/install-selinux-warning.md" >}}
-### Additional Requirement for NGINX Plus Users 
+### Required: Download JWT License for NGINX Plus Installation
 If you choose to install NGINX automatically with App Protect, make sure to download your JWT license from MyF5 before you begin
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
