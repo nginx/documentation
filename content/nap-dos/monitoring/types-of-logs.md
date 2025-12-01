@@ -1,7 +1,7 @@
 ---
-description: Learn about the F5 F5 DoS for NGINX Logs Overview.
+description: Learn about the F5 DoS for NGINX Logs Overview.
 nd-docs: DOCS-671
-title: F5 DoS for NGINX Logs Overview
+title: Logs Overview
 toc: true
 weight: 130
 type:
@@ -13,7 +13,7 @@ There are 4 types of logs corresponding to App Protect DoS:
 - [Security Log](#security-log): The general picture of the site and how App Protect DoS processed it, including anomalies and signatures found.
 - [Operation Log](#operation-log): Events such as configuration errors or warnings.
 - [Debug Logs](#debug-log): Technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
-- [Request Logging](#request-log): F5 F5 DoS for NGINX adds information to each request logged to NGINX's access logging mechanism.
+- [Request Logging](#request-log): F5 DoS for NGINX adds information to each request logged to NGINX's access logging mechanism.
 
 {{< call-out "note" >}}
 NGINX does not have audit logs in the sense of *"**who** did **what**"*. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
