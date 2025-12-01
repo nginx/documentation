@@ -44,6 +44,9 @@ The registry contains the following image types:
 - Unprivileged installation of NGINX Plus and NGINX Agent:</br>
   `https://private-registry.nginx.com/v2/nginx-plus/rootless-agent`
 
+- [NGINX Plus dynamic modules]({{< ref "/nginx/dynamic-modules/dynamic-modules.md" >}}):</br>
+  `https://private-registry.nginx.com/v2/nginx-plus/modules`
+
 The images can be targeted for a particular operating system and NGINX Plus release using tags.
 
 ### Tags for operating systems
