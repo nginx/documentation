@@ -35,7 +35,7 @@ _December 1th, 2025_
 
 - 13117 - Severity Field should contain a value based on the violation highest severity
 - 13138 - Ability to bypass request when there is a 444 scenario
-- 13130 - Support all policy signatures in policy converter
+- 13130 - add --all-policy-signatures option to include all policy signatures in the conversion output
 
 ### Packages
 
