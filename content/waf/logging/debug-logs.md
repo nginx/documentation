@@ -8,13 +8,13 @@ nd-product: NAP-WAF
 
 ## Debug Logs
 
-Debug log settings determine the minimum log level and the internal App Protect components included in the log.
+Debug log settings determine the minimum log level and the internal F5 WAF for NGINX components included in the log.
 
 `nginx.conf` does not refer to the F5 WAF for NGINX debug log configuration neither directly nor indirectly.
 
 ### Logger Configuration File
 
-The logging configuration file is located in: `/etc/app_protect/bd/logger.cfg` and contains the App Protect modules for logging and debugging.
+The logging configuration file is located in: `/etc/app_protect/bd/logger.cfg` and contains the F5 WAF for NGINX modules for logging and debugging.
 
 ```none
 ################################################################################################

@@ -16,10 +16,9 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
-
 ## F5 WAF for NGINX 5.10
 
-_December 1th, 2025_
+Released _December 1st, 2025_.
 
 ### New features
 
@@ -65,7 +64,7 @@ Released _September 29th, 2025_.
 
 ### Important notes
 
-- Renamed NGINX App Protect WAF to F5 WAF for NGINX
+- Renamed F5 NGINX App Protect WAF to F5 WAF for NGINX
 - Aligned F5 WAF for NGINX versions
     - Package and container artifacts now share the same version numbers
     - Upgrade processes remain the same as earlier releases
@@ -109,7 +108,7 @@ Released _September 29th, 2025_.
 
 {{< /table >}}
 
-## NGINX App Protect WAF 5.8 / 4.16
+## F5 NGINX App Protect WAF 5.8 / 4.16
 
 Released _August 13th, 2025_.
 
@@ -135,7 +134,7 @@ Released _August 13th, 2025_.
 
 {{< /table >}}
 
-## NGINX App Protect WAF 5.7 / 4.15
+## F5 NGINX App Protect WAF 5.7 / 4.15
 
 Released _June 24th, 2025_.
 
@@ -178,7 +177,7 @@ Released _June 24th, 2025_.
 
 {{< /table >}}
 
-## NGINX App Protect WAF 5.6 / 4.14
+## F5 NGINX App Protect WAF 5.6 / 4.14
 
 Released _April 1st, 2025_.
 
@@ -218,7 +217,7 @@ Released _April 1st, 2025_.
 
 {{< /table >}}
 
-## NGINX App Protect WAF 5.5 / 4.13
+## F5 NGINX App Protect WAF 5.5 / 4.13
 
 Released _January 30th, 2025_.
 

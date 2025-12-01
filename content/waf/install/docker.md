@@ -1073,7 +1073,7 @@ RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
 # Add NGINX App-protect repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
 
-# Enable Yum repositories to pull App Protect dependencies:
+# Enable Yum repositories to pull F5 WAF for NGINX dependencies:
 RUN dnf config-manager --set-enabled ol8_codeready_builder \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     # You can use either of the dependencies or epel repo
