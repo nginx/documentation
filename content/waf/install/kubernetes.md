@@ -404,63 +404,34 @@ This configuration uses a _hostPath_ backed persistent volume claim.
 {{< /call-out >}}
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: nap5-deployment
+  name: nap5-bundles-pv
+  labels:
+    type: local
 spec:
-  selector:
-    matchLabels:
-      app: nap5
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nap5
-    spec:
-      imagePullSecrets:
-        - name: regcred
-      containers:
-        - name: nginx
-          image: <your-private-registry>/waf:<your-tag>
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-            - name: app-protect-config
-              mountPath: /opt/app_protect/config
-        - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: ENFORCER_PORT
-              value: "50000"
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-        - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - all
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-            - name: app-protect-config
-              mountPath: /opt/app_protect/config
-            - name: app-protect-bundles
-              mountPath: /etc/app_protect/bundles
-      volumes:
-        - name: app-protect-bd-config
-          emptyDir: {}
-        - name: app-protect-config
-          emptyDir: {}
-        - name: app-protect-bundles
-          persistentVolumeClaim:
-            claimName: nap5-bundles-pvc
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/nap5_bundles_pv_data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nap5-bundles-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: nap5-bundles-pv
 ```
 
 {{% /tab %}}
