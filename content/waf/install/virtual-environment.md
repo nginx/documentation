@@ -18,7 +18,7 @@ To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
-- A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) optional if not yet installed (NGINX will be installed automatically during App Protect installation)
+- A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) optional if not yet installed (NGINX will be installed automatically during F5 WAF for NGINX installation)
 
 Depending on your deployment type, you may have additional requirements:
 
@@ -26,7 +26,7 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 
 {{< include "waf/install-selinux-warning.md" >}}
 ### Required: Download JWT License for NGINX Plus Installation
-If you choose to install NGINX automatically with App Protect, make sure to download your JWT license from MyF5 before you begin
+If you choose to install NGINX automatically with F5 WAF for NGINX, make sure to download your JWT license from MyF5 before you begin
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ## Platform-specific instructions
