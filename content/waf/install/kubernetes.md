@@ -211,17 +211,7 @@ Your folder should contain the following files:
 - _license.jwt_ (Only necessary when using NGINX Plus)
 - _Dockerfile_
 
-To build an image for NGINX Pluse, use the following command, replacing `<your-image-name>` as appropriate:
-
-```shell
-sudo docker build --no-cache --platform linux/amd64 \
-  --secret id=nginx-crt,src=nginx-repo.crt \
-  --secret id=nginx-key,src=nginx-repo.key \
-  --secret id=license-jwt,src=license.jwt \
-  -t <your-image-name> .
-```
-
-To build an image for NGINX Open Source, use the following command, replacing `<your-image-name>` as appropriate:
+To build an image, use the following command, replacing <your-image-name> as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
