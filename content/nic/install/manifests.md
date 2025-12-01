@@ -1,7 +1,7 @@
 ---
 title: Install NGINX Ingress Controller with Manifests
 toc: true
-weight: 200
+weight: 500
 nd-content-type: how-to
 nd-product: INGRESS
 nd-docs: DOCS-603
