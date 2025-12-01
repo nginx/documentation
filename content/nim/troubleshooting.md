@@ -107,19 +107,19 @@ To manually update the public key, take the following steps:
    - Secure:
 
        ```shell
-       curl https://<NMS_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
+       curl https://<NIM_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
        ```
 
    - Insecure:
 
        ```shell
-       curl --insecure https://<NMS_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
+       curl --insecure https://<NIM_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
        ```
 
 2. Update the `nginx-agent.list` file to reference the new key:
 
     ```shell
-    printf "deb [signed-by=/usr/share/keyrings/nginx-signing.gpg] https://<NMS_FQDN>/packages-repository/deb/ubuntu `lsb_release -cs` agent\n" | sudo tee /etc/apt/sources.list.d/nginx-agent.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-signing.gpg] https://<NIM_FQDN>/packages-repository/deb/ubuntu `lsb_release -cs` agent\n" | sudo tee /etc/apt/sources.list.d/nginx-agent.list
     ```
 
 ---

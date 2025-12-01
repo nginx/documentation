@@ -7,4 +7,4 @@ nd-product: NIM
 nd-docs:
 ---
 
-{{< include "installation/access-web-ui.md" >}}
+{{< include "nim/install/access-web-ui.md" >}}

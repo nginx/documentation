@@ -42,7 +42,7 @@ Follow these steps to enable F5 WAF for NGINX in NGINX Agent.
    To apply these settings during installation, use the `--nginx-app-protect-mode` flag:
 
    ```shell
-   curl https://<NMS_FQDN>/install/nginx-agent > install.sh
+   curl https://<NIM_FQDN>/install/nginx-agent > install.sh
    sudo sh ./install.sh --nginx-app-protect-mode precompiled-publication
    ```
 

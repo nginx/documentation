@@ -9,13 +9,29 @@ nd-docs: DOCS-803
 
 This guide shows you how to install or upgrade NGINX Instance Manager on a virtual machine or bare metal system using the installation script in **offline (disconnected)** mode.
 
-{{< include "/nim/install/script-install-details.md" >}}
+The script installs the **latest** versions of:
+
+- NGINX Open Source
+- NGINX Instance Manager
+- ClickHouse (by default)
+
+The script also installs all required system packages.
+
+If you need an **earlier version** of NGINX or NGINX Instance Manager, use the [manual installation process]({{< ref "nim/install/vm-bare-metal/install-manually-online.md" >}}) for online setups or the [offline manual process]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}) for disconnected environments.
 
 {{< call-out "note" "NGINX Plus not supported in offline mode" >}}
 The script doesn't install NGINX Plus in offline mode. To install NGINX Plus, run the script in [online mode]({{< ref "nim/install/vm-bare-metal/install-with-bash-script-online.md" >}}) with a valid license and the required flags.
 {{< /call-out >}}
 
----
+{{< call-out "important" "Important: Start with a clean installation" >}}
+{{< include "/nim/install/check-exsiting-installation.md" >}}
+{{< /call-out >}}
+
+## Download the installation script
+
+{{< include "/nim/install/temporary-internet-required-note.md" >}}
+
+{{< include "/nim/install/script-download.md" >}}
 
 ## Download the SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
@@ -23,11 +39,7 @@ The script doesn't install NGINX Plus in offline mode. To install NGINX Plus, ru
 
 {{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
 
-## Download the installation script
 
-{{< include "/nim/install/temporary-internet-required-note.md" >}}
-
-{{< include "/nim/install/script-download.md" >}}
 
 ## Before you begin
 
@@ -144,7 +156,10 @@ You can find the latest dependencies with one of the following commands:
 
     Save that password. You'll need it when you sign in to NGINX Instance Manager.
 
-3. After installation, open a web browser, go to `https://<NIM-FQDN>` (the fully qualified domain name of the NGINX Instance Manager host), and log in.
+
+## Access the web interface {#access-web-interface}
+
+{{< include "nim/install/access-web-ui.md" >}}
 
 ---
 

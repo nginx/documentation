@@ -35,7 +35,7 @@ The NGINX Instance Manager REST API allows you to manage both NGINX Instance Man
 
 You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the NGINX Instance Manager API.
 
-You can find the NGINX Instance Manager API URLs in the following format: `https://<NMS_FQDN>/api/platform/<API_VERSION>`.
+You can find the NGINX Instance Manager API URLs in the following format: `https://<NIM_FQDN>/api/platform/<API_VERSION>`.
 
 {{< call-out "note" >}}When making API calls by using `curl`, Postman, or any other tool, include your [authentication](#authentication) information with each call. Also include a `-k` to bypass TLS/SSL verification.{{< /call-out >}}
 

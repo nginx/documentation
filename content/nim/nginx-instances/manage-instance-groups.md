@@ -119,7 +119,7 @@ To add an instance to an instance group when installing the NGINX Agent:
 2. Download the NGINX Agent installation script:
 
     ```shell
-    curl https://<NMS_FQDN>/install/nginx-agent > install.sh
+    curl https://<NIM_FQDN>/install/nginx-agent > install.sh
     ```
 
 3. Install the NGINX Agent and specify the instance group by using the `--instance_group` flag:

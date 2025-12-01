@@ -164,7 +164,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 ## Accessing the Web Interface
 
-{{< include "installation/access-web-ui.md" >}}
+{{< include "nim/install/access-web-ui.md" >}}
 
 ## Add License
 

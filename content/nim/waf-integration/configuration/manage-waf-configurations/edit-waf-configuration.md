@@ -92,7 +92,7 @@ You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NG
 1. Send a `GET` request to list all instances. The response includes the unique identifier (UID) of the instance you want to update.
 
     ```shell
-    curl -X GET https://{{NMS_FQDN}}/api/platform/v1/systems/{systemUID}/instances \
+    curl -X GET https://{{NIM_FQDN}}/api/platform/v1/systems/{systemUID}/instances \
      -H "Authorization: Bearer <access token>"
     ```
 
@@ -128,7 +128,7 @@ You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NG
 4. Send a `POST` request to deploy the configuration. Replace `<base64-encoded-content>` with your encoded config.
 
     ```shell
-    curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config \
+    curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config \
     -H "Authorization: Bearer <access token>" \
     --header "Content-Type: application/json" \
     -d '{

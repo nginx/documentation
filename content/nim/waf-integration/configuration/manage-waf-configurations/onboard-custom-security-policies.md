@@ -47,7 +47,7 @@ Use the **NGINX Instance Manager** REST API to onboard policies programmatically
 Example — upload and publish a policy:
 
 ```shell
-curl -X POST https://{{NMS_FQDN}}/api/platform/v1/security/policies \
+curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
  -H "Authorization: Bearer <access token>" \
  --header "Content-Type: multipart/form-data" \
  -F "file=@my-custom-policy.json"
