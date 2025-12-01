@@ -43,7 +43,7 @@ For NGINX installation:
 2. Click the Virtual machines icon. Or click the stacked lines icon (☰) in the top-left corner and select Virtual machines from the menu.
    <img src="/nginx/images/azure-portal.png" alt="screenshot of top navigation bar at Microsoft Azure portal" width="1024" height="226" class="aligncenter size-full image-64310" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
-3. On the Virtual machines page that opens, click **+ Add** in the upper left corner.
+3. On the Virtual machines page that opens, select **+ Add** in the upper left corner.
 
    <img src="/nginx/images/azure-create-vm-add-button.png" alt="screenshot of Azure 'Virtual machines' page" width="1024" height="195" class="aligncenter size-full image-64309" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
@@ -80,26 +80,26 @@ For NGINX installation:
 To avoid errors, assign **Standard** public IP addresses to the VMs you’ll use in the deployment. 
 
 When this guide was first published, the hourly cost for the six VMs was only $0.008. And this costlier than VMs with basic IP addresses. For current pricing, see the [Microsoft documentation](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
-Depending on your work load, you might need up to 6 VMs. Follow these steps:
+Depending on your workload, you might need up to 6 VMs. Follow these steps:
   - Open the **Networking** tab on the **Create a virtual machine** window.
-  - Click  _Create new_ below the **Public IP** field.
+  - Select  _Create new_ below the **Public IP** field.
   - In the **Create public IP address column** that opens, click the **Standard Radio button** under **SKU**. 
   - In the **Name** field, accept the default created by Azure, ngx-plus-1-ip. 
-  - Click the _Ok_  button.
+  - Select _Ok_.
 
 {{< img src="nginx/images/azure-create-vm-networking.png" alt="The 'Networking' tab on Azure's 'Create a virtual machine' page" >}}
 
 6. Here, you can select non-default values on the **Disks**, **Networking**, **Management**, **Advanced**, and **Tags** tabs. By default, Azure assigns **Premium SSD** for the OS disk on the disk tab, but you can choose a cheaper option like **Standard HDD**.
 
-   After you've completed your changes, click the _Review + create_ button at the bottom of the **Create a virtual machine** page.
+   After you've completed your changes, select _Review + create_ at the bottom of the **Create a virtual machine** page.
 
-   You’ll find a summary of your setting under the **Validation passed** banner. Ensure they’re suitable. Then, click on <span style="background-color:#137ad1; color:white;"> Create </span> 
+   You’ll find a summary of your setting under the **Validation passed** banner. Ensure they’re suitable. Then, select Create. 
 
-   If you generated a new key pair in [Step 4](#create-vm_Basics), a _Generate new key pair_ window pops up. Click on the _Download key and create private resource_ button.
+   If you generated a new key pair in [Step 4](#create-vm_Basics), a _Generate new key pair_ window pops up. Select _Download key and create private resource_.
 
    <a href="/nginx/images/azure-create-vm-validation-passed.png"><img src="/nginx/images/azure-create-vm-validation-passed.png" alt="screenshot of validation message on Azure 'Create a virtual machine' page" width="1024" height="954" class="aligncenter size-full image-64993" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-   VM deployment only takes a few minutes. After that, you’ll get a summary of your resources. Just like in the following screenshot. 
+    The VM deployment takes a few minutes. After that, you’ll get a summary of your resources. See an example in the following screenshot. 
 
    <a href="/nginx/images/azure-create-vm-deployment-complete.png"><img src="/nginx/images/azure-create-vm-deployment-complete.png" alt="screenshot of Azure 'CreateVM-Canonical' page" width="1024" height="634" class="aligncenter size-full image-64992" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
@@ -226,7 +226,7 @@ If you've installed NGINX Open Source correctly on one VM, and saved it as an Az
 
 ### Creating a VM from the Image
 
-An Azure image takes only a few moments to deploy. When it’s ready, you can create VMs from it with NGINX Open Source already installed.
+An Azure image takes a few moments to deploy. When it’s ready, you can create VMs from it with NGINX Open Source already installed.
 
 1. Navigate to the **Images** page. (One method is to type **images** in the search box in the Microsoft Azure header bar and select that value in the **Services** section of the resulting drop‑down menu.)
 
@@ -236,7 +236,7 @@ An Azure image takes only a few moments to deploy. When it’s ready, you can cr
 
    <a href="/nginx/images/azure-create-image-create-vm.png"><img src="/nginx/images/azure-create-image-create-vm.png" alt="screenshot of details page for Azure 'ngx-plus-1-image' image" width="1024" height="426" class="aligncenter size-full wp-image-64986" style="border:2px solid #666666; padding:2px; margin:2px;" /></a>
 
-The **Create a VM** page looks like Step 4 in Creating a Microsoft Azure Virtual Machine, but some fields are pre-filled from your image. The **Image** field now shows the image name instead of an OS. Go back to that [step](#create-vm_Basics) to finish creating your VM.
+The **Create a VM** page is similar to the Step 4 in Creating a Microsoft Azure Virtual Machine, but some fields are pre-filled from your image. The **Image** field now shows the image name instead of an OS. Go back to that [step](#create-vm_Basics) to finish creating your VM.
 
 ### Revision History
 
