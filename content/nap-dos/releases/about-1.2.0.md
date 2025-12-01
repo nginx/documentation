@@ -5,7 +5,7 @@ weight: 61
 nd-docs: DOCS-1782
 ---
 
-Here you can find the release information for F5 F5 DoS for NGINX Arbitrator v1.2.0
+Here you can find the release information for F5 DoS for NGINX Arbitrator v1.2.0
 
 ## Arbitrator Service Release 1.2.0
 
