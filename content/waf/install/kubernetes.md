@@ -252,7 +252,7 @@ cd nginx-app-protect
 You will need to edit the `values.yaml` file for a few changes:
 
 - Update _appprotect.nginx.image.repository_ and _appprotect.nginx.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
-- Update _appprotect.config.nginxJWT_ with your JSON web token
+- Update _appprotect.config.nginxJWT_ with your JSON web token (Only necessary when using NGINX Plus)
 - Update _dockerConfigJson_ to contain the base64 encoded Docker registration credentials
 
 You can encode your credentials with the following command:
