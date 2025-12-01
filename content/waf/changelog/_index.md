@@ -9,51 +9,13 @@ nd-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
-nd-product: F5WAFN
+# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
+nd-product: NAP-WAF
 ---
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2025.
 
-For older releases, check the changelogs for previous years: [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
-
-
-## F5 WAF for NGINX 5.10
-
-_December 1th, 2025_
-
-### New features
-
-- Added support for NGINX Plus R36
-- Added support for Alpine 3.22
-
-### Important notes
-
-- Alpine 3.19 is no longer supported
-- Upgrade Go compiler to 1.24.10
-
-### Resolved issues
-
-- 13117 - Severity Field should contain a value based on the violation highest severity
-- 13138 - Ability to bypass request when there is a 444 scenario
-- 13130 - Support all policy signatures in policy converter
-
-### Packages
-
-{{< table >}}
-
-| Distribution name        | NGINX Open Source (5.10)                                           |  NGINX Plus (5.10)                                              | NGINX Plus (5.10)                                  |
-| ------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- |----------------------------------------------------|
-| Alpine 3.22              | _app-protect-module-oss-1.29.3+5.550.0-r1.apk_                    | _app-protect-module-plus-36+5.550.0-r1.apk_                    | _app-protect-36.5.550.0-r1.apk_                    |
-| Amazon Linux 2023        | _app-protect-module-oss-1.29.3+5.550.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-36+5.550.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-36+5.550.0-1.amzn2023.ngx.x86_64.rpm_ |
-| Debian 11                | _app-protect-module-oss_1.29.3+5.550.0-1\~bullseye_amd64.deb_     | _app-protect-module-plus_36+5.550.0--1\~bullseye_amd64.deb_     | _app-protect_36+5.550.0-1\~bullseye_amd64.deb_     |
-| Debian 12                | _app-protect-module-oss_1.29.3+5.550.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_36+5.550.0--1\~bookworm_amd64.deb_     | _app-protect_36+5.550.0-1\~bookworm_amd64.deb_     |
-| Oracle Linux 8.1         | _app-protect-module-oss-1.29.3+5.550.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.550.0-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.550.0-1.el8.ngx.x86_64.rpm_      |
-| Ubuntu 22.04             | _app-protect-module-oss_1.29.3+5.550.0-1\~jammy_amd64.deb_        | _app-protect-module-plus_36+5.550.0--1\~jammy_amd64.deb_        | _app-protect_36+5.550.0-1\~jammy_amd64.deb_        |
-| Ubuntu 24.04             | _app-protect-module-oss_1.29.3+5.550.0-1\~noble_amd64.deb_        | _app-protect-module-plus_36+5.550.0--1\~noble_amd64.deb_        | _app-protect_36+5.550.0-1\~noble_amd64.deb_        |
-| RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.3+5.550.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.550.0-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.550.0-1.el8.ngx.x86_64.rpm_      |
-| RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.550.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.550.0-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.550.0-1.el9.ngx.x86_64.rpm_      |
-
-{{< /table >}}
+For older releases, check the changelogs for previous years: [2024]({{< ref "/waf/changelog/2024.md" >}}).
 
 ## F5 WAF for NGINX 5.9
 
@@ -167,14 +129,13 @@ Released _June 24th, 2025_.
 | ------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- |----------------------------------------------------|
 | Alpine 3.19              | _app-protect-module-oss-1.27.4+5.442.0-r1.apk_                    | _app-protect-module-plus-34+5.442.0-r1.apk_                    | _app-protect-34.5.442.0-r1.apk_                    |
 | Amazon Linux 2023        | _app-protect-module-oss-1.27.4+5.442.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-34+5.442.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-34+5.442.0-1.amzn2023.ngx.x86_64.rpm_ |
-| Debian 11                | _app-protect-module-oss_1.27.4+5.550.0-1\~bullseye_amd64.deb_     | _app-protect-module-plus_34+5.442.0-1\~bullseye_amd64.deb_     | _app-protect_34+5.442.0-1\~bullseye_amd64.deb_     |
-| Debian 12                | _app-protect-module-oss_1.27.4+5.550.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_34+5.442.0-1\~bookworm_amd64.deb_     | _app-protect_34+5.442.0-1\~bookworm_amd64.deb_     |
+| Debian 11                | _app-protect-module-oss_1.27.4+5.442.0-1\~bullseye_amd64.deb_     | _app-protect-module-plus_34+5.442.0-1\~bullseye_amd64.deb_     | _app-protect_34+5.442.0-1\~bullseye_amd64.deb_     |
+| Debian 12                | _app-protect-module-oss_1.27.4+5.442.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_34+5.442.0-1\~bookworm_amd64.deb_     | _app-protect_34+5.442.0-1\~bookworm_amd64.deb_     |
 | Oracle Linux 8.1         | _app-protect-module-oss-1.27.4+5.442.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-34+5.442.0-1.el8.ngx.x86_64.rpm_      | _app-protect-34+5.442.0-1.el8.ngx.x86_64.rpm_      |
-| Ubuntu 22.04             | _app-protect-module-oss_1.27.4+5.550.0-1\~jammy_amd64.deb_        | _app-protect-module-plus_34+5.442.0-1\~jammy_amd64.deb_        | _app-protect_34+5.442.0-1\~jammy_amd64.deb_        |
-| Ubuntu 24.04             | _app-protect-module-oss_1.27.4+5.550.0-1\~noble_amd64.deb_        | _app-protect-module-plus_34+5.442.0-1\~noble_amd64.deb_        | _app-protect_34+5.442.0-1\~noble_amd64.deb_        |
+| Ubuntu 22.04             | _app-protect-module-oss_1.27.4+5.442.0-1\~jammy_amd64.deb_        | _app-protect-module-plus_34+5.442.0-1\~jammy_amd64.deb_        | _app-protect_34+5.442.0-1\~jammy_amd64.deb_        |
+| Ubuntu 24.04             | _app-protect-module-oss_1.27.4+5.442.0-1\~noble_amd64.deb_        | _app-protect-module-plus_34+5.442.0-1\~noble_amd64.deb_        | _app-protect_34+5.442.0-1\~noble_amd64.deb_        |
 | RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.27.4+5.442.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-34+5.442.0-1.el8.ngx.x86_64.rpm_      | _app-protect-34+5.442.0-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.27.4+5.442.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-34+5.442.0-1.el9.ngx.x86_64.rpm_      | _app-protect-34+5.442.0-1.el9.ngx.x86_64.rpm_      |
-  |
 
 {{< /table >}}
 
