@@ -925,8 +925,8 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.22:
-FROM alpine:3.22
+# For Alpine 3.19:
+FROM alpine:3.19
 
 # Download and add the NGINX signing keys:
 RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub \

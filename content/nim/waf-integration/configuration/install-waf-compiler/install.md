@@ -24,20 +24,26 @@ To organize instances running the same version, you can create [instance groups]
 
 For an overview of how the compiler works, see [Security bundle compilation]({{< ref "/nim/waf-integration/overview#security-bundle" >}}).
 
+---
+
 ## Before you begin
 
 {{< include "/nim/waf/nim-waf-before-you-begin.md" >}}
+
+---
 
 ## WAF compiler version support
 
 Use the table below to find the correct WAF compiler version for each release of F5 WAF for NGINX:
 
-{{< include "/waf/waf-nim-compiler-support.md" >}}
+{{< include "/waf/f5-waf-for-nginx-compiler-compatibility.md" >}}
 
 {{< call-out "note" >}}
 Beginning with version 5.9.0, both the virtual machine and container installation packages are categorized under the 5.x.x tag.  
 Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0) and 5.x.x for container packages (for example, NAP 5.7.0, NAP 5.8.0).
 {{< /call-out >}}
+
+---
 
 ## Install the WAF compiler
 

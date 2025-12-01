@@ -13,15 +13,19 @@ You can install the WAF compiler on a system without internet access by creating
 - **Step 1:** Generate the WAF compiler package on a system with internet access.  
 - **Step 2:** Move the generated package to the offline target system and install it.
 
+---
+
 ## Before you begin
 
 {{< include "/nim/waf/nim-waf-before-you-begin.md" >}}
+
+---
 
 ## WAF compiler version support
 
 Use the table below to find the correct WAF compiler version for each release of F5 WAF for NGINX:
 
-{{< include "/waf/waf-nim-compiler-support.md" >}}
+{{< include "/waf/f5-waf-for-nginx-compiler-compatibility.md" >}}
 
 {{< call-out "note" >}}
 Beginning with version 5.9.0, both the virtual machine and container installation packages are categorized under the 5.x.x tag.  
