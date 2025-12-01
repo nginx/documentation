@@ -191,7 +191,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
 
 If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 
-If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting/how-to-troubleshoot.md" >}}).
+If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting/how-to-troubleshoot/).
 
 If you encounter any problems with F5 WAF for NGINX configuration, documentation is available at the [F5 WAF for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/).
 
