@@ -9,13 +9,12 @@ nd-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2025.
 
-For older releases, check the changelogs for previous years: [2024]({{< ref "/waf/changelog/2024.md" >}}).
+For older releases, check the changelogs for previous years: [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
 
 ## F5 WAF for NGINX 5.10
