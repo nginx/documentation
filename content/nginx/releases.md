@@ -65,15 +65,17 @@ NGINX Plus R36 is a feature release:
 
   - The [`$ssl_sigalg`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_sigalg) and [`$ssl_client_sigalg`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_sigalg) variables that return the signature algorithm for the client or server certificate for an SSL connection.
 
+  - support for 0-RTT in QUIC when using OpenSSL 3.5.1 or newer.
+
   - Support for OpenSSL 3.5.
 
-  - support for 0-RTT in QUIC when using OpenSSL 3.5.1 or newer.
+    {{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
 
 - Inheritance control for [headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) and [trailers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer_inherit).
 
 - Container images with popular modules, now including ACME, OpenTelemetry, and Prometheus exporter modules.
 
-{{< call-out "note" "More info" >}} [Announcing NGINX Plus R36](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r36-release-now-available/342962) blog post {{< /call-out >}}
+{{< call-out "note" "More info" >}} [Announcing NGINX Plus R36](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r36-release-now-available/344514) blog post. {{< /call-out >}}
 
 NGINX Plus R36 is supported on:
 
