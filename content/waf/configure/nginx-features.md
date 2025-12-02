@@ -26,10 +26,10 @@ F5 WAF for NGINX will secure and inspect direct client-facing requests, but will
 
 This applies to:
 
+* njs (r.subrequest)
 * Client authorization (auth_request)
 * Mirror (mirror)
 * SSI (virtual include)
-* njs (r.subrequest)
 
 The following example demonstrates the general rule:
 
