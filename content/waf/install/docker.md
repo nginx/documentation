@@ -1349,5 +1349,3 @@ F5 WAF for NGINX should now be operational, and you can move onto [Post-installa
 Before removing any Docker image, it’s important to ensure that the image is no longer needed and is not in use.
 
 [docker image rm](https://docs.docker.com/reference/cli/docker/image/rm/) tool
-
-TODO
