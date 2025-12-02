@@ -33,7 +33,7 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
-### Additional subscription credentials needed for a deployments with NGINX Plus
+### Additional subscription credentials needed for deployments
 
 To use NGINX Plus, you will need to download the the JWT license file associated with your F5 NGINX App Protect WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
