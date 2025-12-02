@@ -25,6 +25,7 @@ A RHEL-based system would use the following command instead:
 ```shell
 podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
 ```
+
 To build an image for NGINX Open Source, use the following command, replacing `<your-image-name>` as appropriate:
 
 ```shell
