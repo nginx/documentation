@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: nginx-app-protect-dos
-          image: sea-artifactory.olympus.f5net.com/f5-beappprotect-docker/app_protect_dos/ubuntu_noble_app_protect_dos_r36:0a2288fb
+          image: <your-private-registry>/<your-nginx-app-protect-dos-image-name>:<your-tag>
           imagePullPolicy: Always
 
           command: ["/bin/bash", "-c"]
@@ -67,19 +67,34 @@ spec:
 
 
           volumeMounts:
-            - name: shared
+            - name: shared-dir
               mountPath: /shared/
+            - name: bpf
+              mountPath: /sys/fs/bpf
             - name: conf
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
             - name: log-default
               mountPath: /etc/app_protect_dos/log-default.json
               subPath: log-default.json
-
+        
+        - name: dos-ebpf-manager
+          image: <your-private-registry>/<your-ebpf-manager-image-name>:<your-tag>
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: shared-dir
+              mountPath: /shared
+            - name: bpf
+              mountPath: /sys/fs/bpf
       volumes:
-        - name: shared
+        - name: shared-dir
           persistentVolumeClaim:
             claimName: pvc-app-protect-dos-shared
+        - name: bpf
+          hostPath:
+            path: /sys/fs/bpf
+            type: DirectoryOrCreate      
         - name: conf
           configMap:
             name: dos-nginx-conf
@@ -93,4 +108,5 @@ spec:
             items:
               - key: log-default.json
                 path: log-default.json
+
 ```
