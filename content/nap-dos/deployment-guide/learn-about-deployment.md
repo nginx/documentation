@@ -1585,7 +1585,7 @@ RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[
     printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
     printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
-# Update the repository and install the most recent version of the F5 WAF and DoS for NGINX packages (which include NGINX Plus):
+# Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which include NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1627,7 +1627,7 @@ RUN curl -o /etc/yum.repos.d/plus-amazonlinux2023.repo https://cs.nginx.com/stat
     curl -o /etc/yum.repos.d/app-protect-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo && \
     curl -o /etc/yum.repos.d/dependencies.amazonlinux2023.repo https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
 
-# Update the repository and install the most recent version of the F5 WAF and DoS for NGINX packages (which include NGINX Plus):
+# Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which include NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1674,7 +1674,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the F5 WAF and DoS for NGINX packages (which includes NGINX Plus):
+# Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which includes NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
@@ -1717,7 +1717,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the F5 WAF and DoS for NGINX packages (which include NGINX Plus):
+# Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which include NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
