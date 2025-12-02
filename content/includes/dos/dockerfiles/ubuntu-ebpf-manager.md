@@ -23,10 +23,8 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos-ebpf-manager \
     && apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/*
 
-COPY entrypoint.sh /root/
-RUN chmod +x /root/entrypoint.sh
-
 STOPSIGNAL SIGQUIT
 
-CMD ["sh", "/root/entrypoint.sh"]
+# Idle forever
+CMD ["bash", "-c", "/usr/bin/ebpf_manager_dos 2>&1 | tee /shared/ebpf_dos.log"]
 ```

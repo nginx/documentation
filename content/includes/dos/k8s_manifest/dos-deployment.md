@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: ubuntu-bados
-          image: sea-artifactory.olympus.f5net.com/f5-beappprotect-docker/app_protect_dos/ubuntu_noble_app_protect_dos_r36:0a2288fb
+          image: <your-private-registry>/<your-nginx-dos-image-name>:<your-tag>
           imagePullPolicy: Always
 
           command: ["/bin/bash", "-c"]

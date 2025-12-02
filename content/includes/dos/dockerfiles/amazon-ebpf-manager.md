@@ -15,11 +15,8 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
-COPY entrypoint.sh /root/
-RUN chmod +x /root/entrypoint.sh
-
 STOPSIGNAL SIGQUIT
 
-CMD ["sh", "/root/entrypoint.sh"]
+CMD ["bash", "-c", "/usr/bin/ebpf_manager_dos 2>&1 | tee /shared/ebpf_dos.log"]
 
 ```
