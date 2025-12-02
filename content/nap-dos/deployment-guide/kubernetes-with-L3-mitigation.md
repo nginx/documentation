@@ -169,37 +169,37 @@ In each file, replace `<your-private-registry>/dos:<your-tag>` with your actual 
 
 {{% tab name=dos-namespace.yaml %}}
 
-{{< include "dos/k8s_manifest/dos-namespace.md" >}}
+{{< include "dos/k8s_with_ebpf_manifest/dos-namespace.md" >}}
 
 {{% /tab %}}
 
 {{% tab name=dos-storage.yaml %}}
 
-{{< include "dos/k8s_manifest/dos-storage.md" >}}
+{{< include "dos/k8s_with_ebpf_manifest/dos-storage.md" >}}
 
 {{% /tab %}}
 
 {{% tab name=dos-nginx-conf-configmap.yaml %}}
 
-{{< include "dos/k8s_manifest/dos-nginx-conf-configmap.md" >}}
+{{< include "dos/k8s_with_ebpf_manifest/dos-nginx-conf-configmap.md" >}}
 
 {{% /tab %}}
 
 {{% tab name=dos-log-default-configmap.yaml %}}
 
-{{< include "dos/k8s_manifest/dos-log-default-configmap.md" >}}
+{{< include "dos/k8s_with_ebpf_manifest/dos-log-default-configmap.md" >}}
 
 {{% /tab %}}
 
 {{% tab name=dos-deployment.yaml %}}
 
-{{< include "dos/k8s_manifest/dos-deployment.md" >}}
+{{< include "dos/k8s_with_ebpf_manifest/dos-deployment.md" >}}
 
 {{% /tab %}}
 
 {{% tab name=dos-service.yaml %}}
 
-{{< include "dos/k8s_manifest/dos-service.md" >}}
+{{< include "dos/k8s_with_ebpf_manifest/dos-service.md" >}}
 
 {{% /tab %}}
 
