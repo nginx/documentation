@@ -238,25 +238,20 @@ You should see output similar to the following:
 ~$ kubectl -n app-protect-dos get deployments
 NAME              READY   UP-TO-DATE   AVAILABLE   AGE
 app-protect-dos   1/1     1            1           1m
-backend-nginx     1/1     1            1           1m
 
 ~$ kubectl -n app-protect-dos get pods
 NAME                               READY   STATUS    RESTARTS   AGE
 app-protect-dos-586fb94947-8sjnc   1/1     Running   0          1m
-
-$ kubectl -n app-protect-dos get pods -o jsonpath='{range .items[*]}Pod: {.metadata.name} -> Containers: {.spec.containers[*].name}{"\n"}{end}'
-Pod: app-protect-dos-7f9798654c-7ncbl -> Containers: dos-ebpf-manager nginx-app-protect-dos
 
 ~$ kubectl -n app-protect-dos get services
 NAME                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 nap-dos             LoadBalancer   10.43.83.225    <pending>     80:30307/TCP   1m
 ```
 ## Post-Installation Checks
-At this stage, you have finished deploying F5 DOS for NGINX with EBPF L3 mitigation enabled.
+At this stage, you have finished deploying F5 DOS for NGINX.
 You csn login to app-protect-dos pod like following command
 ```text
 kubectl exec -it app-protect-dos-586fb94947-8sjnc -n app-protect-dos -c nginx-app-protect-dos -- bash
-kubectl exec -it app-protect-dos-586fb94947-8sjnc -n app-protect-dos -c dos-ebpf-manager -- bash
 ```
 and can look at .
 {{< include "dos/install-post-checks.md" >}}
