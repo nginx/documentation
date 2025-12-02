@@ -1025,7 +1025,7 @@ You need root permissions to execute the following steps.
 
 5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-   {{< include "/dos/dockerfiles/dos-entrypoint.md" >}}
+   {{< include "/dos/dos-entrypoint.md" >}}
 
 6. Create a Docker image:
 
@@ -1496,7 +1496,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
    For Alpine /AmazonLinux 2023/ Debian / Ubuntu / UBI 8/ UBI 9:
 
-{{< include "/dos/dockerfiles/dos-waf-entrypoint.md" >}}
+{{< include "/dos/dos-waf-entrypoint.md" >}}
 
 8. Create a Docker image:
 
