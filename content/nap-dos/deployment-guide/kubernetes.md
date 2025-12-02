@@ -131,14 +131,14 @@ Your folder should contain the following files:
 - _entrypoint.sh_
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-image-name>` as appropriate:
+To build an image, use the following command, replacing `<your-nginx-dos-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
   --secret id=license-jwt,src=license.jwt \
-  -t <your-image-name> .
+  -t <your-nginx-dos-image-name> .
 ```
 
 Once you have built the image, push it to your private image repository, which should be accessible to your Kubernetes cluster.
@@ -148,8 +148,6 @@ From this point, the steps change based on your installation method:
 - [Use Manifests to install F5 DOS for NGINX](#use-manifests-to-install-f5-dos-for-nginx)
 
 ## Use Manifests to install F5 DOS for NGINX
-
-### Update configuration files
 
 ### Create a Secret
 
@@ -169,7 +167,7 @@ The default configuration provided creates two replicas, each hosting NGINX and 
 
 Create all of these files in a single folder (Such as `/manifests`).
 
-In each file, replace `<your-private-registry>/dos:<your-tag>` with your actual image tag.
+In each file, replace `<your-private-registry>/<your-nginx-dos-image-name>:<your-tag>` with your actual image tag.
 
 {{< tabs name="manifest-files" >}}
 
