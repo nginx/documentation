@@ -252,6 +252,6 @@ You csn login to app-protect-dos pod like following command
 kubectl exec -it app-protect-dos-586fb94947-8sjnc -n app-protect-dos -- bash
 ```
 and can look at .
-{{< include "dos/install-post-checks.md" >}}{{< /call-out >}}
+{{< include "dos/install-post-checks.md" >}}
 
 ## Next steps
