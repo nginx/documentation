@@ -12,9 +12,13 @@ This page describes how to install F5 WAF for NGINX using Docker.
 
 To complete this guide, you will need the following prerequisites:
 
+- A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
-- Docker registry credentials are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
+- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+  - Download the [SSL certificate and private key file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
+  - Download the [SSL certificate, private key, and the JWT license file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}) associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
+- [Docker registry credentials]({{< ref "/waf/install/docker.md#Additional Requirement for NGINX Plus Users" >}}) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
@@ -48,7 +52,15 @@ The steps you should follow on this page are dependent on your configuration typ
 
 ## Configure Docker for the F5 Container Registry
 
-{{< include "waf/install-services-registry.md" >}}
+You will need Docker registry credentials to access private-registry.nginx.com for either the Multi-container or Hybrid configuration.
+
+Create a directory and copy your [certificate and key]({{< ref "/waf/install/docker.md#Shared Requirements" >}}) to this directory:
+
+```shell
+mkdir -p /etc/docker/certs.d/private-registry.nginx.com
+cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
+cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
+```
 
 You should now move to the section based on your configuration type:
 
@@ -308,7 +320,51 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 ### Build the Docker image
 
-{{< include "waf/install-build-image.md" >}}
+Your folder should contain the following files:
+
+- _nginx-repo.crt_
+- _nginx-repo.key_
+- _license.jwt_
+- _nginx.conf_
+- _entrypoint.sh_
+- _Dockerfile_
+- _custom_log_format.json_ 
+
+To build an image, use the following command for system that are not RHEL-based, replacing `<your-image-name>` as appropriate:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+```
+
+A RHEL-based system would use the following command instead:
+
+```shell
+podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+```
+
+{{< call-out "note" >}}
+
+The `--no-cache` option is used to ensure the image is built from scratch, installing the latest versions of NGINX Plus and F5 WAF for NGINX.
+
+{{< /call-out >}}
+
+Verify that your image has been created using the `docker images` command:
+
+```shell
+docker images <your-image-name>
+```
+
+Create a container based on this image, replacing <your-container-name> as appropriate:
+
+```shell
+docker run --name <your-container-name> -p 80:80 -d <your-image-name>
+```
+
+Verify the new container is running using the `docker ps` command:
+
+```shell
+docker ps
+```
 
 ### Update configuration files
 

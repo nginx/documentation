@@ -17,16 +17,28 @@ This page describes how to install F5 WAF for NGINX in a virtual machine or bare
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
+ Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+  - Download the [SSL certificate and private key file]({{< ref "/waf/install/virtual-environment.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
+  - Download the [SSL certificate, private key, and the JWT license]({{< ref "/waf/install/virtual-environment.md#Additional subscription credentials needed for a deployments with NGINX Plus" >}}) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) optional if not yet installed (NGINX will be installed automatically during F5 WAF for NGINX installation)
+- F5 NGINX App Protect will work by default with the default values (like default policy, logging profile, etc) unless the user sets custom configurations
 
 Depending on your deployment type, you may have additional requirements:
 
-You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
+You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 {{< include "waf/install-selinux-warning.md" >}}
-### Required: Download JWT License for NGINX Plus Installation
-If you choose to install NGINX automatically with F5 WAF for NGINX, make sure to download your JWT license from MyF5 before you begin
+## Download your subscription credentials 
+
+### General subscription credentials needed for deployments 
+
+{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
+
+### Additional subscription credentials needed for a deployments with NGINX Plus
+
+To use NGINX Plus, you will need to download the the JWT license file associated with your F5 NGINX App Protect WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+
+
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ## Platform-specific instructions
