@@ -245,11 +245,7 @@ NAME                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        
 nap-dos             LoadBalancer   10.43.83.225    <pending>     80:30307/TCP   1m
 svc-backend-nginx   ClusterIP      10.43.162.206   <none>        8080/TCP       1m
 ```
-
-{{< call-out "note" >}}
-
 ## Post-Installation Checks
-
 At this stage, you have finished deploying F5 DOS for NGINX  
 You csn login to app-protect-dos pod like following command
 ```text
