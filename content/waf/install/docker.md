@@ -815,7 +815,9 @@ sudo dnf install app-protect-module-plus
 {{< include "waf/install-services-docker.md" >}}
 
 #### Download Docker images
+
 [Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#Configure Docker for the F5 Container Registry" >}}) is needed to pull the following container images
+
 {{< include "waf/install-services-images.md" >}}
 
 #### Create and run a Docker Compose file
