@@ -13,11 +13,10 @@ This page describes how to install F5 WAF for NGINX using Docker.
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
 - Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
-  - Download the [SSL certificate and private key file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
-  - Download the [SSL certificate, private key, and the JWT license file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}) associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
+  - Download the [SSL certificate and private key file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}) associated with your F5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
+  - Download the [SSL certificate and private key file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}), and the [JWT license file]({{< ref "/waf/install/docker.md#Additional Requirement for NGINX Plus Users" >}}) associated with your F5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
 - [Docker registry credentials]({{< ref "/waf/install/docker.md#Additional Requirement for NGINX Plus Users" >}}) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
@@ -25,6 +24,15 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
 {{< include "waf/install-selinux-warning.md" >}}
+
+
+## Download your subscription credentials 
+### General subscription credentials needed for deployments
+
+{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
+
+### Additional Requirement for NGINX Plus Users
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ## Docker deployment options
 
@@ -41,14 +49,6 @@ The hybrid configuration is suitable if you want to add F5 WAF for NGINX to an e
 The single container configuration only supports NGINX Plus and requires a building a Docker image that encapsulates all parts of the system. This image will need to be rebuilt with each release.
 
 The steps you should follow on this page are dependent on your configuration type: after the shared steps, links will guide you to the next appropriate section.
-
-## Download your subscription credentials 
-### Shared Requirements
-
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
-
-### Additional Requirement for NGINX Plus Users
-{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ## Configure Docker for the F5 Container Registry
 
