@@ -1717,7 +1717,7 @@ RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https:
 # Download the apt configuration to `/etc/apt/apt.conf.d`:
 RUN wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
 
-# Update the repository and install the most recent version of the F5 WAF and DoS for NGINX packages (which include NGINX Plus):
+# Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which include NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
