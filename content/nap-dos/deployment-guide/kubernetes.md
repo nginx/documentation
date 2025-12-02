@@ -119,7 +119,7 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 ## Create an entrypoint.sh
 Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
-{{< include "/dos/dockerfiles/dos-entrypoint.md" >}}
+{{< include "/dos/dos-entrypoint.md" >}}
 
 ## Build the Docker image
 
