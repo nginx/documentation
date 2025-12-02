@@ -17,10 +17,10 @@ This page describes how to install F5 WAF for NGINX in a virtual machine or bare
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- An ctive F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
-  - Download the [SSL certificate, private key, and the JWT license]({{< ref "/waf/install/virtual-environment.md#Download your subscription credentials" >}}) file associated with your F5 NGINX App Protect subscription from the MyF5 Customer Portal.
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+  - Download the [SSL certificate, private key, and the JWT license]({{< ref "/waf/install/virtual-environment.md#Download your subscription credentials" >}}) file associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal.
 - A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). If NGINX Plus is not installed separately it will be installed automatically during F5 WAF for NGINX installation.
-- F5 NGINX App Protect will work by default with the default values like default policy, logging profile, etc unless the user sets custom configurations
+- F5 WAF for NGINX will work by default with the default values like default policy, logging profile, etc unless the user sets custom configurations
 
 Depending on your deployment type, you may have additional requirements:
 
@@ -35,7 +35,7 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 
 ### Additional subscription credentials needed for deployments
 
-To use NGINX Plus, you will need to download the the JWT license file associated with your F5 NGINX App Protect WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+To use NGINX Plus, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}

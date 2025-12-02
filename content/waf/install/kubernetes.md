@@ -22,7 +22,7 @@ To complete this guide, you will need the following pre-requisites:
   - Download the [SSL certificate and private key file]({{< ref "/waf/install/kubernetes.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
   - Download the [SSL certificate, private key, and the JWT license]({{< ref "/waf/install/kubernetes.md#Additional subscription credentials needed for deployments" >}}) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - [Docker registry credentials]({{< ref "/waf/install/kubernetes.md#Additional subscription credentials needed for deployments" >}}) are needed to access private-registry.nginx.com 
-- F5 NGINX App Protect will work by default with the default values like default policy, logging profile, etc unless the user sets custom configurations
+- F5 WAF for NGINX will work by default with the default values like default policy, logging profile, etc unless the user sets custom configurations
 
 You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 
@@ -39,7 +39,7 @@ To review supported operating systems, read the [Technical specifications]({{< r
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
 ### Additional subscription credentials needed for deployments
-To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 NGINX App Protect WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
 > **Note:** If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
 
