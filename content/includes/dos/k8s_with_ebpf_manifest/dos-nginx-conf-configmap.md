@@ -36,6 +36,8 @@ data:
             'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
             'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
 
+        app_protect_dos_accelerated_mitigation on syn_drop=on;
+
         upstream backend {
             server svc-backend-nginx:8080;
         }

@@ -64,4 +64,26 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
 
    c. See that the good traffic continue as usual while the attackers receive denial of service.
 
+4. For DOS with L3 mitigation enabled
+
+Check that the ebpf_manager_dos process needed for F5 DoS for NGINX is running using `ps aux | grep /usr/bin/ebpf_manager_dos`:
+
+```
+root           1  0.0  0.0   4324  3072 ?        Ss   19:32   0:00 bash -c /usr/bin/ebpf_manager_dos 2>&1 | tee /shared/ebpf_dos.log
+root           7  0.2  0.0 1722732 14208 ?       Sl   19:32   0:01 /usr/bin/ebpf_manager_dos
+root          46  0.0  0.0   3528  1792 pts/0    S+   19:44   0:00 grep --color=auto /usr/bin/ebpf_manager_dos
+```
+
+Verify that there are no errors in the `/shared/ebpf_dos.log` and that the XDP program uploaded successfully:
+
+```[2025-12-02 19:32:12] INFO: Uninstall old eBPF maps and XDP program
+[2025-12-02 19:32:13] INFO: Install eBPF maps and XDP program
+[2025-12-02 19:32:13] INFO: Start ebpf manager
+[2025-12-02 19:32:13] INFO: Version: 36+4.8.3-1~noble
+[2025-12-02 19:32:13] INFO: Start Periodic task for update time
+[2025-12-02 19:32:13] INFO: Owner of the UDS has been changed to user nginx and group nginx.
+[2025-12-02 19:32:13] INFO: Permissions of the UDS have been changed successfully for user nginx and group nginx.
+[2025-12-02 19:32:13] INFO: Async Callback Server listening on unix:/shared/ebpf_manager_dos_uds
+```
+
 To check F5 WAF for NGINX alongside F5 DoS for NGINX, just perform the normal tests as specified at [Admin Guide](https://docs.nginx.com/waf/install/virtual-environment/#post-installation-checks)
