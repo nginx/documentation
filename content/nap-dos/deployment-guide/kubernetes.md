@@ -116,7 +116,7 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
-## Create an entrypoint.sh
+## Create DOS entrypoint.sh
 Docker startup script which spins up all App Protect DoS processes, must have executable permissions
 
 {{< include "/dos/dos-entrypoint.md" >}}
@@ -128,6 +128,7 @@ Your folder should contain the following files:
 - _nginx-repo.crt_
 - _nginx-repo.key_
 - _license.jwt_
+- _entrypoint.sh_
 - _Dockerfile_
 
 To build an image, use the following command, replacing `<your-image-name>` as appropriate:
