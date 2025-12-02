@@ -39,9 +39,12 @@ To review supported operating systems, read the [Technical specifications]({{< r
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
 ### Additional subscription credentials needed for deployments
+
 To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
-> **Note:** If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
+{{< call-out "note" >}}
+If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
+{{< /call-out >}}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 

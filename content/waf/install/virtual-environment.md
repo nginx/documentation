@@ -27,6 +27,7 @@ Depending on your deployment type, you may have additional requirements:
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 {{< include "waf/install-selinux-warning.md" >}}
+
 ## Download your subscription credentials 
 
 ### General subscription credentials needed for deployments 
@@ -36,7 +37,6 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 ### Additional subscription credentials needed for deployments
 
 To use NGINX Plus, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
-
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
