@@ -28,7 +28,7 @@ For more information about policies, read the [Configure policies]({{< ref "/waf
 
 To complete this guide, you will need the following prerequisites:
 
-- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
   - Download the [SSL certificate and private key]({{< ref "/waf/install/compiler.md#Download your subscription credentials" >}}) associated with your  F5 NGINX App Protect WAF subscription from the MyF5 Customer Portal.
 - [Docker registry credentials]({{< ref "/waf/configure/compiler.md#Configure Docker for the F5 Container Registry" >}}) are needed to access private-registry.nginx.com
 - [Docker](https://docs.docker.com/get-started/get-docker/)
