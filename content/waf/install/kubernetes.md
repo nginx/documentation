@@ -335,9 +335,9 @@ To understand the _mTLS Configuration_ options, view the [Secure traffic using m
 | | _appprotect.config.nginxConf_ | NGINX configuration file content. | See _values.yaml_ |
 | | _appprotect.config.nginxDefault_ | Default server block configuration for NGINX. | {} |
 | | _appprotect.config.entries_ | Extra entries of the ConfigMap for customizing NGINX configuration. | {} |
-| **mTLS Configuration** | _appprotect.mTLS.serverCert_ | The base64-encoded TLS certificate for the App Protect Enforcer (server). | "" |
-| | _appprotect.mTLS.serverKey_ | The base64-encoded TLS key for the App Protect Enforcer (server). | "" |
-| | _appprotect.mTLS.serverCACert_ | The base64-encoded TLS CA certificate for the App Protect Enforcer (server). | "" |
+| **mTLS Configuration** | _appprotect.mTLS.serverCert_ | The base64-encoded TLS certificate for the F5 WAF for NGINX Enforcer (server). | "" |
+| | _appprotect.mTLS.serverKey_ | The base64-encoded TLS key for the F5 WAF for NGINX Enforcer (server). | "" |
+| | _appprotect.mTLS.serverCACert_ | The base64-encoded TLS CA certificate for the F5 WAF for NGINX Enforcer (server). | "" |
 | | _appprotect.mTLS.clientCert_ | The base64-encoded TLS certificate for the NGINX (client). | "" |
 | | _appprotect.mTLS.clientKey_ | The base64-encoded TLS key for the NGINX (client). | "" |
 | | _appprotect.mTLS.clientCACert_ | The base64-encoded TLS CA certificate for the NGINX (client). | "" |

@@ -29,7 +29,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
     Expected output of the command:
 
     ```shell
-    nginx version: nginx/1.29.0 (nginx-plus-r35)
+    nginx version: nginx/1.29.3 (nginx-plus-r36)
     ```
 
 3.  Ensure you have the **nginx-repo.crt** and **nginx-repo.key** files from [MyF5 Customer Portal](https://account.f5.com/myf5) in the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository.
