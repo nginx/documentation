@@ -167,37 +167,37 @@ In each file, replace `<your-private-registry>/dos:<your-tag>` with your actual 
 
 {{< tabs name="manifest-files" >}}
 
-{{% tab name=dos-namespace.yaml" %}}
+{{% tab name=dos-namespace.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-namespace.md" >}}
 
 {{% /tab %}}
 
-{{% tab name=dos-storage.yaml" %}}
+{{% tab name=dos-storage.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-storage.md" >}}
 
 {{% /tab %}}
 
-{{% tab name=dos-nginx-conf-configmap.yaml" %}}
+{{% tab name=dos-nginx-conf-configmap.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-nginx-conf-configmap.md" >}}
 
 {{% /tab %}}
 
-{{% tab name=dos-log-default-configmap.yaml" %}}
+{{% tab name=dos-log-default-configmap.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-log-default-configmap.md" >}}
 
 {{% /tab %}}
 
-{{% tab name="dos-deployment.yaml" %}}
+{{% tab name=dos-deployment.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-deployment.md" >}}
 
 {{% /tab %}}
 
-{{% tab name="dos-service.yaml" %}}
+{{% tab name=dos-service.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-service.md" >}}
 
@@ -212,7 +212,10 @@ From the folder containing the YAML files from the previous step (Suggested as `
 ```shell
 kubectl apply -f manifests/dos-namespace.yaml
 kubectl apply -f manifests/dos-storage.yaml
-kubectl apply -f manifests/
+kubectl apply -f manifests/dos-nginx-conf-configmap.yam
+kubectl apply -f manifests/dos-log-default-configmap.yaml
+kubectl apply -f manifests/dos-deployment.yaml
+kubectl apply -f manifests/dos-service.yaml
 ```
 
 It will apply all the configuration defined in the files to your Kubernetes cluster.
@@ -245,14 +248,14 @@ svc-backend-nginx   ClusterIP      10.43.162.206   <none>        8080/TCP       
 
 {{< call-out "note" >}}
 
+## Post-Installation Checks
+
 At this stage, you have finished deploying F5 DOS for NGINX  
 You csn login to app-protect-dos pod like following command
 ```text
 kubectl exec -it app-protect-dos-586fb94947-8sjnc -n app-protect-dos -- bash
 ```
 and can look at .
-# markdown
-[Go to Post\-Installation Checks]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}#post-installation-checks)
-{{< /call-out >}}
+{{< include "dos/install-post-checks.md" >}}{{< /call-out >}}
 
 ## Next steps
