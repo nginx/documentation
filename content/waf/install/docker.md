@@ -26,13 +26,14 @@ To review supported operating systems, read the [Technical specifications]({{< r
 
 {{< include "waf/install-selinux-warning.md" >}}
 
-
 ## Download your subscription credentials 
+
 ### General subscription credentials needed for deployments
 
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
 ### Additional subscription credentials needed for deployments
+
 To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
@@ -1404,6 +1405,7 @@ F5 WAF for NGINX should now be operational, and you can move onto [Post-installa
 {{< include "waf/install-next-steps.md" >}}
 
 ## Remove NGINX docker image
+
 Before removing any Docker image, it’s important to ensure that the image is no longer needed and is not in use.
 
 [docker image rm](https://docs.docker.com/reference/cli/docker/image/rm/) tool
