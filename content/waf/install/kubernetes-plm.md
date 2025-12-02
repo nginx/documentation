@@ -37,7 +37,7 @@ To complete this guide, you will need the following prerequisites:
 - [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster
 - [Helm](https://helm.sh/docs/intro/install/)
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
-- An ctive F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+- An ctive F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
   - Download the [SSL certificate and private key file]({{< ref "/waf/install/kubernetes-plm.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
   - Download the [SSL certificate and private key file]({{< ref "/waf/install/kubernetes-plm.md#General subscription credentials needed for deployments" >}}), and the [JWT license]({{< ref "/waf/install/kubernetes-plm.md#Additional subscription credentials needed for a deployments with NGINX Plus" >}}) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - [Docker registry credentials]({{< ref "/waf/install/kubernetes-plm.md#Additional subscription credentials needed for deployments " >}}) are needed to access private-registry.nginx.com
@@ -53,7 +53,9 @@ To complete this guide, you will need the following prerequisites:
 
 To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
-> **Note:** If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
+{{< call-out "note" >}}
+If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
+{{< /call-out >}}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 

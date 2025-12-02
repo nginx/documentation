@@ -14,7 +14,7 @@ To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
-- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
   - Download the [SSL certificate and private key file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}) associated with your F5 WAF for NGINX WAF subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
   - Download the [SSL certificate and private key file]({{< ref "/waf/install/docker.md#General subscription credentials needed for deployments" >}}), and the [JWT license file]({{< ref "/waf/install/docker.md#Additional subscription credentials needed for deployments" >}}) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
 - [Docker registry credentials]({{< ref "/waf/install/docker.md#Additional subscription credentials needed for deployments" >}}) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
@@ -55,7 +55,7 @@ The steps you should follow on this page are dependent on your configuration typ
 
 ## Configure Docker for the F5 Container Registry
 
-You will need Docker registry credentials to access private-registry.nginx.com for either the Multi-container or Hybrid configuration.
+You will need Docker registry credentials to access private-registry.nginx.com for the Multi-container or Hybrid deployment options.
 
 Create a directory and copy your [certificate and key]({{< ref "/waf/install/docker.md#Shared Requirements" >}}) to this directory:
 
