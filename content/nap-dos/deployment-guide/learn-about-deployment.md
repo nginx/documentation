@@ -1680,7 +1680,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect app-protect-dos && \
     cat license.jwt > /etc/nginx/license.jwt && \
-    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect.list /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
     rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
 
 # Forward request logs to Docker log collector:
@@ -1723,7 +1723,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
     apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect app-protect-dos && \
     cat license.jwt > /etc/nginx/license.jwt && \
-    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect-dos.list  && \
+    apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx-plus.list /etc/apt/sources.list.d/nginx-app-protect.list /etc/apt/sources.list.d/nginx-app-protect-dos.list && \
     rm -rf /etc/apt/apt.conf.d/90nginx /var/lib/apt/lists/*
 
 # Forward request logs to Docker log collector:
