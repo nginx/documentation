@@ -220,7 +220,7 @@ To upgrade NGINX Instance Manager to a newer version:
 
 ## Uninstall NGINX Instance Manager {#uninstall-nim}
 
-{{< include "nim/uninstall/uninstall-nim.md" >}}
+{{< include "nim/install/uninstall-nim.md" >}}
 
 ---
 

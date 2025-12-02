@@ -1,6 +1,7 @@
 ---
 description: ''
-title: Install using a bash script (online)
+title: Install NGINX Instance Manager using a bash script (for online deployments)
+linkTitle: Install using a bash script (online)
 toc: true
 weight: 10
 type:
@@ -64,8 +65,8 @@ By default, the script:
 
 To see the list of supported Linux distributions for the installation script, run:
 
-```shell
-install-nim-bundle.sh -l
+```bash
+bash install-nim-bundle.sh -l
 ```
 
 ### Example: Install with NGINX Open Source using default certificate paths
@@ -119,69 +120,70 @@ Save this password. You’ll need it to sign in to the NGINX Instance Manager we
 
 ## Upgrade NGINX Instance Manager {#upgrade-nim}
 
-{{<tabs name="upgrade_nim">}}
-{{%tab name="CentOS, RHEL, RPM-Based"%}}
+Follow these steps to upgrade NGINX Instance Manager and, if applicable, ClickHouse.
 
-1. To upgrade to the latest version of the NGINX Instance Manager, run the following command:
+- **For CentOS, RHEL, and RPM-based distributions:**
 
-   ```shell
-   sudo yum update -y nms-instance-manager --allowerasing
-   ```
+  To upgrade to the latest version of the NGINX Instance Manager:
 
-1. To upgrade to the latest version of Clickhouse, run the following command:
+  ```bash
+  sudo yum update -y nms-instance-manager --allowerasing
+  ```
 
-   ```shell
-   sudo yum update -y clickhouse-server clickhouse-client
-   ```
+  To upgrade to the latest version of ClickHouse (if installed):
 
-{{%/tab%}}
+  ```bash
+  sudo yum update -y clickhouse-server clickhouse-client
+  ```
 
-{{%tab name="Debian, Ubuntu, Deb-Based"%}}
+- **For Debian, Ubuntu, and Deb-based distributions:**
 
-1. To upgrade to the latest version of the NGINX Instance Manager, run the following commands:
+  To upgrade to the latest version of the NGINX Instance Manager:
 
-   ```shell
-   sudo apt-get update
-   sudo apt-get install -y --only-upgrade nms-instance-manager
-   ```
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y --only-upgrade nms-instance-manager
+  ```
 
-1. To upgrade to the latest version of ClickHouse, run the following commands:
+  To upgrade to the latest version of ClickHouse (if installed):
 
-   ```shell
-   sudo apt-get update
-   sudo apt-get install -y --only-upgrade clickhouse-server clickhouse-client
-   ```
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y --only-upgrade clickhouse-server clickhouse-client
+  ```
 
-{{%/tab%}}
-{{</tabs>}}
+- **Restart platform services:**
 
-2. Restart the NGINX Instance Manager platform services:
+  Restart the NGINX Instance Manager platform services:
 
-    ```shell
-    sudo systemctl restart nms
-    ```
+  ```bash
+  sudo systemctl restart nms
+  ```
 
-    NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+  NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
 
-3. Restart the NGINX web server:
+- **Restart the NGINX web server:**
 
-   ```shell
-   sudo systemctl restart nginx
-   ```
+  ```bash
+  sudo systemctl restart nginx
+  ```
 
-4. Restart the Clickhouse server:
+- **Restart the ClickHouse server (if ClickHouse is installed):**
 
-   ```shell
-   sudo systemctl restart clickhouse-server
-   ```
+  ```bash
+  sudo systemctl restart clickhouse-server
+  ```
 
-5. (Optional) If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
+- **Optional: Restore SELinux labels**
+
+  If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
+
 
 ---
 
 ## Uninstall NGINX Instance Manager {#uninstall-nim}
 
-{{< include "nim/uninstall/uninstall-nim.md" >}}
+{{< include "nim/install/uninstall-nim.md" >}}
 
 ---
 
