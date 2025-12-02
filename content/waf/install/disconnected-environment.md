@@ -18,7 +18,7 @@ To complete this guide, you will need the following prerequisites:
     - [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md#before-you-begin" >}})
     - [Docker]({{< ref "/waf/install/docker.md#before-you-begin" >}})
     - [Kubernetes]({{< ref "/waf/install/kubernetes.md#before-you-begin" >}})
-- An active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
 - A connected environment with similar architecture
 - A method to transfer files between two environments
 
