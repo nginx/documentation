@@ -35,21 +35,14 @@ The following example demonstrates the general rule:
 
 {{< tabs name="subrequest-example" >}}
 
-{{% tab name="nginx.js" %}}
+{{% tab name="nginx.conf" %}}
 
 ```nginx
 user nginx;
-worker_processes  4;
-#daemon off;
+worker_processes  auto;
 
 load_module modules/ngx_http_app_protect_module.so;
 load_module modules/ngx_http_js_module.so;
-
-error_log /var/log/nginx/error.log warn;
-
-events {
-    worker_connections  65536;
-}
 
 http {
     include       /etc/nginx/mime.types;
