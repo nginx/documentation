@@ -14,11 +14,14 @@ It explains the common steps necessary for any Kubernetes-based deployment, then
 
 To complete this guide, you will need the following pre-requisites:
 
-- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/)
-- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster
-- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial)
+- A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/).
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
-- Docker registry credentials are needed to access private-registry.nginx.com
+- Active F5 NGINX App Protect WAF subscription in [MyF5](https://my.f5.com/manage/s/) (purchased or trial).
+  - Download the [SSL certificate and private key file]({{< ref "/waf/install/kubernetes.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
+  - Download the [SSL certificate, private key, and the JWT license]({{< ref "/waf/install/kubernetes.md#Additional subscription credentials needed for a deployments with NGINX Plus" >}}) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
+- Docker registry credentials in [MyF5](https://my.f5.com/manage/s/) is required to access private-registry.nginx.com (Same as the SSL certificate and private key file ).
 
 You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 
@@ -30,11 +33,14 @@ To review supported operating systems, read the [Technical specifications]({{< r
 
 ## Download your subscription credentials 
 
+### General subscription credentials needed for deployments 
+
 {{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
 
-### Download your JSON web token
+### Additional subscription credentials needed for a deployments with NGINX Plus 
 
-To use NGINX Plus, you will need to download the the JWT license file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+To use NGINX Plus, you will need to download the the JWT license file associated with your F5 NGINX App Protect WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+
 > **Note:** If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
