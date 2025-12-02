@@ -234,10 +234,10 @@ To enable them, you must configure the Policy Controller settings in your `value
 namespace: <namespace>
 
 appprotect:
-  ## Enable/Disable NGINX App Protect Deployment
+  ## Enable/Disable F5 WAF for NGINX Deployment
   enable: true
   
-  ## The number of replicas of the NGINX App Protect deployment
+  ## The number of replicas of the F5 WAF for NGINX deployment
   replicas: 1
   
   ## Configure root filesystem as read-only and add volumes for temporary data
@@ -246,7 +246,7 @@ appprotect:
   ## The annotations for deployment
   annotations: {}
   
-  ## InitContainers for the NGINX App Protect pod
+  ## InitContainers for the F5 WAF for NGINX pod
   initContainers: []
     # - name: init-container
     #   image: busybox:latest
@@ -254,7 +254,7 @@ appprotect:
   
   nginx:
     image:
-      ## The image repository of the NGINX App Protect WAF image you built
+      ## The image repository of the F5 WAF for NGINX WAF image you built
       ## This must reference the Docker image you built following the Docker deployment guide
       ## Replace <your-private-registry> with your actual registry and update the image name/tag as needed
       repository: <your-private-registry>/nginx-app-protect-5
@@ -413,7 +413,7 @@ appprotect:
       # mTLS configuration
       # stream {
       #   upstream enforcer {
-      #     # Replace with the actual App Protect Enforcer address and port if different
+      #     # Replace with the actual F5 WAF for NGINX Enforcer address and port if different
       #     server 127.0.0.1:4431;
       #   }
       #   server {
@@ -483,13 +483,13 @@ appprotect:
 
   ## It is recommended to use your own TLS certificates and keys
   mTLS:
-    ## The base64-encoded TLS certificate for the App Protect Enforcer (server)
+    ## The base64-encoded TLS certificate for the F5 WAF for NGINX Enforcer (server)
     ## Note: It is recommended that you specify your own certificate
     serverCert: ""
-    ## The base64-encoded TLS key for the App Protect Enforcer (server)
+    ## The base64-encoded TLS key for the F5 WAF for NGINX Enforcer (server)
     ## Note: It is recommended that you specify your own key
     serverKey: ""
-    ## The base64-encoded TLS CA certificate for the App Protect Enforcer (server)
+    ## The base64-encoded TLS CA certificate for the F5 WAF for NGINX Enforcer (server)
     ## Note: It is recommended that you specify your own certificate
     serverCACert: ""
     ## The base64-encoded TLS certificate for the NGINX (client)

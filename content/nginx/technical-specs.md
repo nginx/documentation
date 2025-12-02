@@ -35,7 +35,7 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 | **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Rocky Linux 8** | ❌ |  ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Rocky Linux 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **SLES** | ❌ | ✓ | ✓ | ✓ | ✓ | ❌ |
+| **SLES** | ❌ | 15 only | ✓ | ✓ | ✓ | ✓ |
 | **Ubuntu 20.04** | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **Ubuntu 22.04 & 24.04** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
 

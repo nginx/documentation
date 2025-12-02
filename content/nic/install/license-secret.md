@@ -1,7 +1,7 @@
 ---
 title: Create a license Secret
 toc: true
-weight: 200
+weight: 300
 nd-content-type: how-to
 nd-product: INGRESS
 nd-docs: DOCS-1860
@@ -51,7 +51,7 @@ If using a name other than the default `license-token`, provide the name of this
 
 Specify the Secret name using the `controller.mgmt.licenseTokenSecretName` Helm value.
 
-For detailed guidance on creating the Management block with Helm, refer to the [Helm configuration documentation]({{< ref "/nic/install/helm.md#configuration" >}}).
+For detailed guidance on creating the Management block with Helm, refer to the [Helm installation topics]({{< ref "/nic/install/helm/" >}}).
 
 {{% /tab %}}
 
