@@ -12,9 +12,10 @@ Your folder should contain the following files:
 - _nginx.conf_
 - _entrypoint.sh_
 - _Dockerfile_
-- _custom_log_format.json_ (Optional)
+- _custom_log_format.json_ 
 
-To build an image for NGINX Plus, use the following command, replacing `<your-image-name>` as appropriate:
+#### Building an image with NGINX Plus
+To build an image for NGINX Plus, use the following command that are not RHEL-based, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
@@ -26,7 +27,8 @@ A RHEL-based system would use the following command instead:
 podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
 ```
 
-To build an image for NGINX Open Source, use the following command, replacing `<your-image-name>` as appropriate:
+#### Building an image with NGINX Open Source
+To build an image for NGINX Open Source, use the following command that are not RHEL-based, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
