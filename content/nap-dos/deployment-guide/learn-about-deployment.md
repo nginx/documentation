@@ -1025,22 +1025,7 @@ You need root permissions to execute the following steps.
 
 5. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-    ```shell
-    #!/usr/bin/env bash
-
-    USER=nginx
-    LOGDIR=/var/log/adm
-
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;'
-    ```
+   {{< include "/dos/dockerfiles/dos-entrypoint.md" >}}
 
 6. Create a Docker image:
 
@@ -1050,7 +1035,7 @@ You need root permissions to execute the following steps.
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 DoS for NGINX. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
-   For RHEL8/9 with subctiption manager setup add build arguments:
+   For RHEL8/9 with subscription manager setup add build arguments:
    
     ```shell
     DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
@@ -1509,26 +1494,10 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 7. In the same directory create an `entrypoint.sh` file with executable permissions, with the following content:
 
-   For Alpine / Debian / Ubuntu / UBI 8/ UBI 9:
+   For Alpine /AmazonLinux 2023/ Debian / Ubuntu / UBI 8/ UBI 9:
 
-     ```shell
-     #!/usr/bin/env bash
-    USER=nginx
-    LOGDIR=/var/log/adm
+{{< include "/dos/dockerfiles/dos-waf-entrypoint.md" >}}
 
-    # prepare environment
-    mkdir -p /var/run/adm /tmp/cores ${LOGDIR}
-    chmod 755 /var/run/adm /tmp/cores ${LOGDIR}
-    chown ${USER}:${USER} /var/run/adm /tmp/cores ${LOGDIR}
-
-    # run processes
-    /bin/su -s /bin/bash -c "/usr/bin/adminstall > ${LOGDIR}/adminstall.log 2>&1" ${USER}
-    /bin/su -s /bin/bash -c "/opt/app_protect/bin/bd_agent &" ${USER} 
-    /bin/su -s /bin/bash -c "/usr/share/ts/bin/bd-socket-plugin tmm_count 4 proc_cpuinfo_cpu_mhz 2000000 total_xml_memory 307200000 total_umu_max_size 3129344 sys_max_account_id 1024 no_static_config 2>&1 > /var/log/app_protect/bd-socket-plugin.log &" ${USER}
-    /bin/su -s /bin/bash -c "/usr/bin/admd -d --log info > ${LOGDIR}/admd.log 2>&1 &" ${USER}
-    /usr/sbin/nginx -g 'daemon off;'
-    ```
-  
 8. Create a Docker image:
 
     For Debian/Ubuntu/Alpine/Amazon Linux:

@@ -116,6 +116,11 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
+## Create an entrypoint.sh
+Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+
+{{< include "/dos/dockerfiles/dos-entrypoint.md" >}}
+
 ## Build the Docker image
 
 Your folder should contain the following files:

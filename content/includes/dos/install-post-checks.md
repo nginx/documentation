@@ -3,6 +3,7 @@ nd-docs: null
 nd-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 - content/nap-dos/deployment-guide/kubernetes.md
+- content/nap-dos/deployment-guide/kubernetes-with-L3-mitigation.md
 ---
 
 You can run the following commands to ensure that F5 DoS for NGINX enforcement is operational.
