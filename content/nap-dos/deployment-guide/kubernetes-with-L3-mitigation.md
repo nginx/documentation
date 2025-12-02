@@ -44,6 +44,16 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
+{{< tabs name="alpine-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/alpine-ebpf-manager.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 ### Amazon Linux
 
 {{< tabs name="amazon-instructions" >}}
@@ -51,6 +61,16 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 {{% tab name="NGINX Plus" %}}
 
 {{< include "/dos/dockerfiles/amazon-plus-dos.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+{{< tabs name="amazon-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/amazon-ebpf-manager.md" >}}
 
 {{% /tab %}}
 
@@ -68,6 +88,16 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
+{{< tabs name="debian-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/debian-ebpf-manager.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 ### RHEL 8
 
 {{< tabs name="rhel8-instructions" >}}
@@ -75,6 +105,16 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 {{% tab name="NGINX Plus" %}}
 
 {{< include "/dos/dockerfiles/rhel8-plus-dos.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+{{< tabs name="rhel8-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/rhel8-ebpf-manager.md" >}}
 
 {{% /tab %}}
 
@@ -92,6 +132,16 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
+{{< tabs name="rhel9-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/rhel9-ebpf-manager.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 ### Rocky Linux 9
 
 {{< tabs name="rocky-instructions" >}}
@@ -99,6 +149,16 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 {{% tab name="NGINX Plus" %}}
 
 {{< include "/dos/dockerfiles/rocky9-plus-dos.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+{{< tabs name="rocky9-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/rocky9-ebpf-manager.md" >}}
 
 {{% /tab %}}
 
@@ -116,13 +176,29 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
-## Build the Docker image
+{{< tabs name="ubuntu-instructions-ebpf" >}}
+
+{{% tab name="EBPF Manager" %}}
+
+{{< include "/dos/dockerfiles/ubuntu-ebpf-manager.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+## Create DOS entrypoint.sh
+Docker startup script which spins up all App Protect DoS processes, must have executable permissions
+
+{{< include "/dos/dos-entrypoint.md" >}}
+
+## Build the DOS Docker image
 
 Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
 - _license.jwt_
+- _entrypoint.sh_
 - _Dockerfile_
 
 To build an image, use the following command, replacing `<your-image-name>` as appropriate:
@@ -135,7 +211,24 @@ sudo docker build --no-cache --platform linux/amd64 \
   -t <your-image-name> .
 ```
 
-Once you have built the image, push it to your private image repository, which should be accessible to your Kubernetes cluster.
+## Build the EBPF Manager Docker image
+
+Your folder should contain the following files:
+
+- _nginx-repo.crt_
+- _nginx-repo.key_
+- _Dockerfile_
+
+To build an image, use the following command, replacing `<your-image-name>` as appropriate:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 \
+  --secret id=nginx-crt,src=nginx-repo.crt \
+  --secret id=nginx-key,src=nginx-repo.key \
+  -t <your-image-name> .
+```
+
+Once you have built the DOS and EBPF images, push them to your private image repository, which should be accessible to your Kubernetes cluster.
 
 From this point, the steps change based on your installation method:
 
