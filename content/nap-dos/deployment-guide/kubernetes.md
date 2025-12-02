@@ -145,7 +145,7 @@ From this point, the steps change based on your installation method:
 
 ### Update configuration files
 
-{{< include "dos/install-update-configuration.md" >}}
+/* {{< include "dos/install-update-configuration.md" >}} */
 
 ### Create a Secret
 
