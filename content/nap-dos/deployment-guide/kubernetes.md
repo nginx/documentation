@@ -145,8 +145,6 @@ From this point, the steps change based on your installation method:
 
 ### Update configuration files
 
-/* {{< include "dos/install-update-configuration.md" >}} */
-
 ### Create a Secret
 
 Before you can start the Manifest deployment, you need a Kubernetes secret for the Docker registry.
