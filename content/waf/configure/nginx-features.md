@@ -273,7 +273,7 @@ http {
 
         location / {
             app_protect_enable on;
-            proxy_pass    http://127.0.0.1:8080/proxy/$request_uri;
+            proxy_pass         http://127.0.0.1:8080/proxy/$request_uri;
         }
 
         location /proxy {
