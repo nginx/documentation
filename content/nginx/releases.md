@@ -17,8 +17,9 @@ Critical bug patches and security updates are applied to the two (2) most recent
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
 | NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
 |--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R35](#r35)        | Aug 13 2025  | R36 release date            | R37 release date        | Aug 12, 2027             |
-| [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | R36 release date        | Mar 31, 2027             |
+| [R36](#r36)        | Dec 1, 2025  | R37 release date            | R38 release date        | Nov 30, 2027             |
+| [R35](#r35)        | Aug 13, 2025 | Dec 1, 2025                 | R37 release date        | Aug 12, 2027             |
+| [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | Dec 1, 2025        |      Mar 31, 2027             |
 | [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | Aug 13 2025             | Nov 18, 2026             |
 | [R32](#r32)        | May 29, 2024 | Nov 19, 2024                | Apr 1, 2025             | May 28, 2026             |
 | [R31](#r31)        | Dec 19, 2023 | May 29, 2024                | Nov 18, 2024            | Dec 18, 2025             |
@@ -31,6 +32,75 @@ We strongly recommend running the latest version of NGINX Plus in production to 
 ### Technical Support Services
 
 F5 offers 24 months of technical support for each F5 NGINX Plus release. The 24-month support period begins on the initial release date for each version of NGINX Plus, as noted in the table. The release of a patch (for example, `NGINX Plus R34 P2`) does not reset the 24-month technical support period for the impacted release.
+
+## NGINX Plus Release 36 (R36) {#r36}
+_December 1, 2025_<br/>
+_Based on NGINX Open Source 1.29.3_
+
+NGINX Plus R36 is a feature release:
+
+- HTTP CONNECT forward proxy: the [`tunnel_module`](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html) that handles `CONNECT` requests and establishes an end-to-end virtual connection.
+
+- Native OIDC Support for [PKCE](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce), [front-channel logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#frontchannel_logout_uri), and [POST client authentication](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret).
+
+- ACME enhancements for certificate automation: support for [ACME challenges](https://nginx.org/en/docs/http/ngx_http_acme_module.html#challenge) and [keys for external account authorization](https://nginx.org/en/docs/http/ngx_http_acme_module.html#external_account_key).
+
+- The `num_map` module for [`http`](https://nginx.org/en/docs/http/ngx_http_num_map_module.html) and [`stream`](https://nginx.org/en/docs/stream/ngx_stream_num_map_module.html) that, similar to the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) module, allows creating variables whose values depend on numeric values or numeric value ranges.
+
+- The [`$upstream_last_addr`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_last_addr) variable that keeps the IP address of the last selected upstream server.
+
+- The [`$request_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_port) and [`$is_request_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_is_request_port) variables.
+
+- Enhancements in the proxy modules:
+
+  - The [`proxy_allow_upstream`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_allow_upstream) directive and the `denied` parameter of [`proxy_next_upstream`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) (also for [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_allow_upstream), [gRPC](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_allow_upstream), [memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_allow_upstream), [tunnel](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_allow_upstream), [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_allow_upstream), and [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_allow_upstream)) that specifies the conditions under which access to the proxied server is allowed or denied.
+
+  - The [`proxy_bind_dynamic`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_bind_dynamic) directive (also for [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_bind_dynamic), [gRPC](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_bind_dynamic), [memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_bind_dynamic), [tunnel](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_bind_dynamic), [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_bind_dynamic), and [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_bind_dynamic)) that makes the [`bind`](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_bind) operation at each connection attempt.
+
+  - the [`proxy_request_dynamic`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_dynamic) directive (also for [FastCGI](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_request_dynamic), [gRPC](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_request_dynamic), [memcached](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_request_dynamic), [tunnel](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_request_dynamic), [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_request_dynamic), and [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_request_dynamic)) that enables creation of a separate request instance for each proxied server instead of using a single request for all proxied servers.
+
+- SSL/TLS enhancements:
+
+  - TLS certificate compression with the `ssl_certificate_compression` directive for [`http`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_compression), [`stream`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_compression), and [`mail`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_compression).
+
+  - The [`$ssl_sigalg`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_sigalg) and [`$ssl_client_sigalg`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_sigalg) variables that return the signature algorithm for the client or server certificate for an SSL connection.
+
+  - support for 0-RTT in QUIC when using OpenSSL 3.5.1 or newer.
+
+  - Support for OpenSSL 3.5.
+
+    {{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
+
+- Inheritance control for [headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) and [trailers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer_inherit).
+
+- Container images with popular modules, now including ACME, OpenTelemetry, and Prometheus exporter modules.
+
+{{< call-out "note" "More info" >}} [Announcing NGINX Plus R36](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r36-release-now-available/344514) blog post. {{< /call-out >}}
+
+NGINX Plus R36 is supported on:
+
+{{<bootstrap-table "table table-striped table-bordered table-sm">}}
+| Distribution                     | Versions                 |
+|----------------------------------|--------------------------|
+| AlmaLinux                        | 8.1+, 9, 10              |
+| Alpine Linux                     | 3.20, 3.21, 3.22         |
+| Amazon Linux                     | 2 LTS, 2023              |
+| Debian                           | 11, 12, 13               |
+| FreeBSD                          | 13.5+, 14.3+             |
+| Oracle Linux                     | 8.1+, 9                  |
+| RHEL                             | 8.1+, 9, 10              |
+| Rocky Linux                      | 8.1+, 9, 10              |
+| SUSE Linux Enterprise Server     | 15 SP6+, 16              |
+| Ubuntu                           | 22.04 LTS, 24.04 LTS     |
+{{< /bootstrap-table >}}
+
+**Notes:**
+
+- Alpine Linux 3.19 is removed
+- Alpine Linux 3.20 is deprecated
+- Debian 13 is new in this release
+- Rocky Linux 10 is new in this release
+- SLES 16 is new in this release
 
 
 ## NGINX Plus Release 35 (R35) {#r35}
@@ -1466,7 +1536,7 @@ NGINX Plus R13 is a feature release:
 - Ability to send duplicate all incoming traffic to a dedicated server (the [mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html#mirror) directive)
 - Improvements to [NGINX JavaScript](https://www.nginx.com/blog/introduction-nginscript/) module, including the new interactive shell to facilitate development of NGINX JavaScript code
 - New [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) that incorporates the functionality of the previous [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) and [(extended) status](https://nginx.org/en/docs/http/ngx_http_status_module.html) APIs; it includes a [Swagger](https://demo.nginx.com/swagger-ui/) specification and adds support for [key‑value stores](https://nginx.org/en/docs//http/ngx_http_keyval_module.html)
-- New build tool ([download here](https://hg.nginx.org/pkg-oss/raw-file/default/build_module.sh)) that creates installable packages of the many third‑party modules available for NGINX and NGINX Plus
+- New build tool ([download here](https://github.com/nginx/pkg-oss/blob/master/build_module.sh)) that creates installable packages of the many third‑party modules available for NGINX and NGINX Plus
 - Ability to gracefully shut down all live client connections when restarting NGINX Plus (the [worker_shutdown_timeout](https://nginx.org/en/docs/ngx_core_module.html#worker_shutdown_timeout) directive)
 - Support for adding HTTP trailers (the [add_trailer](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer) directive)
 - Improvement to session persistence: quicker establishment of sticky sessions between clients and upstream groups (the `header` parameter to the [sticky learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) directive)

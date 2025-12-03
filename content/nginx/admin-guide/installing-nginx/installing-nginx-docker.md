@@ -44,6 +44,9 @@ The registry contains the following image types:
 - Unprivileged installation of NGINX Plus and NGINX Agent:</br>
   `https://private-registry.nginx.com/v2/nginx-plus/rootless-agent`
 
+- [NGINX Plus dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}):</br>
+  `https://private-registry.nginx.com/v2/nginx-plus/modules`
+
 The images can be targeted for a particular operating system and NGINX Plus release using tags.
 
 ### Tags for operating systems
@@ -51,9 +54,9 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 {{<bootstrap-table "table table-bordered">}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
 |--------------------------------------------|--------------|-----------------------------------------------|
-| Alpine (x86_64, aarch64)                   | `alpine`     | `r33-alpine`, `r33-alpine-3.20`               |
-| Debian (x86_64, aarch64)                   | `debian`     | `r33-debian`, `r33-debian-bookworm`           |
-| Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r33-ubi`, `r33-ubi-9`,  `r33-ubi-9-20240624` |
+| Alpine (x86_64, aarch64)                   | `alpine`     | `r36-alpine`, `r36-alpine-3.20`               |
+| Debian (x86_64, aarch64)                   | `debian`     | `r36-debian`, `r36-debian-bookworm`           |
+| Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r36-ubi`, `r36-ubi-9`,  `r36-ubi-9-20251201` |
 {{</bootstrap-table>}}
 
 ### Tags for NGINX Plus versions
@@ -61,7 +64,7 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic operating system tag returns the latest version of NGINX Plus built for the latest version of this operating system.
 
 {{<call-out "tip" "Example:" "fas fa-terminal" >}}
-`nginx-plus-r33-ubi-9`, `nginx-plus-r32-alpine-3.19`.
+`nginx-plus-r36-ubi-9`, `nginx-plus-r36-alpine-3.22`.
 {{</call-out>}}
 
 The image may contain a particular version of NGINX Plus or contain a bundle of NGINX Plus and NGINX Agent, and can be targeted for a specific architecture.
@@ -466,7 +469,7 @@ To extract log messages using the Docker Remote API, send a `GET` request using 
 curl --unix-sock /var/run/docker-sock http://localhost/containers/container-name/logs?stdout=1&stderr=1
 ```
 
-To include only access log messages in the output, include only `stdout=1`. To limit the output to error log messages, include only `stderr=1`. For other available options, see [Get container logs](https://docs.docker.com/engine/api/v1.39/#operation/ContainerLogs) section of the [Docker Engine API](https://docs.docker.com/engine/api/v1.39/) documentation.
+To include only access log messages in the output, include only `stdout=1`. To limit the output to error log messages, include only `stderr=1`. For other available options, see [Get container logs](https://docs.docker.com/reference/api/engine/version/v1.45/#tag/Container/operation/ContainerLogs) section of the [Docker Engine API](https://docs.docker.com/reference/api/engine/version/v1.45/) documentation.
 
 
 <span id="log_custom"></span>

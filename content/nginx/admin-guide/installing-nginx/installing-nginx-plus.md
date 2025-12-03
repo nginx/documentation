@@ -579,7 +579,7 @@ NGINX Certified Partner dynamic modules are partner-built extensions that enhanc
 | [Curity Identity Server](https://developer.curity.io/) | Powerful OAuth and OpenID Connect server, used for logging in and securing millions of users, access to API and mobile apps over APIs and microservices. | [Support](https://curity.io/support/professional-services/) and docs [[1]](https://curity.io/resources/learn/nginx-phantom-token-module/), [[2]](https://curity.io/resources/learn/nginx-oauth-proxy/) provided by [Curity](https://curity.io/support/professional-services/) |
 | [DeviceAtlas](https://deviceatlas.com/deviceatlas-nginx-module) | Detect what devices users are using, including smartphones, laptops, and weareable devices, and use this data to deliver customized experiences. | [Support](https://deviceatlas.com/resources/support) and [docs](https://docs.deviceatlas.com/apis/enterprise/c/3.1.3/README.Nginx.html) provided by [DeviceAtlas](https://deviceatlas.com/resources/support) |
 | [ForgeRock Policy Agent](https://backstage.forgerock.com/downloads/browse/am/featured/web-agents) | In conjunction with ForgeRock Access Management, allows you to authenticate your application and API access. | [Support](https://support.pingidentity.com/s/) and [docs](https://backstage.forgerock.com/docs/openam-web-policy-agents/2023.9/installation-guide/install-nginx.html) provided by [PingIdentity](https://www.pingidentity.com) |
-| [HUMAN Security for F5 NGINX](https://www.humansecurity.com/contact-us/) | Provides the required enforcement layer to protect websites and apps from modern automated security threats. | Support provided by [HUMAN Security](https://www.humansecurity.com/) |
+| [HUMAN Security for F5 NGINX](https://www.humansecurity.com/company/about/) | Provides the required enforcement layer to protect websites and apps from modern automated security threats. | Support provided by [HUMAN Security](https://www.humansecurity.com/) |
 | [IDFConnect SSO/Rest](http://www.idfconnect.com/about/contact/) | Integrates your web access management platform's full capabilities with NIGNX Plus. | [Support](http://www.idfconnect.com/about/contact/) and [docs](https://www.idfconnect.com/nginx-ssorest-plugin/) provided by [IDFConnect](http://www.idfconnect.com) |
 | [OPSWAT](https://www.f5.com/go/product/nginx-modules) | Scalable solutions to protect your networks and applications from malware and unknown (zero-day) malicious file content. | [Support](https://www.opswat.com/support) and [docs](https://www.opswat.com/docs/mdicap/integrations/nginx-integration-module) provided by [OPSWAT](https://www.opswat.com/) |
 | [Passenger Enterprise](https://www.phusionpassenger.com/features) | An application server with support for Meteor, Node.js, Python, and Ruby apps. | [Support](https://www.phusionpassenger.com/support) and [docs](https://www.phusionpassenger.com/docs/advanced_guides/install_and_upgrade/nginx/install_as_nginx_module.html) provided by [Phusion](https://www.phusionpassenger.com/) |
@@ -587,7 +587,7 @@ NGINX Certified Partner dynamic modules are partner-built extensions that enhanc
 | [PingIntelligence](https://hub.pingidentity.com/datasheets/3742-pingintelligence-apis) | A complete solution to secure an organization's API across on-premises, public and private clouds, and hybrid IT environments. | [Support](https://support.pingidentity.com/s/) and [docs](https://docs.pingidentity.com/pingintelligence/5.1/pingintelligence_integrations/pingintelligence_nginx_plus_integration.html) provided by [PingIdentity](https://www.pingidentity.com) |
 | [Seer Box by Plurbius One](https://seerbox.it/en/) | Cloud-native web application security manager which provides thorough monitoring and protection capabilities. | Support provided by [Seer Box](https://support.seerbox.it/) |
 | [Signal Sciences](https://docs.fastly.com/en/ngwaf/about-the-nginx-module) | Intelligently detects malicious requests and blocks them without false positives, while the patented fail-open architecture allows legitimate requests through. | [Support](https://support.fastly.com/s/) and [docs](https://docs.fastly.com/en/ngwaf/installing-the-nginx-dynamic-module) provided by [Fastly](https://www.fastly.com/)|
-| [Wallarm](https://docs.wallarm.com/updating-migrating/nginx-modules/) | The Wallarm WAF provides enterprise-grade protection against advanced Layer 7 application attacks. | [Support](https://www.wallarm.com/support) and [docs](https://docs.wallarm.com/installation/nginx/all-in-one/) provided by [Wallarm](https://wallarm.com/) |
+| [Wallarm](https://www.wallarm.com/company) | The Wallarm WAF provides enterprise-grade protection against advanced Layer 7 application attacks. | [Support](https://www.wallarm.com/support) and [docs](https://docs.wallarm.com/installation/nginx-native-node-internals/#nginx-node) provided by [Wallarm](https://wallarm.com/) |
 | [WURFL InFuse](https://www.scientiamobile.com/secondary-products/wurfl-infuze-module-for-nginx-plus/) | Give developers the most advanced, accurate, and high-performance device detection in the industry. | [Support](https://www.scientiamobile.com/support/) and [docs](https://docs.scientiamobile.com/documentation/infuze/infuze-nginx-plus-module-user-guide) provided by [Scientiamobile](https://www.scientiamobile.com/) |
 | [51Degrees Device Detection](https://github.com/51Degrees/device-detection-nginx) | Improve speed of response and accuracy, delivering an optimal user experience and high-fidelity analysis. | [Support](https://51degrees.com/pricing/index) and [docs](https://github.com/51Degrees/device-detection-nginx/blob/main/README.md) provided by [51Degrees](https://51degrees.com/about-us) |
 
@@ -616,7 +616,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.29.0 (nginx-plus-r35)
+   nginx version: nginx/1.29.3 (nginx-plus-r36)
    ```
 
 1. Prepare the build environment.
@@ -649,10 +649,10 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 
    - Identify the NGINX Open Source version that corresponds to your version of NGINX Plus. See [NGINX Plus Releases]({{< ref "nginx/releases.md" >}}).
 
-   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.29.0:
+   - Download the sources for the appropriate NGINX Open Source mainline version, in this case 1.29.3:
 
      ```shell
-     wget -qO - https://nginx.org/download/nginx-1.29.0.tar.gz | tar zxfv -
+     wget -qO - https://nginx.org/download/nginx-1.29.3.tar.gz | tar zxfv -
      ```
 
 1. Obtain the source for the dynamic module.
@@ -668,7 +668,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    First, establish binary compatibility by running the `configure` script with the `‑‑with‑compat` option. Then compile the module with `make modules`.
 
    ```shell
-   cd nginx-1.29.0/ && \
+   cd nginx-1.29.3/ && \
    ./configure --with-compat --add-dynamic-module=../<MODULE-SOURCES> && \
    make modules
    ```
@@ -688,7 +688,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
 1. Make a copy of the module file and include the NGINX Open Source version in the filename. This makes it simpler to manage multiple versions of a dynamic module in the production environment.
 
    ```shell
-   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.29.0.so
+   cp objs/ngx_http_hello_world_module.so ./ngx_http_hello_world_module_1.29.3.so
    ```
 
 1. Transfer the resulting `.so` file from your build environment to the production environment.
@@ -700,7 +700,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alo
    - `/usr/local/etc/nginx/modules` for FreeBSD
 
    ```shell
-   sudo cp ngx_http_hello_world_module_1.29.0.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.29.0.so
+   sudo cp ngx_http_hello_world_module_1.29.3.so /usr/local/nginx/modules/ngx_http_hello_world_module_1.29.3.so
    ```
 
 After installing the module, you need to enable it in the NGINX Plus configuration file. For more information, see [Enabling Dynamic Modules](#enable_dynamic).
@@ -990,7 +990,7 @@ To upgrade your NGINX Plus installation to the newest version:
    The output of the command:
 
    ```shell
-   nginx version: nginx/1.29.0 (nginx-plus-r35)
+   nginx version: nginx/1.29.3 (nginx-plus-r36)
    ```
 
 ## Upgrade NGINX Plus modules {#upgrade_modules}
