@@ -27,3 +27,17 @@ This configuration:
 - Blocks all other requests for security.
 
 For more details, see the [NGINX Stub Status module documentation](https://nginx.org/en/docs/http/ngx_http_stub_status_module.html).
+
+{{<call-out "note" "Note: NGINX Open Source Metrics" >}} For collecting metrics from NGINX Open Source, ensure that following log format is used in the NGINX configuration:
+
+```nginx
+log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for" '
+                  '"$bytes_sent" "$request_length" "$request_time" '
+                  '"$gzip_ratio" $server_protocol ';
+
+access_log  /var/log/nginx/access.log  main;
+```
+
+{{</call-out>}}
