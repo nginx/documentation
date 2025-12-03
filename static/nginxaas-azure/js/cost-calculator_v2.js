@@ -399,7 +399,8 @@
   const updateCost = (costs, values = calculatorValuesState) => {
     const updatedTotalCost = utils.calculateCost(costs, values);
 
-    document.getElementById("total-value").textContent = utils.currencyFormatter(updatedTotalCost);
+    document.getElementById("total-value").textContent = 
+    `${utils.currencyFormatter(updatedTotalCost)} USD`;
     updateTotalCostDetails(values, updatedTotalCost);
   };
 
@@ -425,7 +426,8 @@
         );
     }
 
-    totalCostDetailElements.total.textContent = utils.currencyFormatter(totalCost);
+    totalCostDetailElements.total.textContent = `${utils.currencyFormatter(totalCost)} USD`;
+
 
     // update highlighted tier cost
     const rowIndex =
