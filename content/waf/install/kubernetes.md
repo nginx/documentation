@@ -18,7 +18,7 @@ To complete this guide, you will need the following pre-requisites:
 - [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/).
 - [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
-- An ctive F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
+- An active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
   - Download the [SSL certificate and private key file]({{< ref "/waf/install/kubernetes.md#General subscription credentials needed for deployments" >}}) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
   - Download the [SSL certificate, private key, and the JWT license]({{< ref "/waf/install/kubernetes.md#Additional subscription credentials needed for deployments" >}}) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - [Docker registry credentials]({{< ref "/waf/install/kubernetes.md#Additional subscription credentials needed for deployments" >}}) are needed to access private-registry.nginx.com 
