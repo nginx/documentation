@@ -18,7 +18,7 @@ To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate, private key, and the JWT license](#Download your subscription credentials) file associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal.
+  - Download the [SSL certificate, private key, and the JWT license](#download-your-subscription-credentials) file associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal.
 - A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). If NGINX Plus is not installed separately it will be installed automatically during F5 WAF for NGINX installation.
 
 Depending on your deployment type, you may have additional requirements:

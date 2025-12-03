@@ -15,9 +15,9 @@ To complete this guide, you will need the following prerequisites:
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
 - An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#General subscription credentials needed for deployments) associated with your F5 WAF for NGINX WAF subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
-  - Download the [SSL certificate and private key file](#General subscription credentials needed for deployments), and the [JWT license file](#Additional subscription credentials needed for deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
-- [Docker registry credentials](#Additional subscription credentials needed for deployments) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX WAF subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments), and the [JWT license file](#Additional subscription credentials needed for deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
+- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
