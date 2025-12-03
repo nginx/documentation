@@ -774,7 +774,7 @@ For more information about live activity monitoring, see the [NGINX Plus Admin�
 
 The <span style="white-space: nowrap;">NGINX Plus API</span> exports metrics in JSON format, so you can feed them to many monitoring systems. In addition, the [Prometheus-njs]({{< relref "../../admin-guide/dynamic-modules/prometheus-njs.md" >}}) module converts the JSON output  to a Prometheus‑compliant format.
 
-Several NGINX partners offer integrations for displaying and analyzing NGINX Open Source and NGINX Plus metrics. See our [Technology Partners](https://www.nginx.com/partners/technology-partners) page.
+Several NGINX partners offer integrations for displaying and analyzing NGINX Open Source and NGINX Plus metrics. See our [Technology Partners](https://www.f5.com/go/partner/technology-partners) page.
 
 <span id="backup-servers"></span>
 ### Configuring Backup Servers for Disaster Recovery
