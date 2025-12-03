@@ -30,7 +30,9 @@
     - title: "NGINXaaS for Google Cloud"
       url: "nginxaas/google/"
 
-- productGroup: Glossary
+- productGroup: Other
   products:
     - title: "F5 NGINX Glossary"
       url: "glossary"
+    - title: "F5 NGINX Writing Style Guide"
+      url: "writing-style-guide"

@@ -3,7 +3,8 @@ title: F5 NGINX Product Documentation
 description: Learn how to deliver, manage, and protect your applications using F5 NGINX products.
 ---
 
-# F5 NGINX Product Documentation 
+# F5 NGINX Product Documentation
+
 Learn how to deliver, manage, and protect your applications using F5 NGINX products. 
 
 {{<card-section showAsCards="true" title="F5 NGINX One">}}
@@ -51,10 +52,11 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
   {{</card >}}
 {{</card-section>}}
 
-{{<card-section showAsCards="true" title="Glossary">}}
-  {{<card title="F5 NGINX Glossary" titleUrl="/glossary/glossary/" brandIcon="NGINX-product-icon.svg" isLanding="true">}}
+{{<card-section showAsCards="true" title="Other">}}
+  {{<card title="F5 NGINX Glossary" titleUrl="/glossary/" brandIcon="NGINX-product-icon.svg" isLanding="true">}}
   Glossary of common terms and definitions for all F5 NGINX products.
   {{</card >}}
+  {{<card title="F5 NGINX Writing Style Guide" titleUrl="/writing-style-guide/" brandIcon="NGINX-product-icon.svg" isLanding="true">}}
+  Documentation explaining NGINX writing conventions.
+  {{</card >}}
 {{</card-section>}}
-
-
