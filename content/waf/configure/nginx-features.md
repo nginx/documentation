@@ -64,7 +64,7 @@ http {
         app_protect_enable on;
 
         location / {
-            proxy_pass    http://127.0.0.1:8080/foo/$request_uri;
+            proxy_pass        http://127.0.0.1:8080/foo/$request_uri;
         }
     }
     server {
@@ -147,7 +147,7 @@ http {
 
         location / {
             app_protect_enable on;
-            proxy_pass http://127.0.0.1:8081$request_uri;
+            proxy_pass        http://127.0.0.1:8081$request_uri;
         }
     }
 
@@ -156,7 +156,7 @@ http {
         server_name localhost;
 
         location / {
-            proxy_pass http://1.2.3.4$request_uri;
+            proxy_pass        http://1.2.3.4$request_uri;
             slice 2;
             proxy_set_header Range $slice_range;
         }
@@ -204,7 +204,7 @@ http {
 
         location / {
             app_protect_enable on;
-            proxy_pass    http://127.0.0.1:8081$request_uri;
+            proxy_pass        http://127.0.0.1:8081$request_uri;
         }
     }
 
@@ -231,10 +231,10 @@ http {
 
         location / {
             auth_request /scan;
-            proxy_pass http://localhost:8888;
+            proxy_pass        http://localhost:8888;
         }
         location /scan {
-            proxy_pass http://localhost:8081$request_uri;
+            proxy_pass        http://localhost:8081$request_uri;
        }
     }
 
@@ -244,7 +244,7 @@ http {
 
         location /scan {
             app_protect_enable on;
-            proxy_pass http://localhost:8888;
+            proxy_pass        http://localhost:8888;
         }
     }
 }
@@ -273,7 +273,7 @@ http {
 
         location / {
             app_protect_enable on;
-            proxy_pass         http://127.0.0.1:8080/proxy/$request_uri;
+            proxy_pass        http://127.0.0.1:8080/proxy/$request_uri;
         }
 
         location /proxy {
