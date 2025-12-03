@@ -28,12 +28,127 @@ F5 WAF for NGINX inspects direct client-facing requests, but does not inspect in
 
 Examples of subrequest-based modules:
 
-* njs 
-* Client authorization 
 * Slice 
+* Client authorization 
 * Mirror 
+* njs 
 
-### Example
+### Slice module example
+
+```nginx
+load_module modules/ngx_http_app_protect_module.so;
+
+http {
+    server {
+        listen 127.0.0.1:8080;
+        server_name localhost;
+
+        location / {
+            app_protect_enable on;
+            proxy_pass        http://127.0.0.1:8081$request_uri;
+        }
+    }
+
+    server {
+        listen 127.0.0.1:8081;
+        server_name localhost;
+
+        location / {
+            proxy_pass        http://1.2.3.4$request_uri;
+            slice 2;
+            proxy_set_header Range $slice_range;
+        }
+    }
+}
+```
+
+### Mirror module example
+
+```nginx
+load_module modules/ngx_http_app_protect_module.so;
+
+http {
+    log_format test $uri;
+
+    server {
+        listen       127.0.0.1:8080;
+        server_name  localhost;
+
+        location / {
+            app_protect_enable on;
+            mirror /mirror;
+        }
+
+        location /mirror {
+            log_subrequest on;
+            access_log test$args.log test;
+        }
+    }
+}
+```
+
+### Client authorization module example
+
+```nginx
+load_module modules/ngx_http_app_protect_module.so;
+
+http {
+    server {
+        listen       127.0.0.1:8080;
+        server_name  localhost;
+
+        location / {
+            auth_request /scan;
+            proxy_pass        http://localhost:8888;
+        }
+        location /scan {
+            proxy_pass        http://localhost:8081$request_uri;
+       }
+    }
+
+    server {
+        listen       127.0.0.1:8081;
+        server_name  localhost;
+
+        location /scan {
+            app_protect_enable on;
+            proxy_pass        http://localhost:8888;
+        }
+    }
+}
+```
+
+### njs module example
+
+```nginx
+load_module modules/ngx_http_app_protect_module.so;
+load_module modules/ngx_http_js_module.so;
+
+http {
+    js_include service.js
+
+    server {
+        listen       127.0.0.1:8080;
+        server_name  localhost;
+
+        location / {
+            app_protect_enable on;
+            proxy_pass        http://127.0.0.1:8081$request_uri;
+        }
+    }
+
+    server {
+        listen       127.0.0.1:8081;
+        server_name  localhost;
+
+        location / {
+            js_content foo;
+        }
+    }
+}
+```
+
+### General example (njs subrequest-based module)
 
 {{< tabs name="subrequest-example" >}}
 
@@ -131,125 +246,6 @@ Your support ID is: 123456789
 <a href='javascript:history.back();'>[Go Back]</a></body></html>
 ```
 
-### Additional subrequest-based examples
-
-These examples show other subrequest-based modules. In each case, internal subrequests are not inspected by WAF.
-
-#### Slice
-
-```nginx
-load_module modules/ngx_http_app_protect_module.so;
-
-http {
-    server {
-        listen 127.0.0.1:8080;
-        server_name localhost;
-
-        location / {
-            app_protect_enable on;
-            proxy_pass        http://127.0.0.1:8081$request_uri;
-        }
-    }
-
-    server {
-        listen 127.0.0.1:8081;
-        server_name localhost;
-
-        location / {
-            proxy_pass        http://1.2.3.4$request_uri;
-            slice 2;
-            proxy_set_header Range $slice_range;
-        }
-    }
-}
-```
-
-#### Mirror
-
-```nginx
-load_module modules/ngx_http_app_protect_module.so;
-
-http {
-    log_format test $uri;
-
-    server {
-        listen       127.0.0.1:8080;
-        server_name  localhost;
-
-        location / {
-            app_protect_enable on;
-            mirror /mirror;
-        }
-
-        location /mirror {
-            log_subrequest on;
-            access_log test$args.log test;
-        }
-    }
-}
-```
-
-#### njs
-
-```nginx
-load_module modules/ngx_http_app_protect_module.so;
-load_module modules/ngx_http_js_module.so;
-
-http {
-    js_include service.js
-
-    server {
-        listen       127.0.0.1:8080;
-        server_name  localhost;
-
-        location / {
-            app_protect_enable on;
-            proxy_pass        http://127.0.0.1:8081$request_uri;
-        }
-    }
-
-    server {
-        listen       127.0.0.1:8081;
-        server_name  localhost;
-
-        location / {
-            js_content foo;
-        }
-    }
-}
-```
-
-#### Client authorization
-
-```nginx
-load_module modules/ngx_http_app_protect_module.so;
-
-http {
-    server {
-        listen       127.0.0.1:8080;
-        server_name  localhost;
-
-        location / {
-            auth_request /scan;
-            proxy_pass        http://localhost:8888;
-        }
-        location /scan {
-            proxy_pass        http://localhost:8081$request_uri;
-       }
-    }
-
-    server {
-        listen       127.0.0.1:8081;
-        server_name  localhost;
-
-        location /scan {
-            app_protect_enable on;
-            proxy_pass        http://localhost:8888;
-        }
-    }
-}
-```
-
 ## Range header–dependent modules
 
 Features that add or depend on the HTTP Range header are unsupported in the same scope as __app_protect_enable__ on. Place Range-dependent logic in a separate scope that does not enable F5 WAF for NGINX, and have the F5 WAF for NGINX enable frontend proxy to that backend.
@@ -259,9 +255,7 @@ Examples of Range-dependent features:
 - Static location
 - Range
 
-### Additional range-based examples
-
-#### Static location
+### Static location example
 
 ```nginx
 load_module modules/ngx_http_app_protect_module.so;
@@ -284,7 +278,7 @@ http {
 }
 ```
 
-#### Range
+### Range example
 
 ```nginx
 load_module modules/ngx_http_app_protect_module.so;
