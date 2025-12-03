@@ -22,21 +22,18 @@ Dynamic modules are supported on the [same distributions as NGINX Plus](#support
 
 {{< table >}}
 
-| Distribution | **Module:** [F5 WAF for NGINX]({{< ref "/waf/install" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
+| Distribution | **Module:** [F5 WAF for NGINX]({{< ref "/waf/changelog.md#packages" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
 |--------------|------------|-------|---------|---------------|------------|---------------|
 | **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **Alpine Linux 3.17 & 3.18** | ❌ | ✓ | ✓ | ❌ | ❌ | ✓ |
-| **Alpine Linux 3.19, 3.20, 3.21, 3.22** | ✓ (x86_64 only) | ✓ | ✓ | ❌ | ❌ | ✓ |
+| **Alpine Linux 3.20, 3.21, 3.22** | 3.22 x86_64 only | ✓ | ✓ | ❌ | ❌ | ✓ |
 | **Amazon Linux 2** | ❌ | ✓ | ❌ | ❌ | ✓ | ❌ |
 | **Amazon Linux 2023** | ✓ (x86_64 only) | ❌ | ✓ | ❌ | ✓ | ✓ |
 | **Debian 11 & 12** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **FreeBSD** | ❌ | ❌ | ✓ | ❌ | ❌ | ✓ |
-| **Oracle Linux 8** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Oracle Linux 8.1** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
 | **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **Rocky Linux 8** | ❌ |  ❌ | ✓ | ✓ | ✓ | ✓ |
-| **Rocky Linux 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Rocky Linux 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **SLES** | ❌ | 15 only | ✓ | ✓ | ✓ | ✓ |
-| **Ubuntu 20.04** | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **Ubuntu 22.04 & 24.04** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 {{< /table >}}
