@@ -22,6 +22,7 @@ Before you start, make sure that you have:
 The following table lists the NGINX Agent features:
 
 {{< table "features" >}}
+
 | Feature Name        | Description                                                                 | Default |
 | ------------------- | --------------------------------------------------------------------------- | ------- |
 | configuration       | Full read/write management of configurations, controlled by DataPlaneConfig ConfigMode. | On      |
@@ -29,6 +30,7 @@ The following table lists the NGINX Agent features:
 | file-watcher        | Monitoring of file changes in the allowed directories list and references from product configs.             | On      |
 | metrics             | Full metrics reporting.                                                      | On      
 | logs-nap          | F5 WAF for NGINX logs.                                                       | On     |
+
 {{< /table >}}
 
 ## Configuration sources
@@ -87,3 +89,16 @@ Define features in the `nginx-agent.conf` file:
 
 Once the steps have been completed, users will be able to view metrics data being sent but will not have the capability to push NGINX configuration changes.
 
+{{<call-out "note" "Note: NGINX Access Log Metrics" >}} For collecting metrics from NGINX access logs, ensure that following log format is used in the NGINX configuration:
+
+```nginx
+log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for" '
+                  '"$bytes_sent" "$request_length" "$request_time" '
+                  '"$gzip_ratio" $server_protocol ';
+
+access_log  /var/log/nginx/access.log  main;
+```
+
+{{</call-out>}}
