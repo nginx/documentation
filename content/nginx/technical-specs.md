@@ -142,7 +142,7 @@ See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-gu
 - [Mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html) – Send copy of requests to one or more additional servers
 - [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) – Proxy and cache requests to HTTP server
 - [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) – Proxy and cache requests to SCGI server
-- [Tunnel](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html) – Handles CONNECT requests and establishes an end-to-end virtual connection for forward proxying
+- [Tunnel](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html) – Handle CONNECT requests and establishes an end-to-end virtual connection for forward proxying
 - [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) – Proxy and cache requests to load-balanced pool of servers
 - [Upstream Health Checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) – Verify servers in load-balanced pool are operational
 - [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) – Proxy and cache requests to uwsgi server
