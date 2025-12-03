@@ -22,7 +22,6 @@ To complete this guide, you will need the following pre-requisites:
   - Download the [SSL certificate and private key file](#General subscription credentials needed for deployments) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
   - Download the [SSL certificate, private key, and the JWT license](#Additional subscription credentials needed for deployments) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - [Docker registry credentials](#Additional subscription credentials needed for deployments) are needed to access private-registry.nginx.com 
-- F5 WAF for NGINX will work by default with the default values like default policy, logging profile, etc unless the user sets custom configurations
 
 You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
 
@@ -31,6 +30,10 @@ You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md"
 There is another optional topic to [Add a read-only filesystem for Kubernetes]({{< ref "/waf/configure/kubernetes-read-only.md" >}})
 
 To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
+
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
 
 ## Download your subscription credentials 
 

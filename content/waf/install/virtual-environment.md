@@ -20,13 +20,16 @@ To complete this guide, you will need the following prerequisites:
 - An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
   - Download the [SSL certificate, private key, and the JWT license](#Download your subscription credentials) file associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal.
 - A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). If NGINX Plus is not installed separately it will be installed automatically during F5 WAF for NGINX installation.
-- F5 WAF for NGINX will work by default with the default values like default policy, logging profile, etc unless the user sets custom configurations
 
 Depending on your deployment type, you may have additional requirements:
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 {{< include "waf/install-selinux-warning.md" >}}
+
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
 
 ## Download your subscription credentials 
 
