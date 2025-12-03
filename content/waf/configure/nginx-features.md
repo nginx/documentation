@@ -28,9 +28,9 @@ F5 WAF for NGINX inspects direct client-facing requests, but does not inspect in
 
 Examples of subrequest-based modules:
 
-* Slice 
-* Client authorization 
+* Slice  
 * Mirror 
+* Client authorization
 * njs 
 
 ### Slice module example
