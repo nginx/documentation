@@ -306,7 +306,7 @@ http {
         server_name  localhost;
 
         location / {
-            proxy_pass http://1.2.3.4$request_uri;
+            proxy_pass         http://1.2.3.4$request_uri;
             proxy_force_ranges on;
         }
     }
