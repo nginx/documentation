@@ -18,11 +18,11 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 
 ## Dynamic Modules
 
-Dynamic modules are supported on the [same distributions as NGINX Plus](#supported-distributions), unless noted otherwise in the table below.
+[Dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md#nginx-authored-and-nginx-certified-dynamic-modules" >}}) are supported on the [same distributions as NGINX Plus](#supported-distributions), unless noted otherwise in the table below.
 
 {{< table >}}
 
-| Distribution | **Module:** [F5 WAF for NGINX]({{< ref "/waf/changelog.md#packages" >}}) | **Module:** [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | **Module:** [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | **Module:** [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | **Module:** [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | **Module:** [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
+| Distribution | [F5 WAF for NGINX]({{< ref "/waf/changelog.md#packages" >}}) | [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
 |--------------|------------|-------|---------|---------------|------------|---------------|
 | **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Alpine Linux 3.20, 3.21, 3.22** | 3.22 x86_64 only | ✓ | ✓ | ❌ | ❌ | ✓ |
@@ -57,10 +57,12 @@ TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in N
 
 TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
+{{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
+
 ## Supported Deployment Environments
 
 - Bare metal
-- Containers and Kubernetes
+- [Containers](({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}}) and Kubernetes
 - Public clouds: AWS, Google Cloud Platform, Microsoft Azure
 - Virtual machines
 
@@ -114,6 +116,7 @@ See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-gu
 - [Cache Slice](https://nginx.org/en/docs/http/ngx_http_slice_module.html) – Create byte-range segments of large files, for more efficient caching
 - [Geo](https://nginx.org/en/docs/http/ngx_http_geo_module.html) – Create variables based on client IP address
 - [Map](https://nginx.org/en/docs/http/ngx_http_map_module.html) – Create variables based on other variables in requests
+- [Num_map](https://nginx.org/en/docs/http/ngx_http_num_map_module.html) – Create variables whose values depend on numeric values or numeric value ranges
 - [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) – Test and change URI of request
 - [Split Clients](https://nginx.org/en/docs/http/ngx_http_split_clients_module.html) – Partition clients for A/B testing
 - [Sub](https://nginx.org/en/docs/http/ngx_http_sub_module.html) – Replace text string in response (rewrite content)
@@ -139,6 +142,7 @@ See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-gu
 - [Mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html) – Send copy of requests to one or more additional servers
 - [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) – Proxy and cache requests to HTTP server
 - [SCGI](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) – Proxy and cache requests to SCGI server
+- [Tunnel](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html) – Handles CONNECT requests and establishes an end-to-end virtual connection for forward proxying
 - [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) – Proxy and cache requests to load-balanced pool of servers
 - [Upstream Health Checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) – Verify servers in load-balanced pool are operational
 - [uwsgi](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) – Proxy and cache requests to uwsgi server
@@ -179,6 +183,7 @@ See [Sizing Guide for Deploying NGINX Plus](https://www.f5.com/pdf/deployment-gu
 - [Limit Conn](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) – Limit concurrent connections by key
 - [Log](https://nginx.org/en/docs/stream/ngx_stream_log_module.html) – Log TCP and UDP transactions
 - [Map](https://nginx.org/en/docs/stream/ngx_stream_map_module.html) – Create variables based on other variables in requests
+- [Num_map](https://nginx.org/en/docs/stream/ngx_stream_num_map_module.html) – Create variables whose values depend on numeric values or numeric value ranges
 - [MQTT Preread](https://nginx.org/en/docs/stream/ngx_stream_mqtt_preread_module.html) – Forward MQTT traffic without processing it
 - [MQTT Filter](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html) – Process Message Queuing Telemetry Transport protocol (MQTT) protocol
 - [Proxy](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html) – Proxy requests to TCP and UDP servers
