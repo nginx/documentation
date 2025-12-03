@@ -15,13 +15,14 @@ F5 NGINXaaS for Google Cloud is deployed into your Google Cloud subscription, wh
 F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a 99.95% uptime SLA. The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
 
 ### Pricing components
+
 {{< table >}}
 
 | Component                   | Cost                          |
 |---------------------------- | ----------------------------- |
-| Fixed price                 | $0.10 per hour                |
-| NGINX Capacity Units (NCU)  | $0.008 per NCU per hour       |
-| Data processing             | $0.0096 per GB processed      |
+| Fixed price                 | $0.10 USD per hour                |
+| NGINX Capacity Units (NCU)  | $0.008 USD per NCU per hour       |
+| Data processing             | $0.0096 USD per GB processed      |
 
 {{< /table >}}
 
@@ -36,19 +37,19 @@ An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. Resources
 
 ### Deployment with 20 NCUs processing 100 GB of data for 1 hour
 
-- Fixed price: $0.10/hour
-- NCU usage: 20 NCUs * $0.008/hour = $0.16/hour
-- Data processing: 100 GB * $0.0096/GB = $0.96
+- Fixed price: $0.10 USD/hour
+- NCU usage: 20 NCUs * $0.008 USD/hour = $0.16 USD/hour
+- Data processing: 100 GB * $0.0096 USD/GB = $0.96 USD
 
-**Total cost for 1 hour: $0.10 + $0.16 + $0.96 = $1.22**
+**Total cost for 1 hour: $0.10 + $0.16 + $0.96 = $1.22 USD**
 
 ### Deployment using 30 NCUs for 2 hours and scaled to 50 NCUs for another hour, processing 200 GB of data
 
-- Fixed price: $0.10/hour * 3 hours = $0.30
-- NCU usage: (30 NCUs * $0.008/hour * 2 hours) + (50 NCUs * $0.008/hour * 1 hour) = $0.88
-- Data processing: 200 GB * $0.0096/GB = $1.92
+- Fixed price: $0.10 USD/hour * 3 hours = $0.30 USD
+- NCU usage: (30 NCUs * $0.008 USD/hour * 2 hours) + (50 NCUs * $0.008 USD/hour * 1 hour) = $0.88 USD
+- Data processing: 200 GB * $0.0096 USD/GB = $1.92 USD
 
-**Total cost for 3 hours: $0.30 + $0.88 + $1.92 = $3.10**
+**Total cost for 3 hours: $0.30 + $0.88 + $1.92 = $3.10 USD**
 
 ## Review billing data
 

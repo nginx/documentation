@@ -73,7 +73,7 @@
   // ---- Updates ----
   const updateCost = (costs, values = calculatorValuesState) => {
     const updatedTotalCost = utils.calculateCost(costs, values);
-    document.getElementById("total-value").textContent = utils.currencyFormatter(updatedTotalCost);
+    document.getElementById("total-value").textContent = `${utils.currencyFormatter(updatedTotalCost)} USD`;
     updateTotalCostDetails(values, updatedTotalCost);
   };
 
@@ -84,7 +84,7 @@
     totalCostDetailElements.ncuHourly.textContent = utils.currencyFormatter(costs.ncuHourly, 3);
     totalCostDetailElements.dataGb.textContent = formValues.dataProcessedGb;
     totalCostDetailElements.dataPerGb.textContent = utils.currencyFormatter(costs.dataPerGb, 3);
-    totalCostDetailElements.total.textContent = utils.currencyFormatter(totalCost);
+    totalCostDetailElements.total.textContent = `${utils.currencyFormatter(totalCost)} USD`;
   };
 
   function printCostEstimate() {
