@@ -24,7 +24,7 @@ To complete the steps in this guide, you need the following:
 
 - A OneLogin tenant with administrator privileges.
 - [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) with a valid subscription.
-- The [NGINX JavaScript module](https://www.nginx.com/products/nginx/modules/nginx-javascript/) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and OneLogin identity provider (IdP).
+- The [NGINX JavaScript module](https://nginx.org/en/docs/njs/index.html) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and OneLogin identity provider (IdP).
 
 ## Install NGINX Plus and the njs Module {#install-nginx-plus-njs}
 
