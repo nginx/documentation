@@ -36,6 +36,12 @@ sequenceDiagram
     gw-->>client: Response
 ```
 
+## Note on Gateway API Experimental Features
+
+{{< call-out "important" >}} [GatewayBackendTLS](https://gateway-api.sigs.k8s.io/reference/spec/#gatewaybackendtls) is an experimental field. {{< /call-out >}}
+
+{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
+
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
