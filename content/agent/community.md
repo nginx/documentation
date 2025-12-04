@@ -3,7 +3,7 @@ title: Community and contribution
 toc: true
 weight: 600
 nd-docs: DOCS-1884
-nd-product: NGAGENT
+nd-product: NAGENT
 nd-content-type: reference
 ---
 

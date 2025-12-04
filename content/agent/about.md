@@ -4,7 +4,7 @@ weight: 100
 toc: true
 nd-docs: DOCS-1091
 nd-content-type: how-to
-nd-product: NGAGENT
+nd-product: NAGENT
 ---
 
 ## Overview

@@ -3,7 +3,7 @@ title: Basic configuration
 weight: 100
 toc: true
 nd-content-type: how-to
-nd-product: NGAGENT
+nd-product: NAGENT
 nd-docs: DOCS-1229
 ---
 
