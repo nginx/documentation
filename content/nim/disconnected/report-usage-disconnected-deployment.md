@@ -1,6 +1,5 @@
 ---
 title: Report usage data to F5 (disconnected)
-draft: false
 weight: 300
 toc: true
 nd-docs: DOCS-1658
