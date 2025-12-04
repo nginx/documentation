@@ -20,6 +20,10 @@ server {
 }
 ```
 
+{{<call-out type="important" title="Important">}}
+Make sure that the `server` and  `location` blocks are in the same single configuration file, and not split across multiple files using `include` directives.
+{{</call-out>}}
+
 This configuration:
 
 - Enables the stub status API.

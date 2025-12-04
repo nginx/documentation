@@ -40,6 +40,10 @@ server {
 }
 ```
 
+{{<call-out type="important" title="Important">}}
+Make sure that the `server` and  `location` blocks are in the same single configuration file, and not split across multiple files using `include` directives.
+{{</call-out>}}
+
 NGINX Agent configuration needs to be update with the following to enable the NGINX Agent to be able to call the NGINX Plus API.
 ```
 data_plane_config:

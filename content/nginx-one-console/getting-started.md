@@ -161,11 +161,18 @@ The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Sou
 
 ### Enable NGINX Plus API
 
+{{<tabs name="enable-nginx-metrics" >}}
+
+{{%tab name="without SSL"%}}
 {{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
 
-### Enable NGINX Plus API with SSL
+{{% /tab %}}
+{{%tab name="with SSL"%}}
 
 {{< include "/use-cases/monitoring/enable-nginx-plus-api-with-ssl.md" >}}
+
+{{% /tab %}}
+{{% /tabs %}}
 
 ### Enable NGINX Open Source Stub Status API
 
