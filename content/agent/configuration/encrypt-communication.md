@@ -3,6 +3,7 @@ title: Encrypt communication
 toc: true
 weight: 200
 nd-docs: DOCS-802
+nd-product: NGAGENT
 ---
 
 ## Overview
