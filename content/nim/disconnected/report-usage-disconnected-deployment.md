@@ -62,7 +62,6 @@ To submit a usage report in a disconnected environment, use the provided `licens
       -i <NIM-IP-address> \
       -u admin \
       -p <password> \
-      -o report.zip \
       -s telemetry
     ```
 
