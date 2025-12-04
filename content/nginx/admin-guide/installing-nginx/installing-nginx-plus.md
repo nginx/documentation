@@ -213,13 +213,13 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
         | sudo tee /etc/apt/sources.list.d/nginx-plus.list
         ```
 
-    {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
-
 1. Download the **nginx-plus** apt configuration to **/etc/apt/apt.conf.d**:
 
     ```shell
     sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
     ```
+
+    {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. Update the repository information:
 
