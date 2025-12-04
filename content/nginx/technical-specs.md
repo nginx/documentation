@@ -62,7 +62,7 @@ TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (
 ## Supported Deployment Environments
 
 - Bare metal
-- [Containers](({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}}) and Kubernetes
+- [Containers]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-docker.md" >}}) and Kubernetes
 - Public clouds: AWS, Google Cloud Platform, Microsoft Azure
 - Virtual machines
 
