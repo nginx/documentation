@@ -304,6 +304,10 @@ In the disconnected environment, install the packages:
 
 ---
 
+## Configure license reporting for disconnected environments
+
+By default, NGINX Plus automatically reports license usage to the F5 licensing endpoint, and additional configuration is not required in connected environments. However, manual configuration becomes necessary in disconnected environments. Use NGINX Instance Manager for usage reporting or use a custom path for the license file. Configuration can be done in the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX Plus configuration file (`/etc/nginx/nginx.conf`). For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
+
 ## Download Docker images
 
 After pulling or building Docker images in a connected environment, you can save them to `.tar` files:

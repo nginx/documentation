@@ -62,6 +62,8 @@ If you are deploying with Helm, you will also need the JWT license for the `dock
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+
 ## Prepare environment variables
 
 Set the following environment variables, which point towards your credential files:

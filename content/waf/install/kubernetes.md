@@ -19,7 +19,7 @@ To complete this guide, you will need the following pre-requisites:
 - [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
 - [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
 - An active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Open Source in your deployment.
   - Download the [SSL certificate, private key, and the JWT license](#additional-subscription-credentials-needed-for-deployments) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com 
 
@@ -50,6 +50,8 @@ If you are deploying with Helm, you will also need the JWT license for the `dock
 {{< /call-out >}}
 
 {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Create a Dockerfile
 
@@ -83,7 +85,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/alpine-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/alpine-plus.md" >}}
 
 {{% /tab %}}
 
@@ -101,7 +103,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/amazon-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/amazon-plus.md" >}}
 
 {{% /tab %}}
 
@@ -119,7 +121,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/debian-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/debian-plus.md" >}}
 
 {{% /tab %}}
 
@@ -137,7 +139,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/oracle-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/oracle-plus.md" >}}
 
 {{% /tab %}}
 
@@ -155,7 +157,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rhel8-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel8-plus.md" >}}
 
 {{% /tab %}}
 
@@ -173,7 +175,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rhel9-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel9-plus.md" >}}
 
 {{% /tab %}}
 
@@ -191,7 +193,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rocky9-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rocky9-plus.md" >}}
 
 {{% /tab %}}
 
@@ -209,7 +211,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/ubuntu-plus.md" >}}
 
 {{% /tab %}}
 
