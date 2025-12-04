@@ -1,7 +1,7 @@
 ---
 description: Learn about F5 DoS for NGINX Deployment.
 nd-docs: DOCS-666
-title: Virtual machine and Docker
+title: Virtual Machine and Docker
 toc: true
 weight: 90
 type:
@@ -1331,6 +1331,10 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 
 {{< include "/dos/dockerfiles/ubuntu-plus-dos-waf.md" >}}
 
+## F5 DoS for NGINX Arbitrator
+
+{{< include "/dos/dos-arbitrator.md" >}}
+    
 ## Post-Installation Checks
 
 {{< include "dos/install-post-checks.md" >}}

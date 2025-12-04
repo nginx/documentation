@@ -2,7 +2,7 @@
 # We use sentence case and present imperative tone
 title: "Kubernetes"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 200
+weight: 100
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -255,5 +255,9 @@ kubectl exec -it app-protect-dos-586fb94947-8sjnc -n app-protect-dos -c nginx-ap
 ```
 and can look at .
 {{< include "dos/install-post-checks.md" >}}
+
+## F5 DoS for NGINX Arbitrator
+
+{{< include "/dos/dos-arbitrator.md" >}}
 
 ## Next steps

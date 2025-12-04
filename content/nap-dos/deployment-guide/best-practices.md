@@ -3,7 +3,7 @@ description:  F5 DoS for NGINX Best Practices Deployment.
 nd-docs: DOCS-666
 title: Best Practices
 toc: true
-weight: 100
+weight: 130
 type:
 - how-to
 ---
