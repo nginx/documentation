@@ -18,11 +18,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     && apk update \
     && apk add app-protect-dos-ebpf-manager \
     && rm -rf /var/cache/apk/* \
-    && useradd -r -s /usr/sbin/nologin nginx || true
+    && adduser -D -S -H -s /sbin/nologin nginx
 
+RUN ebpf_manager_dos -v
 
 STOPSIGNAL SIGQUIT
 
 CMD ["bash", "-c", "/usr/bin/ebpf_manager_dos 2>&1 | tee /shared/ebpf_dos.log"]
-
 ```

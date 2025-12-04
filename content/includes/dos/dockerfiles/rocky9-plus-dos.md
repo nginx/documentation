@@ -2,7 +2,6 @@
 ---
 
 ```dockerfile
-
 # syntax=docker/dockerfile:1
 # For Rocky Linux 9
 FROM rockylinux:9
@@ -32,5 +31,4 @@ EXPOSE 80
 STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
-
 ```

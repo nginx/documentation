@@ -2,7 +2,6 @@
 ---
 
 ```dockerfile
-
 # syntax=docker/dockerfile:1
 # For Rocky Linux 9
 FROM rockylinux:9
@@ -16,10 +15,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf install -y app-protect-dos-ebpf-manager \
     && dnf clean all \
     && rm -rf /var/cache/dnf \
-    && useradd -r -s /usr/sbin/nologin nginx || true
+    && useradd -r -s /usr/sbin/nologin nginx
+
+RUN ebpf_manager_dos -v
 
 STOPSIGNAL SIGQUIT
 
 CMD ["bash", "-c", "/usr/bin/ebpf_manager_dos 2>&1 | tee /shared/ebpf_dos.log"]
-
 ```

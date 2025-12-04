@@ -2,15 +2,11 @@
 ---
 
 ```dockerfile
-
 # syntax=docker/dockerfile:1
 # For Ubuntu 
 
 # Where version can be: jammy/noble
 FROM ubuntu:noble
-
-# Setup repository keys
-RUN apt-get update && \
 
 # Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
@@ -38,6 +34,11 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+RUN --mount=type=secret,id=nginx_license_secret \
+    sh -c 'cat /run/secrets/nginx_license_secret | base64 -d > /etc/nginx/license.jwt' && \
+    chmod 600 /etc/nginx/license.jwt
+
+RUN nginx -v && admd -v
 
 COPY nginx.conf /etc/nginx/
 COPY entrypoint.sh /root/
