@@ -7,8 +7,8 @@ nd-docs: DOCS-1204
 title: Installing F5 WAF & DoS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 110
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 
