@@ -1,6 +1,5 @@
 ---
 title: Manage NGINX configs with templates
-draft: false
 description: ''
 weight: 200
 toc: true

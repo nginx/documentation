@@ -1,6 +1,5 @@
 ---
 title: JSON Schemas for Dynamic Web Forms
-draft: false
 description: ''
 weight: 300
 toc: true

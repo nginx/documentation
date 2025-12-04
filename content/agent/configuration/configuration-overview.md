@@ -1,6 +1,5 @@
 ---
 title: Basic configuration
-draft: false
 weight: 100
 toc: true
 nd-content-type: how-to

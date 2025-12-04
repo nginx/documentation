@@ -1,6 +1,5 @@
 ---
 title: Installation from GitHub release
-draft: false
 weight: 200
 toc: true
 nd-docs: DOCS-1090

@@ -1,6 +1,5 @@
 ---
 title: Installation from NGINX repository
-draft: false
 weight: 300
 toc: true
 nd-docs: DOCS-1216
