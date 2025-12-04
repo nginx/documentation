@@ -1,7 +1,7 @@
 - productGroup: NGINX One
   products:
     - title: "NGINX One Console"
-      url: "nginx-one"
+      url: "nginx-one-console"
     - title: "NGINX Plus"
       url: "nginx"
     - title: "NGINX Instance Manager"
