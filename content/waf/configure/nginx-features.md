@@ -248,7 +248,7 @@ Your support ID is: 123456789
 
 ## Range header–dependent modules
 
-Features that add or depend on the HTTP Range header are unsupported in the same scope as __app_protect_enable__ on. Place Range-dependent logic in a separate scope that does not enable F5 WAF for NGINX, and have the F5 WAF for NGINX enable frontend proxy to that backend.
+Features that add or depend on the HTTP Range header are unsupported in the same scope as __app_protect_enable on__. Place Range-dependent logic in a separate scope that does not enable F5 WAF for NGINX, and have the F5 WAF for NGINX enable frontend proxy to that backend.
 
 Examples of Range-dependent features:
 
