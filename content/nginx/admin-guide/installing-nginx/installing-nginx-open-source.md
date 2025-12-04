@@ -147,6 +147,7 @@ The repository contains the latest versions of the following packages:
 | `nginx-module-perl`        | The [`ngx_http_perl_module`](https://nginx.org/en/docs/http/ngx_http_perl_module.html) as a [dynamic module](#dynamic-modules). |
 | `nginx-module-xslt`        | The [`ngx_http_xsl_module`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) as a [dynamic module](#dynamic-modules). |
 | `nginx-module-otel`        | The [`ngx_otel_module`](https://nginx.org/en/docs/ngx_otel_module.html) as a [dynamic module](#dynamic-modules). |
+| `nginx-module-acme`        | The [`ngx_http_acme_module`](https://nginx.org/en/docs/http/ngx_http_acme_module.html) as a [dynamic module](#dynamic-modules). |
 {{</bootstrap-table>}}
 
 
@@ -169,7 +170,7 @@ Before installing, check if your operating system and architecture are supported
      ```text
      [nginx-stable]
      name=nginx stable repo
-     baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+     baseurl=https://nginx.org/packages/centos/$releasever/$basearch/
      gpgcheck=1
      enabled=1
      gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -177,7 +178,7 @@ Before installing, check if your operating system and architecture are supported
 
      [nginx-mainline]
      name=nginx mainline repo
-     baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+     baseurl=https://nginx.org/packages/mainline/centos/$releasever/$basearch/
      gpgcheck=1
      enabled=0
      gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -311,7 +312,7 @@ Before installing, check if your operating system and architecture are supported
 
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/debian `lsb_release -cs` nginx" \
+     https://nginx.org/packages/debian `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -319,7 +320,7 @@ Before installing, check if your operating system and architecture are supported
 
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" \
+     https://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -418,7 +419,7 @@ Before installing, check if your operating system and architecture are supported
    - For `stable`:
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+     https://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -426,7 +427,7 @@ Before installing, check if your operating system and architecture are supported
 
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
+     https://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -494,14 +495,14 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    sudo zypper addrepo --gpgcheck --type yum --refresh --check \
-      'http://nginx.org/packages/sles/$releasever_major' nginx-stable
+      'https://nginx.org/packages/sles/$releasever_major' nginx-stable
    ```
 
    - For `mainline`:
 
    ```shell
    sudo zypper addrepo --gpgcheck --type yum --refresh --check \
-        'http://nginx.org/packages/mainline/sles/$releasever_major' nginx-mainline
+        'https://nginx.org/packages/mainline/sles/$releasever_major' nginx-mainline
    ```
 
 3. Import the official nginx signing key so `zypper` and `rpm` could verify the packages authenticity. Fetch the key:
@@ -588,7 +589,7 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     printf "%s%s%s%s\n" \
     "@nginx " \
-    "http://nginx.org/packages/alpine/v" \
+    "https://nginx.org/packages/alpine/v" \
     `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
     "/main" \
     | sudo tee -a /etc/apk/repositories
@@ -600,7 +601,7 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     printf "%s%s%s%s\n" \
     "@nginx " \
-    "http://nginx.org/packages/mainline/alpine/v" \
+    "https://nginx.org/packages/mainline/alpine/v" \
     `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
     "/main" \
     | sudo tee -a /etc/apk/repositories
@@ -710,7 +711,7 @@ Before installing, check if your operating system and architecture are supported
     ```none
     [nginx-stable]
     name=nginx stable repo
-    baseurl=http://nginx.org/packages/amzn2/$releasever/$basearch/
+    baseurl=https://nginx.org/packages/amzn2/$releasever/$basearch/
     gpgcheck=1
     enabled=1
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -718,7 +719,7 @@ Before installing, check if your operating system and architecture are supported
 
     [nginx-mainline]
     name=nginx mainline repo
-    baseurl=http://nginx.org/packages/mainline/amzn2/$releasever/$basearch/
+    baseurl=https://nginx.org/packages/mainline/amzn2/$releasever/$basearch/
     gpgcheck=1
     enabled=0
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -795,7 +796,7 @@ Before installing, check if your operating system and architecture are supported
     ```none
     [nginx-stable]
     name=nginx stable repo
-    baseurl=http://nginx.org/packages/amzn/2023/$basearch/
+    baseurl=https://nginx.org/packages/amzn/2023/$basearch/
     gpgcheck=1
     enabled=1
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -803,7 +804,7 @@ Before installing, check if your operating system and architecture are supported
 
     [nginx-mainline]
     name=nginx mainline repo
-    baseurl=http://nginx.org/packages/mainline/amzn/2023/$basearch/
+    baseurl=https://nginx.org/packages/mainline/amzn/2023/$basearch/
     gpgcheck=1
     enabled=0
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -908,7 +909,7 @@ In addition to core modules, the `nginx` package includes other nginx modules th
 |Module Name               | Description                                  |
 | -------------------------| ---------------------------------------------|
 | `--with-compat`        |Enables dynamic modules compatibility.  |
-| `--with-file-aio` |Enables the use of [asynchronous file I/O](https:/ /nginx.org/en/docs/http/ngx_http_core_module.html#aio) (AIO) on FreeBSD and Linux. |
+| `--with-file-aio` |Enables the use of [asynchronous file I/O](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) (AIO) on FreeBSD and Linux. |
 | `--with-threads` | Enables NGINX to use thread pools. For details, see [Thread Pools in NGINX Boost Performance 9x!](https://www.nginx.com/blog/thread-pools-boost-performance-9x/) on the NGINX blog. |
 |[`--with-http_addition_module`](https://nginx.org/en/docs/http/ngx_http_addition_module.html)| Adds text before and after a response. |
 |[`--with-http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)|Implements client authorization based on the result of a subrequest. |
@@ -947,6 +948,7 @@ Some modules, especially those with external dependencies, are not included in t
 | [`ngx_http_perl_module`](https://nginx.org/en/docs/http/ngx_http_perl_module.html) | Implements location and variable handlers in Perl and inserts Perl calls into SSI. | `nginx-module-perl` |
 | [`ngx_http_xsl_module`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) | Transforms XML responses using one or more XSLT stylesheets. | `nginx-module-xslt` |
 | [`ngx_otel_module`](https://nginx.org/en/docs/ngx_otel_module.html) | Provides OpenTelemetry distributed tracing support. | `nginx-module-otel` |
+| [`ngx_http_acme_module`](https://nginx.org/en/docs/http_ngx_http_acme_module.html) | Implements the automatic certificate management (ACMEv2) protocol. | `nginx-module-acme` |
 {{</bootstrap-table>}}
 
 ## Compile and install from source {#sources}
@@ -982,27 +984,8 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
 - [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
   ```shell
-  wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./Configure darwin64-x86_64-cc --prefix=/usr
-  make
-  sudo make install
-  ```
-
-  Example for Ubuntu and Debian:
-  ```shell
-  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./config --prefix=/usr/local --openssldir=/usr/local/ssl
-  make -j$(nproc)
-  sudo make install
-  ```
-
-  Example for RHEL-based:
-  ```shell
-  curl -LO https://www.openssl.org/source/openssl-3.0.13.tar.gz
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz #for Ubuntu and Debian
+  # curl -LO https://www.openssl.org/source/openssl-3.0.13.tar.gz #for RHEL-based:
   tar -zxf openssl-3.0.13.tar.gz
   cd openssl-3.0.13
   ./config --prefix=/usr/local --openssldir=/usr/local/ssl
