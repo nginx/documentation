@@ -53,6 +53,10 @@ If you are deploying with Helm, you will also need the JWT license for the `dock
 
 {{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
+{{< call-out "note" >}}
+When using the provided values.yaml for Helm, setting the `appprotect.config.nginxJWT` value ensures that your JWT license is automatically copied to `/etc/nginx/license.jwt` inside the NGINX container. No additional manual copying of the file is needed when deploying with the provided YAML configuration.
+{{< /call-out >}}
+
 ## Create a Dockerfile
 
 In the same folder as your credential files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
