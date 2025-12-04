@@ -148,7 +148,9 @@ http {
 }
 ```
 
-### General example (njs subrequest-based module)
+### Enable WAF on an njs module using the subrequest mechanism
+
+This configuration example shows how to enable WAF on an njs module that relies on the subrequest mechanism.
 
 {{< tabs name="subrequest-example" >}}
 
