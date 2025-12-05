@@ -2,7 +2,7 @@
 title: Upgrade applications without downtime
 weight: 600
 toc: true
-type: how-to
+nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-1841
 ---

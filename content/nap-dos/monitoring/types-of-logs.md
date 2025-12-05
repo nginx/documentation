@@ -4,8 +4,8 @@ nd-docs: DOCS-671
 title: Logs Overview
 toc: true
 weight: 130
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 There are 4 types of logs corresponding to App Protect DoS:
