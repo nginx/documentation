@@ -14,7 +14,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
     subscription-manager register --org=${RHEL_ORG} --activationkey=${RHEL_ACTIVATION_KEY} \
     && subscription-manager refresh \
-    && subscription-manager attach --auto || true \
     && subscription-manager repos --enable=rhel-9-for-x86_64-baseos-rpms \
     && subscription-manager repos --enable=rhel-9-for-x86_64-appstream-rpms \
     && dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
@@ -28,7 +27,8 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf clean all \
     && rm -rf /var/cache/yum \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && subscription-manager unregister
 
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
@@ -40,5 +40,4 @@ EXPOSE 80
 STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
-
 ```

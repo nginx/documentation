@@ -6,29 +6,20 @@
 # For Rocky Linux 9
 FROM rockylinux:9
 
-# Install F5 DoS for NGINX:
+# Install F5 DoS ebpf manager for NGINX and create required nginx user
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
     dnf -y install ca-certificates epel-release 'dnf-command(config-manager)' \
-    && curl -o /etc/yum.repos.d/plus-9.repo https://cs.nginx.com/static/files/plus-9.repo \
     && curl -o /etc/yum.repos.d/app-protect-dos-9.repo https://cs.nginx.com/static/files/app-protect-dos-9.repo \
     && dnf config-manager --set-enabled crb \
-    && dnf install -y app-protect-dos \
-    && cat license.jwt > /etc/nginx/license.jwt \
+    && dnf install -y app-protect-dos-ebpf-manager \
     && dnf clean all \
     && rm -rf /var/cache/dnf \
-    && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
+    && useradd -r -s /usr/sbin/nologin nginx
 
-# Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
-COPY entrypoint.sh /root/
-RUN chmod +x /root/entrypoint.sh
-
-EXPOSE 80
+RUN ebpf_manager_dos -v
 
 STOPSIGNAL SIGQUIT
 
-CMD ["sh", "/root/entrypoint.sh"]
+CMD ["bash", "-c", "/usr/bin/ebpf_manager_dos 2>&1 | tee /shared/ebpf_dos.log"]
 ```

@@ -10,7 +10,40 @@ ARG OS_VER="3.22"
 # Base image
 FROM alpine:${OS_VER}
 
-# Install NGINX Plus and F5 DOS for NGINX
+# Download and add the NGINX signing keys:
+RUN wget -O /etc/apk/keys/nginx_signing.rsa.pub https://cs.nginx.com/static/keys/nginx_signing.rsa.pub && \
+    wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
 
+# Add NGINX Plus repository:
+RUN printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
 
+# Add F5 WAF for NGINX & Dos repositories:
+RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories && \
+    printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories
+
+# Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which include NGINX Plus):
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
+    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
+    apk update && apk add app-protect app-protect-dos && \
+    cat license.jwt > /etc/nginx/license.jwt
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
+RUN nginx -v && admd -v
+RUN cat /opt/app_protect/VERSION /opt/app_protect/RELEASE
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+RUN chmod +x /root/entrypoint.sh
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["sh", "/root/entrypoint.sh"]
 ```
