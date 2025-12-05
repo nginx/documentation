@@ -174,9 +174,9 @@ The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Sou
 {{% /tab %}}
 {{% /tabs %}}
 
-### Enable NGINX Open Source Stub Status API
+### Enable NGINX Open Source Metric
 
-{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+{{< include "/use-cases/monitoring/enable-nginx-oss-metrics.md" >}}
 
 ---
 
@@ -192,10 +192,3 @@ After connecting your NGINX instances to NGINX One, you can monitor their perfor
 ### Overview of the NGINX One dashboard
 
 {{< include "/use-cases/monitoring/n1c-dashboard-overview.md" >}}
-
-
-
-
-
-
-

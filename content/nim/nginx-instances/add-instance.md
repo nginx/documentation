@@ -39,9 +39,9 @@ Make sure you have:
 
 {{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
 
-### Enable NGINX Open Source Stub Status API
+### Enable NGINX Open Source Metrics
 
-{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+{{< include "/use-cases/monitoring/enable-nginx-oss-metrics.md" >}}
 
 ## Next steps
 
