@@ -15,7 +15,7 @@ F5 NGINXaaS for Azure previously supported monitoring through [Custom Metrics](h
 
 Follow the steps in this section to migrate your deployment monitoring from Custom metrics to Platform metrics.
 
-1. Verify that your NGINXaaS deployment meets the [pre-requisites]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md#prerequisites">}}) for Platform metrics to work.
+1. Verify that your NGINXaaS deployment meets the [pre-requisites]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md#prerequisites">}}) for Platform metrics to work.
 2. If the pre-requisites are met, Platform metrics are enabled by default on all NGINXaaS deployment. Verify that you are able to see the new metrics in Azure Monitor under the `Standard Metrics` namespace.
 3. **Migrate existing alert rules** to use Platform metrics instead of Custom metrics:
 
