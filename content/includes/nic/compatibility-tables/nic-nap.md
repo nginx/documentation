@@ -12,7 +12,7 @@ NGINX Ingress Controller supports the following versions of [F5 WAF for NGINX](h
 
 | NIC Version         | NAP-WAF Version | Config Manager | Enforcer |
 | ------------------- | --------------- | -------------- | -------- |
-| {{< nic-version >}} | 36+{{< appprotect-compiler-version>}} | {{< nic-waf-release-version >}} | {{< nic-waf-release-version >}} |
+| {{< nic-version >}} | 36+{{< appprotect-compiler-version>}}       | {{< nic-waf-release-version >}}          | {{< nic-waf-release-version >}}   |
 | 5.2.1               | 35+5.527.0      | 5.9.0          | 5.9.0    |
 | 5.1.1               | 35+5.498        | 5.8.0          | 5.8.0    |
 | 5.0.0               | 34+5.342        | 5.6.0          | 5.6.0    |
