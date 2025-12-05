@@ -2,7 +2,6 @@
 title: Enable NGINX logs
 weight: 350
 toc: true
-draft: false
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
 type:

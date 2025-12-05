@@ -1,6 +1,5 @@
 ---
 title: Augment templates
-draft: false
 description: ''
 weight: 120
 toc: true

@@ -1,6 +1,5 @@
 ---
 title: About NGINX config templates
-draft: false
 description: ''
 weight: 100
 toc: true

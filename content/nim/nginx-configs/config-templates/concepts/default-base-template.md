@@ -1,6 +1,5 @@
 ---
 title: F5 Global Default base template
-draft: false
 description: ''
 weight: 110
 toc: true

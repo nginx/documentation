@@ -4,6 +4,7 @@ description: Learn about the metrics and metadata F5 NGINX Amplify collects.
 weight: 10
 toc: true
 nd-docs: DOCS-972
+nd-product: AMPLIF
 ---
 
 Most metrics are collected by F5 NGINX Amplify Agent without requiring the user to perform any additional setup. For troubleshooting, see [Troubleshooting Metrics Collection]({{< ref "/amplify/nginx-amplify-agent/troubleshooting-metrics-collection.md" >}}).
