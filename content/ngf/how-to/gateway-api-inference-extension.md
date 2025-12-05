@@ -2,7 +2,7 @@
 title: Gateway API Inference Extension
 weight: 800
 toc: true
-nd-nd-content-type: how-to
+nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-0000
 ---
