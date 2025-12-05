@@ -24,6 +24,97 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 {{< /details >}}
 
+
+## 5.3.0
+
+08 Dec 2025
+
+### {{% icon rocket %}} Features
+- [8292](https://github.com/nginx/kubernetes-ingress/pull/8292) Add sslverify for jwksuri
+- [8447](https://github.com/nginx/kubernetes-ingress/pull/8447) Add support for ssl ciphers related annotations
+- [8340](https://github.com/nginx/kubernetes-ingress/pull/8340) Implement oidc front channel logout nginx directives
+- [8495](https://github.com/nginx/kubernetes-ingress/pull/8495) Add oidc timeout customization to configmap
+- [8453](https://github.com/nginx/kubernetes-ingress/pull/8453) Support namespaced upstream service reference in virtualserver
+- [8508](https://github.com/nginx/kubernetes-ingress/pull/8508) Add rewrite-target annotation
+- [8548](https://github.com/nginx/kubernetes-ingress/pull/8548) Add `client-body-buffer-size` directive to ingress annotations & configmap
+- [8557](https://github.com/nginx/kubernetes-ingress/pull/8557) Add client-body-buffer-size directive to virtualserver
+- [8556](https://github.com/nginx/kubernetes-ingress/pull/8556) Add oidc policy idp tls validation
+- [8533](https://github.com/nginx/kubernetes-ingress/pull/8533) Extend cache policy for more configurable parameters
+
+### {{% icon bug %}} Fixes
+- [8299](https://github.com/nginx/kubernetes-ingress/pull/8299) Remove type field for objects with schema ref
+- [8455](https://github.com/nginx/kubernetes-ingress/pull/8455) Cleanup stale socket files on startup
+
+### {{% icon arrow-up %}} Dependencies
+- [8553](https://github.com/nginx/kubernetes-ingress/pull/8553) Bump Go dependencies
+- [8244](https://github.com/nginx/kubernetes-ingress/pull/8244), [8279](https://github.com/nginx/kubernetes-ingress/pull/8279), [8284](https://github.com/nginx/kubernetes-ingress/pull/8284), [8595](https://github.com/nginx/kubernetes-ingress/pull/8308, https://github.com/nginx/kubernetes-ingress/pull/8459, https://github.com/nginx/kubernetes-ingress/pull/8510, https://github.com/nginx/kubernetes-ingress/pull/8565, https://github.com/nginx/kubernetes-ingress/pull/8576, https://github.com/nginx/kubernetes-ingress/pull/8595), [8584](https://github.com/nginx/kubernetes-ingress/pull/8307, https://github.com/nginx/kubernetes-ingress/pull/8374, https://github.com/nginx/kubernetes-ingress/pull/8570, https://github.com/nginx/kubernetes-ingress/pull/8584), [8315](https://github.com/nginx/kubernetes-ingress/pull/8315), [8324](https://github.com/nginx/kubernetes-ingress/pull/8324), [8334](https://github.com/nginx/kubernetes-ingress/pull/8334), [8466](https://github.com/nginx/kubernetes-ingress/pull/8366, https://github.com/nginx/kubernetes-ingress/pull/8443, https://github.com/nginx/kubernetes-ingress/pull/8466), [8384](https://github.com/nginx/kubernetes-ingress/pull/8384), [8502](https://github.com/nginx/kubernetes-ingress/pull/8389, https://github.com/nginx/kubernetes-ingress/pull/8438, https://github.com/nginx/kubernetes-ingress/pull/8502), [8406](https://github.com/nginx/kubernetes-ingress/pull/8406), [8588](https://github.com/nginx/kubernetes-ingress/pull/8431, https://github.com/nginx/kubernetes-ingress/pull/8588), [8589](https://github.com/nginx/kubernetes-ingress/pull/8432, https://github.com/nginx/kubernetes-ingress/pull/8589), [8598](https://github.com/nginx/kubernetes-ingress/pull/8437, https://github.com/nginx/kubernetes-ingress/pull/8449, https://github.com/nginx/kubernetes-ingress/pull/8461, https://github.com/nginx/kubernetes-ingress/pull/8491, https://github.com/nginx/kubernetes-ingress/pull/8501, https://github.com/nginx/kubernetes-ingress/pull/8550, https://github.com/nginx/kubernetes-ingress/pull/8563, https://github.com/nginx/kubernetes-ingress/pull/8580, https://github.com/nginx/kubernetes-ingress/pull/8598), [8575](https://github.com/nginx/kubernetes-ingress/pull/8439, https://github.com/nginx/kubernetes-ingress/pull/8451, https://github.com/nginx/kubernetes-ingress/pull/8558, https://github.com/nginx/kubernetes-ingress/pull/8575), [8542](https://github.com/nginx/kubernetes-ingress/pull/8448, https://github.com/nginx/kubernetes-ingress/pull/8471, https://github.com/nginx/kubernetes-ingress/pull/8542), [8543](https://github.com/nginx/kubernetes-ingress/pull/8450, https://github.com/nginx/kubernetes-ingress/pull/8462, https://github.com/nginx/kubernetes-ingress/pull/8482, https://github.com/nginx/kubernetes-ingress/pull/8543), [8599](https://github.com/nginx/kubernetes-ingress/pull/8436, https://github.com/nginx/kubernetes-ingress/pull/8490, https://github.com/nginx/kubernetes-ingress/pull/8549, https://github.com/nginx/kubernetes-ingress/pull/8562, https://github.com/nginx/kubernetes-ingress/pull/8579, https://github.com/nginx/kubernetes-ingress/pull/8587, https://github.com/nginx/kubernetes-ingress/pull/8599), [8551](https://github.com/nginx/kubernetes-ingress/pull/8474, https://github.com/nginx/kubernetes-ingress/pull/8551), [8484](https://github.com/nginx/kubernetes-ingress/pull/8484), [8475](https://github.com/nginx/kubernetes-ingress/pull/8475), [8497](https://github.com/nginx/kubernetes-ingress/pull/8497), [8498](https://github.com/nginx/kubernetes-ingress/pull/8498), [8499](https://github.com/nginx/kubernetes-ingress/pull/8499), [8596](https://github.com/nginx/kubernetes-ingress/pull/8513, https://github.com/nginx/kubernetes-ingress/pull/8596), [8511](https://github.com/nginx/kubernetes-ingress/pull/8511), [8581](https://github.com/nginx/kubernetes-ingress/pull/8581) & [8615](https://github.com/nginx/kubernetes-ingress/pull/8615) Bump Docker dependencies
+- [8616](https://github.com/nginx/kubernetes-ingress/pull/8616) Update dependency go to v1.25.5 (main)
+- [8611](https://github.com/nginx/kubernetes-ingress/pull/8611) Bump waf version to 5.10.0
+- [8494](https://github.com/nginx/kubernetes-ingress/pull/8494) Update nginx to 1.29.3, nginx agent to 3.5
+- [8577](https://github.com/nginx/kubernetes-ingress/pull/8577) Update module golang.org/x/tools to v0.39.0 (main)
+- [8578](https://github.com/nginx/kubernetes-ingress/pull/8578) Update module mvdan.cc/gofumpt to v0.9.2 (main)
+- [8569](https://github.com/nginx/kubernetes-ingress/pull/8569) Update aws-sdk-go-v2 monorepo (main)
+- [8560](https://github.com/nginx/kubernetes-ingress/pull/8560) Update pre-commit hook rhysd/actionlint to v1.7.9 (main)
+- [8552](https://github.com/nginx/kubernetes-ingress/pull/8552) Update kubernetes packages to v0.34.2 (main)
+- [8544](https://github.com/nginx/kubernetes-ingress/pull/8544) Update aws-sdk-go-v2 monorepo (main)
+- [8524](https://github.com/nginx/kubernetes-ingress/pull/8524) Update module github.com/aws/aws-sdk-go-v2/config to v1.31.18 (main)
+- [8526](https://github.com/nginx/kubernetes-ingress/pull/8526) Update pre-commit hook psf/black-pre-commit-mirror to v25.11.0 (main)
+- [8514](https://github.com/nginx/kubernetes-ingress/pull/8514) Update test containers to v0.2.6
+- [8492](https://github.com/nginx/kubernetes-ingress/pull/8492) Update dependency clusterrole to rbac.authorization.k8s.io/v1 (main)
+- [8503](https://github.com/nginx/kubernetes-ingress/pull/8493, https://github.com/nginx/kubernetes-ingress/pull/8503) Update dependency go to v1.25.4 (main)
+- [8483](https://github.com/nginx/kubernetes-ingress/pull/8483) Update aws-sdk-go-v2 monorepo (main)
+- [8486](https://github.com/nginx/kubernetes-ingress/pull/8486) Update renovate to bump minor go versions
+- [8465](https://github.com/nginx/kubernetes-ingress/pull/8465) Update module github.com/nginx/nginx-prometheus-exporter to v1.5.1 (main)
+- [8464](https://github.com/nginx/kubernetes-ingress/pull/8464) Update aws-sdk-go-v2 monorepo (main)
+- [8445](https://github.com/nginx/kubernetes-ingress/pull/8445) Use renovate to monitor test data yaml files
+- [8428](https://github.com/nginx/kubernetes-ingress/pull/8428) Update module github.com/cert-manager/cert-manager to v1.19.1 (main)
+- [8440](https://github.com/nginx/kubernetes-ingress/pull/8440) Update aws-sdk-go-v2 monorepo (main)
+- [8401](https://github.com/nginx/kubernetes-ingress/pull/8401) Upgrade github.com/nginx/nginx-plus-go-client/v3 to v3.0.1
+- [8572](https://github.com/nginx/kubernetes-ingress/pull/8396, https://github.com/nginx/kubernetes-ingress/pull/8476, https://github.com/nginx/kubernetes-ingress/pull/8572) Update module github.com/gruntwork-io/terratest to v0.54.0 (main)
+- [8429](https://github.com/nginx/kubernetes-ingress/pull/8429) Update module github.com/cert-manager/cert-manager to v1.19.0 (main)
+- [8427](https://github.com/nginx/kubernetes-ingress/pull/8427) Update renovate pr&#39;s in github workflow
+- [8424](https://github.com/nginx/kubernetes-ingress/pull/8424) Allow renovate to run postupgradetasks
+- [8397](https://github.com/nginx/kubernetes-ingress/pull/8397) Correct space in github actions, update renovate syntax
+- [8559](https://github.com/nginx/kubernetes-ingress/pull/8405, https://github.com/nginx/kubernetes-ingress/pull/8525, https://github.com/nginx/kubernetes-ingress/pull/8559) Update pre-commit hook asottile/pyupgrade to v3.21.2 (main)
+- [8387](https://github.com/nginx/kubernetes-ingress/pull/8387) Update dependency pyyaml to v6.0.3 (main)
+- [8388](https://github.com/nginx/kubernetes-ingress/pull/8388) Update dependency wrapt to v1.17.3 (main)
+- [8381](https://github.com/nginx/kubernetes-ingress/pull/8381) Update renovate configuration
+- [8375](https://github.com/nginx/kubernetes-ingress/pull/8375) Update docker/login-action action to v3.6.0
+- [8362](https://github.com/nginx/kubernetes-ingress/pull/8362) Update examples with keycloak 26.x
+- [8350](https://github.com/nginx/kubernetes-ingress/pull/8350) Update dependency cffi to v2
+- [8356](https://github.com/nginx/kubernetes-ingress/pull/8356) Update peter-evans/dockerhub-description action to v5
+- [8355](https://github.com/nginx/kubernetes-ingress/pull/8355) Update dependency grpcio to v1.75.1
+- [8349](https://github.com/nginx/kubernetes-ingress/pull/8349) Update k8s.io/utils digest to bc988d5
+- [8337](https://github.com/nginx/kubernetes-ingress/pull/8337) Update module github.com/golang-jwt/jwt/v4 to v5
+- [8339](https://github.com/nginx/kubernetes-ingress/pull/8339) Update waf to 5.9.0
+- [8343](https://github.com/nginx/kubernetes-ingress/pull/8343) Update actions/cache action to v4.3.0
+- [8344](https://github.com/nginx/kubernetes-ingress/pull/8344) Update dependency certifi to v2025.8.3
+- [8332](https://github.com/nginx/kubernetes-ingress/pull/8332) Update ossf/scorecard-action action to v2.4.3
+- [8333](https://github.com/nginx/kubernetes-ingress/pull/8333) Update dependency pycparser to v2.23
+- [8582](https://github.com/nginx/kubernetes-ingress/pull/8326, https://github.com/nginx/kubernetes-ingress/pull/8564, https://github.com/nginx/kubernetes-ingress/pull/8582) Update module github.com/gkampitakis/go-snaps to v0.5.17 (main)
+- [8323](https://github.com/nginx/kubernetes-ingress/pull/8323) Update dependency cryptography to v46.0.2
+- [8309](https://github.com/nginx/kubernetes-ingress/pull/8309) Update aws-sdk-go-v2 monorepo
+- [8312](https://github.com/nginx/kubernetes-ingress/pull/8312) Update dependency requests to v2.32.5
+- [8300](https://github.com/nginx/kubernetes-ingress/pull/8300) Chore(deps): bump the actions group across 1 directory with 5 updates
+- [8298](https://github.com/nginx/kubernetes-ingress/pull/8298) Chore: configure renovate
+- [8566](https://github.com/nginx/kubernetes-ingress/pull/8286, https://github.com/nginx/kubernetes-ingress/pull/8369, https://github.com/nginx/kubernetes-ingress/pull/8423, https://github.com/nginx/kubernetes-ingress/pull/8539, https://github.com/nginx/kubernetes-ingress/pull/8566) [pre-commit.ci] pre-commit autoupdate
+- [8287](https://github.com/nginx/kubernetes-ingress/pull/8287) Chore(deps): bump the python group with 5 updates
+- [8275](https://github.com/nginx/kubernetes-ingress/pull/8275) Chore(deps): bump anchore/sbom-action from 0.20.5 to 0.20.6 in the actions group
+- [8270](https://github.com/nginx/kubernetes-ingress/pull/8270) Chore(deps): bump the python group with 5 updates
+- [8269](https://github.com/nginx/kubernetes-ingress/pull/8269) Chore(deps): bump the actions group with 2 updates
+- [8252](https://github.com/nginx/kubernetes-ingress/pull/8252) Bump preflight version to v1.14.1
+- [8254](https://github.com/nginx/kubernetes-ingress/pull/8248, https://github.com/nginx/kubernetes-ingress/pull/8254) Chore(deps): bump python from `d99178e` to `a805109` in /tests
+- [8263](https://github.com/nginx/kubernetes-ingress/pull/8249, https://github.com/nginx/kubernetes-ingress/pull/8263) Chore(deps): bump github/codeql-action from 3.30.1 to 3.30.3 in the actions group
+- [8243](https://github.com/nginx/kubernetes-ingress/pull/8243) Chore(deps): bump the python group with 2 updates
+
+### {{% icon download %}} Upgrade
+- For NGINX, use the 5.3.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.3.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.3.0 images from the F5 Container registry or build your own image using the 5.3.0 source code.
+- For Helm, use version 2.4.0 of the chart.
+
+### {{% icon life-buoy %}} Supported Platforms
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.34.
+
 ## 5.3.0
 
 08 Dec 2025
