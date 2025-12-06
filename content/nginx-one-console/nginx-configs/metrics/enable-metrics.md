@@ -15,6 +15,7 @@ nd-product: NONECO
 The NGINX One Console dashboard and metrics views present system metrics and detailed NGINX metrics gathered through the NGINX Plus API or the Stub Status API (for NGINX Open Source).
 
 To display metrics, complete the following steps:
+
 1. Enable the API
 2. Enable metric collection
 
@@ -28,9 +29,9 @@ To enable the NGINX Plus API and dashboard with [Config Sync Groups]({{< ref "/n
 
 {{< include "use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md" >}}
 
-## Enable NGINX Open Source Stub Status API
+## Enable NGINX Open Source Metrics
 
-{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+{{< include "/use-cases/monitoring/enable-nginx-oss-metrics.md" >}}
 
 ## Enable NGINX Plus Metric Collection
 

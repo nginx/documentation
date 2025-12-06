@@ -1,18 +1,21 @@
 ---
-nd-product: NONECO
+nd-product: MSC
 nd-files:
-- content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md
-- content/includes/use-cases/monitoring/enable-nginx-plus-api.md
+- content/nginx-one-console/getting-started.md
 ---
 
+If SSL is enabled on the NGINX Plus API with self-signed certificates like this example:
+
 ```nginx
-# This block enables the NGINX Plus API and dashboard
+# This block enables the NGINX Plus API and dashboard with SSL
 # For configuration and security recommendations, see:
 # https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#configuring-the-api
 server {
     # Change the listen port if 9000 conflicts
     # (8080 is the conventional API port)
-    listen 9000;
+    listen 9000 ssl;
+    ssl_certificate /etc/nginx/certs/nginx-selfsigned.crt; 
+    ssl_certificate_key /etc/nginx/certs/nginx-selfsigned.key;
 
     location /api/ {
         # To restrict write methods (POST, PATCH, DELETE), uncomment:
@@ -40,3 +43,16 @@ server {
 {{<call-out type="important" title="Important">}}
 Make sure that the `server` and  `location` blocks are in the same single configuration file, and not split across multiple files using `include` directives.
 {{</call-out>}}
+
+NGINX Agent configuration needs to be update with the following to enable the NGINX Agent to be able to call the NGINX Plus API.
+```
+data_plane_config:
+  nginx:
+    api_tls:
+      ca: "/etc/nginx/certs/nginx-selfsigned.crt"
+```
+
+Here is an example of how to generate self-signed certificates 
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/certs/nginx-selfsigned.key -out /etc/nginx/certs/nginx-selfsigned.crt -subj "/CN=localhost" -addext "subjectAltName=IP:127.0.0.1"
+```
