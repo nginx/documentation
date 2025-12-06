@@ -22,6 +22,7 @@ Before you start, make sure that you have:
 The following table lists the NGINX Agent features:
 
 {{< table "features" >}}
+
 | Feature Name        | Description                                                                 | Default |
 | ------------------- | --------------------------------------------------------------------------- | ------- |
 | configuration       | Full read/write management of configurations, controlled by DataPlaneConfig ConfigMode. | On      |
@@ -29,6 +30,7 @@ The following table lists the NGINX Agent features:
 | file-watcher        | Monitoring of file changes in the allowed directories list and references from product configs.             | On      |
 | metrics             | Full metrics reporting.                                                      | On      
 | logs-nap          | F5 WAF for NGINX logs.                                                       | On     |
+
 {{< /table >}}
 
 ## Configuration sources
@@ -86,4 +88,3 @@ Define features in the `nginx-agent.conf` file:
    `sudo systemctl restart nginx-agent`
 
 Once the steps have been completed, users will be able to view metrics data being sent but will not have the capability to push NGINX configuration changes.
-
