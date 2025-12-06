@@ -68,6 +68,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*proxy-read-timeout* | Sets the value of the [proxy_read_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) and [grpc_read_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_read_timeout) directive. | *60s* |  |
 |*proxy-send-timeout* | Sets the value of the [proxy_send_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout) and [grpc_send_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_send_timeout) directive. | *60s* |  |
 |*client-max-body-size* | Sets the value of the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) directive. | *1m* |  |
+|*client-body-buffer-size* | Sets the value of the [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) directive. | N/A |  |
 |*proxy-buffering* | Enables or disables [buffering of responses](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) from the proxied server. | *True* |  |
 |*proxy-buffers* | Sets the value of the [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directive. | Depends on the platform. |  |
 |*proxy-buffer-size* | Sets the value of the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [grpc_buffer_size](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size) directives. | Depends on the platform. |  |
@@ -170,6 +171,18 @@ If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplic
 |*zone-sync-resolver-addresses* | Configures optional addresses used in the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync. This field takes a comma separated list of addresses. NGINX Plus & `zone-sync` Required | `kube-dns.kube-system.svc.cluster.local` |
 |*zone-sync-resolver-ipv6* | Configures whether the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will look up IPv6 addresses. NGINX Plus & `zone-sync` Required | `true` |
 |*zone-sync-resolver-valid* | Configures an [NGINX time](https://nginx.org/en/docs/syntax.html) that the optional [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive for zone-sync will override the TTL value of responses from nameservers with. NGINX Plus & `zone-sync` Required | `5s` |
+
+### OIDC (OpenID Connect) Timeouts
+
+For more information on timeouts, see [here](https://github.com/nginxinc/nginx-openid-connect?tab=readme-ov-file#configuring-the-key-value-store)
+
+| ConfigMap Key | Description | Default |
+| ------------- | ------------| ------- |
+| *oidc-pkce-timeout* | Sets the timeout for PKCE (Proof Key for Code Exchange) in OIDC. | `90s` |
+| *oidc-id-tokens-timeout* | Sets the timeout for ID tokens in OIDC. | `1h` |
+| *oidc-access-tokens-timeout* | Sets the timeout for access tokens in OIDC. | `1h` |
+| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `24h` |
+| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `24h` |
 
 ### Snippets and custom templates
 
