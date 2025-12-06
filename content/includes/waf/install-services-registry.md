@@ -5,6 +5,8 @@ nd-files:
 - content/waf/install/kubernetes.md
 ---
 
+You will need Docker registry credentials to access private-registry.nginx.com.
+
 Create a directory and copy your certificate and key to this directory:
 
 ```shell

@@ -7,11 +7,11 @@ nd-files:
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_CODENAME's are: focal/jammy
-ARG OS_CODENAME=jammy
+# Supported OS_CODENAME's are: bullseye/bookworm
+ARG OS_CODENAME=bookworm
 
 # Base image
-FROM ubuntu:${OS_CODENAME}
+FROM debian:${OS_CODENAME}
 
 # Install NGINX Plus and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
@@ -23,15 +23,15 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
        ca-certificates \
        wget \
        gnupg2 \
-       ubuntu-keyring \
+       debian-archive-keyring \
     && wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | \
        gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
     && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-       https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+       https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | \
        tee /etc/apt/sources.list.d/nginx-plus.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-       https://pkgs.nginx.com/app-protect-x-plus/ubuntu `lsb_release -cs` nginx-plus\n" | \
+       https://pkgs.nginx.com/app-protect-x-plus/debian `lsb_release -cs` nginx-plus\n" | \
        tee /etc/apt/sources.list.d/nginx-app-protect.list \
     && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
     && apt-get update \
@@ -40,10 +40,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# Securely copy the JWT license:
-RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
-    cp license.jwt /etc/nginx/license.jwt
 
 # Expose port
 EXPOSE 80

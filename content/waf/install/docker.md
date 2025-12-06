@@ -16,14 +16,39 @@ This page describes how to install F5 WAF for NGINX using Docker.
 
 To complete this guide, you will need the following prerequisites:
 
-- An active F5 WAF for NGINX subscription (Purchased or trial)
-- [Docker](https://docs.docker.com/get-started/get-docker/)
+- A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
+- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX WAF subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments), and the [JWT license file](#additional-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
+- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
 {{< include "waf/install-selinux-warning.md" >}}
+
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
+
+## Download your subscription credentials 
+
+### General subscription credentials needed for deployments
+
+{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
+
+### Additional subscription credentials needed for deployments
+
+To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
+{{< call-out "important" >}}
+The provided Dockerfile for NGINX Plus automatically handles placing the JWT license file in `/etc/nginx/` during image build. If you use a custom Dockerfile, you must ensure the JWT license is copied to this location.
+{{< /call-out >}}
+
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Docker deployment options
 
@@ -41,13 +66,17 @@ The single container configuration only supports NGINX Plus and requires a build
 
 The steps you should follow on this page are dependent on your configuration type: after the shared steps, links will guide you to the next appropriate section.
 
-## Download your subscription credentials 
-
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
-
 ## Configure Docker for the F5 Container Registry
 
-{{< include "waf/install-services-registry.md" >}}
+You will need Docker registry credentials to access private-registry.nginx.com for the Multi-container or Hybrid deployment options.
+
+Create a directory and copy your [certificate and key]({{< ref "/waf/install/docker.md#Shared Requirements" >}}) to this directory:
+
+```shell
+mkdir -p /etc/docker/certs.d/private-registry.nginx.com
+cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/client.cert
+cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
+```
 
 You should now move to the section based on your configuration type:
 
@@ -143,7 +172,7 @@ http {
 
 ### Create a Dockerfile
 
-In the same folder as your credential and configuration files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+In the same folder as your credential and configuration files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
 Alternatively, you may want make your own image based on a Dockerfile using the official NGINX image:
 
@@ -307,7 +336,51 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 ### Build the Docker image
 
-{{< include "waf/install-build-image.md" >}}
+Your folder should contain the following files:
+
+- _nginx-repo.crt_
+- _nginx-repo.key_
+- _license.jwt_
+- _nginx.conf_
+- _entrypoint.sh_
+- _Dockerfile_
+- _custom_log_format.json_ 
+
+To build an image, use the following command for system that are not RHEL-based, replacing `<your-image-name>` as appropriate:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+```
+
+A RHEL-based system would use the following command instead:
+
+```shell
+podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+```
+
+{{< call-out "note" >}}
+
+The `--no-cache` option is used to ensure the image is built from scratch, installing the latest versions of NGINX Plus and F5 WAF for NGINX.
+
+{{< /call-out >}}
+
+Verify that your image has been created using the `docker images` command:
+
+```shell
+docker images <your-image-name>
+```
+
+Create a container based on this image, replacing <your-container-name> as appropriate:
+
+```shell
+docker run --name <your-container-name> -p 80:80 -d <your-image-name>
+```
+
+Verify the new container is running using the `docker ps` command:
+
+```shell
+docker ps
+```
 
 ### Update configuration files
 
@@ -438,6 +511,8 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 {{< include "waf/install-services-docker.md" >}}
 
 #### Download Docker images
+
+[Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#Configure Docker for the F5 Container Registry" >}}) is needed to pull the following container images
 
 {{< include "waf/install-services-images.md" >}}
 
@@ -815,6 +890,8 @@ sudo dnf install app-protect-module-plus
 
 #### Download Docker images
 
+[Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#Configure Docker for the F5 Container Registry" >}}) is needed to pull the following container images
+
 {{< include "waf/install-services-images.md" >}}
 
 #### Create and run a Docker Compose file
@@ -913,7 +990,7 @@ http {
 
 Copy or move your subscription files into a new folder.
 
-In the same folder as the subscription files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+In the same folder as the subscription files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
 {{< call-out "note" >}}
 
@@ -948,6 +1025,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
     apk update && apk add app-protect-ip-intelligence
+
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -990,6 +1071,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf -y install app-protect-ip-intelligence
+
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1046,6 +1131,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -1092,6 +1181,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -1134,6 +1227,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
+
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1181,6 +1278,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
@@ -1218,6 +1319,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
+
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
 
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -1274,6 +1379,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     apt-get install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
@@ -1293,6 +1402,11 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 {{< include "waf/install-update-configuration.md" >}}
 
+Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
+
+- `nginx -s reload`
+- `sudo systemctl reload nginx`
+
 F5 WAF for NGINX should now be operational, and you can move onto [Post-installation checks](#post-installation-checks).
 
 ## Post-installation checks
@@ -1302,3 +1416,9 @@ F5 WAF for NGINX should now be operational, and you can move onto [Post-installa
 ## Next steps
 
 {{< include "waf/install-next-steps.md" >}}
+
+## Remove NGINX docker image
+
+Before removing any Docker image, it’s important to ensure that the image is no longer needed and is not in use.
+
+[docker image rm](https://docs.docker.com/reference/cli/docker/image/rm/) tool
