@@ -508,7 +508,7 @@ Once you have updated your configuration files, you can reload NGINX to apply th
 
 #### Download Docker images
 
-[Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#Configure Docker for the F5 Container Registry" >}}) is needed to pull the following container images
+[Access to NGINX repo private-registry.nginx.com]({{< ref "/waf/install/docker.md#configure-docker-for-the-f5-container-registry" >}}) is needed to pull the following container images
 
 {{< include "waf/install-services-images.md" >}}
 
