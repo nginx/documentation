@@ -1,9 +1,9 @@
 ---
-title: Enable monitoring
+title: Enable metrics
 weight: 200
 toc: true
 nd-docs: DOCS-876
-url: /nginxaas/azure/monitoring/enable-monitoring/
+url: /nginxaas/azure/monitoring/enable-metrics/
 type:
 - how-to
 ---
@@ -14,9 +14,10 @@ Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azu
 
 ## Prerequisites
 
-- A system assigned managed identity with `Monitoring Metrics Publisher` role.
+- A system assigned managed identity.
 
-{{< call-out "note" >}} When a system assigned managed identity is added to the deployment through portal, this role is automatically added.{{< /call-out >}}
+{{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the metrics functionality described in this section.
+{{< /call-out >}}
 
 ## Collection
 

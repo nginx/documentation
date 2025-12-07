@@ -1,10 +1,10 @@
 ---
 title: Build container images
-draft: false
 weight: 100
 toc: true
 nd-docs: DOCS-1410
 nd-content-type: how-to
+nd-product: NAGENT
 ---
 
 ## Overview

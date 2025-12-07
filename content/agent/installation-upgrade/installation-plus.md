@@ -1,10 +1,10 @@
 ---
 title: Installation from NGINX Plus repository
-draft: false
 weight: 400
 toc: true
 nd-docs: DOCS-1217
 nd-content-type: how-to
+nd-product: NAGENT
 ---
 
 ## Overview

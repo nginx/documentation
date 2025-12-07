@@ -1,6 +1,5 @@
 ---
 title: Template resource files
-draft: false
 description: ''
 weight: 200
 toc: true

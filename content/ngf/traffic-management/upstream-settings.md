@@ -2,7 +2,7 @@
 title: Upstream Settings Policy API
 weight: 900
 toc: true
-type: how-to
+nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-1845
 ---
