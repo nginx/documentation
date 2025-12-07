@@ -129,6 +129,7 @@ Your folder should contain the following files:
 - _nginx-repo.key_
 - _license.jwt_
 - _entrypoint.sh_
+- _nginx.conf_
 - _Dockerfile_
 
 To build an image, use the following command, replacing `<your-nginx-dos-image-name>` as appropriate:
