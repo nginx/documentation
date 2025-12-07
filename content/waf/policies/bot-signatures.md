@@ -12,7 +12,7 @@ This feature is enabled by default with the `bot-defense` parameter, and include
 
 ## Bot signatures
 
-Bot signature detection works by inspecting the the User-Agent header and URI of a request.
+Bot signature detection works by inspecting the User-Agent header and URI of a request.
 
 Each detected bot signature belongs to a bot class: search engine signatures such as `googlebot` are under the trusted_bots class, but F5 WAF for NGINX performs additional checks to authenticate a trusted bot.
 
