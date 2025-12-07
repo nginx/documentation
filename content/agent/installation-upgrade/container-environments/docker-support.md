@@ -1,11 +1,10 @@
 ---
 title: Container support and troubleshooting
-draft: false
 toc: true
 weight: 200
 nd-docs: DOCS-909
-nd-content-type:
-- task
+nd-content-type: reference
+nd-product: NAGENT
 ---
 
 ## Overview

@@ -4,8 +4,7 @@ weight: 1000
 description: List of known issues in the latest release of F5 NGINX Amplify
 toc: true
 nd-docs: DOCS-1692
----
-
+nd-product: AMPLIF
 ---
 
 ### {{% icon-bug %}} Unable to add some NGINX HTTP requests metrics to custom graph {#631}

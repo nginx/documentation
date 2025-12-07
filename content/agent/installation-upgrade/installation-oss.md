@@ -1,10 +1,10 @@
 ---
 title: Installation from NGINX repository
-draft: false
 weight: 300
 toc: true
 nd-docs: DOCS-1216
 nd-content-type: how-to
+nd-product: NAGENT
 ---
 
 ## Overview

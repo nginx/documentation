@@ -4,8 +4,8 @@ nd-docs: DOCS-668
 title: Access Log Request Mechanism
 toc: true
 weight: 160
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 ## Access Logs

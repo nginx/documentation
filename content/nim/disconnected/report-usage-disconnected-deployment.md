@@ -1,6 +1,5 @@
 ---
 title: Report usage data to F5 (disconnected)
-draft: false
 weight: 300
 toc: true
 nd-docs: DOCS-1658
@@ -62,7 +61,6 @@ To submit a usage report in a disconnected environment, use the provided `licens
       -i <NIM-IP-address> \
       -u admin \
       -p <password> \
-      -o report.zip \
       -s telemetry
     ```
 

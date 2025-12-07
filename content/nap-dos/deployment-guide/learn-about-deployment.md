@@ -4,8 +4,8 @@ nd-docs: DOCS-666
 title: Virtual Machine and Docker
 toc: true
 weight: 90
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 ## Overview
