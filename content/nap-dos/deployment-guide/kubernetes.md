@@ -150,16 +150,6 @@ From this point, the steps change based on your installation method:
 
 ## Use Manifests to install F5 DOS for NGINX
 
-### Create a Secret
-
-Before you can start the Manifest deployment, you need a Kubernetes secret for the Docker registry.
-
-You can create the secret using `kubectl create`:
-
-```shell
-kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none
-```
-
 The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
 ### Create Manifest files
