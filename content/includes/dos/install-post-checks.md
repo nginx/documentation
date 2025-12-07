@@ -24,14 +24,16 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
 2. Verify that there are no NGINX errors in the `/var/log/nginx/error.log` and that the policy compiled successfully:
 
     ```shell
-    2020/09/07 15:33:44 [notice] 9307#9307: using the "epoll" event method
-    2020/09/07 15:33:44 [notice] 9307#9307: nginx/1.19.0 (nginx-plus-r22)
-    2020/09/07 15:33:44 [notice] 9307#9307: built by gcc 4.8.5 20150623 (Red Hat 4.8.5-39) (GCC)
-    2020/09/07 15:33:44 [notice] 9307#9307: OS: Linux 3.10.0-327.28.3.el7.x86_64
-    2020/09/07 15:33:44 [notice] 9307#9307: getrlimit(RLIMIT_NOFILE): 1024:4096
-    2020/09/07 15:33:44 [notice] 9310#9310: start worker processes
-    2020/09/07 15:33:44 [notice] 9310#9310: start worker process 9311
-    PID <9311>, WORKER <0>, Function adm_ngx_init_process, line 684, version: 22+1.19.4-1.el7.ngx
+    2025/12/07 09:14:34 [notice] 675#675: APP_PROTECT_DOS { "event": "shared_memory_connected", "worker_pid": 675, "mode": "operational", "mode_changed": true }
+    2025/12/07 09:14:34 [notice] 675#675: using the "epoll" event method
+    2025/12/07 09:14:34 [notice] 675#675: APP_PROTECT_DOS { "event": "configuration_load_success", "software_version": "36+4.8.3-1.el8.ngx"}
+    2025/12/07 09:14:34 [notice] 675#675: nginx/1.29.3 (nginx-plus-r36)
+    2025/12/07 09:14:34 [notice] 675#675: built by gcc 8.5.0 20210514 (Red Hat 8.5.0-28) (GCC)
+    2025/12/07 09:14:34 [notice] 675#675: OS: Linux 6.8.0-88-generic
+    2025/12/07 09:14:34 [notice] 675#675: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+    2025/12/07 09:14:34 [notice] 675#675: start worker processes
+    2025/12/07 09:14:34 [notice] 675#675: start worker process 679
+    2025/12/07 09:14:34 [notice] 679#679: APP_PROTECT_DOS { "event": "shared_memory_connected", "worker_pid": 679, "mode": "operational", "mode_changed": true }
     ```
 
 3. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
