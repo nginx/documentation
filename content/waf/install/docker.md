@@ -66,7 +66,7 @@ The steps you should follow on this page are dependent on your configuration typ
 
 You will need Docker registry credentials to access private-registry.nginx.com for the Multi-container or Hybrid deployment options.
 
-Create a directory and copy your [certificate and key]({{< ref "/waf/install/docker.md#Shared Requirements" >}}) to this directory:
+Create a directory and copy your certificate and key to this directory:
 
 ```shell
 mkdir -p /etc/docker/certs.d/private-registry.nginx.com
