@@ -54,7 +54,7 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ### Additional subscription credentials needed for deployments 
 
-To use NGINX Plus and access private-registry.nginx.com, you will need to download the the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+To use NGINX Plus and access private-registry.nginx.com, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
 {{< call-out "note" >}}
 If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
