@@ -217,7 +217,7 @@ From the folder containing the YAML files from the previous step (Suggested as `
 ```shell
 kubectl apply -f manifests/dos-namespace.yaml
 kubectl apply -f manifests/dos-storage.yaml
-kubectl apply -f manifests/dos-nginx-conf-configmap.yam
+kubectl apply -f manifests/dos-nginx-conf-configmap.yaml
 kubectl apply -f manifests/dos-log-default-configmap.yaml
 kubectl apply -f manifests/dos-deployment.yaml
 kubectl apply -f manifests/dos-service.yaml
