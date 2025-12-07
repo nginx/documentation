@@ -28,7 +28,7 @@ podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=ngi
 ```
 
 #### Building an image with NGINX Open Source
-To build an image for NGINX Open Source, use the following command that are not RHEL-based, replacing `<your-image-name>` as appropriate:
+To build an image for NGINX Open Source, use the following command that is not RHEL-based, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
