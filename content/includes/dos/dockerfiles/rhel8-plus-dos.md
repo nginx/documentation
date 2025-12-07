@@ -40,11 +40,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && subscription-manager unregister
 
-# Copy configuration files:
-RUN --mount=type=secret,id=nginx_license_secret \
-    sh -c 'cat /run/secrets/nginx_license_secret | base64 -d  > /etc/nginx/license.jwt' && \
-    chmod 600 /etc/nginx/license.jwt
-
 RUN nginx -v && admd -v
 
 COPY nginx.conf custom_log_format.json /etc/nginx/

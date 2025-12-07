@@ -24,10 +24,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && rm -rf /var/cache/apk/*
 
-RUN --mount=type=secret,id=nginx_license_secret \
-    sh -c 'cat /run/secrets/nginx_license_secret | base64 -d > /etc/nginx/license.jwt' && \
-    chmod 600 /etc/nginx/license.jwt
-
 RUN nginx -v && admd -v
 
 # Copy configuration files:
