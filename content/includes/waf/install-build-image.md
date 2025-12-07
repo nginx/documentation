@@ -15,7 +15,7 @@ Your folder should contain the following files:
 - _custom_log_format.json_ 
 
 #### Building an image with NGINX Plus
-To build an image for NGINX Plus, use the following command that are not RHEL-based, replacing `<your-image-name>` as appropriate:
+To build an image for NGINX Plus, use the following command that is not RHEL-based, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
