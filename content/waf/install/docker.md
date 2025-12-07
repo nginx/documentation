@@ -342,7 +342,7 @@ Your folder should contain the following files:
 - _Dockerfile_
 - _custom_log_format.json_ 
 
-To build an image, use the following command for system that are not RHEL-based, replacing `<your-image-name>` as appropriate:
+To build an image, use the following command for a system that is not RHEL-based, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
