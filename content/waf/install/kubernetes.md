@@ -15,15 +15,12 @@ It explains the common steps necessary for any Kubernetes-based deployment, then
 To complete this guide, you will need the following pre-requisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/) TODO add reason for it.
-- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster TODO add reason for it..
-- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running TODO add reason for it.
-- An active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your f5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you plan of using NGINX Open Source in your deployment.
-  - Download the [SSL certificate, private key, and the JWT license](#additional-subscription-credentials-needed-for-deployments) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
-- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com 
-
-You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/) (installed and running).
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
+- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com, required to pull images
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
+- [Access credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com for pulling deployment images.
+- [Helm](https://helm.sh/docs/intro/install/) installed, required for deployment.
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
@@ -35,13 +32,9 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-### General subscription credentials needed for deployments 
-
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
-
-### Additional subscription credentials needed for deployments
-
-To use NGINX Plus and access private-registry.nginx.com, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+{{< call-out "note" >}}
+To access private-registry.nginx.com, you will need to download the JWT license file even when using NGINX Open Source as a base image. 
+{{< /call-out >}}
 
 {{< call-out "note" >}}
 If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
@@ -268,7 +261,7 @@ cd nginx-app-protect
 
 You will need to edit the `values.yaml` file for a few changes:
 
-- Update _appprotect.nginx.image.repository_ and _appprotect.nginx.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
+- Update _appprotect.nginx.image.repository_ and _appprotect.nginx.image.tag_ with the image name chosen during when [building the Docker image](#build-the-docker-image).
 - Update _appprotect.config.nginxJWT_ with your JSON web token (Only necessary when using NGINX Plus)
 - Update _dockerConfigJson_ to contain the base64 encoded Docker registration credentials
 

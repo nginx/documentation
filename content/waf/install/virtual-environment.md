@@ -17,8 +17,7 @@ This page describes how to install F5 WAF for NGINX in a virtual machine or bare
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate, private key, and the JWT license](#download-your-subscription-credentials) file associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal.
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
 - A working [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}). If NGINX Plus is not installed separately it will be installed automatically during F5 WAF for NGINX installation.
 
 Depending on your deployment type, you may have additional requirements:
@@ -33,15 +32,9 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-### General subscription credentials needed for deployments 
-
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
-
-### Additional subscription credentials needed for deployments
-
 To use NGINX Plus, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
 
-{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
 
 {{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 

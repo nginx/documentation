@@ -328,4 +328,4 @@ You can then transfer the files and load the images in your disconnected environ
    docker load -i waf-ip-intelligence.tar
    ```
 
-Ensure your Docker compose files use the tagged images you've transferred.
+Ensure your Docker Compose files use the tagged images you've transferred.
