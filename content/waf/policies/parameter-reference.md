@@ -106,7 +106,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## keyFiles {#access-profiles/keyFiles}
+## keyFiles {#policy/access-profiles/keyFiles}
 
 | Field Name  | Type   | Description | Allowed Values |
 | ----------- | ------ | ----------- | -------------- |
@@ -115,7 +115,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## location {#access-profiles/location}
+## location {#policy/access-profiles/location}
 
 | Field Name | Type   | Description | Allowed Values   |
 | ---------- | ------ | ----------- | ---------------- |
@@ -124,7 +124,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## usernameExtraction {#access-profiles/usernameExtraction}
+## usernameExtraction {#policy/access-profiles/usernameExtraction}
 
 | Field Name          | Type    | Description | Allowed Values |
 | ------------------- | ------- | ----------- | -------------- |
@@ -134,26 +134,26 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## blocking-settings
+## blocking-settings {#policy/blocking-settings}
 
 | Field Name     | Reference | Type   | Description                                             | Allowed Values |
 | -------------- | --------- | ------ | ------------------------------------------------------- | -------------- |
-| evasions           | Yes       | array of objects | Defines behavior for 'Evasion technique detected' violation sub-violations.                                                                        |                |
-| http-protocols     | Yes       | array of objects | Defines behavior for 'HTTP protocol compliance failed' violation sub-violations.                                                                  |                |
-| violations         | Yes       | array of objects |                                                                                                              |                |
+| [evasions](#policy/blocking-settings/evasions)           | Yes       | array of objects | Defines behavior for 'Evasion technique detected' violation sub-violations.                                                                        |                |
+| [http-protocols](#policy/blocking-settings/http-protocols)      | Yes       | array of objects | Defines behavior for 'HTTP protocol compliance failed' violation sub-violations.                                                                  |                |
+| [violations](#policy/blocking-settings/violations)          | Yes       | array of objects |                                                                                                              |                |
 
 ---
 
-## bot-defense
+## bot-defense {#policy/bot-defense}
 
 | Field Name     | Reference | Type   | Description                                             | Allowed Values |
 | -------------- | --------- | ------ | ------------------------------------------------------- | -------------- |
-| mitigations    | Yes       | object | Defines the mitigation to each class or signature.      |                |
-| settings       | Yes       | object | Contains all bot defense settings.                      |                |
+| [settings](#policy/bot-defense/settings)       | Yes       | object | Contains all bot defense settings.                      |                |
+| [mitigations](#policy/bot-defense/mitigations)    | Yes       | object | Defines the mitigation to each class or signature.      |                |
 
 ---
 
-## browser-definitions
+## browser-definitions {#policy/browser-definitions}
 
 | Field Name        | Type    | Description | Allowed Values |
 | ----------------- | ------- | ----------- | -------------- |
@@ -164,20 +164,20 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## brute-force-attack-preventions
+## brute-force-attack-preventions {#policy/brute-force-attack-preventions}
 
 | Field Name     | Reference | Type   | Description                                             | Allowed Values |
 | -------------- | --------- | ------ | ------------------------------------------------------- | -------------- |
 | bruteForceProtectionForAllLoginPages| boolean                               | Enables BFP for all login URLs.                                                              |                |
-| loginAttemptsFromTheSameIp          | object                                | Config for detecting brute force attacks from IP Address.                                    |                |
-| loginAttemptsFromTheSameUser        | object                                | Config for detecting brute force attacks for Username.                                       |                |
+| [loginAttemptsFromTheSameIp](#policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp)          | object                                | Config for detecting brute force attacks from IP Address.                                    |                |
+| [loginAttemptsFromTheSameUser](#policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser)         | object                                | Config for detecting brute force attacks for Username.                                       |                |
 | reEnableLoginAfter                  | integer min:60 max:90000              | Defines prevention period (seconds) for source-based attacks.                                |                |
 | sourceBasedProtectionDetectionPeriod| integer min:60 max:90000              | Defines detection period (seconds) for source-based attacks.                                 |                |
-| url                                 | object                                | Reference to the login URL (policy/login-pages).                                             |                |
+| [url](#policy/brute-force-attack-preventions/url)                                  | object                                | Reference to the login URL (policy/login-pages).                                             |                |
 
 ---
 
-## loginAttemptsFromTheSameIp {#brute-force-attack-preventions/loginAttemptsFromTheSameIp}
+## loginAttemptsFromTheSameIp {#policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp}
 
 | Field Name | Type                                | Description | Allowed Values            |
 | ---------- | ----------------------------------- | ----------- | ------------------------ |
@@ -187,7 +187,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## loginAttemptsFromTheSameUser {#brute-force-attack-preventions/loginAttemptsFromTheSameUser}
+## loginAttemptsFromTheSameUser {#policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser}
 
 | Field Name | Type                          | Description                                    | Allowed Values |
 | ---------- | ----------------------------- | ---------------------------------------------- | -------------- |
@@ -197,16 +197,16 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## character-sets
+## character-sets {#policy/character-sets}
 
 | Field Name       | Type           | Description | Allowed Values                                                        |
 | ---------------- | -------------- | ----------- | --------------------------------------------------------------------- |
-| characterSet     | array of objects|            |                                                                       |
+| [characterSet](#policy/character-sets/characterSet)     | array of objects|            |                                                                       |
 | characterSetType | string         |             | header, url, parameter-name, parameter-value, xml-content, json-content|
 
 ---
 
-## characterSet {#character-sets/characterSet}
+## characterSet {#policy/character-sets/characterSet}
 
 | Field Name | Type    | Description | Allowed Values |
 | ---------- | ------- | ----------- | -------------- |
@@ -215,7 +215,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## cookie-settings
+## cookie-settings {#policy/cookie-settings}
 
 | Field Name             | Type                                 | Description                                                                                   | Allowed Values          |
 | ---------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------- | ----------------------- |
@@ -223,7 +223,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## cookies
+## cookies {#policy/cookies}
 
 | Field Name                       | Type          | Description                                                                   | Allowed Values                           |
 | -------------------------------- | ------------- | ----------------------------------------------------------------------------- | ---------------------------------------- |
@@ -235,13 +235,13 @@ If you want a zip/text file with all of these, just say so!
 | maskValueInLogs                  | boolean        | Mask value in logs                                                            |                                          |
 | name                             | string         | Cookie name (explicit or wildcard supported; see notes)                       |                                          |
 | securedOverHttpsConnection       | boolean        | Secure attribute (only send over HTTPS)                                       |                                          |
-| signatureOverrides               | array of objects| Override attack signatures for this cookie                                    |                                          |
+| [signatureOverrides](#policy/cookies/signatureOverrides)               | array of objects| Override attack signatures for this cookie                                    |                                          |
 | type                             | string         | explicit, wildcard (interpret as wildcard only if set)                        | explicit, wildcard                       |
 | wildcardOrder                    | integer        | Wildcard matching priority                                                    |                                          |
 
 ---
 
-## signatureOverrides {#cookies/signatureOverrides}
+## signatureOverrides {#policy/cookies/signatureOverrides}
 
 | Field Name    | Type    | Description                                 | Allowed Values |
 | ------------- | ------- | ------------------------------------------- | -------------- |
@@ -252,7 +252,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## csrf-protection
+## csrf-protection {#policy/csrf-protection}
 
 | Field Name               | Type               | Description                              | Allowed Values          |
 | ------------------------ | ------------------ | ---------------------------------------- | ----------------------- |
@@ -262,7 +262,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## csrf-urls
+## csrf-urls {#policy/csrf-urls}
 
 | Field Name       | Type    | Description  | Allowed Values          |
 | ---------------- | ------- | ------------ | ----------------------- |
@@ -273,7 +273,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## data-guard
+## data-guard {#policy/data-guard}
 
 | Field Name                   | Type                | Description                                                 | Allowed Values                         |
 | ---------------------------- | ------------------- | ----------------------------------------------------------- | -------------------------------------- |
@@ -290,7 +290,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## disallowed-geolocations
+## disallowed-geolocations {#policy/disallowed-geolocations}
 
 | Field Name     | Type   | Description           | Allowed Values (sample) |
 | -------------- | ------ | --------------------- | ----------------------- |
@@ -299,15 +299,15 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## enforcer-settings
+## enforcer-settings {#policy/enforcer-settings}
 
 | Field Name            | Type   | Description                              | Allowed Values |
 | --------------------- | ------ | ---------------------------------------- | -------------- |
-| enforcerStateCookies  | object | Properties of the enforcer state cookies |                |
+| [enforcerStateCookies](#policy/enforcer-settings/enforcerStateCookies)  | object | Properties of the enforcer state cookies |                |
 
 ---
 
-## enforcerStateCookies {#enforcer-settings/enforcerStateCookies}
+## enforcerStateCookies {#policy/enforcer-settings/enforcerStateCookies}
 
 | Field Name         | Type    | Description                                         | Allowed Values        |
 | ------------------ | ------- | --------------------------------------------------- | ---------------------|
@@ -317,7 +317,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## filetypes
+## filetypes {#policy/filetypes}
 
 | Field Name           | Type                | Description                                                      | Allowed Values           |
 | -------------------- | ------------------- | ---------------------------------------------------------------- | ------------------------|
@@ -338,7 +338,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## general
+## general {#policy/general}
 
 | Field Name                     | Type              | Description                                                                     | Allowed Values  |
 | ------------------------------ | ----------------- | ------------------------------------------------------------------------------- | --------------- |
@@ -349,25 +349,25 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## graphql-profiles
+## graphql-profiles {#policy/graphql-profiles}
 
 | Field Name                  | Type            | Description           | Allowed Values |
 | --------------------------- | ----------------| --------------------- | -------------- |
 | attackSignaturesCheck       | boolean         |                       |                |
-| defenseAttributes           | object          |                       |                |
+| [defenseAttributes](#policy/graphql-profiles/)          | object          |                       |                |
 | description                 | string          |                       |                |
 | hasIdlFiles                 | boolean         |                       |                |
-| idlFiles                    | array of objects|                       |                |
-| metacharElementCheck        | boolean         |                       |                |
+| [idlFiles](#policy/graphql-profiles/)                  | array of objects|                       |                |
+| [metacharElementCheck](#policy/graphql-profiles/)        | boolean         |                       |                |
 | metacharOverrides           | array of objects|                       |                |
 | name                        | string          |                       |                |
-| responseEnforcement         | object          |                       |                |
-| sensitiveData               | array of objects|                       |                |
-| signatureOverrides          | array of objects|                       |                |
+| [responseEnforcement](#policy/graphql-profiles/)         | object          |                       |                |
+| [sensitiveData](#policy/graphql-profiles/)               | array of objects|                       |                |
+| [signatureOverrides](#policy/graphql-profiles/)          | array of objects|                       |                |
 
 ---
 
-## defenseAttributes {#graphql-profiles/defenseAttributes}
+## defenseAttributes {#policy/graphql-profiles/defenseAttributes}
 
 | Field Name            | Type                                | Description | Allowed Values         |
 | --------------------- | ----------------------------------- | ----------- | --------------------- |
@@ -381,7 +381,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-##  {#graphql-profiles/idlFiles}
+##  idlFiles {#policy/graphql-profiles/idlFiles}
 
 | Field Name    | Type           | Description      | Allowed Values |
 | ------------- | -------------- | --------------- | -------------- |
@@ -390,7 +390,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## metacharOverrides {#graphql-profiles/metacharOverrides}
+## metacharOverrides {#policy/graphql-profiles/metacharOverrides}
 
 | Field Name     | Type     | Description | Allowed Values |
 | -------------- | -------- | ----------- | -------------- |
@@ -399,7 +399,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## responseEnforcement {#graphql-profiles/responseEnforcement}
+## responseEnforcement {#policy/graphql-profiles/responseEnforcement}
 
 | Field Name         | Type             | Description | Allowed Values |
 | ------------------ | ----------------| ----------- | -------------- |
@@ -408,7 +408,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## sensitiveData {#graphql-profiles/sensitiveData}
+## sensitiveData {#policy/graphql-profiles/sensitiveData}
 
 | Field Name     | Type   | Description | Allowed Values |
 | -------------- | ------ | ----------- | -------------- |
@@ -416,7 +416,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signatureOverrides {#graphql-profiles/signatureOverrides}
+## signatureOverrides {#policy/graphql-profiles/signatureOverrides}
 
 | Field Name  | Type    | Description | Allowed Values |
 | ----------- | ------- | ----------- | -------------- |
@@ -427,24 +427,24 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## grpc-profiles
+## grpc-profiles {#policy/grpc-profiles}
 
 | Field Name                | Type             | Description | Allowed Values  |
 |------------------------ |------------------|-------------|-----------------|
 | associateUrls           | boolean          |             |                 |
 | attackSignaturesCheck   | boolean          |             |                 |
 | decodeStringValuesAsBase64| string          |             | disabled, enabled|
-| defenseAttributes       | object           |             |                 |
+| [defenseAttributes](#policy/grpc-profiles/defenseAttributes)       | object           |             |                 |
 | description             | string           |             |                 |
 | hasIdlFiles             | boolean          |             |                 |
-| idlFiles                | array of objects |             |                 |
+| [idlFiles](#policy/grpc-profiles/idlFiles)                | array of objects |             |                 |
 | metacharElementCheck    | boolean          |             |                 |
 | name                    | string           |             |                 |
-| signatureOverrides      | array of objects |             |                 |
+| [signatureOverrides](#policy/grpc-profiles/signatureOverrides)      | array of objects |             |                 |
 
 ---
 
-## defenseAttributes {#grpc-profiles/defenseAttributes}
+## defenseAttributes {#policy/grpc-profiles/defenseAttributes}
 
 | Field Name         | Type                                | Description | Allowed Values    |
 | ------------------ | ----------------------------------- | ----------- | -----------------|
@@ -453,7 +453,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## idlFiles {#grpc-profiles/idlFiles}
+## idlFiles {#policy/grpc-profiles/idlFiles}
 
 | Field Name    | Type     | Description | Allowed Values |
 | ------------- | -------- | ----------- | -------------- |
@@ -464,7 +464,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signatureOverrides {#grpc-profiles/signatureOverrides}
+## signatureOverrides {#policy/grpc-profiles/signatureOverrides}
 
 | Field Name   | Type    | Description | Allowed Values |
 | -------------| ------- | ----------- | -------------- |
@@ -483,7 +483,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## headers
+## headers {#policy/headers}
 
 | Field Name             | Type             | Description | Allowed Values      |
 | ---------------------- | ---------------- | ----------- | -------------------|
@@ -498,14 +498,14 @@ If you want a zip/text file with all of these, just say so!
 | name                   | string           | (explicit, wildcard) |                    |
 | normalizationViolations| boolean          |             |                    |
 | percentDecoding        | boolean          |             |                    |
-| signatureOverrides     | array of objects | Signature settings overrides |                    |
+| [signatureOverrides](#policy/headers/signatureOverrides)     | array of objects | Signature settings overrides |                    |
 | type                   | string           | explicit, wildcard |explicit, wildcard    |
 | urlNormalization       | boolean          |             |                    |
 | wildcardOrder          | integer          | Wildcard match order |                    |
 
 ---
 
-## signatureOverrides {#headers/signatureOverrides}
+## signatureOverrides {#policy/headers/signatureOverrides}
 
 | Field Name  | Type    | Description | Allowed Values |
 | ----------- | ------- | ----------- | -------------- |
@@ -516,7 +516,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## host-names
+## host-names {#policy/host-names}
 
 | Field Name        | Type    | Description | Allowed Values |
 | ----------------- | ------- | ----------- | -------------- |
@@ -525,7 +525,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## idl-files
+## idl-files {#policy/idl-files}
 
 | Field Name | Type    | Description | Allowed Values |
 | ---------- | ------- | ----------- | -------------- |
@@ -535,13 +535,13 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## ip-address-lists
+## ip-address-lists {#policy/ip-address-lists}
 
 | Field Name          | Type           | Description               | Allowed Values                 |
 |---------------------|---------------|---------------------------|-------------------------------|
 | blockRequests       | string        | Block handling            | always, never, policy-default |
 | description         | string        | Description               |                               |
-| ipAddresses         | array of objects | List of IPs (use CIDR for subnet) |                     |
+| [ipAddresses](#policy/ip-address-lists/ipAddresses)        | array of objects | List of IPs (use CIDR for subnet) |                     |
 | matchOrder          | integer       | Match priority/order      |                               |
 | name                | string        | Name                      |                               |
 | neverLogRequests    | boolean       | If enabled, requests not logged |                        |
@@ -549,7 +549,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## ip-address-lists/ipAddresses
+## ipAddresses {#policy/ip-address-lists/ipAddresses}
 
 | Field Name | Type   | Description                      | Allowed Values |
 | ---------- | ------ | -------------------------------- | -------------- |
@@ -557,16 +557,16 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## ip-intelligence
+## ip-intelligence {#policy/ip-intelligence}
 
 | Field Name                | Type             | Description | Allowed Values |
 | ------------------------- | ----------------| ----------- | -------------- |
 | enabled                   | boolean         |             |                |
-| ipIntelligenceCategories  | array of objects|             |                |
+| [ipIntelligenceCategories](#policy/ip-intelligence/ipIntelligenceCategories)  | array of objects|             |                |
 
 ---
 
-## ipIntelligenceCategories {#ip-intelligence/ipIntelligenceCategories}
+## ipIntelligenceCategories {#policy/ip-intelligence/ipIntelligenceCategories}
 
 | Field Name | Type    | Description | Allowed Values |
 | ---------- | ------- | ----------- | -------------- |
@@ -576,24 +576,24 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## json-profiles
+## json-profiles {#policy/json-profiles}
 
 | Field Name                | Type             | Description | Allowed Values |
 | ------------------------- | ----------------| ----------- | -------------- |
 | attackSignaturesCheck     | boolean         |             |                |
-| defenseAttributes         | object          |             |                |
+| [defenseAttributes](#policy/json-profiles/defenseAttributes)         | object          |             |                |
 | description               | string          |             |                |
 | handleJsonValuesAsParameters| boolean       |             |                |
 | hasValidationFiles        | boolean         |             |                |
-| metacharElementCheck      | boolean         |             |                |
+| [metacharElementCheck](#policy/json-profiles/metacharElementCheck)      | boolean         |             |                |
 | metacharOverrides         | array of objects|             |                |
 | name                      | string          |             |                |
-| signatureOverrides        | array of objects|             |                |
-| validationFiles           | array of objects|             |                |
+| [signatureOverrides](#policy/json-profiles/signatureOverrides)       | array of objects|             |                |
+| [validationFiles](#policy/json-profiles/validationFiles)           | array of objects|             |                |
 
 ---
 
-##  {#json-profiles/defenseAttributes}
+##  defenseAttributes {#policy/json-profiles/defenseAttributes}
 
 | Field Name                      | Type                                | Description | Allowed Values |
 | ------------------------------- | -----------------------------------| ----------- | -------------- |
@@ -605,7 +605,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## metacharOverrides {#json-profiles/metacharOverrides}
+## metacharOverrides {#policy/json-profiles/metacharOverrides}
 
 | Field Name  | Type    | Description | Allowed Values |
 | ----------- | ------- | ----------- | -------------- |
@@ -614,7 +614,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signatureOverrides {#json-profiles/signatureOverrides}
+## signatureOverrides {#policy/json-profiles/signatureOverrides}
 
 | Field Name  | Type    | Description | Allowed Values |
 | ----------- | ------- | ----------- | -------------- |
@@ -625,7 +625,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## validationFiles {#json-profiles/validationFiles}
+## validationFiles {#policy/json-profiles/validationFiles}
 
 | Field Name      | Type           | Description | Allowed Values |
 |-----------------|---------------|-------------|---------------|
@@ -635,7 +635,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## json-validation-files
+## json-validation-files {#policy/json-validation-files}
 
 | Field Name | Type    | Description | Allowed Values |
 | ---------- | ------- | ----------- | -------------- |
@@ -645,17 +645,17 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## login-enforcement
+## login-enforcement {#policy/login-enforcement}
 
 | Field Name         | Type                          | Description | Allowed Values         |
 | ------------------ | ----------------------------- | ----------- | ----------------------|
 | authenticatedUrls  | array of strings              |             |                       |
 | expirationTimePeriod| integer min:0 max:99999 / string|           | Integer, "disabled"   |
-| logoutUrls         | array of objects              |             |                       |
+| [logoutUrls](#policy/login-enforcement/logoutUrls)         | array of objects              |             |                       |
 
 ---
 
-## logoutUrls {#login-enforcement/logoutUrls}
+## logoutUrls {#policy/login-enforcement/logoutUrls}
 
 | Field Name      | Type    | Description | Allowed Values |
 |-----------------|---------|-------------|---------------|
@@ -665,15 +665,15 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## login-pages
+## login-pages {#policy/login-pages}
 
 | Field Name       | Type    | Description | Allowed Values         |
 |------------------|---------|-------------|-----------------------|
-| accessValidation | object  | Login page validation |               |
+| [accessValidation](#policy/login-pages/accessValidation) | object  | Login page validation |               |
 | authenticationType | string| Method the web server uses to authenticate |none, form, http-basic, http-digest, ntlm, ajax-or-json-request, request-body|
 | passwordParameterName | string |         |                       |
 | passwordRegex        | string |         |                       |
-| url                  | object |         |                       |
+| [url](#policy/login-pages/url)                  | object |         |                       |
 | usernameParameterName| string |         |                       |
 | usernameRegex        | string |         |                       |
 
@@ -696,7 +696,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## methods
+## methods {#policy/methods}
 
 | Field Name | Type   | Description | Allowed Values |
 | ---------- | ------ | ----------- | -------------- |
@@ -704,7 +704,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## override-rules
+## override-rules {#policy/override-rules}
 
 | Field Name     | Type    | Description | Allowed Values |
 | -------------- | ------- | ----------- | -------------- |
@@ -712,23 +712,23 @@ If you want a zip/text file with all of these, just say so!
 | condition      | string  | Condition syntax (see detailed HTML) | |
 | name           | string  | Unique name                           | |
 | override       | string  | Overriding policy definition           | |
-| violation      | object  | Details of raised violation            | |
+| [violation](#policy/override-rules/violation)      | object  | Details of raised violation            | |
 
 ---
 
-## violation {#override-rules/violation}
+## violation {#policy/override-rules/violation}
 
 | Field Name    | Type    | Description                                        | Allowed Values |
 | ------------- | ------- | -------------------------------------------------- | -------------- |
 | alarm         | boolean | Should the violation be logged                      |                |
-| attackType    | object  | Associated attack type                              |                |
+| [attackType](#policy/override-rules/violation/attackType)    | object  | Associated attack type                              |                |
 | block         | boolean | Should request be blocked                           |                |
 | description   | string  | Text description                                    |                |
 | rating        | integer min:3 max:5 | Violation rating                       |                |
 
 ---
 
-## attackType {#override-rules/violation/attackType}
+## attackType {#policy/override-rules/violation/attackType}
 
 | Field Name | Type   | Description                       | Allowed Values |
 |------------|--------|-----------------------------------|---------------|
@@ -736,7 +736,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## parameters
+## parameters {#policy/parameters}
 
 | Field Name                      | Type              | Description | Allowed Values |
 |---------------------------------|-------------------|-------------|---------------|
@@ -753,7 +753,7 @@ If you want a zip/text file with all of these, just say so!
 | checkMinValue                   | boolean           | Restricts minimum value (integer/decimal). | |
 | checkMinValueLength             | boolean           | Restricts minimum value length. | |
 | checkMultipleOfValue            | boolean           | Value must be a multiple of number. | |
-| contentProfile                  | object            | Content profile object. | |
+| [contentProfile](#policy/parameters/contentProfile)                 | object            | Content profile object. | |
 | dataType                        | string            | alpha-numeric, binary, phone, email, boolean, integer, decimal | [see list] |
 | decodeValueAsBase64             | string            | Value should/can/must be decoded as Base64. | disabled, enabled, required |
 | disallowFileUploadOfExecutables | boolean           | Parameter cannot have binary executable content (binary only). | |
@@ -775,23 +775,23 @@ If you want a zip/text file with all of these, just say so!
 | minimumValue                    | number            | Minimum value (if checkMinValue). | |
 | multipleOf                      | number            | Value must be multiple of (if checkMultipleOfValue). | |
 | name                            | string            | Parameter name (explicit or wildcard). | |
-| nameMetacharOverrides           | array of objects  | Override metachar settings for this parameter name. | |
+| [nameMetacharOverrides](#policy/parameters/nameMetacharOverrides)           | array of objects  | Override metachar settings for this parameter name. | |
 | objectSerializationStyle        | string            | Serialization for object or complex array. | deep-object, form, label, matrix, pipe-delimited, simple, space-delimited |
 | parameterEnumValues             | array of strings  | Set of allowed values (not for phone/email/binary). | |
 | parameterLocation               | string            | Parameter location. | any, query, form-data, cookie, path, header |
 | regularExpression               | string            | Positive regex for parameter value. | |
 | sensitiveParameter              | boolean           | Parameter is sensitive (masked in logs/GUI). | |
-| signatureOverrides              | array of objects  | Attack signature overrides for this parameter. | |
+| [signatureOverrides](#policy/parameters/signatureOverrides)              | array of objects  | Attack signature overrides for this parameter. | |
 | staticValues                    | array of strings  | Value set for static-content parameters only. | |
 | type                            | string            | explicit, wildcard                     | explicit, wildcard |
-| url                             | object            | Reference to URL.                      | |
-| valueMetacharOverrides          | array of objects  | Override metachar settings for parameter value. | |
+| [url](#policy/parameters/url)                             | object            | Reference to URL.                      | |
+| [valueMetacharOverrides](#policy/parameters/valueMetacharOverrides)          | array of objects  | Override metachar settings for parameter value. | |
 | valueType                       | string            | object, dynamic-content, openapi-array, ignore, static-content, json, array, user-input, xml, auto-detect, dynamic-parameter-name | [see list] |
 | wildcardOrder                   | integer           | Wildcard matching order.                | |
 
 ---
 
-### contentProfile {#parameters/contentProfile}
+### contentProfile {#policy/parameters/contentProfile}
 
 | Field Name    | Type   | Description | Allowed Values |
 |---------------|--------|-------------|---------------|
@@ -799,7 +799,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-###  {#parameters/contentProfile/contentProfile}
+### contentProfile {#policy/parameters/contentProfile/contentProfile}
 
 | Field Name | Type   | Description | Allowed Values |
 |------------|--------|-------------|---------------|
@@ -807,7 +807,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### nameMetacharOverrides {#parameters/nameMetacharOverrides}
+### nameMetacharOverrides {#policy/parameters/nameMetacharOverrides}
 
 | Field Name | Type    | Description                                         | Allowed Values |
 |------------|---------|-----------------------------------------------------|---------------|
@@ -816,7 +816,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### signatureOverrides {#parameters/signatureOverrides}
+### signatureOverrides {#policy/parameters/signatureOverrides}
 
 | Field Name  | Type    | Description                               | Allowed Values |
 |-------------|---------|-------------------------------------------|---------------|
@@ -827,7 +827,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### valueMetacharOverrides {#parameters/valueMetacharOverrides}
+### valueMetacharOverrides {#policy/parameters/valueMetacharOverrides}
 
 | Field Name | Type    | Description                                    | Allowed Values |
 |------------|---------|------------------------------------------------|---------------|
@@ -836,7 +836,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## response-pages
+## response-pages {#policy/response-pages}
 
 | Field Name           | Type    | Description | Allowed Values |
 |----------------------|---------|-------------|---------------|
@@ -855,7 +855,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## sensitive-parameters
+## sensitive-parameters {#policy/sensitive-parameters}
 
 | Field Name | Type   | Description | Allowed Values |
 |------------|--------|-------------|---------------|
@@ -863,7 +863,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## server-technologies
+## server-technologies {#policy/server-technologies}
 
 | Field Name          | Type   | Description | Allowed Values (Examples) |
 |---------------------|--------|-------------|----------------------|
@@ -871,7 +871,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signature-requirements
+## signature-requirements {#policy/signature-requirements}
 
 | Field Name          | Type   | Description | Allowed Values |
 |---------------------|--------|-------------|---------------|
@@ -881,7 +881,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signature-sets
+## signature-sets {#policy/signature-sets}
 
 | Field Name          | Type            | Description | Allowed Values (see below) |
 |---------------------|-----------------|-------------|---------------------------|
@@ -889,29 +889,29 @@ If you want a zip/text file with all of these, just say so!
 | block               | boolean         | Block requests for signatures from this set | |
 | learn               | boolean         | Suggest learning action | |
 | name                | string          | Signature set name      | All Signatures, SQL Injection Signatures, etc |
-| signatureSet        | object          | Defines signature set   | |
+| [signatureSet](#policy/signature-sets/signatureSet)        | object          | Defines signature set   | |
 | stagingCertificationDatetime | string |             |               |
 
 ---
 
-### signature-sets/signatureSet
+### signatureSet {#policy/signature-sets/signatureSet}
 
 | Field Name     | Type             | Description | Allowed Values     |
 |----------------|------------------|-------------|-------------------|
-| filter         | object           | Signature filter|                 |
-| signatures     | array of objects | Included signatures|                |
-| systems        | array of objects | Matching systems|                  |
+| [filter](#policy/signature-sets/signatureSet/filter)         | object           | Signature filter|                 |
+| [signatures](#policy/signature-sets/signatureSet/signatures)      | array of objects | Included signatures|                |
+| [systems](#policy/signature-sets/signatureSet/systems)         | array of objects | Matching systems|                  |
 | type           | string           | filter-based, manual| filter-based, manual |
 
 ---
 
-#### signature-sets/signatureSet/filter
+#### filter {#policy/signature-sets/signatureSet/filter}
 
 | Field Name         | Type   | Description | Allowed Values |
 |--------------------|--------|-------------|---------------|
 | accuracyFilter     | string |             | all, eq, ge, le |
 | accuracyValue      | string |             | all, high, low, medium |
-| attackType         | object |             | |
+| [attackType](#policy/signature-sets/signatureSet/filter/attackType)         | object |             | |
 | hasCve             | string |             | all, no, yes |
 | lastUpdatedFilter  | string |             | after, all, before |
 | lastUpdatedValue   | string |             | |
@@ -924,7 +924,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-##### signature-sets/signatureSet/filter/attackType
+##### attackType {#policy/signature-sets/signatureSet/filter/attackType}
 
 | Field Name | Type   | Description | Allowed Values |
 |------------|--------|-------------|---------------|
@@ -932,7 +932,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-#### signature-sets/signatureSet/signatures
+#### signatures {#policy/signature-sets/signatureSet/signatures}
 
 | Field Name  | Type    | Description | Allowed Values |
 |-------------|---------|-------------|---------------|
@@ -942,7 +942,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-#### signature-sets/signatureSet/systems
+#### systems {#policy/signature-sets/signatureSet/systems}
 
 | Field Name | Type   | Description | Allowed Values |
 |------------|--------|-------------|---------------|
@@ -950,7 +950,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signature-settings
+## signature-settings {#policy/signature-settings}
 
 | Field Name                        | Type    | Description | Allowed Values |
 |-----------------------------------|---------|-------------|---------------|
@@ -960,7 +960,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## signatures
+## signatures {#policy/signatures}
 
 | Field Name    | Type    | Description | Allowed Values |
 |---------------|---------|-------------|---------------|
@@ -973,7 +973,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## threat-campaigns
+## threat-campaigns {#policy/threat-campaigns}
 
 | Field Name   | Type    | Description | Allowed Values |
 |--------------|---------|-------------|---------------|
@@ -983,38 +983,38 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## urls
+## urls {#policy/urls}
 
 | Field Name           | Type             | Description | Allowed Values |
 |----------------------|------------------|-------------|---------------|
-| accessProfile        | object           |             |               |
+| [accessProfile]({policy/urls/accessProfile)        | object           |             |               |
 | allowRenderingInFrames| string          | Conditions for browser rendering in frames | never, only-same |
 | allowRenderingInFramesOnlyFrom | string | Browser may load frame from domain |               |
 | attackSignaturesCheck| boolean          | Override attack signatures for this URL |     |
-| authorizationRules   | array of objects | Authorization rules |               |
+| [authorizationRules]({policy/urls/authorizationRules)   | array of objects | Authorization rules |               |
 | canChangeDomainCookie| boolean          |             |               |
 | clickjackingProtection| boolean         | Add X-Frame-Options |               |
 | disallowFileUploadOfExecutables | boolean |           |               |
-| html5CrossOriginRequestsEnforcement | object | Cross-domain config |           |
+| [html5CrossOriginRequestsEnforcement]({policy/urls/html5CrossOriginRequestsEnforcement) | object | Cross-domain config |           |
 | isAllowed            | boolean          | URL allowed by security policy |     |
 | mandatoryBody        | boolean          | Body is mandatory |               |
-| metacharOverrides    | array of objects | Override metacharacters for this URL |     |
+| [metacharOverrides]({policy/urls/)    | array of objects | Override metacharacters for this URL |     |
 | metacharsOnUrlCheck  | boolean          | Check meta characters |           |
 | method               | string           | Method for this URL | ACL, GET, POST, PUT, *, ... |
-| methodOverrides      | array of objects | Allowed/disallowed method overrides |     |
+| [methodOverrides]({policy/urls/methodOverrides)      | array of objects | Allowed/disallowed method overrides |     |
 | methodsOverrideOnUrlCheck | boolean     | Custom methods for this URL   |     |
 | name                 | string           | URL path (explicit/wildcard) |         |
 | operationId          | string           | OpenAPI endpoint identifier   |         |
-| positionalParameters | array of objects | Positional URL parameters     |         |
+| [positionalParameters]({policy/urls/positionalParameters) | array of objects | Positional URL parameters     |         |
 | protocol             | string           | HTTP/HTTPS                    | http, https |
-| signatureOverrides   | array of objects | Signature overrides           |         |
+| [signatureOverrides]({policy/urls/signatureOverrides)   | array of objects | Signature overrides           |         |
 | type                 | string           | explicit, wildcard            | explicit, wildcard |
-| urlContentProfiles   | array of objects | Header/body content profile   |         |
+| [urlContentProfiles]({policy/urls/urlContentProfiles)   | array of objects | Header/body content profile   |         |
 | wildcardOrder        | integer          | Wildcard match order          |         |
 
 ---
 
-### urls/authorizationRules
+### authorizationRules {#policy/urls/authorizationRules}
 
 | Field Name | Type   | Description | Allowed Values |
 |------------|--------|-------------|---------------|
@@ -1023,18 +1023,18 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### urls/html5CrossOriginRequestsEnforcement
+### html5CrossOriginRequestsEnforcement {#policy/urls/html5CrossOriginRequestsEnforcement}
 
 | Field Name                  | Type             | Description | Allowed Values          |
 |-----------------------------|------------------|-------------|------------------------|
 | allowOriginsEnforcementMode | string           | Specify list of allowed origins | replace-with, unmodified |
 | checkAllowedMethods         | boolean          | Allowed methods for cross domain|                   |
-| crossDomainAllowedOrigin    | array of objects | List of allowed origins        |                   |
+| [crossDomainAllowedOrigin](#policy/urls/html5CrossOriginRequestsEnforcement/crossDomainAllowedOrigin)    | array of objects | List of allowed origins        |                   |
 | enforcementMode             | string           | Disabled or enforce CORS       | disabled, enforce |
 
 ---
 
-#### urls/html5CrossOriginRequestsEnforcement/crossDomainAllowedOrigin
+#### crossDomainAllowedOrigin {#policy/urls/html5CrossOriginRequestsEnforcement/crossDomainAllowedOrigin}
 
 | Field Name         | Type    | Description | Allowed Values     |
 |--------------------|---------|-------------|--------------------|
@@ -1045,7 +1045,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### urls/metacharOverrides
+### metacharOverrides {policy/urls/metacharOverrides_2}
 
 | Field Name | Type    | Description                     | Allowed Values |
 |------------|---------|---------------------------------|---------------|
@@ -1054,7 +1054,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### urls/methodOverrides
+### methodOverrides {#policy/urls/methodOverrides}
 
 | Field Name | Type    | Description | Allowed Values (method) |
 |------------|---------|-------------|------------------------|
@@ -1063,16 +1063,16 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### urls/positionalParameters
+### positionalParameters {#policy/urls/positionalParameters}
 
 | Field Name   | Type        | Description                        | Allowed Values |
 |--------------|-------------|------------------------------------|---------------|
-| parameter    | object      | Parameter object                   |               |
+| [parameter](#policy/parameters)    | object      | Parameter object                   |               |
 | urlSegmentIndex | integer (min 1) | Segment index                |               |
 
 ---
 
-### urls/signatureOverrides
+### signatureOverrides {#policy/urls/signatureOverrides}
 
 | Field Name  | Type    | Description                | Allowed Values |
 |-------------|---------|----------------------------|---------------|
@@ -1083,11 +1083,11 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### urls/urlContentProfiles
+### urlContentProfiles {#policy/urls/urlContentProfiles}
 
 | Field Name      | Type        | Description                     | Allowed Values |
 |-----------------|-------------|---------------------------------|---------------|
-| contentProfile  | object      | Content profile                 |               |
+| [contentProfile](#policy/urls/urlContentProfiles/contentProfile)  | object      | Content profile                 |               |
 | decodeValueAsBase64 | string  | Base64 decode for profile       | disabled, required |
 | headerName      | string      | Explicit header                 |               |
 | headerOrder     | integer/string | Check order                  | Integer, "default" |
@@ -1096,7 +1096,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-#### urls/urlContentProfiles/contentProfile
+#### contentProfile {#policy/urls/urlContentProfiles/contentProfile}
 
 | Field Name | Type   | Description | Allowed Values |
 |------------|--------|-------------|---------------|
@@ -1104,7 +1104,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-#### (Table at end of parameter listing: special urls block)
+#### (Table at end of parameter listing: special urls block) TODO
 
 | Field Name | Reference | Type            | Description | Allowed Values |
 |------------|-----------|-----------------|-------------|---------------|
@@ -1112,23 +1112,23 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## xml-profiles
+## xml-profiles {#policy/xml-profiles}
 
 | Field Name              | Type             | Description                   | Allowed Values |
 |-------------------------|------------------|-------------------------------|---------------|
 | attackSignaturesCheck   | boolean          |                               |               |
-| defenseAttributes       | object           |                               |               |
+| [defenseAttributes](#policy/xml-profiles/defenseAttributes)       | object           |                               |               |
 | description             | string           |                               |               |
 | metacharAttributeCheck  | boolean          |                               |               |
 | metacharElementCheck    | boolean          |                               |               |
-| metacharOverrides       | array of objects |                               |               |
+| [metacharOverrides](#policy/xml-profiles/metacharOverrides)       | array of objects |                               |               |
 | name                    | string           |                               |               |
-| signatureOverrides      | array of objects |                               |               |
+| [signatureOverrides](#policy/xml-profiles/)      | array of objects |                               |               |
 | useXmlResponsePage      | boolean          |                               |               |
 
 ---
 
-### xml-profiles/defenseAttributes
+### defenseAttributes {#policy/xml-profiles/defenseAttributes}
 
 | Field Name                      | Type                                 | Description         | Allowed Values |
 |---------------------------------|--------------------------------------|---------------------|---------------|
@@ -1151,7 +1151,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### xml-profiles/metacharOverrides
+### metacharOverrides {#policy/xml-profiles/metacharOverrides}
 
 | Field Name  | Type    | Description | Allowed Values |
 |-------------|---------|-------------|---------------|
@@ -1160,7 +1160,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### xml-profiles/signatureOverrides
+### signatureOverrides {#policy/xml-profiles/signatureOverrides}
 
 | Field Name  | Type    | Description | Allowed Values |
 |-------------|---------|-------------|---------------|
@@ -1175,7 +1175,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-## blocking-settings_evasions (Evasion sub-violation settings)
+## evasions {#policy/blocking-settings/evasions}
 
 | Field Name         | Type                          | Description | Allowed Values          |
 |--------------------|-------------------------------|-------------|------------------------|
@@ -1186,7 +1186,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-## blocking-settings_http-protocols (HTTP protocol sub-violation settings)
+## http-protocols {#policy/blocking-settings/http-protocols}
 
 | Field Name     | Type                          | Description | Allowed Values              |
 |----------------|-------------------------------|-------------|----------------------------|
@@ -1199,7 +1199,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-## blocking-settings_violations (Top-level Violations Settings)
+## violations {#policy/blocking-settings/violations}
 
 | Field Name   | Type    | Description | Allowed Values (name) |
 |--------------|---------|-------------|-----------------------|
@@ -1211,18 +1211,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-## bot-defense_mitigations
-
-| Field Name   | Reference | Type             | Description | Allowed Values |
-|--------------|-----------|------------------|-------------|---------------|
-| anomalies    | Yes       | array of objects |             |               |
-| browsers     | Yes       | array of objects |             |               |
-| classes      | Yes       | array of objects | List of classes and their actions. | |
-| signatures   | Yes       | array of objects | List of signatures and their actions; class default applies if not listed | |
-
----
-
-### bot-defense_settings
+## settings {#policy/bot-defense/settings}
 
 | Field Name               | Type    | Description                                                      | Allowed Values |
 |--------------------------|---------|------------------------------------------------------------------|---------------|
@@ -1231,7 +1220,18 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-### bot-defense/mitigations_anomalies
+## mitigations {#policy/bot-defense/mitigations}
+
+| Field Name   | Reference | Type             | Description | Allowed Values |
+|--------------|-----------|------------------|-------------|---------------|
+| [anomalies](#policy/bot-defense/mitigations/anomalies)   | Yes       | array of objects |             |               |
+| [browsers](#policy/bot-defense/mitigations/browsers)   | Yes       | array of objects |             |               |
+| [classes](#policy/bot-defense/mitigations/classes)   | Yes       | array of objects | List of classes and their actions. | |
+| [signatures](#policy/bot-defense/mitigations/signatures)   | Yes       | array of objects | List of signatures and their actions; class default applies if not listed | |
+
+---
+
+### anomalies {#policy/bot-defense/mitigations/anomalies}
 
 | Field Name     | Type                     | Description | Allowed Values             |
 |----------------|--------------------------|-------------|---------------------------|
@@ -1241,7 +1241,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-### bot-defense/mitigations_browsers
+### browsers {#policy/bot-defense/mitigations/browsers}
 
 | Field Name   | Type           | Description | Allowed Values |
 |--------------|----------------|-------------|---------------|
@@ -1252,7 +1252,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-### bot-defense/mitigations_classes
+### classes {#policy/bot-defense/mitigations/classes}
 
 | Field Name | Type   | Description      | Allowed Values                             |
 |------------|--------|------------------|--------------------------------------------|
@@ -1261,7 +1261,7 @@ Certainly! Here’s the continuation, picking up the remaining tables in your li
 
 ---
 
-### bot-defense/mitigations_signatures
+### signatures {#policy/bot-defense/mitigations/signatures}
 
 | Field Name | Type   | Description           | Allowed Values               |
 |------------|--------|-----------------------|------------------------------|
