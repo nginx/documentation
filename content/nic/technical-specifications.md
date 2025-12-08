@@ -77,6 +77,6 @@ NGINX Ingress Controller can be [installed]({{< ref "/nic/install/helm.md" >}}) 
 
 ## Supported F5 WAF for NGINX versions
 
-{{<call-out "note" "Note">}}To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.{{< /call-out >}}
+{{< call-out "warning" >}}F5 WAF for NGINX package based installation (previously NGINX App Protect WAF v4) is not supported when `readOnlyRootFilesystem` is enabled.{{< /call-out >}}
 
 {{< include "/nic/compatibility-tables/nic-nap.md" >}}
