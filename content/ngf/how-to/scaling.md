@@ -2,7 +2,7 @@
 title: Scaling the control plane and data plane
 weight: 700
 toc: true
-type: how-to
+nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-1840
 ---

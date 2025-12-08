@@ -3,6 +3,8 @@ title: F5 DoS for NGINX 4.8
 toc: true
 weight: 40
 nd-docs: DOCS-1783
+nd-content-type: reference
+nd-product: F5DOSN
 ---
 
 Here you can find the release information for F5 DoS for NGINX v4.8
