@@ -57,6 +57,8 @@ Run the following command:
 kind create cluster --config cluster-config.yaml
 ```
 
+{{< details summary="Example output" >}}
+
 ```text
 Creating cluster "kind" ...
  ✓ Ensuring node image (kindest/node:v1.31.0) 🖼
@@ -72,6 +74,8 @@ kubectl cluster-info --context kind-kind
 
 Thanks for using kind! 😊
 ```
+
+{{< /details >}}
 
 {{< call-out "note" >}}
 If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following _make_ command:
@@ -92,6 +96,8 @@ Use `kubectl` to add the API resources for NGINX Gateway Fabric with the followi
 kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
+{{< details summary="Example output" >}}
+
 ```text
 customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
 customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
@@ -99,6 +105,8 @@ customresourcedefinition.apiextensions.k8s.io/grpcroutes.gateway.networking.k8s.
 customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
 customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
 ```
+
+{{< /details >}}
 
 ### Install the Helm chart
 
@@ -113,6 +121,8 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 The port value should equal the _containerPort_ value from _cluster-config.yaml_ [when you created the kind cluster](#set-up-a-kind-cluster). The _listenerPort_ value will match the port that we expose in the Gateway listener.
 {{< /call-out >}}
 
+{{< details summary="Example output" >}}
+
 ```text
 NAME: ngf
 LAST DEPLOYED: Tue Apr 29 14:45:14 2025
@@ -121,6 +131,8 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 ```
+
+{{< /details >}}
 
 ## Create an example application
 
@@ -205,6 +217,8 @@ EOF
 kubectl apply -f cafe.yaml
 ```
 
+{{< details summary="Example output" >}}
+
 ```text
 deployment.apps/coffee created
 service/coffee created
@@ -212,17 +226,23 @@ deployment.apps/tea created
 service/tea created
 ```
 
+{{< /details >}}
+
 Verify that the new pods are in the `default` namespace:
 
 ```shell
 kubectl -n default get pods
 ```
 
+{{< details summary="Example output" >}}
+
 ```text
 NAME                      READY   STATUS    RESTARTS   AGE
 coffee-676c9f8944-k2bmd   1/1     Running   0          9s
 tea-6fbfdcb95d-9lhbj      1/1     Running   0          9s
 ```
+
+{{< /details >}}
 
 ### Create Gateway and HTTPRoute resources
 
@@ -245,15 +265,13 @@ EOF
 kubectl apply -f gateway.yaml
 ```
 
-```text
-gateway.gateway.networking.k8s.io/gateway created
-```
-
 Verify that the NGINX deployment has been provisioned:
 
 ```shell
 kubectl -n default get pods
 ```
+
+{{< details summary="Example output" >}}
 
 ```text
 NAME                             READY   STATUS    RESTARTS   AGE
@@ -261,6 +279,8 @@ coffee-676c9f8944-k2bmd          1/1     Running   0          31s
 gateway-nginx-66b5d78f8f-4fmtb   1/1     Running   0          13s
 tea-6fbfdcb95d-9lhbj             1/1     Running   0          31s
 ```
+
+{{< /details >}}
 
 Run the following command to create the file _cafe-routes.yaml_. It is then used to deploy two *HTTPRoute* resources in your cluster: one each for _/coffee_ and _/tea_.
 
@@ -307,11 +327,6 @@ EOF
 kubectl apply -f cafe-routes.yaml
 ```
 
-```text
-httproute.gateway.networking.k8s.io/coffee created
-httproute.gateway.networking.k8s.io/tea created
-```
-
 ### Verify the configuration
 
 You can check that all of the expected services are available using `kubectl get`:
@@ -319,6 +334,8 @@ You can check that all of the expected services are available using `kubectl get
 ```shell
 kubectl -n default get services
 ```
+
+{{< details summary="Example output" >}}
 
 ```text
 NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
@@ -328,11 +345,15 @@ kubernetes      ClusterIP   10.96.0.1       <none>        443/TCP        142m
 tea             ClusterIP   10.96.43.183    <none>        80/TCP         2m2s
 ```
 
+{{< /details >}}
+
 You can also use `kubectl describe` on the new resources to check their status:
 
 ```shell
 kubectl -n default describe httproutes
 ```
+
+{{< details summary="Example output" >}}
 
 ```text
 Name:         coffee
@@ -445,9 +466,13 @@ Status:
 Events:              <none>
 ```
 
+{{< /details >}}
+
 ```shell
 kubectl -n default describe gateways
 ```
+
+{{< details summary="Example output" >}}
 
 ```text
 Name:         gateway
@@ -524,6 +549,8 @@ Status:
 Events:       <none>
 ```
 
+{{< /details >}}
+
 ## Test NGINX Gateway Fabric
 
 By configuring the cluster with the port `31437`, there is implicit port forwarding from your local machine to NodePort, allowing for direct communication to the NGINX Gateway Fabric service.
@@ -534,6 +561,8 @@ You can use `curl` to test the new services by targeting the hostname (_cafe.exa
 curl --resolve cafe.example.com:8080:127.0.0.1 http://cafe.example.com:8080/coffee
 ```
 
+{{< details summary="Example output" >}}
+
 ```text
 Server address: 10.244.0.16:8080
 Server name: coffee-676c9f8944-k2bmd
@@ -542,9 +571,13 @@ URI: /coffee
 Request ID: f34e138922171977a79b1b0d0395b97e
 ```
 
+{{< /details >}}
+
 ```shell
 curl --resolve cafe.example.com:8080:127.0.0.1 http://cafe.example.com:8080/tea
 ```
+
+{{< details summary="Example output" >}}
 
 ```text
 Server address: 10.244.0.17:8080
@@ -553,6 +586,8 @@ Date: 29/Apr/2025:19:08:31 +0000
 URI: /tea
 Request ID: 1b5c8f3a4532ea7d7510cf14ffeb27af
 ```
+
+{{< /details >}}
 
 ## Next steps
 
