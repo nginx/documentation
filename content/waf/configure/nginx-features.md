@@ -17,7 +17,7 @@ It is intended as a reference for small, self-contained examples of how F5 WAF f
 
 Important constraints when F5 WAF for NGINX is enabled:
 
-- Subrequest-based modules (NGINX modules that create internal HTTP subrequests) are not inspected in any scope block where **app_protect_enable on** is set. F5 WAF for NGINX inspects only direct, client-facing HTTP requests.
+- Subrequest-based modules (modules that create internal HTTP subrequests) are not supported in the same configuration scope as **app_protect_enable on**. F5 WAF for NGINX inspects only the client-facing request in the scope where it is enabled; internal subrequests fall outside that scope and are not inspected.
 - Modules that require the HTTP Range header are not supported in the same configuration scope as **app_protect_enable on**. Place Range-dependent configuration in a server or location block without F5 WAF for NGINX enabled.
 
 For additional information on configuring NGINX, you should view the [NGINX documentation]({{< ref "/nginx/" >}}).
@@ -146,106 +146,6 @@ http {
         }
     }
 }
-```
-
-### Enable WAF on an njs module using the subrequest mechanism
-
-This configuration example shows how to enable WAF on an njs module that relies on the subrequest mechanism.
-
-{{< tabs name="subrequest-example" >}}
-
-{{% tab name="nginx.conf" %}}
-
-```nginx
-user nginx;
-worker_processes  auto;
-
-events {
-    worker_connections  1024;
-}
-
-load_module modules/ngx_http_app_protect_module.so;
-load_module modules/ngx_http_js_module.so;
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-    sendfile        on;
-    keepalive_timeout  65;
-    js_import main from example.js;
-
-    server {
-        listen       80;
-        server_name  localhost;
-        proxy_http_version 1.1;
-        app_protect_enable on;
-
-        location / {
-            proxy_pass        http://127.0.0.1:8080/foo/$request_uri;
-        }
-    }
-    server {
-        listen       127.0.0.1:8080;
-        server_name  localhost;
-        proxy_http_version 1.1;
-
-        location /foo {
-            js_content main.fetch_subrequest;
-        }
-
-        location / {
-            internal;
-            return 200  "Hello! I got your URI request - $request_uri\n";
-        }
-    }
-}
-```
-
-{{% /tab %}}
-
-{{% tab name="example.js" %}}
-
-```js
-async function fetch_subrequest(r) {
-    let reply = await r.subrequest('/<script>');
-    let response = {
-        uri: reply.uri,
-        code: reply.status,
-        body: reply.responseText,
-    };
-    r.return(200, JSON.stringify(response));
-}
-
-export default {join};
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-If the njs handler triggers an internal subrequest to `/<script>`, it is not inspected by F5 WAF for NGINX and succeeds: 
-
-```shell
-curl "localhost/"  
-```
-
-```text
-{"uri":"/<script>","code":200,"body":"Hello! I got your URI request - /foo//\n"}
-
-```
-
-However, if a direct, client-facing request attempts to trigger the same URL, it is inspected by F5 WAF for NGINX and is blocked according to the security policy.
-
-```shell
-curl "localhost/<script>"
-```
-
-```text
-<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.
-
-Your support ID is: 123456789
-
-<a href='javascript:history.back();'>[Go Back]</a></body></html>
 ```
 
 ## Range header–dependent modules
