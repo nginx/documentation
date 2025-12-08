@@ -13,15 +13,13 @@ This page describes how to install F5 WAF for NGINX using Docker.
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
+- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running TODO add reason for it.
 - An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX WAF subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
   - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments), and the [JWT license file](#additional-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
 - [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
-
-To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
 {{< include "waf/install-selinux-warning.md" >}}
 
