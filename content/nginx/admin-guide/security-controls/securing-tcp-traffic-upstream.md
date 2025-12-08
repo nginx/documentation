@@ -5,8 +5,8 @@ nd-docs: DOCS-436
 title: Securing TCP Traffic to Upstream Servers
 toc: true
 weight: 1000
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article explains how to secure TCP traffic between NGINX and an upstream TCP server or group of upstream TCP servers.

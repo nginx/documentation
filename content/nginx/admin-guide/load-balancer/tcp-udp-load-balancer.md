@@ -5,8 +5,8 @@ nd-docs: DOCS-420
 title: TCP and UDP Load Balancing
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 ## Introduction {#intro}

@@ -5,8 +5,8 @@ nd-docs: DOCS-390
 title: Image-Filter
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 The Image-Filter dynamic module enables you to crop, resize, rotate, and apply various transformations to GIF, JPEG, and PNG images.
 

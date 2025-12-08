@@ -5,8 +5,8 @@ nd-docs: DOCS-410
 title: Installing NGINX Open Source
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling NGINX from the source code.

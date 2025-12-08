@@ -6,8 +6,8 @@ title: Load Balancing Node.js Application Servers with NGINX Open Source and NGI
   Plus
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Node.js application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Node.js.

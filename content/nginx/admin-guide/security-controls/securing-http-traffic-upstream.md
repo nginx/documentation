@@ -5,8 +5,8 @@ nd-docs: DOCS-435
 title: Securing HTTP Traffic to Upstream Servers
 toc: true
 weight: 900
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article explains how to encrypt HTTP traffic between NGINX and an upstream group or a proxied server.

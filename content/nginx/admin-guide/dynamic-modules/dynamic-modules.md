@@ -5,8 +5,8 @@ nd-docs: DOCS-383
 title: Dynamic Modules
 toc: true
 weight: 10
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 ## Overview

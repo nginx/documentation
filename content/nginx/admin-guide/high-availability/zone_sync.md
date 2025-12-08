@@ -6,8 +6,8 @@ nd-docs: DOCS-407
 title: Runtime State Sharing in a Cluster
 toc: true
 weight: 400
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

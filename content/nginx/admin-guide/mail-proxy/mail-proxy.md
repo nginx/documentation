@@ -5,8 +5,8 @@ nd-docs: DOCS-423
 title: Configure NGINX as a Mail Proxy Server
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article will explain how to configure F5 NGINX Plus or NGINX Open Source as a proxy for a mail server or an external mail service.
