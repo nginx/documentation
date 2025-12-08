@@ -24,6 +24,14 @@ To use external references, replace the direct property in the policy file with 
 
 For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` could be replaced by `dataGuardReference`.
 
+{{< call-out "note" >}}
+Not all policy fields support external references.  
+To see which fields allow external references, visit the [Parameter Reference]({{< ref "/waf/policies/parameter-reference.md" >}}) page.  
+On that page, each table of policy fields includes a **Reference** column.  
+If a field has **Yes** in the Reference column (for example, `filetypes`, `bot-defense`, or `signature-sets`), you can replace it in your policy file with its corresponding external reference property (e.g., `filetypeReference`, `botDefenseReference`, `signatureSetsReference`).  
+If the Reference column is marked **No**, the field cannot be referenced externally and must be defined directly in your policy file.
+{{< /call-out >}}
+
 ## External reference types
 
 There are different implementations based on the type of references that are being made.
