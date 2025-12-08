@@ -15,8 +15,7 @@ To complete this guide, you will need the following prerequisites:
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
 - [Docker](https://docs.docker.com/engine/install/) (with Docker Compose) installed and running.
 - Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal. JWT license is not needed when using NGINX Open Source.
-- Access to private-registry.nginx.com using [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for pulling images need for deployment when using Multi-container and Hybrid configuration. 
-- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com, required to pull images for Multi-container and Hybrid configurations.
+- [Docker registry credentials](#download-your-subscription-credentials) for private-registry.nginx.com, required to pull images for Multi-container and Hybrid configurations.
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 

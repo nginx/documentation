@@ -37,7 +37,7 @@ To complete this guide, you will need the following prerequisites:
 - [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
 - [Docker](https://docs.docker.com/engine/install/) (with Docker Compose) installed and running, for pulling and managing container images.
 - Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
-- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com, required to pull images
+- [Docker registry credentials](#download-your-subscription-credentials) for private-registry.nginx.com, required to pull images
 - [Helm](https://helm.sh/docs/intro/install/) installed, required for deployment.
 
 ## Default security policy and logging profile
