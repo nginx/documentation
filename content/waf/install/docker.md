@@ -13,11 +13,10 @@ This page describes how to install F5 WAF for NGINX using Docker.
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running TODO add reason for it.
-- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Open Source in your deployment.
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments), and the [JWT license file](#additional-subscription-credentials-needed-for-deployments) associated with your F5 WAF for NGINX subscription from the MyF5 Customer Portal if you are using NGINX Plus in your deployment.
-- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com (For Multi-container and Hybrid configuration)
+- [Docker](https://docs.docker.com/engine/install/) (with Docker Compose) installed and running.
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal. JWT license is not needed when using NGINX Open Source.
+- Access to private-registry.nginx.com using [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for pulling images need for deployment when using Multi-container and Hybrid configuration. 
+- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com, required to pull images for Multi-container and Hybrid configurations.
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
@@ -29,14 +28,11 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-### General subscription credentials needed for deployments
+{{< call-out "note" >}}
+If you are using NGINX Open Source for your Multi-container or Hybrid configuration, you do not need the JWT license file. 
+{{< /call-out >}}
 
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
-
-### Additional subscription credentials needed for deployments
-
-To use NGINX Plus and access private-registry.nginx.com, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
-{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
 
 {{< call-out "important" >}}
 The provided Dockerfile for NGINX Plus automatically handles placing the JWT license file in `/etc/nginx/` during image build. If you use a custom Dockerfile, you must ensure the JWT license is copied to this location.

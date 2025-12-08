@@ -33,14 +33,12 @@ These enhancements are  only available for Helm-based deployments.
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/)
-- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster
-- [Helm](https://helm.sh/docs/intro/install/)
-- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
-- An active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Plus in your deployment.
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments), and the [JWT license](#additional-subscription-credentials-needed-for-a-deployments-with-nginx-plus) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
-- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/) (installed and running).
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
+- [Docker](https://docs.docker.com/engine/install/) (with Docker Compose) installed and running, for pulling and managing container images.
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
+- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com, required to pull images
+- [Helm](https://helm.sh/docs/intro/install/) installed, required for deployment.
 
 ## Default security policy and logging profile
 
@@ -48,13 +46,9 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-### General subscription credentials needed for deployments 
-
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
-
-### Additional subscription credentials needed for deployments 
-
-To use NGINX Plus and access private-registry.nginx.com, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+{{< call-out "note" >}}
+To access private-registry.nginx.com, you will need to download the JWT license file even when using NGINX Open Source as a base image. 
+{{< /call-out >}}
 
 {{< call-out "note" >}}
 If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
@@ -65,7 +59,7 @@ If you are deploying with Helm, you will also need the JWT license for the `dock
 {{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 {{< call-out "note" >}}
-Setting `appprotect.config.nginxJWT` with the `--set` flag in your Helm command automatically copies the JWT license to `/etc/nginx/license.jwt` inside the NGINX container. No manual JWT file copying or mounting is needed.
+When using the provided values.yaml for Helm, setting the `appprotect.config.nginxJWT` value ensures that your JWT license is automatically copied to `/etc/nginx/license.jwt` inside the NGINX container. No additional manual copying of the file is needed when deploying with the provided YAML configuration.
 {{< /call-out >}}
 
 ## Prepare environment variables
