@@ -113,4 +113,4 @@ docker load -i waf-config-mgr.tar
 docker load -i waf-ip-intelligence.tar
 ```
 
-Ensure your Docker compose files use the tagged images you've transferred.
+Ensure your Docker Compose files use the tagged images you've transferred.
