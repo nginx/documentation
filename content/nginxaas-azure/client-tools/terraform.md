@@ -25,7 +25,7 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using Terraform. Thi
 See [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/deployments/create-or-update) for an example to create or update deployment resources.
 
 - [NGINXaaS Managed Identity Documentation]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
-- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}})
+- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}})
 
 ### Create or update a certificate
 

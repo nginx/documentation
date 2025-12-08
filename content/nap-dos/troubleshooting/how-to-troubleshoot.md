@@ -4,8 +4,8 @@ nd-docs: DOCS-675
 title: Troubleshooting Guide
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 ## Overview

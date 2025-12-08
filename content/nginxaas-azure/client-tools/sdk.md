@@ -31,7 +31,7 @@ For example scripts to create or update deployment resources, see [NGINXaaS Snip
 - [Azure SDK Deployment Create or Update Documentation](https://learn.microsoft.com/en-us/python/api/azure-mgmt-nginx/azure.mgmt.nginx.operations.deploymentsoperations?view=azure-python#azure-mgmt-nginx-operations-deploymentsoperations-begin-create-or-update)
 - [Azure SDK Deployment Delete Documentation](https://learn.microsoft.com/en-us/python/api/azure-mgmt-nginx/azure.mgmt.nginx.operations.deploymentsoperations?view=azure-python#azure-mgmt-nginx-operations-deploymentsoperations-begin-delete)
 - [NGINXaaS Managed Identity Documentation]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
-- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-monitoring/" >}})
+- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-metrics/" >}})
 
 ### Create or update a certificate
 
