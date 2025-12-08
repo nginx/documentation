@@ -5,8 +5,8 @@ nd-docs: DOCS-433
 title: Restricting Access to Proxied TCP Resources
 toc: true
 weight: 700
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This chapter provides scenarios for restricting access to a database or media server that communicates over TCP. Access can be limited by IP address, the number of simultaneous connections, or bandwidth.

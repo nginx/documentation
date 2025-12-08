@@ -1,6 +1,5 @@
 ---
 title: Report usage data to F5 (connected)
-draft: false
 description: ''
 weight: 20
 toc: true

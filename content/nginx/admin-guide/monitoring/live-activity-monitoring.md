@@ -6,8 +6,8 @@ nd-docs: DOCS-425
 title: Live Activity Monitoring
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="live-activity-monitoring"></span>

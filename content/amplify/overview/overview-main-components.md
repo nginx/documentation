@@ -4,6 +4,7 @@ description: Learn about F5 NGINX Amplify and its main components.
 weight: 10
 toc: true
 nd-docs: DOCS-976
+nd-product: AMPLIF
 ---
 
 ## What Is F5 NGINX Amplify?

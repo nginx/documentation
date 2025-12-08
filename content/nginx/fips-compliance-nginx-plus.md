@@ -4,8 +4,8 @@ nd-docs: DOCS-470
 title: NGINX Plus FIPS Compliance
 toc: true
 weight: 600
-type:
-- concept
+nd-content-type: concept
+nd-product: NGPLUS
 ---
 
 ## What is FIPS

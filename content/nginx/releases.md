@@ -5,8 +5,8 @@ nd-docs: DOCS-472
 title: Releases
 toc: true
 weight: 300
-type:
-- concept
+nd-content-type: reference
+nd-product: NGPLUS
 ---
 
 ### Software Development Policy {#support}
@@ -63,6 +63,8 @@ NGINX Plus R36 is a feature release:
 
   - TLS certificate compression with the `ssl_certificate_compression` directive for [`http`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_compression), [`stream`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_compression), and [`mail`](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_compression).
 
+  - TLSv1.3 certificate compression is disabled by default.
+
   - The [`$ssl_sigalg`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_sigalg) and [`$ssl_client_sigalg`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_sigalg) variables that return the signature algorithm for the client or server certificate for an SSL connection.
 
   - support for 0-RTT in QUIC when using OpenSSL 3.5.1 or newer.
@@ -72,6 +74,8 @@ NGINX Plus R36 is a feature release:
     {{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
 
 - Inheritance control for [headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) and [trailers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer_inherit).
+
+- The `volatile` parameter of the [`geo`](https://nginx.org/en/docs/http/ngx_http_geo_module.html#geo) directive, which indicates that the variable is not cacheable.
 
 - Container images with popular modules, now including ACME, OpenTelemetry, and Prometheus exporter modules.
 
@@ -1536,7 +1540,7 @@ NGINX Plus R13 is a feature release:
 - Ability to send duplicate all incoming traffic to a dedicated server (the [mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html#mirror) directive)
 - Improvements to [NGINX JavaScript](https://www.nginx.com/blog/introduction-nginscript/) module, including the new interactive shell to facilitate development of NGINX JavaScript code
 - New [NGINX Plus API](https://nginx.org/en/docs/http/ngx_http_api_module.html) that incorporates the functionality of the previous [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) and [(extended) status](https://nginx.org/en/docs/http/ngx_http_status_module.html) APIs; it includes a [Swagger](https://demo.nginx.com/swagger-ui/) specification and adds support for [key‑value stores](https://nginx.org/en/docs//http/ngx_http_keyval_module.html)
-- New build tool ([download here](https://hg.nginx.org/pkg-oss/raw-file/default/build_module.sh)) that creates installable packages of the many third‑party modules available for NGINX and NGINX Plus
+- New build tool ([download here](https://github.com/nginx/pkg-oss/blob/master/build_module.sh)) that creates installable packages of the many third‑party modules available for NGINX and NGINX Plus
 - Ability to gracefully shut down all live client connections when restarting NGINX Plus (the [worker_shutdown_timeout](https://nginx.org/en/docs/ngx_core_module.html#worker_shutdown_timeout) directive)
 - Support for adding HTTP trailers (the [add_trailer](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer) directive)
 - Improvement to session persistence: quicker establishment of sticky sessions between clients and upstream groups (the `header` parameter to the [sticky learn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) directive)

@@ -1,10 +1,10 @@
 ---
 title: Build container images
-draft: false
 weight: 100
 toc: true
 nd-docs: DOCS-1410
 nd-content-type: how-to
+nd-product: NAGENT
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ If you want to use NGINX Agent with NGINX Plus, you need to purchase an NGINX Pl
 
 See the requirements and supported operating systems in the [NGINX Agent Technical Specifications]({{< ref "/agent/technical-specifications.md" >}}) topic.
 
-## Deploy Offical NGINX and NGINX Plus Containers
+## Deploy Official NGINX and NGINX Plus Containers
 
 Docker images are available in the [Deploying NGINX and NGINX Plus on Docker](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-docker/) NGINX documentation.
 

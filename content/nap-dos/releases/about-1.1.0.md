@@ -3,6 +3,8 @@ title: F5 DoS for NGINX Arbitrator 1.1.0
 toc: true
 weight: 220
 nd-docs: DOCS-673
+nd-content-type: reference
+nd-product: F5DOSN
 ---
 
 Here you can find the release information for F5 DoS for NGINX Arbitrator v1.1.0.

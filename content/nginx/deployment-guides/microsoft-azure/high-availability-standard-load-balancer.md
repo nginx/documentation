@@ -6,8 +6,8 @@ title: Active-Active HA for NGINX Plus on Microsoft Azure Using the Azure Standa
   Load Balancer
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This guide explains how to use F5 NGINX Plus to complement the native load‑balancing options in the Microsoft Azure cloud. We show how to implement our recommended solution, which combines Azure's Standard Load Balancer for fast and efficient handling of Layer 4 traffic and NGINX Plus for advanced, Layer 7 features such as load balancing, caching, and content‑based routing. The combined Standard Load Balancer and NGINX Plus solution is fast, powerful, reliable, and likely to be relatively low‑cost.

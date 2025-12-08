@@ -5,8 +5,8 @@ nd-docs: DOCS-454
 title: Load Balancing Oracle E-Business Suite with NGINX Plus
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
@@ -505,7 +505,7 @@ HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and
 
 - If using open source NGINX, note that in version 1.9.5 and later the SPDY module is completely removed from the NGINX codebase and replaced with the [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) module. After upgrading to version 1.9.5 or later, you can no longer configure NGINX to use SPDY. If you want to keep using SPDY, you need to compile NGINX from the sources in the [NGINX 1.8 branch](https://nginx.org/en/download.html).
 
-- If using NGINX Plus, in R11 and later the {{<nb>}}**nginx-plus**{{</nb>}} package supports HTTP/2 by default, and the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by separate [dynamic modules](https://www.nginx.com/products/nginx/modules/) authored by NGINX.
+- If using NGINX Plus, in R11 and later the {{<nb>}}**nginx-plus**{{</nb>}} package supports HTTP/2 by default, and the {{<nb>}}**nginx-plus-extras**{{</nb>}} package available in previous releases is deprecated by separate [dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md#nginx-authored-and-nginx-certified-dynamic-modules" >}}) authored by NGINX.
 
   In NGINX Plus R8 through R10, the {{<nb>}}**nginx-plus**{{</nb>}} and {{<nb>}}**nginx-plus-extras**{{</nb>}} packages support HTTP/2 by default.
 
@@ -774,7 +774,7 @@ For more information about live activity monitoring, see the [NGINX Plus Admin�
 
 The <span style="white-space: nowrap;">NGINX Plus API</span> exports metrics in JSON format, so you can feed them to many monitoring systems. In addition, the [Prometheus-njs]({{< relref "../../admin-guide/dynamic-modules/prometheus-njs.md" >}}) module converts the JSON output  to a Prometheus‑compliant format.
 
-Several NGINX partners offer integrations for displaying and analyzing NGINX Open Source and NGINX Plus metrics. See our [Technology Partners](https://www.nginx.com/partners/technology-partners) page.
+Several NGINX partners offer integrations for displaying and analyzing NGINX Open Source and NGINX Plus metrics. See our [Technology Partners](https://www.f5.com/go/partner/technology-partners) page.
 
 <span id="backup-servers"></span>
 ### Configuring Backup Servers for Disaster Recovery

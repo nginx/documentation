@@ -40,6 +40,7 @@ You can now graph any two metrics simultaneously on one chart within the Metrics
 ### Expanded features for configuring NGINX security policies with F5 WAF
 
 You can now configure the following for F5 WAF policies directly in the NGINX One Console:
+
 - [Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md" >}})
 - [Signature Exceptions]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md#exceptions" >}})
 - [Parameters]({{< ref "/nginx-one-console/waf-integration/cookies-params-urls.md#add-parameters" >}})
@@ -102,6 +103,14 @@ We have added support for namespaces in N1C. You can now:
 
 - Manage resources in isolation in different namespaces.
 - Configure granular user permission controls base on namespace.
+
+### Alert when CVEs impact registered instances
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when affected by one or more CVEs.
+
+### Alert on new registered instances 
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when new instances are registered in the F5 NGINX One Console.
 
 ## April 3, 2025
 

@@ -4,8 +4,8 @@ nd-docs: DOCS-669
 title: Operation Log
 toc: true
 weight: 180
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 ## Overview

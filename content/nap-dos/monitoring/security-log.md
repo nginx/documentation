@@ -4,8 +4,8 @@ nd-docs: DOCS-670
 title: Security Log
 toc: true
 weight: 140
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 ## Overview

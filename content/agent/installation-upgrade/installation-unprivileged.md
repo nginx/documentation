@@ -2,8 +2,7 @@
 title: Run without root privileges
 weight: 450
 toc: true
-nd-content-type:
-  - how-to
+nd-content-type: how-to
 nd-product: NAGENT
 nd-docs: DOCS-1781
 ---

@@ -75,10 +75,10 @@ Use the following command to run the NGINX Agent docker container. Replace the p
 
   ```bash
   sudo docker run \
-  --env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+  --env=NGINX_LICENSE_JWT=<YOUR_JWT_HERE> \
   --env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
   --env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
-  --env=NGINX_AGENT_COMMAND_AUTH_TOKEN="DPK" \
+  --env=NGINX_AGENT_COMMAND_AUTH_TOKEN=<YOUR_DATAPLANE_KEY_HERE> \
   --env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
   --env=NGINX_AGENT_COLLECTOR_ADDITIONAL_CONFIG_PATHS="/etc/nginx-agent/my_config.yaml" \
   --volume=/path/to/my_config.yaml:/etc/nginx-agent/my_config.yaml:ro \

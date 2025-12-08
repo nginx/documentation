@@ -5,8 +5,9 @@ type:
 title: Single Sign-On with OpenID Connect and Identity Providers
 toc: true
 weight: 550
-product: NGINX-PLUS
+nd-product: NGPLUS
 nd-docs: DOCS-1690
+nd-content-type: how-to
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus using:
