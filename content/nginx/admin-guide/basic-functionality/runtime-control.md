@@ -5,8 +5,8 @@ nd-docs: DOCS-379
 title: Control NGINX Processes at Runtime
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This section describes the processes that NGINX starts at run time and how to control them.

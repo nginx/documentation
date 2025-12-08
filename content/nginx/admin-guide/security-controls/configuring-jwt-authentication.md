@@ -5,8 +5,8 @@ nd-docs: DOCS-429
 title: Setting up JWT Authentication
 toc: true
 weight: 500
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

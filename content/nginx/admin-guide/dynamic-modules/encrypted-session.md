@@ -4,8 +4,8 @@ nd-docs: DOCS-384
 title: Encrypted-Session
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 The Encrypted Session dynamic module provides encryption and decryption support for NGINX variables based on AES-256 with MAC. It is usually used with the [Set-Misc]({{< ref "/nginx/admin-guide/dynamic-modules/set-misc.md" >}}) dynamic module and the NGINX [`rewrite`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module.

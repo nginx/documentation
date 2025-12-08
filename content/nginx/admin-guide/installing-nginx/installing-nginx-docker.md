@@ -4,8 +4,8 @@ nd-docs: DOCS-409
 title: Deploying NGINX and NGINX Plus with Docker
 toc: true
 weight: 600
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 [F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.

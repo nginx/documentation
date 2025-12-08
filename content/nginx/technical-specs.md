@@ -6,7 +6,7 @@ description: Platforms supported by F5 NGINX Plus and dynamically loaded modules
 toc: true
 weight: 400
 nd-content-type: reference
-nd-product: NPL
+nd-product: NGPLUS
 nd-docs: DOCS-473
 ---
 

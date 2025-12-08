@@ -5,7 +5,7 @@ description: Install and upgrade F5 NGINX Plus with step-by-step instructions fo
 toc: true
 weight: 100
 nd-content-type: how-to
-nd-product: NPL
+nd-product: NGPLUS
 nd-docs: DOCS-414
 ---
 

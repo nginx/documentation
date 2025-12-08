@@ -5,8 +5,8 @@ nd-docs: DOCS-388
 title: Headers-More
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 The Headers-More dynamic module extends the NGINX core [Headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html) module by enabling the functionality of setting or clearing input and output headers.

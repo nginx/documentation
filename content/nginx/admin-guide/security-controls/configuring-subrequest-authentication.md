@@ -5,8 +5,8 @@ nd-docs: DOCS-430
 title: Authentication Based on Subrequest Result
 toc: true
 weight: 400
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>
