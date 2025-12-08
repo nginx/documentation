@@ -5,8 +5,8 @@ nd-docs: DOCS-443
 title: Configuring NGINX and NGINX Plus as a Web Server
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article explains how to configure NGINX Open Source and F5 NGINX Plus as a web server.

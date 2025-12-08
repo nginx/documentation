@@ -5,8 +5,8 @@ nd-docs: DOCS-418
 title: HTTP Load Balancing
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="overview"></span>

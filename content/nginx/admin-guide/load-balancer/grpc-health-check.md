@@ -5,8 +5,8 @@ nd-docs: DOCS-416
 title: gRPC Health Checks
 toc: true
 weight: 600
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

@@ -5,8 +5,8 @@ nd-docs: DOCS-386
 title: GeoIP
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 The GeoIP dynamic module captures information from the client IP address in variables using the MaxMind GeoLite databases.
