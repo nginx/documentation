@@ -543,3 +543,27 @@ http://localhost/query?a=true&a=false
 ```
 
 The request will _not be blocked_ because this violation is set to alarm in the default policy.
+
+### Authenticating External References with Basic Auth
+
+For any external reference section in your policy that uses an HTTP or HTTPS link, you can include a `basicAuth` object with the username (`user`) and the base64-encoded password (`passwordBase64`).  
+
+**Example:**
+
+```json
+{
+    "name": "external_references_custom_response",
+    "template": {
+        "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "applicationLanguage": "utf-8",
+    "enforcementMode": "blocking",
+    "responsePageReference": {
+        "link": "https://securedomain.com:8081/response-pages.txt",
+        "basicAuth": {
+            "user": "<user>",
+            "passwordBase64": "<password>"
+        }
+    }
+}
+```
