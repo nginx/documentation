@@ -15,11 +15,11 @@ It explains the common steps necessary for any Kubernetes-based deployment, then
 To complete this guide, you will need the following pre-requisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/).
-- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
-- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running.
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/) TODO add reason for it.
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster TODO add reason for it..
+- [Docker](https://docs.docker.com/engine/install/) (with Docker compose) installed and running TODO add reason for it.
 - An active F5 WAF for NGINX subscription in [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
-  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your 5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you do not plan of using NGINX Open Source in your deployment.
+  - Download the [SSL certificate and private key file](#general-subscription-credentials-needed-for-deployments) associated with your f5 NGINX App Protect WAF subscription from the MyF5 Customer Portal if you plan of using NGINX Open Source in your deployment.
   - Download the [SSL certificate, private key, and the JWT license](#additional-subscription-credentials-needed-for-deployments) file associated with your NGINX Plus subscription from the MyF5 Customer Portal if you plan of using NGINX Plus in your deployment.
 - [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) are needed to access private-registry.nginx.com 
 
@@ -28,8 +28,6 @@ You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-b
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 There is another optional topic to [Add a read-only filesystem for Kubernetes]({{< ref "/waf/configure/kubernetes-read-only.md" >}})
-
-To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
 
 ## Default security policy and logging profile
 
