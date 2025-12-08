@@ -1,9 +1,9 @@
 ---
 nd-files:
-- content/includes/use-cases/credential-download-instructions.md
-- content/waf/configure/compiler.md
 - content/waf/install/docker.md
 - content/waf/install/kubernetes.md
+- content/waf/install/kubernetes-plm.md
+- content/waf/install/virtual-environment.md
 ---
 
 1. Log in to [MyF5](https://my.f5.com/manage/s/).
