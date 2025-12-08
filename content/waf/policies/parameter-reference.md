@@ -171,7 +171,7 @@ If you want a zip/text file with all of these, just say so!
 | [loginAttemptsFromTheSameUser](#policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser)         | object                                | Config for detecting brute force attacks for Username.                                       |                |
 | reEnableLoginAfter                  | integer min:60 max:90000              | Defines prevention period (seconds) for source-based attacks.                                |                |
 | sourceBasedProtectionDetectionPeriod| integer min:60 max:90000              | Defines detection period (seconds) for source-based attacks.                                 |                |
-| [url](#policy/brute-force-attack-preventions/url)                                  | object                                | Reference to the login URL (policy/login-pages).                                             |                |
+| [url](#policy/urls)                                  | object                                | Reference to the login URL (policy/login-pages).                                             |                |
 
 ---
 
@@ -352,16 +352,16 @@ If you want a zip/text file with all of these, just say so!
 | Field Name                  | Type            | Description           | Allowed Values |
 | --------------------------- | ----------------| --------------------- | -------------- |
 | attackSignaturesCheck       | boolean         |                       |                |
-| [defenseAttributes](#policy/graphql-profiles/)          | object          |                       |                |
+| [defenseAttributes](#policy/graphql-profiles/defenseAttributes)          | object          |                       |                |
 | description                 | string          |                       |                |
 | hasIdlFiles                 | boolean         |                       |                |
-| [idlFiles](#policy/graphql-profiles/)                  | array of objects|                       |                |
-| [metacharElementCheck](#policy/graphql-profiles/)        | boolean         |                       |                |
-| metacharOverrides           | array of objects|                       |                |
+| [idlFiles](#policy/graphql-profiles/idlFiles)                  | array of objects|                       |                |
+| metacharElementCheck        | boolean         |                       |                |
+| [metacharOverrides](#policy/graphql-profiles/metacharOverrides)           | array of objects|                       |                |
 | name                        | string          |                       |                |
-| [responseEnforcement](#policy/graphql-profiles/)         | object          |                       |                |
-| [sensitiveData](#policy/graphql-profiles/)               | array of objects|                       |                |
-| [signatureOverrides](#policy/graphql-profiles/)          | array of objects|                       |                |
+| [responseEnforcement](#policy/graphql-profiles/responseEnforcement)         | object          |                       |                |
+| [sensitiveData](#policy/graphql-profiles/sensitiveData)               | array of objects|                       |                |
+| [signatureOverrides](#policy/graphql-profiles/signatureOverrides)          | array of objects|                       |                |
 
 ---
 
@@ -383,8 +383,16 @@ If you want a zip/text file with all of these, just say so!
 
 | Field Name    | Type           | Description      | Allowed Values |
 | ------------- | -------------- | --------------- | -------------- |
-| idlFile       | object         |                 |                |
+| [idlFile](#policy/graphql-profiles/idlFiles/idlFile)       | object         |                 |                |
 | isPrimary     | boolean        |                 |                |
+
+---
+
+##  idlFile {#policy/graphql-profiles/idlFiles/idlFile}
+
+| Field Name    | Type           | Description      | Allowed Values |
+| ------------- | -------------- | --------------- | -------------- |
+|        |          |                 |                |
 
 ---
 
@@ -455,10 +463,18 @@ If you want a zip/text file with all of these, just say so!
 
 | Field Name    | Type     | Description | Allowed Values |
 | ------------- | -------- | ----------- | -------------- |
-| idlFile       | object   |             |                |
+| [idlFile](#policy/grpc-profiles/idlFiles/idlFile)       | object   |             |                |
 | importUrl     | string   |             |                |
 | isPrimary     | boolean  |             |                |
 | primaryIdlFileName | string |         |                |
+
+---
+
+## idlFile {#policy/grpc-profiles/idlFiles/idlFile}
+
+| Field Name    | Type     | Description | Allowed Values |
+| ------------- | -------- | ----------- | -------------- |
+|               |          |             |                |
 
 ---
 
@@ -583,8 +599,8 @@ If you want a zip/text file with all of these, just say so!
 | description               | string          |             |                |
 | handleJsonValuesAsParameters| boolean       |             |                |
 | hasValidationFiles        | boolean         |             |                |
-| [metacharElementCheck](#policy/json-profiles/metacharElementCheck)      | boolean         |             |                |
-| metacharOverrides         | array of objects|             |                |
+| metacharElementCheck      | boolean         |             |                |
+| [metacharOverrides](#policy/json-profiles/metacharOverrides)         | array of objects|             |                |
 | name                      | string          |             |                |
 | [signatureOverrides](#policy/json-profiles/signatureOverrides)       | array of objects|             |                |
 | [validationFiles](#policy/json-profiles/validationFiles)           | array of objects|             |                |
@@ -629,7 +645,15 @@ If you want a zip/text file with all of these, just say so!
 |-----------------|---------------|-------------|---------------|
 | importUrl       | string        |             |               |
 | isPrimary       | boolean       |             |               |
-| jsonValidationFile | object     |             |               |
+| [jsonValidationFile](#policy/json-profiles/validationFiles/jsonValidationFile) | object     |             |               |
+
+---
+
+## jsonValidationFile {#policy/json-profiles/validationFiles/jsonValidationFile}
+
+| Field Name      | Type           | Description | Allowed Values |
+|-----------------|---------------|-------------|---------------|
+|        |         |             |               |
 
 ---
 
@@ -677,7 +701,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-## accessValidation {#login-pages/accessValidation}
+## accessValidation {#policy/login-pages/accessValidation}
 
 | Field Name              | Type             | Description                                         | Allowed Values |
 | ----------------------- | ---------------- | --------------------------------------------------- | -------------- |
@@ -793,7 +817,7 @@ If you want a zip/text file with all of these, just say so!
 
 | Field Name    | Type   | Description | Allowed Values |
 |---------------|--------|-------------|---------------|
-| contentProfile| object | Content profile object | |
+| [contentProfile](#policy/parameters/contentProfile/contentProfile) | object | Content profile object | |
 
 ---
 
@@ -1043,7 +1067,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-### metacharOverrides {policy/urls/metacharOverrides_2}
+### metacharOverrides {policy/urls/metacharOverrides}
 
 | Field Name | Type    | Description                     | Allowed Values |
 |------------|---------|---------------------------------|---------------|
@@ -1102,7 +1126,7 @@ If you want a zip/text file with all of these, just say so!
 
 ---
 
-#### (Table at end of parameter listing: special urls block) TODO
+## urls {#unknown-urls}
 
 | Field Name | Reference | Type            | Description | Allowed Values |
 |------------|-----------|-----------------|-------------|---------------|
@@ -1166,10 +1190,6 @@ If you want a zip/text file with all of these, just say so!
 | name        | string  |             |               |
 | signatureId | integer |             |               |
 | tag         | string  |             |               |
-
----
-
-Certainly! Here’s the continuation, picking up the remaining tables in your list after the last "xml-profiles/signatureOverrides" table. These include the **blocking-settings sub-tables**, **bot-defense/mitigations sub-tables**, etc.
 
 ---
 
