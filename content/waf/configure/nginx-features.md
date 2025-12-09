@@ -17,7 +17,7 @@ It is intended as a reference for small, self-contained examples of how F5 WAF f
 
 Important constraints when F5 WAF for NGINX is enabled:
 
-- Subrequest-based modules (modules that create internal HTTP subrequests) are not supported in the same scope as **app_protect_enable on**. F5 WAF for NGINX inspects request in the scope where it is enabled; internal subrequests fall outside that scope and are not inspected.
+- Subrequest-based modules (modules that generate internal HTTP subrequests) are not supported when F5 WAF for NGINX (app_protect_enable) is applied to the same scope. As an alternative, it is recommended to enable F5 WAF for NGINX at an additional scope. In this configuration, F5 WAF for NGINX inspects only direct, client-facing HTTP requests, while internal subrequests fall outside that scope and are not inspected.
 - Modules that require the HTTP Range header are not supported in the same configuration scope as **app_protect_enable on**. Place Range-dependent configuration in a server or location block without F5 WAF for NGINX enabled.
 
 For additional information on configuring NGINX, you should view the [NGINX documentation]({{< ref "/nginx/" >}}).
