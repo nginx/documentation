@@ -146,7 +146,7 @@ Max(
 <script type="module" src="/nginxaas-azure/js/cost-calculator_v2.js"></script>
 {{< /raw-html >}}
 
-<h2>Cost Analysis Tool for Standard V3 Plan</h2>
+<h2>Cost analysis tool for standard V3 plan</h2>
 
 <h3>Overview</h3>
 
@@ -168,7 +168,7 @@ Before using the cost analysis script:
 5. **Azure AD Tenant ID** (required for authentication)
 6. **Monitoring Reader permissions** on your NGINXaaS resource
 
-<h4>Setting up Azure Permissions</h4>
+<h4>Setting up Azure permissions</h4>
 
 <strong>Get Tenant ID:</strong>
 
@@ -180,13 +180,13 @@ Before using the cost analysis script:
 1. Go to your NGINX resource → Access control (IAM) → Add role assignment
 2. Role: <strong>Monitoring Reader</strong> → Assign to your user account
 
-<h3>Download and Usage</h3>
+<h3>Download and usage</h3>
 
-#### Download Script
+#### Download script
 
 {{<icon "download">}} {{<link "/scripts/nginxaas_cost_analysis.py" "Download nginxaas_cost_analysis.py script">}}
 
-#### Basic Usage
+#### Basic usage
 
 Run the script with the required parameters:
 
@@ -199,7 +199,7 @@ python3 nginxaas_cost_analysis.py \
         --output "my-cost-analysis.csv"
 ```
 
-#### Required Parameters
+#### Required parameters
 
 | Parameter         | Description                                 | Example                                      |
 |-------------------|---------------------------------------------|----------------------------------------------|
@@ -209,7 +209,7 @@ python3 nginxaas_cost_analysis.py \
 | `--tenant-id`     | Azure AD Tenant ID (required for login)      | `12345678-1234-...`                          |
 | `--output`        | Output CSV filename (optional)               | `my-cost-analysis.csv`                       |
 
-#### Sample Output
+#### Sample output
 
 {{< details "View sample output" >}}
 
@@ -221,9 +221,9 @@ Cost analysis completed successfully!
 
 {{< /details >}}
 
-<h3>Understanding the Results</h3>
+<h3>Understanding the results</h3>
 
-<h4>Cost Components</h4>
+<h4>Cost components</h4>
 
 - **Fixed costs**: Fixed deployment cost (varies by region and WAF usage)
 - **NCU costs**: Variable costs based on actual NCU consumption
@@ -231,7 +231,7 @@ Cost analysis completed successfully!
 - **Port costs**: Additional costs for listen ports beyond the first 5
 - **Data processing**: Costs for data processed ($0.005/GB across all regions)
 
-<h3>Additional Billing Resources</h3>
+<h3>Additional billing resources</h3>
 
 For comprehensive billing information and cost planning, refer to these additional resources:
 
