@@ -1,6 +1,6 @@
 ---
 title: Product telemetry
-weight: 500
+weight: 600
 nd-content-type: reference
 nd-product: FABRIC
 nd-docs: DOCS-1836

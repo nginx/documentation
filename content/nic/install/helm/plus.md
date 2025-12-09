@@ -87,42 +87,7 @@ helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
 
 ## Create license and registry secrets
 
-{{< call-out "note" >}}
-
-The commands in the rest of this document should be run in the same directory as your **license.jwt** file.
-
-{{< /call-out >}}
-
-Once you have obtained your license JWT, create a Kubernetes secret using `kubectl create`:
-
-```shell
-kubectl create secret generic nplus-license --from-file license.jwt
-```
-
-{{< details summary="Example output" >}}
-
-```text
-secret/nplus-license created
-```
-
-{{< /details >}}
-
-Then create another Kubernetes secret to allow interactions with the F5 registry:
-
-```shell
-kubectl create secret docker-registry regcred \
-  --docker-server=private-registry.nginx.com \
-  --docker-username=$(cat license.jwt) \
-  --docker-password=none
-```
-
-{{< details summary="Example output" >}}
-
-```text
-secret/regcred created
-```
-
-{{< /details >}}
+{{< include "k8s/create-license-registry-secret.md" >}}
 
 ## Install the Helm chart
 
