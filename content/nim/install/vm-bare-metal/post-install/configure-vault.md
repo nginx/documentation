@@ -1,7 +1,7 @@
 ---
 title: Configure Vault
 toc: true
-weight: 60
+weight: 20
 type: how-to
 nd-product: NIM
 nd-docs:

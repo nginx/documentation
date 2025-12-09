@@ -21,9 +21,7 @@ The script also installs all required system packages.
 
 If you need an **earlier version** of NGINX or NGINX Instance Manager, use the [manual installation process]({{< ref "nim/install/vm-bare-metal/install-manually-online.md" >}}) for online setups or the [offline manual process]({{< ref "nim/install/vm-bare-metal/install-manually-offline.md" >}}) for disconnected environments.
 
-{{< call-out "important" "Important: Start with a clean installation" >}}
-{{< include "/nim/install/check-exsiting-installation.md" >}}
-{{< /call-out >}}
+{{< include "/nim/install/check-existing-installation.md" >}}
 
 {{< call-out "note" "Using Vault?" >}}
 If you plan to use Vault for secrets management, set it up before you continue with the installation.  
@@ -44,7 +42,7 @@ After the installation, follow the steps in the [Vault configuration guide]({{< 
 
 ---
 
-## Run the installation script
+## Run the installation script {#install-nim}
 
 The `install-nim-bundle.sh` script automates the installation of NGINX Instance Manager and its dependencies.
 
@@ -74,7 +72,18 @@ bash install-nim-bundle.sh -l
 To install NGINX Instance Manager with NGINX Open Source on Ubuntu 24.04 using the default certificate and key locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
 
 ```bash
-sudo bash install-nim-bundle.sh -d ubuntu24.04
+sudo bash install-nim-bundle.sh \
+   -d ubuntu24.04
+```
+
+### Install with NGINX Open Source without ClickHouse (lightweight mode)
+
+To skip ClickHouse if you don't need monitoring metrics:
+
+```bash
+sudo bash install-nim-bundle.sh \
+  -s \
+  -d ubuntu24.04
 ```
 
 ### Example: Install with NGINX Plus using default certificate paths
@@ -82,7 +91,10 @@ sudo bash install-nim-bundle.sh -d ubuntu24.04
 To install NGINX Instance Manager with NGINX Plus on Ubuntu 24.04 using the default certificate, key, and JWT license locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
 
 ```bash
-sudo bash install-nim-bundle.sh -p -j /etc/nginx/license.jwt -d ubuntu24.04
+sudo bash install-nim-bundle.sh \
+   -p \
+   -d ubuntu24.04 \
+   -j /etc/nginx/license.jwt \
 ```
 
 ### Example: Install with NGINX Plus using custom paths
@@ -93,22 +105,14 @@ If your certificate, key, or license files are stored in non-default locations, 
 sudo bash install-nim-bundle.sh \
   -c <path/to/nginx-repo.crt> \
   -k <path/to/nginx-repo.key> \
+  -j <path/to/license.jwt> \
   -p \
   -d ubuntu24.04 \
-  -j <path/to/license.jwt>
 ```
 
 Replace the placeholder paths with the actual locations of your files.
 
-{{< call-out "important" "Save the admin password" >}}
-After installation completes, the script generates an admin password. It may take a few minutes to appear:
-
-```text
-Regenerated Admin password: <encrypted password>
-```
-
-Save this password. You’ll need it to sign in to the NGINX Instance Manager web interface.
-{{< /call-out >}}
+{{< include "/nim/install/save-admin-password-callout.md" >}}
 
 ---
 
@@ -118,70 +122,63 @@ Save this password. You’ll need it to sign in to the NGINX Instance Manager we
 
 ---
 
-## Upgrade NGINX Instance Manager {#upgrade-nim}
+## Upgrade {#upgrade-nim}
 
 Follow these steps to upgrade NGINX Instance Manager and, if applicable, ClickHouse.
 
-- **For CentOS, RHEL, and RPM-based distributions:**
+1. **Upgrade the NGINX Instance Manager package**:
+   - **For CentOS, RHEL, and RPM-based distributions**:
 
-  To upgrade to the latest version of the NGINX Instance Manager:
+     ```bash
+     sudo yum update -y nms-instance-manager --allowerasing
+     ```
 
-  ```bash
-  sudo yum update -y nms-instance-manager --allowerasing
-  ```
+   - **For Debian, Ubuntu, and Deb-based distributions**:
 
-  To upgrade to the latest version of ClickHouse (if installed):
+     ```bash
+     sudo apt-get update
+     sudo apt-get install -y --only-upgrade nms-instance-manager
+     ```
 
-  ```bash
-  sudo yum update -y clickhouse-server clickhouse-client
-  ```
+2. **(If installed) Upgrade ClickHouse**:
+   - **For CentOS, RHEL, and RPM-based distributions**:
 
-- **For Debian, Ubuntu, and Deb-based distributions:**
+     ```bash
+     sudo yum update -y clickhouse-server clickhouse-client
+     ```
 
-  To upgrade to the latest version of the NGINX Instance Manager:
+   - **For Debian, Ubuntu, and Deb-based distributions**:
 
-  ```bash
-  sudo apt-get update
-  sudo apt-get install -y --only-upgrade nms-instance-manager
-  ```
+     ```bash
+     sudo apt-get update
+     sudo apt-get install -y --only-upgrade clickhouse-server clickhouse-client
+     ```
 
-  To upgrade to the latest version of ClickHouse (if installed):
+3. **Restart the NGINX Instance Manager platform services**:
 
-  ```bash
-  sudo apt-get update
-  sudo apt-get install -y --only-upgrade clickhouse-server clickhouse-client
-  ```
+   ```bash
+   sudo systemctl restart nms
+   ```
 
-- **Restart platform services:**
+4. **Restart the NGINX web server**:
 
-  Restart the NGINX Instance Manager platform services:
+   ```bash
+   sudo systemctl restart nginx
+   ```
 
-  ```bash
-  sudo systemctl restart nms
-  ```
+5. **(If installed) Restart the ClickHouse server**:
 
-  NGINX Instance Manager components started this way run by default as the non-root `nms` user inside the `nms` group, both of which are created during installation.
+   ```bash
+   sudo systemctl restart clickhouse-server
+   ```
 
-- **Restart the NGINX web server:**
+6. **(Optional) Restore SELinux labels**:
 
-  ```bash
-  sudo systemctl restart nginx
-  ```
-
-- **Restart the ClickHouse server (if ClickHouse is installed):**
-
-  ```bash
-  sudo systemctl restart clickhouse-server
-  ```
-
-- **Optional: Restore SELinux labels**
-
-  If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore the default SELinux labels (`restorecon`) for the files and directories related to NGINX Instance Manager.
-
+   If you use SELinux, follow the steps in the [Configure SELinux]({{< ref "nim/system-configuration/configure-selinux.md" >}}) guide to restore SELinux contexts using `restorecon` for the files and directories related to NGINX Instance Manager.
 
 ---
 
-## Uninstall NGINX Instance Manager {#uninstall-nim}
+## Uninstall {#uninstall-nim}
 
 {{< include "nim/install/uninstall-nim.md" >}}
 
@@ -189,4 +186,4 @@ Follow these steps to upgrade NGINX Instance Manager and, if applicable, ClickHo
 
 ## Next steps
 
-- [Add NGINX Open Source and NGINX Plus instances to NGINX Instance Manager]({{< ref "nim/nginx-instances/add-instance.md" >}})
+- [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection.

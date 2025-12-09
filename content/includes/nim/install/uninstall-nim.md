@@ -1,7 +1,7 @@
 ---
 nd-files:
-- content/nim/deploy/vm-bare-metal/install.md
-- content/nim/disconnected/offline-install-guide.md
+  - content/nim/install/vm-bare-metal/install-with-bash-script-offline.md
+  - content/nim/install/vm-bare-metal/install-with-bash-script-online.md
 ---
 
 Follow the steps below to uninstall NGINX Instance Manager and ClickHouse.

@@ -1,7 +1,7 @@
 ---
 title: Disable metrics collection
 toc: true
-weight: 60
+weight: 40
 type: how-to
 nd-product: NIM
 nd-docs:

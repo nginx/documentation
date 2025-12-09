@@ -6,16 +6,18 @@ nd-files:
 - content/nim/disconnected/offline-install-guide.md
 ---
 
-1. Open the `/etc/nms/nms.conf` file and add the following in the `integrations:license` section:
+1. Open the `/etc/nms/nms.conf` file and update the `integrations.license` section as follows:
 
-    ``` yaml
+    ```yaml
     integrations:
-        license:
-            mode_of_operation: disconnected
+      license:
+        mode_of_operation: disconnected
     ```
 
-2.	Restart NGINX Instance Manager:
+1. Restart the NGINX Instance Manager service:
 
-    ```shell
+    ```bash
     sudo systemctl restart nms
     ```
+
+This setting disables online license checks and allows NGINX Instance Manager to operate in a disconnected environment.

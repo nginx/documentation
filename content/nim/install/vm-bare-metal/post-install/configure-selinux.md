@@ -1,7 +1,7 @@
 ---
 title: Configure SELinux
 toc: true
-weight: 50
+weight: 10
 type: how-to
 nd-product: NIM
 nd-docs:

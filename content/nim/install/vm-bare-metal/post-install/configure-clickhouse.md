@@ -1,7 +1,7 @@
 ---
 title: Configure ClickHouse
 toc: true
-weight: 40
+weight: 30
 type: how-to
 nd-product: NIM
 nd-docs:
