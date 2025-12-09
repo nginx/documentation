@@ -2,9 +2,9 @@
 title: "Set up custom roles with API groups"
 weight: 500
 toc: true
-type: reference
-product: NGINX One
+nd-content-type: reference
 nd-docs: DOCS-000
+nd-product: NONECO
 ---
 
 Beyond the [Default roles]({{< ref "/nginx-one-console/rbac/roles.md" >}}) for NGINX One Console access, you can create [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles) with more precisely defined access permissions.

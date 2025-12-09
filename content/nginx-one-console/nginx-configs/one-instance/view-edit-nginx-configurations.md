@@ -1,14 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: View and edit an NGINX instance
-# Weights are assigned in increments of 100: determines sorting order
 weight: 200
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-type: tutorial
-# Intended for internal catalogue and search, case sensitive:
-product: NGINX One
+nd-content-type: tutorial
+nd-product: NONECO
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 
