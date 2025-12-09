@@ -20,3 +20,9 @@ customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking
 ```
 
 {{< /details >}}
+
+You should also create the _nginx-gateway_ namespace, which is used by the Manifest files by default:
+
+```shell
+kubectl create namespace nginx-gateway
+```

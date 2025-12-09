@@ -28,12 +28,6 @@ To complete this guide, you will need the following pre-requisites:
 
 {{< include "/ngf/installation/manifests/api-resources.md" >}}
 
-You should also create the _nginx-gateway_ namespace, which is used by the Manifest files by default:
-
-```shell
-kubectl create namespace nginx-gateway
-```
-
 ## Add certificates for secure authentication
 
 {{< include "/ngf/installation/manifests/secure-certificates.md" >}}
@@ -136,18 +130,7 @@ nginxproxy.gateway.nginx.org/nginx-gateway-proxy-config created
 
 ## Verify the Deployment
 
-To confirm that NGINX Gateway Fabric is running, check the pods in the `nginx-gateway` namespace:
-
-```shell
-kubectl get pods -n nginx-gateway
-```
-
-The output should look similar to this (The pod name will include a unique string):
-
-```text
-NAME                             READY   STATUS    RESTARTS   AGE
-nginx-gateway-694897c587-bbz62       1/1     Running     0          29s
-```
+{{< include "/ngf/installation/manifests/verify-deployment.md" >}}
 
 ## Access NGINX Gateway Fabric
 
@@ -185,16 +168,6 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gat
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental/deploy.yaml
-```
-
-#### Plus
-
-The image is pulled from the NGINX Plus Docker registry, and the `imagePullSecretName` is the name of the Secret to use to pull the image.
-
-The NGINX Plus JWT Secret used to run NGINX Plus is also specified in a volume mount and the `--usage-report-secret` parameter. These Secrets are created as part of the [Before you begin](#before-you-begin) section.
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus/deploy.yaml
 ```
 
 #### Plus + Experimental

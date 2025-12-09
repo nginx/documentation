@@ -21,7 +21,7 @@ kubectl delete clusterrole nginx-gateway
 kubectl delete clusterrolebinding nginx-gateway
 ```
 
-## Remove CRDs
+## Remove the CRDs
 
 To remove the NGINX Gateway Fabric CRDs, run:
 
@@ -45,3 +45,7 @@ customresourcedefinition.apiextensions.k8s.io "upstreamsettingspolicies.gateway.
 ## Remove the Gateway API resources
 
 {{< include "/ngf/installation/uninstall-gateway-api-resources.md" >}}
+
+## Remove secrets
+
+{{< include "/k8s/delete-license-registry-secrets.md" >}}
