@@ -4,6 +4,7 @@ description: Learn about other metrics used by F5 NGINX Amplify
 weight: 40
 toc: true
 nd-docs: DOCS-975
+nd-product: AMPLIF
 ---
 
 {{< call-out "note" >}}Monitoring PHP-FPM and MySQL metrics is only supported by F5 NGINX Amplify Agent.{{< /call-out >}}

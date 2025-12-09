@@ -5,8 +5,8 @@ nd-docs: DOCS-394
 title: NGINX ModSecurity WAF
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 {{< call-out "note" >}} The `nginx-plus-module-modsecurity` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

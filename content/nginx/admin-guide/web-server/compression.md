@@ -5,8 +5,8 @@ nd-docs: DOCS-440
 title: Compression and Decompression
 toc: true
 weight: 400
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This section describes how to configure compression or decompression of responses, as well as sending compressed files.

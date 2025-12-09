@@ -30,7 +30,7 @@ It supports standard [Ingress]({{< ref "/nic/glossary.md#ingress">}}) features s
   {{<card title="Install NGINX Ingress Controller with Helm" titleUrl="/nginx-ingress-controller/install/helm">}}
     Use Helm to deploy and configure a NGINX Ingress Controller cluster
   {{</card>}}
-  {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/install/ingress-nginx">}}
+  {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/install/migrate-ingress-nginx">}}
     Replace an Ingress-NGINX cluster with NGINX Ingress Controller
   {{</card>}}
   {{<card title="Changelog" titleUrl="/nginx-ingress-controller/changelog">}}

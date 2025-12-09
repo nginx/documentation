@@ -8,7 +8,7 @@ nd-landing-page: true
 cascade:
   logo: NGINX-Plus-product-icon.svg
 nd-content-type: landing-page
-nd-product: NGINX Plus
+nd-product: NGPLUS
 ---
 Request your [free 30‑day trial](https://www.nginx.com/free-trial-request) today.
 

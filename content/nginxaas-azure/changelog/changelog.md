@@ -98,7 +98,7 @@ NGINXaaS now allows both precompiled and custom policies for F5 WAF for NGINX to
 
 - {{% icon-feature %}} **Azure Monitor Platform Metrics**
 
-   NGINXaaS now publishes platform metrics directly to Azure Monitor. Compared to legacy monitoring based on custom metrics, platform metrics offers reduced latency and higher reliability. We strongly recommend migrating your alerts to use platform metrics for improved monitoring and management. For more details on enabling platform metrics, please refer to [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-monitoring.md">}}).
+   NGINXaaS now publishes platform metrics directly to Azure Monitor. Compared to legacy monitoring based on custom metrics, platform metrics offers reduced latency and higher reliability. We strongly recommend migrating your alerts to use platform metrics for improved monitoring and management. For more details on enabling platform metrics, please refer to [Enable Monitoring]({{< relref "/nginxaas-azure/monitoring/enable-metrics.md">}}).
 
 ## April 22, 2025
 

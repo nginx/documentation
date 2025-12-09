@@ -5,8 +5,8 @@ nd-docs: DOCS-428
 title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

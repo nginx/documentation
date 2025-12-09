@@ -6,8 +6,8 @@ nd-docs: DOCS-393
 title: njs Scripting Language
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 njs is an NGINX module that extends the server's functionality through JavaScript scripting, enabling the creation of custom server-side logic and [more](https://nginx.org/en/docs/njs/#usecases).

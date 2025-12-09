@@ -5,8 +5,8 @@ nd-docs: DOCS-472
 title: Releases
 toc: true
 weight: 300
-type:
-- concept
+nd-content-type: reference
+nd-product: NGPLUS
 ---
 
 ### Software Development Policy {#support}

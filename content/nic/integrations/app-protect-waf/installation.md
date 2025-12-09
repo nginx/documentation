@@ -16,6 +16,7 @@ If you'd rather not build your own NGINX Ingress Controller image, see the [pre-
 ## Before you start
 
 - To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.
+- F5 WAF for NGINX package based installation (previously NGINX App Protect WAF v4) is not supported when `readOnlyRootFilesystem` is enabled.
 
 ## Prepare the environment
 

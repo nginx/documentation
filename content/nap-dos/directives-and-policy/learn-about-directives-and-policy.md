@@ -3,6 +3,8 @@ title: Directives and Policy
 toc: true
 weight: 120
 nd-docs: DOCS-667
+nd-content-type: reference
+nd-product: F5DOSN
 ---
 
 ## Introduction

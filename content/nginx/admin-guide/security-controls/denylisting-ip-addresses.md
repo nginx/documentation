@@ -5,8 +5,8 @@ nd-docs: DOCS-434
 title: Dynamic Denylisting of IP Addresses
 toc: true
 weight: 1100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.

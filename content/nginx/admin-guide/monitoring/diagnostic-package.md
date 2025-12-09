@@ -5,8 +5,8 @@ nd-docs: DOCS-1357
 title: NGINX Diagnostic Package
 toc: true
 weight: 400
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

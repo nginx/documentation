@@ -1,6 +1,6 @@
 ---
 title: Advanced features with NGINX Plus
-weight: 400
+weight: 300
 nd-content-type: reference
 nd-product: FABRIC
 nd-docs: DOCS-1837

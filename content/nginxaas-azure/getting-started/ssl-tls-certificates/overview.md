@@ -60,7 +60,7 @@ For Azure client tools, such as the Azure CLI or Azure Resource Manager, the cer
 
 ## Monitor certificates
 
-To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
+To view the status of your SSL/TLS certificates, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}) for your NGINXaaS deployment and navigate to the **Metrics** tab in the Azure portal. View the `nginxaas.certificates` metric under the `nginxaas statistics` metric namespace. The `nginxaas.certificates` metric allows you to filter by certificate name and the status of the certificate. The status dimension reports the health of your certificates through the following values:
 
 {{< table >}}
 
