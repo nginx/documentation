@@ -5,8 +5,8 @@ nd-docs: DOCS-399
 title: RTMP
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 The RTMP dynamic module enables video streaming in multiple formats, including  Real-Time Messaging Protocol (RTMP), HLS, and DASH.

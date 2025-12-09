@@ -4,6 +4,7 @@ description: Learn about F5 NGINX Amplify Agent's configuration analysis feature
 weight: 600
 toc: true
 nd-docs: DOCS-961
+nd-product: AMPLIF
 ---
 
 F5 NGINX Amplify Agent can automatically find all relevant NGINX configuration files, parse them, extract their logical structure, and send the associated JSON data to the Amplify backend for further analysis and reporting. For more information on configuration analysis, please see the [Analyzer]({{< ref "/amplify/user-interface/analyzer.md" >}})) documentation.

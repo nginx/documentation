@@ -1,6 +1,5 @@
 ---
 title: Round-robin reverse proxy with an augment template
-draft: false
 description: Learn how to set up a round-robin reverse proxy using NGINX Instance
   Manager with base and augment templates.
 weight: 100

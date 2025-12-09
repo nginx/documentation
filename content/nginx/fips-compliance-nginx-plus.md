@@ -4,8 +4,8 @@ nd-docs: DOCS-470
 title: NGINX Plus FIPS Compliance
 toc: true
 weight: 600
-type:
-- concept
+nd-content-type: concept
+nd-product: NGPLUS
 ---
 
 ## What is FIPS
@@ -258,7 +258,7 @@ nginx -V
 Sample output from the command:
 
 ```shell
-nginx version: nginx/1.29.0 (nginx-plus-r35)
+nginx version: nginx/1.29.3 (nginx-plus-r36)
 built by gcc 11.5.0 20240719 (Red Hat 11.5.0-5) (GCC) 
 built with OpenSSL 3.2.2 4 Jun 2024
 ```

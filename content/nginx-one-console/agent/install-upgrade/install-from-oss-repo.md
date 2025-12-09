@@ -2,7 +2,9 @@
 title: Install from Open Source repo
 toc: true
 weight: 100
+nd-content-type: how-to
 nd-docs: DOCS-1873
+nd-product: NAGENT
 ---
 
 {{< call-out "note" >}}

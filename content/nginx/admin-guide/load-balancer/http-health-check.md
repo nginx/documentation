@@ -5,8 +5,8 @@ nd-docs: DOCS-417
 title: HTTP Health Checks
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

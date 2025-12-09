@@ -1,10 +1,10 @@
 ---
 title: About
-draft: false
 weight: 100
 toc: true
 nd-docs: DOCS-1091
 nd-content-type: how-to
+nd-product: NAGENT
 ---
 
 ## Overview

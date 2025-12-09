@@ -5,8 +5,8 @@ nd-docs: DOCS-424
 title: Debugging NGINX
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 ## Introduction

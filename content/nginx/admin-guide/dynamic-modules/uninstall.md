@@ -4,9 +4,10 @@ nd-docs: DOCS-402
 title: Uninstalling a dynamic module
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
+
 You may need to uninstall a dynamic module in NGINX Plus in several scenarios:
 
 - The module is being replaced with a newer or alternative version. For example, the [OpenTracing]({{< ref "opentracing.md" >}}) module has been replaced by the [OpenTelemetry]({{< ref "opentelemetry.md" >}}) module. The [Cookie-Flag]({{< ref "cookie-flag.md" >}}) dynamic module has been superseded by natively supported [`proxy_cookie_flags`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cookie_flags) directive.

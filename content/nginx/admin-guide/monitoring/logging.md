@@ -5,8 +5,8 @@ nd-docs: DOCS-426
 title: Configuring Logging
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article describes how to log errors and requests in NGINX Open Source and NGINX Plus.

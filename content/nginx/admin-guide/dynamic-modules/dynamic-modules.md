@@ -5,8 +5,8 @@ nd-docs: DOCS-383
 title: Dynamic Modules
 toc: true
 weight: 10
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 ## Overview
@@ -16,6 +16,8 @@ F5 NGINX Plus uses a modular architecture. New features and functionality can be
 <img src="/nginx/images/nginx-plus-dynamic-module-plug-ins.png" alt="NGINX Plus allows features to be plugged in on demand" width="500" height="500" style="border:2px solid #666666; padding:2px; margin:2px;" />
 
 Dynamic modules are shared object files (`.so`) that can be loaded at runtime using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive in the NGINX configuration.
+
+### NGINX-authored and NGINX-certified dynamic modules
 
 NGINX maintains the official NGINX Plus repository, which also provides packaged binaries for both [NGINX‑authored]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) and [NGINX‑certified community]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-certified-community-dynamic-modules" >}}) dynamic modules. All modules in this repository are fully tested to ensure full compatibility with NGINX Plus.
 

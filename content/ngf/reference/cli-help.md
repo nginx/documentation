@@ -2,7 +2,7 @@
 title: Command-line reference guide
 weight: 100
 toc: true
-type: reference
+nd-content-type: reference
 nd-product: FABRIC
 nd-docs: DOCS-1843
 ---

@@ -13,7 +13,14 @@ This document describes how to migrate from the community-maintained Ingress-NGI
 
 This page explains two different ways to migrate from the community-maintained [Ingress-NGINX Controller](https://github.com/kubernetes/ingress-nginx) project to NGINX Ingress Controller: using NGINX's Ingress Resources or with Kubernetes's built-in Ingress Resources. This is typically because of implementation differences, and to take advantage of features such as [NGINX Plus integration]({{< ref "/nic/overview/nginx-plus" >}}).
 
-The information in this guide is extracted from a free eBook called "_Kubernetes Ingress Controller Deployment and Security with NGINX_", which can be downloaded from the [NGINX Library](https://www.nginx.com/resources/library/kubernetes-ingress-controller-deployment-security-nginx/).
+{{< call-out "note" >}}
+
+For more information, you may want to read the two-part blog series from the [NGINX Community Blog](https://blog.nginx.org/) on Migrating from ingress-nginx to NGINX Ingress Controller:
+
+- [Part one](https://blog.nginx.org/blog/migrating-ingress-controllers-part-one)
+- [Part two](https://blog.nginx.org/blog/migrating-ingress-controllers-part-2)
+
+{{< /call-out >}}
 
 ## Before you begin
 
@@ -471,12 +478,15 @@ This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Contro
 | [_nginx.ingress.kubernetes.io/proxy-buffers-number_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-buffers-number) | [_nginx.org/proxy-buffers_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_buffers_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) |
 | [_nginx.ingress.kubernetes.io/proxy-buffer-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-buffer-size) | [_nginx.org/proxy-buffer-size_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_buffer_size_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) |
 | [_nginx.ingress.kubernetes.io/proxy-busy-buffers-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-busy-buffers-size) | [_nginx.org/proxy-busy-buffers-size_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_busy_buffers_size_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) |
+| [_nginx.ingress.kubernetes.io/client-body-buffer-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#client-body-buffer-size) | [_nginx.org/client-body-buffer-size_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_client_body_buffer_size_](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) |
 | [_nginx.ingress.kubernetes.io/proxy-connect-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-connect-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_connect_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout) |
 | [_nginx.ingress.kubernetes.io/proxy-read-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-read-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_read_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) |
 | [_nginx.ingress.kubernetes.io/proxy-send-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-send-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_send_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout) |
-| [_nginx.ingress.kubernetes.io/rewrite-target_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) | [_nginx.org/rewrites_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#request-uriheader-manipulation" >}}) | [_rewrite_](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) |
+| [_nginx.ingress.kubernetes.io/rewrite-target_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) | [_nginx.org/rewrite-target_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#request-uriheader-manipulation" >}}) | [_rewrite_](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) |
+| [_nginx.ingress.kubernetes.io/ssl-ciphers_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-ciphers) | [_nginx.org/ssl-ciphers_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | [_ssl_ciphers_](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) |
+| [_nginx.ingress.kubernetes.io/ssl-prefer-server-ciphers_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-ciphers) | [_nginx.org/ssl-prefer-server-ciphers_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | [_ssl_prefer_server_ciphers_](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) |
 | [_nginx.ingress.kubernetes.io/server-snippet_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet)| [_nginx.org/server-snippets_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}) | N/A |
-| [_nginx.ingress.kubernetes.io/ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) | [_ingress.kubernetes.io/ssl-redirect_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | N/A (2) |
+| [_nginx.ingress.kubernetes.io/ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) (2) | [_ingress.kubernetes.io/ssl-redirect_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | N/A |
 
 1. Ingress-NGINX Controller implements some of its load balancing algorithms with Lua, which may not have an equivalent in NGINX Ingress Controller.
 1. To redirect HTTP (80) traffic to HTTPS (443), NGINX Ingress Controller uses built-in NGINX `if` conditions while Ingress-NGINX Controller uses Lua.
@@ -505,12 +515,15 @@ NGINX Ingress Controller has additional annotations for features using NGINX Plu
 The following table outlines annotation conversions for enabling TLS and gRPC protocols to backend (upstream) services.
 
 {{< table >}}
+
 | Ingress-NGINX Controller | NGINX Ingress Controller |
 | ------------------------ | ------------------------ |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "HTTPS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "ssl_service_name" |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPC" | [_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
 | [_nginx.ingress.kubernetes.io/backend-protocol_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#backend-protocol): "GRPCS" | [_nginx.org/ssl-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name"<br />[_nginx.org/grpc-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}): "grpc_service_name" |
+
 {{< /table >}}
+
 {{< call-out "important" >}}
 GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}})).
 {{< /call-out >}}
@@ -542,6 +555,7 @@ Some of the key names are identical, and each Ingress Controller has ConfigMap k
 | [_max-worker-connections_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#max-worker-connections) | [_worker-connections_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_max-worker-open-files_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#max-worker-open-files) | [_worker-rlimit-nofile_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_proxy-body-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-body-size) | [_client-max-body-size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
+| [_client-body-buffer-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#client-body-buffer-size) | [_client-body-buffer-size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_proxy-buffering_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-buffering) | [_proxy-buffering_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_proxy-buffers-number_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-buffers-number) | [_proxy-buffers: number size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_proxy-buffer-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-buffer-size) | [_proxy-buffers: number size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |

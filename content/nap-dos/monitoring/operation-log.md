@@ -1,11 +1,11 @@
 ---
-description: Learn about the F5 F5 DoS for NGINX Operation Log.
+description: Learn about the F5 DoS for NGINX Operation Log.
 nd-docs: DOCS-669
-title: F5 DoS for NGINX Operation Log
+title: Operation Log
 toc: true
 weight: 180
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 ## Overview
@@ -18,7 +18,7 @@ The operation logs consists of system operational and health events. The events 
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
-|Configuration Error |error |There were errors in the [directives]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) in the `nginx.conf` file. <br> Configuration error event is produced when one of F5 F5 DoS for NGINX directives is supplied with an incorrect data. An additional information will be added to the message, describing what was incorrect. NGINX will run with default values for this directive. <br> Please note that if the directive supplied with an incorrect number of arguments then NGINX will issue an error and NGINX will not run. It is a generic NGINX behavior.|
+|Configuration Error |error |There were errors in the [directives]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) in the `nginx.conf` file. <br> Configuration error event is produced when one of F5 DoS for NGINX directives is supplied with an incorrect data. An additional information will be added to the message, describing what was incorrect. NGINX will run with default values for this directive. <br> Please note that if the directive supplied with an incorrect number of arguments then NGINX will issue an error and NGINX will not run. It is a generic NGINX behavior.|
 
 {{</bootstrap-table>}}
 

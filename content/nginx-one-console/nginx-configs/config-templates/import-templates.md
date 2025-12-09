@@ -1,11 +1,10 @@
 ---
++nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Import templates
 toc: true
 weight: 100
-type:
-- how-to
-nd-product: NONECO
 ---
 
 ## Overview

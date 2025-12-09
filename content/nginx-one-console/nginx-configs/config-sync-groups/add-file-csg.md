@@ -1,10 +1,10 @@
 ---
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Add a file to a Config Sync Group
 toc: true
 weight: 400
-type:
-- how-to
 ---
 
 ## Overview

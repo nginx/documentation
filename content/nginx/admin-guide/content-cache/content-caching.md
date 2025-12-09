@@ -5,8 +5,8 @@ nd-docs: DOCS-380
 title: NGINX Content Caching
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>
@@ -56,7 +56,7 @@ There are two additional NGINX processes involved in caching:
 
   - `loader_threshold` – Duration of an iteration, in milliseconds (by default, `200`)
   - `loader_files` – Maximum number of items loaded during one iteration (by default, `100`)
-  - `loader_sleeps` – Delay between iterations, in milliseconds (by default, `50`)
+  - `loader_sleep` – Delay between iterations, in milliseconds (by default, `50`)
 
 In the following example, iterations last `300` milliseconds or until `200` items have been loaded:
 

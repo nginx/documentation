@@ -5,14 +5,14 @@ nd-docs: DOCS-471
 title: Open Source Components
 toc: true
 weight: 500
-type:
-- reference
+nd-content-type: reference
+nd-product: NGPLUS
 ---
 
 Open source components included in the F5 NGINX Plus (package name is `nginx-plus`) are:
 
 
-- nginx/OSS 1.29.0, distributed under 2-clause BSD license.
+- nginx/OSS 1.29.3, distributed under 2-clause BSD license.
 
   Homepage: <https://nginx.org>
 

@@ -2,7 +2,9 @@
 title: Configuration overview
 toc: true
 weight: 300
+nd-content-type: how-to
 nd-docs: DOCS-1879
+nd-product: NAGENT
 ---
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.

@@ -2,9 +2,9 @@
 title: "Learn about Role-based access control"
 weight: 400
 toc: true
-type: reference
-product: NGINX One
+nd-content-type: reference
 nd-docs: DOCS-000
+nd-product: NONECO
 ---
 
 {{< include "security/rbac-intro.md" >}}
