@@ -2,7 +2,9 @@
 title: About
 weight: 100
 toc: true
+nd-content-type: concept
 nd-docs: DOCS-1870
+nd-product: NAGENT
 ---
 
 {{< include "agent/v3-available.md" >}}

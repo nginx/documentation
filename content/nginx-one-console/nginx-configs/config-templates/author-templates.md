@@ -1,10 +1,10 @@
 ---
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Author templates
 toc: true
 weight: 10
-type:
-- how-to
 ---
 
 # Overview
