@@ -1,21 +1,19 @@
 ---
+title: Load Balancing Oracle WebLogic Server with NGINX Open Source and NGINX Plus
 description: Load balance Oracle WebLogic Servers with NGINX Open Source and the advanced
   features in F5 NGINX Plus, following our step-by-step setup instructions.
-nd-docs: DOCS-455
-title: Load Balancing Oracle WebLogic Server with NGINX Open Source and NGINX Plus
 toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NGPLUS
+nd-docs: DOCS-455
 ---
 
 This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to load balance HTTP and HTTPS traffic across a pool of Oracle WebLogic Server application servers. The detailed instructions in this guide apply to both cloud‑based and on‑premises deployments of Oracle WebLogic Server.
 
-
-<span id="about-nginx"></span>
 ## About NGINX Open Source and NGINX Plus
 
-[NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. <span style="white-space: nowrap;">NGINX Open Source</span> was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). <span style="white-space: nowrap;">NGINX Open Source's</span> features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
+[NGINX Open Source](https://nginx.org/en) is an open source web server and reverse proxy that has grown in popularity in recent years because of its scalability, outstanding performance, and small footprint. NGINX Open Source was first created to solve the C10K problem (serving 10,000 simultaneous connections on a single web server). NGINX Open Source's features and performance have made it a staple of high‑performance sites – it's [the #1 web server at the 100,000 busiest websites in the world](https://w3techs.com/technologies/cross/web_server/ranking).
 
 [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the commercially supported version of <span style="white-space: nowrap;">NGINX Open Source</span>. NGINX Plus is a complete application delivery platform, extending the power of <span style="white-space: nowrap;">NGINX Open Source</span> with a host of enterprise‑ready capabilities that enhance an Oracle WebLogic Server deployment and are instrumental to building web applications at scale:
 
@@ -28,20 +26,18 @@ This deployment guide explains how to use NGINX Open Source and F5 NGINX Plus to
 - [Advanced activity monitoring available via a dashboard or API]({{< ref "nginx/admin-guide/monitoring/live-activity-monitoring.md" >}})
 - [Management and real‑time configuration changes with DevOps‑friendly tools](https://www.nginx.com/products/nginx/load-balancing/#load-balancing-api)
 
-<span id="about-weblogic"></span>
 ## About Oracle WebLogic Server and Oracle Java Cloud Service
 
 Oracle WebLogic Server is one of the industry's leading application servers for building and deploying Java Enterprise Edition Platform ([Java EE](https://www.oracle.com/java/technologies/java-ee-glance.html)) applications, with features for lowering cost of operations, improving performance, enhancing scalability, and supporting the [Oracle Applications](https://www.oracle.com/applications/) portfolio.
 
 We tested the procedures in this guide against [Oracle WebLogic Server Standard Edition 12cR2 (12.2.1)](https://www.oracle.com/middleware/technologies/fusionmiddleware-downloads.html), but the instructions also apply to WebLogic Server Enterprise Edition and WebLogic Suite. For more information about Oracle WebLogic server products, see the [Oracle website](https://www.oracle.com/middleware/weblogic/).
 
-Oracle WebLogic Server is also available on [Oracle Cloud](https://www.oracle.com/index.html) as a service called [Oracle Java Cloud Service](https://www.oracle.com/application-development/cloud-services/java/), with a variety of general‑purpose and high‑memory shapes and with full administrative control.
+Oracle WebLogic Server is also available on [Oracle Cloud](https://www.oracle.com/index.html) as a service called [Oracle Java Cloud Service](https://www.oracle.com/a/ocom/docs/middleware/oracle-java-cloud-service-ds.pdf), with a variety of general‑purpose and high‑memory shapes and with full administrative control.
 
 You can use the WebLogic Server Administration Control graphical user interface to deploy and undeploy an application to an Oracle Java Cloud Service instance, just as you would deploy and undeploy the application to an on‑premises service instance.
 
 For more information about deploying a Java application on Oracle Java Cloud Service, see [Administering Oracle Java Cloud Service](https://docs.oracle.com/cloud/131/developer_services/CSJSU/java-admin.htm).
 
-<span id="prereqs"></span>
 ## Prerequisites and System Requirements
 
 - An Oracle WebLogic Server application server installed and configured on a physical or virtual system.
@@ -65,7 +61,6 @@ The instructions assume you have basic Linux system administration skills, inclu
 - Some of the examples in this guide are partial and require additional directives or parameters to be complete. You can download complete configuration files for basic and enhanced load balancing from the NGINX website, as instructed in [Creating and Modifying Configuration Files](#config-files). For details about a specific directive or parameter, see the [NGINX reference documentation](https://nginx.org/en/docs/).
 - We recommend that you do not copy text from the configuration snippets in this guide into your configuration files. For the recommended way to create configuration files, see [Creating and Modifying Configuration Files](#config-files).
 
-<span id="tls-certificate"></span>
 ## Configuring an SSL/TLS Certificate for Client Traffic
 
 If you plan to enable SSL/TLS encryption of traffic between NGINX Open Source or NGINX Plus and clients of your WebLogic Server application, you need to configure a server certificate for NGINX Open Source or NGINX Plus.
@@ -82,7 +77,6 @@ There are several ways to obtain a server certificate, including the following. 
 
 For more details on SSL/TLS termination, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}})</span>.
 
-<span id="certificate-self-signed"></span>
 ### Generating a Self-Signed Certificate
 
 Generate a public‑private key pair and a self‑signed server certificate in PEM format that is based on them.
@@ -111,7 +105,6 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 5. Copy or move the certificate file and associated key files to the **/etc/nginx/ssl** directory on the NGINX Plus server.
 
-<span id="certificate-request"></span>
 ### Generating a Certificate Request
 
 1. Log in as the root user on a machine that has the `openssl` software installed.
@@ -140,7 +133,6 @@ Generate a public‑private key pair and a self‑signed server certificate in P
 
 6. Copy or move the certificate file and associated key files to the **/etc/nginx/ssl** directory on the NGINX Plus server.
 
-<span id="config-files"></span>
 ## Creating and Modifying Configuration Files
 
 To reduce errors, this guide has you copy directives from files provided by NGINX into your configuration files, instead of using a text editor to type in the directives yourself. Then you go through the sections in this guide (starting with [Configuring Virtual Servers for HTTP and HTTPS Traffic](#virtual-servers)) to learn how to modify the directives as required for your deployment.
@@ -210,7 +202,6 @@ or
 root# service nginx reload
 ```
 
-<span id="basic"></span>
 ## Configuring Basic Load Balancing with NGINX Open Source or NGINX Plus
 
 This section explains how to set up NGINX Open Source or NGINX Plus as a load balancer in front of two WebLogic Server servers. The instructions in the first two sections are mandatory:
@@ -229,7 +220,6 @@ The complete configuration file appears in [Full Configuration for Basic Load Ba
 
 If you are using NGINX Plus, you can configure additional enhanced features after you complete the configuration of basic load balancing. See [Configuring Enhanced Load Balancing with NGINX Plus](#enhanced).
 
-<span id="virtual-servers"></span>
 ### Configuring Virtual Servers for HTTP and HTTPS Traffic
 
 These directives define virtual servers for HTTP and HTTPS traffic in separate `server` blocks in the top‑level `http` configuration block. All HTTP requests are redirected to the HTTPS server.
@@ -276,7 +266,6 @@ These directives define virtual servers for HTTP and HTTPS traffic in separate `
 
 For more information on configuring SSL/TLS, see the <span style="white-space: nowrap;">[NGINX Plus Admin Guide]({{< relref "../../admin-guide/security-controls/terminating-ssl-http.md" >}})</span> and the reference documentation for the HTTP [SSL/TLS](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module.
 
-<span id="load-balancing-basic"></span>
 ### Configuring Basic Load Balancing
 
 To configure load balancing, you first create a named _upstream group_, which lists your backend servers. You then set up NGINX Open Source or NGINX Plus as a reverse proxy and load balancer by referring to the upstream group in one or more `proxy_pass` directives.
@@ -322,7 +311,6 @@ In NGINX Plus, you can also set up dynamic reconfiguration of an upstream group
 
 For more information on proxying and load balancing, see <span style="white-space: nowrap;">[NGINX Reverse Proxy]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}})</span> and <span style="white-space: nowrap;">[HTTP Load Balancing]({{< relref "../../admin-guide/load-balancer/http-load-balancer.md" >}})</span> in the NGINX Plus Admin Guide, and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) and [Upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) modules.
 
-<span id="session-persistence-basic"></span>
 ### Configuring Basic Session Persistence
 
 If your application requires basic session persistence (also known as _sticky sessions_), you can implement it in NGINX Open Source by using the IP Hash load‑balancing algorithm. (NGINX Plus offers a more sophisticated form of session persistence, as described in [Configuring Advanced Session Persistence](#session-persistence-advanced).)
@@ -361,7 +349,6 @@ upstream weblogic {
 
 Directive documentation: [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash), [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream)
 
-<span id="websocket"></span>
 ### Configuring Proxy of WebSocket Traffic
 
 WebLogic Server supports the WebSocket protocol ([RFC 6455](https://tools.ietf.org/html/rfc6455)), which provides simultaneous two‑way communication over a single TCP connection between clients and servers, where each side can send data independently from the other. To initiate the WebSocket connection, the client sends a handshake request to the server, upgrading the request from standard HTTP to WebSocket. The connection is established if the handshake request passes validation, and the server accepts the request. When a WebSocket connection is created, a browser client can send data to a WebLogic Server instance while simultaneously receiving data from that instance.
@@ -394,7 +381,6 @@ The second `proxy_set_header` directive sets the `Connection` header to a value 
 
 For more information about proxying WebSocket traffic, see [WebSocket proxying](https://nginx.org/en/docs/http/websocket.html) and [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
 
-<span id="caching"></span>
 ### Configuring Content Caching
 
 Caching assets at the edge of your infrastructure can have many benefits. Even caching a small percent of the requests to your clients for a short period of time can drastically improve the performance of your web applications.
@@ -436,7 +422,6 @@ Directive documentation: [proxy_cache_key](https://nginx.org/en/docs/http/ngx_ht
 
 For more complete information on caching, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}}) and the reference documentation for the HTTP [Proxy](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module.
 
-<span id="http2"></span>
 ### Configuring HTTP/2 Support
 
 HTTP/2 is fully supported in both NGINX 1.9.5 and later, and NGINX Plus R7 and later. As always, we recommend you run the latest version of software to take advantage of improvements and bug fixes.
@@ -463,7 +448,6 @@ Directive documentation: [http2](https://nginx.org/en/docs/http/ngx_http_v2_modu
 
 To verify that HTTP/2 translation is working, you can use the "HTTP/2 and SPDY indicator" plug‑in available for [Google Chrome](https://chrome.google.com/webstore/detail/http2-and-spdy-indicator/mpbpobfflnpcgagjijhmgnchggcjblin?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/http2-indicator/).
 
-<span id="full-configuration-basic"></span>
 ### Full Configuration for Basic Load Balancing
 
 The full configuration for basic load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/weblogic-basic.conf) from the NGINX website.
@@ -531,7 +515,6 @@ server {
 }
 ```
 
-<span id="enhanced"></span>
 ## Configuring Enhanced Load Balancing with NGINX Plus
 
 This section explains how to configure enhanced load balancing with some of the extended features in NGINX Plus.
@@ -553,7 +536,6 @@ The features described in the following sections are all optional.
 
 The complete configuration file appears in [Full Configuration for Enhanced Load Balancing](#full-configuration-enhanced).
 
-<span id="session-persistence-advanced"></span>
 ### Configuring Advanced Session Persistence
 
 NGINX Plus has more sophisticated session persistence methods available than open source NGINX, implemented in three variants of the `sticky` directive. In the following example, we add the `sticky learn` directive to the upstream group we created in [Configuring Basic Load Balancing](#load-balancing-basic).
@@ -594,7 +576,6 @@ NGINX Plus has more sophisticated session persistence methods available than op
 
 For more information on session persistence, see the <a href="../../../admin-guide/load-balancer/http-load-balancer#enabling-session-persistence">NGINX Plus Admin Guide</a>.
 
-<span id="health-checks"></span>
 ### Configuring Application Health Checks
 
 Health checks are out‑of‑band HTTP requests sent to a server at fixed intervals. They are used to determine whether a server is responsive and functioning correctly, without requiring an actual request from a client.
@@ -657,7 +638,6 @@ Parameter documentation: [slow_start](https://nginx.org/en/docs/http/ngx_http_up
 
 For information about customizing health checks, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}).
 
-<span id="cache-purging"></span>
 ### Configuring Content Cache Purging
 
 NGINX Plus has an API for managing the cache. You can, for example, purge items with a particular key from the cache when you know they are stale, even if they're not actually expired. This can be configured using the `proxy_cache_purge` directive. The following sample configuration combines the `proxy_cache_purge` and `map` directives to enable use of the HTTP `PURGE` method to delete cached content with a specified key:
@@ -693,7 +673,6 @@ Connection: keep-alive
 
 For more complete information about NGINX Open Source and NGINX Plus' caching capabilities, see the [NGINX Plus Admin Guide]({{< ref "nginx/admin-guide/content-cache/content-caching.md" >}}).
 
-<span id="live-activity-monitoring"></span>
 ### Enabling Live Activity Monitoring
 
 NGINX Plus includes a live activity monitoring interface that provides key load and performance metrics in real time, including TCP metrics in <span style="white-space: nowrap;">NGINX Plus R6</span> and later. Statistics are reported through a RESTful JSON interface, making it very easy to feed the data to a custom or third‑party monitoring tool. There is also a built‑in dashboard. Follow these instructions to deploy it.
@@ -771,7 +750,6 @@ The quickest way to configure live activity monitoring and the built‑in dashbo
 
 When you reload the NGINX Plus configuration file, for example by running the <span style="white-space: nowrap;">`nginx -s reload`</span> command, the NGINX Plus dashboard is available immediately at <span style="white-space: nowrap; font-weight: bold;">http://_nginx-plus-server-address_:8080</span>.
 
-<span id="reconfiguration"></span>
 ### Enabling Dynamic Reconfiguration of Upstream Groups
 
 With NGINX Plus, you can reconfigure load‑balanced server groups (both HTTP and TCP/UDP) dynamically using either DNS or the NGINX Plus API introduced in <span style="white-space: nowrap;">NGINX Plus R13</span>. See the NGINX Plus Admin Guide for a more detailed discussion of the <a href="../../../admin-guide/load-balancer/http-load-balancer/#configuring-http-load-balancing-using-dns">DNS</a> and [API]({{< ref "nginx/admin-guide/load-balancer/dynamic-configuration-api.md" >}}) methods.
@@ -809,7 +787,6 @@ To enable dynamic reconfiguration of your upstream group of WebLogic Server app 
 
    Directive documentation: [allow and deny](https://nginx.org/en/docs/http/ngx_http_access_module.html), [api](https://nginx.org/en/docs/http/ngx_http_api_module.html#api)
 
-<span id="full-configuration-enhanced"></span>
 ### Full Configuration for Enhanced Load Balancing
 
 The full configuration for enhanced load balancing appears here for your convenience. It goes in the `http` context. The complete file is available for [download](https://www.nginx.com/resource/conf/weblogic-enhanced.conf) from the NGINX website.
@@ -915,7 +892,6 @@ server {
 
 ```
 
-<span id="resources"></span>
 ## Resources
 
 - [NGINX Plus Overview](https://www.f5.com/products/nginx/nginx-plus)
