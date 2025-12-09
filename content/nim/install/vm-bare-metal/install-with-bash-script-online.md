@@ -1,7 +1,7 @@
 ---
 description: ''
-title: Install NGINX Instance Manager using a bash script (for online deployments)
-linkTitle: Install using a bash script (online)
+title: Install NGINX Instance Manager using a script (online deployment)
+linkTitle: Install with script (online)
 toc: true
 weight: 10
 type:
@@ -186,4 +186,4 @@ Follow these steps to upgrade NGINX Instance Manager and, if applicable, ClickHo
 
 ## Next steps
 
-- [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection.
+- [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install-options.md" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection.

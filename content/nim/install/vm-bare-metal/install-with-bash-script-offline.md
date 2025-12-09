@@ -1,8 +1,8 @@
 ---
-title: Install NGINX Instance Manager using a bash script (for offline deployments)
-linkTitle: Install using a bash script (offline)
+title: Install NGINX Instance Manager using a script (offline deployment)
+linkTitle: Install with script (offline)
 toc: true
-weight: 30
+weight: 20
 type: how-to
 product: NIM
 nd-docs: DOCS-803
@@ -207,20 +207,6 @@ To upgrade NGINX Instance Manager to the latest version:
 
 ---
 
-## CVE checking {#cve-check}
-
-To manually update the CVE list in an air-gapped environment, follow these steps to download and overwrite the `cve.xml` file in the `/usr/share/nms` directory and restart the Data Plane Manager service:
-
-```shell
-sudo chmod 777 /usr/share/nms/cve.xml && \
-sudo curl -s http://hg.nginx.org/nginx.org/raw-file/tip/xml/en/security_advisories.xml > /usr/share/nms/cve.xml && \
-sudo chmod 644 /usr/share/nms/cve.xml && \
-sudo systemctl restart nms-dpm
-```
-
----
-
 ## Next steps
 
-- [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection.
-- [Update the CVE list manually]({{< ref "/nim/install/vm-bare-metal/post-install/update-cve-list-offline.md" >}}) — Download and apply the latest CVE file to keep your offline system up to date.
+- [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install-options.md" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection. You can also download and apply the latest CVE file to keep your offline system up to date.

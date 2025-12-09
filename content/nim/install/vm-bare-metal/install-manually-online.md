@@ -1,7 +1,8 @@
 ---
-title: Install manually (online)
+title: Install NGINX Instance Manager manually (online deployment)
+linkTitle: Install manually (online)
 toc: true
-weight: 20
+weight: 30
 noindex: true
 nd-content-type: how-to
 nd-product: NIMNGR

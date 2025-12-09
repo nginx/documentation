@@ -1,5 +1,6 @@
 ---
-title: Install manually (offline)
+title: Install NGINX Instance Manager manually (offline deployment)
+linkTitle: Install manually (offline)
 weight: 40
 toc: true
 noindex: true
