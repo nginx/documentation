@@ -546,9 +546,10 @@ The request will _not be blocked_ because this violation is set to alarm in the 
 
 ### Authenticating External References with Basic Auth
 
-For any external reference section in your policy that uses an HTTP or HTTPS link, you can include a `basicAuth` object with the username (`user`) and the base64-encoded password (`passwordBase64`).  
+For any type of external reference in your policy that uses an HTTP or HTTPS link—including simple URL references and OpenAPI references—you can include a `basicAuth` object, which specifies the username (user) and base64-encoded password (passwordBase64) for HTTP Basic Authentication.
 
 **Example:**
+This example uses `responsePageReference`, but the same `basicAuth` configuration applies to any supported external reference (such as OpenAPI or other URL references) that uses an HTTP/HTTPS link.
 
 ```json
 {
@@ -562,7 +563,7 @@ For any external reference section in your policy that uses an HTTP or HTTPS lin
         "link": "https://securedomain.com:8081/response-pages.txt",
         "basicAuth": {
             "user": "<user>",
-            "passwordBase64": "<password>"
+            "passwordBase64": "<passwordBase64>"
         }
     }
 }
