@@ -27,7 +27,7 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 ## 5.3.0
 
-08 Dec 2025
+09 Dec 2025
 
 ### {{% icon rocket %}} Features
 - [8292](https://github.com/nginx/kubernetes-ingress/pull/8292) Add sslverify for jwksuri
