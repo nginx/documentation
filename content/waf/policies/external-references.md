@@ -544,7 +544,7 @@ http://localhost/query?a=true&a=false
 
 The request will _not be blocked_ because this violation is set to alarm in the default policy.
 
-### Authenticating External References with Basic Auth
+## Authenticating External References with Basic Auth
 
 For any type of external reference in your policy that uses an HTTP or HTTPS link—including simple URL references and OpenAPI references—you can include a `basicAuth` object, which specifies the username (user) and base64-encoded password (passwordBase64) for HTTP Basic Authentication.
 
