@@ -27,7 +27,50 @@ To complete this guide, you will need the following pre-requisites:
 
 ## Create license and registry secrets
 
-{{< include "/k8s/create-license-registry-secret.md" >}}
+First, create the _nginx-gateway_ namespace, which is used by the Manifest files by default:
+
+```shell
+kubectl create namespace nginx-gateway
+```
+
+{{< call-out "note" >}}
+
+The commands in the rest of this document should be run in the same directory as your **license.jwt** file.
+
+JWTs are sensitive information and should be stored securely. Delete them after use to prevent unauthorized access.
+
+{{< /call-out >}}
+
+Once you have obtained your license JWT, create a Kubernetes secret using `kubectl create`:
+
+```shell
+kubectl create  -n nginx-gateway secret generic nplus-license --from-file license.jwt
+```
+
+Then create another Kubernetes secret to allow interactions with the F5 registry:
+
+```shell
+kubectl create -n nginx-gateway secret docker-registry regcred \
+  --docker-server=private-registry.nginx.com \
+  --docker-username=$(cat license.jwt) \
+  --docker-password=none
+```
+
+You can verify the creation of the secrets using `kubectl get`:
+
+```shell
+kubectl get -n nginx-gateway secrets
+```
+
+{{< details summary="Example output" >}}
+
+```text
+NAME            TYPE                             DATA   AGE
+nplus-license   Opaque                           1      31s
+regcred         kubernetes.io/dockerconfigjson   1      22s
+```
+
+{{< /details >}}
 
 ## Install the Gateway API resources
 

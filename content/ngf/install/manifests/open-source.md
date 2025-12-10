@@ -28,6 +28,12 @@ To complete this guide, you will need the following pre-requisites:
 
 {{< include "/ngf/installation/manifests/api-resources.md" >}}
 
+You should also create the _nginx-gateway_ namespace, which is used by the Manifest files by default:
+
+```shell
+kubectl create namespace nginx-gateway
+```
+
 ## Add certificates for secure authentication
 
 {{< include "/ngf/installation/manifests/secure-certificates.md" >}}
