@@ -24,9 +24,11 @@ To set up Vault integration, follow the [Vault configuration steps]({{< ref "/ni
 
 ## Configure ClickHouse
 
-If you installed ClickHouse, you must update the `/etc/nms/nms.conf` file with the correct password and optional connection settings.  
+If you installed ClickHouse and set a password (the default is blank), you must update the `clickhouse.password` setting in the `/etc/nms/nms.conf` file. Without the correct password, NGINX Instance Manager will not start.
 
-For details, see [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}).
+You can also configure other connection settings, such as the ClickHouse address, username, or TLS options.
+
+For full details, see [Configure ClickHouse]({{< ref "nim/system-configuration/configure-clickhouse.md" >}}).
 
 ## Disable metrics collection
 
