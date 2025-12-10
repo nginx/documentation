@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-875
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

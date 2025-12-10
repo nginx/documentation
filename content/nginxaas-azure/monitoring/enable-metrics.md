@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-876
 url: /nginxaas/azure/monitoring/enable-metrics/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINXaaS for Azure (NGINXaaS) seamlessly integrates with Azure Monitor, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
