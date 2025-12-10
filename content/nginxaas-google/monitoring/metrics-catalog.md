@@ -4,8 +4,8 @@ weight: 400
 toc: false
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/metrics-catalog/
-type:
-- concept
+nd-content-type: reference
+nd-product: NGOOGL
 ---
 
 F5 NGINXaaS for Google Cloud (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Google Cloud.
