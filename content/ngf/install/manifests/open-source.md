@@ -144,44 +144,4 @@ nginxproxy.gateway.nginx.org/nginx-gateway-proxy-config created
 
 ## Next steps
 
-- [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
-- [Routing traffic to applications]({{< ref "/ngf/traffic-management/basic-routing.md" >}})
-
-## edge versions
-
-### API resources
-
-Installing Gateway API resources from the experimental channel includes everything in the standard release channel plus additional experimental resources and fields.
-NGINX Gateway Fabric currently supports a subset of the additional features provided by the experimental channel.
-To install from the experimental channel, run the following:
-
-```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v{{< version-ngf >}}" | kubectl apply -f -
-```
-
-### CRDs
-
-```shell
-kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/crds.yaml
-
-```
-
-### NGF itself
-
-{{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
-
-#### OSS + Experimental
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental/deploy.yaml
-```
-
-#### Plus + Experimental
-
-The image is pulled from the NGINX Plus Docker registry, and the `imagePullSecretName` is the name of the Secret to use to pull the image.
-
-The NGINX Plus JWT Secret used to run NGINX Plus is also specified in a volume mount and the `--usage-report-secret` parameter. These Secrets are created as part of the [Before you begin](#before-you-begin) section.
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus-experimental/deploy.yaml
-```
+{{< include "/ngf/installation/next-steps.md" >}}

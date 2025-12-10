@@ -124,5 +124,4 @@ nginxproxy.gateway.nginx.org/nginx-gateway-proxy-config created
 
 ## Next steps
 
-- [Deploy a Gateway for data plane instances]({{< ref "/ngf/install/deploy-data-plane.md" >}})
-- [Routing traffic to applications]({{< ref "/ngf/traffic-management/basic-routing.md" >}})
+{{< include "/ngf/installation/next-steps.md" >}}

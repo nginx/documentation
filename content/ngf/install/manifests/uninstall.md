@@ -1,7 +1,7 @@
 ---
 title: Use Manifests to uninstall NGINX Gateway Fabric
 linkTitle: Uninstall
-weight: 300
+weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
