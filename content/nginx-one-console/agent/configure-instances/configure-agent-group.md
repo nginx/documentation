@@ -2,7 +2,9 @@
 title: Add users to nginx-agent group
 toc: true
 weight: 400
+nd-content-type: how-to
 nd-docs: DOCS-1881
+nd-product: NAGENT
 ---
 
 This page describes how the F5 NGINX Agent process interacts with the NGINX user on a system, and how to add users to the NGINX Agent group.

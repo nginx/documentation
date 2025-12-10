@@ -1,10 +1,10 @@
 ---
 description: ''
+nd-content-type: how-to
+nd-product: NONECO
 title: Add an NGINX instance
 toc: true
 weight: 300
-type:
-- how-to
 ---
 
 ## Overview
