@@ -6,7 +6,6 @@ toc: true
 nd-content-type: how-to
 nd-docs: DOCS-1472
 nd-product: NAZURE
-draft: true
 url: /nginxaas/azure/client-tools/terraform/
 ---
 
