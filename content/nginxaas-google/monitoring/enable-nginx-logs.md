@@ -4,8 +4,8 @@ weight: 350
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs.

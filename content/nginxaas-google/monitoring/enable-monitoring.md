@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-monitoring/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINXaaS for Google Cloud (NGINXaaS) seamlessly integrates with Google Cloud services, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.

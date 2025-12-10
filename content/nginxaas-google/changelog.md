@@ -4,7 +4,8 @@ weight: 900
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/changelog/
-
+nd-content-type: reference
+nd-product: NGOOGL
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Google Cloud.
