@@ -1,6 +1,6 @@
 ---
 # We use sentence case and present imperative tone
-title: "Apply security policy update without NGINX reload using the apreload tool"
+title: "Apply security policy updates without reloading NGINX using apreload"
 # Weights are assigned in increments of 100: determines sorting order
 weight: 100
 # Creates a table of contents and sidebar, useful for large documents
