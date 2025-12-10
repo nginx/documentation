@@ -2,7 +2,7 @@
 # We use sentence case and present imperative tone
 title: "Secure traffic using mTLS"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 600
+weight: 500
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
