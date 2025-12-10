@@ -2,9 +2,10 @@
 title: "2025"
 weight: 100
 toc: true
+nd-content-type: reference
 nd-docs: "DOCS-870"
+nd-product: NAZURE
 url: /nginxaas/azure/changelog/
-
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.

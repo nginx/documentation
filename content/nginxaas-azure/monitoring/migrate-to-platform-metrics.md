@@ -3,8 +3,8 @@ title: Migrate from Custom metrics to Platform metrics
 weight: 1000
 toc: true
 url: /nginxaas/azure/monitoring/migrate-to-platform-metrics/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

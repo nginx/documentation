@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-1369
 url: /nginxaas/azure/monitoring/enable-logging/logging-using-terraform/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

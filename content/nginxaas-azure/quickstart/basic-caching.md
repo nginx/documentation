@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-897
 url: /nginxaas/azure/quickstart/basic-caching/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports caching using the [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module, improving performance by allowing content to be served from cache without having to contact upstream servers. For more information on caching with NGINX, see [NGINX Content Caching](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/).

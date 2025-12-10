@@ -4,8 +4,8 @@ weight: 300
 toc: true
 nd-docs: DOCS-872
 url: /nginxaas/azure/getting-started/managed-identity-portal/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview
