@@ -53,9 +53,9 @@ Use Helm to install NGINX Ingress Controller with NGINX Plus:
 
 ```shell
 helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
-  --version 2.3.1 \
+  --version {{< nic-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
-  --set controller.image.tag=5.2.1 \
+  --set controller.image.tag={{< nic-version >}} \
   --set controller.nginxplus=true \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
@@ -75,7 +75,7 @@ You can install the `edge` version by specifying the `--version` flag with the v
 helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
   --version 0.0.0-edge \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
-  --set controller.image.tag=5.2.1 \
+  --set controller.image.tag={{< nic-version >}} \
   --set controller.nginxplus=true \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
@@ -134,9 +134,9 @@ To install NGINX Ingress Controller using the F5 registry, run this command with
 
 ```
 helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
-  --version 2.3.1 \
+  --version {{< nic-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
-  --set controller.image.tag=5.2.1 \
+  --set controller.image.tag={{< nic-version >}} \
   --set controller.nginxplus=true \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
@@ -145,7 +145,7 @@ helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
 {{< details summary="Example output" >}}
 
 ```text
-Pulled: ghcr.io/nginx/charts/nginx-ingress:2.3.1
+Pulled: ghcr.io/nginx/charts/nginx-ingress:{{< nic-helm-version >}}
 Digest: sha256:bb452d593c31b6be39f459f9604882e170227429821bac01e7ddd7da16d91ba1
 NAME: h4-plus-registry
 LAST DEPLOYED: Fri Nov 28 14:47:15 2025
@@ -155,7 +155,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller 5.2.1 has been installed.
+NGINX Ingress Controller {{< nic-version >}} has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
@@ -175,7 +175,7 @@ helm pull oci://ghcr.io/nginx/charts/nginx-ingress --untar --version {{< nic-hel
 {{< details summary="Example output" >}}
 
 ```text
-Pulled: ghcr.io/nginx/charts/nginx-ingress:2.3.1
+Pulled: ghcr.io/nginx/charts/nginx-ingress:{{< nic-helm-version >}}
 Digest: sha256:bb452d593c31b6be39f459f9604882e170227429821bac01e7ddd7da16d91ba1
 ```
 
@@ -204,7 +204,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller 5.2.1 has been installed.
+NGINX Ingress Controller {{< nic-version >}} has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
