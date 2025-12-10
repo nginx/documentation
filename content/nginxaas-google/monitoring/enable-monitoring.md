@@ -65,7 +65,7 @@ The following JSON shows an example response body:
         "labels": {
           "nginxaas_deployment_location": "us-east1",
           "nginxaas_deployment_object_id": "depl_AZjtL2OUdCeh-DROeCLp1w",
-          "nginxaas_account_id": "account-id",
+          "nginxaas_organization_id": "organization-id",
           "service_name": "unknown_service:naasagent",
           "instrumentation_source": "naasagent",
           "nginxaas_deployment_name": "test-deployment",
@@ -110,4 +110,3 @@ To disable sending metrics to your Google Cloud project, update your NGINXaaS de
 1. Select the deployment you want to update and select **Edit**.
 1. Remove the project ID under **Metric Project ID**.
 1. Select **Update**.
-
