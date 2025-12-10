@@ -11,11 +11,11 @@ Learn how to configure session persistence using NGINX Gateway Fabric.
 
 ## Overview
 
-In this guide, you’ll learn how to configure session persistence for your application. Session persistence ensures that multiple requests from the same client are consistently routed to the same backend Pod. This is useful when your application maintains in-memory state (for example, shopping carts or user sessions). NGINX Gateway Fabric supports configuring session persistence via `UpstreamSettingsPolicy` resource or directly on `HTTPRoute` and `GRPCRoute` resources. For NGINX OSS users, using the `ip_hash` load-balancing method provides basic session affinity by routing requests from the same client IP to the same backend Pod. For NGINX Plus users, the `sticky cookie` directive can be used to provide true session persistence based on a generated session cookie.
+In this guide, you’ll learn how to configure session persistence for your application. Session persistence ensures that multiple requests from the same client are consistently routed to the same backend Pod. This is useful when your application maintains in-memory state (for example, shopping carts or user sessions). NGINX Gateway Fabric supports configuring session persistence via `UpstreamSettingsPolicy` resource or directly on `HTTPRoute` and `GRPCRoute` resources. For NGINX OSS users, using the `ip_hash` load-balancing method provides basic session affinity by routing requests from the same client IP to the same backend Pod. For NGINX Plus users, cookie-based session persistence can be configured using the `sessionPersistence` field in a Route.
 In this guide, you will deploy three applications:
 
 - An application configured with `ip_hash` load-balancing method.
-- An application configured with cookie–based session persistence.
+- An application configured with cookie–based session persistence (if you have access to NGINX Plus).
 - A regular application with default load-balancing.
 
 These applications will showcase the benefits of session persistence for stateful workloads.
@@ -152,7 +152,6 @@ kubectl get all -o wide -n default
 NAME                                 READY   STATUS    RESTARTS   AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
 pod/coffee-5b9c74f9d9-2zlqq          1/1     Running   0          3h19m   10.244.0.95   kind-control-plane   <none>           <none>
 pod/coffee-5b9c74f9d9-7gfwn          1/1     Running   0          3h19m   10.244.0.94   kind-control-plane   <none>           <none>
-pod/gateway-nginx-5c9f576669-tc258   1/1     Running   0          3h19m   10.244.0.99   kind-control-plane   <none>           <none>
 pod/latte-d5f64f67f-9t2j5            1/1     Running   0          3h19m   10.244.0.96   kind-control-plane   <none>           <none>
 pod/latte-d5f64f67f-drwc6            1/1     Running   0          3h19m   10.244.0.98   kind-control-plane   <none>           <none>
 pod/tea-859766c68c-cnb8n             1/1     Running   0          3h19m   10.244.0.93   kind-control-plane   <none>           <none>
@@ -160,7 +159,6 @@ pod/tea-859766c68c-kttkb             1/1     Running   0          3h19m   10.244
 
 NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE     SELECTOR
 service/coffee          ClusterIP   10.96.169.1    <none>        80/TCP    3h19m   app=coffee
-service/gateway-nginx   ClusterIP   10.96.15.149   <none>        80/TCP    3h19m   app.kubernetes.io/instance=nginx-gateway,app.kubernetes.io/managed-by=nginx-gateway-nginx,app.kubernetes.io/name=gateway-nginx,gateway.networking.k8s.io/gateway-name=gateway
 service/latte           ClusterIP   10.96.42.39    <none>        80/TCP    3h19m   app=latte
 service/tea             ClusterIP   10.96.81.103   <none>        80/TCP    3h19m   app=tea
 ```
@@ -183,7 +181,18 @@ spec:
 EOF
 ```
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Save the public IP address and port of the NGINX Service into shell variables:
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
+
+```bash
+kubectl get gateways.gateway.networking.k8s.io gateway
+```
+
+```text
+NAME      CLASS   ADDRESS        PROGRAMMED   AGE
+gateway   nginx   10.96.15.149   True         23h
+```
+
+Save the public IP address and port of the NGINX Service into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
@@ -202,7 +211,7 @@ NGINX_POD_NAME=<NGINX Pod>
 
 ### Session Persistence with NGINX OSS
 
-In this section, you’ll configure a basic `coffee` HTTPRoute that routes traffic to the `coffee` Service. You’ll then attach an `UpstreamSettingsPolicy` to change the load-balancing method for that upstream to showcase session affinity behavior. NGINX hashes the client IP to select an upstream server, so requests from the same IP are routed to the same upstream as long as it is available. Session affinity quality with `ip_hash` depends on NGINX seeing the real client IP. In environments with external load balancers or proxies, operators must ensure appropriate `real_ip_header/set_real_ip_from` configuration so that `$remote_addr` reflects the end-user address otherwise, stickiness will be determined by the address of the front-end proxy rather than the actual client. Refer to this [guide]({{< ref "/ngf/how-to/data-plane-configuration/#configure-proxy-protocol-and-rewriteclientip-settings" >}}) for more information on configuring these fields.
+In this section, you’ll configure a basic `coffee` HTTPRoute that routes traffic to the `coffee` Service. You’ll then attach an `UpstreamSettingsPolicy` to change the load-balancing method for that upstream to showcase session affinity behavior. NGINX hashes the client IP to select an upstream server, so requests from the same IP are routed to the same upstream as long as it is available. Session affinity quality with `ip_hash` depends on NGINX seeing the real client IP. In environments with external load balancers or proxies, operators must ensure appropriate `real_ip_header/set_real_ip_from` configuration so that `$remote_addr` reflects the end-user address otherwise, stickiness will be determined by the address of the front-end proxy rather than the actual client.
 
 To create an HTTPRoute for the `coffee` service, copy and paste the following into your terminal:
 
@@ -250,7 +259,7 @@ Status:
     Controller Name:         gateway.nginx.org/nginx-gateway-controller
 ```
 
-Now, let’s create an `UpstreamSettingsPolicy` targeting the `coffee` Service to change the load-balancing method for its upstreams:
+Now, let’s create an `UpstreamSettingsPolicy` targeting the `coffee` Service to change the load-balancing method for its upstream:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -293,7 +302,7 @@ Next, verify that the policy has been applied to the `coffee` upstream by inspec
 kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
 ```
 
-You should see the `ip_hash` directive on the `coffee` upstreams:
+You should see the `ip_hash` directive on the `coffee` upstream:
 
 ```text
 upstream default_coffee_80 {
