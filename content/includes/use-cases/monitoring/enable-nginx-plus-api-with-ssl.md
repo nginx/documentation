@@ -44,8 +44,8 @@ server {
 Make sure that the `server` and  `location` blocks are in the same configuration file, and not split across multiple files using `include` directives.
 {{</call-out>}}
 
+{{<call-out type="note" title="Configure NGINX Agent">}}
 To enable NGINX Agent to call the NGINX Plus API, follow the steps below:
-
 - Add the following configuration to `/etc/nginx-agent/nginx-agent.conf`:
 ```
 data_plane_config:
@@ -54,9 +54,19 @@ data_plane_config:
       ca: "/etc/nginx/certs/nginx-selfsigned.crt"
 ```
 - Restart NGINX Agent for the configuration changes to take affect
-`sudo systemctl restart nginx-agent`
+```
+sudo systemctl restart nginx-agent
+```
 
-- Run the following command `sudo journalctl -u nginx-agent | grep "NGINX Plus API"` and ensure that the following log message is seen `NGINX Plus API found, NGINX Plus receiver enabled to scrape metrics`
+- Run the following command 
+```
+sudo journalctl -u nginx-agent | grep "NGINX Plus API"
+``` 
+- Ensure that the following log message is seen 
+```
+NGINX Plus API found, NGINX Plus receiver enabled to scrape metrics
+```
+{{</call-out>}}
 
 {{<call-out type="note" title="Note">}}
 Here is an example of how to generate self-signed certificates
