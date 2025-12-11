@@ -4,8 +4,8 @@ weight: 350
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs.
@@ -47,7 +47,7 @@ Refer to the [Google's Logs Explorer](https://cloud.google.com/logging/docs/view
 NGINX access and error logs sent to Cloud Logging will have the log name `nginx-logs` which can be used to filter NGINX logs from the rest of your project logs. You can also filter based on log labels, for example,
 
 * `filename`
-* `nginxaas_account_id`
+* `nginxaas_organization_id`
 * `nginxaas_deployment_location`
 * `nginxaas_deployment_name`
 * `nginxaas_deployment_object_id`
@@ -61,4 +61,3 @@ To disable sending logs to your Google Cloud project, update your NGINXaaS deplo
 1. Select the deployment you want to update and select **Edit**.
 1. Remove the project ID under **Log Project ID**.
 1. Select **Update**.
-
