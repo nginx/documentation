@@ -1,10 +1,10 @@
 ---
 nd-docs: DOCS-592
-doctypes:
-- ''
 title: Advanced configuration with Snippets
 toc: true
 weight: 400
+nd-content-type: how-to
+nd-product: INGRESS
 ---
 
 Snippets allow you to insert raw NGINX config into different contexts of the NGINX configurations that F5 NGINX Ingress Controller generates.
