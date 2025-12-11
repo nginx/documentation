@@ -20,6 +20,7 @@ To complete this guide, you will need the following pre-requisites:
 - An active NGINX Plus subscription (Purchased or trial)
 - [A supported Kubernetes version]({{< ref "/ngf/overview/technical-specifications.md" >}})
 - A functional Kubernetes cluster
+- [cert-manager](https://cert-manager.io/docs/installation/)
 
 ## Download your JSON web token
 
@@ -50,7 +51,7 @@ kubectl create  -n nginx-gateway secret generic nplus-license --from-file licens
 Then create another Kubernetes secret to allow interactions with the F5 registry:
 
 ```shell
-kubectl create -n nginx-gateway secret docker-registry regcred \
+kubectl create -n nginx-gateway secret docker-registry nginx-plus-registry-secret \
   --docker-server=private-registry.nginx.com \
   --docker-username=$(cat license.jwt) \
   --docker-password=none
