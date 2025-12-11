@@ -28,7 +28,7 @@ See how to configure NGINX Plus to send usage reports to NGINX Instance Manager.
 See also:
 
 - [Prepare your environment for reporting]({{< ref "solutions/about-subscription-licenses/getting-started.md#set-up-environment" >}})  
-- [Submit usage reports to F5 from NGINX Instance Manager]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}})
+- [Submit usage reports to F5 from NGINX Instance Manager]({{< ref "/nim/license/report-usage-offline.md" >}})
 
 ## Install or upgrade to NGINX Plus R33 or later
 

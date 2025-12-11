@@ -1,13 +1,13 @@
 ---
 nd-docs: DOCS-789
-title: Add a license (connected)
+title: Add license (online)
 toc: true
-weight: 10
-type:
+weight: 100
+nd-content-type:
 - how-to
 ---
 
-{{< call-out "note" >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out "note" >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/license/add-license-offline.md" >}}).{{< /call-out >}}
 
 ## Overview
 

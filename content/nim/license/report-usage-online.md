@@ -1,19 +1,12 @@
 ---
-title: Report usage data to F5 (connected)
+title: Report usage data to F5 (online)
 description: ''
-weight: 20
+weight: 300
 toc: true
 nd-docs: DOCS-1650
-personas:
-- devops
-- netops
-- secops
-- support
-type:
+nd-content-type:
 - how-to
 ---
-
-{{< call-out "note" >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 ## Overview
 
@@ -48,7 +41,7 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 ### Automatic reporting
 
-When you [add your JSON Web Token (JWT)]({{< ref "nim/admin-guide/add-license.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default.
+When you [add your JSON Web Token (JWT)]({{< ref "nim/license/add-license.md" >}}) to NGINX Instance Manager, usage reporting is enabled by default.
 
 NGINX Instance Manager will automatically report subscription entitlement and usage data to F5 if internet access is available.
 

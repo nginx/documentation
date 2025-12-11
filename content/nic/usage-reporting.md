@@ -49,12 +49,12 @@ In addition to the software requirements, you will need:
 
 Usage Reporting needs a user account to send usage data to NGINX Instance Manager: these are the steps involved.
 
-1. Create a role following the steps in [Create a Role]({{< ref "/nim/admin-guide/rbac/create-roles.md#create-roles" >}}) section of the NGINX Instance Manager documentation. Select these permissions in step 6 for the role:
+1. Create a role following the steps in [Create a Role]({{< ref "/nim/rbac/create-roles.md#create-roles" >}}) section of the NGINX Instance Manager documentation. Select these permissions in step 6 for the role:
    - Module: Instance Manager
    - Feature: NGINX Plus Usage
    - Access: CRUD
 
-1. Create a user account following the steps in [Add Users]({{< ref "/nim/admin-guide/rbac/assign-roles.md#assign-roles-to-users-basic-authentication" >}}) section of the NGINX Instance Manager documentation. In step 5, assign the user to the role created above. Note that currently only "basic auth" authentication is supported for usage reporting purposes.
+1. Create a user account following the steps in [Add Users]({{< ref "/nim/rbac/assign-roles.md#assign-roles-to-users-basic-authentication" >}}) section of the NGINX Instance Manager documentation. In step 5, assign the user to the role created above. Note that currently only "basic auth" authentication is supported for usage reporting purposes.
 
 ---
 

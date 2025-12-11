@@ -1,5 +1,5 @@
 ---
 title: OIDC
-weight: 5000
+weight: 20
 url: /nginx-instance-manager/admin-guide/authentication/oidc/
 ---

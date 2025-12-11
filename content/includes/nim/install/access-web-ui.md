@@ -9,4 +9,4 @@ To access the NGINX Instance Manager web interface, open a browser and go to `ht
 
 The default administrator username is `admin`. The password was generated and displayed in the terminal during installation.
 
-To change the password, see [Set or change user passwords]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#set-basic-passwords-script" >}}) in the Basic Authentication topic.
+To change the password, see [Set or change user passwords]({{< ref "/nim/authentication/set-up-basic-authentication.md#set-basic-passwords-script" >}}) in the Basic Authentication topic.

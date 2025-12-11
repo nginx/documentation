@@ -20,7 +20,7 @@ The following steps describe how to use the NGINX Instance Manager API to create
 ## Before you begin
 
 - A working [NGINX Instance Manager]({{< ref "nim/install/" >}}) instance.
-- An [NGINX Instance Manager user]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) for API requests.
+- An [NGINX Instance Manager user]({{< ref "/nim/rbac/overview-rbac.md" >}}) for API requests.
 - A NGINX Ingress Controller [deployment with F5 WAF for NGINX]({{< ref "/nic/integrations/app-protect-waf/installation.md" >}}).
 
 ## Create a new security policy

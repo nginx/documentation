@@ -34,7 +34,7 @@ The following capabilities are available only through the NGINX Instance Manager
 Before you start, complete these prerequisites:
 
 - [Set up F5 WAF for NGINX configuration management]({{< ref "/nim/waf-integration/configuration/_index.md" >}}).  
-- Make sure your user account has the [required permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the REST API:
+- Make sure your user account has the [required permissions]({{< ref "/nim/rbac/overview-rbac.md" >}}) to access the REST API:
   - **Module:** Instance Manager  
   - **Feature:** Instance Management → `READ`  
   - **Feature:** Security Policies → `READ`, `CREATE`, `UPDATE`, `DELETE`

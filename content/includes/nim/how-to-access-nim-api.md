@@ -1,8 +1,8 @@
 ---
 nd-docs: DOCS-1050
 nd-files:
-- content/nim/disconnected/add-license-disconnected-deployment.md
-- content/nim/disconnected/report-usage-disconnected-deployment.md
+- content/nim/license/add-license-offline.md
+- content/nim/license/report-usage-offline.md
 - content/nim/nginx-instances/manage-certificates.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/edit-waf-configuration.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/onboard-custom-security-policies.md

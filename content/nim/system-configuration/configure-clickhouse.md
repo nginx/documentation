@@ -1,7 +1,8 @@
 ---
 description: ''
 nd-docs: DOCS-998
-title: Configure ClickHouse
+title: Configure ClickHouse and metrics collection
+linkTitle: ClickHouse and metrics collection
 toc: true
 weight: 100
 type:
@@ -9,8 +10,6 @@ type:
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
-
-## Overview
 
 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 If your setup differs from the default configuration — for example, if you use a custom address, enable TLS, set a password, or turn off metrics — you need to update the `/etc/nms/nms.conf` file.
@@ -34,7 +33,6 @@ To change a ClickHouse setting:
 Unless otherwise specified in the `/etc/nms/nms.conf` file, NGINX Instance Manager uses the following default values for ClickHouse:
 
 {{< include "nim/clickhouse/clickhouse-defaults.md" >}}
-
 
 ## Disable metrics collection
 

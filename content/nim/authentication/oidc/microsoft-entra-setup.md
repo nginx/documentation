@@ -1,5 +1,6 @@
 ---
 title: 'Microsoft Entra: Set up OIDC authentication'
+linkTitle: Microsoft Entra
 toc: true
 weight: 100
 nd-content-type: how-to

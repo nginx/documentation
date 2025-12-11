@@ -1,6 +1,6 @@
 ---
 nd-docs: DOCS-918
-title: Provision users and groups using SCIM
+title: Provision with SCIM
 toc: true
 weight: 500
 type:
@@ -134,7 +134,7 @@ In this request, `User` is assigned as a member.
 }
 ```
 
-{{< call-out "important" >}}After creating a group with SCIM, you need to [assign roles to the group]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}}) in NGINX Instance Manager so the group has permissions associated with it.{{< /call-out >}}
+{{< call-out "important" >}}After creating a group with SCIM, you need to [assign roles to the group]({{< ref "/nim/rbac/assign-roles.md" >}}) in NGINX Instance Manager so the group has permissions associated with it.{{< /call-out >}}
 
 ## Update users created with SCIM
 

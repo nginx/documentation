@@ -99,5 +99,5 @@ For custom settings, adjust parameters such as `$oidc_authz_path_params_enable`,
 
 For specific IdP setup instructions, refer to the following:
 
-- [Set up Microsoft Entra as an OIDC identity provider]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}})
-- [Set up Keycloak as an OIDC identity provider]({{< ref "/nim/admin-guide/authentication/oidc/keycloak-setup.md" >}})
+- [Set up Microsoft Entra as an OIDC identity provider]({{< ref "/nim/authentication/oidc/microsoft-entra-setup.md" >}})
+- [Set up Keycloak as an OIDC identity provider]({{< ref "/nim/authentication/oidc/keycloak-setup.md" >}})

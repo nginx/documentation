@@ -17,7 +17,7 @@ You’ll need a user with access to these RBAC features to use the dashboard:
 - Certificates
 - Analytics
 
-To learn more about Role-based Access Control and the available features, see the [Getting Started with RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) documentation.
+To learn more about Role-based Access Control and the available features, see the [Getting Started with RBAC]({{< ref "/nim/rbac/overview-rbac.md" >}}) documentation.
 
 ## Prerequisites
 

@@ -350,9 +350,9 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for disconnected environments**<a name="2-18-0-whats-new-Entitlement-and-visibility-for-NGINX-Plus-R33-–-Telemetry-reporting-for-disconnected-environments-45106"></a>
 
-   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/admin-guide/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
+   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/license/report-usage-online.md" >}}) as part of the new NGINX Plus R33 changes.
   
-  For customers who have NGINX Instance Manager deployed in [disconnected environments]({{< ref "nim/disconnected" >}}), this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
+  For customers who have NGINX Instance Manager deployed in disconnected environments, this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
   
   - **Export the usage report**: Manually export the usage report from NGINX Instance Manager.
   - **Send the report to F5**: Submit the report to F5 for verification from a location with internet access.
@@ -790,7 +790,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Easily manage access to specific objects with Resource Groups**<a name="2-13-0-whats-new-Easily-manage-access-to-specific-objects-with-Resource-Groups-34692"></a>
 
-   With NGINX Instance Manager, you can now combine Instances, Instance Groups, and Certificates into a Resource Group. This grouping can be used when defining roles to grant access to those specific objects. When objects are added to or removed from the Resource Group, the changes are automatically reflected in any roles that use the Resource Group. For more details, refer to [Working with Resource Groups]({{< ref "/nim/admin-guide/rbac/manage-resource-groups.md" >}}).
+   With NGINX Instance Manager, you can now combine Instances, Instance Groups, and Certificates into a Resource Group. This grouping can be used when defining roles to grant access to those specific objects. When objects are added to or removed from the Resource Group, the changes are automatically reflected in any roles that use the Resource Group. For more details, refer to [Working with Resource Groups]({{< ref "/nim/rbac/manage-resource-groups.md" >}}).
 
 - {{% icon-feature %}} **Get version controlled NGINX configurations with an external commit hash**<a name="2-13-0-whats-new-Get-version-controlled-NGINX-configurations-with-an-external-commit-hash-38455"></a>
 
@@ -808,15 +808,15 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **RBAC for security policies**<a name="2-13-0-whats-new-RBAC-for-security-policies-43393"></a>
 
-   You can now use [Role-Based Access Control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to allow or restrict the level of access to security policies according to your security governance model.
+   You can now use [Role-Based Access Control (RBAC)]({{< ref "/nim/rbac/overview-rbac.md" >}}) to allow or restrict the level of access to security policies according to your security governance model.
 
 - {{% icon-feature %}} **RBAC for log profiles**<a name="2-13-0-whats-new-RBAC-for-log-profiles-43395"></a>
 
-   You can now use [Role-Based Access Control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to allow or restrict access to log profiles according to your security governance model.
+   You can now use [Role-Based Access Control (RBAC)]({{< ref "/nim/rbac/overview-rbac.md" >}}) to allow or restrict access to log profiles according to your security governance model.
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager-43614"></a>
 
-   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}).
+   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/license/report-usage-online.md" >}}).
 
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing-44118"></a>
 
@@ -852,7 +852,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New support for license tokens for automatic entitlement updates, renewals, and Flexible Consumption Reporting**<a name="2-12-0-whats-new-New-support-for-license-tokens-for-automatic-entitlement-updates,-renewals,-and-Flexible-Consumption-Reporting-41960"></a>
 
-   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}) topic.
+   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/license/add-license.md" >}}) topic.
 
 ### Resolved issues {#2-12-0-resolved-issues}
 
@@ -1445,7 +1445,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time-34862"></a>
 
-   When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+   When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/license/report-usage-online.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager-34880"></a>
 
@@ -1485,7 +1485,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed-34879"></a>
 
-   Now, when you [view your NGINX Plus inventory]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
+   Now, when you [view your NGINX Plus inventory]({{< ref "/nim/license/report-usage-online.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
 
 ### Changes in default behavior{#2-4-0-changes-in-behavior}
 
@@ -1572,7 +1572,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances-33744"></a>
 
-   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/license/report-usage-online.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
 
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API-34106"></a>
 
@@ -1580,7 +1580,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Support for provisioning users and user groups with SCIM**<a name="2-3-0-whats-new-Support-for-provisioning-users-and-user-groups-with-SCIM-34398"></a>
 
-   Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< ref "/nim/admin-guide/authentication/oidc/scim-provisioning.md" >}}) for your Identity Provider to NGINX Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
+   Now, you can [use SCIM to provision, update, or deprovision users and user groups]({{< ref "/nim/authentication/oidc/scim-provisioning.md" >}}) for your Identity Provider to NGINX Instance Manager. SCIM, short for "[System for Cross-domain Identity Management](http://www.simplecloud.info)," is an open API for managing identities.
 
 - {{% icon-feature %}} **Adds support for Ubuntu 22.04**<a name="2-3-0-whats-new-Adds-support-for-Ubuntu-22-04-34714"></a>
 
@@ -1632,7 +1632,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Role-based access control added to Events and Metrics pages**<a name="2-2-0-whats-new-Role-based-access-control-added-to-Events-and-Metrics-pages-33362"></a>
 
-   A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+   A warning message is shown when users try to view the Events and Metrics pages in the web interface if they don't have permission to access the Analytics feature. For instructions on assigning access to features using role-based access control (RBAC), see [Set Up RBAC]({{< ref "/nim/rbac/overview-rbac.md" >}}).
 
 - {{% icon-feature %}} **Modules field added to Metrics and Dimensions catalogs**<a name="2-2-0-whats-new-Modules-field-added-to-Metrics-and-Dimensions-catalogs-33935"></a>
 
@@ -1693,7 +1693,7 @@ This release includes the following updates:
 
    RBAC has been updated and improved. Add users to roles -- or add users to user groups if you're using an external identity provider -- to limit access to Instance Manager features.
   
-  For more information, see the tutorial [Set Up RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+  For more information, see the tutorial [Set Up RBAC]({{< ref "/nim/rbac/overview-rbac.md" >}}).
 
 - {{% icon-feature %}} **Improved certificate handling**<a name="2-1-0-whats-new-Improved-certificate-handling-32457"></a>
 
@@ -1805,7 +1805,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Improved user access control**<a name="2-0-0-whats-new-Improved-user-access-control-44369"></a>
 
-   Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md#rbac" >}}) guide for more details.
+   Instance Manager 2.x. allows you to create user access controls with tags. Administrators can grant users read or write access to perform instance management tasks. And admins can grant or restrict access to the Settings options, such as managing licenses and creating users and roles. See the [Set up Authentication]({{< ref "/nim/authentication/set-up-basic-authentication.md#rbac" >}}) guide for more details.
 
 ### Known issues {#2-0-0-known-issues}
 

@@ -1,8 +1,8 @@
 ---
 nd-docs: DOCS-1662
 nd-files:
-- content/nim/disconnected/add-license-disconnected-deployment.md
-- content/nim/disconnected/report-usage-disconnected-deployment.md
+- content/nim/license/add-license-offline.md
+- content/nim/license/report-usage-offline.md
 ---
 
 {{< details summary="Full license_usage_offline.sh script" >}}

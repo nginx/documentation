@@ -19,8 +19,8 @@ With role-based access control (RBAC), administrators can determine who can crea
 
 ## Before You Begin
 
-- Ensure the user is added as a [basic authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}) user in F5 NGINX Instance Manager.
-- Familiarize yourself with the concepts of [Roles]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}}) and [Permissions]({{< ref "/nim/admin-guide/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
+- Ensure the user is added as a [basic authentication]({{< ref "/nim/authentication/set-up-basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< ref "/nim/authentication/oidc/getting-started.md" >}}) user in F5 NGINX Instance Manager.
+- Familiarize yourself with the concepts of [Roles]({{< ref "/nim/rbac/assign-roles.md" >}}) and [Permissions]({{< ref "/nim/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
 
 ## Assign Roles for Templates and Template Submissions
 
@@ -33,7 +33,7 @@ To complete these steps, you need administrator access.
 3. Select **Users** from the left menu to manage individual users or **User Groups** for managing access at a group level.
 
 4. Define access to templates and template submissions:
-   - To ensure proper management of NGINX configurations, [create or edit roles]({{< ref "/nim/admin-guide/rbac/create-roles.md" >}}) to specify access to templates and template submissions. This may involve defining CRUD permissions specific to managing NGINX configurations.
+   - To ensure proper management of NGINX configurations, [create or edit roles]({{< ref "/nim/rbac/create-roles.md" >}}) to specify access to templates and template submissions. This may involve defining CRUD permissions specific to managing NGINX configurations.
 
    - **Restricting access to templates** is essential for controlling who can create and modify templates. This responsibility generally falls to administrators with a comprehensive understanding of NGINX configurations.
 

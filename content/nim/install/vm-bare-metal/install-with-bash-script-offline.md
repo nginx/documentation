@@ -210,3 +210,4 @@ To upgrade NGINX Instance Manager to the latest version:
 ## Next steps
 
 - [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install-options.md" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection. You can also download and apply the latest CVE file to keep your offline system up to date.
+- [Add a license and set up usage reporting]({{< ref "/nim/license/" >}})

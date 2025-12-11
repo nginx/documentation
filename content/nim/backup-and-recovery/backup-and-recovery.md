@@ -11,7 +11,7 @@ NGINX Instance Manager includes several scripts for backing up and restoring con
 
 The backup and restore scripts are provided for reference and may need to be adjusted to suit your specific deployment.
 
-{{< call-out "important" "NGINX Instance Manager 2.14.1 and earlier:" >}}If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to [install SQLite]({{< ref "/nim/admin-guide/maintenance/sqlite-installation.md" >}}) to run the backup and recovery scripts.{{</call-out>}}
+{{< call-out "important" "NGINX Instance Manager 2.14.1 and earlier:" >}}If you're using **NGINX Instance Manager version 2.14.1 or earlier**, you'll need to [install SQLite]({{< ref "/nim/backup-and-recovery/sqlite-installation.md" >}}) to run the backup and recovery scripts.{{</call-out>}}
 
 {{<call-out "note" "About nms in commands">}} Some commands and directories still use `nms` in their paths or names because they were established when NGINX Instance Manager was part of the NGINX Management Suite. These names remain unchanged in this version for consistency with the existing file structure.{{</call-out>}}
 
@@ -177,7 +177,7 @@ To restore NGINX Instance Manager to the same Kubernetes cluster:
 
     If the Kubernetes configuration is different, update the path accordingly.
 
-    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
+    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/backup-and-recovery/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will use the provided backup archive.
 
@@ -209,7 +209,7 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
 
     If the Kubernetes configuration differs, update the path accordingly.
 
-    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/maintenance/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
+    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/backup-and-recovery/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will restore the databases and core secrets.
 

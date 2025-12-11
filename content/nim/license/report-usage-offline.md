@@ -1,14 +1,9 @@
 ---
-title: Report usage data to F5 (disconnected)
-weight: 300
+title: Report usage data to F5 (offline)
+weight: 400
 toc: true
 nd-docs: DOCS-1658
-personas:
-- devops
-- netops
-- secops
-- support
-type:
+nd-content-type:
 - how-to
 ---
 

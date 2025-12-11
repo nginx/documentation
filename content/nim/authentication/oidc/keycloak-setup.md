@@ -1,6 +1,7 @@
 ---
 nd-docs: DOCS-1268
 title: 'Keycloak: Set up OIDC authentication'
+linkTitle: Keycloak
 toc: true
 weight: 400
 type:

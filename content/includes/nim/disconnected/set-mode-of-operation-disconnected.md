@@ -1,7 +1,7 @@
 ---
 nd-docs: DOCS-1663
 nd-files:
-- content/nim/disconnected/add-license-disconnected-deployment.md
+- content/nim/license/add-license-offline.md
 - content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/disconnected/offline-install-guide.md
 ---

@@ -51,4 +51,4 @@ To modify an existing role in NGINX Instance Manager, follow these steps:
 
 Once you’ve created roles, assign them to users or user groups to ensure that permissions align with responsibilities. This helps maintain clear and organized access control.
 
-- [Assign roles to users or user groups]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}})
+- [Assign roles to users or user groups]({{< ref "/nim/rbac/assign-roles.md" >}})

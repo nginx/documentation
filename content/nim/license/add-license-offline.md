@@ -1,5 +1,5 @@
 ---
-title: Add a license (disconnected)
+title: Add license (offline)
 weight: 200
 toc: true
 nd-content-type: how-to

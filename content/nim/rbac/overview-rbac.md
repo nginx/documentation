@@ -1,5 +1,6 @@
 ---
-title: "Overview: RBAC"
+title: "Overview of RBAC"
+linkTitle: Overview
 weight: 1
 toc: true
 type: concept
@@ -24,7 +25,7 @@ The following are essential concepts related to RBAC:
 
 ## Features {#features}
 
-NGINX Instance Manager provides a range of capabilities called features, which system administrators can manage using role-based access control (RBAC). The availability of some features depends on your license. For more information on licensing, see the [Add a license]({{< ref "/nim/admin-guide/add-license.md" >}}) topic.
+NGINX Instance Manager provides a range of capabilities called features, which system administrators can manage using role-based access control (RBAC). The availability of some features depends on your license. For more information on licensing, see the [Add a license]({{< ref "/nim/license/add-license.md" >}}) topic.
 
 ### NGINX Instance Manager features
 

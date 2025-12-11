@@ -1,6 +1,6 @@
 ---
 nd-docs: DOCS-1271
-title: Manage resource groups
+title: Manage resources with resource groups
 toc: true
 weight: 300
 type:

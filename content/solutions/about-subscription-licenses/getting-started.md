@@ -13,7 +13,7 @@ Starting with NGINX Plus R33, NGINX Plus instances require a valid JSON Web Toke
 The license:
 
 - Is tied to your subscription (not to individual instances).  
-- Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).  
+- Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/license/report-usage-offline.md" >}}).  
 
 {{< call-out "note" "If you have multiple subscriptions" >}}
 
@@ -134,7 +134,7 @@ To configure NGINX Plus to send usage reports to NGINX Instance Manager:
 
 {{< include "/licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
-{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/license/report-usage-offline.md" >}}).{{< /call-out >}}
 
 {{< /details >}}
 

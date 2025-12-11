@@ -245,7 +245,7 @@ To find the right NGINX Instance Manager chart version, see the following table:
 
 A valid license is required to use all NGINX Instance Manager features.
 
-For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}).
+For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/license/add-license.md" >}}).
 
 ---
 

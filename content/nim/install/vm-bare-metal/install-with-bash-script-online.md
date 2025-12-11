@@ -187,3 +187,4 @@ Follow these steps to upgrade NGINX Instance Manager and, if applicable, ClickHo
 ## Next steps
 
 - [Explore post-installation options]({{< ref "/nim/install/vm-bare-metal/post-install-options.md" >}}) — Learn how to configure optional components such as ClickHouse, SELinux, Vault, and metrics collection.
+- [Add a license and set up usage reporting]({{< ref "/nim/license/" >}})
