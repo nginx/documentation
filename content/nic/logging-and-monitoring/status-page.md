@@ -27,7 +27,7 @@ To access the status:
 
 1. Use the `kubectl port-forward` command to forward connections to port 8080 on your local machine to port 8080 of an NGINX Ingress Controller pod (replace `<nginx-ingress-pod>` with the actual name of a pod):.
 
-    ```
+    ```shell
     kubectl port-forward <nginx-ingress-pod> 8080:8080 --namespace=nginx-ingress
     ```
 
@@ -49,7 +49,7 @@ To access the dashboard:
 
 1. Use the `kubectl port-forward` command to forward connections to port 8080 on your local machine to port 8080 of an NGINX Plus Ingress Controller pod (replace `<nginx-plus-ingress-pod>` with the actual name of a pod):
 
-    ```
+    ```shell
     kubectl port-forward <nginx-plus-ingress-pod> 8080:8080 --namespace=nginx-ingress
     ```
 

@@ -4,6 +4,8 @@ doctypes:
 - concept
 title: Extensibility with NGINX Plus
 weight: 300
+nd-product: INGRESS
+nd-content-type: reference
 ---
 
 This document explains how F5 NGINX Plus can extend the functionality of F5 NGINX Ingress Controller.

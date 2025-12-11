@@ -1,18 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "Upgrade NGINX Ingress Controller"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 900
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: INGRESS 
+nd-product: INGRESS
 ---
 
-This document describes how to upgrade F5 NGINX Ingress Controller when a new version releases. 
+This document describes how to upgrade F5 NGINX Ingress Controller when a new version releases.
 
 It covers the necessary steps for minor versions as well as major versions (Such as 3.x to 4.x).
 
