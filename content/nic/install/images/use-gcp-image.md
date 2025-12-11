@@ -6,6 +6,8 @@ title: Use the GCP Marketplace NGINX Ingress Controller image
 toc: true
 weight: 300
 draft: true
+nd-content-type: how-to
+nd-product: INGRESS
 ---
 
 Follow these steps to deploy F5 NGINX Ingress Controller through the GCP Marketplace.
