@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-592
-doctypes:
-- ''
 title: Advanced configuration with Snippets
 toc: true
 weight: 400

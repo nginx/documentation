@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-1859
-doctypes:
-- ''
 title: Management ConfigMap resource
 toc: true
 weight: 300

@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-1461
-doctypes:
-- ''
 title: Troubleshooting VirtualServer resources
 toc: true
 weight: 600

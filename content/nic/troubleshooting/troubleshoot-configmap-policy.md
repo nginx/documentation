@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-1457
-doctypes:
-- ''
 title: Troubleshooting Policy resources
 toc: true
 weight: 300

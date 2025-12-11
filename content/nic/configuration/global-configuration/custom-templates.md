@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-587
-doctypes:
-- ''
 title: Custom templates
 toc: true
 weight: 500

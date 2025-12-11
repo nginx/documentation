@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-607
-doctypes:
-- ''
 title: Use the AWS Marketplace NGINX Ingress Controller image
 toc: true
 weight: 200

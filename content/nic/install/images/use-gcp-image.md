@@ -1,7 +1,5 @@
 ---
 nd-docs: DOCS-1455
-doctypes:
-- ''
 title: Use the GCP Marketplace NGINX Ingress Controller image
 toc: true
 weight: 300
