@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/prerequisites/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 Before you can deploy F5 NGINXaaS for Google Cloud (NGINXaaS), you need to complete some prerequisites.

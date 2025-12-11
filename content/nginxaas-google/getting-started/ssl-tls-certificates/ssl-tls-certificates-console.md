@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 You can manage SSL/TSL certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using the NGINXaaS console.

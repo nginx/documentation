@@ -4,7 +4,7 @@ weight: 50
 toc: true
 url: /nginxaas/google/getting-started/nginx-configuration/overview/
 nd-content-type: reference
-nd-product: N4GC
+nd-product: NGOOGL
 ---
 
 This document provides details about using NGINX configuration files with your
