@@ -176,7 +176,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `name`: Not supported.
     - `timeouts`: Not supported.
     - `retry`: Not supported.
-    - `sessionPersistence`: Not supported.
+    - `sessionPersistence`: Supported (NGINX Plus).
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -226,7 +226,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
-    - `sessionPersistence`: Not supported.
+    - `sessionPersistence`: Supported (NGINX Plus).
 - `status`
   - `parents`
     - `parentRef`: Supported.
