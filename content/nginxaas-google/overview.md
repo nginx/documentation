@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/overview/
-type:
-- concept
+nd-content-type: concept
+nd-product: NGOOGL
 ---
 
 ## What Is F5 NGINXaaS for Google Cloud?

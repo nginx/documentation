@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/create-deployment/deploy-console/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 ## Overview
