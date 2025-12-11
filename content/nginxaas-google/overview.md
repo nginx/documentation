@@ -49,14 +49,7 @@ We use Google [Private Service Connect]((https://cloud.google.com/vpc/docs/priva
 
 ## Supported regions
 
-NGINXaaS for Google Cloud is supported in the following regions per geography:
-
-   {{< table "table" >}}
-   |NGINXaaS Geography | Google Cloud Regions |
-   |-----------|---------|
-   | US  | us-west1, us-east1, us-central1 |
-   | EU    | europe-west2, europe-west1 |
-   {{< /table >}}
+{{< include "/nginxaas-google/supported-regions.md" >}}
 
 ## Limitations
 
