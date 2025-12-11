@@ -83,7 +83,7 @@ Replace the contents of `/etc/nginx-agent/nginx-agent.conf` with the contents of
 ### Recommended Approach
 
 Start by reviewing the configuration in the yaml file, this example shows a subset of the v2 env vars. 
-To the complete v2 and v3 list use the following links:
+To see the complete v2 and v3 lists use the following links:
 
 - [Full list of v2 environment variables]({{< ref "/agent/configuration/configuration-overview" >}})
 - [Full list of v3 environment variables]({{< ref "/nginx-one-console/agent/configure-instances/configuration-overview/" >}})
