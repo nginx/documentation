@@ -11,7 +11,7 @@ The following is a summary of changes and improvements that went into NGINX Agen
 - Improved reliability when publishing NGINX configurations to NGINX Data planes.
 - Revamped logging framework for easier troubleshooting and diagnostics. 
 - Improved NGINX Data plane health monitoring.
-- Agent Configuration file has been simplified. 
+- Simplified Agent Configuration file. 
 - Built-in OpenTelemetry (OTel) support for standardized observability and monitoring. 
 [Learn more about exporting metrics to NGINX One Console]({{< ref "/nginx-one-console/agent/configure-otel-metrics/" >}})
 - Explicit forward proxy support.
@@ -126,7 +126,7 @@ Taking an example docker-compose file running a NGINX Agent v2 and update to v3.
       NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY: false 
 ```
 
-1. Testing
-- Verify the container is running 
+4. Testing
+- Verify the container is running
 - Check agent logs to confirm the upgrade: `"Starting NGINX Agent" version=v3`
-- Verify the container is showing on NGINX Console view
+- Verify NGINX instance is displayed as online NGINX Console instances view
