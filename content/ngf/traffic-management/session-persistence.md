@@ -183,7 +183,7 @@ EOF
 
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
-```bash
+```shell
 kubectl get gateways.gateway.networking.k8s.io gateway
 ```
 
@@ -314,7 +314,7 @@ upstream default_coffee_80 {
 
 In this example, the `coffee` Service currently has two backend Pods with IPs `10.244.0.95` and `10.244.0.94`. We’ll send five requests to the `/coffee` endpoint and observe that the responses consistently come from the same backend Pod, demonstrating session affinity.
 
-```bash
+```shell
 for i in $(seq 5); do
   echo "Request #$i"
   curl -s -H "Host: cafe.example.com" \
@@ -421,7 +421,7 @@ In this example, the `tea` `Service` has two backend Pods with IPs `10.244.0.93`
 
 First, send a request to `/tea` and store the session cookie:
 
-```bash
+```shell
 curl -v -c /tmp/tea-cookies.txt \
   -H "Host: cafe.example.com" \
   http://localhost:8080/tea
@@ -436,7 +436,7 @@ You’ll see a cookie being set, for example:
 
 Next, send five requests using the stored cookie:
 
-```bash
+```shell
 for i in $(seq 5); do
   echo "Request #$i"
   curl -s -b /tmp/tea-cookies.txt \
@@ -516,7 +516,7 @@ upstream default_latte_80 {
 
 In this example, the `latte` Service currently has two backend Pods with IPs `10.244.0.96` and `10.244.0.98`. We’ll send five requests to the `/latte` endpoint and observe which backend Pod serves each response to understand how a regular backend behaves without any session affinity or persistence configured.
 
-```bash
+```shell
 for i in $(seq 5); do
   echo "Request #$i"
   curl -s -H "Host: cafe.example.com" \
