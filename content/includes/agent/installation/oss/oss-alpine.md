@@ -35,7 +35,7 @@ authenticity. Fetch the key:
 
    The output should contain the following modulus:
 
-   ```
+   ```shell
    Public-Key: (2048 bit)
    Modulus:
       00:fe:14:f6:0a:1a:b8:86:19:fe:cd:ab:02:9f:58:
@@ -70,3 +70,9 @@ authenticity. Fetch the key:
    ```shell
    sudo apk add nginx-agent
    ```
+
+1. Verify the installation:
+
+    ```shell
+    sudo nginx-agent -v
+    ```
