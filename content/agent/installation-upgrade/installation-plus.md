@@ -90,7 +90,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
 
 1. To set up the dnf repository for Amazon Linux 2023, create the file named `/etc/yum.repos.d/nginx-agent.repo` with the following contents:
 
-    ```
+    ```ini
     [nginx-agent]
     name=nginx-agent repo
     baseurl=https://packages.nginx.org/nginx-agent/amzn/2023/$basearch/
@@ -150,7 +150,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
 
 1. To setup the pkg repository create the file named `/etc/pkg/nginx-agent.conf` with the following content:
 
-    ```
+    ```ini
     nginx-agent: {
     URL: pkg+https://pkgs.nginx.com/nginx-agent/freebsd/${ABI}/latest
     ENABLED: yes
@@ -160,7 +160,7 @@ Before you install NGINX Agent for the first time on your system, you need to se
 
 1. Add the following lines to the `/usr/local/etc/pkg.conf` file:
 
-    ```
+    ```ini
     PKG_ENV: { SSL_NO_VERIFY_PEER: "1",
     SSL_CLIENT_CERT_FILE: "/etc/ssl/nginx/nginx-repo.crt",
     SSL_CLIENT_KEY_FILE: "/etc/ssl/nginx/nginx-repo.key" }
