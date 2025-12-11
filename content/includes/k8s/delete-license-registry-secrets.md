@@ -1,4 +1,5 @@
 ---
+nd-product: FABRIC
 ---
 
 If your deployment used NGINX Plus, you should also remove the secrets created for your license and the F5 registry.
