@@ -36,11 +36,27 @@ If you plan to use Vault for secrets management, set it up before you continue w
 
 {{< include "/nim/install/script-download.md" >}}
 
+---
+
 ## Download the SSL certificate, private key, and JWT {#download-crt-key-jwt}
 
 {{< include "/nim/install/temporary-internet-required-note.md" >}}
 
-{{< include "/nim/install/nim-download-crt-key-jwt.md" >}}
+To install and license NGINX Instance Manager, you need to download your SSL certificate, private key, and JSON web token (JWT) from MyF5.
+
+{{< include "/licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+
+The downloaded files may have names like `nginx-one-<subscription-id>.crt`, depending on your product and subscription.
+
+### Rename and move the SSL files
+
+{{< include "/nim/install/rename-crt-key.md" >}}
+
+### Rename the JWT file
+
+{{< include "/nim/install/rename-jwt.md" >}}
+
+---
 
 ## Prepare offline install package
 
