@@ -8,7 +8,7 @@ nd-product: SOLUTI
 nd-docs:
 ---
 
-This reference shows how NGINX Plus validates license status and sends usage reports. The workflows include startup, license expiration, and reporting in both connected and disconnected environments.
+This reference shows how NGINX Plus validates license status and sends usage reports to F5. The workflows include startup, license expiration, and reporting in both online and offline (disconnected) environments.
 
 ## Startup check
 
