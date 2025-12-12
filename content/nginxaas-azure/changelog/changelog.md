@@ -14,20 +14,19 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
-## December 13, 2025
+## December 15, 2025
 
-{{< icon-warning >}} **Standard V2 plan retirement**<a name="standard-plan-v2-retirement"></a>
+{{% icon-feature %}} **Standard V3 Plan**<a name="standard-plan-v3"></a>
 
-NGINXaaS for Azure now supports the [Standard V3]({{< ref "/nginxaas-azure/billing/overview/#standardv3-plan" >}}) plan. We encourage you to use the Standard V3 plan for all new NGINXaaS deployments to take advantage of modern features like F5 WAF for NGINX and additional listen ports. The Standard V3 plan introduces an efficient and transparent pricing model: $0.25/hour fixed per deployment, $0.008/hour per NGINX Capacity Unit (NCU), and $0.005/GB for data processing. This allows costs to scale precisely with demand.
-{{< call-out "important" >}}The Standard V2 plan will be deprecated and will not be available for new deployments starting January 1, 2026.{{< /call-out >}}
+NGINXaaS for Azure now supports the [Standard V3]({{< ref "/nginxaas-azure/billing/overview/#standardv3-plan" >}}) plan. We encourage you to use the Standard V3 plan for all new NGINXaaS deployments to take advantage of modern features like F5 WAF for NGINX and additional listen ports. The Standard V3 plan introduces an efficient and transparent pricing model that allows costs to scale precisely with demand.
 
-Your current deployments on the Standard V2 plan will continue to function but won't include any of the new features we've introduced in the Standard V3 plan. We intend to phase out the Standard V2 plan in the future. When this happens, we will offer a migration path to the Standard V3 plan for existing NGINXaaS deployments on the Standard V2 plan.
+Your current deployments on the Standard V2 plan will continue to function. We intend to phase out the Standard V2 plan in the future. When this happens, we will offer a migration path to the Standard V3 plan for existing NGINXaaS deployments on the Standard V2 plan.
 
 - **Recommended action:**
 
    Update your automation scripts to use the Standard V3 plan. The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
 
-If you have any questions or concerns, please [contact us](https://portal.azure.com/#view/Microsoft_Azure_Support/HelpAndSupportBlade/~/overview).
+For more information about the Standard V3 plan, see the [billing overview]({{< ref "/nginxaas-azure/billing/overview/#standardv3-plan" >}}).
 
 ## November 13, 2025
 
