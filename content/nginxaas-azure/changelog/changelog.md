@@ -14,6 +14,12 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## December 20, 2025
+
+{{< icon-feature >}} **In-place SKU Migration to Standard V3**
+
+   You can now migrate NGINXaaS for Azure deployments from the `Standard` or `Standard V2` plan to the `Standard V3` plan without any downtime. We encourage you to migrate your existing deployments to the new plan as the `Standard V2` plan will be deprecated soon. For migration steps, see [Migrate from Standard V2 to Standard V3]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}}).
+
 ## November 13, 2025
 
 - {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
