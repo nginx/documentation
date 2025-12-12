@@ -8,16 +8,26 @@ To install and license NGINX Instance Manager, you need to download your SSL cer
 
 {{< include "/licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
 
-The downloaded files may have names like `nginx-one-<subscription-id>.crt`, depending on your product and subscription. **Rename and move** the files to the following default locations:
+The downloaded files may have names like `nginx-one-<subscription-id>.crt`, depending on your product and subscription.
+
+Rename and move the certificate and key files to the following default locations:
 
 - `/etc/ssl/nginx/nginx-repo.crt`
 - `/etc/ssl/nginx/nginx-repo.key`
-- `/etc/nginx/license.jwt`
 
 For example:
 
 ```shell
 sudo mv nginx-one-<subscription-id>.crt /etc/ssl/nginx/nginx-repo.crt
 sudo mv nginx-one-<subscription-id>.key /etc/ssl/nginx/nginx-repo.key
-sudo mv nginx-one-<subscription-id>.jwt /etc/nginx/license.jwt
 ```
+
+Rename the JWT file to `license.jwt`, but **do not move it to `/etc/nginx/`** — the installation script does this automatically. If the JWT file is already in `/etc/nginx/`, the script will fail.
+
+For example:
+
+```shell
+mv nginx-one-<subscription-id>.jwt license.jwt
+```
+
+When running the script with the `-p` flag (NGINX Plus), you must also include the `-j` flag to specify the path to the `license.jwt` file.

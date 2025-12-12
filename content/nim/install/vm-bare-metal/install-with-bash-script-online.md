@@ -88,13 +88,13 @@ sudo bash install-nim-bundle.sh \
 
 ### Example: Install with NGINX Plus using default certificate paths
 
-To install NGINX Instance Manager with NGINX Plus on Ubuntu 24.04 using the default certificate, key, and JWT license locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
+To install NGINX Instance Manager with NGINX Plus on Ubuntu 24.04 using the default certificate and key locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
 
 ```bash
 sudo bash install-nim-bundle.sh \
    -p \
    -d ubuntu24.04 \
-   -j /etc/nginx/license.jwt \
+   -j <path/to/license.jwt>
 ```
 
 ### Example: Install with NGINX Plus using custom paths
@@ -107,7 +107,7 @@ sudo bash install-nim-bundle.sh \
   -k <path/to/nginx-repo.key> \
   -j <path/to/license.jwt> \
   -p \
-  -d ubuntu24.04 \
+  -d ubuntu24.04
 ```
 
 Replace the placeholder paths with the actual locations of your files.

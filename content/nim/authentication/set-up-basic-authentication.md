@@ -57,7 +57,7 @@ To add users, take the following steps:
 {{< call-out "note" >}} Refer to the [Provision users and groups with SCIM]({{< ref "/nim/authentication/oidc/scim-provisioning.md" >}}) topic for instructions on automating user and group creation using the SCIM API. {{< /call-out>}}
 
 
-## Set user passwords {#set-basic-passwords}
+## Set user passwords {#set-basic-auth-passwords}
 
 {{< call-out "note" >}}
 Before you can set users' passwords, ensure you have [created users](#create-users) in NGINX Instance Manager. Once you've created the users, you can use one of the following options to set their passwords.
