@@ -1028,3 +1028,4 @@ You can customize the NGINX configuration for VirtualServer and VirtualServerRou
 - `hsts-behind-proxy`
 - `redirect-to-https`
 - `ssl-redirect`
+- `http-redirect-code`
