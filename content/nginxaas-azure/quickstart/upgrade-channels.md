@@ -4,8 +4,8 @@ weight: 150
 toc: true
 nd-docs: DOCS-1480
 url: /nginxaas/azure/quickstart/upgrade-channels/
-type:
-- how-to
+nd-content-type: reference
+nd-product: NAZURE
 ---
 
 ## Overview

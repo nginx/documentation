@@ -2,6 +2,8 @@
 title: Commercial support
 weight: 100
 nd-docs: DOCS-1867
+nd-product: INGRESS
+nd-content-type: how-to
 ---
 
 F5 NGINX Ingress Controller adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).

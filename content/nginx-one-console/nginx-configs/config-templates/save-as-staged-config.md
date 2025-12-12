@@ -1,11 +1,10 @@
 ---
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Save rendered config as staged config
 toc: true
 weight: 300
-type:
-- how-to
-nd-product: NONECO
 ---
 
 # Overview

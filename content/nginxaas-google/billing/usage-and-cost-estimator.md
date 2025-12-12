@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/billing/usage-and-cost-estimator/
-type:
-- concept
+nd-content-type: concept
+nd-product: NGOOGL
 ---
 
 {{< raw-html >}}

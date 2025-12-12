@@ -52,3 +52,20 @@ nd-files:
    sudo apt update
    sudo apt install nginx-agent
    ```
+
+   {{<call-out "tip" "Tip: Install specific versions" "" >}}
+   To install `nginx-agent` with a specific version (for example, 2.42.0):
+
+   Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Ubuntu codename (for example, jammy, noble).
+
+   ```shell
+   sudo apt update
+   sudo apt install -y nginx-agent=2.42.0~<VERSION_CODENAME>
+   ```
+   {{</call-out>}}
+
+1. Verify the installation:
+
+   ```shell
+   sudo nginx-agent -v
+   ```

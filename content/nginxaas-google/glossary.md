@@ -4,8 +4,8 @@ weight: 900
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/glossary/
-type:
-- reference
+nd-content-type: reference
+nd-product: NGOOGL
 ---
 
 This document provides definitions for terms and acronyms commonly used in F5 NGINXaaS for Google Cloud (NGINXaaS) documentation.

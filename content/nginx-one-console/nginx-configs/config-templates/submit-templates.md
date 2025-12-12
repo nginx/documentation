@@ -1,9 +1,9 @@
 ---
+nd-content-type: how-to
+nd-product: NONECO
 title: Submit templates
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NONECO
 ---
 
 # Template submission and preview guide

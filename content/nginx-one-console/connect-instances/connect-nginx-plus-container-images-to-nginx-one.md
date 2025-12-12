@@ -1,11 +1,11 @@
 ---
 description: ''
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Connect NGINX Plus container images
 toc: true
 weight: 400
-type:
-- how-to
 ---
 
 ## Overview

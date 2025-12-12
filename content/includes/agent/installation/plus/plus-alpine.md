@@ -80,3 +80,9 @@ nd-files:
    ```shell
    sudo apk add nginx-agent
    ```
+
+1. Verify the installation:
+
+   ```shell
+   sudo nginx-agent -v
+   ```

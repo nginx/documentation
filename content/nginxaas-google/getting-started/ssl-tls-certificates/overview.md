@@ -3,8 +3,8 @@ title: Overview
 weight: 50
 toc: true
 url: /nginxaas/google/getting-started/ssl-tls-certificates/overview/
-type:
-- how-to
+nd-content-type: reference
+nd-product: NGOOGL
 ---
 
 

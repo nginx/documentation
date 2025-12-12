@@ -15,7 +15,7 @@ Learn how to configure F5 NGINXaaS for Azure with OpenID Connect (OIDC) authenti
 There are currently two methods available for setting up OIDC authentication.
 
 1. Using Native OIDC implementation (Introduced from NGINX Plus R34)
-   
+
 2. Using NJS based implementation
 
 ## Prerequisites
