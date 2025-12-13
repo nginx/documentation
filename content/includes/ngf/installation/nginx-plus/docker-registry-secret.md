@@ -20,4 +20,8 @@ Create a Kubernetes `docker-registry` secret type using the contents of the JWT 
 kubectl create secret docker-registry nginx-plus-registry-secret --docker-server=private-registry.nginx.com --docker-username=<JWT Token> --docker-password=none -n nginx-gateway
 ```
 
-It is important that the `--docker-username=<JWT Token>` contains the contents of the token and is not pointing to the token itself. When you copy the contents of the JWT, ensure there are no additional characters such as extra whitespaces. This can invalidate the token, causing 401 errors when trying to authenticate to the registry.
+It is important that the `--docker-username=<JWT Token>` contains the contents of the token and is not pointing to the token itself. 
+
+When you copy the contents of the JWT, ensure there are no additional characters such as extra whitespaces. 
+
+This can invalidate the token, causing 401 errors when trying to authenticate to the registry.

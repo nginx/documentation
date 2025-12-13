@@ -1,6 +1,6 @@
 ---
 title: Resource validation
-weight: 400
+weight: 500
 toc: true
 nd-content-type: reference
 nd-product: FABRIC
@@ -63,6 +63,7 @@ Below is an example of how NGINX Gateway Fabric rejects an invalid resource. The
 ```shell
 kubectl describe httproutes.gateway.networking.k8s.io coffee
 ```
+
 ```text
 . . .
 Status:
