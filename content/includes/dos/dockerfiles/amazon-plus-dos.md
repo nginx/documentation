@@ -2,7 +2,6 @@
 ---
 
 ```dockerfile
-
 # For AmazonLinux 2023:
 FROM amazonlinux:2023
 
@@ -20,6 +19,8 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log 
 
+RUN nginx -v && admd -v
+
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
@@ -30,5 +31,4 @@ EXPOSE 80
 STOPSIGNAL SIGQUIT
 
 CMD ["sh", "/root/entrypoint.sh"]
-
 ```
