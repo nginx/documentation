@@ -1,26 +1,20 @@
 ---
-# We use sentence case and present imperative tone
 title: "Evasion techniques"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 1100
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This topic describes the evasion techniques feature for F5 WAF for NGINX.
 
-Evasion techniques are used by hackers to attempt to access resources or evade what would otherwise be identified as an attack. 
+Evasion techniques are used by hackers to attempt to access resources or evade what would otherwise be identified as an attack.
 
 Like HTTP compliance, evasion techniques have a list of sub-violations that can be configured for additional granularity and to reduce false positives.
 
-In the following example, the evasion technique violation is enabled with the blocking enforcement mode. 
+In the following example, the evasion technique violation is enabled with the blocking enforcement mode.
 
-It also configures all sub-violations in their relevant sections, which you can add or remove to create your desired configurations. 
+It also configures all sub-violations in their relevant sections, which you can add or remove to create your desired configurations.
 
 When you do not customize a sub-violation, it retains its default settings.
 
