@@ -27,17 +27,19 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-{{< call-out "note" >}}
-If you are using NGINX Open Source for your Multi-container or Hybrid configuration, you do not need the JWT license file. 
-{{< /call-out >}}
+To download the necessary files for deploying F5 WAF for NGINX, follow these steps:
 
-{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
+1. Log in to [MyF5](https://my.f5.com/manage/s/).
+2. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
+3. Find your NGINX subscription, and select the **Subscription ID** for details.
+4. Download the following files:
+   - **SSL Certificate**
+   - **Private Key**
+   - **JSON Web Token (JWT)** (required for NGINX Plus but not necessary for NGINX Open Source users)
 
 {{< call-out "important" >}}
 The provided Dockerfile for NGINX Plus automatically handles placing the JWT license file in `/etc/nginx/` during image build. If you use a custom Dockerfile, you must ensure the JWT license is copied to this location.
 {{< /call-out >}}
-
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Docker deployment options
 
