@@ -23,12 +23,6 @@ When adding a certificate using the Azure CLI, Terraform, or ARM/Bicep templates
 {{< call-out "important" >}}
 **Use the Secret Identifier, not the Certificate Identifier.**
 
-When you create a certificate in Azure Key Vault, it creates three related objects:
-
-- A **Certificate** (with a Certificate Identifier)
-- A **Key** (for cryptographic operations)
-- A **Secret** (containing the certificate and private key as a PFX bundle)
-
 NGINXaaS requires the **Secret Identifier** to access the certificate and its private key.
 {{< /call-out >}}
 
