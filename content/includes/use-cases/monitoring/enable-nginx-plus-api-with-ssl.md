@@ -2,6 +2,8 @@
 nd-product: MSC
 nd-files:
 - content/nginx-one-console/getting-started.md
+- content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md
+- content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
 ---
 
 If SSL is enabled on the NGINX Plus API with self-signed certificates like this example:

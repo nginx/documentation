@@ -50,4 +50,4 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 access_log  /var/log/nginx/access.log  main;
 ```
 
-This log format captures key metrics including request timing, response sizes and client information.
+This log format captures key metrics including request timing, response sizes, and client information.
