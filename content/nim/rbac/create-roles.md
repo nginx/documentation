@@ -3,8 +3,8 @@ nd-docs: DOCS-1272
 title: Create and manage roles
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

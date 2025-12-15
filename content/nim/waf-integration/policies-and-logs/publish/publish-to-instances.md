@@ -5,10 +5,9 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
-Use the NGINX Instance Manager Publish API to deploy updated security configurations to your NGINX instances or instance groups.  
+Use the NGINX Instance Manager Publish API to deploy updated security configurations to your NGINX instances or instance groups.
 You can publish security policies, log profiles, attack signatures, bot signatures, and threat campaigns.
 
 Call this endpoint **after** you’ve created or updated the resources you want to deploy.
@@ -25,12 +24,12 @@ Call this endpoint **after** you’ve created or updated the resources you want 
 
 Include the following details in your request body, depending on what you’re publishing:
 
-- Instance and instance group UIDs  
-- Policy UID and name  
-- Log profile UID and name  
-- Attack signature library UID and version  
-- Bot signature library UID and version  
-- Threat campaign UID and version  
+- Instance and instance group UIDs
+- Policy UID and name
+- Log profile UID and name
+- Attack signature library UID and version
+- Bot signature library UID and version
+- Threat campaign UID and version
 
 ### Example request
 

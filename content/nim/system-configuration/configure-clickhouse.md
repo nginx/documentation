@@ -5,8 +5,8 @@ title: Configure ClickHouse and metrics collection
 linkTitle: ClickHouse and metrics collection
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

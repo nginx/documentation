@@ -6,8 +6,8 @@ nd-docs: DOCS-935
 title: Create and manage instance groups
 toc: true
 weight: 600
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

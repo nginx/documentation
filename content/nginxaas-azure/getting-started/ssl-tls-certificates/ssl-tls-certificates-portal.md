@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-875
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview
@@ -15,6 +15,30 @@ You can manage SSL/TSL certificates for F5 NGINXaaS for Azure (NGINXaaS) using t
 ## Prerequisites
 
 {{< include "/nginxaas-azure/ssl-tls-prerequisites.md" >}}
+
+## Finding the Azure Key Vault Secret Identifier
+
+When adding a certificate using the Azure CLI, Terraform, or ARM/Bicep templates, you need to provide the **Secret Identifier** from Azure Key Vault.
+
+{{< call-out "important" >}}
+**Use the Secret Identifier, not the Certificate Identifier.**
+
+NGINXaaS requires the **Secret Identifier** to access the certificate and its private key.
+{{< /call-out >}}
+
+To find the Secret Identifier:
+
+1. Go to your Azure Key Vault in the Azure portal.
+1. Select **Certificates** from the left menu.
+1. Select the certificate you want to use.
+1. Select the current version of the certificate.
+1. Copy the **Secret Identifier** value (not the Certificate Identifier).
+
+The Secret Identifier format is:
+
+```text
+https://{vault-name}.vault.azure.net/secrets/{certificate-name}
+```
 
 ### Adding an SSL/TLS certificate
 

@@ -4,6 +4,8 @@ type: reference
 title: Known issues
 toc: true
 weight: 200
+nd-product: NIMNGR
+nd-content-type: reference
 ---
 
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.

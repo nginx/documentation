@@ -3,8 +3,8 @@ title: "Overview of RBAC"
 linkTitle: Overview
 weight: 1
 toc: true
-type: concept
-product: nim
+nd-content-type: concept
+nd-product: NIMNGR
 nd-docs: DOCS-919
 ---
 

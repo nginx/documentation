@@ -2,8 +2,8 @@
 Title: High availability with keepalived
 weight: 3
 toc: true
-type: how-to
-product: NGINX Instance Manager
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

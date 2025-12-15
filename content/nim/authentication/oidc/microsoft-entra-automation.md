@@ -4,8 +4,8 @@ title: Automate OIDC with Microsoft Entra
 linkTitle: Automate with Microsoft Entra
 toc: true
 weight: 300
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

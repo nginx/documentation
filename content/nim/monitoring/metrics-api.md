@@ -5,8 +5,8 @@ nd-docs: DOCS-825
 title: Query the Metrics API
 toc: true
 weight: 200
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

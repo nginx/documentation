@@ -4,8 +4,8 @@ title: 'Keycloak: Set up OIDC authentication'
 linkTitle: Keycloak
 toc: true
 weight: 400
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

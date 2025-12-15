@@ -5,7 +5,6 @@ toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 {{< call-out "note" "Before you begin" >}}

@@ -3,8 +3,8 @@ nd-docs: DOCS-1269
 title: Configure telemetry and web analytics
 toc: true
 weight: 260
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-880
 url: /nginxaas/azure/getting-started/prerequisites/
-type:
-- how-to
+nd-content-type: concept
+nd-product: NAZURE
 ---
 
 ## Before you begin

@@ -3,8 +3,8 @@ title: Add certificates using the Azure CLI
 weight: 200
 toc: true
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 You can use Azure Key Vault (AKV) to store SSL/TLS certificates and keys to use in your F5 NGINXaaS for Azure (NGINXaaS) configuration.
@@ -42,6 +42,11 @@ az nginx deployment certificate create --certificate-name
       --certificate-path /etc/nginx/test.cert --key-path /etc/nginx/test.key \
       --key-vault-secret-id keyVaultSecretId
    ```
+
+{{< call-out "important" >}}
+The `--key-vault-secret-id` must be the **Secret Identifier**, not the Certificate Identifier.
+To find the Secret Identifier, see [Finding the Azure Key Vault Secret Identifier]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/#finding-the-azure-key-vault-secret-identifier" >}}).
+{{< /call-out >}}
 
 See [Azure CLI Certificate Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/certificate#az-nginx-deployment-certificate-create) for more details on the available parameters.
 

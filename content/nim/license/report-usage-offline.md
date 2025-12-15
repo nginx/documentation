@@ -3,8 +3,13 @@ title: Report usage data to F5 (offline)
 weight: 400
 toc: true
 nd-docs: DOCS-1658
-nd-content-type:
-- how-to
+nd-personas:
+- devops
+- netops
+- secops
+- support
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

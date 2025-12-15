@@ -3,8 +3,8 @@ nd-docs: DOCS-1271
 title: Manage resources with resource groups
 toc: true
 weight: 300
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

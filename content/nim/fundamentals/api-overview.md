@@ -4,8 +4,8 @@ nd-docs: DOCS-798
 title: 'Overview: NGINX Instance Manager REST API'
 toc: true
 weight: 400
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

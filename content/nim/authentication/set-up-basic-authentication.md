@@ -4,8 +4,8 @@ linkTitle: Basic authentication
 description: Learn how to manage user access in NGINX Instance Manager using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords.
 toc: true
 weight: 10
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 nd-docs: DOCS-792
 ---
 

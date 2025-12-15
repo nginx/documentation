@@ -2,9 +2,9 @@
 nd-docs: DOCS-789
 title: Add license (online)
 toc: true
-weight: 100
-nd-content-type:
-- how-to
+weight: 10
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< call-out "note" >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/license/add-license-offline.md" >}}).{{< /call-out >}}

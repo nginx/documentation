@@ -3,8 +3,8 @@ title: Enable F5 WAF for NGINX
 weight: 200
 toc: true
 url: /nginxaas/azure/app-protect/enable-waf/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

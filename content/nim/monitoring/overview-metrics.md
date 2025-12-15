@@ -4,8 +4,8 @@ nd-docs: DOCS-826
 title: 'Overview: NGINX instance metrics'
 toc: true
 weight: 100
-type:
-  - reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Overview

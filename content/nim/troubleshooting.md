@@ -6,8 +6,8 @@ title: Troubleshooting
 toc: true
 weight: 1000
 draft: true
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## New NGINX instances don't show up in Instance Manager

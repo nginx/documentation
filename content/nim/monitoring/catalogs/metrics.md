@@ -4,8 +4,8 @@ nd-docs: DOCS-813
 title: Metrics Catalog
 toc: true
 weight: 20
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 {{< catalogs-metrics >}}

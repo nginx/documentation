@@ -5,7 +5,6 @@ toc: true
 weight: 400
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
 ## Before you begin

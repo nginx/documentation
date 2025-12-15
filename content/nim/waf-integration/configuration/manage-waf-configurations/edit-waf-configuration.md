@@ -5,7 +5,6 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 After you’ve added a WAF configuration to your instances, edit your NGINX configuration files to apply the required F5 WAF for NGINX directives. This step ensures that protection is enabled and that your configuration references the correct policy and log profile bundles. You can complete this task using the **F5 NGINX Instance Manager** web interface or REST API.

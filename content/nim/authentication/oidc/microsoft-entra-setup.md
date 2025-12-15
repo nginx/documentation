@@ -6,6 +6,7 @@ weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-795
+nd-product: NIMNGR
 ---
 
 ## Overview

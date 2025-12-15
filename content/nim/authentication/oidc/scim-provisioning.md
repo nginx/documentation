@@ -3,8 +3,8 @@ nd-docs: DOCS-918
 title: Provision with SCIM
 toc: true
 weight: 500
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

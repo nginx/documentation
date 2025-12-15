@@ -2,8 +2,8 @@
 Title: Use a third-party forward proxy
 weight: 2
 toc: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

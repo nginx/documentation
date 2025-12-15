@@ -3,8 +3,8 @@ nd-docs: DOCS-1275
 title: Frequently used Helm configurations
 toc: true
 weight: 400
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

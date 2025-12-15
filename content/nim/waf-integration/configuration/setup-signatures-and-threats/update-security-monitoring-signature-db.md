@@ -5,7 +5,6 @@ toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 The Security Monitoring dashboards in NGINX Instance Manager use an attack signature database to display details about detected security violations, including each signature’s name, accuracy, and risk level.

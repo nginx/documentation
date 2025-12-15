@@ -4,8 +4,8 @@ linkTitle: Install manually (offline)
 weight: 40
 toc: true
 noindex: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 nd-docs: DOCS-000
 ---
 

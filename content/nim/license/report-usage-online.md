@@ -4,8 +4,13 @@ description: ''
 weight: 300
 toc: true
 nd-docs: DOCS-1650
-nd-content-type:
-- how-to
+nd-personas:
+- devops
+- netops
+- secops
+- support
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

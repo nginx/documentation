@@ -5,7 +5,6 @@ toc: true
 weight: 400
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 After verifying that F5 WAF for NGINX is active on your instances, you can onboard your own custom security policies. Use this option when you need to apply application-specific rules or integrate policies created in other environments. You’ll upload your JSON policy files, package them into `.tgz` bundles, and publish them through **F5 NGINX Instance Manager**.

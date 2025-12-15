@@ -3,6 +3,8 @@ nd-docs: DOCS-1098
 title: Back up and restore
 toc: true
 weight: 1
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

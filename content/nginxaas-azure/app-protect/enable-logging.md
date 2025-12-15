@@ -3,8 +3,8 @@ title: Enable F5 WAF for NGINX Logs
 weight: 300
 url: /nginxaas/azure/app-protect/enable-logging/
 toc: true
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview
