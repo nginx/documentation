@@ -27,7 +27,7 @@ The NGINX directives discussed in this guide are:
 
 ## Note
 
-{{< call-out "important" >}}`SessionPersistence` is only available for [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) users, with alternatives provided for NGINX OSS users. It is a Gateway API field from the experimental release channel and is subject to change. {{< /call-out >}}
+{{< call-out "important" >}}Cookie-based `SessionPersistence` is only available for [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) users, with alternatives provided for NGINX OSS users. Session Persistence is a Gateway API field from the experimental release channel and is subject to change. {{< /call-out >}}
 
 ## Before you begin
 
@@ -208,6 +208,17 @@ NGINX_POD_NAME=<NGINX Pod>
 {{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 ## Session Persistence Methods
+
+## Choosing the right session persistence method for your environment
+
+The choice between `ip_hash` and cookie-based session persistence depends on your use case.
+
+The `ip_hash` load-balancing method provides basic IP-based affinity: as long as NGINX sees the real client IP and not many users share that IP, requests from the same client will usually go to the same upstream Pod. However, there are important limitations:
+
+- **Shared IPs:** When there is a load balancer or proxy in front of NGINX that does not preserve the real client IP, or when many users appear to come from a single IP address (for example, corporate NAT or VPNs), `ip_hash` operates on the shared IP rather than on individual users. This means many different users behind the same IP are all routed to the same upstream Pod, so you do not get true per-user stickiness.
+- **Changing IPs:** If a user’s apparent IP changes over time (for example, when a load balancer or NAT pool uses multiple egress addresses), that user can be rehashed to a different upstream Pod and lose stickiness.
+
+Cookie-based session persistence with `sticky cookie` provides stronger, per-user stickiness. NGINX issues a session cookie, and all subsequent requests that present that cookie are routed to the same upstream Pod, regardless of changes in client IP or intermediate proxies. This is generally preferable for stateful, user-centric applications, while `ip_hash` can be a simpler option in NGINX OSS deployments where NGINX sees distinct, stable client IP addresses.
 
 ### Session Persistence with NGINX OSS
 
