@@ -1,10 +1,10 @@
 ---
 nd-docs: DOCS-1461
-doctypes:
-- ''
 title: Troubleshooting VirtualServer resources
 toc: true
 weight: 600
+nd-product: INGRESS
+nd-content-type: how-to
 ---
 
 This page describes how to troubleshoot VirtualServer and VirtualServer resource events.

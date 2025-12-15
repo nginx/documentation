@@ -29,5 +29,18 @@ nd-files:
    sudo yum install nginx-agent
    ```
 
-1. When prompted to accept the GPG key, verify that the fingerprint matches
-`573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, and if so, accept it.
+   {{<call-out "tip" "Tip: Install specific versions" "" >}}
+   To install `nginx-agent` with a specific version (for example, 2.42.0):
+
+   ```shell
+   sudo yum install -y nginx-agent-2.42.0
+   ```
+   {{< /call-out >}}
+
+1. When prompted to accept the GPG key, verify that the fingerprint matches `8540 A6F1 8833 A80E 9C16 53A4 2FD2 1310 B49F 6B46`, `573B FD6B 3D8F BC64 1079 A6AB ABF5 BD82 7BD9 BF62`, `9E9B E90E ACBC DE69 FE9B 204C BCDC D8A3 8D88 A2B3`, and if so, accept it.
+
+1. Verify the installation:
+
+    ```shell
+    sudo nginx-agent -v
+    ```

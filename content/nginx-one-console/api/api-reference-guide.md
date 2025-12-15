@@ -1,8 +1,6 @@
 ---
 description: ''
 nd-docs: DOCS-1398
-doctypes:
-  - reference
 nd-content-type: redoc
 nd-product: NONECO
 tags:
