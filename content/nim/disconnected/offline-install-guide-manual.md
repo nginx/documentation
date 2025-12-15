@@ -3,8 +3,8 @@ title: Manually install any version of NGINX Instance Manager (disconnected)
 weight: 100
 toc: true
 noindex: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 nd-docs: DOCS-000
 ---
 

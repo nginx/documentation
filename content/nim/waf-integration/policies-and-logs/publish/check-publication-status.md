@@ -5,7 +5,6 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
 After you publish security updates, you can check their deployment status using the NGINX Instance Manager REST API.

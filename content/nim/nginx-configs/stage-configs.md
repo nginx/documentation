@@ -3,8 +3,8 @@ nd-docs: DOCS-1277
 title: Stage NGINX configs
 toc: true
 weight: 1
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

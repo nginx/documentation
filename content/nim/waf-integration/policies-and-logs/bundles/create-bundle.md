@@ -5,12 +5,11 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
-NGINX Instance Manager lets you package your complete F5 WAF for NGINX configuration into a precompiled bundle for faster, more reliable deployments.  
+NGINX Instance Manager lets you package your complete F5 WAF for NGINX configuration into a precompiled bundle for faster, more reliable deployments.
 
-A security policy bundle includes your policies, attack signatures, bot signatures, and threat campaigns—compiled into a single `.tgz` file that can be deployed across multiple instances.  
+A security policy bundle includes your policies, attack signatures, bot signatures, and threat campaigns—compiled into a single `.tgz` file that can be deployed across multiple instances.
 
 Precompiling with NGINX Instance Manager reduces processing overhead on WAF instances and ensures consistent, reusable configurations.
 
@@ -26,8 +25,8 @@ To create a security policy bundle using the NGINX Instance Manager web interfac
 2. In the left menu, select **WAF > Policies**.
 3. On the **Security Policies** page, find the policy you want to create a bundle for.
 4. Select the **Actions** menu (…) and choose **Compile**.
-5. Check the **Compilation Status** column to monitor the bundle creation progress.  
-   - The default status is **Not Compiled**.  
+5. Check the **Compilation Status** column to monitor the bundle creation progress.
+   - The default status is **Not Compiled**.
    - Other states include **Compiling**, **Compiled**, and **Error**.
 
 > **Note:** By default, **Compile** uses the latest revision of the selected policy, the latest available compiler version, and the most recent versions of attack signatures, bot signatures, and threat campaigns.

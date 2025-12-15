@@ -5,7 +5,6 @@ toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 After you manually [install at least one version of the F5 WAF for NGINX compiler]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/install.md" >}}), NGINX Instance Manager can automatically download and install newer versions as needed.

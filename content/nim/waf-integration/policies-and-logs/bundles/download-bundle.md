@@ -5,7 +5,6 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
 {{<tabs name="download-bundle">}}
@@ -14,12 +13,12 @@ nd-docs:
 
 To download a security policy bundle using the NGINX Instance Manager web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.  
-2. In the left menu, select **WAF > Policies**.  
-3. On the **Security Policies** page, find the policy you want to download a bundle for.  
-4. Select the **Actions** menu (…) and choose **Download Bundle**.  
-   - The **Download Bundle** option is available only when the **Compilation Status** is **Compiled**.  
-5. When the download starts, a `.tgz` file named `<PolicyName>-security-policy-bundle.tgz` is saved to your system.  
+1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
+2. In the left menu, select **WAF > Policies**.
+3. On the **Security Policies** page, find the policy you want to download a bundle for.
+4. Select the **Actions** menu (…) and choose **Download Bundle**.
+   - The **Download Bundle** option is available only when the **Compilation Status** is **Compiled**.
+5. When the download starts, a `.tgz` file named `<PolicyName>-security-policy-bundle.tgz` is saved to your system.
 
 > **Note:** By default, **Download Bundle** retrieves the latest bundle revision of the selected policy.
 

@@ -3,8 +3,8 @@ nd-docs: DOCS-1268
 title: 'Keycloak: Set up OIDC authentication'
 toc: true
 weight: 400
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

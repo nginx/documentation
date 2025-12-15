@@ -5,7 +5,6 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 The WAF compiler lets NGINX Instance Manager precompile security configurations before deploying them to F5 WAF for NGINX instances.  

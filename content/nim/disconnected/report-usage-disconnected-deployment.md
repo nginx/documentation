@@ -3,13 +3,13 @@ title: Report usage data to F5 (disconnected)
 weight: 300
 toc: true
 nd-docs: DOCS-1658
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

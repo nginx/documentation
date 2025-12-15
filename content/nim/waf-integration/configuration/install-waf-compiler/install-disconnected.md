@@ -5,7 +5,6 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 You can install the WAF compiler on a system without internet access by creating the package on a connected system, then transferring and installing it offline.

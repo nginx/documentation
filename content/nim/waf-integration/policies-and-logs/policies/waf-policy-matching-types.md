@@ -5,7 +5,6 @@ toc: true
 weight: 700
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 In F5 WAF for NGINX, you can define how the WAF identifies and protects URLs, cookies, and parameters using **explicit** or **wildcard** matching. The matching type determines how closely the WAF compares incoming requests to the entities defined in your security policy.
