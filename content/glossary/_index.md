@@ -7,6 +7,8 @@ toc: true
 nd-content-type: reference
 nd-product: MISCEL
 nd-landing-page: true
+url: /glossary/
+
 ---
 
 This glossary defines terms used in F5 NGINX.
