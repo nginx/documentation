@@ -270,6 +270,14 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
 
 1. To test your deployment, go to the IP address created in [Set up connectivity to your deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md#set-up-connectivity-to-your-deployment" >}}) using your favorite web browser.
 
+{{< call-out "note" >}}
+
+The deployment is privately deployed in your subnet. If you want to route traffic to an application over the public internet, consider setting up [Cloud NAT](https://docs.cloud.google.com/nat/docs/overview).
+
+{{< /call-out >}}
+
+
+
 ## What's next
 
 [Manage your NGINXaaS users]({{< ref "/nginxaas-google/getting-started/manage-users-organizations.md" >}})
