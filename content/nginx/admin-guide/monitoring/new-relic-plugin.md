@@ -5,8 +5,8 @@ nd-docs: DOCS-427
 title: Monitoring NGINX and NGINX Plus with the New Relic Plug-In
 toc: true
 weight: 500
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 In March, 2013 we released the first version of the [“nginx web server” plug‑in](https://newrelic.com/instant-observability/nginx) for New Relic monitoring of the NGINX Open Source  software and F5 NGINX Plus. Since then, we’ve received lots of interest from users – we greatly appreciate it! The plug‑in continues to be one of the most popular New Relic plug‑ins, in spite of the few things that (we believe!) could be improved. If you don’t already have a New Relic account, [sign up](http://newrelic.com/).

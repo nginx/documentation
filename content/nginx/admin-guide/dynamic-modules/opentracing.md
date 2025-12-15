@@ -8,8 +8,8 @@ nd-docs: DOCS-395
 title: OpenTracing
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 {{< call-out "note" >}} The `nginx-plus-module-opentracing` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

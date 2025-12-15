@@ -4,8 +4,8 @@ weight: 300
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/manage-users-organizations/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 ## Overview

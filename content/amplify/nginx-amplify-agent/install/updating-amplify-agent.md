@@ -4,6 +4,7 @@ description: Learn how to update F5 NGINX Amplify Agent.
 weight: 200
 toc: true
 nd-docs: DOCS-970
+nd-product: AMPLIF
 ---
 
 {{< call-out "important" >}}

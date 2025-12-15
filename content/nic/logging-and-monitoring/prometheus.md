@@ -15,7 +15,7 @@ The metrics exposed include NGINX Ingress Controller data, as well as NGINX Open
 
 ### Using Helm
 
-To enable Prometheus metrics when using *Helm* to install NGINX Ingress Controller, configure the `prometheus.*` parameters of the Helm chart. 
+To enable Prometheus metrics when using *Helm* to install NGINX Ingress Controller, configure the `prometheus.*` parameters of the Helm chart.
 
 See the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) topic.
 

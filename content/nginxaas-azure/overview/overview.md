@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
-type:
-- concept
+d-content-type: concept
+nd-product: NAZURE
 ---
 
 ## What Is F5 NGINXaaS for Azure?

@@ -3,6 +3,8 @@ title: "Module Changelog"
 weight: 300
 toc: true
 url: /nginxaas/azure/module-changelog/
+nd-content-type: reference
+nd-product: NAZURE
 ---
 
 Learn about the modules supported by the latest versions of F5 NGINXaaS for Azure.

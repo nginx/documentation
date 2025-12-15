@@ -1,6 +1,5 @@
 ---
 title: RBAC for config templates and submissions
-draft: false
 description: ''
 weight: 300
 toc: true

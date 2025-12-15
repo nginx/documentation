@@ -1,10 +1,10 @@
 ---
 title: Upgrade NGINX Agent package
-draft: false
 weight: 600
 toc: true
 nd-docs: DOCS-1227
 nd-content-type: how-to
+nd-product: NAGENT
 ---
 
 ## Overview
@@ -13,36 +13,11 @@ Learn how to upgrade NGINX Agent.
 
 ## Upgrade NGINX Agent
 
-To upgrade NGINX Agent, follow these steps:
-
-1. Open an SSH connection to the server where you’ve installed NGINX Agent and log in.
-
-1. Make a backup copy of the following locations to ensure that you can successfully recover if the upgrade has issues:
-
-    - `/etc/nginx-agent`
-    - `config_dirs` values for any configuration specified in `/etc/nginx-agent/nginx-agent.conf`
-
-1. Install the updated version of NGINX Agent:
-
-    - RHEL, RPM-Based
-
-        ```shell
-        sudo yum -y makecache
-        sudo yum update -y nginx-agent
-        ```
-
-    - Debian, Ubuntu, Deb-Based
-
-        ```shell
-        sudo apt-get update
-        sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold"
-        ```
+{{< include "agent/installation/update.md" >}}
 
 ## Upgrade NGINX Agent to a Specific Version
 
 To upgrade NGINX Agent to a specific **v2.x version**, follow these steps:
-
-#### Steps to Upgrade:
 
 1. Open an SSH connection to the server running  NGINX Agent and log in.
 

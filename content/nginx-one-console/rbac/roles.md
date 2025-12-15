@@ -2,9 +2,9 @@
 title: "Review default roles"
 weight: 500
 toc: true
-type: reference
-product: NGINX One
+nd-content-type: reference
 nd-docs: DOCS-000
+nd-product: NONECO
 ---
 
 ## Default roles

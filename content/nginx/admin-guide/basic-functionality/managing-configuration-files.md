@@ -5,8 +5,8 @@ nd-docs: DOCS-378
 title: Create NGINX Plus and NGINX Configuration Files
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 NGINX and NGINX Plus use a text‑based configuration file, by default named **nginx.conf**.

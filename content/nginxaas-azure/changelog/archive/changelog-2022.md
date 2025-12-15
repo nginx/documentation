@@ -3,6 +3,8 @@ title: "2022"
 weight: 300
 toc: true
 url: /nginxaas/azure/changelog/archive/changelog-2022/
+nd-content-type: reference
+nd-product: NAZURE
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2022.

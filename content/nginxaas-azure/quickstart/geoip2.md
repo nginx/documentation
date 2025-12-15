@@ -3,8 +3,8 @@ title: GeoIP2
 weight: 700
 toc: true
 url: /nginxaas/azure/quickstart/geoip2/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview
@@ -49,7 +49,7 @@ http {
 
 All licenses are [validated with MaxMind](https://dev.maxmind.com/license-key-validation-api/) when initially added to your deployment, but MaxMind licenses can expire or be manually revoked.
 
-To view the status of your MaxMind license, [enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for your NGINXaaS deployment and navigate to the Metrics tab. View the `nginxaas.maxmind` metric under the `nginxaas statistics` metric namespace. The `nginxaas.maxmind` metric reports the health of your license through the `status` dimension:
+To view the status of your MaxMind license, [enable metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}) for your NGINXaaS deployment and navigate to the Metrics tab. View the `nginxaas.maxmind` metric under the `nginxaas statistics` metric namespace. The `nginxaas.maxmind` metric reports the health of your license through the `status` dimension:
 
    {{< table >}}
 

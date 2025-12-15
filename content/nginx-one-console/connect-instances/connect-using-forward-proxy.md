@@ -2,7 +2,9 @@
 title: Prepare - Set up an explicit forward proxy
 toc: true
 weight: 250
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 ---
 
 NGINX Agent can be configured to connect to NGINX One using an explicit forward
@@ -48,7 +50,7 @@ To configure NGINX Agent in a containerized environment:
       --add-host "myproxy.example.com:host-gateway" \
       --env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
       --env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
-      --env=NGINX_AGENT_COMMAND_AUTH_TOKEN="<your-data-plane-key-here>" \
+      --env=NGINX_AGENT_COMMAND_AUTH_TOKEN=<YOUR_DATAPLANE_KEY_HERE> \
       --env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
       --env=NGINX_AGENT_COMMAND_SERVER_PROXY_URL=http://myproxy.example.com:<port number> \
       --restart=always \

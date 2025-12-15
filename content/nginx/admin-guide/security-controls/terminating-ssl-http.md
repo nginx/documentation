@@ -5,8 +5,8 @@ nd-docs: DOCS-437
 title: NGINX SSL Termination
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This section describes how to configure an HTTPS server on NGINX and F5 NGINX Plus.

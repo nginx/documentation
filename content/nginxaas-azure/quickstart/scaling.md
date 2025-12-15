@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-989
 url: /nginxaas/azure/quickstart/scaling/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports manual and automatic scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
@@ -91,7 +91,7 @@ NGINXaaS provides metrics for visibility of the current and historical capacity 
 
 See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a reference of all metrics.
 
-{{< call-out "note" >}}These metrics aren't visible unless enabled, see how to [Enable Monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}) for details.{{< /call-out >}}
+{{< call-out "note" >}}These metrics aren't visible unless enabled, see how to [Enable Metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}) for details.{{< /call-out >}}
 {{< call-out "warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
 
 ## Estimating how many NCUs to provision

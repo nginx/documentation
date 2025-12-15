@@ -2,12 +2,11 @@
 description: Learn how to enable single sign-on (SSO) with [OneLogin](https://www.onelogin.com/)
   for applications proxied by F5 NGINX Plus.
 nd-docs: DOCS-467
-type:
-- tutorial
+nd-content-type: tutorial
 title: Single Sign-On with OneLogin and njs
 toc: false
 weight: 100
-product: NGINX-PLUS
+nd-product: NGPLUS
 ---
 
 {{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
@@ -24,7 +23,7 @@ To complete the steps in this guide, you need the following:
 
 - A OneLogin tenant with administrator privileges.
 - [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) with a valid subscription.
-- The [NGINX JavaScript module](https://www.nginx.com/products/nginx/modules/nginx-javascript/) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and OneLogin identity provider (IdP).
+- The [NGINX JavaScript module](https://nginx.org/en/docs/njs/index.html) (`njs`) -- the `njs` module handles the interaction between NGINX Plus and OneLogin identity provider (IdP).
 
 ## Install NGINX Plus and the njs Module {#install-nginx-plus-njs}
 

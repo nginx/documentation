@@ -4,8 +4,8 @@ weight: 400
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/manual-scaling/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 F5 NGINXaaS for Google Cloud (NGINXaaS) supports manual scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.

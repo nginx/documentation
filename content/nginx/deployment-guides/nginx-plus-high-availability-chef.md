@@ -6,8 +6,7 @@ draft: true
 title: NGINX Plus High Availability Chef
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
 ---
 
 In a [previous blog post](https://www.nginx.com/blog/installing-nginx-nginx-plus-chef/), we went over how to deploy F5 NGINX Plus using Chef. In this blog post we will build on the Chef configs from the last blog post and use Chef to deploy a highly available (HA) NGINX Plus active/passive cluster.

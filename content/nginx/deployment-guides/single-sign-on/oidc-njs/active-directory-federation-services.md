@@ -2,12 +2,11 @@
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Microsoft AD FS as the identity provider (IdP).
 nd-docs: DOCS-463
-type:
-- how-to
+nd-content-type: how-to
 title: Single Sign-On with Microsoft AD FS and njs
 toc: false
 weight: 100
-product: NGINX-PLUS
+nd-product: NGPLUS
 ---
 
 {{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
@@ -25,7 +24,7 @@ The instructions assume you have the following:
 
 - A running deployment of AD FS, either on‑premises or in Azure.
 - An NGINX Plus subscription and <span style="white-space: nowrap;">NGINX Plus R15</span> or later. For installation instructions, see the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-- The [NGINX JavaScript module](https://www.nginx.com/blog/introduction-nginscript/) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
+- The [NGINX JavaScript module](https://nginx.org/en/docs/njs/index.html) (njs), required for handling the interaction between NGINX Plus and the IdP. After installing NGINX Plus, install the module with the command for your operating system.
 
    For Debian and Ubuntu:
 

@@ -1,11 +1,11 @@
 ---
-title: Enable monitoring
+title: Enable metrics
 weight: 200
 toc: true
 nd-docs: DOCS-876
-url: /nginxaas/azure/monitoring/enable-monitoring/
-type:
-- how-to
+url: /nginxaas/azure/monitoring/enable-metrics/
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINXaaS for Azure (NGINXaaS) seamlessly integrates with Azure Monitor, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
@@ -14,9 +14,10 @@ Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azu
 
 ## Prerequisites
 
-- A system assigned managed identity with `Monitoring Metrics Publisher` role.
+- A system assigned managed identity.
 
-{{< call-out "note" >}} When a system assigned managed identity is added to the deployment through portal, this role is automatically added.{{< /call-out >}}
+{{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the metrics functionality described in this section.
+{{< /call-out >}}
 
 ## Collection
 

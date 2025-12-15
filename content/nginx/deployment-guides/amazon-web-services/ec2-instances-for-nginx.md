@@ -4,8 +4,8 @@ weight: 600
 description: Create Amazon Elastic Compute Cloud (EC2) instances for running NGINX
   Open Source and F5 NGINX Plus.
 toc: true
-type: how-to
-product: NGINX+
+nd-content-type: how-to
+nd-product: NGPLUS
 nd-docs: DOCS-444
 ---
 

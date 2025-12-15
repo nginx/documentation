@@ -1,11 +1,11 @@
 ---
 description: ''
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Manage NGINX configurations with API requests
 toc: true
 weight: 100
-type:
-- how-to
 ---
 
 In this guide, we'll show you how to use API requests to update NGINX Configurations for Instances, Config Sync Groups, or Staged Configs in the F5 NGINX One Console.

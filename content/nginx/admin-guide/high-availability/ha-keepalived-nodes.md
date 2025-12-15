@@ -6,8 +6,8 @@ title: Configuring Active-Active High Availability and Additional Passive Nodes 
   keepalived
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

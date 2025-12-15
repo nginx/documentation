@@ -40,7 +40,7 @@ The table below summarizes the key difference between nginx/kubernetes-ingress a
 | Configuration templates *1 | See the [template](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl) | See the [templates](../internal/configs/version1) | See the [templates](../internal/configs/version1) |
 | **Load balancing configuration via Custom Resources** |
 | HTTP load balancing | Not supported | See [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) resources | See [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) resources |
-| TCP/UDP load balancing | Not supported | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource | See [TransportServer](({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource |
+| TCP/UDP load balancing | Not supported | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource |
 | TCP SSL Passthrough load balancing | Not supported | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource | See [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resource |
 | **Deployment** |
 | Command-line arguments *2 | See the [arguments](https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/) | See the [arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) | See the [arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) |

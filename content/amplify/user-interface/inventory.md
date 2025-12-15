@@ -4,6 +4,7 @@ description: Learn about the Inventory page of the User Interface.
 weight: 30
 toc: false
 nd-docs: DOCS-983
+nd-product: AMPLIF
 ---
 
 You can access the inventory by selecting the first icon on the top menu. The inventory gives an overview of the systems that are being monitored. When F5 NGINX Amplify Agent is running and reporting on a new system, it's listed in the system index on the left side of the user interface and in the **Inventory** section.
