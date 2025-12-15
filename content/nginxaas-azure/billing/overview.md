@@ -39,13 +39,13 @@ The SKU for the Standard V2 pricing plan is `standardv2_Monthly`.
 The Standard V2 plan allows for configuration of F5 WAF for NGINX and a higher number of listen ports.
 
 
-### Basic plan
+### Developer plan
 
-The Basic plan is ideal for those who are just starting out, as it's intended for early-stage trials, development work, and testing. Please note that it doesn't provide service level agreement (SLA) guarantees, and it lacks both redundancy options and the capability to scale resources as needed.
+The Developer plan is ideal for those who are just starting out, as it's intended for early-stage trials, development work, and testing. Please note that it doesn't provide service level agreement (SLA) guarantees, and it lacks both redundancy options and the capability to scale resources as needed.
 
-When using the Basic plan, each NGINXaaS deployment is billed at the rate specified on the [Azure Marketplace Offer](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=Overview).
+When using the Developer plan, each NGINXaaS deployment is billed at the rate specified on the [Azure Marketplace Offer](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure?tab=Overview).
 
-The SKU for the Basic pricing plan is `basic_Monthly`.
+The SKU for the Developer pricing plan is `developer_Monthly`.
 
 {{< call-out "note" >}}The costs for your plan will appear on the Azure Portal Cost Analysis page and the Azure Consumption APIs. There may be a 24h delay before usage is visible.{{< /call-out >}}
 
