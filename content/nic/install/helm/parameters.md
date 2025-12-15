@@ -169,6 +169,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.enableLatencyMetrics** | Enable collection of latency metrics for upstreams. Requires `prometheus.create`. | false |
 | **controller.minReadySeconds** | Specifies the minimum number of seconds for which a newly created Pod should be ready without any of its containers crashing, for it to be considered available. [docs](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds) | 0 |
 | **controller.autoscaling.enabled** | Enables HorizontalPodAutoscaling. | false |
+| **controller.autoscaling.create** | Create the HorizontalPodAutoscaler resource. This can be set to false to manage the HPA externally. | true |
 | **controller.autoscaling.annotations** | The annotations of the NGINX Ingress Controller HorizontalPodAutoscaler. | {} |
 | **controller.autoscaling.behavior** | Behavior configuration for the HPA. | {} |
 | **controller.autoscaling.minReplicas** | Minimum number of replicas for the HPA. | 1 |

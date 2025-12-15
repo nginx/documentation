@@ -4,8 +4,8 @@ nd-docs: DOCS-441
 title: HTTP CONNECT forward proxy
 toc: true
 weight: 600
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 In corporate networks, NGINX Plus R36 and later can be configured as a forward proxy server, facilitating client access to external resources. A forward proxy operates between internal clients and the global network, enabling centralized traffic control.

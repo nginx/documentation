@@ -1,10 +1,10 @@
 ---
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Add a file to an instance
 toc: true
 weight: 300
-type:
-- how-to
 ---
 
 ## Overview

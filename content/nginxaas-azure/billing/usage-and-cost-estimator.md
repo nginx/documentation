@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-1474
 url: /nginxaas/azure/billing/usage-and-cost-estimator/
-type:
-- concept
+nd-content-type: concept
+nd-product: NAZURE
 ---
 
 {{< raw-html >}}

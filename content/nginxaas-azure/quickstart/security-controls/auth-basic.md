@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-990
 url: /nginxaas/azure/security-controls/auth-basic/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 You can restrict access to resources by implementing username/password authentication using the "HTTP Basic Authentication" protocol.

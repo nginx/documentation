@@ -5,8 +5,8 @@ nd-docs: DOCS-380
 title: NGINX Content Caching
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

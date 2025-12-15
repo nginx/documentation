@@ -3,8 +3,8 @@ title: Deploy using Terraform
 weight: 300
 toc: true
 url: /nginxaas/azure/getting-started/create-deployment/deploy-terraform/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

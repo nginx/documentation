@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-1344
 url: /nginxaas/azure/quickstart/hosting-static-content/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports hosting static content locally on the deployment, which allows users to serve static websites directly from their deployment.

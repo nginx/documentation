@@ -2,9 +2,8 @@
 description: Enable OpenID Connect-based single-sign for applications proxied by NGINX
   Plus, using Ping Identity as the identity provider (IdP).
 nd-docs: DOCS-468
-type:
-- how-to
-product: NGINX-PLUS
+nd-content-type: how-to
+nd-product: NGPLUS
 title: Single Sign-On with Ping Identity and njs
 toc: false
 weight: 100

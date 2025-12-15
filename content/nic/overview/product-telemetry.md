@@ -3,6 +3,8 @@ title: Product telemetry
 toc: true
 weight: 500
 nd-docs: DOCS-1857
+nd-product: INGRESS
+nd-content-type: reference
 ---
 
 Learn why, what and how F5 NGINX Ingress Controller collects telemetry.

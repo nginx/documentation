@@ -4,8 +4,8 @@ weight: 300
 toc: true
 nd-docs: DOCS-1475
 url: /nginxaas/azure/quickstart/security-controls/securing-upstream-traffic/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 Learn how to encrypt HTTP traffic between F5 NGINXaaS for Azure (NGINXaaS) and an upstream group or a proxied server. To secure TCP traffic to upstream servers, follow the [NGINX Plus guide](https://docs.nginx.com/nginx/admin-guide/security-controls/securing-tcp-traffic-upstream/). As with securing HTTP traffic, you will need to [add the SSL/TLS client certificate]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md">}}) to the NGINXaaS deployment.

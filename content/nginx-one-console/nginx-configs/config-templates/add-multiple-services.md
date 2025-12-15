@@ -1,11 +1,10 @@
 ---
+nd-content-type: how-to
 nd-docs: DOCS-000
+nd-product: NONECO
 title: Add service-specific locations
 toc: true
 weight: 400
-type:
-- how-to
-nd-product: NONECO
 ---
 
 # Overview

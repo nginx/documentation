@@ -5,8 +5,8 @@ nd-docs: DOCS-404
 title: Synchronizing NGINX Configuration in a Cluster
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="overview"></span>

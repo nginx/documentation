@@ -2,7 +2,9 @@
 title: Troubleshooting
 toc: true
 weight: 700
+nd-content-type: reference
 nd-docs: DOCS-1878
+nd-product: NAGENT
 ---
 
 ## F5 NGINX Agent Troubleshooting 

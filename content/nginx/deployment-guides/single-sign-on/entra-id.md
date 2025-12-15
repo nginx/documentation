@@ -4,7 +4,7 @@ description: Enable OpenID Connect-based single sign-on (SSO) for applications p
 toc: true
 weight: 400
 nd-content-type: how-to
-nd-product: NPL
+nd-product: NGPLUS
 nd-docs: DOCS-1688
 ---
 

@@ -4,12 +4,27 @@ weight: 900
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/changelog/
-
+nd-content-type: reference
+nd-product: NGOOGL
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Google Cloud.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
+
+## December 10, 2025
+
+- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+
+  NGINXaaS for Google is now available in the following additional regions per geography:
+
+   {{< table "table" >}}
+   |NGINXaaS Geography | Google Cloud Regions |
+   |-----------|---------|
+   | US  | us-east4, us-west2, us-west3, us-west4 |
+   {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas-google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
 
 ## October 13, 2025
 
@@ -26,11 +41,11 @@ This announcement marks a significant step in application delivery modernization
 To learn more, refer to the following resources:
 
 - **Product Information:**
-	
+
     - [F5 NGINXaaS for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
     - [Overview and architecture]({{< ref "/nginxaas-google/overview.md" >}})
     - [Getting Started]({{< ref "/nginxaas-google/getting-started/prerequisites/" >}})
-	
+
 - **Blogs:** [F5 NGINXaaS for Google Cloud: Delivering resilient, scalable applications ](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
 - **Webinars:** [Why F5 NGINXaaS for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
 

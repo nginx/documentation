@@ -3,6 +3,8 @@ title: "2023"
 weight: 200
 toc: true
 url: /nginxaas/azure/changelog/archive/changelog-2023/
+nd-content-type: reference
+nd-product: NAZURE
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2023.

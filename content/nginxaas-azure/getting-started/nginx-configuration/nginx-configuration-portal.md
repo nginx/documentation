@@ -2,10 +2,10 @@
 title: Upload using the Azure portal
 weight: 100
 toc: true
+nd-content-type: how-to
 nd-docs: DOCS-873
+nd-product: NAZURE
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
-type:
-- how-to
 ---
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:

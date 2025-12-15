@@ -3,8 +3,8 @@ title: NGINXaaS Load Balancer for Kubernetes
 weight: 275
 toc: true
 url: /nginxaas/azure/loadbalancer-kubernetes/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

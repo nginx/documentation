@@ -6,6 +6,7 @@ weight: 100
 nd-content-type: how-to
 nd-product: NAZURE
 nd-docs: DOCS-878
+nd-review-priority: high
 ---
 
 ## Overview

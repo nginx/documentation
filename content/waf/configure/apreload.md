@@ -1,8 +1,8 @@
 ---
 # We use sentence case and present imperative tone
-title: "Use apreload to apply configuration updates"
+title: "Apply security policy updates without reloading NGINX using apreload"
 # Weights are assigned in increments of 100: determines sorting order
-weight: 200
+weight: 100
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this

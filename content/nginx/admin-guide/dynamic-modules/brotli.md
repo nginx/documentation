@@ -4,8 +4,8 @@ nd-docs: DOCS-381
 title: Brotli
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 ## Overview

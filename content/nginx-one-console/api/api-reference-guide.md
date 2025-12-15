@@ -1,9 +1,8 @@
 ---
 description: ''
 nd-docs: DOCS-1398
-doctypes:
-  - reference
-type: redoc
+nd-content-type: redoc
+nd-product: NONECO
 tags:
   - api
 title: API reference guide

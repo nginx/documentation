@@ -5,8 +5,8 @@ nd-docs: DOCS-389
 title: HTTP Substitutions Filter
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 The HTTP Substitutions Filter dynamic module replaces text in response bodies, using regular expressions and fixed strings.
