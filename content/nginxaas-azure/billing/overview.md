@@ -24,9 +24,9 @@ The Standard V3 plan introduces dynamic autoscaling that ensures consumption pri
 
 The Standard V3 pricing model is designed to optimize efficiency and transparency: customers benefit from an affordable fixed price per deployment ($0.25/hour) that covers baseline overhead, while NCU usage ($0.008/hour/unit) and data processing ($0.005/GB) allow costs to scale precisely with demand. NGINXaaS is a consumption-based service, metered hourly, and billed monthly in NGINX Capacity Units (NCUs).
 
-The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
-
 The Standard V3 plan allows for optional Web Application Firewall (WAF) configuration and a higher number of listen ports, offering enhanced security and connectivity options for enterprise applications.
+
+The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
 
 ### Standard V2 plan
 
