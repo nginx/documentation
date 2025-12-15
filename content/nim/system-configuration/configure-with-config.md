@@ -4,8 +4,8 @@ nd-docs: DOCS-1100
 title: Configure settings with nms.conf
 toc: true
 weight: 1
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

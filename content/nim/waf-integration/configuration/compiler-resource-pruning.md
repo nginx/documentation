@@ -5,16 +5,15 @@ toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 You can configure NGINX Instance Manager to automatically remove unused compiled security resources, including:
 
-- Compiled security policies  
-- Compiled security log profiles  
-- Attack signatures  
-- Bot signatures  
-- Threat campaigns  
+- Compiled security policies
+- Compiled security log profiles
+- Attack signatures
+- Bot signatures
+- Threat campaigns
 
 Only compiled bundles are removed. NGINX Instance Manager does not delete the base definitions for security policies or log profiles.
 

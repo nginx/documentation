@@ -2,8 +2,8 @@
 title: Update the attack signature database
 weight: 300
 toc: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 nd-docs: DOCS-1109
 ---
 
