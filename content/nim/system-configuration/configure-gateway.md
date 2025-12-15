@@ -3,8 +3,8 @@ nd-docs: DOCS-1131
 title: Optimize NGINX proxy gateway for large data planes
 toc: true
 weight: 400
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

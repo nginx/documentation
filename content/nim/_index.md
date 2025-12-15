@@ -5,6 +5,7 @@ url: /nginx-instance-manager/
 nd-landing-page: true
 cascade:
   logo: "NGINX-Instance-Manager-product-icon.svg"
+nd-product: NIMNGR
 ---
 
 ## About

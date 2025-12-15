@@ -5,7 +5,6 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 If you prefer not to enable automatic updates, you can manually update the attack signature, bot signature, and threat campaign packages by downloading them from the NGINX repository and uploading them to NGINX Instance Manager.

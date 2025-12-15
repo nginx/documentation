@@ -3,8 +3,7 @@ nd-docs: DOCS-1112
 title: Configurable helm settings
 toc: true
 weight: 300
-nd-content-type:
-- reference
+nd-content-nd-content-type: reference
 nd-product: NIMNGR
 ---
 

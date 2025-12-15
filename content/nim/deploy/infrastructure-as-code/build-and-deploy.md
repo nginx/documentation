@@ -3,8 +3,8 @@ nd-docs: DOCS-1247
 title: Build and deploy images
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
