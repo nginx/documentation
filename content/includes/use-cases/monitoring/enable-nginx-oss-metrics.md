@@ -30,7 +30,7 @@ Make sure that the `server` and  `location` blocks are in the same configuration
 
 This configuration:
 
-- Enables the stub status API endpoint
+- Enables the stub status API endpoint.
 - Allows requests only from `127.0.0.1` (localhost).
 - Blocks all other requests for security.
 
