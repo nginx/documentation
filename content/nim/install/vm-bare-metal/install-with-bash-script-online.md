@@ -44,14 +44,9 @@ To install and license NGINX Instance Manager, you need to download your SSL cer
 
 The downloaded files may have names like `nginx-one-<subscription-id>.crt`, depending on your product and subscription.
 
-### Rename and move the SSL files
+## Rename the SSL and JWT files
 
-{{< include "/nim/install/rename-crt-key.md" >}}
-
-### Rename the JWT file
-
-{{< include "/nim/install/rename-jwt.md" >}}
-
+{{< include "/nim/install/rename-crt-key-jwt.md" >}}
 
 ---
 
@@ -80,14 +75,18 @@ To see the list of supported Linux distributions for the installation script, ru
 bash install-nim-bundle.sh -l
 ```
 
-### Example: Install with NGINX Open Source using default certificate paths
+### Example: Install with NGINX Open Source
 
 To install NGINX Instance Manager with NGINX Open Source on Ubuntu 24.04 using the default certificate and key locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
 
 ```bash
 sudo bash install-nim-bundle.sh \
+   -c <path/to/nginx-repo.crt> \
+   -k <path/to/nginx-repo.key> \
    -d ubuntu24.04
 ```
+
+Replace the placeholder paths with the actual locations of your files.
 
 ### Install with NGINX Open Source without ClickHouse (lightweight mode)
 
@@ -95,32 +94,25 @@ To skip ClickHouse if you don't need monitoring metrics:
 
 ```bash
 sudo bash install-nim-bundle.sh \
-  -s \
-  -d ubuntu24.04
+   -c <path/to/nginx-repo.crt> \
+   -k <path/to/nginx-repo.key> \
+   -s \
+   -d ubuntu24.04
 ```
 
-### Example: Install with NGINX Plus using default certificate paths
+Replace the placeholder paths with the actual locations of your files.
+
+### Example: Install with NGINX Plus
 
 To install NGINX Instance Manager with NGINX Plus on Ubuntu 24.04 using the default certificate and key locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
 
 ```bash
 sudo bash install-nim-bundle.sh \
    -p \
-   -d ubuntu24.04 \
-   -j <path/to/license.jwt>
-```
-
-### Example: Install with NGINX Plus using custom paths
-
-If your certificate, key, or license files are stored in non-default locations, specify them with the appropriate flags:
-
-```bash
-sudo bash install-nim-bundle.sh \
-  -c <path/to/nginx-repo.crt> \
-  -k <path/to/nginx-repo.key> \
-  -j <path/to/license.jwt> \
-  -p \
-  -d ubuntu24.04
+   -c <path/to/nginx-repo.crt> \
+   -k <path/to/nginx-repo.key> \   
+   -j <path/to/license.jwt> \
+   -d ubuntu24.04
 ```
 
 Replace the placeholder paths with the actual locations of your files.

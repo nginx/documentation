@@ -48,13 +48,11 @@ To install and license NGINX Instance Manager, you need to download your SSL cer
 
 The downloaded files may have names like `nginx-one-<subscription-id>.crt`, depending on your product and subscription.
 
-### Rename and move the SSL files
+---
 
-{{< include "/nim/install/rename-crt-key.md" >}}
+## Rename the SSL and JWT files
 
-### Rename the JWT file
-
-{{< include "/nim/install/rename-jwt.md" >}}
+{{< include "/nim/install/rename-crt-key-jwt.md" >}}
 
 ---
 
@@ -68,17 +66,19 @@ Run the installation script in `offline` mode to download NGINX Instance Manager
 
 {{< include "/nim/install/install-script-options.md" >}}
 
-### Example: Package with NGINX Open Source using default certificate paths
+### Example: Package with NGINX Open Source
 
 To package NGINX Instance Manager with NGINX Open Source for Ubuntu 24.04 using the default certificate and key locations:
 
 ```bash
 sudo bash install-nim-bundle.sh \
   -m offline \
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
   -d ubuntu24.04
 ```
 
-This command uses the default certificate and key paths in `/etc/ssl/nginx`, and the default version of ClickHouse.
+Replace the placeholder paths with the actual locations of your files.
 
 ### Example: Package with NGINX Open Source without ClickHouse (lightweight mode)
 
@@ -87,19 +87,9 @@ To skip ClickHouse if you don't need monitoring metrics:
 ```bash
 sudo bash install-nim-bundle.sh \
   -m offline \
-  -s \
-  -d ubuntu24.04
-```
-
-### Example: Package with NGINX Open Source using custom certificate paths
-
-If your certificate and key files are stored in non-default locations, specify them with the `-c` and `-k` options:
-
-```bash
-sudo bash install-nim-bundle.sh \
   -c <path/to/nginx-repo.crt> \
   -k <path/to/nginx-repo.key> \
-  -m offline \
+  -s \
   -d ubuntu24.04
 ```
 
