@@ -3,7 +3,7 @@ title: Debug logs
 toc: false
 weight: 500
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 ## Debug Logs

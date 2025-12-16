@@ -1,11 +1,7 @@
 ---
-# We use sentence case and present imperative tone
 title: "User-defined URLs and parameters"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 2150
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 nd-product: F5WAFN
 ---
@@ -73,9 +69,9 @@ This example configures allowed meta-characters for a user-defined URL:
 }
 ```
 
-This next example disables the detection of a specific signature (`200010093`) and enables another (`200010008`) for the user-defined URL `/Common/user_defined_URL`. 
+This next example disables the detection of a specific signature (`200010093`) and enables another (`200010008`) for the user-defined URL `/Common/user_defined_URL`.
 
-These signature settings take effect only in requests to that URL. 
+These signature settings take effect only in requests to that URL.
 
 For other requests, the signature behavior is determined by the signature sets these signatures belong to. View [signature sets]({{< ref "/waf/policies/attack-signatures.md#signature-sets" >}}) for more details.
 
@@ -276,7 +272,7 @@ This final example shows how to configure json/xml/form-data content types for a
 
 User-defined parameters allow you to give specific attributes to specific parameters.
 
-This feature gives you full control over what the parameter should include and where it should be located, allowing for granularity to configure every parameter. 
+This feature gives you full control over what the parameter should include and where it should be located, allowing for granularity to configure every parameter.
 
 With user-defined parameters you can::
 
@@ -289,7 +285,7 @@ With user-defined parameters you can::
 - Define whether to inspect a parameter for violations, attack signatures, or meta-characters
 - Decide whether to exclude certain violations, attack signatures, or meta-characters for a parameter
 
-The following example has two user-defined parameters. 
+The following example has two user-defined parameters.
 
 The first one, `text`, takes string values (here configured as alpha-numeric), and limits the length of the allowed string between 4 and 8 characters. Any string below or above these values will trigger the violation `VIOL_PARAMETER_VALUE_LENGTH`. Note that we enable this violation to *block* the violating request.
 
@@ -346,11 +342,11 @@ This allows you to create exceptions on known false positives _only_ within the 
 }
 ```
 
-This next example uses a  numeric parameter which accepts only integer values and allows values between 9 and 99 (non-inclusive). 
+This next example uses a  numeric parameter which accepts only integer values and allows values between 9 and 99 (non-inclusive).
 
-If the request includes anything other than an integer, it will trigger the `VIOL_PARAMETER_DATA_TYPE` violation. 
+If the request includes anything other than an integer, it will trigger the `VIOL_PARAMETER_DATA_TYPE` violation.
 
-If the parameter value falls beyond or below the desired values, it will trigger the `VIOL_PARAMETER_NUMERIC_VALUE` violation. 
+If the parameter value falls beyond or below the desired values, it will trigger the `VIOL_PARAMETER_NUMERIC_VALUE` violation.
 
 If you change the values of `exclusiveMin` and `exclusiveMax` to false, values equal to the boundary values will be accepted (namely 9 and 99).
 
@@ -408,11 +404,11 @@ If you change the values of `exclusiveMin` and `exclusiveMax` to false, values e
 }
 ```
 
-For increased granularity, you can configure whether the parameter value is also a multiple of a specific number. 
+For increased granularity, you can configure whether the parameter value is also a multiple of a specific number.
 
-This is useful when you wish to limit the input to specific values. 
+This is useful when you wish to limit the input to specific values.
 
-The following example configures a parameter that accepts values in the range of 0 to 10 and are only multiples of 3. 
+The following example configures a parameter that accepts values in the range of 0 to 10 and are only multiples of 3.
 
 This means that the accepted values are 3, 6 and 9. Any other value will trigger the `VIOL_PARAMETER_NUMERIC_VALUE` violation.
 
@@ -470,7 +466,7 @@ This means that the accepted values are 3, 6 and 9. Any other value will trigger
 }
 ```
 
-Another useful example is limiting the parameter to a single context, such as in a header or a query string. 
+Another useful example is limiting the parameter to a single context, such as in a header or a query string.
 
 If the same variable appears in a different location, it will trigger the `VIOL_PARAMETER_LOCATION` violation.
 

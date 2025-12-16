@@ -3,7 +3,7 @@ title: Override rules
 weight: 1800
 toc: true
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: F5WAFN
 nd-docs: DOCS-000
 ---
 
@@ -11,7 +11,7 @@ This topic describes override rules feature of F5 WAF for NGINX.
 
 Override rules allow you to replace **default policy** settings. These override rules can be included as part of a declarative policy so that all incoming requests are verified against those rules.
 
-Each override rule consists of a condition followed by changes to the original policy which will apply to requests that meet the condition. 
+Each override rule consists of a condition followed by changes to the original policy which will apply to requests that meet the condition.
 
 You can apply this feature to apply unique policy settings to incoming requests with one or more rules based on multiple parameters:
 
@@ -116,7 +116,7 @@ The _override_rules_example_ example policy contains five override rules:
 1. The **"login_page"** rule is triggered by POST requests to URIs containing "/login/". Since the "actionType" field is set to "replace-policy", it overrides the policy with a new one named "login_page_block_redirect". This new policy is independent of the "override_rules_example" policy. It enables all signature sets and redirects the user to a rejection page. This is another example of an **Inline Policy Reference** with a different condition.
 1. The **"api-strict"** rule is applied for requests with "api4" in the URI, except for client IP addresses matching the "fd00:1::/48" range and user agents starting with "Mozilla". It references an external policy file named "NginxStrictPolicy.json" located at "/etc/app_protect/conf/" to override the current policy. The "actionType" field is set to "replace-policy" and the external policy can be specified using a reference to its file using **$ref**. The file is the JSON policy source of that policy. This type of policy switching is known as **External Policy Reference**.
 1. The **"strict-post"** rule is triggered when POST requests include a session token in the cookies that is not equal to "c2Vzc2lvblRva2Vu" or when the "gzip" value is found in the content-encoding headers. This rule follows a similar approach to referencing an external policy file, just like the **api-strict** rule mentioned above.
-1. The **"usa-only"** rule is triggered when a request coming from a country other than the USA. The actionType is set to "violation", meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the "block" and "alarm" attributes. There is no change in policy for this rule. 
+1. The **"usa-only"** rule is triggered when a request coming from a country other than the USA. The actionType is set to "violation", meaning that `VIOL_RULE` violation is triggered for such a request. This violation will block and mark the request as illegal with regard to the "block" and "alarm" attributes. There is no change in policy for this rule.
 
 These five rules demonstrate how the override rules feature allows for customization and the ability to modify specific aspects of the original policy based on predefined conditions.
 
@@ -124,7 +124,7 @@ For more details about the **Geolocation** feature, view the [Geolocation]({{< r
 
 {{< call-out "note" >}} 
 
-By default, the actionType field is configured to "extend-policy". 
+By default, the actionType field is configured to "extend-policy".
 
 External references are supported for any policy reference.
 
@@ -132,11 +132,11 @@ External references are supported for any policy reference.
 
 ### First match principle
 
-Policy enforcement operates on the **first match** principle. This principle is applied when multiple conditions match or are similar, indicating that any incoming requests that match the first condition will be processed. 
+Policy enforcement operates on the **first match** principle. This principle is applied when multiple conditions match or are similar, indicating that any incoming requests that match the first condition will be processed.
 
-In the following example, the _override_rules_example2_ policy uses two override rules: `this_rule_will_match` and `non_matching_rule`. 
+In the following example, the _override_rules_example2_ policy uses two override rules: `this_rule_will_match` and `non_matching_rule`.
 
-Since both conditions match, the first match principle will be applied, and requests with "_api_" in the URI will be processed. 
+Since both conditions match, the first match principle will be applied, and requests with "_api_" in the URI will be processed.
 
 It will reference the external policy file named _NginxStrictPolicy.json_ to override the current policy.
 
@@ -173,7 +173,7 @@ It will reference the external policy file named _NginxStrictPolicy.json_ to ove
 
 ### Logging & reporting override rules
 
-If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information. 
+If a request matches an override rule, the `json_log` field will include a new block named 'overrideRule'. However, if no rules match the request, the log will not contain any related information.
 
 When the 'actionType' flag is set to _replace-policy_, the _originalPolicyName_ field in the log will reflect the name of the original policy name (Which contains override rules), and the `policy_name` field will reflect the policy that was enforced.
 
@@ -228,9 +228,9 @@ If the matching override rule is called _usa-only_:
 
 #### Missing policy name
 
-Every policy must have a name if the actionType is `extend-policy` or `replace-policy`. 
+Every policy must have a name if the actionType is `extend-policy` or `replace-policy`.
 
-If the policy `name` is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule. 
+If the policy `name` is not provided in the override section, an error message will be displayed indicating the missing policy 'name' within that specific override rule.
 
 For instance, in the override rule below, the policy name is not specified.
 
