@@ -27,7 +27,7 @@ NGINX Agent can run in most environments. We support the following distributions
 
 | | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2| Debian |
 |-|-----------|--------------|--------------|----------------|--------|
-|**Version**|8 <br><hr>9 <br><hr>10|  3.19<br><hr>3.20<br><hr> 3.21<br><hr> 3.22|  2023|  LTS|  11<br><hr> 12|
+|**Version**|8 <br><hr>9 <br><hr>10|  3.20<br><hr> 3.21<br><hr> 3.22<br><hr> 3.23|  2023|  LTS|  11<br><hr> 12|
 |**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
 
 | |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |

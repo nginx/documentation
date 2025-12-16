@@ -1,22 +1,16 @@
 ---
-# We use sentence case and present imperative tone
 title: "External references"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 200
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This topic describes the external references feature for F5 WAF for NGINX.
 
-External references in policy are code blocks that can be used as part of a policy without being part of the policy file.  This means that you can have a set of pre-defined configurations for parts of the policy, and you can incorporate them as part of the policy by simply referencing them. 
+External references in policy are code blocks that can be used as part of a policy without being part of the policy file.  This means that you can have a set of pre-defined configurations for parts of the policy, and you can incorporate them as part of the policy by simply referencing them.
 
-It allows you to separate policy information into smaller files, which can be easier to maintain for a large, complex policy. Another use case for external references is to build a dynamic policy that requires replaceable files. 
+It allows you to separate policy information into smaller files, which can be easier to maintain for a large, complex policy. Another use case for external references is to build a dynamic policy that requires replaceable files.
 
 You can create and populate specific files with the configuration relevant to your policy, and then compile the policy to include the latest version of these files, ensuring that your policy is always up to date when it comes to a constantly changing environment.
 
@@ -26,7 +20,7 @@ Updating a single file referenced in the policy will not trigger a policy compil
 
 {{< /call-out >}}
 
-To use external references, replace the direct property in the policy file with the _\<ext-ref\>Reference_ property, where _\<ext-ref\>_ defines the replacement text for the property changed to singular (if originally plural) and notation converted from snake case to camelCase. 
+To use external references, replace the direct property in the policy file with the _\<ext-ref\>Reference_ property, where _\<ext-ref\>_ defines the replacement text for the property changed to singular (if originally plural) and notation converted from snake case to camelCase.
 
 For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` could be replaced by `dataGuardReference`.
 
@@ -36,17 +30,17 @@ There are different implementations based on the type of references that are bei
 
 ### URL references
 
-URL reference is the method of referencing an external source by providing its full URL. 
+URL reference is the method of referencing an external source by providing its full URL.
 
 This is a useful method when trying to combine or consolidate parts of the policy that are present on different host machines.
 
-{{< call-out "note" >}} 
+{{< call-out "note" >}}
 
 You need to make sure that the server where the resource files are located is always available when you are compiling your policy.
 
 {{< /call-out >}}
 
-This example creates a skeleton policy, enabling the file type violation. 
+This example creates a skeleton policy, enabling the file type violation.
 
 It does not specify the file types as these file types depend on a separate application that defines these types. It populates this section from an external reference instead.
 
@@ -115,7 +109,7 @@ HTTPS references are a special case of URL references. It uses the HTTPS protoco
 - For Self-signed certificates, you need to make sure to add your certificates to the trusted CA of the machine where F5 WAF for NGINX is installed.
 - Certificates must use the exact domain name that the certificate was issued for. For example, SSL will differentiate between domain.com and www.domain.com, considering each a different domain name.
 
-The following configuration builds on the default policy by defining a custom response page using an external file located on an HTTPS web server. 
+The following configuration builds on the default policy by defining a custom response page using an external file located on an HTTPS web server.
 
 The external reference file contains the custom response page configuration.
 
@@ -196,7 +190,7 @@ File references access local resources on the same machine, as opposed to access
 
 File references do not work with remote hosts.
 
-You can specify any location that is accessible by F5 WAF for NGINX except for the root folder ("/"). 
+You can specify any location that is accessible by F5 WAF for NGINX except for the root folder ("/").
 
 If a full path is not provided, the default path (_/etc/app_protect/conf_) will be used for resolution.
 
@@ -285,7 +279,7 @@ Configuring and referencing OpenAPI specification files are similar to other ext
 
 ### URL references
 
-This example adds an OpenAPI specification file reference using the link `http://127.0.0.1:8088/myapi.yaml`. 
+This example adds an OpenAPI specification file reference using the link `http://127.0.0.1:8088/myapi.yaml`.
 
 The referenced file configures the allowed data types for `query_int` and `query_str` parameter values.
 
@@ -536,7 +530,7 @@ Content of the referenced file `myapi2.json`:
 
 The following request will trigger an `Illegal repeated parameter name` violation, as the OpenAPI specification doesn't allow repeated parameters.
 
-```
+```text
 http://localhost/query?a=true&a=false
 ```
 

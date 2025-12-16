@@ -3,7 +3,7 @@ title: Response signatures
 weight: 1850
 toc: true
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: F5WAFN
 nd-docs: DOCS-000
 ---
 
@@ -19,7 +19,7 @@ F5 WAF for NGINX can be configured to selectively allow response codes while blo
 
 The `allowedResponseCodes` attribute is used to define which response codes are allowed as part of a comma-sepated list in the `general` block.
 
-The following example enables the response status codes violation in blocking mode. 
+The following example enables the response status codes violation in blocking mode.
 
 ```json
 {
@@ -59,7 +59,7 @@ Restrictions on known signatures will be enforced by policies independently of r
 
 To enable this, set the `responseCheck` parameter to `true`. Add the `responseCheckLength` attribute to set an alternative length to the default value.
 
-The response length checked refers to the number of uncompressed bytes in the response body. 
+The response length checked refers to the number of uncompressed bytes in the response body.
 
 Usually F5 WAF for NGINX will buffer only that part of the response saving memory and CPU, but in some conditions the whole response may have to be buffered, such as when the response body is compressed.
 

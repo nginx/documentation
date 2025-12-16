@@ -17,7 +17,7 @@ and performance aligned with the NGINX core platform:
 | Distribution                        | Supported on Agent                                                                                         |
 |-------------------------------------|------------------------------------------------------------------------------------------------------------|
 | AlmaLinux                           | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64) <br> 10 (x86_64, aarch64) **(new)**                           |
-| Alpine Linux                        | 3.19 (x86_64, aarch64) <br> 3.20 (x86_64, aarch64) <br> 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) |
+| Alpine Linux                        | 3.20 (x86_64, aarch64) <br> 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) <br> 3.23 (x86_64, aarch64) |
 | Amazon Linux                        | 2023 (x86_64, aarch64)                                                                                     |                       
 | Amazon Linux 2                      | LTS (x86_64, aarch64)                                                                                      |                       
 | CentOS                              | **Not supported**                                                                                          |                     

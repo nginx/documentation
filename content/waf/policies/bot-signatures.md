@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "Bot signatures"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 550
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 Bot signatures are a feature that protects applications by detecting signatures and clients that falsely claim to be browsers or search engines.
@@ -71,7 +65,7 @@ This example enables bot signatures using the default bot configuration:
 }
 ```
 
-The default actions for classes are: `detect` for `trusted-bot`, `alarm` for `untrusted-bot`, and `block` for `malicious-bot`. 
+The default actions for classes are: `detect` for `trusted-bot`, `alarm` for `untrusted-bot`, and `block` for `malicious-bot`.
 
 The next example enables bot defense, configuring a violation for `trusted-bot`, and block for `untrusted-bot`.
 
@@ -162,7 +156,7 @@ Each request receives a score and anomaly category, and is enforced according to
 | 100 and above  | Invalid HTTP Headers Presence or Order    | Block  | Malicious Bot      |
 | Non Applicable | SEARCH_ENGINE_VERIFICATION_FAILED         | Block  | Malicious Bot      |
 
-The default scores for each anomaly can be changed. 
+The default scores for each anomaly can be changed.
 
 In this example, the score and action of the default bot configuration has been overrided:
 
