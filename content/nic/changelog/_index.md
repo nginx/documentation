@@ -24,12 +24,12 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 {{< /details >}}
 
-
 ## 5.3.0
 
 09 Dec 2025
 
 ### {{% icon rocket %}} Features
+
 - [8292](https://github.com/nginx/kubernetes-ingress/pull/8292) Add sslverify for jwksuri
 - [8447](https://github.com/nginx/kubernetes-ingress/pull/8447) Add support for ssl ciphers related annotations
 - [8340](https://github.com/nginx/kubernetes-ingress/pull/8340) Implement oidc front channel logout nginx directives
@@ -42,10 +42,12 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 - [8533](https://github.com/nginx/kubernetes-ingress/pull/8533) Extend cache policy for more configurable parameters
 
 ### {{% icon bug %}} Fixes
+
 - [8299](https://github.com/nginx/kubernetes-ingress/pull/8299) Remove type field for objects with schema ref
 - [8455](https://github.com/nginx/kubernetes-ingress/pull/8455) Cleanup stale socket files on startup
 
 ### {{% icon arrow-up %}} Dependencies
+
 - [8553](https://github.com/nginx/kubernetes-ingress/pull/8553) Bump Go dependencies
 - [8244](https://github.com/nginx/kubernetes-ingress/pull/8244), [8279](https://github.com/nginx/kubernetes-ingress/pull/8279), [8284](https://github.com/nginx/kubernetes-ingress/pull/8284), [8595](https://github.com/nginx/kubernetes-ingress/pull/8595), [8584](https://github.com/nginx/kubernetes-ingress/pull/8584), [8315](https://github.com/nginx/kubernetes-ingress/pull/8315), [8324](https://github.com/nginx/kubernetes-ingress/pull/8324), [8334](https://github.com/nginx/kubernetes-ingress/pull/8334), [8466](https://github.com/nginx/kubernetes-ingress/pull/8466), [8384](https://github.com/nginx/kubernetes-ingress/pull/8384), [8502](https://github.com/nginx/kubernetes-ingress/pull/8502), [8406](https://github.com/nginx/kubernetes-ingress/pull/8406), [8588](https://github.com/nginx/kubernetes-ingress/pull/8588), [8589](https://github.com/nginx/kubernetes-ingress/pull/8589), [8598](https://github.com/nginx/kubernetes-ingress/pull/8598), [8575](https://github.com/nginx/kubernetes-ingress/pull/8575), [8542](https://github.com/nginx/kubernetes-ingress/pull/8542), [8543](https://github.com/nginx/kubernetes-ingress/pull/8543), [8599](https://github.com/nginx/kubernetes-ingress/pull/8599), [8551](https://github.com/nginx/kubernetes-ingress/pull/8551), [8484](https://github.com/nginx/kubernetes-ingress/pull/8484), [8475](https://github.com/nginx/kubernetes-ingress/pull/8475), [8497](https://github.com/nginx/kubernetes-ingress/pull/8497), [8498](https://github.com/nginx/kubernetes-ingress/pull/8498), [8499](https://github.com/nginx/kubernetes-ingress/pull/8499), [8596](https://github.com/nginx/kubernetes-ingress/pull/8596), [8511](https://github.com/nginx/kubernetes-ingress/pull/8511) & [8581](https://github.com/nginx/kubernetes-ingress/pull/8581) Bump Docker dependencies
 - [8616](https://github.com/nginx/kubernetes-ingress/pull/8616) Update dependency go to v1.25.5 (main)
@@ -53,14 +55,15 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 - [8494](https://github.com/nginx/kubernetes-ingress/pull/8494) Update nginx to 1.29.3, nginx agent to 3.5
 - [8600](https://github.com/nginx/kubernetes-ingress/pull/8600) Update nginx plus waf pkg and alpine base version
 
-
-
 ### {{% icon download %}} Upgrade
+
 - For NGINX, use the 5.3.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.3.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.3.0 images from the F5 Container registry or build your own image using the 5.3.0 source code.
 - For Helm, use version 2.4.0 of the chart.
+- For users making use of a custom `oidc.conf` by following this [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}), in this release this behaviour has changed from a static file to a template.  The [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}) has been updated to reflect the recent changes.
 
 ### {{% icon life-buoy %}} Supported Platforms
+
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.34.
 
 ## 5.2.1
