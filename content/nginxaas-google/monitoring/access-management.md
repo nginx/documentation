@@ -67,4 +67,5 @@ In the NGINXaaS Console,
 
 ## What's next
 
-[Add SSL/TLS Certificates]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})
+- [Monitor your deployment]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
+- [Enable NGINX Logs]({{< ref "/nginxaas-google/monitoring/enable-nginx-logs.md" >}})
