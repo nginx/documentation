@@ -60,7 +60,7 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 - For NGINX, use the 5.3.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.3.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.3.0 images from the F5 Container registry or build your own image using the 5.3.0 source code.
 - For Helm, use version 2.4.0 of the chart.
-- For users making use of a custom `oidc.conf` by following this [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}), in this release this behaviour has changed from a static file to a template.  The [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}) has been updated to reflect the recent changes.
+- For users making use of a custom `oidc.conf` by following this [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}), in this release this behaviour has changed from a static file (`oidc.conf`) to a dynamic template (`oidc.tmpl`).  The [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}) has been updated to reflect the recent changes.  If you still require a custom OIDC configuration, you should copy all the modifications you have made prior to 5.3.0 to the `oidc.tmpl` in the `ConfigMap`.
 
 ### {{% icon life-buoy %}} Supported Platforms
 
