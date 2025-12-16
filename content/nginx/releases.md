@@ -106,6 +106,15 @@ NGINX Plus R36 is supported on:
 - Rocky Linux 10 is new in this release
 - SLES 16 is new in this release
 
+### NGINX Plus R36 Update {#r36_p1}
+
+NGINX Plus R36 P1<br/>
+_18 December 2025_
+
+This is a bugfix release for NGINX Plus R36.
+
+- HTTP/3: fixed a potential crash when using OpenSSL 3.5.1 or newer.
+
 
 ## NGINX Plus Release 35 (R35) {#r35}
 _August 13, 2025_<br/>
