@@ -2,8 +2,8 @@
 title: Install the latest NGINX Instance Manager with a script (disconnected)
 toc: true
 weight: 100
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 nd-docs: DOCS-803
 ---
 

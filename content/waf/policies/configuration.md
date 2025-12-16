@@ -1,16 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "Configure policies"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 100
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 nd-product: F5WAFN
 ---
 
-This page describes the security features available with F5 WAF for NGINX and how to configure policies. 
+This page describes the security features available with F5 WAF for NGINX and how to configure policies.
 
 To convert policies from an existing F5 WAF solution, read the [Build and use the converter tools]({{< ref "/waf/configure/converters.md" >}}).
 
@@ -48,17 +44,17 @@ You can use these policies as-is, but they are often the starting points for cus
 
 ### Configuration overview
 
-The F5 WAF for NGINX security policy configuration uses a declarative format based on a pre-defined base template. 
+The F5 WAF for NGINX security policy configuration uses a declarative format based on a pre-defined base template.
 
-The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities in reference to the base template. 
+The policy is represented in a JSON file which you can edit to add, modify and remove security capabilities in reference to the base template.
 
 The way the policy is integrated into the NGINX configuration is through referencing the JSON file (Using the full path) in the `nginx.conf` file.
 
 {{< call-out "note" >}}
 
-F5 WAF for NGINX provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file for format compliance. 
+F5 WAF for NGINX provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file for format compliance.
 
-The schema file can be generated using a script once F5 WAF for NGINX is installed: `sudo /opt/app_protect/bin/generate_json_schema.pl`. 
+The schema file can be generated using a script once F5 WAF for NGINX is installed: `sudo /opt/app_protect/bin/generate_json_schema.pl`.
 
 This script will output the schema to a file named `policy.json` into the current working directory. Once the schema file is generated, you can use validation tools such as [AJV](https://ajv.js.org/standalone.html) to validate a JSON policy file.
 
@@ -108,7 +104,7 @@ http {
 
 The base template is the common starting point for any policy you write.
 
-The default policy reflects the base template without any further modifications, so the terms _base template_ and _default policy_ are used interchangeably. 
+The default policy reflects the base template without any further modifications, so the terms _base template_ and _default policy_ are used interchangeably.
 
 The default policy appears as follows:
 
@@ -128,13 +124,13 @@ The default policy enforces violations by **Violation Rating**, the F5 WAF for N
 - 3: Needs examination
 - 4-5: Threat
 
-The default policy enables most of the violations and signature sets with Alarm turned **ON**, but not **Block**. 
+The default policy enables most of the violations and signature sets with Alarm turned **ON**, but not **Block**.
 
-These violations and signatures, when detected in a request, affect the violation rating. By default, if the violation rating is calculated to be malicious (4-5) the request will be blocked by the `VIOL_RATING_THREAT` violation. 
+These violations and signatures, when detected in a request, affect the violation rating. By default, if the violation rating is calculated to be malicious (4-5) the request will be blocked by the `VIOL_RATING_THREAT` violation.
 
-This is true even if the other violations and signatures detected in that request have the Block flag turned OFF. It is the `VIOL_RATING_THREAT` violation having the Block flag turned ON that caused the blocking, but indirectly the combination of all the other violations and signatures in Alarm caused the request to be blocked. 
+This is true even if the other violations and signatures detected in that request have the Block flag turned OFF. It is the `VIOL_RATING_THREAT` violation having the Block flag turned ON that caused the blocking, but indirectly the combination of all the other violations and signatures in Alarm caused the request to be blocked.
 
-By default, other requests which have a lower violation rating are not blocked, except for some specific violations described below. This is to minimize false positives. However, you can change the default behavior. 
+By default, other requests which have a lower violation rating are not blocked, except for some specific violations described below. This is to minimize false positives. However, you can change the default behavior.
 
 For example, if you want to add blocking on a violation rating of 3 as well, enable blocking for the `VIOL_RATING_NEED_EXAMINATION` violation.
 
@@ -209,7 +205,7 @@ app_protect_policy_file /policies_mount/new_default_policy.tgz;
 
 ### Strict policy
 
-The strict policy is recommended as a starting point for applications requiring a higher level of security. 
+The strict policy is recommended as a starting point for applications requiring a higher level of security.
 
 Similar to policies, it is customized from the base template, so it detects and blocks everything the default policy does.
 

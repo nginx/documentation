@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "GraphQL protection"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 1190
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This topic describes the GraphQL protection feature for F5 WAF for NGINX.
@@ -22,7 +16,7 @@ GraphQL is designed for APIs to use in the development of client applications th
 
 It also allows the client to specify exactly what data it needs, reducing the amount of data transferred over the network and improving the overall performance of the application.
 
-Securing GraphQL APIs with F5 WAF for NGINX involves using WAF to monitor and protect against security threats and attacks. 
+Securing GraphQL APIs with F5 WAF for NGINX involves using WAF to monitor and protect against security threats and attacks.
 
 GraphQL, like REST, is usually [served over HTTP](http://graphql.org/learn/serving-over-http/), using GET and POST requests and a proprietary [query language](https://graphql.org/learn/schema/#the-query-and-mutation-types). It is vulnerable to common web API security vulnerabilities, such as injection attacks, Denial of Service (DoS) attacks and abuse of flawed authorization.
 
@@ -130,7 +124,7 @@ Under the "_blocking-settings_", you can selectively enable or disable these vio
 
 Any changes to these violation settings will override the default settings, and the violation details will be recorded in the security log.
 
-Since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings". 
+Since the GraphQL violations are enabled by default, you can change the GraphQL violations settings i.e. alarm: `true` and block: `false` under the "blocking settings".
 
 With this configuration the GraphQL profile detects violations but does not block the request. They may still contribute to the Violation Rating, which, if raised above 3, will automatically block the request.
 
@@ -176,7 +170,7 @@ To block violating requests, set the alarm and block to `true`.
 
 The GraphQL profile defines the GraphQL properties that are enforced by the security policy.
 
-The profile can be added by the security engineers to make sure that GraphQL applications are bound to the same security settings defined in the profile. 
+The profile can be added by the security engineers to make sure that GraphQL applications are bound to the same security settings defined in the profile.
 
 Different GraphQL applications can have different profiles based on their security needs.
 
@@ -186,7 +180,7 @@ GraphQL profiles include:
 - **Defense attributes**: Special restrictions applied to the GraphQL traffic.
 - **responseEnforcement**: Whether to block Disallowed patterns and the list of patterns for the `disallowedPatterns` property.
 
-In the following GraphQL profile example, the "_defenseAttributes_" have been given custom values. 
+In the following GraphQL profile example, the "_defenseAttributes_" have been given custom values.
 
 You can also add a list of disallowed patterns to the "_disallowedPatterns_" field, also visible in the example:
 
@@ -216,9 +210,9 @@ You can also add a list of disallowed patterns to the "_disallowedPatterns_" fie
 
 ### URL settings
 
-The second part of configuring GraphQL protection is to define the URL settings. 
+The second part of configuring GraphQL protection is to define the URL settings.
 
-Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section. 
+Set the values for "isAllowed": **true**, "name": **/graphql** in the URLs section.
 
 This means URLs with **/graphql** name are permitted, and will be used for all GraphQL API requests.
 
@@ -260,9 +254,9 @@ There are no restrictions on the number of GraphQL profiles that can be added by
 
 ### Associate GraphQL profiles with URLs
 
-In order for a GraphQL profile to become effective, it has to be associated with a URL that represents the service. 
+In order for a GraphQL profile to become effective, it has to be associated with a URL that represents the service.
 
-Add the GraphQL profile name which you defined previously under the GraphQL profiles in the name field. 
+Add the GraphQL profile name which you defined previously under the GraphQL profiles in the name field.
 
 This example has two GraphQL profiles with the "name": "Default" and "My Custom Profile" under the urlContentProfiles.
 
@@ -365,9 +359,9 @@ This example has two GraphQL profiles with the "name": "Default" and "My Custom 
 
 ### Response pages
 
-A GraphQL error response page is returned when a request is blocked. 
+A GraphQL error response page is returned when a request is blocked.
 
-This GraphQL response page can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly. 
+This GraphQL response page can be customized, but the GraphQL JSON syntax must be preserved for them to be displayed correctly.
 
 The default page returns the GraphQL status code Blocking Response Page (BRP) and a short JSON error message which includes the support ID.
 

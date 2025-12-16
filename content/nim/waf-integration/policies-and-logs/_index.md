@@ -1,11 +1,11 @@
 ---
 title: Manage security policies and log profiles
 description: Create, update, and deploy F5 WAF for NGINX security policies and log profiles using NGINX Instance Manager.
-nd-docs:
 weight: 300
 nd-content-type: landing-page
 nd-landing-page: true
 url: /nginx-instance-manager/waf-integration/policies-and-logs/
+nd-product: NIMNGR
 ---
 
 ## Overview
@@ -17,7 +17,7 @@ You can also compile security policies and associated components—such as attac
 {{< call-out "note" "Note" >}}
 The following capabilities are available only through the NGINX Instance Manager REST API:
 
-- Create, read, update, and delete security log profiles  
+- Create, read, update, and delete security log profiles
 - Publish security policies, log profiles, attack signatures, bot signatures, and threat campaigns to instances and instance groups
 
 **Access the REST API**
@@ -33,16 +33,16 @@ The following capabilities are available only through the NGINX Instance Manager
 
 Before you start, complete these prerequisites:
 
-- [Set up F5 WAF for NGINX configuration management]({{< ref "/nim/waf-integration/configuration/_index.md" >}}).  
+- [Set up F5 WAF for NGINX configuration management]({{< ref "/nim/waf-integration/configuration/_index.md" >}}).
 - Make sure your user account has the [required permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the REST API:
-  - **Module:** Instance Manager  
-  - **Feature:** Instance Management → `READ`  
+  - **Module:** Instance Manager
+  - **Feature:** Instance Management → `READ`
   - **Feature:** Security Policies → `READ`, `CREATE`, `UPDATE`, `DELETE`
 
 To use policy bundles, you also need:
 
-- `UPDATE` permissions for each referenced security policy  
-- The correct [`nms-nap-compiler` package]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/_index.md" >}}) for your F5 WAF for NGINX version  
+- `UPDATE` permissions for each referenced security policy
+- The correct [`nms-nap-compiler` package]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/_index.md" >}}) for your F5 WAF for NGINX version
 - The required [attack signatures, bot signatures, and threat campaigns]({{< ref "/nim/waf-integration/configuration/setup-signatures-and-threats/_index.md" >}})
 
 ---

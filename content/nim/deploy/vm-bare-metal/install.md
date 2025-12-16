@@ -3,8 +3,8 @@ description: ''
 title: Install the latest NGINX Instance Manager with a script
 toc: true
 weight: 10
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

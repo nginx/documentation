@@ -5,7 +5,6 @@ toc: true
 weight: 500
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
 ## Add cookies

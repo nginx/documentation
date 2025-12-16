@@ -5,10 +5,9 @@ toc: true
 weight: 1000
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
-If you're having trouble with F5 WAF for NGINX, try the steps below.  
+If you're having trouble with F5 WAF for NGINX, try the steps below.
 If these steps don’t fix the issue, contact F5 Support.
 
 ---

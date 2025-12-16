@@ -1,13 +1,8 @@
 ---
-# We use sentence case and present imperative tone
 title: "Deny and Allow IP lists"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 900
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
 nd-product: F5WAFN
 ---
 
@@ -82,9 +77,9 @@ In this IPv4 example, the default configuration is used while enabling the deny 
 ```
 
 {{< call-out "note" >}}
-The above configuration assumes the IP address represents the original requestor. 
+The above configuration assumes the IP address represents the original requestor.
 
-It is common that the client address may instead represent a downstream proxy device as opposed to the original requestor's IP address. 
+It is common that the client address may instead represent a downstream proxy device as opposed to the original requestor's IP address.
 
 In this case, you may need to configure F5 WAF for NGINX to prefer the use of an `X-Forwarded-For` (or similar) header injected to the request by a downstream proxy in order to more accurately identify the *actual* originator of the request.
 
@@ -93,7 +88,7 @@ Read the [XFF trusted headers]({{< ref "/waf/policies/xff-headers.md" >}}) topic
 
 This next example uses IPv6 notation with a single address and an IP subnet with a 120-bit prefix.
 
-The first address is a single IP address, identifiable by the mask which is all f's.  Since this is a default value, there is no need to specify the mask. 
+The first address is a single IP address, identifiable by the mask which is all f's.  Since this is a default value, there is no need to specify the mask.
 
 The second address is a subnet of 120 bits (out of the 128 of an IPv6 address). The trailing 8 bits (128-120) must be **zero** in both the mask and the address itself.
 
