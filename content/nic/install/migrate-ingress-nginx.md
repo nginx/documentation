@@ -26,7 +26,7 @@ For more information, you may want to read the two-part blog series from the [NG
 
 To complete the instructions in this guide, you need the following:
 
-- A working knowledge of [Ingress Controllers]({{< ref "/nic/glossary.md#ingress-controller-ingress-controller" >}}).
+- A working knowledge of [Ingress Controllers]({{< ref "/glossary/#k8s-ingress-controller" >}}).
 - An [NGINX Ingress Controller installation]({{< ref "/nic/install/" >}}) on the same host as an existing Ingress-NGINX Controller.
 
 There are two primary paths for migrating between the community Ingress-NGINX Controller to NGINX Ingress Controller:
