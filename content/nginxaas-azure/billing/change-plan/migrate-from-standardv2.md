@@ -1,29 +1,35 @@
 ---
-title: Migrate from Standard V2 to Standard V3
+title: Migrate to new pricing plans
 weight: 100
 toc: true
-url: /nginxaas/azure/billing/change-plan/migrate-from-standardv2/
-nd-content-type: how-to
-nd-product: NAZURE
+url: /nginxaas/azure/billing/change-plan/migrate-between-plans/
+type:
+- how-to
 ---
 
 ## Overview
 
-F5 NGINXaaS for Azure (NGINXaaS) now supports in-place migration from Standard V2 plan to the Standard V3 plan, we encourage you to upgrade your deployment to the Standard V3 plan as soon as possible. If you fail to migrate, your NGINXaaS deployment will stop receiving automatic updates that address critical security issues.
+F5 NGINXaaS for Azure (NGINXaaS) supports in-place migration between certain pricing plans without requiring redeployment. This allows you to upgrade your deployment to access new features and capabilities while maintaining your existing configuration and avoiding downtime.
 
-The Standard V3 plan is an upgraded, purpose-built solution for modern enterprises looking to simplify application traffic management and scale workloads effortlessly. The Standard V3 pricing model is designed to optimize efficiency and transparency: customers benefit from an affordable fixed price per deployment ($0.25 USD/hour) that covers baseline overhead, while NCU usage ($0.008 USD/hour/unit) and data processing ($0.005 USD/GB) allow costs to scale precisely with demand.
+## Supported migration paths
 
-{{< call-out "note" >}} 
-We currently only support in-place migration from Standard V2 plan to the Standard V3 plan and from Standard to Standard V3 plan. You cannot update your Basic plan deployments to Standard V3 plan using this guide.
+The following in-place migrations are supported:
+
+- **Basic → Developer**: Upgrade from the Basic plan to the Developer plan to access advanced features
+- **Standard → Standard V3**: Upgrade from the legacy Standard plan to the modern Standard V3 plan
+- **Standard V2 → Standard V3**: Upgrade from Standard V2 to Standard V3 to access the latest features and pricing model
+
+{{< call-out "important" >}}
+If you have a Standard or Standard V2 plan deployment, we encourage you to migrate to the Standard V3 plan as soon as possible. If you have a Basic plan deployment, we encourage you to migrate to the Developer plan as soon as possible. Legacy plans will stop receiving automatic updates that address critical security issues.
 {{< /call-out >}}
 
-## Migration Steps
+## Migration steps
 
-### Use the Azure Portal
+### Use the Azure portal
 
 1. Go to the **Overview** page of the NGINXaaS deployment in the Azure portal.
 2. Under **Essentials**, find the **Pricing Tier** and select **Click to Upgrade**.
-3. Select the Standard V3 plan and select Submit.
+3. Select the target plan you want to migrate to and select **Submit**.
 
 ### Use Terraform
 
@@ -41,15 +47,23 @@ terraform {
 }
 ```
 
-2. Modify the SKU to `standardv3_Monthly` in the azurerm_nginx_deployment resource.
-3. Run `terraform plan`. Look at the output of terraform plan to ensure that your NGINXaaS deployment is not being replaced.
-4. Run `terraform apply` to upgrade the deployment.
+2. Modify the SKU in the `azurerm_nginx_deployment` resource to your target plan:
+   - For Developer plan: `developer_Monthly`
+   - For Standard V3 plan: `standardv3_Monthly`
+
+3. Run `terraform plan` and review the output to ensure your NGINXaaS deployment is being updated (not replaced).
+4. Run `terraform apply` to complete the migration.
 
 ### Use the Azure CLI
 
-Run the below command to update your NGINXaaS deployment.
+Run the command below to update your NGINXaaS deployment, replacing the SKU name with your target plan:
 
 ```shell
-   az nginx deployment update --name myDeployment --resource-group \
-   myResourceGroup --sku name="standardv3_Monthly_n7ja87drquhy"
+az nginx deployment update --name myDeployment --resource-group myResourceGroup \
+  --sku name="<target_sku_name>"
 ```
+
+Replace `<target_sku_name>` with one of the following:
+
+- `developer_n7ja87drquhy` for Developer plan
+- `standardv3_Monthly_n7ja87drquhy` for Standard V3 plan

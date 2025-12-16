@@ -14,11 +14,11 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
-## December 20, 2025
+## January 20, 2025
 
-{{< icon-feature >}} **In-place plan migrations to Developer and Standard V3**
+{{< icon-feature >}} **In-place plan migrations to Standard V3 and Developer Plans**
 
-You can now migrate NGINXaaS for Azure deployments between pricing plans without any downtime. Supported migrations include `Basic` to `Developer`, `Standard` to `Standard V3`, and `Standard V2` to `Standard V3`. We encourage you to migrate your existing deployments to the new plans as legacy plans will be deprecated soon. For migration steps, see [Migrate to new pricing plans]({{< ref "/nginxaas-azure/billing/change-plan/migrate-between-plans.md">}}).
+You can now migrate NGINXaaS for Azure deployments between pricing plans without any downtime. Supported migrations include `Basic` to `Developer`, `Standard` to `Standard V3`, and `Standard V2` to `Standard V3`. We encourage you to migrate your existing deployments to the new plans as legacy plans will be deprecated soon. For migration steps, see [Migrate to new pricing plans]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}}).
 
 ## December 15, 2025
 
