@@ -1,14 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "Changelog"
 url: /waf/changelog/
-# Weights are assigned in increments of 100: determines sorting order
 weight: 600
-# Creates a table of contents and sidebar, useful for large documents
 nd-landing-page: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
 nd-product: F5WAFN
 ---
 

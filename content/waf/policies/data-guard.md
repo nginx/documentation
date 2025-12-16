@@ -1,22 +1,16 @@
 ---
-# We use sentence case and present imperative tone
 title: "Data guard"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 800
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This page describes the data guard feature of F5 WAF for NGINX.
 
-Data guard is a security feature that can be used to prevent the leakage of sensitive information from an application. 
+Data guard is a security feature that can be used to prevent the leakage of sensitive information from an application.
 
-Examples include credit card numbers (CCN), Social Security numbers (SSN) or custom-defined patterns. 
+Examples include credit card numbers (CCN), Social Security numbers (SSN) or custom-defined patterns.
 
 Sensitive data is either blocked or masked based on configuration.
 

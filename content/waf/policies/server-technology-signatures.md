@@ -3,7 +3,7 @@ title: Server technology signatures
 weight: 1900
 toc: true
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: F5WAFN
 nd-docs: DOCS-000
 ---
 
