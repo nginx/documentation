@@ -3,8 +3,8 @@ nd-docs: DOCS-805
 title: Technical Specifications
 toc: true
 weight: 20
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Overview

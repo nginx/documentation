@@ -5,7 +5,6 @@ toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 You can delete a security policy using either the NGINX Instance Manager web interface or the REST API.

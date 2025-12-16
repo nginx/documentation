@@ -4,8 +4,8 @@ title: Deploy using Docker Compose
 toc: true
 weight: 100
 nd-docs: DOCS-1653
-type:
-- task
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview
