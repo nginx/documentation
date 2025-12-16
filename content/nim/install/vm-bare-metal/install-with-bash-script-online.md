@@ -81,9 +81,9 @@ To install NGINX Instance Manager with NGINX Open Source on Ubuntu 24.04 using t
 
 ```bash
 sudo bash install-nim-bundle.sh \
-   -c <path/to/nginx-repo.crt> \
-   -k <path/to/nginx-repo.key> \
-   -d ubuntu24.04
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
+  -d ubuntu24.04
 ```
 
 Replace the placeholder paths with the actual locations of your files.
@@ -94,10 +94,10 @@ To skip ClickHouse if you don't need monitoring metrics:
 
 ```bash
 sudo bash install-nim-bundle.sh \
-   -c <path/to/nginx-repo.crt> \
-   -k <path/to/nginx-repo.key> \
-   -s \
-   -d ubuntu24.04
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
+  -s \
+  -d ubuntu24.04
 ```
 
 Replace the placeholder paths with the actual locations of your files.
@@ -108,14 +108,28 @@ To install NGINX Instance Manager with NGINX Plus on Ubuntu 24.04 using the defa
 
 ```bash
 sudo bash install-nim-bundle.sh \
-   -p \
-   -c <path/to/nginx-repo.crt> \
-   -k <path/to/nginx-repo.key> \   
-   -j <path/to/license.jwt> \
-   -d ubuntu24.04
+  -p \
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
+  -j <path/to/license.jwt> \
+  -d ubuntu24.04
 ```
 
 Replace the placeholder paths with the actual locations of your files.
+
+### Example: Install with NGINX Plus without ClickHouse
+
+To install NGINX Instance Manager with NGINX Plus on Ubuntu 24.04 using the default certificate and key locations (see [Download your SSL and JWT files](#download-crt-key-jwt)):
+
+```bash
+sudo bash install-nim-bundle.sh \
+  -p \
+  -c <path/to/nginx-repo.crt> \
+  -k <path/to/nginx-repo.key> \
+  -j <path/to/license.jwt> \
+  -s \
+  -d ubuntu24.04
+```
 
 {{< include "/nim/install/save-admin-password-callout.md" >}}
 

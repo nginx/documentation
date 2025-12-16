@@ -4,14 +4,10 @@ nd-files:
   - content/nim/install/vm-bare-metal/install-with-bash-script-offline.md
 ---
 
-{{< call-out "warning" "Save the admin password" >}}
-After installation completes, the script generates an admin password. It may take a few minutes to appear:
+{{< call-out "warning" "Wait for the admin password to appear" >}}
+After the "Installation is complete" message appears, the script is still running. It generates a new admin password and displays it shortly after.
 
-```text
-Regenerated Admin password: <encrypted password>
-```
+Don’t close the terminal or interrupt the process. The password may take a few minutes to appear.
 
-Save this password. You’ll need it to sign in to the NGINX Instance Manager web interface.
-
-To change the password, follow the steps in the [Set user passwords]({{< ref "/nim/authentication/set-up-basic-authentication.md#set-basic-auth-passwords" >}}) section of the Basic Authentication guide.
+Be sure to save the password. You’ll need it to sign in to the NGINX Instance Manager web interface.
 {{< /call-out >}}
