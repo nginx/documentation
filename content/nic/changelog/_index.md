@@ -50,7 +50,7 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 ### {{% icon life-buoy %}} Supported Platforms
 
-We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.34.
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release has been fully tested on the following Kubernetes versions: 1.27-1.34.
 
 ## 5.3.0
 
