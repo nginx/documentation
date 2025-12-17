@@ -23,7 +23,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
    Please review the [NGINX Plus Release 36 (R36)]({{< ref "/nginx/releases.md#nginxplusrelease-36-r36" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R36 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
 
-   If you have any questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
+   If you have any other questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
 
 ## December 15, 2025
 
