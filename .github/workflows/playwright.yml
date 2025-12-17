@@ -1,6 +1,7 @@
 name: Running Playwright test on UI
 on: 
   push:
+    branches: [main]
     paths:
       - 'static/nginxaas-azure/js/cost-calculator_v2.js'  
       - 'content/nginxaas-azure/billing/usage-and-cost-estimator.md'
