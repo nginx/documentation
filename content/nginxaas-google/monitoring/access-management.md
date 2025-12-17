@@ -10,7 +10,7 @@ nd-product: NGOOGL
 
 
 
-F5 NGINXaaS for Google Cloud (NGINXaaS) leverages Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, when WIF is configured, NGINXaaS can export logs and metrics from your deployment to Cloud Monitoring in your chosen Google project. To learn more about WIF on Google Cloud, see [Google's Workload Identity Federation documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
+F5 NGINXaaS for Google Cloud (NGINXaaS) uses Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, with WIF configured, your NGINXaaS deployment can export logs and metrics to Cloud Monitoring in your Google project. To learn more, see [Google's Workload Identity Federation documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
 
 ## Prerequisites
 
