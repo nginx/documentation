@@ -13,7 +13,7 @@ This guide explains how to enable F5 WAF for NGINX on a F5 NGINX as a Service fo
 
 ## Before you start
 
-- F5 WAF for NGINX can only be enabled on NGINXaaS for Azure deployments with the  **Standard v2** and  **Standard v3** [plan]({{< ref "/nginxaas-azure/billing/overview.md" >}})
+- F5 WAF for NGINX can only be enabled on NGINXaaS for Azure deployments with the **Standard v3** [plan]({{< ref "/nginxaas-azure/billing/overview.md/#standard-v3-plan" >}}) (and the deprecated **Standard v2** [plan]({{< ref "/nginxaas-azure/billing/overview.md/#standard-v2-plan-deprecated" >}}))
 
 ## Enable F5 WAF for NGINX
 
