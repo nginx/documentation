@@ -24,50 +24,32 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 {{< /details >}}
 
-
 ## 5.3.1
 
 17 Dec 2025
 
 ### {{% icon bug %}} Fixes
-- [8690](https://github.com/nginx/kubernetes-ingress/pull/8690) Fix: update stub_status client path
+
+- [8690](https://github.com/nginx/kubernetes-ingress/pull/8690) Update stub_status client path
 - [8731](https://github.com/nginx/kubernetes-ingress/pull/8731) Update service template for ipfamilies
+- [8743](https://github.com/nginx/kubernetes-ingress/pull/8743) Add more validation on rewrite-target
 
 ### {{% icon arrow-up %}} Dependencies
--  Bump Go dependencies
--  Bump Docker dependencies
+
+- [8633](https://github.com/nginx/kubernetes-ingress/pull/8633), [8665](https://github.com/nginx/kubernetes-ingress/pull/8665), [8701](https://github.com/nginx/kubernetes-ingress/pull/8701) , [8635](https://github.com/nginx/kubernetes-ingress/pull/8635), &amp; [8664](https://github.com/nginx/kubernetes-ingress/pull/8664) Bump Go dependencies
+- [8636](https://github.com/nginx/kubernetes-ingress/pull/8636), [8663](https://github.com/nginx/kubernetes-ingress/pull/8663), [8682](https://github.com/nginx/kubernetes-ingress/pull/8682), [8637](https://github.com/nginx/kubernetes-ingress/pull/8637), [8702](https://github.com/nginx/kubernetes-ingress/pull/8702), [8699](https://github.com/nginx/kubernetes-ingress/pull/8699), [8639](https://github.com/nginx/kubernetes-ingress/pull/8639), [8681](https://github.com/nginx/kubernetes-ingress/pull/8681), [8683](https://github.com/nginx/kubernetes-ingress/pull/8683), [8700](https://github.com/nginx/kubernetes-ingress/pull/8700), [8662](https://github.com/nginx/kubernetes-ingress/pull/8662), [8727](https://github.com/nginx/kubernetes-ingress/pull/8727), [8698](https://github.com/nginx/kubernetes-ingress/pull/8698), &amp; [8718](https://github.com/nginx/kubernetes-ingress/pull/8718) Bump Docker dependencies
 - [8736](https://github.com/nginx/kubernetes-ingress/pull/8736) Update nginx oss and alpine base
-- [8729](https://github.com/nginx/kubernetes-ingress/pull/8729) Update pre-commit hook python-jsonschema/check-jsonschema to v0.36.0 (release-5.3)
-- [8633](https://github.com/nginx/kubernetes-ingress/pull/8633) Update aws-sdk-go-v2 monorepo (release-5.3)
-- [8718](https://github.com/nginx/kubernetes-ingress/pull/8718) Update kindest/node docker tag to v1.34.2 (release-5.3)
-- [8698](https://github.com/nginx/kubernetes-ingress/pull/8698) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi8 docker digest to 6b69a5d (release-5.3)
-- [8665](https://github.com/nginx/kubernetes-ingress/pull/8665) Update opentelemetry-go monorepo to v1.39.0 (release-5.3)
-- [8727](https://github.com/nginx/kubernetes-ingress/pull/8632, https://github.com/nginx/kubernetes-ingress/pull/8727) Update python:3.14-trixie docker digest to 5093d1e (release-5.3)
-- [8662](https://github.com/nginx/kubernetes-ingress/pull/8662) Update debian:12-slim docker digest to e899040 (release-5.3)
-- [8647](https://github.com/nginx/kubernetes-ingress/pull/8647) Update pre-commit hook davidanson/markdownlint-cli2 to v0.20.0 (release-5.3)
-- [8700](https://github.com/nginx/kubernetes-ingress/pull/8700) Update coredns/coredns docker tag to v1.13.2 (release-5.3)
-- [8683](https://github.com/nginx/kubernetes-ingress/pull/8683) Update quay.io/jetstack/cert-manager-webhook docker tag to v1.19.2 (release-5.3)
-- [8679](https://github.com/nginx/kubernetes-ingress/pull/8679) Update module github.com/cert-manager/cert-manager to v1.19.2 (release-5.3)
-- [8681](https://github.com/nginx/kubernetes-ingress/pull/8681) Update quay.io/jetstack/cert-manager-cainjector docker tag to v1.19.2 (release-5.3)
-- [8639](https://github.com/nginx/kubernetes-ingress/pull/8639) Update golangci/golangci-lint docker tag to v2.7.2 (release-5.3)
-- [8701](https://github.com/nginx/kubernetes-ingress/pull/8701) Update kubernetes packages to v0.34.3 (release-5.3)
-- [8635](https://github.com/nginx/kubernetes-ingress/pull/8635) Update module github.com/gkampitakis/go-snaps to v0.5.18 (release-5.3)
-- [8666](https://github.com/nginx/kubernetes-ingress/pull/8666) Update pre-commit hook psf/black-pre-commit-mirror to v25.12.0 (release-5.3)
 - [8703](https://github.com/nginx/kubernetes-ingress/pull/8703) Update nginx agent to 3.6.0
-- [8699](https://github.com/nginx/kubernetes-ingress/pull/8699) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi9 docker digest to c69c8a1 (release-5.3)
-- [8702](https://github.com/nginx/kubernetes-ingress/pull/8702) Update quay.io/skopeo/stable docker tag to v1.21.0 (release-5.3)
-- [8664](https://github.com/nginx/kubernetes-ingress/pull/8664) Update module golang.org/x/tools to v0.40.0 (release-5.3)
-- [8637](https://github.com/nginx/kubernetes-ingress/pull/8637) Update redhat/ubi9-minimal docker tag to v9.7-1764794109 (release-5.3)
-- [8682](https://github.com/nginx/kubernetes-ingress/pull/8682) Update quay.io/jetstack/cert-manager-controller docker tag to v1.19.2 (release-5.3)
-- [8663](https://github.com/nginx/kubernetes-ingress/pull/8663) Update nginx:1.29.3 docker digest to 2f4e101 (release-5.3)
-- [8636](https://github.com/nginx/kubernetes-ingress/pull/8636) Update redhat/ubi9 docker tag to v9.7-1764794285 (release-5.3)
 
 ### {{% icon download %}} Upgrade
+
 - For NGINX, use the 5.3.1 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.3.1), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.3.1 images from the F5 Container registry or build your own image using the 5.3.1 source code.
 - For Helm, use version 2.4.1 of the chart.
+- For users making use of a custom `oidc.conf` by following this [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}), in this release this behaviour has changed from a static file (`oidc.conf`) to a dynamic template (`oidc.tmpl`).  The [guide]({{< ref "/nic/tutorials/oidc-custom-configuration.md" >}}) has been updated to reflect the recent changes.  If you still require a custom OIDC configuration, you should copy all the modifications you have made prior to 5.3.0 to the `oidc.tmpl` in the `ConfigMap`.
 
 ### {{% icon life-buoy %}} Supported Platforms
+
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.34.
 
 ## 5.3.0
