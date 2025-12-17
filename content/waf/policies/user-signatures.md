@@ -12,7 +12,7 @@ nd-product: F5WAFN
 nd-docs: DOCS-1596
 ---
 
-This page describes the user-defined signatures feature of F5 WAF for NGINX.
+This document describes the user-defined signatures feature of F5 WAF for NGINX.
 
 In addition to F5 WAF for NGINX's pre-defined signatures and signature sets, users can create their own signatures and signature sets.
 
