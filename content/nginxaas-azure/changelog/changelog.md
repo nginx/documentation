@@ -14,6 +14,16 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## December 16, 2025
+
+- {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
+
+  NGINXaaS for Azure is now available in the following additional regions:
+
+  - Canada East
+
+See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
+
 ## December 15, 2025
 
 {{% icon-feature %}} **Standard V3 Plan**<a name="standard-plan-v3"></a>
