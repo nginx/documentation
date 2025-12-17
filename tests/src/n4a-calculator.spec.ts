@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { handleConsentPopup, waitFor } from "./util";
+import { handleConsentPopup, waitFor } from "../util";
 
 test.describe("Testing for N4A calculator page", () => {
 	test.beforeEach(async ({ page }) => {
