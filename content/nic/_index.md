@@ -20,9 +20,9 @@ nd-product: INGRESS
 
 ## About
 
-NGINX Ingress Controller is an [Ingress Controller]({{< ref "/nic/glossary.md#ingress-controller">}}) implementation for NGINX that can load balance Websocket, gRPC, TCP and UDP applications.
+NGINX Ingress Controller is an [Ingress Controller]({{< ref "/glossary/#k8s-ingress-controller">}}) implementation for NGINX that can load balance Websocket, gRPC, TCP and UDP applications.
 
-It supports standard [Ingress]({{< ref "/nic/glossary.md#ingress">}}) features such as content-based routing and TLS/SSL termination. Several NGINX and NGINX Plus features are available as extensions to Ingress resources through [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations">}}) and the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource">}}) resource.
+It supports standard [Ingress]({{< ref "/glossary/#k8s-ingress-controller">}}) features such as content-based routing and TLS/SSL termination. Several NGINX and NGINX Plus features are available as extensions to Ingress resources through [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations">}}) and the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource">}}) resource.
 
 ## Featured content
 
