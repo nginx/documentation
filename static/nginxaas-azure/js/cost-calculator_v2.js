@@ -32,6 +32,7 @@
       ukwest: { label: "UK West", tier: 3 },
       uksouth: { label: "UK South", tier: 3 },
       southcentralus: { label: "South Central US", tier: 1 },
+      canadaeast: { label: "Canada East", tier: 2 },
     },
     // Fixed deployment fee per hour by tier (with/without WAF)
     deploymentFee: {
