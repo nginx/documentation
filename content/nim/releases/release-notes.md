@@ -117,6 +117,31 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
+## 2.20.1
+
+Dec 18, 2025
+
+### Upgrade Paths {#2-20-1-upgrade-paths}
+
+NGINX Instance Manager 2.20.1 supports upgrades from these previous versions:
+
+- 2.17.0 - 2.20.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's new {#2-20-1-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-20-1-whats-new-Stability-and-performance-improvements-46069"></a>
+
+   This release includes stability and performance improvements for a more reliable experience.
+   Entrust CA, used in NIM licensing flows, will no longer be a trusted certificate authority for browsers. Older NIM versions ship with an embedded licensing bundle that only accepts Entrust-signed certificates for the F5 licensing servers. The current Entrust certificates used by older NIM licensing flows will be replaced on February 15, 2026. To avoid reliance on a single certificate authority, NGINX Instance Manager will trust multiple well-known CAs through an updated certificate bundle. NIM 2.21 includes this updated bundle so JWT-based licensing and connectivity to the licensing endpoint service continue to work in NIM 2.21 and later. Because the timeline is tight, patch releases (NIM 2.18.1, 2.19.3, and 2.20.1) will also be provided so you can do a minor version upgrade while planning an upgrade to NIM 2.21 and later.
+
+### Known issues {#2-20-1-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
 ## 2.20.0
 
 June 16, 2025
@@ -184,6 +209,31 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} The certificate stats are not displayed correctly in the Certificates and Keys page as well as the Dashboard page. (45991)
 
 ### Known issues {#2-20-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
+## 2.19.3
+
+Dec 18, 2025
+
+### Upgrade Paths {#2-19-3-upgrade-paths}
+
+NGINX Instance Manager 2.19.3 supports upgrades from these previous versions:
+
+- 2.16.0 - 2.19.2
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's new {#2-19-3-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-19-3-whats-new-Stability-and-performance-improvements-46069"></a>
+
+   This release includes stability and performance improvements for a more reliable experience.
+   Entrust CA, used in NIM licensing flows, will no longer be a trusted certificate authority for browsers. Older NIM versions ship with an embedded licensing bundle that only accepts Entrust-signed certificates for the F5 licensing servers. The current Entrust certificates used by older NIM licensing flows will be replaced on February 15, 2026. To avoid reliance on a single certificate authority, NGINX Instance Manager will trust multiple well-known CAs through an updated certificate bundle. NIM 2.21 includes this updated bundle so JWT-based licensing and connectivity to the licensing endpoint service continue to work in NIM 2.21 and later. Because the timeline is tight, patch releases (NIM 2.18.1, 2.19.3, and 2.20.1) will also be provided so you can do a minor version upgrade while planning an upgrade to NIM 2.21 and later.
+
+### Known issues {#2-19-3-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
@@ -323,6 +373,31 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Syntax errors while saving template configuration (45573)
 
 ### Known issues {#2-19-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
+## 2.18.1
+
+Dec 18, 2025
+
+### Upgrade Paths {#2-18-1-upgrade-paths}
+
+NGINX Instance Manager 2.18.1 supports upgrades from these previous versions:
+
+- 2.15.0 - 2.18.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's new {#2-18-1-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Stability and performance improvements**<a name="2-18-1-whats-new-Stability-and-performance-improvements-46069"></a>
+
+   This release includes stability and performance improvements for a more reliable experience.
+   Entrust CA, used in NIM licensing flows, will no longer be a trusted certificate authority for browsers. Older NIM versions ship with an embedded licensing bundle that only accepts Entrust-signed certificates for the F5 licensing servers. The current Entrust certificates used by older NIM licensing flows will be replaced on February 15, 2026. To avoid reliance on a single certificate authority, NGINX Instance Manager will trust multiple well-known CAs through an updated certificate bundle. NIM 2.21 includes this updated bundle so JWT-based licensing and connectivity to the licensing endpoint service continue to work in NIM 2.21 and later. Because the timeline is tight, patch releases (NIM 2.18.1, 2.19.3, and 2.20.1) will also be provided so you can do a minor version upgrade while planning an upgrade to NIM 2.21 and later.
+
+### Known issues {#2-18-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
