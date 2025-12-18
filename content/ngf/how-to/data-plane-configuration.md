@@ -365,12 +365,11 @@ kind: NginxProxy
 metadata:
   name: ngf-proxy-config
 spec:
-  config:
-    rewriteClientIP:
-      mode: ProxyProtocol
-      trustedAddresses:
-      - type: CIDR
-        value: "76.89.90.11/24"
+  rewriteClientIP:
+    mode: ProxyProtocol
+    trustedAddresses:
+    - type: CIDR
+      value: "76.89.90.11/24"
 EOF
 ```
 
@@ -402,8 +401,6 @@ spec:
         terminationGracePeriodSeconds: 90
       replicas: 2
     service:
-      annotations:
-        service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
       type: LoadBalancer
       loadBalancerIP: "192.87.9.1"
 EOF

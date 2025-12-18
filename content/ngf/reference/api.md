@@ -1,9 +1,9 @@
 ---
-title: API reference
+title: "API reference"
 weight: 100
-nd-content-type: reference
-nd-product: FABRIC
-nd-docs: DOCS-1855
+type: reference
+product: NGF
+docs: DOCS-000
 ---
 ## Overview
 NGINX Gateway API Reference
@@ -26,8 +26,6 @@ Resource Types:
 <a href="#gateway.nginx.org/v1alpha1.ClientSettingsPolicy">ClientSettingsPolicy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.NginxGateway">NginxGateway</a>
-</li><li>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.SnippetsFilter">SnippetsFilter</a>
 </li><li>
@@ -125,8 +123,8 @@ ClientKeepAlive
 <td>
 <code>targetRef</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -143,8 +141,8 @@ Support: Gateway, HTTPRoute, GRPCRoute.</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
@@ -241,114 +239,6 @@ NginxGatewayStatus
 </td>
 <td>
 <p>NginxGatewayStatus defines the state of the NginxGateway.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ObservabilityPolicy" title="Permanent link">¶</a>
-</h3>
-<p>
-<p>ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for
-the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the
-GatewayClass parametersRef.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>apiVersion</code><br/>
-string</td>
-<td>
-<code>
-gateway.nginx.org/v1alpha1
-</code>
-</td>
-</tr>
-<tr>
-<td>
-<code>kind</code><br/>
-string
-</td>
-<td><code>ObservabilityPolicy</code></td>
-</tr>
-<tr>
-<td>
-<code>metadata</code><br/>
-<em>
-<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
-Kubernetes meta/v1.ObjectMeta
-</a>
-</em>
-</td>
-<td>
-Refer to the Kubernetes API documentation for the fields of the
-<code>metadata</code> field.
-</td>
-</tr>
-<tr>
-<td>
-<code>spec</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">
-ObservabilityPolicySpec
-</a>
-</em>
-</td>
-<td>
-<p>Spec defines the desired state of the ObservabilityPolicy.</p>
-<br/>
-<br/>
-<table class="table table-bordered table-striped">
-<tr>
-<td>
-<code>tracing</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">
-Tracing
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Tracing allows for enabling and configuring tracing.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>targetRefs</code><br/>
-<em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
-</a>
-</em>
-</td>
-<td>
-<p>TargetRefs identifies the API object(s) to apply the policy to.
-Objects must be in the same namespace as the policy.
-Support: HTTPRoute, GRPCRoute.</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td>
-<code>status</code><br/>
-<em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
-</a>
-</em>
-</td>
-<td>
-<p>Status defines the state of the ObservabilityPolicy.</p>
 </td>
 </tr>
 </tbody>
@@ -542,8 +432,8 @@ UpstreamKeepAlive
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -561,8 +451,8 @@ Support: Service</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
@@ -794,8 +684,8 @@ ClientKeepAlive
 <td>
 <code>targetRef</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -1085,55 +975,6 @@ Logging
 </tr>
 </tbody>
 </table>
-<h3 id="gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">ObservabilityPolicySpec
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ObservabilityPolicySpec" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy</a>)
-</p>
-<p>
-<p>ObservabilityPolicySpec defines the desired state of the ObservabilityPolicy.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>tracing</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">
-Tracing
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Tracing allows for enabling and configuring tracing.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>targetRefs</code><br/>
-<em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
-</a>
-</em>
-</td>
-<td>
-<p>TargetRefs identifies the API object(s) to apply the policy to.
-Objects must be in the same namespace as the policy.
-Support: HTTPRoute, GRPCRoute.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="gateway.nginx.org/v1alpha1.Size">Size
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Size" title="Permanent link">¶</a>
 </h3>
@@ -1314,7 +1155,6 @@ and the status of the SnippetsFilter with respect to each controller.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>,
 <a href="#gateway.nginx.org/v1alpha2.Telemetry">Telemetry</a>,
 <a href="#gateway.nginx.org/v1alpha2.Tracing">Tracing</a>)
 </p>
@@ -1351,154 +1191,6 @@ string
 <td>
 <p>Value is the value for a span attribute.
 Format: must have all &lsquo;&ldquo;&rsquo; escaped and must not contain any &lsquo;$&rsquo; or end with an unescaped &lsquo;\&rsquo;</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.TraceContext">TraceContext
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.TraceContext" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>)
-</p>
-<p>
-<p>TraceContext specifies how to propagate traceparent/tracestate headers.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;extract&#34;</p></td>
-<td><p>TraceContextExtract uses an existing trace context from the request, so that the identifiers
-of a trace and the parent span are inherited from the incoming request.</p>
-</td>
-</tr><tr><td><p>&#34;ignore&#34;</p></td>
-<td><p>TraceContextIgnore skips context headers processing.</p>
-</td>
-</tr><tr><td><p>&#34;inject&#34;</p></td>
-<td><p>TraceContextInject adds a new context to the request, overwriting existing headers, if any.</p>
-</td>
-</tr><tr><td><p>&#34;propagate&#34;</p></td>
-<td><p>TraceContextPropagate updates the existing context (combines extract and inject).</p>
-</td>
-</tr></tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.TraceStrategy">TraceStrategy
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.TraceStrategy" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>)
-</p>
-<p>
-<p>TraceStrategy defines the tracing strategy.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;parent&#34;</p></td>
-<td><p>TraceStrategyParent enables tracing and only records spans if the parent span was sampled.</p>
-</td>
-</tr><tr><td><p>&#34;ratio&#34;</p></td>
-<td><p>TraceStrategyRatio enables ratio-based tracing, defaulting to 100% sampling rate.</p>
-</td>
-</tr></tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.Tracing">Tracing
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Tracing" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">ObservabilityPolicySpec</a>)
-</p>
-<p>
-<p>Tracing allows for enabling and configuring OpenTelemetry tracing.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>strategy</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.TraceStrategy">
-TraceStrategy
-</a>
-</em>
-</td>
-<td>
-<p>Strategy defines if tracing is ratio-based or parent-based.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ratio</code><br/>
-<em>
-int32
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.
-By default, 100% of http requests are traced. Not applicable for parent-based tracing.
-If ratio is set to 0, tracing is disabled.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>context</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.TraceContext">
-TraceContext
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Context specifies how to propagate traceparent/tracestate headers.
-Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context">https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>spanName</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>SpanName defines the name of the Otel span. By default is the name of the location for a request.
-If specified, applies to all locations that are created for a route.
-Format: must have all &lsquo;&ldquo;&rsquo; escaped and must not contain any &lsquo;$&rsquo; or end with an unescaped &lsquo;\&rsquo;
-Examples of invalid names: some-$value, quoted-&ldquo;value&rdquo;-name, unescaped</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>spanAttributes</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.SpanAttribute">
-[]SpanAttribute
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>SpanAttributes are custom key/value attributes that are added to each span.</p>
 </td>
 </tr>
 </tbody>
@@ -1637,8 +1329,8 @@ UpstreamKeepAlive
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -1969,8 +1661,8 @@ Tracing
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -1989,8 +1681,8 @@ be unique across all targetRef entries in the ObservabilityPolicy.</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
@@ -2847,6 +2539,53 @@ bool
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLog">NginxAccessLog
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLog" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">NginxLogging</a>)
+</p>
+<p>
+<p>NginxAccessLog defines the configuration for an NGINX access log.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>disable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Disable turns off access logging when set to true.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>format</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Format specifies the custom log format string.
+If not specified, NGINX default &lsquo;combined&rsquo; format is used.
+For now only path /dev/stdout can be used.
+See <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.NginxErrorLogLevel">NginxErrorLogLevel
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxErrorLogLevel" title="Permanent link">¶</a>
 </h3>
@@ -2938,6 +2677,21 @@ AgentLogLevel
 <em>(Optional)</em>
 <p>AgentLevel defines the log level of the NGINX agent process. Changing this value results in a
 re-roll of the NGINX deployment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>accessLog</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLog">
+NginxAccessLog
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>AccessLog defines the access log settings, including format itself and disabling option.
+For now only path /dev/stdout can be used.</p>
 </td>
 </tr>
 </tbody>
@@ -3303,8 +3057,8 @@ Tracing
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
