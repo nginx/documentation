@@ -4,6 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-876
 url: /nginxaas/azure/monitoring/enable-metrics/
+aliases:
+  - /nginxaas/azure/monitoring/enable-monitoring/
 nd-content-type: how-to
 nd-product: NAZURE
 ---
