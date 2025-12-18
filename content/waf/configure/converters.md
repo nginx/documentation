@@ -24,13 +24,15 @@ Unsupported or irrelevant elements for the F5 WAF for NGINX environment generate
 
 We recommend converting with the version of the policy converter that matches the F5 WAF for NGINX version you are running. This ensures any newly supported configuration items are properly included.
 
-Required arguments
+Required arguments:
+
 | Argument | Alias | Description | Environment Variable | Notes |
 | ----------- |  ----------- | ----------- | ----------- | ----------- |
 | --outfile | o | File name for where to write the exported policy. | EXPORT_FILE |
 | --infile | i | ASM/Advanced WAF security policy file to convert. | IMPORT_FILE |
 
-Optional arguments
+Optional arguments:
+
 | Argument | Alias | Description | Environment Variable | Notes |
 | ----------- |  ----------- | ----------- | ----------- | ----------- |
 | --format | f | Desired output format. | | Default: json; supported formats: json. |
@@ -41,7 +43,8 @@ Optional arguments
 
 --infile is optional if you provide only --bot-profile or --dos-profile (those can be the sole input).
 
-### Convert an ASM/Advanced WAF XML policy to JSON (default behavior: differences only):
+### Convert an ASM/Advanced WAF XML policy to JSON
+
 You can obtain the XML policy file by exporting it from the BIG-IP system on which the policy is currently deployed.
 
 To convert a policy, first create a temporary folder and copy your XML file to it:
@@ -145,6 +148,7 @@ total 848
 ```
 
 ### Export full policy
+
 ```shell
 docker run -it --rm \
   -v "$(pwd)":/tmp/convert \
@@ -156,6 +160,7 @@ docker run -it --rm \
 ```
 
 ### Keep full configuration (retain elements that may be invalid or irrelevant)
+
 ```shell
 docker run -it --rm \
   -v "$(pwd)":/tmp/convert \
@@ -167,6 +172,7 @@ docker run -it --rm \
 ```
 
 ### Include all enforced signatures
+
 ```shell
 docker run -it --rm \
   -v "$(pwd)":/tmp/convert \
@@ -240,7 +246,7 @@ docker run \
 }
 ```
 
-**signatures.json**
+An example _signatures.json_ file:
 
 ```json
 {
@@ -372,7 +378,7 @@ docker run \
 
 The Attack Signature Report tool scans the system for attack signatures, then generates a JSON report file with information about these signatures.
 
-This tool can be deployed and used independently from a F5 WAF for NGINX deployment using the [compiler image]({{< ref "/waf/configure/compiler.md" >}}) to generate a report about the default signatures included with F5 WAF, or the signatures included in [an update package]().
+This tool can be deployed and used independently from a F5 WAF for NGINX deployment using the [compiler image]({{< ref "/waf/configure/compiler.md" >}}) to generate a report about the default signatures included with F5 WAF, or the signatures included in [an update package]({{< ref "/waf/install/update-signatures.md" >}}).
 
 The latter case is possible on a standalone compiler deployment by comparing a report from before a signature update and a report from after the signature update.
 
@@ -411,7 +417,7 @@ This command example generates a signature report with all signature details:
 }
 ```
 
-**signature-report.json**
+An example _signature-report.json_ file:
 
 ```json
 {
