@@ -316,7 +316,7 @@ load_module modules/ngx_http_app_protect_module.so;
 The Enforcer address must be added at the _http_ context:
 
 ```nginx
-app_protect_enforcer_address <enforcer-address>
+app_protect_enforcer_address <enforcer-address>:<enforcer-port>
 ```
 
 And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ context:
