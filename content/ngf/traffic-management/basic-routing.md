@@ -479,5 +479,5 @@ If your issue persists, [contact us](https://github.com/nginx/nginx-gateway-fabr
 To learn more about the Gateway API and the resources we created in this guide, check out the following resources:
 
 - [Gateway API Overview](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
-- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/simple-gateway/)
+- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/getting-started/simple-gateway/)
 - [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/http-routing/)
