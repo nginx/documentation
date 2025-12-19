@@ -23,7 +23,7 @@ November 07, 2025
 
 NGINX Instance Manager 2.21.0 supports upgrades from these previous versions:
 
-- 2.18.0 - 2.20.0
+- 2.18.0 - 2.20.1
 
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -34,13 +34,13 @@ This release includes the following updates:
 - {{% icon-feature %}} **Expanded options for configuring security policies with F5 WAF for NGINX**<a name="2-21-0-whats-new-Expanded-options-for-configuring-security-policies-with-F5-WAF-for-NGINX-45801"></a>
 
    You can now configure additional policy settings for F5 WAF for NGINX directly in the NGINX Instance Manager web interface, including:
-  
+
   - Signature sets
   - Signature exceptions
   - Parameters
   - URLs
   - Cookies
-  
+
   For more information, see the [F5 WAF for NGINX Integration Guide](https://docs.nginx.com/nginx-instance-manager/waf-integration/).
 
 - {{% icon-feature %}} **Added support for bot signatures management in NGINX Instance Manager**<a name="2-21-0-whats-new-Added-support-for-bot-signatures-management-in-NGINX-Instance-Manager-45827"></a>
@@ -90,21 +90,21 @@ This release includes the following updates:
 - {{% icon-feature %}} **On-demand WAF policy compilation (bundle creation) in NGINX Instance Manager web interface**<a name="2-21-0-whats-new-On-demand-WAF-policy-compilation-(bundle-creation)-in-NGINX-Instance-Manager-web-interface-46672"></a>
 
    This release adds on-demand compilation of WAF policies in the NGINX Instance Manager web interface. Pre-compiling policies helps reduce publish times and improve reliability.
-  
+
   Previously, NGINX Instance Manager reused compiled bundles when available and compiled policies during publish if no bundle existed. This could slow down or occasionally fail. You can now compile policies in advance so they’re ready for immediate deployment to instances or instance groups.
-  
+
   **What’s new**
-  
+
   - **Web interface support for policy compilation:** Under **WAF > Policies**, select a policy and choose **Compile (bundle creation)** to start compilation on demand.
   - **Compilation status visibility:** A new **Compilation Status** column shows which policies are already compiled and which need compilation.
   - **Faster publishing:** When a compiled bundle exists for a selected policy, NGINX Instance Manager uses it to speed up publishing to instances and instance groups.
-  
+
   **Upgrade and compatibility**
-  
+
   - No breaking changes. Existing workflows continue to function as before. On-demand compilation through the web interface complements the existing API and can improve publish speed and reduce failures during WAF policy deployment.
-  
+
   **Limitations**
-  
+
   - By default, the **Compile** action uses the latest revision of the selected policy, the most recent compiler version, and the newest versions of attack signatures, bot signatures, and threat campaigns.
 
 ### Resolved issues {#2-21-0-resolved-issues}
@@ -117,6 +117,36 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
+## 2.20.1
+
+December 18, 2025
+
+### Upgrade Paths {#2-20-1-upgrade-paths}
+
+NGINX Instance Manager 2.20.1 supports upgrades from these previous versions:
+
+- 2.17.0 - 2.20.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### Changes in default behavior{#2-20-1-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Support for Entrust-CA deprecated**<a name="2-20-1-changes-in-behavior-Support-for-Entrust-CA-deprecated-46910"></a>
+
+   Entrust CA, used in NGINX Instance Manager licensing flows, will no longer be a trusted certificate authority for browsers. Previous versions of NGINX Instance Manager ship with an embedded licensing bundle that only accepts Entrust-signed certificates for the F5 licensing servers.
+
+  **The current Entrust certificates used by older NGINX Instance Manager licensing flows will be replaced on February 15, 2026.**
+
+  To avoid reliance on a single certificate authority, NGINX Instance Manager will trust multiple well-known CAs through an updated certificate bundle. NGINX Instance Manager 2.21 includes this updated bundle so JWT-based licensing and connectivity to the licensing endpoint service continue to work.
+
+  To prevent service interruptions and provide an extended window for customers to upgrade to version 2.21.0, we are also issuing minor patch releases for versions 2.18.1, 2.19.3, and 2.20.1.
+
+### Known issues {#2-20-1-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
 ## 2.20.0
 
 June 16, 2025
@@ -125,7 +155,7 @@ June 16, 2025
 
 NGINX Instance Manager 2.20.0 supports upgrades from these previous versions:
 
-- 2.17.0 - 2.19.2
+- 2.17.0 - 2.19.3
 
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -184,6 +214,36 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} The certificate stats are not displayed correctly in the Certificates and Keys page as well as the Dashboard page. (45991)
 
 ### Known issues {#2-20-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
+## 2.19.3
+
+December 18, 2025
+
+### Upgrade Paths {#2-19-3-upgrade-paths}
+
+NGINX Instance Manager 2.19.3 supports upgrades from these previous versions:
+
+- 2.16.0 - 2.19.2
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### Changes in default behavior{#2-19-3-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Support for Entrust-CA deprecated**<a name="2-19-3-changes-in-behavior-Support-for-Entrust-CA-deprecated-46909"></a>
+
+   Entrust CA, used in NGINX Instance Manager licensing flows, will no longer be a trusted certificate authority for browsers. Previous versions of NGINX Instance Manager ship with an embedded licensing bundle that only accepts Entrust-signed certificates for the F5 licensing servers.
+  
+  **The current Entrust certificates used by older NGINX Instance Manager licensing flows will be replaced on February 15, 2026.**
+  
+  To avoid reliance on a single certificate authority, NGINX Instance Manager will trust multiple well-known CAs through an updated certificate bundle. NGINX Instance Manager 2.21 includes this updated bundle so JWT-based licensing and connectivity to the licensing endpoint service continue to work.
+  
+  To prevent service interruptions and provide an extended window for customers to upgrade to version 2.21.0, we are also issuing minor patch releases for versions 2.18.1, 2.19.3, and 2.20.1.
+
+### Known issues {#2-19-3-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
@@ -250,7 +310,7 @@ February 06, 2025
 
 NGINX Instance Manager 2.19.0 supports upgrades from these previous versions:
 
-- 2.16.0 - 2.18.0
+- 2.16.0 - 2.18.1
 
 If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
 
@@ -323,6 +383,36 @@ This release fixes the following issues. Check the [Known Issues]({{< ref "/nim/
 - {{% icon-resolved %}} Syntax errors while saving template configuration (45573)
 
 ### Known issues {#2-19-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
+## 2.18.1
+
+December 18, 2025
+
+### Upgrade Paths {#2-18-1-upgrade-paths}
+
+NGINX Instance Manager 2.18.1 supports upgrades from these previous versions:
+
+- 2.15.0 - 2.18.0
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### Changes in default behavior{#2-18-1-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Support for Entrust-CA deprecated**<a name="2-18-1-changes-in-behavior-Support-for-Entrust-CA-deprecated-46907"></a>
+
+   Entrust CA, used in NGINX Instance Manager licensing flows, will no longer be a trusted certificate authority for browsers. Previous versions of NGINX Instance Manager ship with an embedded licensing bundle that only accepts Entrust-signed certificates for the F5 licensing servers. 
+  
+  **The current Entrust certificates used by older NGINX Instance Manager licensing flows will be replaced on February 15, 2026.** 
+  
+  To avoid reliance on a single certificate authority, NGINX Instance Manager will trust multiple well-known CAs through an updated certificate bundle. NGINX Instance Manager 2.21 includes this updated bundle so JWT-based licensing and connectivity to the licensing endpoint service continue to work. 
+  
+  To prevent service interruptions and provide an extended window for customers to upgrade to version 2.21.0, we are also issuing minor patch releases for versions 2.18.1, 2.19.3, and 2.20.1.
+
+### Known issues {#2-18-1-known-issues}
 
 You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
 
