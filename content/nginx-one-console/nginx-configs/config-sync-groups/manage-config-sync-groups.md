@@ -329,6 +329,19 @@ The **Config Sync Status** column on the **Config Sync Groups** page provides in
 
 Monitor the **Config Sync Status** column. It can help you ensure that your configurations are consistently applied across all instances in a group.
 
+## Working with unmanaged certificates
+
+Config Sync Groups can work with both managed and unmanaged certificates. While managed certificates are uploaded through the NGINX One Console and automatically synchronized across instances, unmanaged certificates require manual installation and management.
+
+When using unmanaged certificates in Config Sync Groups:
+
+- **Manual distribution**: You must manually install certificates on each instance in the group
+- **Consistent file paths**: Certificate file paths must be identical across all instances for proper synchronization
+- **Visibility without management**: NGINX One tracks unmanaged certificate metadata to help you verify consistency, but does not synchronize the certificates themselves
+- **Status impact**: Inconsistent certificate file paths or missing certificates can affect the Config Sync Group status
+
+For detailed information about how unmanaged certificates work in Config Sync Groups, including requirements, best practices, and troubleshooting, see [Unmanaged certificates in Config Sync Groups]({{< ref "/nginx-one-console/certificates/csg-unmanaged-certificates.md" >}}).
+
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}})
