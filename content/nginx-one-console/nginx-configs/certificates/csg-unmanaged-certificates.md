@@ -4,14 +4,17 @@ nd-docs: DOCS-000
 nd-product: NONECO
 title: Unmanaged certificates in Config Sync Groups
 toc: true
-weight: 500
+weight: 200
 ---
 
 ## Overview
 
+Unmanaged certificates are SSL/TLS certificates that you install and manage manually on NGINX instances. Unlike managed certificates that are uploaded and distributed through the NGINX One Console, unmanaged certificates are installed directly on individual instances and referenced by their file paths in NGINX configuration files. You are responsible for distributing, updating, and maintaining these certificates across your infrastructure.
+
+### Unmanaged certificates in Config Sync Groups
 Config Sync Groups (CSGs) in NGINX One Console ensure configuration consistency across connected NGINX instances. While managed certificates uploaded through the Console are automatically synchronized and tracked, unmanaged certificates follow a different model that provides visibility without automated management.
 
-Unmanaged certificates are not uploaded to the NGINX One Console. Instead, they are manually installed on individual instances and referenced directly in NGINX configuration files by their file paths. Although NGINX One does not synchronize unmanaged certificates, it tracks their metadata to help you verify consistency across instances.
+When you use unmanaged certificates in a CSG, NGINX One Console does not synchronize the certificate files themselves. However, it tracks their metadata to help you verify consistency across instances and understand the state of your certificates.
 
 ## How unmanaged certificates work in Config Sync Groups
 
