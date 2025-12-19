@@ -340,7 +340,7 @@ When using unmanaged certificates in Config Sync Groups:
 - **Visibility without management**: NGINX One tracks unmanaged certificate metadata to help you verify consistency, but does not synchronize the certificates themselves
 - **Status impact**: Inconsistent certificate file paths or missing certificates can affect the Config Sync Group status
 
-For detailed information about how unmanaged certificates work in Config Sync Groups, including requirements, best practices, and troubleshooting, see [Unmanaged certificates in Config Sync Groups]({{< ref "/nginx-one-console/certificates/csg-unmanaged-certificates.md" >}}).
+For detailed information about how unmanaged certificates work in Config Sync Groups, including requirements, best practices, and troubleshooting, see [Unmanaged certificates in Config Sync Groups]({{< ref "/nginx-one-console/nginx-configs/certificates/csg-unmanaged-certificates.md" >}}).
 
 ## See also
 
