@@ -253,7 +253,7 @@ This release includes the following security updates:
 
 - {{% icon-resolved %}} **Note on CVEs in this patch release**<a name="2-19-3-security-updates-CVEs-46912"></a>
 
-   This release does not include new fixes for security vulnerabilities (CVEs) present in this version. To receive security updates, please upgrade to the latest NGINX Instance Manager version. CVEs present in the latest version would be fixed in the upcoming 2.21.1 patch release.
+   This release does not include new fixes for security vulnerabilities (CVEs) present in this version. To receive security updates, please upgrade to the latest NGINX Instance Manager version. CVEs present in the latest version will be fixed in the upcoming 2.21.1 patch release.
 
 ### Changes in default behavior{#2-19-3-changes-in-behavior}
 
