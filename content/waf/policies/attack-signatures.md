@@ -1,18 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "Attack signatures"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 500
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
-Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application and its components. You can apply attack signatures to both requests and responses. 
+Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application and its components. You can apply attack signatures to both requests and responses.
 
 F5 WAF for NGINX includes predefined attack signatures to protect your application against all attack types identified by the system.
 
@@ -77,11 +71,11 @@ In this example, only high accuracy signatures are configured to be enforced, bu
 }
 ```
 
-Since the "All Signatures" set is not included in the default policy, turning OFF for both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place, and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to. 
+Since the "All Signatures" set is not included in the default policy, turning OFF for both alarm and block has no effect because all the other sets with alarm turned ON (and high accuracy signatures with block enabled) are still in place, and a signature that is a member of multiple sets behaves in accordance with the strict settings of all sets it belongs to.
 
 The only way to remove signature sets is to remove or disable sets that are part of the [default policy]({{< ref "/waf/policies/configuration.md#default-policy" >}}).
 
-For example, in the below default policy, even though all signature alarm and block settings are set to false, attack signatures enforcement cannot be ignored as some of the signature sets will be enabled in their strict policy. 
+For example, in the below default policy, even though all signature alarm and block settings are set to false, attack signatures enforcement cannot be ignored as some of the signature sets will be enabled in their strict policy.
 
 If you want to remove a specific signature set, you must explicitly mention it under the [strict policy]({{< ref "/waf/policies/configuration.md#strict-policy" >}}).
 
@@ -106,7 +100,7 @@ If you want to remove a specific signature set, you must explicitly mention it u
 }
 ```
 
-A signature may belong to more than one set in the policy: tts behavior is determined by the most severe action across all the sets that contain it. 
+A signature may belong to more than one set in the policy: tts behavior is determined by the most severe action across all the sets that contain it.
 
 In the above example, a high accuracy SQL injection signature will both alarm and block, because the `High Accuracy Signatures` set is blocking and both sets trigger alarm.
 
@@ -201,13 +195,13 @@ To exclude multiple attack signatures, each signature ID needs to be added as a 
 }
 ```
 
-In the previous examples, the signatures were disabled for all the requests that are inspected by the respective policy. You can also exclude signatures for specific URLs or parameters, while still enable them for the other URLs and parameters. 
+In the previous examples, the signatures were disabled for all the requests that are inspected by the respective policy. You can also exclude signatures for specific URLs or parameters, while still enable them for the other URLs and parameters.
 
 The topic [User-defined URLs and parameters]({{< ref "/waf/policies/user-urls-parameters.md" >}}) has more details.
 
-In some cases, you may want to remove a whole signature set that was included in the default policy. For example, a protected application may not use XML and is not vulnerable to XPath injection. 
+In some cases, you may want to remove a whole signature set that was included in the default policy. For example, a protected application may not use XML and is not vulnerable to XPath injection.
 
-If you wanted to remove `XPath Injection Signatures`, there are two methods. 
+If you wanted to remove `XPath Injection Signatures`, there are two methods.
 
 The first is to set the `alarm` and `block` flags to `false` for this signature set, overriding the base template:
 
@@ -248,9 +242,9 @@ Although the two methods are functionally equivalent, the second one is preferab
 
 ## Default signature sets
 
-The following signature sets are included in the default policy. 
+The following signature sets are included in the default policy.
 
-Most sets are defined by the attack type they protect from. 
+Most sets are defined by the attack type they protect from.
 
 In all sets the **Alarm** flag is enabled and **Block** disabled except High Accuracy Signatures, which are set to **blocked** (`block` parameter is enabled).
 

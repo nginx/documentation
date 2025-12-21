@@ -4,8 +4,8 @@ nd-docs: DOCS-812
 title: Dimensions Catalog
 toc: true
 weight: 20
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 {{< catalogs-dimensions >}}

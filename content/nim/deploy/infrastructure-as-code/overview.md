@@ -3,8 +3,8 @@ nd-docs: DOCS-1249
 title: Overview
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

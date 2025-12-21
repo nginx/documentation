@@ -3,8 +3,8 @@ nd-docs: DOCS-796
 title: Configure SELinux
 toc: true
 weight: 250
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
