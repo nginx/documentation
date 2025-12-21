@@ -7,7 +7,7 @@ weight: 110
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-nd-product: DOS
+nd-product: F5DOSN
 ---
 
 This page describes how to install F5 DOS for NGINX using Kubernetes.
