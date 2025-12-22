@@ -43,6 +43,27 @@ Specify the data plane key Secret name in the `--nginx-one-dataplane-key-secret`
 
 {{< include "/ngf/installation/deploy-ngf-manifests.md" >}}
 
+## Deploy a Gateway
+
+Now that the control plane is installed, you need to create a Gateway, which will provision NGINX and NGINX Agent. For example:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+EOF
+```
+
+An NGINX Deployment will be created in the `default` namespace (same namespace as the Gateway). Once Running, it should report to the NGINX One Console.
+
 ## Verify a connection to NGINX One Console
 
 {{< include "/nginx-one-console/how-to/verify-connection.md" >}}
