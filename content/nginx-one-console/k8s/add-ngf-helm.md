@@ -156,7 +156,7 @@ spec:
 EOF
 ```
 
-An NGINX Deployment will be created in the `default` namespace (same namespace as the Gateway). Once Running, it should report to the NGINX One Console.
+An NGINX Deployment will be created in the `default` namespace (same namespace as the Gateway). Once `Running`, it should report to the NGINX One Console.
 
 ## Verify a connection to NGINX One Console
 
