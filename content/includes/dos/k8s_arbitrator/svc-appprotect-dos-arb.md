@@ -5,16 +5,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-appprotect-dos
-  namespace: appprotect-dos-wp-diff
-  labels:
-    app: appprotect-dos
+   name: svc-appprotect-dos-arb
+   namespace: app-protect-dos
 spec:
-  ports:
-    - name: app
-      port: 80
-      protocol: TCP
-      nodePort: 80
   selector:
-    app: appprotect-dos
-  type: NodePort```
+     app: appprotect-dos-arb
+  ports:
+   - name: arb
+     port: 3000
+     protocol: TCP
+     targetPort: 3000
+  clusterIP: None
+```

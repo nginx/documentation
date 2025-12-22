@@ -127,7 +127,6 @@ Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
-- _license.jwt_
 - _entrypoint.sh_
 - _nginx.conf_
 - _Dockerfile_
@@ -138,7 +137,6 @@ To build an image, use the following command, replacing `<your-nginx-dos-image-n
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
-  --secret id=license-jwt,src=license.jwt \
   -t <your-nginx-dos-image-name> .
 ```
 
@@ -206,9 +204,9 @@ From the folder containing the YAML files from the previous step (Suggested as `
 
 ```shell
 kubectl apply -f manifests/dos-namespace.yaml
-kubectl apply -f manifests/dos-storage.yaml
-kubectl apply -f manifests/dos-nginx-conf-configmap.yaml
-kubectl apply -f manifests/dos-log-default-configmap.yaml
+kubectl create secret generic license-token --from-file=license.jwt=license.jwt --type=nginx.com/license -n app-protect-dos
+kubectl apply -f dos-manifest/dos-log-default-configmap.yaml
+kubectl apply -f dos-manifest/dos-nginx-conf-configmap.yaml
 kubectl apply -f manifests/dos-deployment.yaml
 kubectl apply -f manifests/dos-service.yaml
 ```

@@ -8,8 +8,7 @@ nd-files:
 
 
 ```shell
-
-     #!/usr/bin/env bash
+    #!/usr/bin/env bash
     USER=nginx
     LOGDIR=/var/log/adm
 

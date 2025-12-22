@@ -25,23 +25,24 @@ RUN printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[
 # Update the repository and install the most recent versions of the F5 WAF and F5 DoS for NGINX packages (which include NGINX Plus):
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
-    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
-    apk update && apk add app-protect app-protect-dos && \
-    cat license.jwt > /etc/nginx/license.jwt
-
-# Forward request logs to Docker log collector:
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-    ln -sf /dev/stderr /var/log/nginx/error.log
+    set -x \
+    # Create nginx user/group first, to be consistent throughout Docker variants \
+    && addgroup -S -g 101 nginx \
+    && adduser -S -u 101 -G nginx -h /nonexistent -s /sbin/nologin nginx \
+    && apk update && apk add app-protect app-protect-dos \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && rm -rf /var/cache/apk/*
 
 RUN nginx -v && admd -v
-RUN cat /opt/app_protect/VERSION /opt/app_protect/RELEASE
+RUN echo "RELEASE:" && cat /opt/app_protect/RELEASE && echo "VERSION:" && cat /opt/app_protect/VERSION
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 RUN chmod +x /root/entrypoint.sh
 
 EXPOSE 80
+
 
 STOPSIGNAL SIGQUIT
 

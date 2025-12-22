@@ -8,7 +8,7 @@ metadata:
   name: nap-dos
   namespace: app-protect-dos
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80

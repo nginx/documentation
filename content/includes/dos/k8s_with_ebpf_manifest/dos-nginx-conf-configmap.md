@@ -38,9 +38,6 @@ data:
 
         app_protect_dos_accelerated_mitigation on syn_drop=on;
 
-        upstream backend {
-            server svc-backend-nginx:8080;
-        }
 
         # Health endpoints for probes
         server {
@@ -62,7 +59,14 @@ data:
                 app_protect_dos_enable on;
                 app_protect_dos_name "main_serv";
                 app_protect_dos_monitor uri=http://serv:80/ protocol=http1;
-                proxy_pass http://backend;
+                proxy_pass  http://127.0.0.1/proxy$request_uri;
+            }
+    
+            location /proxy {
+                app_protect_dos_enable off;
+                client_max_body_size 0;
+                default_type text/html;
+                return 200 "Hello! I got your URI request - $request_uri\n";
             }
        }
     }

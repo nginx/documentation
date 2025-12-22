@@ -9,20 +9,21 @@ FROM rockylinux:9
 # Install F5 DoS for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    --mount=type=secret,id=license-jwt,dst=license.jwt,mode=0644 \
-    dnf -y install ca-certificates epel-release 'dnf-command(config-manager)' \
+    set -x \
+    # Create nginx user/group first, to be consistent throughout Docker variants \
+    && groupadd --system --gid 101 nginx \
+    && useradd --system --gid nginx --no-create-home --home /nonexistent --comment "nginx user" --shell /bin/false --uid 101 nginx \
+    && dnf -y install ca-certificates epel-release 'dnf-command(config-manager)' \
     && curl -o /etc/yum.repos.d/plus-9.repo https://cs.nginx.com/static/files/plus-9.repo \
     && curl -o /etc/yum.repos.d/app-protect-dos-9.repo https://cs.nginx.com/static/files/app-protect-dos-9.repo \
     && dnf config-manager --set-enabled crb \
     && dnf install -y app-protect-dos \
-    && cat license.jwt > /etc/nginx/license.jwt \
     && dnf clean all \
     && rm -rf /var/cache/dnf \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
-COPY nginx.conf custom_log_format.json /etc/nginx/
 COPY entrypoint.sh /root/
 RUN chmod +x /root/entrypoint.sh
 

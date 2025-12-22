@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: nginx-app-protect-dos
-          image: <your-private-registry>/<your-nginx-app-protect-dos-image-name>:<your-tag>
+          image: ${DOS_IMAGE_REPOSITORY}:${DOS_IMAGE_TAG}
           imagePullPolicy: Always
 
           command: ["/bin/bash", "-c"]
@@ -63,7 +63,7 @@ spec:
               path: /app_protect_dos_readiness
               port: 8090
             initialDelaySeconds: 5
-            periodSeconds: 10    
+            periodSeconds: 10
 
           volumeMounts:
             - name: shared-dir
@@ -74,11 +74,14 @@ spec:
             - name: log-default
               mountPath: /etc/app_protect_dos/log-default.json
               subPath: log-default.json
-        
+            - name: license-token-volume
+              mountPath: /etc/nginx/license.jwt
+              subPath: license.jwt
+              readOnly: true
+
       volumes:
         - name: shared-dir
-          persistentVolumeClaim:
-            claimName: pvc-app-protect-dos-shared
+          emptyDir: { }
         - name: conf
           configMap:
             name: dos-nginx-conf
@@ -92,5 +95,11 @@ spec:
             items:
               - key: log-default.json
                 path: log-default.json
+        - name: license-token-volume
+          secret:
+            secretName: license-token
+            items:
+              - key: license.jwt
+                path: license.jwt
 
 ```

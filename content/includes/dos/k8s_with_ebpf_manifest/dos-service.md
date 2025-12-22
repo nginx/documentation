@@ -9,6 +9,7 @@ metadata:
   namespace: app-protect-dos
 spec:
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - port: 80
       targetPort: 80
