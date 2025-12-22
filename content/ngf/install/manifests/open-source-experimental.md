@@ -1,7 +1,7 @@
 ---
-title: Use Manifests to install NGINX Gateway Fabric with NGINX Open Source
-linkTitle: NGINX Open Source
-weight: 100
+title: Use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Open Source
+linkTitle: NGINX Open Source (experimental)
+weight: 300
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
@@ -12,13 +12,13 @@ This page describes how to use Manifests to install NGINX Gateway Fabric (experi
 
 It explains how to install the Gateway API resources and add authentication certificates, then deploy NGINX Gateway Fabric and its custom resource definitions.
 
+Using experimental NGINX Gateway Fabric versions allows to test API resources from upcoming releases as outlined by the [Milestone Roadmap](https://github.com/orgs/nginx/projects/10/views/5).
+
 By following these instructions, you will finish with a functional NGINX Gateway Fabric instance for your Kubernetes cluster.
 
 {{< call-out "note" >}} 
 
-To learn which Gateway API resources NGINX Gateway Fabric currently supports, view the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) topic. 
-
-To install an experimental NGINX Gateway Fabric version view the [Use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Open Source]({{< ref "/ngf/install/manifests/open-source-experimental.md" >}}) topic.
+To learn which Gateway API resources NGINX Gateway Fabric currently supports, view the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) topic.
 
 {{< /call-out >}}
 
@@ -32,7 +32,7 @@ To complete this guide, you will need the following pre-requisites:
 
 ## Install the Gateway API resources
 
-{{< include "/ngf/installation/manifests/api-resources.md" >}}
+{{< include "/ngf/installation/manifests/api-resources-experimental.md" >}}
 
 You should also create the _nginx-gateway_ namespace, which is used by the Manifest files by default:
 
@@ -63,7 +63,7 @@ Your next step is dependent on how you intend to expose NGINX Gateway Fabric:
 To deploy NGINX Gateway Fabric with NGINX Open Source, use this `kubectl` command:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental/deploy.yaml
 ```
 
 {{% /tab %}}
@@ -73,7 +73,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{
 To deploy NGINX Gateway Fabric with NGINX Open Source, use this `kubectl` command:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/default/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental/deploy.yaml
 ```
 
 To set up an AWS Network Load Balancer service, add these annotations to your Gateway infrastructure field:
@@ -84,36 +84,6 @@ spec:
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-type: "external"
       service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
-```
-
-{{% /tab %}}
-
-{{% tab name="Azure" %}}
-
-To deploy NGINX Gateway Fabric with NGINX Open Source and `nodeSelector`, use this `kubectl` command:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/azure/deploy.yaml
-```
-
-{{% /tab %}}
-
-{{% tab name="NodePort "%}}
-
-To deploy NGINX Gateway Fabric with NGINX Open Source and a `NodePort` service, use this `kubectl` command:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nodeport/deploy.yaml
-```
-
-{{% /tab %}}
-
-{{% tab name="OpenShift "%}}
-
-To deploy NGINX Gateway Fabric with NGINX Open Source on OpenShift, use this `kubectl` command:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/openshift/deploy.yaml
 ```
 
 {{% /tab %}}

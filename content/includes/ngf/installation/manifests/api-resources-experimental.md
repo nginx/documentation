@@ -7,10 +7,10 @@ If you have already installed Gateway API resources in your cluster, ensure they
 
 {{< /call-out >}}
 
-To install the Gateway API resources, use `kubectl kustomize`:
+To install API resources from the experimental channel, use `kubectl kustomize`:
 
 ```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
 {{< details summary="Example output" >}}

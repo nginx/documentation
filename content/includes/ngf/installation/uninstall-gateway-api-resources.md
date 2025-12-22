@@ -3,7 +3,6 @@ nd-docs: DOCS-1436
 nd-files:
 - content/ngf/how-to/gateway-api-inference-extension.md
 - content/ngf/install/helm.md
-- content/ngf/install/manifests.md
 ---
 
 {{< call-out "warning" >}} This step will remove all corresponding custom resources in your entire cluster, across every namespace. 

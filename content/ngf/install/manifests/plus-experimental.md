@@ -1,23 +1,23 @@
 ---
-title: Use Manifests to install NGINX Gateway Fabric with NGINX Plus
-linkTitle: NGINX Plus
-weight: 200
+title: Use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Plus
+linkTitle: NGINX Plus (experimental)
+weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
 ---
 
-This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Plus.
+This page describes how to use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Plus.
 
-It explains how to install the Gateway API resources and add certificates for secure authentication, then deploy NGINX Gateway Fabric and its custom resource definitions.
+It explains how to install the Gateway API resources and add authentication certificates, then deploy NGINX Gateway Fabric and its custom resource definitions.
+
+Using experimental NGINX Gateway Fabric versions allows to test API resources from upcoming releases as outlined by the [Milestone Roadmap](https://github.com/orgs/nginx/projects/10/views/5).
 
 By following these instructions, you will finish with a functional NGINX Gateway Fabric instance for your Kubernetes cluster.
 
 {{< call-out "note" >}} 
 
-To learn which Gateway API resources NGINX Gateway Fabric currently supports, view the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) topic. 
-
-To install an experimental NGINX Gateway Fabric version view the [Use Manifests to install NGINX Gateway Fabric with NGINX Plus]({{< ref "/ngf/install/manifests/plus-experimental.md" >}}) topic.
+To learn which Gateway API resources NGINX Gateway Fabric currently supports, view the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) topic.
 
 {{< /call-out >}}
 
@@ -83,25 +83,7 @@ regcred         kubernetes.io/dockerconfigjson   1      22s
 
 ## Install the Gateway API resources
 
-{{< call-out "note" >}} If you have already installed Gateway API resources in your cluster, ensure they are a version [supported by NGINX Gateway Fabric]({{< ref "/ngf/overview/technical-specifications.md" >}}) {{< /call-out >}}
-
-To install the Gateway API resources, use `kubectl kustomize`:
-
-```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v{{< version-ngf >}}" | kubectl apply -f -
-```
-
-{{< details summary="Example output" >}}
-
-```text
-customresourcedefinition.apiextensions.k8s.io/gatewayclasses.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/gateways.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/grpcroutes.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/httproutes.gateway.networking.k8s.io created
-customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking.k8s.io created
-```
-
-{{< /details >}}
+{{< include "/ngf/installation/manifests/api-resources-experimental.md" >}}
 
 ## Add certificates for secure authentication
 
@@ -115,10 +97,10 @@ customresourcedefinition.apiextensions.k8s.io/referencegrants.gateway.networking
 
 By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace.
 
-If you want to deploy it in another namespace, you must modify the Manifest files
+If you want to deploy it in another namespace, you must modify the Manifest files.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus-experimental/deploy.yaml
 ```
 
 {{< details summary="Example output" >}}
