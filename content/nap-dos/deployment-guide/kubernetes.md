@@ -155,19 +155,33 @@ You will need to edit the `values.yaml` file for a few changes:
 
 The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
+On helm deployment environment variables need to be set for image repository and tag.
+`set enviorment variable DOS_IMAGE_REPOSITORY` with your actual nginx-dos image anmae.
+`set enviorment variable DOS_IMAGE_TAG` with your actual nginx-dos image tag.
+
 Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
 
 ```shell
+export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
+
+export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
+
 helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
-helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
-helm install <release-name> .
+
 kubectl create namespace <namespace> --dry-run=client -o yaml | kubectl apply -f -
-kubectl create secret generic license-token --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license -n <namespace>
-helm install dos-release dos-ebpf-helm-chart --namespace <namespace> --set namespace.create=false --set service.type=NodePort --set appProtectDos.nginxImage.repository=${DOS_IMAGE_REPOSITORY} --set appProtectDos.nginxImage.tag=${DOS_IMAGE_TAG} --timeout 10m --debug
-helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace> --wait --timeout 5m
+
+kubectl create secret generic license-token \ 
+        --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license --namespace <namespace>
+        
+helm install dos-release dos-helm-chart --namespace <namespace> \
+      --set namespace.create=false --set service.type=NodePort \
+      --set appProtectDos.nginxImage.repository=${DOS_IMAGE_REPOSITORY} \
+      --set appProtectDos.nginxImage.tag=${DOS_IMAGE_TAG}
+       
+helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace>
+
 kubectl wait --for=condition=available --timeout=300s deployment/app-protect-dos -n <namespace>
 ```
-
 You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
 
 ```shell
@@ -177,7 +191,7 @@ kubectl get svc -n <namespace>
 
 {{< call-out "note" >}}
 
-At this stage, you have finished deploying F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+At this stage, you have finished deploying F5 DOS for NGINX and can look at [Post-installation checks](#post-installation-checks).
 
 {{< /call-out >}}
 
@@ -191,7 +205,9 @@ The default configuration provided creates two replicas, each hosting NGINX and 
 
 Create all of these files in a single folder (Such as `/manifests`).
 
-In each file, replace `<your-private-registry>/<your-nginx-dos-image-name>:<your-tag>` with your actual image tag.
+On manifest deployment environment variables need to be set for image repository and tag.
+`set enviorment variable DOS_IMAGE_REPOSITORY` with your actual nginx-dos image anmae.
+`set enviorment variable DOS_IMAGE_TAG` with your actual nginx-dos image tag.
 
 {{< tabs name="manifest-files" >}}
 
@@ -232,8 +248,10 @@ In each file, replace `<your-private-registry>/<your-nginx-dos-image-name>:<your
 From the folder containing the YAML files from the previous step (Suggested as `/manifests`), deploy F5 DOS for NGINX using `kubectl`:
 
 ```shell
+export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
+export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
 kubectl apply -f manifests/dos-namespace.yaml
-kubectl create secret generic license-token --from-file=license.jwt=license.jwt --type=nginx.com/license -n app-protect-dos
+kubectl create secret generic license-token --from-file=license.jwt=license.jwt --type=nginx.com/license --namespace app-protect-dos
 kubectl apply -f dos-manifest/dos-log-default-configmap.yaml
 kubectl apply -f dos-manifest/dos-nginx-conf-configmap.yaml
 kubectl apply -f manifests/dos-deployment.yaml
@@ -245,23 +263,23 @@ It will apply all the configuration defined in the files to your Kubernetes clus
 You can then check the status of the deployment with `kubectl get`:
 
 ```shell
-kubectl -n app-protect-dos get deployments
-kubectl -n app-protect-dos get pods
-kubectl -n app-protect-dos get services
+kubectl --namespace app-protect-dos get deployments
+kubectl --namespace app-protect-dos get pods
+kubectl --namespace app-protect-dos get services
 ```
 
 You should see output similar to the following:
 
 ```text
-~$ kubectl -n app-protect-dos get deployments
+~$ kubectl --namespace app-protect-dos get deployments
 NAME              READY   UP-TO-DATE   AVAILABLE   AGE
 app-protect-dos   1/1     1            1           1m
 
-~$ kubectl -n app-protect-dos get pods
+~$ kubectl --namespace app-protect-dos get pods
 NAME                               READY   STATUS    RESTARTS   AGE
 app-protect-dos-586fb94947-8sjnc   1/1     Running   0          1m
 
-~$ kubectl -n app-protect-dos get services
+~$ kubectl --namespace app-protect-dos get services
 NAME                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 nap-dos             LoadBalancer   10.43.83.225    <pending>     80:30307/TCP   1m
 ```

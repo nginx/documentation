@@ -262,7 +262,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
-18. L4 mitigation
+18. L4 accelerated mitigation
 
     To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
     ```shell
@@ -479,7 +479,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
-18. L4 mitigation
+18. L4 accelerated mitigation
 
     To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
     ```shell
@@ -908,7 +908,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
-16. L4 mitigation
+16. L4 accelerated mitigation
 
     To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
     ```shell
@@ -1067,7 +1067,7 @@ You need root permissions to execute the following steps.
        mkdir /shared
        ```
        This folder will be used to share data between containers.
-       Modify the `entrypoint.sh` to run the L4 mitigation:
+       Modify the `entrypoint.sh` to run the L4 accelerated mitigation:
 
        ```shell
        # run processes
@@ -1085,13 +1085,13 @@ You need root permissions to execute the following steps.
        ```
     2. Deploy Directly on the Host.<br>
        To run L4 mitigation directly on the host:<br>
-        1. Install the L4 mitigation on the host, as described in the OS-specific instructions.
+        1. Install the L4 accelerated mitigation on the host, as described in the OS-specific instructions.
         2. Run the app-protect-dos container:
              ```shell
              docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -v $(PWD)/license.jwt:/etc/nginx/license.jwt -d app-protect-dos
              ```
-    3. Run L4 Mitigation Inside the Same Container as `app-protect-dos`.<br>
-       To run both L4 mitigation and the main application within the same container:<br>
+    3. Run L4 Accelerated Mitigation Inside the Same Container as `app-protect-dos`.<br>
+       To run both L4 accelerated mitigation and the main application within the same container:<br>
         1. Modify the `entrypoint.sh`:
            ```shell
            ...

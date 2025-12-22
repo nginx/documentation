@@ -3,7 +3,7 @@ nd-docs: null
 nd-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 - content/nap-dos/deployment-guide/kubernetes.md
-- content/nap-dos/deployment-guide/kubernetes-with-L3-mitigation.md
+- content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation..md
 ---
 
 You can run the following commands to ensure that F5 DoS for NGINX enforcement is operational.
@@ -66,7 +66,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
 
    c. See that the good traffic continue as usual while the attackers receive denial of service.
 
-4. For DOS with L3 mitigation enabled
+4. For DOS with L4 accelerated mitigation enabled
 
 Check that the ebpf_manager_dos process needed for F5 DoS for NGINX is running using `ps aux | grep /usr/bin/ebpf_manager_dos`:
 
