@@ -166,7 +166,6 @@ In each file, replace `<your-private-registry>/<your-nginx-dos-image-name>:<your
 
 {{% /tab %}}
 
-
 {{% tab name=dos-nginx-conf-configmap.yaml %}}
 
 {{< include "dos/k8s_manifest/dos-nginx-conf-configmap.md" >}}

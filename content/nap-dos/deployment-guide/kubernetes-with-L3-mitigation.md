@@ -256,8 +256,6 @@ In each file, replace
 {{% /tab %}}
 
 
-{{% /tab %}}
-
 {{% tab name=dos-nginx-conf-configmap.yaml %}}
 
 {{< include "dos/k8s_with_ebpf_manifest/dos-nginx-conf-configmap.md" >}}
