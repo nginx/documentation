@@ -208,7 +208,6 @@ To build an image, use the following command, replacing `<your-nginx-dos-image-n
 sudo docker build --no-cache --platform linux/amd64 \
   --secret id=nginx-crt,src=nginx-repo.crt \
   --secret id=nginx-key,src=nginx-repo.key \
-  --secret id=license-jwt,src=license.jwt \
   -t <your-nginx-dos-image-name> .
 ```
 
@@ -233,7 +232,42 @@ Once you have built the DOS and EBPF images, push them to your private image rep
 
 From this point, the steps change based on your installation method:
 
+- [Use Helm to install F5 DOS for NGINX](#use-helm-to-install-f5-dos-for-nginx)
 - [Use Manifests to install F5 DOS for NGINX](#use-manifests-to-install-f5-dos-for-nginx)
+
+## Use Helm to install F5 DOS for NGINX
+
+You will need to edit the `values.yaml` file for a few changes:
+
+- Update _appprotectdos.nginxImage.repository_ and _appprotectdos.nginxImage.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
+
+The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
+
+Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
+
+```shell
+helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
+helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
+helm install <release-name> .
+kubectl create namespace <namespace> --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret generic license-token --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license -n <namespace>
+helm install dos-release dos-helm-chart --namespace <namespace> --set namespace.create=false --set service.type=NodePort --set appProtectDos.nginxImage.repository=${DOS_IMAGE_REPOSITORY} --set appProtectDos.nginxImage.tag=${DOS_IMAGE_TAG} --timeout 10m --debug
+helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace> --wait --timeout 5m
+kubectl wait --for=condition=available --timeout=300s deployment/app-protect-dos -n <namespace>
+```
+
+You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
+
+```shell
+kubectl get pods -n <namespace>
+kubectl get svc -n <namespace>
+```
+
+{{< call-out "note" >}}
+
+At this stage, you have finished deploying F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
+
+{{< /call-out >}}
 
 ## Use Manifests to install F5 DOS for NGINX
 

@@ -933,7 +933,7 @@ You need root permissions to execute the following steps.
    - `license.jwt`: JWT license file for NGINX Plus license management
    - `nginx.conf`: User defined `nginx.conf` with `app-protect-dos` enabled
    - `entrypoint.sh`: Docker startup script which spins up all App Protect DoS processes, must have executable permissions
-   - custom_log_format.json: Optional user-defined security log format file (if not used - remove its references from the nginx.conf and Dockerfile)
+   - `custom_log_format.json`: Optional user-defined security log format file (if not used - remove its references from the nginx.conf and Dockerfile)
 
 2. Log in to NGINX Plus Customer Portal and download your `nginx-repo.crt`, `nginx-repo.key` and `license.jwt` files.
 
@@ -1030,7 +1030,7 @@ You need root permissions to execute the following steps.
 6. Create a Docker image:
 
     ```shell
-    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-dos .
     ```
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 DoS for NGINX. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
@@ -1038,7 +1038,7 @@ You need root permissions to execute the following steps.
    For RHEL8/9 with subscription manager setup add build arguments:
    
     ```shell
-    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-dos .
     ```
 
 8. Verify that the `app-protect-dos` image was created successfully with the docker images command:
@@ -1050,7 +1050,7 @@ You need root permissions to execute the following steps.
 9. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
-    docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
+    docker run --name my-app-protect-dos -p 80:80 -v $(PWD)/license.jwt:/etc/nginx/license.jwt -d app-protect-dos
     ```
 
 10. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
@@ -1081,14 +1081,14 @@ You need root permissions to execute the following steps.
 
        Create and run the main `app-protect-dos` container:
        ```shell
-       docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -d app-protect-dos
+       docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -v $(PWD)/license.jwt:/etc/nginx/license.jwt -d app-protect-dos
        ```
     2. Deploy Directly on the Host.<br>
        To run L4 mitigation directly on the host:<br>
         1. Install the L4 mitigation on the host, as described in the OS-specific instructions.
         2. Run the app-protect-dos container:
              ```shell
-             docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -d app-protect-dos
+             docker run --name my-app-protect-dos -v /shared:/shared -p 80:80 -v $(PWD)/license.jwt:/etc/nginx/license.jwt -d app-protect-dos
              ```
     3. Run L4 Mitigation Inside the Same Container as `app-protect-dos`.<br>
        To run both L4 mitigation and the main application within the same container:<br>
@@ -1101,7 +1101,7 @@ You need root permissions to execute the following steps.
            ```
         2. run the container:
            ```shell
-           docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
+           docker run --name my-app-protect-dos -p 80:80 -v $(PWD)/license.jwt:/etc/nginx/license.jwt -d app-protect-dos
            ```
 
    {{< call-out "note" >}}
@@ -1283,13 +1283,13 @@ Make sure to replace upstream and proxy pass directives in this example with rel
     For Debian/Ubuntu/Alpine/Amazon Linux:
 
     ```shell
-    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    DOCKER_BUILDKIT=1 docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-dos .
     ```
 
     For RHEL:
 
     ```shell
-    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=./license.jwt -t app-protect-dos .
+    DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=... --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-dos .
     ```
 
 **Notes:**
@@ -1306,7 +1306,7 @@ Make sure to replace upstream and proxy pass directives in this example with rel
 10. Create a container based on this image, for example, `my-app-protect-dos` container:
 
     ```shell
-    docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
+    docker run --name my-app-protect-dos -p 80:80 -v $(PWD)/license.jwt:/etc/nginx/license.jwt -d app-protect-dos
     ```
 
 11. Verify that the `my-app-protect-dos` container is up and running with the `docker ps` command:
