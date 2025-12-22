@@ -13,7 +13,7 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/wa
 
 ## F5 WAF for NGINX 5.11
 
-Released _December 30st, 2025_.
+Released _December 30th, 2025_.
 
 ### New features
 
