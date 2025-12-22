@@ -166,9 +166,6 @@ In each file, replace `<your-private-registry>/<your-nginx-dos-image-name>:<your
 
 {{% /tab %}}
 
-{{% tab name=dos-storage.yaml %}}
-
-{{< include "dos/k8s_manifest/dos-storage.md" >}}
 
 {{% /tab %}}
 
