@@ -63,6 +63,7 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
           a different GatewayClass name is provided to the controller via the command-line argument.
     - `SupportedVersion/True/SupportedVersion`
     - `SupportedVersion/False/UnsupportedVersion`
+  - `supportedFeatures` - supported.
 
 ### Gateway
 
@@ -99,7 +100,10 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
   - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
       - `type`: Partially supported. Allowed value: `IPAddress`.
       - `value`: Partially supported. Dynamic address allocation when value is unspecified is not supported.
-  - `backendTLS`: Not supported.
+  - `TLS`:
+    - `frontend`: Not supported.
+    - `backend`:
+      - `clientCertificateRef`: Supported.
   - `allowedListeners`: Not supported.
 - `status`
   - `addresses`: Partially supported (LoadBalancer and ClusterIP).
@@ -325,8 +329,7 @@ Fields:
 
 | Resource         | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
-| BackendTLSPolicy | Partially Supported | Supported              | Partially Supported                   | v1alpha3    | Experimental        |
-
+| BackendTLSPolicy | Supported           | Supported              | Partially Supported                   | v1          | Standard            |
 {{< /table >}}
 
 Fields:
@@ -352,6 +355,10 @@ Fields:
     - `conditions`: Partially supported. Supported (Condition/Status/Reason):
       - `Accepted/True/PolicyReasonAccepted`
       - `Accepted/False/PolicyReasonInvalid`
+      - `Accepted/False/NoValidCACertificate`
+      - `ResolvedRefs/True/ResolvedRefs`
+      - `ResolvedRefs/False/InvalidCACertificateRef`
+      - `ResolvedRefs/False/InvalidKind`
 
 {{< call-out "note" >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /call-out >}}
 
