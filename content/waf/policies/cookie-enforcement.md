@@ -16,7 +16,7 @@ You can control the attributes within these cookies.
 | ------------------- | ------------- | ---------------- | --------------- |
 | `httpOnlyAttribute` | _true_        | _false_          | _true_ in all policies |
 | `secureAttribute`   | _never_       | _always_          | _always_ in the strict and API policies |
-| `sameSiteAttribute` | _lax_      | _none-value_, _strict_,  _none_ | _strict_ in the strict policy, _none_ removes the attribute entirely  |
+| `sameSiteAttribute` | _strict_      | _none-value_, _strict_,  _none_ | _strict_ in the strict policy, _none_ removes the attribute entirely  |
 
 In this example, HttpOnly is configured as `true`, Secure as `never`, and SameSite as `strict`.
 

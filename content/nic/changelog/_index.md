@@ -32,7 +32,7 @@ For older releases, check the changelogs for previous years: [2024]({{< ref "/ni
 
 - [8690](https://github.com/nginx/kubernetes-ingress/pull/8690) Update stub_status client path
 - [8731](https://github.com/nginx/kubernetes-ingress/pull/8731) Update service template for ipfamilies
-- [8743](https://github.com/nginx/kubernetes-ingress/pull/8743) Add more validation on rewrite-target
+- [8743](https://github.com/nginx/kubernetes-ingress/pull/8743) Fix CVE-2025-14727 Adding more validation on rewrite-target
 
 ### {{% icon arrow-up %}} Dependencies
 
