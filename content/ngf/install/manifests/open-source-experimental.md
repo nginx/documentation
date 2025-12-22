@@ -97,9 +97,9 @@ namespace/nginx-gateway configured
 serviceaccount/nginx-gateway created
 serviceaccount/nginx-gateway-cert-generator created
 role.rbac.authorization.k8s.io/nginx-gateway-cert-generator created
-clusterrole.rbac.authorization.k8s.io/nginx-gateway created
+clusterrole.rbac.authorization.k8s.io/nginx-gateway configured
 rolebinding.rbac.authorization.k8s.io/nginx-gateway-cert-generator created
-clusterrolebinding.rbac.authorization.k8s.io/nginx-gateway created
+clusterrolebinding.rbac.authorization.k8s.io/nginx-gateway configured
 service/nginx-gateway created
 deployment.apps/nginx-gateway created
 job.batch/nginx-gateway-cert-generator created

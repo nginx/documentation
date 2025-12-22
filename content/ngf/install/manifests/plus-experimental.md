@@ -100,7 +100,7 @@ By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace
 If you want to deploy it in another namespace, you must modify the Manifest files.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus-experimental/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental-nginx-plus/deploy.yaml
 ```
 
 {{< details summary="Example output" >}}
