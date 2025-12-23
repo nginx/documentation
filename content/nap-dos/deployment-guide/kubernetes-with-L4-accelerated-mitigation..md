@@ -229,7 +229,7 @@ Your folder should contain the following files:
 - _nginx-repo.key_
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-ebpf-manager-image-nam>` as appropriate:
+To build an image, use the following command, replacing `<your-ebpf-manager-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
