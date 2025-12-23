@@ -40,6 +40,10 @@ The status of the deployment will be "Pending" while the deployment's capacity i
 
   {{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
 
+## Connection draining
+
+During scale down operations, when the NGINX capacity decreases, existing connections to NGINX are given around 60s to complete before they are terminated to satisfy the scaled down capacity and no new connections to the scaled down NGINX instances are made.
+
 ## Capacity restrictions
 
 The following table outlines constraints on the specified capacity based on the chosen Marketplace plan, including the minimum capacity required for a deployment to be highly available, and the maximum capacity. By default, an NGINXaaS for Google Cloud deployment will be created with a capacity of 20 NCUs.
