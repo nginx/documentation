@@ -149,7 +149,7 @@ With a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment
 
 {{< /call-out >}}
 
-## Modify Docker compose file
+## Modify Docker Compose file
 
 {{< call-out "warning" >}}
 
@@ -219,4 +219,3 @@ services:
 	  app_protect_config:
 	  app_protect_etc_config:
 ```
-
