@@ -27,7 +27,7 @@ Released _December 30th, 2025_.
 
 - 13470 - An invalid cookie in the Cookie header causes all subsequent cookies to be ignored, resulting in incomplete parsing and missing logs downstream
 - 13340 - Nginx WAF leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
-- 12728 - Nginx App Protect reported SECURITY_WAF_BYPASS
+- 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS.
 
 ### Packages
 
@@ -66,6 +66,7 @@ Released _December 1st, 2025_.
 - 13117 - Severity Field should contain a value based on the violation highest severity
 - 13138 - Ability to bypass request when there is a 444 scenario
 - 13130 - add --all-policy-signatures option to include all policy signatures in the conversion output
+- 12979 - fixing a scenario of CLOSE_WAIT connections error messages when using big POST request 
 
 ### Packages
 
