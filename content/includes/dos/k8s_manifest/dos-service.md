@@ -8,11 +8,11 @@ metadata:
   name: nap-dos
   namespace: app-protect-dos
 spec:
-  type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
+    - name: app 
+      port: 80
       protocol: TCP
   selector:
     app: app-protect-dos
+  type: NodePort 
 ```

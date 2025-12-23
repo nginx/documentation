@@ -36,12 +36,22 @@ data:
             'outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, '
             'ip_tls=$remote_addr:$app_protect_dos_tls_fp, ';
 
-
         # Health endpoints for probes
+        app_protect_dos_liveness on; # uri:/app_protect_dos_liveness port:8090
+        app_protect_dos_readiness on; # uri:/app_protect_dos_readiness port:8090
+    
         server {
             listen 8090;
-            location /app_protect_dos_liveness { return 200; }
-            location /app_protect_dos_readiness { return 200; }
+            server_name probe;
+    
+            location / {
+                proxy_pass http://localhost:8091;
+            }
+        }
+    
+        server {
+            listen 8091;
+            return 503;
         }
 
         server {
