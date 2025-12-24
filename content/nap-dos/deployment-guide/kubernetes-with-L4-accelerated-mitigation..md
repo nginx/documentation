@@ -263,29 +263,30 @@ Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `hel
 
 ```shell
 export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
-
 export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
-
 export EBPF_IMAGE_REPOSITORY=<your-ebpf-manager-image-name>
-
 export EBPF_IMAGE_TAG=<your-ebpf-manager-image-tag>
 
-helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
-
 kubectl create namespace <namespace> --dry-run=client -o yaml | kubectl apply -f -
-
 kubectl create secret generic license-token \ 
         --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license --namespace <namespace>
-        
-helm install dos-release dos-ebpf-helm-chart --namespace <namespace> \
-      --set namespace.create=false --set service.type=NodePort \
-      --set appProtectDos.nginxImage.repository=${DOS_IMAGE_REPOSITORY} \
-      --set appProtectDos.nginxImage.tag=${DOS_IMAGE_TAG} \
-      --set appProtectDos.ebpfManagerImage.repository=$EBPF_IMAGE_REPOSITORY} \
-      --set appProtectDos.ebpfManagerImage.tag=${EBPF_IMAGE_TAG}
-       
+
+# Install DOS Arbitrator
+helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
 helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace>
 
+# Install DOS with EBPF Manager
+# release-version example: 4.8.3
+helm pull oci://private-registry.nginx.com/nap-dos/nginx-app-protect-ebpf --version <release-version> --untar
+cd nginx-app-protect-dos-ebpf
+
+helm install nginx-app-protect-dos-ebpf --namespace <namespace> \
+      --set namespace.create=false --set service.type=NodePort \
+      --set appProtectDos.image.repository=${DOS_IMAGE_REPOSITORY} \
+      --set appProtectDos.image.tag=${DOS_IMAGE_TAG} \
+      --set appProtectDos.ebpfManagerImage.repository=$EBPF_IMAGE_REPOSITORY} \
+      --set appProtectDos.ebpfManagerImage.tag=${EBPF_IMAGE_TAG} .
+       
 kubectl wait --for=condition=available --timeout=300s deployment/app-protect-dos -n <namespace>
 ```
 

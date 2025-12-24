@@ -151,7 +151,7 @@ From this point, the steps change based on your installation method:
 
 You will need to edit the `values.yaml` file for a few changes:
 
-- Update _appprotectdos.nginxImage.repository_ and _appprotectdos.nginxImage.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
+- Update _appprotectdos.image.repository_ and _appprotectdos.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
 
 The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
@@ -163,23 +163,26 @@ Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `hel
 
 ```shell
 export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
-
 export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
 
-helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
-
 kubectl create namespace <namespace> --dry-run=client -o yaml | kubectl apply -f -
-
 kubectl create secret generic license-token \ 
         --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license --namespace <namespace>
-        
-helm install dos-release dos-helm-chart --namespace <namespace> \
-      --set namespace.create=false --set service.type=NodePort \
-      --set appProtectDos.nginxImage.repository=${DOS_IMAGE_REPOSITORY} \
-      --set appProtectDos.nginxImage.tag=${DOS_IMAGE_TAG}
-       
+
+# Install DOS Arbitrator
+helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
 helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace>
 
+# Install DOS for NGINX
+# release-version example: 4.8.3
+helm pull oci://private-registry.nginx.com/nap-dos/nginx-app-protect --version <release-version> --untar
+cd nginx-app-protect-dos
+
+helm install nginx-app-protect-dos --namespace <namespace> \
+      --set namespace.create=false --set service.type=NodePort \
+      --set appProtectDos.image.repository=${DOS_IMAGE_REPOSITORY} \
+      --set appProtectDos.image.tag=${DOS_IMAGE_TAG} .
+       
 kubectl wait --for=condition=available --timeout=300s deployment/app-protect-dos -n <namespace>
 ```
 You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
