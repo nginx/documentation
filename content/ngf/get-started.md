@@ -558,7 +558,7 @@ By configuring the cluster with the port `31437`, there is implicit port forward
 You can use `curl` to test the new services by targeting the hostname (_cafe.example.com_) with the _/coffee_ and _/tea_ paths:
 
 ```shell
-curl --resolve cafe.example.com:8080:127.0.0.1 http://cafe.example.com:8080/coffee
+curl --resolve cafe.example.com:31437:127.0.0.1 http://cafe.example.com:31437/coffee
 ```
 
 {{< details summary="Example output" >}}
@@ -574,7 +574,7 @@ Request ID: f34e138922171977a79b1b0d0395b97e
 {{< /details >}}
 
 ```shell
-curl --resolve cafe.example.com:8080:127.0.0.1 http://cafe.example.com:8080/tea
+curl --resolve cafe.example.com:31437:127.0.0.1 http://cafe.example.com:31437/tea
 ```
 
 {{< details summary="Example output" >}}
