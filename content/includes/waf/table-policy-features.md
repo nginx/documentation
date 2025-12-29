@@ -1,4 +1,5 @@
 ---
+nd-content: F5WAFN
 nd-files:
 - content/waf/fundamentals/technical-specifications.md
 - content/waf/policies/configuration.md
@@ -34,6 +35,7 @@ nd-files:
 | [User-defined browser control]({{< ref "/waf/policies/user-browers.md" >}}) | Allow or deny specific browsers, and define custom browsers |
 | [User-defined HTTP headers]({{< ref "/waf/policies/user-headers.md" >}}) | Handling headers as a special part of requests |
 | [User-defined URLs and parameters]({{< ref "/waf/policies/user-urls-parameters.md" >}}) | Use user-defined properties when configuring violations. |
+| [User-defined signatures]({{< ref "/waf/policies/user-signatures.md" >}}) | Create and configure user-defined signatures for enforcement | 
 | [XFF trusted headers]({{< ref "/waf/policies/xff-headers.md" >}}) | Disabled by default, and can accept an optional list of custom XFF headers. |
 | [XML and JSON content]({{< ref "/waf/policies/xml-json-content.md" >}}) | XML content and JSON content profiles detect malformed content and signatures in the element values. Default policy checks maximum structure depth. It is possible to enable more size restrictions: maximum total length of XML/JSON data, maximum number of elements and more. |
 

@@ -28,17 +28,6 @@ The Standard V3 plan allows for optional Web Application Firewall (WAF) configur
 
 The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
 
-### Standard V2 plan
-
-The Standard V2 plan is designed for production workloads offering a [99.95% uptime SLA](https://www.f5.com/pdf/customer-support/eusa-sla.pdf), high availability through active-active deployments, redundancy, autoscaling, lossless rolling upgrades, and more. Choosing the Standard V2 plan will result in billing based on metered consumption of NGINX Capacity Units (NCU).
-
-When using the Standard V2 plan, NGINXaaS is a consumption-based service, metered hourly, and billed monthly in NGINX Capacity Units (NCUs).
-
-The SKU for the Standard V2 pricing plan is `standardv2_Monthly`.
-
-The Standard V2 plan allows for configuration of F5 WAF for NGINX and a higher number of listen ports.
-
-
 ### Developer plan
 
 The Developer plan is ideal for those who are just starting out, as it's intended for early-stage trials, development work, and testing. Please note that it doesn't provide service level agreement (SLA) guarantees, and it lacks both redundancy options and the capability to scale resources as needed.
@@ -48,7 +37,6 @@ When using the Developer plan, each NGINXaaS deployment is billed at the rate sp
 The SKU for the Developer pricing plan is `developer_Monthly`.
 
 {{< call-out "note" >}}The costs for your plan will appear on the Azure Portal Cost Analysis page and the Azure Consumption APIs. There may be a 24h delay before usage is visible.{{< /call-out >}}
-
 
 ## NGINX Capacity Unit (NCU)
 
@@ -84,10 +72,11 @@ Each NCU provisioned (not consumed) is billed at the rate specified on the [Azur
 * Total: `$0.75 + $0.80 + $0.125 = $1.675`
 
 {{< call-out "note" >}}Further guidance:
+
 * For how many NCUs should you provision and how to scale to match workload, see the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}})
 * To learn more about metrics related to NCUs, see the [NGINXaaS Statistics namespace]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md#nginxaas-statistics" >}})
-{{< /call-out >}}
 
+{{< /call-out >}}
 
 ## Bandwidth
 
@@ -99,3 +88,13 @@ The standard Azure [networking](https://azure.microsoft.com/en-us/pricing/detail
 ## Review billing data
 
 NGINXaaS billing data is reported per deployment and can be viewed in the Azure Portal under "Cost Management + Billing".​
+
+### Standard V2 plan (deprecated)
+
+The Standard V2 plan is designed for production workloads offering a [99.95% uptime SLA](https://www.f5.com/pdf/customer-support/eusa-sla.pdf), high availability through active-active deployments, redundancy, autoscaling, lossless rolling upgrades, and more. Choosing the Standard V2 plan will result in billing based on metered consumption of NGINX Capacity Units (NCU).
+
+When using the Standard V2 plan, NGINXaaS is a consumption-based service, metered hourly, and billed monthly in NGINX Capacity Units (NCUs).
+
+The SKU for the Standard V2 pricing plan is `standardv2_Monthly`.
+
+The Standard V2 plan allows for configuration of F5 WAF for NGINX and a higher number of listen ports.

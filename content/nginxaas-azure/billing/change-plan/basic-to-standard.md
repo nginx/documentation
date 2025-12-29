@@ -24,7 +24,7 @@ To export an ARM template for an existing deployment:
 1. Select **Download**.
 1. Decompress the template archive.
 1. Open the `template.json` file and verify that the data in the template is correct. 
-1. In the `resources` section, change `sku.name` to `standardv2_Monthly`. This recreates the deployment as a standard plan deployment.
+1. In the `resources` section, change `sku.name` to `standardv3_Monthly`. This recreates the deployment as a standard plan deployment.
 1. Delete the original basic plan deployment.
 1. On the command line, run:
 

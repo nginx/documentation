@@ -13,24 +13,24 @@ This guide will walk through how to customize and configure this default impleme
 
 ## Prerequisites
 
-{{< call-out "note" >}}This guide only works with F5 NGINX Ingress Controller version 5.2.1 or below. Please make sure you are using a compatible version before proceeding.{{< /call-out >}}
+{{< call-out "note" >}}This guide only works with F5 NGINX Ingress Controller version 5.3.0 or above. Please make sure you are using a compatible version before proceeding.{{< /call-out >}}
 
 This guide assumes that you have an F5 NGINX Ingress Controller deployed. If not, please follow the installation steps using either the [Manifest]({{< ref "/nic/install/manifests.md" >}}) or [Helm]({{< ref "/nic/install/helm.md" >}}) approach.
 
 To customize the NGINX OpenID Connect Reference implementation, you will need to:
 
-1. Create a ConfigMap containing the contents of the default `oidc.conf` file
+1. Create a ConfigMap containing the contents of the default `oidc.tmpl` file
 2. Attach a `Volume` and `VolumeMount` to your deployment of the F5 NGINX Ingress Controller
 
-This setup will allow the custom configuration in your ConfigMap to override the contents of the default `oidc.conf` file.
+This setup will allow the custom configuration in your ConfigMap to override the contents of the default `oidc.tmpl` file.
 
 ## Step 1 - Creating the ConfigMap
 
-Run the below command to generate a ConfigMap with the contents of the `oidc.conf` file.
+Run the below command to generate a ConfigMap with the contents of the `oidc.tmpl` file.
 **NOTE** The ConfigMap must be deployed in the same `namespace` as the F5 NGINX Ingress Controller.
 
 ```console
-kubectl create configmap oidc-config-map --from-literal=oidc.conf="$(curl -k https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/internal/configs/oidc/oidc.conf)"
+kubectl create configmap oidc-config-map --from-literal=oidc.tmpl="$(curl -k https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/internal/configs/version2/oidc.tmpl)"
 ```
 
 Use the `kubectl describe` command to confirm the contents of the ConfigMap are correct.
@@ -47,11 +47,12 @@ Annotations:  <none>
 
 Data
 ====
-oidc.conf:
+oidc.tmpl:
 ----
     # Advanced configuration START
     set $internal_error_message "NGINX / OpenID Connect login failure\n";
     set $pkce_id "";
+    set $idp_sid "";
     # resolver 8.8.8.8; # For DNS lookup of IdP endpoints;
     subrequest_output_buffer_size 32k; # To fit a complete tokenset response
     gunzip on; # Decompress IdP responses if necessary
@@ -63,8 +64,8 @@ oidc.conf:
 
 ## Step 2 - Customizing the default configuration
 
-Once the contents of the `oidc.conf` file has been added to the ConfigMap, you are free to customize the contents of this ConfigMap.
-This example demonstrates adding a comment to the top of the file. The comment will be shown at the top of the `oidc.conf` file.
+Once the contents of the `oidc.tmpl` file has been added to the ConfigMap, you are free to customize the contents of this ConfigMap.
+This example demonstrates adding a comment to the top of the file. The comment will be shown at the top of the `oidc.tmpl` file.
 This comment will be `# >> Custom Comment for my OIDC file <<`
 
 ```shell
@@ -80,11 +81,12 @@ Add the custom content:
 #
 apiVersion: v1
 data:
-  oidc.conf: |2-
+  oidc.tmpl: |2-
         # >> Custom Comment for my OIDC file <<
         # Advanced configuration START
         set $internal_error_message "NGINX / OpenID Connect login failure\n";
         set $pkce_id "";
+        set $idp_sid "";
         # resolver 8.8.8.8; # For DNS lookup of IdP endpoints;
         subrequest_output_buffer_size 32k; # To fit a complete tokenset response
         gunzip on; # Decompress IdP responses if necessary
@@ -107,7 +109,7 @@ Applying any updates to the data in this ConfigMap will require NGINX Ingress Co
 ## Step 3 - Add Volume and VolumeMount to the Ingress Controller deployment
 
 In this step we will add a `Volume` and `VolumeMount` to the NGINX Ingress Controller deployment.
-This will allow you to mount the ConfigMap created in Step 1 and overwrite the contents of the `oidc.conf` file.
+This will allow you to mount the ConfigMap created in Step 1 and overwrite the contents of the `oidc.tmpl` file.
 
 This document will demonstrate how to add the `Volume` and `VolumeMount` using both Manifest and HELM
 
@@ -143,17 +145,17 @@ spec:
         ...
         volumeMounts:
         - name: oidc-volume
-          mountPath: /etc/nginx/oidc/oidc.conf
-          subPath: oidc.conf # Must match the name in the data filed
+          mountPath: /oidc.tmpl
+          subPath: oidc.tmpl # Must match the name in the data filed
           readOnly: true
 ```
 
 Once the `Volume` and `VolumeMount` has been added the manifest file, apply the changes to the Ingress Controller deployment.
 
-Confirm the `oidc.conf` file has been updated:
+Confirm the `oidc.tmpl` file has been updated:
 
 ```shell
-kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /etc/nginx/oidc/oidc.conf
+kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /oidc.tmpl
 ```
 
 ### Helm
@@ -207,15 +209,15 @@ spec:
         ...
         volumeMounts:
         - name: oidc-volume
-          mountPath: /etc/nginx/oidc/oidc.conf
-          subPath: oidc.conf # Must match the name in the data filed
+          mountPath: /oidc.tmpl
+          subPath: oidc.tmpl # Must match the name in the data filed
           readOnly: true
 ```
 
 Once the Deployment/DaemonSet/StatefulSet has been edited, save the file and exit.
 
-Confirm the `oidc.conf` file has been updated:
+Confirm the `oidc.tmpl` file has been updated:
 
 ```shell
-kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /etc/nginx/oidc/oidc.conf
+kubectl exec -it -n <ic-namespace> <ingess-controller-pod> -- cat /oidc.tmpl
 ```

@@ -1,10 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
-    testDir: 'tests',
+    testDir: './src',
     fullyParallel: true,
     workers: 1,
-    outputDir: 'tests/test-results',
-    reporter: [['html', {  outputFolder: 'tests/playwright-report' }]],
+    outputDir: './test-results',
+    reporter: [['html', {  outputFolder: './playwright-report' }]],
     projects: [
         {
             name: 'chromium',

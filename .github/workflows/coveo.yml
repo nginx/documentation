@@ -67,7 +67,7 @@ jobs:
 
       - name: Upload token for ${{matrix.env_name}}
         if: ${{ steps.generate-token.outcome == 'success' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: ${{matrix.env_name}}
           path: "./"

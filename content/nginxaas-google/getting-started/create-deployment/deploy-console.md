@@ -27,10 +27,15 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
    - The region you select for the network attachment determines the region where your NGINXaaS deployment will be created. You do not manually select a region when creating an NGINXaaS deployment; it will automatically be created in the same region as the network attachment.
-1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide.
-   - For **production use cases**, we recommend setting the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This lets you manually approve trusted connections, as this setting cannot be changed later. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
-   - For **development use cases**, you can set the **Connection preference** to **Automatically accept connections from all projects**, which allows connections without manual approval. If you choose this option, you don't need to explicitly allow the NGINXaaS deployment project.
-1. Make a note of the network attachment ID. You will need it in the next steps to create your NGINXaaS deployment.
+1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide. To ensure secure and controlled access to your network attachments, we strongly recommend configuring the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This option helps maintain security by ensuring only trusted providers can connect to your service by letting you manually approve trusted connections. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
+
+   {{< call-out "caution" >}}
+   For development and testing purposes, or in scenarios where speed and simplicity are prioritized over security, you have the option to configure the **Connection Preference** to **Automatically accept connections for all projects**. Please note that this approach is inherently less secure and may expose your service to unintended or unauthorized access. We encourage you to exercise caution if using the less restrictive option and to avoid using it in production or sensitive environments.
+   {{< /call-out >}}
+
+1. Make a note of the network attachment ID as it will be needed in the next steps to create your NGINXaaS deployment. You can find the network attachment ID in the Google Cloud Console by following the steps below:
+   1. Go to Network Attachments at the following link: https://console.cloud.google.com/net-services/psc/list/networkAttachments?project=my-google-project (replace `my-google-project` in the URL with your project name).
+   1. Open the desired network attachment and copy the value from the `Network Attachment` field. **Example format:** `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
 
 ## Access the NGINXaaS Console
 
