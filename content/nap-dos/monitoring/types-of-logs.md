@@ -12,8 +12,8 @@ There are 4 types of logs corresponding to App Protect DoS:
 
 - [Security Log](#security-log): The general picture of the site and how App Protect DoS processed it, including anomalies and signatures found.
 - [Operation Log](#operation-log): Events such as configuration errors or warnings.
-- [Debug Logs](#debug-log): Technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
 - [Request Logging](#request-log): F5 DoS for NGINX adds information to each request logged to NGINX's access logging mechanism.
+- [Debug Logs](#debug-log): Technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
 
 {{< call-out "note" >}}
 NGINX does not have audit logs in the sense of *"**who** did **what**"*. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
@@ -48,7 +48,7 @@ This directive determines the destination of the `access_log` and the name of th
 ### App Protect DoS Variables
 These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`. <br> For more information refer to [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}})
 
-## Debug Log - F5 DoS for NGINX
+## Debug Log
 The F5 DoS for NGINX Debug log is used to troubleshoot the functionality of the product. <br>
 
 The path of the log is at a fixed location: `/var/log/adm/admd.log`.
