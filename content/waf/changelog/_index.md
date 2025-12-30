@@ -25,8 +25,7 @@ Released _December 30th, 2025_.
 
 ### Resolved issues
 
-- 13470 - An invalid cookie in the Cookie header causes all subsequent cookies to be ignored, resulting in incomplete parsing and missing logs downstream
-- 13340 - Nginx WAF leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
+- 13340 - F5 WAF for NGINX leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
 - 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS.
 
 ### Packages
