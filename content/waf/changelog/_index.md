@@ -17,7 +17,7 @@ Released _December 30th, 2025_.
 
 ### New features
 
-- Added support for Brotli
+- Added support for the Brotli data compression algorithm
 
 ### Important notes
 
@@ -26,7 +26,7 @@ Released _December 30th, 2025_.
 ### Resolved issues
 
 - 13340 - F5 WAF for NGINX leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
-- 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS.
+- 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS
 
 ### Packages
 
