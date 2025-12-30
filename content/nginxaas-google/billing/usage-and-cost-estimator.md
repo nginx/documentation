@@ -22,6 +22,15 @@ nd-product: NGOOGL
         <h4 id="calculator-section-heading">Estimate Monthly Cost</h4>
 
         <div class="form-field">
+          <label for="tierSelect">Tier</label>
+          <select id="tierSelect">
+            <option value="tier1">Tier 1</option>
+            <option value="tier2">Tier 2</option>
+            <option value="tier3">Tier 3</option>
+          </select>
+        </div>
+        
+        <div class="form-field">
           <label for="numNcus">NCUs</label>
           <input id="numNcus" type="number" step="10" min="10" />
         </div>
