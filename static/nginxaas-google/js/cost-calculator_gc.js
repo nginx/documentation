@@ -64,21 +64,27 @@
   // ---- Listeners ----
   const setupChangeListeners = (values = calculatorValuesState) => {
     Object.keys(costFormElements).forEach((elName) => {
-      costFormElements[elName].addEventListener("change", (evt) => {
-        if (elName === "tierSelect") {
-          currentTier = evt.target.value;
-          costs = tierCosts[currentTier];
-          updateCost(costs, values);
-        } else {
-          values[elName] = Number(evt.target.value);
-          updateCost(costs, values);
-        }
-      });
+      const element = costFormElements[elName];
+      if (element) {
+        element.addEventListener("change", (evt) => {
+          if (elName === "tierSelect") {
+            currentTier = evt.target.value;
+            costs = tierCosts[currentTier];
+            updateCost(costs, values);
+          } else {
+            values[elName] = Number(evt.target.value);
+            updateCost(costs, values);
+          }
+        });
+      }
     });
 
-    document.getElementById("printButton").addEventListener("click", () => {
-      printCostEstimate();
-    });
+    const printButton = document.getElementById("printButton");
+    if (printButton) {
+      printButton.addEventListener("click", () => {
+        printCostEstimate();
+      });
+    }
   };
 
   // ---- Init values ----
