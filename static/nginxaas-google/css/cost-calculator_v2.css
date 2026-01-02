@@ -14,7 +14,7 @@
     color: #6C778C;
 }
 
-#calculator input, select {
+#calculator input, #calculator select {
     width: 300px;
     height: 24px;
 
