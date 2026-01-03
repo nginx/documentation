@@ -323,13 +323,15 @@ You should see the `random two least_time=header` directive on the `coffee` upst
 upstream default_coffee_80 {
     random two least_time=header;
     zone default_coffee_80 1m;
-    state /var/lib/nginx/state/default_coffee_80.conf; 
+    state /var/lib/nginx/state/default_coffee_80.conf;
+    keepAlive 16;
 }
 
 upstream default_tea_80 {
     hash $upstream_addr consistent;
     zone default_tea_80 1m;
     state /var/lib/nginx/state/default_tea_80.conf;
+    keepAlive 16;
 }
 ```
 
@@ -403,6 +405,7 @@ upstream default_coffee_80 {
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
+    keepAlive 16;
 }
 
 upstream default_tea_80 {
@@ -410,12 +413,15 @@ upstream default_tea_80 {
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
+    keepAlive 16;
 }
 ```
 
 ## Enable keepalive connections
 
-To enable keepalive connections for the `coffee` service, create the following `UpstreamSettingsPolicy`:
+By default, the `keepAlive` directive is enabled with a value of 16. You can override this value or disable `keepAlive` entirely by configuring an `UpstreamSettingsPolicy`. To disable keepalive, set the connections field to 0.
+
+The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 32:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -480,7 +486,54 @@ upstream default_coffee_80 {
 }
 ```
 
-Notice, that the `tea` upstream does not contain the `keepalive` directive, since the `upstream-keepalives` policy does not target the `tea` service:
+To disable `keepAlive` directive lets create an `UpstreamSettingsPolicy` targeting the `tea` service with value 0:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: upstream-unset-keepAlive
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: tea
+  keepAlive:
+    connections: 0
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org upstream-unset-keepAlive
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2026-01-03T00:35:45Z
+      Message:               The Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+```
+
+Next, verify that the policy has been applied to the `tea` upstream, by inspecting the NGINX configuration:
+
+```shell
+kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
 
 ```text
 upstream default_tea_80 {
