@@ -45,6 +45,9 @@ nodes:
       - containerPort: 31437
         hostPort: 8080
         protocol: TCP
+      - containerPort:30478
+        hostPort: 8443
+        protocol: TCP
 ```
 
 {{< call-out "note" >}}
@@ -114,7 +117,7 @@ Use `helm` to install NGINX Gateway Fabric, specifying the NodePort configuratio
 NGINX Service when it is provisioned:
 
 ```shell
-helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort --set-json 'nginx.service.nodePorts=[{"port":31437,"listenerPort":80}]'
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort --set-json 'nginx.service.nodePorts=[{"port":31437,"listenerPort":80}, {"port":30478,"listenerPort":8443}]'
 ```
 
 {{< call-out "note" >}}
