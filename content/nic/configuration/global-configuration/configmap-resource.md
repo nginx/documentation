@@ -122,8 +122,9 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
-|*redirect-to-https* | Sets the 301 redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115) | *False* |
-|*ssl-redirect* | Sets an unconditional 301 redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS. | *True* |
+|*redirect-to-https* | Sets a redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `http-redirect-code` key. | *False* |
+|*ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `http-redirect-code` key. | *True* |
+|*http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* |
 |*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. | *False* |
 |*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. | *2592000* (1 month) |
 |*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. | *False* | 
