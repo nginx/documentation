@@ -10,7 +10,6 @@ nd-product: NGOOGL
 
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINXaaS for Google Cloud (NGINXaaS) seamlessly integrates with Google Cloud services, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
 
-
 ## Prerequisites
 
 - Enable the [Cloud Monitoring API](https://cloud.google.com/monitoring/api/enable-api).
@@ -110,3 +109,15 @@ To disable sending metrics to your Google Cloud project, update your NGINXaaS de
 1. Select the deployment you want to update and select **Edit**.
 1. Remove the project ID under **Metric Project ID**.
 1. Select **Update**.
+
+## Troubleshooting
+
+If Google Cloud Monitoring is not showing any metrics, check for **Failed Metric Export to Google** events from your NGINXaaS deployment.
+
+In the NGINXaaS console:
+
+1. On the navigation menu, select **Events**.
+1. Select **Add Filter**.
+1. Select **Affected Object** and the name of your NGINXaaS deployment.
+
+Events are deleted after 14 days.
