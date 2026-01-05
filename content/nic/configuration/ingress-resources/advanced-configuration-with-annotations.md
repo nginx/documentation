@@ -139,7 +139,7 @@ The table below summarizes the available annotations.
 
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
-| *nginx.org/app-root* | N/A | Configures the application root path that the controller redirects requests for / to  | N/A | `/` redirects to `/coffee` |
+| *nginx.org/app-root* | N/A | Configures the application root path that the controller redirects requests for / to. Sets a 302 redirect that will take precedence over other redirects. | N/A | `/` redirects to `/coffee` |
 | *nginx.org/redirect-to-https* | *redirect-to-https* | Sets the 301 redirect rule based on the value of the `http_x_forwarded_proto` header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of NGINX Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115) | *False* |  |
 | *ingress.kubernetes.io/ssl-redirect* | *ssl-redirect* | Sets an unconditional 301 redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS. | *True* |  |
 | *nginx.org/hsts* | *hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/)\ : the HSTS header is added to the responses from backends. The `preload` directive is included in the header. | *False* |  |
