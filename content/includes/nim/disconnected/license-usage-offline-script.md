@@ -182,8 +182,6 @@ if [[ "$USE_CASE" == "initial" ]]; then
   echo "Applying JWT license"
   sleep 5  
   RESPONSE=$(curl -sS -k --max-time 10 -w "\n%{http_code}" -X POST "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
-    -H "Origin: $ORIGIN" \
-    -H "Referer: $REFERER" \
     -H "Content-Type: application/json" \
     -H "Authorization: Basic $AUTH_HEADER" \
     -d "$JSON_PAYLOAD")
@@ -208,8 +206,6 @@ elif [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
 
   # Send the PUT request and separate body and status code
   PUT_RESPONSE_CODE=$(curl -k -s -w "%{http_code}" -o /tmp/put_response.json --location --request PUT "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
-    --header "Origin: $ORIGIN" \
-    --header "Referer: https://$NIM_IP/ui/settings/license" \
     --header "Content-Type: application/json" \
     --header "Authorization: Basic $AUTH_HEADER" \
     --data '{
@@ -246,8 +242,6 @@ fi
 
 if [[ "$USE_CASE" != "telemetry" ]]; then
   RESPONSE=$(curl -sS -k --max-time 10 -w "\n%{http_code}" -X POST "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
-    -H "Origin: $ORIGIN" \
-    -H "Referer: $REFERER" \
     -H "Content-Type: application/json" \
     -H "Authorization: Basic $AUTH_HEADER" \
     -d "$JSON_PAYLOAD")
