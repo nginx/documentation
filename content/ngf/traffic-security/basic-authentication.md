@@ -17,7 +17,7 @@ We will use our sample `tea` and `coffee` applications, where we protect the `/c
 
 ## Before you begin
 
-- Install NGINX Gateway Fabric (OSS or Plus), with [Helm]({{< ref "/ngf/install/helm.md" >}}) or [Manifest]({{< ref "/ngf/install/manifest.md" >}})
+- Install NGINX Gateway Fabric (OSS or Plus), with [Helm]({{< ref "/ngf/install/helm.md" >}}) or [Manifest]({{< ref "/ngf/install/manifests.md" >}})
 - Ensure the Gateway API CRDs are installed on your cluster.
 - Ensure the latest NGINX Gateway Fabric CRDs are installed on your cluster.
 - Ensure `kubectl` is installed on your cluster.
@@ -161,7 +161,9 @@ GW_PORT=<port number>
 
 ### Create a Basic Authentication secret and AuthenticationFilter
 
-Deploy secret with user credentials, and the AuthenticationFilter:
+Deploy secret with user credentials, and the AuthenticationFilter.
+
+{{< call-out "important" >}} Ensure the secret deployed is of type `nginx.org/htpasswd` and the key is `auth` {{< /call-out >}}
 
 ```yaml
 kubectl apply -f - <<EOF
