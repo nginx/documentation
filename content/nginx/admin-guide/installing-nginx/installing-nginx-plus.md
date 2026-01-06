@@ -319,19 +319,19 @@ NGINX Plus can be installed on the following versions of Debian or Ubuntu:
 
 1. Add the **nginx-plus** repo.
 
-    **For SLES 12**:
-
-    ```shell
-    zypper addrepo -G -t yum -c \
-    "https://pkgs.nginx.com/plus/sles/12?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer" \
-    nginx-plus
-    ```
-
     **For SLES 15**:
 
     ```shell
     zypper addrepo -G -t yum -c \
     "https://pkgs.nginx.com/plus/sles/15?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer" \
+    nginx-plus
+    ```
+
+    **For SLES 16**:
+
+    ```shell
+    zypper addrepo -G -t yum -c \
+    "https://pkgs.nginx.com/plus/sles/16?ssl_clientcert=/etc/ssl/nginx/nginx-repo-bundle.crt&ssl_verify=peer" \
     nginx-plus
     ```
 
