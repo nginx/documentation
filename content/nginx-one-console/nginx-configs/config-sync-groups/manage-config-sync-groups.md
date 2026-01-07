@@ -329,7 +329,7 @@ The **Config Sync Status** column on the **Config Sync Groups** page provides in
 
 Monitor the **Config Sync Status** column. It can help you ensure that your configurations are consistently applied across all instances in a group.
 
-## Working with unmanaged certificates
+## Work with unmanaged certificates
 
 Config Sync Groups can work with both managed and unmanaged certificates. While managed certificates are uploaded through the NGINX One Console and automatically synchronized across instances, unmanaged certificates require manual installation and management.
 
