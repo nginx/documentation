@@ -46,10 +46,10 @@ If certificate contents differ between instances, even when file paths are the s
 - Certificates are identified by their content and associated instance
 - The CSG displays separate certificate entries in the configuration
 
-If certificates are identical, but their file paths differ by instance:
+If certificate contents are identical, but their file paths differ by instance:
 
-- CSG publication may fail
-- The CSG configuration will be out of sync
+- CSG publication may fail if file paths referenced in the NGINX configuration files do not exist on the instance
+- The CSG configuration status will be out of sync
 - Instances may not receive proper configuration updates
 
 ## Requirements for unmanaged certificates
@@ -75,7 +75,7 @@ NGINX One Console still helps you track unmanaged certificates:
 
 - **No automated sync**: Unmanaged certificates are not synchronized by the Console
 - **Manual updates**: Certificates must be manually updated on each instance
-- **No validation**: The Console does not perform validation or rotation logic for unmanaged certificates
+- **No validation**: The Console does not perform validation logic for unmanaged certificates
 
 ### Configuration options
 
@@ -85,9 +85,9 @@ If you don't want metadata tracking for unmanaged certificates, you can configur
 
 To maintain consistent visibility and automated management across CSGs, consider converting unmanaged certificates to managed certificates by:
 
-1. Uploading them through the NGINX One Console
-2. Leveraging the managed certificate solution for automated synchronization
-3. Taking advantage of centralized certificate management features
+- Convering them from unmanaged to managed
+- Leveraging the managed certificate solution for automated synchronization
+- Taking advantage of centralized certificate management features
 
 ## Troubleshooting
 
@@ -97,24 +97,24 @@ Seemingly minor issues can lead to problems with unmanaged certificates.
 
 If you see multiple entries for what should be the same certificate:
 
-1. Verify that file paths are identical across all instances
-2. Check that certificate file contents match across all instances
-3. Ensure certificates were installed correctly on all instances
-4. Review NGINX Agent logs for any collection issues
+- Verify that file paths are identical across all instances
+- Check that certificate file contents match across all instances
+- Ensure certificates were installed correctly on all instances
+- Review NGINX Agent logs for any collection issues
 
 If CSG publication is failing or configurations are out of sync:
 
-1. Confirm that all certificate file paths are identical across instances
-2. Verify that referenced certificate files exist on all instances
-3. Check NGINX configuration syntax for certificate references
+- Confirm that all certificate file paths are identical across instances
+- Verify that referenced certificate files exist on all instances
+- Check NGINX configuration syntax for certificate references
 
 ### Visibility issues
 
 If unmanaged certificates aren't appearing in the Console:
 
-1. Confirm that the NGINX Agent is running and connected
-2. Check that certificate directories are not excluded by `allowed_directories` settings
-3. Verify that NGINX configuration files correctly reference the certificate paths
+- Confirm that the NGINX Agent is running and connected
+- Check that certificate directories are not excluded by `allowed_directories` settings
+- Verify that NGINX configuration files correctly reference the certificate paths
 
 ## Related topics
 
