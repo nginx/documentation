@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 const BASE_URL = 'http://127.0.0.1';
 const PORT = 1313;
-const BASE_HUGO_CMD_PATH = '/github/home/actions_hugo/bin/hugo';
+const BASE_HUGO_CMD_PATH = '/github/home/actions_hugo/bin/hugo'; // Added so it runs the github actions version of hugo and not the playwright version.
 
 export default defineConfig({
     testDir: './src',
@@ -40,6 +40,6 @@ export default defineConfig({
     webServer: {
         command: `cd ../ && ${BASE_HUGO_CMD_PATH} mod get && ${BASE_HUGO_CMD_PATH} serve --port ${PORT}`,
         url: `${BASE_URL}:${PORT}`,
-        stdout: 'ignore',
+        stdout: 'ignore', // Switch to 'pipe' for debugging
   },
 })
