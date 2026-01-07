@@ -14,6 +14,38 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## December 16, 2025
+
+- {{% icon-feature %}} **Notification on update to deployments using the Stable Upgrade Channel**
+
+   NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) will be updated to [NGINX Plus Release 36 (R36)]({{< ref "/nginx/releases.md#nginxplusrelease-36-r36" >}}) during the week of Jan 05-09, 2026. This will also include updates to the following NGINX Plus modules:
+  - nginx-plus-module-njs
+
+   Please review the [NGINX Plus Release 36 (R36)]({{< ref "/nginx/releases.md#nginxplusrelease-36-r36" >}}) Release Notes carefully. If you have any concerns, it's recommended to validate your configuration against NGINX Plus R36 by setting up a test deployment using the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). See [these instructions]({{< ref "/nginxaas-azure/quickstart/recreate.md" >}}) on how to set up a deployment similar to your current one.
+
+   If you have any other questions or concerns, please [contact us]({{< ref "/nginxaas-azure/get-help.md" >}}).
+- {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**
+
+  NGINXaaS for Azure is now available in the following additional regions:
+
+  - Canada East
+
+See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Azure is available.
+
+## December 15, 2025
+
+{{% icon-feature %}} **Standard V3 Plan**<a name="standard-plan-v3"></a>
+
+NGINXaaS for Azure now supports the [Standard V3]({{< ref "/nginxaas-azure/billing/overview/#standardv3-plan" >}}) plan. We encourage you to use the Standard V3 plan for all new NGINXaaS deployments to take advantage of modern features like F5 WAF for NGINX and additional listen ports. The Standard V3 plan introduces an efficient and transparent pricing model that allows costs to scale precisely with demand.
+
+Your current deployments on the Standard V2 plan will continue to function. We intend to phase out the Standard V2 plan in the future. When this happens, we will offer a migration path to the Standard V3 plan for existing NGINXaaS deployments on the Standard V2 plan.
+
+- **Recommended action:**
+
+   Update your automation scripts to use the Standard V3 plan. The SKU for the Standard V3 pricing plan is `standardv3_Monthly`.
+
+For more information about the Standard V3 plan, see the [billing overview]({{< ref "/nginxaas-azure/billing/overview/#standardv3-plan" >}}).
+
 ## November 13, 2025
 
 - {{% icon-feature %}} **NGINXaaS for Azure is now generally available in more regions**

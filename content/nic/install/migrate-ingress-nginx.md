@@ -26,7 +26,7 @@ For more information, you may want to read the two-part blog series from the [NG
 
 To complete the instructions in this guide, you need the following:
 
-- A working knowledge of [Ingress Controllers]({{< ref "/nic/glossary.md#ingress-controller-ingress-controller" >}}).
+- A working knowledge of [Ingress Controllers]({{< ref "/glossary/#k8s-ingress-controller" >}}).
 - An [NGINX Ingress Controller installation]({{< ref "/nic/install/" >}}) on the same host as an existing Ingress-NGINX Controller.
 
 There are two primary paths for migrating between the community Ingress-NGINX Controller to NGINX Ingress Controller:
@@ -565,7 +565,7 @@ Some of the key names are identical, and each Ingress Controller has ConfigMap k
 | [_server-name-hash-bucket-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#server-name-hash-bucket-size) | [_server-names-hash-bucket-size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_proxy-headers-hash-max-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-headers-hash-max-size) | [_server-names-hash-max-size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_server-snippet_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#server-snippet) | [_server-snippets_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}}) |
-| [_server-tokens _](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#server-tokens) | [_server-tokens_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
+| [_server-tokens_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#server-tokens) | [_server-tokens_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_ssl-ciphers_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#ssl-ciphers) | [_ssl-ciphers_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#auth-and-ssltls" >}}) |
 | [_ssl-dh-param_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#ssl-dh-param) | [_ssl-dhparam-file_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#auth-and-ssltls" >}}) |
 | [_ssl-protocols_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#ssl-protocols) | [_ssl-protocols_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#auth-and-ssltls" >}}) |
@@ -576,4 +576,4 @@ Some of the key names are identical, and each Ingress Controller has ConfigMap k
 | [_variables-hash-bucket-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#variables-hash-bucket-size)     | [_variables-hash-bucket-size_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_worker-cpu-affinity_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-cpu-affinity) | [_worker-cpu-affinity_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
 | [_worker-processes_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-processes) | [_worker-processes_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
-| [_worker-shutdown-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-shutdown-timeout) | [_worker-shutdown-timeole_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |
+| [_worker-shutdown-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#worker-shutdown-timeout) | [_worker-shutdown-timeout_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}}) |

@@ -3,8 +3,8 @@ nd-docs: DOCS-822
 title: Publish NGINX configs
 toc: true
 weight: 2
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

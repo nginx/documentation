@@ -3,7 +3,7 @@ title: "Threat campaigns"
 weight: 2000
 toc: true
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: F5WAFN
 nd-docs: DOCS-000
 ---
 

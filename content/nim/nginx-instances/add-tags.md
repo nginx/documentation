@@ -4,8 +4,8 @@ nd-docs: DOCS-829
 title: Organize instances with tags
 toc: true
 weight: 650
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

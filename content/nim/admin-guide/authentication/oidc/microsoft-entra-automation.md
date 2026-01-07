@@ -3,8 +3,8 @@ nd-docs: DOCS-1197
 title: Automate OIDC with Microsoft Entra
 toc: true
 weight: 300
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

@@ -3,8 +3,8 @@ nd-docs: DOCS-999
 title: Use Vault for storing secrets
 toc: true
 weight: 200
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

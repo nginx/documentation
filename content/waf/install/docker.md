@@ -1,16 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "Docker"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 400
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 nd-product: F5WAFN
 ---
 
-This page describes how to install F5 WAF for NGINX using Docker. 
+This page describes how to install F5 WAF for NGINX using Docker.
 
 ## Before you begin
 
@@ -320,7 +316,7 @@ load_module modules/ngx_http_app_protect_module.so;
 The Enforcer address must be added at the _http_ context:
 
 ```nginx
-app_protect_enforcer_address 127.0.0.1:50000;
+app_protect_enforcer_address <enforcer-address>:<enforcer-port>
 ```
 
 And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ context:
@@ -451,9 +447,9 @@ services:
     container_name: nginx
     image: nginx-app-protect-5
     volumes:
-    - app_protect_bd_config:/opt/app_protect/bd_config
-    - app_protect_config:/opt/app_protect/config
-    - app_protect_etc_config:/etc/app_protect/conf
+    - /opt/app_protect/bd_config:/opt/app_protect/bd_config
+    - /opt/app_protect/config:/opt/app_protect/config
+    - /etc/app_protect/conf:/etc/app_protect/conf
     - /conf/nginx.conf:/etc/nginx/nginx.conf
     - /conf/default.conf:/etc/nginx/conf.d/default.conf
     - ./license.jwt:/etc/nginx/license.jwt # Only necessary when using NGINX Plus

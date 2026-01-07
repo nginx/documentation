@@ -4,8 +4,8 @@ nd-docs: DOCS-992
 title: "How WAF policy management works"
 toc: true
 weight: 100
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 F5 NGINX Instance Manager helps you manage [F5 WAF for NGINX]({{< ref "/waf/" >}}) security configurations.

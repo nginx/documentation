@@ -1,13 +1,8 @@
 ---
-# We use sentence case and present imperative tone
 title: "User-defined browser control"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 2050
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
 nd-product: F5WAFN
 ---
 
@@ -22,7 +17,7 @@ There are two primary uses for this feature:
 
 ## Configure user-defined browsers
 
-User-defined browsers can be configured in the `browser-definitions` section of a policy. 
+User-defined browsers can be configured in the `browser-definitions` section of a policy.
 
 These are the properties that can be configured for each user-defined browser:
 

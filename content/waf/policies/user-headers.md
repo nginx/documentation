@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "User-defined HTTP headers"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 2100
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 HTTP header enforcement occurs in the headers section as part of a HTTP request: the header elements are parsed to check criteria used for enforcement.

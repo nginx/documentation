@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "Violations"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 250
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This page describes the violations in F5 WAF for NGINX and how they are rated.
@@ -18,9 +12,9 @@ Violations are rated by the F5 WAF for NGINX algorithms to help distinguish betw
 
 A violation rating is a numerical rating that our algorithms give to requests based on the presence of violation(s). Each violation type and severity contributes to the calculation of the final rating.
 
-The final rating then defines the action taken for the specific request. 
+The final rating then defines the action taken for the specific request.
  
-Based on the default policy, any violation rating of 1, 2 and 3 will not cause the request to be blocked and only a log will be generated with **alerted** status. 
+Based on the default policy, any violation rating of 1, 2 and 3 will not cause the request to be blocked and only a log will be generated with **alerted** status.
 
 If the violation rating is 4 or 5, the request is blocked: a blocking page is displayed and a log generated for the transaction with **blocked** status. Violation ratings are displayed in the logs by default.
 
@@ -101,7 +95,7 @@ Violations can be enabled by turning on the **alarm** and/or **block** flags.
 
 ## HTTP compliance sub-violations
 
-The following table specifies the HTTP compliance sub-violation settings: not all are enabled in the default F5 WAF for NGINX security template. 
+The following table specifies the HTTP compliance sub-violation settings: not all are enabled in the default F5 WAF for NGINX security template.
 
 Some of the checks are enforced by NGINX Plus: F5 WAF for NGINX only gets a notification. In this case, the request is **always** blocked regardless of the F5 WAF for NGINX policy.
 
