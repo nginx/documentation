@@ -1,5 +1,5 @@
 ---
-title: Configure Basic Authentication
+title: Configure basic authentication
 weight: 800
 toc: true
 nd-content-type: how-to
