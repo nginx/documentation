@@ -9,7 +9,7 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## December 30, 2025
+## January 26, 2025
 
 ### Config Sync Groups: Support for unmanaged certificates
 

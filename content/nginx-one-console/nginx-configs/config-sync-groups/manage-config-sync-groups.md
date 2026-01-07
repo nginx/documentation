@@ -338,7 +338,7 @@ When using unmanaged certificates in Config Sync Groups:
 - **Manual distribution**: You must manually install certificates on each instance in the group
 - **Consistent file paths**: Certificate file paths must be identical across all instances for proper synchronization
 - **Visibility without management**: NGINX One tracks unmanaged certificate metadata to help you verify consistency, but does not synchronize the certificates themselves
-- **Status impact**: Inconsistent certificate file paths or missing certificates can affect the Config Sync Group status
+- **Status impact**: Inconsistent certificate file paths or missing certificates can affect the Config Sync Group configuration sync status
 
 For detailed information about how unmanaged certificates work in Config Sync Groups, including requirements, best practices, and troubleshooting, see [Unmanaged certificates in Config Sync Groups]({{< ref "/nginx-one-console/nginx-configs/certificates/csg-unmanaged-certificates.md" >}}).
 
