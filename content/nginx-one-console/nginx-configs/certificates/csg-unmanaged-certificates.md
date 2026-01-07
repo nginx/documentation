@@ -9,14 +9,19 @@ weight: 200
 
 ## Overview
 
-Unmanaged certificates are SSL/TLS certificates that you install and manage manually on NGINX instances. Unlike managed certificates that are uploaded and distributed through the NGINX One Console, unmanaged certificates are installed directly on individual instances and referenced by their file paths in NGINX configuration files. You are responsible for distributing, updating, and maintaining these certificates across your infrastructure.
+Unmanaged certificates are SSL/TLS certificates that you install and manage manually on NGINX instances. Unlike managed certificates that are uploaded and distributed through the NGINX One Console, unmanaged certificates are installed directly on individual instances and referenced by their file paths in NGINX configuration files.
+
+You are responsible for distributing, updating, and maintaining these certificates across your infrastructure.
 
 ### Unmanaged certificates in Config Sync Groups
-Config Sync Groups (CSGs) in NGINX One Console ensure configuration consistency across connected NGINX instances. While managed certificates uploaded through the Console are automatically synchronized and tracked, unmanaged certificates follow a different model that provides visibility without automated management.
 
-When you use unmanaged certificates in a CSG, NGINX One Console does not synchronize the certificate files themselves. However, it tracks their metadata to help you verify consistency across instances and understand the state of your certificates.
+Config Sync Groups (CSGs) in NGINX One Console ensure configuration consistency across connected NGINX instances. While managed certificates uploaded through the Console are automatically synchronized and tracked, unmanaged certificates follow a different model. 
+
+When you use unmanaged certificates in a CSG, NGINX One Console provides visibility without automated management. It does not synchronize the certificate files themselves. However, it tracks their metadata to help you verify consistency across instances and understand the state of your certificates.
 
 ## How unmanaged certificates work in Config Sync Groups
+
+If you have unmanaged certificates with CSGs, consider the following factors:
 
 ### Certificate tracking and visibility
 
@@ -41,7 +46,7 @@ If certificate contents differ between instances, even when file paths are the s
 - Certificates are identified by their content and associated instance
 - The CSG displays separate certificate entries in the configuration
 
-If certificate file paths differ between instances:
+If certificates are identical, but their file paths differ by instance:
 
 - CSG publication may fail
 - The CSG configuration will be out of sync
@@ -49,7 +54,7 @@ If certificate file paths differ between instances:
 
 ## Requirements for unmanaged certificates
 
-To use unmanaged certificates effectively in Config Sync Groups, you must:
+To use unmanaged certificates effectively in Config Sync Groups, you must address these issues:
 
 - **Manual installation**: Install certificates manually on each NGINX instance in the CSG
 - **Identical file paths**: Ensure that file paths referencing unmanaged certificates are identical across all instances
@@ -58,25 +63,25 @@ To use unmanaged certificates effectively in Config Sync Groups, you must:
 
 ## Important considerations
 
+NGINX One Console still helps you track unmanaged certificates:
+
 ### Certificate tracking
 
 - The NGINX One Console tracks unmanaged certificates by their content and file paths
-- When certificates are consistent across all instances, their contents and metadata match, and a single consolidated entry appears in the CSG
+- When certificates are consistent across all instances, their contents and metadata match: as a result, a single consolidated entry appears in the CSG
 - If certificate content differs between instances, multiple unique unmanaged certificates are displayed as separate entries
 
 ### Synchronization limitations
 
 - **No automated sync**: Unmanaged certificates are not synchronized by the Console
-- **Manual updates**: You must manually update certificates on each instance when they expire or need rotation
+- **Manual updates**: Certificates must be manually updated on each instance
 - **No validation**: The Console does not perform validation or rotation logic for unmanaged certificates
 
 ### Configuration options
 
 If you don't want metadata tracking for unmanaged certificates, you can configure the NGINX Agent to ignore certificate directories using the `allowed_directories` setting.
 
-## Best practices
-
-### Converting to managed certificates
+## Best practice: Convert to managed certificates
 
 To maintain consistent visibility and automated management across CSGs, consider converting unmanaged certificates to managed certificates by:
 
@@ -85,6 +90,8 @@ To maintain consistent visibility and automated management across CSGs, consider
 3. Taking advantage of centralized certificate management features
 
 ## Troubleshooting
+
+Seemingly minor issues can lead to problems with unmanaged certificates.
 
 ### Certificate inconsistencies
 
