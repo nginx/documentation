@@ -1,5 +1,5 @@
 ---
-nd-product: MSC
+nd-product: NONECO
 nd-files:
 - content/nginx-one-console/getting-started.md
 - content/nginx-one-console/nginx-configs/metrics/review-metrics.md

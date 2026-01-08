@@ -1,5 +1,5 @@
 ---
-nd-product: MSC
+nd-product: NONECO
 nd-files:
 - content/nginx-one-console/getting-started.md
 - content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md
