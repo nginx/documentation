@@ -4,54 +4,28 @@ weight: 800
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
-nd-docs: DOCS-1848
 ---
 
-This page introduces how to configure basic authentication for your applications using the AuthenticationFilter CRD.
+This guide introduces how to configure basic authentication for your applications using the AuthenticationFilter CRD.
 
 ## Overview
 
 Authentication is crucial for modern application security and allows you to be confident that only trusted and authorized users are accessing your applications, or API backends.
 Through this document, you'll learn how to protect your application endpoints with NGINX Gateway Fabric using the AuthenticationFilter CRD.
-We will use our sample `tea` and `coffee` applications, where we protect the `/coffee` endpoint with Basic Authentication.
+In this guide we will create two sample applications, `tea` and `coffee`, where we will enable basic authenticaiton on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authenticaiton.
+The `/coffee` endpoint will use the `ExtensionRef` filter to reference and `AuthenticationFilter` CRD which is configured for Basic Authentication.
 
 ## Before you begin
 
 - Install NGINX Gateway Fabric (OSS or Plus), with [Helm]({{< ref "/ngf/install/helm.md" >}}) or [Manifest]({{< ref "/ngf/install/manifests.md" >}})
 - Ensure the Gateway API CRDs are installed on your cluster.
 - Ensure the latest NGINX Gateway Fabric CRDs are installed on your cluster.
-- Ensure `kubectl` is installed on your cluster.
-
-## How it works
-
-For Basic Authentication, NGINX uses the [ngx_http_auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) module.
-Below is an example NGINX configuration using this module:
-
-```nginx
-http {
-    upstream backend_default {
-        server 10.0.0.10:80;
-        server 10.0.0.11:80;
-    }
-
-    server {
-        listen 80;
-        server_name cafe.example.com;
-
-        location /coffee {
-            auth_basic "Restricted";
-            auth_basic_user_file /etc/nginx/secrets/basic_auth_default_basic_auth_user;
-            proxy_pass http://backend_default;
-        }
-    }
-}
-```
-
-All requests made to `/coffee` will require credentials that match those stored in `/etc/nginx/secrets/basic_auth_default_basic_auth_user` defined by the `auth_basic_user_file` directive. Any request that contains invalid or missing credentials will be rejected.
 
 ## Setup
 
 ### Deploy demo applications
+
+To deploy both the `coffee` and `tea` applications, copy the blow yaml into your terminal:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -123,7 +97,23 @@ spec:
 EOF
 ```
 
+Confirm that the pods are running
+
+```shell
+kubectl get pods
+```
+
+```text
+NAME                      READY   STATUS    RESTARTS   AGE
+coffee-654ddf664b-fllj7   1/1     Running   0          21s
+coffee-654ddf664b-lpgq9   1/1     Running   0          21s
+tea-75bc9f4b6d-cx2jl      1/1     Running   0          21s
+tea-75bc9f4b6d-s99jz      1/1     Running   0          21s
+```
+
 ### Create a Gateway
+
+To create your gateway resource, and provision the NGINX pod, copy the below yaml into your terminal:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -195,7 +185,27 @@ EOF
 kubectl create secret generic basic-auth --type='nginx.org/htpasswd' --from-literal=auth="$(htpasswd -bn user1 password1)"
 ```
 
-### Deploy HTTPRoute with AuthenticationFilter
+Verify the AuthenticationFilter is Accepted, and there are no errors:
+
+```shell
+kubectl describe authenticationfilters.gateway.nginx.org | grep "Status:" -A10
+```
+
+```text
+Status:
+  Controllers:
+    Conditions:
+      Last Transition Time:  2026-01-08T10:09:18Z
+      Message:               The AuthenticationFilter is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
+### Deploy HTTPRoute referencing an AuthenticationFilter
 
 Deploy an HTTPRoute which references the AuthenticationFilter. This uses the `ExtensionRef` filter type. In this example, we set this filter to the `/coffee` path:
 
@@ -267,6 +277,33 @@ Events:              <none>
 ```
 
 ## Verify Basic Authentication
+
+Before verifying the traiffc of the application, we'll first make sure the NGINX config is correct.
+
+First, get the name of the NGINX Pod. The name of this pods should start with `cafe-gateway`
+
+```shell
+kubetctl get pods | grep "cafe-gateway" -B1
+```
+
+```text
+NAME                                  READY   STATUS    RESTARTS   AGE
+cafe-gateway-nginx-5d9855f458-chggl   1/1     Running   0          55s
+```
+
+Run this command to check the configuration of the NGINX upstreams and loactions:
+
+```shell
+kubectl exec -it cafe-gateway-nginx-5d9855f458-chggl  -- cat /etc/nginx/conf.d/http.conf | grep "/coffee" -A5
+```
+
+From this output, we can see the `/coffee` route has sets the `auth_basic` directive, which enabled basic authentication in NGINX.
+```nginx
+location = /coffee { 
+  auth_basic "Restricted basic-auth";
+  auth_basic_user_file /etc/nginx/secrets/default_basic-auth;
+}
+```
 
 Accessing `/coffee` without credentials:
 
