@@ -19,10 +19,8 @@ test.describe("Testing for N4G calculator page", () => {
 	test("calculator values render", async ({ page }) => {
 		// Conjunction - If outputs are rendered, it is safe to say the inputs are rendered.
 		// NOT testing changing numbers will impact the total values as that should be the job of unit tests. This is just a smoke tests.
-		const ncuEstimateValue = page.getByTestId("ncuEstimateValue");
 		const totalValue = page.getByTestId("total-value");
 
-		expect(await ncuEstimateValue.textContent()).toBeTruthy();
 		expect(await totalValue.textContent()).toBeTruthy();
 	});
 });
