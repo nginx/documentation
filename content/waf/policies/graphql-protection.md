@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-261
 title: "GraphQL protection"
 weight: 1190
 toc: true

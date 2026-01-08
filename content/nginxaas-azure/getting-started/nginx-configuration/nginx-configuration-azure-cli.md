@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-626
 title: Upload using the Azure CLI
 weight: 200
 toc: true

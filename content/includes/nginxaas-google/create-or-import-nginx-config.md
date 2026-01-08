@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-194
 nd-product: NGOOGL
 nd-files:
 - content/nginxaas-google/getting-started/create-deployment/deploy-console.md

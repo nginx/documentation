@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-164
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/nginx-configs/config-sync-groups/add-file-csg.md

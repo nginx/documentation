@@ -2,7 +2,7 @@
 title: "Known issues"
 weight: 1000
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-654
 url: /nginxaas/google/known-issues/
 nd-content-type: reference
 nd-product: NGOOGL

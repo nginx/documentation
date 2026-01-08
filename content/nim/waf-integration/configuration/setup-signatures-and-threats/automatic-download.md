@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-337
 title: Automatically update security packages
 description: Enable automatic updates in NGINX Instance Manager to keep F5 WAF for NGINX packages current.
 toc: true

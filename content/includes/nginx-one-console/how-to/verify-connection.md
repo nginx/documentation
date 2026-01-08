@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-169
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/k8s/add-ngf-helm.md

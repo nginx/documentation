@@ -2,7 +2,7 @@
 title: Scale your deployment
 weight: 400
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-676
 url: /nginxaas/google/getting-started/manual-scaling/
 nd-content-type: how-to
 nd-product: NGOOGL

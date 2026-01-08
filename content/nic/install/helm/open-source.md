@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-485
 title: Use Helm to Install NGINX Ingress Controller with NGINX Open Source
 linkTitle: NGINX Open Source
 toc: true

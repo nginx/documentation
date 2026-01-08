@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-493
 title: Global configuration
 description:
 weight: 100

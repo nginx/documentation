@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-560
 title: Connect NGINX Gateway Fabric with Helm
 toc: true
 weight: 300

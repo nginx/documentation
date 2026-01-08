@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-361
 title: Publish updates to instances
 description: Deploy updated F5 WAF for NGINX security policies, log profiles, signatures, and threat campaigns to your NGINX instances or instance groups using the Publish API.
 toc: true

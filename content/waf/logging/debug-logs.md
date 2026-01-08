@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-280
 title: Debug logs
 toc: false
 weight: 500

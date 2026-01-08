@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-121
 nd-product: NIMNGR
 nd-files:
 - content/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-567
 title: "Lab 4: Config Sync Groups"
 weight: 400
 toc: true

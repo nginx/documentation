@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-332
 title: Automatically update the WAF compiler
 description: Enable NGINX Instance Manager to automatically download and install new WAF compiler versions when needed.
 toc: true

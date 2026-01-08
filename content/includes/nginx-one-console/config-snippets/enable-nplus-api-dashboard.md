@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-175
 nd-product: NONECO
 nd-files:
 - content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md

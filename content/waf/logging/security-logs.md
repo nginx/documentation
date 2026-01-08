@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-284
 title: Security logs
 toc: true
 weight: 300

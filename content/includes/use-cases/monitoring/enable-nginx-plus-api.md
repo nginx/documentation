@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-186
 nd-product: MISCEL
 nd-files:
 - content/nginx-one-console/getting-started.md

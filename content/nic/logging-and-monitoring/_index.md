@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-491
 title: Logging and monitoring
 description:
 weight: 600

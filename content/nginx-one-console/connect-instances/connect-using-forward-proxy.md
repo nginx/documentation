@@ -3,7 +3,7 @@ title: Prepare - Set up an explicit forward proxy
 toc: true
 weight: 250
 nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-541
 nd-product: NONECO
 ---
 

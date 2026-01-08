@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-518
 description:
 title: Manage config templates
 weight: 400

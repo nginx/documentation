@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-059
 nd-product: NGPLUS
 nd-files:
 - content/nginx/deployment-guides/single-sign-on/oidc-njs/active-directory-federation-services.md

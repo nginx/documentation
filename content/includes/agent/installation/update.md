@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-011
 nd-product: NAGENT
 nd-files:
 - content/agent/installation-upgrade/upgrade.md

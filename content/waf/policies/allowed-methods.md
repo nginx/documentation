@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-238
 title: "Allowed methods"
 weight: 400
 toc: true

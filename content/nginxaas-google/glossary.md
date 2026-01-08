@@ -2,7 +2,7 @@
 title: Glossary
 weight: 900
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-655
 url: /nginxaas/google/glossary/
 nd-content-type: reference
 nd-product: NGOOGL

@@ -2,7 +2,7 @@
 title: Usage and cost estimator
 weight: 200
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-691
 url: /nginxaas/google/billing/usage-and-cost-estimator/
 nd-content-type: concept
 nd-product: NGOOGL

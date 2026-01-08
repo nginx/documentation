@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-501
 title: F5 NGINX One Console
 nd-subtitle: Optimize, secure, and scale your modern apps
 url: /nginx-one-console/

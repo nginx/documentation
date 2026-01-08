@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-170
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/connect-instances/add-instance.md

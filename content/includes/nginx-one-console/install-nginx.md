@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-159
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/getting-started.md

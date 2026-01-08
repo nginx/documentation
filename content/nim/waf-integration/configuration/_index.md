@@ -1,7 +1,7 @@
 ---
+nd-docs: DOCS-326
 title: Set up WAF configuration management
 description: Learn how to manage F5 WAF for NGINX configurations in NGINX Instance Manager using the web interface or REST API.
-nd-docs: 
 weight: 200
 nd-content-type: landing-page
 nd-landing-page: true

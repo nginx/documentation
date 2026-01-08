@@ -4,7 +4,7 @@ weight: 1900
 toc: true
 nd-content-type: reference
 nd-product: F5WAFN
-nd-docs: DOCS-000
+nd-docs: DOCS-265
 ---
 
 Another way to configure attack signature sets is by applying **server technologies**. A server technology represents a specific OS, application, or server type, and applying it enables the sets of attack signatures relevant to that technology.

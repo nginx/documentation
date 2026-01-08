@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-642
 title: Connect to upstreams with Azure Private Link
 url: /nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/
 toc: true

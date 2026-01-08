@@ -3,7 +3,7 @@ title: "Set up custom roles with API groups"
 weight: 500
 toc: true
 nd-content-type: reference
-nd-docs: DOCS-000
+nd-docs: DOCS-505
 nd-product: NONECO
 ---
 

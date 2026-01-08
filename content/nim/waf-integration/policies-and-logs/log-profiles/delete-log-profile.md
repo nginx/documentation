@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-350
 title: Delete a security log profile
 description: Remove an existing F5 WAF for NGINX security log profile from NGINX Instance Manager using the REST API.
 toc: true

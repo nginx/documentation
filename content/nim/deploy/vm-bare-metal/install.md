@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-305
 description: ''
 title: Install the latest NGINX Instance Manager with a script
 toc: true

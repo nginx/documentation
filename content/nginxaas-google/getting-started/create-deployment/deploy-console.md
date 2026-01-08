@@ -2,7 +2,7 @@
 title: Deploy using the NGINXaaS Console
 weight: 100
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-685
 url: /nginxaas/google/getting-started/create-deployment/deploy-console/
 nd-content-type: how-to
 nd-product: NGOOGL

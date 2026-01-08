@@ -2,7 +2,7 @@
 title: Prerequisites
 weight: 100
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-677
 url: /nginxaas/google/getting-started/prerequisites/
 nd-content-type: how-to
 nd-product: NGOOGL

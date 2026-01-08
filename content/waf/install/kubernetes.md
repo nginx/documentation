@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-274
 title: "Kubernetes"
 weight: 200
 toc: true

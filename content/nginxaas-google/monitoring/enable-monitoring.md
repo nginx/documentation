@@ -2,7 +2,7 @@
 title: Enable monitoring
 weight: 200
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-660
 url: /nginxaas/google/monitoring/enable-monitoring/
 nd-content-type: how-to
 nd-product: NGOOGL

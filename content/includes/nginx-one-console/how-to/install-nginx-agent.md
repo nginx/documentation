@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-171
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md

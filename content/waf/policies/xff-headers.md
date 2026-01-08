@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-264
 title: "XFF trusted headers"
 weight: 2200
 toc: true

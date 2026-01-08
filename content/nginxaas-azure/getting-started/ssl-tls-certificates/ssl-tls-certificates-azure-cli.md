@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-630
 title: Add certificates using the Azure CLI
 weight: 200
 toc: true

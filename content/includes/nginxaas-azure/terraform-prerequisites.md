@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-182
 nd-product: NAZURE
 nd-files:
 - content/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-052
 nd-product: SOLUTI
 nd-files:
 - content/solutions/about-subscription-licenses/getting-started.md

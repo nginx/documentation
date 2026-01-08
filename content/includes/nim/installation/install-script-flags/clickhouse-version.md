@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-132
 nd-product: NIMNGR
 nd-files:
 - content/nim/deploy/vm-bare-metal/install.md

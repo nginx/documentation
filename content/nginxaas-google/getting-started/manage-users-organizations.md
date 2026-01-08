@@ -2,7 +2,7 @@
 title: Manage users and organizations
 weight: 300
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-664
 url: /nginxaas/google/getting-started/manage-users-organizations/
 nd-content-type: how-to
 nd-product: NGOOGL

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-523
 nd-content-type: how-to
 nd-product: NONECO
 title: Submit templates

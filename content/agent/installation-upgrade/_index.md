@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-005
 title: Installation and upgrade
 description: Learn how to install, upgrade, and uninstall NGINX Agent.
 weight: 300

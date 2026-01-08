@@ -4,7 +4,7 @@ weight: 1950
 toc: true
 nd-content-type: reference
 nd-product: F5WAFN
-nd-docs: DOCS-000
+nd-docs: DOCS-251
 ---
 
 When new attack signatures are introduced in an F5 WAF for NGINX policy, they are first tested in a staging environment before being promoted to production.

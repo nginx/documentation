@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-328
 title: Set up compiler resource pruning
 description: Automatically remove unused compiled security resources in NGINX Instance Manager to keep your system clean and efficient.
 toc: true

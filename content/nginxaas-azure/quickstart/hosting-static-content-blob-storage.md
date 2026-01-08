@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-641
 title: Hosting static content in Azure Blob Storage
 weight: 210
 toc: true

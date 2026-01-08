@@ -1,6 +1,6 @@
 ---
+nd-docs: DOCS-335
 title: Set up attack signatures, bot signatures, and threat campaigns
-nd-docs: 
 weight: 200
 nd-landing-page: true
 url: /nginx-instance-manager/waf-integration/configuration/setup-signatures-and-threats/

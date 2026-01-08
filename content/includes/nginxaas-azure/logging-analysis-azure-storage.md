@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-179
 nd-product: NAZURE
 nd-files:
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md

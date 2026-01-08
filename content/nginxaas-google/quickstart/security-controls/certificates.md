@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-688
 title: Use a certificate from Google Cloud Secret Manager
 weight: 50
 toc: true

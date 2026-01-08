@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-086
 nd-product: FABRIC
 nd-files:
 - content/ngf/install/helm.md

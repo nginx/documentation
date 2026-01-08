@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-118
 nd-product: NIMNGR
 nd-files:
 - content/nim/waf-integration/configuration/compiler-resource-pruning.md

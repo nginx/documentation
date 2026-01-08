@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-193
 nd-product: NGOOGL
 nd-files:
 - content/nginxaas-google/getting-started/create-deployment/deploy-terraform.md

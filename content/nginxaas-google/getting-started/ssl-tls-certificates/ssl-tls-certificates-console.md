@@ -2,7 +2,7 @@
 title: Add certificates using the Console
 weight: 100
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-681
 url: /nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console/
 nd-content-type: how-to
 nd-product: NGOOGL

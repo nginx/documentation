@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-565
 title: "Lab 1: Get started with NGINX One Console"
 weight: 100
 toc: true

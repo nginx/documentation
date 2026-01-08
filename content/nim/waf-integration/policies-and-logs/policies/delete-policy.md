@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-354
 title: Delete a security policy
 description: Remove an existing F5 WAF for NGINX security policy using the NGINX Instance Manager web interface or REST API.
 toc: true

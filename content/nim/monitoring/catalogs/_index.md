@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-310
 description: This section includes reference catalogs that describe the dimensions
   and metrics collected by the NGINX Agent.
 title: Catalogs

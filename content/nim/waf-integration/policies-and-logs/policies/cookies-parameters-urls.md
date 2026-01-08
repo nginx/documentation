@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-360
 title: Add cookies, parameters, and URLs
 description: Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using NGINX Instance Manager.
 toc: true

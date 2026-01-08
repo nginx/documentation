@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-336
 title: Update Security Monitoring attack signature database
 description: Keep your Security Monitoring dashboards accurate by updating the attack signature database in NGINX Instance Manager.
 toc: true

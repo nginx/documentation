@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-156
 nd-product: INGRESS
 nd-files:
 - content/nic/install/manifests.md

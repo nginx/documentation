@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-026
 nd-product: NAGENT
 nd-files:
 - content/agent/installation-upgrade/installation-plus.md

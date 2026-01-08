@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-566
 title: "Lab 3: Explore NGINX One Console features"
 weight: 300
 toc: true

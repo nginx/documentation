@@ -1,6 +1,6 @@
 ---
 nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-528
 nd-product: NONECO
 title: Manage Config Sync Groups
 toc: true

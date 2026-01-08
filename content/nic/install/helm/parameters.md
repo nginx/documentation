@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-484
 title: NGINX Ingress Controller Helm chart parameters
 linkTitle: Helm chart parameters
 toc: true

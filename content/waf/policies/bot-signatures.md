@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-233
 title: "Bot signatures"
 weight: 550
 toc: true

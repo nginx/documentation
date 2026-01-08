@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-559
 title: Connect NGINX Ingress Controller
 toc: true
 weight: 200

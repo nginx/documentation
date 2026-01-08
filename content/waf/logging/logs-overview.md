@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-282
 title: Log types
 toc: true
 weight: 100

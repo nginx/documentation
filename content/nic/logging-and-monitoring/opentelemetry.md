@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-490
 title: "Enable OpenTelemetry"
 weight: 300
 toc: true

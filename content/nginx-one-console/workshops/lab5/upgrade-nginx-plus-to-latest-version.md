@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-564
 title: "Lab 5: Upgrade NGINX Plus to the latest version"
 weight: 500
 toc: true

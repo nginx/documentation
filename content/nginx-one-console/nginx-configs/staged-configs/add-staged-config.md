@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-534
 # We use sentence case and present imperative tone
 title: Add a Staged Configuration
 # Weights are assigned in increments of 100: determines sorting order

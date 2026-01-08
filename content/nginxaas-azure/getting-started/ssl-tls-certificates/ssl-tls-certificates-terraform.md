@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-627
 title: Add certificates using Terraform
 weight: 300
 toc: true
