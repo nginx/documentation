@@ -1,5 +1,5 @@
 ---
-nd-product: MSC
+nd-product: NONECO
 nd-files:
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
 - content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-latest-version.md
