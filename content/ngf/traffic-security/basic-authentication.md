@@ -179,12 +179,6 @@ spec:
 EOF
 ```
 
-(Optional) The secret can also be created using kubectl command:
-
-```shell
-kubectl create secret generic basic-auth --type='nginx.org/htpasswd' --from-literal=auth="$(htpasswd -bn user1 password1)"
-```
-
 Verify the AuthenticationFilter is Accepted, and there are no errors:
 
 ```shell
