@@ -343,7 +343,24 @@ Any other response will indicate that our NGINX module (F5 DoS for NGINX) has no
 **Example:**
 
 ```nginx
-app_protect_dos_liveness on uri:/liveness port:8090;
+http {
+
+    app_protect_dos_readiness on uri:/liveness port:8090;
+    
+    server {
+        listen 8090;
+        server_name probe;
+        
+        location / {
+            proxy_pass http://localhost:8091;
+        }
+    }
+        
+    server {
+        listen 8091;
+        return 503;
+    }
+}      
 ```
 
 ### Readiness probe directive (`app_protect_dos_readiness`)
@@ -375,7 +392,24 @@ RC 200 "Ready" will occur if two conditions are met:
 **Example:**
 
 ```nginx
-app_protect_dos_readiness on uri:/readiness port:8090;
+http {
+
+    app_protect_dos_readiness on uri:/readiness port:8090;
+    
+    server {
+        listen 8090;
+        server_name probe;
+        
+        location / {
+            proxy_pass http://localhost:8091;
+        }
+    }
+        
+    server {
+        listen 8091;
+        return 503;
+    }
+}    
 ```
 
 ### Arbitrator FQDN directive (`app_protect_dos_arb_fqdn`)
