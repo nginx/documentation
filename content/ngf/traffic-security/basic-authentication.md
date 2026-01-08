@@ -12,7 +12,7 @@ This guide introduces how to configure basic authentication for your application
 
 Authentication is crucial for modern application security and allows you to be confident that only trusted and authorized users are accessing your applications, or API backends.
 Through this document, you'll learn how to protect your application endpoints with NGINX Gateway Fabric using the AuthenticationFilter CRD.
-In this guide we will create two sample applications, `tea` and `coffee`, where we will enable basic authenticaiton on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authenticaiton.
+In this guide we will create two sample applications, `tea` and `coffee`, where we will enable basic authentication on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authentication.
 The `/coffee` endpoint will use the `ExtensionRef` filter to reference and `AuthenticationFilter` CRD which is configured for Basic Authentication.
 
 ## Before you begin
@@ -278,9 +278,9 @@ Events:              <none>
 
 ## Verify Basic Authentication
 
-Before verifying the traiffc of the application, we'll first make sure the NGINX config is correct.
+Before verifying the traffic of the application, we'll first make sure the NGINX config is correct.
 
-First, get the name of the NGINX Pod. The name of this pods should start with `cafe-gateway`
+First, get the name of the NGINX Pod. The name of this pod should start with `cafe-gateway`
 
 ```shell
 kubectl get pods | grep "cafe-gateway" -B1
