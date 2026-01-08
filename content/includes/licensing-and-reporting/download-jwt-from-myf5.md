@@ -5,6 +5,7 @@ nd-files:
 - content/includes/use-cases/credential-download-instructions.md
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
+- content/nic/install/helm/plus.md
 - content/nim/admin-guide/add-license.md
 - content/nim/deploy/docker/deploy-nginx-plus-and-agent-docker.md
 - content/nim/disconnected/add-license-disconnected-deployment.md

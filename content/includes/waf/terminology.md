@@ -1,7 +1,7 @@
 ---
 nd-product: F5WAFN
 nd-files:
-- content/glossary/glossary.md
+- content/glossary/_index.md
 - content/waf/fundamentals/terminology.md
 ---
 
