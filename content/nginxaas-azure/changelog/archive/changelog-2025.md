@@ -4,7 +4,6 @@ weight: 50
 toc: true
 url: /nginxaas/azure/changelog/archive/changelog-2025/
 nd-content-type: reference
-nd-docs: "DOCS-870"
 nd-product: NAZURE
 ---
 
