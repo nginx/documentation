@@ -1,6 +1,6 @@
 ---
 title: Configure TLS passthrough
-weight: 800
+weight: 600
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC

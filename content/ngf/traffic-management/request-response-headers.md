@@ -1,6 +1,6 @@
 ---
 title: Modify HTTP request and response headers
-weight: 600
+weight: 500
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC

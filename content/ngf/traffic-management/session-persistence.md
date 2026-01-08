@@ -1,6 +1,6 @@
 ---
 title: Session Persistence
-weight: 1000
+weight: 1100
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC

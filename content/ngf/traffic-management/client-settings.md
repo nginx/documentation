@@ -1,7 +1,7 @@
 ---
 title: Client Settings Policy API
 toc: true
-weight: 800
+weight: 900
 nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-1846
