@@ -283,7 +283,7 @@ Before verifying the traiffc of the application, we'll first make sure the NGINX
 First, get the name of the NGINX Pod. The name of this pods should start with `cafe-gateway`
 
 ```shell
-kubetctl get pods | grep "cafe-gateway" -B1
+kubectl get pods | grep "cafe-gateway" -B1
 ```
 
 ```text
