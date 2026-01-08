@@ -1,6 +1,6 @@
 ---
 title: "2025"
-weight: 50
+weight: 99
 toc: true
 url: /nginxaas/azure/changelog/archive/changelog-2025/
 nd-content-type: reference
