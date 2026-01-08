@@ -404,7 +404,7 @@ spec:
 
 ProxySettingsPolicy uses field-level inheritance. When both a Gateway and an HTTPRoute/GRPCRoute have ProxySettingsPolicies applied:
 
-- Each individual field (such as `bufferSize`, `disable`, `connectTimeout`) can be independently overridden
+- Each individual field (such as `bufferSize`, `disable`, `busyBuffersSize`) can be independently overridden
 - Setting a field at the route level overrides that field from the gateway level
 - Other fields continue to inherit from the gateway
 
