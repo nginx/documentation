@@ -1,15 +1,11 @@
 ---
-# We use sentence case and present imperative tone
 title: "Kubernetes operations improvements (Early access)"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 300
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
 nd-banner:
     enabled: true
     start-date: 2025-08-30
     md: /_banners/waf-early-availability.md
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 nd-product: F5WAFN
 ---
@@ -22,7 +18,7 @@ There are two new features available for Kubernetes through early access:
 
 This extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
 
-These features revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
+These features revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts.
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
@@ -128,7 +124,7 @@ If you do this, ensure that all corresponding values for persistent volumes poin
 
 ### Download and apply CRDs
 
-These enhancements require specific CRDs to be applied before deployment. 
+These enhancements require specific CRDs to be applied before deployment.
 
 These CRDs define the resources that the Policy Controller manages:
 
@@ -153,7 +149,7 @@ kubectl apply -f crds/
 
 ### Update NGINX configuration
 
-To activate these enhancements, NGINX requires configuration to integrate with the Policy Controller. 
+To activate these enhancements, NGINX requires configuration to integrate with the Policy Controller.
 
 The directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable the features.
 
@@ -223,7 +219,7 @@ These are the directives:
 
 ## Update Helm configuration
 
-These new enhancements are deployed as part of the F5 WAF for NGINX Helm chart. 
+These new enhancements are deployed as part of the F5 WAF for NGINX Helm chart.
 
 To enable them, you must configure the Policy Controller settings in your `values.yaml` file:
 
@@ -234,10 +230,10 @@ To enable them, you must configure the Policy Controller settings in your `value
 namespace: <namespace>
 
 appprotect:
-  ## Enable/Disable NGINX App Protect Deployment
+  ## Enable/Disable F5 WAF for NGINX Deployment
   enable: true
   
-  ## The number of replicas of the NGINX App Protect deployment
+  ## The number of replicas of the F5 WAF for NGINX deployment
   replicas: 1
   
   ## Configure root filesystem as read-only and add volumes for temporary data
@@ -246,7 +242,7 @@ appprotect:
   ## The annotations for deployment
   annotations: {}
   
-  ## InitContainers for the NGINX App Protect pod
+  ## InitContainers for the F5 WAF for NGINX pod
   initContainers: []
     # - name: init-container
     #   image: busybox:latest
@@ -254,7 +250,7 @@ appprotect:
   
   nginx:
     image:
-      ## The image repository of the NGINX App Protect WAF image you built
+      ## The image repository of the F5 WAF for NGINX WAF image you built
       ## This must reference the Docker image you built following the Docker deployment guide
       ## Replace <your-private-registry> with your actual registry and update the image name/tag as needed
       repository: <your-private-registry>/nginx-app-protect-5
@@ -413,7 +409,7 @@ appprotect:
       # mTLS configuration
       # stream {
       #   upstream enforcer {
-      #     # Replace with the actual App Protect Enforcer address and port if different
+      #     # Replace with the actual F5 WAF for NGINX Enforcer address and port if different
       #     server 127.0.0.1:4431;
       #   }
       #   server {
@@ -483,13 +479,13 @@ appprotect:
 
   ## It is recommended to use your own TLS certificates and keys
   mTLS:
-    ## The base64-encoded TLS certificate for the App Protect Enforcer (server)
+    ## The base64-encoded TLS certificate for the F5 WAF for NGINX Enforcer (server)
     ## Note: It is recommended that you specify your own certificate
     serverCert: ""
-    ## The base64-encoded TLS key for the App Protect Enforcer (server)
+    ## The base64-encoded TLS key for the F5 WAF for NGINX Enforcer (server)
     ## Note: It is recommended that you specify your own key
     serverKey: ""
-    ## The base64-encoded TLS CA certificate for the App Protect Enforcer (server)
+    ## The base64-encoded TLS CA certificate for the F5 WAF for NGINX Enforcer (server)
     ## Note: It is recommended that you specify your own certificate
     serverCACert: ""
     ## The base64-encoded TLS certificate for the NGINX (client)
@@ -624,7 +620,7 @@ If you are using the IP intelligence feature, you will have a 4th F5 WAF for NGI
 
 ### Create custom policy resources
 
-During installation, you can create policy resources using Kubernetes manifests. 
+During installation, you can create policy resources using Kubernetes manifests.
 
 Here are two examples, which you can use to create your own:
 
@@ -881,7 +877,7 @@ kubectl get all -n <namespace>
 
 Look for the fields _CLUSTER-IP_ and the full deployment name:
 
-```
+```shell
 NAME                                           TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 service/localenv-plm-nginx-app-protect-nginx   NodePort   10.43.205.101   <none>        80:30970/TCP   21h
 
@@ -951,7 +947,7 @@ spec:
 ```
 
 {{< call-out "warning" >}}
-The APSignatures `metadata.name` argument _must_ be `signatures`. 
+The APSignatures `metadata.name` argument _must_ be `signatures`.
 
 Only one APSignatures instance can exist.
 {{< /call-out >}}
@@ -1083,7 +1079,7 @@ For more information relevant to this type of deployment, see the [Disconnected 
 
 ## Policy types
 
-F5 WAF for NGINX supports multiple ways to define and reference security policies through APPolicy Custom Resources. 
+F5 WAF for NGINX supports multiple ways to define and reference security policies through APPolicy Custom Resources.
 
 This flexibility allows you to choose the most appropriate approach based on your requirements.
 
@@ -1095,7 +1091,7 @@ There are three distinct approaches for defining WAF policies:
 
 ### Inline policy definition
 
-Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource. 
+Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource.
 
 This method provides full declarative management through Kubernetes manifests and is ideal for version-controlled policy configurations.
 
@@ -1139,7 +1135,7 @@ kubectl apply -f inline-policy.yaml
 
 ### JSON policy reference
 
-JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource. 
+JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource.
 
 This method separates policy content from Kubernetes resource management while maintaining compilation automation.
 
@@ -1154,7 +1150,7 @@ The Policy Controller can automatically monitor policy files for changes and tri
 - **`tracking.enabled`**: Enable/disable automatic file monitoring (default: true)
 - **`tracking.intervalInSeconds`**: Polling interval for file changes (default: 5 seconds)
 
-To exemplify how this works, first create a policy JSON file in the shared volume. 
+To exemplify how this works, first create a policy JSON file in the shared volume.
 
 This policy file is `/mnt/nap5_bundles_pv_data/dg_policy.json`:
 
@@ -1247,7 +1243,7 @@ The Policy Controller will detect the file changes and recompile automatically.
 
 ### Precompiled bundle reference
 
-Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools. 
+Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools.
 
 This approach is useful for policies compiled outside of the Kubernetes environment or when integrating with external policy management systems.
 
@@ -1270,7 +1266,7 @@ The Policy Controller performs validation of precompiled bundles using `apcompil
 - **Version compatibility**: Confirmation that the bundle works with current enforcer
 - **Content validation**: Basic checks on policy structure and syntax
 
-To exemplify how this works, first ensure your precompiled policy bundle is available in the shared volume. 
+To exemplify how this works, first ensure your precompiled policy bundle is available in the shared volume.
 
 For example, place `policy2.tgz` in `/mnt/nap5_bundles_pv_data/`.
 

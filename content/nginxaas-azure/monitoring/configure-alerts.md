@@ -2,11 +2,10 @@
 title: Configure alerts
 weight: 300
 toc: true
-draft: false
 nd-docs: DOCS-985
 url: /nginxaas/azure/monitoring/configure-alerts/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview
@@ -22,7 +21,7 @@ This guide explains how to create and configure metrics-based alerts for your NG
 
 - To complete this setup, you must be an owner or user access administrator for the NGINX deployment resource.
 
-- To enable metrics, see [Enable Monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}).
+- To enable metrics, see [Enable Metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}).
 
 {{< call-out "note" >}} See [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) documentation to familiarize with Azure Monitor. {{< /call-out >}}
 

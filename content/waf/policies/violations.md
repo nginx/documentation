@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "Violations"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 250
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This page describes the violations in F5 WAF for NGINX and how they are rated.
@@ -18,9 +12,9 @@ Violations are rated by the F5 WAF for NGINX algorithms to help distinguish betw
 
 A violation rating is a numerical rating that our algorithms give to requests based on the presence of violation(s). Each violation type and severity contributes to the calculation of the final rating.
 
-The final rating then defines the action taken for the specific request. 
+The final rating then defines the action taken for the specific request.
  
-Based on the default policy, any violation rating of 1, 2 and 3 will not cause the request to be blocked and only a log will be generated with **alerted** status. 
+Based on the default policy, any violation rating of 1, 2 and 3 will not cause the request to be blocked and only a log will be generated with **alerted** status.
 
 If the violation rating is 4 or 5, the request is blocked: a blocking page is displayed and a log generated for the transaction with **blocked** status. Violation ratings are displayed in the logs by default.
 
@@ -45,13 +39,13 @@ Violations can be enabled by turning on the **alarm** and/or **block** flags.
 |VIOL_COOKIE_MALFORMED | Cookie not RFC-compliant | Alarm & Block | This violation occurs when HTTP cookies contain at least one of the following components:<br><ul><li>Quotation marks in the cookie name.</li><li>A space in the cookie name.</li><li>An equal sign (=) in the cookie name.</li></ul><br>  Note: A space between the cookie name and the equal sign (=), and between the equal sign (=) and cookie value is allowed.<ul><li>An equal sign (=) before the cookie name.</li><li>A carriage return (hexadecimal value of 0xd) in the cookie name.</li></ul> |  |
 | VIOL_COOKIE_MODIFIED | Modified domain cookie(s) | Alarm | The system checks that the web application cookies within the request have not been tampered, and the system checks that the request includes a web application cookie defined in the security policy. | Determined by cookie type: applied to "enforced" cookies. |
 | VIOL_DATA_GUARD | Data Guard: Information leakage detected | Alarm | The system examines responses and searches for sensitive information. | Controlled by the DG enable flag which is disabled in default template. |
-| VIOL_ENCODING | Failed to convert character | Alarm & Block | The system detects that one of the characters does not comply with the configured language encoding of the web application's security policy. | Enforced by NGINX core, reported by App Protect. |
+| VIOL_ENCODING | Failed to convert character | Alarm & Block | The system detects that one of the characters does not comply with the configured language encoding of the web application's security policy. | Enforced by NGINX core, reported by F5 WAF for NGINX. |
 | VIOL_EVASION | Evasion technique detected | Alarm | This category contains a list of evasion techniques that attackers use to bypass detection. |  |
 | VIOL_FILETYPE | Illegal file type | Alarm | The system checks that the requested file type is configured as a valid file type, or not configured as an invalid file type, within the security policy. | Only for disallowed file types. |
 | VIOL_FILE_UPLOAD | Disallowed file upload content detected | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for parameters of data type file upload |
 | VIOL_FILE_UPLOAD_IN_BODY | Disallowed file upload content detected in body | Alarm | The system checks that the file upload content is not a binary executable file format. | The check must be enabled for URLs |
 | VIOL_GEOLOCATION | Disallowed Geolocations | Alarm & Block | This violation will be triggered when an attempt is made to access the web application from a restricted location. | |
-| VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in App Protect is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. |
+| VIOL_GRAPHQL_MALFORMED | Malformed GraphQL data | Alarm & Block | This violation will be issued when the traffic expected to be GraphQL doesn't comply to the GraphQL syntax. The specifics of the syntax that will be enforced in F5 WAF for NGINX is detailed in the enforcing section. The violation details will note the error.| In case of tolerate parser warning turned on, missing closing bracket of the JSON should not issue a violation. |
 | VIOL_GRAPHQL_FORMAT | GraphQL format data does not comply with format settings | Alarm & Block | This violation will be issued when the GraphQL profile settings are not satisfied, for example the length is too long, depth is too deep, a specific value is too long or too many batched queries. <br> The violation details will note what happened and the found length, depth or which value is too long and by what. <br> The depth violation is not learnable. The reason is that we don't know the actual depth of the query - we stop parsing at the max depth. <br> Note that the values will be used on the variables JSON part as well as the query. In a way, we can see these values as a JSON profile attributes just for the variables. | |
 | VIOL_GRAPHQL_INTROSPECTION_QUERY| GraphQL introspection Query | Alarm & Block | This violation will be issued when an introspection query was seen. |  |
 | VIOL_GRAPHQL_ERROR_RESPONSE | GraphQL Error Response | Alarm & Block | GraphQL disallowed pattern in response. | |
@@ -101,7 +95,7 @@ Violations can be enabled by turning on the **alarm** and/or **block** flags.
 
 ## HTTP compliance sub-violations
 
-The following table specifies the HTTP compliance sub-violation settings: not all are enabled in the default F5 WAF for NGINX security template. 
+The following table specifies the HTTP compliance sub-violation settings: not all are enabled in the default F5 WAF for NGINX security template.
 
 Some of the checks are enforced by NGINX Plus: F5 WAF for NGINX only gets a notification. In this case, the request is **always** blocked regardless of the F5 WAF for NGINX policy.
 

@@ -27,21 +27,17 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 
 ### Images with NGINX
 
-{{< call-out "important" >}}
-From release `v5.1.0` onwards, NGINX Ingress Controller will no longer provide binaries for the `armv7`, `s390x` & `ppc64le` architectures.
-{{< /call-out >}}
-
-_All images include NGINX 1.29.1._
+_All images include NGINX 1.29.4._
 
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
-|Alpine-based image | ``nginx:1.29.1-alpine``,<br>based on on ``alpine:3.22`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
-|Debian-based image | ``nginx:1.29.1``,<br>based on on ``debian:12-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
+|Alpine-based image | ``nginx:1.29.4-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
+|Debian-based image | ``nginx:1.29.4``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
 |Ubi-based image | ``redhat/ubi9-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
 
 ### Images with NGINX Plus
 
-NGINX Plus images include NGINX Plus R35.
+NGINX Plus images include NGINX Plus R36.
 
 #### F5 Container registry
 
@@ -53,8 +49,8 @@ NGINX Plus images are available through the F5 Container registry `private-regis
 | ---| ---| --- | --- | --- |
 |Alpine-based image | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry  | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine` | arm64<br>amd64 |
 |Alpine-based image with FIPS inside | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | arm64<br>amd64 |
-|Alpine-based image with F5 WAF for NGINX & FIPS inside | ``alpine:3.19`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
-|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside | ``alpine:3.19`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
+|Alpine-based image with F5 WAF for NGINX & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
+|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
 |Debian-based image | ``debian:12-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}` | arm64<br>amd64 |
 |Debian-based image with F5 WAF for NGINX | ``debian:12-slim`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with F5 WAF for NGINX v5 | ``debian:12-slim`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
@@ -81,6 +77,6 @@ NGINX Ingress Controller can be [installed]({{< ref "/nic/install/helm.md" >}}) 
 
 ## Supported F5 WAF for NGINX versions
 
-{{<call-out "note" "Note">}}To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.{{< /call-out >}}
+{{< call-out "warning" >}}F5 WAF for NGINX package based installation (previously NGINX App Protect WAF v4) is not supported when `readOnlyRootFilesystem` is enabled.{{< /call-out >}}
 
 {{< include "/nic/compatibility-tables/nic-nap.md" >}}

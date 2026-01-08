@@ -8,7 +8,7 @@ cascade:
   # The logo file is resolved from the theme, in the folder /static/images/icons/
   logo: NGINX-Ingress-Controller-product-icon.svg
 # The subtitle displays directly underneath the heading of a given page
-nd-subtitle: 
+nd-subtitle:
 # Indicates that this is a custom landing page
 nd-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
@@ -20,17 +20,17 @@ nd-product: INGRESS
 
 ## About
 
-NGINX Ingress Controller is an [Ingress Controller]({{< ref "/nic/glossary.md#ingress-controller">}}) implementation for NGINX that can load balance Websocket, gRPC, TCP and UDP applications. 
+NGINX Ingress Controller is an [Ingress Controller]({{< ref "/glossary/#k8s-ingress-controller">}}) implementation for NGINX that can load balance Websocket, gRPC, TCP and UDP applications.
 
-It supports standard [Ingress]({{< ref "/nic/glossary.md#ingress">}}) features such as content-based routing and TLS/SSL termination. Several NGINX and NGINX Plus features are available as extensions to Ingress resources through [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations">}}) and the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource">}}) resource.
+It supports standard [Ingress]({{< ref "/glossary/#k8s-ingress-controller">}}) features such as content-based routing and TLS/SSL termination. Several NGINX and NGINX Plus features are available as extensions to Ingress resources through [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations">}}) and the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource">}}) resource.
 
 ## Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
-  {{<card title="Install NGINX Ingress Controller with Helm" titleUrl="/nginx-ingress-controller/installation/installing-nic/installation-with-helm">}}
+  {{<card title="Install NGINX Ingress Controller with Helm" titleUrl="/nginx-ingress-controller/install/helm">}}
     Use Helm to deploy and configure a NGINX Ingress Controller cluster
   {{</card>}}
-  {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/installation/ingress-nginx">}}
+  {{<card title="Migrate from Ingress-NGINX Controller" titleUrl="/nginx-ingress-controller/install/migrate-ingress-nginx">}}
     Replace an Ingress-NGINX cluster with NGINX Ingress Controller
   {{</card>}}
   {{<card title="Changelog" titleUrl="/nginx-ingress-controller/changelog">}}

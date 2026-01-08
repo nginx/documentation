@@ -4,10 +4,10 @@ weight: 100
 description: Learn how to use Azure Resource Manager (ARM) JSON and Bicep templates
   to manage NGINXaaS for Azure.
 toc: true
+nd-content-type: how-to
 nd-docs: DOCS-1097
+nd-product: NAZURE
 url: /nginxaas/azure/client-tools/templates/
-type:
-- task
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the ARM API or the Azure CLI with ARM template deployments using JSON or Bicep formats. These deployments can be made locally or in a continuous integration pipeline. This document outlines common workflows using the ARM API. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets).
@@ -26,7 +26,7 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the ARM API or
 See [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/arm-templates/deployments/create-or-update) for an example template to create or update deployment resources.
 
 - [NGINXaaS Managed Identity Documentation]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
-- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}})
+- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}})
 
 ### Create or update a certificate
 

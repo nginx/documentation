@@ -1,18 +1,18 @@
 ---
-description: Learn about the F5 F5 DoS for NGINX Live Activity Monitoring.
+description: Learn about the F5 DoS for NGINX Live Activity Monitoring.
 nd-docs: DOCS-1389
-title: F5 DoS for NGINX Live Activity Monitoring
+title: Live Activity Monitoring
 toc: true
 weight: 140
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
 
 {{< img src="/dashboard/dos-tab.png" alt="F5 DoS for NGINX Dashboard" >}}
 
 ## Overview
 
-F5 F5 DoS for NGINX offers a variety of application monitoring tools:
+F5 DoS for NGINX offers a variety of application monitoring tools:
 
 - **App Protect DoS Dashboard Page**: This dynamic interface provides real-time monitoring and details of Protected Objects.
 - **F5 DoS for NGINX REST API**: This interface offers comprehensive metrics about the Protected Objects.

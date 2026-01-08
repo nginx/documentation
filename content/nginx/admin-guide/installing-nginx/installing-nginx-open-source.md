@@ -1,17 +1,16 @@
 ---
-description: Install NGINX Open Source either as a prebuilt package or from source,
-  following step-by-step instructions for all supported Linux distributions.
-nd-docs: DOCS-410
 title: Installing NGINX Open Source
+description: Install NGINX Open Source either as a prebuilt package or from source, following step-by-step instructions for all supported Linux distributions.
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
+nd-docs: DOCS-410
 ---
 
 This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling NGINX from the source code.
 
-## Stable and mainline versions {#stable_vs_mainline}
+## Stable and mainline versions
 
 NGINX Open Source is available in two versions: Mainline and Stable. The source code and release notes for both versions are available from [NGINX download page](https://nginx.org/en/download.html).
 
@@ -23,7 +22,7 @@ Mainline version (also Mainline release, Mainline branch) is the latest developm
 
 Stable version (also Stable release, Stable branch) is updated typically once a year or as needed for critical bug fixes or security fixes that are always backported from the Mainline version. This version is recommended for environments with strict requirements for stability. The Stable version is always even-numbered, for example, 1.*28*.X.
 
-##  Distribution and installation methods {#compile_vs_package}
+##  Distribution and installation methods
 
 Both the NGINX Open Source Mainline and Stable versions can be obtained and installed in several ways:
 
@@ -38,6 +37,7 @@ Both the NGINX Open Source Mainline and Stable versions can be obtained and inst
 ## OS default repository
 
 Installing from your operating system’s default repository is the simplest and fastest method. It is suitable for demos, learning, or testing environments. However, for production use, there are some considerations:
+
 - The package is maintained by the distribution’s repository maintainers, so F5/NGINX cannot verify its contents, build process, or update frequency.
 - The package may be outdated. To compare release versions and features, see the [Changelog](https://nginx.org/en/CHANGES).
 - Some Linux distros, especially those focused on long-term support, provide the Stable version only.
@@ -99,6 +99,7 @@ The installation steps include updating the package repository and installing th
   sudo apk update && \
   sudo apk add nginx
   ```
+
 - For Amazon Linux 2:
 
   ```shell
@@ -112,6 +113,7 @@ Check the version installed:
 ```shell
 sudo nginx -v
 ```
+
 It is recommended to review the [Changelog](https://nginx.org/en/CHANGES) and compare the features, bugfixes, and security fixes between the installed version and the latest release. The latest NGINX Open Source version is always available from [the official repository](#official-repository).
 
 You can find out the path to NGINX configuration file, error log, and access log files using the command:
@@ -119,11 +121,12 @@ You can find out the path to NGINX configuration file, error log, and access log
 ```shell
 nginx -V 2>&1 | awk -F: '/configure arguments/ {print $2}' | xargs -n1
 ```
+
 where:
+
 - `--conf-path=` is the path to the `nginx.conf` configuration file
 - `--error-log-path=` is the path to the error log
 - `--http-log-path=` is the path to the access log
-
 
 ##  Official repository
 
@@ -137,7 +140,8 @@ This installation method is recommended for production environments.
 
 The repository contains the latest versions of the following packages:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
+
 | Package name               | Description                                  |
 | ---------------------------| ---------------------------------------------|
 | `nginx`                    | Main NGINX Open Source package, contains [core modules](#prebuilt_modules) and [statically linked modules](#statically-linked-modules). |
@@ -147,10 +151,11 @@ The repository contains the latest versions of the following packages:
 | `nginx-module-perl`        | The [`ngx_http_perl_module`](https://nginx.org/en/docs/http/ngx_http_perl_module.html) as a [dynamic module](#dynamic-modules). |
 | `nginx-module-xslt`        | The [`ngx_http_xsl_module`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) as a [dynamic module](#dynamic-modules). |
 | `nginx-module-otel`        | The [`ngx_otel_module`](https://nginx.org/en/docs/ngx_otel_module.html) as a [dynamic module](#dynamic-modules). |
-{{</bootstrap-table>}}
+| `nginx-module-acme`        | The [`ngx_http_acme_module`](https://nginx.org/en/docs/http/ngx_http_acme_module.html) as a [dynamic module](#dynamic-modules). |
 
+{{< /table >}}
 
-### RHEL-based packages {#prebuilt_redhat}
+### RHEL-based packages
 
 RHEL-based operating systems include RHEL, CentOS, Oracle Linux, AlmaLinux, Rocky Linux.
 
@@ -169,7 +174,7 @@ Before installing, check if your operating system and architecture are supported
      ```text
      [nginx-stable]
      name=nginx stable repo
-     baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+     baseurl=https://nginx.org/packages/centos/$releasever/$basearch/
      gpgcheck=1
      enabled=1
      gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -177,7 +182,7 @@ Before installing, check if your operating system and architecture are supported
 
      [nginx-mainline]
      name=nginx mainline repo
-     baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+     baseurl=https://nginx.org/packages/mainline/centos/$releasever/$basearch/
      gpgcheck=1
      enabled=0
      gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -238,10 +243,12 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     curl -I 127.0.0.1
     ```
+
    Expected output:
+   
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.29.0
+    Server: nginx/1.29.3
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -254,10 +261,10 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    sudo dnf install nginx-module-<name>
    ```
+
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
 
-
-### Debian packages {#prebuilt_debian}
+### Debian packages
 
 This section covers Debian packages only. For Ubuntu-specific instructions, see [Ubuntu packages](#prebuilt_ubuntu).
 
@@ -286,6 +293,7 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
    ```
+
    The output should list the following three full fingerprints:
 
    ```none
@@ -304,14 +312,13 @@ Before installing, check if your operating system and architecture are supported
 
    If the fingerprints do not match, delete the file immediately.
 
-
 4. Set up the `apt` repository to fetch packages from either `stable` or `mainline` branch.
 
    - For `stable`:
 
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/debian `lsb_release -cs` nginx" \
+     https://nginx.org/packages/debian `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -319,7 +326,7 @@ Before installing, check if your operating system and architecture are supported
 
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" \
+     https://nginx.org/packages/mainline/debian `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -348,11 +355,12 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    curl -I 127.0.0.1
    ```
+
    Expected output:
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.29.0
+   Server: nginx/1.29.3
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -365,10 +373,10 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    sudo apt install nginx-module-<name>
    ```
+
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
 
-
-### Ubuntu packages {#prebuilt_ubuntu}
+### Ubuntu packages
 
 Before installing, check if your operating system and architecture are supported, see [Supported distributions and versions](https://nginx.org/en/linux_packages.html#distributions).
 
@@ -411,14 +419,16 @@ Before installing, check if your operating system and architecture are supported
          9E9BE90EACBCDE69FE9B204CBCDCD8A38D88A2B3
    uid                      nginx signing key <signing-key-3@nginx.com>
    ```
+
    If the fingerprints do not match, delete the file immediately.
 
 4. Set up the `apt` repository to fetch packages from either `stable` or `mainline` branch.
 
    - For `stable`:
+
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+     https://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -426,7 +436,7 @@ Before installing, check if your operating system and architecture are supported
 
      ```shell
      echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-     http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
+     https://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
          | sudo tee /etc/apt/sources.list.d/nginx.list
      ```
 
@@ -455,11 +465,12 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    curl -I 127.0.0.1
    ```
+
    Expected output:
 
    ```shell
    HTTP/1.1 200 OK
-   Server: nginx/1.29.0
+   Server: nginx/1.29.3
    ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -472,10 +483,10 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    sudo apt install nginx-module-<name>
    ```
+
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
 
-
-### SUSE Linux Enterprise packages {#prebuilt_suse}
+### SUSE Linux Enterprise packages
 
 Before installing, check if your operating system and architecture are supported, see [Supported distributions and versions](https://nginx.org/en/linux_packages.html#distributions).
 
@@ -494,14 +505,14 @@ Before installing, check if your operating system and architecture are supported
 
    ```shell
    sudo zypper addrepo --gpgcheck --type yum --refresh --check \
-      'http://nginx.org/packages/sles/$releasever_major' nginx-stable
+      'https://nginx.org/packages/sles/$releasever_major' nginx-stable
    ```
 
    - For `mainline`:
 
    ```shell
    sudo zypper addrepo --gpgcheck --type yum --refresh --check \
-        'http://nginx.org/packages/mainline/sles/$releasever_major' nginx-mainline
+        'https://nginx.org/packages/mainline/sles/$releasever_major' nginx-mainline
    ```
 
 3. Import the official nginx signing key so `zypper` and `rpm` could verify the packages authenticity. Fetch the key:
@@ -531,6 +542,7 @@ Before installing, check if your operating system and architecture are supported
          9E9BE90EACBCDE69FE9B204CBCDCD8A38D88A2B3
    uid                      nginx signing key <signing-key-3@nginx.com>
     ```
+
    If the fingerprints do not match, delete the file immediately.
 
 5. Import the key to the `rpm` database:
@@ -550,10 +562,12 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     curl -I 127.0.0.1
     ```
+
    Expected output:
+
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.29.0
+    Server: nginx/1.29.3
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -569,7 +583,7 @@ Before installing, check if your operating system and architecture are supported
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
 
-### Alpine Linux packages {#prebuilt_alpine}
+### Alpine Linux packages
 
 Before installing, check if your operating system and architecture are supported, see [Supported distributions and versions](https://nginx.org/en/linux_packages.html#distributions).
 
@@ -588,7 +602,7 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     printf "%s%s%s%s\n" \
     "@nginx " \
-    "http://nginx.org/packages/alpine/v" \
+    "https://nginx.org/packages/alpine/v" \
     `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
     "/main" \
     | sudo tee -a /etc/apk/repositories
@@ -600,7 +614,7 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     printf "%s%s%s%s\n" \
     "@nginx " \
-    "http://nginx.org/packages/mainline/alpine/v" \
+    "https://nginx.org/packages/mainline/alpine/v" \
     `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` \
     "/main" \
     | sudo tee -a /etc/apk/repositories
@@ -667,11 +681,12 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     curl -I 127.0.0.1
     ```
+
     Expected output:
 
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.29.0
+    Server: nginx/1.29.3
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -687,7 +702,7 @@ Before installing, check if your operating system and architecture are supported
 
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib/nginx/modules` directory.
 
-### Amazon Linux 2 packages {#prebuilt_amazon}
+### Amazon Linux 2 packages
 
 Before installing, check if your operating system and architecture are supported, see [Supported distributions and versions](https://nginx.org/en/linux_packages.html#distributions).
 
@@ -710,7 +725,7 @@ Before installing, check if your operating system and architecture are supported
     ```none
     [nginx-stable]
     name=nginx stable repo
-    baseurl=http://nginx.org/packages/amzn2/$releasever/$basearch/
+    baseurl=https://nginx.org/packages/amzn2/$releasever/$basearch/
     gpgcheck=1
     enabled=1
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -718,12 +733,13 @@ Before installing, check if your operating system and architecture are supported
 
     [nginx-mainline]
     name=nginx mainline repo
-    baseurl=http://nginx.org/packages/mainline/amzn2/$releasever/$basearch/
+    baseurl=https://nginx.org/packages/mainline/amzn2/$releasever/$basearch/
     gpgcheck=1
     enabled=0
     gpgkey=https://nginx.org/keys/nginx_signing.key
     module_hotfixes=true
     ```
+
     - Save the file.
 
 3. If needed, switch to `nginx-mainline` packages instead of `nginx-stable` that are enabled by default (the `enable=1` parameter):
@@ -761,10 +777,12 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     curl -I 127.0.0.1
     ```
+
    Expected output:
+
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.29.0
+    Server: nginx/1.29.3
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -777,8 +795,8 @@ Before installing, check if your operating system and architecture are supported
    ```shell
    sudo yum install nginx-module-<name>
    ```
-   Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
 
+   Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
 
 ### Amazon Linux 2023 packages
 
@@ -795,7 +813,7 @@ Before installing, check if your operating system and architecture are supported
     ```none
     [nginx-stable]
     name=nginx stable repo
-    baseurl=http://nginx.org/packages/amzn/2023/$basearch/
+    baseurl=https://nginx.org/packages/amzn/2023/$basearch/
     gpgcheck=1
     enabled=1
     gpgkey=https://nginx.org/keys/nginx_signing.key
@@ -803,12 +821,13 @@ Before installing, check if your operating system and architecture are supported
 
     [nginx-mainline]
     name=nginx mainline repo
-    baseurl=http://nginx.org/packages/mainline/amzn/2023/$basearch/
+    baseurl=https://nginx.org/packages/mainline/amzn/2023/$basearch/
     gpgcheck=1
     enabled=0
     gpgkey=https://nginx.org/keys/nginx_signing.key
     module_hotfixes=true
     ```
+
     By default, the repository for `stable` nginx packages is used. If you would like to use `mainline` nginx packages, run the following command:
 
     ```shell
@@ -838,10 +857,12 @@ Before installing, check if your operating system and architecture are supported
     ```shell
     curl -I 127.0.0.1
     ```
+
    Expected output:
+
     ```shell
     HTTP/1.1 200 OK
-    Server: nginx/1.29.0
+    Server: nginx/1.29.3
     ```
 
    After installation, the following files are available for configuration and troubleshooting:
@@ -849,25 +870,26 @@ Before installing, check if your operating system and architecture are supported
    - Configuration file: `nginx.conf`, located in `/etc/nginx/`
    - Log files: `access.log` and `error.log`, located in `/var/log/nginx/`
 
-
 6. If needed, install one or more [dynamic module packages](#repository-contents):
 
    ```shell
    sudo dnf install nginx-module-<name>
    ```
+
    Then, enable each module in the `nginx.conf` configuration file using the [`load_module`](https://nginx.org/en/docs/ngx_core_module.html#load_module) directive. The resulting `.so` files are located in the `/usr/lib64/nginx/modules` directory.
 
-## Package contents {#prebuilt}
+## Package contents
 
 NGINX has a modular architecture that allows functionality to be included selectively. Some modules are built into the core and are always included in the package. Others are not part of the core, but are compiled at build time using the `--with-` configuration flag. Additionally, some modules, usually those with external dependencies, are distributed as separate packages that can be loaded at runtime as [dynamic modules](#dynamic-modules).
 
 Packaging sources and scripts can be found in the [packaging sources repository](https://github.com/nginx/pkg-oss).
 
-### Core modules {#prebuilt_modules}
+### Core modules
 
 NGINX core modules are built-in components that provide essential functionality such as configuration parsing, event handling, process management, and HTTP request processing. They are statically compiled into the NGINX binary and cannot be disabled or excluded.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
+
 |Module Name               | Description                                  |
 | -------------------------| ---------------------------------------------|
 | [`ngx_core_module`](https://nginx.org/en/docs/ngx_core_module.html)      | Internal core functionality. |
@@ -898,17 +920,19 @@ NGINX core modules are built-in components that provide essential functionality 
 | [`ngx_http_upstream_module`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) | Upstream group and load balancing logic. |
 | [`ngx_http_userid_module`](https://nginx.org/en/docs/http/ngx_http_userid_module.html) | Cookie-based user ID generation. |
 | [`ngx_http_uwsgi_module`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) | uWSGI backend. |
-{{</bootstrap-table>}}
+
+{{< /table >}}
 
 ### Statically linked modules
 
 In addition to core modules, the `nginx` package includes other nginx modules that do not require additional libraries to avoid extra dependencies. These modules are compiled at build time and specified using the` --with-` configure option. Unlike [dynamic modules](#dynamic-modules), they cannot be enabled or disabled dynamically after compilation. You can get the list of these modules in the output of the `nginx -V` command output in `configure arguments`.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
+
 |Module Name               | Description                                  |
 | -------------------------| ---------------------------------------------|
 | `--with-compat`        |Enables dynamic modules compatibility.  |
-| `--with-file-aio` |Enables the use of [asynchronous file I/O](https:/ /nginx.org/en/docs/http/ngx_http_core_module.html#aio) (AIO) on FreeBSD and Linux. |
+| `--with-file-aio` |Enables the use of [asynchronous file I/O](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) (AIO) on FreeBSD and Linux. |
 | `--with-threads` | Enables NGINX to use thread pools. For details, see [Thread Pools in NGINX Boost Performance 9x!](https://www.nginx.com/blog/thread-pools-boost-performance-9x/) on the NGINX blog. |
 |[`--with-http_addition_module`](https://nginx.org/en/docs/http/ngx_http_addition_module.html)| Adds text before and after a response. |
 |[`--with-http_auth_request_module`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)|Implements client authorization based on the result of a subrequest. |
@@ -931,14 +955,15 @@ In addition to core modules, the `nginx` package includes other nginx modules th
 |[`--with-stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) | Enables the TCP and UDP proxy functionality. To compile as a separate [dynamic module]({{< ref "nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-stream=dynamic`. |
 |[`--with-stream_realip_module`](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) | Changes the client address and port to the ones sent in the PROXY protocol header. |
 |[`--with-stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html)| Provides support for a stream proxy server to work with the SSL/TLS protocol. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
-{{</bootstrap-table>}}
 
+{{< /table >}}
 
 ## Dynamic modules
 
 Some modules, especially those with external dependencies, are not included in the `nginx` package. However, they are available as separate packages from the official NGINX repository. After installation they can be connected as a dynamic modules, or shared object (.so) files via the `load_module` directive in the NGINX configuration.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}
+
 |Module Name               | Description                                  | Package name  |
 | -------------------------| ---------------------------------------------|---------------|
 | [`ngx_http_geoip_module`](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) | Creates variables with values depending on the client IP address, using the precompiled MaxMind databases.  | `nginx-module-geoip` |
@@ -947,13 +972,15 @@ Some modules, especially those with external dependencies, are not included in t
 | [`ngx_http_perl_module`](https://nginx.org/en/docs/http/ngx_http_perl_module.html) | Implements location and variable handlers in Perl and inserts Perl calls into SSI. | `nginx-module-perl` |
 | [`ngx_http_xsl_module`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) | Transforms XML responses using one or more XSLT stylesheets. | `nginx-module-xslt` |
 | [`ngx_otel_module`](https://nginx.org/en/docs/ngx_otel_module.html) | Provides OpenTelemetry distributed tracing support. | `nginx-module-otel` |
-{{</bootstrap-table>}}
+| [`ngx_http_acme_module`](https://nginx.org/en/docs/http/ngx_http_acme_module.html) | Implements the automatic certificate management (ACMEv2) protocol. | `nginx-module-acme` |
 
-## Compile and install from source {#sources}
+{{< /table >}}
+
+## Compile and install from source
 
 Compiling from source affords more flexibility than using prebuilt packages: you can add specific modules, both official and third party, and apply the latest security patches.
 
-### Install NGINX dependencies {#dependencies}
+### Install NGINX dependencies
 
 Prior to compiling NGINX Open Source from source, you need to install libraries for its dependencies:
 
@@ -982,27 +1009,8 @@ Prior to compiling NGINX Open Source from source, you need to install libraries 
 - [OpenSSL](https://www.openssl.org/) – Supports the HTTPS protocol. Required by the NGINX [SSL](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module and others.
 
   ```shell
-  wget http://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./Configure darwin64-x86_64-cc --prefix=/usr
-  make
-  sudo make install
-  ```
-
-  Example for Ubuntu and Debian:
-  ```shell
-  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz
-  tar -zxf openssl-3.0.13.tar.gz
-  cd openssl-3.0.13
-  ./config --prefix=/usr/local --openssldir=/usr/local/ssl
-  make -j$(nproc)
-  sudo make install
-  ```
-
-  Example for RHEL-based:
-  ```shell
-  curl -LO https://www.openssl.org/source/openssl-3.0.13.tar.gz
+  wget https://www.openssl.org/source/openssl-3.0.13.tar.gz #for Ubuntu and Debian
+  # curl -LO https://www.openssl.org/source/openssl-3.0.13.tar.gz #for RHEL-based:
   tar -zxf openssl-3.0.13.tar.gz
   cd openssl-3.0.13
   ./config --prefix=/usr/local --openssldir=/usr/local/ssl
@@ -1017,9 +1025,9 @@ Download the source files for both the stable and mainline versions from [**ngin
 To download and unpack the source for the latest _mainline_ version, run:
 
 ```shell
-wget https://nginx.org/download/nginx-1.29.0.tar.gz && \
-tar zxf nginx-1.29.0.tar.gz && \
-cd nginx-1.29.0
+wget https://nginx.org/download/nginx-1.29.3.tar.gz && \
+tar zxf nginx-1.29.3.tar.gz && \
+cd nginx-1.29.3
 ```
 
 To download and unpack source files for the latest _stable_ version, run:
@@ -1054,9 +1062,7 @@ An example of options to the `configure` script:
 
 The `configure` script allows you to set paths to NGINX binary and configuration files, and to dependent libraries such as PCRE or SSL, in order to link them statically to the NGINX binary.
 
-
-
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{< table >}}
 
 |Parameter | Description |
 | ---| --- |
@@ -1071,47 +1077,44 @@ The `configure` script allows you to set paths to NGINX binary and configuration
 |`--with-pcre=<PATH>` | Path to the source for the PCRE library, which is required for regular expressions support in the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive and the [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module. |
 |`--with-pcre-jit` | Builds the PCRE library with “just-in-time compilation” support (the [pcre_jit](https://nginx.org/en/docs/ngx_core_module.html#pcre_jit) directive). |
 |`--with-zlib=<PATH>` | Path to the source for the `zlib` library, which is required by the [Gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) module. |
-{{</bootstrap-table>}}
 
+{{< /table >}}
 
-### GCC options {#configure_gcc}
+### GCC options
 
 With the `configure` script you can also specify compiler‑related options.
 
-
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{< table >}}
 
 |Parameter | Description |
 | ---| --- |
 |`--with-cc-opt="<PARAMETERS>"` | Additional parameters that are added to the ``CFLAGS`` variable. When using the system PCRE library under FreeBSD, the mandatory value is `--with-cc-opt="-I /usr/local/include"`. If the number of files supported by `select()` needs to be increased, it can also specified here as in this example: `--with-cc-opt="-D FD_SETSIZE=2048"`. |
 |`--with-ld-opt="<PARAMETERS>"` | Additional parameters that are used during linking. When using the system PCRE library under FreeBSD, the mandatory value is `--with-ld-opt="-L /usr/local/lib"`. |
 
-{{</bootstrap-table>}}
-
+{{< /table >}}
 
 ### Connection processing methods {#configure_methods}
 
 With the `configure` script you can redefine the method for event‑based polling. For more information, see [Connection processing methods](https://nginx.org/en/docs/events.html) in the NGINX reference documentation.
 
-
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{< table >}}
 
 |Module Name | Description |
 | ---| --- |
 |`--with-select_module`, `--without-select_module` | Enables or disables building a module that enable NGINX to work with the ``select()`` method. The modules is built automatically if the platform does not appear to support more appropriate methods such as `kqueue`, `epoll`, or `/dev/poll`. |
 |`--with-poll_module`, `--without-poll_module` | Enables or disables building a module that enables NGINX to work with the `poll()` method. The module is built automatically if the platform does not appear to support more appropriate methods such as `kqueue`, `epoll`, or `/dev/poll`. |
 
-{{</bootstrap-table>}}
+{{< /table >}}
 
-### Select the NGINX modules to build {#modules}
+### Select the NGINX modules to build
 
 NGINX consists of a set of function‑specific _modules_, which are specified with `configure` script along with other build options.
 
-Some modules are built by default – they do not have to be specified with the `configure` script. Default modules can however be explicitly excluded from the NGINX binary with the <span style="white-space: nowrap;">`--without-<MODULE-NAME>`</span> option on the `configure` script.
+Some modules are built by default – they do not have to be specified with the `configure` script. Default modules can however be explicitly excluded from the NGINX binary with the`--without-<MODULE-NAME>`option on the `configure` script.
 
 Modules not included by default, as well as third‑party modules, must be explicitly specified in the `configure` script together with other build options. Such modules can be linked to NGINX binary either _statically_ (they are then loaded each time NGINX starts) or _dynamically_ (they are loaded only if associated directives are included in the NGINX configuration file.
 
-#### Modules built by default {#modules_default}
+#### Modules built by default
 
 If you do not need a module that is built by default, you can disable it by naming it with the <span style="white-space: nowrap;">`--without-<MODULE-NAME>`</span> option on the `configure` script, as in this example which disables the [Empty GIF](https://nginx.org/en/docs/http/ngx_http_empty_gif_module.html) module (should be typed as a single line):
 
@@ -1127,7 +1130,7 @@ If you do not need a module that is built by default, you can disable it by nami
 --without-http_empty_gif_module
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{< table >}}
 
 |Module Name | Description |
 | ---| --- |
@@ -1157,10 +1160,10 @@ If you do not need a module that is built by default, you can disable it by nami
 |[`http_upstream_zone_module`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) | Enables shared memory zones. |
 |[`http_userid_module`](https://nginx.org/en/docs/http/ngx_http_userid_module.html) | Sets cookies suitable for client identification. |
 |[`http_uwsgi_module`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) | Passes requests to a uwsgi server. |
-{{</bootstrap-table>}}
 
+{{< /table >}}
 
-### Include modules not built by default {#modules_not_default}
+### Include modules not built by default
 
 Many NGINX modules are not built by default, and must be listed on the `configure` command line to be built.
 
@@ -1180,7 +1183,8 @@ An example of the `configure` command that includes nondefault modules (should b
 --with-mail
 ```
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{< table >}}}
+
 |Module Name               | Description                                  |
 | -------------------------| ---------------------------------------------|
 |`--with-cpp_test_module`   | Tests the C++ compatibility of header files.|
@@ -1212,13 +1216,14 @@ An example of the `configure` command that includes nondefault modules (should b
 | [`--with-stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) | Enables the TCP and UDP proxy functionality. To compile as a separate [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md" >}}) instead, change the option to `--with-stream=dynamic`. |
 | [`--with-stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html)| Provides support for a stream proxy server to work with the SSL/TLS protocol. Requires an SSL library such as [OpenSSL](https://www.openssl.org/). |
 | `--with-threads` | Enables NGINX to use thread pools. For details, see [Thread Pools in NGINX Boost Performance 9x!](https://www.nginx.com/blog/thread-pools-boost-performance-9x/) on the NGINX blog. |
-{{</bootstrap-table>}}
+
+{{< /table >}}
 
 ### Include third-party modules
 
 You can extend NGINX functionality by compiling NGINX Open Source with your own module or a third‑party module. Some third‑party modules are listed in the [NGINX Wiki](https://nginx.com/resources/wiki/modules/). Use third‑party modules at your own risk as their stability is not guaranteed.
 
-#### Statically linked modules {#modules_third_party}
+#### Statically linked modules
 
 Most modules built into NGINX Open Source are _statically linked_: they are built into NGINX Open Source at compile time and are linked to the NGINX binary statically. These modules can be disabled only by recompiling NGINX.
 
@@ -1234,7 +1239,6 @@ NGINX modules can also be compiled as a shared object (**\*.so** file) and then 
 
 To compile NGINX Open Source with a dynamically loaded third‑party module, include the `--add-dynamic-module=<PATH>` option on the `configure` command, where `<PATH>` is the path to the source code:
 
-
 ```shell
 ./configure ... --add-dynamic-module=<PATH>
 ```
@@ -1249,7 +1253,7 @@ load_module modules/ngx_mail_module.so;
 
 For more information, see [Compiling Third‑Party Dynamic Modules for NGINX and NGINX Plus](https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/) on the NGINX blog and [Extending NGINX](https://nginx.com/resources/wiki/extending/) in the Wiki.
 
-### Complete the installation from source {#install_complete}
+### Complete the installation from source
 
 - Compile and install the build:
 

@@ -2,8 +2,9 @@
 title: Review and configure features
 weight: 350
 toc: true
-nd-docs: DOCS-000
 nd-content-type: how-to
+nd-docs: DOCS-000
+nd-product: NAGENT
 ---
 
 ## Overview

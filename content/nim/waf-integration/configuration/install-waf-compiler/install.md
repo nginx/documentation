@@ -5,7 +5,6 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 The WAF compiler lets NGINX Instance Manager precompile security configurations before deploying them to F5 WAF for NGINX instances.  
@@ -24,26 +23,20 @@ To organize instances running the same version, you can create [instance groups]
 
 For an overview of how the compiler works, see [Security bundle compilation]({{< ref "/nim/waf-integration/overview#security-bundle" >}}).
 
----
-
 ## Before you begin
 
 {{< include "/nim/waf/nim-waf-before-you-begin.md" >}}
-
----
 
 ## WAF compiler version support
 
 Use the table below to find the correct WAF compiler version for each release of F5 WAF for NGINX:
 
-{{< include "/waf/f5-waf-for-nginx-compiler-compatibility.md" >}}
+{{< include "/waf/waf-nim-compiler-support.md" >}}
 
 {{< call-out "note" >}}
 Beginning with version 5.9.0, both the virtual machine and container installation packages are categorized under the 5.x.x tag.  
 Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0) and 5.x.x for container packages (for example, NAP 5.7.0, NAP 5.8.0).
 {{< /call-out >}}
-
----
 
 ## Install the WAF compiler
 
@@ -54,13 +47,13 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo apt-get install nms-nap-compiler-v5.527.0
+   sudo apt-get install nms-nap-compiler-v5.550.0
    ```
 
 1. To install multiple compiler versions on the same system, append the `--force-overwrite` option after the first installation:
 
    ```shell
-   sudo apt-get install nms-nap-compiler-v5.527.0 -o Dpkg::Options::="--force-overwrite"
+   sudo apt-get install nms-nap-compiler-v5.550.0 -o Dpkg::Options::="--force-overwrite"
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -84,7 +77,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.527.0
+   sudo yum install nms-nap-compiler-v5.550.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -108,7 +101,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.527.0
+   sudo yum install nms-nap-compiler-v5.550.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -132,7 +125,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.527.0
+   sudo yum install nms-nap-compiler-v5.550.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}

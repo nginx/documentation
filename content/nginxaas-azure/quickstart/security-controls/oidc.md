@@ -15,7 +15,7 @@ Learn how to configure F5 NGINXaaS for Azure with OpenID Connect (OIDC) authenti
 There are currently two methods available for setting up OIDC authentication.
 
 1. Using Native OIDC implementation (Introduced from NGINX Plus R34)
-   
+
 2. Using NJS based implementation
 
 ## Prerequisites
@@ -393,7 +393,7 @@ These features will be added in future releases.
 
 ## Monitoring
 
-[Enable monitoring]({{< ref "/nginxaas-azure/monitoring/enable-monitoring.md" >}}), check [real time monitoring](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#real-time-monitoring) to see how OIDC metrics are collected, and use "plus.http.*" metrics filtered with location_zone dimension in [NGINX requests and response statistics]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md#nginx-requests-and-response-statistics" >}}) to check the OIDC metrics.
+[Enable metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}), check [real time monitoring](https://github.com/nginxinc/nginx-openid-connect/blob/main/README.md#real-time-monitoring) to see how OIDC metrics are collected, and use "plus.http.*" metrics filtered with location_zone dimension in [NGINX requests and response statistics]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md#nginx-requests-and-response-statistics" >}}) to check the OIDC metrics.
 
 ## See Also
 

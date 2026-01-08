@@ -1,20 +1,14 @@
 ---
-# We use sentence case and present imperative tone
 title: "Configure SELinux"
-# Weights are assigned in increments of 100: determines sorting order
-weight: 500
-# Creates a table of contents and sidebar, useful for large documents
+weight: 400
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 The default settings for Security-Enhanced Linux (SELinux) on modern Red Hat Enterprise Linux (RHEL) and related distros can be very strict, prioritizing security over user convenience.
 
-To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile. 
+To ensure F5 WAF for NGINX operates smoothly without compromising security, consider setting up a custom SELinux policy or AppArmor profile.
 
 For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mode to avoid these restrictions, but this is inadvisable for prolonged use.
 

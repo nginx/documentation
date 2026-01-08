@@ -6,7 +6,7 @@ weight: 200
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-type: tutorial
+nd-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
 product: NGINX One
 ---

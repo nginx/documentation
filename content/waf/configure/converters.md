@@ -1,18 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "Build and use the converter tools"
-# Weights are assigned in increments of 100: determines sorting order
-weight: 400
-# Creates a table of contents and sidebar, useful for large documents
+weight: 300
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
-This document describes the tools F5 WAF for NGINX has to convert existing resources or configuration files from a BIG-IP environment for use with F5 WAF for NGINX. 
+This document describes the tools F5 WAF for NGINX has to convert existing resources or configuration files from a BIG-IP environment for use with F5 WAF for NGINX.
 
 {{< call-out "important" >}}
 
@@ -22,22 +16,36 @@ These tools are available in the [compiler image]({{< ref "/waf/configure/compil
 
 ## Policy converter
 
-The F5 WAF for NGINX policy converter tool is used to convert policies from XML to JSON format. 
+The F5 WAF for NGINX policy converter tool is used to convert BIG-IP ASM and Advanced WAF policies into F5 WAF for NGINX policy format. The tool is located at /opt/app_protect/bin/convert-policy. By default, the output is JSON based on the NAP-WAF base policy defaults and includes only the minimal differences from those defaults.
 
-It is a script located on on the path `/opt/app_protect/bin/convert-policy`.
+It also converts older versions of NAP policies into their current version representation (where needed).
 
-The converted policy is based on the F5 WAF for NGINX [base template]({{< ref "/waf/policies/configuration.md#base-template" >}}) and contains the minimal differences required for the JSON policy format.
+Unsupported or irrelevant elements for the F5 WAF for NGINX environment generate warnings and are removed by default. If you need a fuller export for auditing or troubleshooting, you can retain more content with the options below.
+
+We recommend converting with the version of the policy converter that matches the F5 WAF for NGINX version you are running. This ensures any newly supported configuration items are properly included.
+
+Required arguments:
+
+| Argument | Alias | Description | Environment Variable | Notes |
+| ----------- |  ----------- | ----------- | ----------- | ----------- |
+| --outfile | o | File name for where to write the exported policy. | EXPORT_FILE |
+| --infile | i | ASM/Advanced WAF security policy file to convert. | IMPORT_FILE |
+
+Optional arguments:
+
+| Argument | Alias | Description | Environment Variable | Notes |
+| ----------- |  ----------- | ----------- | ----------- | ----------- |
+| --format | f | Desired output format. | | Default: json; supported formats: json. |
+| --keep-full-configuration | | Retain the full configuration, including elements that may be invalid for this environment. || By default, only differences from the base template are exported; warnings for unsupported elements may be omitted when this is enabled. |
+| --full-export | | Include all policy entities, even if identical to the base template. | | By default, only differences from the base template are exported; warnings for unsupported elements may be omitted when this is enabled. |
+| --all-fields | | Include fields that would otherwise be ineffectual due to other settings, along with their default values. || Relevant only for JSON output. |
+| --include-all-signatures | | Include all signatures enforced by the policy’s signature sets. || By default, only modified (disabled) signatures are listed; relevant only for JSON output. |
+
+--infile is optional if you provide only --bot-profile or --dos-profile (those can be the sole input).
+
+### Convert an ASM/Advanced WAF XML policy to JSON
 
 You can obtain the XML policy file by exporting it from the BIG-IP system on which the policy is currently deployed.
-
-| Option   | Description |
-| ---------| ----------- |
-| _-i_ | Filename of input WAF or ASM binary policy |
-| _-o_ | Filename of output declarative policy |
-| _--bot-profile_  | Filename of JSON Bot Profile (pre-converted to JSON from tmsh syntax) |
-| _--logging-profile_ | Filename of JSON Logging Profile (pre-converted to JSON from tmsh syntax) |
-| _--dos-profile_ | Filename of JSON DoS Profile (pre-converted to JSON from tmsh syntax) |
-| _--full-export_ | If specified, the full policy with all entities will be exported. Otherwise, only entities that differ from the template will be included.<br> Default for the CLI is not specific (only differing entities). <br> Default for the REST endpoint above is "--full-export" (you can not override this).|
 
 To convert a policy, first create a temporary folder and copy your XML file to it:
 
@@ -54,14 +62,15 @@ Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 
 {{< /call-out >}}
 
-```docker
+```shell
 docker run -it --rm \
   -v $(pwd):/tmp/convert \
   --entrypoint="/opt/app_protect/bin/convert-policy" \
-  waf-compiler-<version-tag>:custom -i test.json -o test.xml
+  waf-compiler-<version-tag>:custom
   -i /tmp/convert/policy.xml \
   -o /tmp/convert/policy.json \
-  --full-export
+  --full-export \
+  | jq
 ```
 
 ```json
@@ -138,6 +147,42 @@ total 848
 -rw-r--r-- 1 root root 841818 Dec 20 11:10 policy.xml   # Original XML policy file
 ```
 
+### Export full policy
+
+```shell
+docker run -it --rm \
+  -v "$(pwd)":/tmp/convert \
+  --entrypoint="/opt/app_protect/bin/convert-policy" \
+  waf-compiler-<version-tag>:custom \
+  -i /tmp/convert/policy.xml \
+  -o /tmp/convert/policy.json \
+  --full-export
+```
+
+### Keep full configuration (retain elements that may be invalid or irrelevant)
+
+```shell
+docker run -it --rm \
+  -v "$(pwd)":/tmp/convert \
+  --entrypoint="/opt/app_protect/bin/convert-policy" \
+  waf-compiler-<version-tag>:custom \
+  -i /tmp/convert/policy.xml \
+  -o /tmp/convert/policy.json \
+  --keep-full-configuration
+```
+
+### Include all enforced signatures
+
+```shell
+docker run -it --rm \
+  -v "$(pwd)":/tmp/convert \
+  --entrypoint="/opt/app_protect/bin/convert-policy" \
+  waf-compiler-<version-tag>:custom \
+  -i /tmp/convert/policy.xml \
+  -o /tmp/convert/policy.json \
+  --include-all-signatures
+```
+
 ## User Defined Signatures converter
 
 The User Defined Signatures converter tool is used to convert a User Defined Signatures file from XML to JSON format.
@@ -183,7 +228,14 @@ Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 {{< /call-out >}}
 
 ```shell
-docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures waf-compiler-<version-tag>:custom -i /path/to/signatures.xml -o /path/to/signatures.json | jq
+docker run \
+  -v "$(pwd):$(pwd)" \
+  -w "$(pwd)" \
+  --entrypoint /opt/app_protect/bin/convert-signatures \
+  waf-compiler-<version-tag>:custom \
+  -i /path/to/signatures.xml \
+  -o /path/to/signatures.json \
+| jq
 ```
 
 ```json
@@ -194,7 +246,7 @@ docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-sig
 }
 ```
 
-**signatures.json**
+An example _signatures.json_ file:
 
 ```json
 {
@@ -312,14 +364,21 @@ The [jq](https://jqlang.github.io/jq/) command was used to format the example ou
 This is an example of how to convert a single XML file (With a custom tag):
 
 ```shell
-docker run -v `pwd`:`pwd` -w `pwd` --entrypoint /opt/app_protect/bin/convert-signatures waf-compiler-<version-tag>:custom -i /path/to/signatures.xml -o /path/to/signatures.json --tag "MyTag"
+docker run \
+  -v "$(pwd):$(pwd)" \
+  -w "$(pwd)" \
+  --entrypoint /opt/app_protect/bin/convert-signatures \
+  waf-compiler-<version-tag>:custom \
+  -i /path/to/signatures.xml \
+  -o /path/to/signatures.json \
+  --tag "MyTag"
 ```
 
 ## Attack Signature Report tool
 
 The Attack Signature Report tool scans the system for attack signatures, then generates a JSON report file with information about these signatures.
 
-This tool can be deployed and used independently from a F5 WAF for NGINX deployment using the [compiler image]({{< ref "/waf/configure/compiler.md" >}}) to generate a report about the default signatures included with F5 WAF, or the signatures included in [an update package]().
+This tool can be deployed and used independently from a F5 WAF for NGINX deployment using the [compiler image]({{< ref "/waf/configure/compiler.md" >}}) to generate a report about the default signatures included with F5 WAF, or the signatures included in [an update package]({{< ref "/waf/install/update-signatures.md" >}}).
 
 The latter case is possible on a standalone compiler deployment by comparing a report from before a signature update and a report from after the signature update.
 
@@ -358,7 +417,7 @@ This command example generates a signature report with all signature details:
 }
 ```
 
-**signature-report.json**
+An example _signature-report.json_ file:
 
 ```json
 {

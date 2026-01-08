@@ -5,8 +5,8 @@ nd-docs: DOCS-411
 title: Installing NGINX Plus AMIs on Amazon EC2
 toc: true
 weight: 300
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a Standard Technology Partner. We offer Amazon Machine Images (AMIs) for use in the Amazon Elastic Compute Cloud (EC2), available at the AWS Marketplace for several operating systems, including Amazon Linux, Red Hat Enterprise Linux, and Ubuntu.

@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
-type:
-- concept
+d-content-type: concept
+nd-product: NAZURE
 ---
 
 ## What Is F5 NGINXaaS for Azure?
@@ -46,7 +46,7 @@ NGINXaaS for Azure is supported in the following regions:
 {{< table >}}
 | **North America**                                              | **South America** | **Europe** | **Asia Pacific** |
 |----------------------------------------------------------|--------------------------------------------|--------------------------------------------|-------------------------|
-| West Central US <br> West US <br> East US 2 <br> West US 2 <br> West US 3 <br> East US <br> Central US <br> North Central US <br> South Central US <br> Canada Central | Brazil South | West Europe <br> North Europe <br> Sweden Central <br> Germany West Central <br> UK West <br> UK South | Australia East <br> Japan East <br> Korea Central <br> Southeast Asia <br> Central India <br> South India |
+| West Central US <br> West US <br> East US 2 <br> West US 2 <br> West US 3 <br> East US <br> Central US <br> North Central US <br> South Central US <br> Canada Central <br> Canada East | Brazil South | West Europe <br> North Europe <br> Sweden Central <br> Germany West Central <br> UK West <br> UK South | Australia East <br> Japan East <br> Korea Central <br> Southeast Asia <br> Central India <br> South India |
 {{< /table >}}
 
 
@@ -63,7 +63,7 @@ NGINXaaS for Azure is supported in the following regions:
 
 ### Redundancy
 
-With the Standard V2 Plan, NGINXaaS uses the following redundancy features to keep your service available.
+With the Standard V3 Plan, NGINXaaS uses the following redundancy features to keep your service available.
 
 - We run _at least_ two NGINX Plus instances for each deployment in an active-active pattern
 - NGINX Plus is constantly monitored for health. Any unhealthy instances are replaced with new ones

@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
 title: "Technical specifications"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 200
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This page outlines the technical specifications for F5 WAF for NGINX, which includes the minimum requirements and supported platforms.
@@ -32,7 +26,7 @@ You can deploy F5 WAF for NGINX in the following environments:
 
 | Distribution       | Version      |
 | ------------------ | ------------ |
-| Alpine Linux       | 3.19         |
+| Alpine Linux       | 3.22         |
 | Amazon Linux       | 2023         |
 | Debian             | 11, 12       |
 | Oracle Linux       | 8.1          |

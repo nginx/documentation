@@ -1,17 +1,16 @@
 ---
 title: JSON Schemas for Dynamic Web Forms
-draft: false
 description: ''
 weight: 300
 toc: true
 nd-docs: DOCS-1504
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Overview

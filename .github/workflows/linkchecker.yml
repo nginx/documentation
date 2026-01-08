@@ -39,6 +39,7 @@ env:
     --ignore-url ^http://www.maxmind.com --ignore-url ^https://www.maxmind.com --ignore-url ^https://www.opswat.com --ignore-url ^https://grsecurity.net
     --ignore-url ^https://support.pingidentity.com --ignore-url ^https://docs.pingidentity.com --ignore-url ^https://demo.example.com
     --ignore-url ^https://my-deployment.my-region.nginxaas.net/connectivity
+    --ignore-url ^https://gateway-api.sigs.k8s.io
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-ingress-controller/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginxaas/azure/css
     --ignore-url ^https://\([a-zA-Z0-9-]+\).nginx.com/nginx-gateway-fabric/css

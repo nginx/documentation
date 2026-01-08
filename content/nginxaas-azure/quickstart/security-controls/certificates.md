@@ -3,8 +3,8 @@ title: Use a certificate from Azure Key Vault
 weight: 50
 toc: true
 url: /nginxaas/azure/quickstart/security-controls/certificates/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview

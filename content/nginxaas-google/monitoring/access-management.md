@@ -4,13 +4,13 @@ weight: 100
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/access-management/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 
 
-F5 NGINXaaS for Google Cloud (NGINXaaS) leverages Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, when WIF is configured, NGINXaaS can export logs and metrics from your deployment to Cloud Monitoring in your chosen Google project. To learn more about WIF on Google Cloud, see [Google's Workload Identity Federation documentation](https://cloud.google.com/iam/docs/workload-identity-federation). 
+F5 NGINXaaS for Google Cloud (NGINXaaS) uses Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, with WIF configured, your NGINXaaS deployment can export logs and metrics to Cloud Monitoring in your Google project. To learn more, see [Google's Workload Identity Federation documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) leverages Workload Identity Federation (
     - `Issuer URL` must be `https://accounts.google.com`.
     - `Allowed audiences` must contain the full canonical resource name of the workload identity pool provider, for example, `https://iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`. If `Allowed audiences` is empty, the full canonical resource name of the workload identity pool provider will be included by default.
     - Add the following **attribute mapping**: `google.subject=assertion.sub`.
-    - Add the following **attribute condition**: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'` where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is your NGINXaaS deployment's service account's unique ID.
+    - Add the following **attribute condition**: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'`, where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is the unique ID of your NGINXaaS deployment's service account. This ID can be found in the `F5 NGINXaaS Service Account Unique ID` field under the **Cloud Info** section in the **Details** tab of your deployment.
 
 ### Grant access to the WIF principal with your desired roles
 
@@ -37,7 +37,7 @@ In the [Google Cloud Console](https://console.cloud.google.com/),
 1. Go to the **IAM** page.
 1. Select **Grant Access**.
 1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID`.
-1. Assign roles. For example, 
+1. Assign roles. For example,
     - To grant access to export logs, add the **Logs Writer** role.
     - To grant access to export metrics, add the **Monitoring Metric Writer** role.
 
@@ -67,4 +67,5 @@ In the NGINXaaS Console,
 
 ## What's next
 
-[Add SSL/TLS Certificates]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})
+- [Monitor your deployment]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
+- [Enable NGINX Logs]({{< ref "/nginxaas-google/monitoring/enable-nginx-logs.md" >}})

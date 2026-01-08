@@ -1,17 +1,16 @@
 ---
 title: F5 Global Default base template
-draft: false
 description: ''
 weight: 110
 toc: true
 nd-docs: DOCS-1503
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Overview

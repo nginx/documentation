@@ -5,8 +5,8 @@ nd-docs: DOCS-394
 title: NGINX ModSecurity WAF
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 {{< call-out "note" >}} The `nginx-plus-module-modsecurity` package is no longer available in the NGINX Plus repository.{{< /call-out >}}
@@ -17,16 +17,3 @@ For more details, [see this blog](https://www.f5.com/company/blog/nginx/f5-nginx
 
 To remove the module, follow the [Uninstalling a Dynamic Module]({{< ref "uninstall.md" >}}) instructions.
 
-## More Info
-
-- [ModSecurity documentation](https://github.com/SpiderLabs/ModSecurity/wiki)
-
-- [NGINX ModSecurity WAF technical specifications](https://docs.nginx.com/nginx-waf/technical-specs/)
-
-- [Installing and configuring NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/)
-
-- [Using the ModSecurity Rules from Trustwave SpiderLabs with the NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-trustwave-spiderlabs-rules/)
-
-- [Using the OWASP CRS with the NGINX ModSecurity WAF](https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-owasp-crs/)
-
-- [NGINX dynamic modules]({{< ref "dynamic-modules.md" >}})

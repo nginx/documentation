@@ -1,17 +1,16 @@
 ---
 title: RBAC for config templates and submissions
-draft: false
 description: ''
 weight: 300
 toc: true
 nd-docs: DOCS-1505
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- tutorial
+nd-content-type: tutorial
+nd-product: NIMNGR
 ---
 
 ## Overview

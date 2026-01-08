@@ -1,17 +1,16 @@
 ---
 title: Manage NGINX configs with templates
-draft: false
 description: ''
 weight: 200
 toc: true
 nd-docs: DOCS-1506
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Create a Config Template

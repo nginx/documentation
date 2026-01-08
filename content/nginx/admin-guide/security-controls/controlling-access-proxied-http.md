@@ -5,8 +5,8 @@ nd-docs: DOCS-432
 title: Limiting Access to Proxied HTTP Resources
 toc: true
 weight: 600
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.

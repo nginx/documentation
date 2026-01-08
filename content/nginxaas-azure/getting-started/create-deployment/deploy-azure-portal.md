@@ -6,6 +6,7 @@ weight: 100
 nd-content-type: how-to
 nd-product: NAZURE
 nd-docs: DOCS-878
+nd-review-priority: high
 ---
 
 ## Overview
@@ -33,7 +34,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
   | Resource group              | Specify whether you want to create a new resource group or use an existing one.<br> For more information, see [Azure Resource Group overview](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview).         |
   | Name                        | Provide a unique name for your deployment. |
   | Region                      | Select the region you want to deploy to.   |
-  | Pricing Plan                | Select the Standard V2 plan. For more information, see [Pricing Plans]({{< ref "/nginxaas-azure/billing/overview.md#pricing-plans">}})   |
+  | Pricing Plan                | Select the Standard V3 plan. For more information, see [Pricing Plans]({{< ref "/nginxaas-azure/billing/overview.md#pricing-plans">}})   |
   | Scaling                     | Select Manual to set the capacity of your deployment in NCUs or select Autoscale to automatically adjust the capacity of your deployment. Learn more about NCUs in [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}). |
   | Email                       | Provide an email address that can be notified about service alerts, maintenance data and activity reports. |
   | Upgrade Channel             | Select the desired upgrade channel for your deployment. For more information, see [Upgrade Channels]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}). |

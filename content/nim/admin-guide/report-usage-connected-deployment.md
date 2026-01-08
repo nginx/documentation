@@ -1,17 +1,16 @@
 ---
 title: Report usage data to F5 (connected)
-draft: false
 description: ''
 weight: 20
 toc: true
 nd-docs: DOCS-1650
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< call-out "note" >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}

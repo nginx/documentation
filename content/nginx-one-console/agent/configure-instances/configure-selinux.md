@@ -2,7 +2,9 @@
 title: Configure SELinux
 weight: 600
 toc: true
+nd-content-type: how-to
 nd-docs: DOCS-1880
+nd-product: NAGENT
 ---
 
 ## Overview

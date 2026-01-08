@@ -1,16 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "IP intelligence"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 1600
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 nd-product: F5WAFN
 ---
 
-F5 WAF for NGINX has an IP intelligence feature which allows you to customize enforcement based on the source IP address of a request. This allows you to limit access from specific IP addresses. 
+F5 WAF for NGINX has an IP intelligence feature which allows you to customize enforcement based on the source IP address of a request. This allows you to limit access from specific IP addresses.
 
 It is _**disabled** by default_, requiring extra steps to enable and configure.
 
@@ -27,7 +23,7 @@ To complete this guide, you will need the following prerequisites:
 A proxy server can be configured in the file `/etc/app_protect/tools/iprepd.cfg`:
 
 ```shell
-EnableProxy=True 
+EnableProxy=True=
 ProxyHost=5.1.2.4
 ProxyPort=8080
 ProxyUsername=admin        # Optional
@@ -100,7 +96,7 @@ sudo chown -R 101:101 /var/IpRep
 
 Modify the _original docker-compose.yml_ file to include the IP intelligence container, replacing image tags as appropriate:
 
-```
+```yaml
 services:
   waf-enforcer:
     container_name: waf-enforcer
@@ -337,7 +333,7 @@ The following policy shows examples of both, with all IP intelligence categories
 
 This policy will block  all IP addresses that are part of any threat category (`"block": true`) and add a log entry (`"alarm": true`) for the transaction.
 
-The IP address database is managed by an external provider and is constantly updated (every 1 minute by default). 
+The IP address database is managed by an external provider and is constantly updated (every 1 minute by default).
 
 The database categorizes IP addresses into one or more threat categories. These are the same categories that can be configured individually in the IP intelligence section:
 

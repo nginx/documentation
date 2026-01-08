@@ -4,8 +4,8 @@ weight: 200
 toc: true
 nd-docs: DOCS-1474
 url: /nginxaas/azure/billing/usage-and-cost-estimator/
-type:
-- concept
+nd-content-type: concept
+nd-product: NAZURE
 ---
 
 {{< raw-html >}}
@@ -13,7 +13,7 @@ type:
 <link rel="stylesheet" href="/nginxaas-azure/css/cost-calculator_v2.css">
 <div id="calculator" data-testid="calculator">
     <h3 id="calculator-section-heading" data-testid="calculator-section-heading">
-            Cost Estimation for Standard V2 Plan
+            Cost Estimation for Standard V3 Plan
             <button id="printButton">Print Estimate</button>
         </h3>
     <div class="section" data-testid="calculator-section-content">
@@ -99,9 +99,15 @@ Max(
             </div>
             <div class="form-field">
                 <label for="numListenPorts">
-                    Listen Ports <span class="label-details">- first 5 are included</span>
+                    Listen Ports <span class="label-details">- first 5 are included (1 additional port = 2 NCU)</span>
                 </label>
                 <input id="numListenPorts" data-testid="input-numListenPorts" type="number"/>
+            </div>
+            <div class="form-field">
+                <label for="dataProcessedGB">
+                    Data Processed <span class="label-details">- GB per month</span>
+                </label>
+                <input id="dataProcessedGB" data-testid="input-dataProcessedGB" type="number" min="0" />
             </div>
             <div class="form-field">
                 <label for="isWAF">
@@ -121,20 +127,27 @@ Max(
                         <summary>Show calculations</summary>
                         <div class="details-content">
                             <div class="details-section">
+                                <h5>Standard V3 Pricing Components:</h5>
                                 <p class="math">
-                                    <var id="cost-detail-hours"></var> hours * ((<var id="cost-detail-ncus"></var> NCUs * <var id="cost-detail-tier-cost"></var> per NCU per hour) + <var id="cost-detail-listen-ports"></var> additional listen ports * <var id="cost-detail-listen-ports-cost"></var>) = <var id="cost-detail-total"></var>
-                                    </br>
+                                    <var id="cost-detail-hours"></var> hours × (<var id="cost-detail-deployment-fee"></var> fixed deployment + <var id="cost-detail-ncus"></var> NCUs × <var id="cost-detail-tier-cost"></var> per NCU per hour + <var id="cost-detail-listen-ports"></var> additional listen ports × 2 NCUs × <var id="cost-detail-listen-ports-cost"></var>) +
+                                    <var id="cost-detail-data-processed"></var> GB × <var id="cost-detail-data-processing-cost"></var> per GB<br/>
+                                    <strong>Total:</strong> <var id="cost-detail-total"></var>
                                 </p>
                             </div>
                             <div class="details-section">
+                                <h5>Regional Pricing:</h5>
                                 <table class="math" id="tiers-costs-table">
                                     <tr>
                                         <th>Region</th>
                                         <th>Tier</th>
-                                        <th>Cost per NCU/hr</th>
+                                        <th>NCU Cost/hr (No WAF)</th>
+                                        <th>NCU Cost/hr (With WAF)</th>
+                                        <th>Fixed Deployment/hr (No WAF)</th>
+                                        <th>Fixed Deployment/hr (With WAF)</th>
                                     </tr>
                                     <!-- tier costs data appended here -->
                                 </table>
+                                <p><em>Note: Deployment fees and NCU costs vary by region tier and WAF usage. Data processing cost is $0.005/GB across all configurations.</em></p>
                             </div>
                         </div>
                     </details>

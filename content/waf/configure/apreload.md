@@ -1,15 +1,9 @@
 ---
-# We use sentence case and present imperative tone
-title: "Use apreload to apply configuration updates"
-# Weights are assigned in increments of 100: determines sorting order
-weight: 200
-# Creates a table of contents and sidebar, useful for large documents
+title: "Apply security policy updates without reloading NGINX using apreload"
+weight: 100
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This document describes how to use `apreload`, a tool for updating F5 WAF for NGINX configuration without reloading NGINX.
@@ -61,7 +55,7 @@ When calling _apreload_ directly, it is possible to run it while the previous ex
 
 The new execution will will apply a new configuration, and the most recent configuration will only apply during during the execution period.
 
-In a scenario where an execution from an NGINX reload is followed by a direct _ap_reload_ call, the NGINX workers with the new NGINX configuration will be loaded as soon as the Enforcer finishes processing the existing configuration. 
+In a scenario where an execution from an NGINX reload is followed by a direct _ap_reload_ call, the NGINX workers with the new NGINX configuration will be loaded as soon as the Enforcer finishes processing the existing configuration.
 
 Once complete, the most recent F5 WAF for NGINX configuration will be loaded using with the same NGINX worker instances.
 
@@ -77,10 +71,10 @@ If you want to apply either of the two, reload NGINX instead of using _apreload_
 
 ## apreload events
 
-_apreload_ events use the same format as operation log events written in the NGINX error log, reporting `configuration_load_success` or `configuration_load_failure` with JSON formatted details. 
+_apreload_ events use the same format as operation log events written in the NGINX error log, reporting `configuration_load_success` or `configuration_load_failure` with JSON formatted details.
 
-If any of the configuration files are invalid, _apreload_ will discover that and return the proper error message in the `configuration_load_failure event`. 
+If any of the configuration files are invalid, _apreload_ will discover that and return the proper error message in the `configuration_load_failure event`.
 
-The enforcer will continue to run with the previous working configuration. 
+The enforcer will continue to run with the previous working configuration.
 
 For more information, see the [Operation logs]({{< ref "/waf/logging/operation-logs.md">}}) topic.

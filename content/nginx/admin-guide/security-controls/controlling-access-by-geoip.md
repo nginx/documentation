@@ -5,8 +5,8 @@ nd-docs: DOCS-431
 title: Restricting Access by Geographical Location
 toc: true
 weight: 800
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="intro"></span>

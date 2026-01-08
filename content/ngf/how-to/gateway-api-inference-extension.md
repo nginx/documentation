@@ -2,7 +2,7 @@
 title: Gateway API Inference Extension
 weight: 800
 toc: true
-nd-type: how-to
+nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-0000
 ---
@@ -70,7 +70,7 @@ NGINX will query the Endpoint Picker Extension to determine the appropriate pod 
 {{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default, as the Endpoint Picker does not currently support mounting CA certificates. The Gateway API Inference Extension is in alpha status and should not be used in production. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v1.0.1
+export IGW_CHART_VERSION=v1.1.0
 helm install vllm-llama3-8b-instruct \
 --set inferencePool.modelServers.matchLabels.app=vllm-llama3-8b-instruct \
 --version $IGW_CHART_VERSION \
@@ -113,7 +113,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-## Deploy a HTTPRoute
+## Deploy an HTTPRoute
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -131,7 +131,6 @@ spec:
     - group: inference.networking.k8s.io
       kind: InferencePool
       name: vllm-llama3-8b-instruct
-      port: 3000
     matches:
     - path:
         type: PathPrefix

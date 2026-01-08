@@ -5,10 +5,9 @@ toc: true
 weight: 1000
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
-If you're having trouble with F5 WAF for NGINX, try the steps below.  
+If you're having trouble with F5 WAF for NGINX, try the steps below.
 If these steps don’t fix the issue, contact F5 Support.
 
 ---
@@ -60,21 +59,21 @@ sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 **Example:**
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile -h
 ```
 
 **Expected output:**
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.527.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.550.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
 ---

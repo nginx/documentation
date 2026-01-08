@@ -5,8 +5,8 @@ nd-docs: DOCS-438
 title: SSL Termination for TCP Upstream Servers
 toc: true
 weight: 200
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 This article explains how to set up SSL termination for F5 NGINX Plus and a load-balanced group of servers that accept TCP connections.

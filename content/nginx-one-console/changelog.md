@@ -9,23 +9,38 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## November 25, 2025
+
+### Observability: Usage metrics data now available for Config Sync Groups
+
+The Config Sync Group detail page now includes a dashboard containing traffic metrics which mirror those on the Instance detail dashboard. The reported numbers are aggregated from the data reported by the Instances belonging to the Config Sync Group.
+
+### Observability: Network IO now reports Instance or Config Sync Group traffic instead of system traffic
+
+Previously the network IO metrics presented on the Instance detail dashboard represented system-level network traffic, but will now only represent traffic served by NGINX directly. This applies to the new Config Sync Group detail dashboard as well.
+
+### Observability: Disk usage now correctly broken up by mount point
+
+An issue has been fixed with the disk usage data presented on the Instance detail dashboard, and disk usage should now be correctly broken up by mount point in all cases.
+
 ## October 22, 2025
 
 ### Observability: Network IO is now presented as a rate
 
-For each instance, you can now review system traffic, in and out, in bits per second. NGINX One Console no longer uses a cumulative value.
+For each Instance, you can now review system traffic, in and out, in bits per second. NGINX One Console no longer uses a cumulative value.
 
 ## October 7, 2025
 
-### Compare multiple metrics in instance observability
+### Compare multiple metrics in Instance observability
 
-You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI.
+You can now graph any two metrics simultaneously on one chart within the Metrics tab for each Instance in the NGINX One Console UI.
 
 ## October 6, 2025
 
 ### Expanded features for configuring NGINX security policies with F5 WAF
 
 You can now configure the following for F5 WAF policies directly in the NGINX One Console:
+
 - [Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md" >}})
 - [Signature Exceptions]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md#exceptions" >}})
 - [Parameters]({{< ref "/nginx-one-console/waf-integration/cookies-params-urls.md#add-parameters" >}})
@@ -88,6 +103,14 @@ We have added support for namespaces in N1C. You can now:
 
 - Manage resources in isolation in different namespaces.
 - Configure granular user permission controls base on namespace.
+
+### Alert when CVEs impact registered instances
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when affected by one or more CVEs.
+
+### Alert on new registered instances 
+
+We now include an alert in the [F5 Distributed Cloud](https://docs.cloud.f5.com/docs-v2/platform/reference/alerts-reference) when new instances are registered in the F5 NGINX One Console.
 
 ## April 3, 2025
 

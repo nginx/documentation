@@ -4,10 +4,10 @@ weight: 300
 description: Learn how to use the Python Azure Management SDK to manage NGINXaaS for
   Azure deployments.
 toc: true
+nd-content-type: how-to
 nd-docs: DOCS-1095
+nd-product: NAZURE
 url: /nginxaas/azure/client-tools/sdk/
-type:
-- task
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the multi-language SDK. This document outlines common workflows using the Python SDK. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/sdk/python/).
@@ -31,7 +31,7 @@ For example scripts to create or update deployment resources, see [NGINXaaS Snip
 - [Azure SDK Deployment Create or Update Documentation](https://learn.microsoft.com/en-us/python/api/azure-mgmt-nginx/azure.mgmt.nginx.operations.deploymentsoperations?view=azure-python#azure-mgmt-nginx-operations-deploymentsoperations-begin-create-or-update)
 - [Azure SDK Deployment Delete Documentation](https://learn.microsoft.com/en-us/python/api/azure-mgmt-nginx/azure.mgmt.nginx.operations.deploymentsoperations?view=azure-python#azure-mgmt-nginx-operations-deploymentsoperations-begin-delete)
 - [NGINXaaS Managed Identity Documentation]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}})
-- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-monitoring/" >}})
+- [NGINXaaS Azure Monitor Documentation]({{< ref "/nginxaas-azure/monitoring/enable-metrics/" >}})
 
 ### Create or update a certificate
 

@@ -5,8 +5,8 @@ nd-docs: DOCS-415
 title: Dynamic Configuration of Upstreams with the NGINX Plus API
 toc: true
 weight: 700
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGPLUS
 ---
 
 <span id="overview"></span>

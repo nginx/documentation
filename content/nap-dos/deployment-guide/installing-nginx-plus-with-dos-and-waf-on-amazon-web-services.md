@@ -1,54 +1,55 @@
 ---
-description: Install F5 NGINX Plus, F5 WAF for NGINX + DoS on Amazon Web Services
+description: Install F5 NGINX Plus, F5 WAF & DoS for NGINX Plus on Amazon Web Services
   (AWS), to provide sophisticated Layer 7 load balancing, Modern app security solution,
   behavioral DoS detection and mitigation that works seamlessly in DevOps environments
-  for your apps running on CentOS, RHEL, Debian and Ubuntu Linux OS.
+  for your apps running on AmazonLinux 2023, RHEL, Debian and Ubuntu Linux OS.
 nd-docs: DOCS-1204
-title: F5 WAF for NGINX + DoS AMIs on Amazon EC2
+title: Installing F5 WAF & DoS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 110
-type:
-- how-to
+nd-content-type: how-to
+nd-product: F5DOSN
 ---
+
 
 NGINX, Inc. participates in the Amazon Web Services (AWS) Partner Network as a Standard Technology Partner. We offer Amazon Machine Images (AMIs) for use in the Amazon Elastic Compute Cloud (EC2), available at the AWS Marketplace for several operating systems, including Amazon Linux, Red Hat Enterprise Linux, and Ubuntu.
 
 The AMIs contain combination of the following components:
 
 - Latest version of [F5 NGINX Plus](https://www.f5.com/products/nginx/nginx-plus), optimized for use on Amazon EC2
-
 - Latest version of [F5 DoS for NGINX](https://docs.nginx.com/nginx-app-protect-dos/), optimized for use on Amazon EC2
 - Latest version of [F5 WAF for NGINX](https://docs.nginx.com/nginx-app-protect-waf/), optimized for use on Amazon EC2
 - Pre-packaged software for building highly available (HA) NGINX Plus configurations
 
-## Install NGINX Plus F5 WAF for NGINX + DoS
+## Install
 
 To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS for NGINX on AWS:
 
 1. Follow the instructions in [Getting Started with Amazon EC2 Linux Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) to sign up on AWS and get more information about EC2 itself.
 2. Proceed to the product page for the appropriate AMI at the AWS Marketplace, and launch the AMI.
 
-    - [NGINX Plus with F5 DoS for NGINX – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-bjdboufufnb7g?sr=0-4&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX Plus – AmazonLinux 2023 AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-x5nkvphsrg6ag)
 
-    - [NGINX Plus with F5 DoS for NGINX – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+	- [NGINX Plus with F5 DoS for NGINX Plus – RHEL8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-e6bifer7o6uzm)
 
-    - [NGINX Plus with F5 DoS for NGINX – CentOS 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-deeny2oe7izti?sr=0-12&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX Plus – RHEL9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-eoddgsaqujgkm)
 
-    - [NGINX Plus with F5 DoS for NGINX – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-56oveh2rsxsbq)
 
-    - [NGINX Plus with F5 DoS for NGINX – Ubuntu 20.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-gsoln2vnsgpr4?sr=0-5&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 DoS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy)
+      
+	- [NGINX Plus with F5 DoS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-osz3wmirx5zqg)
+    
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co)
 
-    - [NGINX Plus with F5 DoS for NGINX – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-l6f2q2ykrjufy?sr=0-13&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – RHEL 9 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-kmtitev2hhrym)
 
-    - [NGINX Plus with F5 WAF for NGINX + DoS – RHEL 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-jedbygo6xbvto?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu)
 
-    - [NGINX Plus with F5 WAF for NGINX + DoS – RHEL 8 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-6pvnoyr2mp2co?sr=0-18&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Ubuntu 22.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-os7tw2atlkwpg)
 
-    - [NGINX Plus with F5 WAF for NGINX + DoS – CentOS 7 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-jedbygo6xbvto?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
+    - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
 
-    - [NGINX Plus with F5 WAF for NGINX + DoS – Debian 11 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-wbyobl7a55vcu?sr=0-3&ref_=beagle&applicationId=AWSMPContessa)
-
-    - [NGINX Plus with F5 WAF for NGINX + DoS – Ubuntu 20.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-zhxmqlcoylkca?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
 
     Click the **Continue to Subscribe** button to proceed to the **Launch on EC2** page.
 
@@ -73,7 +74,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       cat /opt/app_protect/VERSION /opt/app_protect/RELEASE
       ```
 
-     Verify NGINX DoS latest release from <https://docs.nginx.com/nginx-app-protect-dos/releases/> is
+     Verify F5 DoS for NGINX latest release from <https://docs.nginx.com/nginx-app-protect-dos/releases/> is
 
      installed by comparing with installed version from following command on the EC2 machine
 
@@ -91,7 +92,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
     In case NGINX PLUS / F5 DoS for NGINX / F5 WAF for NGINX packages are not latest release then upgrade the following  with these commands:
 
 
-    For App Protect DoS solution based on RedHat / CentOS
+    For F5 DoS for NGINX solution based on RedHat / AmazonLinux 2023
 
       ```shell
       sudo service nginx stop
@@ -99,7 +100,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       sudo systemctl start nginx
       ```
 
-    For App Protect DoS solution based on Debian / Ubuntu
+    For F5 DoS for NGINX solution based on Debian / Ubuntu
 
       ```shell
       sudo service nginx stop
@@ -108,7 +109,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
       sudo service nginx start
       ```
 
-     For F5 WAF for NGINX solution based on RedHat / CentOS
+     For F5 WAF for NGINX solution based on RedHat / AmazonLinux 2023
 
       ```shell
       sudo service nginx stop
@@ -170,7 +171,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-    c. Enable the L4 accelerated mitigation feature (for Debian11/Ubuntu20.04/RHEL8) in the `http` context of the `nginx.conf` file:
+    c. Enable the L4 accelerated mitigation feature in the `http` context of the `nginx.conf` file:
 
     ```shell
     app_protect_dos_accelerated_mitigation on;
@@ -190,9 +191,9 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
 
 If you encounter any problems with NGINX Plus configuration, documentation is available at [nginx.org](https://nginx.org/en/docs/) and in the [NGINX Plus Admin Guide](https://docs.nginx.com/nginx/admin-guide/installing-nginx/).
 
-If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting-guide/how-to-troubleshoot/).
+If you encounter any problems with F5 DoS for NGINX configuration, documentation is available at the [F5 DoS for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-dos/troubleshooting/how-to-troubleshoot/).
 
-If you encounter any problems with F5 WAF for NGINX configuration, documentation is available at the [F5 WAF for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/v4/troubleshooting-guide/troubleshooting/).
+If you encounter any problems with F5 WAF for NGINX configuration, documentation is available at the [F5 WAF for NGINX Troubleshooting Guide](https://docs.nginx.com/nginx-app-protect-waf/).
 
 
 Customers who purchase an NGINX Plus AMI at the AWS Marketplace are eligible for the AWS support provided by the NGINX, Inc. engineering team. To activate support, submit the [AMI Support Activation](https://www.nginx.com/ami-support-activation/) form (you need your AWS account number). When you request support, we’ll ask you to provide the AWS account number that you registered, along with the IDs of your EC2 instances in some cases.

@@ -1,16 +1,18 @@
 ---
-title: F5 DoS for NGINX Directives and Policy
+title: Directives and Policy
 toc: true
 weight: 120
 nd-docs: DOCS-667
+nd-content-type: reference
+nd-product: F5DOSN
 ---
 
 ## Introduction
 
 NGINX directives are specified in the `nginx.conf` file and are used to configure various modules of NGINX.<br>
-F5 F5 DoS for NGINX has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
+F5 DoS for NGINX has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
 
-The table below provides a summary of all the F5 F5 DoS for NGINX directives.<br>
+The table below provides a summary of all the F5 DoS for NGINX directives.<br>
 
 While only the first directive is mandatory for enabling F5 DoS for NGINX, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.<br>
 
@@ -438,7 +440,7 @@ Using this mode when F5 DoS for NGINX is deployed behind L4/L7 load balancer may
 {{< call-out "note" >}}
 To use this directive you need to install the eBPF package.
 
-For more information about eBPF, you can read the [Accelerating DDoS Mitigation with eBPF in F5 F5 DoS for NGINX](https://www.f5.com/company/blog/nginx/accelerating-ddos-mitigation-with-ebpf-in-f5-nginx-app-protect-dos) article.
+For more information about eBPF, you can read the [Accelerating DDoS Mitigation with eBPF in F5 DoS for NGINX](https://www.f5.com/company/blog/nginx/accelerating-ddos-mitigation-with-ebpf-in-f5-nginx-app-protect-dos) article.
 
 {{< /call-out >}}
 

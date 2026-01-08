@@ -4,8 +4,8 @@ weight: 400
 toc: true
 nd-docs: DOCS-000
 url: /nginxaas/google/getting-started/manual-scaling/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 F5 NGINXaaS for Google Cloud (NGINXaaS) supports manual scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
@@ -39,6 +39,10 @@ In the NGINXaaS Console,
 The status of the deployment will be "Pending" while the deployment's capacity is being changed. Once the requested capacity provisioning is complete, the status will change to "Ready".
 
   {{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
+
+## Connection draining
+
+During scale-in, some connections older than 60 seconds might be reset. The service automatically handles reconnects, so you don’t need to wait before reconnecting.
 
 ## Capacity restrictions
 

@@ -2,11 +2,10 @@
 title: Enable NGINX logs
 weight: 350
 toc: true
-draft: false
 nd-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NGOOGL
 ---
 
 F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs.
@@ -24,7 +23,6 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 ## Setting up access logs
 
 {{< include "/nginxaas-google/logging-config-access-logs.md" >}}
-
 
 ## Export NGINX logs to a Google Cloud Project
 
@@ -44,11 +42,10 @@ In the [Google Cloud Console](https://console.cloud.google.com/),
 
 Refer to the [Google's Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface) documentation to learn how you can create queries.
 
-
 NGINX access and error logs sent to Cloud Logging will have the log name `nginx-logs` which can be used to filter NGINX logs from the rest of your project logs. You can also filter based on log labels, for example,
 
 * `filename`
-* `nginxaas_account_id`
+* `nginxaas_organization_id`
 * `nginxaas_deployment_location`
 * `nginxaas_deployment_name`
 * `nginxaas_deployment_object_id`
@@ -63,3 +60,14 @@ To disable sending logs to your Google Cloud project, update your NGINXaaS deplo
 1. Remove the project ID under **Log Project ID**.
 1. Select **Update**.
 
+## Troubleshooting
+
+If Google Cloud Logging is not showing any logs, check for **Failed Log Export to Google** events from your NGINXaaS deployment.
+
+In the NGINXaaS console:
+
+1. On the navigation menu, select **Events**.
+1. Select **Add Filter**.
+1. Select **Affected Object** and the name of your NGINXaaS deployment.
+
+Events are deleted after 14 days.

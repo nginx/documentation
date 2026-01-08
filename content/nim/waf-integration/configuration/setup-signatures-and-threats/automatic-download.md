@@ -5,7 +5,6 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 ## Upload the F5 WAF for NGINX certificate and key

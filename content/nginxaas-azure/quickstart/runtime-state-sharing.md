@@ -4,8 +4,8 @@ weight: 100
 toc: true
 nd-docs: DOCS-1499
 url: /nginxaas/azure/quickstart/runtime-state-sharing/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports runtime state sharing using the [Zone Synchronization module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) to synchronize shared memory zones across NGINXaaS instances.
