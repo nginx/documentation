@@ -53,7 +53,7 @@ jobs:
       env:
         HOME: /root
       run: |
-        git config --global --add safe.directory /__w/nginx-hugo-theme/nginx-hugo-theme
+        git config --global --add safe.directory /__w/documentation/documentation
         cd tests && npx playwright test | tee output.log
         if grep -q "failed" output.log; then
           echo "Playwright tests failed. Please view the Playwright report to see full error."
