@@ -291,7 +291,7 @@ Response:
 Accessing `/coffee` with incorrect credentials:
 
 ```shell
-curl -i -u user1:wrong -H "Host: cafe.example.com http://$GW_IP:$GW_PORT/coffee"
+curl -i -u user1:wrong -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/coffee
 ```
 
 Response:
@@ -309,7 +309,7 @@ Response:
 Accessing `/coffee` with valid credentials:
 
 ```shell
-curl -i -u user1:password1 -H "Host: cafe.example.com http://$GW_IP:$GW_PORT/coffee"
+curl -i -u user1:password1 -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/coffee
 ```
 
 Response:
@@ -327,7 +327,7 @@ Accessing `/tea`
 Since tea has no AuthenticationFilter attached, responses are processed normally:
 
 ```shell
-curl -i -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/coffee
+curl -i -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/tea
 ```
 
 Response:
