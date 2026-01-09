@@ -442,8 +442,7 @@ upstreams:
     max_conns: 0
     max_fails: 1
     fail_timeout: 10s
-    slow_start: 0s
-    
+    slow_start: 0s 
   - name: backend-two  
     virtual_machine_scale_set: backend-two-vmss
     port: 8080
@@ -569,7 +568,10 @@ Check that upstreams are being updated in NGINXaaS:
    - Check that upstreams are properly defined with zone and state
    - Monitor agent logs for error messages
 
-## What's Next
+## References and Additional Resources
 
-- Learn about [NGINXaaS monitoring and metrics]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}})
-- Explore [advanced load balancing configurations]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}})
+- [Assign managed identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal/" >}})
+- [nginx-asg-sync examples](https://github.com/nginx/nginx-asg-sync/blob/main/examples/nginxforazure.md)
+- [Create an NGINXaaS deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}})
+- [VMSS Creation](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/flexible-virtual-machine-scale-sets-portal)
+- [NGINXaaS monitoring and metrics]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}})
