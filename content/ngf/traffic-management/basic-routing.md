@@ -233,6 +233,9 @@ Verify the status is `Accepted`:
 
 ```text
 Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
   Conditions:
     Last Transition Time:  2026-01-09T05:40:37Z
     Message:               The Gateway is accepted
@@ -461,7 +464,7 @@ If you have any issues while testing the configuration, try the following to deb
 - Check the generated nginx config:
 
   ```shell
-  kubectl exec -it -n <nginx-pod-namespace> <nginx-pod-name> -- nginx -T
+  kubectl exec -it deployments/cafe -- nginx -T
   ```
 
   The config should contain a server block with the server name "cafe.example.com" that listens on port 80. This server block should have a single location `/` that proxy passes to the coffee upstream:

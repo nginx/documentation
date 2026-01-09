@@ -191,6 +191,9 @@ Verify the status is `Accepted`:
 
 ```text
 Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
   Conditions:
     Last Transition Time:  2026-01-09T05:40:37Z
     Message:               The Gateway is accepted
@@ -318,7 +321,7 @@ Status:
 Next, verify that the policy has been applied to the `coffee` upstream by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it gateway -- nginx -T
+kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
 You should see the `ip_hash` directive on the `coffee` upstream:
@@ -424,7 +427,7 @@ Status:
 Next, verify that the tea upstream has a sticky cookie directive configured, which is responsible for issuing the session cookie and its attributes. The `sticky cookie` directive’s attributes are derived from the `sessionPersistence` configuration, such as the expiry (24h) and the route path (`/tea`). Inspect the NGINX configuration with:
 
 ```shell
-kubectl exec -it gateway -- nginx -T
+kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
 ```text

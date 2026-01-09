@@ -164,6 +164,9 @@ Verify the status is `Accepted`:
 
 ```text
 Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
   Conditions:
     Last Transition Time:  2026-01-09T05:40:37Z
     Message:               The Gateway is accepted
