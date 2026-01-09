@@ -103,10 +103,30 @@ EOF
 Confirm that the Gateway was assigned an IP address and reports a `Programmed=True` status:
 
 ```shell
-kubectl describe gateway inference-gateway
+kubectl describe gateways.gateway.networking.k8s.io inference-gateway
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+```text
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III

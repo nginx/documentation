@@ -20,8 +20,8 @@ Learn which Gateway API resources NGINX Gateway Fabric supports and to which lev
 | [GRPCRoute](#grpcroute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
 | [ReferenceGrant](#referencegrant)     | Supported           | N/A                    | Not supported                         | v1beta1     | Standard            |
 | [TLSRoute](#tlsroute)                 | Supported           | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [TCPRoute](#tcproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [UDPRoute](#udproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| [TCPRoute](#tcproute)                 | Supported           | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| [UDPRoute](#udproute)                 | Supported           | Supported              | Not supported                         | v1alpha2    | Experimental        |
 | [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1          | Standard            |
 | [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
 {{< /table >}}
@@ -310,7 +310,7 @@ Fields:
 {{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TCPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| TCPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
 {{< /table >}}
 
 ### UDPRoute
@@ -318,7 +318,7 @@ Fields:
 {{< table >}}
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| UDPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
 {{< /table >}}
 
 ### BackendTLSPolicy
