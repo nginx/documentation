@@ -1,4 +1,5 @@
 ---
+nd-product: SOLUTI
 nd-files:
 - content/nim/admin-guide/report-usage-connected-deployment.md
 - content/nim/disconnected/report-usage-disconnected-deployment.md
