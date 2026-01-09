@@ -215,7 +215,7 @@ service/tea created
 Verify that the new pods are in the `default` namespace:
 
 ```shell
-kubectl -n default get pods
+kubectl get pods
 ```
 
 ```text
@@ -252,7 +252,7 @@ gateway.gateway.networking.k8s.io/gateway created
 Verify that the NGINX deployment has been provisioned:
 
 ```shell
-kubectl -n default get pods
+kubectl get pods
 ```
 
 ```text
@@ -317,7 +317,7 @@ httproute.gateway.networking.k8s.io/tea created
 You can check that all of the expected services are available using `kubectl get`:
 
 ```shell
-kubectl -n default get services
+kubectl get services
 ```
 
 ```text
@@ -331,7 +331,7 @@ tea             ClusterIP   10.96.43.183    <none>        80/TCP         2m2s
 You can also use `kubectl describe` on the new resources to check their status:
 
 ```shell
-kubectl -n default describe httproutes
+kubectl describe httproutes
 ```
 
 ```text
@@ -446,7 +446,7 @@ Events:              <none>
 ```
 
 ```shell
-kubectl -n default describe gateways
+kubectl describe gateways
 ```
 
 ```text

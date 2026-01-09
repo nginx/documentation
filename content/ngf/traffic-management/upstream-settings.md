@@ -120,7 +120,7 @@ EOF
 This will create two services and pods in the default namespace:
 
 ```shell
-kubectl get svc,pod -n default
+kubectl get svc,pod
 ```
 
 ```text
@@ -331,7 +331,7 @@ The `lb-method-hash` policy should show the same `Accepted` condition.
 Next, verify that the policies have been applied to the `coffee` and `tea` upstreams by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default gateway -- nginx -T
+kubectl exec -it gateway -- nginx -T
 ```
 
 You should see the `random two least_time=header` directive on the `coffee` upstreams and `hash $upstream_addr consistent` in the `tea` upstream:
@@ -411,7 +411,7 @@ Events:                      <none>
 Next, verify that the policy has been applied to the `coffee` and `tea` upstreams by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default gateway -- nginx -T
+kubectl exec -it gateway -- nginx -T
 ```
 
 You should see the `zone` directive in the `coffee` and `tea` upstreams both specify the size `1m`:
@@ -488,7 +488,7 @@ Events:                      <none>
 Next, verify that the policy has been applied to the `coffee` upstreams, by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default gateway -- nginx -T
+kubectl exec -it gateway -- nginx -T
 ```
 
 You should see that the `coffee` upstream has the `keepalive` directive set to 32:
@@ -550,7 +550,7 @@ Status:
 Next, verify that the policy has been applied to the `tea` upstream, by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default gateway -- nginx -T
+kubectl exec -it gateway -- nginx -T
 ```
 
 ```text

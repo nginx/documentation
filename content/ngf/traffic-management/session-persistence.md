@@ -145,7 +145,7 @@ EOF
 This creates three Service resources and multiple Pods in the default namespace. The multiple replicas are needed to demonstrate stickiness to backend Pods.
 
 ```shell
-kubectl get all -o wide -n default
+kubectl get all -o wide
 ```
 
 ```text
@@ -318,7 +318,7 @@ Status:
 Next, verify that the policy has been applied to the `coffee` upstream by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default gateway -- nginx -T
+kubectl exec -it gateway -- nginx -T
 ```
 
 You should see the `ip_hash` directive on the `coffee` upstream:
@@ -424,7 +424,7 @@ Status:
 Next, verify that the tea upstream has a sticky cookie directive configured, which is responsible for issuing the session cookie and its attributes. The `sticky cookie` directive’s attributes are derived from the `sessionPersistence` configuration, such as the expiry (24h) and the route path (`/tea`). Inspect the NGINX configuration with:
 
 ```shell
-kubectl exec -it -n default gateway -- nginx -T
+kubectl exec -it gateway -- nginx -T
 ```
 
 ```text
@@ -522,7 +522,7 @@ EOF
 Verify the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default deployments/gateway -- nginx -T
+kubectl exec -it deployments/gateway -- nginx -T
 ```
 
 ```text
