@@ -17,15 +17,13 @@ The `/coffee` endpoint will use the `ExtensionRef` filter to reference and `Auth
 
 ## Before you begin
 
-- Install NGINX Gateway Fabric (OSS or Plus), with [Helm]({{< ref "/ngf/install/helm.md" >}}) or [Manifest]({{< ref "/ngf/install/manifests.md" >}})
-- Ensure the Gateway API CRDs are installed on your cluster.
-- Ensure the latest NGINX Gateway Fabric CRDs are installed on your cluster.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Setup
 
 ### Deploy demo applications
 
-To deploy both the `coffee` and `tea` applications, copy the blow yaml into your terminal:
+To deploy both the `coffee` and `tea` applications, copy the following YAML into your terminal:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -97,7 +95,7 @@ spec:
 EOF
 ```
 
-Confirm that the pods are running
+Confirm that the Pods are running
 
 ```shell
 kubectl get pods
@@ -113,7 +111,7 @@ tea-75bc9f4b6d-s99jz      1/1     Running   0          21s
 
 ### Create a Gateway
 
-To create your gateway resource, and provision the NGINX pod, copy the below yaml into your terminal:
+To create your gateway resource, and provision the NGINX pod, copy the following YAML into your terminal:
 
 ```yaml
 kubectl apply -f - <<EOF
