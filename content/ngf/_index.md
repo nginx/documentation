@@ -27,8 +27,6 @@ nd-product: FABRIC
 
 NGINX Gateway Fabric provides an implementation of the [Gateway API](https://gateway-api.sigs.k8s.io/) using [NGINX](https://nginx.org/) as the data plane. The goal of the project is to implement the core Gateway APIs needed to configure an HTTP or TCP/UDP load balancer, reverse proxy, or API gateway for Kubernetes applications.
 
-For a list of supported Gateway API resources and features, see the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) documentation.
-
 ## Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
@@ -38,8 +36,8 @@ For a list of supported Gateway API resources and features, see the [Gateway API
   {{<card title="Deploy NGINX Gateway Fabric" titleUrl="/nginx-gateway-fabric/install">}}
     Choose how to deploy NGINX Gateway Fabric in production.
   {{</card>}}
-  {{<card title="Changelog" titleUrl="/nginx-gateway-fabric/changelog">}}
-    Review the changes from the latest releases.
+  {{<card title="Gateway API compatibility" titleUrl="/nginx-gateway-fabric/overview/gateway-api-compatibility/">}}
+    View how much of the Gateway API NGINX Gateway Fabric supports.
   {{</card>}}
 {{</card-section>}}
 
@@ -58,8 +56,8 @@ For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gate
 ## More information
 
 {{<card-section showAsCards="true">}}
-  {{<card title="Gateway API compatibility" titleUrl="/nginx-gateway-fabric/overview/gateway-api-compatibility/">}}
-    View how much of the Gateway API NGINX Gateway Fabric supports.
+  {{<card title="Changelog" titleUrl="/nginx-gateway-fabric/changelog">}}
+    Review the changes from the latest releases.
   {{</card>}}
   {{<card title="Technical specifications" titleUrl="/nginx-gateway-fabric/reference/technical-specifications/">}}
     Check which versions of NGINX Gateway Fabric match the API.
@@ -67,7 +65,7 @@ For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gate
   {{<card title="Routing traffic to applications" titleUrl="/nginx-gateway-fabric/traffic-management/basic-routing/">}}
     Create simple rules for directing network traffic with HTTPRoute resources.
   {{</card>}}
-  {{<card title="Secure traffic using Let's Encrypt and cert-manager" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager/">}}
+  {{<card title="Secure traffic using Let's Encrypt" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager/">}}
     Implement HTTPS with Let's Encrypt to secure client-server communication.
   {{</card>}}
 {{</card-section>}}
