@@ -464,7 +464,7 @@ If you have any issues while testing the configuration, try the following to deb
 - Check the generated nginx config:
 
   ```shell
-  kubectl exec -it deployments/cafe -- nginx -T
+  kubectl exec -it deployments/cafe-nginx -- nginx -T
   ```
 
   The config should contain a server block with the server name "cafe.example.com" that listens on port 80. This server block should have a single location `/` that proxy passes to the coffee upstream:
