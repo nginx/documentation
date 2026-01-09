@@ -13,7 +13,7 @@ This guide introduces how to configure basic authentication for your application
 Authentication is crucial for modern application security and allows you to be confident that only trusted and authorized users are accessing your applications, or API backends.
 Through this document, you'll learn how to protect your application endpoints with NGINX Gateway Fabric using the AuthenticationFilter CRD.
 In this guide we will create two sample applications, `tea` and `coffee`, where we will enable basic authentication on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authentication.
-The `/coffee` endpoint will use the `ExtensionRef` filter to reference and `AuthenticationFilter` CRD which is configured for Basic Authentication.
+The `/coffee` endpoint will use the `ExtensionRef` filter to reference an AuthenticationFilter CRD which is configured for Basic Authentication.
 
 ## Before you begin
 
@@ -269,33 +269,6 @@ Events:              <none>
 ```
 
 ## Verify Basic Authentication
-
-Before verifying the traffic of the application, we'll first make sure the NGINX config is correct.
-
-First, get the name of the NGINX Pod. The name of this pod should start with `cafe-gateway`
-
-```shell
-kubectl get pods | grep "cafe-gateway" -B1
-```
-
-```text
-NAME                                  READY   STATUS    RESTARTS   AGE
-cafe-gateway-nginx-5d9855f458-chggl   1/1     Running   0          55s
-```
-
-Run this command to check the configuration of the NGINX upstreams and loactions:
-
-```shell
-kubectl exec -it cafe-gateway-nginx-5d9855f458-chggl  -- cat /etc/nginx/conf.d/http.conf | grep "/coffee" -A5
-```
-
-From this output, we can see the `/coffee` route has sets the `auth_basic` directive, which enabled basic authentication in NGINX.
-```nginx
-location = /coffee { 
-  auth_basic "Restricted basic-auth";
-  auth_basic_user_file /etc/nginx/secrets/default_basic-auth;
-}
-```
 
 Accessing `/coffee` without credentials:
 
