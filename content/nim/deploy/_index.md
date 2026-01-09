@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-303
 title: Deploy in a connected environment
 description:
 weight: 20

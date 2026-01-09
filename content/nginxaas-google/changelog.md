@@ -2,7 +2,7 @@
 title: "Changelog"
 weight: 900
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-653
 url: /nginxaas/google/changelog/
 nd-content-type: reference
 nd-product: NGOOGL

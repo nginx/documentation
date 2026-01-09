@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-601
 title: Migrate from Custom metrics to Platform metrics
 weight: 1000
 toc: true

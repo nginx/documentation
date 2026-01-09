@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-266
 title: "XML and JSON content"
 weight: 2300
 toc: true

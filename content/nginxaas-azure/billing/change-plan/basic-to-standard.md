@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-648
 title: Change from basic plan to standard plan
 weight: 200
 toc: false

@@ -1,6 +1,6 @@
 ---
 +nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-522
 nd-product: NONECO
 title: Import templates
 toc: true

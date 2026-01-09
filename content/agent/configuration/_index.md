@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-003
 title: "Configuration"
 weight: "400"
 url: /nginx-agent/configuration/

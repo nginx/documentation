@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-190
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md

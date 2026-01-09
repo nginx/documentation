@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-370
 title: "Add an NGINX instance"
 weight: 100
 toc: false

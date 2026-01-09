@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-268
 title: "Virtual machine or bare metal"
 weight: 100
 toc: true

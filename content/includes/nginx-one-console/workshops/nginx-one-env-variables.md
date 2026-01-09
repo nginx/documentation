@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-173
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/workshops/lab3/explore-nginx-one-console-features.md

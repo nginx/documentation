@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-050
 nd-product: MISCEL
 nd-files:
 - content/includes/nim/docker/docker-registry-login.md

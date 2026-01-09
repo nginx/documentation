@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-235
 title: "Cookie enforcement"
 weight: 700
 toc: true

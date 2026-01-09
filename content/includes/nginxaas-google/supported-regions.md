@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-docs: DOCS-198
 nd-files:
 - content/nginxaas-google/getting-started/create-deployment/deploy-console.md
 - content/nginxaas-google/overview.md

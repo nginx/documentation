@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-558
 title: Connect Kubernetes deployments
 description:
 weight: 700

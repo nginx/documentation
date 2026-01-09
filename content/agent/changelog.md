@@ -3,7 +3,7 @@ title: Changelog
 url: /agent/changelog
 weight: 1200
 toc: true
-nd-docs: "DOCS-1093"
+nd-docs: DOCS-1093
 nd-product: NAGENT
 nd-content-type: reference
 ---
