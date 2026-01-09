@@ -179,13 +179,13 @@ Status:
     Type:                  Programmed
 ```
 
-Save the public IP address and port(s) of the Gateway into shell variables:
+- Save the public IP address and port(s) of the Gateway into shell variables:
 
-```text
- GW_IP=XXX.YYY.ZZZ.III
- GW_HTTP_PORT=<http port number>
- GW_HTTPS_PORT=<https port number>
-```
+  ```text
+   GW_IP=XXX.YYY.ZZZ.III
+   GW_HTTP_PORT=<http port number>
+   GW_HTTPS_PORT=<https port number>
+  ```
 
 {{< call-out "note" >}}
 
