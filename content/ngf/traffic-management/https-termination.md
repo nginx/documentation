@@ -154,19 +154,38 @@ This gateway configures:
 - `http` listener for HTTP traffic
 - `https` listener for HTTPS traffic. It terminates TLS connections using the `cafe-secret` we created.
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
-
-Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
 ```shell
-kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+kubectl describe gateways.gateway.networking.k8s.io cafe
 ```
 
- ```text
+Verify the status is `Accepted`:
+
+```text
+Status:
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
+
+```text
  GW_IP=XXX.YYY.ZZZ.III
  GW_HTTP_PORT=<http port number>
  GW_HTTPS_PORT=<https port number>
- ```
+```
 
 {{< call-out "note" >}}
 

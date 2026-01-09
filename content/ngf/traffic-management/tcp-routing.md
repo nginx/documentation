@@ -142,24 +142,34 @@ EOF
 This Gateway defines two TCP listeners on ports 81 (coffee) and 82 (tea), and allows only TCPRoute resources to attach to them. After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
 ```shell
-kubectl get gateways.gateway.networking.k8s.io gateway
+kubectl describe gateways.gateway.networking.k8s.io gateway
 ```
+
+Verify the status is `Accepted`:
 
 ```text
-NAME      CLASS   ADDRESS        PROGRAMMED   AGE
-gateway   nginx   10.96.83.165   True         17m
+Status:
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
 ```
 
-Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
-
-```shell
-kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
-```
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
-GW_PORT_1=<port number 1>
-GW_PORT_2=<port number 2>
+GW_PORT_1=<Listener-1 Port number>
+GW_PORT_2=<Listener-2 Port number>
 ```
 
 {{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
@@ -235,7 +245,7 @@ Status:
 Next, verify that the TCPRoutes are configured by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n default deployments/gateway-nginx -- nginx -T
+kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
 The NGINX configuration should look something like:

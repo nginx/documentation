@@ -68,16 +68,35 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
   kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/snippets-filter/gateway.yaml
   ```
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
-
-- Save the public IP address and port of the NGINX Service into shell variables. To get the Service, run the following command:
+  After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
   ```shell
-  kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+  kubectl describe gateways.gateway.networking.k8s.io gateway
   ```
 
+  Verify the status is `Accepted`:
+
   ```text
-  GW_IP=<ip address>
+  Status:
+    Conditions:
+      Last Transition Time:  2026-01-09T05:40:37Z
+      Message:               The Gateway is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-01-09T05:40:37Z
+      Message:               The Gateway is programmed
+      Observed Generation:   1
+      Reason:                Programmed
+      Status:                True
+      Type:                  Programmed
+  ```
+
+  Save the public IP address and port(s) of the Gateway into shell variables:
+
+  ```text
+  GW_IP=XXX.YYY.ZZZ.III
   GW_PORT=<port number>
   ```
 
