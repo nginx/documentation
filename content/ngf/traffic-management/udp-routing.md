@@ -294,4 +294,4 @@ example.com.		900	IN	SOA	elliott.ns.cloudflare.com. dns.cloudflare.com. 23931208
 
 ## Further Readings
 
-- [UDPRoute](https://gateway-api.sigs.k8s.io/reference/spec/?h=tcproute#udproute)
+- [UDPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#udproute)
