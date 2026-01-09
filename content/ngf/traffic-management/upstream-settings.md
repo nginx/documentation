@@ -153,17 +153,15 @@ EOF
 
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+
+```shell
+kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+```
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
-```
-
-Lookup the name of the NGINX pod and save into shell variable:
-
-```text
-NGINX_POD_NAME=<NGINX Pod>
 ```
 
 {{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
@@ -314,7 +312,7 @@ The `lb-method-hash` policy should show the same `Accepted` condition.
 Next, verify that the policies have been applied to the `coffee` and `tea` upstreams by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
 ```
 
 You should see the `random two least_time=header` directive on the `coffee` upstreams and `hash $upstream_addr consistent` in the `tea` upstream:
@@ -394,7 +392,7 @@ Events:                      <none>
 Next, verify that the policy has been applied to the `coffee` and `tea` upstreams by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
 ```
 
 You should see the `zone` directive in the `coffee` and `tea` upstreams both specify the size `1m`:
@@ -471,7 +469,7 @@ Events:                      <none>
 Next, verify that the policy has been applied to the `coffee` upstreams, by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
 ```
 
 You should see that the `coffee` upstream has the `keepalive` directive set to 32:
@@ -533,7 +531,8 @@ Status:
 Next, verify that the policy has been applied to the `tea` upstream, by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
+```
 
 ```text
 upstream default_tea_80 {

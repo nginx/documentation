@@ -91,7 +91,11 @@ EOF
 This gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames.
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+
+```shell
+kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+```
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
@@ -386,7 +390,7 @@ This will result in a `404 Not Found` response since `/coffee/123` does not matc
 
 If you have any issues while sending traffic, try the following to debug your configuration and setup:
 
-- Make sure you set the shell variables $GW_IP and $GW_PORT to the public IP and port of the NGINX service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
+- Make sure you set the shell variables ${GW_IP} and ${GW_PORT} to the public IP and port of the NGINX service. Refer to the [Installation]({{< ref "/ngf/install/" >}}) guides for more information.
 
 - Check the status of the Gateway:
 

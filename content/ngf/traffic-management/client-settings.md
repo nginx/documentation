@@ -56,7 +56,11 @@ Create HTTPRoutes for the coffee and tea applications:
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/httproutes.yaml
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+
+```shell
+kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+```
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III

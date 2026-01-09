@@ -106,7 +106,11 @@ Confirm that the Gateway was assigned an IP address and reports a `Programmed=Tr
 kubectl describe gateway inference-gateway
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+
+```shell
+kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+```
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III

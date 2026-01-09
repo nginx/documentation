@@ -150,18 +150,16 @@ NAME      CLASS   ADDRESS        PROGRAMMED   AGE
 gateway   nginx   10.96.83.165   True         17m
 ```
 
-Save the public IP address and port(s) of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+
+```shell
+kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+```
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
 GW_PORT_1=<port number 1>
 GW_PORT_2=<port number 2>
-```
-
-Lookup the name of the NGINX pod and save into shell variable:
-
-```text
-NGINX_POD_NAME=<NGINX Pod>
 ```
 
 {{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
@@ -237,7 +235,7 @@ Status:
 Next, verify that the TCPRoutes are configured by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default deployments/gateway-nginx -- nginx -T
 ```
 
 The NGINX configuration should look something like:
@@ -285,4 +283,4 @@ Requests sent to port `${GW_PORT_1}` (listener `coffee`) are served by the coffe
 
 ## Further Readings
 
-- [TCPRoute](https://gateway-api.sigs.k8s.io/reference/1.4/spec/#tcproute)
+- [TCPRoute](https://gateway-api.sigs.k8s.io/reference/spec/?h=tcproute#tcproute)

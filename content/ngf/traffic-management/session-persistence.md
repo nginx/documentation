@@ -192,17 +192,15 @@ NAME      CLASS   ADDRESS        PROGRAMMED   AGE
 gateway   nginx   10.96.15.149   True         23h
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the NGINX Service into shell variables. To get the Service, run the following command:
+
+```shell
+kubectl get service -n <GATEWAY_NAMESPACE> ${GATEWAY_NAME}
+```
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
-```
-
-Lookup the name of the NGINX pod and save into shell variable:
-
-```text
-NGINX_POD_NAME=<NGINX Pod>
 ```
 
 {{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
@@ -310,7 +308,7 @@ Status:
 Next, verify that the policy has been applied to the `coffee` upstream by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
 ```
 
 You should see the `ip_hash` directive on the `coffee` upstream:
@@ -416,7 +414,7 @@ Status:
 Next, verify that the tea upstream has a sticky cookie directive configured, which is responsible for issuing the session cookie and its attributes. The `sticky cookie` directive’s attributes are derived from the `sessionPersistence` configuration, such as the expiry (24h) and the route path (`/tea`). Inspect the NGINX configuration with:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
 ```
 
 ```text
@@ -514,7 +512,7 @@ EOF
 Verify the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it -n default gateway -- nginx -T
 ```
 
 ```text
