@@ -270,10 +270,28 @@ Events:              <none>
 
 ## Verify Basic Authentication
 
+{{< call-out "note" >}}Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. In this guide we will simulate that using curl's `--resolve` option. {{< /call-out >}}
+
+Accessing `/coffee` with valid credentials:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee -u user1:password1
+```
+
+Response:
+
+```text
+Server address: 10.244.0.7:8080
+Server name: coffee-654ddf664b-nhhvr
+Date: 06/Jan/2026:15:20:15 +0000
+URI: /coffee
+Request ID: 13a925b2514b62c45ea4a79800248d5c
+```
+
 Accessing `/coffee` without credentials:
 
 ```shell
-curl -i -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/coffee
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
 ```
 
 Response:
@@ -291,7 +309,7 @@ Response:
 Accessing `/coffee` with incorrect credentials:
 
 ```shell
-curl -i -u user1:wrong -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/coffee
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee  -u user1:wrong 
 ```
 
 Response:
@@ -306,28 +324,12 @@ Response:
 </html>
 ```
 
-Accessing `/coffee` with valid credentials:
-
-```shell
-curl -i -u user1:password1 -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/coffee
-```
-
-Response:
-
-```text
-Server address: 10.244.0.7:8080
-Server name: coffee-654ddf664b-nhhvr
-Date: 06/Jan/2026:15:20:15 +0000
-URI: /coffee
-Request ID: 13a925b2514b62c45ea4a79800248d5c
-```
-
 Accessing `/tea`
 
 Since tea has no AuthenticationFilter attached, responses are processed normally:
 
 ```shell
-curl -i -H "Host: cafe.example.com" http://$GW_IP:$GW_PORT/tea
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
 ```
 
 Response:
