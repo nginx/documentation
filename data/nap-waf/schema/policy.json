@@ -3717,7 +3717,7 @@
                "oneOf" : [
                   {
                      "items" : {
-                        "description" : "Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.",
+                        "description" : "Defines behavior when signatures found within a signature-set are detected in a request. Settings are cumulative, so if a signature is found in any set with block enabled, that signature will have block enabled.",
                         "properties" : {
                            "$action" : {
                               "enum" : [
