@@ -36,7 +36,7 @@ For all the possible configuration options for `ProxySettingsPolicy`, see the [A
 
 Create the coffee and tea example applications:
 
-```yaml
+```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/proxy-settings-policy/app.yaml
 ```
 
@@ -44,19 +44,46 @@ The coffee application is designed to generate large responses (10KB headers and
 
 Create a Gateway:
 
-```yaml
+```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/proxy-settings-policy/gateway.yaml
 ```
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
-
 Create HTTPRoutes for the coffee and tea applications:
 
-```yaml
+```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/proxy-settings-policy/httproutes.yaml
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+Verify the gateway is created:
+
+```shell
+kubectl describe gateways.gateway.networking.k8s.io gateway
+```
+
+Verify the status is `Accepted`:
+
+```text
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
@@ -124,7 +151,7 @@ This demonstrates why proper proxy buffering configuration is essential for appl
 
 To set default proxy buffering settings for the Gateway created during setup, add the following `ProxySettingsPolicy`:
 
-```yaml
+```shell
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: ProxySettingsPolicy
@@ -218,7 +245,7 @@ The coffee application will still fail with a 502 Bad Gateway error because the 
 
 To set different proxy buffering settings for a particular route, you can create another `ProxySettingsPolicy` that targets the route:
 
-```yaml
+```shell
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: ProxySettingsPolicy
@@ -323,7 +350,7 @@ The tea application continues to use the Gateway-level buffering settings since 
 
 To configure a `ProxySettingsPolicy` for a GRPCRoute, you can specify the GRPCRoute in the `spec.targetRefs`:
 
-```yaml
+```shell
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: ProxySettingsPolicy
@@ -354,7 +381,7 @@ In some scenarios, you may want to disable buffering entirely to allow responses
 
 To disable buffering for a route:
 
-```yaml
+```shell
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: ProxySettingsPolicy
