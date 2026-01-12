@@ -137,7 +137,7 @@ NGINX Gateway Fabric sets the [PolicyStatus](https://gateway-api.sigs.k8s.io/ref
 To check the status of a policy, use `kubectl describe`. This example checks the status of the `foo` ObservabilityPolicy, which is accepted:
 
 ```shell
-kubectl describe observabilitypolicies.gateway.nginx.org foo -n default
+kubectl describe observabilitypolicies.gateway.nginx.org foo
 ```
 
 ```text
