@@ -13,7 +13,7 @@ This guide introduces how to configure basic authentication for your application
 Authentication is crucial for modern application security and allows you to be confident that only trusted and authorized users are accessing your applications, or API backends.
 
 Through this document, you'll learn how to protect your application endpoints with NGINX Gateway Fabric using the AuthenticationFilter CRD.
-In this guide we will create two sample applications, `tea` and `coffee`, where we will enable basic authentication on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authentication.
+In this guide, we will create two sample applications, `tea` and `coffee`, where we will enable basic authentication on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authentication.
 The `/coffee` endpoint will use the `ExtensionRef` filter to reference an AuthenticationFilter CRD which is configured for Basic Authentication.
 
 ## Before you begin
@@ -132,18 +132,19 @@ spec:
 EOF
 ```
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
+Confirm that the Gateway was assigned an IP address and reports a `Programmed=True` status:
 
 ```shell
-kubectl get gateways.gateway.networking.k8s.io cafe-gateway
+kubectl describe gateways.gateway.networking.k8s.io cafe-gateway | grep "Addresses:" -A2
 ```
 
 ```text
-NAME           CLASS   ADDRESS         PROGRAMMED   AGE
-cafe-gateway   nginx   10.96.187.113   True         10m
+Addresses:
+  Type:   IPAddress
+  Value:  10.96.20.187
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
