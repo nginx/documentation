@@ -161,7 +161,7 @@ metadata:
   name: basic-auth
 type: nginx.org/htpasswd
 data:
-  # Base64 of output from: htpasswd -bn user1 password1
+  # Base64 of "htpasswd -bn user1 password1"
   auth: dXNlcjE6JGFwcjEkWEFKeU5yekgkY0Rjdy9YMVBCZTFmTjltQVBweXpxMA==
 ---
 apiVersion: gateway.nginx.org/v1alpha1
@@ -210,29 +210,30 @@ metadata:
 spec:
   parentRefs:
   - name: cafe-gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
   rules:
   - matches:
-    # Coffee configured with Basic Auth
-    - path:
-        type: PathPrefix
-        value: /coffee
+      - path:
+          type: PathPrefix
+          value: /coffee
     backendRefs:
-    - name: coffee
-      port: 80
+      - name: coffee
+        port: 80
     filters:
-    - type: ExtensionRef
-      extensionRef:
-        group: gateway.nginx.org
-        kind: AuthenticationFilter
-        name: basic-auth
+      - type: ExtensionRef
+        extensionRef:
+          group: gateway.nginx.org
+          kind: AuthenticationFilter
+          name: basic-auth
   - matches:
-    # Tea with no authentication configured
-    - path:
-        type: PathPrefix
-        value: /tea
+      - path:
+          type: PathPrefix
+          value: /tea
     backendRefs:
-    - name: tea
-      port: 80
+      - name: tea
+        port: 80
 EOF
 ```
 
