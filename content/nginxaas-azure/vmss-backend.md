@@ -44,7 +44,7 @@ Before setting up VMSS backend integration, ensure you have:
 
 ## Getting Started
 
-### Step 1: Create NGINXaaS deployment with dynamic upstreams
+### Create NGINXaaS deployment with dynamic upstreams
 
 Create an NGINXaaS deployment. See the [documentation]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy via the Azure portal. Then, 
 create an NGINX configuration with dynamic upstreams that will be managed by the nginx-asg-sync agent. The upstream must meet these requirements:
@@ -111,13 +111,13 @@ http{
 
 [Apply this NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your NGINXaaS deployment.
 
-### Step 2: Ensure network connectivity
+### Ensure network connectivity
 
 Ensure network connectivity between your existing Azure Virtual Machine Scale Sets (VMSS) and NGINXaaS deployment:
 
 - Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and VMSS. For example, the VMSS and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
 
-### Step 3: Create NGINXaaS dataplane API key
+### Create NGINXaaS dataplane API key
 
 Create a dataplane API key that the nginx-asg-sync agent will use to authenticate with your NGINXaaS deployment.
 
@@ -128,11 +128,11 @@ Make note of:
 - The API key value (you'll need this for the nginx-asg-sync configuration)
 - The dataplane API endpoint (you'll need this with the `/nplus` suffix)
 
-### Step 4: Create VM for nginx-asg-sync agent
+### Create VM for nginx-asg-sync agent
 
 Create an Azure VM that will run the nginx-asg-sync agent. For detailed instructions on creating VMs, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal).
 
-### Step 5: Assign managed identity permissions
+### Assign managed identity permissions
 
 nginx-asg-sync uses the Azure API to read the IP addresses of the Virtual Machine Scale Set. To access the Azure API, nginx-asg-sync must run in an environment with appropriate permissions over the VMSS backend. This section configures a system-assigned managed identity with the minimum required permissions.
 
@@ -145,7 +145,7 @@ For detailed instructions on managed identities, see the [Azure documentation](h
 
 The following steps show the Azure CLI approach:
 
-#### Step 1: Enable System Assigned Managed Identity on the VM
+#### Enable System Assigned Managed Identity on the VM
 
 Enable system-assigned managed identity on your nginx-asg-sync VM:
 
@@ -163,7 +163,7 @@ az vm identity assign \
   --name $vmName
 ```
 
-#### Step 2: Get the VM's Managed Identity Principal ID
+#### Get the VM's Managed Identity Principal ID
 
 Retrieve the principal ID of the VM's system-assigned managed identity:
 
@@ -176,7 +176,7 @@ principalId=$(az vm show \
   --output tsv)
 ```
 
-#### Step 3: Create the Custom Role
+#### Create the Custom Role
 
 Create a custom role with only the necessary permissions for nginx-asg-sync:
 
@@ -208,7 +208,7 @@ az role definition create \
   --role-definition vmss-network-read-role.json
 ```
 
-#### Step 4: Get the VMSS Resource ID (Scope)
+#### Get the VMSS Resource ID (Scope)
 
 Get the full resource ID of your VMSS to use as the scope for role assignment:
 
@@ -221,7 +221,7 @@ vmssId=$(az vmss show \
   --output tsv)
 ```
 
-#### Step 5: Assign the Custom Role to the VM's Managed Identity
+#### Assign the Custom Role to the VM's Managed Identity
 
 Assign the custom role to the VM's system-assigned managed identity:
 
@@ -234,7 +234,7 @@ az role assignment create \
   --scope $vmssId
 ```
 
-#### Step 6: Verify Role Assignment
+#### Verify Role Assignment
 
 Verify that the role assignment was created successfully:
 
@@ -250,7 +250,7 @@ az role assignment list \
 **Permission Propagation**: After creating the role assignment, it may take a few minutes for the permissions to take effect across Azure services.
 {{< /call-out >}}
 
-### Step 6: Install nginx-asg-sync agent
+### Install nginx-asg-sync agent
 
 The nginx-asg-sync agent can be installed on the Azure VM or run as a container. Download and install the agent after configuring managed identity permissions.
 
@@ -312,7 +312,7 @@ Example output when the container starts successfully:
 2025/12/31 10:25:30 nginx-asg-sync version v1.0.1-79-g950b8bc-dirty
 ```
 
-### Step 7: Configure nginx-asg-sync agent
+### Configure nginx-asg-sync agent
 
 Create the configuration file for nginx-asg-sync to connect to your NGINXaaS deployment and monitor VMSS instances.
 
@@ -415,7 +415,7 @@ Check that upstreams are being updated in NGINXaaS:
      - `plus.http.upstream.peers.state.up` – shows if the peer reports being healthy
      - `plus.http.upstream.peers.request.count` – shows which peers are handling requests
 
-2. **Using dataplane API:**
+1. **Using dataplane API:**
 
    ```bash
    # Check upstream status via dataplane API
@@ -462,12 +462,12 @@ Check that upstreams are being updated in NGINXaaS:
    - Check that the API key hasn't expired
    - Ensure the dataplane API endpoint URL is correct with `/nplus` suffix
 
-2. **Agent can't read VMSS information:**
+1. **Agent can't read VMSS information:**
    - Verify managed identity is assigned to the VM/container
    - Check that appropriate permissions are granted to the identity
    - Confirm subscription ID and resource group names are correct
 
-3. **Upstreams not updating:**
+1. **Upstreams not updating:**
    - Verify upstream names in config.yaml match NGINX configuration
    - Check that upstreams are properly defined with zone and state
    - Monitor agent logs for error messages
