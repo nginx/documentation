@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1241
+nd-product: NIMNGR
 nd-files:
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---

@@ -1,5 +1,8 @@
 ---
 nd-docs: DOCS-1438
+nd-product:
+- FABRIC
+- NONECO
 nd-files:
 - content/ngf/install/helm.md
 - content/ngf/install/manifests.md
