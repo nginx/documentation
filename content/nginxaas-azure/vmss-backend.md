@@ -20,9 +20,7 @@ With VMSS backend integration, you can:
 
 ```mermaid
 flowchart TB
-    Users[Users] --> NGINXaaS[NGINXaaS for Azure] 
-    Agent[nginx-asg-sync Agent] --> |Watch VMSS changes| VMSS[Azure VMSS]
-    Agent --> |Update upstreams via API| NGINXaaS
+    Agent[nginx-asg-sync Agent] --> |Update upstreams via API| NGINXaaS
     
     MI[Managed Identity] --> |Read permissions| VMSS
     Agent --> |Uses| MI
@@ -32,7 +30,7 @@ flowchart TB
     style VMSS fill:#fff3e0
 ```
 
-The nginx-asg-sync agent monitors your VMSS for scaling events and automatically updates the NGINXaaS upstream configuration via the dataplane API. This ensures that traffic is distributed to all healthy instances without manual intervention.
+The nginx-asg-sync agent monitors your VMSS for scaling changes and automatically updates the NGINXaaS upstream configuration via the dataplane API. This ensures that traffic is distributed to all instances without manual intervention.
 
 ## Prerequisites
 
@@ -113,186 +111,30 @@ http{
 
 [Apply this NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your NGINXaaS deployment.
 
-### Step 2: Create Virtual Machine Scale Sets and ensure network connectivity
+### Step 2: Ensure network connectivity
 
-Create your Azure Virtual Machine Scale Sets that will serve as backend servers for your applications.
+Ensure network connectivity between your existing Azure Virtual Machine Scale Sets (VMSS) and NGINXaaS deployment:
 
-#### Create VMSS
-
-Create Virtual Machine Scale Sets for your application backends. You can create VMSS using:
-
-- **Azure Portal**: Navigate to **Virtual machine scale sets** in the Azure portal and follow the creation wizard
-- **Azure CLI**: Use the `az vmss create` command with appropriate parameters for your requirements
-
-For detailed instructions on creating VMSS, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/flexible-virtual-machine-scale-sets-portal).
-
-- Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and vmss. For example, the vmss and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
-
-- Install and run your applications on the vmss.
+- Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and VMSS. For example, the VMSS and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
 
 ### Step 3: Create NGINXaaS dataplane API key
 
 Create a dataplane API key that the nginx-asg-sync agent will use to authenticate with your NGINXaaS deployment.
 
-{{< call-out "note" >}}
-The data plane API key has the following requirements:
+For detailed instructions on creating the dataplane API key and obtaining the API endpoint, see [Create NGINXaaS Dataplane API Key]({{< ref "/nginxaas-azure/quickstart/dataplane-api-key/" >}}).
 
-- The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
-- The key should be at least 12 characters long.
-- The key requires three out of four of the following types of characters:
-  - lowercase characters.
-  - uppercase characters.
-  - symbols.
-  - numbers.
+Make note of:
 
-A good example of an API key that will satisfy the requirements is UUIDv4.
-{{< /call-out >}}
+- The API key value (you'll need this for the nginx-asg-sync configuration)
+- The dataplane API endpoint (you'll need this with the `/nplus` suffix)
 
-The data plane API key can be created using the Azure CLI or portal.
+### Step 4: Create VM for nginx-asg-sync agent
 
-#### Create an NGINXaaS data plane API key using the Azure portal
-
-1. Go to your NGINXaaS for Azure deployment.
-2. Select **NGINXaaS Loadbalancer for Kubernetes** on the left blade.
-3. Select **New API Key**.
-4. Provide a name for the new API key in the right panel, and select an expiration date.
-5. Select the **Add API Key** button.
-6. Copy the value of the new API key.
-
-{{< call-out "note" >}}
-Make sure to write down the key value in a safe location after creation, as you cannot retrieve it again. If you lose the generated value, delete the existing key and create a new one.
-{{< /call-out >}}
-
-#### Create an NGINXaaS data plane API key using the Azure CLI
-
-Set shell variables about the name of the NGINXaaS you've already created:
-
-```bash
-## Customize this to provide the details about my already created NGINXaaS deployment
-nginxName=myNginx
-nginxGroup=myNginxGroup
-```
-
-Generate a new random data plane API key:
-
-```bash
-# Generate a new random key or specify a value for it.
-keyName=myKey
-keyValue=$(uuidgen --random)
-```
-
-Create the key for your NGINXaaS deployment:
-
-```bash
-az nginx deployment api-key create --name $keyName --secret-text $keyValue --deployment-name $nginxName --resource-group $nginxGroup
-az nginx deployment api-key create --name $keyName --secret-text $keyValue --deployment-name $nginxName --resource-group $nginxGroup
-```
-
-#### NGINXaaS data plane API endpoint
-
-The data plane API endpoint can be retrieved using the Azure CLI or portal.
-
-##### View NGINXaaS data plane API endpoint using the Azure portal
-
-1. Go to your NGINXaaS for Azure deployment.
-2. Select **NGINXaaS Loadbalancer for Kubernetes** on the left blade.
-3. The data plane API endpoint associated with the deployment is available at the top of the screen.
-
-##### View NGINXaaS data plane API endpoint using the Azure CLI
-
-```bash
-dataplaneAPIEndpoint=$(az nginx deployment show -g "$nginxGroup" -n "$nginxName" --query properties.dataplaneApiEndpoint -o tsv)
-dataplaneAPIEndpoint=$(az nginx deployment show -g "$nginxGroup" -n "$nginxName" --query properties.dataplaneApiEndpoint -o tsv)
-```
-
-### Step 4: Install nginx-asg-sync agent
-
-The nginx-asg-sync agent can be installed on an Azure VM or run as a container. Download and install the agent before configuring managed identity permissions.
-
-#### Option A: Install on Azure VM
-
-Create or use an existing Azure VM for the nginx-asg-sync agent. You can create a VM using:
-
-- **Azure Portal**: Navigate to **Virtual machines** in the Azure portal and follow the creation wizard
-- **Azure CLI**: Use the `az vm create` command with appropriate parameters for your requirements
-
-For detailed instructions on creating VMs, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal).
-
-Sample Azure CLI command to create a VM:
-
-```bash
-# Create a VM for nginx-asg-sync agent (optional if you already have one)
-vmName="sync-agent-vm"
-vmResourceGroup="myResourceGroup"
-
-az vm create \
-  --resource-group $vmResourceGroup \
-  --name $vmName \
-  --image Ubuntu2204 \
-  --admin-username azureuser \
-  --generate-ssh-keys \
-  --size Standard_B1s
-```
-
-Install nginx-asg-sync agent on the VM:
-
-```bash
-# SSH into the VM and install
-# Get latest version and detect architecture
-VERSION=$(curl -sL https://api.github.com/repos/nginx/nginx-asg-sync/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/^v//')
-if [ -z "$VERSION" ]; then
-    echo "Failed to fetch latest version, using fallback version 1.0.2"
-    VERSION="1.0.2"
-fi
-BASE_URL="https://github.com/nginxinc/nginx-asg-sync/releases/download/v${VERSION}"
-
-ARCH=$(uname -m)
-case "$ARCH" in
-  x86_64) ARCH="amd64" ;;
-  aarch64) ARCH="arm64" ;;
-  *) echo "Unsupported architecture" && exit 1 ;;
-esac
-
-# Download and install nginx-asg-sync
-curl -LO "${BASE_URL}/nginx-asg-sync_${VERSION}_linux_${ARCH}.tar.gz"
-tar -xzf "nginx-asg-sync_${VERSION}_linux_${ARCH}.tar.gz"
-chmod +x nginx-asg-sync
-sudo mv nginx-asg-sync /usr/local/bin/
-
-# Verify installation
-ls -la /usr/local/bin/nginx-asg-sync
-
-# Create configuration directory
-sudo mkdir -p /etc/nginx/
-```
-
-#### Option B: Run as Container
-
-Deploy nginx-asg-sync as a container using Docker:
-
-```bash
-# Pull the Docker image
-docker pull docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
-
-# Create the configuration file (config.yaml) in your current directory
-# (See Step 6 for the complete configuration file content)
-
-# Run nginx-asg-sync container
-docker run --rm -it \
-  -v $(pwd)/config.yaml:/etc/nginx/config.yaml \
-  -e CONFIG_PATH=/etc/nginx/config.yaml \
-  docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
-```
-
-Example output when the container starts successfully:
-
-```
-2025/12/31 10:25:30 nginx-asg-sync version v1.0.1-79-g950b8bc-dirty
-```
+Create an Azure VM that will run the nginx-asg-sync agent. For detailed instructions on creating VMs, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal).
 
 ### Step 5: Assign managed identity permissions
 
-nginx-asg-sync uses the Azure API to get the list of IP addresses of the instances of a Virtual Machine Scale Set. To access the Azure API, nginx-asg-sync must have credentials. This section configures a system-assigned managed identity with the minimum required permissions.
+nginx-asg-sync uses the Azure API to read the IP addresses of the Virtual Machine Scale Set. To access the Azure API, nginx-asg-sync must run in an environment with appropriate permissions over the VMSS backend. This section configures a system-assigned managed identity with the minimum required permissions.
 
 You can assign managed identity permissions using:
 
@@ -408,7 +250,69 @@ az role assignment list \
 **Permission Propagation**: After creating the role assignment, it may take a few minutes for the permissions to take effect across Azure services.
 {{< /call-out >}}
 
-### Step 6: Configure nginx-asg-sync agent
+### Step 6: Install nginx-asg-sync agent
+
+The nginx-asg-sync agent can be installed on the Azure VM or run as a container. Download and install the agent after configuring managed identity permissions.
+
+#### Option A: Install on Azure VM
+
+Install nginx-asg-sync agent on the VM you created in Step 4:
+
+```bash
+# SSH into the VM and install
+# Get latest version and detect architecture
+VERSION=$(curl -sL https://api.github.com/repos/nginx/nginx-asg-sync/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/^v//')
+if [ -z "$VERSION" ]; then
+    echo "Failed to fetch latest version, using fallback version 1.0.2"
+    VERSION="1.0.2"
+fi
+BASE_URL="https://github.com/nginxinc/nginx-asg-sync/releases/download/v${VERSION}"
+
+ARCH=$(uname -m)
+case "$ARCH" in
+  x86_64) ARCH="amd64" ;;
+  aarch64) ARCH="arm64" ;;
+  *) echo "Unsupported architecture" && exit 1 ;;
+esac
+
+# Download and install nginx-asg-sync
+curl -LO "${BASE_URL}/nginx-asg-sync_${VERSION}_linux_${ARCH}.tar.gz"
+tar -xzf "nginx-asg-sync_${VERSION}_linux_${ARCH}.tar.gz"
+chmod +x nginx-asg-sync
+sudo mv nginx-asg-sync /usr/local/bin/
+
+# Verify installation
+ls -la /usr/local/bin/nginx-asg-sync
+
+# Create configuration directory
+sudo mkdir -p /etc/nginx/
+```
+
+#### Option B: Run as Container
+
+Deploy nginx-asg-sync as a container using Docker:
+
+```bash
+# Pull the Docker image
+docker pull docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
+
+# Create the configuration file (config.yaml) in your current directory
+# (See Step 7 for the complete configuration file content)
+
+# Run nginx-asg-sync container
+docker run --rm -it \
+  -v $(pwd)/config.yaml:/etc/nginx/config.yaml \
+  -e CONFIG_PATH=/etc/nginx/config.yaml \
+  docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
+```
+
+Example output when the container starts successfully:
+
+```
+2025/12/31 10:25:30 nginx-asg-sync version v1.0.1-79-g950b8bc-dirty
+```
+
+### Step 7: Configure nginx-asg-sync agent
 
 Create the configuration file for nginx-asg-sync to connect to your NGINXaaS deployment and monitor VMSS instances.
 
@@ -475,9 +379,9 @@ upstreams:
 | `upstreams[].slow_start` | Gradual weight increase time | No (default: 0s) |
 {{< /table >}}
 
-#### Start the agent
+#### Start the agent (VM installation)
 
-Start nginx-asg-sync directly using the command line:
+Start nginx-asg-sync directly using the command line on your VM:
 
 ```bash
 # Run nginx-asg-sync directly
