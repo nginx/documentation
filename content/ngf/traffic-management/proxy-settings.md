@@ -1,7 +1,7 @@
 ---
 title: Proxy Settings Policy API
 toc: true
-weight: 1200
+weight: 1400
 nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-0000
