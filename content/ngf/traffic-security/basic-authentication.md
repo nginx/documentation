@@ -6,11 +6,12 @@ nd-content-type: how-to
 nd-product: FABRIC
 ---
 
-This guide introduces how to configure basic authentication for your applications using the AuthenticationFilter CRD.
-
 ## Overview
 
+This guide introduces how to configure basic authentication for your applications using the AuthenticationFilter CRD.
+
 Authentication is crucial for modern application security and allows you to be confident that only trusted and authorized users are accessing your applications, or API backends.
+
 Through this document, you'll learn how to protect your application endpoints with NGINX Gateway Fabric using the AuthenticationFilter CRD.
 In this guide we will create two sample applications, `tea` and `coffee`, where we will enable basic authentication on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authentication.
 The `/coffee` endpoint will use the `ExtensionRef` filter to reference an AuthenticationFilter CRD which is configured for Basic Authentication.
@@ -20,6 +21,8 @@ The `/coffee` endpoint will use the `ExtensionRef` filter to reference an Authen
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Setup
+
+In this part of the document, we will set up several resources in your cluster to demonstrate usage of the AuthenticationFilter CRD.
 
 ### Deploy demo applications
 
