@@ -145,7 +145,7 @@ EOF
 This creates three Service resources and multiple Pods in the default namespace. The multiple replicas are needed to demonstrate stickiness to backend Pods.
 
 ```shell
-kubectl get all -o wide -n default
+kubectl get all -o wide
 ```
 
 ```text
@@ -184,25 +184,36 @@ EOF
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
 ```shell
-kubectl get gateways.gateway.networking.k8s.io gateway
+kubectl describe gateways.gateway.networking.k8s.io gateway
 ```
+
+Verify the status is `Accepted`:
 
 ```text
-NAME      CLASS   ADDRESS        PROGRAMMED   AGE
-gateway   nginx   10.96.15.149   True         23h
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
-```
-
-Lookup the name of the NGINX pod and save into shell variable:
-
-```text
-NGINX_POD_NAME=<NGINX Pod>
 ```
 
 {{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
@@ -310,7 +321,7 @@ Status:
 Next, verify that the policy has been applied to the `coffee` upstream by inspecting the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
 You should see the `ip_hash` directive on the `coffee` upstream:
@@ -416,7 +427,7 @@ Status:
 Next, verify that the tea upstream has a sticky cookie directive configured, which is responsible for issuing the session cookie and its attributes. The `sticky cookie` directive’s attributes are derived from the `sessionPersistence` configuration, such as the expiry (24h) and the route path (`/tea`). Inspect the NGINX configuration with:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
 ```text
@@ -514,7 +525,7 @@ EOF
 Verify the NGINX configuration:
 
 ```shell
-kubectl exec -it -n <NGINX-pod-namespace> $NGINX_POD_NAME -- nginx -T
+kubectl exec -it deployments/gateway -- nginx -T
 ```
 
 ```text
