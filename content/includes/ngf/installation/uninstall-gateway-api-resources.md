@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1436
+nd-product: FABRIC
 nd-files:
 - content/ngf/how-to/gateway-api-inference-extension.md
 - content/ngf/install/helm.md

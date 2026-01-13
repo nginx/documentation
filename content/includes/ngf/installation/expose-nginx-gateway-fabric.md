@@ -1,6 +1,5 @@
 ---
-title: Expose NGINX Gateway Fabric
-weight: 300
+nd-product: FABRIC
 nd-docs: DOCS-1427
 nd-files:
 - content/ngf/install/helm.md

@@ -1,11 +1,25 @@
 // /nginxaas-google/js/cost-calculator_v2.js
 (() => {
-  // ---- Single-tier pricing ----
-  const costs = {
-    fixedHourly: 0.10,   // $/hour
-    ncuHourly: 0.008,    // $/NCU/hour
-    dataPerGb: 0.0096    // $/GB (monthly)
+  // ---- Multi-tier pricing ----
+  const tierCosts = {
+    tier1: {
+      fixedHourly: 0.10,   // $/hour
+      ncuHourly: 0.008,    // $/NCU/hour
+      dataPerGb: 0.0096    // $/GB (monthly)
+    },
+    tier2: {
+      fixedHourly: 0.133,
+      ncuHourly: 0.0106,
+      dataPerGb: 0.0127
+    },
+    tier3: {
+      fixedHourly: 0.166,
+      ncuHourly: 0.0132,
+      dataPerGb: 0.0159
+    }
   };
+  let currentTier = "tier1";
+  let costs = tierCosts[currentTier];
 
   const utils = {
     calculateCost: (costs, values) => {
@@ -31,6 +45,7 @@
 
   // ---- Element refs ----
   const costFormElements = {
+    tierSelect: document.getElementById("tierSelect"),
     numNcus: document.getElementById("numNcus"),
     numHours: document.getElementById("numHours"),
     dataProcessedGb: document.getElementById("dataProcessedGb"),
@@ -47,11 +62,17 @@
   };
 
   // ---- Listeners ----
-  const setupChangeListeners = (costs, values = calculatorValuesState) => {
+  const setupChangeListeners = (values = calculatorValuesState) => {
     Object.keys(costFormElements).forEach((elName) => {
       costFormElements[elName].addEventListener("change", (evt) => {
-        values[elName] = Number(evt.target.value);
-        updateCost(costs);
+        if (elName === "tierSelect") {
+          currentTier = evt.target.value;
+          costs = tierCosts[currentTier];
+          updateCost(costs, values);
+        } else {
+          values[elName] = Number(evt.target.value);
+          updateCost(costs, values);
+        }
       });
     });
 
@@ -65,7 +86,11 @@
     Object.keys(costFormElements).forEach((elName) => {
       const el = costFormElements[elName];
       if (el && (el.tagName.toLowerCase() === "input" || el.tagName.toLowerCase() === "select")) {
-        el.value = values[elName];
+        if (elName === "tierSelect") {
+          el.value = currentTier;
+        } else {
+          el.value = values[elName];
+        }
       }
     });
   };
@@ -74,10 +99,10 @@
   const updateCost = (costs, values = calculatorValuesState) => {
     const updatedTotalCost = utils.calculateCost(costs, values);
     document.getElementById("total-value").textContent = utils.currencyFormatter(updatedTotalCost);
-    updateTotalCostDetails(values, updatedTotalCost);
+    updateTotalCostDetails(values, updatedTotalCost, costs);
   };
 
-  const updateTotalCostDetails = (formValues, totalCost) => {
+  const updateTotalCostDetails = (formValues, totalCost, costs) => {
     totalCostDetailElements.hours.textContent = formValues.numHours;
     totalCostDetailElements.ncus.textContent = formValues.numNcus;
     totalCostDetailElements.fixedHourly.textContent = utils.currencyFormatter(costs.fixedHourly, 3);
@@ -99,10 +124,9 @@
 
   // ---- Boot ----
   const start = async () => {
-    const loaded = costs;
-    setupChangeListeners(loaded);
+    setupChangeListeners();
     initializeValues(calculatorValuesState);
-    updateCost(loaded); // immediately show total on load
+    updateCost(costs, calculatorValuesState); // immediately show total on load
   };
   start();
 })();
