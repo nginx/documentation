@@ -6,15 +6,12 @@ nd-content-type: how-to
 nd-product: FABRIC
 ---
 
-## Overview
 
-This guide introduces how to configure basic authentication for your applications using the AuthenticationFilter CRD.
+This page describes how to configure basic authentication in NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).
 
-Authentication is crucial for modern application security and allows you to be confident that only trusted and authorized users are accessing your applications, or API backends.
+Authentication can be used to secure applications and APIs, ensuring only trusted and authorized users have access.
 
-Through this document, you'll learn how to protect your application endpoints with NGINX Gateway Fabric using the AuthenticationFilter CRD.
-In this guide, we will create two sample applications, `tea` and `coffee`, where we will enable basic authentication on the `/coffee` endpoint. The `/tea` endpoint will not have any authentication. This is to help demonstrate how the application behaves both with and without authentication.
-The `/coffee` endpoint will use the `ExtensionRef` filter to reference an AuthenticationFilter CRD which is configured for Basic Authentication.
+By following these instructions, you will create two sample application endpoints. One will include basic authentication and the other will not, allowing you to review how each behaves.
 
 ## Before you begin
 
@@ -24,9 +21,9 @@ The `/coffee` endpoint will use the `ExtensionRef` filter to reference an Authen
 
 In this part of the document, we will set up several resources in your cluster to demonstrate usage of the AuthenticationFilter CRD.
 
-### Deploy demo applications
+## Deploy sample applications
 
-To deploy both the `coffee` and `tea` applications, copy the following YAML into your terminal:
+To deploy the `coffee` and `tea` applications, run the following YAML with `kubectl apply`:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -98,7 +95,7 @@ spec:
 EOF
 ```
 
-Confirm that the Pods are running
+To confirm the application pods are availble, run `kubectl get`:
 
 ```shell
 kubectl get pods
@@ -114,7 +111,7 @@ tea-75bc9f4b6d-s99jz      1/1     Running   0          21s
 
 ### Create a Gateway
 
-To create your gateway resource, and provision the NGINX pod, copy the following YAML into your terminal:
+To create your Gateway resource and provision the NGINX pod, run the following YAML with `kubectl apply`:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -132,7 +129,7 @@ spec:
 EOF
 ```
 
-Confirm that the Gateway was assigned an IP address and reports a `Programmed=True` status:
+Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status with `kubectl describe`:
 
 ```shell
 kubectl describe gateways.gateway.networking.k8s.io cafe-gateway | grep "Addresses:" -A2
@@ -151,9 +148,9 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-### Create a Basic Authentication secret and AuthenticationFilter
+## Create a user credentials secret and AuthenticationFilter
 
-Deploy secret with user credentials, and the AuthenticationFilter.
+Deploy a secret with user credentials, and the AuthenticationFilter by running the following YAML with `kubectl apply`:
 
 {{< call-out "important" >}} Ensure the secret deployed is of type `nginx.org/htpasswd` and the key is `auth` {{< /call-out >}}
 
@@ -181,7 +178,7 @@ spec:
 EOF
 ```
 
-Verify the AuthenticationFilter is Accepted, and there are no errors:
+Verify the AuthenticationFilter is _Accepted_ and has no errors using `kubectl describe`:
 
 ```shell
 kubectl describe authenticationfilters.gateway.nginx.org | grep "Status:" -A10
@@ -201,9 +198,11 @@ Status:
 Events:                      <none>
 ```
 
-### Deploy HTTPRoute referencing an AuthenticationFilter
+## Deploy a HTTPRoute referencing the AuthenticationFilter
 
-Deploy an HTTPRoute which references the AuthenticationFilter. This uses the `ExtensionRef` filter type. In this example, we set this filter to the `/coffee` path:
+Deploy a HTTPRoute resource which references the AuthenticationFilter using the `ExtensionRef` filter type. 
+
+In this example, the filter is applied to the `/coffee` path: run the following YAML with `kubectl apply`
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -241,7 +240,7 @@ spec:
 EOF
 ```
 
-Verify the HTTPRoute is Accepted, and there are no errors:
+Verify the HTTPRoute is _Accepted_ and there are no errors with `kubectl describe`:
 
 ```shell
 kubectl describe httproute cafe-routes | grep "Status:" -A10
@@ -275,7 +274,13 @@ Events:              <none>
 
 ## Verify Basic Authentication
 
-{{< call-out "note" >}}Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. In this guide we will simulate that using curl's `--resolve` option. {{< /call-out >}}
+{{< call-out "note" >}}
+
+Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. 
+
+This guide simulates it using curl's `--resolve` option. 
+
+{{< /call-out >}}
 
 Accessing `/coffee` with valid credentials:
 
