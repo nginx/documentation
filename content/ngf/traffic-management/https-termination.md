@@ -1,6 +1,6 @@
 ---
 title: HTTPS termination
-weight: 500
+weight: 300
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
