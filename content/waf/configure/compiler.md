@@ -16,8 +16,6 @@ The compiler is packaged as a Docker image and can executed using the Docker CLI
 
 If you are using a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
 
-If you are using a Helm-based Kubernetes deployment, read the [Kubernetes operations improvements (Early access)]({{< ref "/waf/install/kubernetes-plm.md" >}}) topic.
-
 {{< /call-out >}}
 
 One or more bundle files can be referenced in the NGINX configuration file, and you can configure global settings such as the cookie seed and user-defined signatures.
