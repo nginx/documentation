@@ -1,5 +1,5 @@
 ---
-title: Use the SnippetsFilter API
+title: SnippetsFilter API
 weight: 800
 toc: true
 nd-content-type: how-to
