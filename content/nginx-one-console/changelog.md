@@ -9,6 +9,15 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## January 13, 2026
+
+### API behavior change: conf_path is now optional for PUT/PATCH operations
+
+- The `conf_path` field is now optional when updating configurations for NGINX instances and Config Sync Groups via PUT and PATCH operations.
+- When `conf_path` is omitted, the system automatically uses the `conf_path` from the existing instance or Config Sync Group metadata.
+- When `conf_path` is provided, it must be an absolute path that references a file present in the provided `configs` array. Providing an invalid path or a path not found in the configs returns a `400 Bad Request` error.
+- This is a non-breaking change; existing requests that include `conf_path` will continue to work as before.
+
 ## November 25, 2025
 
 ### Observability: Usage metrics data now available for Config Sync Groups
