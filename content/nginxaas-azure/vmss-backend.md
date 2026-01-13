@@ -256,7 +256,7 @@ The nginx-asg-sync agent can be installed on the Azure VM or run as a container.
 
 #### Option A: Install on Azure VM
 
-Install nginx-asg-sync agent on the VM you created in Step 4:
+Install nginx-asg-sync agent on the VM you created in [Create VM for nginx-asg-sync agent](#create-vm-for-nginx-asg-sync-agent):
 
 ```bash
 # SSH into the VM and install
@@ -288,13 +288,15 @@ ls -la /usr/local/bin/nginx-asg-sync
 sudo mkdir -p /etc/nginx/
 ```
 
+**Next Steps**: After installation, proceed to [Configure nginx-asg-sync agent](#configure-nginx-asg-sync-agent) to create the configuration file and start the agent.
+
 #### Option B: Run as Container
 
-Deploy nginx-asg-sync as a container using Docker:
+Deploy nginx-asg-sync as a container using Docker. The host system (VM or other compute resource) running the container must have a managed identity with appropriate VMSS permissions configured as described in [Assign managed identity permissions](#assign-managed-identity-permissions):
 
 ```bash
 # Pull the Docker image
-docker pull docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
+docker pull docker-registry.nginx.com/nginx/asg-sync
 
 # Create the configuration file (config.yaml) in your current directory
 # (See Step 7 for the complete configuration file content)
@@ -303,13 +305,15 @@ docker pull docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
 docker run --rm -it \
   -v $(pwd)/config.yaml:/etc/nginx/config.yaml \
   -e CONFIG_PATH=/etc/nginx/config.yaml \
-  docker.io/nginx/nginx-asg-sync:v1.0.1-79-g950b8bc-dirty
+  docker-registry.nginx.com/nginx/asg-sync:latest
+  /nginx-asg-sync -config_path /etc/nginx/config.yaml
 ```
 
 Example output when the container starts successfully:
 
 ```
-2025/12/31 10:25:30 nginx-asg-sync version v1.0.1-79-g950b8bc-dirty
+2025/12/31 10:25:30 nginx-asg-sync version v1.0.3
+2025/12/31 10:25:30 Updated HTTP servers of backend-one for group naveen-vmss-latest ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 ```
 
 ### Configure nginx-asg-sync agent
@@ -394,7 +398,7 @@ nginx-asg-sync config_path=/etc/nginx/config.yaml -log_path=< path to log file >
 Example output when the agent starts successfully:
 
 ```
-2026/01/08 15:44:12 nginx-asg-sync version 1.0.2
+2026/01/08 15:44:12 nginx-asg-sync version 1.0.3
 2026/01/08 15:44:13 Updated HTTP servers of backend-one for group naveen-vmss-latest ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 
 2026/01/08 16:08:07 Updated HTTP servers of backend-one for group naveen-vmss-latest ; Added: [172.19.0.8:80], Removed: [], Updated: []
