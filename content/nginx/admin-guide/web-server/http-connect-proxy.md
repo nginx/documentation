@@ -12,13 +12,13 @@ In corporate networks, NGINX Plus R36 and later can be configured as a forward p
 
 Unlike a reverse proxy that protects servers, upstreams, or services, forward proxy serves client requests and regulates their access to the external resources. To enable this functionality, the HTTP `CONNECT` method is used to establish a secure tunnel between the client and the proxy server (NGINX Plus). This tunnel permits the transmission of HTTPS traffic and other protocols, such as SSH or FTP, through the proxy.
 
-## Enabling HTTP CONNECT proxy
+## Enable HTTP CONNECT proxy
 
 To enable the HTTP `CONNECT` forward proxy, add the [`tunnel_pass`](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_pass) directive that turns on the forward proxy functionality within the `server` or `location` blocks.
 
 The directive can be used without any parameters. The default value is [`$host`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_host):[`$request_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_port) variables: all requests are automatically forwarded to external resources based on the host and the port which we are trying to access.
 
-The `tunnel_pass` directive is a content handling directive (similar to `proxy_pass` or `grpc_pass`), and if specified for the `server` block, will not be inherited by corresponding `location` blocks. If you have a location that implements any other NGINX Plus capabilities within the forward proxy, you will need to enable the `tunnel_pass` for this `location` as well. See [Disabling other http methods](#disable-other-http-methods).
+The `tunnel_pass` directive is a content handling directive (similar to `proxy_pass` or `grpc_pass`), and if specified for the `server` block, will not be inherited by corresponding `location` blocks. If you have a location that implements any other NGINX Plus capabilities within the forward proxy, you will need to enable the `tunnel_pass` for this `location` as well. See [Disable other HTTP methods](#disable-other-http-methods).
 
 ```nginx
 server {
@@ -123,7 +123,7 @@ It is highly recommended to restrict access to the proxy servers. Access control
 
 All of these access methods can be used together and combined with the the [`proxy_allow_upstream`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_allow_upstream) directive (NGINX Plus R36).
 
-### Restricting by ports and port ranges
+### Restrict by ports and port ranges
 
 The [`num_map`](https://nginx.org/en/docs/http/ngx_http_num_map_module.html) module introduced in NGINX Plus R36 allows defining ports and port ranges and uses the same approach as the `map` block. For example, if the value of the [`$request_port`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_port) variable is `443`, the `$allowed_port` variable is assigned the value `ssl`. It also restricts the allowed port range for the upstream connections or proxy requests:
 
@@ -138,7 +138,7 @@ num_map $request_port $allowed_port {
 }
 ```
 
-### Restricting by IP addresses
+### Restrict by IP addresses
 
 Access by IP addresses can be restricted with the [`geo`](https://nginx.org/en/docs/http/ngx_http_geo_module.html) module:
 
@@ -150,7 +150,7 @@ geo $allowed_networks {
 }
 ```
 
-### Restricting by hostnames
+### Restrict by hostnames
 
 Restriction by hostnames can be configured with the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html) module, which works mainly with strings and regular expressions. Although it is possible to match port numbers using `map`, it is recommended to use the [`num_map`](https://nginx.org/en/docs/http/ngx_http_num_map_module.html) module for more port-based restrictions, as it provides additional functionality such as defining ranges. 
 
@@ -165,7 +165,7 @@ map $host  $allowed_host {
 }
 ```
 
-### Combining access control methods
+### Combine access control methods
 
 These access methods can be combined in the [`tunnel_allow_upstream`](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_allow_upstream) directive, which performs access checks when the upstream server to which the request will be sent is selected. If any variable passed to [`tunnel_allow_upstream`](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_allow_upstream) evaluates to non-zero or non-empty value, it will be calculated as `1` and access is granted. If all variables evaluate to `0` or an empty value, access is denied.
 
@@ -194,7 +194,7 @@ geo $allowed_networks {
 
 map $host  $allowed_host {
     hostnames;
-    default     0;
+    default       0;
     example.com   1;
     *.example.com 1;
 }
@@ -217,7 +217,7 @@ server {
 
     location ^~ /errors/ {
         internal;
-        root html;
+        root  html;
         allow all;
     }
 
@@ -229,7 +229,7 @@ server {
 Access can also be limited using other modules, for example with the [`satisfy`](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive, or the [`allow`/`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) directives.
 
 
-## mTLS authenticaton
+## mTLS authentication
 
 For proxy functionality, mutual mTLS authentication is supported:
 

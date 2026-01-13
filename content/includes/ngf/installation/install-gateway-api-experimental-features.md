@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-product: FABRIC
 nd-files:
 - content/ngf/traffic-management/tls-passthrough.md
 - content/ngf/traffic-security/secure-backend.md
