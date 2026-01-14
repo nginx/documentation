@@ -76,3 +76,11 @@ Here is an example of how to generate self-signed certificates
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/certs/nginx-selfsigned.key -out /etc/nginx/certs/nginx-selfsigned.crt -subj "/CN=localhost" -addext "subjectAltName=IP:127.0.0.1"
 ```
 {{</call-out>}}
+
+If there are issues with NGINX Agent discovering the NGINX Plus API, NGINX Agent can be manually configured with the address of the NGINX Plus API. Here is an example of a NGINX Agent configuration that is manually configured with the NGINX Plus API.
+```
+data_plane_config:
+  nginx:
+    api:
+      url: "https://127.0.0.1:9000/api"
+```
