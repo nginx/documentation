@@ -198,6 +198,10 @@ If automatic updates are not available (for example, in disconnected environment
 1. [Download the new JWT license](#download-jwt) from MyF5.  
 1. [Deploy the JWT license](#deploy-jwt) to your NGINX Plus instances.
 
+{{< call-out "note" "Note for Internet-connected environments" >}}
+If you manually updated your JWT license while offline, you may see this [error log message](#log-monitoring) after connectivity is restored: `[notice] renewed license does not match the original one; using original license`. No action is needed and you can safely ignore this message. For details, see [K000159013](https://my.f5.com/manage/s/article/K000159013).
+{{< /call-out >}}
+
 {{< /details >}}
 
 ## Error log location and monitoring {#log-monitoring}
