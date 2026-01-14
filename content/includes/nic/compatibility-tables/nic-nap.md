@@ -1,4 +1,5 @@
 ---
+nd-product: INGRESS
 nd-files:
 - content/nic/changelog/_index.md
 - content/nic/install/waf-helm.md

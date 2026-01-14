@@ -1,6 +1,5 @@
 ---
-file:
-- content/solutions/about-subscription-licenses.md
+nd-product: SOLUTI
 nd-files:
 - content/solutions/about-subscription-licenses/getting-started.md
 ---

@@ -11,16 +11,25 @@ nd-product: NGOOGL
 {{< raw-html >}}
 <link rel="stylesheet" href="/nginxaas-google/css/cost-calculator_v2.css">
 <div id="calculator">
-  <h3 id="calculator-section-heading">
+  <h3 id="calculator-section-heading" data-testid="calculator-section-heading">
     Cost Estimation for Enterprise Plan
     <button id="printButton">Print Estimate</button>
   </h3>
 
-  <div class="section">
+  <div class="section" data-testid="calculator-section-content">
     <div class="form-section">
       <div class="form-section-content">
         <h4 id="calculator-section-heading">Estimate Monthly Cost</h4>
 
+        <div class="form-field">
+          <label for="tierSelect">Tier</label>
+          <select id="tierSelect">
+            <option value="tier1">Tier 1</option>
+            <option value="tier2">Tier 2</option>
+            <option value="tier3">Tier 3</option>
+          </select>
+        </div>
+        
         <div class="form-field">
           <label for="numNcus">NCUs</label>
           <input id="numNcus" type="number" step="10" min="10" />
@@ -42,7 +51,7 @@ nd-product: NGOOGL
       <div class="form-section-content">
         <div id="totals-section">
           <span class="total-text">Total Monthly Payment</span>
-          <span id="total-value" class="total-text">--</span>
+          <span id="total-value" class="total-text" data-testid="total-value">--</span>
 
           <details id="total-cost-details">
             <summary>Show calculations</summary>

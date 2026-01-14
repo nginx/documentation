@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-product: NGOOGL
 nd-files:
 - content/nginxaas-google/getting-started/create-deployment/deploy-console.md
 - content/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md

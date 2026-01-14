@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1238
+nd-product: NIMNGR
 nd-files:
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md
 - content/nim/system-configuration/configure-clickhouse.md

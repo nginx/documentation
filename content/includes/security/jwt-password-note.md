@@ -1,5 +1,5 @@
 ---
-nd-product: NONECO
+nd-product: MISCEL
 nd-files:
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md

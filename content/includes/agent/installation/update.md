@@ -1,6 +1,7 @@
 ---
 nd-product: NAGENT
 nd-files:
+- content/agent/installation-upgrade/upgrade.md
 - content/nginx-one-console/agent/install-upgrade/update.md
 ---
 

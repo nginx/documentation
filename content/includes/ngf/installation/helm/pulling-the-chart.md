@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1439
+nd-product: FABRIC
 nd-files:
 - content/ngf/install/helm.md
 - content/ngf/install/upgrade-version.md

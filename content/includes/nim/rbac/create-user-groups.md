@@ -1,4 +1,5 @@
 ---
+nd-product: NIMNGR
 nd-docs: DOCS-1027
 nd-files:
 - content/nim/admin-guide/authentication/oidc/getting-started.md

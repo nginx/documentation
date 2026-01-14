@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1660
+nd-product: NIMNGR
 nd-files:
 - content/nim/admin-guide/add-license.md
 - content/nim/disconnected/add-license-disconnected-deployment.md

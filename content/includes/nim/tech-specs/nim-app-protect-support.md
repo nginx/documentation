@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1068
+nd-product: NIMNGR
 nd-files:
 - content/nim/fundamentals/tech-specs.md
 - content/nim/releases/release-notes.md

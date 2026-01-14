@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1031
+nd-product: NAGENT
 nd-files:
 - content/nim/security-monitoring/set-up-app-protect-instances.md
 - content/nim/waf-integration/configuration/onboard-instances/install-nginx-agent.md

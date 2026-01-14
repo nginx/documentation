@@ -1,4 +1,7 @@
 ---
+nd-product:
+- NGPLUS
+- SOLUTI
 nd-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/solutions/about-subscription-licenses/getting-started.md

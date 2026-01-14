@@ -77,8 +77,6 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
     ```shell
     curl -k --location 'https://<NIM-FQDN>/api/platform/v1/license?telemetry=true' \
-    --header 'Origin: https://<NIM-FQDN>' \
-    --header 'Referer: https://<NIM-FQDN>/ui/settings/license' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic <base64-encoded-credentials>' \
     --data '{
@@ -98,8 +96,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     ```shell
     curl -k "https://<NIM-FQDN>/api/platform/v1/license" \
     --header "accept: application/json" \
-    --header "authorization: Basic <base64-encoded-credentials>" \
-    --header "referer: https://<NIM-FQDN>/ui/settings/license"
+    --header "authorization: Basic <base64-encoded-credentials>"
     ```
 
 1. **Update the license configuration on NGINX Instance Manager (not required in 2.20 or later)**:
@@ -108,8 +105,6 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
     ```shell
     curl -k --location --request PUT "https://<NIM-FQDN>/api/platform/v1/license?telemetry=true" \
-    --header "Origin: https://<NIM-FQDN>" \
-    --header "Referer: https://<NIM-FQDN>/ui/settings/license" \
     --header "Content-Type: application/json" \
     --header "Authorization: Basic <base64-encoded-credentials>" \
     --data '{

@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-product: FABRIC
 nd-files:
 - content/ngf/install/helm.md
 - content/ngf/install/manifests.md

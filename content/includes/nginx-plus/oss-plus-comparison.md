@@ -1,4 +1,5 @@
 ---
+nd-product: NGPLUS
 nd-files:
 - content/nginx/_index.md
 - content/nginxaas-azure/overview/feature-comparison.md

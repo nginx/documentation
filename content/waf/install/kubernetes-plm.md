@@ -1,6 +1,7 @@
 ---
 title: "Kubernetes operations improvements (Early access)"
 weight: 300
+draft: true
 toc: true
 nd-banner:
     enabled: true

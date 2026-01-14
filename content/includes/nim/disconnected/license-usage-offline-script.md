@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1662
+nd-product: NIMNGR
 nd-files:
 - content/nim/disconnected/add-license-disconnected-deployment.md
 - content/nim/disconnected/report-usage-disconnected-deployment.md
@@ -175,15 +176,10 @@ if [[ "$device_mode" == "CONNECTED" ]]; then
   exit 1
 fi
 
-ORIGIN="https://$NIM_IP"
-REFERER="$ORIGIN/ui/settings/license"
-
 if [[ "$USE_CASE" == "initial" ]]; then
   echo "Applying JWT license"
   sleep 5  
   RESPONSE=$(curl -sS -k --max-time 10 -w "\n%{http_code}" -X POST "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
-    -H "Origin: $ORIGIN" \
-    -H "Referer: $REFERER" \
     -H "Content-Type: application/json" \
     -H "Authorization: Basic $AUTH_HEADER" \
     -d "$JSON_PAYLOAD")
@@ -204,12 +200,9 @@ if [[ "$NIM_VER" < "2.18" ]]; then
   exit 1
 elif [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
   echo "NGINX Instance Manager version $NIM_VER detected."
-  ORIGIN="https://$NIM_IP"
 
   # Send the PUT request and separate body and status code
   PUT_RESPONSE_CODE=$(curl -k -s -w "%{http_code}" -o /tmp/put_response.json --location --request PUT "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
-    --header "Origin: $ORIGIN" \
-    --header "Referer: https://$NIM_IP/ui/settings/license" \
     --header "Content-Type: application/json" \
     --header "Authorization: Basic $AUTH_HEADER" \
     --data '{
@@ -246,8 +239,6 @@ fi
 
 if [[ "$USE_CASE" != "telemetry" ]]; then
   RESPONSE=$(curl -sS -k --max-time 10 -w "\n%{http_code}" -X POST "https://$NIM_IP/api/platform/v1/license?telemetry=true" \
-    -H "Origin: $ORIGIN" \
-    -H "Referer: $REFERER" \
     -H "Content-Type: application/json" \
     -H "Authorization: Basic $AUTH_HEADER" \
     -d "$JSON_PAYLOAD")
@@ -266,13 +257,11 @@ if [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
       --header "accept: application/json" \
       --header "authorization: Basic $AUTH_HEADER" \
       --header "content-type: application/json" \
-      --header "origin: https://$NIM_IP" \
       --output /tmp/response.zip)
   else
      prepare_usage_command="curl --insecure --location 'https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
           --header 'accept: application/json' \
-          --header 'authorization: Basic $AUTH_HEADER' \
-          --header 'referer: https://$NIM_IP/ui/settings/license'"
+          --header 'authorization: Basic $AUTH_HEADER'
     report_save_path="${output_file:-/tmp/response.zip}"
 
     download_usage_command="curl --insecure --location 'https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
@@ -302,7 +291,6 @@ else
   --header "accept: application/json" \
   --header "authorization: Basic $AUTH_HEADER" \
   --header "content-type: application/json" \
-  --header "origin: https://$NIM_IP" \
   --output /tmp/response.zip)
 
   HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tail -n1)

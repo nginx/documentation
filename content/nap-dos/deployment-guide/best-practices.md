@@ -165,7 +165,7 @@ F5 DoS for NGINX provides a range of application monitoring tools:
 
 A complete guide on configuring  F5 DoS for NGINX Live Activity Monitoring  be found here: [F5 DoS for NGINX Live Activity Monitoring](https://docs.nginx.com/nginx-app-protect-dos/monitoring/live-activity-monitoring/) <br>
 Below is an example configuration that limits API location access to the local network using the allow and deny directives, and uses HTTP Basic Authentication to restrict the PATCH, POST, and DELETE methods to specific users.<br>
-To view the dashboard, enter its address in your browser’s address bar.For example, http://192.168.1.23/dashboard-dos.html displays the dashboard page located in `/usr/share/nginx/html`, as specified by the root directive.<br>
+To view the dashboard, enter its address in your browser’s address bar. For example, http://192.168.1.23/dashboard-dos.html displays the dashboard page located in `/usr/share/nginx/html`, as specified by the root directive.<br>
 
 ```nginx
 http {

@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1462
+nd-product: INGRESS
 nd-files:
 - content/nic/integrations/app-protect-dos/installation.md
 - content/nic/integrations/app-protect-waf/installation.md

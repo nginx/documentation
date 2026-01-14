@@ -1,7 +1,5 @@
 ---
-file:
-- content/solutions/about-subscription-licenses.md
-- content/nap-waf/v5/admin-guide/install.md
+nd-product: SOLUTI
 nd-files:
 - content/solutions/about-subscription-licenses/getting-started.md
 ---

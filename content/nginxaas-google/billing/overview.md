@@ -16,13 +16,11 @@ F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterp
 
 ### Pricing components
 {{< table >}}
-
-| Component                   | Cost                          |
-|---------------------------- | ----------------------------- |
-| Fixed price                 | $0.10 per hour                |
-| NGINX Capacity Units (NCU)  | $0.008 per NCU per hour       |
-| Data processing             | $0.0096 per GB processed      |
-
+| Tier   | Fixed price per hour | NCU price per hour         | Data processing per GB | Google Cloud Regions                                                                                                   |
+|--------|---------------------|----------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Tier 1 | $0.10               | $0.008                     | $0.0096               | us-east1, us-east4, us-west1, us-west2, us-west3, us-west4, us-central1, europe-west1, europe-west4, europe-north1    |
+| Tier 2 | $0.133              | $0.0106                    | $0.0127               | europe-west2, europe-west3                                                                                            |
+| Tier 3 | $0.166              | $0.0132                    | $0.0159               | europe-central2                                                                                                       |
 {{< /table >}}
 
 ## NGINX Capacity Unit (NCU)

@@ -1,7 +1,7 @@
 ---
 nd-product: NONECO
 nd-files:
-- content/glossary/glossary.md
+- content/glossary/_index.md
 - content/nginx-one-console/glossary.md
 ---
 
