@@ -60,7 +60,6 @@ Here are the current constraints you should be aware of when while using NGINXaa
 - NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas-google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
 - We only support authentication via Google acting as an identity provider.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
-- Deployments require specific NGINX configuration snippets to ensure a seamless experience. See [NGINX configuration required content]({{< ref "nginxaas-google/getting-started/nginx-configuration/overview.md#nginx-configuration-required-content" >}}) for specific details.
 
 ## What's next
 
