@@ -61,6 +61,7 @@ This command runs the NGINX Gateway Fabric control plane.
 | _agent-tls-secret_                  | _string_ | The name of the base Secret containing TLS CA, certificate, and key for the NGINX Agent to securely communicate with the NGINX Gateway Fabric control plane. Must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). (Default `agent-tls`) |
 | _endpoint-picker-disable-tls_       | _bool_   | Disables TLS when connecting to the EndpointPicker. Set to true only for development/testing or when using a service mesh for encryption. (Default: `false`) | 
 | _endpoint-picker-tls-skip-verify_   | _bool_   | Disables server certificate verification when connecting to the EndpointPicker, if TLS is enabled. REQUIRED: Must be true until Gateway API Inference Extension EndpointPicker supports mounting certificates. (Default `true`) |
+| _watch-namespaces_                  | _list_   | List of namespaces to watch for resources. If not set, all namespaces are watched. The controller's own namespace is always included. |
 
 ## Sleep
 
