@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-product: FABRIC
 nd-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---

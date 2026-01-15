@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-product: INGRESS
 nd-files:
 - content/nic/install/license-secret.md
 ---

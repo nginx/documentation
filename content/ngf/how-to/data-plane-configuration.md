@@ -272,7 +272,45 @@ of a few arguments. {{< /call-out >}}
 
 ---
 
-### Run NGINX Gateway Fabric with NGINX in debug mode
+## Configure the data plane log format
+
+NGINX records client requests immediately after each request is processed. You can use the `NginxProxy` resource to dynamically configure the access log format.
+
+The following command creates a basic `NginxProxy` that defines a custom log format `$remote_addr - [$time_local] "$request" $status $body_bytes_sent`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
+EOF
+```
+
+You can disable access logging entirely with the following configuration:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      disable: true
+EOF
+```
+
+{{< call-out "note" >}} File destinations in `logging.accessLog` are not currently supported it is always set to `/dev/stdout`. {{< /call-out >}}
+
+---
+
+## Run NGINX Gateway Fabric with NGINX in debug mode
 
 To run NGINX Gateway Fabric with NGINX in debug mode, during [installation]({{< ref "/ngf/install/" >}}), follow these additional steps:
 
@@ -327,12 +365,11 @@ kind: NginxProxy
 metadata:
   name: ngf-proxy-config
 spec:
-  config:
-    rewriteClientIP:
-      mode: ProxyProtocol
-      trustedAddresses:
-      - type: CIDR
-        value: "76.89.90.11/24"
+  rewriteClientIP:
+    mode: ProxyProtocol
+    trustedAddresses:
+    - type: CIDR
+      value: "76.89.90.11/24"
 EOF
 ```
 
@@ -364,8 +401,6 @@ spec:
         terminationGracePeriodSeconds: 90
       replicas: 2
     service:
-      annotations:
-        service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
       type: LoadBalancer
       loadBalancerIP: "192.87.9.1"
 EOF
