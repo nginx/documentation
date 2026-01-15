@@ -18,7 +18,7 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 
 - {{% icon-feature %}} **NGINXaaS for Azure now supports the `mqtt_buffers` directive**
 
-  The [`mqtt_buffers`](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffers) directive is now supported in NGINXaaS for Azure, allowing users to configure the number and size of buffers used for MQTT protocol traffic. For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+  The [`mqtt_buffers`](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffers) directive is now supported in NGINXaaS for Azure, allowing users to configure the number and size of buffers used for MQTT protocol traffic. For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#configuration-directives-list" >}}).
 
 
 ## January 14, 2026
