@@ -14,6 +14,12 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## January 15, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Azure now supports the MQTT filter module**
+
+  NGINXaaS for Azure now supports the [MQTT filter module](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html). For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#configuration-directives-list" >}}).
+
 ## January 14, 2026
 
 - {{% icon-feature %}} **Azure Resource Health is now automatically enabled on all NGINXaaS deployments**
