@@ -254,7 +254,7 @@ az role assignment list \
 
 ### Install nginx-asg-sync agent
 
-The nginx-asg-sync agent can be installed on the Azure VM or run as a container. Download and install the agent after configuring managed identity permissions.
+The nginx-asg-sync agent can be installed on Azure VM, run as a Docker container, or deployed using Azure Container Instances (ACI). Download and install the agent after configuring managed identity permissions.
 
 #### Option A: Install on Azure VM
 
@@ -309,6 +309,156 @@ docker run --rm -it \
   -e CONFIG_PATH=/etc/nginx/config.yaml \
   docker-registry.nginx.com/nginx/asg-sync:latest
   /nginx-asg-sync -config_path /etc/nginx/config.yaml
+```
+
+#### Option C: Run on Azure Container Instances (ACI)
+
+Deploy nginx-asg-sync as an Azure Container Instance with persistent configuration stored in Azure Files. [Azure Container Instances (ACI)](https://learn.microsoft.com/en-us/azure/container-instances/) provides a serverless way to run containerized applications without managing virtual machines. ACI is ideal for scenarios that need on-demand, burstable, and pay-per-execution container workloads:
+
+##### Step 1: Create Azure Storage Account
+
+Create a storage account to store the nginx-asg-sync configuration file:
+
+```bash
+# Set variables
+resourceGroup="myResourceGroup"
+storageAccountName="nginxasgsyncconfig"
+location="eastus"
+
+# Create storage account
+az storage account create \
+  --resource-group $resourceGroup \
+  --name $storageAccountName \
+  --location $location \
+  --sku Standard_LRS
+```
+
+##### Step 2: Create File Share
+
+Create a file share within the storage account:
+
+```bash
+# Create file share for configuration
+az storage share create \
+  --account-name $storageAccountName \
+  --name configshare
+```
+
+##### Step 3: Upload Configuration File
+
+Upload your nginx-asg-sync configuration file to the file share. Create the `config.yaml` file using the content described in [Configuration file](#configuration-file):
+
+```bash
+# Upload config.yaml to file share
+az storage file upload \
+  --account-name $storageAccountName \
+  --share-name configshare \
+  --source config.yaml
+```
+
+##### Step 4: Create User-Assigned Managed Identity and Assign VMSS Permissions
+
+Create a user-assigned managed identity and assign the custom role for VMSS access. Use or create the same custom role as mentioned in [Create the Custom Role](#create-the-custom-role):
+
+```bash
+# Create user-assigned managed identity
+az identity create \
+  --resource-group $resourceGroup \
+  --name nginx-asg-sync-identity \
+  --location $location
+
+# Get managed identity IDs
+IDENTITY_ID=$(az identity show \
+  --resource-group $resourceGroup \
+  --name nginx-asg-sync-identity \
+  --query id -o tsv)
+
+IDENTITY_CLIENT_ID=$(az identity show \
+  --resource-group $resourceGroup \
+  --name nginx-asg-sync-identity \
+  --query clientId -o tsv)
+
+IDENTITY_PRINCIPAL_ID=$(az identity show \
+  --resource-group $resourceGroup \
+  --name nginx-asg-sync-identity \
+  --query principalId -o tsv)
+
+# Set VMSS variables
+vmssResourceGroup="myVmssResourceGroup"
+vmssName="backend-one-vmss"
+roleName="VMSS-Network-Read-Role"
+
+# Get VMSS resource ID
+vmssId=$(az vmss show \
+  --resource-group $vmssResourceGroup \
+  --name $vmssName \
+  --query id \
+  --output tsv)
+
+# Assign the custom role to user-assigned managed identity
+az role assignment create \
+  --assignee-object-id $IDENTITY_PRINCIPAL_ID \
+  --assignee-principal-type ServicePrincipal \
+  --role $roleName \
+  --scope $vmssId
+```
+
+##### Step 5: Create Container Instance
+
+Deploy the nginx-asg-sync container instance with the user-assigned managed identity that has proper VMSS permissions:
+
+```bash
+# Set ACI variables
+aciName="nginx-asg-sync-aci"
+containerImage="docker-registry.nginx.com/nginx/asg-sync:latest"
+
+# Get storage account key
+storageKey=$(az storage account keys list \
+  --resource-group $resourceGroup \
+  --account-name $storageAccountName \
+  --query '[0].value' \
+  --output tsv)
+
+# Create container instance with user-assigned managed identity
+az container create \
+  --resource-group $resourceGroup \
+  --name $aciName \
+  --image $containerImage \
+  --location $location \
+  --os-type Linux \
+  --cpu 1 \
+  --memory 1.5 \
+  --restart-policy Always \
+  --assign-identity $IDENTITY_ID \
+  --environment-variables AZURE_CLIENT_ID=$IDENTITY_CLIENT_ID \
+  --command-line "/nginx-asg-sync -config_path /etc/nginx/config.yaml" \
+  --azure-file-volume-account-name $storageAccountName \
+  --azure-file-volume-account-key $storageKey \
+  --azure-file-volume-share-name configshare \
+  --azure-file-volume-mount-path /etc/nginx
+```
+
+##### Step 6: Verify ACI Deployment
+
+Check that the container instance is running successfully:
+
+```bash
+# Check container status
+az container show \
+  --resource-group $resourceGroup \
+  --name $aciName \
+  --query "{Status:instanceView.state}" \
+  --output table
+
+# View container logs
+az container logs \
+  --resource-group $resourceGroup \
+  --name $aciName
+
+# For streaming logs (real-time)
+az container attach \
+  --resource-group $resourceGroup \
+  --name $aciName
 ```
 
 Example output when the container starts successfully:
