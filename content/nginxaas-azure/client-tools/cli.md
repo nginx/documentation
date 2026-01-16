@@ -18,6 +18,8 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the [Azure CLI
 
 ## Install NGINXaaS extension
 
+{{< call-out "important" >}}**System-Assigned Managed Identity Required**: All new NGINXaaS deployments must include a system-assigned managed identity for Geneva logging and monitoring features. When creating deployments with the Azure CLI, use the `--identity` parameter with `type="SystemAssigned"`. See [Deploy using the Azure CLI]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-cli.md" >}}) for examples.{{< /call-out >}}
+
 In order to install and manage your NGINXaaaS deployments using the Azure CLI, you will need to install the `nginx` extension:
 
 ```shell

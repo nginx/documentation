@@ -23,6 +23,8 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 ## Create a deployment
 
+{{< call-out "important" >}}**System-Assigned Managed Identity**: The Azure Portal automatically creates and assigns a system-assigned managed identity to all new NGINXaaS deployments. This identity is required for Geneva logging and monitoring features and cannot be removed once created.{{< /call-out >}}
+
 ### Basics tab
 
 1. On the Create NGINXaaS Deployment **Basics** page, provide the following information:
@@ -81,7 +83,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
       }
    }
    ```
-      
+
    {{</details>}}
 
 
