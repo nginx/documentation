@@ -9,7 +9,7 @@ nd-product: NAZURE
 
 ## Overview
 
-The NGINXaaS dataplane API key is used to authenticate with your NGINXaaS deployment's dataplane API. This key is required for various integrations including VMSS backend synchronization and Kubernetes load balancing.
+The NGINXaaS dataplane API key is used to authenticate with your NGINXaaS deployment's dataplane API. This key is required for various integrations including VMSS load balancing and Kubernetes load balancing.
 
 ## Requirements
 

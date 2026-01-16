@@ -1,8 +1,8 @@
 ---
-title: Virtual Machine Scale Sets (VMSS) Backend Integration
+title: NGINXaaS Load Balancer for VMSS
 weight: 280
 toc: true
-url: /nginxaas/azure/vmss-backend/
+url: /nginxaas/azure/loadbalancer-vmss/
 nd-content-type: how-to
 nd-product: NAZURE
 ---
@@ -11,7 +11,7 @@ nd-product: NAZURE
 
 F5 NGINXaaS for Azure provides seamless integration with Azure Virtual Machine Scale Sets (VMSS) through dynamic upstream management. This feature enables automatic scaling of your application backend without requiring manual NGINX configuration updates when VMSS instances are added or removed.
 
-With VMSS backend integration, you can:
+With NGINXaaS load balancing for VMSS, you can:
 
 - Automatically sync VMSS instance IP addresses to NGINX upstreams
 - Scale VMSS instances out and in without NGINX configuration changes
@@ -34,13 +34,17 @@ The nginx-asg-sync agent monitors your VMSS for scaling changes and automaticall
 
 ## Prerequisites
 
-Before setting up VMSS backend integration, ensure you have:
+Before setting up NGINXaaS load balancing for VMSS, ensure you have:
 
 - An active NGINXaaS for Azure deployment
-- Azure Virtual Machine Scale Sets (VMSS)
+- Azure Virtual Machine Scale Sets (VMSS) with **Uniform orchestration mode**
 - Network connectivity between NGINXaaS and VMSS instances
 - An Azure VM or container to run the nginx-asg-sync agent
 - Appropriate Azure permissions to assign managed identities
+
+{{< call-out "important" >}}
+**VMSS Orchestration Mode Requirement**: The nginx-asg-sync agent requires Azure Virtual Machine Scale Sets (VMSS) to be configured with **Uniform orchestration mode**. When creating your VMSS, ensure you select "Uniform" for the orchestration mode.
+{{< /call-out >}}
 
 ## Getting Started
 
@@ -62,11 +66,6 @@ http{
         state /opt/nginx/state/backend-one.conf;
     }
 
-    upstream backend-two {
-        zone backend-two 64k;
-        state /opt/nginx/state/backend-two.conf;
-    }
-
     server {
         listen 80;
 
@@ -86,27 +85,12 @@ http{
             proxy_pass http://backend-one;
             health_check interval=1s mandatory;
         }
-
-        location /backend-two {
-            proxy_set_header Host $host;
-            proxy_pass http://backend-two;
-        }
-
-        location @hc-backend-two {
-            internal;
-            proxy_connect_timeout 1s;
-            proxy_read_timeout 1s;
-            proxy_send_timeout 1s;
-
-            proxy_pass http://backend-two;
-            health_check interval=1s mandatory;
-        }
     }
 }
 ```
 
 {{< call-out "important" >}}
-**Health Checks Recommendation**: It is strongly recommended to add active health checks for your upstreams using VMSS backend. This will prevent traffic from being routed to an unready VMSS instance and ensure better reliability during scaling operations.
+**Health Checks Recommendation**: It is strongly recommended to add active health checks for your upstreams when using NGINXaaS load balancing for VMSS. This will prevent traffic from being routed to an unready VMSS instance and ensure better reliability during scaling operations.
 {{< /call-out >}}
 
 [Apply this NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your NGINXaaS deployment.
@@ -503,15 +487,7 @@ upstreams:
     max_conns: 0
     max_fails: 1
     fail_timeout: 10s
-    slow_start: 0s 
-  - name: backend-two  
-    virtual_machine_scale_set: backend-two-vmss
-    port: 8080
-    kind: http
-    max_conns: 100
-    max_fails: 3
-    fail_timeout: 30s
-    slow_start: 10s
+    slow_start: 0s
 ```
 
 #### Configuration parameters
