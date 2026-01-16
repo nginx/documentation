@@ -138,7 +138,9 @@ nginx-asg-sync uses the Azure API to read the IP addresses of the Virtual Machin
 
 You can assign managed identity permissions using:
 
-- **Azure Portal**: Navigate to **Resource** → **Identity** → **Role assignments** in the Azure portal
+- **Azure Portal**: 
+  - For system-assigned identity: Navigate to your nginx-asg-sync VM resource → **Identity** 
+  - For role assignment: Navigate to your VMSS resource → **Access control (IAM)** → **Role assignments**
 - **Azure CLI**: Use Azure CLI commands for programmatic assignment
 
 For detailed instructions on managed identities, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
@@ -198,9 +200,6 @@ Create a file called `vmss-network-read-role.json`:
 ```
 
 ```bash
-# Set role name
-roleName="VMSS-Network-Read-Role"
-
 # Replace subscription ID in the JSON file (if using the template above)
 
 # Create the custom role
@@ -226,6 +225,9 @@ vmssId=$(az vmss show \
 Assign the custom role to the VM's system-assigned managed identity:
 
 ```bash
+# Set role name for assignment
+roleName="VMSS-Network-Read-Role"
+
 # Assign the custom role to the VM's managed identity
 az role assignment create \
   --assignee-object-id $principalId \
@@ -313,7 +315,7 @@ Example output when the container starts successfully:
 
 ```
 2025/12/31 10:25:30 nginx-asg-sync version v1.0.3
-2025/12/31 10:25:30 Updated HTTP servers of backend-one for group naveen-vmss-latest ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
+2025/12/31 10:25:30 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 ```
 
 ### Configure nginx-asg-sync agent
@@ -329,10 +331,11 @@ Create `/etc/nginx/config.yaml`:
 ```yaml
 # nginx-asg-sync configuration for NGINXaaS for Azure
 cloud_provider: Azure
-subscription_id: your_subscription_id
+subscription_id: <SUBSCRIPTION_ID>
 resource_group_name: your_vmss_resource_group
 
 # NGINXaaS dataplane API endpoint (note the /nplus suffix)
+# Example : <DataplaneAPIEndpoint>/nplus
 api_endpoint: https://your-nginxaas-endpoint.region.nginxaas.net/nplus
 sync_interval: 5s
 
@@ -399,9 +402,9 @@ Example output when the agent starts successfully:
 
 ```
 2026/01/08 15:44:12 nginx-asg-sync version 1.0.3
-2026/01/08 15:44:13 Updated HTTP servers of backend-one for group naveen-vmss-latest ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
+2026/01/08 15:44:13 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 
-2026/01/08 16:08:07 Updated HTTP servers of backend-one for group naveen-vmss-latest ; Added: [172.19.0.8:80], Removed: [], Updated: []
+2026/01/08 16:08:07 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.8:80], Removed: [], Updated: []
 
 
 ```
