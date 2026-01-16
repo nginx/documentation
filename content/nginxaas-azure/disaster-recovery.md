@@ -260,6 +260,8 @@ If overlapping address spaces are unavoidable, use subnet-level peering to selec
 
 Reverse proxy your upstreams using NGINXaaS. Since the virtual networks are peered, both deployments would be able to access the upstreams.
 
+{{< call-out "important" >}}**System-Assigned Managed Identity Required**: Ensure your Terraform configuration includes the required system-assigned managed identity by setting `identity.type = "SystemAssigned"` or `"SystemAssigned, UserAssigned"` for each deployment.{{< /call-out >}}
+
 {{< details summary="Terraform code for deploying and configuring primary and secondary NGINXaaS deployments" >}}
 
 ```hcl
@@ -267,6 +269,12 @@ resource "azurerm_nginx_deployment" "primary_nginxaas_deployment" {
   name                = var.primary_deployment_name
   resource_group_name = var.primary_resource_group
   location            = "eastus"
+
+  # REQUIRED: System-assigned managed identity
+  identity {
+    type = "SystemAssigned"
+  }
+
   # ...
   network_interface {
     subnet_id = azurerm_subnet.primary_subnet_1.id
@@ -326,6 +334,12 @@ resource "azurerm_nginx_deployment" "secondary_nginxaas_deployment" {
   name                = var.secondary_deployment_name
   resource_group_name = var.secondary_resource_group
   location            = "centralus"
+
+  # REQUIRED: System-assigned managed identity
+  identity {
+    type = "SystemAssigned"
+  }
+
   # ...
   network_interface {
     subnet_id = azurerm_subnet.secondary_subnet_1.id

@@ -9,7 +9,11 @@ NGINXaaS natively integrates with [Azure Key Vault (AKV)](https://azure.microsof
 
 - AKV to store certificates that you want to add to the deployment.
 
-- A user or system assigned identity associated with your NGINXaaS deployment. Ensure that your Managed Identity (MI) has read access to secrets stored in AKV:
+- A user or system assigned identity associated with your NGINXaaS deployment.
+
+  {{< call-out "note" >}}**System-Assigned Managed Identity**: All NGINXaaS deployments automatically include a system-assigned managed identity. When creating deployments via Azure CLI, Terraform, ARM templates, or SDK, ensure you explicitly configure the system-assigned identity as shown in the respective deployment guides.{{< /call-out >}}
+
+  Ensure that your Managed Identity (MI) has read access to secrets stored in AKV:
 
   - If using Azure RBAC for AKV, ensure that your MI has [Key Vault Secrets User](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) or higher permissions.
 

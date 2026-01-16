@@ -19,6 +19,8 @@ The Azure CLI has an extension to be used for management of F5 NGINXaaS for Azur
 
 ## Create a deployment
 
+{{< call-out "important" >}}**System-Assisted Managed Identity Required**: All new NGINXaaS deployments must include a system-assigned managed identity for Geneva logging and monitoring features. Use the `--identity` parameter with `type=SystemAssigned` when creating deployments.{{< /call-out >}}
+
 To create an NGINXaaS for Azure resource use the `az nginx deployment create` command:
 
 ```shell
@@ -44,6 +46,7 @@ az nginx deployment create --deployment-name
    ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name="standardv3_Monthly" \
+      --identity type="SystemAssigned" \
       --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP}]}" \
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
@@ -53,7 +56,9 @@ az nginx deployment create --deployment-name
    ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku \
-      name="standardv3_Monthly" --network-profile \
+      name="standardv3_Monthly" \
+      --identity type="SystemAssigned" \
+      --network-profile \
       front-end-ip-configuration="{private-ip-addresses:[{private-ip-allocation-method:Static,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:10.0.0.2}]}" \
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
@@ -61,7 +66,9 @@ az nginx deployment create --deployment-name
    ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku \
-      name="standardv3_Monthly" --network-profile \
+      name="standardv3_Monthly" \
+      --identity type="SystemAssigned" \
+      --network-profile \
       front-end-ip-configuration="{private-ip-addresses:[{private-ip-allocation-method:Dynamic,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:10.0.0.2}]}" \
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
@@ -71,6 +78,7 @@ az nginx deployment create --deployment-name
    ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku name="standardv3_Monthly" \
+      --identity type="SystemAssigned" \
       --network-profile front-end-ip-configuration="{public-ip-addresses:[{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv4},{id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/pubIPv6}]}" \
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
@@ -80,7 +88,9 @@ az nginx deployment create --deployment-name
    ```shell
    az nginx deployment create --name myDeployment --resource-group \
       myResourceGroup --location eastus2 --sku \
-      name="standardv3_Monthly" --network-profile \
+      name="standardv3_Monthly" \
+      --identity type="SystemAssigned" \
+      --network-profile \
       front-end-ip-configuration="{private-ip-addresses:[{private-ip-allocation-method:Static,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:10.0.0.2},{private-ip-allocation-method:Static,subnet-id:/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet,private-ip-address:2001:0db8:85a3:0000:0000:8a2e:0370:7334}]}" \
       network-interface-configuration="{subnet-id:/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVNet/subnets/mySubnet}"
    ```
@@ -93,14 +103,18 @@ az nginx deployment create --deployment-name
       --network-profile \
       network-interface-configuration='{subnet-id:/subscriptions/subscriptionId/resourcegroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vnet-azclitest/subnets/mySubnet}' \
       front-end-ip-configuration='{public-ip-addresses:[{id:/subscriptions/subscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP}]}' \
-      --identity '{"type":"UserAssigned","userAssignedIdentities":{"/subscriptions/subscriptionId/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myManagedIdentity":{}}}' \
+      --identity '{"type":"SystemAssigned,UserAssigned","userAssignedIdentities":{"/subscriptions/subscriptionId/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myManagedIdentity":{}}}' \
       --logging storage-account='{"account-name":"myStorageAccount","container-name":"myContainer"}' \
       --scaling-properties capacity=10
    ```
 
+{{< call-out "note" >}}**Backward Compatibility**: Existing deployments created before the system-assigned managed identity requirement will continue to function. However, system-assigned managed identity cannot be removed from deployments once added.{{< /call-out >}}
+
 See the [Azure CLI Deployment Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment#az-nginx-deployment-create) for more details on the required and optional parameters.
 
 ## Update a deployment
+
+{{< call-out "important" >}}**System-Assisted Managed Identity**: Once a system-assigned managed identity is added to a deployment, it cannot be removed. Attempting to remove the identity will result in a validation error.{{< /call-out >}}
 
 To update an NGINXaaS for Azure resource use the `az nginx deployment update` command:
 

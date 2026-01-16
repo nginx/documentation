@@ -17,7 +17,11 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using Terraform. Thi
 
 ## Create a deployment
 
+{{< call-out "important" >}}**System-Assigned Managed Identity Required**: All new NGINXaaS deployments must include a system-assigned managed identity for Geneva logging and monitoring features. Ensure your Terraform configuration includes an `identity` block with `type = "SystemAssigned"`.{{< /call-out >}}
+
 You can find examples of Terraform configurations in the [NGINXaaS for Azure Snippets GitHub repository](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/deployments/create-or-update)
+
+{{< call-out "note" >}}**Backward Compatibility**: Existing deployments created before the system-assigned managed identity requirement will continue to function. However, system-assigned managed identity cannot be removed from deployments once added.{{< /call-out >}}
 
 To create a deployment, use the following Terraform commands:
 
