@@ -88,5 +88,5 @@ dataplaneAPIEndpoint=$(az nginx deployment show -g "$nginxGroup" -n "$nginxName"
 
 Once you have created the dataplane API key and obtained the endpoint, you can use them in various NGINXaaS integrations:
 
-- [VMSS Backend Integration]({{< ref "/nginxaas-azure/vmss-backend/" >}})
+- [Load Balancer for VMSS]({{< ref "/nginxaas-azure/loadbalancer-vmss/" >}})
 - [Load Balancer for Kubernetes]({{< ref "/nginxaas-azure/loadbalancer-kubernetes/" >}})
