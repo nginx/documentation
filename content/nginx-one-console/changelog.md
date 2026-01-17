@@ -9,6 +9,12 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## January 26, 2025
+
+### Config Sync Groups: Support for unmanaged certificates
+
+Config Sync Groups now support unmanaged certificates. You can reference SSL/TLS certificates managed outside of NGINX One Console in your configuration files while maintaining centralized configuration synchronization across all instances in the group.
+
 ## November 25, 2025
 
 ### Observability: Usage metrics data now available for Config Sync Groups
