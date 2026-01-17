@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-230
 description: Learn how to deploy F5 DoS for NGINX.
 title: Deployment Guide
 weight: 100

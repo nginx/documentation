@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-120
 nd-product: NIMNGR
 nd-files:
 - content/nim/waf-integration/configuration/_index.md

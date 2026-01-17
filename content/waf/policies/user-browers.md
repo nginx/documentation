@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-246
 title: "User-defined browser control"
 weight: 2050
 toc: true

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-094
 nd-product: F5WAFN
 nd-files:
 - content/waf/fundamentals/technical-specifications.md

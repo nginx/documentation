@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-119
 nd-product: NIMNGR
 nd-files:
 - content/nim/waf-integration/configuration/install-waf-compiler/automatic-download.md

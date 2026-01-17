@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-055
 nd-product: SOLUTI
 nd-files:
 - content/nim/admin-guide/report-usage-connected-deployment.md

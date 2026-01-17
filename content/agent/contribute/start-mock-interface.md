@@ -2,7 +2,7 @@
 title: Start mock control plane interface
 toc: true
 weight: 300
-nd-docs: DOCS-000
+nd-docs: DOCS-004
 draft: true
 nd-product: NAGENT
 nd-content-type: how-to

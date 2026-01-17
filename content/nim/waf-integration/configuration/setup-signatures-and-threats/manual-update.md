@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-334
 title: Manually update security packages
 description: Manually download and upload F5 WAF for NGINX security packages to NGINX Instance Manager.
 toc: true

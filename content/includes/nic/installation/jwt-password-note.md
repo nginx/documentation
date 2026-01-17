@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-154
 nd-product: INGRESS
 nd-files:
 - content/nic/install/images/add-image-to-cluster.md

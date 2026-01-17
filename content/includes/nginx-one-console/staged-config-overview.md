@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-160
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/nginx-configs/staged-configs/add-staged-config.md

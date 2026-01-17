@@ -1,7 +1,7 @@
 ---
 description: ''
 nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-517
 nd-product: NONECO
 title: Clean up unavailable NGINX instances
 toc: true

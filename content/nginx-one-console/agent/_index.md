@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-507
 title: NGINX Agent
 description: Learn about NGINX Agent, its features, and how to install it.
 weight: 750

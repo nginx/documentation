@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-652
 title: F5 NGINXaaS for Google Cloud
 nd-subtitle: Google Cloud native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX
 url: /nginxaas/google/

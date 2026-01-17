@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-365
 title: Create a security policy bundle
 description: Create a precompiled security bundle that packages your F5 WAF for NGINX policies, signatures, and threat campaigns into a single file for efficient, reusable deployment across instances.
 toc: true

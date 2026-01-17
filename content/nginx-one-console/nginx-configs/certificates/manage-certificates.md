@@ -1,6 +1,6 @@
 ---
 nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-535
 nd-product: NONECO
 title: Manage certificates
 toc: true

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-537
 title: View and edit an NGINX instance
 weight: 200
 toc: true

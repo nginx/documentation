@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-176
 nd-product: NAZURE
 nd-files:
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md

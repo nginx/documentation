@@ -2,7 +2,7 @@
 title: Metrics catalog
 weight: 400
 toc: false
-nd-docs: DOCS-000
+nd-docs: DOCS-656
 url: /nginxaas/google/monitoring/metrics-catalog/
 nd-content-type: reference
 nd-product: NGOOGL

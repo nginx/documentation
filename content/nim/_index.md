@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-298
 title: F5 NGINX Instance Manager
 description: Track and control NGINX Open Source and NGINX Plus instances.
 url: /nginx-instance-manager/

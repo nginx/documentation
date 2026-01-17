@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-047
 title: Permissions
 description: NGINX Gateway Fabric permissions required by components.
 weight: 300

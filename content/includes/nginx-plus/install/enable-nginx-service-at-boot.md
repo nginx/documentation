@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-071
 nd-product: NGPLUS
 nd-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md

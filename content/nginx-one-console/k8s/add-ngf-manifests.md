@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-561
 title: Connect NGINX Gateway Fabric with Manifests
 toc: true
 weight: 300

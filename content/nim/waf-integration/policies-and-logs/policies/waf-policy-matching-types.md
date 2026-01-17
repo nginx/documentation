@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-358
 title: "Matching types: Explicit vs. Wildcard"
 description: Learn how explicit and wildcard matching determine how F5 WAF for NGINX identifies and protects URLs, cookies, and parameters.
 toc: true

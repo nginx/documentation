@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-348
 title: Manage security policies and log profiles
 description: Create, update, and deploy F5 WAF for NGINX security policies and log profiles using NGINX Instance Manager.
 weight: 300

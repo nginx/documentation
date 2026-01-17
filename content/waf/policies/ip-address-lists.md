@@ -4,7 +4,7 @@ weight: 1500
 toc: true
 nd-content-type: reference
 nd-product: F5WAFN
-nd-docs: DOCS-000
+nd-docs: DOCS-260
 ---
 
 IP address lists are a feature that let you organize allowed and forbidden IP addresses into reusable lists with common attributes.

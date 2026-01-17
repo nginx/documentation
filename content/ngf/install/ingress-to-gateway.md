@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-040
 title: Migrate from NGINX Ingress Controller to NGINX Gateway Fabric
 weight: 800
 toc: true
