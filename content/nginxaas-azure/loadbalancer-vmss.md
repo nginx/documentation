@@ -131,6 +131,9 @@ For detailed instructions on managed identities, see the [Azure documentation](h
 
 The following steps show the Azure CLI approach:
 
+<details>
+<summary><strong>Show Azure CLI Steps</strong></summary>
+
 #### Enable System Assigned Managed Identity on the VM
 
 Enable system-assigned managed identity on your nginx-asg-sync VM:
@@ -236,11 +239,14 @@ az role assignment list \
 **Permission Propagation**: After creating the role assignment, it may take a few minutes for the permissions to take effect across Azure services.
 {{< /call-out >}}
 
+</details>
+
 ### Install nginx-asg-sync agent
 
 The nginx-asg-sync agent can be installed on Azure VM, run as a Docker container, or deployed using Azure Container Instances (ACI). Download and install the agent after configuring managed identity permissions.
 
-#### Option A: Install on Azure VM
+<details>
+<summary><strong>Option A: Install on Azure VM</strong></summary>
 
 Install nginx-asg-sync agent on the VM you created in [Create VM for nginx-asg-sync agent](#create-vm-for-nginx-asg-sync-agent):
 
@@ -276,7 +282,10 @@ sudo mkdir -p /etc/nginx/
 
 **Next Steps**: After installation, proceed to [Configure nginx-asg-sync agent](#configure-nginx-asg-sync-agent) to create the configuration file and start the agent.
 
-#### Option B: Run as Container
+</details>
+
+<details>
+<summary><strong>Option B: Run as Container</strong></summary>
 
 Deploy nginx-asg-sync as a container using Docker. The host system (VM or other compute resource) running the container must have a managed identity with appropriate VMSS permissions configured as described in [Assign managed identity permissions](#assign-managed-identity-permissions):
 
@@ -295,11 +304,14 @@ docker run --rm -it \
   /nginx-asg-sync -config_path /etc/nginx/config.yaml
 ```
 
-#### Option C: Run on Azure Container Instances (ACI)
+</details>
+
+<details>
+<summary><strong>Option C: Run on Azure Container Instances (ACI)</strong></summary>
 
 Deploy nginx-asg-sync as an Azure Container Instance with persistent configuration stored in Azure Files. [Azure Container Instances (ACI)](https://learn.microsoft.com/en-us/azure/container-instances/) provides a serverless way to run containerized applications without managing virtual machines. ACI is ideal for scenarios that need on-demand, burstable, and pay-per-execution container workloads:
 
-##### Step 1: Create Azure Storage Account
+#### Create Azure Storage Account
 
 Create a storage account to store the nginx-asg-sync configuration file:
 
@@ -317,7 +329,7 @@ az storage account create \
   --sku Standard_LRS
 ```
 
-##### Step 2: Create File Share
+##### Create File Share
 
 Create a file share within the storage account:
 
@@ -328,7 +340,7 @@ az storage share create \
   --name configshare
 ```
 
-##### Step 3: Upload Configuration File
+##### Upload Configuration File
 
 Upload your nginx-asg-sync configuration file to the file share. Create the `config.yaml` file using the content described in [Configuration file](#configuration-file):
 
@@ -340,7 +352,7 @@ az storage file upload \
   --source config.yaml
 ```
 
-##### Step 4: Create User-Assigned Managed Identity and Assign VMSS Permissions
+##### Create User-Assigned Managed Identity and Assign VMSS Permissions
 
 Create a user-assigned managed identity and assign the custom role for VMSS access. Use or create the same custom role as mentioned in [Create the Custom Role](#create-the-custom-role):
 
@@ -387,7 +399,7 @@ az role assignment create \
   --scope $vmssId
 ```
 
-##### Step 5: Create Container Instance
+##### Create Container Instance
 
 Deploy the nginx-asg-sync container instance with the user-assigned managed identity that has proper VMSS permissions:
 
@@ -422,7 +434,7 @@ az container create \
   --azure-file-volume-mount-path /etc/nginx
 ```
 
-##### Step 6: Verify ACI Deployment
+##### Verify ACI Deployment
 
 Check that the container instance is running successfully:
 
@@ -451,6 +463,8 @@ Example output when the container starts successfully:
 2025/12/31 10:25:30 nginx-asg-sync version v1.0.3
 2025/12/31 10:25:30 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 ```
+
+</details>
 
 ### Configure nginx-asg-sync agent
 
@@ -492,6 +506,9 @@ upstreams:
 
 #### Configuration parameters
 
+<details>
+<summary><strong>View Configuration Parameters</strong></summary>
+
 {{< table >}}
 
 | Parameter | Description | Required |
@@ -511,6 +528,8 @@ upstreams:
 | `upstreams[].fail_timeout` | Time to consider instance failed | No (default: 10s) |
 | `upstreams[].slow_start` | Gradual weight increase time | No (default: 0s) |
 {{< /table >}}
+
+</details>
 
 #### Start the agent (VM installation)
 
@@ -590,6 +609,9 @@ Check that upstreams are being updated in NGINXaaS:
 
 ### Common troubleshooting steps
 
+<details>
+<summary><strong>View Troubleshooting Guide</strong></summary>
+
 1. **Agent can't authenticate with NGINXaaS:**
    - Verify the API key is correctly base64 encoded
    - Check that the API key hasn't expired
@@ -604,6 +626,8 @@ Check that upstreams are being updated in NGINXaaS:
    - Verify upstream names in config.yaml match NGINX configuration
    - Check that upstreams are properly defined with zone and state
    - Monitor agent logs for error messages
+
+</details>
 
 ## References and Additional Resources
 
