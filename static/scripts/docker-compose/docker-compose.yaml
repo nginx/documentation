@@ -14,7 +14,7 @@ secrets:
   #  file: ./certs/nim_ca.pem
 services:
   nim:
-    image: private-registry.nginx.com/nms/nim-standalone-compose:2.19.0
+    image: private-registry.nginx.com/nms/nim-standalone-compose:2.21.0
     depends_on:
       clickhouse:
         condition: service_healthy
