@@ -16,8 +16,6 @@ Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azu
 
 - A system assigned managed identity.
 
-{{< call-out "important" >}}**System-Assigned Managed Identity**: All new NGINXaaS deployments require a system-assigned managed identity for Geneva logging and monitoring features. The Azure Portal automatically creates this identity during deployment. For deployments created via Azure CLI, Terraform, ARM templates, or SDK, ensure you explicitly configure `type="SystemAssigned"` in the identity configuration.{{< /call-out >}}
-
 {{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the metrics functionality described in this section.
 {{< /call-out >}}
 

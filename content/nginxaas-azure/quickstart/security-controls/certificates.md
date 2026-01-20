@@ -63,8 +63,6 @@ Next, you can add an SSL/TLS certificate to your key vault by following [Azure's
 
 In order for your NGINXaaS deployment to access your key vault, it must have an assinged managed idenity with the `Key Vault Secrets User` role. For more information, see [Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) and [Prerequisites for adding SSL/TLS certificates]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md#prerequisites" >}}).
 
-{{< call-out "important" >}}**System-Assigned Managed Identity**: All NGINXaaS deployments automatically include a system-assigned managed identity. The Azure Portal creates this identity during deployment creation.{{< /call-out >}}
-
 1. Go to your NGINXaaS deployment.
 1. Select **Identity** in the left menu.
 1. Under **System assigned**, ensure the status is set to "On".
