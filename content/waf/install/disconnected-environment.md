@@ -60,21 +60,19 @@ cd documentation
 hugo server
 ```
 
-## Download package files
+---
 
-{{< call-out "note" >}}
+## Installation in Virtual Machine or Bare Metal
 
-This section is most relevant for a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) installation.
-
-{{< /call-out >}}
+### Download the required packages
 
 When working with package files, you can install the packages directly in your disconnected environment, or add them to an internal repository.
 
-The first step is to download the package files from your connected environment, where you have internet access and the NGINX repository credentials).
+The first step is to download the package files from your connected environment, where you have internet access and the NGINX repository credentials.
 
 See the section for your operating system below:
 
-### Alpine Linux
+#### Alpine Linux
 
 1. Download and install the repository signing key:
    
@@ -101,7 +99,7 @@ See the section for your operating system below:
    app-protect-threat-campaigns
    ```
 
-### Amazon Linux 2023
+#### Amazon Linux 2023
 
 1. Add the F5 WAF for NGINX repository and dependencies:
 
@@ -121,7 +119,7 @@ See the section for your operating system below:
    app-protect-threat-campaigns
    ```
 
-### Debian
+#### Debian
 
 1. Install required packages:
 
@@ -168,7 +166,7 @@ See the section for your operating system below:
    done
    ```
 
-### Oracle Linux / RHEL / Rocky Linux 8
+#### Oracle Linux / RHEL / Rocky Linux 8
 
 1. Add the F5 WAF for NGINX repository:
 
@@ -207,7 +205,7 @@ See the section for your operating system below:
 
    ```
 
-### RHEL / Rocky Linux 9
+#### RHEL / Rocky Linux 9
 
 1. Add the F5 WAF for NGINX repository:
 
@@ -245,7 +243,7 @@ See the section for your operating system below:
    app-protect-threat-campaigns
    ```
 
-### Ubuntu
+#### Ubuntu
 
 1. Install required packages:
 
@@ -292,9 +290,11 @@ See the section for your operating system below:
    done
    ```
 
-## Transfer and install packages
+### Transfer the packages
 
 Once you've obtained the package files in your connected environment, transfer the packages directory to your disconnected environment using your preferred or avaliable method: USB drive, SCP, rsync, etc.
+
+### Install the packages
 
 In the disconnected environment, install the packages:
 
@@ -321,6 +321,8 @@ In the disconnected environment, install the packages:
    ```shell
    sudo yum localinstall /offline/packages/*.rpm
    ```
+
+---
 
 ## Download Docker images
 
