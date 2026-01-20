@@ -26,8 +26,6 @@ To export an ARM template for an existing deployment:
 1. Wait for the template to generate.
 1. Select **Download**.
 
-{{< call-out "important" >}}**System-Assigned Managed Identity**: When recreating a deployment, ensure the exported ARM template includes the system-assigned managed identity configuration. All new NGINXaaS deployments require `"identity": {"type": "SystemAssigned"}` in the template.{{< /call-out >}}
-
 ## Delete and recreate strategy
 
 The simplest method to recreate a deployment is to delete the original deployment and then recreate it using the ARM template.

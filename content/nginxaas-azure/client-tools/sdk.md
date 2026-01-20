@@ -26,11 +26,7 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the multi-lang
 
 ### Create or update a deployment
 
-{{< call-out "important" >}}**System-Assigned Managed Identity Required**: All new NGINXaaS deployments must include a system-assigned managed identity for Geneva logging and monitoring features. Ensure your SDK code includes identity configuration with `type="SystemAssigned"`.{{< /call-out >}}
-
 For example scripts to create or update deployment resources, see [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/sdk/python/deployments/)
-
-{{< call-out "note" >}}**Backward Compatibility**: Existing deployments created before the system-assigned managed identity requirement will continue to function. However, system-assigned managed identity cannot be removed from deployments once added.{{< /call-out >}}
 
 - [Azure SDK Deployment Create or Update Documentation](https://learn.microsoft.com/en-us/python/api/azure-mgmt-nginx/azure.mgmt.nginx.operations.deploymentsoperations?view=azure-python#azure-mgmt-nginx-operations-deploymentsoperations-begin-create-or-update)
 - [Azure SDK Deployment Delete Documentation](https://learn.microsoft.com/en-us/python/api/azure-mgmt-nginx/azure.mgmt.nginx.operations.deploymentsoperations?view=azure-python#azure-mgmt-nginx-operations-deploymentsoperations-begin-delete)
