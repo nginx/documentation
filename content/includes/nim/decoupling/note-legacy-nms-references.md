@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1661
+nd-product: NIMNGR
 nd-files:
 - content/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md
 - content/nim/deploy/infrastructure-as-code/build-and-deploy.md
