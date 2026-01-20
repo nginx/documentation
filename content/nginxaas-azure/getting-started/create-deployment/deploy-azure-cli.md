@@ -19,8 +19,6 @@ The Azure CLI has an extension to be used for management of F5 NGINXaaS for Azur
 
 ## Create a deployment
 
-{{< call-out "important" >}}**System-Assisted Managed Identity Required**: All new NGINXaaS deployments must include a system-assigned managed identity for Geneva logging and monitoring features. Use the `--identity` parameter with `type=SystemAssigned` when creating deployments.{{< /call-out >}}
-
 To create an NGINXaaS for Azure resource use the `az nginx deployment create` command:
 
 ```shell
@@ -108,13 +106,9 @@ az nginx deployment create --deployment-name
       --scaling-properties capacity=10
    ```
 
-{{< call-out "note" >}}**Backward Compatibility**: Existing deployments created before the system-assigned managed identity requirement will continue to function. However, system-assigned managed identity cannot be removed from deployments once added.{{< /call-out >}}
-
 See the [Azure CLI Deployment Create Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment#az-nginx-deployment-create) for more details on the required and optional parameters.
 
 ## Update a deployment
-
-{{< call-out "important" >}}**System-Assisted Managed Identity**: Once a system-assigned managed identity is added to a deployment, it cannot be removed. Attempting to remove the identity will result in a validation error.{{< /call-out >}}
 
 To update an NGINXaaS for Azure resource use the `az nginx deployment update` command:
 
