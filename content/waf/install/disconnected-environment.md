@@ -70,7 +70,7 @@ This section is most relevant for a [Virtual machine or bare metal]({{< ref "/wa
 
 When working with package files, you can install the packages directly in your disconnected environment, or add them to an internal repository.
 
-The first step is to download the package files from your connected environment that has internet access and NGINX repository credentials.
+The first step is to download the package files from your connected environment, where you have internet access and the NGINX repository credentials).
 
 This will vary based on your operating system choice, which determines your package manager. Select your operating system below.
 
