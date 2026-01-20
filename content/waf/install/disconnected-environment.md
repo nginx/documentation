@@ -1,7 +1,7 @@
 ---
 title: "Disconnected or air-gapped environments"
 weight: 500
-toc: false
+toc: true
 nd-content-type: how-to
 nd-product: F5WAFN
 ---
@@ -22,7 +22,7 @@ To complete this guide, you will need the following prerequisites:
 - A connected environment with similar architecture and internet access to the NGINX package repositories.
 - A method to transfer files between two environments (USB drive, SCP, rsync, etc.).
 - For package downloads on apt-based systems: `wget`, `gnupg`, `ca-certificates`, and `apt-transport-https`.
-- For package downloads on yum-based systems: `yum-plugin-downloadonly`.
+- For package downloads on yum-based systems: `yum-utils`.
 
 These instructions outline the broad, conceptual steps involved with working with a disconnected environment. You will need to make adjustments based on your specific security requirements.
 
@@ -77,210 +77,269 @@ See the section for your operating system below:
 ### Alpine Linux
 
 1. Download and install the repository signing key:
+   
+   ```shell
+   sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+   ```
 
-```shell
-sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
-```
+1. Add the F5 WAF for NGINX repositories:
+ 
+   ```shell
+    printf "https://pkgs.nginx.com/app-protect/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main\n" | sudo tee -a /etc/apk/repositories
+   printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main\n" | sudo tee -a /etc/apk/repositories
+   ```
 
-2. Add the F5 WAF for NGINX repositories:
+1. Create a directory for packages and download app-protect:
 
-```shell
-printf "https://pkgs.nginx.com/app-protect/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main\n" | sudo tee -a /etc/apk/repositories
-printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main\n" | sudo tee -a /etc/apk/repositories
-```
-
-3. Create a directory for packages and download app-protect:
-
-```shell
-mkdir -p /offline/packages/
-sudo apk update
-sudo apk fetch -R -o /offline/packages/ \
-  app-protect \
-  app-protect-attack-signatures \
-  app-protect-bot-signatures \
-  app-protect-threat-campaigns
-```
+   ```shell
+   mkdir -p /offline/packages/
+   sudo apk update
+   sudo apk fetch -R -o /offline/packages/ \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
 
 ### Amazon Linux 2023
 
 1. Add the F5 WAF for NGINX repository and dependencies:
 
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
-```
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
+   ```
 
-2. Create a directory for packages and download app-protect:
+1. Create a directory for packages and download app-protect:
 
-```shell
-mkdir -p /offline/packages/
-sudo dnf install --downloadonly --downloaddir=/offline/packages/ \
-  app-protect \
-  app-protect-attack-signatures \
-  app-protect-bot-signatures \
-  app-protect-threat-campaigns
-```
+   ```shell
+   mkdir -p /offline/packages/
+   sudo dnf install --downloadonly --downloaddir=/offline/packages/ \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
 
 ### Debian
 
 1. Install required packages:
 
-```shell
-sudo apt-get install -y wget gnupg ca-certificates apt-transport-https lsb-release
-```
+   ```shell
+   sudo apt-get install -y wget gnupg ca-certificates apt-transport-https lsb-release
+   ```
 
-2. Download and install the NGINX repository signing key:
+1. Download and install the NGINX repository signing key:
 
-```shell
-wget -qO - https://cs.nginx.com/static/keys/nginx-archive.key | gpg --dearmor | \
-  sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
-```
+   ```shell
+   wget -qO - https://cs.nginx.com/static/keys/nginx-archive.key | gpg --dearmor | \
+   sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
+   ```
 
-3. Add the F5 WAF for NGINX repositories:
+1. Add the F5 WAF for NGINX repositories:
 
-```shell
-RELEASE=$(lsb_release -cs)
+   ```shell
+   RELEASE=$(lsb_release -cs)
 
-printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-https://pkgs.nginx.com/app-protect/debian $RELEASE nginx-plus\n" | \
-  sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect/debian $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
 
-printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-https://pkgs.nginx.com/app-protect-security-updates/debian $RELEASE nginx-plus\n" | \
-  sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
-```
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect-security-updates/debian $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+   ```
 
-4. Create a directory for packages and download app-protect:
+1. Create a directory for packages and download app-protect:
 
-```shell
-mkdir -p /offline/packages/
-sudo apt-get update
-sudo apt-get install --download-only -y \
-  app-protect \
-  app-protect-attack-signatures \
-  app-protect-bot-signatures \
-  app-protect-threat-campaigns \
-  -o Dir::Cache::archives=/offline/packages/
-```
+   ```shell
+   mkdir -p /offline/packages
+   cd /offline/packages
+   apt-get update
+
+   for i in $(
+   apt-cache depends --recurse --no-recommends --no-suggests \
+   --no-conflicts --no-breaks --no-replaces --no-enhances \
+   app-protect app-protect-attack-signatures \
+   app-protect-bot-signatures app-protect-threat-campaigns \
+   | grep "^\w" | sort -u
+   ); do
+   apt-get download $i
+   done
+   ```
 
 ### Oracle Linux / RHEL / Rocky Linux 8
 
 1. Add the F5 WAF for NGINX repository:
 
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel8.repo
-```
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel8.repo
+   ```
 
-2. Create a directory for packages and download app-protect:
+1. Install the `yum-utils` package if not already installed:
 
-```shell
-mkdir -p /offline/packages/
-sudo yum install --downloadonly --downloaddir=/offline/packages/ \
-  app-protect \
-  app-protect-attack-signatures \
-  app-protect-bot-signatures \
-  app-protect-threat-campaigns
-```
+   ```shell
+   sudo dnf install yum-utils
+   ```
+
+1. Enable codeready-builder repository through subscription manager:
+
+   ```shell
+   subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+   ```
+
+   1. Download the `epel-release` dependency package if not already installed:
+
+   ```shell
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+
+   sudo yumdownloader --resolve --destdir=/offline/packages \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+
+   ```
 
 ### RHEL / Rocky Linux 9
 
 1. Add the F5 WAF for NGINX repository:
 
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel9.repo
-```
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel9.repo
+   ```
 
-2. Create a directory for packages and download app-protect:
+1. Install the `yum-utils` package if not already installed:
 
-```shell
-mkdir -p /offline/packages/
-sudo dnf install --downloadonly --downloaddir=/offline/packages/ \
-  app-protect \
-  app-protect-attack-signatures \
-  app-protect-bot-signatures \
-  app-protect-threat-campaigns
-```
+   ```shell
+   sudo dnf install yum-utils
+   ```
+
+1. Enable codeready-builder repository through subscription manager:
+
+   ```shell
+   subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+   ```
+
+1. Download the `epel-release` dependency package if not already installed:
+
+   ```shell
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+
+   sudo yumdownloader --resolve --destdir=/offline/packages \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
 
 ### Ubuntu
 
 1. Install required packages:
 
-```shell
-sudo apt-get install -y wget gnupg ca-certificates apt-transport-https lsb-release
-```
+   ```shell
+   sudo apt-get install -y wget gnupg ca-certificates apt-transport-https lsb-release
+   ```
 
-2. Download and install the NGINX repository signing key:
+1. Download and install the NGINX repository signing key:
 
-```shell
-wget -qO - https://cs.nginx.com/static/keys/nginx-archive.key | gpg --dearmor | \
-  sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
-```
+   ```shell
+   wget -qO - https://cs.nginx.com/static/keys/nginx-archive.key | gpg --dearmor | \
+   sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
+   ```
 
-3. Add the F5 WAF for NGINX repositories:
+1. Add the F5 WAF for NGINX repositories:
 
-```shell
-RELEASE=$(lsb_release -cs)
+   ```shell
+   RELEASE=$(lsb_release -cs)
 
-printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-https://pkgs.nginx.com/app-protect/ubuntu $RELEASE nginx-plus\n" | \
-  sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect/ubuntu $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
 
-printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-https://pkgs.nginx.com/app-protect-security-updates/ubuntu $RELEASE nginx-plus\n" | \
-  sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
-```
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect-security-updates/ubuntu $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+   ```
 
-4. Create a directory for packages and download app-protect:
+1. Create a directory for packages and download app-protect:
 
-```shell
-mkdir -p /offline/packages/
-sudo apt-get update
-sudo apt-get install --download-only -y \
-  app-protect \
-  app-protect-attack-signatures \
-  app-protect-bot-signatures \
-  app-protect-threat-campaigns \
-  -o Dir::Cache::archives=/offline/packages/
-```
+   ```shell
+   mkdir -p /offline/packages
+   cd /offline/packages
+   apt-get update
 
-### Transfer and install packages
+   for i in $(
+   apt-cache depends --recurse --no-recommends --no-suggests \
+   --no-conflicts --no-breaks --no-replaces --no-enhances \
+   app-protect app-protect-attack-signatures \
+   app-protect-bot-signatures app-protect-threat-campaigns \
+   | grep "^\w" | sort -u
+   ); do
+   apt-get download $i
+   done
+   ```
 
-Once you've obtained the package files in your connected environment, transfer the packages directory to your disconnected environment.
+## Transfer and install packages
+
+Once you've obtained the package files in your connected environment, transfer the packages directory to your disconnected environment using your preferred or avaliable method: USB drive, SCP, rsync, etc.
 
 In the disconnected environment, install the packages:
 
-```shell
-# For Alpine Linux
-sudo apk add -p /offline/packages/ app-protect
+- For Alpine Linux
 
-# For Amazon Linux 2023, RHEL 9, Rocky Linux 9
-sudo dnf install /offline/packages/*.rpm
+   ```shell
+   sudo apk add -p /offline/packages/ app-protect
+   ```
 
-# For Debian, Ubuntu
-sudo dpkg -i /offline/packages/*.deb
+- For Amazon Linux 2023, RHEL 9, Rocky Linux 9
 
-# For Oracle Linux, RHEL 8, Rocky Linux 8
-sudo yum localinstall /offline/packages/*.rpm
-```
+   ```shell
+   sudo dnf install /offline/packages/*.rpm
+   ```
+
+- For Debian, Ubuntu
+
+   ```shell
+   sudo apt install ./offline/packages/*.deb
+   ```
+
+- For Oracle Linux, RHEL 8, Rocky Linux 8
+
+   ```shell
+   sudo yum localinstall /offline/packages/*.rpm
+   ```
 
 ## Download Docker images
 
 After pulling or building Docker images in a connected environment, you can save them to `.tar` files:
 
-```shell
-docker save -o waf-enforcer.tar waf-enforcer:{{< version-waf-enforcer >}}
-docker save -o waf-config-mgr.tar waf-config-mgr:{{< version-waf-config-mgr >}}
-# Optional, if using IP intelligence
-docker save -o waf-ip-intelligence.tar waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
-```
+   ```shell
+   docker save -o waf-enforcer.tar waf-enforcer:{{< version-waf-enforcer >}}
+   docker save -o waf-config-mgr.tar waf-config-mgr:{{< version-waf-config-mgr >}}
+   # Optional, if using IP intelligence
+   docker save -o waf-ip-intelligence.tar waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
+   ```
 
 You can then transfer the files and load the images in your disconnected environment:
 
-```shell
-docker load -i waf-enforcer.tar
-docker load -i waf-config-mgr.tar
-# Optional, if using IP intelligence
-docker load -i waf-ip-intelligence.tar
-```
+   ```shell
+   docker load -i waf-enforcer.tar
+   docker load -i waf-config-mgr.tar
+   # Optional, if using IP intelligence
+   docker load -i waf-ip-intelligence.tar
+   ```
 
 Ensure your Docker compose files use the tagged images you've transferred.
