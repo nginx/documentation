@@ -72,7 +72,7 @@ When working with package files, you can install the packages directly in your d
 
 The first step is to download the package files from your connected environment, where you have internet access and the NGINX repository credentials).
 
-This will vary based on your operating system choice, which determines your package manager. Select your operating system below.
+See the section for your operating system below:
 
 ### Alpine Linux
 
