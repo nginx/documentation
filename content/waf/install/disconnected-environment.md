@@ -18,7 +18,7 @@ To complete this guide, you will need the following prerequisites:
     - [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md#before-you-begin" >}})
     - [Docker]({{< ref "/waf/install/docker.md#before-you-begin" >}})
     - [Kubernetes]({{< ref "/waf/install/kubernetes.md#before-you-begin" >}})
-- An active F5 WAF for NGINX subscription (Purchased or trial) with repository credentials (JWT token or username/password).
+- An active F5 WAF for NGINX subscription (purchased or trial) with repository credentials (JWT token or username/password).
 - A connected environment with similar architecture and internet access to the NGINX package repositories.
 - A method to transfer files between two environments (USB drive, SCP, rsync, etc.).
 - For package downloads on apt-based systems: `wget`, `gnupg`, `ca-certificates`, and `apt-transport-https`.
@@ -68,7 +68,7 @@ hugo server
 
 When working with package files, you can install the packages directly in your disconnected environment, or add them to an internal repository.
 
-The first step is to download the package files from your connected environment, where you have internet access and the NGINX repository credentials.
+The first step is to download the package files from a connected environment that has internet access and your NGINX repository credentials.
 
 See the section for your operating system below:
 
@@ -292,7 +292,7 @@ See the section for your operating system below:
 
 ### Transfer the packages
 
-Once you've obtained the package files in your connected environment, transfer the packages directory to your disconnected environment using your preferred or avaliable method: USB drive, SCP, rsync, etc.
+After you've downloaded the package files in your connected environment, transfer the `packages` directory to your disconnected environment using a method that works for you, such as a USB drive, SCP, or rsync.
 
 ### Install the packages
 
