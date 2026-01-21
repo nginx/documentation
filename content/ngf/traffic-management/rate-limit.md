@@ -567,11 +567,11 @@ spec:
         key: "\$binary_remote_addr"
         rate: 10r/s
     logLevel: "warn"
-    rejectCode: 502
+    rejectCode: 429
 EOF
 ```
 
-This will change the logLevel to `warn` and the rejectCode to `502`. 
+This will change the logLevel to `warn` and the rejectCode to `429`. 
 
 Send some requests to the tea application with the new logLevel and rejectCode:
 
@@ -586,14 +586,14 @@ kubectl logs <gateway-nginx-pod-name>
 ```
 
 ```text
-127.0.0.1 - - [15/Jan/2026:20:49:09 +0000] "GET /tea HTTP/1.1" 200 155 "-" "curl/8.7.1"
-127.0.0.1 - - [15/Jan/2026:20:49:09 +0000] "GET /tea HTTP/1.1" 502 150 "-" "curl/8.7.1"
-2026/01/15 20:49:09 [warn] 5990#5990: *2973 limiting requests, excess: 0.580 by zone "default_rl_gateway-rate-limit_rule0", client: 127.0.0.1, server: cafe.example.com, request: "GET /tea HTTP/1.1", host: "cafe.example.com:8080"
-127.0.0.1 - - [15/Jan/2026:20:49:09 +0000] "GET /tea HTTP/1.1" 502 150 "-" "curl/8.7.1"
-2026/01/15 20:49:09 [warn] 5991#5991: *2974 limiting requests, excess: 0.120 by zone "default_rl_gateway-rate-limit_rule0", client: 127.0.0.1, server: cafe.example.com, request: "GET /tea HTTP/1.1", host: "cafe.example.com:8080"
-127.0.0.1 - - [15/Jan/2026:20:49:09 +0000] "GET /tea HTTP/1.1" 200 155 "-" "curl/8.7.1"
-127.0.0.1 - - [15/Jan/2026:20:49:09 +0000] "GET /tea HTTP/1.1" 502 150 "-" "curl/8.7.1"
-2026/01/15 20:49:09 [warn] 5993#5993: *2977 limiting requests, excess: 0.370 by zone "default_rl_gateway-rate-limit_rule0", client: 127.0.0.1, server: cafe.example.com, request: "GET /tea HTTP/1.1", host: "cafe.example.com:8080"
+127.0.0.1 - - [21/Jan/2026:18:55:39 +0000] "GET /tea HTTP/1.1" 200 155 "-" "curl/8.7.1"
+127.0.0.1 - - [21/Jan/2026:18:55:39 +0000] "GET /tea HTTP/1.1" 429 162 "-" "curl/8.7.1"
+2026/01/21 18:55:39 [warn] 1290#1290: *595 limiting requests, excess: 0.580 by zone "default_rl_gateway-rate-limit_rule0", client: 127.0.0.1, server: cafe.example.com, request: "GET /tea HTTP/1.1", host: "cafe.example.com:8080"
+127.0.0.1 - - [21/Jan/2026:18:55:39 +0000] "GET /tea HTTP/1.1" 200 155 "-" "curl/8.7.1"
+127.0.0.1 - - [21/Jan/2026:18:55:39 +0000] "GET /tea HTTP/1.1" 429 162 "-" "curl/8.7.1"
+2026/01/21 18:55:39 [warn] 1292#1292: *598 limiting requests, excess: 0.470 by zone "default_rl_gateway-rate-limit_rule0", client: 127.0.0.1, server: cafe.example.com, request: "GET /tea HTTP/1.1", host: "cafe.example.com:8080"
+2026/01/21 18:55:39 [warn] 1293#1293: *599 limiting requests, excess: 0.020 by zone "default_rl_gateway-rate-limit_rule0", client: 127.0.0.1, server: cafe.example.com, request: "GET /tea HTTP/1.1", host: "cafe.example.com:8080"
+127.0.0.1 - - [21/Jan/2026:18:55:39 +0000] "GET /tea HTTP/1.1" 429 162 "-" "curl/8.7.1"
 ```
 
 ## Important Notes
