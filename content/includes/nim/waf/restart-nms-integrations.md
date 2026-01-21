@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-000
+nd-product: NIMNGR
 nd-files:
 - content/nim/waf-integration/configuration/compiler-resource-pruning.md
 - content/nim/waf-integration/configuration/install-waf-compiler/download-from-myf5.md

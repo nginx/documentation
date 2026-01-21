@@ -1,5 +1,5 @@
 ---
-nd-product: MSC
+nd-product: MISCEL
 nd-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
 - content/nic/install/images/registry-download.md

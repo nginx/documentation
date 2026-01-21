@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1464
+nd-product: INGRESS
 nd-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
