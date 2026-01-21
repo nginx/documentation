@@ -38,7 +38,7 @@ In this section, you’ll update the file so F5 WAF for NGINX can integrate with
         services:
           waf-enforcer:
             container_name: waf-enforcer
-            image: private-registry.nginx.com/nap/waf-enforcer:5.2.0
+            image: private-registry.nginx.com/nap/waf-enforcer:5.11.0
             user: 101:1002
             environment:
               - ENFORCER_PORT=50000
@@ -53,7 +53,7 @@ In this section, you’ll update the file so F5 WAF for NGINX can integrate with
 
           waf-config-mgr:
             container_name: waf-config-mgr
-            image: private-registry.nginx.com/nap/waf-config-mgr:5.2.0
+            image: private-registry.nginx.com/nap/waf-config-mgr:5.11.0
             user: 101:1002
             volumes:
               - /opt/app_protect/bd_config:/opt/app_protect/bd_config
