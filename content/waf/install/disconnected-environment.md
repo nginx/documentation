@@ -90,13 +90,9 @@ See the section for your operating system below:
 1. Create a directory for packages and download app-protect:
 
    ```shell
-   mkdir -p /offline/packages/
-   sudo apk update
-   sudo apk fetch -R -o /offline/packages/ \
-   app-protect \
-   app-protect-attack-signatures \
-   app-protect-bot-signatures \
-   app-protect-threat-campaigns
+  apk update
+  mkdir -p /offline/packages && cd /offline/packages
+  apk fetch --recursive app-protect app-protect-attack-signatures app-protect-bot-signatures app-protect-threat-campaigns
    ```
 
 #### Amazon Linux 2023
