@@ -85,7 +85,7 @@ The NLK controller can be installed in your Kubernetes cluster using either Helm
 Install the NLK controller using `helm install`. Be sure your kubectl context is pointed at the desired cluster.
 
 ```shell
-helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.4 \
+helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.6 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
   --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus" \
   --set "nlk.config.tls.mode=ca-tls"
@@ -117,7 +117,7 @@ az k8s-extension create \
 
 ##### Install the AKS Extension using the Azure portal
 
-You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps. 
+You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps.
 {{< call-out "note" >}}
 If you are creating a new AKS cluster as part of this installation, note that we will enable the [Azure CNI Node Subnet plugin](https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview). This causes Cluster IP addresses to be exposed within your VNET.
 {{< /call-out >}}

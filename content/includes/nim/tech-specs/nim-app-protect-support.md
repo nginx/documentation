@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1068
+nd-product: NIMNGR
 nd-files:
 - content/nim/fundamentals/tech-specs.md
 - content/nim/releases/release-notes.md
@@ -11,7 +12,7 @@ NGINX Instance Manager supports the following versions of [F5 WAF for NGINX](htt
 
 | NGINX Instance Manager | F5 WAF for NGINX                                |
 | ---------------------- | ----------------------------------------------- |
-| 2.21.0                 | Release 4.8.0–4.16.0, 5.1.0–5.8.0, 5.9.0–5.10.0 |
+| 2.21.0                 | Release 4.8.0–4.16.0, 5.1.0–5.11.0 |
 | 2.17.0–2.20.1          | Release 4.8.0–4.16.0, 5.1.0–5.8.0               |
 | 2.15.1–2.16.0          | Release 4.8.0–4.10.0                            |
 | 2.14.1–2.15.0          | Release 4.4.0–4.7.0                             |

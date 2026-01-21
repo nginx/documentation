@@ -51,9 +51,9 @@ Some directives are not supported because of specific limitations. If you includ
   |------------------ | ----------------- |
   | ssl_engine        | No hardware SSL accelerator is available. |
   | debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
-  | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
+  | fastcgi_bind <br /> fastcgi_bind_dynamic <br /> grpc_bind <br /> grpc_bind_dynamic <br /> memcached_bind <br /> memcached_bind_dynamic <br /> proxy_bind <br /> proxy_bind_dynamic <br /> scgi_bind <br /> scgi_bind_dynamic <br /> tunnel_bind <br /> tunnel_bind_dynamic <br /> uwsgi_bind <br /> uwsgi_bind_dynamic   | Source IP specification for active-active deployments is not allowed.           |
   | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.
-  | acme_issuer <br /> uri <br /> account_key <br /> contact <br /> ssl_trusted_certificate <br /> ssl_verify <br /> state_path <br />                accept_terms_of_service <br /> acme_shared_zone <br /> acme_certificate <br /> | ACME protocol support for active-active deployments is not supported. 
+  | acme_issuer <br /> uri <br /> account_key <br /> contact <br /> ssl_trusted_certificate <br /> ssl_verify <br /> state_path <br />                accept_terms_of_service <br /> acme_shared_zone <br /> acme_certificate <br /> | ACME protocol support for active-active deployments is not supported.
 
 {{< /table >}}
 
@@ -100,7 +100,9 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [add_after_body](https://nginx.org/en/docs/http/ngx_http_addition_module.html#add_after_body)\
 [add_before_body](https://nginx.org/en/docs/http/ngx_http_addition_module.html#add_before_body)\
 [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header)\
+[add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit)\
 [add_trailer](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer)\
+[add_trailer_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer_inherit)\
 [addition_types](https://nginx.org/en/docs/http/ngx_http_addition_module.html#addition_types)\
 [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio)\
 [aio_write](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio_write)\
@@ -175,6 +177,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [extra_auth_args](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args)\
 [f4f](https://nginx.org/en/docs/http/ngx_http_f4f_module.html#f4f)\
 [f4f_buffer_size](https://nginx.org/en/docs/http/ngx_http_f4f_module.html#f4f_buffer_size)\
+[fastcgi_allow_upstream](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_allow_upstream)\
+[fastcgi_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_bind_dynamic)\
 [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size)\
 [fastcgi_buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering)\
 [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers)\
@@ -215,6 +219,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [fastcgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_headers)\
 [fastcgi_read_timeout](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_read_timeout)\
 [fastcgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_request_buffering)\
+[fastcgi_request_dynamic](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_request_dynamic)\
 [fastcgi_send_lowat](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_send_lowat)\
 [fastcgi_send_timeout](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_send_timeout)\
 [fastcgi_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_socket_keepalive)\
@@ -224,8 +229,11 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [fastcgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_file_write_size)\
 [fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path)\
 [flv](https://nginx.org/en/docs/http/ngx_http_flv_module.html#flv)\
+[frontchannel_logout_uri](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#frontchannel_logout_uri)\
 [geo (ngx_http_geo_module)](https://nginx.org/en/docs/http/ngx_http_geo_module.html#geo)\
 [geo (ngx_stream_geo_module)](https://nginx.org/en/docs/stream/ngx_stream_geo_module.html#geo)\
+[grpc_allow_upstream](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_allow_upstream)\
+[grpc_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_bind_dynamic)\
 [grpc_buffer_size](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size)\
 [grpc_connect_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_connect_timeout)\
 [grpc_hide_header](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_hide_header)\
@@ -237,6 +245,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass)\
 [grpc_pass_header](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass_header)\
 [grpc_read_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_read_timeout)\
+[grpc_request_dynamic](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_request_dynamic)\
 [grpc_send_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_send_timeout)\
 [grpc_set_header](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_set_header)\
 [grpc_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_socket_keepalive)\
@@ -412,6 +421,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [match (ngx_stream_upstream_hc_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match)\
 [max_errors](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#max_errors)\
 [max_ranges](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_ranges)\
+[memcached_allow_upstream](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_allow_upstream)\
+[memcached_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_bind_dynamic)\
 [memcached_buffer_size](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_buffer_size)\
 [memcached_connect_timeout](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_connect_timeout)\
 [memcached_gzip_flag](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_gzip_flag)\
@@ -440,12 +451,14 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [mp4_max_buffer_size](https://nginx.org/en/docs/http/ngx_http_mp4_module.html#mp4_max_buffer_size)\
 [mp4_start_key_frame](https://nginx.org/en/docs/http/ngx_http_mp4_module.html#mp4_start_key_frame)\
 [mqtt](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt)\
+[mqtt_buffers](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffers)\
 [mqtt_rewrite_buffer_size](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_rewrite_buffer_size)\
 [mqtt_set_connect](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_set_connect)\
 [msie_padding](https://nginx.org/en/docs/http/ngx_http_core_module.html#msie_padding)\
 [msie_refresh](https://nginx.org/en/docs/http/ngx_http_core_module.html#msie_refresh)\
 [multi_accept](https://nginx.org/en/docs/ngx_core_module.html#multi_accept)\
 [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm)\
+[num_map](https://nginx.org/en/docs/http/ngx_http_num_map_module.html#num_map)\
 [oidc_provider](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#oidc_provider)\
 [open_file_cache](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache)\
 [open_file_cache_errors](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache_errors)\
@@ -463,6 +476,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [override_charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#override_charset)\
 [pass](https://nginx.org/en/docs/stream/ngx_stream_pass_module.html#pass)\
 [pid](https://nginx.org/en/docs/ngx_core_module.html#pid)\
+[pkce](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce)\
 [pop3_auth](https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html#pop3_auth)\
 [pop3_capabilities](https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html#pop3_capabilities)\
 [port_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect)\
@@ -471,6 +485,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [preread_buffer_size (ngx_stream_core_module)](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#preread_buffer_size)\
 [preread_timeout (ngx_stream_core_module)](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#preread_timeout)\
 [protocol](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#protocol)\
+[proxy_allow_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_allow_upstream)\
+[proxy_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_bind_dynamic)\
 [proxy_buffer](https://nginx.org/en/docs/mail/ngx_mail_proxy_module.html#proxy_buffer)\
 [proxy_buffer_size (ngx_http_proxy_module)](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)\
 [proxy_buffer_size (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_buffer_size)\
@@ -524,6 +540,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header)\
 [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body)\
 [proxy_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_headers)\
+[proxy_pass_trailers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_trailers)\
 [proxy_protocol (ngx_mail_proxy_module)](https://nginx.org/en/docs/mail/ngx_mail_proxy_module.html#proxy_protocol)\
 [proxy_protocol (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_protocol)\
 [proxy_protocol_timeout (ngx_stream_core_module)](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#proxy_protocol_timeout)\
@@ -531,6 +548,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [proxy_redirect](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect)\
 [proxy_requests (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_requests)\
 [proxy_request_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)\
+[proxy_request_dynamic](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_dynamic)\
 [proxy_responses (ngx_stream_proxy_module)](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_responses)\
 [proxy_send_lowat](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_lowat)\
 [proxy_send_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout)\
@@ -610,6 +628,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [rewrite_log](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite_log)\
 [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root)\
 [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy)\
+[scgi_allow_upstream](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_allow_upstream)\
+[scgi_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_bind_dynamic)\
 [scgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_buffer_size)\
 [scgi_buffering](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_buffering)\
 [scgi_buffers](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_buffers)\
@@ -648,6 +668,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [scgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass_request_headers)\
 [scgi_read_timeout](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_read_timeout)\
 [scgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_request_buffering)\
+[scgi_request_dynamic](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_request_dynamic)\
 [scgi_send_timeout](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_send_timeout)\
 [scgi_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_socket_keepalive)\
 [scgi_store](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_store)\
@@ -708,6 +729,9 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_certificate (ngx_mgmt_module)](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_certificate)\
 [ssl_certificate_cache (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_cache)\
 [ssl_certificate_cache (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_cache)\
+[ssl_certificate_compression (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_compression)\
+[ssl_certificate_compression (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_compression)\
+[ssl_certificate_compression (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_compression)\
 [ssl_certificate_key (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key)\
 [ssl_certificate_key (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_certificate_key)\
 [ssl_certificate_key (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_key)\
@@ -799,6 +823,19 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [timeout](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#timeout)\
 [timer_resolution](https://nginx.org/en/docs/ngx_core_module.html#timer_resolution)\
 [try_files](https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files)\
+[tunnel_allow_upstream](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_allow_upstream)\
+[tunnel_bind](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_bind)\
+[tunnel_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_bind_dynamic)\
+[tunnel_buffer_size](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_buffer_size)\
+[tunnel_connect_timeout](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_connect_timeout)\
+[tunnel_next_upstream](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_next_upstream)\
+[tunnel_next_upstream_timeout](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_next_upstream_timeout)\
+[tunnel_next_upstream_tries](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_next_upstream_tries)\
+[tunnel_pass](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_pass)\
+[tunnel_read_timeout](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_read_timeout)\
+[tunnel_send_lowat](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_send_lowat)\
+[tunnel_send_timeout](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_send_timeout)\
+[tunnel_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_socket_keepalive)\
 [types](https://nginx.org/en/docs/http/ngx_http_core_module.html#types)\
 [types_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#types_hash_bucket_size)\
 [types_hash_max_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#types_hash_max_size)\
@@ -821,6 +858,8 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [userid_service](https://nginx.org/en/docs/http/ngx_http_userid_module.html#userid_service)\
 [userinfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo)\
 [uuid_file](https://nginx.org/en/docs/ngx_mgmt_module.html#uuid_file)\
+[uwsgi_allow_upstream](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_allow_upstream)\
+[uwsgi_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_bind_dynamic)\
 [uwsgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size)\
 [uwsgi_buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffering)\
 [uwsgi_buffers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers)\
@@ -861,6 +900,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [uwsgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass_request_headers)\
 [uwsgi_read_timeout](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_read_timeout)\
 [uwsgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_request_buffering)\
+[uwsgi_request_dynamic](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_request_dynamic)\
 [uwsgi_send_timeout](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_send_timeout)\
 [uwsgi_socket_keepalive](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_socket_keepalive)\
 [uwsgi_ssl_certificate](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ssl_certificate)\
