@@ -71,7 +71,7 @@ The steps in this section must be completed once for each new setup. We will ins
 
 For detailed instructions on creating the dataplane API key and obtaining the API endpoint, see [Create NGINXaaS Dataplane API Key]({{< ref "/nginxaas-azure/quickstart/dataplane-api-key/" >}}).
 
-Make note of:
+Copy the following to a secure location:
 
 - The API key value (you'll need this for the NLK configuration)
 - The dataplane API endpoint (you'll need this with the `/nplus` suffix)

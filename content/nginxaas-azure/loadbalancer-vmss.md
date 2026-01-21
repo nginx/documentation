@@ -46,7 +46,7 @@ Before setting up NGINXaaS load balancing for VMSS, ensure you have:
 **VMSS Orchestration Mode Requirement**: The nginx-asg-sync agent requires Azure Virtual Machine Scale Sets (VMSS) to be configured with **Uniform orchestration mode**. When creating your VMSS, ensure you select "Uniform" for the orchestration mode.
 {{< /call-out >}}
 
-## Getting Started
+## Getting started
 
 ### Create NGINXaaS deployment with dynamic upstreams
 
@@ -95,11 +95,9 @@ http{
 
 [Apply this NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/" >}}) to your NGINXaaS deployment.
 
-### Ensure network connectivity
+### Confirm network connectivity
 
-Ensure network connectivity between your existing Azure Virtual Machine Scale Sets (VMSS) and NGINXaaS deployment:
-
-- Ensure network connectivity between the subnet delegated to the NGINXaaS deployment and VMSS. For example, the VMSS and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
+Verify the network connectivity between the subnet delegated to the NGINXaaS deployment and the existing Azure Virtual Machine Scale Sets (VMSS). For example, the VMSS and NGINXaaS deployment can run on the same Azure VNET or on peered VNETs.
 
 ### Create NGINXaaS dataplane API key
 
@@ -107,7 +105,7 @@ Create a dataplane API key that the nginx-asg-sync agent will use to authenticat
 
 For detailed instructions on creating the dataplane API key and obtaining the API endpoint, see [Create NGINXaaS Dataplane API Key]({{< ref "/nginxaas-azure/quickstart/dataplane-api-key/" >}}).
 
-Make note of:
+Copy the following to a secure location:
 
 - The API key value (you'll need this for the nginx-asg-sync configuration)
 - The dataplane API endpoint (you'll need this with the `/nplus` suffix)
@@ -129,12 +127,12 @@ You can assign managed identity permissions using:
 
 For detailed instructions on managed identities, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
 
-The following steps show the Azure CLI approach:
+The following steps show how to assign managed identity permissions using the Azure CLI:
 
 <details>
 <summary><strong>Show Azure CLI Steps</strong></summary>
 
-#### Enable System Assigned Managed Identity on the VM
+#### Enable system-assigned managed identity on the VM
 
 Enable system-assigned managed identity on your nginx-asg-sync VM:
 
@@ -152,7 +150,7 @@ az vm identity assign \
   --name $vmName
 ```
 
-#### Get the VM's Managed Identity Principal ID
+#### Get the VM's managed identity principal ID
 
 Retrieve the principal ID of the VM's system-assigned managed identity:
 
@@ -165,7 +163,7 @@ principalId=$(az vm show \
   --output tsv)
 ```
 
-#### Create the Custom Role
+#### Create the custom role
 
 Create a custom role with only the necessary permissions for nginx-asg-sync:
 
@@ -194,7 +192,7 @@ az role definition create \
   --role-definition vmss-network-read-role.json
 ```
 
-#### Get the VMSS Resource ID (Scope)
+#### Get the VMSS resource ID (scope)
 
 Get the full resource ID of your VMSS to use as the scope for role assignment:
 
@@ -207,7 +205,7 @@ vmssId=$(az vmss show \
   --output tsv)
 ```
 
-#### Assign the Custom Role to the VM's Managed Identity
+#### Assign the custom role to the VM's managed identity
 
 Assign the custom role to the VM's system-assigned managed identity:
 
@@ -223,7 +221,7 @@ az role assignment create \
   --scope $vmssId
 ```
 
-#### Verify Role Assignment
+#### Verify role assignment
 
 Verify that the role assignment was created successfully:
 
@@ -311,7 +309,7 @@ docker run --rm -it \
 
 Deploy nginx-asg-sync as an Azure Container Instance with persistent configuration stored in Azure Files. [Azure Container Instances (ACI)](https://learn.microsoft.com/en-us/azure/container-instances/) provides a serverless way to run containerized applications without managing virtual machines. ACI is ideal for scenarios that need on-demand, burstable, and pay-per-execution container workloads:
 
-#### Create Azure Storage Account
+#### Create Azure storage account
 
 Create a storage account to store the nginx-asg-sync configuration file:
 
@@ -329,7 +327,7 @@ az storage account create \
   --sku Standard_LRS
 ```
 
-##### Create File Share
+##### Create file share
 
 Create a file share within the storage account:
 
@@ -340,7 +338,7 @@ az storage share create \
   --name configshare
 ```
 
-##### Upload Configuration File
+##### Upload configuration file
 
 Upload your nginx-asg-sync configuration file to the file share. Create the `config.yaml` file using the content described in [Configuration file](#configuration-file):
 
@@ -352,7 +350,7 @@ az storage file upload \
   --source config.yaml
 ```
 
-##### Create User-Assigned Managed Identity and Assign VMSS Permissions
+##### Create user-asigned managed identity and assign VMSS permissions
 
 Create a user-assigned managed identity and assign the custom role for VMSS access. Use or create the same custom role as mentioned in [Create the Custom Role](#create-the-custom-role):
 
@@ -399,7 +397,7 @@ az role assignment create \
   --scope $vmssId
 ```
 
-##### Create Container Instance
+##### Create container instance
 
 Deploy the nginx-asg-sync container instance with the user-assigned managed identity that has proper VMSS permissions:
 
@@ -434,7 +432,7 @@ az container create \
   --azure-file-volume-mount-path /etc/nginx
 ```
 
-##### Verify ACI Deployment
+##### Verify ACI deployment
 
 Check that the container instance is running successfully:
 
@@ -554,7 +552,7 @@ Example output when the agent starts successfully:
 
 ```
 
-## Monitoring and Troubleshooting
+## Monitoring and troubleshooting
 
 ### Verify upstream updates
 
