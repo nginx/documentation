@@ -7,11 +7,11 @@ nd-product: FABRIC
 nd-docs: DOCS-1848
 ---
 
-{{< call-out "important" >}}This guide previously showed how to use `SnippetsFilters` to configure Rate Limiting in NGINX. However, first-class support for Rate Limiting is now supported through the `RateLimitPolicy` API. This guide has been changed to provide an example for adding custom request and response headers containing NGINX variables. 
+{{< call-out "important" >}}This guide previously showed how to use `SnippetsFilters` to configure Rate Limiting in NGINX. However, first-class support for Rate Limiting is now supported through the `RateLimitPolicy` API. This guide has been changed to provide an example of how to use `limit_conn` to limit the number of connections to a location and `limit_except` to limit the allowed HTTP methods.
 
 For a guide on how to configure Rate Limiting, see our guide on the [RateLimitPolicy API]({{< ref"./rate-limit.md" >}}). {{< /call-out >}}
 
-This topic introduces Snippets, how to implement them using the `SnippetsFilter` and `SnippetsPolicy` APIs, and provides an example of how to use them to create custom request and response headers containing NGINX variables.
+This topic introduces Snippets, how to implement them using the `SnippetsFilter` and `SnippetsPolicy` APIs, and provides an example of how to use them to limit the number of connections to a location using the [limit_conn](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn) NGINX directive and limit the allowed HTTP methods inside a location using the [limit_except](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_except) NGINX directive.
 
 ## Overview
 
@@ -193,27 +193,30 @@ Server name: tea-76c7c85bbd-cf8nz
 
 ## Create a SnippetsFilter
 
-Create a `SnippetsFilter` named `request-time-sf` by adding the following `SnippetsFilter`:
+Create a `SnippetsFilter` named `limit-except-sf` by adding the following `SnippetsFilter`:
 
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: SnippetsFilter
 metadata:
-  name: request-time-sf
+  name: limit-except-sf
 spec:
   snippets:
     - context: http.server.location
-      value: add_header request_processing_time "This is the custom response header we added in our SnippetsFilter that shows the request time in seconds - $request_time" always;
+      value: |
+        limit_except GET {
+          deny all;
+        }
 EOF
 ```
 
-This `SnippetsFilter` defines a single Snippet at the `http.server.location` context which uses the `add_header` NGINX directive to add a custom header to any responses. In this case, we are adding a header that uses the `$request_time` NGINX variable which represents the request processing time. 
+This `SnippetsFilter` defines a single Snippet at the `http.server.location` context which uses the `limit_except` NGINX directive to restrict all HTTP methods besides `GET`. Requests with other HTTP methods will have a status code `403 Forbidden` response.
 
 Verify that the `SnippetsFilter` is Accepted:
 
 ```shell
-kubectl describe snippetsfilters.gateway.nginx.org request-time-sf
+kubectl describe snippetsfilters.gateway.nginx.org limit-except-sf
 ```
 
 You should see the following status:
@@ -234,7 +237,7 @@ Events:                      <none>
 
 ### Configure coffee HTTPRoute to reference SnippetsFilter
 
-To use the `request-time-sf` `SnippetsFilter`, update the coffee HTTPRoute to reference it:
+To use the `limit-except-sf` `SnippetsFilter`, update the coffee HTTPRoute to reference it:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -258,7 +261,7 @@ spec:
           extensionRef:
             group: gateway.nginx.org
             kind: SnippetsFilter
-            name: request-time-sf
+            name: limit-except-sf
       backendRefs:
         - name: coffee
           port: 80
@@ -289,80 +292,85 @@ CConditions:
       Type:                  ResolvedRefs
 ```
 
-Test that the `request-time-sf` `SnippetsFilter` is configured and has successfully applied the response header NGINX configuration changes.
+Test that the `limit-except-sf` `SnippetsFilter` is configured and has successfully applied the NGINX configuration changes to limit HTTP methods.
 
-Send a curl request to coffee with the `-v` flag:
-
-```shell
-curl -v --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
-```
-
-The `request_processing_time` header we defined in the `SnippetsFilter` should be present in the response:
-
-```text
-...
-* Request completely sent off
-< HTTP/1.1 200 OK
-< Server: nginx
-< Date: Sat, 17 Jan 2026 00:30:13 GMT
-< Content-Type: text/plain
-< Content-Length: 160
-< Connection: keep-alive
-< Expires: Sat, 17 Jan 2026 00:30:12 GMT
-< Cache-Control: no-cache
-< request_processing_time: This is the custom response header we added in our SnippetsFilter that shows the request time in seconds - 0.004
-...
-```
-
-Since the `SnippetsFilter` was only referenced on the coffee HTTPRoute and the context was `http.server.location`, the tea HTTPRoute should not be affected and any curl requests to it should not show the header. To verify send the same request to tea:
+Send a `GET` curl request to coffee:
 
 ```shell
-curl -v --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee -X GET
+```
+
+A successful response should be returned:
+
+```text
+Server address: 10.244.0.35:8080
+Server name: coffee-654ddf664b-kmzzs
+Date: 21/Jan/2026:21:05:11 +0000
+URI: /coffee
+Request ID: f6abf5a1acef974864ca53ed3de2fa71
+```
+
+Send a `POST` curl request to coffee:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee -X POST
+```
+
+A `403 Forbidden` response should be returned:
+
+```text
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+```
+
+Since the `SnippetsFilter` was only referenced on the coffee HTTPRoute and the context was `http.server.location`, the tea HTTPRoute should not be affected. To verify, send a `POST` request to tea:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea -POST
 ```
 
 ```text
-...
-* Request completely sent off
-< HTTP/1.1 200 OK
-< Server: nginx
-< Date: Sat, 17 Jan 2026 00:31:44 GMT
-< Content-Type: text/plain
-< Content-Length: 154
-< Connection: keep-alive
-< Expires: Sat, 17 Jan 2026 00:31:43 GMT
-< Cache-Control: no-cache
-...
+Server address: 10.244.0.36:8080
+Server name: tea-75bc9f4b6d-9msq7
+Date: 21/Jan/2026:21:09:52 +0000
+URI: /tea
+Request ID: 1fa64c2795e476534d2d8d6759a85c4c
 ```
-
-You should see that the `request_processing_time` header is not present.
 
 ## Create a SnippetsPolicy
 
-Create a `SnippetsPolicy` named `local-time-sp` by adding the following `SnippetsPolicy`:
+Create a `SnippetsPolicy` named `limit-conn-sp` by adding the following `SnippetsPolicy`:
 
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: SnippetsPolicy
 metadata:
-  name: local-time-sp
+  name: limit-conn-sp
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: gateway
   snippets:
-    - context: http.server
-      value: proxy_set_header my_request_time "This is the custom request header we added in our SnippetsPolicy which affects the whole Gateway! This is the local time - $time_local";
+    - context: http
+      value: limit_conn_zone $binary_remote_addr zone=addr:10m;
+    - context: http.server.location
+      value: limit_conn addr 1;
 EOF
 ```
 
-This `SnippetsPolicy` defines a single Snippet at the `http.server` context which uses the `proxy_set_header` NGINX directive to add a custom request header. In this case, we are adding a header that uses the `$time_local` NGINX variable which represents the local time the request was processed at. The `SnippetsPolicy` targets the Gateway we deployed earlier by specifying it in the `targetRefs` field, contrasting the `SnippetsFilter` API where a Route needs to reference the filter.
+This `SnippetsPolicy` will configure NGINX to limit the number of connections for a given key value, in our case the `$binary_remote_addr` (client IP address), and when the limit is exceeded, a `503 Service Temporarily Unavailable` status code will be returned. The `SnippetsPolicy` targets the Gateway we deployed earlier by specifying it in the `targetRefs` field, contrasting the `SnippetsFilter` API where a Route needs to reference the filter.
 
 Verify that the `SnippetsPolicy` is Accepted:
 
 ```shell
-kubectl describe snippetspolicies.gateway.nginx.org local-time-sp
+kubectl describe snippetspolicies.gateway.nginx.org limit-conn-sp
 ```
 
 You should see the following status:
@@ -405,120 +413,71 @@ Status:
     Type:                  SnippetsPolicyAffected
 ```
 
-### Verify request header is present
+### Send multiple requests in parallel
 
-The `SnippetsPolicy` targets the Gateway, meaning all attached Routes should be affected. This means that both the coffee and tea applications should be affected and should have a request header added to any requests to them. To verify the `SnippetsPolicy` is working, we will add an ephemeral container to our backend application, then use `tcpdump` to view the incoming request's details and verify our header is present.
+The `SnippetsPolicy` targets the Gateway, meaning all attached Routes should be affected. This means that both the coffee and tea applications should be affected and have their maximum concurrent connections set to one. To verify the `SnippetsPolicy` is working, we will send multiple curl requests in parallel. 
 
-Add an ephemeral container to the coffee application:
-
-```shell
-kubectl debug -it <coffee pod name> --image=nicolaka/netshoot
-```
-
-Once inside the ephemeral container, run `tcmpdump`:
+Send requests to the coffee application:
 
 ```shell
-tcpdump -i eth0 -A -s0
+curl --parallel --parallel-immediate \
+--resolve cafe.example.com:8080:127.0.0.1 "http://cafe.example.com:8080/coffee" \
+--resolve cafe.example.com:8080:127.0.0.1 "http://cafe.example.com:8080/coffee" \
+--resolve cafe.example.com:8080:127.0.0.1 "http://cafe.example.com:8080/coffee"
 ```
 
-In a different terminal, send requests to the coffee application:
-
-```shell
-curl -v --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
-```
-
-For the response to the curl request, you can see that the response header still exists:
+You should see that only a single request had a successful response while the others had `503 Service Temporarily Unavailable` status codes returned:
 
 ```text
 ...
-* Request completely sent off
-< HTTP/1.1 200 OK
-< Server: nginx
-< Date: Sun, 18 Jan 2026 21:39:53 GMT
-< Content-Type: text/plain
-< Content-Length: 160
-< Connection: keep-alive
-< Expires: Sun, 18 Jan 2026 21:39:52 GMT
-< Cache-Control: no-cache
-< request_processing_time: This is the custom response header we added in our SnippetsFilter that shows the request time in seconds - 0.000
-...
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+Server address: 10.244.0.35:8080
+Server name: coffee-654ddf664b-kmzzs
+Date: 21/Jan/2026:21:19:55 +0000
+URI: /coffee
+Request ID: 1ffcc0fae174ea95da472c6984466ae5
 ```
 
-In the terminal running `tcpdump`, you should see the request header alongside other default headers:
+Next, verify the same behavior in the tea application:
+
+Send requests to the tea application:
+
+```shell
+curl --parallel --parallel-immediate \
+--resolve cafe.example.com:8080:127.0.0.1 "http://cafe.example.com:8080/tea" \
+--resolve cafe.example.com:8080:127.0.0.1 "http://cafe.example.com:8080/tea" \
+--resolve cafe.example.com:8080:127.0.0.1 "http://cafe.example.com:8080/tea" 
+```
+
+The results should be the same:
 
 ```text
 ...
-GET /coffee HTTP/1.1
-my_request_time: This is the custom request header we added in our SnippetsPolicy which affects the whole Gateway! This is the local time - 18/Jan/2026:21:24:18 +0000
-Host: cafe.example.com:8080
-X-Forwarded-For: 127.0.0.1
-X-Real-IP: 127.0.0.1
-X-Forwarded-Proto: http
-X-Forwarded-Host: cafe.example.com
-X-Forwarded-Port: 80
-User-Agent: curl/8.7.1
-Accept: */*
-...
-```
-
-Next, verify that requests to the tea application also contain that request header:
-
-Add an ephemeral container to the tea application:
-
-```shell
-kubectl debug -it <tea pod name> --image=nicolaka/netshoot
-```
-
-Once inside the ephemeral container, run `tcmpdump`:
-
-```shell
-tcpdump -i eth0 -A -s0
-```
-
-In a different terminal, send requests to the tea application:
-
-```shell
-curl -v --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
-```
-
-For the response to the curl request, you can see that the response header added in the `SnippetsFilter` to coffee is not present:
-
-```text
-...
-* Request completely sent off
-< HTTP/1.1 200 OK
-< Server: nginx
-< Date: Sun, 18 Jan 2026 21:39:53 GMT
-< Content-Type: text/plain
-< Content-Length: 160
-< Connection: keep-alive
-< Expires: Sun, 18 Jan 2026 21:39:52 GMT
-< Cache-Control: no-cache
-...
-```
-
-In the terminal running `tcpdump`, you should see the request header alongside other default headers:
-
-```text
-...
-GET /coffee HTTP/1.1
-my_request_time: This is the custom request header we added in our SnippetsPolicy which affects the whole Gateway! This is the local time - 18/Jan/2026:21:24:18 +0000
-Host: cafe.example.com:8080
-X-Forwarded-For: 127.0.0.1
-X-Real-IP: 127.0.0.1
-X-Forwarded-Proto: http
-X-Forwarded-Host: cafe.example.com
-X-Forwarded-Port: 80
-User-Agent: curl/8.7.1
-Accept: */*
-...
+<html>
+<head><title>503 Service Temporarily Unavailable</title></head>
+<body>
+<center><h1>503 Service Temporarily Unavailable</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+Server address: 10.244.0.36:8080
+Server name: tea-75bc9f4b6d-9msq7
+Date: 21/Jan/2026:21:23:07 +0000
+URI: /tea
+Request ID: dfb42090e331b6ae31ed894b9b35d38d
 ```
 
 This shows the `SnippetsPolicy` affecting all of the Gateway, in contrast to the `SnippetsFilter` that only affects the coffee HTTPRoute.
 
 ## Conclusion
 
-Snippets are a powerful tool to modifying NGINX configuration unavailable in first-class policies. This example showed a simple Snippet adding request and response headers, but Snippets can contain any valid NGINX configuration, allowing users to fully customize configuration generated by NGINX Gateway Fabric and shape their NGINX configuration to fit their needs. 
+Snippets are a powerful tool to modifying NGINX configuration unavailable in first-class policies. This example showed a few small simple Snippets, but Snippets can contain any valid NGINX configuration, allowing users to fully customize configuration generated by NGINX Gateway Fabric and shape their NGINX configuration to fit their needs. 
 
 However, as Snippets grow in complexity, because NGINX Gateway Fabric does not provide validation, the risk of generating invalid configuration due to conflicts in existing configuration grows and debugging can be challenging. This is one reason to try to keep Snippet configuration minimal, and to transition to using newly supported first-class polices and APIs if they provide the same NGINX configuration.
 
@@ -529,13 +488,13 @@ If a `SnippetsFilter` or `SnippetsPolicy` is applied with a Snippet which includ
 An example of an error from the NGINX Gateway Fabric `nginx-gateway` container logs:
 
 ```text
-{"level":"error","ts":"2026-01-18T21:54:44Z","logger":"eventHandler","msg":"Failed to update NGINX configuration","error":"msg: Config apply failed, rolling back config; error: failed to parse config invalid number of arguments in \"proxy_set_header\" directive in /etc/nginx/includes/SnippetsPolicy_location_default-local-time-sp.conf:3","stacktrace":"github.com/nginx/nginx-gateway-fabric/v2/internal/controller.(*eventHandlerImpl).waitForStatusUpdates\n\tgithub.com/nginx/nginx-gateway-fabric/v2/internal/controller/handler.go:298"}
+{"level":"error","ts":"2026-01-21T21:30:15Z","logger":"eventHandler","msg":"Failed to update NGINX configuration","error":"msg: Config apply failed, rolling back config; error: failed to parse config invalid number of arguments in \"limit_conn\" directive in /etc/nginx/includes/SnippetsPolicy_location_default-limit-conn-sp.conf:3","stacktrace":"github.com/nginx/nginx-gateway-fabric/v2/internal/controller.(*eventHandlerImpl).waitForStatusUpdates\n\tgithub.com/nginx/nginx-gateway-fabric/v2/internal/controller/handler.go:298"}
 ```
 
 An example of an error from the NGINX Pod's `nginx` container logs:
 
 ```text
-time=2026-01-18T21:54:44.249Z level=ERROR msg="errors found during config apply, sending error status, rolling back config" err="failed to parse config invalid number of arguments in \"proxy_set_header\" directive in /etc/nginx/includes/SnippetsPolicy_location_default-local-time-sp.conf:3" correlation_id=1d701a88-2119-4dd4-9c7a-2b5b95c1b93d server_type=command
+time=2026-01-21T21:30:15.263Z level=ERROR msg="errors found during config apply, sending error status, rolling back config" err="failed to parse config invalid number of arguments in \"limit_conn\" directive in /etc/nginx/includes/SnippetsPolicy_location_default-limit-conn-sp.conf:3" correlation_id=8334bef4-44b3-4d13-93a9-a5fe84e7f351 server_type=command
 ```
 
 If a Gateway is affected by a `SnippetsFilter` or `SnippetsPolicy` that creates invalid NGINX configuration, it may also contain information in its conditions describing the error:
@@ -549,7 +508,7 @@ Conditions:
     Status:                True
     Type:                  Accepted
     Last Transition Time:  2026-01-18T21:58:47Z
-    Message:               The Gateway is not programmed due to a failure to reload nginx with the configuration: msg: Config apply failed, rolling back config; error: failed to parse config invalid number of arguments in "add_header" directive in /etc/nginx/includes/SnippetsFilter_http.server.location_default_request-time-sf.conf:1
+    Message:               The Gateway is not programmed due to a failure to reload nginx with the configuration: msg: Config apply failed, rolling back config; error: failed to parse config invalid number of arguments in "limit_conn" directive in /etc/nginx/includes/SnippetsPolicy_location_default-limit-conn-sp.conf:3
     Observed Generation:   1
     Reason:                Invalid
     Status:                False
@@ -560,7 +519,7 @@ Listeners:
     Conditions:
       ...
       Last Transition Time:  2026-01-18T21:58:47Z
-      Message:               The Listener is not programmed due to a failure to reload nginx with the configuration: msg: Config apply failed, rolling back config; error: failed to parse config invalid number of arguments in "add_header" directive in /etc/nginx/includes/SnippetsFilter_http.server.location_default_request-time-sf.conf:1
+      Message:               The Listener is not programmed due to a failure to reload nginx with the configuration: msg: Config apply failed, rolling back config; error: failed to parse config invalid number of arguments in "limit_conn" directive in /etc/nginx/includes/SnippetsPolicy_location_default-limit-conn-sp.conf:3
       Observed Generation:   1
       Reason:                Invalid
       Status:                False
@@ -579,7 +538,7 @@ Conditions:
       Status:                True
       Type:                  Accepted
       Last Transition Time:  2026-01-18T22:01:13Z
-      Message:               Spec.rules[0].filters[0].extensionRef: Not found: {"group":"gateway.nginx.org","kind":"SnippetsFilter","name":"request-time-sfer"}
+      Message:               Spec.rules[0].filters[0].extensionRef: Not found: {"group":"gateway.nginx.org","kind":"SnippetsFilter","name":"limit-except-sf"}
       Observed Generation:   3
       Reason:                InvalidFilter
       Status:                False
