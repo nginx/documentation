@@ -1,9 +1,9 @@
 ---
-title: Support
+title: Canceling Subscription
 weight: 100
 toc: true
 nd-docs: DOCS-000
-url: /nginxaas/google/get-help/support
+url: /nginxaas/google/get-help/canceling-subscription
 nd-content-type: how-to
 nd-product: NGOOGL
 ---
