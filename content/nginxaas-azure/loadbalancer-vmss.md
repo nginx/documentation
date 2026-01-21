@@ -14,13 +14,13 @@ F5 NGINXaaS for Azure provides seamless integration with Azure Virtual Machine S
 With NGINXaaS load balancing for VMSS, you can:
 
 - Automatically sync VMSS instance IP addresses to NGINX upstreams
-- Scale VMSS instances out and in without NGINX configuration changes
+- Scale VMSS instances without NGINX configuration changes
 
 ## Architecture
 
 ```mermaid
 flowchart TB
-    Agent[nginx-asg-sync Agent] --> |Update upstreams via API| NGINXaaS
+    Agent[nginx-asg-sync Agent] --> |Update upstreams through API| NGINXaaS
     
     MI[Managed Identity] --> |Read permissions| VMSS
     Agent --> |Uses| MI
@@ -30,7 +30,7 @@ flowchart TB
     style VMSS fill:#fff3e0
 ```
 
-The nginx-asg-sync agent monitors your VMSS for scaling changes and automatically updates the NGINXaaS upstream configuration via the dataplane API. This ensures that traffic is distributed to all instances without manual intervention.
+The `nginx-asg-sync` agent (an open-source NGINX agent) monitors your VMSS for scaling changes and automatically updates the NGINXaaS upstream configuration through the dataplane API. This ensures that traffic is distributed to all instances without manual intervention.
 
 ## Prerequisites
 
@@ -50,10 +50,12 @@ Before setting up NGINXaaS load balancing for VMSS, ensure you have:
 
 ### Create NGINXaaS deployment with dynamic upstreams
 
-Create an NGINXaaS deployment. See the [documentation]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy via the Azure portal. Then, 
+Dynamic upstreams are an NGINX abstraction that enables runtime management of backend servers through the [NGINX Plus API](https://docs.nginx.com/nginx/admin-guide/load-balancer/dynamic-configuration-api/). Unlike static upstreams where servers are explicitly defined in the NGINX configuration and remain unchanging at runtime, dynamic upstreams contain servers that are entirely managed by the NGINX Plus API and can be added, removed, or modified during runtime without configuration reloads.
+
+Create an NGINXaaS deployment. See the [documentation]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/" >}}) to deploy using the Azure portal. Then, 
 create an NGINX configuration with dynamic upstreams that will be managed by the nginx-asg-sync agent. The upstream must meet these requirements:
 
-- The upstream cannot have any static servers defined via the `server` directive
+- The upstream cannot have any static servers defined through the `server` directive
 - The upstream must have a shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) defined
 - The upstream must have a [state](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#state) file declared
 
@@ -568,7 +570,7 @@ Check that upstreams are being updated in NGINXaaS:
 1. **Using dataplane API:**
 
    ```bash
-   # Check upstream status via dataplane API
+   # Check upstream status using the dataplane API
    curl -H "Authorization: ApiKey <base64_encoded_dataplane_api_key>" \
         -H "Content-Type: application/json" \
         "<dataplane_endpoint>/nplus/9/http/upstreams/<upstream_name>/servers"
