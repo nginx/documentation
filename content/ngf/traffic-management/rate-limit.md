@@ -27,7 +27,7 @@ When applied to a Gateway, the settings specified in the `RateLimitPolicy` affec
 
 When applied to an HTTPRoute or GRPCRoute, the settings in the `RateLimitPolicy` affect only the route they are applied to. This allows Application Developers to set values for their applications based on their application's behavior or requirements. The `limit_req_zone` NGINX directive will be set at the `http` context, while the other NGINX directives will be set at the `location` context. 
 
-Rate Limit directives applied to an HTTPRoute or GRPCRoute will be applied alongside the Rate Limit directives applied to a Gateway. Requests to an upstream will pass through all `limit_req` directives at the applicable `http` and `location` contexts, if any `limit_req` directive deems the request exceeds the rate configured for the zone, the request will be delayed. As a result, there is no way for a `RateLimitPolicy` set on an HTTPRoute or GRPCRoute to "override" settings set by a `RateLimitPolicy` attached to a Gateway.
+Rate Limit directives applied to an HTTPRoute or GRPCRoute will be applied alongside the Rate Limit directives applied to a Gateway. Requests to an upstream will pass through all `limit_req` directives at the applicable `http` and `location` contexts. If any directive’s configured rate is exceeded, the request will be delayed. As a result, there is no way for a `RateLimitPolicy` set on an HTTPRoute or GRPCRoute to "override" settings set by a `RateLimitPolicy` attached to a Gateway.
 
 This guide will show you how to use the `RateLimitPolicy` API to configure rate limiting for your applications.
 
@@ -168,7 +168,7 @@ EOF
 
 This `RateLimitPolicy` targets the coffee HTTPRoute we created in the setup by specifying it in the `targetRefs` field. It configures the following rate limit settings:
 
-- `zoneSize: "10m"`: Sets the ZoneSize that will keep states for various keys.
+- `zoneSize: "10m"`: Sets the zoneSize that will keep states for various keys.
 - `key: "$binary_remote_addr"`: Sets the key to which the rate limit is applied to be the client IP address. This means that requests from different client IP addresses get rate limited separately.
 - `rate: "1r/s"`: Sets the rate of requests permitted per key to 1 request per second.
 - `burst: "3"`: Sets the maximum burst size of requests to 3. Excessive requests are delayed until their number exceeds the maximum burst size of 3, in which case the request is terminated with an error.
@@ -252,7 +252,7 @@ for i in `seq 1 10`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://c
 
 ### Set Rate Limiting on a GRPCRoute
 
-The `RateLimitPolicy` can also target GRPCRoutes, to do so, we will re-use the policy we created for the coffee HTTPRoute, but add an additional targetRef:
+RateLimitPolicy can also target GRPCRoutes. To do so, re-use the policy created for the coffee HTTPRoute and add an additional targetRef:
 
 ```shell
 kubectl apply -f - <<EOF
@@ -349,7 +349,7 @@ This condition indicates that a `RateLimitPolicy` has been successfully applied 
 
 #### Send gRPC traffic
 
-To access the application and test the `RateLimitPolicy` has been applied to the GRPCRoute, we will use (grpcurl)[https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#installation]
+To access the application and test the `RateLimitPolicy` has been applied to the GRPCRoute, we will use [grpcurl](https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#installation]).
 
 To test our application, we will need to create a separate `.proto` source file since we are running things locally. 
 
@@ -498,7 +498,7 @@ for i in `seq 1 10`; do curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://c
 
 Even though there is no `RateLimitPolicy` specifically targeting the tea HTTPRoute, since the HTTPRoute is attached to the Gateway, it is affected by the policy. There should be a mix of successful responses alongside `503` error codes (default error code). This is expected because of the omission of the `burst` field in this `RateLimitPolicy`, causing the excessive requests to have an error code returned as the response instead of being delayed. For more information on underlying NGINX configuration of the `limit_req_module`, see the official [NGINX documentation](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html).
 
-The `RateLimitPolicy` attached to the Gateway will affect all Routes, meaning the coffee HTTPRoute and grpc-route GRPCRoute are also affected by this policy. In NGINX, a request will pass through all `limit_req` directives that apply to it, if any of the rates are exceeded, that request will be delayed and subject to the rules of that `limit_req`. In this case, since the `RateLimitPolicy` attached to the Routes has the same `key` and has a lower rate of `1r/s`, requests sent to the coffee and grpc-backend under the rate of `5r/s` will still get delayed by the `1r/s` rate.
+The `RateLimitPolicy` attached to the Gateway will affect all Routes, meaning the coffee HTTPRoute and grpc-route GRPCRoute are also affected by this policy. In NGINX, a request will pass through all `limit_req` directives that apply to it, if any of the rates are exceeded, that request will be delayed and subject to the rules of that `limit_req`. In this case, since the `RateLimitPolicy` attached to the Routes has the same `key` and has a lower rate of `1r/s`, requests sent to the coffee and grpc-backend under the rate of `10r/s` will still get delayed by the `1r/s` rate.
 
 To test this, send five requests to the coffee application: 
 
