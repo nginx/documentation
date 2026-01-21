@@ -51,3 +51,7 @@ An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. Resources
 ## Review billing data
 
 Billing data for F5 NGINXaaS for Google Cloud is reported per deployment and can be accessed through the Google Cloud Cost Management Dashboard. Usage metrics and costs are updated hourly, allowing customers to monitor and optimize resource allocation effectively.
+
+## Canceling Subscription
+
+You could unsubscribe from **NGINXaaS for Google Cloud** on the [Marketplace Orders Page](https://console.cloud.google.com/marketplace/orders). When you cancel subscription, any running deployments will immediately enter a **suspended state** and will be scheduled for deletion. In this state, deployments are no longer operational and cannot pass traffic. However, you will still be able to access your deployments in the console to view or delete them, although you will no longer be able to update existing deployments or create new ones while unsubscribed. Even though your deployments are suspended, you will still be able to view, edit, create, and delete configurations and certificates in the console. If you decide to re-subscribe after canceling, please note that you will need to re-create all your deployments from scratch, as any suspended deployments cannot be restored once the cancellation process has started.
