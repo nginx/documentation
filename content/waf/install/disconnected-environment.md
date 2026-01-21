@@ -281,19 +281,22 @@ In the disconnected environment, install the packages:
 - For Alpine Linux
 
    ```shell
-   sudo apk add -p /offline/packages/ app-protect
+   cd /offline/packages
+   apk add --allow-untrusted app-protect*.apk nginx-plus*.apk
    ```
 
 - For Amazon Linux 2023, RHEL 9, Rocky Linux 9
 
    ```shell
-   sudo dnf install /offline/packages/*.rpm
+   cd /offline
+   dnf localinstall -y *.rpm
    ```
 
 - For Debian, Ubuntu
 
    ```shell
-   sudo apt install ./offline/packages/*.deb
+   cd /offline
+   dpkg -i *.deb
    ```
 
 - For Oracle Linux, RHEL 8, Rocky Linux 8
