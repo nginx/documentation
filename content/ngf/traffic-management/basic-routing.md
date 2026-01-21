@@ -363,6 +363,34 @@ You should receive a 404 Not Found error:
 
 ---
 
+## Upgrade WebSocket connections
+
+NGINX Gateway Fabric can upgrade HTTP/1.1 requests to websocket connections when the appropriate headers are present and the backend supports websocket connections. The backend is responsible for completing the handshake by responding with `101 Switching Protocols`. To ensure this example works, your backend must support websocket connections. Send a `curl` request that includes the required websocket upgrade headers, described below:
+
+- `Connection: Upgrade` — requests a protocol change on the current connection.
+- `Upgrade: websocket` — indicates the desired protocol.
+- `Sec-WebSocket-Version: 13` — required websocket protocol version.
+- `Sec-WebSocket-Key` — a random, base64-encoded nonce used by the server to compute `Sec-WebSocket-Accept`.
+
+
+```shell
+curl --http1.1 --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee -H "Upgrade: websocket" -H "Connection: upgrade" -H "Sec-WebSocket-Version: 13" -H "Sec-WebSocket-Key: $(openssl rand -base64 16)"
+```
+
+A websocket-capable backend will reply with:
+
+```text
+< HTTP/1.1 101 Switching Protocols
+< Server: nginx
+< Connection: upgrade
+< Upgrade: websocket
+< Sec-WebSocket-Accept: On5gtTNGCqB4Emnh7Ck4T0b2gks=
+```
+
+Receiving a `101 Switching Protocols` response along with the `Upgrade`, `Connection`, and `Sec-WebSocket-Accept` headers confirms that the websocket connection upgrade completed successfully.
+
+---
+
 ## Troubleshooting
 
 If you have any issues while testing the configuration, try the following to debug your configuration and setup:
