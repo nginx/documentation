@@ -151,15 +151,7 @@ See the section for your operating system below:
    cd /offline/packages
    apt-get update
 
-   for i in $(
-   apt-cache depends --recurse --no-recommends --no-suggests \
-   --no-conflicts --no-breaks --no-replaces --no-enhances \
-   app-protect app-protect-attack-signatures \
-   app-protect-bot-signatures app-protect-threat-campaigns \
-   | grep "^\w" | sort -u
-   ); do
-   apt-get download $i
-   done
+   apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u)
    ```
 
 #### Oracle Linux / RHEL / Rocky Linux 8
