@@ -606,6 +606,10 @@ Since Routes are affected by all `RateLimitPolicies` on a Gateway, there is no w
 
 When multiple `RateLimitPolicies` select the same targetRef and specify any of dryRun, logLevel, or rejectCode, only one policy will be applied. The controller selects the policy with the highest priority (based on time created, if created at the same time, ties are calculated on alphabetical order sorting of the policy name) and rejected policies will have the `Accepted` Condition set to false with the reason `Conflicted`.
 
+### Dry Run
+
+The [limit_req_dry_run](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_dry_run) NGINX directive can be enabled by setting `spec.rateLimit.dryRun` to `true`. In this mode, rate limit is not applied, but the number of excessive requests is accounted as usual in the shared memory zone.
+
 ## See also
 
 - [NGINX limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html): for more information on the underlying NGINX directives.
