@@ -610,6 +610,32 @@ When multiple `RateLimitPolicies` select the same targetRef and specify any of d
 
 The [limit_req_dry_run](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_dry_run) NGINX directive can be enabled by setting `spec.rateLimit.dryRun` to `true`. In this mode, rate limit is not applied, but the number of excessive requests is accounted as usual in the shared memory zone.
 
+### NGINX Worker process not reloading after modifying key of existing limit_req_zone
+
+In NGINX, there is a measure of protection against modifying the `key` of an existing `limit_req_zone`, if done so, this error message will show up in the NGINX logs and the worker processes won't be reloaded, meaning the new configuration won't be in effect:
+
+```text
+2026/01/21 23:45:45 [emerg] 32645#32645: limit_req (a zone name) uses the (new key name) key while previously it used the (old key name) key
+```
+
+This will occur in the `RateLimitPolicy` if the `key` for a rule is modified after creation of the policy. This won't occur upon first creation of the `RateLimitPolicy`, or when adding new rules, only when modifying an existing rule.
+
+A workaround is to either delete and re-deploy the `RateLimitPolicy` or to modify the `zoneSize` field alongside the `key`. Modifying the `zoneSize` will result in the creation of a new zone and a reloading of NGINX processes.
+
+You can verify the worker processes have been reloaded by checking for these NGINX logs:
+
+```text
+...
+2026/01/22 19:17:24 [notice] 12#12: start worker process 85
+2026/01/22 19:17:24 [notice] 12#12: start worker process 86
+2026/01/22 19:17:24 [notice] 12#12: start worker process 87
+2026/01/22 19:17:24 [notice] 48#48: gracefully shutting down
+2026/01/22 19:17:24 [notice] 49#49: gracefully shutting down
+...
+time=2026-01-22T19:17:27.978Z level=INFO msg="NGINX workers have been reloaded" correlation_id=e0c6953c-cb1d-45fd-826f-0bf66a192700 server_type=command
+time=2026-01-22T19:17:27.978Z level=INFO msg="NGINX reloaded" process_id=12 correlation_id=e0c6953c-cb1d-45fd-826f-0bf66a192700 server_type=command
+```
+
 ## See also
 
 - [NGINX limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html): for more information on the underlying NGINX directives.
