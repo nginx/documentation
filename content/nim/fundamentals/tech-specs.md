@@ -34,24 +34,15 @@ NGINX Instance Manager supports the following versions :
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Nginx Instance Manager Version   | Helm chart & version            | Docker-Compose version                      | End of Technical Support                          |
-|----------------------------------|-----------------------------|-------------------------------------------- |---------------------------------------------------|
-| 2.21.0                                 | ngnx-stable/nim : 2.1.0     |  2.21.0                                     | Nov 07, 2027                                      |
-| 2.20.1                                 | ngnx-stable/nim : 2.0.1     |  2.20.1                                     | Dec 18, 2027                                      |
-| 2.20.0                                 | ngnx-stable/nim : 2.0.0     |  2.20.0                                     | Jun 15, 2027                                      |
-| 2.19.3                                 | ngnx-stable/nms-hybrid : 2.19.3    |  2.19.3                                         | Dec 18, 2026                                      |
-| 2.19.2                                 | ngnx-stable/nms-hybrid : 2.19.2    |  2.19.2                                         | May 08, 2026                                      |
-| 2.19.1                                 | ngnx-stable/nms-hybrid : 2.19.1    |  --                                         | Mar 26, 2026                                      |
-| 2.19.0                                 | ngnx-stable/nms-hybrid : 2.19.0    |  --                                         | Feb 06 10, 2026                                      |
-| 2.18.1                                 | ngnx-stable/nms : 1.15.1    |  --                                         | Jul 23, 2026                                      |
-| 2.18.0                                 | ngnx-stable/nms : 1.15.0    |  --                                         | Jul 10, 2026                                      |
-| 2.17.4                                 | ngnx-stable/nms : 1.14.4    |  --                                         | Nov 05, 2026                                      |
-| 2.17.3                                 | ngnx-stable/nms : 1.14.3    |  --                                         | Sep 13, 2026                                      |
-| 2.17.2                                 | ngnx-stable/nms : 1.14.2    |  --                                         | Aug 22, 2026                                      |
-| 2.17.1                                 | ngnx-stable/nms : 1.14.1    |  --                                         | Jul 23, 2026                                      |
-| 2.17.0                                 | ngnx-stable/nms : 1.14.0    |  --                                         | Jul 10, 2026                                      |
-| 2.16.0                                 | ngnx-stable/nms : 1.13.0    |  --                                         | Apr 16, 2026                                      |
-| 2.15.1                                 | ngnx-stable/nms : 1.12.1    |  --                                         | Feb 14, 2026                                      |
+| Nginx Instance Manager Version  | End of Technical Support                          |
+|----------------------------------|---------------------------------------------------|
+| 2.21.x                          | Nov 07, 2027                                      |
+| 2.20.x                            | Jun 15, 2027                                      |
+| 2.19.x                                            | Feb 06 10, 2026                                      |
+| 2.18.x                                                | Jul 10, 2026                                      |
+| 2.17.x                                                      | Nov 08, 2026                                      |
+| 2.16.x                                                             | Apr 16, 2026                                      |
+| 2.15.x                                                                 | Dec 13, 2025                                      |
 
 {{</bootstrap-table>}}
 
