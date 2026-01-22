@@ -206,3 +206,58 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 {{% /tab %}}
 
 {{< /tabs >}}
+
+## Install the WAF compiler in Air-gapped Kubernetes environment
+
+**On a system with internet access:**
+
+Build the following Dockerfile by updating the base image version and target compiler version as per your requirement. Here , in this example, we've used NIM version as latest 2.21.0 ( Which comes with WAF compiler v5.527.0) and additional WAF compiler to be installed as v5.550.0.
+
+ ```shell
+FROM private-registry.nginx.com/nms/integrations:2.21.0
+# switch back to root so apt works
+USER root
+ARG NMS_NAP_COMPILER_VERSION=5.550.0
+ENV NMS_NAP_COMPILER_PACKAGE=nms-nap-compiler-v${NMS_NAP_COMPILER_VERSION}
+
+# Install the additional target compiler from NGINX private repository
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    wget -qO - https://nginx.org/keys/nginx_signing.key | gpg --dearmor | \
+      tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null \
+    && gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg \
+    && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/nms/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nim.list \
+    && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y ${NMS_NAP_COMPILER_PACKAGE} -o Dpkg::Options::="--force-overwrite" \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nim.list \
+    && rm -rf /etc/apt/apt.conf.d/90nginx
+
+# drop privileges again
+USER nms
+CMD ["sh", "-c", "update-ca-certificates && /usr/bin/nms-integrations"]
+
+Build it with:
+
+docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=NGINX_REPO_CERT,type=env --secret id=nginx-key,src=NGINX_REPO_KEY,type=env -t integrations:2.21.0-nms-nap-compiler-v5.550.0 .
+   ```
+
+Build the compiler
+
+  ```shell
+  docker build --no-cache --platform linux/amd64   --secret id=nginx-crt,src=<<path to nginx-repo.crt>,type=file   --secret id=nginx-key,src=<path to nginx-repo.key>,type=file -t integrations:waf-compiler-extended .
+   ```
+
+Move the yielded docker image to the target offline system.
+
+**On the offline target system:**
+
+Host the docker image moved on either local registry or remote. 
+Edit the kubernetes deployment w.r.t integrations to reference to the new docker image. 
+
+```shell
+  kubectl edit deploy -n <namespace> integrations 
+   ```
+Once the pod comes up with the latest image, system should be up with both the compiler installed and should be able to compile policies on datapath's having either versions of WAF.
+
