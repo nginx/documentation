@@ -7,7 +7,7 @@ nd-content-type: how-to
 nd-product: FABRIC
 ---
 
-This page describes how to use Manifests to uninstall NGINX Gateway Fabric, its custom resource definitions, and its Gateway API resources.
+This page describes how to uninstall NGINX Gateway Fabric in a Manifest-based deployment, its custom resource definitions, and its Gateway API resources.
 
 By following these instrucions, you will remove NGINX Gateway Fabric and all Gateway resources from a Kubernetes cluster.
 

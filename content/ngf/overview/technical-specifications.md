@@ -1,8 +1,11 @@
 ---
 title: Technical specifications
+description: NGINX Gateway Fabric technical specifications.
+toc: true
 weight: 300
 nd-content-type: reference
 nd-product: FABRIC
+nd-docs: DOCS-1842
 ---
 
 This page describes the technical specifications for NGINX Gateway Fabric.
