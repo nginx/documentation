@@ -246,7 +246,7 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 
 | **Metric**                   | **Display Name** | **Dimensions** | **Type** | **Description**                                                                                               | **Roll-up per** |
 |----------------------------------------|------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
-| system.cpu| CPU utilization | | count | System CPU Utilization. | deployment |
+| system.cpu| CPU utilization | | average | System CPU Utilization. | deployment |
 | system.interface.bytes_rcvd| Interface bytes received | interface | count | System Interface Bytes Received. | deployment |
 | system.interface.bytes_sent| Interface bytes sent | interface | count | System Interface Bytes Sent. | deployment |
 | system.interface.packets_rcvd| Interface packets received | interface | count | System Interface Packets Received. | deployment |
