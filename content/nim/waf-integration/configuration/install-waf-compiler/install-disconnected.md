@@ -237,24 +237,23 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 # drop privileges again
 USER nms
 CMD ["sh", "-c", "update-ca-certificates && /usr/bin/nms-integrations"]
-   ```
-
+```
 
 Build the compiler
 
-  ```shell
-  docker build --no-cache --platform linux/amd64   --secret id=nginx-crt,src=<<path to nginx-repo.crt>,type=file   --secret id=nginx-key,src=<path to nginx-repo.key>,type=file -t integrations:waf-compiler-extended .
-   ```
+```shell
+  docker build --no-cache --platform linux/amd64   --secret id=nginx-crt,src=/path/to/nginx-repo.crt,type=file   --secret id=nginx-key,src=/path/to/nginx-repo.key,type=file -t integrations:waf-compiler-extended .
+```
 
 Move the yielded docker image to the target offline system.
 
 **On the offline target system:**
 
-Host the docker image moved on either local registry or remote. 
-Edit the kubernetes deployment w.r.t integrations to reference to the new docker image. 
+Host the docker image on either local or remote registry. 
+Edit the kubernetes deployment w.r.t integrations to reference to the new docker image hosted. 
 
 ```shell
   kubectl edit deploy -n <namespace> integrations 
-   ```
+```
 Once the pod comes up with the latest image, system should be up with both the compiler installed and should be able to compile policies on datapath's having either versions of WAF.
 
