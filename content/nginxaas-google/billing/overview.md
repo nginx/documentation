@@ -54,4 +54,12 @@ Billing data for F5 NGINXaaS for Google Cloud is reported per deployment and can
 
 ## Canceling Subscription
 
-You could unsubscribe from **NGINXaaS for Google Cloud** on the [Marketplace Orders Page](https://console.cloud.google.com/marketplace/orders). When you cancel subscription, any running deployments will immediately enter a **suspended state**. In this state, deployments are no longer operational and cannot pass traffic. However, you will still be able to access your deployments in the console to view or delete them, although you will no longer be able to update existing deployments or create new ones while unsubscribed. Even though your deployments are suspended, you will still be able to view, edit, create, and delete configurations and certificates in the console. If you decide to re-subscribe after canceling, please note that you will need to re-create all your deployments from scratch, as any suspended deployments cannot be restored once the cancellation process has started.
+You can unsubscribe from NGINXaaS for Google Cloud by visiting the [Google Cloud Marketplace Orders Page](https://console.cloud.google.com/marketplace/orders) page. Please note the following behavior when you cancel your subscription:
+
+- Upon cancelation, all active deployments will immediately transition to a suspended state. In the suspended state, deployments will no longer be operational and cannot process traffic.
+- While in this state, you will still have access to your deployments via the NGINXaaS Console, allowing you to view or delete them. However, it will no longer be possible to update existing deployments or create new ones.
+- Despite the suspension of deployments, you will retain the ability to view, edit, create, and delete configurations and SSL certificates through the console.
+
+If you decide to re-subscribe to NGINXaaS for Google Cloud after canceling your subscription, all previously suspended deployments will remain unrecoverable. You will need to recreate your deployments from scratch.
+
+We recommend carefully reviewing your deployments and configurations before initiating the cancelation process to avoid any unintended data loss.
