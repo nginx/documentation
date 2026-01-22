@@ -29,7 +29,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 ---
 
-## Install the WAF compiler by distribution
+## Install the WAF compiler on Virtual machine or baremetal
 
 {{< tabs name="install-waf-compiler-offline" >}}
 
@@ -207,7 +207,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 {{< /tabs >}}
 
-## Install the WAF compiler in Air-gapped Kubernetes environment
+## Install the WAF compiler in Kubernetes
 
 **On a system with internet access:**
 
@@ -237,11 +237,8 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 # drop privileges again
 USER nms
 CMD ["sh", "-c", "update-ca-certificates && /usr/bin/nms-integrations"]
-
-Build it with:
-
-docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=NGINX_REPO_CERT,type=env --secret id=nginx-key,src=NGINX_REPO_KEY,type=env -t integrations:2.21.0-nms-nap-compiler-v5.550.0 .
    ```
+
 
 Build the compiler
 
