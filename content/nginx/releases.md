@@ -124,7 +124,7 @@ NGINX Plus R35 is a feature release:
 
 - [Automated Certificate Management Environment](https://blog.nginx.org/blog/native-support-for-acme-protocol) (ACME) protocol [support](https://nginx.org/en/docs/http/ngx_http_acme_module.html).
 
-- [Automatic renewal](https://docs.nginx.com/solutions/about-subscription-licenses/#update-jwt) of NGINX Plus license.
+- [Automatic renewal]({{< ref "/solutions/about-subscription-licenses/getting-started.md#update-license" >}}) of NGINX Plus license.
 
 - [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 
