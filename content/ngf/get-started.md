@@ -45,7 +45,7 @@ nodes:
       - containerPort: 31437
         hostPort: 8080
         protocol: TCP
-      - containerPort:30478
+      - containerPort: 30478
         hostPort: 8443
         protocol: TCP
 ```
