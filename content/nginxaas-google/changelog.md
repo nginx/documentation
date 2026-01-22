@@ -12,6 +12,12 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
 
+## January 15, 2026
+- {{% icon-feature %}} **Required configuration no longer needed for deployments**
+
+The previously required configuration is no longer necessary for your deployments.
+
+
 ## December 29, 2025
 
 - {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**

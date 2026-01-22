@@ -452,6 +452,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [mp4_max_buffer_size](https://nginx.org/en/docs/http/ngx_http_mp4_module.html#mp4_max_buffer_size)\
 [mp4_start_key_frame](https://nginx.org/en/docs/http/ngx_http_mp4_module.html#mp4_start_key_frame)\
 [mqtt](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt)\
+[mqtt_buffers](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffers)\
 [mqtt_rewrite_buffer_size](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_rewrite_buffer_size)\
 [mqtt_set_connect](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_set_connect)\
 [msie_padding](https://nginx.org/en/docs/http/ngx_http_core_module.html#msie_padding)\

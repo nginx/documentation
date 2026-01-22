@@ -66,7 +66,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
         features:
         - registration
         - nginx-counting
-        - metrics-sender
+        - metrics
         - dataplane-status
         extensions:
         - nginx-app-protect

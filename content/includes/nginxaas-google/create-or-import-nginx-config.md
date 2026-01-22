@@ -26,5 +26,3 @@ In the NGINXaaS Console,
 
 1. Modify the configuration file as needed and select **Save**.
    - You can import certificates using the **Add file** option.
-
-{{< call-out "warning" >}} If you are not using the "F5 NGINXaaS Default", or if making modifications to the config, please be aware of the [NGINX configuration required content]({{< ref "nginxaas-google/getting-started/nginx-configuration/overview.md#nginx-configuration-required-content" >}}) which must be included. {{< /call-out >}}
