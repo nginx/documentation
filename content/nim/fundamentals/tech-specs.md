@@ -32,7 +32,7 @@ We provide technical support for F5 customers who are using the most recent vers
 
 NGINX Instance Manager supports the following versions :
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+
 
 | Nginx Instance Manager Version  | End of Technical Support                          |
 |----------------------------------|---------------------------------------------------|
@@ -44,7 +44,7 @@ NGINX Instance Manager supports the following versions :
 | 2.16.x                                                             | Apr 16, 2026                                      |
 | 2.15.x                                                                 | Dec 13, 2025                                      |
 
-{{</bootstrap-table>}}
+
 
 ## Supported NGINX Versions {#nginx-versions}
 
