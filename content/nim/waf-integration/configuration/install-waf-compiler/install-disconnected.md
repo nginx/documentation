@@ -211,7 +211,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 **On a system with internet access:**
 
-Build the following Dockerfile by updating the base image version and target compiler version as per your requirement. In this example, we've used NIM version 2.21.0, which ships with WAF compiler v5.527.0 installed. In this procedure, an additional WAF compiler version will be installed: v5.550.0.
+Build the following Dockerfile by updating the base image version and target compiler version as per your requirement. In this example, we've used NIM version 2.21.0, which includes WAF compiler v5.527.0. In this procedure, an additional WAF compiler version will be installed: v5.550.0.
 
  ```shell
 FROM private-registry.nginx.com/nms/integrations:2.21.0
