@@ -30,21 +30,17 @@ We recommend using the latest release of NGINX Instance Manager, and provides so
 
 We provide technical support for F5 customers who are using the most recent version of NGINX Instance Manager, and any version released within two years of the current release.
 
-NGINX Instance Manager supports the following versions :
+NGINX Instance Manager supports the following versions:
 
-
-
-| Nginx Instance Manager Version  | End of Technical Support                          |
-|----------------------------------|---------------------------------------------------|
-| 2.21.x                          | Nov 07, 2027                                      |
-| 2.20.x                            | Jun 15, 2027                                      |
-| 2.19.x                                            | Feb 06 10, 2026                                      |
-| 2.18.x                                                | Jul 10, 2026                                      |
-| 2.17.x                                                      | Nov 08, 2026                                      |
-| 2.16.x                                                             | Apr 16, 2026                                      |
-| 2.15.x                                                                 | Dec 13, 2025                                      |
-
-
+| NGINX Instance Manager Version  | End of Technical Support |
+|---------------------------------|--------------------------|
+| 2.21.x                          | Nov 07, 2027             |
+| 2.20.x                          | Jun 16, 2027             |
+| 2.19.x                          | Feb 06, 2027             |
+| 2.18.x                          | Nov 08, 2026             |
+| 2.17.x                          | Jul 10, 2026             |
+| 2.16.x                          | Apr 18, 2026             |
+| 2.15.x                          | Dec 12, 2025             |
 
 ## Supported NGINX Versions {#nginx-versions}
 
@@ -92,7 +88,6 @@ If using F5 WAF for NGINX features in NGINX Instance Manager, this requires addi
 In Lightweight mode, we tested NGINX Instance Manager with ten managed NGINX instances and configuration publishing. It ran with as little as 1 CPU core and 1 GB of memory (without App Protect). When App Protect was enabled, we needed 2 CPU cores and 4 GB of memory to compile policies.
 
 These figures are guidelines only. They reflect the minimum tested configuration and may cause performance issues depending on your setup. For better performance, consider allocating more system resources.
-
 
 ### License and usage reporting only {#reporting-sizing}
 
@@ -149,12 +144,12 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Config Size           | Instances | Retention (days) | Estimated Disk Usage (NGINX OSS) |
-|-----------------------|-----------|------------------|----------------------------------|
+| Config Size            | Instances | Retention (days) | Estimated Disk Usage (NGINX OSS) |
+|------------------------|-----------|------------------|----------------------------------|
 | **Generic Large Size** | 10        | 14               | 200 MiB                          |
-|                       | 50        | 14               | 850 MiB                          |
-|                       | 100       | 14               | 1.75 GiB                         |
-|                       | 250       | 14               | 4 GiB                            |
+|                        | 50        | 14               | 850 MiB                          |
+|                        | 100       | 14               | 1.75 GiB                         |
+|                        | 250       | 14               | 4 GiB                            |
 
 {{</bootstrap-table>}}
 
@@ -216,6 +211,6 @@ The NGINX Instance Manager web interface works best on the latest versions of th
 
 ## NGINX Agent
 
-#### Data plane requirements
+### Data plane requirements
 
 - **Supported distributions**: The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Agent Technical Specs](https://docs.nginx.com/nginx-agent/technical-specifications/) guide.
