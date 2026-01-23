@@ -24,6 +24,28 @@ You can deploy NGINX Instance Manager in the following environments:
 
 {{< include "nim/tech-specs/supported-distros.md" >}}
 
+## Supported NGINX Instance Manager versions {#supported-nginx-instance-manager-versions}
+
+We recommend using the latest release of NGINX Instance Manager, and provides software updates for the most recent release.
+
+We provide technical support for F5 customers who are using the most recent version of NGINX Instance Manager, and any version released within two years of the current release.
+
+NGINX Instance Manager supports the following versions :
+
+
+
+| Nginx Instance Manager Version  | End of Technical Support                          |
+|----------------------------------|---------------------------------------------------|
+| 2.21.x                          | Nov 07, 2027                                      |
+| 2.20.x                            | Jun 15, 2027                                      |
+| 2.19.x                                            | Feb 06 10, 2026                                      |
+| 2.18.x                                                | Jul 10, 2026                                      |
+| 2.17.x                                                      | Nov 08, 2026                                      |
+| 2.16.x                                                             | Apr 16, 2026                                      |
+| 2.15.x                                                                 | Dec 13, 2025                                      |
+
+
+
 ## Supported NGINX Versions {#nginx-versions}
 
 {{< include "nim/tech-specs/supported-nginx-versions.md" >}}
