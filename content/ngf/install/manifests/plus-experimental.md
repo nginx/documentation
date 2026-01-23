@@ -76,7 +76,7 @@ kubectl get -n nginx-gateway secrets
 ```text
 NAME            TYPE                             DATA   AGE
 nplus-license   Opaque                           1      31s
-regcred         kubernetes.io/dockerconfigjson   1      22s
+nginx-plus-registry-secret         kubernetes.io/dockerconfigjson   1      22s
 ```
 
 {{< /details >}}
