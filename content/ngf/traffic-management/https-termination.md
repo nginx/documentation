@@ -146,13 +146,17 @@ spec:
       - kind: Secret
         name: cafe-secret
         namespace: certificate
+    options:
+      nginx.org/ssl-protocols: "TLSv1.2 TLSv1.3"
+      nginx.org/ssl-ciphers: "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:HIGH:!aNULL:!MD5"
+      nginx.org/ssl-prefer-server-ciphers: "on"
 EOF
 ```
 
 This gateway configures:
 
 - `http` listener for HTTP traffic
-- `https` listener for HTTPS traffic. It terminates TLS connections using the `cafe-secret` we created.
+- `https` listener for HTTPS traffic. It terminates TLS connections using the `cafe-secret` we created. The SSL protocol and ciphers are also configured using the TLS options.
 
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
