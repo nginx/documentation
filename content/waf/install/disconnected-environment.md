@@ -185,12 +185,11 @@ See the section for your operating system below:
    ```shell
    mkdir -p /offline/packages
 
-   sudo yumdownloader --resolve --destdir=/offline/packages \
+   sudo yum install --downloadonly --downloaddir=/offline/packages \
    app-protect \
    app-protect-attack-signatures \
    app-protect-bot-signatures \
    app-protect-threat-campaigns
-
    ```
 
 #### RHEL / Rocky Linux 9
@@ -224,7 +223,7 @@ See the section for your operating system below:
    ```shell
    mkdir -p /offline/packages
 
-   sudo yumdownloader --resolve --destdir=/offline/packages \
+   sudo yum install --downloadonly --downloaddir=/offline/packages \
    app-protect \
    app-protect-attack-signatures \
    app-protect-bot-signatures \
