@@ -25,11 +25,12 @@ To use external references, replace the direct property in the policy file with 
 For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` could be replaced by `dataGuardReference`.
 
 {{< call-out "note" >}}
-Not all policy fields support external references.  
-To see which fields allow external references, visit the [Parameter Reference]({{< ref "/waf/policies/parameter-reference.md" >}}) page.  
-On that page, each table of policy fields includes a **Reference** column.  
-If a field has **Yes** in the Reference column (for example, `filetypes`, `bot-defense`, or `signature-sets`), you can replace it in your policy file with its corresponding external reference property (e.g., `filetypeReference`, `botDefenseReference`, `signatureSetsReference`).  
-If the Reference column is marked **No**, the field cannot be referenced externally and must be defined directly in your policy file.
+Not all policy fields support external references.
+
+To check which fields do, see the [Parameter Reference]({{< ref "/waf/policies/parameter-reference.md" >}}) page. Each table on that page includes a **Reference** column for every policy field.
+
+- If the **Reference** column shows **Yes** (for example, `filetypes`, `bot-defense`, or `signature-sets`), you can replace that field in your policy file with its corresponding external reference property, such as `filetypeReference`, `botDefenseReference`, or `signatureSetsReference`.
+- If the **Reference** column shows **No**, the field does not support external references and must be defined directly in the policy file.
 {{< /call-out >}}
 
 ## External reference types
@@ -542,9 +543,9 @@ The following request will trigger an `Illegal repeated parameter name` violatio
 http://localhost/query?a=true&a=false
 ```
 
-The request will _not be blocked_ because this violation is set to alarm in the default policy.
+The request will not be blocked because this event is set to alarm in the default policy.
 
-## Authenticating External References with Basic Auth
+## Authenticating external references with basic auth
 
 For any type of external reference in your policy that uses an HTTP or HTTPS link—including simple URL references and OpenAPI references—you can include a `basicAuth` object, which specifies the username (user) and base64-encoded password (passwordBase64) for HTTP Basic Authentication.
 
