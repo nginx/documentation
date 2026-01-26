@@ -40,7 +40,7 @@ Use the table below to check the end-of-support (EoS) dates for recent versions.
 | 2.18.x                 | July 10, 2026        |
 | 2.17.x                 | November 08, 2026    |
 | 2.16.x                 | April 16, 2026       |
-| 2.15.x                 | December 13, 2026    |
+| 2.15.x                 | December 13, 2025    |
 
 ## Supported NGINX Versions {#nginx-versions}
 
