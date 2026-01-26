@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1050
+nd-product: NIMNGR
 nd-files:
 - content/nim/license/add-license-offline.md
 - content/nim/license/report-usage-offline.md

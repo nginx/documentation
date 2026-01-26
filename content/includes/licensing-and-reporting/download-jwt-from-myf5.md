@@ -1,4 +1,5 @@
 ---
+nd-product: MISCEL
 nd-files:
 - content/includes/nim/docker/docker-registry-login.md
 - content/includes/use-cases/credential-download-instructions.md

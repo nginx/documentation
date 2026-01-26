@@ -43,7 +43,7 @@ Repeat the steps in this section on each F5 WAF for NGINX data plane host to ins
 
 1. Edit the `/etc/nginx-agent/nginx-agent.conf` file to add the `nap_monitoring` configuration.
 
-      ```yaml
+   ```yaml
    dataplane:
       status:
          # poll interval for data plane status - the frequency the NGINX Agent will query the data plane for changes
@@ -87,6 +87,7 @@ Repeat the steps in this section on each F5 WAF for NGINX data plane host to ins
       syslog_ip: "127.0.0.1"
       # Syslog server port the collector will be listening to
       syslog_port: 514
+   ```
 
 1. If `location /api` isn’t configured in `nginx.conf`, add this directive:
 

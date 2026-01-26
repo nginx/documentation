@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1660
+nd-product: NIMNGR
 nd-files:
 - content/nim/license/add-license.md
 - content/nim/license/add-license-offline.md

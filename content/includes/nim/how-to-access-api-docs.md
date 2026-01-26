@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-991
+nd-product: NIMNGR
 nd-files:
 - content/nim/rbac/manage-resource-groups.md
 - content/nim/fundamentals/api-overview.md

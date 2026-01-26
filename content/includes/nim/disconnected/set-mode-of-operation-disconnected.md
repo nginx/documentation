@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1663
+nd-product: NIMNGR
 nd-files:
 - content/nim/license/add-license-offline.md
 - content/nim/disconnected/offline-install-guide-manual.md

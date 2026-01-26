@@ -1,5 +1,6 @@
 ---
 nd-docs: DOCS-1295
+nd-product: NIMNGR
 nd-files:
 - content/nim/authentication/set-up-basic-authentication.md
 - content/nim/fundamentals/api-overview.md

@@ -1,4 +1,5 @@
 ---
+nd-product: NIMNGR
 nd-docs: DOCS-1323
 nd-files:
 - content/nim/deploy/kubernetes/deploy-using-helm.md

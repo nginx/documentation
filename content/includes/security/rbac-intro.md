@@ -1,6 +1,6 @@
 ---
 nd-docs: DOCS-000
-nd-product: MSC
+nd-product: MISCEL
 nd-files:
 - content/nginx-one-console/rbac/overview.md
 - content/nim/rbac/overview-rbac.md

@@ -34,16 +34,17 @@ enableGitInfo = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-    [markup.highlight]
-      guessSyntax = true
     [markup.goldmark.extensions.typographer]
       rightDoubleQuote = '&quot;'
       leftDoubleQuote = '&quot;'
       rightSingleQuote = '&apos;'
       leftSingleQuote = '&apos;'
+    [markup.highlight]
+      guessSyntax = true
 
 [params]
   useSectionPageLists = "false"
+  description = "Learn how to deliver, manage, and protect your applications using F5 NGINX products."
   buildtype = "webdocs"
   RSSLink = "/index.xml"
   author = "NGINX Inc." # add your company name
@@ -148,6 +149,11 @@ enableGitInfo = true
     "3.22.8"
   ]
   github_repo = "https://github.com/nginx/documentation/"
+  [params.rich_meta]
+    thumbnail = "/images/nginx-documentation-500x300.png"
+    thumbnail_res = "500x300"
+    twitter_username = "@nginx"
+    fb_publisher = "https://www.facebook.com/f5incorporated/"
 
 sectionPagesMenu = "docs"
 

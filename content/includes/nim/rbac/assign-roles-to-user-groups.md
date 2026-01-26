@@ -1,4 +1,5 @@
 ---
+nd-product: NIMNGR
 nd-docs: DOCS-1301
 nd-files:
 - content/nim/rbac/assign-roles.md

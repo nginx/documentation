@@ -1,4 +1,7 @@
 ---
+nd-product:
+- NIMNGR
+- SOLUTI
 nd-files:
 - content/nim/license/report-usage-online.md
 - content/nim/license/report-usage-offline.md
