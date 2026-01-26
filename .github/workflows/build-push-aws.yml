@@ -1,0 +1,122 @@
+name: Build and deploy AWS (docs)
+on:
+  repository_dispatch:
+    types: [trigger-preview-build]
+  workflow_call:
+    inputs:
+      environment:
+        description: "Deployment environment. Must be one of preview, dev, staging, or prod"
+        required: true
+        default: preview
+        type: string
+    secrets:
+      AZURE_VAULT_CLIENT_ID:
+        required: true
+      AZURE_VAULT_SUBSCRIPTION_ID:
+        required: true
+      AZURE_VAULT_TENANT_ID:
+        required: true
+      DOCS_VAULTNAME:
+        required: true
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "preview"
+        type: choice
+        options:
+          - preview
+          - dev
+          - staging
+          - prod
+      hugo_theme_override:
+        description: "Override hugo theme (leave blank to use latest version)"
+        required: false
+        default: ""
+        type: string
+  pull_request:
+    branches:
+      - "**"
+  push:
+    branches:
+      - "main"
+
+env:
+  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}    
+jobs:
+  prod-check-branch:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Output variables
+        run: |
+          echo "Environment: ${{ inputs.environment || github.event.client_payload.environment }}"
+          echo "Branch: ${{ github.ref }}"
+      - name: Checks to see that main branch is selected if deploying to prod
+        if: ${{ inputs.environment == 'prod' && github.ref != 'refs/heads/main' }}
+        run: |
+          echo "Deployment to 'prod' can only be done from the 'main' branch."
+          exit 1
+
+  call-docs-build-push:
+    needs: prod-check-branch
+    uses: nginxinc/docs-actions/.github/workflows/docs-build-push-aws.yml@54da3ca1694da6ce34840123a133054d847efcd6 #1.0.13
+    with:
+      production_url_path: ""
+      preview_url_path: "${{ vars.PREVIEW_URL_PATH }}"
+      docs_source_path: "public"
+      docs_build_path: "./"
+      doc_type: "hugo"
+      environment: ${{ inputs.environment || github.event.client_payload.environment }}
+      force_hugo_theme_version: ${{inputs.hugo_theme_override}}
+      auto_deploy_branch: "main"
+      auto_deploy_env: "prod"
+    secrets:
+      AZURE_VAULT_CLIENT_ID: ${{ secrets.AZURE_VAULT_CLIENT_ID }}
+      AZURE_VAULT_SUBSCRIPTION_ID: ${{ secrets.AZURE_VAULT_SUBSCRIPTION_ID }}
+      AZURE_VAULT_TENANT_ID: ${{ secrets.AZURE_VAULT_TENANT_ID }}
+      DOCS_VAULTNAME: ${{ secrets.DOCS_VAULTNAME }}
+
+  trigger-theme-slack-notification:
+    if: github.event_name == 'repository_dispatch'
+    needs: call-docs-build-push
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - name: Send notification
+        uses:  8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # v3.19.0
+        with: 
+          status: custom
+          custom_payload: |
+            {
+                username: 'Github',
+                mention: 'channel',
+                attachments: [{
+                  title: `New theme release - ${{ github.event.client_payload.release_name }}`,
+                  color: '#009223',
+                  fields: [
+                  {
+                    title: 'Tag',
+                    value: `${{ github.event.client_payload.tag_name }}`,
+                    short: true
+                  },
+                  {
+                    title: 'Author',
+                    value: `${{ github.event.client_payload.author }}`,
+                    short: true
+                  },
+                  {
+                    title: 'Description',
+                    value: `${{ github.event.client_payload.description }}`,
+                    short: false
+                  },
+                  {
+                    title: 'Preview URL',
+                    value: `${{ env.PREVIEW_URL }}`,
+                    short: true
+                  }]
+                }]
+            }
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_FRIENDS_OF_DOCS }}
+      PREVIEW_URL: ${{ needs.call-docs-build-push.outputs.PREVIEW_URL }}
