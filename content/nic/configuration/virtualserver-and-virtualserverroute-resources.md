@@ -54,13 +54,7 @@ spec:
   - path: =/green/tea
     action:
       pass: tea
-  - path: /dynamic
-    routeSelector:
-      matchLabels:
-        app: cafe
 ```
-
-The example above shows a VirtualServer with both traditional static routes and a dynamic route using `routeSelector`. The route with path `/dynamic` will automatically include any VirtualServerRoute resources that have the label `app: cafe`.
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
