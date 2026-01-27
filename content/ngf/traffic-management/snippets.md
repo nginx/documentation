@@ -54,7 +54,7 @@ We have outlined a few best practices to keep in mind when using `SnippetsFilter
 
   - Using Helm: set the `nginxGateway.snippetsFilters.enable=true` Helm value.
   - Using Kubernetes manifests: set the `--snippets-filters` flag in the nginx-gateway container argument, add `snippetsfilters` to the RBAC
-    rules with verbs `list` and `watch`, and add `snippetsfilters/status` to the RBAC rules with verb `update`. See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/snippets-filters/deploy.yaml) for clarification.
+    rules with verbs `list` and `watch`, and add `snippetsfilters/status` to the RBAC rules with verb `update`. See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/snippets/deploy.yaml) for clarification.
 
 - Create the coffee and tea example applications:
 
