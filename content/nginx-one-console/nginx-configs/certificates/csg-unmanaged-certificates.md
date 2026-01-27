@@ -85,7 +85,7 @@ If you don't want metadata tracking for unmanaged certificates, you can configur
 
 To maintain consistent visibility and automated management across CSGs, consider converting unmanaged certificates to managed certificates by:
 
-- Convering them from unmanaged to managed
+- Converting them from unmanaged to managed
 - Leveraging the managed certificate solution for automated synchronization
 - Taking advantage of centralized certificate management features
 
