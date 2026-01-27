@@ -9,7 +9,7 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## January 13, 2026
+## January 27, 2026
 
 ### API behavior change: conf_path is now optional for PUT/PATCH operations
 
