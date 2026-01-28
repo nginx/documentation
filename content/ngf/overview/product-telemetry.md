@@ -14,7 +14,7 @@ NGINX Gateway Fabric collects telemetry by default, which allows its developers 
 
 Telemetry data is collected once every 24 hours and sent to a service managed by F5 over HTTPS. Personally identifiable information (PII) is **not** collected. The list of data points that are collected can be seen below.
 
-**If you would prefer to not have data collected, you can [opt-out](#opt-out) when installing NGINX Gateway Fabric.**
+**If you prefer to not have data collected, you can [opt-out](#opt-out) when installing NGINX Gateway Fabric.**
 
 ## Collected data
 
@@ -29,11 +29,11 @@ Telemetry data is collected once every 24 hours and sent to a service managed by
 - **Image Build Source:** whether the image was built by GitHub or locally (values are `gha`, `local`, or `unknown`). The source repository of the images is **not** collected.
 - **Build OS:** the base operating system the image was built on (values are currently `alpine` or `ubi`). 
 - **Deployment Flags:** a list of NGINX Gateway Fabric Deployment flags that are specified by a user. The actual values of non-boolean flags are **not** collected; we only record that they are either `true` or `false` for boolean flags and `default` or `user-defined` for the rest.
-- **Count of Resources:** the total count of resources related to NGINX Gateway Fabric. This includes `GatewayClasses`, `Gateways`, `HTTPRoutes`,`GRPCRoutes`, `TLSRoutes`, `InferencePool`, `Secrets`, `Services`, `BackendTLSPolicies`, `ClientSettingsPolicies`, `NginxProxies`, `ObservabilityPolicies`, `UpstreamSettingsPolicies`, `ProxySettingsPolicies`, `SnippetsFilters`, and `Endpoints`. The data within these resources is **not** collected.
-- **SnippetsFilters Info** a list of directive-context strings from applied SnippetFilters and a total count per strings. The actual value of any NGINX directive is **not** collected.
-- **Control Plane Pod Count** the count of NGINX Gateway Fabric Pods.
-- **Data Plane Pod Count** the count of NGINX data plane Pods.
-- **NGINX One Console Connection Info** indicates whether the connection to the NGINX One Console is enabled. 
+- **Count of Resources:** the total count of resources related to NGINX Gateway Fabric. This includes `GatewayClasses`, `Gateways`, `HTTPRoutes`,`GRPCRoutes`, `TLSRoutes`, `TCPRoutes`, `UDPRoutes`, `InferencePool`, `Secrets`, `Services`, `BackendTLSPolicies`, `ClientSettingsPolicies`, `NginxProxies`, `ObservabilityPolicies`, `UpstreamSettingsPolicies`, `ProxySettingsPolicies`, `RateLimitPolicies`, `AuthenticationFilters` `SnippetsFilters`, `SnippetsPolicies` and `Endpoints`. The data within these resources is **not** collected.
+- **Snippets Info:** a list of directive-context strings from applied `SnippetFilters` and `SnippetsPolicies`, and a total count per strings. The actual value of any NGINX directive is **not** collected.
+- **Control Plane Pod Count:** the count of NGINX Gateway Fabric Pods.
+- **Data Plane Pod Count:** the count of NGINX data plane Pods.
+- **NGINX One Console Connection Info:** indicates whether the connection to the NGINX One Console is enabled. 
 
   This data is used to identify the following information:
   - The flavors of Kubernetes environments that are most popular among our users.
