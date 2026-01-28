@@ -267,6 +267,12 @@ resource "azurerm_nginx_deployment" "primary_nginxaas_deployment" {
   name                = var.primary_deployment_name
   resource_group_name = var.primary_resource_group
   location            = "eastus"
+
+  # REQUIRED: System-assigned managed identity
+  identity {
+    type = "SystemAssigned"
+  }
+
   # ...
   network_interface {
     subnet_id = azurerm_subnet.primary_subnet_1.id
@@ -326,6 +332,12 @@ resource "azurerm_nginx_deployment" "secondary_nginxaas_deployment" {
   name                = var.secondary_deployment_name
   resource_group_name = var.secondary_resource_group
   location            = "centralus"
+
+  # REQUIRED: System-assigned managed identity
+  identity {
+    type = "SystemAssigned"
+  }
+
   # ...
   network_interface {
     subnet_id = azurerm_subnet.secondary_subnet_1.id
