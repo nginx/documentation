@@ -72,7 +72,7 @@ tail -f iprepd.log
 
 Once complete, you can now [Configure policies for IP intelligence](#configure-policies-for-ip-intelligence).
 
-### Modify Docker compose file
+### Modify Docker Compose file
 
 {{< call-out "warning" >}}
 
@@ -80,7 +80,7 @@ This section **only** applies to installations using Docker.
 
 {{< /call-out >}}
 
-IP intelligence has its own Docker container, which can be added to an existing Docker compose file for deployment.
+IP intelligence has its own Docker container, which can be added to an existing Docker Compose file for deployment.
 
 First, create the required directory:
 
