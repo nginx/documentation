@@ -163,7 +163,7 @@ principalId=$(az vm show \
 
 #### Create the custom role
 
-Create a custom role with the necessary permissions for nginx-asg-sync. The required permissions and assignment scope differ based on the 
+Create a custom role with the necessary permissions for nginx-asg-sync. The exact permissions and the assignment scope depend on the
 [VMSS orchestration mode](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes):
 
 **Uniform VMSS:**
