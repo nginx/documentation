@@ -873,86 +873,127 @@ To install NGINX Plus offline, you will need a machine connected to the Internet
 
 1. Upload the usage acknowledgement to NGINX Instance Manager. For more information, see [Report usage to F5 in a disconnected environment](https://docs.nginx.com/nginx-instance-manager/disconnected/report-usage-disconnected-deployment/#submit-usage-report).
 
+
 ## Upgrade NGINX Plus {#upgrade}
 
-{{< call-out "note" >}} Starting from [Release 24]({{< ref "nginx/releases.md#r24" >}}) (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from previous NGINX Plus versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system. {{< /call-out >}}
+Keeping your NGINX Plus installation updated ensures it includes the latest features, security patches, and fixes. Critical bug patches and security updates are provided for the **two** most recent releases of NGINX Plus. Each NGINX Plus release reaches End of Software Development upon the next version's release, meaning no new features or routine bug fixes will be added to that version.
 
-To upgrade your NGINX Plus installation to the newest version:
+### Upgrade prerequisites
 
-1. If your system has previous NGINX or NGINX Plus packages on it, back up the configuration and log files.
+Before upgrading, verify the following:
 
-   - **For Linux distributions**:
+1. Your operating system is configured to retrieve binary packages from the official NGINX Plus repository: ensure that `nginx-plus.crt` and `nginx-plus.key` and repository file are set. See installation instructions for your operating system: [Amazon Linux 2023](#install_amazon2023), [Amazon Linux 2](#install_amazon2), [RHEL-based 8.1](#install_rhel8), [RHEL-based 9](#install_rhel), [Debian or Ubuntu](#install_debian_ubuntu), [FreeBSD](#install_freebsd), [SLES](#install_suse).
+
+2. Your NGINX Plus subscription is active. You can verify your subscription on the [MyF5 Customer Portal](https://account.f5.com/myf5).
+
+3. For NGINX Plus R33 and later, [license reporting]({{< ref "/solutions/about-subscription-licenses/getting-started.md">}}) is configured. If upgrading from R32 or earlier, add the license file before upgrading and configure usage reporting. See [NGINX Plus R32 upgrade note](#nginx-plus-r32-and-earlier).
+
+### Upgrade steps
+
+1. Back up the configuration and log files.
+
+   - For **Linux**:
 
      ```shell
-     sudo cp -a /etc/nginx /etc/nginx-plus-backup
+     sudo cp -a /etc/nginx /etc/nginx-plus-backup && \
      sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
      ```
 
-   - **For FreeBSD**:
+   - For **FreeBSD**:
 
       ```shell
-      sudo cp -a /usr/local/etc/nginx /usr/local/etc/nginx-plus-backup
+      sudo cp -a /usr/local/etc/nginx /usr/local/etc/nginx-plus-backup && \
       sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
       ```
 
-1. Get the JWT file associated with your NGINX Plus subscription from the MyF5 Customer Portal:
+2. Upgrade to the newest NGINX Plus package.
 
-   {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
-
-   {{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
-
-1. Create the **/etc/nginx/** directory for Linux or the **/usr/local/etc/nginx** directory for FreeBSD:
-
-    - **For Linux**:
-
-        ```shell
-        sudo mkdir -p /etc/nginx
-        ```
-
-    - **For FreeBSD**:
-
-        ```shell
-        sudo mkdir -p /usr/local/etc/nginx
-        ```
-
-    {{<call-out "note" "Using custom paths" "" >}}{{< include "licensing-and-reporting/custom-paths-jwt.md" >}}{{</call-out>}}
-
-1. After downloading the JWT file, copy it to the **/etc/nginx/** directory for Linux, or to the **/usr/local/etc/nginx** directory for FreeBSD, and make sure it's named **license.jwt**:
-
-    - **For Linux**:
-
-        ```shell
-        sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
-        ```
-
-    - **For FreeBSD**:
-
-        ```shell
-        sudo cp <downloaded-file-name>.jwt /usr/local/etc/nginx/license.jwt
-        ```
-
-2. Upgrade to the new NGINX Plus package.
-
-   - **For RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux and Rocky Linux**:
+   - For **RHEL-based**:
 
         ```shell
         sudo yum upgrade nginx-plus
         ```
 
-   - **For Debian and Ubuntu**:
+   - For **Debian** and **Ubuntu**:
 
         ```shell
-        sudo apt update
+        sudo apt update && \
         sudo apt install nginx-plus
         ```
 
-   - **For FreeBSD**:
+   - For **FreeBSD**:
 
         ```shell
         sudo pkg upgrade nginx-plus
         ```
 
-3. Configure NGINX Plus usage reporting which is mandatory starting from R33. By default, no configuration is required. However, configuration is required in specific scenarios, such as NGINX Plus is installed in an offline environment or if the JWT license file is located in a non-default directory.
+3. Verify the upgrade:
+
+   - Check the NGINX Plus version:
+
+     ```shell
+     nginx -v
+     ```
+
+     The output of the command:
+
+     ```shell
+     nginx version: nginx/1.29.3 (nginx-plus-r36-p1)
+     ```
+
+   - Check the error log:
+
+     ```shell
+     tail /var/log/nginx/error.log
+     ```
+
+### Upgrade notes
+
+#### NGINX Plus R24 and earlier
+
+Starting from [Release 24]({{< ref "nginx/releases.md#r24" >}}) (R24), NGINX Plus repositories have been separated into individual repositories based on operating system distribution and license subscription. Before upgrading from NGINX Plus R24 and earlier versions, you must first reconfigure your repositories to point to the correct location. To reconfigure your repository, follow the installation instructions above for your operating system: [Amazon Linux 2023](#install_amazon2023), [Amazon Linux 2](#install_amazon2), [RHEL-based 8.1](#install_rhel8), [RHEL-based 9](#install_rhel), [Debian or Ubuntu](#install_debian_ubuntu), [FreeBSD](#install_freebsd), [SLES](#install_suse).
+
+#### NGINX Plus R32 and earlier
+
+Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT license file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
+
+1. Get the JWT file associated with your NGINX Plus subscription from the [MyF5 Customer Portal](https://account.f5.com/myf5):
+
+   {{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
+
+2. Create the **/etc/nginx/** directory for Linux or the **/usr/local/etc/nginx** directory for FreeBSD:
+
+   - For **Linux**:
+
+       ```shell
+       sudo mkdir -p /etc/nginx
+       ```
+
+   - For **FreeBSD**:
+
+       ```shell
+       sudo mkdir -p /usr/local/etc/nginx
+       ```
+
+    {{<call-out "note" "Using custom paths" "" >}}{{< include "licensing-and-reporting/custom-paths-jwt.md" >}}{{</call-out>}}
+
+3. After downloading the JWT file, copy it to the **/etc/nginx/** directory for Linux, or to the **/usr/local/etc/nginx** directory for FreeBSD, and make sure it's named **license.jwt**:
+
+   - For **Linux**:
+
+     ```shell
+     sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+     ```
+
+   - For **FreeBSD**:
+
+     ```shell
+     sudo cp <downloaded-file-name>.jwt /usr/local/etc/nginx/license.jwt
+     ```
+
+4. Perform an upgrade.
+
+5. After upgrade, it is possibly necessary to configure NGINX Plus usage reporting. By default, no configuration is required. However, if NGINX Plus is installed in an [offline environment](#offline_install) or if the JWT license file is located in a non-default directory, extra configuration is required.
 
    For offline environments, usage reporting should be configured for NGINX Instance Manager 2.18 or later. In the `nginx.conf` configuration file, specify the following directives:
 
@@ -977,20 +1018,6 @@ To upgrade your NGINX Plus installation to the newest version:
    mgmt {
        license_token custom/file/path/license.jwt;
    }
-   ```
-
-   For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
-
-4. To verify that the new NGINX Plus version is upgraded, run:
-
-   ```shell
-   nginx -v
-   ```
-
-   The output of the command:
-
-   ```shell
-   nginx version: nginx/1.29.3 (nginx-plus-r36)
    ```
 
 ## Upgrade NGINX Plus modules {#upgrade_modules}
