@@ -1,6 +1,6 @@
 ---
 title: Configure TLS passthrough
-weight: 800
+weight: 600
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
@@ -155,9 +155,35 @@ This Gateway will configure NGINX Gateway Fabric to accept TLS connections on po
 
 {{< call-out "note" >}}It is possible to add an HTTPS listener on the same port that terminates TLS connections so long as the hostname does not overlap with the TLS listener hostname.{{< /call-out >}}
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
-Save the public IP address and port of the NGINX Service into shell variables:
+```shell
+kubectl describe gateways.gateway.networking.k8s.io gateway
+```
+
+Verify the status is `Accepted`:
+
+```text
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
