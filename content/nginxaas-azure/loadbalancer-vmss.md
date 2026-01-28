@@ -296,8 +296,8 @@ Install nginx-asg-sync agent on the VM you created in [Create VM for nginx-asg-s
 # Get latest version and detect architecture
 VERSION=$(curl -sL https://api.github.com/repos/nginx/nginx-asg-sync/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/^v//')
 if [ -z "$VERSION" ]; then
-    echo "Failed to fetch latest version, using fallback version 1.0.2"
-    VERSION="1.0.2"
+    echo "Failed to fetch latest version, using fallback version 1.0.4"
+    VERSION="1.0.4"
 fi
 BASE_URL="https://github.com/nginxinc/nginx-asg-sync/releases/download/v${VERSION}"
 
@@ -509,7 +509,7 @@ az container attach \
 Example output when the container starts successfully:
 
 ```
-2025/12/31 10:25:30 nginx-asg-sync version v1.0.3
+2025/12/31 10:25:30 nginx-asg-sync version v1.0.4
 2025/12/31 10:25:30 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 ```
 
@@ -595,7 +595,7 @@ nginx-asg-sync config_path=/etc/nginx/config.yaml -log_path=< path to log file >
 Example output when the agent starts successfully:
 
 ```
-2026/01/08 15:44:12 nginx-asg-sync version 1.0.3
+2026/01/08 15:44:12 nginx-asg-sync version 1.0.4
 2026/01/08 15:44:13 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 
 2026/01/08 16:08:07 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.8:80], Removed: [], Updated: []
