@@ -114,8 +114,8 @@ data:
       tls:
         skip_verify: false
 
-collector:
-    log:
+    collector:
+      log:
         path: "stdout"
 ```      
 
