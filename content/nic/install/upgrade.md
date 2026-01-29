@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-479
 title: "Upgrade NGINX Ingress Controller"
 weight: 900
 toc: true

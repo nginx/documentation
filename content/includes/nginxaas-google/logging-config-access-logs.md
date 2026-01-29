@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-197
 nd-product: NGOOGL
 nd-files:
 - content/nginxaas-google/monitoring/enable-nginx-logs.md

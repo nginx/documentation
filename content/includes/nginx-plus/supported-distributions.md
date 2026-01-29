@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-060
 nd-product: NGPLUS
 nd-files:
 - content/nginx/technical-specs.md

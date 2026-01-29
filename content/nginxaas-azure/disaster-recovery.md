@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-569
 title: Disaster recovery
 url: /nginxaas/azure/disaster-recovery/
 toc: true

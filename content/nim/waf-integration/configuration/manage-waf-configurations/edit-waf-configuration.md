@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-343
 title: Edit WAF configuration
 description: Apply F5 WAF for NGINX directives in your NGINX configuration files.
 toc: true

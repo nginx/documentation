@@ -2,7 +2,7 @@
 title: Billing overview
 weight: 100
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-689
 url: /nginxaas/google/billing/overview/
 nd-content-type: concept
 nd-product: NGOOGL

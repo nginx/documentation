@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-352
 title: Create a security log profile
 description: Create and upload a new F5 WAF for NGINX security log profile to NGINX Instance Manager using the REST API.
 toc: true

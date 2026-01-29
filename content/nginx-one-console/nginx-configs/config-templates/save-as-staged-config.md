@@ -1,6 +1,6 @@
 ---
 nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-520
 nd-product: NONECO
 title: Save rendered config as staged config
 toc: true

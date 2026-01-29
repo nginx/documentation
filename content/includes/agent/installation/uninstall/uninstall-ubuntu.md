@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-018
 nd-product: NAGENT
 nd-files:
 - content/agent/installation-upgrade/uninstall.md

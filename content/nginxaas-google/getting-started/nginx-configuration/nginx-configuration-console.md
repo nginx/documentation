@@ -2,7 +2,7 @@
 title: Create or upload using the NGINXaaS Console
 weight: 100
 toc: true
-nd-docs: DOCS-000
+nd-docs: DOCS-678
 url: /nginxaas/google/getting-started/nginx-configuration/nginx-configuration-console/
 nd-content-type: how-to
 nd-product: NGOOGL

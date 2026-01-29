@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-362
 title: Check publication status
 description: Verify the deployment status of published F5 WAF for NGINX security policies, log profiles, and related updates in NGINX Instance Manager.
 toc: true

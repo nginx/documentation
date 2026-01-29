@@ -1,7 +1,7 @@
 ---
 description: ''
 nd-content-type: how-to
-nd-docs: DOCS-000
+nd-docs: DOCS-543
 nd-product: NONECO
 title: Prepare - Set up NGINX as a proxy
 toc: true

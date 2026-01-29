@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-117
 nd-product: NIMNGR
 nd-files:
 - content/nim/security-monitoring/update-signatures.md

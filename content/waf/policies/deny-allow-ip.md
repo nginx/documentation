@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-250
 title: "Deny and Allow IP lists"
 weight: 900
 toc: true

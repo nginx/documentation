@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-068
 nd-product: NGPLUS
 nd-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md

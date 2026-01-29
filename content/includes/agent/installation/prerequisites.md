@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-010
 nd-product: NAGENT
 nd-files:
 - content/nginx-one-console/agent/install-upgrade/install-from-github.md

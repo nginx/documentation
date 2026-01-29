@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-174
 nd-product: NONECO
 nd-files:
 - content/nginx-one-console/workshops/lab2/run-workshop-components-with-docker.md

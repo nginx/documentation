@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-226
 description: Learn about the Directives and Policy attributes necessary to configure F5 DoS for NGINX.
 title: Directives and Policy
 weight: 120

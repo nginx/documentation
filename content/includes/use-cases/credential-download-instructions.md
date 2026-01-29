@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-185
 nd-product: MISCEL
 nd-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md

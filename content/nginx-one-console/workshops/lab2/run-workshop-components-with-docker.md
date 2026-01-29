@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-563
 title: "Lab 2: Run workshop components with Docker"
 weight: 200
 toc: true

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-515
 title: "Set up security alerts"
 weight: 500
 toc: true
