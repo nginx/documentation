@@ -13,7 +13,7 @@ Monitoring your application's performance is crucial for maintaining its reliabi
 ## Prerequisites
 
 - Enable the [Cloud Monitoring API](https://cloud.google.com/monitoring/api/enable-api).
-- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/monitoring/access-management.md#configure-wif" >}}) for exact steps.
+- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/getting-started/access-management.md#configure-wif" >}}) for exact steps.
 - Grant a project-level role or grant your principal access to the `roles/monitoring.viewer` role. See [Google's documentation on controlling access to Cloud Monitoring with IAM](https://cloud.google.com/monitoring/access-control).
 
 ## Export NGINXaaS metrics to a Google Cloud Project
