@@ -310,21 +310,21 @@ To understand the _mTLS Configuration_ options, view the [Secure traffic using m
 | **NGINX Configuration** | _appprotect.nginx.image.repository_ | Docker image repository for NGINX. | \<your-private-registry>/nginx-app-protect-5 |
 | | _appprotect.nginx.image.tag_ | Docker image tag for NGINX. | latest |
 | | _appprotect.nginx.imagePullPolicy_ | Image pull policy. | IfNotPresent |
-| | _appprotect.nginx.resources_ | The resources of the NGINX container. | requests: cpu=10m,memory=16Mi |
+| | _appprotect.nginx.resources_ | The CPU and memory resources of the NGINX container. | requests: cpu=10m,memory=16Mi |
 | **WAF Config Manager** | _appprotect.wafConfigMgr.image.repository_ | Docker image repository for the WAF Configuration Manager. | private-registry.nginx.com/nap/waf-config-mgr |
 | | _appprotect.wafConfigMgr.image.tag_ | Docker image tag for the WAF Configuration Manager. | {{< version-waf-config-mgr >}} |
 | | _appprotect.wafConfigMgr.imagePullPolicy_ | Image pull policy. | IfNotPresent |
-| | _appprotect.wafConfigMgr.resources_ | The resources of the WAF Config Manager container. | requests: cpu=10m,memory=16Mi |
+| | _appprotect.wafConfigMgr.resources_ | The CPU and memory resources of the WAF Config Manager container. | requests: cpu=10m,memory=16Mi |
 | **WAF Enforcer** | _appprotect.wafEnforcer.image.repository_ | Docker image repository for the WAF Enforcer. | private-registry.nginx.com/nap/waf-enforcer |
 | | _appprotect.wafEnforcer.image.tag_ | Docker image tag for the WAF Enforcer. | {{< version-waf-enforcer >}} |
 | | _appprotect.wafEnforcer.imagePullPolicy_ | Image pull policy. | IfNotPresent |
 | | _appprotect.wafEnforcer.env.enforcerPort_ | Port for the WAF Enforcer. | 50000 |
-| | _appprotect.wafEnforcer.resources_ | The resources of the WAF Enforcer container. | requests: cpu=20m,memory=256Mi |
+| | _appprotect.wafEnforcer.resources_ | The CPU and memory resources of the WAF Enforcer container | requests: cpu=20m,memory=256Mi |
 | **WAF IP Intelligence** | _appprotect.wafIpIntelligence.enable | Enable or disable the use of the IP intelligence container | false |
 | | _appprotect.wafIpIntelligence.image.repository_ | Docker image repository for the WAF IP Intelligence. | private-registry.nginx.com/nap/waf-ip-intelligence |
 | | _appprotect.wafIpIntelligence.image.tag_ | Docker image tag for the WAF Enforcer. | {{< version-waf-ip-intelligence >}} |
 | | _appprotect.wafIpIntelligence.imagePullPolicy_ | Image pull policy. | IfNotPresent |
-| | _appprotect.wafIpIntelligence.resources_ | The resources of the WAF Enforcer container. | requests: cpu=10m,memory=256Mi |
+| | _appprotect.wafIpIntelligence.resources_ | The CPU and memory resources of the IP Intelligence container | requests: cpu=10m,memory=256Mi |
 | **Config** | _appprotect.config.name_ | The name of the ConfigMap used by the NGINX container. | nginx-config |
 | | _appprotect.config.annotations_ | The annotations of the ConfigMap. | {} |
 | | _appprotect.config.nginxJWT_ | JWT license for NGINX. | "" |
