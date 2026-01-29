@@ -72,7 +72,7 @@ LAST SEEN   TYPE      REASON              OBJECT                                
 Getting shell access to containers allows developers and operators to view the environment of a running container, see its logs or diagnose any problems. To get shell access to the NGINX container, use `kubectl exec`:
 
 ```shell
-kubectl exec -it -n <nginx-pod-namespace> <nginx-pod-name> -- /bin/sh
+kubectl exec -it -n <nginx-deployment-namespace> <nginx-deployment-name> -- /bin/sh
 ```
 
 #### Logs
