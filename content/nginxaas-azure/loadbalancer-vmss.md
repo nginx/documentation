@@ -37,14 +37,10 @@ The `nginx-asg-sync` agent (an open-source NGINX agent) monitors your VMSS for s
 Before setting up NGINXaaS load balancing for VMSS, ensure you have:
 
 - An active NGINXaaS for Azure deployment
-- Azure Virtual Machine Scale Sets (VMSS) with **Uniform orchestration mode**
+- Azure Virtual Machine Scale Sets (VMSS)
 - Network connectivity between NGINXaaS and VMSS instances
 - An Azure VM or container to run the nginx-asg-sync agent
 - Appropriate Azure permissions to assign managed identities
-
-{{< call-out "important" >}}
-**VMSS Orchestration Mode Requirement**: The nginx-asg-sync agent requires Azure Virtual Machine Scale Sets (VMSS) to be configured with **Uniform orchestration mode**. When creating your VMSS, ensure you select "Uniform" for the orchestration mode.
-{{< /call-out >}}
 
 ## Getting started
 
@@ -167,14 +163,17 @@ principalId=$(az vm show \
 
 #### Create the custom role
 
-Create a custom role with only the necessary permissions for nginx-asg-sync:
+Create a custom role with the necessary permissions for nginx-asg-sync. The exact permissions and the assignment scope depend on the
+[VMSS orchestration mode](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes):
 
-Create a file called `vmss-network-read-role.json`:
+**Uniform VMSS:**
+
+Create a file called `vmss-network-read-role-uniform.json`:
 
 ```json
 {
-  "Name": "VMSS-Network-Read-Role",
-  "Description": "Read VMSS and VMSS network interface information",
+  "Name": "VMSS-Network-Read-Role-Uniform",
+  "Description": "Read VMSS and VMSS network interface information (Uniform mode)",
   "Actions": [
     "Microsoft.Compute/virtualMachineScaleSets/read",
     "Microsoft.Compute/virtualMachineScaleSets/networkInterfaces/read"
@@ -186,12 +185,38 @@ Create a file called `vmss-network-read-role.json`:
 }
 ```
 
+**Flexible VMSS:**
+
+Create a file called `vmss-network-read-role-flexible.json`:
+
+```json
+{
+  "Name": "VMSS-Network-Read-Role-Flexible",
+  "Description": "Read VMSS, VM, and network interface information (Flexible mode)",
+  "Actions": [
+    "Microsoft.Compute/virtualMachineScaleSets/read",
+    "Microsoft.Compute/virtualMachineScaleSets/networkInterfaces/read",
+    "Microsoft.Compute/virtualMachineScaleSets/virtualMachines/read",
+    "Microsoft.Compute/virtualMachines/read",
+    "Microsoft.Network/networkInterfaces/read"
+  ],
+  "NotActions": [],
+  "AssignableScopes": [
+    "/subscriptions/<SUBSCRIPTION_ID>"
+  ]
+}
+```
+
 ```bash
 # Replace subscription ID in the JSON file (if using the template above)
 
-# Create the custom role
+# Create the custom role for Uniform mode
 az role definition create \
-  --role-definition vmss-network-read-role.json
+  --role-definition vmss-network-read-role-uniform.json
+
+# Create the custom role for Flexible mode
+az role definition create \
+  --role-definition vmss-network-read-role-flexible.json
 ```
 
 #### Get the VMSS resource ID (scope)
@@ -209,18 +234,34 @@ vmssId=$(az vmss show \
 
 #### Assign the custom role to the VM's managed identity
 
-Assign the custom role to the VM's system-assigned managed identity:
+Assign the custom role to the VM's system-assigned managed identity. The scope for assignment differs by VMSS mode:
+
+**Uniform VMSS:** Assign at the VMSS resource scope:
 
 ```bash
 # Set role name for assignment
-roleName="VMSS-Network-Read-Role"
+roleName="VMSS-Network-Read-Role-Uniform"
 
-# Assign the custom role to the VM's managed identity
+# Assign the custom role to the VM's managed identity (Uniform)
 az role assignment create \
   --assignee-object-id $principalId \
   --assignee-principal-type ServicePrincipal \
   --role $roleName \
   --scope $vmssId
+```
+
+**Flexible VMSS:** Assign at the resource group scope:
+
+```bash
+# Set role name for assignment
+roleName="VMSS-Network-Read-Role-Flexible"
+
+# Assign the custom role to the VM's managed identity (Flexible)
+az role assignment create \
+  --assignee-object-id $principalId \
+  --assignee-principal-type ServicePrincipal \
+  --role $roleName \
+  --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>
 ```
 
 #### Verify role assignment
@@ -231,7 +272,7 @@ Verify that the role assignment was created successfully:
 # Verify role assignment
 az role assignment list \
   --assignee $principalId \
-  --scope $vmssId \
+  --all \
   --output table
 ```
 
@@ -255,8 +296,8 @@ Install nginx-asg-sync agent on the VM you created in [Create VM for nginx-asg-s
 # Get latest version and detect architecture
 VERSION=$(curl -sL https://api.github.com/repos/nginx/nginx-asg-sync/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/^v//')
 if [ -z "$VERSION" ]; then
-    echo "Failed to fetch latest version, using fallback version 1.0.2"
-    VERSION="1.0.2"
+    echo "Failed to fetch latest version, using fallback version 1.0.4"
+    VERSION="1.0.4"
 fi
 BASE_URL="https://github.com/nginxinc/nginx-asg-sync/releases/download/v${VERSION}"
 
@@ -391,12 +432,20 @@ vmssId=$(az vmss show \
   --query id \
   --output tsv)
 
-# Assign the custom role to user-assigned managed identity
+## Assign the custom role to user-assigned managed identity
+# For Uniform VMSS (assign at VMSS resource scope):
 az role assignment create \
   --assignee-object-id $IDENTITY_PRINCIPAL_ID \
   --assignee-principal-type ServicePrincipal \
   --role $roleName \
   --scope $vmssId
+
+# For Flexible VMSS (assign at resource group scope):
+# az role assignment create \
+#   --assignee-object-id $IDENTITY_PRINCIPAL_ID \
+#   --assignee-principal-type ServicePrincipal \
+#   --role $roleName \
+#   --scope /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>
 ```
 
 ##### Create container instance
@@ -460,7 +509,7 @@ az container attach \
 Example output when the container starts successfully:
 
 ```
-2025/12/31 10:25:30 nginx-asg-sync version v1.0.3
+2025/12/31 10:25:30 nginx-asg-sync version v1.0.4
 2025/12/31 10:25:30 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 ```
 
@@ -546,7 +595,7 @@ nginx-asg-sync config_path=/etc/nginx/config.yaml -log_path=< path to log file >
 Example output when the agent starts successfully:
 
 ```
-2026/01/08 15:44:12 nginx-asg-sync version 1.0.3
+2026/01/08 15:44:12 nginx-asg-sync version 1.0.4
 2026/01/08 15:44:13 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.6:80 172.19.0.7:80], Removed: [], Updated: []
 
 2026/01/08 16:08:07 Updated HTTP servers of backend-one for group backend-one-vmss ; Added: [172.19.0.8:80], Removed: [], Updated: []
