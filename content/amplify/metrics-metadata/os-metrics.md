@@ -3,6 +3,7 @@ title: OS Metrics
 description: List of OS Metrics
 weight: 20
 toc: true
+noindex: true
 nd-docs: DOCS-974
 nd-product: AMPLIF
 ---

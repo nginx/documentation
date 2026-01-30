@@ -3,6 +3,7 @@ title: NGINX Metrics
 description: List of NGINX Metrics
 weight: 30
 toc: true
+noindex: true
 nd-docs: DOCS-973
 nd-product: AMPLIF
 ---

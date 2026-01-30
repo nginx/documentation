@@ -3,6 +3,7 @@ title: Configuring NGINX for Metric Collection
 description: Learn how to configure NGINX Instances to collect data.
 weight: 400
 toc: true
+noindex: true
 nd-docs: DOCS-963
 nd-product: AMPLIF
 ---

@@ -3,6 +3,7 @@ title: NGINX Configuration Analysis
 description: Learn about F5 NGINX Amplify Agent's configuration analysis feature.
 weight: 600
 toc: true
+noindex: true
 nd-docs: DOCS-961
 nd-product: AMPLIF
 ---

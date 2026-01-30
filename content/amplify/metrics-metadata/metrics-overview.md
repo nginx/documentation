@@ -3,6 +3,7 @@ title: Metrics and Metadata Overview
 description: Learn about the metrics and metadata F5 NGINX Amplify collects.
 weight: 10
 toc: true
+noindex: true
 nd-docs: DOCS-972
 nd-product: AMPLIF
 ---
