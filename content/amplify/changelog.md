@@ -2,7 +2,8 @@
 title: Changelog
 description: These release notes list and describe the new features, enhancements, and resolved issues in F5 NGINX Amplify
 weight: 900
-toc: true
+toc: false
+draft: true
 nd-docs: DOCS-1691
 nd-product: AMPLIF
 ---
