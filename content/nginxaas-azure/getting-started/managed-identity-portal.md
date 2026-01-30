@@ -44,7 +44,7 @@ Managed identities are used for the following integrations:
 2. Confirm the operation by selecting **Yes** on the confirmation prompt.
 
 ## System assigned managed identity
-{{< call-out "important" >}}**System-Assigned Managed Identity Required**: The system-assigned managed identity is required for all NGINXaaS deployments. When creating deployments through the Azure Portal, this identity is automatically created. For deployments created using other methods (such as ARM templates, Bicep, or Terraform), you must explicitly create the system-assigned managed identity. Once created, it cannot be removed.{{< /call-out >}}
+The system-assigned managed identity is required for all NGINXaaS deployments. When creating deployments through the Azure Portal, this identity is automatically created. For deployments created using other methods (such as ARM templates, Bicep, or Terraform), you must explicitly create the system-assigned managed identity. Once created, it cannot be removed.
 
 ### Viewing the system assigned managed identity
 
@@ -67,13 +67,7 @@ To provide the role assignments necessary for the deployment:
 3. On the **Add role assignment (Preview)** panel, select the appropriate **Scope** and **Role**. Then select **Save**.
 
 ## Legacy deployments without system assigned managed identity
-{{< call-out "note" >}}**Legacy Deployments**: Deployments created before the system-assigned managed identity requirement will continue to function without one. However, these deployments may have limited monitoring and logging capabilities. You can add a system-assigned managed identity by navigating to the Identity page and enabling it under the System Assigned tab.{{< /call-out >}}
-For legacy deployments that do not have a system-assigned managed identity:
-
-- The deployment will continue to operate normally
-- Updates to deployment properties and configuration will continue to work
-- Adding a system-assigned managed identity is optional but recommended for full monitoring and logging capabilities
-- Once a system-assigned managed identity is added, it cannot be removed from the deployment
+{{< call-out "note" >}}**Legacy Deployments**: Deployments created before system-assigned managed identity became mandatory will continue to operate normally and can still be updated (including deployment properties and NGINX configurations). However, logging and monitoring features will not work. You can add a system-assigned managed identity to these deployments by navigating to the Identity page and enabling it under the System Assigned tab.{{< /call-out >}}
 
 {{< call-out "note" >}}Removing a user-assigned managed identity from an NGINX deployment has the following effects:
 
