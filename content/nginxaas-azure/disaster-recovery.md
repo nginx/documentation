@@ -268,7 +268,6 @@ resource "azurerm_nginx_deployment" "primary_nginxaas_deployment" {
   resource_group_name = var.primary_resource_group
   location            = "eastus"
 
-  # REQUIRED: System-assigned managed identity
   identity {
     type = "SystemAssigned"
   }
@@ -333,7 +332,6 @@ resource "azurerm_nginx_deployment" "secondary_nginxaas_deployment" {
   resource_group_name = var.secondary_resource_group
   location            = "centralus"
 
-  # REQUIRED: System-assigned managed identity
   identity {
     type = "SystemAssigned"
   }
