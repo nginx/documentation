@@ -1,6 +1,6 @@
 ---
 title: Modify HTTP request and response headers
-weight: 600
+weight: 500
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
@@ -42,9 +42,35 @@ spec:
 EOF
 ```
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
-Save the public IP address and port of the NGINX Service into shell variables:
+```shell
+kubectl describe gateways.gateway.networking.k8s.io gateway
+```
+
+Verify the status is `Accepted`:
+
+```text
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
