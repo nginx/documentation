@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-351
 title: Update a security log profile
 description: Update an existing F5 WAF for NGINX security log profile or create a new revision using the NGINX Instance Manager REST API.
 toc: true

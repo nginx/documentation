@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-538
 description:
 title: Manage a single NGINX instance
 weight: 300

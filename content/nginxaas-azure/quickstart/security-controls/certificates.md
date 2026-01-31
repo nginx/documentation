@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-644
 title: Use a certificate from Azure Key Vault
 weight: 50
 toc: true

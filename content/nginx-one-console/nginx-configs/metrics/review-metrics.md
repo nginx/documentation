@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-525
 # We use sentence case and present imperative tone
 title: "Review metrics on the NGINX One dashboard"
 # Weights are assigned in increments of 100: determines sorting order

@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-236
 title: "gRPC protection"
 weight: 1200
 toc: true

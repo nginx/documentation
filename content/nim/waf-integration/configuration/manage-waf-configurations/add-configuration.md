@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-347
 title: Add WAF configuration
 description: Add default or custom WAF policies to your NGINX instances.
 toc: true

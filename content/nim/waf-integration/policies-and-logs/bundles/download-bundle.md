@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-366
 title: Download a security policy bundle
 description: Download a compiled F5 WAF for NGINX security bundle from NGINX Instance Manager as a `.tgz` file for reuse or offline deployment.
 toc: true

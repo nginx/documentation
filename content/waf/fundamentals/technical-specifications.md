@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-277
 title: "Technical specifications"
 weight: 200
 toc: true

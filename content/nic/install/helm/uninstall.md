@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-486
 title: Use Helm to uninstall NGINX Ingress Controller
 linkTitle: Uninstall
 toc: true

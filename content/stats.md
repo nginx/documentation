@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-200
 title: Shortcode report
 description: Shortcode report
 nd-content-type: reference

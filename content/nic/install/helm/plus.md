@@ -1,4 +1,5 @@
 ---
+nd-docs: DOCS-482
 title: Use Helm to Install NGINX Ingress Controller with NGINX Plus
 linkTitle: NGINX Plus
 toc: true
