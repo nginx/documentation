@@ -115,6 +115,14 @@ This is a bugfix release for NGINX Plus R36.
 
 - HTTP/3: fixed a potential crash when using OpenSSL 3.5.1 or newer.
 
+NGINX Plus R36 P2<br/>
+_February 4, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security Fix: when proxying to upstream TLS servers, an attacker with
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1642)).
+
 
 ## NGINX Plus Release 35 (R35) {#r35}
 _August 13, 2025_<br/>
@@ -166,6 +174,17 @@ NGINX Plus R35 is supported on:
 - Ubuntu 20.04 is removed
 - SLES 15 SP6 is now required
 - the [ACME]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) dynamic module is new in this release.
+
+### NGINX Plus R35 Update {#r35_p1}
+
+NGINX Plus R35 P1<br/>
+_February 4, 2026_
+
+This is a security release for NGINX Plus R35.
+
+- Security Fix: when proxying to upstream TLS servers, an attacker with
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1642)).
+
 
 ## NGINX Plus Release 34 (R34) {#r34}
 _April 01, 2025_<br/>
@@ -437,6 +456,14 @@ This is a security release for NGINX Plus R32.
 
 - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
+
+NGINX Plus R32 P4<br/>
+_February 4, 2026_
+
+This is a security release for NGINX Plus R32.
+
+- Security Fix: when proxying to upstream TLS servers, an attacker with
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1642)).
 
 ## NGINX Plus Release 31 (R31) {#r31}
 _December 19, 2023_<br/>
