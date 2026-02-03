@@ -27,7 +27,7 @@ Released _January 13th, 2026_.
 
 - 13340 - F5 WAF for NGINX leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
 - 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS
-- 13592 – Increased signature compiler capacity to support larger signature sets and avoid legacy signature‑count limits.
+- 13592 – Increased signature compiler capacity to support larger signature sets and avoid legacy signature count limits.
 
 ### Packages
 
