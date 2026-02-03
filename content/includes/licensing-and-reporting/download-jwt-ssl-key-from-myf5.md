@@ -1,0 +1,12 @@
+---
+nd-files:
+- content/waf/install/docker.md
+- content/waf/install/kubernetes.md
+- content/waf/install/kubernetes-plm.md
+- content/waf/install/virtual-environment.md
+---
+
+1. Log in to [MyF5](https://my.f5.com/manage/s/).
+1. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
+1. Find your NGINX subscription, and select the **Subscription ID** for details.
+1. Download the **SSL Certificate**, **Private Key** and **JSON Web Token** files from the subscription page.
