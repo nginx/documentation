@@ -14,6 +14,16 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## January 30, 2026
+
+- {{% icon-feature %}} **System-assigned managed identity is now required for all NGINXaaS deployments**
+
+  All new NGINXaaS for Azure deployments now require a system-assigned managed identity. Deployments created through the Azure Portal automatically have the system-assigned managed identity enabled. For deployments created using ARM templates, Bicep, or Terraform, you must explicitly enable the system-assigned managed identity.
+
+  Legacy deployments created before this requirement will continue to function normally, but logging and monitoring features will not work without a system-assigned managed identity. You can add a system-assigned managed identity to existing deployments through the Identity page in the Azure Portal.
+
+  For more information, see [Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}).
+
 ## January 15, 2026
 
 - {{% icon-feature %}} **NGINXaaS for Azure now supports the `mqtt_buffers` directive**
