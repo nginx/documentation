@@ -14,7 +14,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
-## January 30, 2026
+## February 03, 2026
 
 - {{% icon-feature %}} **In-place plan migrations to Standard V3 and Developer Plans**
 
