@@ -13,12 +13,6 @@ Learn how to configure a TCPRoute to establish a TCP connection between NGINX Ga
 
 TCPRoute is a Gateway API resource that is used to configure routing for TCP connections. When attached to a Gateway listener, it forwards connections arriving on the listener’s port to one or more backend Services. In this guide, you will configure two TCPRoutes for **coffee** and **tea** applications, and see how listeners are attached to backends to route TCP traffic.
 
-## Note on Gateway API Experimental Features
-
-{{< call-out "important" >}} TCPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
-
-{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
-
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
