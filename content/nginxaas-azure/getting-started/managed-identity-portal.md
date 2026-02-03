@@ -78,39 +78,23 @@ To provide the role assignments necessary for the deployment:
 
 ## Checking for deployments without system assigned managed identity
 
-Use the following bash script to identify NGINXaaS deployments that do not have a system-assigned managed identity:
+Use the following Azure Resource Graph query to identify NGINXaaS deployments that do not have a system-assigned managed identity.
 
-{{< call-out "note" >}}Before running the script, ensure you are logged in to Azure CLI (`az login`) and have selected the appropriate subscription (`az account set --subscription <subscription-id>`).{{< /call-out >}}
 
-```bash
-#!/bin/bash
+{{< details summary="Azure Resource Graph Query" >}}
 
-# Find NGINXaaS deployments without system-assigned managed identity
-echo "Checking for NGINXaaS deployments without system-assigned managed identity..."
-echo ""
+You can run this query in the Azure Portal by navigating to **Azure Resource Graph Explorer** or by using the search bar and typing "Resource Graph Explorer".
 
-# Get all NGINXaaS deployments
-deployments=$(az resource list \
-  --resource-type "NGINX.NGINXPLUS/nginxDeployments" \
-  --query "[].id" -o tsv)
-
-# Check each deployment for system-assigned identity
-for deployment_id in $deployments; do
-  identity_type=$(az nginx deployment show \
-    --ids "$deployment_id" \
-    --query "identity.type" -o tsv 2>/dev/null)
-
-  # Check if identity type contains "SystemAssigned"
-  if [[ ! "$identity_type" =~ "SystemAssigned" ]]; then
-    echo "$deployment_id"
-  fi
-done
-
-echo ""
-echo "Done. Deployments listed above do not have a system-assigned managed identity."
+```
+Resources
+| where type == "nginx.nginxplus/nginxdeployments"
+| where isnull(identity) or identity.type !has "SystemAssigned"
+| project name, location, type, id, identity
 ```
 
-The script will output the Azure resource IDs of any deployments that need to be updated with a system-assigned managed identity.
+The query lists the name, location, resource type, resource ID, and current identity configuration of the NGINXaaS deployments that do not have a system assigned managed identity.
+
+{{< /details >}}
 
 ## What's next
 
