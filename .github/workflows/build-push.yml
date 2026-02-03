@@ -58,7 +58,7 @@ jobs:
 
   call-docs-build-push:
     needs: prod-check-branch
-    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@7bae601be08ca09aabd0850731e20847a456c227 # v1.0.12
+    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@54da3ca1694da6ce34840123a133054d847efcd6 # v1.0.13
     with:
       production_url_path: ""
       preview_url_path: "${{ vars.PREVIEW_URL_PATH }}"
