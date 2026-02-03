@@ -36,7 +36,7 @@ Use the table below to check the end-of-support (EoS) dates for recent versions.
 |------------------------|----------------------|
 | 2.21.x                 | November 07, 2027    |
 | 2.20.x                 | June 16, 2027        |
-| 2.19.x                 | February 06, 2026    |
+| 2.19.x                 | February 06, 2027    |
 | 2.18.x                 | November 08, 2026    |
 | 2.17.x                 | July 10, 2026        |
 | 2.16.x                 | April 18, 2026       |

@@ -152,6 +152,9 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 
 {{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
 
+#### Watch subset of namespaces
+
+By default, the NGINX Gateway Fabric controller watches resources in all namespaces. To restrict the list of namespaces, you can specify `--set "nginxGateway.watchNamespaces={x,y,z}"` with your namespace names when installing.
 
 #### Examples
 
