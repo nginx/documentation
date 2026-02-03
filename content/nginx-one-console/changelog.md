@@ -9,6 +9,19 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## January 27, 2026
+
+### Config Sync Groups: Support for unmanaged certificates
+
+Config Sync Groups now support unmanaged certificates. You can reference SSL/TLS certificates managed outside of NGINX One Console in your configuration files while maintaining centralized configuration synchronization across all instances in the group.
+
+### API behavior change: conf_path is now optional for PUT/PATCH operations
+
+- The `conf_path` field is now optional when updating configurations for NGINX instances, Config Sync Groups, and Staged Configs with PUT and PATCH operations.
+- When `conf_path` is omitted, the system automatically uses the `conf_path` from the existing instance, Config Sync Group, or Staged Config metadata.
+- When `conf_path` is provided, it must be an absolute path that references a file present in the provided `configs` array. Providing an invalid path or a path not found in the configs returns a `400 Bad Request` error.
+- This is a non-breaking change; existing requests that include `conf_path` will continue to work as before.
+
 ## November 25, 2025
 
 ### Observability: Usage metrics data now available for Config Sync Groups

@@ -1,7 +1,9 @@
 ---
 title: Other NGINX Amplify Resources
 weight: 899
-toc: true
+toc: false
+draft: true
+noindex: true
 nd-docs: DOCS-977
 nd-product: AMPLIF
 ---

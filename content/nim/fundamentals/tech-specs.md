@@ -35,12 +35,12 @@ Use the table below to check the end-of-support (EoS) dates for recent versions.
 | NGINX Instance Manager | End of Support (EoS) |
 |------------------------|----------------------|
 | 2.21.x                 | November 07, 2027    |
-| 2.20.x                 | June 15, 2027        |
-| 2.19.x                 | February 06, 2026    |
-| 2.18.x                 | July 10, 2026        |
-| 2.17.x                 | November 08, 2026    |
-| 2.16.x                 | April 16, 2026       |
-| 2.15.x                 | December 13, 2025    |
+| 2.20.x                 | June 16, 2027        |
+| 2.19.x                 | February 06, 2027    |
+| 2.18.x                 | November 08, 2026    |
+| 2.17.x                 | July 10, 2026        |
+| 2.16.x                 | April 18, 2026       |
+| 2.15.x                 | December 12, 2025    |
 
 ## Supported NGINX Versions {#nginx-versions}
 
@@ -88,7 +88,6 @@ If using F5 WAF for NGINX features in NGINX Instance Manager, this requires addi
 In Lightweight mode, we tested NGINX Instance Manager with ten managed NGINX instances and configuration publishing. It ran with as little as 1 CPU core and 1 GB of memory (without App Protect). When App Protect was enabled, we needed 2 CPU cores and 4 GB of memory to compile policies.
 
 These figures are guidelines only. They reflect the minimum tested configuration and may cause performance issues depending on your setup. For better performance, consider allocating more system resources.
-
 
 ### License and usage reporting only {#reporting-sizing}
 
@@ -212,6 +211,6 @@ The NGINX Instance Manager web interface works best on the latest versions of th
 
 ## NGINX Agent
 
-#### Data plane requirements
+### Data plane requirements
 
 - **Supported distributions**: The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Agent Technical Specs](https://docs.nginx.com/nginx-agent/technical-specifications/) guide.
