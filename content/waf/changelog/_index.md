@@ -27,6 +27,7 @@ Released _January 13th, 2026_.
 
 - 13340 - F5 WAF for NGINX leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
 - 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS
+- 13592 - Signature Capacity Improvements: We have increased the internal capacity the module uses to compile security signatures. As more signature updates have been delivered over time, some older releases were approaching the limits of what could be loaded—especially when multiple signature sets were enabled together. With this release, the NGINX App Protect compiler now supports a higher signature complexity, ensuring you can continue to apply the latest updates without hitting legacy limits or disabling protections.
 
 ### Packages
 
