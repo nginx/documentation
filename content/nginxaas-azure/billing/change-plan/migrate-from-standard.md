@@ -1,7 +1,9 @@
 ---
 title: Migrate from Standard to Standard V2
 weight: 100
-toc: true
+toc: false
+draft: true
+noindex: true
 url: /nginxaas/azure/billing/change-plan/migrate-from-standard/
 nd-content-type: how-to
 nd-product: NAZURE
