@@ -1,4 +1,5 @@
 ---
+nd-product: FABRIC
 ---
 
 {{< call-out "note" >}} 
