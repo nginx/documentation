@@ -1,6 +1,6 @@
 {{< banner "warning" "Support for NGINX Amplify Ends January 31, 2026" >}}
 
-NGINX Amplify support ends on January 31, 2026. To continue monitoring your NGINX instances, migrate to the NGINX One Console, part of the NGINX One product offering.
+NGINX Amplify support ended on January 31, 2026. To continue monitoring your NGINX instances, migrate to the NGINX One Console, part of the NGINX One product offering.
 
 **Transition steps:**
 
