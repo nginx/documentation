@@ -1,20 +1,18 @@
 ---
 title: Custom policies
-weight: 600
+weight: 700
 toc: true
 nd-content-type: reference
 nd-product: FABRIC
 nd-docs: DOCS-1835
 ---
 
-## Overview
+This topic explains the custom policies for NGINX Gateway Fabric CRDs (Custom Resource Definitions), which allow users to configure NGINX data plane features that are unavailable in the Gateway API.
 
-Custom policies are NGINX Gateway Fabric CRDs (Custom Resource Definitions) that allow users to configure NGINX data plane features that are unavailable in the Gateway API.
 These custom policies follow the Gateway API [Policy Attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) pattern, which allows users to extend the Gateway API functionality by creating implementation-specific policies and attaching them to Kubernetes objects such as HTTPRoutes, Gateways, and Services.
 
 Policies are a Kubernetes object that augments the behavior of an object in a standard way. Policies can be attached to one object ([Direct Policy Attachment](#direct-policy-attachment)) or objects in a hierarchy ([Inherited Policy Attachment](#inherited-policy-attachment)).
 The following table summarizes NGINX Gateway Fabric custom policies:
-
 
 | Policy                                                                                      | Description                                             | Attachment Type | Supported Target Object(s)    | Supports Multiple Target Refs | Mergeable | API Version |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------|-------------------------------|-------------------------------|-----------|-------------|
@@ -89,7 +87,6 @@ spec:
     name: foo
   retries: 10
 ```
-
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha1
