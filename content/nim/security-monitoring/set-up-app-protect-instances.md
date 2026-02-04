@@ -176,7 +176,7 @@ Repeat the steps below on each F5 WAF for NGINX data plane instance.
       app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
    ```
 
-   {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The dashboards won't display any data if these settings don't match. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
+   {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#install-nginx-agent). The dashboards won't display any data if these settings don't match. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
 
 1. Restart NGINX Agent and the NGINX web server.
 
@@ -207,7 +207,7 @@ Take the steps below to update your F5 WAF for NGINX configurations by using Ins
 
    - Add the `app_protect_policy_file` directive with a reference to a security policy.
 
-      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of F5 WAF for NGINX policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for polcies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
+      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of F5 WAF for NGINX policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for policies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
 
       If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up F5 WAF for NGINX Configuration Management]({{< ref "/nim/waf-integration/configuration/manage-waf-configurations" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
 
@@ -217,7 +217,7 @@ Take the steps below to update your F5 WAF for NGINX configurations by using Ins
 
       If the `app_protect_security_log_enable` setting is already present, just add the `app_protect_security_log` beneath it in the same context.
 
-      {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#agent-config). The Security Monitoring dashboards won't display any data if these settings don't match. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
+      {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#install-nginx-agent). The Security Monitoring dashboards won't display any data if these settings don't match. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
 
 1. Select **Publish** to immediately push the configuration file updates out to your NGINX instance or instance group.
 

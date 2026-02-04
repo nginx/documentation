@@ -96,7 +96,9 @@ nginx-plus-registry-secret         kubernetes.io/dockerconfigjson   1          2
 
 By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace.
 
-If you want to deploy it in another namespace, you must modify the Manifest files
+If you want to deploy it in another namespace, you must modify the Manifest files.
+
+{{< call-out "note" >}} By default, NGINX Gateway Fabric watches all namespaces. To limit the namespaces that it watches, add `--watch-namespaces=x,y,z` to the Deployment arguments, specifying the names of your namespaces. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus/deploy.yaml

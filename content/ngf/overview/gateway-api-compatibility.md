@@ -13,7 +13,22 @@ For information about NGINX Gateway Fabric and Gateway API version compatibility
 
 ## Summary
 
-{{< include "ngf/gateway-api-compat-table.md" >}}
+{{< table >}}
+
+| Resource                              | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
+|---------------------------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
+| [GatewayClass](#gatewayclass)         | Supported           | Not supported          | Supported                             | v1          | Standard            |
+| [Gateway](#gateway)                   | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
+| [HTTPRoute](#httproute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
+| [GRPCRoute](#grpcroute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
+| [ReferenceGrant](#referencegrant)     | Supported           | N/A                    | Not supported                         | v1beta1     | Standard            |
+| [TLSRoute](#tlsroute)                 | Supported           | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| [TCPRoute](#tcproute)                 | Supported           | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| [UDPRoute](#udproute)                 | Supported           | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1          | Standard            |
+| [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
+
+{{< /table >}}
 
 ## Terminology
 
@@ -95,7 +110,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `tls`
       - `mode`: Partially supported. Allowed value: `Terminate`.
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`. Only a single reference is supported.
-      - `options`: Not supported.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
   - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
       - `type`: Partially supported. Allowed value: `IPAddress`.
@@ -170,7 +185,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `name`: Not supported.
     - `timeouts`: Not supported.
     - `retry`: Not supported.
-    - `sessionPersistence`: Not supported.
+    - `sessionPersistence`: Supported (NGINX Plus).
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -222,7 +237,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
-    - `sessionPersistence`: Not supported.
+    - `sessionPersistence`: Supported (NGINX Plus).
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -309,8 +324,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TCPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
+| TCPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
 {{< /table >}}
 
 ### UDPRoute
@@ -319,8 +333,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
+| UDPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
 {{< /table >}}
 
 ### BackendTLSPolicy
