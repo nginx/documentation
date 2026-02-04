@@ -8,7 +8,7 @@ nd-product: FABRIC
 nd-docs: DOCS-1429
 ---
 
-This page describes how to use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Open Source.
+This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Open Source.
 
 It explains how to install the Gateway API resources and add authentication certificates, then deploy NGINX Gateway Fabric and its custom resource definitions.
 
