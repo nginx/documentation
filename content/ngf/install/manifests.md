@@ -66,6 +66,8 @@ kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gat
 
 {{< call-out "note" >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /call-out >}}
 
+{{< call-out "note" >}} By default, NGINX Gateway Fabric watches all namespaces. To limit the namespaces that it watches, add `--watch-namespaces=x,y,z` to the Deployment arguments, specifying the names of your namespaces. {{< /call-out >}}
+
 {{<tabs name="install-manifests">}}
 
 {{%tab name="Default"%}}
