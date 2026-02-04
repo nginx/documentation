@@ -360,7 +360,6 @@ Note that each subroute must have a `path` that starts with the same prefix (her
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
 |``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string``_ | No |
 
-
 ### VirtualServerRoute.Subroute
 
 The subroute defines rules for matching client requests to actions like passing a request to an upstream. For example:
