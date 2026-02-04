@@ -12,6 +12,20 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
 
+## February 4, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google is now generally available in Asia Pacific (APAC)**
+
+  NGINXaaS for Google is now available in the following regions in APAC:
+
+   {{< table "table" >}}
+   |NGINXaaS Geography | Google Cloud Regions |
+   |-----------|---------|
+   | APAC  | asia-southeast1 |
+   {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas-google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+
 ## January 15, 2026
 - {{% icon-feature %}} **Required configuration no longer needed for deployments**
 
