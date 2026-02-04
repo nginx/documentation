@@ -13,22 +13,7 @@ For information about NGINX Gateway Fabric and Gateway API version compatibility
 
 ## Summary
 
-{{< table >}}
-
-| Resource                              | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
-|---------------------------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
-| [GatewayClass](#gatewayclass)         | Supported           | Not supported          | Supported                             | v1          | Standard            |
-| [Gateway](#gateway)                   | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
-| [HTTPRoute](#httproute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
-| [GRPCRoute](#grpcroute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
-| [ReferenceGrant](#referencegrant)     | Supported           | N/A                    | Not supported                         | v1beta1     | Standard            |
-| [TLSRoute](#tlsroute)                 | Supported           | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [TCPRoute](#tcproute)                 | Supported           | Supported              | Not supported                         | v1alpha2    | Experimental        |
-| [UDPRoute](#udproute)                 | Supported           | Supported              | Not supported                         | v1alpha2    | Experimental        |
-| [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1          | Standard            |
-| [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
-
-{{< /table >}}
+{{< include "ngf/gateway-api-compat-table.md" >}}
 
 ## Terminology
 

@@ -17,9 +17,9 @@ You can view the [Milestone Roadmap](https://github.com/orgs/nginx/projects/10/v
 | [GRPCRoute]({{< ref "/ngf/overview/gateway-api-compatibility.md#grpcroute" >}})               | Supported     | Partially supported    | Not supported       | v1          | Standard     |
 | [ReferenceGrant]({{< ref "/ngf/overview/gateway-api-compatibility.md#referencegrant" >}})     | Supported     | N/A                    | Not supported       | v1beta1     | Standard     |
 | [TLSRoute]({{< ref "/ngf/overview/gateway-api-compatibility.md#tlsroute" >}})                 | Supported     | Not supported          | Not supported       | v1alpha2    | Experimental |
-| [TCPRoute]({{< ref "/ngf/overview/gateway-api-compatibility.md#tcproute" >}})                 | Not supported | Not supported          | Not supported       | v1alpha2    | Experimental |
-| [UDPRoute]({{< ref "/ngf/overview/gateway-api-compatibility.md#udproute" >}})                 | Not supported | Not supported          | Not supported       | v1alpha2    | Experimental |
-| [BackendTLSPolicy]({{< ref "/ngf/overview/gateway-api-compatibility.md#backendtlspolicy" >}}) | Supported     | Supported              | Partially Supported | v1          | Standard     |
+| [TCPRoute]({{< ref "/ngf/overview/gateway-api-compatibility.md#tcproute" >}})                 | Supported | Supported          | Not supported       | v1alpha2    | Experimental |
+| [UDPRoute]({{< ref "/ngf/overview/gateway-api-compatibility.md#udproute" >}})                 | Supported | Supported          | Not supported       | v1alpha2    | Experimental |
+| [BackendTLSPolicy]({{< ref "/ngf/overview/gateway-api-compatibility.md#backendtlspolicy" >}}) | Partially supported     | Supported              | Partially supported | v1          | Standard     |
 | [Custom policies]({{< ref "/ngf/overview/gateway-api-compatibility.md#custom-policies" >}})   | N/A           | N/A                    | Supported           | N/A         | N/A          |
 
 {{< /table >}}
