@@ -22,6 +22,6 @@ cascade:
 
 - On CentOS and Red Hat use:
 
-    ```bash
+    ```shell
     yum remove nginx-amplify-agent
     ```
