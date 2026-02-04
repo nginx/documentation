@@ -69,6 +69,7 @@ kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gate
 {{< details summary="Example output" >}}
 
 ```text
+customresourcedefinition.apiextensions.k8s.io "backendtlspolicies.gateway.networking.k8s.io" deleted
 customresourcedefinition.apiextensions.k8s.io "gatewayclasses.gateway.networking.k8s.io" deleted
 customresourcedefinition.apiextensions.k8s.io "gateways.gateway.networking.k8s.io" deleted
 customresourcedefinition.apiextensions.k8s.io "grpcroutes.gateway.networking.k8s.io" deleted
