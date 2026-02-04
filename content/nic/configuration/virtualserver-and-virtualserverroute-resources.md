@@ -254,7 +254,7 @@ spec:
   - path: /decaf
     routeSelector:
       matchLabels:
-        app: cafe
+        app: coffee
 ```
 
 VirtualServerRoute:
@@ -266,7 +266,7 @@ metadata:
   name: coffee
   namespace: coffee-ns
   labels:
-    app: cafe
+    app: coffee
 spec:
   host: cafe.example.com
   upstreams:
