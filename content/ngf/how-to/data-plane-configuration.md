@@ -310,7 +310,7 @@ EOF
 
 ---
 
-### Run NGINX Gateway Fabric with NGINX in debug mode
+## Run NGINX Gateway Fabric with NGINX in debug mode
 
 To run NGINX Gateway Fabric with NGINX in debug mode, during [installation]({{< ref "/ngf/install/" >}}), follow these additional steps:
 

@@ -14,6 +14,24 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## February 03, 2026
+
+- {{% icon-feature %}} **In-place plan migrations to Standard V3 and Developer Plans**
+
+You can now migrate NGINXaaS for Azure deployments between pricing plans without any downtime. Supported migrations include `Basic` to `Developer`, `Standard` to `Standard V3`, and `Standard V2` to `Standard V3`. We encourage you to migrate your existing deployments to the new plans as legacy plans will be deprecated soon. For migration steps, see [Migrate to new pricing plans]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}}).
+
+## January 15, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Azure now supports the `mqtt_buffers` directive**
+
+  The [`mqtt_buffers`](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html#mqtt_buffers) directive is now supported in NGINXaaS for Azure, allowing users to configure the number and size of buffers used for MQTT protocol traffic. For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#configuration-directives-list" >}}).
+
+## January 14, 2026
+
+- {{% icon-feature %}} **Azure Resource Health is now automatically enabled on all NGINXaaS deployments**
+
+  Customers can now monitor the health of their NGINXaaS deployments through [Azure Resource Health]({{< ref "/nginxaas-azure/monitoring/azure-resource-health.md" >}}). Azure Resource Health provides an up-to-date overview of deployment status and reveals ways in which NGINXaaS deployments may have become degraded over time. We encourage users to make full use of this functionality to maintain their deployments in a healthy state.
+
 ## January 08, 2026
 
 - {{% icon-feature %}} **NGINXaaS is now running NGINX Plus Release 36 (R36) in the Stable Upgrade Channel**
