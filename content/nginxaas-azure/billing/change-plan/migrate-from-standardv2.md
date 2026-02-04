@@ -1,5 +1,5 @@
 ---
-title: Migrate to new pricing plans
+title: Migrate to new plans
 weight: 100
 toc: true
 url: /nginxaas/azure/billing/change-plan/migrate-between-plans/
@@ -9,7 +9,7 @@ type:
 
 ## Overview
 
-F5 NGINXaaS for Azure (NGINXaaS) supports in-place migration between certain pricing plans without requiring redeployment. This allows you to upgrade your deployment to access new features and capabilities while maintaining your existing configuration and avoiding downtime.
+F5 NGINXaaS for Azure (NGINXaaS) supports in-place migration between certain plans without requiring redeployment. This allows you to upgrade your deployment to access new features and capabilities while maintaining your existing configuration and avoiding downtime.
 
 ## Supported migration paths
 
@@ -17,7 +17,7 @@ The following in-place migrations are supported:
 
 - **Basic → Developer**: Upgrade from the Basic plan to the Developer plan to access advanced features
 - **Standard → Standard V3**: Upgrade from the legacy Standard plan to the modern Standard V3 plan
-- **Standard V2 → Standard V3**: Upgrade from Standard V2 to Standard V3 to access the latest features and pricing model
+- **Standard V2 → Standard V3**: Upgrade from Standard V2 to Standard V3 to access the latest features.
 
 {{< call-out "important" >}}
 If you have a Standard or Standard V2 plan deployment, we encourage you to migrate to the Standard V3 plan as soon as possible. If you have a Basic plan deployment, we encourage you to migrate to the Developer plan as soon as possible. Legacy plans will stop receiving automatic updates that address critical security issues.

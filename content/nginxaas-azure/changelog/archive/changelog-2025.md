@@ -171,7 +171,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{% icon-info %}} **Retirement of Standard Plan**
 
-   The `Standard` plan for NGINXaaS for Azure has been retired and can no longer be used to create new deployments. If you have an existing deployment on the `Standard` plan, consider [migrating]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standard.md">}}) to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as F5 WAF for NGINX and additional listen ports. Migrating your plan does not cause downtime.
+   The `Standard` plan for NGINXaaS for Azure has been retired and can no longer be used to create new deployments. If you have an existing deployment on the `Standard` plan, consider migrating to the [`Standard V2 plan`]({{< ref "/nginxaas-azure/billing/overview.md#standard-v2-plan" >}}) to access new features such as F5 WAF for NGINX and additional listen ports. Migrating your plan does not cause downtime.
 
 ## February 10, 2025
 
@@ -183,4 +183,4 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
 
 - {{< icon-feature >}} **In-place SKU Migration from Standard to Standard V2**
 
-   You can now migrate NGINXaaS for Azure from the `Standard` plan to the `Standard V2` plan without redeploying. We recommend upgrading to the `Standard V2` plan to access features such as F5 WAF for NGINX and additional listen ports. The `Standard` plan will be retired soon. For migration steps, see [Migrate from Standard]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standard.md">}}).
+   You can now migrate NGINXaaS for Azure from the `Standard` plan to the `Standard V2` plan without redeploying. We recommend upgrading to the `Standard V2` plan to access features such as F5 WAF for NGINX and additional listen ports. The `Standard` plan will be retired soon.
