@@ -51,17 +51,17 @@ spec:
   - path: ~ ^/decaf/.*\\.jpg$
     action:
       pass: coffee
-  - path: =/green/tea
+  - path: = /green/tea
     action:
       pass: tea
 ```
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. The ``host`` value needs to be unique among all Ingress and VirtualServer resources. See also [Handling Host and Listener Collisions]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}). | ``string`` | Yes |
+|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes.  The ``host`` value needs to be unique among all Ingress and VirtualServer resources. See also [Handling Host and Listener Collisions](/nginx-ingress-controller/configuration/host-and-listener-collisions). | ``string`` | Yes |
 |``listener`` | Sets a custom HTTP and/or HTTPS listener. Valid fields are `listener.http` and `listener.https`. Each field must reference the name of a valid listener defined in a GlobalConfiguration resource | [listener](#virtualserverlistener) | No |
 |``tls`` | The TLS termination configuration. | [tls](#virtualservertls) | No |
-|``gunzip`` | Enables or disables [decompression]({{< ref "/nginx/admin-guide/web-server/compression.md" >}}) of gzipped responses for clients. Allowed values “on”/“off”, “true”/“false” or “yes”/“no”. If the ``gunzip`` value is not set, it defaults to ``off``.   | ``boolean`` | No |
+|``gunzip`` | Enables or disables [decompression](https://docs.nginx.com/nginx/admin-guide/web-server/compression/) of gzipped responses for clients. Allowed values “on”/“off”, “true”/“false” or “yes”/“no”. If the ``gunzip`` value is not set, it defaults to ``off``.   | ``boolean`` | No |
 |``externalDNS`` | The externalDNS configuration for a VirtualServer. | [externalDNS](#virtualserverexternaldns) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServer. | ``string`` | No |
 |``policies`` | A list of policies. | [[]policy](#virtualserverpolicy) | No |
@@ -84,7 +84,7 @@ redirect:
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the VirtualServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the host of the VirtualServer. If the secret is not specified but [wildcard TLS secret]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-wildcard-tls-secret" >}}) is configured, NGINX will use the wildcard secret for TLS termination. | ``string`` | No |
+|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the VirtualServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the host of the VirtualServer. If the secret is not specified but [wildcard TLS secret](/nginx-ingress-controller/configuration/global-configuration/command-line-arguments#cmdoption-wildcard-tls-secret) is configured, NGINX will use the wildcard secret for TLS termination. | ``string`` | No |
 |``redirect`` | The redirect configuration of the TLS for a VirtualServer. | [tls.redirect](#virtualservertlsredirect) | No | ### VirtualServer.TLS.Redirect |
 |``cert-manager`` | The cert-manager configuration of the TLS for a VirtualServer. | [tls.cert-manager](#virtualservertlscertmanager) | No | ### VirtualServer.TLS.CertManager |
 
@@ -113,6 +113,8 @@ cert-manager:
   cluster-issuer: "my-issuer-name"
 ```
 
+{{< table >}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``issuer`` |  the name of an Issuer. An Issuer is a cert-manager resource which describes the certificate authority capable of signing certificates. The Issuer must be in the same namespace as the VirtualServer resource. Please note that one of `issuer` and `cluster-issuer` are required, but they are mutually exclusive - one and only one must be defined. | ``string`` | No |
@@ -125,10 +127,13 @@ cert-manager:
 |``usages`` |  This field allows you to configure spec.usages field for the Certificate to be generated. Pass a string with comma-separated values i.e. ``key agreement,digital signature, server auth``. An exhaustive list of supported key usages can be found in the [the cert-manager api documentation](https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1.KeyUsage). | ``string`` | No |
 |``issue-temp-cert`` | When ``true``, ask cert-manager for a [temporary self-signed certificate](https://cert-manager.io/docs/usage/certificate/#temporary-certificates-while-issuing) pending the issuance of the Certificate. This allows HTTPS-only servers to use ACME HTTP01 challenges when the TLS secret does not exist yet. | ``boolean`` | No |
 
+{{< /table >}}
+
 ### VirtualServer.Listener
 
 The listener field defines a custom HTTP and/or HTTPS listener.
-The respective listeners used must reference the name of a listener defined using a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource.
+The respective listeners used must reference the name of a listener defined using a [GlobalConfiguration](/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource/) resource.
+
 For example:
 
 ```yaml
@@ -138,8 +143,8 @@ https: https-8443
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``http`` |  The name of am HTTP listener defined in a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource. | ``string`` | No |
-|``https`` |  The name of an HTTPS listener defined in a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource. | ``string`` | No |
+|``http`` |  The name of am HTTP listener defined in a [GlobalConfiguration](/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource/) resource. | ``string`` | No |
+|``https`` |  The name of an HTTPS listener defined in a [GlobalConfiguration](/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource/) resource. | ``string`` | No |
 
 ### VirtualServer.ExternalDNS
 
@@ -175,7 +180,7 @@ The providerSpecific field of the externalDNS block allows the specification of 
 
 ### VirtualServer.Policy
 
-The policy field references a [Policy resource]({{< ref "/nic/configuration/policy-resource.md" >}}) by its name and optional namespace. For example:
+The policy field references a [Policy resource](/nginx-ingress-controller/configuration/policy-resource/) by its name and optional namespace. For example:
 
 ```yaml
 name: access-control
@@ -201,7 +206,7 @@ The route defines rules for matching client requests to actions like passing a r
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``path`` | The path of the route. NGINX will match it against the URI of a request. Possible values are: a prefix ( ``/`` , ``/path`` ), an exact match ( ``=/exact/match`` ), a case insensitive regular expression ( ``~*^/Bar.*\.jpg`` ) or a case sensitive regular expression ( ``~^/foo.*\.jpg`` ). In the case of a prefix (must start with ``/`` ) or an exact match (must start with ``=`` ), the path must not include any whitespace characters, ``{`` , ``}`` or ``;``. In the case of the regex matches, all double quotes ``"`` must be escaped and the match can't end in an unescaped backslash ``\``. The path must be unique among the paths of all routes of the VirtualServer. Check the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive for more information. | ``string`` | Yes |
-|``policies`` | A list of policies. The policies override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
+|``policies`` | A list of policies. The policies override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies](/nginx-ingress-controller/configuration/policy-resource/#applying-policies) for more details. | [[]policy](#virtualserverpolicy) | No |
 |``action`` | The default action to perform for a request. | [action](#action) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServer route. | ``string`` | No |
 |``splits`` | The default splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
@@ -216,7 +221,7 @@ The route defines rules for matching client requests to actions like passing a r
 
 ## VirtualServerRoute specification
 
-The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
+The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types](/nginx-ingress-controller/configuration/ingress-resources/cross-namespace-configuration).
 
 In the example below, the VirtualServer `cafe` from the namespace `cafe-ns` defines a route with the path `/coffee`, which is further defined in the VirtualServerRoute `coffee` from the namespace `coffee-ns`.
 
@@ -270,12 +275,16 @@ spec:
 
 Note that each subroute must have a `path` that starts with the same prefix (here `/coffee`), which is defined in the route of the VirtualServer. Additionally, the `host` in the VirtualServerRoute must be the same as the `host` of the VirtualServer.
 
+{{< table >}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. Must be the same as the ``host`` of the VirtualServer that references this resource. | ``string`` | Yes |
 |``upstreams`` | A list of upstreams. | [[]upstream](#upstream) | No |
 |``subroutes`` | A list of subroutes. | [[]subroute](#virtualserverroutesubroute) | No |
-|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string``_ | No |
+|``ingressClassName`` | Specifies which Ingress Controller must handle the VirtualServerRoute resource. Must be the same as the ``ingressClassName`` of the VirtualServer that references this resource. | ``string`` | No |
+
+{{< /table >}}
 
 ### VirtualServerRoute.Subroute
 
@@ -292,7 +301,7 @@ action:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``path`` | The path of the subroute. NGINX will match it against the URI of a request. Possible values are: a prefix ( ``/`` , ``/path`` ), an exact match ( ``=/exact/match`` ), a case insensitive regular expression ( ``~*^/Bar.*\.jpg`` ) or a case sensitive regular expression ( ``~^/foo.*\.jpg`` ). In the case of a prefix, the path must start with the same path as the path of the route of the VirtualServer that references this resource. In the case of an exact or regex match, the path must be the same as the path of the route of the VirtualServer that references this resource. A matching path of the route of the VirtualServer but in different type is not accepted, e.g. a regex path (`~/match`) cannot be used with a prefix path in VirtualServer (`/match`) In the case of a prefix or an exact match, the path must not include any whitespace characters, ``{`` , ``}`` or ``;``.  In the case of the regex matches, all double quotes ``"`` must be escaped and the match can't end in an unescaped backslash ``\``. The path must be unique among the paths of all subroutes of the VirtualServerRoute. | ``string`` | Yes |
-|``policies`` | A list of policies. The policies override *all* policies defined in the route of the VirtualServer that references this resource. The policies also override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
+|``policies`` | A list of policies. The policies override *all* policies defined in the route of the VirtualServer that references this resource. The policies also override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies](/nginx-ingress-controller/configuration/policy-resource/#applying-policies) for more details. | [[]policy](#virtualserverpolicy) | No |
 |``action`` | The default action to perform for a request. | [action](#action) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServerRoute subroute. | ``string`` | No |
 |``splits`` | The default splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
@@ -332,18 +341,18 @@ tls:
   enable: true
 ```
 
-**Note**: The WebSocket protocol is supported without any additional configuration.
+{{< call-out "note" >}} The WebSocket protocol is supported without any additional configuration. {{< /call-out >}}
 
 {{< table >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``name`` | The name of the upstream. Must be a valid DNS label as defined in RFC 1035. For example, ``hello`` and ``upstream-123`` are valid. The name must be unique among all upstreams of the resource. | ``string`` | Yes |
-|``service`` | The name of a [service](https://kubernetes.io/docs/concepts/services-networking/service/). If the Service belongs to a different namespace than the VirtualServer or VirtualServerRoute, you need to include the namespace. For example, ``tea-namespace/tea``. If the service doesn't exist, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. For NGINX Plus only, services of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname) are also supported in the same namespace (check the [prerequisites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/externalname-services#prerequisites) ). | ``string`` | Yes |
+|``service`` | The name of a [service](https://kubernetes.io/docs/concepts/services-networking/service/). The service must belong to the same namespace as the resource. If the service doesn't exist, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. For NGINX Plus only, services of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname) are also supported (check the [prerequisites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/externalname-services#prerequisites) ). | ``string`` | Yes |
 |``subselector`` | Selects the pods within the service using label keys and values. By default, all pods of the service are selected. Note: the specified labels are expected to be present in the pods when they are created. If the pod labels are updated, NGINX Ingress Controller will not see that change until the number of the pods is changed. | ``map[string]string`` | No |
 |``use-cluster-ip`` | Enables using the Cluster IP and port of the service instead of the default behavior of using the IP and port of the pods. When this field is enabled, the fields that configure NGINX behavior related to multiple upstream servers (like ``lb-method`` and ``next-upstream``) will have no effect, as NGINX Ingress Controller will configure NGINX with only one upstream server that will match the service Cluster IP. | ``boolean`` | No |
 |``port`` | The port of the service. If the service doesn't define that port, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. The port must fall into the range ``1..65535``. | ``uint16`` | Yes |
-|``lb-method`` | The load [balancing method]({{< ref "/nginx/admin-guide/load-balancer/http-load-balancer.md#choosing-a-load-balancing-method" >}}). To use the round-robin method, specify ``round_robin``. The default is specified in the ``lb-method`` ConfigMap key. | ``string`` | No |
+|``lb-method`` | The load [balancing method](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#choosing-a-load-balancing-method). To use the round-robin method, specify ``round_robin``. The default is specified in the ``lb-method`` ConfigMap key. | ``string`` | No |
 |``fail-timeout`` | The time during which the specified number of unsuccessful attempts to communicate with an upstream server should happen to consider the server unavailable. See the [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) parameter of the server directive. The default is set in the ``fail-timeout`` ConfigMap key. | ``string`` | No |
 |``max-fails`` | The number of unsuccessful attempts to communicate with an upstream server that should happen in the duration set by the ``fail-timeout`` to consider the server unavailable. See the [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) parameter of the server directive. The default is set in the ``max-fails`` ConfigMap key. | ``int`` | No |
 |``max-conns`` | The maximum number of simultaneous active connections to an upstream server. See the [max_conns](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns) parameter of the server directive. By default there is no limit. Note: if keepalive connections are enabled, the total number of active and idle keepalive connections to an upstream server may exceed the ``max_conns`` value. | ``int`` | No |
@@ -355,7 +364,7 @@ tls:
 |``next-upstream-timeout`` | The time during which a request can be passed to the next upstream server. See the [proxy_next_upstream_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_timeout) directive. The ``0`` value turns off the time limit. The default is ``0``. | ``string`` | No |
 |``next-upstream-tries`` | The number of possible tries for passing a request to the next upstream server. See the [proxy_next_upstream_tries](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries) directive. The ``0`` value turns off this limit. The default is ``0``. | ``int`` | No |
 |``client-max-body-size`` | Sets the maximum allowed size of the client request body. See the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) directive. The default is set in the ``client-max-body-size`` ConfigMap key. | ``string`` | No |
-|``client-body-buffer-size`` | Sets the value of the [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) directive. The default is set in the ``client-body-buffer-size`` ConfigMap key. | ``string`` | No |
+|``client-body-buffer-size`` | Sets the value of the [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) directive. | ``string`` | No |
 |``tls`` | The TLS configuration for the Upstream. | [tls](#upstreamtls) | No |
 |``healthCheck`` | The health check configuration for the Upstream. See the [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive. Note: this feature is supported only in NGINX Plus. | [healthcheck](#upstreamhealthcheck) | No |
 |``slow-start`` | The slow start allows an upstream server to gradually recover its weight from 0 to its nominal value after it has been recovered or became available or when the server becomes available after a period of time it was considered unavailable. By default, the slow start is disabled. See the [slow_start](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameter of the server directive. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods and will be ignored. | ``string`` | No |
@@ -363,9 +372,9 @@ tls:
 |``buffering`` | Enables buffering of responses from the upstream server. See the [proxy_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) directive. The default is set in the ``proxy-buffering`` ConfigMap key. | ``boolean`` | No |
 |``buffers`` | Configures the buffers used for reading a response from the upstream server for a single connection. | [buffers](#upstreambuffers) | No |
 |``buffer-size`` | Sets the size of the buffer used for reading the first part of a response received from the upstream server. See the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directive. The default is set in the ``proxy-buffer-size`` ConfigMap key. | ``string`` | No |
-|``busy-buffers-size`` | Sets the size of the buffer used for reading a response from the upstream server when the response is larger than the ``buffer-size``. See the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. The default is set in the ``proxy-busy-buffers-size`` ConfigMap key. | ``string`` | No |
+|``busy-buffer-size`` | Sets the size of the buffer used for reading a response from the upstream server when the response is larger than the ``buffer-size``. See the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. The default is set in the ``proxy-busy-buffers-size`` ConfigMap key. | ``string`` | No |
 |``ntlm`` | Allows proxying requests with NTLM Authentication. See the [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive. In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers using the ``keepalive`` field. Note: this feature is supported only in NGINX Plus.| ``boolean`` | No |
-|``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, it is necessary to enable HTTP/2 in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}}) and configure TLS termination in the VirtualServer. | ``string`` | No |
+|``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, it is necessary to enable HTTP/2 in the [ConfigMap](/nginx-ingress-controller/configuration/global-configuration/configmap-resource/#listeners) and configure TLS termination in the VirtualServer. | ``string`` | No |
 |``backup`` | The name of the backup service of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname). This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods. | ``string`` | No |
 |``backupPort`` | The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range ``1..65535``. | ``uint16`` | No |
 
@@ -382,16 +391,24 @@ size: 8K
 
 See the [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directive for additional information.
 
+{{< table >}}
+
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``number`` | Configures the number of buffers. The default is set in the ``proxy-buffers`` ConfigMap key. | ``int`` | Yes |
 |``size`` | Configures the size of a buffer. The default is set in the ``proxy-buffers`` ConfigMap key. | ``string`` | Yes |
 
+{{< /table >}}
+
 ### Upstream.TLS
+
+{{< table >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables HTTPS for requests to upstream servers. The default is ``False`` , meaning that HTTP will be used. Note: by default, NGINX will not verify the upstream server certificate. To enable the verification, configure an [EgressMTLS Policy]({{< ref "/nic/configuration/policy-resource/#egressmtls" >}}). | ``boolean`` | No |
+|``enable`` | Enables HTTPS for requests to upstream servers. The default is ``False`` , meaning that HTTP will be used. Note: by default, NGINX will not verify the upstream server certificate. To enable the verification, configure an [EgressMTLS Policy](/nginx-ingress-controller/configuration/policy-resource/#egressmtls). | ``boolean`` | No |
+
+{{< /table >}}
 
 ### Upstream.Queue
 
@@ -404,16 +421,20 @@ timeout: 60s
 
 See [`queue`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) directive for additional information.
 
-Note: This feature is supported only in NGINX Plus.
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
+
+{{< table >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``size`` | The size of the queue. | ``int`` | Yes |
 |``timeout`` | The timeout of the queue. A request cannot be queued for a period longer than the timeout. The default is ``60s``. | ``string`` | No |
 
+{{< /table >}}
+
 ### Upstream.Healthcheck
 
-The Healthcheck defines an [active health check]({{< ref "/nginx/admin-guide/load-balancer.md#http-health-check" >}}). In the example below we enable a health check for an upstream and configure all the available parameters, including the `slow-start` parameter combined with [`mandatory` and `persistent`]({{< ref "/nginx/admin-guide/load-balancer/http-health-check.md#mandatory-health-checks" >}}):
+The Healthcheck defines an [active health check](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/). In the example below we enable a health check for an upstream and configure all the available parameters, including the `slow-start` parameter combined with [`mandatory` and `persistent`](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/#mandatory-health-checks):
 
 ```yaml
 name: tea
@@ -442,7 +463,9 @@ healthCheck:
   keepalive-time: 60s
 ```
 
-{{< call-out "note" >}} This feature is supported only in NGINX Plus. {{< /call-out >}}
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
+
+{{< table >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
@@ -464,6 +487,8 @@ healthCheck:
 |``mandatory`` | Require every newly added server to pass all configured health checks before NGINX Plus sends traffic to it. If this is not specified, or is set to false, the server will be initially considered healthy. When combined with [slow-start](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start), it gives a new server more time to connect to databases and “warm up” before being asked to handle their full share of traffic. | ``bool`` | No |
 |``persistent`` | Set the initial “up” state for a server after reload if the server was considered healthy before reload. Enabling persistent requires that the mandatory parameter is also set to `true`. | ``bool`` | No |
 |``keepalive-time`` | Enables [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) connections for health checks and specifies the time during which requests can be processed through one keepalive connection. The default is ``60s``. | ``string`` | No |
+
+{{< /table >}}
 
 ### Upstream.SessionCookie
 
@@ -488,7 +513,7 @@ sessionCookie:
 
 See the [`sticky`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html?#sticky) directive for additional information. The session cookie corresponds to the `sticky cookie` method.
 
-{{< call-out "note" >}} This feature is supported only in NGINX Plus. {{< /call-out >}}
+{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
@@ -500,6 +525,20 @@ See the [`sticky`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html?
 |``httpOnly`` | Adds the ``HttpOnly`` attribute to the cookie. | ``boolean`` | No |
 |``secure`` | Adds the ``Secure`` attribute to the cookie. | ``boolean`` | No |
 |``samesite`` | Adds the ``SameSite`` attribute to the cookie. The allowed values are: ``strict``, ``lax``, ``none`` | ``string`` | No |
+
+### Header
+
+The header defines an HTTP Header:
+
+```yaml
+name: Host
+value: example.com
+```
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``name`` | The name of the header. | ``string`` | Yes |
+|``value`` | The value of the header. | ``string`` | No |
 
 ### Action
 
@@ -955,7 +994,7 @@ If you try to create (or update) a resource that violates the structural schema 
     ```shell
     kubectl apply -f cafe-virtual-server.yaml
     ```
-    
+
     ```text
     error: error validating "cafe-virtual-server.yaml": error validating data: ValidationError(VirtualServer.spec.upstreams[0].port): invalid type for org.nginx.k8s.v1.VirtualServer.spec.upstreams.port: got "string", expected "integer"; if you choose to ignore these errors, turn validation off with --validate=false
     ```
@@ -1032,7 +1071,7 @@ NGINX Ingress Controller validates VirtualServerRoute resources in a similar way
 
 ## Customization using ConfigMap
 
-You can customize the NGINX configuration for VirtualServer and VirtualServerRoutes resources using the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}). Most of the ConfigMap keys are supported, with the following exceptions:
+You can customize the NGINX configuration for VirtualServer and VirtualServerRoutes resources using the [ConfigMap](/nginx-ingress-controller/configuration/global-configuration/configmap-resource). Most of the ConfigMap keys are supported, with the following exceptions:
 
 - `proxy-hide-headers`
 - `proxy-pass-headers`
