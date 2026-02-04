@@ -121,7 +121,7 @@ _February 4, 2026_
 This is a security release for NGINX Plus R36.
 
 - Security Fix: when proxying to upstream TLS servers, an attacker with
-Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1642)).
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
 
 
 ## NGINX Plus Release 35 (R35) {#r35}
@@ -183,7 +183,7 @@ _February 4, 2026_
 This is a security release for NGINX Plus R35.
 
 - Security Fix: when proxying to upstream TLS servers, an attacker with
-Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1642)).
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
 
 
 ## NGINX Plus Release 34 (R34) {#r34}
@@ -463,7 +463,7 @@ _February 4, 2026_
 This is a security release for NGINX Plus R32.
 
 - Security Fix: when proxying to upstream TLS servers, an attacker with
-Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-1642)).
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
 
 ## NGINX Plus Release 31 (R31) {#r31}
 _December 19, 2023_<br/>
