@@ -23,19 +23,24 @@ Before you start, make sure that you have:
 The following table lists the NGINX Agent features:
 
 {{< table "features" >}}
-| Feature Name     | Description                                                             | Default/Non-default |
-| ---------------- | ----------------------------------------------------------------------- | ------------------- |
-| registration     | Registering the NGINX Agent with the management plane.                  | Default             |
+| Feature Name       | Description                                                                            | Default/Non-default |
+| ------------------ | -------------------------------------------------------------------------------------- | ------------------- |
+| registration       | Registering the NGINX Agent with the management plane.                                 | Default             |
 | nginx-config-async | Enable the publishing and uploading of NGINX configurations from the management plane. | Default             |
-| metrics          | Enable collecting of NGINX metrics.                                     | Default             |
-| metrics-throttle | Batch metrics before sending.                                           | Non-default         |
-| metrics-sender   | Reports metrics over the gRPC connection.                               | Non-default         |
-| dataplane-status | Report the health of the NGINX Instance.                                | Default             |
-| process-watcher  | Observe changes to the NGINX process.                                   | Default             |
-| file-watcher     | Observe changes to the NGINX configuration or any changes to files on disk. | Default          |
-| activity-events  | Send NGINX or NGINX Agent related events to the management plane.       | Default             |
-| agent-api        | Enable the NGINX Agent REST API.                                        | Default             |
+| metrics            | Enable collection, batching and reporting of metrics.                                  | Default             |
+| metrics-collection | Enable collection of metrics.                                                          | Non-default         |
+| metrics-throttle   | Batch metrics before sending.                                                          | Non-default         |
+| metrics-sender     | Reports metrics over the gRPC connection.                                              | Non-default         |
+| dataplane-status   | Report the health of the NGINX Instance.                                               | Default             |
+| process-watcher    | Observe changes to the NGINX process.                                                  | Default             |
+| file-watcher       | Observe changes to the NGINX configuration or any changes to files on disk.            | Default             |
+| activity-events    | Send NGINX or NGINX Agent related events to the management plane.                      | Default             |
+| agent-api          | Enable the NGINX Agent REST API.                                                       | Default             |
 {{< /table >}}
+
+{{< call-out "note" "Metrics Feature" >}}
+The **metrics** feature is the equivalent of having the 3 sub-features **metrics-collection**, **metrics-throttle**, **metrics-sender** being configured.
+{{< /call-out >}}
 
 ## Use cases
 
@@ -53,9 +58,10 @@ The following table lists the NGINX Agent features:
 
    ```nginx
    features:
+      - registration
       - metrics
-      - metrics-throttle
       - dataplane-status
+      - process-watcher 
    ```
 
 1. Restart the NGINX Agent service to apply the changes.
@@ -81,6 +87,7 @@ Once the steps have been completed, users will be able to view metrics data bein
       - nginx-config-async
       - dataplane-status
       - file-watcher
+      - process-watcher 
 
 1. Restart the NGINX Agent service to apply the changes.
 
