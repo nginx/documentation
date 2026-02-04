@@ -16,7 +16,7 @@ cascade:
 
 - On Ubuntu/Debian use:
 
-    ```bash
+    ```shell
     apt-get remove nginx-amplify-agent
     ```
 
