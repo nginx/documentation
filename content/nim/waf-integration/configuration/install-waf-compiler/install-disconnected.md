@@ -9,7 +9,7 @@ nd-product: NIMNGR
 
 You can install the WAF compiler on a system without internet access by creating the package on a connected system, then transferring and installing it offline.
 
-- **Step 1:** Generate the WAF compiler package on a system with internet access.  
+- **Step 1:** Generate the WAF compiler package on a system with internet access.
 - **Step 2:** Move the generated package to the offline target system and install it.
 
 ## Before you begin
@@ -211,7 +211,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 **On a system with internet access:**
 
-Build the following Dockerfile by updating the base image version and target compiler version as per your requirement. Here , in this example, we've used NIM version as latest 2.21.0 ( Which comes with WAF compiler v5.527.0) and additional WAF compiler to be installed as v5.550.0.
+Build the following Dockerfile by updating the base image version and target compiler version as per your requirement. In this example, we've used NIM version 2.21.0, which includes WAF compiler v5.527.0. In this procedure, an additional WAF compiler version will be installed: v5.550.0.
 
  ```shell
 FROM private-registry.nginx.com/nms/integrations:2.21.0
@@ -245,15 +245,15 @@ Build the compiler
   docker build --no-cache --platform linux/amd64   --secret id=nginx-crt,src=/path/to/nginx-repo.crt,type=file   --secret id=nginx-key,src=/path/to/nginx-repo.key,type=file -t integrations:waf-compiler-extended .
 ```
 
-Move the yielded docker image to the target offline system.
+Move the resulting Docker image to the target offline system.
 
 **On the offline target system:**
 
-Host the docker image on either local or remote registry. 
-Edit the kubernetes deployment w.r.t integrations to reference to the new docker image hosted. 
+Host the Docker image on either a local or remote registry that your Kubernetes cluster has access to.
+Edit the `integrations` Kubernetes deployment resource to reference to the new Docker image hosted in your registry. 
 
 ```shell
   kubectl edit deploy -n <namespace> integrations 
 ```
-Once the pod comes up with the latest image, system should be up with both the compiler installed and should be able to compile policies on datapath's having either versions of WAF.
 
+Once the `integrations` deployment's pod initializes with the latest image, NIM will have both compilers installed and will be able to compile policies on NGINX instances containing either version of F5 WAF for NGINX.

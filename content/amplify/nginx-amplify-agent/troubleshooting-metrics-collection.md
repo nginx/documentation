@@ -3,6 +3,7 @@ title: Troubleshooting Metrics Collection
 description: Learn what to check if F5 NGINX Amplify Agent isn't reporting metrics.
 weight: 500
 toc: true
+noindex: true
 nd-docs: DOCS-966
 nd-product: AMPLIF
 ---

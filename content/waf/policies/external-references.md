@@ -24,6 +24,15 @@ To use external references, replace the direct property in the policy file with 
 
 For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` could be replaced by `dataGuardReference`.
 
+{{< call-out "note" >}}
+Not all policy fields support external references.
+
+To check which fields do, see the [Parameter Reference]({{< ref "/waf/policies/parameter-reference.md" >}}) page. Each table on that page includes a **Reference** column for every policy field.
+
+- If the **Reference** column shows **Yes** (for example, `filetypes`, `bot-defense`, or `signature-sets`), you can replace that field in your policy file with its corresponding external reference property, such as `filetypeReference`, `botDefenseReference`, or `signatureSetsReference`.
+- If the **Reference** column shows **No**, the field does not support external references and must be defined directly in the policy file.
+{{< /call-out >}}
+
 ## External reference types
 
 There are different implementations based on the type of references that are being made.
@@ -534,4 +543,29 @@ The following request will trigger an `Illegal repeated parameter name` violatio
 http://localhost/query?a=true&a=false
 ```
 
-The request will _not be blocked_ because this violation is set to alarm in the default policy.
+The request will not be blocked because this event is set to alarm in the default policy.
+
+## Authenticating external references with basic auth
+
+For any type of external reference in your policy that uses an HTTP or HTTPS link—including simple URL references and OpenAPI references—you can include a `basicAuth` object, which specifies the username (user) and base64-encoded password (passwordBase64) for HTTP Basic Authentication.
+
+**Example:**
+This example uses `responsePageReference`, but the same `basicAuth` configuration applies to any supported external reference (such as OpenAPI or other URL references) that uses an HTTP/HTTPS link.
+
+```json
+{
+    "name": "external_references_custom_response",
+    "template": {
+        "name": "POLICY_TEMPLATE_NGINX_BASE"
+    },
+    "applicationLanguage": "utf-8",
+    "enforcementMode": "blocking",
+    "responsePageReference": {
+        "link": "https://securedomain.com:8081/response-pages.txt",
+        "basicAuth": {
+            "user": "<user>",
+            "passwordBase64": "<passwordBase64>"
+        }
+    }
+}
+```
