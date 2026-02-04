@@ -235,7 +235,11 @@ The VirtualServerRoute resource defines a route for a VirtualServer. It can cons
 
 VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. The `routeSelector` approach allows you to add new VirtualServerRoute resources without modifying the VirtualServer configuration.
 
-In the example below, the VirtualServer `cafe` from the namespace `cafe-ns` defines routes using both approaches: the `/coffee` path references a specific VirtualServerRoute by name, while the `/decaf` path uses `routeSelector` to dynamically select any VirtualServerRoute with the label `app: cafe`.
+{{<tabs name="vs-vsr-examples">}}
+
+{{%tab name="Standard"%}}
+
+In this example, the VirtualServer `cafe` from the namespace `cafe-ns` defines a route that references a specific VirtualServerRoute by name.
 
 VirtualServer:
 
@@ -257,10 +261,6 @@ spec:
       pass: tea
   - path: /coffee
     route: coffee-ns/coffee
-  - path: /decaf
-    routeSelector:
-      matchLabels:
-        app: cafe
 ```
 
 VirtualServerRoute:
@@ -271,8 +271,6 @@ kind: VirtualServerRoute
 metadata:
   name: coffee
   namespace: coffee-ns
-  labels:
-    app: cafe
 spec:
   host: cafe.example.com
   upstreams:
@@ -290,6 +288,68 @@ spec:
     action:
       pass: espresso
 ```
+
+{{%/tab%}}
+
+{{%tab name="RouteSelector"%}}
+
+In this example, the VirtualServer `cafe` from the namespace `cafe-ns` uses `routeSelector` to dynamically select any VirtualServerRoute with the label `app: coffee`.
+
+VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe
+  namespace: cafe-ns
+spec:
+  host: cafe.example.com
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /decaf
+    routeSelector:
+      matchLabels:
+        app: coffee
+```
+
+VirtualServerRoute:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: decaf
+  namespace: coffee-ns
+  labels:
+    app: coffee
+spec:
+  host: cafe.example.com
+  upstreams:
+  - name: latte
+    service: latte-svc
+    port: 80
+  - name: espresso
+    service: espresso-svc
+    port: 80
+  subroutes:
+  - path: /decaf/latte
+    action:
+      pass: latte
+  - path: /decaf/espresso
+    action:
+      pass: espresso
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
 
 Note that each subroute must have a `path` that starts with the same prefix (here `/coffee`), which is defined in the route of the VirtualServer. Additionally, the `host` in the VirtualServerRoute must be the same as the `host` of the VirtualServer.
 
