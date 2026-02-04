@@ -12,3 +12,16 @@ cascade:
     md: _banners/eol-amplify.md
 ---
 
+### Uninstall F5 NGINX Amplify Agent
+
+- On Ubuntu/Debian use:
+
+    ```bash
+    apt-get remove nginx-amplify-agent
+    ```
+
+- On CentOS and Red Hat use:
+
+    ```bash
+    yum remove nginx-amplify-agent
+    ```
