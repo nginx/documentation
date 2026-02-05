@@ -47,6 +47,7 @@ Managed identities are used for the following integrations:
 
 
 ## System assigned managed identity
+
 The system-assigned managed identity is required for all NGINXaaS deployments. When creating deployments through the Azure Portal, this identity is automatically created. For deployments created using other methods (such as ARM templates, Bicep, or Terraform), you must explicitly create the system-assigned managed identity. Once created, it cannot be removed.
 
 ### Viewing and Managing the system assigned managed identity
