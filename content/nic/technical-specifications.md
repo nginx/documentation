@@ -27,12 +27,12 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 
 ### Images with NGINX
 
-_All images include NGINX 1.29.4._
+_All images include NGINX 1.29.5._
 
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
-|Alpine-based image | ``nginx:1.29.4-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
-|Debian-based image | ``nginx:1.29.4``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
+|Alpine-based image | ``nginx:1.29.5-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
+|Debian-based image | ``nginx:1.29.5``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
 |Ubi-based image | ``redhat/ubi9-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
 
 ### Images with NGINX Plus
