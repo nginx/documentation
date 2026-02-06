@@ -30,24 +30,9 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon arrow-up %}} Dependencies
 
-- [9049](https://github.com/nginx/kubernetes-ingress/pull/9049) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi9 docker digest to 901482f (release-5.3)
-- [9074](https://github.com/nginx/kubernetes-ingress/pull/9074) Update redhat/ubi9-minimal docker tag to v9.7-1770267347 (release-5.3)
-- [9072](https://github.com/nginx/kubernetes-ingress/pull/9072) Update dependency go to v1.25.7 (release-5.3)
+- [9049](https://github.com/nginx/kubernetes-ingress/pull/9049), [9074](https://github.com/nginx/kubernetes-ingress/pull/9074), [9050](https://github.com/nginx/kubernetes-ingress/pull/9050), [9047](https://github.com/nginx/kubernetes-ingress/pull/9047), [9035](https://github.com/nginx/kubernetes-ingress/pull/9035), [9071](https://github.com/nginx/kubernetes-ingress/pull/9031, https://github.com/nginx/kubernetes-ingress/pull/9071) Bump Docker dependencies, [9036](https://github.com/nginx/kubernetes-ingress/pull/9036), [9034](https://github.com/nginx/kubernetes-ingress/pull/9034), [9006](https://github.com/nginx/kubernetes-ingress/pull/9006), [9068](https://github.com/nginx/kubernetes-ingress/pull/8997, https://github.com/nginx/kubernetes-ingress/pull/9030, https://github.com/nginx/kubernetes-ingress/pull/9048, https://github.com/nginx/kubernetes-ingress/pull/9068), [9069](https://github.com/nginx/kubernetes-ingress/pull/9007, https://github.com/nginx/kubernetes-ingress/pull/9069), [9019](https://github.com/nginx/kubernetes-ingress/pull/9008 & https://github.com/nginx/kubernetes-ingress/pull/9019)
+- [9072](https://github.com/nginx/kubernetes-ingress/pull/9072), [9040](https://github.com/nginx/kubernetes-ingress/pull/9040), [9037](https://github.com/nginx/kubernetes-ingress/pull/9037) & [9009](https://github.com/nginx/kubernetes-ingress/pull/9009) Bump Go dependencies
 - [9075](https://github.com/nginx/kubernetes-ingress/pull/9075) Update nginx versions 1.29.5 & R36 P2
-- [9050](https://github.com/nginx/kubernetes-ingress/pull/9050) Update nginx:1.29.4 docker digest to 9dd2888 (release-5.3)
-- [9047](https://github.com/nginx/kubernetes-ingress/pull/9047) Update debian:12-slim docker digest to 98f4b71 (release-5.3)
-- [9070](https://github.com/nginx/kubernetes-ingress/pull/9051, https://github.com/nginx/kubernetes-ingress/pull/9070) Update python:3.14-trixie docker digest to ca9350a (release-5.3)
-- [9035](https://github.com/nginx/kubernetes-ingress/pull/9035) Update quay.io/jetstack/cert-manager-controller docker tag to v1.19.3 (release-5.3)
-- [9071](https://github.com/nginx/kubernetes-ingress/pull/9031, https://github.com/nginx/kubernetes-ingress/pull/9071) Update redhat/ubi8 docker digest to bf6868a (release-5.3)
-- [9036](https://github.com/nginx/kubernetes-ingress/pull/9036) Update quay.io/jetstack/cert-manager-webhook docker tag to v1.19.3 (release-5.3)
-- [9034](https://github.com/nginx/kubernetes-ingress/pull/9034) Update quay.io/jetstack/cert-manager-cainjector docker tag to v1.19.3 (release-5.3)
-- [9040](https://github.com/nginx/kubernetes-ingress/pull/9040) Update module github.com/cert-manager/cert-manager to v1.19.3 [security] (release-5.3)
-- [9037](https://github.com/nginx/kubernetes-ingress/pull/9037) Update opentelemetry-go monorepo to v1.40.0 (release-5.3)
-- [9006](https://github.com/nginx/kubernetes-ingress/pull/9006) Update alpine:3.22 docker digest to 55ae5d2 (release-5.3)
-- [9068](https://github.com/nginx/kubernetes-ingress/pull/8997, https://github.com/nginx/kubernetes-ingress/pull/9030, https://github.com/nginx/kubernetes-ingress/pull/9048, https://github.com/nginx/kubernetes-ingress/pull/9068) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi8 docker digest to 8697918 (release-5.3)
-- [9069](https://github.com/nginx/kubernetes-ingress/pull/9007, https://github.com/nginx/kubernetes-ingress/pull/9069) Update golang:1.25-alpine docker digest to f4622e3 (release-5.3)
-- [9019](https://github.com/nginx/kubernetes-ingress/pull/9008, https://github.com/nginx/kubernetes-ingress/pull/9019) Update nginx:1.29.4-alpine3.23 docker digest to 4870c12 (release-5.3)
-- [9009](https://github.com/nginx/kubernetes-ingress/pull/9009) Update module github.com/golang-jwt/jwt/v5 to v5.3.1 (release-5.3)
 
 ### {{% icon download %}} Upgrade
 
