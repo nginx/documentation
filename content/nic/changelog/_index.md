@@ -24,18 +24,16 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
-
 ## 5.3.3
 
 06 Feb 2026
 
 ### {{% icon arrow-up %}} Dependencies
--  Bump Go dependencies
--  Bump Docker dependencies
+
 - [9049](https://github.com/nginx/kubernetes-ingress/pull/9049) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi9 docker digest to 901482f (release-5.3)
 - [9074](https://github.com/nginx/kubernetes-ingress/pull/9074) Update redhat/ubi9-minimal docker tag to v9.7-1770267347 (release-5.3)
 - [9072](https://github.com/nginx/kubernetes-ingress/pull/9072) Update dependency go to v1.25.7 (release-5.3)
-- [9075](https://github.com/nginx/kubernetes-ingress/pull/9075) Update nginx versions
+- [9075](https://github.com/nginx/kubernetes-ingress/pull/9075) Update nginx versions 1.29.5 & R36 P2
 - [9050](https://github.com/nginx/kubernetes-ingress/pull/9050) Update nginx:1.29.4 docker digest to 9dd2888 (release-5.3)
 - [9047](https://github.com/nginx/kubernetes-ingress/pull/9047) Update debian:12-slim docker digest to 98f4b71 (release-5.3)
 - [9070](https://github.com/nginx/kubernetes-ingress/pull/9051, https://github.com/nginx/kubernetes-ingress/pull/9070) Update python:3.14-trixie docker digest to ca9350a (release-5.3)
@@ -52,11 +50,13 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 - [9009](https://github.com/nginx/kubernetes-ingress/pull/9009) Update module github.com/golang-jwt/jwt/v5 to v5.3.1 (release-5.3)
 
 ### {{% icon download %}} Upgrade
+
 - For NGINX, use the 5.3.3 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.3.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.3.3 images from the F5 Container registry or build your own image using the 5.3.3 source code.
 - For Helm, use version 2.4.3 of the chart.
 
 ### {{% icon life-buoy %}} Supported Platforms
+
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.35.
 
 ## 5.3.2
