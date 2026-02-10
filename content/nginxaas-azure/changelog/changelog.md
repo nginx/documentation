@@ -25,7 +25,7 @@ You can now migrate NGINXaaS for Azure deployments between pricing plans without
 
   All new NGINXaaS for Azure deployments now require a system-assigned managed identity. Deployments created through the Azure Portal automatically have the system-assigned managed identity enabled. For deployments created using ARM templates, Bicep, or Terraform, you must explicitly enable the system-assigned managed identity.
 
-  Legacy deployments created before this requirement will continue to function normally, but logging and monitoring features will not work without a system-assigned managed identity. You can add a system-assigned managed identity to existing deployments through the Identity page in the Azure Portal.
+  Legacy deployments created before this requirement will continue to function normally, but logging and monitoring features will not work without a system-assigned managed identity. You can add a system-assigned managed identity to existing deployments through the Identity page in the Azure Portal. For step-by-step instructions, see [Add a system-assigned managed identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md#add-system-assigned-managed-identity" >}}).
 
   For more information, see [Assign Managed Identities]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}).
 
