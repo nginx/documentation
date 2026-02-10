@@ -37,3 +37,11 @@ _Click on the image to enlarge._
 Default: every 1 hour.
 
 [{{< img src="solutions/about-subscription-licenses/images/NGINX-Plus-licensing-reporting-check-offline.svg" width="747" >}}](../images/NGINX-Plus-licensing-reporting-check-offline.svg)
+
+## License renewal using JWT token
+
+_Click on the image to enlarge._
+
+[{{< img src="solutions/about-subscription-licenses/images/NGINX-Plus-license-renewal-with-JWT.svg" width="747" >}}](../images/NGINX-Plus-license-renewal-with-JWT.svg)
+
+Default: every 1 hour.
