@@ -21,7 +21,7 @@ Released _February 11th, 2026_.
 
 ### Resolved issues
 
-- 13720 - Fixed a case where NGINX reloads in WAF deployments could terminate in‑flight requests.
+- 13720 - Fixed a case where reloading NGINX in  WAF deployments can interrupt in‑flight requests.
 
 ## F5 WAF for NGINX 5.11
 
