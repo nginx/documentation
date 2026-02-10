@@ -60,6 +60,20 @@ The system-assigned managed identity is required for all NGINXaaS deployments. W
 
 {{< call-out "note" >}}The system-assigned managed identity cannot be disabled or removed. Attempting to toggle the status to "Off" will result in an error.{{< /call-out >}}
 
+### Add a system-assigned managed identity
+
+{{< call-out "note" >}}This section applies only to legacy deployments created before system-assigned managed identity became mandatory. New deployments already have this identity enabled.{{< /call-out >}}
+
+To add a system-assigned managed identity to an existing deployment:
+
+1. Go to your NGINXaaS for Azure deployment.
+
+2. Select **Identity** in the left menu, then select the **System Assigned** tab.
+
+3. Toggle the **Status** to **On**.
+
+4. Select **Save** to apply the changes.
+
 #### Managing role assignments
 
 To provide the role assignments necessary for the deployment:
