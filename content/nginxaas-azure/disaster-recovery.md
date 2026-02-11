@@ -230,7 +230,7 @@ As a best practice, maintain identical upstream resources in your secondary regi
 
 Peer the virtual networks so that the upstream app servers are accessible from either primary or secondary NGINXaaS deployment.
 
-{{< details summary="Terraform code for configuring virtual network peeting" >}}
+{{< details summary="Terraform code for configuring virtual network peering" >}}
 
 ```hcl
 resource "azurerm_virtual_network_peering" "primary_vnet_to_secondary_vnet" {
