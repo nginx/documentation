@@ -1,5 +1,5 @@
 ---
-title: Gateway API Compatibility
+title: Gateway API compatibility
 weight: 200
 toc: true
 nd-content-type: reference
@@ -7,24 +7,13 @@ nd-product: FABRIC
 nd-docs: DOCS-1412
 ---
 
-Learn which Gateway API resources NGINX Gateway Fabric supports and to which level.
+This page describes which Gateway API resources NGINX Gateway Fabric supports and to which level.
+
+For information about NGINX Gateway Fabric and Gateway API version compatibility, view the [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) topic.
 
 ## Summary
 
-{{< table >}}
-| Resource                              | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
-|---------------------------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
-| [GatewayClass](#gatewayclass)         | Supported           | Not supported          | Supported                             | v1          | Standard            |
-| [Gateway](#gateway)                   | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
-| [HTTPRoute](#httproute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
-| [GRPCRoute](#grpcroute)               | Supported           | Partially supported    | Not supported                         | v1          | Standard            |
-| [ReferenceGrant](#referencegrant)     | Supported           | N/A                    | Not supported                         | v1beta1     | Standard            |
-| [TLSRoute](#tlsroute)                 | Supported           | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [TCPRoute](#tcproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [UDPRoute](#udproute)                 | Not supported       | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-| [BackendTLSPolicy](#backendtlspolicy) | Partially Supported | Supported              | Partially supported                   | v1          | Standard            |
-| [Custom policies](#custom-policies)   | N/A                 | N/A                    | Supported                             | N/A         | N/A                 |
-{{< /table >}}
+{{< include "ngf/gateway-api-compat-table.md" >}}
 
 ## Terminology
 
@@ -41,7 +30,6 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 Please note that while we make every effort to reflect the support status of experimental fields in our code and documentation, there may be instances where this is not explicitly 
 indicated. Support for such fields is provided on a best-effort basis.{{< /call-out >}}
 
-
 ## Resources
 
 Each resource below includes the support status of their corresponding fields.
@@ -51,9 +39,11 @@ For a description of each field, visit the [Gateway API documentation](https://g
 ### GatewayClass
 
 {{< table >}}
+
 | Resource     | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |--------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | GatewayClass | Supported          | Not supported          | Supported                             | v1          | Standard            |
+
 {{< /table >}}
 
 NGINX Gateway Fabric supports a single GatewayClass resource configured with the `--gatewayclass` flag of the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command.
@@ -78,9 +68,11 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 ### Gateway
 
 {{< table >}}
+
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | Gateway  | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
+
 {{< /table >}}
 
 NGINX Gateway Fabric supports multiple Gateway resources. The Gateway resources must reference NGINX Gateway Fabric's corresponding GatewayClass.
@@ -103,7 +95,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `tls`
       - `mode`: Partially supported. Allowed value: `Terminate`.
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`. Only a single reference is supported.
-      - `options`: Not supported.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
   - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
       - `type`: Partially supported. Allowed value: `IPAddress`.
@@ -149,9 +141,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 ### HTTPRoute
 
 {{< table >}}
+
 | Resource  | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | HTTPRoute | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
+
 {{< /table >}}
 **Fields**:
 
@@ -176,7 +170,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `name`: Not supported.
     - `timeouts`: Not supported.
     - `retry`: Not supported.
-    - `sessionPersistence`: Not supported.
+    - `sessionPersistence`: Supported (NGINX Plus).
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -204,9 +198,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 ### GRPCRoute
 
 {{< table >}}
+
 | Resource  | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | GRPCRoute | Supported          | Partially supported    | Not supported                         | v1          | Standard            |
+
 {{< /table >}}
 
 **Fields**:
@@ -226,7 +222,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `extensionRef`: Supported for SnippetsFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
-    - `sessionPersistence`: Not supported.
+    - `sessionPersistence`: Supported (NGINX Plus).
 - `status`
   - `parents`
     - `parentRef`: Supported.
@@ -251,9 +247,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 ### ReferenceGrant
 
 {{< table >}}
+
 | Resource       | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | ReferenceGrant | Supported          | N/A                    | Not supported                         | v1beta1     | Standard            |
+
 {{< /table >}}
 
 Fields:
@@ -271,9 +269,11 @@ Fields:
 ### TLSRoute
 
 {{< table >}}
+
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | TLSRoute | Supported          | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+
 {{< /table >}}
 
 **Fields**:
@@ -303,27 +303,28 @@ Fields:
       - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the TLSRoute rules has a backendRef with an unsupported value.
       - `PartiallyInvalid/True/UnsupportedValue`
 
----
-
 ### TCPRoute
 
 {{< table >}}
+
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TCPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| TCPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
 {{< /table >}}
 
 ### UDPRoute
 
 {{< table >}}
+
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| UDPRoute | Not supported      | Not supported          | Not supported                         | v1alpha2    | Experimental        |
+| UDPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
 {{< /table >}}
 
 ### BackendTLSPolicy
 
 {{< table >}}
+
 | Resource         | Core Support Level  | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |------------------|---------------------|------------------------|---------------------------------------|-------------|---------------------|
 | BackendTLSPolicy | Supported           | Supported              | Partially Supported                   | v1          | Standard            |
@@ -362,9 +363,11 @@ Fields:
 ### Custom Policies
 
 {{< table >}}
+
 | Resource        | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |-----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
 | Custom policies | N/A                | N/A                    | Supported                             | N/A         | N/A                 |
+
 {{< /table >}}
 
 Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definitions) that support features such as tracing, and client connection settings. These important data-plane features are not part of the Gateway API specifications.

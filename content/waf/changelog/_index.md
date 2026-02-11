@@ -11,6 +11,18 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.11.1
+
+Released _February 11th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 13720 - Fixed a case where reloading NGINX in  WAF deployments can interrupt in‑flight requests.
+
 ## F5 WAF for NGINX 5.11
 
 Released _January 13th, 2026_.
@@ -27,6 +39,7 @@ Released _January 13th, 2026_.
 
 - 13340 - F5 WAF for NGINX leaked sockets and terminated on-going requests during graceful reload of NGINX (SIGHUP)
 - 12728 - Fixing a scenario under memory pressure, causing NGINX to return HTTP 503 and log SECURITY_WAF_BYPASS
+- 13592 – Increased signature compiler capacity to support larger signature sets and avoid legacy signature count limits.
 
 ### Packages
 

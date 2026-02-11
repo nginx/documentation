@@ -29,7 +29,7 @@ Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-
 
 To upgrade your Gateway API resources, take the following steps:
 
-- Use [Technical specifications]({{< ref "/ngf/reference/technical-specifications.md" >}}) to verify your Gateway API resources are compatible with your NGINX Gateway Fabric version.
+- Use [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) to verify your Gateway API resources are compatible with your NGINX Gateway Fabric version.
 - Review the [release notes](https://github.com/kubernetes-sigs/gateway-api/releases) for any important upgrade-specific information.
 
 To upgrade the Gateway API resources, run the following command:
@@ -68,14 +68,13 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{% tab name="Helm" %}}
 
-
 {{< call-out "important" "Important" >}}If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`.{{< /call-out >}}
 
 To upgrade the release with Helm, you can use the OCI registry, or download the chart and upgrade from the source.
 
 If needed, replace `ngf` with your chosen release name.
 
-**Upgrade from the OCI registry**
+#### Upgrade from the OCI registry
 
 To avoid downtime when upgrading from v2.0.x to v2.1, run the following commands. Be sure to include your previous installation flags and values if necessary. This will not affect user traffic, as the NGINX data plane deployment won't be removed as part of this process.
 
@@ -90,7 +89,7 @@ Otherwise, for all other version upgrades:
 helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric -n nginx-gateway
 ```
 
-**Upgrade from sources**
+#### Upgrade from sources
 
 {{< include "/ngf/installation/helm/pulling-the-chart.md" >}}
 
@@ -226,6 +225,7 @@ To review the documentation in a local webserver, run _make watch_ in the _/site
 cd site
 make watch
 ```
+
 ```text
 Hugo is available and has a version greater than 133. Proceeding with build.
 hugo --bind 0.0.0.0 -p 1313 server --disableFastRender
@@ -269,7 +269,6 @@ To upgrade from NGINX Open Source to NGINX Plus, update the Helm command to incl
 - Replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials
 - Replace `ngf` with your chosen release name.
 {{< /call-out >}}
-
 
 ```shell
 helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.image.repository=private-registry.nginx.com/nginx-gateway-fabric/nginx-plus --set nginx.plus=true --set nginx.imagePullSecret=nginx-plus-registry-secret -n nginx-gateway
