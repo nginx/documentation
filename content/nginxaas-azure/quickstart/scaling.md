@@ -38,6 +38,8 @@ To update the capacity of your deploymentv using the Azure Portal,
 
   {{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
 
+  {{< call-out "note" >}}When using manual scaling, consider setting up alerts on the `system.cpu` metric to be notified when scaling may be needed. See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for more information on available metrics.{{< /call-out >}}
+
 ## Autoscaling
 
 With autoscaling enabled, the size of your NGINXaaS deployment will automatically adjust based on traffic requirements without the need to guess how many NCUs to provision. You must specify a minimum and maximum NCU count. NGINXaaS will maintain the size of the deployment ensuring the number of provisioned NCUs does not fall below the set minimum NCUs and does not grow beyond the maximum NCUs. Refer to the [Capacity Restrictions](#capacity-restrictions) when setting the minimum and maximum capacity.
