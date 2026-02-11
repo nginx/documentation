@@ -52,7 +52,7 @@ system_version.txt
 package_versions.txt
 /var/log/app_protect/*
 /var/log/nginx/*
-/etc/nginx.conf
+/etc/nginx/nginx.conf
 # Add any additional policy or log configuration files
 ```
 
