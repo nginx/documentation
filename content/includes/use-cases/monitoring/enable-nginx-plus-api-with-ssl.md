@@ -52,8 +52,10 @@ To enable NGINX Agent to call the NGINX Plus API, follow the steps below:
 ```
 data_plane_config:
   nginx:
-    api_tls:
-      ca: "/etc/nginx/certs/nginx-selfsigned.crt"
+    api:
+      url: "https://127.0.0.1:9000/api"
+      tls:
+        ca: "/etc/nginx/certs/nginx-selfsigned.crt"
 ```
 - Restart NGINX Agent for the configuration changes to take affect
 ```
@@ -62,11 +64,11 @@ sudo systemctl restart nginx-agent
 
 - Run the following command 
 ```
-sudo journalctl -u nginx-agent | grep "NGINX Plus API"
+sudo journalctl -u nginx-agent | grep "Found NGINX Plus API"
 ``` 
 - Ensure that the following log message is seen 
 ```
-NGINX Plus API found, NGINX Plus receiver enabled to scrape metrics
+Found NGINX Plus API
 ```
 {{</call-out>}}
 
@@ -76,11 +78,3 @@ Here is an example of how to generate self-signed certificates
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/certs/nginx-selfsigned.key -out /etc/nginx/certs/nginx-selfsigned.crt -subj "/CN=localhost" -addext "subjectAltName=IP:127.0.0.1"
 ```
 {{</call-out>}}
-
-If there are issues with NGINX Agent discovering the NGINX Plus API, NGINX Agent can be manually configured with the address of the NGINX Plus API. Here is an example of a NGINX Agent configuration that is manually configured with the NGINX Plus API.
-```
-data_plane_config:
-  nginx:
-    api:
-      url: "https://127.0.0.1:9000/api"
-```
