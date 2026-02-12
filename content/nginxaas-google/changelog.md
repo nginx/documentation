@@ -12,6 +12,20 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
 
+## February 11, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+
+  NGINXaaS for Google is now available in the following additional regions per geography:
+
+   {{< table "table" >}}
+   |NGINXaaS Geography | Google Cloud Regions |
+   |-----------|---------|
+   | APAC  | asia-south1, asia-south2 |
+   {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas-google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+
 ## February 10, 2026
 
 - {{% icon-feature %}} **NGINXaaS for Google supports fetching SSL/TLS certificates from Secret Manager**
