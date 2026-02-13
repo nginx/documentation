@@ -40,7 +40,7 @@ The key capabilities of NGINXaaS for Google Cloud are:
 
 ### Geographical Controllers
 
-NGINXaaS for Google has a global presence with management requests being served from various geographical controllers. A Geographical Controller (GC) is a control plane that serves users in a given geographical boundary while taking into account concerns relating to data residency and localization. Example: A US geographical controller serves US customers. We currently have presence in two Geographies: **US** and **EU**.
+NGINXaaS for Google has a global presence with management requests being served from various geographical controllers. A Geographical Controller (GC) is a control plane that serves users in a given geographical boundary while taking into account concerns relating to data residency and localization. Example: A US geographical controller serves US customers. We currently have presence in three Geographies: **US**, **EU**, and **Asia Pacific (APAC)**.
 
 ## Supported regions
 
