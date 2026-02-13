@@ -11,6 +11,18 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.11.2
+
+Released _February 13th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 13840 - - Upgrade Go compiler to 1.24.13
+
 ## F5 WAF for NGINX 5.11.1
 
 Released _February 11th, 2026_.
