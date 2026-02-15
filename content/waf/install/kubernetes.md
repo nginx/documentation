@@ -14,25 +14,42 @@ It explains the common steps necessary for any Kubernetes-based deployment, then
 
 To complete this guide, you will need the following pre-requisites:
 
-- A functional Kubernetes cluster
-- An active F5 WAF for NGINX subscription (Purchased or trial)
-- [Docker](https://docs.docker.com/get-started/get-docker/)
-
-You will need [Helm](https://helm.sh/docs/intro/install/) installed for a Helm-based deployment.
+- A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/) (installed and running).
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
+- [Docker registry credentials](#additional-subscription-credentials-needed-for-deployments) for private-registry.nginx.com, required to pull images.
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
+- [Helm](https://helm.sh/docs/intro/install/) installed, required for deployment.
 
 You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
-There is another optional topic to [Add a read-only filesystem for Kubernetes]({{< ref "/waf/configure/kubernetes-read-only.md" >}})
+There is another optional topic to [Add a read-only filesystem for Kubernetes]({{< ref "/waf/configure/kubernetes-read-only.md" >}}).
 
-To review supported operating systems, read the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}) topic.
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
 
 ## Download your subscription credentials 
 
-{{< include "licensing-and-reporting/download-certificates-from-myf5.md" >}}
+{{< call-out "note" >}}
+To access private-registry.nginx.com, you will need to download the JWT license file even when using NGINX Open Source as a base image. 
+{{< /call-out >}}
+
+{{< call-out "note" >}}
+If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
+{{< /call-out >}}
+
+{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
+
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+
+{{< call-out "note" >}}
+When using the provided values.yaml for Helm, setting the `appprotect.config.nginxJWT` value ensures that your JWT license is automatically copied to `/etc/nginx/license.jwt` inside the NGINX container. No additional manual copying of the file is needed when deploying with the provided YAML configuration.
+{{< /call-out >}}
 
 ## Create a Dockerfile
 
-In the same folder as your credential files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
+In the same folder as your credential files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
 Alternatively, you may want make your own image based on a Dockerfile using the official NGINX image:
 
@@ -62,7 +79,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/alpine-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/alpine-plus.md" >}}
 
 {{% /tab %}}
 
@@ -80,7 +97,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/amazon-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/amazon-plus.md" >}}
 
 {{% /tab %}}
 
@@ -98,7 +115,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/debian-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/debian-plus.md" >}}
 
 {{% /tab %}}
 
@@ -116,7 +133,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/oracle-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/oracle-plus.md" >}}
 
 {{% /tab %}}
 
@@ -134,7 +151,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rhel8-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel8-plus.md" >}}
 
 {{% /tab %}}
 
@@ -152,7 +169,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rhel9-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel9-plus.md" >}}
 
 {{% /tab %}}
 
@@ -170,7 +187,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rocky9-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rocky9-plus.md" >}}
 
 {{% /tab %}}
 
@@ -188,7 +205,7 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/ubuntu-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/ubuntu-plus.md" >}}
 
 {{% /tab %}}
 
@@ -200,9 +217,10 @@ Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
+- _license.jwt_
 - _Dockerfile_
 
-To build an image, use the following command, replacing `<your-image-name>` as appropriate:
+To build an image, use the following command, replacing <your-image-name> as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 \
@@ -219,10 +237,6 @@ From this point, the steps change based on your installation method:
 - [Use Manifests to install F5 WAF for NGINX](#use-manifests-to-install-f5-waf-for-nginx)
 
 ## Use Helm to install F5 WAF for NGINX
-
-### Download your JSON web token
-
-{{< include "licensing-and-reporting/download-jwt-from-myf5.md" >}}
 
 ### Get the Helm chart
 
@@ -246,8 +260,8 @@ cd nginx-app-protect
 
 You will need to edit the `values.yaml` file for a few changes:
 
-- Update _appprotect.nginx.image.repository_ and _appprotect.nginx.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
-- Update _appprotect.config.nginxJWT_ with your JSON web token
+- Update _appprotect.nginx.image.repository_ and _appprotect.nginx.image.tag_ with the image name chosen during when [building the Docker image](#build-the-docker-image).
+- Update _appprotect.config.nginxJWT_ with your JSON web token (Only necessary when using NGINX Plus)
 - Update _dockerConfigJson_ to contain the base64 encoded Docker registration credentials
 
 You can encode your credentials with the following command:
@@ -389,63 +403,34 @@ This configuration uses a _hostPath_ backed persistent volume claim.
 {{< /call-out >}}
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: nap5-deployment
+  name: nap5-bundles-pv
+  labels:
+    type: local
 spec:
-  selector:
-    matchLabels:
-      app: nap5
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nap5
-    spec:
-      imagePullSecrets:
-        - name: regcred
-      containers:
-        - name: nginx
-          image: <your-private-registry>/waf:<your-tag>
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-            - name: app-protect-config
-              mountPath: /opt/app_protect/config
-        - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: ENFORCER_PORT
-              value: "50000"
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-        - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - all
-          volumeMounts:
-            - name: app-protect-bd-config
-              mountPath: /opt/app_protect/bd_config
-            - name: app-protect-config
-              mountPath: /opt/app_protect/config
-            - name: app-protect-bundles
-              mountPath: /etc/app_protect/bundles
-      volumes:
-        - name: app-protect-bd-config
-          emptyDir: {}
-        - name: app-protect-config
-          emptyDir: {}
-        - name: app-protect-bundles
-          persistentVolumeClaim:
-            claimName: nap5-bundles-pvc
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/nap5_bundles_pv_data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nap5-bundles-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: nap5-bundles-pv
 ```
 
 {{% /tab %}}

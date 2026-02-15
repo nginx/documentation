@@ -17,16 +17,25 @@ This page describes how to install F5 WAF for NGINX in a virtual machine or bare
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- A working [NGINX Open Source]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) or [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) instance.
-- An active F5 WAF for NGINX subscription (Purchased or trial).
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
 
 Depending on your deployment type, you may have additional requirements:
 
-- [Docker](https://docs.docker.com/get-started/get-docker/) is required for NGINX Open Source or NGINX Plus type deployments.
-
-You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
+You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 {{< include "waf/install-selinux-warning.md" >}}
+
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
+
+## Download your subscription credentials 
+
+To use NGINX Plus, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+
+{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
+
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Platform-specific instructions
 
@@ -279,6 +288,14 @@ findDeps app-protect=<desired-version>
 ```
 
 {{< /details >}}
+
+## Install NGINX Plus license
+
+If you have not already copied your NGINX Plus JWT license file to the `/etc/nginx/` directory (for example, if NGINX Plus was installed automatically as a dependency), do so now:
+
+```shell
+sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
+```
 
 ## Update configuration files
 

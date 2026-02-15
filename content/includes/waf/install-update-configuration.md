@@ -121,8 +121,3 @@ server {
 {{% /tab %}}
 
 {{< /tabs >}}
-
-Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
-
-- `nginx -s reload`
-- `sudo systemctl reload nginx`
