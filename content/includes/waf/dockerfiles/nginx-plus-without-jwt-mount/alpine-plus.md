@@ -1,5 +1,4 @@
 ---
-nd-product: F5WAFN
 nd-files:
 - content/waf/install/docker.md
 - content/waf/install/kubernetes.md
@@ -27,10 +26,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && rm -rf /var/cache/apk/*
-
-# Securely copy the JWT license:
-RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
-    cp license.jwt /etc/nginx/license.jwt
 
 # Expose port
 EXPOSE 80

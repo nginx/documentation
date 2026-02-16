@@ -18,11 +18,9 @@ To complete this guide, you will need the following prerequisites:
     - [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md#before-you-begin" >}})
     - [Docker]({{< ref "/waf/install/docker.md#before-you-begin" >}})
     - [Kubernetes]({{< ref "/waf/install/kubernetes.md#before-you-begin" >}})
-- An active F5 WAF for NGINX subscription (purchased or trial) with repository credentials (JWT token or username/password).
-- A connected environment with similar architecture and internet access to the NGINX package repositories.
-- A method to transfer files between two environments (USB drive, SCP, rsync, etc.).
-- For package downloads on apt-based systems: `wget`, `gnupg`, `ca-certificates`, and `apt-transport-https`.
-- For package downloads on yum-based systems: `yum-utils`.
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
+- A connected environment with similar architecture
+- A method to transfer files between two environments
 
 These instructions outline the broad, conceptual steps involved with working with a disconnected environment. You will need to make adjustments based on your specific security requirements.
 
@@ -306,6 +304,10 @@ In the disconnected environment, install the packages:
 
 ---
 
+## Configure license reporting for disconnected environments
+
+By default, NGINX Plus automatically reports license usage to the F5 licensing endpoint, and additional configuration is not required in connected environments. However, manual configuration becomes necessary in disconnected environments. Use NGINX Instance Manager for usage reporting or use a custom path for the license file. Configuration can be done in the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX Plus configuration file (`/etc/nginx/nginx.conf`). For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
+
 ## Download Docker images
 
 After pulling or building Docker images in a connected environment, you can save them to `.tar` files:
@@ -326,4 +328,4 @@ You can then transfer the files and load the images in your disconnected environ
    docker load -i waf-ip-intelligence.tar
    ```
 
-Ensure your Docker compose files use the tagged images you've transferred.
+Ensure your Docker Compose files use the tagged images you've transferred.
