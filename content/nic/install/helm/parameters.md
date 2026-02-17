@@ -108,6 +108,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.service.annotations** | The annotations of the NGINX Ingress Controller service. | {} |
 | **controller.service.extraLabels** | The extra labels of the service. | {} |
 | **controller.service.loadBalancerIP** | The static IP address for the load balancer. Requires `controller.service.type` set to `LoadBalancer`. The cloud provider must support this feature. | "" |
+| **controller.service.loadBalancerClass** | This property allows the user to define a specific load balancer implementation or configuration class for the service.  Requires `controller.service.type` set to `LoadBalancer`. | "" |
 | **controller.service.externalIPs** | The list of external IPs for the NGINX Ingress Controller service. | [] |
 | **controller.service.clusterIP** | The clusterIP for the NGINX Ingress Controller service, autoassigned if not specified. | "" |
 | **controller.service.loadBalancerSourceRanges** | The IP ranges (CIDR) that are allowed to access the load balancer. Requires `controller.service.type` set to `LoadBalancer`. The cloud provider must support this feature. | [] |
