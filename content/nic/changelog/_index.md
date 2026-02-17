@@ -29,8 +29,6 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 17 Feb 2026
 
-This release contains a fix for CVE-2025-68121. 
-
 ### {{% icon bug %}} Fixes
 - [9175](https://github.com/nginx/kubernetes-ingress/pull/9175) Replace kind load command in ci tests
 
