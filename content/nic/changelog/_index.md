@@ -29,34 +29,15 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 17 Feb 2026
 
+This release contains a fix for CVE-2025-68121. 
+
 ### {{% icon bug %}} Fixes
 - [9175](https://github.com/nginx/kubernetes-ingress/pull/9175) Replace kind load command in ci tests
 
 ### {{% icon arrow-up %}} Dependencies
--  Bump Go dependencies
--  Bump Docker dependencies
-- [9181](https://github.com/nginx/kubernetes-ingress/pull/9181) Update pre-commit hook python-jsonschema/check-jsonschema to v0.36.2 (release-5.3)
-- [9131](https://github.com/nginx/kubernetes-ingress/pull/9131) Update kubernetes packages to v0.35.1 (release-5.3)
-- [9163](https://github.com/nginx/kubernetes-ingress/pull/9163) Update module github.com/gruntwork-io/terratest to v0.56.0 (release-5.3)
-- [9162](https://github.com/nginx/kubernetes-ingress/pull/9162) Update module sigs.k8s.io/controller-tools to v0.20.1 (release-5.3)
 - [9177](https://github.com/nginx/kubernetes-ingress/pull/9177) Update go to v1.26
-- [9161](https://github.com/nginx/kubernetes-ingress/pull/9161) Update kindest/node docker tag to v1.35.1 (release-5.3)
-- [9168](https://github.com/nginx/kubernetes-ingress/pull/9168) Update pre-commit hook rhysd/actionlint to v1.7.11 (release-5.3)
-- [9164](https://github.com/nginx/kubernetes-ingress/pull/9164) Update dependency dominikh/go-tools to v2026 (release-5.3)
-- [9170](https://github.com/nginx/kubernetes-ingress/pull/9170) Update pre-commit hook davidanson/markdownlint-cli2 to v0.21.0 (release-5.3)
-- [9130](https://github.com/nginx/kubernetes-ingress/pull/9130) Update k8s.io/utils digest to b8788ab (release-5.3)
-- [9136](https://github.com/nginx/kubernetes-ingress/pull/9136) Update golangci/golangci-lint docker tag to v2.9.0 (release-5.3)
-- [9133](https://github.com/nginx/kubernetes-ingress/pull/9133) Update quay.io/keycloak/keycloak docker tag to v26.5.3 (release-5.3)
-- [9114](https://github.com/nginx/kubernetes-ingress/pull/9114) Update module golang.org/x/tools to v0.42.0 (release-5.3)
-- [9143](https://github.com/nginx/kubernetes-ingress/pull/9113, https://github.com/nginx/kubernetes-ingress/pull/9143) Update redhat/ubi8 docker digest to a287489 (release-5.3)
-- [9117](https://github.com/nginx/kubernetes-ingress/pull/9117) Loosen f5 waf package versions to allow patch releases
-- [9180](https://github.com/nginx/kubernetes-ingress/pull/9098, https://github.com/nginx/kubernetes-ingress/pull/9129, https://github.com/nginx/kubernetes-ingress/pull/9152, https://github.com/nginx/kubernetes-ingress/pull/9180) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi9 docker digest to e06094a (release-5.3)
-- [9099](https://github.com/nginx/kubernetes-ingress/pull/9099) Update golang:1.25-alpine docker digest to f6751d8 (release-5.3)
-- [9104](https://github.com/nginx/kubernetes-ingress/pull/9104) Update nginx:1.29.5-alpine3.23 docker digest to 1d13701 (release-5.3)
-- [9151](https://github.com/nginx/kubernetes-ingress/pull/9097, https://github.com/nginx/kubernetes-ingress/pull/9128, https://github.com/nginx/kubernetes-ingress/pull/9151) Update ghcr.io/nginx/dependencies/nginx-ubi:ubi8 docker digest to 3754cfe (release-5.3)
-- [9100](https://github.com/nginx/kubernetes-ingress/pull/9100) Update nginx:1.29.5 docker digest to 341bf0f (release-5.3)
-- [9101](https://github.com/nginx/kubernetes-ingress/pull/9101) Update module sigs.k8s.io/structured-merge-diff/v6 to v6.3.2 (release-5.3)
-- [9106](https://github.com/nginx/kubernetes-ingress/pull/9106) Update python:3.14-trixie docker digest to abc08a8 (release-5.3)
+-  [9131](https://github.com/nginx/kubernetes-ingress/pull/9131),[9163](https://github.com/nginx/kubernetes-ingress/pull/9163),[9162](https://github.com/nginx/kubernetes-ingress/pull/9162),[9164](https://github.com/nginx/kubernetes-ingress/pull/9164),[9114](https://github.com/nginx/kubernetes-ingress/pull/9114),[9099](https://github.com/nginx/kubernetes-ingress/pull/9099),[9104](https://github.com/nginx/kubernetes-ingress/pull/9104) & [9101](https://github.com/nginx/kubernetes-ingress/pull/9101) Bump Go dependencies
+-  [9161](https://github.com/nginx/kubernetes-ingress/pull/9161),[9130](https://github.com/nginx/kubernetes-ingress/pull/9130),[9136](https://github.com/nginx/kubernetes-ingress/pull/9136),[9133](https://github.com/nginx/kubernetes-ingress/pull/9133),[9143](https://github.com/nginx/kubernetes-ingress/pull/9143), [9113](https://github.com/nginx/kubernetes-ingress/pull/9113),[9100](https://github.com/nginx/kubernetes-ingress/pull/9100), [9098](https://github.com/nginx/kubernetes-ingress/pull/9098), [9129](https://github.com/nginx/kubernetes-ingress/pull/9129), [9152](https://github.com/nginx/kubernetes-ingress/pull/9152), [9180](https://github.com/nginx/kubernetes-ingress/pull/9180),[9097](https://github.com/nginx/kubernetes-ingress/pull/9097), [9128](https://github.com/nginx/kubernetes-ingress/pull/9128) & [9151](https://github.com/nginx/kubernetes-ingress/pull/9151) Bump Docker dependencies
 
 ### {{% icon download %}} Upgrade
 - For NGINX, use the 5.3.4 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.3.4), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
