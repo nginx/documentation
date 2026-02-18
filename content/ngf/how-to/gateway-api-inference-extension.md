@@ -70,7 +70,7 @@ NGINX will query the Endpoint Picker Extension to determine the appropriate pod 
 {{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default, as the Endpoint Picker does not currently support mounting CA certificates. The Gateway API Inference Extension is in alpha status and should not be used in production. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v1.0.1
+export IGW_CHART_VERSION=v1.1.0
 helm install vllm-llama3-8b-instruct \
 --set inferencePool.modelServers.matchLabels.app=vllm-llama3-8b-instruct \
 --version $IGW_CHART_VERSION \
@@ -103,17 +103,37 @@ EOF
 Confirm that the Gateway was assigned an IP address and reports a `Programmed=True` status:
 
 ```shell
-kubectl describe gateway inference-gateway
+kubectl describe gateways.gateway.networking.k8s.io inference-gateway
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+```text
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-## Deploy a HTTPRoute
+## Deploy an HTTPRoute
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -131,7 +151,6 @@ spec:
     - group: inference.networking.k8s.io
       kind: InferencePool
       name: vllm-llama3-8b-instruct
-      port: 3000
     matches:
     - path:
         type: PathPrefix

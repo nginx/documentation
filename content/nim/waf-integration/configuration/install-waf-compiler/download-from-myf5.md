@@ -5,7 +5,6 @@ toc: true
 weight: 400
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 If your NGINX Instance Manager host doesn’t have access to the public NGINX repository, you can manually download and install the WAF compiler from [MyF5](https://my.f5.com/).

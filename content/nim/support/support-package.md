@@ -3,9 +3,8 @@ nd-docs: DOCS-818
 title: Create a support package
 toc: true
 weight: 200
-type:
-- reference
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

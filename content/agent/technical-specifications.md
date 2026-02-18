@@ -27,14 +27,13 @@ NGINX Agent can run in most environments. We support the following distributions
 
 | | AlmaLinux | Alpine Linux | Amazon Linux | Amazon Linux 2| Debian |
 |-|-----------|--------------|--------------|----------------|--------|
-|**Version**|8 <br><hr>9 <br><hr>10|  3.19<br><hr>3.20<br><hr> 3.21<br><hr> 3.22|  2023|  LTS|  11<br><hr> 12|
+|**Version**|8 <br><hr>9 <br><hr>10|  3.20<br><hr> 3.21<br><hr> 3.22<br><hr> 3.23|  2023|  LTS|  11<br><hr> 12<br><hr> 13|
 |**Architecture**| x86_84<br><hr>aarch64| x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 | x86_64<br><hr>aarch64 |
 
 | |FreeBSD | Oracle Linux | Red Hat <br>Enterprise Linux <br>(RHEL) | Rocky Linux | SUSE Linux <br>Enterprise Server <br>(SLES) | Ubuntu |
 |-|--------|--------------|---------------------------------|-------------|-------------------------------------|--------|
-|**Version**|13<br><hr>14|8.1+<br><hr>9<br><hr>10|8.1+<br><hr>9.0+<br><hr>10|8<br><hr>9<br><hr>10|15 SP2|22.04 LTS<br><hr>24.04 LTS<br><hr>25.04 LTS|
+|**Version**|13<br><hr>14|8.1+<br><hr>9<br><hr>10|8.1+<br><hr>9.0+<br><hr>10|8<br><hr>9<br><hr>10|15 SP2<br><hr>16 SP2| 22.04 LTS<br><hr>24.04 LTS<br><hr>25.04<br><hr>25.10 LTS|
 |**Architecture**|amd64|x86_64|x86_64<br><hr>aarch64|x86_64<br><hr>aarch64|x86_64|x86_64<br><hr>aarch64|
-
 
 ## Supported deployment environments
 
@@ -48,7 +47,6 @@ NGINX Agent can be deployed in the following environments:
 ## Supported NGINX versions
 
 NGINX Agent works with all supported versions of NGINX Open Source and NGINX Plus.
-
 
 ## Sizing recommendations
 

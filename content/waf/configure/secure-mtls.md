@@ -1,22 +1,16 @@
 ---
-# We use sentence case and present imperative tone
 title: "Secure traffic using mTLS"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 500
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This document describes how to secure traffic between NGINX and the F5 WAF enforcer using mTLS.
 
 It explains how to generate the necessary certificates, then update configuration files to use them.
 
-A mutual TLS (mTLS) connection creates authentication between both NGINX (client) and F5 WAF Enforcer (server). 
+A mutual TLS (mTLS) connection creates authentication between both NGINX (client) and F5 WAF Enforcer (server).
 
 This adds an extra layer of security, ensuring that both parties are who they claim to be.
 
@@ -26,7 +20,7 @@ To enable mTLS, you must first create certificates.
 
 {{< call-out "note" >}}
 
-The following commands will generate self-signed certificates in _/etc/ssl/certs/_ valid for the default period of 30 days. You can adjust the command to fit your needs. 
+The following commands will generate self-signed certificates in _/etc/ssl/certs/_ valid for the default period of 30 days. You can adjust the command to fit your needs.
 
 For instance, to specify a different validity period, add the _-days_ option followed by the number of days you want the certificate to be valid (Such as _-days 90_).
 
@@ -155,7 +149,7 @@ With a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment
 
 {{< /call-out >}}
 
-## Modify Docker compose file
+## Modify Docker Compose file
 
 {{< call-out "warning" >}}
 
@@ -225,4 +219,3 @@ services:
 	  app_protect_config:
 	  app_protect_etc_config:
 ```
-

@@ -1,4 +1,5 @@
 ---
+nd-product: F5WAFN
 nd-files:
 - content/waf/install/docker.md
 ---
@@ -7,12 +8,27 @@ Your folder should contain the following files:
 
 - _nginx-repo.crt_
 - _nginx-repo.key_
+- _license.jwt_ (Only necessary when using NGINX Plus)
 - _nginx.conf_
 - _entrypoint.sh_
 - _Dockerfile_
-- _custom_log_format.json_ (Optional)
+- _custom_log_format.json_ 
 
-To build an image, use the following command, replacing `<your-image-name>` as appropriate:
+#### Building an image with NGINX Plus
+To build an image for NGINX Plus, use the following command that is not RHEL-based, replacing `<your-image-name>` as appropriate:
+
+```shell
+sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+```
+
+A RHEL-based system would use the following command instead:
+
+```shell
+podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
+```
+
+#### Building an image with NGINX Open Source
+To build an image for NGINX Open Source, use the following command that is not RHEL-based, replacing `<your-image-name>` as appropriate:
 
 ```shell
 sudo docker build --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .

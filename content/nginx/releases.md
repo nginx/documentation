@@ -106,6 +106,23 @@ NGINX Plus R36 is supported on:
 - Rocky Linux 10 is new in this release
 - SLES 16 is new in this release
 
+### NGINX Plus R36 Update {#r36_p1}
+
+NGINX Plus R36 P1<br/>
+_18 December 2025_
+
+This is a bugfix release for NGINX Plus R36.
+
+- HTTP/3: fixed a potential crash when using OpenSSL 3.5.1 or newer.
+
+NGINX Plus R36 P2<br/>
+_February 4, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security Fix: when proxying to upstream TLS servers, an attacker with
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
+
 
 ## NGINX Plus Release 35 (R35) {#r35}
 _August 13, 2025_<br/>
@@ -115,7 +132,7 @@ NGINX Plus R35 is a feature release:
 
 - [Automated Certificate Management Environment](https://blog.nginx.org/blog/native-support-for-acme-protocol) (ACME) protocol [support](https://nginx.org/en/docs/http/ngx_http_acme_module.html).
 
-- [Automatic renewal](https://docs.nginx.com/solutions/about-subscription-licenses/#update-jwt) of NGINX Plus license.
+- [Automatic renewal]({{< ref "/solutions/about-subscription-licenses/getting-started.md#update-license" >}}) of NGINX Plus license.
 
 - [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 
@@ -157,6 +174,17 @@ NGINX Plus R35 is supported on:
 - Ubuntu 20.04 is removed
 - SLES 15 SP6 is now required
 - the [ACME]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) dynamic module is new in this release.
+
+### NGINX Plus R35 Update {#r35_p1}
+
+NGINX Plus R35 P1<br/>
+_February 4, 2026_
+
+This is a security release for NGINX Plus R35.
+
+- Security Fix: when proxying to upstream TLS servers, an attacker with
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
+
 
 ## NGINX Plus Release 34 (R34) {#r34}
 _April 01, 2025_<br/>
@@ -428,6 +456,14 @@ This is a security release for NGINX Plus R32.
 
 - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
+
+NGINX Plus R32 P4<br/>
+_February 4, 2026_
+
+This is a security release for NGINX Plus R32.
+
+- Security Fix: when proxying to upstream TLS servers, an attacker with
+Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
 
 ## NGINX Plus Release 31 (R31) {#r31}
 _December 19, 2023_<br/>

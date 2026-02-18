@@ -170,6 +170,7 @@ ls -la /tmp/verify-archive/
 ``` text
 reverse-proxy.tmpl
 schema.yaml
+```
 
 ### Complete example workflow
 

@@ -69,75 +69,12 @@ The steps in this section must be completed once for each new setup. We will ins
 
 #### Create an NGINXaaS data plane API key
 
-{{< call-out "note" >}}
-The data plane API key has the following requirements:
+For detailed instructions on creating the dataplane API key and obtaining the API endpoint, see [Create NGINXaaS Dataplane API Key]({{< ref "/nginxaas-azure/quickstart/dataplane-api-key/" >}}).
 
-- The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
-- The key should be at least 12 characters long.
-- The key requires three out of four of the following types of characters:
-  - lowercase characters.
-  - uppercase characters.
-  - symbols.
-  - numbers.
+Copy the following to a secure location:
 
-A good example of an API key that will satisfy the requirements is UUIDv4.
-
-{{< /call-out >}}
-
-The data plane API key can be created using the Azure CLI or portal.
-
-##### Create an NGINXaaS data plane API key using the Azure portal
-
-1. Go to your NGINXaaS for Azure deployment.
-1. Select **NGINXaaS Loadbalancer for Kubernetes** on the left blade.
-1. Select **New API Key**.
-1. Provide a name for the new API key in the right panel, and select an expiration date.
-1. Select the **Add API Key** button.
-1. Copy the value of the new API key.
-
-{{< call-out "note" >}}
-Make sure to write down the key value in a safe location after creation, as you cannot retrieve it again. If you lose the generated value, delete the existing key and create a new one.
-{{< /call-out >}}
-
-##### Create an NGINXaaS data plane API key using the Azure CLI
-
-Set shell variables about the name of the NGINXaaS you've already created:
-
-```shell
-## Customize this to provide the details about my already created NGINXaaS deployment
-nginxName=myNginx
-nginxGroup=myNginxGroup
-```
-
-Generate a new random data plane API key:
-
-```shell
-# Generate a new random key or specify a value for it.
-keyName=myKey
-keyValue=$(uuidgen --random)
-```
-
-Create the key for your NGINXaaS deployment:
-
-```shell
-az nginx deployment api-key create --name $keyName --secret-text $keyValue --deployment-name $nginxName --resource-group  $nginxGroup
-```
-
-#### NGINXaaS data plane API endpoint
-
-The data plane API endpoint can be retrieved using the Azure CLI or portal.
-
-##### View NGINXaaS data plane API endpoint using the Azure portal
-
-1. Go to your NGINXaaS for Azure deployment.
-1. Select **NGINXaaS Loadbalancer for Kubernetes** on the left blade.
-1. The data plane API endpoint associated with the deployment is available at the top of the screen.
-
-##### View NGINXaaS data plane API endpoint using the Azure CLI
-
-```shell
-dataplaneAPIEndpoint=$(az nginx deployment show -g "$nginxGroup" -n "$nginxName" --query properties.dataplaneApiEndpoint -o tsv)
-```
+- The API key value (you'll need this for the NLK configuration)
+- The dataplane API endpoint (you'll need this with the `/nplus` suffix)
 
 #### Install the NLK controller
 
@@ -148,7 +85,7 @@ The NLK controller can be installed in your Kubernetes cluster using either Helm
 Install the NLK controller using `helm install`. Be sure your kubectl context is pointed at the desired cluster.
 
 ```shell
-helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.4 \
+helm install nlk oci://registry-1.docker.io/nginxcharts/nginxaas-loadbalancer-kubernetes --version 1.2.6 \
   --set "nlk.dataplaneApiKey=${keyValue}" \
   --set "nlk.config.nginxHosts=${dataplaneAPIEndpoint}nplus" \
   --set "nlk.config.tls.mode=ca-tls"
@@ -180,7 +117,7 @@ az k8s-extension create \
 
 ##### Install the AKS Extension using the Azure portal
 
-You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps. 
+You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps.
 {{< call-out "note" >}}
 If you are creating a new AKS cluster as part of this installation, note that we will enable the [Azure CNI Node Subnet plugin](https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview). This causes Cluster IP addresses to be exposed within your VNET.
 {{< /call-out >}}

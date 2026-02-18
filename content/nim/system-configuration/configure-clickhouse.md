@@ -4,8 +4,8 @@ nd-docs: DOCS-998
 title: Configure ClickHouse
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

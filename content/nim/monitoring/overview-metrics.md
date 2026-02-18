@@ -4,8 +4,8 @@ nd-docs: DOCS-826
 title: 'Overview: NGINX instance metrics'
 toc: true
 weight: 100
-type:
-  - reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Overview
@@ -36,26 +36,12 @@ NGINX Instance Manager stores historical data in an analytics database and appli
 
 ### NGINX Open Source metrics
 
-{{< include "/use-cases/monitoring/enable-nginx-oss-stub-status.md" >}}
+{{< include "/use-cases/monitoring/enable-nginx-oss-metrics.md" >}}
 
 After saving the changes, reload NGINX to apply the new configuration:
 
 ```shell
 nginx -s reload
-```
-
-### NGINX access log metrics
-
-Enable access logging to collect traffic metrics by parsing logs. Use the following log format:
-
-```nginx
-log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                  '$status $body_bytes_sent "$http_referer" '
-                  '"$http_user_agent" "$http_x_forwarded_for" '
-                  '"$bytes_sent" "$request_length" "$request_time" '
-                  '"$gzip_ratio" $server_protocol ';
-
-access_log  /var/log/nginx/access.log  main;
 ```
 
 ## Troubleshooting

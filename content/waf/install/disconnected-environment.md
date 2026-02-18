@@ -1,11 +1,7 @@
 ---
-# We use sentence case and present imperative tone
 title: "Disconnected or air-gapped environments"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 500
-# Creates a table of contents and sidebar, useful for large documents
-toc: false
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
+toc: true
 nd-content-type: how-to
 nd-product: F5WAFN
 ---
@@ -22,7 +18,7 @@ To complete this guide, you will need the following prerequisites:
     - [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md#before-you-begin" >}})
     - [Docker]({{< ref "/waf/install/docker.md#before-you-begin" >}})
     - [Kubernetes]({{< ref "/waf/install/kubernetes.md#before-you-begin" >}})
-- An active F5 WAF for NGINX subscription (Purchased or trial).
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
 - A connected environment with similar architecture
 - A method to transfer files between two environments
 
@@ -62,51 +58,274 @@ cd documentation
 hugo server
 ```
 
-## Download package files
+---
 
-{{< call-out "note" >}}
+## Installation in Virtual Machine or Bare Metal
 
-This section is most relevant for a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) installation.
-
-{{< /call-out >}}
+### Download the required packages
 
 When working with package files, you can install the packages directly in your disconnected environment, or add them to an internal repository.
 
-The first step is to download the package files from your connected environment.
+The first step is to download the package files from a connected environment that has internet access and your NGINX repository credentials.
 
-This will vary based on your operating system choice, which determines your package manager.
+See the section for your operating system below:
 
-For example, a `yum` based system will require a special plugin:
+#### Alpine Linux
 
-```shell
-# Install the download plugin
-yum -y install yum-plugin-downloadonly
-# Create a directory for packages
-mkdir -p /etc/packages/
-# Use yum to download the packages into the directory
-yum install --downloadonly --downloaddir=/etc/packages/ app-protect
-```
+1. Download and install the repository signing key:
+   
+   ```shell
+   sudo wget -O /etc/apk/keys/app-protect-security-updates.rsa.pub https://cs.nginx.com/static/keys/app-protect-security-updates.rsa.pub
+   ```
 
-Once you've obtained the package files and transferred them to your disconnected environment, you can directly install them or add them to a local repository.
+1. Add the F5 WAF for NGINX repositories:
+ 
+   ```shell
+    printf "https://pkgs.nginx.com/app-protect/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main\n" | sudo tee -a /etc/apk/repositories
+   printf "https://pkgs.nginx.com/app-protect-security-updates/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main\n" | sudo tee -a /etc/apk/repositories
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   apk update
+   mkdir -p /offline/packages && cd /offline/packages
+   apk fetch --recursive app-protect app-protect-attack-signatures app-protect-bot-signatures app-protect-threat-campaigns
+   ```
+
+#### Amazon Linux 2023
+
+1. Add the F5 WAF for NGINX repository and dependencies:
+
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-amazonlinux2023.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.amazonlinux2023.repo
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages/
+   sudo dnf install --downloadonly --downloaddir=/offline/packages/ \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
+
+#### Debian
+
+1. Install required packages:
+
+   ```shell
+   sudo apt-get install -y wget gnupg ca-certificates apt-transport-https lsb-release
+   ```
+
+1. Download and install the NGINX repository signing key:
+
+   ```shell
+   wget -qO - https://cs.nginx.com/static/keys/nginx-archive.key | gpg --dearmor | \
+   sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
+   ```
+
+1. Add the F5 WAF for NGINX repositories:
+
+   ```shell
+   RELEASE=$(lsb_release -cs)
+
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect/debian $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect-security-updates/debian $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+   cd /offline/packages
+   apt-get update
+
+   apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u)
+   ```
+
+#### Oracle Linux / RHEL / Rocky Linux 8
+
+1. Add the F5 WAF for NGINX repository:
+
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel8.repo
+   ```
+
+1. Install the `yum-utils` package if not already installed:
+
+   ```shell
+   sudo dnf install yum-utils
+   ```
+
+1. Enable codeready-builder repository through subscription manager:
+
+   ```shell
+   subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+   ```
+
+   1. Download the `epel-release` dependency package if not already installed:
+
+   ```shell
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+
+   sudo yum install --downloadonly --downloaddir=/offline/packages \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
+
+#### RHEL / Rocky Linux 9
+
+1. Add the F5 WAF for NGINX repository:
+
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel9.repo
+   ```
+
+1. Install the `yum-utils` package if not already installed:
+
+   ```shell
+   sudo dnf install yum-utils
+   ```
+
+1. Enable codeready-builder repository through subscription manager:
+
+   ```shell
+   subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+   ```
+
+1. Download the `epel-release` dependency package if not already installed:
+
+   ```shell
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+
+   sudo yum install --downloadonly --downloaddir=/offline/packages \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
+
+#### Ubuntu
+
+1. Install required packages:
+
+   ```shell
+   sudo apt-get install -y wget gnupg ca-certificates apt-transport-https lsb-release
+   ```
+
+1. Download and install the NGINX repository signing key:
+
+   ```shell
+   wget -qO - https://cs.nginx.com/static/keys/nginx-archive.key | gpg --dearmor | \
+   sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg > /dev/null
+   ```
+
+1. Add the F5 WAF for NGINX repositories:
+
+   ```shell
+   RELEASE=$(lsb_release -cs)
+
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect/ubuntu $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/nginx-app-protect.list
+
+   printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+   https://pkgs.nginx.com/app-protect-security-updates/ubuntu $RELEASE nginx-plus\n" | \
+   sudo tee /etc/apt/sources.list.d/app-protect-security-updates.list
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+   cd /offline/packages
+   apt-get update
+
+   apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u)
+   ```
+
+### Transfer the packages
+
+After you've downloaded the package files in your connected environment, transfer the `packages` directory to your disconnected environment using a method that works for you, such as a USB drive, SCP, or rsync.
+
+### Install the packages
+
+In the disconnected environment, install the packages:
+
+- For Alpine Linux
+
+   ```shell
+   cd /offline/packages
+   apk add --allow-untrusted app-protect*.apk nginx-plus*.apk
+   ```
+
+- For Amazon Linux 2023, RHEL 9, Rocky Linux 9
+
+   ```shell
+   cd /offline
+   dnf localinstall -y *.rpm
+   ```
+
+- For Debian, Ubuntu
+
+   ```shell
+   cd /offline
+   dpkg -i *.deb
+   ```
+
+- For Oracle Linux, RHEL 8, Rocky Linux 8
+
+   ```shell
+   sudo yum localinstall /offline/packages/*.rpm
+   ```
+
+---
+
+## Configure license reporting for disconnected environments
+
+By default, NGINX Plus automatically reports license usage to the F5 licensing endpoint, and additional configuration is not required in connected environments. However, manual configuration becomes necessary in disconnected environments. Use NGINX Instance Manager for usage reporting or use a custom path for the license file. Configuration can be done in the [`mgmt {}`](https://nginx.org/en/docs/ngx_mgmt_module.html) block of the NGINX Plus configuration file (`/etc/nginx/nginx.conf`). For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}).
 
 ## Download Docker images
 
 After pulling or building Docker images in a connected environment, you can save them to `.tar` files:
 
-```shell
-docker save -o waf-enforcer.tar waf-enforcer:{{< version-waf-enforcer >}}
-docker save -o waf-config-mgr.tar waf-config-mgr:{{< version-waf-config-mgr >}}
-# Optional, if using IP intelligence
-docker save -o waf-ip-intelligence.tar waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
-```
+   ```shell
+   docker save -o waf-enforcer.tar waf-enforcer:{{< version-waf-enforcer >}}
+   docker save -o waf-config-mgr.tar waf-config-mgr:{{< version-waf-config-mgr >}}
+   # Optional, if using IP intelligence
+   docker save -o waf-ip-intelligence.tar waf-ip-intelligence:{{< version-waf-ip-intelligence >}}
+   ```
 
 You can then transfer the files and load the images in your disconnected environment:
 
-```shell
-docker load -i waf-enforcer.tar
-docker load -i waf-config-mgr.tar
-# Optional, if using IP intelligence
-docker load -i waf-ip-intelligence.tar
-```
+   ```shell
+   docker load -i waf-enforcer.tar
+   docker load -i waf-config-mgr.tar
+   # Optional, if using IP intelligence
+   docker load -i waf-ip-intelligence.tar
+   ```
 
-Ensure your Docker compose files use the tagged images you've transferred.
+Ensure your Docker Compose files use the tagged images you've transferred.

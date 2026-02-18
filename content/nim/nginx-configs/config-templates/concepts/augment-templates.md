@@ -4,13 +4,13 @@ description: ''
 weight: 120
 toc: true
 nd-docs: DOCS-1656
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- concept
+nd-content-type: concept
+nd-product: NIMNGR
 ---
 
 ## Overview {#augmenting-global-default-base-template}

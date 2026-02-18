@@ -1,38 +1,41 @@
 ---
-# We use sentence case and present imperative tone
 title: "Virtual machine or bare metal"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 100
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
 nd-banner:
     enabled: true
     start-date: 2025-08-30
     md: /_banners/waf-virtual-restriction.md
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
-This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment. 
+This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment.
 
 ## Before you begin
 
 To complete this guide, you will need the following prerequisites:
 
 - A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
-- A working [NGINX Open Source]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-open-source.md" >}}) or [NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) instance.
-- An active F5 WAF for NGINX subscription (Purchased or trial).
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
 
 Depending on your deployment type, you may have additional requirements:
 
-- [Docker](https://docs.docker.com/get-started/get-docker/) is required for NGINX Open Source or NGINX Plus type deployments.
-
-You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) and [Secure traffic using mTLS]({{< ref "/waf/configure/secure-mtls.md" >}}) topics for additional set-up configuration if you want to use them immediately.
+You should read the [IP intelligence]({{< ref "/waf/policies/ip-intelligence.md" >}}) topics for additional set-up configuration if you want to use them immediately.
 
 {{< include "waf/install-selinux-warning.md" >}}
+
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
+
+## Download your subscription credentials 
+
+To use NGINX Plus, you will need to download the JWT license file associated with your F5 WAF for NGINX WAF subscription from the [MyF5](https://my.f5.com/manage/s/) Customer Portal:
+
+{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
+
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Platform-specific instructions
 
@@ -60,6 +63,17 @@ sudo apk update
 sudo apk add openssl ca-certificates app-protect
 ```
 
+{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
+
+If you need to install a specific version of F5 WAF for NGINX, you can use `apk info` to list available versions, then append it to the package name:
+
+```shell
+sudo apk info app-protect
+sudo apk add openssl ca-certificates app-protect=<desired-version>
+```
+
+{{< /details >}}
+
 ### Amazon Linux
 
 Add the F5 WAF for NGINX repository:
@@ -79,6 +93,17 @@ Install the F5 WAF for NGINX package and its dependencies:
 ```shell
 sudo dnf install app-protect
 ```
+
+{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
+
+If you need to install a specific version of F5 WAF for NGINX, you can use `--showduplicates list` to list available versions, then append it to the package name:
+
+```shell
+sudo dnf --showduplicates list app-protect
+sudo dnf install app-protect-=<desired-version>
+```
+
+{{< /details >}}
 
 ### Debian
 
@@ -107,6 +132,27 @@ Update the repositories, then install the F5 WAF for NGINX package and its depen
 sudo apt-get update
 sudo apt-get install app-protect
 ```
+
+{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
+
+If you need to install a specific version of F5 WAF for NGINX, you can use `apt-cache` to list available versions, then append it to the package name:
+
+```shell
+sudo apt-get update
+sudo apt-cache policy app-protect
+sudo apt-get install app-protect=<desired-version>
+```
+
+When installing a specific version of F5 WAF for NGINX, you will also need to manually install its package dependencies. 
+
+You can use the following script to get the dependent packages:
+
+```shell
+findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
+findDeps app-protect=<desired-version>
+```
+
+{{< /details >}}
 
 ### Oracle Linux / RHEL / Rocky Linux 8
 
@@ -146,6 +192,17 @@ Install the F5 WAF for NGINX package and its dependencies:
 sudo dnf install app-protect
 ```
 
+{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
+
+If you need to install a specific version of F5 WAF for NGINX, you can use `--showduplicates list` to list available versions, then append it to the package name:
+
+```shell
+sudo dnf --showduplicates list app-protect
+sudo dnf install app-protect-=<desired-version>
+```
+
+{{< /details >}}
+
 ### RHEL / Rocky Linux 9
 
 Add the F5 WAF for NGINX repository:
@@ -171,6 +228,17 @@ Install the F5 WAF for NGINX package and its dependencies:
 ```shell
 sudo dnf install app-protect
 ```
+
+{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
+
+If you need to install a specific version of F5 WAF for NGINX, you can use `--showduplicates list` to list available versions, then append it to the package name:
+
+```shell
+sudo dnf --showduplicates list app-protect
+sudo dnf install app-protect-=<desired-version>
+```
+
+{{< /details >}}
 
 ### Ubuntu
 
@@ -198,6 +266,35 @@ Update the repositories, then install the F5 WAF for NGINX package and its depen
 ```shell
 sudo apt-get update
 sudo apt-get install app-protect
+```
+
+{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
+
+If you need to install a specific version of F5 WAF for NGINX, you can use `apt-cache` to list available versions, then append it to the package name:
+
+```shell
+sudo apt-get update
+sudo apt-cache policy app-protect
+sudo apt-get install app-protect=<desired-version>
+```
+
+When installing a specific version of F5 WAF for NGINX, you will also need to manually install its package dependencies.
+
+You can use the following script to get the dependent packages:
+
+```shell
+findDeps () { local pkgs=$(apt show $1 2>/dev/null | grep Depends: | grep -oE "(nginx-plus-module|app-protect)-[a-z]+ *\(= *[0-9\+\.-]+~`lsb_release -cs`\)" | tr -d ' ()'); for p in ${pkgs[@]}; do echo $p; findDeps $p; done; }
+findDeps app-protect=<desired-version>
+```
+
+{{< /details >}}
+
+## Install NGINX Plus license
+
+If you have not already copied your NGINX Plus JWT license file to the `/etc/nginx/` directory (for example, if NGINX Plus was installed automatically as a dependency), do so now:
+
+```shell
+sudo cp <downloaded-file-name>.jwt /etc/nginx/license.jwt
 ```
 
 ## Update configuration files
