@@ -23,7 +23,7 @@ Released _February 13th, 2026_.
 
 - 13840 - - Upgrade Go compiler to 1.24.13
 
-## F5 WAF for NGINX 5.11.1 & [5.10.1]({{< ref "/waf/changelog/2025.md#F5-WAF-for-NGINX-5.10.1" >}}) & [5.9.1]({{< ref "/waf/changelog/2025.md#F5-WAF-for-NGINX-5.9.1" >}})
+## F5 WAF for NGINX 5.11.1 [5.10.1]({{< ref "/waf/changelog/2025.md#F5-WAF-for-NGINX-5.10.1" >}}) [5.9.1]({{< ref "/waf/changelog/2025.md#F5-WAF-for-NGINX-5.9.1" >}})
 
 Released _February 11th, 2026_.
 
