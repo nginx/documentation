@@ -21,9 +21,15 @@ Released _February 13th, 2026_.
 
 ### Resolved issues
 
-- 13840 - - Upgrade Go compiler to 1.24.13
+- 13840 - Upgrade Go compiler to 1.24.13
 
-## F5 WAF for NGINX 5.11.1, The patch fix has been included in versions 5.9.1 and 5.10.1 as well.
+## F5 WAF for NGINX 5.11.1
+
+{{< call-out "note" >}}
+
+The patch fix is also included in versions 5.9.1 and 5.10.1.
+
+{{< /call-out >}}
 
 Released _February 11th, 2026_.
 
@@ -33,7 +39,7 @@ Released _February 11th, 2026_.
 
 ### Resolved issues
 
-- 13720 - Fixed a case where reloading NGINX in  WAF deployments can interrupt in‑flight requests.
+- 13720 - Fixed a case where reloading NGINX in WAF deployments can interrupt in‑flight requests.
 
 ## F5 WAF for NGINX 5.11
 
