@@ -41,7 +41,7 @@ Starting NGINX Plus requires:
 
 Processing traffic requires:  
 
-- A successful initial usage report. If the initial report isn’t sent, NGINX Plus won’t process traffic until the report is sent successfully. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).  
+- A successful initial usage report. If the F5 licensing endpoint does not receive the initial report, NGINX Plus will not process traffic until the report is received. To add a grace period, see [Postpone reporting enforcement](#postpone-reporting-enforcement).
 - Ongoing usage reports, at least every 180 days. If reporting stops, NGINX Plus keeps running but stops processing traffic once 180 days have passed without a report. To avoid disruption, send usage reports regularly instead of waiting until the 180-day cutoff.
 
 ## Download your license from MyF5 {#download-jwt}
@@ -197,6 +197,10 @@ If automatic updates are not available (for example, in disconnected environment
 
 1. [Download the new JWT license](#download-jwt) from MyF5.  
 1. [Deploy the JWT license](#deploy-jwt) to your NGINX Plus instances.
+
+{{< call-out "note" "Note for Internet-connected environments" >}}
+If you manually updated your JWT license after subscription renewal, you may see this [error log message](#log-monitoring): `[notice] renewed license does not match the original one; using original license`. No action is needed and you can safely ignore this message. For details, see [K000159013](https://my.f5.com/manage/s/article/K000159013).
+{{< /call-out >}}
 
 {{< /details >}}
 

@@ -2,8 +2,8 @@
 title: Troubleshooting
 weight: 500
 toc: true
-type: how-to
-product: NIM
+nd-content-type: how-to
+nd-product: NIMNGR
 nd-docs: DOCS-1226
 ---
 

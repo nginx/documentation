@@ -2,6 +2,8 @@
 title: NGINX Amplify
 description: Lightweight SaaS monitoring and static analysis for NGINX Open Source and F5 NGINX Plus.
 url: /nginx-amplify/
+nd-landing-page: true
+noindex: true
 cascade:
   logo: "NGINX-Amplify-product-icon-RGB.svg"
   nd-banner:
@@ -10,3 +12,16 @@ cascade:
     md: _banners/eol-amplify.md
 ---
 
+### Uninstall F5 NGINX Amplify Agent
+
+- On Ubuntu/Debian use:
+
+    ```shell
+    apt-get remove nginx-amplify-agent
+    ```
+
+- On CentOS and Red Hat use:
+
+    ```shell
+    yum remove nginx-amplify-agent
+    ```

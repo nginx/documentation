@@ -3,8 +3,8 @@ nd-docs: DOCS-1273
 title: Assign roles to users or user groups
 toc: true
 weight: 210
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

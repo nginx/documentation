@@ -1,15 +1,11 @@
 ---
-# We use sentence case and present imperative tone
 title: "Kubernetes operations improvements (Early access)"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 300
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
 nd-banner:
     enabled: true
     start-date: 2025-08-30
     md: /_banners/waf-early-availability.md
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 nd-product: F5WAFN
 ---
@@ -22,7 +18,7 @@ There are two new features available for Kubernetes through early access:
 
 This extends the WAF compiler capabilities by providing a native Kubernetes operator-based approach for policy orchestration.
 
-These features revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts. 
+These features revolve around a _Policy Controller_ which uses the Kubernetes operator pattern to manage the lifecycle of WAF security artifacts.
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
@@ -36,19 +32,35 @@ These enhancements are  only available for Helm-based deployments.
 
 To complete this guide, you will need the following prerequisites:
 
-- [A functional Kubernetes cluster]({{< ref "/waf/install/kubernetes.md" >}})
-- [Helm](https://helm.sh/docs/intro/install/)
-- [Docker](https://docs.docker.com/get-started/get-docker/)
-- An active F5 WAF for NGINX subscription (Purchased or trial)
-- Credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
+- A [supported operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}).
+- [A functional Kubernetes cluster](https://kubernetes.io/docs/setup/) (installed and running).
+- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) configured and connected to your cluster.
+- [Docker](https://docs.docker.com/engine/install/) (with Docker Compose) installed and running, for pulling and managing container images.
+- Ensure you have an active F5 WAF for NGINX subscription (purchased or trial) and have downloaded the associated [SSL certificate, private key, and JWT license](#download-your-subscription-credentials) file from the MyF5 Customer Portal.
+- [Docker registry credentials](#download-your-subscription-credentials) for private-registry.nginx.com, required to pull images.
+- [Helm](https://helm.sh/docs/intro/install/) installed, required for deployment.
+
+## Default security policy and logging profile
+
+F5 WAF for NGINX uses built-in default security policy and logging profile after installation. To use custom policies or logging profiles, update your NGINX configuration file accordingly.
 
 ## Download your subscription credentials 
 
-1. Log in to [MyF5](https://my.f5.com/manage/s/).
-1. Go to **My Products & Plans > Subscriptions** to see your active subscriptions.
-1. Find your NGINX subscription, and select the **Subscription ID** for details.
-1. Download the **SSL Certificate** and **Private Key files** from the subscription page.
-1. Download the **JSON Web Token** file from the subscription page.
+{{< call-out "note" >}}
+To access private-registry.nginx.com, you will need to download the JWT license file even when using NGINX Open Source as a base image. 
+{{< /call-out >}}
+
+{{< call-out "note" >}}
+If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
+{{< /call-out >}}
+
+{{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
+
+{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+
+{{< call-out "note" >}}
+When using the provided values.yaml for Helm, setting the `appprotect.config.nginxJWT` value ensures that your JWT license is automatically copied to `/etc/nginx/license.jwt` inside the NGINX container. No additional manual copying of the file is needed when deploying with the provided YAML configuration.
+{{< /call-out >}}
 
 ## Prepare environment variables
 
@@ -128,7 +140,7 @@ If you do this, ensure that all corresponding values for persistent volumes poin
 
 ### Download and apply CRDs
 
-These enhancements require specific CRDs to be applied before deployment. 
+These enhancements require specific CRDs to be applied before deployment.
 
 These CRDs define the resources that the Policy Controller manages:
 
@@ -153,7 +165,7 @@ kubectl apply -f crds/
 
 ### Update NGINX configuration
 
-To activate these enhancements, NGINX requires configuration to integrate with the Policy Controller. 
+To activate these enhancements, NGINX requires configuration to integrate with the Policy Controller.
 
 The directive `app_protect_default_config_source` must be set to `"custom-resource"` to enable the features.
 
@@ -223,7 +235,7 @@ These are the directives:
 
 ## Update Helm configuration
 
-These new enhancements are deployed as part of the F5 WAF for NGINX Helm chart. 
+These new enhancements are deployed as part of the F5 WAF for NGINX Helm chart.
 
 To enable them, you must configure the Policy Controller settings in your `values.yaml` file:
 
@@ -624,7 +636,7 @@ If you are using the IP intelligence feature, you will have a 4th F5 WAF for NGI
 
 ### Create custom policy resources
 
-During installation, you can create policy resources using Kubernetes manifests. 
+During installation, you can create policy resources using Kubernetes manifests.
 
 Here are two examples, which you can use to create your own:
 
@@ -881,7 +893,7 @@ kubectl get all -n <namespace>
 
 Look for the fields _CLUSTER-IP_ and the full deployment name:
 
-```
+```shell
 NAME                                           TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 service/localenv-plm-nginx-app-protect-nginx   NodePort   10.43.205.101   <none>        80:30970/TCP   21h
 
@@ -951,7 +963,7 @@ spec:
 ```
 
 {{< call-out "warning" >}}
-The APSignatures `metadata.name` argument _must_ be `signatures`. 
+The APSignatures `metadata.name` argument _must_ be `signatures`.
 
 Only one APSignatures instance can exist.
 {{< /call-out >}}
@@ -996,7 +1008,7 @@ cd nginx-app-protect
 kubectl apply -f crds/
 ```
 
-Finish the the process by using `helm upgrade`:
+Finish the process by using `helm upgrade`:
 
 ```shell
 helm upgrade <release-name> . \
@@ -1083,7 +1095,7 @@ For more information relevant to this type of deployment, see the [Disconnected 
 
 ## Policy types
 
-F5 WAF for NGINX supports multiple ways to define and reference security policies through APPolicy Custom Resources. 
+F5 WAF for NGINX supports multiple ways to define and reference security policies through APPolicy Custom Resources.
 
 This flexibility allows you to choose the most appropriate approach based on your requirements.
 
@@ -1095,7 +1107,7 @@ There are three distinct approaches for defining WAF policies:
 
 ### Inline policy definition
 
-Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource. 
+Inline policy definition allows you to specify the complete WAF policy configuration directly within the APPolicy Custom Resource.
 
 This method provides full declarative management through Kubernetes manifests and is ideal for version-controlled policy configurations.
 
@@ -1139,7 +1151,7 @@ kubectl apply -f inline-policy.yaml
 
 ### JSON policy reference
 
-JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource. 
+JSON policy reference allows you to store your policy configuration as a separate JSON file in the shared persistent volume and reference it from the APPolicy Custom Resource.
 
 This method separates policy content from Kubernetes resource management while maintaining compilation automation.
 
@@ -1154,7 +1166,7 @@ The Policy Controller can automatically monitor policy files for changes and tri
 - **`tracking.enabled`**: Enable/disable automatic file monitoring (default: true)
 - **`tracking.intervalInSeconds`**: Polling interval for file changes (default: 5 seconds)
 
-To exemplify how this works, first create a policy JSON file in the shared volume. 
+To exemplify how this works, first create a policy JSON file in the shared volume.
 
 This policy file is `/mnt/nap5_bundles_pv_data/dg_policy.json`:
 
@@ -1247,7 +1259,7 @@ The Policy Controller will detect the file changes and recompile automatically.
 
 ### Precompiled bundle reference
 
-Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools. 
+Precompiled bundle reference allows you to use policy bundles that have been pre-compiled using external WAF compiler tools.
 
 This approach is useful for policies compiled outside of the Kubernetes environment or when integrating with external policy management systems.
 
@@ -1270,7 +1282,7 @@ The Policy Controller performs validation of precompiled bundles using `apcompil
 - **Version compatibility**: Confirmation that the bundle works with current enforcer
 - **Content validation**: Basic checks on policy structure and syntax
 
-To exemplify how this works, first ensure your precompiled policy bundle is available in the shared volume. 
+To exemplify how this works, first ensure your precompiled policy bundle is available in the shared volume.
 
 For example, place `policy2.tgz` in `/mnt/nap5_bundles_pv_data/`.
 

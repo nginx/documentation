@@ -1,18 +1,12 @@
 ---
-# We use sentence case and present imperative tone
 title: "Overview"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 100
-# Creates a table of contents and sidebar, useful for large documents
 toc: false
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
-[F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (formerly NGINX App Protect WAF) is an advanced, lightweight and high-performance web application firewall (WAF) for applications and APIs. 
+[F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (formerly NGINX App Protect WAF) is an advanced, lightweight and high-performance web application firewall (WAF) for applications and APIs.
 
 It provides protection for the OWASP Top 10, with additional functionality:
 
@@ -37,4 +31,4 @@ It is platform-agnostic and supports a range of deployment options:
 
 For more details, see the [Technical specifications]({{< ref "/waf/fundamentals/technical-specifications.md" >}}).
 
-F5 WAF for NGINX is part of the [NGINX One](https://www.f5.com/products/nginx/one) premium packages and runs natively on [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) and [NGINX Ingress Controller](https://www.f5.com/products/nginx/nginx-ingress-controller). 
+F5 WAF for NGINX is part of the [NGINX One](https://www.f5.com/products/nginx/one) premium packages and runs natively on [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) and [NGINX Ingress Controller](https://www.f5.com/products/nginx/nginx-ingress-controller).

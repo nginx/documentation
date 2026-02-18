@@ -1,7 +1,7 @@
 ---
 title: Client Settings Policy API
 toc: true
-weight: 800
+weight: 900
 nd-content-type: how-to
 nd-product: FABRIC
 nd-docs: DOCS-1846
@@ -56,7 +56,32 @@ Create HTTPRoutes for the coffee and tea applications:
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/client-settings-policy/httproutes.yaml
 ```
 
-Save the public IP address and port of the NGINX Service into shell variables:
+Verify the gateway is created:
+
+```shell
+kubectl describe gateways.gateway.networking.k8s.io gateway
+```
+
+Verify the status is `Accepted`:
+
+```text
+Status:
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
 
 ```text
 GW_IP=XXX.YYY.ZZZ.III

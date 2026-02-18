@@ -3,16 +3,16 @@ title: Access logs
 toc: false
 weight: 500
 nd-content-type: reference
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
-Access logs are NGINX's mechanism for logging requests. 
+Access logs are NGINX's mechanism for logging requests.
 
 It is controlled by two directives:
 
 **log_format**
 
-This directive determines the format of the log messages using predefined variables. 
+This directive determines the format of the log messages using predefined variables.
 
 F5 WAF for NGINX can extend this set of variables with several security log attributes available for inclusion in `log_format`.  
 
@@ -22,9 +22,9 @@ If `log_format` is not specified then the built-in format `combined` is used, wh
 
 **access_log**
 
-This directive determines the destination of the _access_log_ and the formatted name. 
+This directive determines the destination of the _access_log_ and the formatted name.
 
-The default configuration is the file `/etc/nginx/log/access.log` using the combined format. 
+The default configuration is the file `/etc/nginx/log/access.log` using the combined format.
 
 Use this directive in order to create a customized format which can include the F5 WAF for NGINX variables.
 
@@ -41,7 +41,7 @@ These are the variables added to Access Log. They are a subset of the Security l
 |$app_protect_policy_name | The name of the policy that enforced the request. |  |
 |$app_protect_version | The F5 WAF for NGINX version string: major.minor.build format. | Does not include the F5 NGINX plus version (e.g. R21). The latter is available in `$version` variable. |
 
-Note that many of the other security log attributes that are not included here have exact or similar parallels among the NGINX variables also available for access log. 
+Note that many of the other security log attributes that are not included here have exact or similar parallels among the NGINX variables also available for access log.
 
 For example, **$request** is parallel to the **request** security log attribute.
 

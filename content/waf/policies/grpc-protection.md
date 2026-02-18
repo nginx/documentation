@@ -1,24 +1,20 @@
 ---
-# We use sentence case and present imperative tone
 title: "gRPC protection"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 1200
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
 nd-product: F5WAFN
 ---
 
 This topic describes the gRPC protection feature for F5 WAF for NGINX.
 
-gRPC is a remote API standard and is an alternative to OpenAPI. 
+gRPC is a remote API standard and is an alternative to OpenAPI.
 
 F5 WAF for NGINX can protect applications exposing gRCP APIs by parsing their messages, ensuring sure they are compliant with the API specification and and enforcing security restrictions.
 
 These security restrictions include size limits, detecting attack signatures, threat campaigns, and suspicious metacharacters in message string field values.
 
-Only protocol buffer version 3 is supported. Any obsolete features of version 2, such as message extensions in the IDL files, will be rejected. 
+Only protocol buffer version 3 is supported. Any obsolete features of version 2, such as message extensions in the IDL files, will be rejected.
 
 IDL files that have the syntax = "proto2"; statement are also rejected.
 
@@ -26,7 +22,7 @@ IDL files that have the syntax = "proto2"; statement are also rejected.
 
 ### Content profiles
 
-gRPC content profiles contain all the definitions for protecting a gRPC service, and are similar to [JSON and XML profiles]({{< ref "/waf/policies/xml-json-content.md##xml-and-json-content-profiles" >}}). 
+gRPC content profiles contain all the definitions for protecting a gRPC service, and are similar to [JSON and XML profiles]({{< ref "/waf/policies/xml-json-content.md##xml-and-json-content-profiles" >}}).
 
 They include:
 
@@ -115,7 +111,7 @@ Both files need to be referenced in the gRPC content profile:
 }
 ```
 
-The profile in this example enables checking of attack signatures and disallowed metacharacters in the string-typed fields within the service messages, with two signatures disabled. 
+The profile in this example enables checking of attack signatures and disallowed metacharacters in the string-typed fields within the service messages, with two signatures disabled.
 
 The profile also limits the size of the messages to 100KB and disallows fields that are not defined in the IDL files.
 
@@ -123,9 +119,9 @@ The main IDL file, `album.proto`, is marked as `primary`. The file it imports, `
 
 In order for F5 WAF for NGINX to match it to the import statement, the file location should be specified using the `importUrl` property such as in the example.
 
-There is an alternative way to specify to all IDL files (Including their direct and indirect imports) by bundling them into a single tar file with the same directory structure expected by the import statements. 
+There is an alternative way to specify to all IDL files (Including their direct and indirect imports) by bundling them into a single tar file with the same directory structure expected by the import statements.
 
-With this method, you will have to specify which of the files in the tarball is the primary one. The supported formats are `tar` and `tgz`. 
+With this method, you will have to specify which of the files in the tarball is the primary one. The supported formats are `tar` and `tgz`.
 
 F5 WAF for NGINX will identify the file type automatically and handle it accordingly:
 
@@ -138,7 +134,7 @@ F5 WAF for NGINX will identify the file type automatically and handle it accordi
 }]
 ```
 
-Note the deletion of the `*` URL in the previous example. This is required to accept only requests to the gRPC services exposed by your applications. 
+Note the deletion of the `*` URL in the previous example. This is required to accept only requests to the gRPC services exposed by your applications.
 
 If you leave the wildcard URL, F5 WAF for NGINX will accept other traffic including gRPC requests, applying policy checks such as signature detection.
 
@@ -146,7 +142,7 @@ However, it will not apply to any gRPC-specific protection to them.
 
 ### Associate profiles with URLs
 
-In order for a gRPC content profile to be effective, it has to be associated with a URL that represents the service. 
+In order for a gRPC content profile to be effective, it has to be associated with a URL that represents the service.
 
 In the previous example, the profile was not associated with any URL and remained functional due to `associateUrls` being set to `true`.
 
@@ -210,15 +206,15 @@ In the following example, the URL is `/myorg.services.photo_album/*`. As a wildc
 }
 ```
 
-You can override the properties of the URL with the gRPC content profile even if you use `associateUrls` to `true`. 
+You can override the properties of the URL with the gRPC content profile even if you use `associateUrls` to `true`.
 
 For example, you can turn off meta character checks by adding `"metacharsOnUrlCheck": false` within the respective URL entry.
 
 ### Response pages
 
-A gRPC error response page is returned when a request is blocked. 
+A gRPC error response page is returned when a request is blocked.
 
-The default page returns gRPC status code `UNKNOWN` (numeric value of 2) and a short text message that includes the support ID. 
+The default page returns gRPC status code `UNKNOWN` (numeric value of 2) and a short text message that includes the support ID.
 
 You can customize both two by adding a custom gRPC response page in your policy.
 
@@ -241,13 +237,13 @@ The `grpcStatusCode` expects one of the [standard gRPC status code values](https
 
 ### Detect Base64 in string values
 
-F5 WAF for NGINX to can detect if values in string fields in gRPC payload are Base64 encoded. 
+F5 WAF for NGINX to can detect if values in string fields in gRPC payload are Base64 encoded.
 
 When a value is detected as Base64 encoded F5 WAF for NGINX will enforce the configured signatures on the decoded value **and** the original value.
 
 This feature is disabled by default and can be enabled by setting `decodeStringValuesAsBase64` to `enabled`.
 
-gRPC protocol buffers are intended to carry binary fields of "bytes" type and trying to decode strings as Base64 may lead to false positives. 
+gRPC protocol buffers are intended to carry binary fields of "bytes" type and trying to decode strings as Base64 may lead to false positives.
 
 Using Base64-encoded strings for binary data is not considered good practice, but Base64 detection can be enabled for applications that do so.
 
@@ -284,9 +280,9 @@ Using Base64-encoded strings for binary data is not considered good practice, bu
 
 ### Server reflection
 
-[gRPC server reflection](https://grpc.github.io/grpc/core/md_doc_server_reflection_tutorial.html) provides information about publicly-accessible gRPC services on a server, and assists clients at runtime to construct RPC requests and responses without precompiled service information. 
+[gRPC server reflection](https://grpc.github.io/grpc/core/md_doc_server_reflection_tutorial.html) provides information about publicly-accessible gRPC services on a server, and assists clients at runtime to construct RPC requests and responses without precompiled service information.
 
-gRPC server reflection is not currently supported by F5 WAF for NGINX. 
+gRPC server reflection is not currently supported by F5 WAF for NGINX.
 
 If server reflection support is required, F5 WAF for NGINX must be disabled on the reflection URIs by adding a location block:
 
@@ -301,7 +297,7 @@ server {
 
 ## Bidirectional streaming
 
-gRPC can have a stream of messages on each side: client, server, or both. 
+gRPC can have a stream of messages on each side: client, server, or both.
 
 Bidirectional streaming leverages HTTP/2 streaming capability, namely the ability to send multiple gRPC messages from either side ended by the message having the `END_STREAM` flag set to 1.
 
@@ -330,7 +326,7 @@ rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
 
 #### Server stream
 
-The client sends a request to the server and gets a stream to read a sequence of messages back. 
+The client sends a request to the server and gets a stream to read a sequence of messages back.
 
 The client reads from the returned stream until there are no more messages. gRPC guarantees message ordering within an individual RPC call.
 
@@ -340,9 +336,9 @@ rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
 
 #### Bidirectional streams
 
-Both sides send a sequence of messages using a read-write stream. 
+Both sides send a sequence of messages using a read-write stream.
 
-The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message and then write a message, or some other combination of reads and writes. 
+The two streams operate independently, so clients and servers can read and write in whatever order they like: for example, the server could wait to receive all the client messages before writing its responses, or it could alternately read a message and then write a message, or some other combination of reads and writes.
 
 The order of messages in each stream is preserved.
 
@@ -369,7 +365,7 @@ message HelloReply {
 
 ### Enable gRPC protection for bidirectional streaming
 
-To enable gRPC protection, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC. 
+To enable gRPC protection, an HTTP/2 server definition needs to be applied with the `grpc_pass` location in the `nginx.conf` file. In addition, the `app_protect_policy_file` directive points to a policy specific to gRPC.
 
 All gRPC messages will be in the security logs under the `log_grpc_all.json` file: for more details, refer to the [gRPC logging](#grpc-logging) section.
 
@@ -436,13 +432,13 @@ When receiving a client event:
 
 gRPC server messages are not processed. All gRPC messages (unary or streaming) including the headers and trailer messages, are sent directly to the client (without sending them to the Enforcer).
 
-With bidirectional streaming, the blocking response comes as the trailers message is sent to the client on behalf of the server. 
+With bidirectional streaming, the blocking response comes as the trailers message is sent to the client on behalf of the server.
 
 At the same time, the server gets the END_STREAM frame to ensure streams on both sides are closed.
 
 #### Size limits
 
-The maximum total request size is applied to each message on its own, rather than to the total stream messages. 
+The maximum total request size is applied to each message on its own, rather than to the total stream messages.
 
 By default, the maximum gRPC message size is 4MB. You can configure different sizes in the declarative policy, like the 100KB in the [content profiles example](#content-profiles).
 
@@ -452,13 +448,13 @@ There is no limit to the number of messages in a stream.
 
 #### Message compression
 
-Message compression is not currently supported. 
+Message compression is not currently supported.
 
 It will trigger the violation _VIOL_GRPC_MALFORMED_  and the connection will be blocked if a compressed message is sent.
 
 #### Slow POST attacks
 
-A Slow POST attack or Slow HTTP POST attack is a type of denial of service attack. 
+A Slow POST attack or Slow HTTP POST attack is a type of denial of service attack.
 
 The attacker sends a legitimate HTTP POST request with the header Content-Length specified. The attacker then proceeds to send this content slowly. The server establishes a connection to the client and keeps it open to receive the request that it thinks is legitimate.
 
@@ -466,7 +462,7 @@ The attacker sends several such requests and effectively occupies the server’s
 
 To mitigate this, a client sending messages very slowly for a long time may be cut off by resetting the connection.
 
-In gRPC, a connection is considered “slow” if a message takes more than 10 seconds to process. The slow connection timer will be reset when a message ends and not when the whole request ends. 
+In gRPC, a connection is considered “slow” if a message takes more than 10 seconds to process. The slow connection timer will be reset when a message ends and not when the whole request ends.
 
 This way, a limit is applied on the number of concurrent messages rather than the number of concurrent gRPC connections (streams), as many of them may be idle.
 
@@ -482,7 +478,7 @@ There are three violations specific to gRPC, which are all enabled in the defaul
 
 The violation `VIOL_METHOD` (not to be confused with the above `VIOL_GRPC_METHOD`) is not unique to gRPC, but in the context of a gRPC content profile, it is issued in special circumstances.
 
-Since gRPC mandates the `POST` method on any gRPC request over HTTP, any other HTTP method on a request to URL with gRPC content profile will trigger this violation, even if the respective HTTP method is allowed in the policy. 
+Since gRPC mandates the `POST` method on any gRPC request over HTTP, any other HTTP method on a request to URL with gRPC content profile will trigger this violation, even if the respective HTTP method is allowed in the policy.
 
 In an earlier example, the request `GET /myorg.services.photo_album/get_photos` will trigger `VIOL_METHOD` even though `GET` is among the allowed HTTP methods in the policy (by the base template).
 
@@ -490,13 +486,13 @@ In an earlier example, the request `GET /myorg.services.photo_album/get_photos` 
 
 Security logs for gRPC requests have three unique fields: `uri`, `grpc_method`, and `grpc_service`.
 
-Since the content of gRPC requests is binary (protocol buffers), they are transferred with Base64 encoding. As a result, it is recommended to use the `headers` and `request_body_base64` fields instead of the `request` field. 
+Since the content of gRPC requests is binary (protocol buffers), they are transferred with Base64 encoding. As a result, it is recommended to use the `headers` and `request_body_base64` fields instead of the `request` field.
 
 A new predefined log format called `grpc` should be used in all gRPC locations that also use policies with gRPC content profiles.
 
 View the [available security log attributes]({{< ref "/waf/logging/security-logs.md#available-security-log-attributes" >}}) topic for more information.
 
-F5 WAF for NGINX provides three security log bundles for gRPC using the new format: `log_grpc_all`, `log_grpc_illegal` and `log_grpc_blocked` for all requests, illegal requests, and blocked requests respectively. 
+F5 WAF for NGINX provides three security log bundles for gRPC using the new format: `log_grpc_all`, `log_grpc_illegal` and `log_grpc_blocked` for all requests, illegal requests, and blocked requests respectively.
 
 Unless you have special requirements, the best practice is to use one of these bundles in all gRPC locations with the `app_protect_security_log` directive.
 

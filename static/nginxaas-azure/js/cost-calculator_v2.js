@@ -32,14 +32,22 @@
       ukwest: { label: "UK West", tier: 3 },
       uksouth: { label: "UK South", tier: 3 },
       southcentralus: { label: "South Central US", tier: 1 },
+      canadaeast: { label: "Canada East", tier: 2 },
     },
-    // cost per NCU
+    // Fixed deployment fee per hour by tier (with/without WAF)
+    deploymentFee: {
+      1: { withWAF: 0.45, withoutWAF: 0.25 },
+      2: { withWAF: 0.594, withoutWAF: 0.33 },
+      3: { withWAF: 0.75, withoutWAF: 0.42 }
+    },
+    // NCU cost per hour by tier (with/without WAF)
     tiersCosts: {
-      1: 0.03,
-      2: 0.04,
-      3: 0.05,
+      1: { withWAF: 0.0144, withoutWAF: 0.008 },
+      2: { withWAF: 0.01952, withoutWAF: 0.01064 },
+      3: { withWAF: 0.0239, withoutWAF: 0.01328 }
     },
-    WAF: 0.015,
+    // Data processing cost (constant across all regions and WAF usage)
+    dataProcessing: 0.005,
     listenPorts: 0.01,
     numFreeListenPorts: 5,
   };
@@ -52,8 +60,8 @@
   const ncuParameterVals = {
     connsPerSecPerAcu: 2.64,
     acusPerNcu: 20,
-    connsPerNcu: 400,
-    mbpsPerNcu: 60,
+    connsPerNcu: 3000,
+    mbpsPerNcu: 2.2,
   };
 
   const utils = {
@@ -64,16 +72,22 @@
      * @returns {number} total - The total estimated cost
      */
     calculateCost: (costs, values) => {
-      const regionCost =
-        costs.tiersCosts[costs.regionsTiers[values.region].tier];
+      const tier = costs.regionsTiers[values.region].tier;
+      const wafKey = values.isWAF ? 'withWAF' : 'withoutWAF';
+      
+      const deploymentFee = costs.deploymentFee[tier][wafKey];
+      const ncuCost = costs.tiersCosts[tier][wafKey];
+      const standardNcuCost = costs.tiersCosts[tier]['withoutWAF'];
 
       const total =
-        values.numHours *
-        (values.numNcus * (regionCost + (values.isWAF ? costs.WAF : 0)) +
+        (values.numHours *
+        (deploymentFee +
+         values.numNcus * ncuCost +
           (values.numListenPorts > costs.numFreeListenPorts
             ? (values.numListenPorts - costs.numFreeListenPorts) *
-              costs.listenPorts
-            : 0));
+              2 * standardNcuCost
+            : 0))) +
+        values.dataProcessedGB * costs.dataProcessing;
 
       return total;
     },
@@ -123,11 +137,18 @@
      * @returns {string}
      */
     currencyFormatter: (n, significantDigits) => {
-      return new Intl.NumberFormat("en-US", {
+      const isWhole = Number.isInteger(n);
+      const options = {
         style: "currency",
-        currency: "USD",
-        maximumSignificantDigits: significantDigits
-      }).format(n);
+        currency: "USD"
+      };
+      if (significantDigits !== undefined) {
+        options.maximumSignificantDigits = significantDigits;
+      } else {
+        options.minimumFractionDigits = isWhole ? 0 : 2;
+        options.maximumFractionDigits = isWhole ? 0 : 2;
+      }
+      return new Intl.NumberFormat("en-US", options).format(n);
     },
   };
 
@@ -140,6 +161,9 @@
    * @property {string} region
    * @property {number} numNcus
    * @property {number} numHours
+   * @property {number} numListenPorts
+   * @property {boolean} isWAF
+   * @property {number} dataProcessedGB
    */
   /**
    * @type {CostCalculatorValuesState}
@@ -150,6 +174,7 @@
     numHours: 730,
     numListenPorts: 5,
     isWAF: false,
+    dataProcessedGB: 100,
   };
 
   /**
@@ -180,6 +205,7 @@
     numHours: document.getElementById("numHours"),
     numListenPorts: document.getElementById("numListenPorts"),
     isWAF: document.getElementById("isWAF"),
+    dataProcessedGB: document.getElementById("dataProcessedGB"),
   };
 
   /**
@@ -223,6 +249,9 @@
     ncus: document.getElementById("cost-detail-ncus"),
     hours: document.getElementById("cost-detail-hours"),
     tierCost: document.getElementById("cost-detail-tier-cost"),
+    deploymentFee: document.getElementById("cost-detail-deployment-fee"),
+    dataProcessed: document.getElementById("cost-detail-data-processed"),
+    dataProcessingCost: document.getElementById("cost-detail-data-processing-cost"),
     listenPorts: document.getElementById("cost-detail-listen-ports"),
     listenPortsCost: document.getElementById("cost-detail-listen-ports-cost"),
     waf: document.getElementById("cost-detail-waf"),
@@ -249,6 +278,8 @@
       costFormElements[elName].addEventListener("change", (evt) => {
         if (elName === "isWAF") {
           values[elName] = evt.target.checked;
+        } else if (elName === "dataProcessedGB" || elName === "numNcus" || elName === "numHours" || elName === "numListenPorts") {
+          values[elName] = parseFloat(evt.target.value) || 0;
         } else {
           values[elName] = evt.target.value;
         }
@@ -299,15 +330,30 @@
       const col1 = document.createElement("td");
       const col2 = document.createElement("td");
       const col3 = document.createElement("td");
+      const col4 = document.createElement("td");
+      const col5 = document.createElement("td");
+      const col6 = document.createElement("td");
+      
+      const tier = regionsTiers[tierKey].tier;
+      
+      const formattedWithoutWAF = utils.currencyFormatter(tiersCosts[tier].withoutWAF, 5);
+      const formattedWithWAF = utils.currencyFormatter(tiersCosts[tier].withWAF, 5);
+      const formattedDeploymentWithoutWAF = utils.currencyFormatter(costs.deploymentFee[tier].withoutWAF, 5);
+      const formattedDeploymentWithWAF = utils.currencyFormatter(costs.deploymentFee[tier].withWAF, 5);
+      
       col1.innerText = `${regionsTiers[tierKey].label}`;
-      col2.innerText = `${regionsTiers[tierKey].tier}`;
-      col3.innerText = `${utils.currencyFormatter(
-        tiersCosts[regionsTiers[tierKey].tier]
-      )}`;
+      col2.innerText = `${tier}`;
+      col3.innerText = formattedWithoutWAF;
+      col4.innerText = formattedWithWAF;
+      col5.innerText = formattedDeploymentWithoutWAF;
+      col6.innerText = formattedDeploymentWithWAF;
 
       row.appendChild(col1);
       row.appendChild(col2);
       row.appendChild(col3);
+      row.appendChild(col4);
+      row.appendChild(col5);
+      row.appendChild(col6);
 
       $tableTarget.append(row);
     });
@@ -411,19 +457,26 @@
     totalCostDetailElements.hours.textContent = formValues.numHours;
     totalCostDetailElements.ncus.textContent = formValues.numNcus;
     totalCostDetailElements.listenPorts.textContent = Math.max(formValues.numListenPorts - 5, 0);
-    totalCostDetailElements.listenPortsCost.textContent = utils.currencyFormatter(costs.listenPorts);
-
-    if (formValues.isWAF) {
-      totalCostDetailElements.tierCost.textContent =
-        `(${utils.currencyFormatter(
-          costs.tiersCosts[costs.regionsTiers[formValues.region].tier]
-        )} region cost + ${utils.currencyFormatter(costs.WAF, 3)} WAF cost)`;
-    } else {
-      totalCostDetailElements.tierCost.textContent = 
-        utils.currencyFormatter(
-          costs.tiersCosts[costs.regionsTiers[formValues.region].tier]
-        );
+    
+    const tier = costs.regionsTiers[formValues.region].tier;
+    const wafKey = formValues.isWAF ? 'withWAF' : 'withoutWAF';
+    
+    totalCostDetailElements.listenPortsCost.textContent = utils.currencyFormatter(costs.tiersCosts[tier]["withoutWAF"]);
+    // Update deployment fee
+    if (totalCostDetailElements.deploymentFee) {
+      totalCostDetailElements.deploymentFee.textContent = utils.currencyFormatter(costs.deploymentFee[tier][wafKey]);
     }
+    
+    // Update data processing cost details
+    if (totalCostDetailElements.dataProcessed) {
+      totalCostDetailElements.dataProcessed.textContent = formValues.dataProcessedGB;
+    }
+    if (totalCostDetailElements.dataProcessingCost) {
+      totalCostDetailElements.dataProcessingCost.textContent = utils.currencyFormatter(costs.dataProcessing);
+    }
+
+    // Update NCU cost based on tier and WAF usage
+    totalCostDetailElements.tierCost.textContent = utils.currencyFormatter(costs.tiersCosts[tier][wafKey]);
 
     totalCostDetailElements.total.textContent = utils.currencyFormatter(totalCost);
 

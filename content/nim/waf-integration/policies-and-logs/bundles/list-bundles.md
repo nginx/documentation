@@ -5,7 +5,6 @@ toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
 
 {{<tabs name="list-bundles">}}
@@ -14,8 +13,8 @@ nd-docs:
 
 To view the list of security policy bundles using the NGINX Instance Manager web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.  
-2. In the left menu, select **WAF > Policies**.  
+1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
+2. In the left menu, select **WAF > Policies**.
 
 The list shows all available security policy bundles, including their compilation status and associated F5 WAF for NGINX version.
 
@@ -29,11 +28,11 @@ You’ll only see bundles you have `"READ"` permissions for.
 
 You can use the following query parameters to filter results:
 
-- `includeBundleContent`: Whether to include base64-encoded content in the response. Defaults to `false`.  
-- `policyName`: Return only bundles that match this policy name.  
-- `policyUID`: Return only bundles that match this policy UID.  
-- `startTime`: Return only bundles modified at or after this time.  
-- `endTime`: Return only bundles modified before this time.  
+- `includeBundleContent`: Whether to include base64-encoded content in the response. Defaults to `false`.
+- `policyName`: Return only bundles that match this policy name.
+- `policyUID`: Return only bundles that match this policy UID.
+- `startTime`: Return only bundles modified at or after this time.
+- `endTime`: Return only bundles modified before this time.
 
 If no time range is provided, the API defaults to showing bundles modified in the past 24 hours.
 

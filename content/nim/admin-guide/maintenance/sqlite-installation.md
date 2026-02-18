@@ -3,6 +3,8 @@ nd-docs: DOCS-1270
 title: Install SQLite (for NGINX Instance Manager 2.14.1 and earlier)
 toc: true
 weight: 10
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Install SQLite for your Linux distribution

@@ -3,8 +3,8 @@ nd-docs: DOCS-789
 title: Add a license (connected)
 toc: true
 weight: 10
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 {{< call-out "note" >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/disconnected/add-license-disconnected-deployment.md" >}}).{{< /call-out >}}

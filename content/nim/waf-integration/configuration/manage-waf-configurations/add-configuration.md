@@ -5,7 +5,6 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 Start by adding an F5 WAF for NGINX configuration to your instances. You can apply one of the built-in security policies or reference your own custom policy bundle.

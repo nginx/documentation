@@ -223,14 +223,40 @@ spec:
 EOF
 ```
 
-After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic.
+After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
-Save the public IP address and port of the NGINX Service into shell variables:
+```shell
+kubectl describe gateways.gateway.networking.k8s.io cafe
+```
 
- ```text
- GW_IP=XXX.YYY.ZZZ.III
- GW_PORT=<port number>
- ```
+Verify the status is `Accepted`:
+
+```text
+Status:
+  Addresses:
+    Type:   IPAddress
+    Value:  10.96.36.219
+  Conditions:
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Last Transition Time:  2026-01-09T05:40:37Z
+    Message:               The Gateway is programmed
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
 
 {{< call-out "note" >}}
 
@@ -337,6 +363,34 @@ You should receive a 404 Not Found error:
 
 ---
 
+## Upgrade WebSocket connections
+
+NGINX Gateway Fabric can upgrade HTTP/1.1 requests to websocket connections when the appropriate headers are present and the backend supports websocket connections. The backend is responsible for completing the handshake by responding with `101 Switching Protocols`. To ensure this example works, your backend must support websocket connections. Send a `curl` request that includes the required websocket upgrade headers, described below:
+
+- `Connection: Upgrade` — requests a protocol change on the current connection.
+- `Upgrade: websocket` — indicates the desired protocol.
+- `Sec-WebSocket-Version: 13` — required websocket protocol version.
+- `Sec-WebSocket-Key` — a random, base64-encoded nonce used by the server to compute `Sec-WebSocket-Accept`.
+
+
+```shell
+curl --http1.1 --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee -H "Upgrade: websocket" -H "Connection: upgrade" -H "Sec-WebSocket-Version: 13" -H "Sec-WebSocket-Key: $(openssl rand -base64 16)"
+```
+
+A websocket-capable backend will reply with:
+
+```text
+< HTTP/1.1 101 Switching Protocols
+< Server: nginx
+< Connection: upgrade
+< Upgrade: websocket
+< Sec-WebSocket-Accept: On5gtTNGCqB4Emnh7Ck4T0b2gks=
+```
+
+Receiving a `101 Switching Protocols` response along with the `Upgrade`, `Connection`, and `Sec-WebSocket-Accept` headers confirms that the websocket connection upgrade completed successfully.
+
+---
+
 ## Troubleshooting
 
 If you have any issues while testing the configuration, try the following to debug your configuration and setup:
@@ -438,7 +492,7 @@ If you have any issues while testing the configuration, try the following to deb
 - Check the generated nginx config:
 
   ```shell
-  kubectl exec -it -n <nginx-pod-namespace> <nginx-pod-name> -- nginx -T
+  kubectl exec -it deployments/cafe-nginx -- nginx -T
   ```
 
   The config should contain a server block with the server name "cafe.example.com" that listens on port 80. This server block should have a single location `/` that proxy passes to the coffee upstream:
@@ -479,5 +533,5 @@ If your issue persists, [contact us](https://github.com/nginx/nginx-gateway-fabr
 To learn more about the Gateway API and the resources we created in this guide, check out the following resources:
 
 - [Gateway API Overview](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
-- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/simple-gateway/)
+- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/getting-started/simple-gateway/)
 - [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/http-routing/)

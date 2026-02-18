@@ -5,14 +5,12 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs: 
 ---
-
 You can update an existing F5 WAF for NGINX security log profile using the NGINX Instance Manager REST API. Depending on your workflow, you can either overwrite the current version or create a new revision.
 
 To update a log profile, use one of the following methods:
 
-- `POST` with the `isNewRevision=true` parameter to create a new revision.  
+- `POST` with the `isNewRevision=true` parameter to create a new revision.
 - `PUT` with the log profile UID to overwrite the existing version.
 
 {{< call-out "note" "Access the REST API" >}}

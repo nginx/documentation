@@ -9,17 +9,44 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## January 27, 2026
+
+### Config Sync Groups: Support for unmanaged certificates
+
+Config Sync Groups now support unmanaged certificates. You can reference SSL/TLS certificates managed outside of NGINX One Console in your configuration files while maintaining centralized configuration synchronization across all instances in the group.
+
+### API behavior change: conf_path is now optional for PUT/PATCH operations
+
+- The `conf_path` field is now optional when updating configurations for NGINX instances, Config Sync Groups, and Staged Configs with PUT and PATCH operations.
+- When `conf_path` is omitted, the system automatically uses the `conf_path` from the existing instance, Config Sync Group, or Staged Config metadata.
+- When `conf_path` is provided, it must be an absolute path that references a file present in the provided `configs` array. Providing an invalid path or a path not found in the configs returns a `400 Bad Request` error.
+- This is a non-breaking change; existing requests that include `conf_path` will continue to work as before.
+
+## November 25, 2025
+
+### Observability: Usage metrics data now available for Config Sync Groups
+
+The Config Sync Group detail page now includes a dashboard containing traffic metrics which mirror those on the Instance detail dashboard. The reported numbers are aggregated from the data reported by the Instances belonging to the Config Sync Group.
+
+### Observability: Network IO now reports Instance or Config Sync Group traffic instead of system traffic
+
+Previously the network IO metrics presented on the Instance detail dashboard represented system-level network traffic, but will now only represent traffic served by NGINX directly. This applies to the new Config Sync Group detail dashboard as well.
+
+### Observability: Disk usage now correctly broken up by mount point
+
+An issue has been fixed with the disk usage data presented on the Instance detail dashboard, and disk usage should now be correctly broken up by mount point in all cases.
+
 ## October 22, 2025
 
 ### Observability: Network IO is now presented as a rate
 
-For each instance, you can now review system traffic, in and out, in bits per second. NGINX One Console no longer uses a cumulative value.
+For each Instance, you can now review system traffic, in and out, in bits per second. NGINX One Console no longer uses a cumulative value.
 
 ## October 7, 2025
 
-### Compare multiple metrics in instance observability
+### Compare multiple metrics in Instance observability
 
-You can now graph any two metrics simultaneously on one chart within the Metrics tab for each instance in the NGINX One Console UI.
+You can now graph any two metrics simultaneously on one chart within the Metrics tab for each Instance in the NGINX One Console UI.
 
 ## October 6, 2025
 

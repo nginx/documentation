@@ -13,7 +13,7 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 ## Prerequisites
 
 - Enable the [Cloud Logging API](https://docs.cloud.google.com/logging/docs/api/enable-api).
-- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/monitoring/access-management.md#configure-wif" >}}) for exact steps.
+- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas-google/getting-started/access-management.md#configure-wif" >}}) for exact steps.
 - Grant a project-level role or grant your principal access to the `roles/logging.viewer` role. See [Google's documentation on controlling access to Cloud Logging with IAM](https://cloud.google.com/logging/docs/access-control).
 
 ## Setting up error logs
@@ -23,7 +23,6 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 ## Setting up access logs
 
 {{< include "/nginxaas-google/logging-config-access-logs.md" >}}
-
 
 ## Export NGINX logs to a Google Cloud Project
 
@@ -43,7 +42,6 @@ In the [Google Cloud Console](https://console.cloud.google.com/),
 
 Refer to the [Google's Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface) documentation to learn how you can create queries.
 
-
 NGINX access and error logs sent to Cloud Logging will have the log name `nginx-logs` which can be used to filter NGINX logs from the rest of your project logs. You can also filter based on log labels, for example,
 
 * `filename`
@@ -61,3 +59,15 @@ To disable sending logs to your Google Cloud project, update your NGINXaaS deplo
 1. Select the deployment you want to update and select **Edit**.
 1. Remove the project ID under **Log Project ID**.
 1. Select **Update**.
+
+## Troubleshooting
+
+If Google Cloud Logging is not showing any logs, check for **Failed Log Export to Google** events from your NGINXaaS deployment.
+
+In the NGINXaaS console:
+
+1. On the navigation menu, select **Events**.
+1. Select **Add Filter**.
+1. Select **Affected Object** and the name of your NGINXaaS deployment.
+
+Events are deleted after 14 days.

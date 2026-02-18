@@ -1,24 +1,18 @@
 ---
-# We use sentence case and present imperative tone
 title: "HTTP compliance"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 1300
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This topic describes the HTTP compliance feature for F5 WAF for NGINX.
 
 It validates a HTTP request and also prevents the use of the HTTP protocol as an entry point to an application.
 
-In the following example, the HTTP compliance violation is enabled with the blocking enforcement mode. 
+In the following example, the HTTP compliance violation is enabled with the blocking enforcement mode.
 
-It also configures all sub-violations in their relevant sections, which you can add or remove to create your desired configurations. 
+It also configures all sub-violations in their relevant sections, which you can add or remove to create your desired configurations.
 
 When you do not customize a sub-violation, it retains its default settings.
 

@@ -1,9 +1,11 @@
 ---
-nd-docs: null
+nd-product: F5WAFN
 nd-files:
 - content/waf/install/docker.md
 - content/waf/install/kubernetes.md
 ---
+
+You will need Docker registry credentials to access private-registry.nginx.com.
 
 Create a directory and copy your certificate and key to this directory:
 

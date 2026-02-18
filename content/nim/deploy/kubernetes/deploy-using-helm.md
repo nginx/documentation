@@ -3,8 +3,8 @@ nd-docs: DOCS-1651
 title: Deploy using Helm
 toc: true
 weight: 100
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NIMNGR
 ---
 
 ## Overview

@@ -1,24 +1,18 @@
 ---
-# We use sentence case and present imperative tone
 title: "Brute force attack preventions"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 600
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: reference
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NAP-WAF
+nd-product: F5WAFN
 ---
 
 This topic describes the brute force attack prevention feature of F5 WAF for NGINX.
 
-Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, systematic, username/password combinations to discover legitimate authentication credentials. 
+Brute force attacks are attempts to break in to secured areas of a web application by trying exhaustive, systematic, username/password combinations to discover legitimate authentication credentials.
 
-To prevent brute force attacks, F5 WAF for NGINX monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold. 
+To prevent brute force attacks, F5 WAF for NGINX monitors IP addresses, usernames, and the number of failed login attempts beyond a maximum threshold.
 
-When brute force patterns are detected, F5 WAF for NGINX policy either triggers an alarm or blocks the attack if the failed login attempts reached a maximum threshold for a specific username or coming from a specific IP address. 
+When brute force patterns are detected, F5 WAF for NGINX policy either triggers an alarm or blocks the attack if the failed login attempts reached a maximum threshold for a specific username or coming from a specific IP address.
 
 ## User-defined URLs
 
@@ -37,7 +31,7 @@ In order to create a brute force configuration for a specific URL in F5 WAF for 
 
 ## Login pages
 
-A login page specifies the URL that users must pass through to get authenticated. 
+A login page specifies the URL that users must pass through to get authenticated.
 
 The configuration of a login-pages includes the URL itself, the username and password parameters, and the validation criteria (Defining if a login was successful or failed).
 

@@ -3,8 +3,8 @@ nd-docs: DOCS-805
 title: Technical Specifications
 toc: true
 weight: 20
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Overview
@@ -23,6 +23,24 @@ You can deploy NGINX Instance Manager in the following environments:
 ## Supported Linux Distributions {#supported-distributions}
 
 {{< include "nim/tech-specs/supported-distros.md" >}}
+
+## Supported NGINX Instance Manager versions {#supported-nginx-instance-manager-versions}
+
+We recommend using the latest version of NGINX Instance Manager to take advantage of the newest features, improvements, and security fixes.
+
+[Technical support](https://www.f5.com/support) is available for the current release and for any version released within two years of the current version's release date.
+
+Use the table below to check the end-of-support (EoS) dates for recent versions.
+
+| NGINX Instance Manager | End of Support (EoS) |
+|------------------------|----------------------|
+| 2.21.x                 | November 07, 2027    |
+| 2.20.x                 | June 16, 2027        |
+| 2.19.x                 | February 06, 2027    |
+| 2.18.x                 | November 08, 2026    |
+| 2.17.x                 | July 10, 2026        |
+| 2.16.x                 | April 18, 2026       |
+| 2.15.x                 | December 12, 2025    |
 
 ## Supported NGINX Versions {#nginx-versions}
 
@@ -71,7 +89,6 @@ In Lightweight mode, we tested NGINX Instance Manager with ten managed NGINX ins
 
 These figures are guidelines only. They reflect the minimum tested configuration and may cause performance issues depending on your setup. For better performance, consider allocating more system resources.
 
-
 ### License and usage reporting only {#reporting-sizing}
 
 This section applies when you’ve set up NGINX Instance Manager to handle licensing and usage reporting only. In this setup, NGINX instances report license and usage data in an "unmanaged" way. Each instance sends periodic updates to NGINX Instance Manager for counting purposes only.
@@ -100,20 +117,20 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Config Size         | Instances | Retention (days) | Estimated Disk Usage (NGINX Plus) |
-|---------------------|-----------|------------------|-----------------------------------|
-| **Small Size**       | 10        | 14               | 5 GiB                             |
-|                     | 50        | 14               | 25 GiB                            |
-|                     | 100       | 14               | 45 GiB                            |
-|                     | 1000      | 14               | 450 GiB                           |
-| **Medium Size**      | 10        | 14               | 25 GiB                            |
-|                     | 50        | 14               | 126 GiB                           |
-|                     | 100       | 14               | 251 GiB                           |
-|                     | 500       | 14               | 1.157 TiB                         |
+| Config Size            | Instances | Retention (days) | Estimated Disk Usage (NGINX Plus) |
+|------------------------|-----------|------------------|-----------------------------------|
+| **Small Size**         | 10        | 14               | 5 GiB                             |
+|                        | 50        | 14               | 25 GiB                            |
+|                        | 100       | 14               | 45 GiB                            |
+|                        | 1000      | 14               | 450 GiB                           |
+| **Medium Size**        | 10        | 14               | 25 GiB                            |
+|                        | 50        | 14               | 126 GiB                           |
+|                        | 100       | 14               | 251 GiB                           |
+|                        | 500       | 14               | 1.157 TiB                         |
 | **Generic Large Size** | 10        | 14               | 100 GiB                           |
-|                     | 50        | 14               | 426 GiB                           |
-|                     | 100       | 14               | 850 GiB                           |
-|                     | 250       | 14               | 2 TiB                             |
+|                        | 50        | 14               | 426 GiB                           |
+|                        | 100       | 14               | 850 GiB                           |
+|                        | 250       | 14               | 2 TiB                             |
 
 {{</bootstrap-table>}}
 
@@ -127,12 +144,12 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Config Size           | Instances | Retention (days) | Estimated Disk Usage (NGINX OSS) |
-|-----------------------|-----------|------------------|----------------------------------|
+| Config Size            | Instances | Retention (days) | Estimated Disk Usage (NGINX OSS) |
+|------------------------|-----------|------------------|----------------------------------|
 | **Generic Large Size** | 10        | 14               | 200 MiB                          |
-|                       | 50        | 14               | 850 MiB                          |
-|                       | 100       | 14               | 1.75 GiB                         |
-|                       | 250       | 14               | 4 GiB                            |
+|                        | 50        | 14               | 850 MiB                          |
+|                        | 100       | 14               | 1.75 GiB                         |
+|                        | 250       | 14               | 4 GiB                            |
 
 {{</bootstrap-table>}}
 
@@ -152,17 +169,17 @@ If you're concerned solely on usage reporting, you do not need NGINX Agent. Requ
 {{< /call-out >}}
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Directory path           | Content | Recommendation |
-|-----------------------|-----------------|----------------------------------|
-| /usr/bin |    Stores NIM binaries            | 500MB                         |
-| /var/lib/nms/dqlite |    Stores DQLite database data| 2GiB without F5 WAF for NGINX; 5GiB with F5 WAF for NGINX enabled and large compiled bundles    |
-| /var/lib/nms/streaming |    Stores NATS streaming messages           | 500MiB                         |
-| /var/lib/nms/secrets |    Stores secrets for LLM license handshakes         | 10MiB                         |
-| /var/lib/nms/modules |    Stores static content like manager.json           | 100KiB (12KiB minimum)                        |
-| /var/lib/clickhouse |    Stores ClickHouse metrics data           | recommend 2.5GB per instance (25GB for 10 instances, 250GB for 100 instances). This is only required if ClickHouse metrics are enabled                         |
-| /var/log/nms |    Stores logs for NIM with rotation enabled            | recommended 50MiB per week if archived once a month                         |
-| /etc/nms/ |      Stores NIM configuration files           | 50MiB                       |
-| /etc/nginx |    Stores NGINX configuration files           | typical size is 10MiB-50MiB   |
+| Directory path         | Content                                   | Recommendation                                                                                                                         |
+|------------------------|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| /usr/bin               | Stores NIM binaries                       | 500MB                                                                                                                                  |
+| /var/lib/nms/dqlite    | Stores DQLite database data               | 2GiB without F5 WAF for NGINX; 5GiB with F5 WAF for NGINX enabled and large compiled bundles                                           |
+| /var/lib/nms/streaming | Stores NATS streaming messages            | 500MiB                                                                                                                                 |
+| /var/lib/nms/secrets   | Stores secrets for LLM license handshakes | 10MiB                                                                                                                                  |
+| /var/lib/nms/modules   | Stores static content like manager.json   | 100KiB (12KiB minimum)                                                                                                                 |
+| /var/lib/clickhouse    | Stores ClickHouse metrics data            | recommend 2.5GB per instance (25GB for 10 instances, 250GB for 100 instances). This is only required if ClickHouse metrics are enabled |
+| /var/log/nms           | Stores logs for NIM with rotation enabled | recommended 50MiB per week if archived once a month                                                                                    |
+| /etc/nms/              | Stores NIM configuration files            | 50MiB                                                                                                                                  |
+| /etc/nginx             | Stores NGINX configuration files          | typical size is 10MiB-50MiB                                                                                                            |
 {{</bootstrap-table>}}
 
 ## ClickHouse tuning {#clickhouse-tuning}
@@ -194,6 +211,6 @@ The NGINX Instance Manager web interface works best on the latest versions of th
 
 ## NGINX Agent
 
-#### Data plane requirements
+### Data plane requirements
 
 - **Supported distributions**: The NGINX Agent can run on most environments. For the supported distributions, see the [NGINX Agent Technical Specs](https://docs.nginx.com/nginx-agent/technical-specifications/) guide.

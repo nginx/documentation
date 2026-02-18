@@ -5,12 +5,11 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
-nd-docs:
 ---
 
 To onboard your F5 WAF for NGINX instances to NGINX Instance Manager, install and configure NGINX Agent on each instance.
 
-1. Use SSH to connect to an F5 WAF for NGINX instance.  
+1. Use SSH to connect to an F5 WAF for NGINX instance.
    Repeat these steps for each instance you want to onboard.
 
 1. Download the NGINX Agent package from your NGINX Instance Manager host and run the installation script.

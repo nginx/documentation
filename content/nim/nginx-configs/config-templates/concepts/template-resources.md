@@ -4,13 +4,13 @@ description: ''
 weight: 200
 toc: true
 nd-docs: DOCS-1501
-personas:
+nd-personas:
 - devops
 - netops
 - secops
 - support
-type:
-- reference
+nd-content-type: reference
+nd-product: NIMNGR
 ---
 
 ## Config Template, Schema, and README Files

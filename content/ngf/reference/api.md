@@ -23,16 +23,127 @@ gateway.nginx.org API group.</p>
 </p>
 Resource Types:
 <ul><li>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter</a>
+</li><li>
 <a href="#gateway.nginx.org/v1alpha1.ClientSettingsPolicy">ClientSettingsPolicy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.NginxGateway">NginxGateway</a>
 </li><li>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy</a>
+<a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicy">ProxySettingsPolicy</a>
+</li><li>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitPolicy">RateLimitPolicy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.SnippetsFilter">SnippetsFilter</a>
 </li><li>
+<a href="#gateway.nginx.org/v1alpha1.SnippetsPolicy">SnippetsPolicy</a>
+</li><li>
 <a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicy">UpstreamSettingsPolicy</a>
 </li></ul>
+<h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilter" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>AuthenticationFilter configures request authentication and is
+referenced by HTTPRoute and GRPCRoute filters using ExtensionRef.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>AuthenticationFilter</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">
+AuthenticationFilterSpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the AuthenticationFilter.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>basic</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BasicAuth">
+BasicAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Basic configures HTTP Basic Authentication.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AuthType">
+AuthType
+</a>
+</em>
+</td>
+<td>
+<p>Type selects the authentication mechanism.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterStatus">
+AuthenticationFilterStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the state of the AuthenticationFilter.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.ClientSettingsPolicy">ClientSettingsPolicy
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ClientSettingsPolicy" title="Permanent link">¶</a>
 </h3>
@@ -125,8 +236,8 @@ ClientKeepAlive
 <td>
 <code>targetRef</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -143,8 +254,8 @@ Support: Gateway, HTTPRoute, GRPCRoute.</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
@@ -245,13 +356,12 @@ NginxGatewayStatus
 </tr>
 </tbody>
 </table>
-<h3 id="gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ObservabilityPolicy" title="Permanent link">¶</a>
+<h3 id="gateway.nginx.org/v1alpha1.ProxySettingsPolicy">ProxySettingsPolicy
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProxySettingsPolicy" title="Permanent link">¶</a>
 </h3>
 <p>
-<p>ObservabilityPolicy is a Direct Attached Policy. It provides a way to configure observability settings for
-the NGINX Gateway Fabric data plane. Used in conjunction with the NginxProxy CRD that is attached to the
-GatewayClass parametersRef.</p>
+<p>ProxySettingsPolicy is an Inherited Attached Policy. It provides a way to configure the behavior of the connection
+between NGINX Gateway Fabric and the upstream applications (backends).</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -276,7 +386,7 @@ gateway.nginx.org/v1alpha1
 <code>kind</code><br/>
 string
 </td>
-<td><code>ObservabilityPolicy</code></td>
+<td><code>ProxySettingsPolicy</code></td>
 </tr>
 <tr>
 <td>
@@ -296,43 +406,43 @@ Refer to the Kubernetes API documentation for the fields of the
 <td>
 <code>spec</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">
-ObservabilityPolicySpec
+<a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicySpec">
+ProxySettingsPolicySpec
 </a>
 </em>
 </td>
 <td>
-<p>Spec defines the desired state of the ObservabilityPolicy.</p>
+<p>Spec defines the desired state of the ProxySettingsPolicy.</p>
 <br/>
 <br/>
 <table class="table table-bordered table-striped">
 <tr>
 <td>
-<code>tracing</code><br/>
+<code>buffering</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">
-Tracing
+<a href="#gateway.nginx.org/v1alpha1.ProxyBuffering">
+ProxyBuffering
 </a>
 </em>
 </td>
 <td>
 <em>(Optional)</em>
-<p>Tracing allows for enabling and configuring tracing.</p>
+<p>Buffering configures the buffering of responses from the proxied server.</p>
 </td>
 </tr>
 <tr>
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
 <td>
 <p>TargetRefs identifies the API object(s) to apply the policy to.
 Objects must be in the same namespace as the policy.
-Support: HTTPRoute, GRPCRoute.</p>
+Support: Gateway, HTTPRoute, GRPCRoute</p>
 </td>
 </tr>
 </table>
@@ -342,13 +452,119 @@ Support: HTTPRoute, GRPCRoute.</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
 <td>
-<p>Status defines the state of the ObservabilityPolicy.</p>
+<p>Status defines the state of the ProxySettingsPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.RateLimitPolicy">RateLimitPolicy
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RateLimitPolicy" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>RateLimitPolicy is an Inherited Attached Policy. It provides a way to set local rate limiting rules in NGINX.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>RateLimitPolicy</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitPolicySpec">
+RateLimitPolicySpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the RateLimitPolicy.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>rateLimit</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimit">
+RateLimit
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RateLimit defines the Rate Limit settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.
+Objects must be in the same namespace as the policy.</p>
+<p>Support: Gateway, HTTPRoute, GRPCRoute</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the state of the RateLimitPolicy.</p>
 </td>
 </tr>
 </tbody>
@@ -442,6 +658,110 @@ SnippetsFilterStatus
 </td>
 <td>
 <p>Status defines the state of the SnippetsFilter.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.SnippetsPolicy">SnippetsPolicy
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SnippetsPolicy" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>SnippetsPolicy provides a way to inject NGINX snippets into the configuration on Gateway level.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>SnippetsPolicy</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SnippetsPolicySpec">
+SnippetsPolicySpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the SnippetsPolicy.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>snippets</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Snippet">
+[]Snippet
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Snippets is a list of snippets to be injected into the NGINX configuration.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the current state of the SnippetsPolicy.</p>
 </td>
 </tr>
 </tbody>
@@ -540,10 +860,41 @@ UpstreamKeepAlive
 </tr>
 <tr>
 <td>
+<code>loadBalancingMethod</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LoadBalancingType">
+LoadBalancingType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LoadBalancingMethod specifies the load balancing algorithm to be used for the upstream.
+If not specified, NGINX Gateway Fabric defaults to <code>random two least_conn</code>,
+which differs from the standard NGINX default <code>round-robin</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>hashMethodKey</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.HashMethodKey">
+HashMethodKey
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HashMethodKey defines the key used for hash-based load balancing methods.
+This field is required when <code>LoadBalancingMethod</code> is set to <code>hash</code> or <code>hash consistent</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -561,13 +912,207 @@ Support: Service</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
 <td>
 <p>Status defines the state of the UpstreamSettingsPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AuthType">AuthType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">AuthenticationFilterSpec</a>)
+</p>
+<p>
+<p>AuthType defines the authentication mechanism.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Basic&#34;</p></td>
+<td><p>AuthTypeBasic is the HTTP Basic Authentication mechanism.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilterConditionReason">AuthenticationFilterConditionReason
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilterConditionReason" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>AuthenticationFilterConditionReason is a reason for an AuthenticationFilter condition type.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Accepted&#34;</p></td>
+<td><p>AuthenticationFilterConditionReasonAccepted is used with the Accepted condition type when
+the condition is true.</p>
+</td>
+</tr><tr><td><p>&#34;Invalid&#34;</p></td>
+<td><p>AuthenticationFilterConditionReasonInvalid is used with the Accepted condition type when
+the filter is invalid.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilterConditionType">AuthenticationFilterConditionType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilterConditionType" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>AuthenticationFilterConditionType is a type of condition associated with AuthenticationFilter.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;Accepted&#34;</p></td>
+<td><p>AuthenticationFilterConditionTypeAccepted indicates that the AuthenticationFilter is accepted.</p>
+<p>Possible reasons for this condition to be True:
+* Accepted</p>
+<p>Possible reasons for this condition to be False:
+* Invalid.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">AuthenticationFilterSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilterSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter</a>)
+</p>
+<p>
+<p>AuthenticationFilterSpec defines the desired configuration.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>basic</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BasicAuth">
+BasicAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Basic configures HTTP Basic Authentication.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.AuthType">
+AuthType
+</a>
+</em>
+</td>
+<td>
+<p>Type selects the authentication mechanism.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilterStatus">AuthenticationFilterStatus
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilterStatus" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter</a>)
+</p>
+<p>
+<p>AuthenticationFilterStatus defines the state of AuthenticationFilter.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>controllers</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ControllerStatus">
+[]ControllerStatus
+</a>
+</em>
+</td>
+<td>
+<p>Controllers is a list of Gateway API controllers that processed the AuthenticationFilter
+and the status of the AuthenticationFilter with respect to each controller.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.BasicAuth" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">AuthenticationFilterSpec</a>)
+</p>
+<p>
+<p>BasicAuth configures HTTP Basic Authentication.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>secretRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>SecretRef allows referencing a Secret in the same namespace.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>realm</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Realm used by NGINX <code>auth_basic</code> directive.
+<a href="https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic">https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic</a>
+Also configures &ldquo;realm=&rdquo;<realm_value>&rdquo; in WWW-Authenticate header in error page location.</p>
 </td>
 </tr>
 </tbody>
@@ -794,8 +1339,8 @@ ClientKeepAlive
 <td>
 <code>targetRef</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -840,6 +1385,7 @@ Support: Gateway, HTTPRoute, GRPCRoute.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterStatus">AuthenticationFilterStatus</a>,
 <a href="#gateway.nginx.org/v1alpha1.SnippetsFilterStatus">SnippetsFilterStatus</a>)
 </p>
 <p>
@@ -908,6 +1454,170 @@ Duration can be specified in milliseconds (ms), seconds (s), minutes (m), hours 
 A value without a suffix is seconds.
 Examples: 120s, 50ms, 5m, 1h.</p>
 </p>
+<h3 id="gateway.nginx.org/v1alpha1.HashMethodKey">HashMethodKey
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.HashMethodKey" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>)
+</p>
+<p>
+<p>HashMethodKey defines the key used for hash-based load balancing methods.
+The key must be a valid NGINX variable name starting with &lsquo;$&rsquo; followed by lowercase
+letters and underscores only.
+For a full list of NGINX variables,
+refer to: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables</a></p>
+</p>
+<h3 id="gateway.nginx.org/v1alpha1.LoadBalancingType">LoadBalancingType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LoadBalancingType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>)
+</p>
+<p>
+<p>LoadBalancingType defines the supported load balancing methods.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;hash&#34;</p></td>
+<td><p>LoadBalancingTypeHash enables generic hash-based load balancing,
+routing requests to upstream servers based on a hash of a specified key
+HashMethodKey field must be set when this method is selected.
+Example configuration: hash $binary_remote_addr;.</p>
+</td>
+</tr><tr><td><p>&#34;hash consistent&#34;</p></td>
+<td><p>LoadBalancingTypeHashConsistent enables consistent hash-based load balancing,
+which minimizes the number of keys remapped when a server is added or removed.
+HashMethodKey field must be set when this method is selected.
+Example configuration: hash $binary_remote_addr consistent;.</p>
+</td>
+</tr><tr><td><p>&#34;ip_hash&#34;</p></td>
+<td><p>LoadBalancingTypeIPHash enables IP hash-based load balancing,
+ensuring requests from the same client IP are routed to the same upstream server.</p>
+</td>
+</tr><tr><td><p>&#34;least_conn&#34;</p></td>
+<td><p>LoadBalancingTypeLeastConnection enables least-connections load balancing,
+routing requests to the upstream server with the fewest active connections.</p>
+</td>
+</tr><tr><td><p>&#34;least_time header&#34;</p></td>
+<td><p>LoadBalancingTypeLeastTimeHeader enables least-time load balancing,
+routing requests to the upstream server with the least time to receive the response header.</p>
+</td>
+</tr><tr><td><p>&#34;least_time header inflight&#34;</p></td>
+<td><p>LoadBalancingTypeLeastTimeHeaderInflight enables least-time load balancing,
+routing requests to the upstream server with the least time to receive the response header,
+considering the incomplete requests.</p>
+</td>
+</tr><tr><td><p>&#34;least_time last_byte&#34;</p></td>
+<td><p>LoadBalancingTypeLeastTimeLastByte enables least-time load balancing,
+routing requests to the upstream server with the least time to receive the full response.</p>
+</td>
+</tr><tr><td><p>&#34;least_time last_byte inflight&#34;</p></td>
+<td><p>LoadBalancingTypeLeastTimeLastByteInflight enables least-time load balancing,
+routing requests to the upstream server with the least time to receive the full response,
+considering the incomplete requests.</p>
+</td>
+</tr><tr><td><p>&#34;random&#34;</p></td>
+<td><p>LoadBalancingTypeRandom enables random load balancing,
+routing requests to upstream servers in a random manner.</p>
+</td>
+</tr><tr><td><p>&#34;random two&#34;</p></td>
+<td><p>LoadBalancingTypeRandomTwo enables a variation of random load balancing
+that randomly selects two servers and forwards traffic to one of them.
+The default method is least_conn which passes a request to a server with the least number of active connections.</p>
+</td>
+</tr><tr><td><p>&#34;random two least_conn&#34;</p></td>
+<td><p>LoadBalancingTypeRandomTwoLeastConnection enables a variation of least-connections
+balancing that randomly selects two servers and forwards traffic to the one with
+fewer active connections.</p>
+</td>
+</tr><tr><td><p>&#34;random two least_time=header&#34;</p></td>
+<td><p>LoadBalancingTypeRandomTwoLeastTimeHeader enables a variation of least-time load balancing
+that randomly selects two servers and forwards traffic to the one with the least
+time to receive the response header.</p>
+</td>
+</tr><tr><td><p>&#34;random two least_time=last_byte&#34;</p></td>
+<td><p>LoadBalancingTypeRandomTwoLeastTimeLastByte enables a variation of least-time load balancing
+that randomly selects two servers and forwards traffic to the one with the least time
+to receive the full response.</p>
+</td>
+</tr><tr><td><p>&#34;round_robin&#34;</p></td>
+<td><p>LoadBalancingTypeRoundRobin enables round-robin load balancing,
+distributing requests evenly across all upstream servers.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.LocalObjectReference">LocalObjectReference
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LocalObjectReference" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth</a>)
+</p>
+<p>
+<p>LocalObjectReference specifies a local Kubernetes object.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name is the referenced object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.LocalRateLimit">LocalRateLimit
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LocalRateLimit" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimit">RateLimit</a>)
+</p>
+<p>
+<p>LocalRateLimit contains the local rate limit rules.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>rules</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitRule">
+[]RateLimitRule
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Rules contains the list of rate limit rules.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.Logging">Logging
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Logging" title="Permanent link">¶</a>
 </h3>
@@ -1085,15 +1795,15 @@ Logging
 </tr>
 </tbody>
 </table>
-<h3 id="gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">ObservabilityPolicySpec
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ObservabilityPolicySpec" title="Permanent link">¶</a>
+<h3 id="gateway.nginx.org/v1alpha1.ProxyBuffering">ProxyBuffering
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProxyBuffering" title="Permanent link">¶</a>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicy">ObservabilityPolicy</a>)
+<a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicySpec">ProxySettingsPolicySpec</a>)
 </p>
 <p>
-<p>ObservabilityPolicySpec defines the desired state of the ObservabilityPolicy.</p>
+<p>ProxyBuffering contains the settings for proxy buffering.</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -1105,31 +1815,431 @@ Logging
 <tbody>
 <tr>
 <td>
-<code>tracing</code><br/>
+<code>disable</code><br/>
 <em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">
-Tracing
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Disable enables or disables buffering of responses from the proxied server.
+If Disable is true, buffering is disabled. If Disable is false, or if Disable is not set, buffering is enabled.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bufferSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
 </a>
 </em>
 </td>
 <td>
 <em>(Optional)</em>
-<p>Tracing allows for enabling and configuring tracing.</p>
+<p>BufferSize sets the size of the buffer used for reading the first part of the response received from
+the proxied server. This part usually contains a small response header.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>buffers</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ProxyBuffers">
+ProxyBuffers
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Buffers sets the number and size of buffers used for reading a response from the proxied server,
+for a single connection.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>busyBuffersSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>BusyBuffersSize sets the total size of buffers that can be busy sending a response to the client,
+while the response is not yet fully read.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ProxyBuffers">ProxyBuffers
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProxyBuffers" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ProxyBuffering">ProxyBuffering</a>)
+</p>
+<p>
+<p>ProxyBuffers defines the number and size of the proxy buffers.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>size</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<p>Size sets the size of each buffer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>number</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>Number sets the number of buffers.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ProxySettingsPolicySpec">ProxySettingsPolicySpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProxySettingsPolicySpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicy">ProxySettingsPolicy</a>)
+</p>
+<p>
+<p>ProxySettingsPolicySpec defines the desired state of the ProxySettingsPolicy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>buffering</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ProxyBuffering">
+ProxyBuffering
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Buffering configures the buffering of responses from the proxied server.</p>
 </td>
 </tr>
 <tr>
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
 <td>
 <p>TargetRefs identifies the API object(s) to apply the policy to.
 Objects must be in the same namespace as the policy.
-Support: HTTPRoute, GRPCRoute.</p>
+Support: Gateway, HTTPRoute, GRPCRoute</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.Rate">Rate
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Rate" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitRule">RateLimitRule</a>)
+</p>
+<p>
+<p>Rate is a string value representing a rate. Rate can be specified in r/s or r/m.</p>
+</p>
+<h3 id="gateway.nginx.org/v1alpha1.RateLimit">RateLimit
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RateLimit" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitPolicySpec">RateLimitPolicySpec</a>)
+</p>
+<p>
+<p>RateLimit contains settings for Rate Limiting.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>local</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalRateLimit">
+LocalRateLimit
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Local defines the local rate limit rules for this policy.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dryRun</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DryRun enables the dry run mode. In this mode, the rate limit is not actually applied, but the number of excessive
+requests is accounted as usual in the shared memory zone.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_dry_run">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_dry_run</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>logLevel</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitLogLevel">
+RateLimitLogLevel
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LogLevel sets the desired logging level for cases when the server refuses to process requests due to rate exceeding,
+or delays request processing. Allowed values are info, notice, warn or error.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_log_level">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_log_level</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rejectCode</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RejectCode sets the status code to return in response to rejected requests. Must fall into the range 400-599.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_status">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_status</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.RateLimitLogLevel">RateLimitLogLevel
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RateLimitLogLevel" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimit">RateLimit</a>)
+</p>
+<p>
+<p>RateLimitLogLevel defines the log level for cases when the server refuses
+to process requests due to rate exceeding, or delays request processing.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;error&#34;</p></td>
+<td><p>RateLimitLogLevelError is the error level rate limit logs.</p>
+</td>
+</tr><tr><td><p>&#34;info&#34;</p></td>
+<td><p>RateLimitLogLevelInfo is the info level rate limit logs.</p>
+</td>
+</tr><tr><td><p>&#34;notice&#34;</p></td>
+<td><p>RateLimitLogLevelNotice is the notice level rate limit logs.</p>
+</td>
+</tr><tr><td><p>&#34;warn&#34;</p></td>
+<td><p>RateLimitLogLevelWarn is the warn level rate limit logs.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.RateLimitPolicySpec">RateLimitPolicySpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RateLimitPolicySpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimitPolicy">RateLimitPolicy</a>)
+</p>
+<p>
+<p>RateLimitPolicySpec defines the desired state of the RateLimitPolicy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>rateLimit</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.RateLimit">
+RateLimit
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RateLimit defines the Rate Limit settings.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.
+Objects must be in the same namespace as the policy.</p>
+<p>Support: Gateway, HTTPRoute, GRPCRoute</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.RateLimitRule">RateLimitRule
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.RateLimitRule" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LocalRateLimit">LocalRateLimit</a>)
+</p>
+<p>
+<p>RateLimitRule contains settings for a RateLimit Rule.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>zoneSize</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Size">
+Size
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ZoneSize is the size of the shared memory zone.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>delay</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Delay specifies a limit at which excessive requests become delayed.
+Default value is zero, which means all excessive requests are delayed.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>noDelay</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NoDelay disables the delaying of excessive requests while requests are being limited.
+NoDelay cannot be true when Delay is also set.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>burst</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Burst sets the maximum burst size of requests. If the requests rate exceeds the rate configured for a zone,
+their processing is delayed such that requests are processed at a defined rate. Excessive requests are delayed
+until their number exceeds the maximum burst size in which case the request is terminated with an error.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>rate</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Rate">
+Rate
+</a>
+</em>
+</td>
+<td>
+<p>Rate represents the rate of requests permitted. The rate is specified in requests per second (r/s)
+or requests per minute (r/m).</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>key</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Key represents the key to which the rate limit is applied. The key can contain text, variables,
+and their combination.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone</a></p>
 </td>
 </tr>
 </tbody>
@@ -1140,6 +2250,9 @@ Support: HTTPRoute, GRPCRoute.</p>
 <p>
 (<em>Appears on: </em>
 <a href="#gateway.nginx.org/v1alpha1.ClientBody">ClientBody</a>,
+<a href="#gateway.nginx.org/v1alpha1.ProxyBuffering">ProxyBuffering</a>,
+<a href="#gateway.nginx.org/v1alpha1.ProxyBuffers">ProxyBuffers</a>,
+<a href="#gateway.nginx.org/v1alpha1.RateLimitRule">RateLimitRule</a>,
 <a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicySpec">UpstreamSettingsPolicySpec</a>)
 </p>
 <p>
@@ -1152,7 +2265,8 @@ Examples: 1024, 8k, 1m.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.SnippetsFilterSpec">SnippetsFilterSpec</a>)
+<a href="#gateway.nginx.org/v1alpha1.SnippetsFilterSpec">SnippetsFilterSpec</a>,
+<a href="#gateway.nginx.org/v1alpha1.SnippetsPolicySpec">SnippetsPolicySpec</a>)
 </p>
 <p>
 <p>Snippet represents an NGINX configuration snippet.</p>
@@ -1309,12 +2423,58 @@ and the status of the SnippetsFilter with respect to each controller.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.SnippetsPolicySpec">SnippetsPolicySpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SnippetsPolicySpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.SnippetsPolicy">SnippetsPolicy</a>)
+</p>
+<p>
+<p>SnippetsPolicySpec defines the desired state of the SnippetsPolicy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>snippets</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Snippet">
+[]Snippet
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Snippets is a list of snippets to be injected into the NGINX configuration.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.SpanAttribute">SpanAttribute
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SpanAttribute" title="Permanent link">¶</a>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>,
 <a href="#gateway.nginx.org/v1alpha2.Telemetry">Telemetry</a>,
 <a href="#gateway.nginx.org/v1alpha2.Tracing">Tracing</a>)
 </p>
@@ -1355,154 +2515,6 @@ Format: must have all &lsquo;&ldquo;&rsquo; escaped and must not contain any &ls
 </tr>
 </tbody>
 </table>
-<h3 id="gateway.nginx.org/v1alpha1.TraceContext">TraceContext
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.TraceContext" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>)
-</p>
-<p>
-<p>TraceContext specifies how to propagate traceparent/tracestate headers.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;extract&#34;</p></td>
-<td><p>TraceContextExtract uses an existing trace context from the request, so that the identifiers
-of a trace and the parent span are inherited from the incoming request.</p>
-</td>
-</tr><tr><td><p>&#34;ignore&#34;</p></td>
-<td><p>TraceContextIgnore skips context headers processing.</p>
-</td>
-</tr><tr><td><p>&#34;inject&#34;</p></td>
-<td><p>TraceContextInject adds a new context to the request, overwriting existing headers, if any.</p>
-</td>
-</tr><tr><td><p>&#34;propagate&#34;</p></td>
-<td><p>TraceContextPropagate updates the existing context (combines extract and inject).</p>
-</td>
-</tr></tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.TraceStrategy">TraceStrategy
-(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.TraceStrategy" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.Tracing">Tracing</a>)
-</p>
-<p>
-<p>TraceStrategy defines the tracing strategy.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr><td><p>&#34;parent&#34;</p></td>
-<td><p>TraceStrategyParent enables tracing and only records spans if the parent span was sampled.</p>
-</td>
-</tr><tr><td><p>&#34;ratio&#34;</p></td>
-<td><p>TraceStrategyRatio enables ratio-based tracing, defaulting to 100% sampling rate.</p>
-</td>
-</tr></tbody>
-</table>
-<h3 id="gateway.nginx.org/v1alpha1.Tracing">Tracing
-<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Tracing" title="Permanent link">¶</a>
-</h3>
-<p>
-(<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.ObservabilityPolicySpec">ObservabilityPolicySpec</a>)
-</p>
-<p>
-<p>Tracing allows for enabling and configuring OpenTelemetry tracing.</p>
-</p>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>strategy</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.TraceStrategy">
-TraceStrategy
-</a>
-</em>
-</td>
-<td>
-<p>Strategy defines if tracing is ratio-based or parent-based.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>ratio</code><br/>
-<em>
-int32
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Ratio is the percentage of traffic that should be sampled. Integer from 0 to 100.
-By default, 100% of http requests are traced. Not applicable for parent-based tracing.
-If ratio is set to 0, tracing is disabled.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>context</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.TraceContext">
-TraceContext
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>Context specifies how to propagate traceparent/tracestate headers.
-Default: <a href="https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context">https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context</a></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>spanName</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>SpanName defines the name of the Otel span. By default is the name of the location for a request.
-If specified, applies to all locations that are created for a route.
-Format: must have all &lsquo;&ldquo;&rsquo; escaped and must not contain any &lsquo;$&rsquo; or end with an unescaped &lsquo;\&rsquo;
-Examples of invalid names: some-$value, quoted-&ldquo;value&rdquo;-name, unescaped</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>spanAttributes</code><br/>
-<em>
-<a href="#gateway.nginx.org/v1alpha1.SpanAttribute">
-[]SpanAttribute
-</a>
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>SpanAttributes are custom key/value attributes that are added to each span.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.UpstreamKeepAlive" title="Permanent link">¶</a>
 </h3>
@@ -1533,6 +2545,8 @@ int32
 <p>Connections sets the maximum number of idle keep-alive connections to upstream servers that are preserved
 in the cache of each nginx worker process. When this number is exceeded, the least recently used
 connections are closed.
+The keepAlive directive for upstreams defaults to 16. To override this value, set the connections field.
+To disable the keepAlive directive, set connections to 0.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</a></p>
 </td>
 </tr>
@@ -1635,10 +2649,41 @@ UpstreamKeepAlive
 </tr>
 <tr>
 <td>
+<code>loadBalancingMethod</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LoadBalancingType">
+LoadBalancingType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>LoadBalancingMethod specifies the load balancing algorithm to be used for the upstream.
+If not specified, NGINX Gateway Fabric defaults to <code>random two least_conn</code>,
+which differs from the standard NGINX default <code>round-robin</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>hashMethodKey</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.HashMethodKey">
+HashMethodKey
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HashMethodKey defines the key used for hash-based load balancing methods.
+This field is required when <code>LoadBalancingMethod</code> is set to <code>hash</code> or <code>hash consistent</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -1969,8 +3014,8 @@ Tracing
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>
@@ -1989,8 +3034,8 @@ be unique across all targetRef entries in the ObservabilityPolicy.</p>
 <td>
 <code>status</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#PolicyStatus">
-sigs.k8s.io/gateway-api/apis/v1alpha2.PolicyStatus
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </a>
 </em>
 </td>
@@ -2847,6 +3892,101 @@ bool
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLog">NginxAccessLog
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLog" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxLogging">NginxLogging</a>)
+</p>
+<p>
+<p>NginxAccessLog defines the configuration for an NGINX access log.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>disable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Disable turns off access logging when set to true.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>format</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Format specifies the custom log format string.
+If not specified, NGINX default &lsquo;combined&rsquo; format is used.
+For now only path /dev/stdout can be used.
+See <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>escape</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLogEscapeType">
+NginxAccessLogEscapeType
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Escape specifies how to escape characters in variables for access log.
+Possible values are: default, json, none.
+If not specified, &lsquo;default&rsquo; escaping is used.
+See <a href="https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.NginxAccessLogEscapeType">NginxAccessLogEscapeType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxAccessLogEscapeType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLog">NginxAccessLog</a>)
+</p>
+<p>
+<p>NginxAccessLogEscapeType defines the escape setting for variables in access log format.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;default&#34;</p></td>
+<td><p>NginxAccessLogEscapeDefault specifies that characters &lsquo;\&ldquo;&rsquo;, &lsquo;\&rsquo;, and other characters with values less
+than 32 or above 126 are escaped as &lsquo;\xXX&rsquo;.</p>
+</td>
+</tr><tr><td><p>&#34;json&#34;</p></td>
+<td><p>NginxAccessLogEscapeJSON specifies that all characters not allowed in JSON strings are escaped.
+Characters &lsquo;\&ldquo;&rsquo; and &lsquo;\&rsquo; are escaped as &lsquo;\&rdquo;&rsquo; and &lsquo;\&rsquo;, characters with values less than 32 are
+escaped as &lsquo;\n&rsquo;, &lsquo;\r&rsquo;, &lsquo;\t&rsquo;, &lsquo;\b&rsquo;, &lsquo;\f&rsquo;, or &lsquo;\u00XX&rsquo;.</p>
+</td>
+</tr><tr><td><p>&#34;none&#34;</p></td>
+<td><p>NginxAccessLogEscapeNone disables escaping of characters.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha2.NginxErrorLogLevel">NginxErrorLogLevel
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.NginxErrorLogLevel" title="Permanent link">¶</a>
 </h3>
@@ -2938,6 +4078,21 @@ AgentLogLevel
 <em>(Optional)</em>
 <p>AgentLevel defines the log level of the NGINX agent process. Changing this value results in a
 re-roll of the NGINX deployment.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>accessLog</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.NginxAccessLog">
+NginxAccessLog
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>AccessLog defines the access log settings, including format itself and disabling option.
+For now only path /dev/stdout can be used.</p>
 </td>
 </tr>
 </tbody>
@@ -3303,8 +4458,8 @@ Tracing
 <td>
 <code>targetRefs</code><br/>
 <em>
-<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1alpha2#LocalPolicyTargetReference">
-[]sigs.k8s.io/gateway-api/apis/v1alpha2.LocalPolicyTargetReference
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
 </a>
 </em>
 </td>

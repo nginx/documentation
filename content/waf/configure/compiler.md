@@ -1,18 +1,14 @@
 ---
-# We use sentence case and present imperative tone
 title: "Build and use the compiler tool"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 200
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 nd-product: F5WAFN
 ---
 
 This document describes how to use the F5 WAF for NGINX compiler, a tool for converting security policies and logging profiles from JSON to a bundle file that F5 WAF can process and apply.
 
-You can use it to get the latest security updates for [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}), Threat campaigns and Bot signatures. 
+You can use it to get the latest security updates for [Attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}), Threat campaigns and Bot signatures.
 
 The compiler is packaged as a Docker image and can executed using the Docker CLI or as part of a continuous integration/continuous delivery (CI/CD) pipeline.
 
@@ -32,8 +28,9 @@ For more information about policies, read the [Configure policies]({{< ref "/waf
 
 To complete this guide, you will need the following prerequisites:
 
-- An active F5 WAF for NGINX subscription (Purchased or trial)
-- Credentials to the [MyF5 Customer Portal](https://account.f5.com/myf5), provided by email from F5, Inc.
+- An active F5 WAF for NGINX subscription. Available from [MyF5](https://my.f5.com/manage/s/) (Purchased or trial).
+  - Download the [SSL certificate and private key](download-your-subscription-credentials) associated with your F5 NGINX App Protect WAF subscription from the MyF5 Customer Portal.
+- [Docker registry credentials](configure-docker-for-the-f5-container-registry) are needed to access private-registry.nginx.com
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 
 ## Download your subscription credentials 
@@ -106,7 +103,7 @@ You can can upgrade or downgrade one of the Signatures by specifying a specific 
 
 You can use the Docker registry API to list the available image tags.
 
-Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate. 
+Replace `<path-to-your-nginx-repo.key>` with the location of your client key and `<path-to-your-nginx-repo.crt>` with the location of your client certificate.
 
 ```shell
 curl -s https://private-registry.nginx.com/v2/nap/waf-compiler/tags/list --key <path-to-your-nginx-repo.key> --cert <path-to-your-nginx-repo.crt>
@@ -150,7 +147,7 @@ Ensure that the output directory is writable, otherwise you may encounter a perm
 
 {{< /call-out >}}
 
-To use multiple policy bundles within a single NGINX configuration, you must supply a [global settings](#global-settings) JSON file. 
+To use multiple policy bundles within a single NGINX configuration, you must supply a [global settings](#global-settings) JSON file.
 
 This ensures that all bundles have a common foundation such as cookie seed and user-defined signatures.
 
@@ -184,7 +181,7 @@ docker run --rm \
  -include-source -full-export -g $(pwd)/global_settings.json -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
-This will transform any configuration that relies on external references into an inline configuration within the bundled source. 
+This will transform any configuration that relies on external references into an inline configuration within the bundled source.
 
 Additionally, when `-include-source` is combined with `-full-export`, the policy.json within the bundle will contain the entire source policy, including any default settings from the base template.
 
