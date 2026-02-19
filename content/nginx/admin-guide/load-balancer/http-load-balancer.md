@@ -348,10 +348,11 @@ If a domain name resolves to several IP addresses, the addresses are saved to th
 
 ## Load balancing of Microsoft Exchange servers {#ntlm}
 
-In [NGINX Plus Release 7]({{< ref "/nginx/releases.md#nginxplus-release7-r7" >}}) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
+In [NGINX Plus Release 7]({{< ref "/nginx/releases.md#r7" >}}) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
 
 To set up load balancing of Microsoft Exchange servers:
 
+   <span id="step1"></span>
 1. In a `location` block, configure proxying to the upstream group of Microsoft Exchange servers with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive:
 
    ```nginx
@@ -372,7 +373,7 @@ To set up load balancing of Microsoft Exchange servers:
    }
    ```
 
-3. In the `http` block, configure a upstream group of Microsoft Exchange servers with an [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block named the same as the upstream group specified with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive in Step 1. Then specify the [`ntlm`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive to allow the servers in the group to accept requests with NTLM authentication:
+3. In the `http` block, configure a upstream group of Microsoft Exchange servers with an [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block named the same as the upstream group specified with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive in [Step 1](#step1). Then specify the [`ntlm`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive to allow the servers in the group to accept requests with NTLM authentication:
 
    ```nginx
    http {
