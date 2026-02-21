@@ -57,11 +57,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.575.0
+   sudo apt-get download nms-nap-compiler-v5.575.2
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.575.0 \
+     nms-nap-compiler-v5.575.2 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -105,11 +105,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.575.0
+   sudo apt-get download nms-nap-compiler-v5.575.2
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.575.0 \
+     nms-nap-compiler-v5.575.2 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -154,7 +154,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.575.0
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.575.2
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 
@@ -188,7 +188,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.575.0
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.575.2
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 
