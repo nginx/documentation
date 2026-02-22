@@ -9,18 +9,14 @@ nd-content-type: how-to
 nd-product: NGPLUS
 ---
 
-<span id="overview"></span>
-## Overview
+## Overview {#overview}
 
 Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault‑tolerant configurations.
-
-Watch the [F5 NGINX Plus for Load Balancing and Scaling](https://www.nginx.com/resources/webinars/nginx-plus-for-load-balancing-30-min/) webinar, for a deep dive on techniques to build large‑scale, highly available web services.
 
 NGINX and NGINX Plus can be used in different deployment scenarios as a [very efficient HTTP load balancer](https://www.nginx.com/blog/nginx-load-balance-deployment-models/).
 
 
-<span id="proxy_pass"></span>
-## Proxy HTTP Traffic to a Group of Servers
+## Proxy HTTP traffic to a group of servers {#proxy_pass}
 
 Use NGINX Plus or NGINX Open Source to load balance across a group of servers. First, define the group of servers with the [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) directive. Place the directive in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context.
 
@@ -66,9 +62,7 @@ http {
 }
 ```
 
-
-<span id="method"></span>
-## Choosing a Load Balancing Method
+## Choosing a load balancing method {#method}
 
 NGINX Open Source supports four load balancing methods: Round Robin, Least Connections, IP Hash, and Generic Hash.
 NGINX Plus supports six load balancing methods: the four above, Least Time, and Random.
@@ -161,9 +155,7 @@ If the `two` parameter is specified, NGINX first randomly selects two servers, t
     The **Random** load balancing method should be used for distributed environments where multiple load balancers are passing requests to the same set of backends. For environments where the load balancer has a full view of all requests, use other load balancing methods.
 
 
-
-<span id="weights"></span>
-## Server Weights
+## Server weights {#weights}
 
 Some load balancing methods, including Round Robin, Least Connections, and Random, distribute requests according to their server weights. The [`weight`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#weight) parameter to the [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive sets the weight of a server. If no weight is set, it defaults to `1`:
 
@@ -178,8 +170,7 @@ upstream backend {
 In the example above, **backend1.example.com** has weight `5`, while the other two servers have the default weight (`1`). However, the one with IP address `192.0.0.1` is marked as a `backup` server and does not receive requests unless both of the other servers are unavailable. With this configuration of weights, out of every `6` requests, `5` are sent to **backend1.example.com** and `1` to **backend2.example.com**.
 
 
-<span id="slow_start"></span>
-## Server Slow-Start
+## Server slow-start {#slow_start}
 
 The server slow‑start feature prevents a recently recovered server from being overwhelmed by connections, which may time out and cause the server to be marked as failed again. This feature is only available in NGINX Plus.
 
@@ -198,8 +189,7 @@ The time value (here, `30` seconds) sets the time during which NGINX Plus ramps 
 > **Note:** If there is only a single server in a group, the [`max_fails`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails), [`fail_timeout`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout), and [`slow_start`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameters to the `server` directive are ignored, and the server is never considered unavailable.
 
 
-<span id="sticky"></span>
-## Session Persistence
+## Session persistence {#sticky}
 
 Session persistence means that NGINX Plus identifies user sessions and routes all requests in a given session to the same upstream server.
 
@@ -270,14 +260,13 @@ NGINX Plus supports three session persistence methods. The methods are set with 
     See [Runtime State Sharing in a Cluster]({{< ref "nginx/admin-guide/high-availability/zone_sync.md" >}}) for details.
 
 
-<span id="maxconns"></span>
-## Limit the Number of Connections
+## Limit the number of connections {#maxconns}
 
 With NGINX Plus, it is possible to limit the number of active connections to an upstream server.
 
 The [`max_conns`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns) parameter sets the maximum number of connections to the upstream server.
 
-The [`queue`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) directive allows excess connections to be held in a queue. It requires a maxmum number for the queue and a timeout.
+The [`queue`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) directive allows excess connections to be held in a queue. It requires a maximum number for the queue and a timeout.
 
 If the `max_conns` limit has been reached, the request is placed in a queue for further processing. If the queue limit has been reached, if no queue directive is specified, or if a client reaches the `timeout` time in queue, the client will receive an error.
 
@@ -292,16 +281,14 @@ upstream backend {
 > **Note:** The `max_conns` limit is ignored if there are idle [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) connections opened in other [`worker processes`](https://nginx.org/en/docs/ngx_core_module.html#worker_processes). As a result, the total number of connections to the server might exceed the `max_conns` value in a configuration where the memory is [shared with multiple worker processes](#zone).
 
 
-<span id="health"></span>
-## Configure Health Checks
+## Configure health checks {#health}
 
 NGINX can continually test your HTTP upstream servers, avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
 
 See [HTTP Health Checks]({{< ref "nginx/admin-guide/load-balancer/http-health-check.md" >}}) for instructions how to configure health checks for HTTP.
 
 
-<span id="zone"></span>
-## Share Data with Multiple Worker Processes
+## Share data with multiple worker processes {#zone}
 
 If an [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block does not include the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive, each worker process keeps its own copy of the server group configuration and maintains its own set of related counters. The counters include the current number of connections to each server in the group and the number of failed attempts to pass a request to a server. As a result, the server group configuration cannot be modified dynamically.
 
@@ -314,8 +301,7 @@ For example, if the configuration of a group is not shared, each worker process 
 Similarly, the [Least Connections](#method) load‑balancing method might not work as expected without the `zone` directive, at least under low load. This method passes a request to the server with the smallest number of active connections. If the configuration of the group is not shared, each worker process uses its own counter for the number of connections and might send a request to the same server that another worker process just sent a request to.  However, you can increase the number of requests to reduce this effect. Under high load requests are distributed among worker processes evenly, and the `Least Connections` method works as expected.
 
 
-<span id="zone-size"></span>
-### Set the Zone Size
+### Set the zone size {#zone-size}
 
 It is not possible to recommend an ideal memory‑zone size, because usage patterns vary widely. The required amount of memory is determined by which features (such as [session persistence](#sticky), [health checks](#health_active), or [DNS re‑resolving](#resolve)) are enabled and how the upstream servers are identified.
 
@@ -326,8 +312,7 @@ As an example, with the `sticky_route` session persistence method and a single h
 - 12 servers (each defined as hostname:port pair where the hostname resolves to multiple IP addresses)
 
 
-<span id="resolve"></span>
-## Configure HTTP Load Balancing Using DNS
+## Configure HTTP load balancing using DNS {#resolve}
 
 The configuration of a server group can be modified at runtime using DNS.
 
@@ -361,13 +346,13 @@ The optional `ipv6=off` parameter means only IPv4 addresses are used for load ba
 If a domain name resolves to several IP addresses, the addresses are saved to the upstream configuration and load balanced. In our example, the servers are load balanced according to the [Least Connections](#method) load‑balancing method. If the list of IP addresses for a server has changed, NGINX Plus immediately starts load balancing across the new set of addresses.
 
 
-<span id="ntlm"></span>
-## Load Balancing of Microsoft Exchange Servers
+## Load balancing of Microsoft Exchange servers {#ntlm}
 
-In [NGINX Plus Release 7](https://docs.nginx.com/nginx/releases/#nginxplus-release7-r7) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
+In [NGINX Plus Release 7]({{< ref "/nginx/releases.md#r7" >}}) and later, NGINX Plus can proxy Microsoft Exchange traffic to a server or a group of servers and load balance it.
 
 To set up load balancing of Microsoft Exchange servers:
 
+   <span id="step1"></span>
 1. In a `location` block, configure proxying to the upstream group of Microsoft Exchange servers with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive:
 
    ```nginx
@@ -388,7 +373,7 @@ To set up load balancing of Microsoft Exchange servers:
    }
    ```
 
-3. In the `http` block, configure a upstream group of Microsoft Exchange servers with an [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block named the same as the upstream group specified with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive in Step 1. Then specify the [`ntlm`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive to allow the servers in the group to accept requests with NTLM authentication:
+3. In the `http` block, configure a upstream group of Microsoft Exchange servers with an [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block named the same as the upstream group specified with the [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive in [Step 1](#step1). Then specify the [`ntlm`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive to allow the servers in the group to accept requests with NTLM authentication:
 
    ```nginx
    http {
@@ -448,7 +433,6 @@ http {
 For more information about configuring Microsoft Exchange and NGINX Plus, see the [Load Balancing Microsoft Exchange Servers with NGINX Plus]({{< ref "/nginx/deployment-guides/load-balance-third-party/microsoft-exchange.md" >}}) deployment guide.
 
 
-<span id="dynamic"></span>
-## Dynamic Configuration Using the NGINX Plus API
+## Dynamic configuration using the NGINX Plus API {#dynamic}
 
 With NGINX Plus, the configuration of an upstream server group can be modified dynamically using the NGINX Plus API. A configuration command can be used to view all servers or a particular server in a group, modify parameter for a particular server, and add or remove servers. For more information and instructions, see [Configuring Dynamic Load Balancing with the NGINX Plus API]({{< ref "dynamic-configuration-api.md" >}}).
