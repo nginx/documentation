@@ -26,6 +26,10 @@ If you're interested in contributing to the [NGINX documentation website](https:
 - [Information architecture heuristics](/documentation/ia-heuristics.md)
 - [Writing style guide](/documentation/style-guide.md)
 
+## Copilot assistance
+
+- [Using GitHub Copilot for documentation](/documentation/using-copilot.md)
+
 # Ways of working
 
 - [Preparing a good issue](/documentation/prepare-issue.md)
