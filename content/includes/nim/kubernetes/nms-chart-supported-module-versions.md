@@ -10,19 +10,22 @@ nd-files:
 | NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
 | 2.1.0                        | nginx-stable/nim           | 2.21.0           |
+| 2.0.1                        | nginx-stable/nim           | 2.20.1           |
 | 2.0.0                        | nginx-stable/nim           | 2.20.0           |
+| 2.19.3                       | nginx-stable/nms-hybrid    | 2.19.3           |
 | 2.19.2                       | nginx-stable/nms-hybrid    | 2.19.2           |
 | 2.19.1                       | nginx-stable/nms-hybrid    | 2.19.1           |
 | 2.19.0                       | nginx-stable/nms-hybrid    | 2.19.0           |
-| 1.15.0                       | ngnx-stable/nms            | 2.18.0           |
-| 1.14.4                       | ngnx-stable/nms            | 2.17.4           |
-| 1.14.0                       | ngnx-stable/nms            | 2.17.0           |
-| 1.13.0                       | ngnx-stable/nms            | 2.16.0           |
-| 1.12.1                       | ngnx-stable/nms            | 2.15.1           |
-| 1.12.0                       | ngnx-stable/nms            | 2.15.0           |
-| 1.11.0                       | ngnx-stable/nms            | 2.14.0           |
-| 1.10.1                       | ngnx-stable/nms            | 2.13.1           |
-| 1.10.0                       | ngnx-stable/nms            | 2.13.1           |
-| 1.9.0                        | ngnx-stable/nms            | 2.13.0           |
+| 1.15.1                       | nginx-stable/nms            | 2.18.1           |
+| 1.15.0                       | nginx-stable/nms            | 2.18.0           |
+| 1.14.4                       | nginx-stable/nms            | 2.17.4           |
+| 1.14.0                       | nginx-stable/nms            | 2.17.0           |
+| 1.13.0                       | nginx-stable/nms            | 2.16.0           |
+| 1.12.1                       | nginx-stable/nms            | 2.15.1           |
+| 1.12.0                       | nginx-stable/nms            | 2.15.0           |
+| 1.11.0                       | nginx-stable/nms            | 2.14.0           |
+| 1.10.1                       | nginx-stable/nms            | 2.13.1           |
+| 1.10.0                       | nginx-stable/nms            | 2.13.1           |
+| 1.9.0                        | nginx-stable/nms            | 2.13.0           |
 
 {{</bootstrap-table>}}
