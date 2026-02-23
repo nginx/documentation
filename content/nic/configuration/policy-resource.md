@@ -935,7 +935,7 @@ If currently CORS is configured in deployments using `snippets` or `responseHead
 
 #### CORS Merging Behavior
 
-A VirtualServer/VirtualServerRoute can reference multiple cors policies. However, only one can be applied: every subsequent reference will be ignored.
+A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However, only one can be applied: every subsequent reference will be ignored.
 
 ### WAF
 
