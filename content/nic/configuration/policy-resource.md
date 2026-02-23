@@ -877,11 +877,7 @@ A VirtualServer/VirtualServerRoute can reference multiple cache policies. Howeve
 
 The CORS policy configures Cross-Origin Resource Sharing headers.
 
-{{< call-out "note" >}}
-
-The feature is implemented using the NGINX `add_header` directive.
-
-{{< /call-out >}}
+{{< call-out "note" >}}The feature is implemented using the NGINX `add_header` directive.{{< /call-out >}}
 
 Below is an example of a CORS policy configuring all the available options:
 
@@ -933,10 +929,8 @@ spec:
 
 {{% /table %}}
 
-{< call-out "note" >}}
-
+{{< call-out "note" >}}
 If currently CORS is configured in deployments using `snippets` or `responseHeaders.add`, migrate over same settings to CORS policy and remove the duplicate configuration.
-
 {{< /call-out >}}
 
 #### CORS Merging Behavior
