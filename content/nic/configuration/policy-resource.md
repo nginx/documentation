@@ -46,6 +46,7 @@ spec:
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | No |
 |``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
 |``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | No |
+|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. |  |
 
 {{% /table %}}
 
@@ -871,6 +872,76 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 #### Cache Merging Behavior
 
 A VirtualServer/VirtualServerRoute can reference multiple cache policies. However, only one can be applied: every subsequent reference will be ignored.
+
+### CORS
+
+The CORS policy configures Cross-Origin Resource Sharing headers.
+
+{{< call-out "note" >}}
+
+The feature is implemented using the NGINX `add_header` directive.
+
+{{< /call-out >}}
+
+Below is an example of a CORS policy configuring all the available options:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: cors-policy
+spec:
+  cors:
+    allowOrigin:
+      - "https://test.example.com"
+      - "https://app.example.com"
+      - "https://admin.example.com"
+
+    allowMethods:
+      - "GET"
+      - "POST"
+      - "PUT"
+
+    allowHeaders:
+      - "Content-Type"
+      - "Authorization"
+      - "X-Requested-With"
+      - "X-API-Key"
+
+    allowCredentials: true
+
+    exposeHeaders:
+      - "X-Total-Count"
+      - "X-Page-Size"
+      - "X-RateLimit-Remaining"
+      - "X-RateLimit-Reset"
+
+    maxAge: 3600 
+    
+```
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| --- | ---| ---| --- |
+|``allowOrigin`` | AllowOrigin defines the origins that are allowed to make cross-origin requests. Can be exact domains, single wildcards, or `*` for all origins. Examples: ["https://example.com", "https://*.mydomain.com", "*"] Security: When allowCredentials is true, wildcard "*" is not allowed. The server must specify explicit origins for credentialed requests. |``array[string]`` | Yes |
+|``allowMethods`` | AllowMethods defines the HTTP methods that are allowed for cross-origin requests. | ``array[string]`` | No |
+|``allowHeaders`` | AllowHeaders defines the headers that are allowed in cross-origin requests. Common safe headers: ["Accept", "Accept-Language", "Content-Language", "Content-Type"] Custom headers: ["Authorization", "X-Requested-With", "X-Custom-Header"] |  ``array[string]`` | No |
+|``allowCredentials`` | AllowCredentials indicates whether the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether the actual request can be made using credentials. | ``boolean`` | No |
+|``exposeHeaders`` |  ExposeHeaders defines the headers that browsers are allowed to access. Use this field to expose additional custom headers to the browser. Example: ["X-Total-Count", "X-Page-Size", "X-RateLimit-Remaining"] Note: Set-Cookie headers cannot be exposed via CORS per official MDN specification. | ``array[string]`` | No |
+|``maxAge`` |  MaxAge defines how long (in seconds) the results of a preflight request can be cached. Default: 86400 (24 hours). | ``integer`` | No |
+
+{{% /table %}}
+
+{< call-out "note" >}}
+
+If currently CORS is configured in deployments using `snippets` or `responseHeaders.add`, migrate over same settings to CORS policy and remove the duplicate configuration.
+
+{{< /call-out >}}
+
+#### CORS Merging Behavior
+
+A VirtualServer/VirtualServerRoute can reference multiple cors policies. However, only one can be applied: every subsequent reference will be ignored.
 
 ### WAF
 
