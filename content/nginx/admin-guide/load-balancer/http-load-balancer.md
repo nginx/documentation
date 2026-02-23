@@ -62,7 +62,7 @@ http {
 }
 ```
 
-## Choosing a load balancing method {#method}
+## Choose a load balancing method {#method}
 
 NGINX Open Source supports four load balancing methods: Round Robin, Least Connections, IP Hash, and Generic Hash.
 NGINX Plus supports six load balancing methods: the four above, Least Time, and Random.
