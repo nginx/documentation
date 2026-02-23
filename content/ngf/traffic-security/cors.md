@@ -7,9 +7,9 @@ nd-product: FABRIC
 ---
 
 
-This page describes how to configure the HTTPCORSFilter in NGINX Gateway Fabric to handle Cross-Origin Resource Sharing (CORS) for your applications.
+This document describes how to configure the HTTPCORSFilter in F5 NGINX Gateway Fabric to handle Cross-Origin Resource Sharing (CORS) for your applications.
 
-CORS is a security feature that allows or denies web applications running at one domain to make requests for resources from a different domain. The HTTPCORSFilter in Gateway API provides a standard way to configure CORS policies.
+CORS is a security feature that allows or denies web applications running at one domain to make requests for resources from a different domain. The HTTPCORSFilter in the gateway API provides a standard way to configure CORS policies.
 
 ## Before you begin
 
@@ -56,7 +56,7 @@ spec:
 EOF
 ```
 
-To confirm the application pods are availble, run `kubectl get`:
+To confirm the application pod is available, run `kubectl get`:
 
 ```shell
 kubectl get pods
@@ -86,7 +86,6 @@ spec:
 EOF
 ```
 
-
 Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status with `kubectl describe`:
 
 ```shell
@@ -108,7 +107,7 @@ GW_PORT=<port number>
 
 ## Deploy a HTTPRoute with the HTTPCORSFilter
 
-In this example, the filter is applied to the `/coffee` path: run the following YAML with `kubectl apply`
+In this example, the filter is applied to the `/coffee` path. Run the following command to apply the route:
 
 ```yaml
 kubectl apply -f - <<EOF
