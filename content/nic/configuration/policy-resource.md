@@ -930,7 +930,7 @@ spec:
 {{% /table %}}
 
 {{< call-out "note" >}}
-If currently CORS is configured in deployments using `snippets` or `responseHeaders.add`, migrate over same settings to CORS policy and remove the duplicate configuration.
+If CORS is currently configured in deployments using `snippets` or `responseHeaders.add`, migrate over the same settings to the CORS policy and remove the duplicate configuration.
 {{< /call-out >}}
 
 #### CORS Merging Behavior
