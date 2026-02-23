@@ -46,7 +46,7 @@ spec:
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | No |
 |``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
 |``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | No |
-|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) |
+|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | No |
 
 {{% /table %}}
 
