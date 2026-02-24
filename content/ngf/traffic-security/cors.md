@@ -89,7 +89,7 @@ EOF
 Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status with `kubectl describe`:
 
 ```shell
-kubectl describe gateways.gateway.networking.k8s.io gateway | grep "Addresses:" -A2
+kubectl describe gateways.gateway.networking.k8s.io gateway
 ```
 
 ```text
