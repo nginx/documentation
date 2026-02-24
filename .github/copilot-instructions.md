@@ -84,9 +84,9 @@ Before delivering rewritten content, verify:
 
 ### Call-outs
 ```markdown
-{{< call-out "note" >}} Important information here. {{< /call-out >}}
-{{< call-out "warning" >}} Critical warning here. {{< /call-out >}}
-{{< call-out "caution" >}} Potential damage/downtime. {{< /call-out >}}
+{{< call-out class="note" title="Note title" >}} Important information here. {{< /call-out >}}
+{{< call-out class="warning"  title="Warning title" >}} Critical warning here. {{< /call-out >}}
+{{< call-out class="caution" >}} Potential damage/downtime. {{< /call-out >}}
 ```
 
 ### Internal Links
