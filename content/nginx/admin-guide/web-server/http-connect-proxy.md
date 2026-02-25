@@ -319,7 +319,7 @@ This scenario enables conditional access: if a client provides a valid certifica
    }
    ```
 
-   In the `map` block, the value of the `$ssl_ok` variable depends on the status of [`$ssl_client_verify`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_verify) variable. If the result of client certificate verification is “SUCCESS”, the `$ssl_ok` variable gets the value `1`:
+   In the `map` block, the value of the `$ssl_ok` variable depends on the status of [`$ssl_client_verify`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_verify) variable. If the result of client certificate verification is “SUCCESS”, the `$ssl_ok` variable gets the value `1`.
 
 3. Check the hostname the client is going to access based on the `Host` header of the request (the [$host](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_host) variable). Access will be allowed only for `example.com` and its subdomains. The `hostnames` parameter of the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive is required to recognize hostnames and wildcards in the hostnames: 
 
