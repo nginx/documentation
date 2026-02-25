@@ -342,6 +342,7 @@ This scenario enables conditional access: if a client provides a valid certifica
        "0:1"   1;
    }
    ```
+
 5. Restrict upstream connections to valid `CONNECT` requests using the [`tunnel_allow_upstream`](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html#tunnel_allow_upstream) directive based on the result in the `$connect_ok` variable:
 
     ```nginx
