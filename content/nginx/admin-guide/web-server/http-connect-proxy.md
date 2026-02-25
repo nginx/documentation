@@ -103,7 +103,7 @@ For testing, debugging and monitoring purposes you can configure error and acces
    }
    ```
 
-1. Test nginx configuration for syntax validity and apply the configuration:
+1. Test NGINX configuration for syntax validity and apply the changes:
 
    ```nginx
    nginx -t && nginx -s reload
