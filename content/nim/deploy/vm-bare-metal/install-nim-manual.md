@@ -89,7 +89,7 @@ For instructions, see [Disable metrics collection]({{< ref "nim/system-configura
 
 #### ClickHouse Default Settings
 
-NGINX Instance Manager uses the following default values for ClickHouse. To change these values, see the [Configure ClickHouse](nim/system-configuration/configure-clickhouse.md) guide.
+NGINX Instance Manager uses the following default values for ClickHouse. To change these values, see the [Configure ClickHouse]({{< ref "/nim/system-configuration/configure-clickhouse" >}}) guide.
 
 {{< include "nim/clickhouse/clickhouse-defaults.md" >}}
 
