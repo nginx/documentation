@@ -18,19 +18,17 @@ This article explains how to encrypt HTTP traffic between NGINX and an upstream 
 - A [proxied server]({{< ref "nginx/admin-guide/web-server/reverse-proxy.md" >}}) or an [upstream group of servers]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}})
 - SSL certificates and a private key
 
-## Obtaining SSL Server Certificates
+## Obtain SSL server certificates {#serever_certs}
 
 You can purchase a server certificate from a trusted certificate authority (CA). You can create own internal CA with an [OpenSSL](https://www.openssl.org/) library and generate your own certificate instead. The server certificate, along with a private key, should be placed on each upstream server.
 
-<span id="client_certs"></span>
-## Obtaining an SSL Client Certificate
+## Obtain an SSL client certificate {#client_certs}
 
 NGINX will identify itself to the upstream servers with an SSL client certificate. A trusted CA must sign the client certificate, which is configured on NGINX together with the corresponding private key.
 
 You will also need to configure the upstream servers to require client certificates for all incoming SSL connections, and to trust the CA that issued NGINX client certificate. Then, when NGINX connects to the upstream, it will provide its client certificate and the upstream server will accept it.
 
-<span id="config"></span>
-## Configuring NGINX
+## Configure NGINX {#config}
 
 First, change the URL to an upstream group to support SSL connections. In the NGINX configuration file, specify the `https` protocol in the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive:
 
@@ -82,8 +80,7 @@ location /upstream {
 }
 ```
 
-<span id="config_upstream"></span>
-## Configuring Upstream Servers
+## Configure upstream servers {#config_upstream}
 
 Each upstream server should be configured to accept HTTPS connections. For each upstream server, specify a path to the server certificate and the private key with [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) and [ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key) directives:
 
@@ -113,8 +110,7 @@ server {
 }
 ```
 
-<span id="example"></span>
-## Complete Example
+## Complete example {#example}
 
 ```nginx
 http {
@@ -180,7 +176,7 @@ When a secure connection is passed from NGINX to the upstream server for the fir
 
 - The [proxy_ssl_certificate](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate) directive defines the location of the PEM-format certificate required by the upstream server.
 - The [proxy_ssl_certificate_key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key) directive defines the location of the certificate’s private key.
-- The [proxy_ssl_protocols](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_protocols and [proxy_ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers) directives control which protocols and ciphers are used.
+- The [proxy_ssl_protocols](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_protocols) and [proxy_ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_ciphers) directives control which protocols and ciphers are used.
 
 The next time NGINX passes a connection to the upstream server, session parameters will be reused because of the [proxy_ssl_session_reuse](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_session_reuse) directive, and the secured connection is established faster.
 
