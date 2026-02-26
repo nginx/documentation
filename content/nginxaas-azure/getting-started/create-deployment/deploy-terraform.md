@@ -15,6 +15,8 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using Terraform. Thi
 
 {{< include "/nginxaas-azure/terraform-prerequisites.md" >}}
 
+{{< call-out "important" >}}**System-Assigned Managed Identity Required**: Ensure your Terraform configuration includes the required system-assigned managed identity by setting `identity.type = "SystemAssigned"` or `"SystemAssigned, UserAssigned"` for each deployment.{{< /call-out >}}
+
 ## Create a deployment
 
 You can find examples of Terraform configurations in the [NGINXaaS for Azure Snippets GitHub repository](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/deployments/create-or-update)
