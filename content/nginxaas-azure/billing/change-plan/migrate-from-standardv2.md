@@ -29,7 +29,7 @@ If you have a Standard or Standard V2 plan deployment, we encourage you to migra
 
 1. Go to the **Overview** page of the NGINXaaS deployment in the Azure portal.
 2. Under **Essentials**, find the **Pricing Tier** and select **Click to Upgrade**.
-3. Select the Standard V2 plan and select Submit.
+3. Select the Standard V3 plan and select Submit.
 
 ### Use Terraform
 
