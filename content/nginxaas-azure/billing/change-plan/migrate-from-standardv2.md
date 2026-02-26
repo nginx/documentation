@@ -25,7 +25,7 @@ If you have a Standard or Standard V2 plan deployment, we encourage you to migra
 
 ## Migration steps
 
-### Use the Azure the Portal
+### Use the Azure Portal
 
 1. Go to the **Overview** page of the NGINXaaS deployment in the Azure portal.
 2. Under **Essentials**, find the **Pricing Tier** and select **Click to Upgrade**.
