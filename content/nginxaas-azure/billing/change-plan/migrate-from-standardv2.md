@@ -25,6 +25,12 @@ If you have a Standard or Standard V2 plan deployment, we encourage you to migra
 
 ## Migration steps
 
+### Use the Azure the Portal
+
+1. Go to the **Overview** page of the NGINXaaS deployment in the Azure portal.
+2. Under **Essentials**, find the **Pricing Tier** and select **Click to Upgrade**.
+3. Select the Standard V2 plan and select Submit.
+
 ### Use Terraform
 
 1. Update the Terraform AzureRM provider to 4.6.0 or above.
