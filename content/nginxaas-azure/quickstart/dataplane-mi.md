@@ -19,7 +19,7 @@ NGINX+ instances that are part of the NGINXaaS deployment now have access to que
 
 The example below contains a sample NGINX config that uses [njs](https://nginx.org/en/docs/njs/) and the NGINXaaS MI to query a blob storage container. You can also use the standard MSAL libraries to query IMDS.
 
-1. Assign a system assigned or user assigned [identity]({{< ref "nginxaas-azure/getting-started/managed-identity-portal/">}}) to the NGINXaaS deployment and grant the identity access to blob storage.
+1. Assign a system-assigned [identity]({{< ref "/nginxaas-azure/getting-started/managed-identity-portal.md" >}}) to the NGINXaaS deployment and grant the identity access to blob storage. Dataplane managed identity access only works with system-assigned managed identities.
 
 2. Create an NGINX config named `nginx.conf` with the following content:
 
