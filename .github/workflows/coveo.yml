@@ -22,6 +22,7 @@ jobs:
             env_coveo_org_id: "f5networksnonproduction1xqykzabw"
           - env_name: prod
             env_api_key: "COVEO_API_PROD"
+            env_sphinx_api_key: "COVEO_SPHINX_API_PROD"
             env_coveo_org_id: "f5networksproduction5vkhn00h"
     steps:
       - name: Install jq
@@ -32,6 +33,7 @@ jobs:
         continue-on-error: true
         env:
           COVEO_API_KEY: ${{secrets[matrix.env_api_key]}}
+          COVEO_SPHINX_API_KEY: ${{secrets[matrix.env_sphinx_api_key]}}
           COVEO_SEARCH_HUB: "HUB_ES_Nginx_Docs_And_Org"
         run: |
           RESPONSE=$(curl -w "\nHTTP_CODE: %{http_code}" -s -X POST "https://platform.cloud.coveo.com/rest/search/v2/token?organizationId=${{matrix.env_coveo_org_id}}" \
@@ -62,8 +64,43 @@ jobs:
             exit 1
           fi
 
+          if [ "${{ matrix.env_name }}" = "prod" ]; then
+            SPHINX_RESPONSE=$(curl -w "\nHTTP_CODE: %{http_code}" -s -X POST "https://platform.cloud.coveo.com/rest/search/v2/token?organizationId=${{matrix.env_coveo_org_id}}" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${COVEO_SPHINX_API_KEY}" \
+            -d '{
+                "searchHub": "'${COVEO_SEARCH_HUB}'",
+                "organization": "'${{matrix.env_coveo_org_id}}'",
+                "userIds": [
+                    {
+                    "type": "User",
+                    "name": "anonymous",
+                    "provider": "Email Security Provider"
+                    }
+                ]
+                }')
+            SPHINX_STATUS_CODE=$(echo "$SPHINX_RESPONSE" | grep HTTP_ | awk '{print $2}')
+            SPHINX_SEARCH_TOKEN=$(echo "$SPHINX_RESPONSE" | sed '$d' | jq -r '.token')
+
+            if [ $SPHINX_STATUS_CODE -ne 200 ]; then
+              echo "Error: HTTP request failed with status $SPHINX_STATUS_CODE"
+              echo "$SPHINX_RESPONSE"
+              exit 1
+            fi
+            if [ "$SPHINX_SEARCH_TOKEN" == "null" ]; then
+              echo "Error: Failed to extract search token from response"
+              exit 1
+            fi
+          fi
+
           mkdir coveo/
-          echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": \"${{matrix.env_coveo_org_id}}\"}" > coveo/search_token.json
+            
+          if [ "${{ matrix.env_name }}" = "prod" ]; then
+            echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": \"${{matrix.env_coveo_org_id}}\", \"sphinx_theme_token\": \"$SPHINX_SEARCH_TOKEN\"}" > coveo/search_token.json
+          else
+            echo "{\"token\": \"$SEARCH_TOKEN\", \"org_id\": \"${{matrix.env_coveo_org_id}}\"}" > coveo/search_token.json
+          fi
 
       - name: Upload token for ${{matrix.env_name}}
         if: ${{ steps.generate-token.outcome == 'success' }}
