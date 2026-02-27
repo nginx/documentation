@@ -297,3 +297,4 @@ Requests sent to port `${GW_PORT_1}` (listener `coffee`) are served by the coffe
 ## Further Readings
 
 - [TCPRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tcproute)
+- [Gateway API TCP routing](https://gateway-api.sigs.k8s.io/guides/tcp/)
