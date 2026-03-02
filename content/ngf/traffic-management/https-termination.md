@@ -276,7 +276,11 @@ Server address: 10.244.0.6:80
 Server name: coffee-6b8b6d6486-7fc78
 ```
 
+{{< include "ngf/sni-https.md" >}}
+
 ## See also
+
+To set up a production-ready integration with cert-manager for HTTPS traffic, see the [Secure traffic using Let's Encrypt]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}) guide.
 
 To learn more about redirects using the Gateway API, see the following resource:
 
