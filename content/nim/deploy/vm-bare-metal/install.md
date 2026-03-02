@@ -15,10 +15,10 @@ This guide shows you how to install and upgrade F5 NGINX Instance Manager on a v
 
 The script installs:
 
-- The latest version of NGINX Open Source
+- The latest version of NGINX Open Source, required for running NGINX Instance Manager
+- Optionally, NGINX Plus instead of NGINX Open Source (requires a license and additional flags)
 - The latest version of NGINX Instance Manager
 - ClickHouse by default, unless you choose to skip it
-- Optionally, NGINX Plus (requires a license and additional flags)
 
 The script also installs all required operating system packages automatically. If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/deploy/vm-bare-metal/install-nim-manual.md" >}}) instead.
 
@@ -32,7 +32,7 @@ Follow these steps to prepare for installing NGINX Instance Manager:
 
   {{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download install-nim-bundle.sh script">}}
 
-- **Download the certificate and private key** (see the steps [below](#download-cert-key)):
+- **Download the certificate and private key** (see [these steps](#download-cert-key)):
   Use the certificate and private key for NGINX Instance Manager (the same files used for NGINX Plus).
   - Ensure the files have `.crt` and `.key` extensions.
   - Save them to the target system. The default locations are:
@@ -68,7 +68,7 @@ To ensure that your NGINX Instance Manager deployment remains secure, follow the
 
 ## Download certificate and key {#download-cert-key}
 
-Download the certificate and private key required for NGINX Instance Manager. These files are necessary for adding the official repository during installation and can also be used when installing NGINX Plus.
+Download the SSL certificate and private key needed for NGINX Instance Manager to add the official repository during installation. These can also be used when [installing NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 1. On the host where you're installing NGINX Instance Manager, create the **/etc/ssl/nginx/** directory:
 
@@ -78,11 +78,12 @@ Download the certificate and private key required for NGINX Instance Manager. Th
 
 2. Download the **SSL Certificate**, **Private Key** and ***JSON Web Token*** files from [MyF5](https://account.f5.com/myf5) or use the download link provided in your trial activation email.
 
-3. Move and rename the cert and key files to the correct directory:
+3. Rename the cert and key to `nginx-repo.crt` and `nginx-repo.key`, move them to the `/etc/ssl/nginx/` directory. Rename the JWT file to `license.jwt` and move it to the `/etc/nginx/` directory:
 
     ```shell
-    sudo mv nginx-<subscription id>.crt /etc/ssl/nginx/nginx-repo.crt
-    sudo mv nginx-<subscription id>.key /etc/ssl/nginx/nginx-repo.key
+    sudo mv nginx-<subscription-id>.crt /etc/ssl/nginx/nginx-repo.crt
+    sudo mv nginx-<subscription-id>.key /etc/ssl/nginx/nginx-repo.key
+    sudo mv <nginx-license-id>.jwt /etc/nginx/license.jwt
     ```
 
 ---
@@ -160,11 +161,11 @@ To install NGINX Instance Manager on Ubuntu 24.04 with the latest version of NGI
 
 ```bash
 sudo bash install-nim-bundle.sh \
-  -c <path/to/nginx-repo.crt> \
-  -k <path/to/nginx-repo.key> \
+  -c <path/to/nginx-repo.crt> \  # in case of non-default name or location
+  -k <path/to/nginx-repo.key> \  # in case of non-default name or location
   -p \
   -d ubuntu24.04 \
-  -j <path/to/license.jwt>
+  -j <path/to/license.jwt> # in case of non-default name or location
 ```
 
 <br>
