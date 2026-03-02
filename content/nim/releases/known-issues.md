@@ -1339,7 +1339,7 @@ Upgrading the NGINX Management Suite could result in the removal of your OIDC co
 
 #### Workaround
 
-Prior to upgrading, we recommend that you [back up your configuration files]({{< relref "/nim/admin-guide/maintenance/backup-and-recovery.md" >}}) and the platform proxy.
+Prior to upgrading, we recommend that you [back up your configuration files]({{< relref "/nim/admin-guide/backup-and-recovery.md" >}}) and the platform proxy.
 
 ---
 
