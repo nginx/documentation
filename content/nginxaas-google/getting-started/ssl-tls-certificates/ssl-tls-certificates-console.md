@@ -8,7 +8,7 @@ nd-content-type: how-to
 nd-product: NGOOGL
 ---
 
-You can manage SSL/TSL certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using the NGINXaaS console.
+You can manage SSL/TLS certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using the NGINXaaS console.
 
 ## Prerequisites
 

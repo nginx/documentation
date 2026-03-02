@@ -1,6 +1,6 @@
 ---
 title: F5 NGINXaaS for Azure
-nd-subtitle: Azure native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX 
+nd-subtitle: Azure native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX
 url: /nginxaas/azure/
 nd-landing-page: true
 cascade:
@@ -42,7 +42,7 @@ and reliable bringing advanced traffic services enabled with the commercial vers
 
 {{<card-section showAsCards="true" >}}
   {{<card title="Add certificates using the Azure portal" titleUrl="/nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/" icon="shield-check">}}
-    Learn to manage SSL/TSL certificates using the Azure portal
+    Learn to manage SSL/TLS certificates using the Azure portal
   {{</card>}}
 {{</card-section>}}
 
