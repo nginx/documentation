@@ -126,8 +126,8 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `ResolvedRefs/True/ResolvedRefs`
     - `ResolvedRefs/False/ParametersRefNotFound`
     - `ResolvedRefs/False/ParametersRefInvalid`
-    - `ResolvedRefs/False/SecretRefInvalid`
-    - `ResolvedRefs/False/SecretRefNotPermitted`
+    - `ResolvedRefs/False/InvalidClientCertificateRef`
+    - `ResolvedRefs/False/RefNotPermitted`
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
