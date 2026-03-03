@@ -4,7 +4,7 @@ Site name: NGINX Documentation
 Site url: https://docs.nginx.com
 Owner: F5, Inc.
 Contact: https://www.f5.com/support
-Sitemanp: https://docs.nginx.com/sitemap.xml
+Sitemap: https://docs.nginx.com/sitemap.xml
 Source code: https://github.com/nginx/documentation/tree/main/content
 
 ## Documented products
