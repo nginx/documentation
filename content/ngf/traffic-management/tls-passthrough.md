@@ -11,17 +11,11 @@ Learn how to use TLSRoutes to configure TLS passthrough load-balancing with NGIN
 
 ## Overview
 
-In this guide, we will show how to configure TLS passthrough for your application, using a [TLSRoute](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.TLSRoute).
-
-## Note on Gateway API Experimental Features
-
-{{< call-out "important" >}} TLSRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
-
-{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
+In this guide, we will show how to configure TLS passthrough for your application, using a [TLSRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tlsroute).
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Set up
 
@@ -129,7 +123,7 @@ Create a Gateway. This will create a TLS listener with the hostname `*.example.c
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: gateway
@@ -200,7 +194,7 @@ Create a TLSRoute that attaches to the Gateway and routes requests to `app.examp
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1alpha2
+apiVersion: gateway.networking.k8s.io/v1
 kind: TLSRoute
 metadata:
   name: tls-secure-app-route
@@ -218,7 +212,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1beta1.ReferenceGrant) to permit the cross-namespace reference. {{< /call-out >}}
+{{< call-out "note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#referencegrant) to permit the cross-namespace reference. {{< /call-out >}}
 
 ## Send traffic
 
@@ -270,3 +264,9 @@ hello from pod secure-app-575785644-kzqf6
 ```
 
 Note that the server certificate used to terminate the TLS connection has the subject common name of `app.example.com`. This is the server certificate that the `secure-app` is configured with and shows that the TLS connection was terminated by the `secure-app`, not NGINX Gateway Fabric.
+
+## See also
+
+To learn more about TLS routing using the Gateway API, see the following resource:
+
+- [Gateway API TLS routing](https://gateway-api.sigs.k8s.io/guides/tls-routing/)
