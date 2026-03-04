@@ -1,5 +1,5 @@
 ---
-+nd-content-type: how-to
+nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NONECO
 title: Import templates
