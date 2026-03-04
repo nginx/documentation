@@ -57,12 +57,14 @@ NGINX Gateway Fabric supports a single GatewayClass resource configured with the
 - `status`
   - `conditions` - supported (Condition/Status/Reason):
     - `Accepted/True/Accepted`
-    - `Accepted/False/InvalidParameters`
+    - `Accepted/True/InvalidParameters`
     - `Accepted/False/UnsupportedVersion`
-    - `Accepted/False/GatewayClassConflict`: Custom reason for when the GatewayClass references this controller, but
-          a different GatewayClass name is provided to the controller via the command-line argument.
+    - `Accepted/False/GatewayClassConflict`
     - `SupportedVersion/True/SupportedVersion`
     - `SupportedVersion/False/UnsupportedVersion`
+    - `ResolvedRefs/True/ResolvedRefs`
+    - `ResolvedRefs/False/ParametersRefNotFound`
+    - `ResolvedRefs/False/ParametersRefInvalid`
   - `supportedFeatures` - supported.
 
 ### Gateway
@@ -110,12 +112,22 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
   - `conditions`: Supported (Condition/Status/Reason):
     - `Accepted/True/Accepted`
     - `Accepted/True/ListenersNotValid`
+    - `Accepted/True/InvalidParameters`
+    - `Accepted/True/UnsupportedField`
     - `Accepted/False/ListenersNotValid`
     - `Accepted/False/Invalid`
-    - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Gateway is invalid or not supported.
+    - `Accepted/False/UnsupportedValue`
+    - `Accepted/False/UnsupportedAddress`
     - `Programmed/True/Programmed`
     - `Programmed/False/Invalid`
-    - `Accepted/True/UnsupportedField`: Custom reason for when the Gateway is accepted but contains an unsupported field
+    - `Programmed/False/UnsupportedValue`
+    - `Programmed/False/AddressNotUsable`
+    - `Programmed/False/AddressNotAssigned`
+    - `ResolvedRefs/True/ResolvedRefs`
+    - `ResolvedRefs/False/ParametersRefNotFound`
+    - `ResolvedRefs/False/ParametersRefInvalid`
+    - `ResolvedRefs/False/InvalidClientCertificateRef`
+    - `ResolvedRefs/False/RefNotPermitted`
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -126,7 +138,8 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/False/InvalidCertificateRef`
       - `Accepted/False/ProtocolConflict`
       - `Accpeted/False/HostnameConflict`
-      - `Accepted/False/UnsupportedValue`: Custom reason for when a value of a field in a Listener is invalid or not supported.
+      - `Accepted/False/UnsupportedValue`
+      - `Accepted/False/RefNotPermitted`
       - `Programmed/True/Programmed`
       - `Programmed/False/Invalid`
       - `ResolvedRefs/True/ResolvedRefs`
@@ -165,7 +178,8 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `urlRewrite`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest. Incompatible with `requestRedirect`.
       - `responseHeaderModifier`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
-      - `extensionRef`: Supported for SnippetsFilters.
+      - `cors`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
+      - `extensionRef`: Supported for SnippetsFilters and AuthenticationFilters.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
     - `timeouts`: Not supported.
@@ -177,23 +191,27 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `controllerName`: Supported.
     - `conditions`: Partially supported. Supported (Condition/Status/Reason):
       - `Accepted/True/Accepted`
+      - `Accepted/True/UnsupportedField`
       - `Accepted/False/NoMatchingListenerHostname`
       - `Accepted/False/NoMatchingParent`
       - `Accepted/False/NotAllowedByListeners`
-      - `Accepted/False/UnsupportedValue`: Custom reason for when the HTTPRoute includes an invalid or unsupported value.
-      - `Accepted/False/InvalidListener`: Custom reason for when the HTTPRoute references an invalid listener.
-      - `Accepted/False/GatewayIgnored`: Custom reason for when the Gateway is ignored by NGINX Gateway Fabric. NGINX Gateway Fabric only supports one Gateway.
+      - `Accepted/False/UnsupportedValue`
+      - `Accepted/False/InvalidListener`
+      - `Accepted/False/HostnameConflict`
+      - `Accepted/False/MultipleRoutesOnListener`
+      - `Accepted/False/InvalidGateway`
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
       - `ResolvedRefs/False/RefNotPermitted`
       - `ResolvedRefs/False/BackendNotFound`
-      - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the HTTPRoute rules has a backendRef with an unsupported value.
-      - `ResolvedRefs/False/InvalidIPFamily`: Custom reason for when one of the HTTPRoute rules has a backendRef that has an invalid IPFamily.
+      - `ResolvedRefs/False/UnsupportedValue`
+      - `ResolvedRefs/False/InvalidIPFamily`
       - `ResolvedRefs/False/UnsupportedProtocol`
+      - `ResolvedRefs/False/InvalidFilter`
+      - `ResolvedRefs/False/InvalidInferencePool`
       - `PartiallyInvalid/True/UnsupportedValue`
-      - `Accepted/True/UnsupportedField`: Custom reason for when the HTTPRouteRule is accepted but contains an unsupported field
 
-      {{< call-out "note" >}} If `name`, `timeouts`, `retry` or `sessionPersistence` are defined for a HTTPRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
+      {{< call-out "note" >}} If `name`, `timeouts`, or `retry` are defined for a HTTPRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
 
 ### GRPCRoute
 
@@ -229,20 +247,27 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `controllerName`: Supported.
     - `conditions`: Partially supported. Supported (Condition/Status/Reason):
       - `Accepted/True/Accepted`
+      - `Accepted/True/UnsupportedField`
       - `Accepted/False/NoMatchingListenerHostname`
       - `Accepted/False/NoMatchingParent`
       - `Accepted/False/NotAllowedByListeners`
-      - `Accepted/False/UnsupportedValue`: Custom reason for when the GRPCRoute includes an invalid or unsupported value.
-      - `Accepted/False/InvalidListener`: Custom reason for when the GRPCRoute references an invalid listener.
+      - `Accepted/False/UnsupportedValue`
+      - `Accepted/False/InvalidListener`
+      - `Accepted/False/HostnameConflict`
+      - `Accepted/False/MultipleRoutesOnListener`
+      - `Accepted/False/InvalidGateway`
+      - `Accepted/False/UnsupportedConfiguration`
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
       - `ResolvedRefs/False/RefNotPermitted`
       - `ResolvedRefs/False/BackendNotFound`
-      - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the GRPCRoute rules has a backendRef with an unsupported value.
+      - `ResolvedRefs/False/UnsupportedValue`
+      - `ResolvedRefs/False/InvalidIPFamily`
+      - `ResolvedRefs/False/UnsupportedProtocol`
+      - `ResolvedRefs/False/InvalidFilter`
       - `PartiallyInvalid/True/UnsupportedValue`
-      - `Accepted/True/UnsupportedField`: Custom reason for when the GRPCRouteRule is accepted but contains an unsupported field
 
-{{< call-out "note" >}} If `name` or `sessionPersistence` are defined for a GRPCRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
+{{< call-out "note" >}} If `name` is defined for a GRPCRoute rule, it will be ignored and rule still will be created. {{< /call-out >}}
 
 ### ReferenceGrant
 
@@ -250,8 +275,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
 
 | Resource       | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| ReferenceGrant | Supported          | N/A                    | Not supported                         | v1beta1     | Standard            |
-
+| ReferenceGrant | Supported          | N/A                    | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 Fields:
@@ -259,11 +283,11 @@ Fields:
 - `spec`
   - `to`
     - `group` - supported.
-    - `kind` - supports `Secret` and `Service`.
+    - `kind` - supported.
     - `name`- supported.
   - `from`
     - `group` - supported.
-    - `kind` - supports `Gateway` and `HTTPRoute`.
+    - `kind` - supported.
     - `namespace`- supported.
 
 ### TLSRoute
@@ -272,8 +296,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TLSRoute | Supported          | Not supported          | Not supported                         | v1alpha2    | Experimental        |
-
+| TLSRoute | Supported          | Not supported          | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 **Fields**:
@@ -293,14 +316,14 @@ Fields:
       - `Accepted/False/NoMatchingListenerHostname`
       - `Accepted/False/NoMatchingParent`
       - `Accepted/False/NotAllowedByListeners`
-      - `Accepted/False/UnsupportedValue`: Custom reason for when the TLSRoute includes an invalid or unsupported value.
-      - `Accepted/False/InvalidListener`: Custom reason for when the TLSRoute references an invalid listener.
-      - `Accepted/False/HostnameConflict`: Custom reason for when the TLSRoute has a hostname that conflicts with another TLSRoute on the same port.
+      - `Accepted/False/UnsupportedValue`
+      - `Accepted/False/InvalidListener`
+      - `Accepted/False/HostnameConflict`
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidKind`
       - `ResolvedRefs/False/RefNotPermitted`
       - `ResolvedRefs/False/BackendNotFound`
-      - `ResolvedRefs/False/UnsupportedValue`: Custom reason for when one of the TLSRoute rules has a backendRef with an unsupported value.
+      - `ResolvedRefs/False/UnsupportedValue`
       - `PartiallyInvalid/True/UnsupportedValue`
 
 ### TCPRoute
