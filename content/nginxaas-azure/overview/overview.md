@@ -4,7 +4,7 @@ weight: 100
 toc: true
 nd-docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
-d-content-type: concept
+nd-content-type: concept
 nd-product: NAZURE
 ---
 
