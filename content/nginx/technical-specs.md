@@ -30,7 +30,7 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 | **Amazon Linux 2023** | ✓ (x86_64 only) | ❌ | ✓ | ❌ | ✓ | ✓ |
 | **Debian 11 & 12** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **FreeBSD** | ❌ | ❌ | ✓ | ❌ | ❌ | ✓ |
-| **Oracle Linux 8.1** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
+| **Oracle Linux 8** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
 | **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **Rocky Linux 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
 | **SLES** | ❌ | 15 only | ✓ | ✓ | ✓ | ✓ |
