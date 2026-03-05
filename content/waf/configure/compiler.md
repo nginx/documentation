@@ -47,12 +47,6 @@ cp <path-to-your-nginx-repo.crt> /etc/docker/certs.d/private-registry.nginx.com/
 cp <path-to-your-nginx-repo.key> /etc/docker/certs.d/private-registry.nginx.com/client.key
 ```
 
-Log in to the Docker registry:
-
-```shell
-docker login private-registry.nginx.com
-```
-
 ## Create the Dockerfile
 
 This example Dockerfile is based on a Debian image.
