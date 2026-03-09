@@ -15,7 +15,7 @@ This document is the reference documentation for the Policy resource. An example
 
 ## Before you begin
 
-Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you need to create separately.
+Policies work together with [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you need to create separately.
 
 ## Policy Specification
 
