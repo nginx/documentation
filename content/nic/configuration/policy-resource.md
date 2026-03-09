@@ -52,7 +52,7 @@ spec:
 
 {{< call-out "note" >}}
 
-Policy resource support for Ingress objects was introduced in NGINX Ingress Controller v5.4.0.
+Policy resource support for Ingress objects using annotation [`nginx.org/policies`]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) was introduced in NGINX Ingress Controller v5.4.0.
 
 {{< /call-out >}}
 
@@ -1028,50 +1028,6 @@ webapp-policy   27m
 ```
 
 For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
-
-### Using policies with Ingress
-
-For Ingress resources, policies are referenced through the `nginx.org/policies` annotation.
-
-- AccessControl example (`examples/ingress-resources/access-control`):
-
-  1. Deploy the app:
-
-    ```shell
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/cafe.yaml
-    ```
-
-  2. (Optional for testing client IP behavior) Configure NGINX to trust `X-Real-IP`:
-
-    ```shell
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/nginx-config.yaml
-    ```
-
-  3. Apply the AccessControl policy and Ingress:
-
-    ```shell
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/access-control-policy-allow.yaml
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/cafe-ingress.yaml
-    ```
-
-  The Ingress references the policy via `nginx.org/policies: "webapp-policy"`.
-
-- CORS example (`examples/ingress-resources/cors`):
-
-  1. Deploy the app:
-
-    ```shell
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/feat/cors-policy-ingress/examples/ingress-resources/cors/cafe.yaml
-    ```
-
-  2. Apply the CORS policy and Ingress:
-
-    ```shell
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/feat/cors-policy-ingress/examples/ingress-resources/cors/cors-policy.yaml
-    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/feat/cors-policy-ingress/examples/ingress-resources/cors/cafe-ingress.yaml
-    ```
-
-  The Ingress references the policy via `nginx.org/policies: "cors-policy"`.
 
 ### Applying Policies
 
