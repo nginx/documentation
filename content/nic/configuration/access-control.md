@@ -171,9 +171,21 @@ Apply the policy:
 kubectl apply -f access-control-policy-allow.yaml
 ```
 
-### Create the Ingress resource
+### Method #1 (VirtualServer): Create the VirtualServer resource
 
-Create a file named _cafe-ingress.yaml_ for the Ingress resource. The highlighted `nginx.org/policies` annotation references the access control Policy created in the previous step.
+Create a file named _cafe-virtual-server.yaml_ for the VirtualServer resource. The highlighted _policies_ field references the access control Policy we created.
+
+{{ < ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/custom-resources/access-control/virtual-server.yaml "hl_lines=7-8">}}
+
+Apply the VirtualServer:
+
+```shell
+kubectl apply -f cafe-virtual-server.yaml
+```
+
+### Method #2 (Ingress): Create the Ingress resource
+
+Alternatively, create a file named _cafe-ingress.yaml_ for the Ingress resource. The highlighted `nginx.org/policies` annotation references the access control Policy created.
 
 {{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/ingress-resources/access-control/cafe-ingress.yaml" "hl_lines=5-6" >}}
 
