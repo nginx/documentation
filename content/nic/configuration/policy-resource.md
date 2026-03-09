@@ -7,7 +7,7 @@ nd-product: INGRESS
 nd-docs: DOCS-596
 ---
 
-The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}).
+The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}).
 
 The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
@@ -15,7 +15,7 @@ This document is the reference documentation for the Policy resource. An example
 
 ## Before you begin
 
-Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}), which you need to create separately.
+Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you need to create separately.
 
 ## Policy Specification
 
@@ -34,21 +34,27 @@ spec:
 
 {{% table %}}
 
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | No |
-|``ingressClassName`` | Specifies which instance of NGINX Ingress Controller must handle the Policy resource. | ``string`` | No |
-|``rateLimit`` | The rate limit policy controls the rate of processing requests per a defined key. | [rateLimit](#ratelimit) | No |
-|``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | No |
-|``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | No |
-|``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | No |
-|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | No |
-|``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
-|``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | No |
-|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | No |
+|Field | Description | Type | Supported in VS/VSR | Supported in Ingress |
+| ---| ---| ---| --- | --- |
+|``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | Yes | Yes |
+|``rateLimit`` | The rate limit policy controls the rate of processing requests per a defined key. | [rateLimit](#ratelimit) | Yes | No |
+|``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | Yes | No |
+|``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | Yes | No |
+|``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | Yes | No |
+|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
+|``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
+|``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
+|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | Yes | No |
+|``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | Yes | No |
+|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | Yes | Yes |
 
 {{% /table %}}
+
+{{< call-out "note" >}}
+
+Policy resource support for Ingress objects was introduced in NGINX Ingress Controller v5.4.0.
+
+{{< /call-out >}}
 
 \* A policy must include exactly one policy.
 
@@ -1023,9 +1029,53 @@ webapp-policy   27m
 
 For `kubectl get` and similar commands, you can also use the short name `pol` instead of `policy`.
 
+### Using policies with Ingress
+
+For Ingress resources, policies are referenced through the `nginx.org/policies` annotation.
+
+- AccessControl example (`examples/ingress-resources/access-control`):
+
+  1. Deploy the app:
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/cafe.yaml
+    ```
+
+  2. (Optional for testing client IP behavior) Configure NGINX to trust `X-Real-IP`:
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/nginx-config.yaml
+    ```
+
+  3. Apply the AccessControl policy and Ingress:
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/access-control-policy-allow.yaml
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/main/examples/ingress-resources/access-control/cafe-ingress.yaml
+    ```
+
+  The Ingress references the policy via `nginx.org/policies: "webapp-policy"`.
+
+- CORS example (`examples/ingress-resources/cors`):
+
+  1. Deploy the app:
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/feat/cors-policy-ingress/examples/ingress-resources/cors/cafe.yaml
+    ```
+
+  2. Apply the CORS policy and Ingress:
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/feat/cors-policy-ingress/examples/ingress-resources/cors/cors-policy.yaml
+    kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/feat/cors-policy-ingress/examples/ingress-resources/cors/cafe-ingress.yaml
+    ```
+
+  The Ingress references the policy via `nginx.org/policies: "cors-policy"`.
+
 ### Applying Policies
 
-You can apply policies to both VirtualServer and VirtualServerRoute resources. For example:
+You can apply policies to VirtualServer, VirtualServerRoute, and Ingress resources. For example:
 
 - VirtualServer:
 
@@ -1095,6 +1145,46 @@ You can apply policies to both VirtualServer and VirtualServerRoute resources. F
     Subroute policies of the same type override spec policies. In the example above, if the type of the policies `policy-1` (in the VirtualServer) and `policy-4` is `accessControl`, then for requests to `cafe.example.com/tea`, NGINX will apply `policy-4`. As with the VirtualServer, the overriding is enforced by NGINX.
 
     Subroute policies always override route policies no matter the types. For example, the policy `policy-2` in the VirtualServer route will be ignored for the subroute `/tea`, because the subroute has its own policies (in our case, only one policy `policy4`). If the subroute didn't have any policies, then the `policy-2` would be applied. This overriding is enforced by NGINX Ingress Controller -- the `location` context for the subroute will either have route policies or subroute policies, but not both.
+
+- Ingress:
+
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: cafe-ingress
+      annotations:
+        nginx.org/policies: "webapp-policy"
+    spec:
+      ingressClassName: nginx
+      tls:
+      - hosts:
+        - cafe.example.com
+        secretName: tls-secret
+      rules:
+      - host: cafe.example.com
+        http:
+          paths:
+          - path: /tea
+            pathType: Prefix
+            backend:
+              service:
+                name: tea-svc
+                port:
+                  number: 80
+          - path: /coffee
+            pathType: Prefix
+            backend:
+              service:
+                name: coffee-svc
+                port:
+                  number: 80
+    ```
+
+    For Ingress, you can apply policies:
+  * to a single Ingress
+  * to a master Ingress, where minion Ingresses inherit the policies
+  * to minion Ingresses, where minion policies override master policies
 
 ### Invalid Policies
 
