@@ -1,7 +1,5 @@
 ---
-description: Capture information from the client IP address in variables, using the
-  [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases, with the
-  GeoIP2 dynamic module supported by NGINX, Inc.
+description: Capture information from the client IP address in variables, using the [MaxMind GeoIP2](https://www.maxmind.com/en/geoip2-databases) databases, with the GeoIP2 dynamic module supported by NGINX, Inc.
 nd-docs: DOCS-387
 title: GeoIP2
 toc: true

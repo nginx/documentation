@@ -1,5 +1,5 @@
 ---
-Title: Use a third-party forward proxy
+title: Use a third-party forward proxy
 weight: 2
 toc: true
 nd-content-type: how-to
