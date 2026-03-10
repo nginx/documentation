@@ -15,7 +15,7 @@ This topic describes how to use F5 NGINX Ingress Controller to apply and update 
 
 You should have a [working NGINX Ingress Controller]({{< ref "/nic/install/helm.md" >}}) instance.
 
-For ease of use in shell commands, set two shell variables:
+For ease of use in shell commands, set the following shell variables:
 
 1. The public IP address for your NGINX Ingress Controller instance.
 
@@ -37,7 +37,9 @@ IC_HTTPS_PORT=<port number>
 
 ---
 
-## Deploy the example application
+## Use access control with VirtualServer resources
+
+### Deploy the example application
 
 Create the file _webapp.yaml_ with the following contents:
 
@@ -51,7 +53,7 @@ kubectl apply -f webapp.yaml
 
 ---
 
-## Deploy a Policy to create a deny rule
+### Deploy a Policy to create a deny rule
 
 Create a file named _access-control-policy-deny.yaml_. The highlighted _deny_ field will be used by the example application, and should be changed to the subnet of your machine.
 
@@ -65,7 +67,7 @@ kubectl apply -f access-control-policy-deny.yaml
 
 ---
 
-## Configure load balancing
+### Configure load balancing
 
 Create a file named _virtual-server.yaml_ for the VirtualServer resource. The _policies_ field references the access control Policy created in the previous section.
 
@@ -100,7 +102,7 @@ The *403* response is expected, successfully blocking your machine.
 
 ---
 
-## Update the Policy to create an allow rule
+### Update the Policy to create an allow rule
 
 Update the Policy with the file _access-control-policy-allow.yaml_, setting the _allow_ field to the subnet of your machine.
 
@@ -114,7 +116,7 @@ kubectl apply -f access-control-policy-allow.yaml
 
 ----
 
-## Verify the Policy update
+### Verify the Policy update
 
 Attempt to access the application again:
 
