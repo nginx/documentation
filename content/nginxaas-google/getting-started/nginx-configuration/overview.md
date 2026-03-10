@@ -20,7 +20,7 @@ The topics below explain NGINX configuration restrictions and which directives a
 
 ## NGINX filesystem restrictions
 
-There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principal of least privilege, and ensure the smooth operation of the system.
+There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principle of least privilege, and ensure the smooth operation of the system.
 
 {{<table variant="narrow" theme="bordered">}}
   | Allowed Directory   |  User can upload files to | NGINX master process can read | NGINX master process can write | NGINX worker process can read | NGINX worker process can write |
@@ -63,11 +63,18 @@ The following directives cannot be overridden by the user provided configuration
 |------------------ | ----------------------- | -----------------|
 | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
 | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
+| `worker_rlimit_nofile` | `524288` | Set for optimal performance of deployments. |
+| `worker_connections` | `150000` | Set for optimal performance of deployments. |
 | `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
 | `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
 | `master_process` | `on` | This directive is intended for NGINX developers. |
 | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
 {{< /table >}}
+
+For connection and request rate limiting, consider using these NGINX modules:
+- [limit_conn](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn)
+- [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req)
+- [upstream queue](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue)
 
 ## Configuration directives list
 
