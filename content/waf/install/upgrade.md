@@ -25,7 +25,7 @@ sudo dnf -y update app-protect
 While an `apt` based system would use the following instead:
 
 ```shell
-sudo apt-get update && apt-get install -y app-protect
+sudo apt-get update && sudo apt-get install -y app-protect
 ```
 
 ## Docker deployments

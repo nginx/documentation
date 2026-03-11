@@ -1,5 +1,5 @@
 ---
-Title: High availability with keepalived
+title: High availability with keepalived
 weight: 3
 toc: true
 nd-content-type: how-to

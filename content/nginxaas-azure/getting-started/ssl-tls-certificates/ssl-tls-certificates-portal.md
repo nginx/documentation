@@ -10,7 +10,7 @@ nd-product: NAZURE
 
 ## Overview
 
-You can manage SSL/TSL certificates for F5 NGINXaaS for Azure (NGINXaaS) using the Azure portal.
+You can manage SSL/TLS certificates for F5 NGINXaaS for Azure (NGINXaaS) using the Azure portal.
 
 ## Prerequisites
 

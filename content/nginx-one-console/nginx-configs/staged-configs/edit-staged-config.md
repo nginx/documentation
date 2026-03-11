@@ -8,7 +8,7 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
-product: NGINX One
+nd-product: NONECO
 ---
 
 ## Overview
