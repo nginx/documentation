@@ -1,406 +1,262 @@
-# Concept template guide
+# Guide: How to write a concept document
 
+This guide explains how to complete `template-concept.md`. It covers what a concept document is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-> Thank you for downloading this template from The Good Docs Project! Before using the template, read this template guide for information about how to complete each section. Want to explore more templates? Check them out in our [templates GitLab repository](https://gitlab.com/tgdp/templates).
-
-## What is a concept doc?
-
-A concept document serves as a comprehensive guide, offering clear, concise, and consistent information 
-on a specific concept or process. 
-It acts as a roadmap, logically organizing information to enhance comprehension and readability. 
-By providing essential background information, it enables readers to align their existing knowledge 
-with the tasks they need to perform and gain valuable insights into products, processes, or systems.
-
-For instance, a concept document called "Object-oriented programming"
-would offer a structured explanation of the core principles of OOP,
-helping team members gain a deeper understanding of this programming
-paradigm and serving as a bridge towards implementing OOP effectively in
-software development projects and facilitating the application of these
-principles in practice.
-
-Concept documents can be thought of as extended definitions of major
-abstractions, such as a mechanism or a function. They help explain the
-context and components of a product or service and how these elements
-fit into a broader framework.
-
-## Why do I need a concept doc?
-
-A concept document is important for conveying foundational ideas or
-processes. The key reasons why a concept document is integral include
-the following:
-
--   **Alignment and collaboration**: A concept document serves as a shared point of reference for businesses and teams, holding high-level ideas and enabling all stakeholders to align their understanding and expectations. 
-By having a shared document that holds the ideas, it is much easier to communicate ideas and track progress. Having a central
-description of core concepts reduces repeated explanations through a document. It is much easier to have a concept document that can then be referenced when needed.
-
--   **Reader comprehension**: Concept documents are important because they provide foundational knowledge and background that gives readers context that will help in understanding more specific content. 
-Readers can see the connections and relationships between different elements, helping them make informed decisions about your product. Decision-making is much easier to do if the reader understands the broader context.
-
-A concept doc presents information at the appropriate level of detail to help readers:
-
--   Proceed to other types of content, such
-    as how-tos and reference, with all the foundational knowledge,
-    background and context necessary to use the tool or system.
-
--   Make an informed decision about using certain
-    features of your solution and prioritize efforts throughout the
-    development process.
-
--   Know how certain concepts relate to the broader
-    context. They can see the connections and relationships between
-    different elements and how they fit into a bigger picture.
-
-## Where is its place in the whole documentation?
-
-A concept document provides the necessary context and foundational
-understanding for new ideas, processes or features that are introduced.
-
-They act as a bridge between the overall ideas and the more detailed
-instructions or guides, allowing readers to understand the core of what
-is going on before they move on to more complex operations. It also acts
-as a primer for users who are not yet ready to dive into concrete
-operations or step-by-step guides. By presenting the core concepts and principles in a
-clear and structured manner, the concept doc gradually develops the
-reader's understanding.
-
-## How does the reader get to this document?
-
-In the reader's critical user journey through documentation, a concept
-document is usually in the early sections. While concept documents are
-commonly found at the beginning of documentation, they can also appear
-throughout when introducing new concepts to provide the necessary
-context.
-
-There are two main options here:
-
-1.  Users start their journey with this document or land here from the search results.
-
-2.  Users get there in the middle of their journey because they stumbled upon an unknown concept. 
-In this case, the document serves as a middle layer (to make a decision about using this concept). 
-    
-Ryan Young in the talk "Is it (layer) cake: Thinking in content levels" calls this 
-approach a layered cake (of content). Users use mid-level documentation to close the gaps between low (execution) and high (overview) level. 
-You will use them to help users decide what to do next. Therefore, you can present integration guides, use cases, and broad concepts on this level. 
-
-It is important to notice that users will not follow a defined flow through the documentation. 
-They may jump through different levels of content as they need to.
-
-They may land in your concept document by clicking a link in the How-to document prerequisites
-or by clicking a link from a related concept document.
-
-Understanding these pathways is essential for tailoring the content to
-meet the varying needs of users who either start their exploration with
-the concept or arrive here as part of an ongoing information quest.
-
-## Contents of the concept document
-
-Sections which should exist in a concept template include:
-
-### (Optional) An introductory paragraph
-
-Optionally, you may begin the document with an introductory paragraph
-before diving into the definition. This introductory paragraph can set
-the stage, explaining the concept's relevance and importance. It
-provides readers with a context for what they're about to learn and
-what they can expect in the document.
-
-Apply the inverted pyramid technique here by starting with a high-level overview.
-
-You may skip it and jump right into the definition section.
-
-### Giving a definition
-
-Define the concept so that you and your reader will have a shared
-understanding of the language used throughout the document.Think of it
-as a glossary definition.
-
-This is a good moment to define the scope of the concept – define its
-boundaries, what you'll cover in a document and how deep into details
-you will dive and the extent of the details you will provide.
-
-It may be useful to define what is out of scope – what you don't mean
-by that concept and what won't be covered. If the concept has synonyms
-in other spheres or products, it may be useful to explicitly
-disassociate from them in this section of the document to ensure a
-uniform understanding of the concept.
-
-Provide an overview of how the concept fits into a bigger picture. This
-involves explaining how the concept interacts with other concepts
-[already known by your
-audience](#use-known-concepts-and-examples), provided you
-have knowledge of their level of understanding. Additionally, you can
-break down the concept into smaller, more digestible pieces. By doing
-so, you help your readers make connections, recognize patterns, and gain
-a deeper understanding of the subject matter.
-
-Sometimes, concepts are explained by using
-[analogies](#metaphors-and-analogies) that the user should
-be familiar with. For example, while explaining the complex topic of how
-electricity goes through wires, you could relate it to a more familiar
-topic, such as how water goes through pipes. It helps to bridge
-knowledge gaps.
-
-Also, when you give a definition, it may be useful to stick to
-problem-solution or benefit-focused language.
-
-### (Optional) A visual aid or a diagram
-
-Use a diagram to illustrate how the concept is organized or how it fits
-into a broader system; a decision tree, a flow chart, or a system
-overview diagram is best suited for these tasks.
-
-Usually a concept is best explained with one diagram. This primary
-diagram should be placed close to the top, typically under the
-description. Presenting the diagram early helps draw the reader in, and
-helps them orient themselves visually.
-
-Sometimes multiple diagrams should be used to explain different aspects
-of the concept, and these should be placed next to relevant annotations
-about it.
-
-To enhance the clarity of a diagram illustrating a process related to the concept, 
-consider adding numbered elements within the diagram itself. 
-Additionally, including a legend positioned at the bottom of the picture can explain 
-the meaning behind each numbered component. 
-
-Diagrams are most valuable when they simplify complex relationships,
-depict processes, or illustrate hierarchies. Be cautious not to overwhelm the document with unnecessary visuals 
-if the concept is easily explained through text alone.
-
-### (Optional) About the "Background" section
-
-The background section may describe the prehistory of the concept if it
-is important for better understanding. You can provide relevant
-information and context that helps readers understand the following
-contexts:
-
--   Historical background (where the idea originated from, is there any
-    legacy that made it work like that).
-
--   Industry context (any significant changes in the sector you're
-    working in that influenced the concept).
-
--   Market and technology trends, any new disruptive technologies that
-    appear (Artificial Intelligence(AI)), business trends (recession, remote work), or industry
-    regulations (for instance, General Data Protection Regulation (EU GDPR)).
-
-It can describe how or why something was designed or developed, what
-decisions were made in the past and why. In addition, you can describe
-the alternatives.
-
-### About the "Use cases" section
-
-The use cases section is a good place to apply the StoryBrand framework (referred in the [Resources document](resources-concept.md))
-to engage readers and add more storytelling elements. Storytelling helps
-engage users and memorize concepts by association with the story.
-Research in neuroscience has revealed that narratives, such as those
-applied in the StoryBrand framework, engage multiple areas of the brain 
-and the distinction between reading and real-life gets blurred. 
-Read more regarding that in the [Resources document](resources-concept.md). 
-
-The Storybrand technique is a specific approach to storytelling that
-involves framing the story in terms of a protagonist who has a problem
-and needs a guide to help them solve it. The concept or solution being
-presented is positioned as the guide that can help the protagonist
-overcome their challenges and achieve their goals. By framing the
-concept in this way, the reader is more likely to engage with the story
-and see the product as a valuable solution to their problems.
-
-1.  Make your user a protagonist of the story.
-
-2.  Define what challenges they're facing, so you can craft a story that
-    resonates with them.
-
-3.  Set the stage for the story. Highlight the specific problem or
-    obstacle that your target audience is encountering. Make it
-    relatable and evoke empathy.
-
-4.  Position your concept or feature as the guide that can help the
-    protagonist overcome their challenges and achieve their goals.
-    Outline the steps or key concepts that the user needs to understand
-    to effectively use the product or feature.
-
-5.  Illustrate how the user's life or business can be transformed by
-    using a concept.
-
-For example, you're talking about the containerisation concept, and your
-"protagonist" is a system administrator in a large company, and they are
-experiencing numerous typical problems, such as slow deployments,
-difficulty scaling up service, or frequent power outages. So you act as
-a guide and introduce the "protagonist" to containerised applications,
-their infrastructure and how various aspects of these solve the
-protagonist's problems.
-
-By following this framework, you can create a concept document that
-captures attention, communicates the value of your product or feature,
-and motivates readers to take action.
-
-When using storytelling as a technique in a concept document, it's
-essential to strike a delicate balance between engaging the reader and
-ensuring that the concept remains relevant and comprehensible. A common
-pitfall for writers is becoming overly enthusiastic about their story,
-which can lead to an overload of information that might distract from
-the core concept. Thus, as you weave a story into your concept, always
-consider how it enhances understanding rather than overwhelming your
-audience with unnecessary details.
-
-### (Optional) About the "Comparison" section
-
-If the concept has few implementations, versions, or types, or it has a
-direct preeceder, you may put in a comparison table. This table helps answer questions such as:
-- What is the difference between this element and a similar element?
-- Why do I need to choose a certain option?
-
-| What                  | Why needed         |
-|-----------------------|--------------------|
-| {concept} type 1      | A reason to use it |
-| {concept} type 2      | A reason to use it |
-
-### (Optional) About the "Related resources" section
-
-Provide links or references to additional resources that can help
-readers explore the topic further or dive deeper into specific aspects
-of the concept.
-
-If you have many related links, split them into a few groups (for example, How-to's,
-Linked concepts, External materials, etc.), not more than 3-5 links
-each, to avoid overwhelming a reader with a wall of links.
-
-## Best practices for concept documents
-
-Within the realm of concept documents,
-there exist dozens of valid approaches and documentation techniques.
-Each author, armed with their experience, must choose the right
-technique tailored to the specific demands of the task at hand.
-
-Concept documents are more than just collections of ideas; they're a careful mix of clarity and detail. 
-Crafting them requires skill in both technical and narrative aspects, making it a significant challenge. 
-Choosing the right technique involves navigating communication intricacies to ensure that the document resonates with
-its audience, serving as a beacon of understanding in the vast amount of
-information.
-
-Here are the key practices for crafting an effective
-concept document:
-
-### Scope
-
-The scope of your concept document is a foundational element. It should
-be dedicated to a single concept and strike a balance between
-comprehensiveness and relevance. Here\'s how to define the scope:
-
--   **Dedicate to a single concept**: Ensure that your document focuses on
-    just one concept to prevent confusion or information overload. If
-    the explanation begins to explain another concept, it is advisable
-    to start a different concept document and provide a link.
-
--   **Avoid instructional and referential information**: The concept
-    document should also avoid instructional text and step-by-step
-    guides which are different types of documentation.
-
--   **Select the right depth of understanding**: Dive deep enough to provide a thorough
-    understanding without overwhelming the reader.
-
--   **Define essential information**: Consider what would be valuable to
-    someone who has never encountered the concept before. Use this
-    perspective to define the scope.
-
-### Structure 
-
-A well-structured concept document is crucial for enabling readers to
-incrementally build their understanding of the concept.
-
-Consider the following practices:
-
--   **Inverted pyramid technique**: Consider using the inverted pyramid
-    technique, where you start with a high-level overview and then
-    gradually delve into the details. This approach helps readers
-    quickly grasp the main idea and then explore further as needed.
-
--   **Definition**: Provide a clear and concise definition of the concept.
-
--   **Key questions**: Address the key questions of what, when, who, why,
-    where, and how (5W and 1H), placing these explanations near the
-    beginning of your document. One more technique is to answer the question "How can I use it" or "How it helps me" from the
-    reader's perspective.
-
--   **Headings and subheadings**: Organize your ideas using headings and
-    subheadings to enhance readability and accessibility.
-
--   **Chunking**: Break down complex concepts into smaller parts, and use
-    abstraction to focus on the most important information.
-
--   **Real-world examples**: Include real-world examples and use cases to
-    provide context and help readers understand how the concept is
-    applied.
-
-### Language
-
-The language used in your concept document should prioritize clarity and
-simplicity, tailored to the audience's expertise level. To enhance
-accessibility:
-
--   **Minimize jargon**: Strive to minimize the use of domain-specific
-    jargon and technical terms to make the document more accessible,
-    especially for new users.
-
--   **Conversational tone**: Maintain a conversational tone that fully
-    engages the reader.
-
--   **Avoid implementation details**: Stay clear of delving into
-    implementation-specific details, as your document should focus on
-    the conceptual content.
-
-### Metaphors and analogies
-
-Metaphors and analogies are effective tools for enhancing the
-relatability and clarity of your concept document. When using them:
-
--   **When to use metaphors and analogies**: Use them when they enhance
-    understanding, align with your audience's background, and bring
-    clarity and context.
-
--   **When to be cautious**: Exercise caution when there\'s a potential lack
-    of understanding due to cultural, age, or background differences or
-    when they might complicate the concept.
-
-A List Apart style guide (referred in the [Resources document](resources-concept.md#)) advises avoiding extended metaphors if
-possible, so think case by case whether your audience will understand
-them and if it adds anything to their understanding.
-
-Best practices for metaphors and analogies:
-
--   **Opt for universal metaphors**: Choose universal metaphors that are
-    culture, age, and background-independent.
-
--  **Ensure alignment**: Ensure that the metaphor or analogy seamlessly
-    aligns with the concept and enhances clarity.
-
--   **Understand your audience**: Consider your audience\'s familiarity with
-    the chosen metaphor before incorporating it into your document.
-
-While universal metaphors are generally safe and reliable, they may not
-always be as engaging or memorable as more specific or popular culture
-references. The decision to use universal metaphors or pop-culture
-references should be guided by your understanding of your target
-audience, concept complexity, and the specific goals of your concept
-document.
-
-Analogies act as memory aids, turning abstract ideas into tangible
-mental images. These mental images can serve as reference points when
-your audience needs to recall the concept or explain it to others.
-
-### Use known concepts and examples 
-
-Connect complex ideas with familiar concepts or examples to enhance
-understanding:
-
--   **Pick familiar comparisons**: Choose comparisons and examples that are
-    easy to understand, considering your audience's background.
-
--   **Enhance understanding**: Linking new information to known concepts
-    helps readers grasp the new information more effectively.
-
+For a worked example, see `example-concept.md`.
 
 ---
 
-> Explore other templates from [The Good Docs Project](https://thegooddocsproject.dev/). Use our [feedback form](https://thegooddocsproject.dev/feedback/?template=Concept%20guide) to give feedback on this template.
+## What is a concept document?
+
+A concept document explains what something is, why it exists, and how it fits into a broader system. It gives readers the foundational knowledge they need before they attempt a task or make a decision about using a feature or product.
+
+A concept document does not instruct. It does not walk readers through steps, and it does not list configuration values. Readers who need to do something should follow a how-to guide or installation guide. The concept document is the background that makes those guides meaningful.
+
+Concept documents are often confused with overviews or reference topics. The table below shows the key differences.
+
+| | Concept | How-to | Reference |
+|---|---|---|---|
+| **Orientation** | Understanding-oriented: explains what something is and why it matters. | Task-oriented: guides a reader through completing a specific goal. | Lookup-oriented: provides complete, structured facts about a product element. |
+| **Content** | Definitions, explanations, analogies, diagrams, use cases, and comparisons. | Numbered steps, prerequisites, and expected outcomes. | Parameters, options, return values, and constraints. |
+| **Reader need** | "I don't understand what this is." | "I know what I want to do — show me how." | "I know what this does — I need the exact details." |
+
+---
+
+## Why write a concept document?
+
+A well-written concept document:
+
+- Gives readers the background they need to use how-to guides and reference material without confusion.
+- Reduces repeated explanations by creating a single, linkable definition of a core idea.
+- Helps readers make informed decisions about whether a feature or approach suits their situation.
+- Provides AI assistants with dense, structured background knowledge that can be surfaced in response to "what is X" or "how does X work" queries.
+
+---
+
+## Before you start writing
+
+Before writing, identify:
+
+- The single concept this document covers. If the explanation begins to explain a second concept, stop and create a separate document for it, then link between them.
+- The audience's existing knowledge level. This determines which analogies will land, which related concepts you can assume, and how much background to provide.
+- The one or two diagrams that best illustrate the concept. Identify these before writing so the prose can be written to complement them.
+- The use cases that show the concept in practice. Concrete scenarios are the most effective way to make an abstract concept stick.
+- What this concept is not — the boundaries and common misconceptions. Defining what is out of scope prevents readers from misapplying the concept.
+
+---
+
+## Best practices
+
+- **One concept per document.** If explaining the concept requires explaining another concept in depth, create a separate document for the second concept and link to it.
+- **Lead with a definition.** Give readers a clear, one- or two-sentence definition before providing background, use cases, or comparisons. A reader who cannot define the concept after the first paragraph will struggle with everything that follows.
+- **Use the inverted pyramid.** Start with the highest-level summary and work progressively toward detail. Readers who only need the overview can stop early; readers who need depth can keep reading.
+- **Prefer analogies over jargon.** When a concept is abstract, connect it to something the reader already knows. Analogies should be universal — avoid cultural, age-specific, or pop-culture references that may not translate.
+- **Diagrams belong near the top.** Place the primary diagram directly after the definition. A well-placed diagram helps readers build a mental model before they read the detail. Use numbered callouts and a legend for complex diagrams.
+- **Use cases carry the weight.** Abstract explanations are forgotten; concrete scenarios are remembered. Every concept document should have at least one use case that shows a real reader with a real problem using the concept to solve it.
+- **Define what this concept is not.** Explicitly ruling out common misconceptions or near-synonyms prevents misapplication and reduces support questions.
+- **Do not include steps.** If you find yourself writing numbered instructions, move that content to a how-to guide and link to it from the References section.
+
+---
+
+## AI-ready writing principles
+
+AI assistants and human readers parse documentation differently from search engines. Apply these rules in every section of the concept document.
+
+**1. One idea per sentence.** Long compound sentences confuse AI extractors.
+
+- Bad: "Coffee extraction is the process by which water, which must be at the correct temperature, dissolves soluble compounds from ground coffee, producing the drink."
+- Good: "Coffee extraction is the process by which hot water dissolves soluble compounds from ground coffee. Water temperature directly affects which compounds are extracted and in what quantities."
+
+**2. Use exact names consistently.** If the concept is "extraction yield", never shorten it to "yield" or "the process" mid-document. Inconsistency breaks AI entity resolution and confuses readers who arrive mid-page from search.
+
+**3. State the significance of each key fact.** After introducing a property or characteristic of the concept, add one sentence explaining why it matters to the reader. AI assistants surface these significance sentences when answering "why does X matter?" questions.
+
+**4. Avoid implicit pronouns.** Replace "it", "this", and "they" with the actual noun.
+
+- Bad: "It affects the final taste significantly."
+- Good: "Extraction yield affects the final taste of the brewed coffee significantly."
+
+**5. Make definitions self-contained.** The definition section must be understandable in isolation — AI assistants frequently surface it as a standalone answer. Do not rely on context from earlier sections.
+
+**6. Use parallel structure in lists.** Every bullet in a list should follow the same grammatical pattern — all noun phrases, or all starting with a verb.
+
+**7. Mark optional content explicitly.** Use "(Optional)" at the start of any section or paragraph that not every reader will need, such as historical background or advanced comparisons.
+
+**8. Write alt text for every image.** Alt text is read by screen readers and indexed by AI systems. Describe what the image shows and what it communicates, not just what it depicts.
+
+- Bad: `![Coffee](coffee-img.jpg)`
+- Good: `![A French press and a glass cup surrounded by whole coffee beans, illustrating the components used in immersion brewing.](coffee-img.jpg)`
+
+---
+
+## Section requirements
+
+| Section | Required? |
+|---|---|
+| Frontmatter | Required |
+| Introduction paragraph | Optional — use when the concept needs context before the definition |
+| Definition | Required |
+| Visual aid or diagram | Optional — use when a diagram simplifies a relationship, process, or hierarchy that text alone cannot convey clearly |
+| Background | Optional — use when historical or industry context is essential for understanding |
+| Use cases | Required — include at least one |
+| Comparison table | Optional — use when the concept has two or more distinct types, versions, or direct predecessors |
+| References | Required |
+
+---
+
+## Frontmatter fields
+
+### Required fields
+
+**nd-content-type**: Always `concept` for conceptual background documents.
+
+**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+
+**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+
+**title**: Use a noun phrase that names the concept directly. Do not use "Understanding X" or "About X" — these add words without adding meaning.
+
+- Good: "Coffee extraction"
+- Bad: "Understanding coffee extraction" or "About the coffee extraction process"
+
+**description**: One sentence under 160 characters summarising what the concept is and why it matters. This text appears in search engine results, AI assistant citations, and doc portal previews.
+
+**weight**: Controls the sort order within the section. Lower numbers appear first.
+
+**toc**: Set to `true` to render an in-page table of contents. Use `false` only for very short single-section documents.
+
+### AI enrichment fields (recommended)
+
+These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
+
+**nd-keywords**: Comma-separated terms a reader might type to find this document. Include the concept name, related terms, common synonyms, and the product or domain context.
+
+**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+
+- Sentence 1: what the concept is, in plain language
+- Sentence 2: why it matters to the reader or what it enables
+- Sentence 3 (optional): scope, boundaries, or what this document does not cover
+
+**nd-audience**: Who this document is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
+
+**nd-related-tasks**: How-to guides, installation guides, or other concept documents the reader is likely to need next. Use the `ref` path, not the full URL, so links survive URL changes.
+
+---
+
+## Introduction paragraph (optional)
+
+Open with one to three sentences that set the stage for the definition. Use this section when the concept requires context before it can be meaningfully defined — for example, when the reader needs to understand a problem before understanding the solution.
+
+Apply the inverted pyramid: start at the highest level and work toward the definition. Skip this section and go straight to the definition if the concept is self-contained.
+
+Do not start with "This document explains" — that is redundant. Lead with the relevance: "When water meets ground coffee, a precise chemical process determines everything about the cup."
+
+---
+
+## Definition section
+
+The definition section is required and should appear first or immediately after the introduction. It is the section most likely to be surfaced verbatim by AI assistants — every sentence must stand on its own.
+
+Write a clear, one- or two-sentence definition of the concept. Then expand it by covering:
+
+- What the concept is and what it does
+- What it is not, or what it is commonly confused with
+- How it fits into the broader product or system
+
+Use an analogy when the concept is abstract. Choose analogies that are universal — avoid cultural, age-specific, or regional references. A good analogy bridges from something the reader already knows to something they do not yet understand.
+
+- Good: "Extraction is to coffee what steeping is to tea — both use water to draw flavour compounds out of a solid into a liquid."
+- Bad: "Extraction works like a DJ mixing a track — you control which frequencies come through."
+
+Define the scope explicitly. State what this document covers and what it does not.
+
+---
+
+## Visual aid section (optional)
+
+Include a visual when it simplifies a relationship, process, or hierarchy that text alone cannot convey clearly. Do not include a visual just for decoration.
+
+Place the primary diagram directly after the definition section. A diagram seen early helps the reader build a mental model before reading the detail.
+
+Format images in markdown as follows:
+
+```markdown
+![{Descriptive alt text explaining what the image shows and what it communicates.}]({image-filename.ext})
+```
+
+Write alt text that describes what the image communicates, not just what it depicts. AI systems index alt text. Screen readers read it aloud.
+
+For complex diagrams, use numbered callouts inside the diagram and provide a legend below it. For example:
+
+```markdown
+![Diagram showing water flow through a drip coffee maker: (1) reservoir, (2) heating element, (3) shower head, (4) filter basket, (5) carafe.](drip-flow-diagram.png)
+
+| Number | Component |
+|---|---|
+| 1 | Water reservoir |
+| 2 | Heating element |
+| 3 | Shower head |
+| 4 | Filter basket |
+| 5 | Carafe |
+```
+
+---
+
+## Background section (optional)
+
+Include background when historical or industry context is essential to understanding the concept — not just interesting. Ask: would a reader be confused or misled without this information? If not, leave it out.
+
+Background may cover:
+
+- How or why the concept was designed the way it was
+- Historical decisions that explain current behaviour
+- Industry or regulatory context that shapes how the concept is used
+
+Keep this section short. Background that runs longer than a few paragraphs usually contains content that belongs elsewhere — either in the definition, a use case, or a separate concept document.
+
+---
+
+## Use cases section
+
+Include at least one use case. Use cases are required because abstract explanations are forgotten; concrete scenarios are remembered.
+
+A good use case names a specific reader type, describes the problem they face, and shows how the concept helps them solve it. Use the following pattern:
+
+1. Name the reader type (operator, developer, home barista).
+2. Describe the problem or situation they face.
+3. Show how the concept resolves or informs that situation.
+
+You do not need numbered steps. Use cases are narrative, not procedural.
+
+If the concept has more than three distinct use cases, present the two or three most representative ones and link to further reading.
+
+---
+
+## Comparison section (optional)
+
+Include a comparison table when the concept has two or more distinct types, versions, or direct predecessors that readers must choose between.
+
+A comparison table answers: "What is the difference between X and Y, and when should I use each?"
+
+Use the following format:
+
+| | {Option A} | {Option B} |
+|---|---|---|
+| **{Criterion}** | {Value for A} | {Value for B} |
+| **{Criterion}** | {Value for A} | {Value for B} |
+| **Best for** | {Scenario where A is the right choice} | {Scenario where B is the right choice} |
+
+Keep the table focused. Include only the criteria that affect the reader's decision. A comparison table with more than six rows usually contains noise.
+
+---
+
+## References section
+
+Link to related documents that provide deeper context or logical next steps. Group links by type:
+
+- How-to guides the reader is likely to need after reading this concept
+- Related concept documents
+- Reference material (API docs, configuration references)
+- External resources
+
+Use this section to link to anything you deliberately kept out of the main document to avoid interrupting the explanation. Always use the `ref` shortcode for internal links so they survive URL changes. AI systems use this section to build knowledge graphs between documents.

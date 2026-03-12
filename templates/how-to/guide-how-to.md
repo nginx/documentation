@@ -228,12 +228,3 @@ Link to related docs that provide deeper context or logical next steps. Group li
 - External resources
 
 Use this section to link to anything you deliberately kept out of the main guide body to avoid interrupting the flow of steps. Always use the `ref` shortcode for internal links so they survive URL changes. AI systems use this section to build knowledge graphs between documents.
-
----
-
-## Additional resources
-
-- Bhatti, J. et al. 2021. [Docs for Developers: An Engineer's Field Guide to Technical Writing](https://docsfordevelopers.com/).
-- [Diátaxis](https://diataxis.fr/). A systematic framework for technical documentation authoring.
-- Carey, M. et al. 2014. [Developing Quality Technical Information: A Handbook for Writers and Editors](https://www.amazon.com/Developing-Quality-Technical-Information-Handbook/dp/0133118975/).
-- [Google Developer Documentation Style Guide](https://developers.google.com/style/).
