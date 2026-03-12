@@ -1,184 +1,149 @@
-# Title
-
-> If you need more information about how to fill in this template, read the accompanying [guide](./guide-installation-guide.md).
-
-> This template includes writing instructions and boilerplate text that you can customize, use as-is, or completely replace with your own text. This text is indicated in {curly brackets}. Make sure you replace the placeholders with your own text.
-
-## Introduction
-
-{The installation guide template includes information on writing procedures for successfully installing {product name}. {Insert your preferred description of the installation process.}
-
-{Optional: Add a demo GIF that shows what the installed project would look like or link to a sandbox or playground to test out the product and explore its features.}
-
-## Installation types
-
-This guide explains the steps and instructions required to install {product name} on supported operating systems. It also explains how to configure, start, and uninstall {product name}}.
-
-{Include a table to capture the different installation types, such as:
-
-* Supported operating systems
-* The type of product installed (if provided in different versions, such as Main and Lite version)
-* Cloud providers, such as CodeSpaces, CodeSandBox, GitPod, etc.,) including a link to the right heading for all options.}
-
-| **Type**  | **Description**   | **More information** |
-| --------- | ----------------- | -------------------  |
-| {Name of installation type}   | {Description of installation type} | {Link to the relevant installation steps section}                   |
-| {Name of installation type}   | {Description of installation type} | {Link to the relevant installation steps section}                                       |
+---
+nd-content-type: installation-guide
+nd-docs: DOCS-000
+nd-product: {PRODUCT_CODE}
+title: {Install + product or component name}
+description: "{One-sentence summary of what the reader installs and on what platform, under 160 characters.}"
+weight: 100
+toc: true
+nd-keywords: "{keyword1}, {keyword2}, {keyword3}, {platform}, {package-manager}, {CLI command}"
+nd-summary: >
+  {Sentence 1: what the reader will install and where. Write in plain prose and avoid jargon.}
+  {Sentence 2: what the installed component does or enables.}
+  {Sentence 3 (optional): supported platforms, versions, or scope limits.}
+nd-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
+nd-related-tasks:
+  - /path/to/upgrade-guide.md   {Use the ref path, not the full URL, so links survive URL changes.}
+  - /path/to/uninstall-guide.md
+  - /path/to/quickstart.md
+---
 
 ## Overview
 
-{This section is optional.}
+{Use this guide to install X so that Y. The Overview is the paragraph most likely to be surfaced verbatim by AI assistants — make every sentence independently meaningful. Write two to four sentences covering what is being installed, what it does or enables, and what the reader will have at the end of this guide. Do not start with "This guide explains how to".}
 
-{Add a list of the available project versions, link to the installation guide for that version, and highlight the latest, beta, or stable version as listed in the following table:}
-
-| **Version** | **Build** | **Release Date**   | **Status**                                  |
-| --------    | --------- | -------- | ------- |
-| [V {versionNumber}](#link) | {versionNumber release} | {dd/mm/yyyy}      | {Latest}        |
-| [V {versionNumber}](#link) | {versionNumber release} | {dd/mm/yyyy}      | {Beta}          |
-| [V {versionNumber}](#link) | {versionNumber release} | {dd/mm/yyyy}      | {Stable}        |
-
-{Explain the intended result of the installation, such as the commands, command aliases, major flags, available plugins, files downloaded, or application programs.}
-
-{Add a sequential end-to-end summary of the installation process that can serve as a quick link or reference section for users as listed in the following table:}
-
-|      | **Process**  | **More information** |
-| ---- | ------------ | -------------------- |
-| 1. | Before installing, check the system requirements to ensure your computer is supported in the latest version of {product name}. | {Link to relevant documents}        |
-| 2. | Check the system prerequisites to install all the required {software,  dependencies, tools.}.    | {Link to relevant documents}                          |
-| 3. | {List additional steps.}          | {Link to relevant documents}                                    |
-| 4. | Verify that the installation was successful.  | {Link to relevant documents} |
-
-
-## System requirements
-
-{Start by breaking this into sub-sections based on the number of installation types (product type, operating system, or cloud—especially for projects that require self-hosting to work). Based on your use case, you can use this section reversely by having the installation type as the heading and system requirements for that type as a sub-section.}
-
-{Mention for all installation types.}
+---
 
 ## Before you begin
 
-{List and highlight all the required prerequisites here. Consider making this a table.}
+Before you begin, ensure you have:
 
-Before installing {version number}, ensure you have:
+- **{Operating system and version}**: {Supported OS versions and the command to verify, for example: `lsb_release -rs`. Link to a compatibility matrix if one exists.}
+- **{Prerequisite tool or runtime}**: {Minimum version required and how to verify it, for example: `node --version`. Link to installation instructions if needed.}
+- **{Account or credential}**: {What it is, how to obtain it, and where it is used in this guide. Note if it is displayed only once.}
+- **{Network or firewall requirement}**: {Any ports, endpoints, or outbound access the installation requires.}
+- **{Privilege or permission}**: {For example: root access, sudo, or a specific IAM role.}
 
-* {Prerequisite one}
-* {Prerequisite two}
-* {Prerequisite three}
+{If there are more than five prerequisites, group them under subheadings: Accounts and credentials / Software and tools / Network and environment requirements.}
 
-{Include prerequisites for all installation types.}
+{Optional: Redirect users who are in the wrong place. For example: "If you are installing on RHEL, see [Install {product} on RHEL](link)."}
 
-| **Type**  | **Prerequisites** | **Note(s)**  |
-| --------- | ----------------- | ------------ |
-| {Installation type name} | {Installation type prerequisites} | {Important considerations}          |
-| {Installation type name} | {Installation type prerequisites} | {Important considerations}          |
+---
 
+## {Task name — use a bare infinitive verb phrase, for example: "Add the package repository"}
 
-## Installation steps
+{Optional: One sentence stating the purpose of this task, but only if the heading alone does not make the purpose clear.}
 
-The following procedure explains how to install {installation type name} and {optional version number}.
+{Add a separate H2 task section when the procedure differs significantly for two supported variants, or when the reader must complete a second independent phase.}
 
-{Provide a short introduction to the step-by-step procedure based on the installation type.}
+1. {Step — start with a verb. Orient the user before the action: state what file to open or screen to navigate to first.}
 
-Get started with {version number} by {write the first step a user needs to start the installation. Use a verb to start.}
+    ```{language}
+    {code sample — use ALL_CAPS_PLACEHOLDERS for values the reader must supply}
+    ```
 
-### Step 1 - One-sentence description of the step
+    {Outcome sentence — describe what the step does or what the reader should observe. This is the sentence AI assistants are most likely to surface when answering follow-up questions.}
 
-{Optionally, introduce this section with brief explanatory text.}
+2. {Step.}
 
-{Continue with a list section if these steps include a sequence of instructions}
+3. {Step — use plain language. Define any technical term next to where you first use it.}
 
-{Optional: include a code snippet or relevant screenshot that helps your users complete the steps.}
+    1. {Substep.}
+    2. {Substep.}
 
-{Optional: show the result of completing this step, such as a text output or an image).}
+---
 
-#### 1.1. Substep 1 - One-sentence description of the step
+## Install {product or component name}
 
-{Optionally, introduce this section with brief explanatory text.}
+1. {Step.}
 
-{Continue with a list section if these steps include a sequence of instructions}
+    ```{language}
+    {code sample}
+    ```
 
-#### 1.2. Substep 2 - One-sentence description of the step
+    {Outcome sentence.}
 
-{Optionally, introduce this section with brief explanatory text.}
+2. {Step.}
 
-{Continue with a list section if these steps include a sequence of instructions.}
+---
 
-### Step 2 - One-sentence description of the step
+## Configure {product or component name}
 
-{Optionally, introduce this section with brief explanatory text.}
+{Optional: One sentence stating the purpose of this task.}
 
-{Continue with a list section if these steps include a sequence of instructions.}
+1. Open `{config file path}`. {Outcome sentence — for example: "The file contains the default configuration for {product}."}
 
-## Verify installation
+2. Set the following values:
 
-{Include test commands, intended outputs, or other steps to confirm the installation was successful.}
+    ```{language}
+    {PLACEHOLDER_KEY}: YOUR_VALUE_HERE
+    {PLACEHOLDER_KEY_2}: YOUR_VALUE_HERE
+    ```
 
-## Post installation
+    {Outcome sentence — for example: "These values connect the agent to your control plane."}
 
-{Provide an overview of options or link to other relevant documentation once installation has been completed. Also, account for anticipated problems during or after installation.}
+3. {Step.} {Outcome sentence.}
 
-{Optinal: include short introduction text.}
+---
 
-### Configuration options
+## Verify the installation
 
-{Provide information regarding post-installation configuration options.}
+1. {Step — for example: run a status or version command.}
 
-{Describe the requirements for configuring the installed product.}
+    ```{language}
+    {code sample}
+    ```
 
-{Link to relevant documentation if needed.}
+    {Outcome sentence — describe the expected output that confirms a successful installation.}
 
-### Upgrade options
+    ```{language}
+    {expected output sample}
+    ```
 
-{Provide information regarding upgrade options, also known as an update options.}
+2. {Optional: additional verification step.}
 
-{Describe how to install updates from a range of possible options.}
-
-{Provide a link to available updates with specific version numbers, release dates, and key features.}
-
-Example: To begin the system updates:
-
-1. Choose the version number.
-2. Download the update at [link](http://example.com).
-3. Double-click the update file.
-4. Additional steps as needed.
-
-### Downgrade options
-
-{Provide information regarding downgrading the version installed.}
-
-### Uninstallation options
-
-{Provide information regarding uninstalling the product, software, SDK, package, library, framework installed.}
+---
 
 ## Troubleshooting
 
-{This section helps solve problems encountered during installation.  Start with a problem statement, then indicate the cause and provide a solution. Additional information can be added (e.g., restart the computer)}.
+### {Symptom or error message}
 
-{Add a warning note and highlight in color if the action has the potential to affect security.
+**Symptom**: {What the reader sees — copy the exact error message string if one exists.}
 
-Communicating with the product engineers and programmers is essential to keep this section up-to-date.}
+**Cause**: {Why this happens.}
 
-{Problem: ...}
+**Fix**: {What to do.}
 
-{Cause: …}
+---
 
-{Solution: …}
+### {Second symptom or error message}
 
-{Support/contact information for issue reports and feedback.}
+**Symptom**: {What the reader sees.}
 
-## Next steps
+**Cause**: {Why this happens.}
 
-{Include what to do after a successful installation, such as a recommended next step or links to further recommended documentation.}
+**Fix**: {What to do.}
 
-## Product version history
+---
 
-{History section with major changes to the installation guide tabulated following the Major.Minor.Patch semantic versioning specification.}
+## References
 
-## Definition of terms
+For more information, see:
 
-{Optional: Provide a glossary table describing the terms, acronyms, and abbreviations used in the installation guide.}
+- [{Upgrade guide title}]({link})
+- [{Uninstall guide title}]({link})
+- [{Credential or key creation guide title}]({link})
+- [{Configuration reference title}]({link})
+- [{Release notes or changelog title}]({link})
 
-| **Term** | **Meaning**  |
-| ------------------------------------- | ------------ |
-| {Term, acronym, or abbreviation}  | {Provide a definition of the term or acronym or abbreviation used in this guide.}     |
-| {Term, acronym, or abbreviation}  | {Provide a definition of the term or acronym or abbreviation used in this guide.}     |
+{Use the ref shortcode for internal links so they survive URL changes. AI systems use this section to build knowledge graphs between documents.}

@@ -8,7 +8,7 @@ For a worked example, see `example-how-to.md`.
 
 ## What is a how-to guide?
 
-A how-to guide takes your users through a series of steps required to solve a specific problem or complete a task in your product — for example, how to create an issue in GitHub or how to connect an NGINX instance to NGINX One.
+A how-to guide takes your users through a series of steps required to solve a specific problem or complete a task in your product, for example, how to create an issue in GitHub or how to connect an NGINX instance to NGINX One.
 
 A how-to assumes the user has basic knowledge of the product. It does not teach concepts. Users who need foundational knowledge should read a quickstart or tutorial first.
 
@@ -107,9 +107,9 @@ AI assistants and human readers parse documentation differently from search engi
 
 **nd-content-type**: Always `how-to` for task-based guides.
 
-**nd-docs**: The ticket or tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Ask your team lead if you are unsure which code to use.
+**nd-product**: The product code. Ask your team lead or the technical writers if you are unsure which code to use. You can also check the code of an existing document for the same product.
 
 **title**: Use an imperative verb phrase — the same verb form you would use to tell someone what to do. Keep it under 60 characters so it fits cleanly in navigation menus and search results.
 
@@ -118,7 +118,7 @@ AI assistants and human readers parse documentation differently from search engi
 
 **description**: One sentence under 160 characters summarising what the reader will achieve. This text appears in search engine results, AI assistant citations, and doc portal previews. Write it as a complete sentence: "Configure X to do Y" or "Learn how to connect X to Y."
 
-**weight**: Controls the sort order within the section. Lower numbers appear first. Ask your team lead for the correct value if you are unsure.
+**weight**: Controls the sort order within the section. Lower numbers appear first. Ask your documentation team for the correct value if you are unsure.
 
 **toc**: Set to `true` to render an in-page table of contents. Use `false` only for very short guides with a single task section.
 

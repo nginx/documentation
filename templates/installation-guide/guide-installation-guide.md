@@ -1,131 +1,266 @@
-# Installation template guide
+# Guide: How to write an installation guide
 
-## Introduction
-An installation guide covers all the steps necessary to install the product and set it up for further use. You need an installation guide to install:
+This guide explains how to complete `template-installation-guide.md`. It covers what an installation guide is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-* Operating systems, applications, plugins, and extensions.
-* SaaS (Software as a Service) applications.
-* Open source software (OSS) product documentation.
-* Hardware device product documentation.
+For a worked example, see `example-installation-guide.md`.
 
-There are two categories of an installation guide:
+---
 
-* **Standalone**: An independent installation guide document or page that includes all the necessary information required to install the software or application, including system requirements and step-by-step instructions.
-* **Integrated**: An installation guide document or page integrated inside an existing README document.
+## What is an installation guide?
 
-## Identify your audience
-An installation guide is for users who have the sufficient technical expertise required to understand the installation instructions provided. If your proposed audience requires some technical expertise to install the product, you should highlight and list these requirements in the prerequisites section of the document.
+An installation guide takes your users through the steps required to install, configure, and verify a piece of software on a specific platform. It covers everything from prerequisites and package acquisition through to a running, verified instance.
 
-## Why do you need an installation guide?
-An installation guide can:
+An installation guide assumes the user has decided what to install and knows why they want it. It does not explain concepts or make the case for the product. Users who need that context should read a quickstart or overview first.
 
-* Help a user get started using your product.
-* Reduce the number of support requests related to installation issues.
-* Establish consistency in the existing developer experience.
-* Ensure increased retention of a user who explores your product.
-* Confirm a user has everything they need to configure, customize, and/or upgrade your product.
+Installation guides are often confused with quickstarts. The table below shows the key differences.
 
-Installation guides are often confused with how-to guides. It is essential to distinguish between an installation guide and a how-to guide document.
-​
-An installation guide shows how to install the product (as a procedure), while a "how-to" topic shows how to do something with the product after it's been installed. The difference lies in the purpose of the instructions. An installation guide describes the process of setting up and configuring a specific software, application, or service. A how-to guide describes how to accomplish a particular task using a specific product or technology (which would already be installed).
-​
-The key differences are listed in the following table:
+| | Quickstart | Installation guide |
+|---|---|---|
+| **Orientation** | Learning-oriented: gets a new user to a working demo as fast as possible, often with simplified or pre-configured settings. | Task-oriented: installs the product correctly for real use, including all configuration and verification steps. |
+| **Scope** | May skip optional steps or use defaults without explanation. | Covers every step the reader must take, including configuration decisions that affect production use. |
+| **Assumed knowledge** | Assumes little to no product knowledge. | Assumes the reader has chosen the product and understands its purpose. |
+| **Output** | A working demo or sandbox environment. | A correctly installed and verified instance ready for real use. |
 
-|          | **installation guide** | **how-to guide**  |
-| -------  | --------------         | -------------------- |
-| Audience |Systems administrators and users who require detailed instructions and technical details when setting-up and installing a software product.| Users with a less technical background who want to set-up and install a software product.    |
-|  Scope   |  An installation guide provides specific instructions on how to install and set up a particular software product.    |  A how-to guide takes the user through a series of steps required to perform a specific task to solve a particular problem.   |
-|   Format | An installation guide is a prerequisite document a user reads before considering How-to Guides; because you need the product itself installed before you solve any problem related to that product. Due to the broad scope and availability of different variables and conditions in which an installation guide would function, an installation guide should be independent of a how-to guide.     |  how-to guide (or even a Tutorial) may include installation steps of the software or an application that needs to be installed as part of the How-to solution process. A hyperlink within the how-to guide would link back to the dedicated installation guide.   |
+---
 
-## Before writing an installation guide
-Before you start working on your installation guide, identify the following:
+## Why write an installation guide?
 
-* The target user who needs to follow your installation guide. This helps determine the appropriate level of information.
-* The specific version of the software or application to be installed and the system requirements for installation.
-* Software prerequisites or libraries dependencies.
-* Installation options such as following an installation wizard or customized installation.
-* Identify common issues that may arise during the installation process, and provide troubleshooting tips to help users overcome these issues.
+A well-written installation guide:
 
-## Writing the installation guide
-This section provides details about writing the installation guide.
+- Reduces support costs by giving users a single, authoritative path through installation.
+- Prevents misconfiguration by making every required setting explicit.
+- Serves as a reference users return to when reinstalling or setting up additional instances.
+- Provides AI assistants with structured, citable steps that can be surfaced in response to "how do I install X" queries.
 
-### About the “Introduction” section
-In this section, state the purpose of the installation guide. Optionally, you can specify the benefits of this installation such as increased performance, better system stability, and enhanced security.
-​
-Optional: add a link to a demo of the installed product or a sandbox to try out the product.
+---
 
-### About the “Installation types” section
-In this section, explain what is included within the installation guide. This can include a list of different versions to be installed as an option. Make sure you highlight the differences between the installation scenarios. These can be outlined in a table with columns indicating the name of the installation type, a description of the installation type, and a link to the relevant installation steps within the guide.
+## Before you start writing
 
-If your product can be used in different environments, include a table specifying the different installation types. This table can help users choose the relevant installation type based on their needs. For example, you can classify the installation type based on:
+Before writing, identify:
 
-* Main or lite version when a product has installable options with different functionalities.
-* Operating system types such as installation for Windows, Linux, and MacOS.
-* Cloud providers for products that require self-hosting to work such as CodeSpaces, CodeSandBox, and GitPod.
+- The target platform. Write one installation guide per platform. Do not combine Linux and Windows steps in a single guide — the conditional branching makes the guide harder to follow and harder for AI to extract.
+- The exact install path. There is often more than one way to install software (package manager, binary download, container, source). Choose the recommended method and document only that one. Link to alternatives at the bottom.
+- Every prerequisite the user must satisfy before running the first command. Missing prerequisites are the most common cause of installation failures and support requests.
+- The verification steps that confirm a successful installation. A guide that ends at "install complete" without verification leaves the user uncertain.
+- The two or three most common failure modes and their fixes. These become your Troubleshooting section.
 
-Add an introductory sentence to the table. Also, include links for all the available options.                |
+---
 
-### About the “Overview” section
-In this section, explain the intended result of the installation, such as the commands, command aliases, major flags, available plugins, files downloaded, or application programs.
+## Best practices
 
-Also, include a sequential end-to-end summary of the installation process that can serve as a quick link or reference section for users. Consider displaying this information in a table with one column summarizing the specific process and a second column linking to a relevant document.
-​
-Optionally, you can include links to previous versions, if applicable. Consider formatting this list of versions in a table.
+- **One platform per guide.** Write one guide per operating system or distribution. If steps differ between Ubuntu and RHEL, write two guides. Combining them forces users to read steps that do not apply to them.
+- **One install method per guide.** If multiple install methods exist, document the recommended one. Mention alternatives only by linking to a separate document.
+- **Number every step.** Numbered steps are the most reliable structure for AI to extract procedural instructions. Do not use unnumbered prose for steps, even if a task has only one step.
+- **Add an outcome sentence after every command.** State what the command does or what the reader should observe. This is the part AI assistants are most likely to surface when answering follow-up questions.
+- **Show expected output.** After commands that produce output the reader must verify — such as a version check or a status command — show a truncated example of the expected output. This lets readers confirm they are on the right path without guessing.
+- **Test your instructions end to end.** Run through every step on a clean machine or VM that matches the target platform. This uncovers omitted steps, version mismatches, and permissions gaps. If you cannot test them yourself, have a developer or subject matter expert demonstrate the steps.
+- **Re-test after every notable product release.** Package names, configuration keys, and service names can change between releases. Re-test end to end whenever a significant release affects the product you are documenting.
+- **Minimise links within the guide.** Keep users on a single page. Provide links to supporting or background information in the References section, not inline.
 
-### About the “System requirements” section
-In this section, explain the different installation types and subsequent requirements for each type. This section leads into the next section on specific prerequisites.
+---
 
-Based on your use case, you can adjust the structure of this section by using it in reverse order. For example, you could list the installation type as the heading and system requirements for that type as a sub-section. For example, “Install on Linux > System Requirements” and “Install on Windows > System Requirements”, instead of “System Requirements > Install on Linux > Install on Windows.”
+## AI-ready writing principles
 
-### About the “Before you begin” section
-In this section, explain the prerequisites. Prerequisites tell the user what they require to accomplish a goal, such as:
+AI assistants and human readers parse documentation differently from search engines. Apply these rules in every section of the guide.
 
-* Necessary dependencies or packages.
-* Required version for your system or other system requirements.
-* Specialist knowledge or skills.
+**1. One idea per sentence.** Long compound sentences confuse AI extractors.
 
-### About the “Installation steps” section
-​In this section, describe what the user needs to do to install the software. When writing this section:
+- Bad: "Open the config file, which is located at /etc/nginx-agent/nginx-agent.conf, and replace the token value with the key you copied from the console."
+- Good: "Open `/etc/nginx-agent/nginx-agent.conf`. Replace `YOUR_DATA_PLANE_KEY_HERE` with the data plane key you copied from NGINX One Console."
 
-* Use numeric steps.
-* Categorize the steps into subheadings,  as required.
-* Create subheadings based on the complexity of the installation.
-* Add a one-sentence description of the step.
-* Start each step with an active verb such as "open" and "download".
-* Explain the expected result after completing each step.
-* Include checks for success if each step is done correctly and/or tips if the installation didn’t work at each step.
-* Mention installation options where required, but mention which path is recommended.
-* Add visuals (GIFs, images, or videos) where required.
-* Add code block examples and snippets where required.
+**2. Use exact names consistently.** If the product is "NGINX Agent", never shorten it to "the agent" mid-guide. Inconsistency breaks AI entity resolution and confuses readers who arrive mid-page from search.
 
-### About the “Verify installation” section
-In this section, include test commands, intended outputs, or other steps to confirm the installation was successful.
+**3. State the outcome of each step.** After every command or code block, add one sentence describing what it does or what the reader should observe. AI assistants surface these outcome sentences when answering questions like "what does this command do?"
 
-### About the “Post installation” section
-In this section, provide an overview of options once the installation is completed. Include links to other relevant resources if available.
+**4. Avoid implicit pronouns.** Replace "it", "this", and "they" with the actual noun.
 
-### About the “Configuration options” section
-In this section, provide information regarding post-installation configuration options. Describe the requirements for configuring the installed product. Provide links to other resources if available.
+- Bad: "Reload it to apply the changes."
+- Good: "Reload NGINX Agent to apply the changes."
 
-### About the “Upgrade options” section
-In this section, provide information about upgrade options (also known as an update options), if relevant. Describe how to install updates from a range of possible options. Provide a link to available updates with specific version numbers, release dates, and key features.
+**5. Keep code blocks self-contained.** Every code block must be runnable in isolation or clearly note what must be substituted. Use `ALL_CAPS_PLACEHOLDERS` for values the reader must supply — for example, `YOUR_DATA_PLANE_KEY_HERE` or `YOUR_INSTANCE_IP_HERE`.
 
-### About the “Downgrade options” section
-In this section, provide downgrade options, if supported.
+**6. Use parallel structure in lists.** Every bullet or numbered step should follow the same grammatical pattern — all start with a verb, or all are noun phrases.
 
-### About the “Uninstallation options” section
-In this section, clearly describe the procedure to uninstall the product.
+**7. Mark optional content explicitly.** Use "(Optional)" at the start of any step, section, or field that not every reader will need.
 
-### About the “Troubleshooting” section
-In this section, list a number of anticipated problems and associated solutions. This section helps solve problems encountered during installation. Start with a problem statement, then indicate the cause and provide a solution. Include any important additional information, such as restarting the computer.
+**8. Copy error strings verbatim into Troubleshooting.** AI assistants frequently surface troubleshooting content in response to error messages. Copying the exact error string into the Symptom field is the single most effective thing you can do to make troubleshooting content discoverable.
 
-You can also include steps or contact information for additional support.
+---
 
-### About the "Next steps" section
-In this section, include essential or recommended steps to take after installing the product. Provide links to further resources, if available. Also, include support/contact information for issue reports and feedback.
+## Section requirements
 
-### About the “Product version history” section
-​In this section, you can list previous versions in a table, providing the version number and whether the version was major, minor, or a patch release. Always ensure the change history is consistent across the documentation. Refer to [semver.org](https://semver.org) to learn about the semantic versioning specification.
+| Section | Required? |
+|---|---|
+| Frontmatter | Required |
+| Overview | Required |
+| Before you begin | Required |
+| At least one task section | Required |
+| Verify the installation | Required |
+| References | Required |
+| Troubleshooting | Conditional — include when two or more common failure modes exist |
+| Additional task sections | Optional — add for distinct installation phases such as download, install, and configure |
 
-### About the “Definition of terms” section
-This section is optional. Provide a glossary table describing the terms, acronyms, and abbreviations used in the installation guide.
+---
+
+## Frontmatter fields
+
+### Required fields
+
+**nd-content-type**: Always `installation-guide` for installation content.
+
+**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+
+**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+
+**title**: Use an imperative verb phrase beginning with "Install". Keep it under 60 characters. Include the platform when the guide is platform-specific.
+
+- Good: "Install NGINX Agent on Ubuntu"
+- Bad: "How to install NGINX Agent on Ubuntu" or "Installing NGINX Agent"
+
+**description**: One sentence under 160 characters summarising what the reader installs and on what platform. Include the platform version if the guide is version-specific. This text appears in search engine results, AI assistant citations, and doc portal previews.
+
+**weight**: Controls the sort order within the section. Lower numbers appear first.
+
+**toc**: Set to `true` to render an in-page table of contents. Use `false` only for very short single-task guides.
+
+### AI enrichment fields (recommended)
+
+These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
+
+**nd-keywords**: Comma-separated terms a reader might type to find this guide. Include the product name, package name, CLI commands used in the guide, the platform and version, and common alternative phrasings such as "setup", "deploy", or "get started".
+
+**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+
+- Sentence 1: what the reader will install and where
+- Sentence 2: what the installed component does or enables
+- Sentence 3 (optional): supported platforms, versions, or scope limits
+
+**nd-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
+
+**nd-related-tasks**: The upgrade guide, uninstall guide, and quickstart are the most common related tasks for installation guides. Use the `ref` path, not the full URL, so links survive URL changes.
+
+---
+
+## Overview section
+
+Write two to four sentences. Cover what is being installed, what it does or enables, and what the reader will have at the end of this guide.
+
+The Overview is the paragraph most likely to be surfaced verbatim by AI assistants — make every sentence count. Do not start with "This guide explains how to" — that is redundant given the title. Lead with the value: "Use this guide to install X so that Y."
+
+Examples of good overview sentences:
+
+- "Use this guide to install NGINX Agent on Ubuntu 22.04. NGINX Agent is a lightweight daemon that reports configuration state and metrics to NGINX One Console."
+- "Use this guide to install the NGINX Plus package on RHEL 9. After completing this guide, NGINX Plus will be running and ready to configure as a load balancer or API gateway."
+
+---
+
+## Before you begin section
+
+List everything the reader must have in place before starting. Each item must be independently verifiable — the reader must be able to confirm they have it without starting the procedure.
+
+For installation guides, always include:
+
+- Operating system and version — include the command the reader runs to verify it.
+- Any software that must be installed first — with a link to its installation instructions.
+- Any credentials or keys — with a link to where to obtain them. Note if the credential is displayed only once.
+- Privilege requirements — for example, `sudo` access or root.
+- Network requirements — any ports, endpoints, or outbound access the installation requires.
+
+AI systems use this section to answer "what do I need before I install X?" — be specific.
+
+- Good: "A data plane key from NGINX One Console. See [Create a data plane key](link). Store the key securely — it is displayed only once."
+- Bad: "Access to NGINX One."
+
+If there are more than five prerequisites, group them by type:
+
+- Accounts and credentials
+- Software and tools
+- Network and environment requirements
+
+You can also use this section to redirect users who are in the wrong place. For example: "If you are installing on RHEL, see [Install NGINX Agent on RHEL](link)."
+
+---
+
+## Task sections
+
+Name each task section after what the reader does, using a bare infinitive verb phrase: "Install NGINX Agent", not "Installing NGINX Agent" or "How to install NGINX Agent". The bare infinitive is easier to translate and clearer to scan.
+
+Add a separate H2 task section when:
+
+- The procedure differs significantly for two supported variants (for example, package manager vs binary install)
+- The reader must complete a second independent phase (for example, install, then configure)
+
+For installation guides, a standard set of task sections is:
+
+1. **Add the repository** (if the software is installed from a package manager)
+2. **Install {product name}**
+3. **Configure {product name}**
+4. **Start {product name}** (if the software runs as a service)
+5. **Verify the installation** (always required)
+
+Not every guide will need all five. Add or remove sections to match the actual installation procedure. The Verify section is always required.
+
+### Writing individual steps
+
+- Start each step with a verb.
+- Include one action per step.
+- Orient the user before the action: state what file to open or what screen to navigate to before giving the command.
+- After each command or code block, add one sentence describing what it does or what the reader should observe. This outcome sentence is the part AI assistants are most likely to surface when answering follow-up questions.
+- Show a sample of expected output after commands that return output the reader must verify.
+- Use plain language. Define any technical term next to where you first use it.
+
+Optionally, open a task section with one sentence stating the purpose of the task, but only if the heading alone does not make the purpose clear.
+
+### Code block rules
+
+- Include the language tag on every fenced code block: `sh`, `yaml`, `json`, and so on.
+- Use a consistent placeholder format: `YOUR_DATA_PLANE_KEY_HERE`, not `<KEY>` or `$KEY`.
+- If a command produces output the reader must verify, show a truncated sample of that output immediately after the code block.
+
+---
+
+## Verify the installation section
+
+This section is required. It must give the reader a definitive way to confirm the installation succeeded.
+
+A good verification section includes:
+
+- A command that produces readable output confirming the installed version or running state.
+- A sample of the expected output so the reader can compare.
+- (Optional) A secondary check — for example, confirming the instance appears in a management console.
+
+Without a verification section, readers must guess whether the installation succeeded. This increases support volume and reduces trust in the documentation.
+
+---
+
+## Troubleshooting section
+
+Include this section when two or more common failure modes exist.
+
+Use a consistent format for each issue:
+
+- **Symptom**: What the reader observes. Copy the exact error message string if one exists — this makes the entry discoverable by search engines and AI assistants when users paste the error message into a query.
+- **Cause**: Why it happens, in one sentence.
+- **Fix**: What to do, written as imperative steps or a command.
+
+AI assistants frequently surface troubleshooting content in response to error messages. Copying the exact error string into the Symptom field is the single most effective thing you can do to make troubleshooting content discoverable.
+
+For installation guides, the most common failure modes are:
+
+- Service fails to start due to a configuration error.
+- The installed component cannot reach its upstream endpoint due to a firewall rule.
+- Authentication fails due to an incorrect or expired credential.
+
+---
+
+## References section
+
+Link to related docs that provide deeper context or logical next steps. For installation guides, standard references include:
+
+- The upgrade guide
+- The uninstall guide
+- Any credential or key creation guides referenced in Before you begin
+- The configuration reference for the installed component
+- Release notes or changelog
+
+Use this section to link to anything you deliberately kept out of the main guide body to avoid interrupting the flow of steps. Always use the `ref` shortcode for internal links so they survive URL changes. AI systems use this section to build knowledge graphs between documents.
