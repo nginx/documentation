@@ -26,7 +26,7 @@ A **signature exception** allows you to explicitly enable or disable individual 
 
 ## Add signature sets
 
-From NGINX One Console, select **App Protect > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
+From NGINX One Console, select **WAF > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
 1. In **General Settings**, name and describe the policy.
 1. Go to the **Web Protection** section and select **Attack Signature Sets**. Here, you can:
@@ -127,6 +127,6 @@ After configuring signature sets and exceptions:
    - An instance
    - A Config Sync Group
 
-From NGINX One Console, you can [review and modify]({{< ref "/nginx-one-console/waf-integration/review-policy.md/" >}}) your saved policies at any time by selecting **App Protect > Policies**.
+From NGINX One Console, you can [review and modify]({{< ref "/nginx-one-console/waf-integration/review-policy.md/" >}}) your saved policies at any time by selecting **WAF > Policies**.
 
 For a complete list of available signature sets and detailed information about attack signatures, see the [Attack Signatures]({{< ref "/waf/policies/attack-signatures.md" >}}) documentation.

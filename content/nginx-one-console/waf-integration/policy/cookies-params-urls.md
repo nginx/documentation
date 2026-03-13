@@ -13,7 +13,7 @@ Cookie protections can be configured and managed directly within the policy edit
 ## Cookie properties and types
 
 Each cookie configuration includes:
-- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/waf-policy-matching-types.md" >}}) section.
+- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/policy/waf-policy-matching-types.md" >}}) section.
 - `Cookie Name`: The name of the cookie to be monitored or protected
 - `Enforcement Type`: 
   - **Allow**: Specifies that this cookie may be changed by the client. The cookie is not protected from modification
@@ -67,7 +67,7 @@ Parameter protections can be configured and managed directly within the policy e
 
 Each parameter configuration includes:
 
-- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/waf-policy-matching-types.md" >}}) section.
+- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/policy/waf-policy-matching-types.md" >}}) section.
 - `Parameter Name`: The name of the parameter
 - `Location`: Where the parameter is expected (URL query string, POST data, etc.)
 - `Value Type`: The expected type of the parameter value (e.g., alpha-numeric, integer, email)
