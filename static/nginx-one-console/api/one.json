@@ -4400,6 +4400,506 @@
         }
       }
     },
+    "/app-protect/log-profiles": {
+      "get": {
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect log profiles",
+        "description": "Returns NGINX App Protect log profiles.",
+        "operationId": "listNapLogProfiles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfilesDep"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfiles"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfile"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect log profiles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Create NGINX App Protect log profile",
+        "description": "Creates NGINX App Protect log profile.",
+        "operationId": "createNapLogProfile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created NGINX App Protect log profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}": {
+      "delete": {
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Delete NGINX App Protect log profile",
+        "description": "Deletes NGINX App Protect log profile.",
+        "operationId": "deleteNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted NGINX App Protect log profile."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Get NGINX App Protect log profile details",
+        "description": "Returns NGINX App Protect log profile details.",
+        "operationId": "getNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileObjectDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Update NGINX App Protect log profile details",
+        "description": "Update NGINX App Protect log profile details.",
+        "operationId": "updateNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated NGINX App Protect log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}/compile": {
+      "get": {
+        "x-feature-flag": "log-profile-deployment",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "Issue a compilation request for NGINX App Protect log profile.",
+        "description": "Returns request status or the compiled bundle the NGINX App Protect log profile.",
+        "operationId": "compileNapLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileCompileNapRelease"
+          },
+          {
+            "$ref": "#/components/parameters/NapLogProfileCompileDownload"
+          },
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NGINX App Protect log profile compiled successfully, when `download` is `true`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              },
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "example": "log_all.tar.gz"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted the NGINX App Protect log profile compile request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "NGINX App Protect log profile compiled failed, when `download` is `true`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}/deployments": {
+      "get": {
+        "x-feature-flag": "log-profile-deployment",
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "summary": "List NGINX App Protect log profile deployments",
+        "description": "Returns NGINX App Protect log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
+        "operationId": "listNapLogProfileDeployments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfileDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfileDeployment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned NGINX App Protect log profile deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileDeploymentsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/app-protect/policies": {
       "get": {
         "tags": [
@@ -5615,506 +6115,6 @@
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles": {
-      "get": {
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "List NGINX App Protect log profiles",
-        "description": "Returns NGINX App Protect log profiles.",
-        "operationId": "listNapLogProfiles",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Paginated"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/SortDirection"
-          },
-          {
-            "$ref": "#/components/parameters/SortNameNapLogProfilesDep"
-          },
-          {
-            "$ref": "#/components/parameters/SortNameNapLogProfiles"
-          },
-          {
-            "$ref": "#/components/parameters/FilterOperands"
-          },
-          {
-            "$ref": "#/components/parameters/FilterValues"
-          },
-          {
-            "$ref": "#/components/parameters/FilterFieldNapLogProfile"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned NGINX App Protect log profiles.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileListResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "Create NGINX App Protect log profile",
-        "description": "Creates NGINX App Protect log profile.",
-        "operationId": "createNapLogProfile",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successfully created NGINX App Protect log profile.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileMetadata"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles/{nap_log_profile_object_id}": {
-      "delete": {
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "Delete NGINX App Protect log profile",
-        "description": "Deletes NGINX App Protect log profile.",
-        "operationId": "deleteNapLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successfully deleted NGINX App Protect log profile."
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "Get NGINX App Protect log profile details",
-        "description": "Returns NGINX App Protect log profile details.",
-        "operationId": "getNapLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned NGINX App Protect log profile details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileObjectDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "Update NGINX App Protect log profile details",
-        "description": "Update NGINX App Protect log profile details.",
-        "operationId": "updateNapLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NapLogProfileUpdateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully updated NGINX App Protect log profile details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileMetadata"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles/{nap_log_profile_object_id}/compile": {
-      "get": {
-        "x-feature-flag": "log-profile-deployment",
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "Issue a compilation request for NGINX App Protect log profile.",
-        "description": "Returns request status or the compiled bundle the NGINX App Protect log profile.",
-        "operationId": "compileNapLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileCompileNapRelease"
-          },
-          {
-            "$ref": "#/components/parameters/NapLogProfileCompileDownload"
-          },
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "NGINX App Protect log profile compiled successfully, when `download` is `true`.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapCompileStatus"
-                }
-              },
-              "application/gzip": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary",
-                  "example": "log_all.tar.gz"
-                }
-              }
-            }
-          },
-          "202": {
-            "description": "Accepted the NGINX App Protect log profile compile request.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapCompileStatus"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "NGINX App Protect log profile compiled failed, when `download` is `true`.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapCompileStatus"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles/{nap_log_profile_object_id}/deployments": {
-      "get": {
-        "x-feature-flag": "log-profile-deployment",
-        "tags": [
-          "NGINX App Protect"
-        ],
-        "summary": "List NGINX App Protect log profile deployments",
-        "description": "Returns NGINX App Protect log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
-        "operationId": "listNapLogProfileDeployments",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          },
-          {
-            "$ref": "#/components/parameters/Paginated"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/SortDirection"
-          },
-          {
-            "$ref": "#/components/parameters/SortNameNapLogProfileDeployments"
-          },
-          {
-            "$ref": "#/components/parameters/FilterOperands"
-          },
-          {
-            "$ref": "#/components/parameters/FilterValues"
-          },
-          {
-            "$ref": "#/components/parameters/FilterFieldNapLogProfileDeployment"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned NGINX App Protect log profile deployments.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileDeploymentsListResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
           }
         }
       }
