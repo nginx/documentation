@@ -55,7 +55,7 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 
 1. Optional: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific cookie
-   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md/" >}})
+   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
 
 1. Select **Add Cookie** to save your configuration
 
@@ -128,7 +128,7 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 
 1. Optional: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific parameter
-   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md/" >}})
+   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
 
 1. Select **Add Parameter** to save your configuration
 
@@ -139,7 +139,7 @@ URL protections can be configured and managed directly within the policy editor 
 ## URL properties and types
 
 Each URL configuration includes:
-- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/waf-policy-matching-types.md" >}}) section.
+- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/policy/waf-policy-matching-types.md" >}}) section.
 - `Method`: Specifies the HTTP method(s) for the URL (`GET`, `POST`, `PUT`, etc.)
 - `Protocol`: The protocol for the URL (`HTTP`/`HTTPS`)
 - `Enforcement Type`: 
@@ -195,6 +195,6 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 
 1. **Optional**: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific URL
-   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md/" >}})
+   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
 
 1. Select **Add URL** to save your configuration

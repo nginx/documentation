@@ -123,10 +123,10 @@ After configuring signature sets and exceptions:
 
 1. Select **Add Policy**. The policy JSON will be updated with your changes.
 1. Your policy will appear in the list under the name you provided.
-1. You can then [deploy]({{< ref "/nginx-one-console/waf-integration/deploy-policy.md/" >}}) the policy to either:
+1. You can then [deploy]({{< ref "/nginx-one-console/waf-integration/policy/deploy-policy.md" >}}) the policy to either:
    - An instance
    - A Config Sync Group
 
-From NGINX One Console, you can [review and modify]({{< ref "/nginx-one-console/waf-integration/review-policy.md/" >}}) your saved policies at any time by selecting **WAF > Policies**.
+From NGINX One Console, you can [review and modify]({{< ref "/nginx-one-console/waf-integration/policy/review-policy.md" >}}) your saved policies at any time by selecting **WAF > Policies**.
 
 For a complete list of available signature sets and detailed information about attack signatures, see the [Attack Signatures]({{< ref "/waf/policies/attack-signatures.md" >}}) documentation.
