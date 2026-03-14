@@ -44,7 +44,7 @@ Before you start the tutorial, you should:
 
 In this section, you'll learn how to create a [base config template]({{< ref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}).
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
 3. On the left menu, select **Templates**.
 4. Select **Create**.

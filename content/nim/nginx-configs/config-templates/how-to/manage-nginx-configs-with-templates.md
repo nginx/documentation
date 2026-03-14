@@ -62,7 +62,7 @@ _Replace the placeholder values with the actual details of your template._
 
 To import an existing template from a `.tar.gz` archive file:
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
 3. In the left navigation pane, select **Templates > Overview**.
 4. On the Config Templates "Overview" page, select **Create**.
@@ -78,7 +78,7 @@ To import an existing template from a `.tar.gz` archive file:
 
 To create a new config template:
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 2. From the Launchpad menu, choose **Instance Manager**.
 3. In the left navigation pane, select **Templates**.
 4. On the Config Templates "Overview" page, select **Create**.
@@ -122,7 +122,7 @@ Previewing a config from a template lets you see how your NGINX configurations w
 
 To preview, generate, and submit a config from a template:
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 2. Select **Instance Manager** from the LaunchPad.
 3. On the left sidebar, select **Templates**.
 4. Locate the desired template on the "Overview" page and select the ellipsis (three dots) in the **Actions** column, then select **Preview and Generate**.
@@ -150,7 +150,7 @@ When managing your NGINX configurations, you might find that certain parameters 
 
 To edit a template submission:
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 2. Select **Instance Manager** from the LaunchPad.
 3. On the left sidebar, select **Template Submissions** to view a list of all template submissions.
 4. Locate and select the template submission you want to edit.
