@@ -107,7 +107,7 @@ extensions:
 nginx_app_protect:
   # Report interval for NGINX App Protect details - the frequency NGINX Agent checks NGINX App Protect for changes.
   report_interval: 15s
-  # Enable precompiled publication from the NGINX Management Suite (true) or perform compilation on the data plane host (false).
+  # Enable precompiled publication from NGINX Instance Manager (true) or perform compilation on the data plane host (false).
   precompiled_publication: true
 ```
 

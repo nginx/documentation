@@ -174,7 +174,7 @@ The table provides guidelines about the terms you should and should not use for 
 | ID | When you mean identify, in text, never use ID, spell out the word. | |
 | if vs. whether | In informal writing and speech, often used interchangeably but can have different meanings, so try to use the correct word. Use if when expressing a condition of uncertainty: You don't know If NGINX Management Suite includes Instance Manager. Use whether when you are showing that two (or more) alternatives are possible: Whether your NGINX Management Suite deployment includes Instance Manager and API Connectivity Manager. | |
 | in order to | Most often just use to instead, especially in procedures. | |
-| information about vs. information on | Reserve the on preposition for location, such as The label on the back of the device... Use For information about NGINX Mangement Suite, refer to…. | |
+| information about vs. information on | Reserve the on preposition for location, such as The label on the back of the device... Use For information about NGINX Instance Manager, refer to…. | |
 | initiate | Use start instead. Press Enter to start the domino-fall routine. | |
 | input | Not as a verb. Use type instead. | |
 | insecure | Avoid using when describing a lack of security for something technical or technology-related, such as system versions, fraud issues, and so on. Across F5, we are trying to consistently use unsecure or not secure(though non-secure may appear as well) instead, for accuracy. | |
