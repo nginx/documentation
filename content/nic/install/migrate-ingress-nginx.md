@@ -427,9 +427,9 @@ egressMTLS:
    serverName: true|false
 ```
 
-#### Session persistence with NGINX Plus
+#### Session persistence
 
-With [NGINX Plus]({{< ref "/nic/overview/nginx-plus" >}}), you can use [Policy]({{< ref "/nic/configuration/policy-resource" >}}) resources for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller.
+You can use [Policy]({{< ref "/nic/configuration/policy-resource" >}}) resources or annotations for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller. Session persistence via sticky cookie is available in both NGINX (since version 1.29.6) and NGINX Plus.
 
 Ingress-NGINX Controller:
 
@@ -495,7 +495,7 @@ This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Contro
 1. Ingress-NGINX Controller implements some of its load balancing algorithms with Lua, which may not have an equivalent in NGINX Ingress Controller.
 1. To redirect HTTP (80) traffic to HTTPS (443), NGINX Ingress Controller uses built-in NGINX `if` conditions while Ingress-NGINX Controller uses Lua. For [_nginx.ingress.kubernetes.io/force-ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) behavior (which works when SSL is terminated at an external load balancer), use [_nginx.org/redirect-to-https_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}).
 
-The following two snippets outline Ingress-NGINX Controller annotations that correspond to annotations for NGINX Ingress Controller with NGINX Plus.
+The following two snippets outline Ingress-NGINX Controller annotations that correspond to annotations for NGINX Ingress Controller.
 
 Ingress-NGINX Controller:
 
