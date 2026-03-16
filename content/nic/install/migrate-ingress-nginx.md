@@ -371,6 +371,7 @@ This table shows how Ingress-NGINX Controller annotations map to statements in t
 | _nginx.ingress.kubernetes.io/proxy-read-timeout_ | _read-timeout_ |
 | _nginx.ingress.kubernetes.io/proxy-send-timeout_ | _send-timeout_ |
 | _nginx.ingress.kubernetes.io/service-upstream_ | _use-cluster-ip_ |
+| _nginx.ingress.kubernetes.io/affinity_ (cookie) | _sticky-cookie-services_ |
 
 #### mTLS authentication
 
@@ -491,6 +492,7 @@ This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Contro
 | [_nginx.ingress.kubernetes.io/ssl-prefer-server-ciphers_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-ciphers) | [_nginx.org/ssl-prefer-server-ciphers_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | [_ssl_prefer_server_ciphers_](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) |
 | [_nginx.ingress.kubernetes.io/server-snippet_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet)| [_nginx.org/server-snippets_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}) | N/A |
 | [_nginx.ingress.kubernetes.io/ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) (2) | [_nginx.org/ssl-redirect_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | N/A |
+| [_nginx.ingress.kubernetes.io/affinity_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#session-affinity)| [_nginx.org/sticky-cookie-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}) | [_sticky_](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_cookie)|
 
 1. Ingress-NGINX Controller implements some of its load balancing algorithms with Lua, which may not have an equivalent in NGINX Ingress Controller.
 1. To redirect HTTP (80) traffic to HTTPS (443), NGINX Ingress Controller uses built-in NGINX `if` conditions while Ingress-NGINX Controller uses Lua. For [_nginx.ingress.kubernetes.io/force-ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) behavior (which works when SSL is terminated at an external load balancer), use [_nginx.org/redirect-to-https_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}).
