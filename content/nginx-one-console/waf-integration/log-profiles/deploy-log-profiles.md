@@ -47,6 +47,13 @@ To deploy a log profile using the configuration editor:
 1. Paste the code snippet into your NGINX configuration. The snippet includes:
    - `app_protect_security_log_enable on`
    - `app_protect_security_log` with the log profile bundle path and destination
+
+   For example:
+   ```
+   app_protect_security_log_enable on;
+   app_protect_security_log /etc/nginx/log-profile-bundle.tgz syslog:server=localhost:514;
+   ```
+
 1. Select **Next** and then **Save and Publish**.
 
 For more information about adding files through the configuration editor, see [Add a file to a Config Sync Group]({{< ref "/nginx-one-console/nginx-configs/config-sync-groups/add-file-csg.md" >}}) or [Add a file to an instance]({{< ref "/nginx-one-console/nginx-configs/one-instance/add-file.md" >}}).

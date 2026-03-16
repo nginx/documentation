@@ -27,7 +27,7 @@ With Log Profiles, you control:
 - **Size limits**: Maximum sizes for log messages and request data
 
 
-For detailed information about security logging capabilities and available log attributes, see [Security Logs]({{< ref "/waf/logging/security-logs.md" >}}).
+For detailed information about security logging capabilities and available log attributes, see [Security Logs]({{< ref "/waf/logging/security-logs.md" >}}) and [Security logs examples]({{< ref "/waf/logging/security-logs.md#examples" >}}).
 
 ## Add a log profile
 
@@ -94,7 +94,7 @@ For detailed information about the JSON structure of security log configuration 
 
 ## Compile the log profile
 
-Before you apply a log profile, you need to compile the JSON configuration file into a bundle. 
+Before deploying a log profile, you can optionally compile the JSON configuration file into a bundle. If you don't compile manually, the deployment process will automatically compile the log profile.
 
 The compiled bundle is in compressed tar format (.tgz) and contains all the necessary configuration to enable security logging on your NGINX instances.
 
@@ -120,7 +120,7 @@ This allows you to maintain compatibility with different versions of F5 WAF for 
 
 ## Deploy the log profile
 
-After you save a log profile, you need to deploy it to your NGINX instances to start capturing security events. See [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}}) for detailed deployment steps.
+After saving a log profile, deploy it to your NGINX instances to enable logging of WAF security events. See [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}}) for detailed deployment steps.
 
 The deployment process configures the required NGINX directives (`app_protect_security_log_enable` and `app_protect_security_log`) and ensures the log profile bundle is accessible to your instances. For detailed information about these directives and their configuration options, see [Security log directives]({{< ref "/waf/logging/security-logs.md#directives-in-nginxconf" >}}).
 
