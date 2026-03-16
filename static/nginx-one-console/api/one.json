@@ -84,6 +84,11 @@
       "x-displayName": "NGINX App Protect"
     },
     {
+      "name": "WAF Log Profiles",
+      "description": "Manage WAF log profiles for security logging and monitoring.\n",
+      "x-displayName": "WAF Log Profiles"
+    },
+    {
       "name": "Templates",
       "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\n\n* Import, list, and retrieve NGINX configuration templates.\n* Generate and preview full NGINX configurations by composing templates, before saving it as a staged config.\n",
       "x-displayName": "Templates"
@@ -5370,10 +5375,10 @@
     "/app-protect/log-profiles": {
       "get": {
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "List NGINX App Protect log profiles",
-        "description": "Returns NGINX App Protect log profiles.",
+        "summary": "List WAF log profiles",
+        "description": "Returns a list of WAF log profiles.",
         "operationId": "listNapLogProfiles",
         "parameters": [
           {
@@ -5406,7 +5411,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully returned NGINX App Protect log profiles.",
+            "description": "Successfully returned WAF log profiles.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5439,10 +5444,10 @@
       },
       "post": {
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "Create NGINX App Protect log profile",
-        "description": "Creates NGINX App Protect log profile.",
+        "summary": "Create WAF log profile",
+        "description": "Creates a WAF log profile.",
         "operationId": "createNapLogProfile",
         "requestBody": {
           "required": true,
@@ -5456,7 +5461,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successfully created NGINX App Protect log profile.",
+            "description": "Successfully created WAF log profile.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5501,10 +5506,10 @@
     "/app-protect/log-profiles/{nap_log_profile_object_id}": {
       "delete": {
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "Delete NGINX App Protect log profile",
-        "description": "Deletes NGINX App Protect log profile.",
+        "summary": "Delete WAF log profile",
+        "description": "Deletes a WAF log profile.",
         "operationId": "deleteNapLogProfile",
         "parameters": [
           {
@@ -5513,7 +5518,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successfully deleted NGINX App Protect log profile."
+            "description": "Successfully deleted WAF log profile."
           },
           "400": {
             "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
@@ -5536,7 +5541,7 @@
             }
           },
           "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5559,10 +5564,10 @@
       },
       "get": {
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "Get NGINX App Protect log profile details",
-        "description": "Returns NGINX App Protect log profile details.",
+        "summary": "Get WAF log profile details",
+        "description": "Returns WAF log profile details.",
         "operationId": "getNapLogProfile",
         "parameters": [
           {
@@ -5571,7 +5576,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully returned NGINX App Protect log profile details.",
+            "description": "Successfully returned WAF log profile details.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5601,7 +5606,7 @@
             }
           },
           "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5624,10 +5629,10 @@
       },
       "put": {
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "Update NGINX App Protect log profile details",
-        "description": "Update NGINX App Protect log profile details.",
+        "summary": "Update WAF log profile details",
+        "description": "Updates WAF log profile details.",
         "operationId": "updateNapLogProfile",
         "parameters": [
           {
@@ -5646,7 +5651,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully updated NGINX App Protect log profile details.",
+            "description": "Successfully updated WAF log profile details.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5676,7 +5681,7 @@
             }
           },
           "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5702,10 +5707,10 @@
       "get": {
         "x-feature-flag": "log-profile-deployment",
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "Issue a compilation request for NGINX App Protect log profile.",
-        "description": "Returns request status or the compiled bundle the NGINX App Protect log profile.",
+        "summary": "Compile WAF log profile",
+        "description": "Compiles a WAF log profile and returns the request status or compiled bundle.",
         "operationId": "compileNapLogProfile",
         "parameters": [
           {
@@ -5720,7 +5725,7 @@
         ],
         "responses": {
           "200": {
-            "description": "NGINX App Protect log profile compiled successfully, when `download` is `true`.",
+            "description": "WAF log profile compiled successfully, when `download` is `true`.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5737,7 +5742,7 @@
             }
           },
           "202": {
-            "description": "Accepted the NGINX App Protect log profile compile request.",
+            "description": "Accepted the WAF log profile compile request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5747,7 +5752,7 @@
             }
           },
           "400": {
-            "description": "NGINX App Protect log profile compiled failed, when `download` is `true`.",
+            "description": "WAF log profile compilation failed, when `download` is `true`.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5779,10 +5784,10 @@
       "get": {
         "x-feature-flag": "log-profile-deployment",
         "tags": [
-          "NGINX App Protect"
+          "WAF Log Profiles"
         ],
-        "summary": "List NGINX App Protect log profile deployments",
-        "description": "Returns NGINX App Protect log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
+        "summary": "List WAF log profile deployments",
+        "description": "Returns a list of WAF log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
         "operationId": "listNapLogProfileDeployments",
         "parameters": [
           {
@@ -5815,7 +5820,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully returned NGINX App Protect log profile deployments.",
+            "description": "Successfully returned WAF log profile deployments.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5845,7 +5850,7 @@
             }
           },
           "404": {
-            "description": "The NGINX App Protect log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
             "content": {
               "application/json": {
                 "schema": {
@@ -15558,9 +15563,10 @@
       ]
     },
     {
-      "name": "NGINX One App Protect",
+      "name": "F5 WAF for NGINX",
       "tags": [
-        "NGINX App Protect"
+        "NGINX App Protect",
+        "WAF Log Profiles"
       ]
     },
     {
