@@ -48,7 +48,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 3. Fill in the role details. Use the information from an existing user group in NGINX Instance Manager, such as from the [Create user groups in Instance Manager]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md#create-user-groups-in-nginx-instance-manager" >}}) step:
    - In the **Display name** field, enter a role name (for example, "Admin").
    - In **Allowed member types**, select **Applications**.
-   - In the **Value** field, enter the value for the role. This must match the user group in NGINX Management Suite.
+   - In the **Value** field, enter the value for the role. This must match the user group in NGINX Instance Manager.
    - Provide a description for the role.
 4. Select **Save**.
 
@@ -156,12 +156,12 @@ Additionally, complete the following steps:
 
     {{< call-out "note" >}}The `roles` claim will contain the role ID of the role you created in the [Create an app role](#create-app-role) step.{{< /call-out >}}
 
-## Access NGINX Management Suite API using the access token
+## Access NGINX Instance Manager API using the access token
 
-To access the NGINX Management Suite API using the access token, send the token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
+To access the NGINX Instance Manager API using the access token, send the token in the `Authorization` header of the request as a Bearer token. For example, using `curl`:
 
 ```shell
-curl -v -k --header "Authorization: Bearer <access-token>" https://<nms-ip>/api/platform/v1/userinfo
+curl -v -k --header "Authorization: Bearer <access-token>" https://<nim-ip>/api/platform/v1/userinfo
 ```
 
-Replace `<access-token>` with the token you obtained from Microsoft Entra and `<nms-ip>` with the IP address of your NGINX Management Suite instance.
+Replace `<access-token>` with the token you obtained from Microsoft Entra and `<nim-ip>` with the IP address of your NGINX Instance Manager server.

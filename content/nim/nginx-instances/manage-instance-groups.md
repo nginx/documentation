@@ -1,5 +1,5 @@
 ---
-description: Learn how to use F5 NGINX Management Suite Instance Manager to create
+description: Learn how to use F5 NGINX Instance Manager to create
   instance groups, which you can use to manage multiple NGINX instances as a single
   entity.
 nd-docs: DOCS-935
@@ -119,7 +119,7 @@ To add an instance to an instance group when installing the NGINX Agent:
 2. Download the NGINX Agent installation script:
 
     ```shell
-    curl https://<NMS_FQDN>/install/nginx-agent > install.sh
+    curl https://<NIM_FQDN>/install/nginx-agent > install.sh
     ```
 
 3. Install the NGINX Agent and specify the instance group by using the `--instance_group` flag:
