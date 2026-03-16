@@ -96,7 +96,7 @@ The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
 The table below summarizes the available annotations.
 
-{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. {{< /call-out >}}
+{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus, with the exception of `nginx.com/sticky-cookie-services`, which is supported in both NGINX and NGINX Plus. Use the `nginx.org/sticky-cookie-services` annotation for NGINX. {{< /call-out >}}
 
 ### General customization
 
@@ -183,7 +183,8 @@ The table below summarizes the available annotations.
 | *nginx.org/max-conns* | N\A | Sets the value of the [max_conns](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns) parameter of the `server` directive. | *0* |  |
 | *nginx.org/upstream-zone-size* | *upstream-zone-size* | Sets the size of the shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) for upstreams. For NGINX, the special value 0 disables the shared memory zones. For NGINX Plus, shared memory zones are required and cannot be disabled. The special value 0 will be ignored. | *256K* |  |
 | *nginx.org/fail-timeout* | *fail-timeout* | Sets the value of the [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) parameter of the `server` directive. | *10s* |  |
-| *nginx.com/sticky-cookie-services* | N/A | Configures session persistence. | N/A | [session-persistence](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) |
+| *nginx.org/sticky-cookie-services* | N/A | Configures session persistence. This is the preferred annotation for session persistence configuration and works with both NGINX and NGINX Plus. If both `nginx.org/sticky-cookie-services` and `nginx.com/sticky-cookie-services` are set, the `nginx.org/` annotation takes precedence. | N/A | [session-persistence](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) |
+| *nginx.com/sticky-cookie-services* | N/A | Configures session persistence. Maintained for backward compatibility with NGINX Plus. Use `nginx.org/sticky-cookie-services` instead. | N/A | [session-persistence](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) |
 | *nginx.org/keepalive* | *keepalive* | Sets the value of the [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive. Note that `proxy_set_header Connection "";` is added to the generated configuration when the value > 0. | *0* |  |
 | *nginx.com/health-checks* | N/A | Enables active health checks. | *False* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |
 | *nginx.com/health-checks-mandatory* | N/A | Configures active health checks as mandatory. | *False* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |

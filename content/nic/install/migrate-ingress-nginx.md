@@ -506,10 +506,10 @@ nginx.ingress.kubernetes.io/session-cookie-expires: "seconds"
 nginx.ingress.kubernetes.io/session-cookie-path: "/route"
 ```
 
-NGINX Ingress Controller (with NGINX Plus):
+NGINX Ingress Controller:
 
 ```yaml
-nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=time path=/route"
+nginx.org/sticky-cookie-services: "serviceName=example-svc cookie_name expires=time path=/route"
 ```
 
 {{< call-out "note" >}}
