@@ -5379,7 +5379,7 @@
         ],
         "summary": "List WAF log profiles",
         "description": "Returns a list of WAF log profiles.",
-        "operationId": "listNapLogProfiles",
+        "operationId": "listWafLogProfiles",
         "parameters": [
           {
             "$ref": "#/components/parameters/Paginated"
@@ -5448,7 +5448,7 @@
         ],
         "summary": "Create WAF log profile",
         "description": "Creates a WAF log profile.",
-        "operationId": "createNapLogProfile",
+        "operationId": "createWafLogProfile",
         "requestBody": {
           "required": true,
           "content": {
@@ -5510,7 +5510,7 @@
         ],
         "summary": "Delete WAF log profile",
         "description": "Deletes a WAF log profile.",
-        "operationId": "deleteNapLogProfile",
+        "operationId": "deleteWafLogProfile",
         "parameters": [
           {
             "$ref": "#/components/parameters/NapLogProfileParamObjectID"
@@ -5568,7 +5568,7 @@
         ],
         "summary": "Get WAF log profile details",
         "description": "Returns WAF log profile details.",
-        "operationId": "getNapLogProfile",
+        "operationId": "getWafLogProfile",
         "parameters": [
           {
             "$ref": "#/components/parameters/NapLogProfileParamObjectID"
@@ -5633,7 +5633,7 @@
         ],
         "summary": "Update WAF log profile details",
         "description": "Updates WAF log profile details.",
-        "operationId": "updateNapLogProfile",
+        "operationId": "updateWafLogProfile",
         "parameters": [
           {
             "$ref": "#/components/parameters/NapLogProfileParamObjectID"
@@ -5711,7 +5711,7 @@
         ],
         "summary": "Compile WAF log profile",
         "description": "Compiles a WAF log profile and returns the request status or compiled bundle.",
-        "operationId": "compileNapLogProfile",
+        "operationId": "compileWafLogProfile",
         "parameters": [
           {
             "$ref": "#/components/parameters/NapLogProfileCompileNapRelease"
@@ -5788,7 +5788,7 @@
         ],
         "summary": "List WAF log profile deployments",
         "description": "Returns a list of WAF log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
-        "operationId": "listNapLogProfileDeployments",
+        "operationId": "listWafLogProfileDeployments",
         "parameters": [
           {
             "$ref": "#/components/parameters/NapLogProfileParamObjectID"
@@ -12978,7 +12978,41 @@
               }
             }
           }
-        ]
+        ],
+        "example": {
+          "created_at": "2026-01-16T21:12:51.843434Z",
+          "hash": "oxiWKPqR/soi4MQCgVnW8KHt8Jk68AqCeQcQ1sed4Dk=",
+          "modified_at": "2026-01-16T21:12:51.843434Z",
+          "name": "test-log-profiles",
+          "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
+          "config": "eyJsb2dfc3RyZWFtIjogIntmb3JtYXQgY29tYmluZWQgZXg=",
+          "deployments": [
+            {
+              "nap_release": "5.10.0",
+              "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+              "associated_name": "test-instance",
+              "associated_type": "instance",
+              "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "status": "deployed",
+              "deployed_on": "2023-12-06T22:37:24.120114Z",
+              "latest_deployed": "yes"
+            }
+          ],
+          "bundles": [
+            {
+              "nap_release": "5.10.0",
+              "status": "succeeded",
+              "created_at": "2026-01-13T18:54:19.140336Z",
+              "modified_at": "2026-01-13T18:56:31.264956Z"
+            },
+            {
+              "nap_release": "5.9.0",
+              "status": "succeeded",
+              "created_at": "2026-01-13T18:54:19.140336Z",
+              "modified_at": "2026-01-13T18:56:31.264956Z"
+            }
+          ]
+        }
       },
       "NapLogProfileObject": {
         "allOf": [
