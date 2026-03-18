@@ -30,7 +30,7 @@ To deploy a log profile from NGINX One Console, take the following steps:
    - **Add a new log profile path**: Specify a new file path where the log profile bundle should be deployed
    - **Update all log profiles**: Sync all log profiles on the target instance or Config Sync Group. This updates all existing log profiles by compiling their latest JSON contents into bundles and deploying them to all existing file paths
 
-When you deploy, if the log profile has not already been compiled for the WAF compiler version used by the target instance or Config Sync Group, NGINX One Console automatically compiles it into a bundle before deployment.
+If the log profile has not already been compiled for the WAF compiler version used by the target instance or Config Sync Group, NGINX One Console automatically compiles it into a bundle before deployment.
 
 ## Alternative: Deploy during configuration editing
 
