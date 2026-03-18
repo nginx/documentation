@@ -26,7 +26,7 @@ With role-based access control (RBAC), administrators can determine who can crea
 
 To complete these steps, you need administrator access.
 
-1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Management Suite host, and log in.
+1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
 
 2. Select **Settings** (gear icon) in the upper-right corner of the dashboard.
 
