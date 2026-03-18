@@ -46,6 +46,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.hostNetwork** | Enables NGINX Ingress Controller pods to use the host's network namespace. | false |
 | **controller.dnsPolicy** | DNS policy for NGINX Ingress Controller pods. | ClusterFirst |
 | **controller.nginxDebug** | Enables debugging for NGINX. Uses the `nginx-debug` binary. Requires `error-log-level: debug` in the ConfigMap via `controller.config.entries`. | false |
+| **controller.enableConfigSafety** | Enable config validation prior to reloading NGINX. *Experimental feature.* | false |
 | **controller.logLevel** | The log level of NGINX Ingress Controller. | info |
 | **controller.logFormat** | The log format of NGINX Ingress Controller. | glog |
 | **controller.directiveAutoAdjust** | Automatically adjusts NGINX buffer directives to prevent configuration errors. | false |
