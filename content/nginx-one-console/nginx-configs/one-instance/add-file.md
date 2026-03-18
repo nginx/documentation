@@ -60,6 +60,10 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 
 {{< include "/nginx-one-console/add-file/existing-ssl-bundle.md" >}}
 
+### Existing Log Profile
+
+{{< include "/nginx-one-console/add-file/existing-log-profile.md" >}}
+
 ## See also
 
 - [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}})

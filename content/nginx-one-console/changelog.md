@@ -9,6 +9,21 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## March 18, 2026
+
+### F5 WAF for NGINX: Log profile management
+
+You can now manage log profiles for F5 WAF for NGINX security logging directly in NGINX One Console. Log profiles control what security events are captured, how they're formatted, and where they're sent.
+
+Key capabilities:
+
+- **Configure log profiles**: Define filtering criteria (all requests, requests with violations, or blocked requests only), select log formats (default, custom, Splunk, ArcSight, or BIG-IQ), and set size limits
+- **Manage compiled bundles**: View and compile log profiles for different WAF compiler versions to maintain compatibility across your infrastructure
+- **Deploy to instances and Config Sync Groups**: Deploy log profiles to your NGINX instances or Config Sync Groups with automatic compilation for the target's WAF version
+- **API support**: Manage log profiles programmatically through the NGINX One Console API
+
+For more information, see [Configure log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/configure-log-profiles.md" >}}).
+
 ## January 27, 2026
 
 ### Config Sync Groups: Support for unmanaged certificates
@@ -54,11 +69,11 @@ You can now graph any two metrics simultaneously on one chart within the Metrics
 
 You can now configure the following for F5 WAF policies directly in the NGINX One Console:
 
-- [Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md" >}})
-- [Signature Exceptions]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md#exceptions" >}})
-- [Parameters]({{< ref "/nginx-one-console/waf-integration/cookies-params-urls.md#add-parameters" >}})
-- [URLs]({{< ref "/nginx-one-console/waf-integration/cookies-params-urls.md#add-urls" >}})
-- [Cookies]({{< ref "/nginx-one-console/waf-integration/cookies-params-urls.md#add-cookies" >}})
+- [Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
+- [Signature Exceptions]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md#exceptions" >}})
+- [Parameters]({{< ref "/nginx-one-console/waf-integration/policy/cookies-params-urls.md#add-parameters" >}})
+- [URLs]({{< ref "/nginx-one-console/waf-integration/policy/cookies-params-urls.md#add-urls" >}})
+- [Cookies]({{< ref "/nginx-one-console/waf-integration/policy/cookies-params-urls.md#add-cookies" >}})
 
 For more details, see the [F5 WAF Integration Guide ]({{< ref "/nginx-one-console/waf-integration/" >}}).
 
