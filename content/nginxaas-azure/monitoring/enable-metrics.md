@@ -24,7 +24,7 @@ Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azu
 Azure Monitor will collects metrics from the NGINXaaS deployment automatically if the prerequisites are met. No configuration is required.
 
 ## Exporting
-You can export Azure Monitor metrics to other destinations like Log Analytics workspace, Azure Storage Account, Azure Event Hubs or [Azure Monitor partner solutions](https://learn.microsoft.com/en-us/azure/partner-solutions/partners#observability-partners) using Diagnostic Setting. For more information, see the [Metrics diagnostic setting](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings).
+You can export Azure Monitor metrics to other destinations like Log Analytics workspace, Azure Storage Account, Azure Event Hubs or [Azure Monitor partner solutions](https://learn.microsoft.com/en-us/azure/partner-solutions/partners#observability-partners) using the diagnostic settings. For more information, see the [Metrics diagnostic settings](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings) documentation from Microsoft.
 
 To configure diagnostic settings for a service, see [Create diagnostic settings in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/create-diagnostic-settings). You can export metrics by selecting the `AllMetrics` category in diagnostic settings.
 
