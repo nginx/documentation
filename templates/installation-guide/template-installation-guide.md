@@ -12,11 +12,11 @@ nd-summary: >
   {Sentence 2: what the installed component does or enables.}
   {Sentence 3 (optional): supported platforms, versions, or scope limits.}
 nd-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
-nd-related-tasks:
-  - /path/to/upgrade-guide.md   {Use the ref path, not the full URL, so links survive URL changes.}
-  - /path/to/uninstall-guide.md
-  - /path/to/quickstart.md
 ---
+
+> If you need more information about how to fill in this template, read the accompanying [guide](./guide-installation-guide.md).
+
+> This template includes writing instructions and boilerplate text that you can customize, use as-is, or completely replace with your own text. This text is indicated in {curly brackets}. Make sure you replace the placeholders with your own text.
 
 ## Overview
 

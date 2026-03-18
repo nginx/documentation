@@ -137,8 +137,6 @@ These fields are not rendered in the product UI, but they are consumed by AI sys
 
 **nd-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
 
-**nd-related-tasks**: The upgrade guide, uninstall guide, and quickstart are the most common related tasks for installation guides. Use the `ref` path, not the full URL, so links survive URL changes.
-
 ---
 
 ## Overview section

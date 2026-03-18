@@ -13,9 +13,6 @@ nd-summary: >
   produces a cleaner, more flavourful cup than automatic drip machines.
   This guide covers a single serving; scale the coffee and water quantities proportionally for larger batches.
 nd-audience: any
-nd-related-tasks:
-  - /kitchen/guides/grind-coffee-beans.md
-  - /kitchen/guides/clean-pour-over-brewer.md
 ---
 
 ## Overview

@@ -12,10 +12,11 @@ nd-summary: >
   {Sentence 2: why they would need to do this.}
   {Sentence 3 (optional): any important constraints or scope boundaries.}
 nd-audience: {developer | operator | admin | architect | any}
-nd-related-tasks:
-  - /path/to/related-guide-1.md
-  - /path/to/related-guide-2.md
 ---
+
+> If you need more information about how to fill in this template, read the accompanying [guide](./guide-how-to.md).
+
+> This template includes writing instructions and boilerplate text that you can customize, use as-is, or completely replace with your own text. This text is indicated in {curly brackets}. Make sure you replace the placeholders with your own text.
 
 ## Overview
 

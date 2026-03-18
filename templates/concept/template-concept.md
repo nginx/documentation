@@ -12,11 +12,11 @@ nd-summary: >
   {Sentence 2: why it matters to the reader or what it enables.}
   {Sentence 3 (optional): scope, boundaries, or what this document does not cover.}
 nd-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
-nd-related-tasks:
-  - /path/to/related-how-to.md   {Use the ref path, not the full URL, so links survive URL changes.}
-  - /path/to/related-concept.md
-  - /path/to/reference.md
 ---
+
+> If you need more information about how to fill in this template, read the accompanying [guide](./guide-concept.md).
+
+> This template includes writing instructions and boilerplate text that you can customize, use as-is, or completely replace with your own text. This text is indicated in {curly brackets}. Make sure you replace the placeholders with your own text.
 
 {Optional introduction — one to three sentences setting the stage before the definition. Use when the concept requires context before it can be meaningfully defined. Lead with relevance, not "This document explains". Skip this paragraph and go straight to the definition if the concept is self-contained.}
 

@@ -13,10 +13,6 @@ nd-summary: >
   minimal manual effort. This guide covers countertop installation only; for built-in or under-cabinet
   models, see the model-specific installation guide supplied with your unit.
 nd-audience: any
-nd-related-tasks:
-  - /kitchen/guides/clean-coffee-maker.md
-  - /kitchen/guides/descale-coffee-maker.md
-  - /kitchen/guides/brew-pour-over-coffee.md
 ---
 
 ## Overview

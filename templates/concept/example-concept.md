@@ -15,10 +15,6 @@ nd-summary: >
   extraction that apply across all brew methods; for method-specific instructions, see the
   how-to guides listed in References.
 nd-audience: any
-nd-related-tasks:
-  - /kitchen/guides/brew-pour-over-coffee.md
-  - /kitchen/guides/install-coffee-maker.md
-  - /kitchen/guides/grind-coffee-beans.md
 ---
 
 Every cup of coffee is the result of a chemical negotiation between hot water and ground coffee. Getting that negotiation right — or understanding why it went wrong — requires knowing what extraction is and what controls it.
