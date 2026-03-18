@@ -14,7 +14,9 @@ nd-product: NONECO
 
 After you've set up a log profile, it won't capture security events until you deploy it to instances or Config Sync Groups.
 
-This page assumes you've created a log profile in NGINX One Console that you're ready to deploy.
+## Before you begin
+
+Before following the steps in this document, create a log profile in NGINX One Console that you're ready to deploy.
 
 ## Deploy a log profile
 
@@ -70,4 +72,4 @@ After deployment, verify that your log profile is active on the target instances
 
 3. Review the log entries to ensure they match the format and filter settings you configured in the log profile.
 
-For troubleshooting log profile deployment issues, see the [Container-related configuration requirements]({{< ref "/nginx-one-console/waf-integration/overview.md#container-related-configuration-requirements" >}}) section to ensure volumes and paths are correctly configured.
+To troubleshoot log profile deployment issues, see the [Container-related configuration requirements]({{< ref "/nginx-one-console/waf-integration/overview.md#container-related-configuration-requirements" >}}) section to ensure volumes and paths are correctly configured.
