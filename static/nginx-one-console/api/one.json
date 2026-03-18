@@ -84,6 +84,11 @@
       "x-displayName": "NGINX App Protect"
     },
     {
+      "name": "WAF Log Profiles",
+      "description": "Manage WAF log profiles for security logging and monitoring.\n",
+      "x-displayName": "WAF Log Profiles"
+    },
+    {
       "name": "Templates",
       "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\n\n* Import, list, and retrieve NGINX configuration templates.\n* Generate and preview full NGINX configurations by composing templates, before saving it as a staged config.\n",
       "x-displayName": "Templates"
@@ -534,6 +539,9 @@
             "$ref": "#/components/parameters/SortDirection"
           },
           {
+            "$ref": "#/components/parameters/SortNameCertificatesDep"
+          },
+          {
             "$ref": "#/components/parameters/SortNameCertificates"
           }
         ],
@@ -918,6 +926,9 @@
             "$ref": "#/components/parameters/SortDirection"
           },
           {
+            "$ref": "#/components/parameters/SortNameCertificateDeploymentsDep"
+          },
+          {
             "$ref": "#/components/parameters/SortNameCertificateDeployments"
           }
         ],
@@ -1123,6 +1134,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameConfigSyncGroupsDep"
           },
           {
             "$ref": "#/components/parameters/SortNameConfigSyncGroups"
@@ -1446,7 +1460,7 @@
         "x-nginx-one-action": "update",
         "x-nginx-one-entity": "NGINX config sync group configuration",
         "summary": "Apply partial updates to config sync group's configuration",
-        "description": "Applies the specified partial updates to an existing NGINX configuration. Details:\n  * This endpoint accepts additive updates to `NginxConfig`. \n  * To delete files, omit the `file.contents` field. \n  * This method compares the provided config_version with the current NGINX config sync group configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update.\n",
+        "description": "Applies the specified partial updates to an existing NGINX configuration. Details:\n  * This endpoint accepts additive updates to `NginxConfig`. \n  * To delete files, omit the `file.contents` field. \n  * This method compares the provided config_version with the current NGINX config sync group configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update.\n  * `conf_path` is optional. When provided, it must be an absolute path that references a file present in the provided configurations. When omitted, the system uses the conf_path from the existing config sync group metadata.\n",
         "operationId": "patchConfigSyncGroupConfig",
         "requestBody": {
           "required": true,
@@ -1528,7 +1542,7 @@
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX config sync group configuration",
         "summary": "Publish a configuration to NGINX config sync group",
-        "description": "Publishes a new or updated NGINX configuration to the specified config sync group. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten.\n",
+        "description": "Publishes a new or updated NGINX configuration to the specified config sync group. \nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten.\nAdditional details:\n  * `conf_path` is optional. When provided, it must be an absolute path that references a file present in the provided configurations. When omitted, the system uses the conf_path from the existing config sync group metadata.\n",
         "operationId": "publishConfigSyncGroupConfig",
         "requestBody": {
           "required": true,
@@ -2090,6 +2104,45 @@
             "$ref": "#/components/responses/InternalServerErr"
           }
         }
+      },
+      "patch": {
+        "x-feature-flag": "control-plane-bulk-delete",
+        "x-nginx-one-action": "bulk",
+        "x-nginx-one-entity": "Control Plane",
+        "tags": [
+          "Control Planes"
+        ],
+        "summary": "Bulk operation on multiple control planes",
+        "operationId": "BulkControlPlanes",
+        "description": "Performs bulk operation on one or more control planes, only delete is supported.\n\n**Important:** This operation processes each item independently within a single transaction.\nSuccessfully deleted items will persist even if subsequent items fail. The response \nincludes the outcome for each item, allowing you to identify which deletions succeeded \nand which failed.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ControlPlaneBulkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch request completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ControlPlaneBulkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
       }
     },
     "/control-planes/{controlPlaneObjectID}": {
@@ -2200,6 +2253,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCVEsDep"
           },
           {
             "$ref": "#/components/parameters/SortNameCVEs"
@@ -2316,6 +2372,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameCVEImpactedInstancesDep"
           },
           {
             "$ref": "#/components/parameters/SortNameCVEImpactedInstances"
@@ -2516,6 +2575,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameInstancesDep"
           },
           {
             "$ref": "#/components/parameters/SortNameInstances"
@@ -2720,7 +2782,7 @@
           "Instances"
         ],
         "summary": "Retrieve an instance's configuration details",
-        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Details about deployed payloads of managed SSL certificates and keys\n* Unique identifiers\n",
+        "description": "Returns the configuration details for an NGINX instance, including: \n* Main configuration path\n* Details about configuration files\n* Details about auxiliary files\n* Details of deployed SSL/TLS certificates, private keys, WAF policies, and log profiles.\n* Unique identifiers\n",
         "operationId": "getInstanceConfig",
         "responses": {
           "200": {
@@ -2777,7 +2839,7 @@
         "x-nginx-one-action": "update",
         "x-nginx-one-entity": "NGINX instance configuration",
         "summary": "Apply partial updates to an instance's configuration",
-        "description": "Applies the specified partial updates to an existing NGINX configuration. \nThis endpoint accepts additive updates to `NginxConfig`. \nTo delete files, omit the `file.contents` field. \nThis method compares the provided config_version with the current NGINX instance configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update. \nBefore publishing, use the `PATCH /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the modified configuration.\n",
+        "description": "Applies the specified partial updates to an existing NGINX configuration. \nThis endpoint accepts additive updates to `NginxConfig`. \nTo delete files, omit the `file.contents` field. \nThis method compares the provided config_version with the current NGINX instance configuration to detect conflicts, which may arise if the config_version does not match due to an out-of-band update. \nBefore publishing, use the `PATCH /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the modified configuration.\nAdditional details:\n  * `conf_path` is optional. When provided, it must be an absolute path that references a file present in the provided configurations. When omitted, the system uses the conf_path from the existing instance metadata.\n",
         "operationId": "publishInstanceConfigWithModify",
         "requestBody": {
           "required": true,
@@ -2849,7 +2911,7 @@
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX instance configuration",
         "summary": "Publish a configuration to an instance",
-        "description": "Publishes a new or updated NGINX configuration to the specified instance.\nIn the specified `configs`, empty files are not allowed in the directory.\nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\nYou can specify `payloads` in the request to deploy managed certificates and keys to the dataplane. Include file paths\nfor each payload component.\n",
+        "description": "Publishes a new or updated NGINX configuration to the specified instance.\nIn the specified `configs`, empty files are not allowed in the directory.\nIf no existing configuration is found, a new one is created; otherwise, the current configuration is overwritten. \nBefore publishing, use the `PUT /instances/{instanceObjectID}/config-report` endpoint to generate an analysis report for the provided configuration.\nYou can specify `payloads` in the request to deploy managed certificates and keys to the dataplane. Include file paths\nfor each payload component. \nAdditional details:\n  * `conf_path` is optional. When provided, it must be an absolute path that references a file present in the provided configurations. When omitted, the system uses the conf_path from the existing instance metadata.\n",
         "operationId": "publishInstanceConfig",
         "requestBody": {
           "required": true,
@@ -3472,6 +3534,9 @@
             "$ref": "#/components/parameters/SortDirection"
           },
           {
+            "$ref": "#/components/parameters/SortNameStagedConfigsDep"
+          },
+          {
             "$ref": "#/components/parameters/SortNameStagedConfigs"
           }
         ],
@@ -3568,7 +3633,7 @@
         ],
         "summary": "Create an NGINX staged config",
         "operationId": "createStagedConfig",
-        "description": "Create NGINX staged config with a unique ID to identify it within the tenant namespace.\n",
+        "description": "Create NGINX staged config with a unique ID to identify it within the tenant namespace. Additional details:\n  * `conf_path` is optional. When omitted, the system auto-detects the conf_path from the configs by finding the file with an `events {}` block.\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -3788,7 +3853,7 @@
         "x-nginx-one-action": "update",
         "x-nginx-one-entity": "NGINX staged config",
         "summary": "Apply partial updates to staged config",
-        "description": "Applies the specified partial updates to an existing NGINX staged config Details:\n  * This endpoint accepts additive updates to `NginxConfig`. Base `nginx.conf` file must always be provided along with additives.\n  * To delete files, omit the `file.contents` field.\n  * `config_version` is used to ensure the requested patch is applied against the same version.\n",
+        "description": "Applies the specified partial updates to an existing NGINX staged config Details:\n  * This endpoint accepts additive updates to `NginxConfig`. Base `nginx.conf` file must always be provided along with additives.\n  * To delete files, omit the `file.contents` field.\n  * `config_version` is used to ensure the requested patch is applied against the same version.\n  * `conf_path` is optional. When omitted, the system auto-detects the conf_path from the configs by finding the file with an `events {}` block.\n",
         "operationId": "patchStagedConfig",
         "requestBody": {
           "required": true,
@@ -3870,7 +3935,7 @@
         "x-nginx-one-action": "create",
         "x-nginx-one-entity": "NGINX staged config",
         "summary": "Replace existing state",
-        "description": "Completely replaces existing staged config with payload of new request.\n",
+        "description": "Completely replaces existing staged config with payload of new request. Additional details:\n  * `conf_path` is optional. When omitted, the system auto-detects the conf_path from the configs by finding the file with an `events {}` block.\n",
         "operationId": "replaceStagedConfig",
         "requestBody": {
           "required": true,
@@ -4071,7 +4136,7 @@
         "x-nginx-one-action": "export",
         "x-nginx-one-entity": "NGINX staged config",
         "summary": "Export staged configuration",
-        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one-console/nginx-configs/staged-configs/import-export-staged-config/).\n",
+        "description": "Exports staged configuration as a gzipped tar archive. Does not include sensitive data such as SSL certificates. [Learn more](https://docs.nginx.com/nginx-one/how-to/staged-configs/import-export-staged-config/).\n",
         "operationId": "exportStagedConfig",
         "responses": {
           "200": {
@@ -4360,6 +4425,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPoliciesDep"
           },
           {
             "$ref": "#/components/parameters/SortNameNapPolicies"
@@ -4742,7 +4810,7 @@
           "NGINX App Protect"
         ],
         "summary": "List NGINX App Protect deployments",
-        "description": "Returns NGINX App Protect deployments, providing details such as:\n  * Target of the deployment\n  * Time of deployment\n  * Enforcement mode\n  * Policy version\n  * Threat campaign\n  * Attack signature\n  * Bot signature\n",
+        "description": "Returns NGINX App Protect deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Enforcement mode\n  * Policy version\n  * Threat campaign\n  * Attack signature\n  * Bot signature\n",
         "operationId": "listNapPolicyDeployments",
         "parameters": [
           {
@@ -4759,6 +4827,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicyDeploymentsDep"
           },
           {
             "$ref": "#/components/parameters/SortNameNapPolicyDeployments"
@@ -4907,6 +4978,9 @@
           },
           {
             "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapPolicyVersionsDep"
           },
           {
             "$ref": "#/components/parameters/SortNameNapPolicyVersions"
@@ -5090,7 +5164,6 @@
     },
     "/app-protect/signature-sets": {
       "get": {
-        "x-feature-flag": "nap-waf-m3",
         "tags": [
           "NGINX App Protect"
         ],
@@ -5145,7 +5218,6 @@
     },
     "/app-protect/signature-sets/{signatureSetObjectID}": {
       "get": {
-        "x-feature-flag": "nap-waf-m3",
         "tags": [
           "NGINX App Protect"
         ],
@@ -5179,7 +5251,6 @@
     },
     "/app-protect/signature-sets/{signatureSetObjectID}/signatures": {
       "get": {
-        "x-feature-flag": "nap-waf-m3",
         "tags": [
           "NGINX App Protect"
         ],
@@ -5216,7 +5287,6 @@
     },
     "/app-protect/signatures": {
       "get": {
-        "x-feature-flag": "nap-waf-m3",
         "tags": [
           "NGINX App Protect"
         ],
@@ -5271,7 +5341,6 @@
     },
     "/app-protect/signatures/{signatureID}": {
       "get": {
-        "x-feature-flag": "nap-waf-m3",
         "tags": [
           "NGINX App Protect"
         ],
@@ -5303,9 +5372,508 @@
         }
       }
     },
+    "/app-protect/log-profiles": {
+      "get": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "List WAF log profiles",
+        "description": "Returns a list of WAF log profiles.",
+        "operationId": "listWafLogProfiles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfilesDep"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfiles"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfile"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned WAF log profiles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Create WAF log profile",
+        "description": "Creates a WAF log profile.",
+        "operationId": "createWafLogProfile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created WAF log profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}": {
+      "delete": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Delete WAF log profile",
+        "description": "Deletes a WAF log profile.",
+        "operationId": "deleteWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted WAF log profile."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Get WAF log profile details",
+        "description": "Returns WAF log profile details.",
+        "operationId": "getWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned WAF log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileObjectDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Update WAF log profile details",
+        "description": "Updates WAF log profile details.",
+        "operationId": "updateWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated WAF log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}/compile": {
+      "get": {
+        "x-feature-flag": "log-profile-deployment",
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Compile WAF log profile",
+        "description": "Compiles a WAF log profile and returns the request status or compiled bundle.",
+        "operationId": "compileWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileCompileNapRelease"
+          },
+          {
+            "$ref": "#/components/parameters/NapLogProfileCompileDownload"
+          },
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WAF log profile compiled successfully, when `download` is `true`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              },
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "example": "log_all.tar.gz"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted the WAF log profile compile request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "WAF log profile compilation failed, when `download` is `true`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}/deployments": {
+      "get": {
+        "x-feature-flag": "log-profile-deployment",
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "List WAF log profile deployments",
+        "description": "Returns a list of WAF log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
+        "operationId": "listWafLogProfileDeployments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfileDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfileDeployment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned WAF log profile deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileDeploymentsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/templates": {
       "get": {
-        "x-feature-flag": "templates-m1",
         "tags": [
           "Templates"
         ],
@@ -5327,6 +5895,15 @@
           },
           {
             "$ref": "#/components/parameters/SortNameTemplates"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldTemplates"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
           }
         ],
         "responses": {
@@ -5351,7 +5928,6 @@
     },
     "/templates/{templateObjectID}": {
       "delete": {
-        "x-feature-flag": "templates-m1",
         "tags": [
           "Templates"
         ],
@@ -5402,12 +5978,11 @@
         }
       },
       "get": {
-        "x-feature-flag": "templates-m1",
         "tags": [
           "Templates"
         ],
         "summary": "Retrieve a Template",
-        "description": "Retrieves detailed information about a template by its unique identifier.\n",
+        "description": "Retrieves detailed information about a latest template version by its unique identifier.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/TemplateParamObjectID"
@@ -5420,7 +5995,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TemplateDetails"
+                  "$ref": "#/components/schemas/TemplateDetailsResponse"
                 }
               }
             }
@@ -5442,11 +6017,10 @@
         "tags": [
           "Templates"
         ],
-        "x-feature-flag": "templates-m1",
         "x-nginx-one-action": "import",
         "x-nginx-one-entity": "NGINX config templates",
-        "summary": "Import a template\n",
-        "description": "Imports a new template from a `.tar.gz` archive.\n\nUpon successful validation, the template will be created and made available for use.\n\n**Size limits:**\n- Maximum compressed archive size: 1 MB\n- Maximum uncompressed file size (per file): 5 MB\n\nRefer to the [Template Authoring Guide](**link**) for best practices on writing Go-based NGINX templates.\n",
+        "summary": "Import a Template\n",
+        "description": "Imports a new template from a `.tar.gz` archive.\n\nUpon successful validation, the template will be created and made available for use.\n\n**Size limits:**\n- Maximum compressed archive size: 1 MB\n- Maximum uncompressed file size (per file): 5 MB\n\nRefer to the [Template Authoring Guide](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/) for best practices on writing Go-based NGINX templates.\n",
         "operationId": "importTemplate",
         "requestBody": {
           "required": true,
@@ -5496,7 +6070,6 @@
     },
     "/templates/submissions": {
       "post": {
-        "x-feature-flag": "templates-m1",
         "tags": [
           "Templates"
         ],
@@ -5536,7 +6109,7 @@
             "$ref": "#/components/responses/Unauthorized"
           },
           "405": {
-            "description": "This operation is not yet implemented. Please use preview mode (`preview_only=true`).\n",
+            "description": "This operation is not yet implemented. Please use the action for preview (`action=preview`) or partial (`action=partial`).\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -5652,8 +6225,32 @@
           ]
         }
       },
-      "SortNameCertificates": {
+      "SortNameCertificatesDep": {
         "name": "sort_certificates",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort certificates by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "subject_name",
+              "not_before",
+              "not_after"
+            ],
+            "x-enum-varnames": [
+              "sort_name_certificates_name",
+              "sort_name_certificates_subject_name",
+              "sort_name_certificates_not_before",
+              "sort_name_certificates_not_after"
+            ]
+          }
+        }
+      },
+      "SortNameCertificates": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort certificates by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -5703,8 +6300,26 @@
           }
         }
       },
-      "SortNameCertificateDeployments": {
+      "SortNameCertificateDeploymentsDep": {
         "name": "sort_certificate_deployments",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort certificate deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_certificate_deployments_name"
+            ]
+          }
+        }
+      },
+      "SortNameCertificateDeployments": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort certificate deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -5731,8 +6346,26 @@
           }
         }
       },
-      "SortNameConfigSyncGroups": {
+      "SortNameConfigSyncGroupsDep": {
         "name": "sort_config_sync_groups",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort config sync groups by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_config_sync_group_name"
+            ]
+          }
+        }
+      },
+      "SortNameConfigSyncGroups": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort config sync groups by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -5776,7 +6409,7 @@
         "required": true
       },
       "SortNameControlPlanes": {
-        "name": "sort_control_planes",
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort control planes by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -5812,8 +6445,34 @@
         "description": "A globally unique identifier for the control plane.\n",
         "required": true
       },
-      "SortNameCVEs": {
+      "SortNameCVEsDep": {
         "name": "sort_cves",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort CVEs by the number of instances/control planes affected by that CVE.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "instance_count",
+              "control_plane_count",
+              "severity",
+              "cve_id",
+              "published_at"
+            ],
+            "x-enum-varnames": [
+              "sort_instance_count",
+              "sort_control_plane_count",
+              "sort_cve_severity",
+              "sort_cve_id",
+              "sort_published_at"
+            ]
+          }
+        }
+      },
+      "SortNameCVEs": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort CVEs by the number of instances or control planes affected by that CVE.\n",
         "schema": {
@@ -5847,8 +6506,28 @@
         "description": "A globally unique identifier for NGINX CVE.\n",
         "required": true
       },
-      "SortNameCVEImpactedInstances": {
+      "SortNameCVEImpactedInstancesDep": {
         "name": "sort_cve_impacted_instances",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort the Instances that are affected by a CVE\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hostname",
+              "status"
+            ],
+            "x-enum-varnames": [
+              "sort_name_cve_impacted_instances_hostname",
+              "sort_name_cve_impacted_instances_status"
+            ]
+          }
+        }
+      },
+      "SortNameCVEImpactedInstances": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort the Instances that are affected by a CVE\n",
         "schema": {
@@ -5897,8 +6576,30 @@
           }
         }
       },
-      "SortNameInstances": {
+      "SortNameInstancesDep": {
         "name": "sort_instances",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort instances by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hostname",
+              "status",
+              "last_reported"
+            ],
+            "x-enum-varnames": [
+              "sort_name_instance_hostname",
+              "sort_name_instance_status",
+              "sort_name_instance_last_reported"
+            ]
+          }
+        }
+      },
+      "SortNameInstances": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort instances by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -5947,8 +6648,26 @@
           }
         }
       },
-      "SortNameStagedConfigs": {
+      "SortNameStagedConfigsDep": {
         "name": "sort_staged_configs",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort staged configs by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_staged_config_name"
+            ]
+          }
+        }
+      },
+      "SortNameStagedConfigs": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort staged configs by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -5982,6 +6701,27 @@
         },
         "description": "Optional flag to control how the request is processed.\n  - When `false` or omitted (by default), the request creates a Staged Config directly. (`StagedConfigCreateResponse`)\n  - When `true`, the request parses the import and returns metadata you can use to create a Staged Config through a POST. ( `StagedConfigCreateRequest`)\n",
         "required": false
+      },
+      "NapLogProfileCompileNapRelease": {
+        "name": "nap_release",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "NGINX App Protect release version to request the compilation for. The value must match a supported NGINX App Protect release (e.g. \"5.10.0\").\n",
+        "required": true,
+        "example": "5.10.0"
+      },
+      "NapLogProfileCompileDownload": {
+        "name": "download",
+        "in": "query",
+        "schema": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": "Whether to download the NGINX App Protect log profile bundle. When `true`, the request blocks until the bundle is ready and returns the bundle content. The request may take longer depending on the bundle's compilation status.\n",
+        "required": false,
+        "example": true
       },
       "NapSignatureID": {
         "name": "signatureID",
@@ -6061,8 +6801,121 @@
           }
         }
       },
-      "SortNameNapPolicies": {
+      "SortNameNapLogProfilesDep": {
+        "name": "sort_nap_log_profiles",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort NGINX App Protect log profiles by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_log_profiles_name"
+            ]
+          }
+        }
+      },
+      "SortNameNapLogProfiles": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort NGINX App Protect log profiles by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_log_profiles_name"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapLogProfile": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapLogProfile"
+          }
+        }
+      },
+      "NapLogProfileParamObjectID": {
+        "name": "nap_log_profile_object_id",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/NapLogProfileObjectID"
+        },
+        "description": "A globally unique identifier for the App Protect log profile.\n",
+        "required": true
+      },
+      "SortNameNapLogProfileDeployments": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort NGINX App Protect log profile deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "type",
+              "status",
+              "deployed_on"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_log_profile_deployments_name",
+              "sort_name_nap_log_profile_deployments_type",
+              "sort_name_nap_log_profile_deployments_status",
+              "sort_name_nap_log_profile_deployments_deployed_on"
+            ]
+          }
+        }
+      },
+      "FilterFieldNapLogProfileDeployment": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameNapLogProfileDeployment"
+          }
+        }
+      },
+      "SortNameNapPoliciesDep": {
         "name": "sort_nap_policies",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort NGINX App Protect policies by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "deployment_count",
+              "enforcement_mode",
+              "last_deployed"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policies_name",
+              "sort_name_nap_policies_deployment_count",
+              "sort_name_nap_policies_enforcement_mode",
+              "sort_name_nap_policies_last_deployed"
+            ]
+          }
+        }
+      },
+      "SortNameNapPolicies": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort NGINX App Protect policies by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -6104,8 +6957,40 @@
         "description": "A globally unique identifier for the App Protect policy.\n",
         "required": true
       },
-      "SortNameNapPolicyDeployments": {
+      "SortNameNapPolicyDeploymentsDep": {
         "name": "sort_nap_deployments",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort NGINX App Protect deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "type",
+              "policy_version",
+              "status",
+              "deployed_on",
+              "threat_campaign_version",
+              "attack_signature_version",
+              "bot_signature_version"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policy_deployments_name",
+              "sort_name_nap_policy_deployments_type",
+              "sort_name_nap_policy_deployments_policy_version",
+              "sort_name_nap_policy_deployments_status",
+              "sort_name_nap_policy_deployments_deployed_on",
+              "sort_name_nap_policy_deployments_threat_campaign_version",
+              "sort_name_nap_policy_deployments_attack_signature_version",
+              "sort_name_nap_policy_deployments_bot_signature_version"
+            ]
+          }
+        }
+      },
+      "SortNameNapPolicyDeployments": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort NGINX App Protect deployments by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -6146,8 +7031,32 @@
           }
         }
       },
-      "SortNameNapPolicyVersions": {
+      "SortNameNapPolicyVersionsDep": {
         "name": "sort_nap_policy_versions",
+        "in": "query",
+        "deprecated": true,
+        "description": "Sort NGINX App Protect policy versions by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "created_at",
+              "deployment_status",
+              "deployment_count",
+              "enforcement_mode"
+            ],
+            "x-enum-varnames": [
+              "sort_name_nap_policy_versions_created_at",
+              "sort_name_nap_policy_versions_deployment_status",
+              "sort_name_nap_policy_versions_deployment_count",
+              "sort_name_nap_policy_versions_enforcement_mode"
+            ]
+          }
+        }
+      },
+      "SortNameNapPolicyVersions": {
+        "name": "sort_fields",
         "in": "query",
         "description": "Sort NGINX App Protect policy versions by enumerate value(s). Ordinal position determines primary, secondary, etc.\n",
         "schema": {
@@ -6226,6 +7135,17 @@
         },
         "description": "Optional flag to control how a template submission request is processed.\n  - When `true`, the request renders the full NGINX configuration for preview **without creating a template submission object** (this is currently the only supported mode).\n  - When `false` or omitted (the default), the request is intended to render the configuration **and create a submission object**, but this feature is **not supported yet** and will return an error.\nNote: Currently, only preview (stateless render) mode is supported. Submission creation is not yet implemented.\n",
         "required": false
+      },
+      "FilterFieldTemplates": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `name`, `type`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameTemplates"
+          }
+        }
       }
     },
     "schemas": {
@@ -7302,7 +8222,7 @@
         "minLength": 1,
         "maxLength": 4096,
         "description": "The full path to the main NGINX configuration file. This corresponds to the `--conf-path` parameter used in the NGINX binary.\n",
-        "example": "/etc/nginx/nginx.conf."
+        "example": "/etc/nginx/nginx.conf"
       },
       "FileDataRequest": {
         "type": "object",
@@ -7351,7 +8271,6 @@
         "type": "object",
         "description": "Details of an NGINX configuration, the main configuration path, and the configuration directories.\n",
         "required": [
-          "conf_path",
           "configs"
         ],
         "properties": {
@@ -7378,20 +8297,32 @@
           }
         }
       },
+      "NginxConfigPayloadContents": {
+        "type": "string",
+        "format": "base64",
+        "description": "The base64-encoded contents of the file.",
+        "maxLength": 3145728
+      },
       "PayloadObjectID": {
         "description": "A globally unique identifier for the valid payload object reference.",
         "type": "string",
         "format": "object_id",
-        "pattern": "^(cert|pv)_.*",
+        "pattern": "^(cert|pv|lp)_.*",
         "x-go-type": "objects.ID",
         "x-go-type-import": {
           "name": "objects",
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "NginxConfigPayloadPaths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
       "NginxConfigPayload": {
         "type": "object",
-        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, to a data plane instance.\n",
+        "description": "Details of Aux File Payload that goes with an NGINX configuration. Provide hints for the backend system on \nadditional file contents that should be part of the NGINX Config Publication.\nCan be used to deploy files related to SSL certificates, WAF policies and WAF log profiles to a data plane instance.\n",
         "required": [
           "type",
           "paths"
@@ -7399,14 +8330,15 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n  - nap_policy_version - indicates a version of NAP policy managed by NGINX One Console. A valid policy_version object\n",
+            "description": "Types of Aux File Payload:\n  - inline_secret     - indicates the provided content for the payload should be stored in a secret location, and removed after the publication is done.\n  - inline_content    - indicates the provided content for the payload should be stored, and removed after the publication is done. Note, the contents may end up in the `aux` content if used in this NGINX configuration.\n  - unmanaged_certificate - indicates certificate content for an unmanaged certificate detected from a data plane instance through NGINX configurations. Will be filtered and ignored in the payload deployment.\n  - managed_certificate - indicates public certificates managed by NGINX One Console.\n  - managed_key - indicates a private key managed by NGINX One Console.\n  - nap_policy_version - indicates a version of WAF policy managed by NGINX One Console.\n  - nap_log_profile - indicates a WAF log profile managed by NGINX One Console.\n",
             "enum": [
               "inline_secret",
               "inline_content",
               "unmanaged_certificate",
               "managed_certificate",
               "managed_key",
-              "nap_policy_version"
+              "nap_policy_version",
+              "nap_log_profile"
             ],
             "x-enum-varnames": [
               "nginx_config_payload_inline_secret",
@@ -7414,23 +8346,18 @@
               "nginx_config_payload_unmanaged_certificate",
               "nginx_config_payload_managed_certificate",
               "nginx_config_payload_managed_key",
-              "nginx_config_payload_nap_policy_version"
+              "nginx_config_payload_nap_policy_version",
+              "nginx_config_payload_nap_log_profile"
             ]
           },
           "contents": {
-            "type": "string",
-            "format": "base64",
-            "description": "The base64-encoded contents of the file.",
-            "maxLength": 3145728
+            "$ref": "#/components/schemas/NginxConfigPayloadContents"
           },
           "object_id": {
             "$ref": "#/components/schemas/PayloadObjectID"
           },
           "paths": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "$ref": "#/components/schemas/NginxConfigPayloadPaths"
           }
         },
         "example": {
@@ -7443,7 +8370,7 @@
       },
       "NginxConfigPayloads": {
         "type": "array",
-        "description": "An array of payloads that track the file paths of each SSL certificates and key, indicating where to deploy\nthem onto the data plane instance.\n* If the `type` is `managed_certificate` or `managed_key`, you need to specify an `object_id`.\n  * The `object_id` must represent a managed certificate object, or a `400 Bad Request` is returned. \n  * The `contents` field is optional and is ignored if included.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys, respectively. When you retrieve certificate deployment details, only the file paths of managed \ncertificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
+        "description": "An array of payloads that define which objects should be deployed and the file paths where each object will be placed on the data plane instance.\n* When the type is `managed_certificate`, `managed_key`, `nap_policy_version`, or `nap_log_profile`, you must specify an `object_id`. \nThe `object_id` must refer to a managed object.\n* The NGINX One Console manages deployed file paths only for managed certificates and keys. If you don't want \nthem to be managed by NGINX One Console, `inline_content` and `inline_secret` can be used for certificates or \nkeys respectively, with `contents`. When you retrieve certificate deployment details, \nonly the file paths of managed certificates and keys will be shown.\n* If you use `inline_content` and `inline_secret` in your NGINX configuration, the NGINX One Console \nwill detect them. When they are used as SSL directives of the NGINX configuration \nfor certificates and keys, the certificates will be listed as `unmanaged_certificate` in the certificate \ndeployment details.\n",
         "items": {
           "$ref": "#/components/schemas/NginxConfigPayload"
         },
@@ -7467,6 +8394,20 @@
             "contents": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURUVENDQWpXZ0F3SUJBZ0lVVkcycitidUwwRk83U1FVeUtoVkNTN3YyRHZZd0RRWUpLb1pJaHZjTkFRRUwKQlFBd05qRVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNUk13RVFZRFZRUUtEQXBPUjBsT1dDQkpibU11TVFzdwpDUVlEVlFRR0V3SlZVekFlRncweU5EQTBNall5TURVeE5ERmFGdzB5TkRBME1qY3lNRFV4TkRGYU1EWXhFakFRCkJnTlZCQU1NQ1d4dlkyRnNhRzl6ZERFVE1CRUdBMVVFQ2d3S1RrZEpUbGdnU1c1akxqRUxNQWtHQTFVRUJoTUMKVlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyb0FJVU9HMkxGMFVGclpMeQp5aWhZRjBZWjdYTWFYZnZ4dWJMYVZZdUdJNjlYN1FQRUJtUXp2OXdod25aUktDUExDZHVCNG04Y0o3Q3BGenRHCldPYVFMbmNxVVA4RFU1aHlQeFBSbmZUdFFBcUdiMDJRZ1RVQXY1QkpJMFZheGhCcnNaemd0KzgyM3ZoTTZTUHcKMGdSc1NZRlFpKzVDWW9MMWZNSWdhS0N2Ri9zZGl5cHZFQ0JDZVZyTWZFZ0pGSVJBQ1kvdFBzdEsvTkxwKzlmawppZ3hFMlYxcldoSGdvRmhZRm5YYnVqM2RIMHJLai9DVlM5anZMMk9vRTlvenM5MkRVLytySGJ6eFR3QndVQjBzCmVPS2hPY2d2cENyTVlSUWxUUlhmWVJmV0NLN2Q2Mk1JR3kvajcvV1VieDFOYzl4MjJzUitydVRlZkxnRTA2NWgKMldDZkFnTUJBQUdqVXpCUk1CMEdBMVVkRGdRV0JCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFmQmdOVgpIU01FR0RBV2dCUnZnamkxWlByZlVBMnRlWlRMUGE0djlzdHFXakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCNC9VM3lrMFYzMTFNRFQvaEttbFJ4MWRqalRyMlhIQnVEcXZYY3BIRTQKVDJwZ0xnWURwN2tmUTQrdnlHWUt1cndEc0F1VDhEZCtUUUZLZEIraEFGRzMyazlxS1RyY1ZCZ2tNSjIwQitvWQp4T2diWW5zVnpiTDhXL0hOR3BlbDkrbThwYURtMGRXNzhMUit5UnJleDVlY2pjYWlZMDg3b0dHNlJDeWhyUVd4CkpkdkFvNlU1ejl3TnVhNmMyNlY2cy84Yit6SkJWektGZ0tQNVVGL2lIcGJVNW1QcVMwWlk4ckhRLzZPTHRGRjgKZ1J2UUlRZjZLSjRmOXlUOFBYSHBIdGJCMzEzaWh2Z09wWW9la3lIWTZaSmllTWhkd0J4MzB1N3d2Uy9POEluYwpsZWZzTkxUcWFTM2JWdldLeUFaVlZyenFtU043aGh4QWZrc0RZelBFbkF3OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t",
             "paths": [
               "/etc/nginx/inline_cert.crt"
+            ]
+          },
+          {
+            "type": "nap_policy_version",
+            "object_id": "pv_dM68MUcVTe6pfDaCNsM9Qw",
+            "paths": [
+              "/etc/nginx/strict_policy.tgz"
+            ]
+          },
+          {
+            "type": "nap_log_profile",
+            "object_id": "lp_dM68MUcVTe6pfDaCNsM9Qw",
+            "paths": [
+              "/etc/nginx/log_all.tgz"
             ]
           }
         ]
@@ -7501,6 +8442,10 @@
           "line": {
             "description": "Line number in the configuration where the issue is found.",
             "type": "integer"
+          },
+          "message": {
+            "description": "Details about the identified issue.",
+            "type": "string"
           }
         }
       },
@@ -8019,7 +8964,8 @@
           "agent_version",
           "registered_at",
           "last_reported",
-          "status"
+          "status",
+          "has_container_host"
         ],
         "properties": {
           "object_id": {
@@ -8094,6 +9040,10 @@
           },
           "control_plane": {
             "$ref": "#/components/schemas/ControlPlaneBaseInfo"
+          },
+          "has_container_host": {
+            "type": "boolean",
+            "description": "Indicates whether the instance is running in a containerized environment."
           }
         }
       },
@@ -8252,7 +9202,7 @@
         ]
       },
       "NapDeploymentStatus": {
-        "description": "The current enforcement mode of the NGINX App Protect policy, with the following possible values:\n* `deployed` - The NGINX App Protect policy has been deployed.\n* `not_deployed` - The NGINX App Protect policy has not been deployed.\n* `deploying` - The NGINX App Protect policy is currently being deployed.\n* `failed` - The NGINX App Protect policy failed deploying.\n",
+        "description": "The current deployment status of the NGINX App Protect policy or log profile, with the following possible values:\n* `deployed` - The NGINX App Protect policy or log profile has been deployed.\n* `not_deployed` - The NGINX App Protect policy or log profile has not been deployed.\n* `deploying` - The NGINX App Protect policy or log profile is currently being deployed.\n* `failed` - The NGINX App Protect policy or log profile failed deploying.\n",
         "type": "string",
         "enum": [
           "deployed",
@@ -8335,6 +9285,92 @@
           "deployed_on": "2023-12-06T22:37:24.120114Z"
         }
       },
+      "NapLatestDeployed": {
+        "description": "Whether the latest F5 WAF object (i.e., log profile) was deployed, with the following possible values:\n* `yes` - The latest NAP object has been deployed.\n* `no` - The latest NAP object has not been deployed.\n",
+        "type": "string",
+        "enum": [
+          "yes",
+          "no"
+        ],
+        "x-enum-varnames": [
+          "nap_latest_deployed_yes",
+          "nap_latest_deployed_no"
+        ]
+      },
+      "NapLogProfileObjectID": {
+        "description": "A globally unique identifier for the App Protect log profile.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^lp_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        }
+      },
+      "LogProfileAssociation": {
+        "description": "Details for a F5 WAF log profile that's associated with an instance or a config sync group.",
+        "required": [
+          "name",
+          "nap_release",
+          "latest_deployed",
+          "log_profile_object_id",
+          "publication_object_id",
+          "paths",
+          "deployment_status",
+          "deployed_on"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the log profile at the time of the deployment."
+          },
+          "nap_release": {
+            "type": "string",
+            "description": "The release version of the compiler used for the log profile."
+          },
+          "latest_deployed": {
+            "$ref": "#/components/schemas/NapLatestDeployed"
+          },
+          "log_profile_object_id": {
+            "$ref": "#/components/schemas/NapLogProfileObjectID"
+          },
+          "publication_object_id": {
+            "$ref": "#/components/schemas/PublicationObjectID"
+          },
+          "paths": {
+            "type": "array",
+            "description": "The list of file system paths where the compiled log profile bundle file is installed. \nSince a single compiled log profile bundle file may be applied in multiple contexts, all relevant paths are included.\n",
+            "example": [
+              "/etc/nginx/default_log_profile.tgz",
+              "/etc/nginx/default_log_profile_2.tgz"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "deployment_status": {
+            "$ref": "#/components/schemas/NapDeploymentStatus"
+          },
+          "deployed_on": {
+            "description": "Date and time of the deployment.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "name": "default_log_profile",
+          "nap_release": "5.10.0",
+          "latest_deployed": "yes",
+          "log_profile_object_id": "lp_panEdeY-Sh2rWm365y7wsw",
+          "publication_object_id": "pub_72pGHoGsSICL_THZrs964g",
+          "paths": [
+            "/etc/nginx/default_log_profile.tgz"
+          ],
+          "deployment_status": "deployed",
+          "deployed_on": "2023-12-06T22:37:24.120114Z"
+        }
+      },
       "ConfigSyncGroup": {
         "allOf": [
           {
@@ -8381,6 +9417,20 @@
                     }
                   }
                 }
+              },
+              "log_profile": {
+                "type": "object",
+                "required": [
+                  "deployments"
+                ],
+                "properties": {
+                  "deployments": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/LogProfileAssociation"
+                    }
+                  }
+                }
               }
             }
           }
@@ -8407,7 +9457,8 @@
               "os_version": "Ubuntu 22.04",
               "nginx_id": "b636d4376dea15405589692d3c5d3869ff3a9b26b0e7bb4bb1aa7e658ace1437",
               "config_status": "in_sync",
-              "config_version": "abc123def456"
+              "config_version": "abc123def456",
+              "has_container_host": false
             }
           ],
           "certs": [
@@ -8913,6 +9964,51 @@
               ]
             }
           ]
+        }
+      },
+      "ControlPlaneBulkRequestData": {
+        "type": "object",
+        "description": "Part of bulk operation on a control plane, only `delete` is supported.",
+        "required": [
+          "action",
+          "object_id"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ControlPlaneObjectID"
+          },
+          "action": {
+            "$ref": "#/components/schemas/BulkRequestAction"
+          }
+        },
+        "example": {
+          "object_id": "ecp_-uvR3F2TQGm18jnl7bpaGw",
+          "action": "delete"
+        }
+      },
+      "ControlPlaneBulkRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ControlPlaneBulkRequestData"
+        },
+        "minItems": 1,
+        "maxItems": 50,
+        "example": [
+          {
+            "object_id": "ecp_-uvR3F2TQGm18jnl7bpaGw",
+            "action": "delete"
+          },
+          {
+            "object_id": "ecp_PL0c1XodRemmzVEjiXSsTg",
+            "action": "delete"
+          }
+        ]
+      },
+      "ControlPlaneBulkResponse": {
+        "description": "The control plane bulk outcome.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/BulkRequestObjectStatus"
         }
       },
       "StatusSummary": {
@@ -9520,7 +10616,8 @@
               "registered_at": "2023-12-06T22:37:24.120114Z",
               "status": "unknown",
               "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
-              "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
+              "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "has_container_host": false
             }
           ]
         }
@@ -9695,6 +10792,26 @@
           }
         }
       },
+      "LogProfileDetails": {
+        "description": "Information regarding deployed log profiles for F5 WAF.\n",
+        "type": "object",
+        "required": [
+          "nap_release",
+          "deployments"
+        ],
+        "properties": {
+          "nap_release": {
+            "type": "string",
+            "description": "The release version of the compiler used for log profiles."
+          },
+          "deployments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogProfileAssociation"
+            }
+          }
+        }
+      },
       "InstanceDetails": {
         "type": "object",
         "description": "Detailed information about an NGINX instance.",
@@ -9723,6 +10840,9 @@
               },
               "control_plane": {
                 "$ref": "#/components/schemas/ControlPlaneBaseInfo"
+              },
+              "log_profile": {
+                "$ref": "#/components/schemas/LogProfileDetails"
               }
             }
           }
@@ -9768,7 +10888,8 @@
           "registered_at": "2023-12-06T22:37:24.120114Z",
           "status": "unknown",
           "system_id": "b2c0b6a8-8b6a-3a8f-a541-17d8899c119a",
-          "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw"
+          "object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "has_container_host": false
         }
       },
       "NginxSecurityAdvisory": {
@@ -10413,20 +11534,22 @@
       },
       "MetricAggregation": {
         "type": "string",
-        "description": "Static list of aggregation functions that can be applied to a compatible metric.\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n",
+        "description": "Static list of aggregation functions that can be applied to a compatible metric.\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n  * accum_rate\n",
         "enum": [
           "min",
           "max",
           "sum",
           "avg",
-          "rate"
+          "rate",
+          "accum_rate"
         ],
         "x-enum-varnames": [
           "metric_aggregation_min",
           "metric_aggregation_max",
           "metric_aggregation_sum",
           "metric_aggregation_avg",
-          "metric_aggregation_rate"
+          "metric_aggregation_rate",
+          "metric_aggregation_accum_rate"
         ]
       },
       "MetricDimensions": {
@@ -10453,7 +11576,7 @@
       "MetricDimension": {
         "type": "string",
         "default": "display_name",
-        "description": "Static list of all metric dimensions:\n  * `display_name` - Display name of the NGINX instance.\n  * `file_path` - Path to the file.\n  * `parent_hostname` - Hostname of the NGINX Plus instance.\n  * `instance_object_id` - Unique ID of the instance registered with NGINX One Console.\n  * `location_zone` - Name of an HTTP location zone.\n  * `mount_point` - Filesystem mount point.\n  * `namespace` - Namespace for the metric data.\n  * `network_interface` - Server network interface.\n  * `nginx_id` - Unique ID of the NGINX instance running on the data plane.\n  * `server_zone` - Name of an HTTP or Stream server zone.\n  * `system_id` - Unique ID of the operating system running nginx-agent.\n  * `tenant` - Tenant for the metric data.\n  * `csg_object_id` - Unique ID of the Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value for metric `system.cpu.utilization`.\n  * `state` - Variant value for metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value for metric `system.network.io`.\n  * `status_range` - Variant value for metric `nginx.http.response.count`.\n  * `logical_number` - Variant value for metrics that return a processor number.\n  * `outcome` - Variant value for metrics that return an outcome.\n  * `upstream_zone` - upstream zone for the metric data.\n  * `upstream_name` - upstream name for the metric data.\n  * `peer_state` - Variant value for metric peer state for the metric `nginx.http.upstream.peer.count`.\n  * `peer_health_check` - Variant value for metric peer health check for the metric `nginx.http.upstream.peer.health_checks`.\n  * `peer_address` - peer address for metric data.\n  * `peer_name` - peer name for metric data.\n",
+        "description": "Static list of all metric dimensions:\n  * `display_name` - Display name of the NGINX instance.\n  * `file_path` - Path to the file.\n  * `parent_hostname` - Hostname of the NGINX Plus instance.\n  * `instance_object_id` - Unique ID of the instance registered with NGINX One Console.\n  * `location_zone` - Name of an HTTP location zone.\n  * `mount_point` - Filesystem mount point.\n  * `namespace` - Namespace for the metric data.\n  * `network_interface` - Server network interface.\n  * `nginx_id` - Unique ID of the NGINX instance running on the data plane.\n  * `server_zone` - Name of an HTTP or Stream server zone.\n  * `system_id` - Unique ID of the operating system running nginx-agent.\n  * `tenant` - Tenant for the metric data.\n  * `csg_object_id` - Unique ID of the Config Sync Group registered with NGINX One Console.\n  * `mode` - Variant value for metric `system.cpu.utilization`.\n  * `state` - Variant value for metrics `system.filesystem.usage`, `system.memory.usage`.\n  * `io_direction` - Variant value for metric `system.network.io`.\n  * `status_range` - Variant value for metric `nginx.http.response.count`.\n  * `logical_number` - Variant value for metrics that return a processor number.\n  * `outcome` - Variant value for metrics that return an outcome.\n  * `upstream_zone` - upstream zone for the metric data.\n  * `upstream_name` - upstream name for the metric data.\n  * `peer_state` - Variant value for metric peer state for the metric `nginx.http.upstream.peer.count`.\n  * `peer_health_check` - Variant value for metric peer health check for the metric `nginx.http.upstream.peer.health_checks`.\n  * `peer_address` - peer address for metric data.\n  * `peer_name` - peer name for metric data.\n  * `ecp_object_id` - Unique ID of the External Control Plane registered with NGINX One Console.\n",
         "enum": [
           "display_name",
           "file_path",
@@ -10479,7 +11602,8 @@
           "peer_state",
           "peer_health_check",
           "peer_address",
-          "peer_name"
+          "peer_name",
+          "ecp_object_id"
         ],
         "x-enum-varnames": [
           "metric_dimension_display_name",
@@ -10506,7 +11630,8 @@
           "metric_dimension_peer_state",
           "metric_dimension_peer_health_check",
           "metric_dimension_peer_address",
-          "metric_dimension_peer_name"
+          "metric_dimension_peer_name",
+          "metric_dimension_ecp_object_id"
         ]
       },
       "BaseMetricQueryRequest": {
@@ -10827,91 +11952,111 @@
           },
           {
             "$ref": "#/components/schemas/MetricNginxStreamUpstreamPeerHealthChecks"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxStreamUpstreamPeerCount"
+          },
+          {
+            "$ref": "#/components/schemas/MetricNginxHttpRequestIo"
           }
         ]
       },
       "MetricSystemCpuUtilization": {
         "type": "string",
-        "description": "Total system CPU use for 'system' or 'user' (percent). A filter is required to specify the mode.\n\nReplaces deprecated variants:\n  * system.cpu.system\n  * system.cpu.user\n\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter:\n  * mode (valid values:: 'system', 'user')\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * logical_number\n",
+        "description": "Total system CPU use for 'system' or 'user' (percent). A filter is required to specify the mode.\n\nReplaces deprecated variants:\n  * system.cpu.system\n  * system.cpu.user\n\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter:\n  * mode (valid values:: 'system', 'user')\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * logical_number\n",
         "enum": [
           "system.cpu.utilization"
         ]
       },
       "MetricSystemFilesystemUsage": {
         "type": "string",
-        "description": "System disk usage statistic, percentage. A filter differentiator is needed for specific state(s).\n\nReplacement for depreciated variant(s):\n  * system.disk.in_use\n  * system.disk.total\n  * system.disk.used\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'in_use')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
+        "description": "System disk usage statistic, percentage. A filter differentiator is needed for specific state(s).\n\nReplacement for deprecated variant(s):\n  * system.disk.in_use\n  * system.disk.total\n  * system.disk.used\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'in_use')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * mount_point\n",
         "enum": [
           "system.filesystem.usage"
         ]
       },
       "MetricSystemMemoryUsage": {
         "type": "string",
-        "description": "Total available statistic about system memory usage, bytes. A filter differentiator is needed for specific state(s).\n\nReplacement for depreciated variant(s):\n  * system.mem.pct_used\n  * system.mem.total\n  * system.mem.used\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'total', 'pct_used')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Total available statistic about system memory usage, bytes. A filter differentiator is needed for specific state(s).\n\nReplacement for deprecated variant(s):\n  * system.mem.pct_used\n  * system.mem.total\n  * system.mem.used\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension filter differentiator:\n  * state (applicable filter values: 'used', 'free', 'total', 'pct_used')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.memory.usage"
         ]
       },
       "MetricSystemCpuLogicalCount": {
         "type": "string",
-        "description": "Number of logical (virtual) processor cores created by the operating system.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
+        "description": "Number of logical (virtual) processor cores created by the operating system.\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate      \n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n",
         "enum": [
           "system.cpu.logical.count"
         ]
       },
       "MetricNginxHttpConnectionCount": {
         "type": "string",
-        "description": "Number of connections grouped by outcome ('ACTIVE', 'IDLE', 'READING', 'WRITING', 'WAITING').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
+        "description": "Number of connections grouped by outcome ('ACTIVE', 'IDLE', 'READING', 'WRITING', 'WAITING').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
         "enum": [
           "nginx.http.connection.count"
         ]
       },
       "MetricNginxHttpConnections": {
         "type": "string",
-        "description": "Total connections grouped by outcome ('ACCEPTED', 'HANDLED', 'DROPPED').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
+        "description": "Total connections grouped by outcome ('ACCEPTED', 'HANDLED', 'DROPPED').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * outcome\n",
         "enum": [
           "nginx.http.connections"
         ]
       },
       "MetricNginxHttpUpstreamPeerCount": {
         "type": "string",
-        "description": "Number of upstream peers grouped by state ('CHECKING', 'DOWN', 'DRAINING', 'UNAVAILABLE', 'UNHEALTHY', 'UP').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_state\n",
+        "description": "Number of upstream peers grouped by state ('CHECKING', 'DOWN', 'DRAINING', 'UNAVAILABLE', 'UNHEALTHY', 'UP').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_state\n",
         "enum": [
           "nginx.http.upstream.peer.count"
         ]
       },
+      "MetricNginxStreamUpstreamPeerCount": {
+        "type": "string",
+        "description": "Number of upstream peers grouped by state ('CHECKING', 'DOWN', 'DRAINING', 'UNAVAILABLE', 'UNHEALTHY', 'UP').\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_state\n",
+        "enum": [
+          "nginx.stream.upstream.peer.count"
+        ]
+      },
       "MetricNginxHttpUpstreamPeerHealthChecks": {
         "type": "string",
-        "description": "The total number of health check requests made to a HTTP upstream peer.\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_health_check\n  * peer_address\n  * peer_name\n",
+        "description": "The total number of health check requests made to a HTTP upstream peer.\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_health_check\n  * peer_address\n  * peer_name\n",
         "enum": [
           "nginx.http.upstream.peer.health_checks"
         ]
       },
       "MetricNginxStreamUpstreamPeerHealthChecks": {
         "type": "string",
-        "description": "The total number of health check requests made to a stream upstream peer.\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_health_check\n  * peer_address\n  * peer_name\n",
+        "description": "The total number of health check requests made to a stream upstream peer.\nSupported aggregations:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\nSupported catalog dimensions:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * upstream_zone\n  * upstream_name\n  * peer_health_check\n  * peer_address\n  * peer_name\n",
         "enum": [
           "nginx.stream.upstream.peer.health_checks"
         ]
       },
       "MetricSystemNetworkIo": {
         "type": "string",
-        "description": "Network I/O statistics. Number of bytes sent or received per network interface. A filter differentiator is needed for specific I/O direction(s).\n\nReplacement for depreciated variant(s):\n  * system.net.bytes_rcvd\n  * system.net.bytes_sent\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * io_direction (applicable filter values: 'transmit', 'receive')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
+        "description": "Network I/O statistics. Number of bytes sent or received per network interface. A filter differentiator is needed for specific I/O direction(s).\n\nReplacement for deprecated variant(s):\n  * system.net.bytes_rcvd\n  * system.net.bytes_sent\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * accum_rate\n\nCatalog dimension filter differentiator:\n  * io_direction (applicable filter values: 'transmit', 'receive')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * network_interface\n",
         "enum": [
           "system.network.io"
         ]
       },
       "MetricNginxHttpRequestCount": {
         "type": "string",
-        "description": "The current number of client requests received from clients.\n\nReplacement for depreciated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "description": "The current number of client requests received from clients.\n\nReplacement for deprecated variant(s):\n  * nginx.http.request.count\n  * plus.http.request.count\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
         "enum": [
           "nginx.http.request.count"
         ]
       },
       "MetricNginxHttpResponseCount": {
         "type": "string",
-        "description": "The current number of responses, grouped by status code range. A filter differentiator is needed for specific status range(s).\n\nReplacement for depreciated variant(s):\n  * nginx.http.status.4xx\n  * plus.http.status.4xx\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
+        "description": "The current number of responses, grouped by status code range. A filter differentiator is needed for specific status range(s).\n\nReplacement for deprecated variant(s):\n  * nginx.http.status.4xx\n  * plus.http.status.4xx\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * rate\n\nCatalog dimension filter differentiator:\n  * status_range (applicable filter values: '4xx', '5xx')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id          \n  * server_zone\n  * location_zone\n",
         "enum": [
           "nginx.http.response.count"
+        ]
+      },
+      "MetricNginxHttpRequestIo": {
+        "type": "string",
+        "description": "The total number of bytes sent or received. A filter differentiator is needed for specific I/O direction(s).\n\nReplacement for deprecated variant(s):\n  * nginx.http.request.bytes_rcvd\n  * nginx.http.request.bytes_sent\n\nAggregation(s) supported:\n  * min\n  * max\n  * sum\n  * avg\n  * accum_rate\n\nCatalog dimension filter differentiator:\n  * io_direction (applicable filter values: 'transmit', 'receive')\n\nCatalog dimension(s) supported:\n  * instance_object_id\n  * csg_object_id\n  * ecp_object_id\n  * system_id\n  * parent_hostname\n  * display_name\n  * nginx_id\n  * server_zone\n  * location_zone\n",
+        "enum": [
+          "nginx.http.request.io"
         ]
       },
       "SettingsInstanceCleanup": {
@@ -11150,6 +12295,55 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "NapCompileStatus": {
+        "description": "Provide the status of the NGINX App Protect compilation request.",
+        "required": [
+          "status",
+          "nap_release",
+          "created_at",
+          "modified_at"
+        ],
+        "properties": {
+          "nap_release": {
+            "description": "The NGINX App Protect release version the NGINX App Protect log profile compilation was requested for.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of the NGINX App Protect compilation request. * `pending` - The compilation request has been accepted and is currently processing. * `failed` - The compilation attempt failed. * `succeeded` - The compilation was successful.",
+            "type": "string",
+            "enum": [
+              "pending",
+              "failed",
+              "succeeded"
+            ],
+            "x-enum-varnames": [
+              "nap_compile_status_pending",
+              "nap_compile_status_failed",
+              "nap_compile_status_succeeded"
+            ]
+          },
+          "failure_reason": {
+            "type": "string",
+            "description": "The failure reason populated when status is 'failed'."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the compile request was created."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the compile request was last modified."
+          }
+        },
+        "example": {
+          "nap_release": "5.10.0",
+          "status": "succeeded",
+          "created_at": "2026-01-13T18:54:19.140336Z",
+          "modified_at": "2026-01-13T18:56:31.264956Z"
+        }
+      },
       "VersionsList": {
         "type": "object",
         "required": [
@@ -11306,6 +12500,43 @@
           }
         }
       },
+      "NapDeployment": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapDeploymentAssociation"
+          },
+          {
+            "type": "object",
+            "description": "Information about a NGINX App Protect policy deployment.\n",
+            "required": [
+              "publication_object_id",
+              "status",
+              "deployed_on"
+            ],
+            "properties": {
+              "publication_object_id": {
+                "$ref": "#/components/schemas/PublicationObjectID"
+              },
+              "status": {
+                "$ref": "#/components/schemas/NapDeploymentStatus"
+              },
+              "deployed_on": {
+                "description": "Date and time of the deployment.",
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "example": {
+              "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+              "associated_name": "test-instance",
+              "associated_type": "instance",
+              "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "status": "deployed",
+              "deployed_on": "2023-12-06T22:37:24.120114Z"
+            }
+          }
+        ]
+      },
       "NapPolicyVersionDeployment": {
         "allOf": [
           {
@@ -11357,8 +12588,59 @@
           }
         }
       },
+      "NapLogProfileDeployments": {
+        "type": "object",
+        "properties": {
+          "deployments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NapLogProfileDeployment"
+            }
+          }
+        }
+      },
+      "NapLogProfileDeployment": {
+        "description": "Detailed information about a NGINX App Protect log-profile deployment.",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapDeployment"
+          },
+          {
+            "type": "object",
+            "required": [
+              "nap_release",
+              "publication_object_id",
+              "associated_name",
+              "associated_type",
+              "associated_object_id",
+              "status",
+              "deployed_on"
+            ],
+            "properties": {
+              "nap_release": {
+                "description": "The compiler version of NGINX App Protect the log profile was deployed with.",
+                "type": "string"
+              },
+              "latest_deployed": {
+                "$ref": "#/components/schemas/NapLatestDeployed"
+              }
+            }
+          }
+        ],
+        "example": {
+          "nap_release": "5.10.0",
+          "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+          "associated_name": "test-instance",
+          "associated_type": "instance",
+          "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "status": "deployed",
+          "deployed_on": "2023-12-06T22:37:24.120114Z",
+          "latest_deployed": "yes"
+        }
+      },
       "NapPolicyDeployment": {
-        "description": "detailed information about a NGINX App Protect policy deployment.",
+        "description": "Detailed information about a NGINX App Protect policy deployment.",
         "type": "object",
         "required": [
           "publication_object_id",
@@ -11499,6 +12781,43 @@
           }
         ]
       },
+      "NapLogProfileDeploymentsListResponse": {
+        "description": "List of all NGINX App Protect log profile deployments.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of NGINX App Protect log profile deployments.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapLogProfileDeployment"
+                }
+              }
+            },
+            "example": {
+              "items": [
+                {
+                  "nap_release": "5.10.0",
+                  "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+                  "associated_name": "test-instance",
+                  "associated_type": "instance",
+                  "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+                  "status": "deployed",
+                  "deployed_on": "2023-12-06T22:37:24.120114Z",
+                  "latest_deployed": "yes"
+                }
+              ]
+            }
+          }
+        ]
+      },
       "NapPolicyVersionMetadata": {
         "type": "object",
         "description": "Summary information about the specific NGINX App Protect policy version.",
@@ -11620,17 +12939,17 @@
                 "description": "An array of NGINX App Protect log profiles.",
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                  "$ref": "#/components/schemas/NapLogProfileObject"
                 }
               }
             }
           }
         ]
       },
-      "NapLogProfileGetResponse": {
+      "NapLogProfileObjectDetails": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/NapLogProfileMetadata"
+            "$ref": "#/components/schemas/NapLogProfileObject"
           },
           {
             "type": "object",
@@ -11643,14 +12962,95 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [
+              "bundles"
+            ],
+            "properties": {
+              "bundles": {
+                "description": "Compiled NGINX APP Protect log profile bundles for this specific log profile. \nShows compilation status of the latest log profile contents across different NAP release versions.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
           }
-        ]
+        ],
+        "example": {
+          "created_at": "2026-01-16T21:12:51.843434Z",
+          "hash": "oxiWKPqR/soi4MQCgVnW8KHt8Jk68AqCeQcQ1sed4Dk=",
+          "modified_at": "2026-01-16T21:12:51.843434Z",
+          "name": "test-log-profiles",
+          "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
+          "config": "eyJsb2dfc3RyZWFtIjogIntmb3JtYXQgY29tYmluZWQgZXg=",
+          "deployments": [
+            {
+              "nap_release": "5.10.0",
+              "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+              "associated_name": "test-instance",
+              "associated_type": "instance",
+              "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "status": "deployed",
+              "deployed_on": "2023-12-06T22:37:24.120114Z",
+              "latest_deployed": "yes"
+            }
+          ],
+          "bundles": [
+            {
+              "nap_release": "5.10.0",
+              "status": "succeeded",
+              "created_at": "2026-01-13T18:54:19.140336Z",
+              "modified_at": "2026-01-13T18:56:31.264956Z"
+            },
+            {
+              "nap_release": "5.9.0",
+              "status": "succeeded",
+              "created_at": "2026-01-13T18:54:19.140336Z",
+              "modified_at": "2026-01-13T18:56:31.264956Z"
+            }
+          ]
+        }
+      },
+      "NapLogProfileObject": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapLogProfileDeployments"
+          },
+          {
+            "$ref": "#/components/schemas/NapLogProfileMetadata"
+          }
+        ],
+        "example": {
+          "created_at": "2026-01-16T21:12:51.843434Z",
+          "hash": "oxiWKPqR/soi4MQCgVnW8KHt8Jk68AqCeQcQ1sed4Dk=",
+          "modified_at": "2026-01-16T21:12:51.843434Z",
+          "name": "test-log-profiles",
+          "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
+          "deployments": [
+            {
+              "nap_release": "5.10.0",
+              "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+              "associated_name": "test-instance",
+              "associated_type": "instance",
+              "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "status": "deployed",
+              "deployed_on": "2023-12-06T22:37:24.120114Z",
+              "latest_deployed": "yes"
+            }
+          ]
+        }
       },
       "NapLogProfileMetadata": {
         "type": "object",
         "required": [
           "name",
-          "object_id"
+          "object_id",
+          "hash",
+          "modified_at",
+          "created_at"
         ],
         "properties": {
           "name": {
@@ -11660,11 +13060,25 @@
           "object_id": {
             "$ref": "#/components/schemas/NapLogProfileObjectID"
           },
+          "hash": {
+            "type": "string",
+            "description": "The hash value of the NGINX App Protect log profile configs."
+          },
           "description": {
             "description": "Optional field to describe the NGINX App Protect log profile.",
             "type": "string",
             "minLength": 5,
             "maxLength": 256
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the log profile was created."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the log profile was last modified."
           }
         }
       },
@@ -11728,6 +13142,62 @@
           },
           "object_id": {
             "$ref": "#/components/schemas/NapGlobalSettingObjectID"
+          }
+        }
+      },
+      "NapLogProfileCreateRequest": {
+        "description": "Create NGINX App Protect log profile.",
+        "type": "object",
+        "required": [
+          "name",
+          "config"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "description": {
+            "description": "Optional field to describe the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "config": {
+            "description": "The NGINX App Protect log profile configuration.",
+            "type": "string",
+            "format": "base64",
+            "maxLength": 3145728
+          }
+        }
+      },
+      "NapLogProfileUpdateRequest": {
+        "description": "Update NGINX App Protect log profile.",
+        "type": "object",
+        "required": [
+          "config"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "description": {
+            "description": "Optional field to describe describing the NGINX App Protect log profile.",
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256
+          },
+          "config": {
+            "description": "The NGINX App Protect log profile configuration.",
+            "type": "string",
+            "format": "base64",
+            "minLength": 5,
+            "maxLength": 3145728
           }
         }
       },
@@ -12223,6 +13693,36 @@
           }
         ]
       },
+      "FilterNameNapLogProfile": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect log profile filters.\n",
+        "enum": [
+          "name",
+          "object_id",
+          "deployment_status"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_log_profile_name",
+          "filter_name_nap_log_profile_object_id",
+          "filter_name_nap_log_profile_deployment_status"
+        ]
+      },
+      "FilterNameNapLogProfileDeployment": {
+        "type": "string",
+        "description": "Keywords for NGINX App Protect log profile deployment filters.\nWhen filtering on `type`, only the following `filter_values` are supported:\n  * instance\n  * config_sync_group\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * deployed\n  * deploying\n  * failed\n",
+        "enum": [
+          "name",
+          "type",
+          "status",
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_nap_deployment_name",
+          "filter_name_nap_deployment_type",
+          "filter_name_nap_deployment_status",
+          "filter_name_nap_deployment_object_id"
+        ]
+      },
       "FilterNameNapPolicy": {
         "type": "string",
         "description": "Keywords for NGINX App Protect policy filters.\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * transparent\nWhen filtering on `object_id`, both NAP Policy and NAP Policy version object id prefixes are supported.\n",
@@ -12273,17 +13773,6 @@
           "filter_name_nap_policy_version_object_id"
         ]
       },
-      "NapLogProfileObjectID": {
-        "description": "A globally unique identifier for the App Protect log profile.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^lp_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        }
-      },
       "NapGlobalSettingObjectID": {
         "description": "A globally unique identifier for the App Protect global settings object.",
         "type": "string",
@@ -12303,6 +13792,11 @@
         "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$",
         "example": "reverse-proxy"
       },
+      "TemplateDescription": {
+        "type": "string",
+        "description": "A human-readable description of the template.",
+        "example": "A base template for setting up a reverse proxy"
+      },
       "TemplateObjectID": {
         "description": "A globally unique identifier for template.",
         "type": "string",
@@ -12314,6 +13808,18 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         },
         "example": "tmpl_-uvR3F2TQGm18jnl7bpaGw"
+      },
+      "TemplateVersionObjectID": {
+        "description": "A globally unique identifier for the template version.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^tmplv_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        },
+        "example": "tmplv_-ayR3F2TQGm18jnl7bpaGw"
       },
       "TemplateType": {
         "type": "string",
@@ -12376,8 +13882,7 @@
             "$ref": "#/components/schemas/TemplateType"
           },
           "description": {
-            "type": "string",
-            "description": "Optional human-readable description of the template."
+            "$ref": "#/components/schemas/TemplateDescription"
           },
           "allowed_in_contexts": {
             "type": "array",
@@ -12417,6 +13922,10 @@
               "items": [
                 {
                   "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+                  "latest_template_version_object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+                  "version": 1,
+                  "latest_version": 1,
+                  "state": "final",
                   "name": "reverse-proxy",
                   "description": "A base template for setting up a reverse proxy",
                   "type": "base",
@@ -12430,10 +13939,15 @@
                     "stream/upstream",
                     "stream/server"
                   ],
-                  "created_at": "2023-09-01T12:00:00Z"
+                  "created_at": "2026-09-01T12:00:00Z",
+                  "modified_at": "2026-09-15T14:30:00Z"
                 },
                 {
                   "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+                  "latest_template_version_object_id": "tmplv_-xeR3F2TQGm18jnl7bpaAw",
+                  "version": 1,
+                  "latest_version": 1,
+                  "state": "final",
                   "name": "gzip",
                   "description": "Augment template for enabling gzip compression",
                   "type": "augment",
@@ -12442,10 +13956,15 @@
                     "http/server"
                   ],
                   "augment_includes": [],
-                  "created_at": "2023-09-01T12:00:00Z"
+                  "created_at": "2026-09-01T12:00:00Z",
+                  "modified_at": "2026-09-15T14:30:00Z"
                 },
                 {
                   "object_id": "tmpl_-abR3F2TQGm18jnl7bpaXw",
+                  "latest_template_version_object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+                  "version": 1,
+                  "latest_version": 1,
+                  "state": "final",
                   "name": "rate-limiting-http",
                   "description": "Add rate limiting to HTTP requests",
                   "type": "augment",
@@ -12454,10 +13973,15 @@
                     "http/server"
                   ],
                   "augment_includes": [],
-                  "created_at": "2023-09-01T12:00:00Z"
+                  "created_at": "2026-09-01T12:00:00Z",
+                  "modified_at": "2026-09-15T14:30:00Z"
                 },
                 {
                   "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+                  "latest_template_version_object_id": "tmplv_-cdR3F2TQGm18jnl7bpaZw",
+                  "version": 1,
+                  "latest_version": 1,
+                  "state": "final",
                   "name": "limit-request",
                   "description": "Limit requests per second for a location",
                   "type": "augment",
@@ -12465,37 +13989,85 @@
                     "http/server/location"
                   ],
                   "augment_includes": [],
-                  "created_at": "2023-09-01T12:00:00Z"
+                  "created_at": "2026-09-01T12:00:00Z",
+                  "modified_at": "2026-09-15T14:30:00Z"
                 }
               ]
             }
           }
         ]
       },
-      "TemplateSummary": {
-        "description": "A summary of a template object, including its metadata, allowed contexts and augment includes.\n",
+      "TemplateVersionState": {
+        "type": "string",
+        "description": "The state of a template version.\n- `draft`: Version is editable and not yet finalized.\n- `final`: Version is immutable and finalized. Version can't be transitioned back to draft.\n",
+        "enum": [
+          "draft",
+          "final"
+        ],
+        "x-enum-varnames": [
+          "template_version_state_draft",
+          "template_version_state_final"
+        ],
+        "example": "final"
+      },
+      "TemplateVersionMetadata": {
         "type": "object",
         "required": [
+          "created_at",
+          "modified_at",
           "object_id",
-          "name",
-          "type",
-          "augment_includes",
-          "created_at"
+          "latest_template_version_object_id",
+          "latest_version",
+          "version",
+          "state"
         ],
         "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the template."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last modification timestamp of the template."
+          },
           "object_id": {
             "$ref": "#/components/schemas/TemplateObjectID"
           },
+          "latest_template_version_object_id": {
+            "$ref": "#/components/schemas/TemplateVersionObjectID"
+          },
+          "latest_version": {
+            "type": "integer",
+            "description": "The latest version available for the template."
+          },
+          "version": {
+            "type": "integer",
+            "description": "The version number of this template."
+          },
+          "state": {
+            "$ref": "#/components/schemas/TemplateVersionState"
+          }
+        }
+      },
+      "TemplateSummaryBase": {
+        "description": "Base summary of a template object, including its metadata, allowed contexts and augment includes.\n",
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "augment_includes"
+        ],
+        "properties": {
           "name": {
-            "type": "string",
-            "description": "The name of the template."
+            "$ref": "#/components/schemas/TemplateName"
           },
           "type": {
             "$ref": "#/components/schemas/TemplateType"
           },
           "description": {
-            "type": "string",
-            "description": "A brief description of the template."
+            "$ref": "#/components/schemas/TemplateDescription"
           },
           "allowed_in_contexts": {
             "type": "array",
@@ -12510,15 +14082,25 @@
             "items": {
               "$ref": "#/components/schemas/TemplateContextPath"
             }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The creation timestamp of the template."
           }
-        },
+        }
+      },
+      "TemplateSummary": {
+        "description": "A summary of a template object, including its metadata, allowed contexts and augment includes.\n",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TemplateVersionMetadata"
+          },
+          {
+            "$ref": "#/components/schemas/TemplateSummaryBase"
+          }
+        ],
         "example": {
           "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "latest_template_version_object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+          "latest_version": 1,
+          "version": 1,
+          "state": "final",
           "name": "reverse-proxy",
           "description": "A base template for setting up a reverse proxy",
           "type": "base",
@@ -12529,7 +14111,8 @@
             "http/upstream",
             "http/server/location"
           ],
-          "created_at": "2023-09-01T12:00:00Z"
+          "created_at": "2023-09-01T12:00:00Z",
+          "modified_at": "2023-09-15T14:30:00Z"
         }
       },
       "TemplateFileData": {
@@ -12608,24 +14191,70 @@
           "mime_type": "text/plain",
           "contents": "http {\n  {{ augment_includes \"http\" . }}\n\n  upstream backend {\n    {{- range .upstream_servers }}\n    server {{ . }};\n    {{- end }}\n  }\n\n  server {\n    listen 80;\n    server_name {{ .server_name }};\n\n    location / {\n      proxy_pass {{ default \"http://backend\" .proxy_pass }};\n    }\n  }\n}",
           "size": 345,
-          "ctime": "2023-09-01T12:00:00Z"
+          "ctime": "2026-09-01T12:00:00Z"
         }
       },
-      "TemplateDetails": {
-        "description": "Detailed information about a template object including summary and file contents.",
+      "TemplateCreationRequest": {
+        "description": "A request payload used to create a new template, including its metadata and associated file contents.",
         "type": "object",
-        "required": [
-          "object_id",
-          "name",
-          "type",
-          "allowed_in_contexts",
-          "augment_includes",
-          "created_at",
-          "items"
-        ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/TemplateSummary"
+            "$ref": "#/components/schemas/TemplateSummaryBase"
+          },
+          {
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "A list of files in the template.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TemplateFileData"
+                }
+              }
+            }
+          }
+        ],
+        "example": {
+          "name": "reverse-proxy",
+          "type": "base",
+          "allowed_in_contexts": [],
+          "augment_includes": [
+            "http"
+          ],
+          "items": [
+            {
+              "name": "nginx.tmpl",
+              "file_type": "template",
+              "file_format": "bytes",
+              "mime_type": "text/plain",
+              "contents": "aHR0cCB7XG4gIHt7IGF1Z21lbnRfaW5jbHVkZXMgXCJodHRwXCIgLiB9fVxuXG4gdXBzdHJlYW0gYmFja2VuZCB7XG4gIC17LSByYW5nZSAudXBzdHJlYW1fc2VydmVycyB9XG4gICAgc2VydmVyIHsgLiB9O1xuICB7LSBlbmQgfVxuIH1cblxuIHNlcnZlciB7XG4gIGxpc3RlbiA4MDtcbiAgc2VydmVyX25hbWUge3sgLnNlcnZlcl9uYW1lIH19O1xuXG4gIGxvY2F0aW9uIC8ge1xuICAgIHByb3h5X3Bhc3Mge3sgZGVmYXVsdCBcImh0dHA6Ly9iYWNrZW5kXCIgLnByb3h5X3Bhc3MgfX07XG4gIH1cbn1cbiIs",
+              "size": 1234,
+              "ctime": "2026-09-01T12:00:00Z"
+            },
+            {
+              "name": "schema.json",
+              "file_type": "schema",
+              "file_format": "bytes",
+              "mime_type": "application/json",
+              "contents": "ewogICIkc2NoZW1hIjogImh0dHA6Ly9qc29uLXNjaGVtYS5vcmcvZHJhZnQtMDcvc2NoZW1hIyIsCiAgInR5cGUiOiAib2JqZWN0IiwKICAicHJvcGVydGllcyI6IHsKICAgICJ1cHN0cmVhbV9zZXJ2ZXJzIjogewogICAgICAidHlwZSI6ICJhcnJheSIsCiAgICAgICJpdGVtcyI6IHsKICAgICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAgICJmb3JtYXQiOiAiaG9zdG5hbWUiLAogICAgICAgICJwYXR0ZXJuIjogIl5bYS1aQS1aMC05Li1dKyg6WzAtOV0rKT8kIgogICAgICB9LAogICAgICAibWluSXRlbXMiOiAxCiAgICB9LAogICAgInNlcnZlcl9uYW1lIjogewogICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAicGF0dGVybiI6ICJeW2EtWkEtWjAtOS4tXSskIgogICAgfSwKICAgICJwcm94eV9wYXNzIjogewogICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAiZm9ybWF0IjogInVyaSIKICAgIH0KICB9LAogICJyZXF1aXJlZCI6IFsidXBzdHJlYW1fc2VydmVycyIsICJzZXJ2ZXJfbmFtZSJdLAogICJhZGRpdGlvbmFsUHJvcGVydGllcyI6IGZhbHNlCn0=",
+              "size": 456,
+              "ctime": "2026-09-01T12:00:00Z"
+            }
+          ]
+        }
+      },
+      "TemplateDetailsResponse": {
+        "description": "Full detailed response about an existing template object including summary and file contents.",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TemplateVersionMetadata"
+          },
+          {
+            "$ref": "#/components/schemas/TemplateSummaryBase"
           },
           {
             "type": "object",
@@ -12645,13 +14274,18 @@
         ],
         "example": {
           "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "created_at": "2026-09-01T12:00:00Z",
+          "modified_at": "2026-09-15T14:30:00Z",
+          "latest_template_version_object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+          "version": 1,
+          "latest_version": 1,
+          "state": "final",
           "name": "reverse-proxy",
           "type": "base",
           "allowed_in_contexts": [],
           "augment_includes": [
             "http"
           ],
-          "created_at": "2023-09-01T12:00:00Z",
           "items": [
             {
               "name": "nginx.tmpl",
@@ -12660,7 +14294,7 @@
               "mime_type": "text/plain",
               "contents": "aHR0cCB7XG4gIHt7IGF1Z21lbnRfaW5jbHVkZXMgXCJodHRwXCIgLiB9fVxuXG4gdXBzdHJlYW0gYmFja2VuZCB7XG4gIC17LSByYW5nZSAudXBzdHJlYW1fc2VydmVycyB9XG4gICAgc2VydmVyIHsgLiB9O1xuICB7LSBlbmQgfVxuIH1cblxuIHNlcnZlciB7XG4gIGxpc3RlbiA4MDtcbiAgc2VydmVyX25hbWUge3sgLnNlcnZlcl9uYW1lIH19O1xuXG4gIGxvY2F0aW9uIC8ge1xuICAgIHByb3h5X3Bhc3Mge3sgZGVmYXVsdCBcImh0dHA6Ly9iYWNrZW5kXCIgLnByb3h5X3Bhc3MgfX07XG4gIH1cbn1cbiIs",
               "size": 1234,
-              "ctime": "2023-09-01T12:00:00Z"
+              "ctime": "2026-09-01T12:00:00Z"
             },
             {
               "name": "schema.json",
@@ -12669,7 +14303,7 @@
               "mime_type": "application/json",
               "contents": "ewogICIkc2NoZW1hIjogImh0dHA6Ly9qc29uLXNjaGVtYS5vcmcvZHJhZnQtMDcvc2NoZW1hIyIsCiAgInR5cGUiOiAib2JqZWN0IiwKICAicHJvcGVydGllcyI6IHsKICAgICJ1cHN0cmVhbV9zZXJ2ZXJzIjogewogICAgICAidHlwZSI6ICJhcnJheSIsCiAgICAgICJpdGVtcyI6IHsKICAgICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAgICJmb3JtYXQiOiAiaG9zdG5hbWUiLAogICAgICAgICJwYXR0ZXJuIjogIl5bYS1aQS1aMC05Li1dKyg6WzAtOV0rKT8kIgogICAgICB9LAogICAgICAibWluSXRlbXMiOiAxCiAgICB9LAogICAgInNlcnZlcl9uYW1lIjogewogICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAicGF0dGVybiI6ICJeW2EtWkEtWjAtOS4tXSskIgogICAgfSwKICAgICJwcm94eV9wYXNzIjogewogICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAiZm9ybWF0IjogInVyaSIKICAgIH0KICB9LAogICJyZXF1aXJlZCI6IFsidXBzdHJlYW1fc2VydmVycyIsICJzZXJ2ZXJfbmFtZSJdLAogICJhZGRpdGlvbmFsUHJvcGVydGllcyI6IGZhbHNlCn0=",
               "size": 456,
-              "ctime": "2023-09-01T12:00:00Z"
+              "ctime": "2026-09-01T12:00:00Z"
             }
           ]
         }
@@ -12705,7 +14339,7 @@
         "example": {
           "conf_path": "/etc/nginx/nginx.conf",
           "base_template": {
-            "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+            "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
             "values": {
               "upstream_servers": [
                 "10.0.0.1:8080",
@@ -12716,7 +14350,7 @@
           },
           "augments": [
             {
-              "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+              "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
               "target_context": "http/upstream",
               "values": {
                 "upstream_servers": [
@@ -12727,7 +14361,7 @@
               }
             },
             {
-              "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+              "object_id": "tmplv_-xeR3F2TQGm18jnl7bpaAw",
               "target_context": "http",
               "values": {
                 "enabled": "on",
@@ -12735,7 +14369,7 @@
               }
             },
             {
-              "object_id": "tmpl_-abR3F2TQGm18jnl7bpaXw",
+              "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
               "target_context": "http",
               "values": {
                 "zone_name": "req_limit",
@@ -12744,7 +14378,7 @@
               }
             },
             {
-              "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+              "object_id": "tmplv_-cdR3F2TQGm18jnl7bpaZw",
               "target_context": "http/server",
               "values": {
                 "zone_name": "req_limit",
@@ -12752,7 +14386,7 @@
               },
               "child_augments": [
                 {
-                  "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+                  "object_id": "tmplv_-cdR3F2TQGm18jnl7bpaZw",
                   "target_context": "http/server/location",
                   "values": {
                     "zone_name": "req_limit",
@@ -12767,19 +14401,18 @@
       "BaseTemplateSubmissionRequest": {
         "type": "object",
         "required": [
-          "object_id",
-          "values"
+          "object_id"
         ],
         "properties": {
           "object_id": {
-            "$ref": "#/components/schemas/TemplateObjectID"
+            "$ref": "#/components/schemas/TemplateVersionObjectID"
           },
           "values": {
             "$ref": "#/components/schemas/TemplateValuesRequest"
           }
         },
         "example": {
-          "object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
           "values": {
             "upstream_servers": [
               "10.0.0.1:8080",
@@ -12798,7 +14431,7 @@
         ],
         "properties": {
           "object_id": {
-            "$ref": "#/components/schemas/TemplateObjectID"
+            "$ref": "#/components/schemas/TemplateVersionObjectID"
           },
           "values": {
             "$ref": "#/components/schemas/TemplateValuesRequest"
@@ -12815,7 +14448,7 @@
           }
         },
         "example": {
-          "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+          "object_id": "tmplv_-xeR3F2TQGm18jnl7bpaAw",
           "target_context": "http/server",
           "values": {
             "enabled": "on",
@@ -12823,7 +14456,7 @@
           },
           "child_augments": [
             {
-              "object_id": "tmpl_-cdR3F2TQGm18jnl7bpaZw",
+              "object_id": "tmplv_-cdR3F2TQGm18jnl7bpaZw",
               "target_context": "http/server/location",
               "values": {
                 "zone_name": "req_limit",
@@ -12878,6 +14511,887 @@
           "line": 1,
           "error": "\"upstream\" directive is not allowed here in /etc/nginx/nginx.conf:1"
         }
+      },
+      "FilterNameTemplates": {
+        "type": "string",
+        "description": "Keywords for config templates filters.\n",
+        "enum": [
+          "name",
+          "type",
+          "object_id",
+          "allowed_in_contexts"
+        ],
+        "x-enum-varnames": [
+          "filter_name_templates_name",
+          "filter_name_templates_type",
+          "filter_name_templates_object_id",
+          "filter_name_templates_allowed_in_contexts"
+        ]
+      },
+      "EventRequestOutcome": {
+        "type": "string",
+        "description": "WAF enforcement decision for the request.",
+        "enum": [
+          "blocked",
+          "passed",
+          "alerted"
+        ],
+        "x-enum-varnames": [
+          "request_outcome_blocked",
+          "request_outcome_passed",
+          "request_outcome_alerted"
+        ]
+      },
+      "EventLevel": {
+        "type": "string",
+        "description": "Log level classification for the security event.\nFollows standard logging convention for severity.\n",
+        "enum": [
+          "DEBUG",
+          "INFO",
+          "WARNING",
+          "ERROR",
+          "CRITICAL"
+        ],
+        "x-enum-varnames": [
+          "event_level_debug",
+          "event_level_info",
+          "event_level_warning",
+          "event_level_error",
+          "event_level_critical"
+        ]
+      },
+      "SignatureAccuracy": {
+        "type": "string",
+        "description": "Confidence level that the signature accurately identifies the attack.",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "x-enum-varnames": [
+          "signature_accuracy_low",
+          "signature_accuracy_medium",
+          "signature_accuracy_high"
+        ]
+      },
+      "SignatureRisk": {
+        "type": "string",
+        "description": "Risk level of the attack identified by the signature.",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ],
+        "x-enum-varnames": [
+          "signature_risk_low",
+          "signature_risk_medium",
+          "signature_risk_high",
+          "signature_risk_critical"
+        ]
+      },
+      "RequestStatus": {
+        "type": "string",
+        "description": "Status of request processing by the WAF.",
+        "enum": [
+          "complete",
+          "truncated",
+          "malformed",
+          "skipped",
+          "aborted"
+        ],
+        "x-enum-varnames": [
+          "request_status_complete",
+          "request_status_truncated",
+          "request_status_malformed",
+          "request_status_skipped",
+          "request_status_aborted"
+        ]
+      },
+      "AttacksDimensionField": {
+        "type": "string",
+        "description": "Available dimensions for grouping and filtering attack analytics.\n",
+        "enum": [
+          "request_outcome",
+          "request_outcome_reason",
+          "request_method",
+          "ip",
+          "country",
+          "policy",
+          "url",
+          "response_code",
+          "instance_object_id",
+          "csg_object_id"
+        ],
+        "x-enum-varnames": [
+          "attacks_dimension_request_outcome",
+          "attacks_dimension_request_outcome_reason",
+          "attacks_dimension_request_method",
+          "attacks_dimension_ip",
+          "attacks_dimension_country",
+          "attacks_dimension_policy",
+          "attacks_dimension_url",
+          "attacks_dimension_response_code",
+          "attacks_dimension_instance_object_id",
+          "attacks_dimension_csg_object_id"
+        ]
+      },
+      "AttacksTimeSeriesDimensionField": {
+        "type": "string",
+        "description": "Dimensions available for time-series grouping.\nLimited to fixed enum dimensions that can be efficiently aggregated per time bucket.\n",
+        "enum": [
+          "request_outcome",
+          "request_outcome_reason"
+        ],
+        "x-enum-varnames": [
+          "attacks_ts_dimension_request_outcome",
+          "attacks_ts_dimension_request_outcome_reason"
+        ]
+      },
+      "Resolution": {
+        "type": "string",
+        "description": "Time bucket size for aggregation. If not specified, auto-selected based on time range:\n* < 1 hour: 1m\n* 1-6 hours: 5m\n* 6-24 hours: 15m\n* 1-7 days: 1h\n* > 7 days: 1d\n",
+        "enum": [
+          "1m",
+          "5m",
+          "15m",
+          "1h",
+          "1d"
+        ],
+        "x-enum-varnames": [
+          "resolution_1m",
+          "resolution_5m",
+          "resolution_15m",
+          "resolution_1h",
+          "resolution_1d"
+        ],
+        "example": "15m"
+      },
+      "FilterOperator": {
+        "type": "string",
+        "description": "Filter operators that can be applied to a given list of dimension values.\n* `=` - Equals (uses first value only)\n* `!=` - Not equals (uses first value only)\n* `in` - Value is in the list (uses all values)\n* `not` - Value is not in the list (uses all values)\n",
+        "enum": [
+          "=",
+          "!=",
+          "in",
+          "not"
+        ],
+        "x-enum-varnames": [
+          "filter_operator_equal",
+          "filter_operator_not_equal",
+          "filter_operator_in",
+          "filter_operator_not"
+        ]
+      },
+      "SortOrderDirection": {
+        "type": "string",
+        "description": "Sort direction for query results.",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "default": "desc",
+        "x-enum-varnames": [
+          "order_direction_asc",
+          "order_direction_desc"
+        ]
+      },
+      "AnalyticsFilter": {
+        "type": "object",
+        "description": "A single filter condition on a dimension.\nGeneric schema supporting both attacks and signature analytics filtering.\n",
+        "required": [
+          "dimension",
+          "operator",
+          "values"
+        ],
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "description": "The dimension to filter by. Accepts any dimension from either\nAttacksDimensionField or SignaturesDimensionField enums.\n"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/FilterOperator"
+          },
+          "values": {
+            "type": "array",
+            "description": "Values to filter by.\n- For `=` and `!=`: only the first value is used\n- For `in` and `not`: all values are used\n",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "example": [
+              "blocked"
+            ]
+          }
+        }
+      },
+      "AnalyticsOrderBy": {
+        "type": "object",
+        "description": "Specifies the sort order for dynamic dimension results.\n",
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "description": "Field to sort by.\n- `count`: Sort by count (default)\n- `value`: Sort alphabetically by dimension value\n",
+            "enum": [
+              "count",
+              "value"
+            ],
+            "default": "count"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/SortOrderDirection"
+          }
+        },
+        "example": {
+          "dimension": "count",
+          "direction": "desc"
+        }
+      },
+      "BaseQueryRequest": {
+        "type": "object",
+        "description": "Base query request with common fields for both attacks and signature analytics.\nShared properties for all analytical query types.\n",
+        "required": [
+          "start_time"
+        ],
+        "properties": {
+          "start_time": {
+            "type": "string",
+            "description": "Beginning of the time range (inclusive).\nAccepts ISO 8601 format (`2024-01-15T00:00:00Z`) or relative offset (`now-24h`, `now-1d`).\n",
+            "example": "now-24h"
+          },
+          "end_time": {
+            "type": "string",
+            "description": "End of the time range (exclusive).\nAccepts ISO 8601 format (`2024-01-15T00:00:00Z`) or relative offset (`now-24h`, `now-1d`).\n",
+            "default": "now",
+            "example": "now"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum items per dynamic dimension array (1-1000).\nDoes not apply to fixed enum dimensions.\n",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 100,
+            "example": 10
+          }
+        }
+      },
+      "AttacksQueryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseQueryRequest"
+          },
+          {
+            "type": "object",
+            "description": "Request body for querying attack analytics.\n",
+            "properties": {
+              "group_by": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AttacksDimensionField"
+                  },
+                  {
+                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `request_outcome` - blocked, passed, alerted\n* `request_method` - GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH\n\n**Simple array dimensions** (returned as arrays with code/count):\n* `response_code` - HTTP response codes\n\n**Dynamic dimensions** (returned as arrays with cross-dimension context):\n* `ip`, `country`, `policy`, `url`, `instance_object_id`, `csg_object_id`\n\n**Response behavior:**\n- If omitted: Returns `total` count only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
+                    "example": "request_outcome"
+                  }
+                ]
+              },
+              "filter": {
+                "type": "array",
+                "description": "Pre-aggregation filter conditions.\nAll filters are combined with AND logic.\nUse the `in` operator to achieve `OR` within a single dimension.\n",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticsFilter"
+                },
+                "default": []
+              },
+              "order_by": {
+                "$ref": "#/components/schemas/AnalyticsOrderBy"
+              }
+            }
+          }
+        ]
+      },
+      "AttacksTimeSeriesQueryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseQueryRequest"
+          },
+          {
+            "type": "object",
+            "description": "Request body for querying attack analytics time series.\n",
+            "properties": {
+              "resolution": {
+                "$ref": "#/components/schemas/Resolution"
+              },
+              "group_by": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AttacksTimeSeriesDimensionField"
+                  },
+                  {
+                    "description": "Dimension to break down time-series by.\nLimited to fixed enum dimensions for performance.\n\n* `request_outcome` - Returns `blocked`, `passed`, `alerted` series\n* `request_outcome_reason` - Returns the underlying reason for the outcome.\n\n**Common `request_outcome_reason` values:**\n- `SECURITY_WAF_OK`: Legitimate request, no violations.\n- `SECURITY_WAF_VIOLATION`: Request blocked due to signature or protocol violation.\n- `SECURITY_WAF_FLAGGED`: Violation detected, but request allowed (Transparent/Alert-only mode).\n- `SECURITY_WAF_VIOLATION_TRANSPARENT`: Request would have been blocked, but the policy/signature is in staging/transparent mode.\n- `SECURITY_NGINX_VIOLATION`: Request rejected due to NGINX-level constraints (e.g., malformed headers).\n- `SECURITY_WAF_BYPASS`: Request was explicitly allowed due to an allow-list or bypass rule.\n\n**Response behavior:**\n- If omitted: Returns `total` series only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
+                    "example": "request_outcome"
+                  }
+                ]
+              },
+              "filter": {
+                "type": "array",
+                "description": "Pre-aggregation filter conditions.\nAll filters are combined with AND logic.\nUse the `in` operator to achieve `OR` within a single dimension.\n",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticsFilter"
+                },
+                "default": []
+              }
+            }
+          }
+        ]
+      },
+      "SignaturesDimensionField": {
+        "type": "string",
+        "description": "Available dimensions for grouping and filtering signature analytics.\n",
+        "enum": [
+          "request_outcome",
+          "accuracy",
+          "risk",
+          "signature",
+          "cve"
+        ],
+        "x-enum-varnames": [
+          "signatures_dimension_request_outcome",
+          "signatures_dimension_accuracy",
+          "signatures_dimension_risk",
+          "signatures_dimension_signature",
+          "signatures_dimension_cve"
+        ]
+      },
+      "SignaturesTimeSeriesDimensionField": {
+        "type": "string",
+        "description": "Dimensions available for time-series grouping of signature data.\nLimited to fixed enum dimensions that can be efficiently aggregated per time bucket.\n",
+        "enum": [
+          "request_outcome",
+          "accuracy",
+          "risk"
+        ],
+        "x-enum-varnames": [
+          "signatures_ts_dimension_request_outcome",
+          "signatures_ts_dimension_accuracy",
+          "signatures_ts_dimension_risk"
+        ]
+      },
+      "SignaturesQueryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseQueryRequest"
+          },
+          {
+            "type": "object",
+            "description": "Request body for querying signature analytics.\n",
+            "properties": {
+              "group_by": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SignaturesDimensionField"
+                  },
+                  {
+                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `request_outcome` - blocked, passed, alerted\n* `accuracy` - low, medium, high\n* `risk` - low, medium, high, critical\n\n**Dynamic dimensions** (returned as arrays sorted by count descending):\n* `signature` - Individual signatures with id, name, accuracy, risk\n* `cve` - CVE identifiers\n\n**Response behavior:**\n- If omitted: Returns `total` (signature hits) and `unique` (distinct signatures)\n- If specified: Returns dimensional breakdown, `total` and `unique` are omitted\n",
+                    "example": "signature"
+                  }
+                ]
+              },
+              "filter": {
+                "type": "array",
+                "description": "Pre-aggregation filter conditions.\nAll filters are combined with AND logic.\nUse the `in` operator to achieve `OR` within a single dimension.\n",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticsFilter"
+                },
+                "default": []
+              },
+              "order_by": {
+                "$ref": "#/components/schemas/AnalyticsOrderBy"
+              }
+            }
+          }
+        ]
+      },
+      "SignaturesTimeSeriesQueryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseQueryRequest"
+          },
+          {
+            "type": "object",
+            "description": "Request body for querying signature analytics time series.\n",
+            "properties": {
+              "resolution": {
+                "$ref": "#/components/schemas/Resolution"
+              },
+              "group_by": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SignaturesTimeSeriesDimensionField"
+                  },
+                  {
+                    "description": "Dimension to break down time-series by.\nLimited to fixed enum dimensions for performance.\n\n* `request_outcome` - Returns `blocked`, `passed`, `alerted` series\n* `accuracy` - Returns `low`, `medium`, `high` series\n* `risk` - Returns `low`, `medium`, `high`, `critical` series\n\n**Response behavior:**\n- If omitted: Returns `total` series only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
+                    "example": "request_outcome"
+                  }
+                ]
+              },
+              "filter": {
+                "type": "array",
+                "description": "Pre-aggregation filter conditions.\nAll filters are combined with AND logic.\nUse the `in` operator to achieve `OR` within a single dimension.\n",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticsFilter"
+                },
+                "default": []
+              }
+            }
+          }
+        ]
+      },
+      "HttpMetadata": {
+        "type": "object",
+        "description": "HTTP request and response metadata from the security event.\n",
+        "properties": {
+          "hostname": {
+            "type": "string",
+            "description": "The HTTP Host header value.",
+            "example": "example.com"
+          },
+          "remote_addr": {
+            "type": "string",
+            "description": "Client IP address.",
+            "example": "192.168.1.100"
+          },
+          "remote_port": {
+            "type": "integer",
+            "description": "Client source port.",
+            "example": 54321
+          },
+          "server_addr": {
+            "type": "string",
+            "description": "Server IP address that received the request.",
+            "example": "10.0.0.1"
+          },
+          "server_port": {
+            "type": "integer",
+            "description": "Server port that received the request.",
+            "example": 443
+          },
+          "uri": {
+            "type": "string",
+            "description": "Request URI path including query string.",
+            "example": "/api/login?user=admin"
+          },
+          "request_method": {
+            "type": "string",
+            "description": "HTTP request method.",
+            "example": "GET"
+          },
+          "response_code": {
+            "type": "integer",
+            "description": "HTTP response status code.",
+            "example": 403
+          }
+        }
+      },
+      "SignatureDetail": {
+        "type": "object",
+        "description": "Details of a signature that was triggered by the security event.\nA single event can trigger multiple signatures.\n",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the signature.",
+            "example": 200001834
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the signature.",
+            "example": "XSS script tag end (Parameter)"
+          },
+          "accuracy": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SignatureAccuracy"
+              },
+              {
+                "description": "Confidence level that this signature accurately identifies the attack.",
+                "example": "high"
+              }
+            ]
+          },
+          "risk": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SignatureRisk"
+              },
+              {
+                "description": "Severity/risk level of the attack identified by this signature.",
+                "example": "high"
+              }
+            ]
+          },
+          "cve": {
+            "type": "string",
+            "description": "CVE identifier if this signature is associated with a known vulnerability.",
+            "example": "CVE-2021-44228"
+          },
+          "blocking_mask": {
+            "type": "string",
+            "description": "Bitmask indicating blocking behavior configuration.",
+            "example": "0x0"
+          },
+          "buffer": {
+            "type": "string",
+            "description": "The buffer/location where the signature matched (e.g., parameter name, header).",
+            "example": "param"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Byte offset within the payload where the signature match begins.",
+            "example": 0
+          },
+          "length": {
+            "type": "integer",
+            "description": "Length of the matched string in bytes.",
+            "example": 42
+          }
+        }
+      },
+      "ViolationDetail": {
+        "type": "object",
+        "description": "Details of a violation detected in the security event.\nA single event can trigger multiple violations.\n",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Primary violation name/type.",
+            "example": "Illegal meta character in value"
+          },
+          "sub_name": {
+            "type": "string",
+            "description": "Sub-category or additional violation classification.",
+            "example": ""
+          },
+          "context": {
+            "type": "string",
+            "description": "The context where the violation was detected (e.g., parameter, header, uri).",
+            "example": "parameter"
+          },
+          "detail_name": {
+            "type": "string",
+            "description": "Technical violation identifier (e.g., VIOL_PARAMETER_VALUE_METACHAR).",
+            "example": "VIOL_PARAMETER_VALUE_METACHAR"
+          },
+          "detail_context": {
+            "type": "string",
+            "description": "Additional context for the violation detail.",
+            "example": "parameter"
+          },
+          "field_name": {
+            "type": "string",
+            "description": "Name of the field that triggered the violation.",
+            "example": "param"
+          },
+          "field_value": {
+            "type": "string",
+            "description": "The value that triggered the violation.",
+            "example": "<script>alert('xss')</script>"
+          }
+        }
+      },
+      "SecurityEventBase": {
+        "type": "object",
+        "description": "Base security event with common fields across all event types.\nSeverity is determined by violation_rating (0-5), not a separate field.\n",
+        "required": [
+          "timestamp",
+          "support_id"
+        ],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the security event occurred.",
+            "example": "2024-01-22T12:13:25Z"
+          },
+          "support_id": {
+            "type": "string",
+            "description": "WAF support identifier for correlating with support cases.",
+            "example": "1844305495056427365"
+          },
+          "request_outcome": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EventRequestOutcome"
+              },
+              {
+                "description": "WAF enforcement decision for the request.",
+                "example": "blocked"
+              }
+            ]
+          },
+          "policy_name": {
+            "type": "string",
+            "description": "Name of the WAF policy that processed the request.",
+            "example": "app_protect_default_policy"
+          },
+          "country_code": {
+            "type": "string",
+            "maxLength": 2,
+            "description": "ISO 3166-1 alpha-2 country code of the client IP.",
+            "example": "US"
+          },
+          "violation_rating": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5,
+            "description": "Numeric violation severity rating (0-5).",
+            "example": 5
+          },
+          "instance_object_id": {
+            "type": "string",
+            "description": "NGINX One Console instance object identifier.",
+            "example": "inst_8Iwn7dT7RF-PRLxkSt5EYQ"
+          },
+          "csg_object_id": {
+            "type": "string",
+            "description": "NGINX One Console Config Sync Group object identifier.",
+            "example": "csg_-uvR3F2TQGm18jnl7bpaGw"
+          }
+        }
+      },
+      "SecurityEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SecurityEventBase"
+          },
+          {
+            "type": "object",
+            "description": "Full security event details including all metadata, violations, and signatures.\nUsed for the single event retrieval endpoint.\n",
+            "required": [
+              "signatures",
+              "violations"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Event type classification.",
+                "example": "Security Event"
+              },
+              "version": {
+                "type": "string",
+                "description": "Event schema version.",
+                "example": "v1.0"
+              },
+              "level": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EventLevel"
+                  },
+                  {
+                    "description": "Log level classification for the security event.\n",
+                    "example": "WARNING"
+                  }
+                ]
+              },
+              "service_id": {
+                "type": "string",
+                "description": "Service identifier that generated the event.",
+                "example": "2b63403b-b8fc-4dd5-a0e9-0ee7d2d252fb"
+              },
+              "correlation_id": {
+                "type": "string",
+                "description": "Identifier for correlating related events.",
+                "example": "6707cc37-d416-4077-bd12-777491027011"
+              },
+              "description": {
+                "type": "string",
+                "description": "Human-readable event description.",
+                "example": "Attack detected"
+              },
+              "system_id": {
+                "type": "string",
+                "description": "System identifier of the NGINX instance.",
+                "example": "31ed9d05-9cb0-48c3-9f97-d63b1b6dd342"
+              },
+              "parent_hostname": {
+                "type": "string",
+                "description": "Hostname of the machine running NGINX.",
+                "example": "nginx-host-01"
+              },
+              "http": {
+                "$ref": "#/components/schemas/HttpMetadata"
+              },
+              "x_forwarded_for_header_value": {
+                "type": "string",
+                "description": "Value of the X-Forwarded-For header if present.",
+                "example": "203.0.113.42"
+              },
+              "request_status": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestStatus"
+                  },
+                  {
+                    "description": "Status of request processing.",
+                    "example": "complete"
+                  }
+                ]
+              },
+              "request_outcome_reason": {
+                "type": "string",
+                "description": "Reason code for the enforcement decision.",
+                "example": "SECURITY_WAF_VIOLATION"
+              },
+              "blocking_exception_reason": {
+                "type": "string",
+                "description": "Reason if blocking was bypassed due to an exception.",
+                "example": ""
+              },
+              "is_truncated": {
+                "type": "boolean",
+                "description": "Whether the request was truncated during processing.",
+                "example": false
+              },
+              "signatures": {
+                "type": "array",
+                "description": "List of signatures triggered by this event.",
+                "items": {
+                  "$ref": "#/components/schemas/SignatureDetail"
+                }
+              },
+              "violations": {
+                "type": "array",
+                "description": "List of violations detected in this event.",
+                "items": {
+                  "$ref": "#/components/schemas/ViolationDetail"
+                }
+              },
+              "threat_campaign_names": {
+                "type": "array",
+                "description": "Names of threat campaigns associated with this event.",
+                "items": {
+                  "type": "string"
+                },
+                "example": []
+              },
+              "request": {
+                "type": "string",
+                "description": "Raw HTTP request (if available and not truncated).\nContains headers and body as received by the WAF.\n",
+                "example": "GET /?param=%3Cscript%3Ealert%27xss%27%3C%2Fscript%3E HTTP/1.1\r\nHost: example.com\r\nUser-Agent: curl/7.68.0\r\nAccept: */*\r\n\r\n"
+              }
+            }
+          }
+        ]
+      },
+      "SecurityEventListItem": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SecurityEventBase"
+          },
+          {
+            "type": "object",
+            "description": "Summary of a security event for list display.\nContains key fields for quick scanning and filtering in the events list.\nThis is a subset of SecurityEvent optimized for the list view.\n",
+            "properties": {
+              "client_ip": {
+                "type": "string",
+                "description": "Client IP address that sent the request.",
+                "example": "192.168.1.100"
+              },
+              "url": {
+                "type": "string",
+                "description": "Request URI path.",
+                "example": "/"
+              },
+              "method": {
+                "type": "string",
+                "description": "HTTP request method.",
+                "example": "GET"
+              },
+              "response_code": {
+                "type": "integer",
+                "description": "HTTP response status code.",
+                "example": 403
+              }
+            }
+          }
+        ]
+      },
+      "SecurityEventListResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "type": "object",
+            "description": "Paginated list of security events.\n",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "type": "array",
+                "description": "List of security events for the current page.",
+                "items": {
+                  "$ref": "#/components/schemas/SecurityEventListItem"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ViolationsDimensionField": {
+        "type": "string",
+        "description": "Available dimensions for grouping and filtering violation analytics.\n\n* violation: Primary violation type (e.g., \"Attack signature detected\", \"Illegal meta character in value\")\n* sub_violation: Sub-category or additional violation classification providing more granular detail. A value of \"N/A\" indicates no additional information.\n* context: Location where violation was detected (header, cookie, parameter, uri, request, other)\n",
+        "enum": [
+          "violation",
+          "sub_violation",
+          "context"
+        ],
+        "x-enum-varnames": [
+          "violations_dimension_violation",
+          "violations_dimension_sub_violation",
+          "violations_dimension_context"
+        ]
+      },
+      "ViolationsQueryRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseQueryRequest"
+          },
+          {
+            "type": "object",
+            "description": "Request body for querying violation analytics.\n",
+            "properties": {
+              "group_by": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ViolationsDimensionField"
+                  },
+                  {
+                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `context` - cookie, header, parameter, request, uri, other\n\n**Dynamic dimensions** (returned as arrays with cross-dimension context):\n* `violation` - WAF policy violation types (e.g., \"Attack signature detected\")\n* `sub_violation` - Specific subtypes providing granular detail (e.g., \"SQL-Injection\" or \"Missing Mandatory Host Header\"). Returns \"N/A\" if not applicable.\n\n**Response behavior:**\n- If omitted: Returns `total` (violation occurrences) and `unique` (distinct violation types)\n- If specified: Returns dimensional breakdown, `total` and `unique` are omitted\n",
+                    "example": "violation"
+                  }
+                ]
+              },
+              "filter": {
+                "type": "array",
+                "description": "Pre-aggregation filter conditions.\nAll filters are combined with AND logic.\nUse the `in` operator to achieve `OR` within a single dimension.\n\nSupported filter dimensions include attack-level dimensions (policy, ip, url, etc.)\nin addition to violation-specific dimensions.\n",
+                "items": {
+                  "$ref": "#/components/schemas/AnalyticsFilter"
+                },
+                "default": []
+              },
+              "order_by": {
+                "$ref": "#/components/schemas/AnalyticsOrderBy"
+              }
+            }
+          }
+        ]
       }
     },
     "examples": {
@@ -12960,7 +15474,8 @@
               "os_version": "Ubuntu 22.04",
               "nginx_id": "b636d4376dea15405589692d3c5d3869ff3a9b26b0e7bb4bb1aa7e658ace1437",
               "config_status": "in_sync",
-              "config_version": "abc123def456"
+              "config_version": "abc123def456",
+              "has_container_host": false
             }
           ],
           "certs": [
@@ -13082,9 +15597,10 @@
       ]
     },
     {
-      "name": "NGINX One App Protect",
+      "name": "F5 WAF for NGINX",
       "tags": [
-        "NGINX App Protect"
+        "NGINX App Protect",
+        "WAF Log Profiles"
       ]
     },
     {
