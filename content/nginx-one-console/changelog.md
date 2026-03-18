@@ -9,7 +9,7 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
-## March 16, 2026
+## March 18, 2026
 
 ### F5 WAF for NGINX: Log profile management
 
