@@ -1,15 +1,11 @@
 ---
-# We use sentence case and present imperative tone
 title: "Configure log profiles"
-# Weights are assigned in increments of 100: determines sorting order
+nd-summary: 
 weight: 650
-# Creates a table of contents and sidebar, useful for large documents
 toc: true
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 nd-product: NONECO
+nd-summary: Configure F5 WAF for NGINX security log profiles in NGINX One Console, controlling request filtering (all/illegal/blocked), log format (default/Splunk/ArcSight/custom), size limits, and deployment to NGINX instances via compiled .tgz bundles.
 ---
 
 This document describes how to configure log profiles for F5 WAF for NGINX security logs in F5 NGINX One Console. Security logs contain information about HTTP requests and responses, how F5 WAF for NGINX processes them, and the final decision made based on your configured policy. Log profiles define which information is captured, the format of log messages, the destination for logs, and the filtering criteria for security events.

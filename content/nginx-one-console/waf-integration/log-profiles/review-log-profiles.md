@@ -1,15 +1,10 @@
 ---
-# We use sentence case and present imperative tone
 title: "Review log profiles"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 655
-# Creates a table of contents and sidebar, useful for large document
 toc: false
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 nd-product: NONECO
+nd-summary: Review WAF log profiles in NGINX One Console to inspect configuration details, deployment status, and bundle compilation state, and manage profiles via Actions to edit, copy, deploy, download JSON, manage bundles, or delete.
 ---
 
 Before you deploy a log profile to an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a log profile for your F5 WAF for NGINX security logging.

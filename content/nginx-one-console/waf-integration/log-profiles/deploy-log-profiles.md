@@ -1,15 +1,10 @@
 ---
-# We use sentence case and present imperative tone
 title: "Deploy log profiles"
-# Weights are assigned in increments of 100: determines sorting order
 weight: 660
-# Creates a table of contents and sidebar, useful for large documents
 toc: false
-# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
-# Intended for internal catalogue and search, case sensitive:
-# Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 nd-product: NONECO
+nd-summary: Deploy WAF log profiles in NGINX One Console to instances or Config Sync Groups via Actions > Deploy or through the config editor (Add File > Existing Log Profile), auto-compiling if needed, then verify deployment by confirming directives and checking security log output.
 ---
 
 After you've set up a log profile, it won't capture security events until you deploy it to instances or Config Sync Groups.

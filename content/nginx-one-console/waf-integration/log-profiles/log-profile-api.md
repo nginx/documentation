@@ -4,6 +4,7 @@ weight: 810
 toc: true
 nd-content-type: reference
 nd-product: NONECO
+nd-summary: NGINX One Console API enables full CRUD management of WAF log profiles, plus listing deployments (target, time, status) and compiling profiles into .tgz bundles for specific WAF compiler versions with optional download.
 ---
 
 You can use F5 NGINX One Console API to manage log profiles. With our API, you can:
