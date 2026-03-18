@@ -97,9 +97,9 @@ Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
 ### -enable-config-safety
 
-{{< caution >}}This is an experimental feature. Behavior and configuration may change in future releases.{{< /caution >}}
+{{< call-out "caution" >}}This is an experimental feature. Behavior and configuration may change in future releases.{{< /call-out >}}
 
-Enable config validation prior to reloading NGINX.
+Enable config validation before reloading NGINX.
 
 Default `false`.
 
