@@ -20,7 +20,7 @@ If you already know F5 WAF for NGINX, you can go beyond the options available in
 
 ## Add a policy
 
-From NGINX One Console, select App Protect > Policies. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
+From NGINX One Console, select **WAF > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
 - In General Settings, name and describe the policy.
   - You can also set one of the following enforcement modes:
@@ -46,4 +46,4 @@ NGINX One Console includes a Policy JSON section which displays your policy in J
 
 With the **Edit** option, you can customize this policy. It opens the JSON file in a local editor. When you select **Save Policy**, it saves the latest version of what you've configured. You'll see your new policy under the name you used.
 
-From NGINX One Console, you can review the policies that you've saved, along with their versions. Select **App Protect** > **Policies**. Select the policy that you want to review or modify.
+From NGINX One Console, you can review the policies that you've saved, along with their versions. Select **WAF** > **Policies**. Select the policy that you want to review or modify.
