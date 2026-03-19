@@ -11,10 +11,14 @@ Learn how to dynamically update the NGINX Gateway Fabric global data plane confi
 
 ## Overview
 
-NGINX Gateway Fabric can dynamically update the global data plane configuration without restarting. The data plane configuration contains configuration for NGINX that is not available using the standard Gateway API resources. This includes options such as configuring an OpenTelemetry collector, disabling HTTP/2, changing the IP family, modifying infrastructure-related fields, and setting the NGINX error log level.
+NGINX Gateway Fabric can dynamically update the global data plane configuration without restarting. The data plane configuration contains configuration for NGINX that is not available using the standard Gateway API resources. This includes options such as configuring an OpenTelemetry collector, disabling HTTP/2, changing the IP family, and setting the NGINX error log level.
+
+It also contains options for [updating the NGINX Deployment and Service config](#configure-infrastructure-related-settings), either through native fields or patches.
 
 The data plane configuration is stored in the `NginxProxy` custom resource, which is a namespace-scoped resource that can be attached to a GatewayClass or Gateway. When attached to a GatewayClass, the fields in the NginxProxy affect all Gateways that belong to the GatewayClass.
 When attached to a Gateway, the fields in the NginxProxy only affect the Gateway. If a GatewayClass and its Gateway both specify an NginxProxy, the GatewayClass NginxProxy provides defaults that can be overridden by the Gateway NginxProxy. See the [Merging Semantics](#merging-semantics) section for more detail.
+
+**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
 ---
 
