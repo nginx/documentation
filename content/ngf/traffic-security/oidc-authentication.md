@@ -270,14 +270,13 @@ NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)         AGE
 kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP   10d
 ```
 
-Apply the `NginxProxy` resource with the DNS resolver address. If you already have an `NginxProxy` resource, edit it to add the `dnsResolver` field:
+NGINX Gateway Fabric creates an `NginxProxy` resource during installation. Edit it to add the `dnsResolver` field:
+
+```bash
+kubectl edit nginxproxies.gateway.nginx.org -n nginx-gateway nginx-gateway-proxy-config
+```
 
 ```yaml
-kubectl apply -f - <<EOF
-apiVersion: gateway.nginx.org/v1alpha1
-kind: NginxProxy
-metadata:
-  name: nginx-proxy
 spec:
   dnsResolver:
     addresses:
@@ -467,7 +466,7 @@ spec:
 
 ### Logout
 
-Use `logout.uri` to set the path a user visits to log out. When a request hits that path, NGINX clears the session and redirects to the IdP's logout endpoint. If `postLogoutURI` is not set, NGINX returns a `200 OK` with the body "You have been logged out.". Set it to a path to redirect the user there after logout and the path must be matched by an existing HTTPRoute rule. Set it to a full URL to redirect the user to an external page.
+Use `logout.uri` to set the path a user visits to log out. When a request hits that path, NGINX clears the session and redirects to the IdP's logout endpoint. If `logout.postLogoutURI` is not set, NGINX returns a `200 OK` with the body "You have been logged out.". It can be set it to a path to redirect the user there after logout. The path must be matched by an existing HTTPRoute rule. Set it to a full URL to redirect the user to an external page.
 
 Use `logout.frontChannelLogoutURI` if your IdP uses front-channel logout, where the IdP sends a logout request to a browser-visible URL to clear the NGINX session. The IdP must send `iss` and `sid` as query parameters. Set `logout.tokenHint` to `true` if your IdP requires the original ID token to be passed in the logout request.
 
