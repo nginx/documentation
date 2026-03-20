@@ -98,23 +98,54 @@ docker run -p 8443:8443 \
   --https-certificate-key-file=/opt/keycloak/conf/server.key.pem
 ```
 
-Once running, open `https://localhost:8443` and log in with username `admin` and password `admin`.
+Once running, get an admin token to use in the API calls below. These steps require `jq` to parse the JSON responses.
+
+```shell
+TOKEN=$(curl -s -X POST https://localhost:8443/realms/master/protocol/openid-connect/token \
+  --cacert ca.crt \
+  -d "client_id=admin-cli" \
+  -d "username=admin" \
+  -d "password=admin" \
+  -d "grant_type=password" | jq -r '.access_token')
+```
 
 #### Create a realm
 
-A realm is an isolated namespace in Keycloak for users, clients, and configuration. In the top-left dropdown, click Create realm, set a realm name, and click Create. This guide uses `nginx-gateway` as the realm name.
+A realm is an isolated namespace in Keycloak for users, clients, and configuration. This guide uses `nginx-gateway` as the realm name. The issuer URL for this realm will be `https://<keycloak-host>:8443/realms/nginx-gateway`. You will use this as the `issuer` field in the `AuthenticationFilter`.
 
-The issuer URL for this realm will be `https://<keycloak-host>:8443/realms/nginx-gateway`. You will use this as the `issuer` field in the `AuthenticationFilter`.
+```shell
+curl -s -X POST https://localhost:8443/admin/realms \
+  --cacert ca.crt \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"realm":"nginx-gateway","enabled":true}'
+```
 
 #### Create a client
 
-Go to Clients in the left sidebar and click Create client. The client ID can be any name you choose. This guide uses `nginx-gateway`, and you will set the same value in the `clientID` field of the `AuthenticationFilter`. Enable Client authentication.
+The client ID can be any name you choose. This guide uses `nginx-gateway`, and you will set the same value in the `clientID` field of the `AuthenticationFilter`. The default callback path NGINX uses after a successful login is `/oidc_callback_<filter-namespace>_<filter-name>`. For this guide that is `/oidc_callback_default_oidc-coffee`. A wildcard such as `https://cafe.example.com/*` also works if you prefer not to pin the exact path.
 
-Under Valid redirect URIs, enter the callback path that NGINX will use after a successful login. The default callback path is `/oidc_callback_<filter-namespace>_<filter-name>`, so for this guide the value is `https://cafe.example.com/oidc_callback_default_oidc-coffee`. If you prefer not to pin the exact path, a wildcard such as `https://cafe.example.com/*` also works. Click Save, then open the Credentials tab and copy the client secret. You will store this in a Kubernetes Secret in the next step.
+You can set a known client secret by including `"secret"` in the payload. Set `CLIENT_SECRET` to the same value so you can reference it in later steps.
+
+```shell
+CLIENT_SECRET=k2PKtWlAJSAQDBMrE1B7k9IILqZ5r28J
+
+curl -s -X POST https://localhost:8443/admin/realms/nginx-gateway/clients \
+  --cacert ca.crt \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{\"clientId\":\"nginx-gateway\",\"enabled\":true,\"publicClient\":false,\"redirectUris\":[\"https://cafe.example.com/*\"],\"secret\":\"$CLIENT_SECRET\"}"
+```
 
 #### Create a test user
 
-Go to Users in the left sidebar and click Create new user. Set the username to `testuser` and click Create. Open the Credentials tab, click Set password, enter a password, disable Temporary, and save.
+```shell
+curl -s -X POST https://localhost:8443/admin/realms/nginx-gateway/users \
+  --cacert ca.crt \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","enabled":true,"credentials":[{"type":"password","value":"testpassword","temporary":false}]}'
+```
 
 ---
 
@@ -287,11 +318,11 @@ EOF
 
 ### Create the Keycloak Secret
 
-This Secret holds two pieces of material the filter needs: the client secret from the `nginx-gateway` realm, and the CA certificate that NGINX uses to verify Keycloak's TLS certificate on outbound connections. Both come from earlier steps. The client secret is the value you copied from the Keycloak Credentials tab, and `ca.crt` is the local CA certificate generated in the [Generate self-signed certificates](#generate-self-signed-certificates) step.
+This Secret holds two pieces of material the filter needs: the client secret from the `nginx-gateway` realm, and the CA certificate that NGINX uses to verify Keycloak's TLS certificate on outbound connections. Both come from earlier steps. `$CLIENT_SECRET` is the variable set in the Create a client step, and `ca.crt` is the local CA certificate generated in the [Generate self-signed certificates](#generate-self-signed-certificates) step.
 
 ```shell
 kubectl create secret generic keycloak-secret \
-  --from-literal=client-secret=<client-secret-from-keycloak> \
+  --from-literal=client-secret=$CLIENT_SECRET \
   --from-file=ca.crt=ca.crt
 ```
 
