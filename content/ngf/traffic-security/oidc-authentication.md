@@ -27,17 +27,13 @@ OIDC configuration references Kubernetes `Opaque` Secrets for sensitive material
 
 You can consolidate multiple keys in a single Secret or use separate Secrets for each. Either approach works as long as each Secret contains the correct key name.
 
-## Note
-
-{{< call-out "important" >}}OIDC authentication requires [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) R34 or later and is not supported with open-source NGINX. {{< /call-out >}}
+{{< call-out "important" >}}OIDC authentication requires [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) and is not supported with open-source NGINX. {{< /call-out >}}
 
 ## Before you begin
 
 To follow this guide, you need the following:
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus R34 or later.
-- Generate certificates for the IdP and NGINX using a local CA so they can communicate over TLS. You can also use a public CA for this.
-- [Configure a Keycloak realm](#configure-keycloak) with a client and a test user, or use an existing IdP and skip to [Setup](#setup).
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
 
 
 ### Generate self-signed certificates
@@ -106,17 +102,21 @@ Once running, open `https://localhost:8443` and log in with username `admin` and
 
 #### Create a realm
 
-A realm is an isolated namespace in Keycloak for users, clients, and configuration. In the top-left dropdown, click Create realm, set the realm name to `nginx-gateway`, and click Create.
+A realm is an isolated namespace in Keycloak for users, clients, and configuration. In the top-left dropdown, click Create realm, set a realm name, and click Create. This guide uses `nginx-gateway` as the realm name.
 
 The issuer URL for this realm will be `https://<keycloak-host>:8443/realms/nginx-gateway`. You will use this as the `issuer` field in the `AuthenticationFilter`.
 
 #### Create a client
 
-Go to Clients in the left sidebar and click Create client. Set the client ID to `nginx-gateway`, enable Client authentication, and under Valid redirect URIs enter the callback path NGINX will use. If you are not setting a custom `redirectURI` in the filter, enter `https://cafe.example.com/oidc_callback_default_oidc-nginx-gateway`. Click Save, then open the Credentials tab and copy the client secret. You will store this in a Kubernetes Secret in the next step.
+Go to Clients in the left sidebar and click Create client. The client ID can be any name you choose. This guide uses `nginx-gateway`, and you will set the same value in the `clientID` field of the `AuthenticationFilter`. Enable Client authentication.
+
+Under Valid redirect URIs, enter the callback path that NGINX will use after a successful login. The default callback path is `/oidc_callback_<filter-namespace>_<filter-name>`, so for this guide the value is `https://cafe.example.com/oidc_callback_default_oidc-coffee`. If you prefer not to pin the exact path, a wildcard such as `https://cafe.example.com/*` also works. Click Save, then open the Credentials tab and copy the client secret. You will store this in a Kubernetes Secret in the next step.
 
 #### Create a test user
 
 Go to Users in the left sidebar and click Create new user. Set the username to `testuser` and click Create. Open the Credentials tab, click Set password, enter a password, disable Temporary, and save.
+
+---
 
 ## Setup
 
@@ -210,7 +210,7 @@ tea-75bc9f4b6d-cx2jl      1/1     Running   0          15s
 
 ### Create a Gateway
 
-OIDC requires an HTTPS listener. The `tls.certificateRefs` entry points to a Secret containing the TLS certificate and key that NGINX presents to browsers on incoming connections. Create a Secret from the `nginx.crt` and `nginx.key` files generated earlier and reference it here.
+OIDC requires an HTTPS listener. The `tls.certificateRefs` entry points to a Secret containing the TLS certificate and key that NGINX presents to clients on incoming connections. Create a Secret from the `nginx.crt` and `nginx.key` files generated earlier and reference it here.
 
 ```shell
 kubectl create secret tls nginx-secret --cert=nginx.crt --key=nginx.key
@@ -255,6 +255,37 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=443
 ```
 
+### Configure a DNS resolver
+
+NGINX must resolve the IdP's hostname at runtime to fetch the OIDC discovery document and exchange tokens. Without a DNS resolver configured, NGINX cannot start the OIDC flow and will log `no resolver defined to resolve`. Before proceeding, configure a DNS resolver in the `NginxProxy` resource.
+
+Get the IP address of the `kube-dns` service in the `kube-system` namespace:
+
+```shell
+kubectl get svc -n kube-system kube-dns
+```
+
+```text
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)         AGE
+kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP   10d
+```
+
+Apply the `NginxProxy` resource with the DNS resolver address. If you already have an `NginxProxy` resource, edit it to add the `dnsResolver` field:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: NginxProxy
+metadata:
+  name: nginx-proxy
+spec:
+  dnsResolver:
+    addresses:
+    - type: IPAddress
+      value: 10.96.0.10
+EOF
+```
+
 ### Create the Keycloak Secret
 
 This Secret holds two pieces of material the filter needs: the client secret from the `nginx-gateway` realm, and the CA certificate that NGINX uses to verify Keycloak's TLS certificate on outbound connections. Both come from earlier steps. The client secret is the value you copied from the Keycloak Credentials tab, and `ca.crt` is the local CA certificate generated in the [Generate self-signed certificates](#generate-self-signed-certificates) step.
@@ -282,7 +313,6 @@ spec:
       name: keycloak-secret
     clientID: nginx-gateway
     issuer: https://host.docker.internal:8443/realms/nginx-gateway
-    redirectURI: /custom_callback
     caCertificateRefs:
       - name: keycloak-secret
 EOF
@@ -379,11 +409,17 @@ Status:
 Events:              <none>
 ```
 
+---
+
 ## Verify OIDC authentication
 
-{{< call-out "note" >}}
-Your client must be able to resolve `cafe.example.com` to the Gateway's public IP. The steps below use a browser for OIDC since the flow involves redirects and cookies that curl cannot handle end-to-end.
-{{< /call-out >}}
+Your client must be able to resolve `cafe.example.com` to the Gateway's public IP. For local testing, add an entry to your `/etc/hosts` file:
+
+```text
+<GW_IP> cafe.example.com
+```
+
+The steps below use a browser for OIDC since the flow involves redirects and cookies that curl cannot handle end-to-end.
 
 ### Accessing the protected `/coffee` route
 
@@ -431,7 +467,9 @@ spec:
 
 ### Logout
 
-Use `logout.uri` to define the path a user visits to end their session. NGINX clears the local session and redirects to the IdP's logout endpoint. Use `logout.postLogoutURI` to control where the user lands after logout. A path-only value causes NGINX to return a 200 with "You have been logged out". A full URL redirects the user to an external page. Use `logout.frontChannelLogoutURI` if your IdP uses front-channel logout, where the IdP sends logout requests via an iframe to clear the NGINX session. The IdP must be configured to pass `iss` and `sid` arguments. Set `logout.tokenHint` to `true` if your IdP requires the original ID token to be included in the logout request.
+Use `logout.uri` to set the path a user visits to log out. When a request hits that path, NGINX clears the session and redirects to the IdP's logout endpoint. If `postLogoutURI` is not set, NGINX returns a `200 OK` with the body "You have been logged out.". Set it to a path to redirect the user there after logout and the path must be matched by an existing HTTPRoute rule. Set it to a full URL to redirect the user to an external page.
+
+Use `logout.frontChannelLogoutURI` if your IdP uses front-channel logout, where the IdP sends a logout request to a browser-visible URL to clear the NGINX session. The IdP must send `iss` and `sid` as query parameters. Set `logout.tokenHint` to `true` if your IdP requires the original ID token to be passed in the logout request.
 
 ```yaml
 spec:
@@ -502,61 +540,7 @@ spec:
       name: oidc-crl
 ```
 
-### Full configuration example
-
-The following example shows all fields populated, using a single Secret that bundles the client secret, CA certificate, and CRL together:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: oidc-all-in-one
-  namespace: default
-type: Opaque
-stringData:
-  client-secret: "<your-client-secret>"
-  ca.crt: |
-    -----BEGIN CERTIFICATE-----
-    <your-CA-certificate>
-    -----END CERTIFICATE-----
-  ca.crl: |
-    -----BEGIN X509 CRL-----
-    <your-CRL>
-    -----END X509 CRL-----
 ---
-apiVersion: gateway.nginx.org/v1alpha1
-kind: AuthenticationFilter
-metadata:
-  name: oidc-full
-  namespace: default
-spec:
-  type: OIDC
-  oidc:
-    issuer: "https://keycloak.example.com/realms/my-realm"
-    clientID: nginx-gateway
-    clientSecretRef:
-      name: oidc-all-in-one
-    caCertificateRefs:
-      - name: oidc-all-in-one
-    crlSecretRef:
-      name: oidc-all-in-one
-    configURL: "https://keycloak.example.com/realms/my-realm/.well-known/openid-configuration"
-    redirectURI: /my_callback
-    pkce: true
-    extraAuthArgs:
-      prompt: "login"
-      max_age: "3600"
-    session:
-      cookieName: my-app-session
-      timeout: 30m
-    logout:
-      uri: /logout
-      postLogoutURI: /after_logout
-      frontChannelLogoutURI: /frontchannel_logout
-      tokenHint: true
-EOF
-```
 
 ## Troubleshooting
 
@@ -571,16 +555,6 @@ EOF
 ### Browser is stuck in a redirect loop
 - Confirm the `redirectURI` registered in the IdP exactly matches the path NGINX is using (default: `/oidc_callback_<namespace>_<filtername>`).
 - Ensure the Gateway's TLS certificate is valid for the hostname the browser is using.
-
-### NGINX logs contain `no resolver defined to resolve`
-- NGINX cannot resolve the IdP's hostname. Add a DNS resolver to your `NginxProxy` resource using the cluster DNS address, which is typically the IP of the `kube-dns` service in the `kube-system` namespace.
-
-```yaml
-dnsResolver:
-  addresses:
-  - type: IPAddress
-    value: 10.96.0.10
-```
 
 ## Further reading
 
