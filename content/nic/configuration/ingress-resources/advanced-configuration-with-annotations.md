@@ -96,7 +96,7 @@ The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
 The table below summarizes the available annotations.
 
-{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus, with the exception of `nginx.com/sticky-cookie-services`, which is supported in both NGINX and NGINX Plus. Use the `nginx.org/sticky-cookie-services` annotation for NGINX. {{< /call-out >}}
+{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. For session persistence, use `nginx.org/sticky-cookie-services` which works with both NGINX and NGINX Plus. {{< /call-out >}}
 
 ### General customization
 
