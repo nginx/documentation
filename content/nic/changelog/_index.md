@@ -36,18 +36,18 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 - [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialise the $service variable early in the server block
 - [8168](https://github.com/nginx/kubernetes-ingress/pull/8168) Add custom time format to json and text logging
 - [8936](https://github.com/nginx/kubernetes-ingress/pull/8936) Add routeselector labels to virtualserver and virtualserverroutes
-- [8972](https://github.com/nginx/kubernetes-ingress/pull/8972) Feat: add `proxy-next-upstream` directives to ingress annotations
+- [8972](https://github.com/nginx/kubernetes-ingress/pull/8972) Add `proxy-next-upstream` directives to ingress annotations
 - [8555](https://github.com/nginx/kubernetes-ingress/pull/8555) Support loadbalancerclass in helm chart
 - [9209](https://github.com/nginx/kubernetes-ingress/pull/9209) Add framework to attach policy cr&#39;s to ingress with annotations
-- [9148](https://github.com/nginx/kubernetes-ingress/pull/9148) Add cors policy to vs/vsr
-- [9280](https://github.com/nginx/kubernetes-ingress/pull/9280) Ingress policy: accesscontrol
-- [9292](https://github.com/nginx/kubernetes-ingress/pull/9292) Feat: add cors to ingress via policy
+- [9148](https://github.com/nginx/kubernetes-ingress/pull/9148) Add CORS policy to VirtualServer/VirtualServerRoute
+- [9280](https://github.com/nginx/kubernetes-ingress/pull/9280) Add AccessControl to ingress via policy
+- [9292](https://github.com/nginx/kubernetes-ingress/pull/9292) Add CORS to ingress via policy
 - [9260](https://github.com/nginx/kubernetes-ingress/pull/9260) Automate community pr pipeline run
 - [9316](https://github.com/nginx/kubernetes-ingress/pull/9316) Enable session persistence for nginx oss config
 - [9288](https://github.com/nginx/kubernetes-ingress/pull/9288) Config rollback manager
 
 ### {{% icon bug %}} Fixes
-- [8689](https://github.com/nginx/kubernetes-ingress/pull/8689) Fix: update stub_status client path
+- [8689](https://github.com/nginx/kubernetes-ingress/pull/8689) Update stub_status client path
 - [8722](https://github.com/nginx/kubernetes-ingress/pull/8722) Update service template for ipfamilies
 - [8740](https://github.com/nginx/kubernetes-ingress/pull/8740) Add more validation on rewrite-target
 - [8831](https://github.com/nginx/kubernetes-ingress/pull/8831) Implement zone size templates in configmap for oidc templates
