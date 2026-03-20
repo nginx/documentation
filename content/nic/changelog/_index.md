@@ -65,7 +65,6 @@ This NGINX Ingress Controller release focuses on easing migrations from `ingress
 - [8740](https://github.com/nginx/kubernetes-ingress/pull/8740) Add more validation on rewrite-target
 - [8869](https://github.com/nginx/kubernetes-ingress/pull/8869) Refactor getvalidtarget to return a list of items
 - [8949](https://github.com/nginx/kubernetes-ingress/pull/8949) Ensure NGINX metric show up in NGINX One console
-- [9172](https://github.com/nginx/kubernetes-ingress/pull/9172) Fix load command
 - [9140](https://github.com/nginx/kubernetes-ingress/pull/9140) Invalid vs with oidc policy applied at vs spec with trusted cert
 - [9213](https://github.com/nginx/kubernetes-ingress/pull/9213) Remove `unexpected ";"` using zone-sync in the configmap while disabling ipv6
 
