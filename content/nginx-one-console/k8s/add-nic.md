@@ -113,6 +113,10 @@ data:
         tokenpath: "/etc/nginx-agent/secrets/dataplane.key"
       tls:
         skip_verify: false
+
+    collector:
+      log:
+        path: "stdout"
 ```      
 
 Make sure to set the namespace in the nginx-agent.config to the same namespace as NGINX Ingress Controller.

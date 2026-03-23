@@ -46,6 +46,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.hostNetwork** | Enables NGINX Ingress Controller pods to use the host's network namespace. | false |
 | **controller.dnsPolicy** | DNS policy for NGINX Ingress Controller pods. | ClusterFirst |
 | **controller.nginxDebug** | Enables debugging for NGINX. Uses the `nginx-debug` binary. Requires `error-log-level: debug` in the ConfigMap via `controller.config.entries`. | false |
+| **controller.enableConfigSafety** | Enable config validation prior to reloading NGINX. *Experimental feature.* | false |
 | **controller.logLevel** | The log level of NGINX Ingress Controller. | info |
 | **controller.logFormat** | The log format of NGINX Ingress Controller. | glog |
 | **controller.directiveAutoAdjust** | Automatically adjusts NGINX buffer directives to prevent configuration errors. | false |
@@ -108,6 +109,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.service.annotations** | The annotations of the NGINX Ingress Controller service. | {} |
 | **controller.service.extraLabels** | The extra labels of the service. | {} |
 | **controller.service.loadBalancerIP** | The static IP address for the load balancer. Requires `controller.service.type` set to `LoadBalancer`. The cloud provider must support this feature. | "" |
+| **controller.service.loadBalancerClass** | This property allows the user to define a specific load balancer implementation or configuration class for the service. Requires `controller.service.type` set to `LoadBalancer`. The cloud provider must support this feature. | "" |
 | **controller.service.externalIPs** | The list of external IPs for the NGINX Ingress Controller service. | [] |
 | **controller.service.clusterIP** | The clusterIP for the NGINX Ingress Controller service, autoassigned if not specified. | "" |
 | **controller.service.loadBalancerSourceRanges** | The IP ranges (CIDR) that are allowed to access the load balancer. Requires `controller.service.type` set to `LoadBalancer`. The cloud provider must support this feature. | [] |

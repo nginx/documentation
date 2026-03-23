@@ -93,6 +93,16 @@ Enable x509 automated certificate management for VirtualServer resources using c
 
 Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
+<a name="cmdoption-enable-config-safety"></a>
+
+### -enable-config-safety
+
+{{< call-out "caution" >}}This is an experimental feature. Behavior and configuration may change in future releases.{{< /call-out >}}
+
+Enable config validation before reloading NGINX.
+
+Default `false`.
+
 <a name="cmdoption-enable-external-dns"></a>
 
 ### -enable-external-dns

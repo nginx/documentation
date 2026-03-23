@@ -127,63 +127,11 @@ The following examples show how to upload plain configuration files directly to 
       'virtual-path':'/etc/nginx/conf.d/proxy.conf'}]"
    ```
 
-{{%/tab%}}
-
-{{%tab name="Upload a tarball package"%}}
-
-You can bundle your configuration files into a `.tar.gz` archive and upload it as a single package.
-
-Upload package with config files:
-
-   ```shell
-   $ tar -czf nginx.tar.gz nginx
-   $ tar -tzf nginx.tar.gz
-   nginx/
-   nginx/nginx.conf
-   nginx/njs.js
-   nginx/servers
-   nginx/servers/
-   nginx/servers/server1.conf
-   nginx/servers/server2.conf
-   ```
-
-   Where `nginx` is a directory with the following structure:
-
-   ```shell
-   $ tree nginx
-   nginx
-   ├── nginx.conf
-   ├── njs.js
-   └── servers
-       ├── server1.conf
-       └── server2.conf
-
-   1 directory, 4 files
-   ```
-
-   Encode your tar.gz file and create your NGINXaaS configuration
-
-   ```shell
-   TAR_DATA=$(base64 -i nginx.tar.gz)
-   az nginx deployment configuration create --deployment-name myDeployment \
-      --resource-group myResourceGroup --root-file nginx.conf --name default \
-      --package data="$TAR_DATA"
-   ```
-
-   Upload a package with config files and protected files:
-
-   ```shell
-   az nginx deployment configuration create --deployment-name myDeployment \
-      --resource-group myResourceGroup --root-file nginx.conf --name default \
-      --package data="$TAR_DATA" \
-      protected-files="['nginx/servers/server1.conf','nginx/servers/server2.conf']"
-   ```
-
 - Multiple file configuration with protected files:
 
    ```shell
    az nginx deployment configuration create --name default \
-      --deployment-name 0102242023test --resource-group azclitest-geo \
+      --deployment-name myDeployment --resource-group myResourceGroup \
       --root-file /etc/nginx/nginx.conf \
       --files "[{'content':'aHR0cCB7CiAgICB1cHN0cmVhbSBhcHAgewogICAgICAgIHpvbmUg \
       YXBwIDY0azsKICAgICAgICBsZWFzdF9jb25uOwogICAgICAgIHNlcnZlciAxMC4wLjEu \
@@ -213,6 +161,97 @@ Upload package with config files:
       eV9idWZmZXJpbmcgb247CnByb3h5X2J1ZmZlcl9zaXplIDRrOwpwcm94eV9idWZmZXJz \
       IDggOGs7CnByb3h5X3JlYWRfdGltZW91dCA2MHM7', \
       'virtual-path':'/etc/nginx/conf.d/proxyprot.conf'}]"
+   ```
+
+{{%/tab%}}
+
+{{%tab name="Upload a tarball package"%}}
+
+You can bundle your configuration files into a `.tar.gz` archive and upload it as a single package.
+
+- **Upload config using a package:**
+
+   Create a gzip compress tarball package.
+
+   {{< call-out "important" "Directory structure requirement" >}}The package must start at the `etc` level. Your tarball must contain the `etc/nginx/` directory structure.{{< /call-out >}}
+
+   ```shell
+   $ tar -czf nginx.tar.gz etc
+   $ tar -tzf nginx.tar.gz
+   etc/
+   etc/nginx/
+   etc/nginx/nginx.conf
+   etc/nginx/njs.js
+   etc/nginx/servers/
+   etc/nginx/servers/server1.conf
+   etc/nginx/servers/server2.conf
+   ```
+
+   Where `etc` is a directory with the following structure:
+
+   ```shell
+   $ tree etc
+   etc
+   └── nginx
+       ├── nginx.conf
+       ├── njs.js
+       └── servers
+           ├── server1.conf
+           └── server2.conf
+
+   2 directories, 4 files
+   ```
+
+   Encode your tar.gz file and create your NGINXaaS configuration:
+
+   ```shell
+   TAR_DATA=$(base64 -i nginx.tar.gz)
+   az nginx deployment configuration create --deployment-name myDeployment \
+      --resource-group myResourceGroup --root-file /etc/nginx/nginx.conf --name default \
+      --package data="$TAR_DATA"
+   ```
+
+- **Upload config using a package with protected files:**
+
+   Create a gzip compress tarball package:
+
+   ```shell
+   $ tar -czf nginx-config.tgz etc
+   $ tar -tzf nginx-config.tgz
+   etc/
+   etc/nginx/
+   etc/nginx/nginx.conf
+   etc/nginx/conf.d/
+   etc/nginx/conf.d/proxy.conf
+   etc/nginx/conf.d/proxyprot.conf
+   etc/nginx/conf.d/nginxprot.conf
+   ```
+
+   Where `etc` is a directory with the following structure:
+
+   ```shell
+   $ tree etc
+   etc
+   └── nginx
+       ├── conf.d
+       │   ├── nginxprot.conf
+       │   ├── proxy.conf
+       │   └── proxyprot.conf
+       └── nginx.conf
+
+   2 directories, 4 files
+   ```
+
+   Encode your tarball file and create your NGINXaaS configuration with protected files:
+
+   ```shell
+   TAR_DATA=$(base64 -i nginx-config.tgz)
+   az nginx deployment configuration create \
+      --deployment-name myDeployment \
+      --resource-group myResourceGroup \
+      --root-file /etc/nginx/nginx.conf \
+      --package data="${TAR_DATA}" protected-files="['/etc/nginx/conf.d/proxyprot.conf','/etc/nginx/conf.d/nginxprot.conf']" \
+      --name default
    ```
 
 {{%/tab%}}
