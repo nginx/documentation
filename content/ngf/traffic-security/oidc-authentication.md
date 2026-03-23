@@ -56,12 +56,12 @@ Run the following commands to generate a certificate for Keycloak, signed by the
 openssl genrsa -out keycloak.key 4096
 
 openssl req -new -key keycloak.key -out keycloak.csr \
-  -subj "/CN=host.docker.internal"
+  -subj "/CN=keycloak.default.svc.cluster.local"
 
 openssl x509 -req -in keycloak.csr \
   -CA ca.crt -CAkey ca.key -CAcreateserial \
   -out keycloak.crt -days 365 \
-  -extfile <(printf "subjectAltName=DNS:host.docker.internal,DNS:localhost,IP:127.0.0.1")
+  -extfile <(printf "subjectAltName=DNS:keycloak.default.svc.cluster.local,DNS:keycloak,DNS:localhost,IP:127.0.0.1")
 ```
 
 Run the following commands to generate a certificate for NGINX:
@@ -78,74 +78,176 @@ openssl x509 -req -in nginx.csr \
   -extfile <(printf "subjectAltName=DNS:cafe.example.com")
 ```
 
-
 ### Configure Keycloak
 
 If you already have an IdP set up with a realm, a client, and a user, skip to [Setup](#setup).
 
 #### Start Keycloak
 
-Run Keycloak locally using Docker, using the `keycloak.crt` and `keycloak.key` files generated in the previous step. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange.
+Deploy Keycloak using Kubernetes, using the `keycloak.crt` and `keycloak.key` files generated in the previous step. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange.
+
+Create a Kubernetes TLS Secret from the certificate and key generated in the previous step. This Secret is mounted into the Keycloak container in the deployment below. 
 
 ```shell
-docker run -p 8443:8443 \
-  -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
-  -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin \
-  -v $(pwd)/keycloak.crt:/opt/keycloak/conf/server.crt.pem \
-  -v $(pwd)/keycloak.key:/opt/keycloak/conf/server.key.pem \
-  quay.io/keycloak/keycloak:latest start \
-  --https-certificate-file=/opt/keycloak/conf/server.crt.pem \
-  --https-certificate-key-file=/opt/keycloak/conf/server.key.pem
+kubectl create secret tls keycloak-tls-cert --cert=keycloak.crt --key=keycloak.key
 ```
 
-Once running, get an admin token to use in the API calls below. These steps require `jq` to parse the JSON responses.
+The `redirectUris` field in the realm config must include the exact hostname and port your application is exposed on. If the value does not match what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Update this field before applying.
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-realm-config
+data:
+  nginx-gateway-realm.json: |
+    {
+      "realm": "nginx-gateway",
+      "enabled": true,
+      "sslRequired": "external",
+      "roles": {
+        "realm": [
+          {
+            "name": "user",
+            "composite": false
+          }
+        ]
+      },
+      "clients": [
+        {
+          "clientId": "nginx-gateway-coffee",
+          "enabled": true,
+          "protocol": "openid-connect",
+          "publicClient": false,
+          "secret": "oidc-coffee-client-secret",
+          "directAccessGrantsEnabled": true,
+          "standardFlowEnabled": true,
+          "redirectUris": ["https://cafe.example.com/*", "https://cafe.example.com:8442/*"],
+          "webOrigins": ["https://cafe.example.com"]
+        }
+      ],
+      "users": [
+        {
+          "username": "testuser",
+          "enabled": true,
+          "emailVerified": true,
+          "email": "testuser@example.com",
+          "firstName": "Test",
+          "lastName": "User",
+          "credentials": [
+            {
+              "type": "password",
+              "value": "testpassword",
+              "temporary": false
+            }
+          ],
+          "realmRoles": ["user"]
+        }
+      ]
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+      - name: keycloak
+        image: quay.io/keycloak/keycloak:26.5
+        args:
+        - "start-dev"
+        - "--https-certificate-file=/etc/keycloak-certs/tls.crt"
+        - "--https-certificate-key-file=/etc/keycloak-certs/tls.key"
+        - "--import-realm"
+        env:
+        - name: KC_BOOTSTRAP_ADMIN_USERNAME
+          value: "admin"
+        - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+          value: "admin"
+        - name: KC_HTTP_ENABLED
+          value: "true"
+        - name: KC_HTTPS_ENABLED
+          value: "true"
+        - name: KC_PROXY_HEADERS
+          value: "xforwarded"
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: https
+          containerPort: 8443
+        volumeMounts:
+        - name: keycloak-certs
+          mountPath: /etc/keycloak-certs
+          readOnly: true
+        - name: realm-config
+          mountPath: /opt/keycloak/data/import
+          readOnly: true
+        readinessProbe:
+          httpGet:
+            path: /realms/master
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumes:
+      - name: keycloak-certs
+        secret:
+          secretName: keycloak-tls-cert
+      - name: realm-config
+        configMap:
+          name: keycloak-realm-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+spec:
+  selector:
+    app: keycloak
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+    - name: https
+      port: 8443
+      targetPort: 8443
+EOF
+```
+
+This creates a Keycloak deployment and service. 
+
+Keycloak is configured with a realm named `nginx-gateway`, a client with ID `nginx-gateway-coffee` and secret `oidc-coffee-client-secret`, and a test user with username `testuser` and password `testpassword`. Update these values to match your environment before applying.
+
+Store the client secret in a shell variable for use in later steps:
 
 ```shell
-TOKEN=$(curl -s -X POST https://localhost:8443/realms/master/protocol/openid-connect/token \
-  --cacert ca.crt \
-  -d "client_id=admin-cli" \
-  -d "username=admin" \
-  -d "password=admin" \
-  -d "grant_type=password" | jq -r '.access_token')
+CLIENT_SECRET=oidc-coffee-client-secret
 ```
 
-#### Create a realm
-
-A realm is an isolated namespace in Keycloak for users, clients, and configuration. This guide uses `nginx-gateway` as the realm name. The issuer URL for this realm will be `https://<keycloak-host>:8443/realms/nginx-gateway`. You will use this as the `issuer` field in the `AuthenticationFilter`.
+Once the pod is running, expose Keycloak with port-forward:
 
 ```shell
-curl -s -X POST https://localhost:8443/admin/realms \
-  --cacert ca.crt \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"realm":"nginx-gateway","enabled":true}'
+kubectl port-forward svc/keycloak 8443:8443
 ```
 
-#### Create a client
+The browser must be able to resolve the Keycloak hostname to reach the login page during the OIDC flow. Add the following entry to your `/etc/hosts` file:
 
-The client ID can be any name you choose. This guide uses `nginx-gateway`, and you will set the same value in the `clientID` field of the `AuthenticationFilter`. The default callback path NGINX uses after a successful login is `/oidc_callback_<filter-namespace>_<filter-name>`. For this guide that is `/oidc_callback_default_oidc-coffee`. A wildcard such as `https://cafe.example.com/*` also works if you prefer not to pin the exact path.
-
-You can set a known client secret by including `"secret"` in the payload. Set `CLIENT_SECRET` to the same value so you can reference it in later steps.
-
-```shell
-CLIENT_SECRET=k2PKtWlAJSAQDBMrE1B7k9IILqZ5r28J
-
-curl -s -X POST https://localhost:8443/admin/realms/nginx-gateway/clients \
-  --cacert ca.crt \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d "{\"clientId\":\"nginx-gateway\",\"enabled\":true,\"publicClient\":false,\"redirectUris\":[\"https://cafe.example.com/*\"],\"secret\":\"$CLIENT_SECRET\"}"
+```text
+127.0.0.1  keycloak.default.svc.cluster.local
 ```
 
-#### Create a test user
-
-```shell
-curl -s -X POST https://localhost:8443/admin/realms/nginx-gateway/users \
-  --cacert ca.crt \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"username":"testuser","enabled":true,"credentials":[{"type":"password","value":"testpassword","temporary":false}]}'
-```
+To visit the Keycloak admin console, open `https://keycloak.default.svc.cluster.local:8443` in your browser.
 
 ---
 
@@ -313,12 +415,15 @@ spec:
     addresses:
     - type: IPAddress
       value: 10.96.0.10
-EOF
 ```
 
 ### Create the Keycloak Secret
 
-This Secret holds two pieces of material the filter needs: the client secret from the `nginx-gateway` realm, and the CA certificate that NGINX uses to verify Keycloak's TLS certificate on outbound connections. Both come from earlier steps. `$CLIENT_SECRET` is the variable set in the Create a client step, and `ca.crt` is the local CA certificate generated in the [Generate self-signed certificates](#generate-self-signed-certificates) step.
+This Secret holds two pieces of material the filter needs:
+- The client secret from the `nginx-gateway` realm.
+- The CA certificate that NGINX uses to verify Keycloak's TLS certificate on outbound connections.
+
+Both come from earlier steps. `$CLIENT_SECRET` is the variable set in the Create a client step, and `ca.crt` is the local CA certificate generated in the [Generate self-signed certificates](#generate-self-signed-certificates) step.
 
 ```shell
 kubectl create secret generic keycloak-secret \
@@ -341,8 +446,8 @@ spec:
   oidc:
     clientSecretRef:
       name: keycloak-secret
-    clientID: nginx-gateway
-    issuer: https://host.docker.internal:8443/realms/nginx-gateway
+    clientID: nginx-gateway-coffee
+    issuer: https://keycloak.default.svc.cluster.local:8443/realms/nginx-gateway
     caCertificateRefs:
       - name: keycloak-secret
 EOF
@@ -443,17 +548,17 @@ Events:              <none>
 
 ## Verify OIDC authentication
 
-Your client must be able to resolve `cafe.example.com` to the Gateway's public IP. For local testing, add an entry to your `/etc/hosts` file:
+For local testing, add the following entry to your `/etc/hosts` file so your browser can resolve `cafe.example.com` to the Gateway's public IP:
 
 ```text
-<GW_IP> cafe.example.com
+<GW_IP>  cafe.example.com
 ```
 
 The steps below use a browser for OIDC since the flow involves redirects and cookies that curl cannot handle end-to-end.
 
 ### Accessing the protected `/coffee` route
 
-Open `https://cafe.example.com/coffee` in a browser. Because the route has an `AuthenticationFilter`, NGINX will:
+Open `https://cafe.example.com:$GW_PORT/coffee` in a browser. Because the route has an `AuthenticationFilter`, NGINX will:
 
 1. Detect there is no valid session cookie.
 2. Redirect your browser to the IdP's login page.
@@ -497,7 +602,7 @@ spec:
 
 ### Logout
 
-Use `logout.uri` to set the path a user visits to log out. When a request hits that path, NGINX clears the session and redirects to the IdP's logout endpoint. If `logout.postLogoutURI` is not set, NGINX returns a `200 OK` with the body "You have been logged out.". It can be set it to a path to redirect the user there after logout. The path must be matched by an existing HTTPRoute rule. Set it to a full URL to redirect the user to an external page.
+Use `logout.uri` to set the path a user visits to log out. When a request hits that path, NGINX clears the session and redirects to the IdP's logout endpoint. If `logout.postLogoutURI` is not set, NGINX returns a `200 OK` with the body "You have been logged out.". It can be set to a path to redirect the user there after logout. The path must be matched by an existing HTTPRoute rule. Set it to a full URL to redirect the user to an external page.
 
 Use `logout.frontChannelLogoutURI` if your IdP uses front-channel logout, where the IdP sends a logout request to a browser-visible URL to clear the NGINX session. The IdP must send `iss` and `sid` as query parameters. Set `logout.tokenHint` to `true` if your IdP requires the original ID token to be passed in the logout request.
 
