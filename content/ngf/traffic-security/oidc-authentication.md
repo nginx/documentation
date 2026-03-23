@@ -277,7 +277,7 @@ spec:
     spec:
       containers:
       - name: coffee
-        image: nginxdemos/nginx-hello:plain-text
+        image: nginxdemos/nginx-hello
         ports:
         - containerPort: 8080
 ---
@@ -310,7 +310,7 @@ spec:
     spec:
       containers:
       - name: tea
-        image: nginxdemos/nginx-hello:plain-text
+        image: nginxdemos/nginx-hello
         ports:
         - containerPort: 8080
 ---
@@ -406,7 +406,7 @@ kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP   10d
 NGINX Gateway Fabric creates an `NginxProxy` resource during installation. Edit it to add the `dnsResolver` field:
 
 ```bash
-kubectl edit nginxproxies.gateway.nginx.org -n nginx-gateway nginx-gateway-proxy-config
+kubectl edit nginxproxies.gateway.nginx.org -n nginx-gateway ngf-proxy-config
 ```
 
 ```yaml
@@ -562,8 +562,9 @@ Open `https://cafe.example.com:$GW_PORT/coffee` in a browser. Because the route 
 
 1. Detect there is no valid session cookie.
 2. Redirect your browser to the IdP's login page.
-3. After you log in, redirect you back to NGINX with an authorization code.
-4. Exchange the code for tokens in the background, set a session cookie, and forward you to the `coffee` backend.
+3. Log in with username `testuser` and password `testpassword`.
+4. After you log in, redirect you back to NGINX with an authorization code.
+5. Exchange the code for tokens in the background, set a session cookie, and forward you to the `coffee` backend.
 
 You will see a response from the `coffee` application only after a successful login.
 
