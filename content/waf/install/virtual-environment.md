@@ -229,6 +229,26 @@ Install the F5 WAF for NGINX package and its dependencies:
 sudo dnf install app-protect
 ```
 
+### RHEL 10
+
+Add the F5 WAF for NGINX repository:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
+```
+
+Add F5 WAF for NGINX dependencies:
+
+```shell
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect
+```
+
 {{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
 
 If you need to install a specific version of F5 WAF for NGINX, you can use `--showduplicates list` to list available versions, then append it to the package name:
