@@ -26,7 +26,7 @@ When a user requests a protected resource, NGINX Gateway Fabric uses the [Author
 1. NGINX validates the ID token, creates a session cookie, and forwards the original request to the backend.
 1. Subsequent requests carry the session cookie, so the IdP is not contacted again until the session expires.
 
-TLS is required in two directions. For inbound connections, the callback redirect from the IdP back to NGINX must be served over HTTPS. The `AuthenticationFilter` must be attached to an HTTPRoute that uses an HTTPS listener, and the Gateway listener's `tls.certificateRefs` provides the certificate NGINX presents to the browser. For outbound connections, NGINX connects to the IdP over TLS to exchange the authorization code for tokens. By default, NGINX trusts the system CA bundle. To use a custom CA, specify it in `oidc.caCertificateRefs`. Attaching an OIDC `AuthenticationFilter` to a non-HTTPS route will cause the filter to be rejected.
+TLS is required in two directions. For inbound connections, the callback redirect from the IdP back to NGINX must be served over HTTPS. The `AuthenticationFilter` must be attached to an HTTPRoute that uses an HTTPS listener, and the Gateway listener's `tls.certificateRefs` provides the certificate NGINX presents to the browser. This is the same certificate that NGINX would provide to any client. For outbound connections, NGINX connects to the IdP over HTTPS to exchange the authorization code for tokens. By default, NGINX trusts the system CA bundle. To use a custom CA, specify it in `oidc.caCertificateRefs`. Attaching an OIDC `AuthenticationFilter` to a non-HTTPS route will cause the filter to be rejected.
 
 OIDC configuration references Kubernetes `Opaque` Secrets for sensitive material. The `clientSecretRef` field expects a Secret with the key `client-secret`. Your IdP requires a client ID and secret to identify and authenticate the application contacting its realm. NGINX presents these credentials when exchanging the authorization code for tokens. The `caCertificateRefs` field expects a Secret with the key `ca.crt`, containing PEM-encoded CA certificates that NGINX uses to verify the IdP's TLS certificate on outbound connections. If omitted, NGINX uses the system CA bundle. The `crlSecretRef` field expects a Secret with the key `ca.crl`, containing a PEM-encoded Certificate Revocation List. NGINX checks the IdP's certificate serial number against this list before every outbound connection. This field can be omitted if CRL checking is not required.
 
@@ -127,7 +127,7 @@ If you already have an IdP set up with a realm, a client, and a user, skip to [S
 Deploy Keycloak to your cluster. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange. The `keycloak-tls-cert` Secret was created by cert-manager in the previous step and is mounted into the Keycloak container below.
 
 {{< call-out "note" >}}
-The `redirectUris` field must include the exact hostname and port your application is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. The realm config below uses `https://cafe.example.com:8442/*` because the Gateway is accessed via port-forward on port 8442. Update this value to match the port your Gateway is exposed on before applying.
+The `redirectUris` field must include the exact hostname and port that the NGINX Gateway is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. For example, `https://cafe.example.com:9443/*`. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error.
 {{< /call-out >}}
 
 ```yaml
@@ -159,7 +159,7 @@ data:
           "secret": "oidc-coffee-client-secret",
           "directAccessGrantsEnabled": true,
           "standardFlowEnabled": true,
-          "redirectUris": ["https://cafe.example.com/*", "https://cafe.example.com:8442/*"],
+          "redirectUris": ["https://cafe.example.com/*"],
           "webOrigins": ["https://cafe.example.com"]
         }
       ],
