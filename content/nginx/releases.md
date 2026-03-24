@@ -123,6 +123,21 @@ This is a security release for NGINX Plus R36.
 - Security Fix: when proxying to upstream TLS servers, an attacker with
 Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
 
+NGINX Plus R36 P3<br/>
+_March 24, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security Fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
+
+- Security Fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
+
+- Security Fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
+
+- Security Fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
+
+- Security Fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
+
 
 ## NGINX Plus Release 35 (R35) {#r35}
 _August 13, 2025_<br/>
@@ -184,6 +199,21 @@ This is a security release for NGINX Plus R35.
 
 - Security Fix: when proxying to upstream TLS servers, an attacker with
 Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
+
+NGINX Plus R35 P2<br/>
+_March 24, 2026_
+
+This is a security release for NGINX Plus R35.
+
+- Security Fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
+
+- Security Fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
+
+- Security Fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
+
+- Security Fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
+
+- Security Fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
 
 
 ## NGINX Plus Release 34 (R34) {#r34}
@@ -464,6 +494,22 @@ This is a security release for NGINX Plus R32.
 
 - Security Fix: when proxying to upstream TLS servers, an attacker with
 Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
+
+NGINX Plus R32 P5<br/>
+_March 24, 2026_
+
+This is a security release for NGINX Plus R32.
+
+- Security Fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
+
+- Security Fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
+
+- Security Fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
+
+- Security Fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
+
+- Security Fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
+
 
 ## NGINX Plus Release 31 (R31) {#r31}
 _December 19, 2023_<br/>

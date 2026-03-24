@@ -157,7 +157,7 @@ See the section for your operating system below:
 1. Add the F5 WAF for NGINX repository:
 
    ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel8.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
    ```
 
 1. Install the `yum-utils` package if not already installed:
@@ -195,7 +195,7 @@ See the section for your operating system below:
 1. Add the F5 WAF for NGINX repository:
 
    ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-rhel9.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
    ```
 
 1. Install the `yum-utils` package if not already installed:
@@ -214,6 +214,44 @@ See the section for your operating system below:
 
    ```shell
    rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+   ```
+
+1. Create a directory for packages and download app-protect:
+
+   ```shell
+   mkdir -p /offline/packages
+
+   sudo yum install --downloadonly --downloaddir=/offline/packages \
+   app-protect \
+   app-protect-attack-signatures \
+   app-protect-bot-signatures \
+   app-protect-threat-campaigns
+   ```
+
+#### RHEL 10
+
+1. Add the F5 WAF for NGINX repository:
+
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
+   ```
+
+1. Install the `yum-utils` package if not already installed:
+
+   ```shell
+   sudo dnf install yum-utils
+   ```
+
+1. Enable codeready-builder repository through subscription manager:
+
+   ```shell
+   subscription-manager repos --enable codeready-builder-for-rhel-10-x86_64-rpms
+   ```
+
+1. Download the `epel-release` dependency package if not already installed:
+
+   ```shell
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
    ```
 
 1. Create a directory for packages and download app-protect:

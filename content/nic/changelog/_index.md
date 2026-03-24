@@ -29,17 +29,14 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 20 Mar 2026
 
-This NGINX Ingress Controller release focuses on easing migrations from `ingress-nginx` by delivering key features users need most when transitioning to NGINX Ingress Controller.
+Release 5.4.0 focuses on making migrations from `ingress-nginx` easier by providing key features users need most when transitioning to NGINX Ingress Controller:
 
-- CORS Support: A new `Policy` introduces CORS configuration that works seamlessly with both `Ingress` and `VirtualServer` resources, giving users a flexible, native way to manage cross-origin policies.
+- CORS support: A new `Policy` introduces CORS configuration that works seamlessly with both `Ingress` and `VirtualServer` resources, giving users a flexible, native way to manage cross-origin policies.
+- Expanded `Annotation` support: This release adds compatibility with a broader set of `ingress-nginx` annotations, reducing the friction of migrating existing workloads without requiring immediate resource rewrites.
+- Access control for `Ingress` resources: Access control policies are now compatible with `kind: Ingress`, bringing parity with `VirtualServer` and allowing teams to enforce consistent access policies across resource types during migration.
+- Configuration resilience and validation: Improved configuration validation and resilience mechanisms help catch misconfigurations early and ensure more stable reloads, reducing downtime risk.
 
-- Expanded `Annotation` Support: This release adds compatibility with a broader set of `ingress-nginx` annotations, reducing the friction of migrating existing workloads without requiring immediate resource rewrites.
-
-- Access Control for `Ingress` Resources: Access control policies are now compatible with `kind: Ingress`, bringing parity with `VirtualServer` and allowing teams to enforce consistent access policies across resource types during migration.
-
-- Configuration Resilience and Validation: Improved configuration validation and resilience mechanisms help catch misconfigurations early and ensure more stable reloads, reducing downtime risk.
-
-- Label-Based `VirtualServerRoute` Selection: `VirtualServers` can now select `VirtualServerRoutes` using label selectors instead of explicit references, enabling more dynamic and scalable routing configurations without tight coupling between resources
+- Label-based `VirtualServerRoute` selection: `VirtualServers` can now select `VirtualServerRoutes` using label selectors instead of explicit references, enabling more dynamic and scalable routing configurations without tight coupling between resources
 
 ### {{% icon rocket %}} Features
 - [8656](https://github.com/nginx/kubernetes-ingress/pull/8656) Add nginx.org/ssl-redirect annotation support
@@ -79,7 +76,7 @@ This NGINX Ingress Controller release focuses on easing migrations from `ingress
 - For NGINX Plus, use the 5.4.0 images from the F5 Container registry or build your own image using the 5.4.0 source code.
 - For Helm, use version 2.5.0 of the chart.
 
-### {{% icon life-buoy %}} Supported Platforms
+### {{% icon life-buoy %}} Supported platforms
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.28-1.35.
 
 ## 5.3.4
@@ -98,7 +95,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 - For NGINX Plus, use the 5.3.4 images from the F5 Container registry or build your own image using the 5.3.4 source code.
 - For Helm, use version 2.4.4 of the chart.
 
-### {{% icon life-buoy %}} Supported Platforms
+### {{% icon life-buoy %}} Supported platforms
 
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.35.
 
@@ -118,7 +115,7 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 - For NGINX Plus, use the 5.3.3 images from the F5 Container registry or build your own image using the 5.3.3 source code.
 - For Helm, use version 2.4.3 of the chart.
 
-### {{% icon life-buoy %}} Supported Platforms
+### {{% icon life-buoy %}} Supported platforms
 
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.35.
 
@@ -138,6 +135,6 @@ We will provide technical support for NGINX Ingress Controller on any Kubernetes
 - For NGINX Plus, use the 5.3.2 images from the F5 Container registry or build your own image using the 5.3.2 source code.
 - For Helm, use version 2.4.2 of the chart.
 
-### {{% icon life-buoy %}} Supported Platforms
+### {{% icon life-buoy %}} Supported platforms
 
 We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.27-1.35.

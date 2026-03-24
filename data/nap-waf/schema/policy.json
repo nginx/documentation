@@ -3055,7 +3055,7 @@
                            },
                            "override" : {
                               "description" : "The overriding security policy definition.",
-                              "type" : "string"
+                              "type" : "object"
                            },
                            "violation" : {
                               "description" : "Contains the details of the raised VIOL_RULE violation.\nMandatory if action-type is violation.",
