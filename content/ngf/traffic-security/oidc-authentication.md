@@ -4,9 +4,14 @@ weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
+nd-description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+nd-summary: >
+   NGINX Gateway Fabric supports OIDC authentication via the AuthenticationFilter CRD, enabling delegation of user login to identity providers like Keycloak, Okta, or Auth0 using the Authorization Code Flow.
+   The filter must be attached to an HTTPS listener and references Kubernetes Secrets for sensitive material including the client secret and optional CA certificate for verifying the IdP's TLS connection.
+   Key optional features include session management, logout configuration, PKCE, custom redirect URIs, and Certificate Revocation List support, though the feature requires NGINX Plus and does not work with open-source NGINX.
 ---
 
-This page describes how to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+This guide describes how to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
 
 ## Overview
 
@@ -15,11 +20,11 @@ OIDC authentication lets you delegate user login to a trusted Identity Provider 
 When a user requests a protected resource, NGINX Gateway Fabric uses the [Authorization Code Flow](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth):
 
 1. NGINX redirects the browser to the IdP's authorization endpoint.
-2. The user authenticates with the IdP.
-3. The IdP redirects the browser back to NGINX with a short-lived authorization code.
-4. NGINX exchanges that code for an ID token and access token via a direct, back-channel HTTPS call to the IdP's token endpoint.
-5. NGINX validates the ID token, creates a session cookie, and forwards the original request to the backend.
-6. Subsequent requests carry the session cookie, so the IdP is not contacted again until the session expires.
+1. The user authenticates with the IdP.
+1. The IdP redirects the browser back to NGINX with a short-lived authorization code.
+1. NGINX exchanges that code for an ID token and access token via a direct, back-channel HTTPS call to the IdP's token endpoint.
+1. NGINX validates the ID token, creates a session cookie, and forwards the original request to the backend.
+1. Subsequent requests carry the session cookie, so the IdP is not contacted again until the session expires.
 
 TLS is required in two directions. For inbound connections, the callback redirect from the IdP back to NGINX must be served over HTTPS. The `AuthenticationFilter` must be attached to an HTTPRoute that uses an HTTPS listener, and the Gateway listener's `tls.certificateRefs` provides the certificate NGINX presents to the browser. For outbound connections, NGINX connects to the IdP over TLS to exchange the authorization code for tokens. By default, NGINX trusts the system CA bundle. To use a custom CA, specify it in `oidc.caCertificateRefs`. Attaching an OIDC `AuthenticationFilter` to a non-HTTPS route will cause the filter to be rejected.
 
@@ -561,10 +566,10 @@ The steps below use a browser for OIDC since the flow involves redirects and coo
 Open `https://cafe.example.com:$GW_PORT/coffee` in a browser. Because the route has an `AuthenticationFilter`, NGINX will:
 
 1. Detect there is no valid session cookie.
-2. Redirect your browser to the IdP's login page.
-3. Log in with username `testuser` and password `testpassword`.
-4. After you log in, redirect you back to NGINX with an authorization code.
-5. Exchange the code for tokens in the background, set a session cookie, and forward you to the `coffee` backend.
+1. Redirect your browser to the IdP's login page.
+1. Log in with username `testuser` and password `testpassword`.
+1. After you log in, redirect you back to NGINX with an authorization code.
+1. Exchange the code for tokens in the background, set a session cookie, and forward you to the `coffee` backend.
 
 You will see a response from the `coffee` application only after a successful login.
 
@@ -644,7 +649,7 @@ spec:
 
 ### Custom redirect URI
 
-By default, NGF registers the OIDC callback at `/oidc_callback_<namespace>_<filtername>`. Use `redirectURI` to set a different path. If you provide a path-only value, NGINX creates a location block to handle the callback. If you provide a full URL, it is treated as an external handler and no location block is created. Register the same value in your IdP as an allowed redirect URI.
+By default, NGINX Gateway Fabric registers the OIDC callback at `/oidc_callback_<namespace>_<filtername>`. Use `redirectURI` to set a different path. If you provide a path-only value, NGINX creates a location block to handle the callback. If you provide a full URL, it is treated as an external handler and no location block is created. Register the same value in your IdP as an allowed redirect URI.
 
 ```yaml
 spec:
