@@ -3,17 +3,17 @@ title: NGINXaaS Managed Identity on dataplane
 weight: 700
 toc: true
 url: /nginxaas/azure/quickstart/dataplane-mi/
-type:
-- how-to
+nd-content-type: how-to
+nd-product: NAZURE
 ---
 
 ## Overview
 
-F5 NGINX as a Service for Azure (NGINXaaS) supports using the Managed Identity(MI) assigned to the NGINXaaS deployment to access other Azure resources in the same virtual network or those that are accessable publically.
+F5 NGINX as a Service for Azure (NGINXaaS) supports using the Managed Identity (MI) assigned to the NGINXaaS deployment to access other Azure resources in the same virtual network or those that are publicly accessible.
 
-NGINX+ instances that are part of the NGINXaaS deployment now have access to query the identity endpoint in [Instance Metadata Service](https://learn.microsoft.com/en-us/azure/virtual-machines/instance-metadata-service?tabs=windows) to fetch access tokens.
+NGINX Plus instances that are part of the NGINXaaS deployment now have access to query the identity endpoint in [Instance Metadata Service](https://learn.microsoft.com/en-us/azure/virtual-machines/instance-metadata-service?tabs=windows) to fetch access tokens.
 
-{{<important>}}Exposing the IMDS endpoint externally can lead to the unintended leakage of access tokens associated with the managed identities assigned to the deployment. To mitigate this risk, ensure the endpoint is restricted to internal access or apply appropriate access controls. {{</important>}}
+{{< call-out "important" >}}Exposing the IMDS endpoint externally can allow unintended third parties to retrieve the access tokens associated with the managed identities assigned to the deployment. To mitigate this risk, ensure the endpoint is restricted to internal access or apply appropriate access controls. {{< /call-out >}}
 
 ## Configuration
 
@@ -106,6 +106,6 @@ async function queryBlob(r) {
 export default { queryBlob };
 ```
 
-Sending a http request to the queryBlob endpoint will invoke njs which will query IMDS to get access tokens and use the tokens to query blob storage.
+Sending an HTTP request to the `queryBlob` endpoint triggers njs, which fetches an access token from IMDS and uses it to query blob storage.
 
-{{<note>}} IMDS enforces a rate limit of 5 requests per second. To optimize performance, cache the access token in NGINX instead of retrieving it for every request.{{</note>}}
+{{< call-out "note" >}} IMDS enforces a rate limit of 5 requests per second. To optimize performance, cache the access token in NGINX instead of retrieving it for every request.{{</ call-out "note" >}}
