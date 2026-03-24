@@ -19,7 +19,7 @@ The GitHub repository has [examples of the resources](https://github.com/nginx/k
 
 ## VirtualServer specification
 
-The VirtualServer resource defines load balancing configuration for a domain name, such as `example.com`. Below is an example of such configuration:
+The VirtualServer resource defines load balancing configuration for a domain name, such as `example.com`. The example below shows a VirtualServer with both traditional static routes and a dynamic route using `routeSelector`. The route with path `/dynamic` will automatically include any VirtualServerRoute resources that have the label `app: cafe`:
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -59,8 +59,6 @@ spec:
       matchLabels:
         app: cafe
 ```
-
-The example above shows a VirtualServer with both traditional static routes and a dynamic route using `routeSelector`. The route with path `/dynamic` will automatically include any VirtualServerRoute resources that have the label `app: cafe`.
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
