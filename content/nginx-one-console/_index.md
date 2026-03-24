@@ -45,8 +45,8 @@ The F5 AI Security platform yada yada
 
 
 {{<card-section showAsCards="true">}}
-  {{<card title="NGINX One Console workshops" titleUrl="/nginx-one-console/workshops/" icon="wrench" >}}
-    Guided labs to help you secure, monitor, and scale your NGINX fleet with NGINX One Console.
+  {{<card title="AI Security Workshops" titleUrl="/nginx-one-console/workshops/" icon="wrench" >}}
+    Guided labs to help you secure, monitor, and scale AI Security for your applpications
   {{</card>}}
 {{</card-section>}}
 
