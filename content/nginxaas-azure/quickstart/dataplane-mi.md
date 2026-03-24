@@ -108,4 +108,4 @@ export default { queryBlob };
 
 Sending an HTTP request to the `queryBlob` endpoint triggers njs, which fetches an access token from IMDS and uses it to query blob storage.
 
-{{< call-out "note" >}} IMDS enforces a rate limit of 5 requests per second. To optimize performance, cache the access token in NGINX instead of retrieving it for every request.{{</ call-out "note" >}}
+{{< call-out "note" >}} IMDS enforces a rate limit of 5 requests per second. To optimize performance, cache the access token in NGINX instead of retrieving it for every request. {{< /call-out >}}
