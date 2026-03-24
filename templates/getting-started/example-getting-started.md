@@ -39,7 +39,7 @@ Before you begin, ensure you have:
 - **A drip coffee maker, unpacked and undamaged**: Remove all packaging, tape, and protective inserts before starting. Check the carafe, filter basket, and water reservoir for cracks or missing parts.
 - **A countertop surface near a grounded electrical outlet**: The surface must support the weight of the unit (typically 1–2 kg) and leave at least 15 cm of clearance above the unit for the lid to open. Do not use an extension cord.
 - **Paper filters sized for your model**: Filter size varies by model — No. 2, No. 4, or basket-style. Check the model number on the underside of the unit against the filter packaging before starting.
-- **Ground coffee**: Use a medium grind labelled "drip" or "filter". Pre-ground coffee is suitable for this guide.
+- **Ground coffee**: Use a medium grind labeled "drip" or "filter". Pre-ground coffee is suitable for this guide.
 - **Fresh cold tap water**: Cold water only — hot water can damage the heating element.
 
 If you are setting up a single-serve pod coffee maker instead of a drip model, see [Get started with a single-serve pod coffee maker](../get-started-pod-coffee-maker.md).
@@ -112,7 +112,7 @@ Brew a first cup to confirm the coffee maker is working correctly.
 
     Expected result: the carafe contains hot brewed coffee, the warming plate indicator light is on, and no leaks or unusual smells are present.
 
-4. Pour a small amount of coffee and confirm the cup is hot, evenly coloured, and free of grounds.
+4. Pour a small amount of coffee and confirm the cup is hot, evenly colored, and free of grounds.
 
 The coffee maker is set up and ready for daily use.
 
@@ -124,7 +124,7 @@ Now that you have completed this guide, try the following to get more from your 
 
 - [Install a drip coffee maker](../install-coffee-maker.md) — full installation reference with detailed configuration options and platform-specific notes.
 - [Clean a drip coffee maker](../clean-coffee-maker.md) — how to clean the carafe, filter basket, and warming plate after daily use.
-- [Descale a drip coffee maker](../descale-coffee-maker.md) — how to remove mineral build-up from the heating element to maintain brew speed and flavour.
+- [Descale a drip coffee maker](../descale-coffee-maker.md) — how to remove mineral build-up from the heating element to maintain brew speed and flavor.
 
 ### See also
 

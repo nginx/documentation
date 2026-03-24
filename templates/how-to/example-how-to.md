@@ -10,7 +10,7 @@ nd-keywords: "pour-over, coffee, brew, filter, kettle, grind, V60, Chemex, hand 
 nd-summary: >
   Use this guide to set up a pour-over coffee brewer and produce a single, well-extracted cup.
   Pour-over brewing gives you precise control over extraction time and water temperature, which
-  produces a cleaner, more flavourful cup than automatic drip machines.
+  produces a cleaner, more flavorful cup than automatic drip machines.
   This guide covers a single serving; scale the coffee and water quantities proportionally for larger batches.
 nd-audience: any
 ---
@@ -30,7 +30,7 @@ Before you begin, ensure you have:
 - **A burr grinder**: A burr grinder produces consistent particle size. A blade grinder produces uneven grounds, which causes over-extraction and bitterness.
 - **A gooseneck kettle**: A gooseneck spout gives you precise control over the pour. A standard kettle is difficult to control and often floods the grounds.
 - **A kitchen scale accurate to 1 gram**: Measuring by weight produces consistent results. Measuring by volume (scoops or tablespoons) does not.
-- **A timer**: Extraction time directly affects flavour. Most pour-over recipes target a total brew time of three to three and a half minutes.
+- **A timer**: Extraction time directly affects flavor. Most pour-over recipes target a total brew time of three to three and a half minutes.
 
 ---
 

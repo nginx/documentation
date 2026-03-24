@@ -2,7 +2,7 @@
 
 This guide explains how to complete `template-installation-guide.md`. It covers what an installation guide is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-For a worked example, see `example-installation-guide.md`.
+For a sample, see `example-installation-guide.md`.
 
 ---
 
@@ -117,7 +117,7 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Install NGINX Agent on Ubuntu"
 - Bad: "How to install NGINX Agent on Ubuntu" or "Installing NGINX Agent"
 
-**description**: One sentence under 160 characters summarising what the reader installs and on what platform. Include the platform version if the guide is version-specific. This text appears in search engine results, AI assistant citations, and doc portal previews.
+**description**: One sentence under 160 characters summarizing what the reader installs and on what platform. Include the platform version if the guide is version-specific. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
 **weight**: Controls the sort order within the section. Lower numbers appear first.
 

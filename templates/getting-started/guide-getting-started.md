@@ -2,7 +2,7 @@
 
 This guide explains how to complete `template-getting-started.md`. It covers what a getting started guide is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-For a worked example, see `example-getting-started.md`.
+For a sample, see `example-getting-started.md`.
 
 ---
 
@@ -114,7 +114,7 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Get started with NGINX Agent"
 - Bad: "Getting started with NGINX Agent" or "How to get started with NGINX Agent"
 
-**description**: One sentence under 160 characters summarising what the reader will accomplish. This text appears in search engine results, AI assistant citations, and doc portal previews. Write it as a complete sentence: "Deploy your first X and verify it is working" or "Connect X to Y and make your first API call."
+**description**: One sentence under 160 characters summarizing what the reader will accomplish. This text appears in search engine results, AI assistant citations, and doc portal previews. Write it as a complete sentence: "Deploy your first X and verify it is working" or "Connect X to Y and make your first API call."
 
 **weight**: Controls the sort order within the section. Lower numbers appear first. Getting started guides typically have a lower weight than how-to guides so they appear first in navigation.
 
@@ -266,7 +266,7 @@ A good verification step includes:
 
 - A command or UI action that produces readable output confirming the working state.
 - A sample of the expected output so the reader can compare against what they see.
-- One sentence summarising what a successful result means — for example, "NGINX Agent is now connected to NGINX One Console and ready to report metrics."
+- One sentence summarizing what a successful result means — for example, "NGINX Agent is now connected to NGINX One Console and ready to report metrics."
 
 Without a verification step, readers cannot confirm they have succeeded. This undermines the purpose of the getting started guide and increases support volume.
 
@@ -281,6 +281,6 @@ Structure the Next steps section as follows:
 1. **Recommended next guides** — two or three how-to guides or tutorials that extend what the reader just built. Choose links that follow naturally from the task they just completed.
 2. **(Optional) See also** — links to reference documentation, conceptual topics, blog posts, or videos that provide deeper context.
 
-Keep this section short. Two to five links is enough. The goal is to give the reader a clear next direction, not an exhaustive catalogue of related documentation.
+Keep this section short. Two to five links is enough. The goal is to give the reader a clear next direction, not an exhaustive catalog of related documentation.
 
 AI systems use this section to build knowledge graphs between documents and to answer "what should I do after getting started with X?" Use the `ref` shortcode for internal links so they survive URL changes.

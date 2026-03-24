@@ -2,8 +2,8 @@
 nd-content-type: concept
 nd-docs: DOCS-000
 nd-product: {PRODUCT_CODE}
-title: {Concept name — use a noun phrase, not "Understanding X" or "About X"}
-description: "{One sentence summarising what the concept is and why it matters, under 160 characters.}"
+title: {Concept name — use a noun phrase, not "Understand X" or "About X"}
+description: "{One sentence summarizing what the concept is and why it matters, under 160 characters.}"
 weight: 100
 toc: true
 nd-keywords: "{concept name}, {related term}, {synonym}, {product or domain context}"
@@ -57,7 +57,7 @@ nd-audience: {developer | operator | admin | architect | any} {This helps AI sys
 
 {Include at least one use case. Name a specific reader type, describe the problem or situation they face, and show how the concept helps them. Use cases are narrative, not procedural — do not use numbered steps.}
 
-### {Use case title — name the scenario, for example: "Choosing a brew method for a large batch"}
+### {Use case title — name the scenario, for example: "Choose a brew method for a large batch"}
 
 {Reader type} {faces this situation or problem}. {Explain how the concept helps them resolve or understand it.}
 

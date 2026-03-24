@@ -3,12 +3,12 @@ nd-content-type: concept
 nd-docs: DOCS-004
 nd-product: KITCHEN
 title: Coffee extraction
-description: "Coffee extraction is the process by which hot water dissolves flavour compounds from ground coffee, determining the taste of the final cup."
+description: "Coffee extraction is the process by which hot water dissolves flavor compounds from ground coffee, determining the taste of the final cup."
 weight: 100
 toc: true
 nd-keywords: "coffee extraction, extraction yield, over-extraction, under-extraction, brew ratio, grind size, contact time, soluble compounds, French press, pour-over, drip"
 nd-summary: >
-  Coffee extraction is the process by which hot water dissolves soluble flavour compounds from
+  Coffee extraction is the process by which hot water dissolves soluble flavor compounds from
   ground coffee into the water that becomes the finished drink. Extraction determines whether
   a cup tastes bitter, sour, balanced, or weak — understanding it allows you to diagnose brew
   problems and adjust any brew method deliberately. This document covers the principles of
@@ -33,7 +33,7 @@ Extraction is often described as a percentage: the extraction yield is the propo
 
 ![A French press filled with dark coffee beside a glass cup of freshly brewed coffee, surrounded by whole roasted coffee beans spilling from a burlap sack. The steam rising from the cup illustrates that water temperature is a key variable in the extraction process.](coffee-img.jpg)
 
-Water extracts compounds from coffee in a broadly predictable order. Acids and fruity compounds dissolve first, followed by sugars and balanced flavours, and finally bitter and astringent compounds. This sequence means that contact time is one of the most powerful variables in extraction.
+Water extracts compounds from coffee in a broadly predictable order. Acids and fruity compounds dissolve first, followed by sugars and balanced flavors, and finally bitter and astringent compounds. This sequence means that contact time is one of the most powerful variables in extraction.
 
 The four variables that control extraction yield are:
 
@@ -56,7 +56,7 @@ The chart defines not only the extraction yield axis but also the brew strength 
 
 ## Use cases
 
-### Diagnosing a bitter cup
+### Diagnose a bitter cup
 
 A home brewer using a French press finds that every cup tastes harsh and dry, with a lingering bitterness that coats the mouth. The brewer does not know whether the beans, the grinder, or the technique is responsible.
 
@@ -64,7 +64,7 @@ Understanding extraction gives the brewer a diagnostic framework. Bitterness is 
 
 Without an understanding of extraction, the brewer would have no basis for deciding which variable to change.
 
-### Choosing a brew method for a specific taste profile
+### Choose a brew method for a specific taste profile
 
 A coffee buyer for a café wants to serve a light-roasted Ethiopian natural-process coffee that is known for its fruity, floral characteristics. The buyer needs to decide whether to serve it as pour-over or batch drip.
 

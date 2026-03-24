@@ -10,7 +10,7 @@ nd-keywords: "pour-over, coffee, burr grinder, V60, Chemex, grind size, extracti
 nd-summary: >
   In this tutorial, you will calibrate a burr grinder, prepare a pour-over brewer, and brew a
   single well-extracted cup of coffee from whole beans. Pour-over brewing gives you precise manual
-  control over extraction, which produces a cleaner and more flavourful cup than automatic drip
+  control over extraction, which produces a cleaner and more flavorful cup than automatic drip
   machines. This tutorial is intended for home brewers who are new to manual brewing methods.
 nd-audience: any
 ---
@@ -21,7 +21,7 @@ In this tutorial, you will calibrate a burr grinder to a medium-coarse setting, 
 
 It is intended for home brewers who are new to manual brewing methods. It assumes that you have basic knowledge of:
 
-- [How drip coffee works](../concepts/drip-coffee-extraction.md) — how water temperature and contact time affect flavour.
+- [How drip coffee works](../concepts/drip-coffee-extraction.md) — how water temperature and contact time affect flavor.
 - [Types of coffee roast](../concepts/coffee-roasts.md) — the difference between light, medium, and dark roasts and how they affect grind size.
 
 By the end of this tutorial, you will be able to:
@@ -35,7 +35,7 @@ By the end of this tutorial, you will be able to:
 
 ## Background
 
-Pour-over brewing is a manual method in which hot water is poured slowly and deliberately over a bed of ground coffee held in a cone-shaped filter. The brewer controls every variable — water temperature, pour rate, and total brew time — which makes it possible to produce a very clean, flavourful cup. It also makes it possible to make consistent mistakes, which is why calibration and technique matter.
+Pour-over brewing is a manual method in which hot water is poured slowly and deliberately over a bed of ground coffee held in a cone-shaped filter. The brewer controls every variable — water temperature, pour rate, and total brew time — which makes it possible to produce a very clean, flavorful cup. It also makes it possible to make consistent mistakes, which is why calibration and technique matter.
 
 A burr grinder crushes beans between two abrasive surfaces to produce grounds of a consistent size. Consistent particle size is essential for even extraction: if some particles are fine and some are coarse, the fine ones over-extract and turn bitter before the coarse ones have finished extracting.
 
@@ -50,7 +50,7 @@ Before you begin, ensure you have:
 - **Whole coffee beans, roasted within the past four weeks**: Older beans produce a flat, stale cup. Check the roast date on the bag.
 - **A gooseneck kettle**: A gooseneck spout gives precise control over the pour direction and rate. A standard kettle is difficult to control and tends to flood the grounds.
 - **A kitchen scale accurate to 1 gram**: Measuring by weight produces consistent results across brews. Measuring by volume (scoops or tablespoons) does not.
-- **A timer**: Extraction time directly affects flavour. Target a total brew time of three to three and a half minutes.
+- **A timer**: Extraction time directly affects flavor. Target a total brew time of three to three and a half minutes.
 
 ---
 
@@ -64,7 +64,7 @@ Calibrating the grinder before each session ensures the grind size matches the b
 
 3. Run five grams of whole beans through the grinder to purge any grounds left from the previous session.
 
-    Purging removes stale grounds that would otherwise mix with the fresh batch and affect the flavour of the first cup.
+    Purging removes stale grounds that would otherwise mix with the fresh batch and affect the flavor of the first cup.
 
 4. Examine the purged grounds. Rub a small amount between your fingers.
 
@@ -161,5 +161,5 @@ In this tutorial, you:
 ## Next steps
 
 - [Adjust grind size for different pour-over brewers](../how-to/adjust-grind-pour-over.md) — how to adapt the grind calibration in this tutorial for the V60, Chemex, and Kalita Wave.
-- [Understand coffee extraction](../concepts/coffee-extraction.md) — the science behind why grind size, water temperature, and contact time affect flavour, which will help you diagnose problems faster.
+- [Understand coffee extraction](../concepts/coffee-extraction.md) — the science behind why grind size, water temperature, and contact time affect flavor, which will help you diagnose problems faster.
 - [Prepare pour-over coffee](../how-to/brew-pour-over-coffee.md) — a task-focused reference for experienced brewers who no longer need the explanations and want a faster reference for the steps.

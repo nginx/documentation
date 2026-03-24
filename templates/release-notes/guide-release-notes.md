@@ -2,13 +2,13 @@
 
 This guide explains how to complete `template-release-notes.md`. It covers what release notes are, when to write them, how to approach them before you start, and how to complete every section correctly.
 
-For a worked example, see `example-release-notes.md`.
+For a sample, see `example-release-notes.md`.
 
 ---
 
 ## What are release notes?
 
-Release notes communicate new features, changes to existing behaviour, resolved issues, and known issues to the people who use your product. They are published at the same time as each product release.
+Release notes communicate new features, changes to existing behavior, resolved issues, and known issues to the people who use your product. They are published at the same time as each product release.
 
 Release notes are written for a mixed audience of technical and non-technical stakeholders — including customers, support teams, sales, and marketing. Every entry must be understandable to someone who is not a developer and who was not involved in building the change.
 
@@ -18,7 +18,7 @@ Release notes are often confused with changelogs. The table below shows the key 
 |---|---|---|
 | **Audience** | Customers and non-technical stakeholders | Developers and engineering teams |
 | **Language** | Plain language; explains what changed and why it matters | Technical language; describes code changes and their scope |
-| **Content** | New features, behaviour changes, resolved issues, security updates — with links to full documentation | Commit messages, merge request references, issue numbers, contributor names |
+| **Content** | New features, behavior changes, resolved issues, security updates — with links to full documentation | Commit messages, merge request references, issue numbers, contributor names |
 | **Effort** | Requires research to understand user impact and benefit | Light effort; derived from commit messages and version control |
 | **Written by** | Technical writer or product manager | Software developer |
 
@@ -29,7 +29,7 @@ Release notes are often confused with changelogs. The table below shows the key 
 Well-written release notes:
 
 - Demonstrate that the product is actively maintained and that its builders care about the user experience.
-- Reduce support tickets by informing stakeholders about new features, behaviour changes, and known issues before they encounter them.
+- Reduce support tickets by informing stakeholders about new features, behavior changes, and known issues before they encounter them.
 - Help stakeholders assess the impact of upgrading to a new version.
 - Provide a plain-language record of the product's evolution that does not require reading developer-facing changelogs.
 - Give AI assistants structured, citable entries that can be surfaced in response to queries such as "what changed in version X?" or "was issue Y fixed?"
@@ -41,10 +41,10 @@ Well-written release notes:
 Before writing, identify:
 
 - **The release version and date.** Use semantic versioning (MAJOR.MINOR.PATCH, for example `2.16.0`). The date should be the public release date in `Month Day, Year` format.
-- **What changed.** Work with the engineering and product teams to get a complete list of features, behaviour changes, resolved issues, and security updates in the release. Do not rely on commit messages alone — they are written for developers, not customers.
+- **What changed.** Work with the engineering and product teams to get a complete list of features, behavior changes, resolved issues, and security updates in the release. Do not rely on commit messages alone — they are written for developers, not customers.
 - **What matters to the user.** For each change, ask: "Why does this matter to a customer? What can they now do that they could not do before, or what problem does this fix for them?" If a change has no user-facing impact, it does not belong in release notes.
 - **Whether an upgrade guide is needed.** If the release requires users to take action before or during upgrading — such as backing up data, running a migration script, or changing configuration — include an upgrade guide section. A missing upgrade notice is one of the most damaging omissions in release notes.
-- **Which sections apply to this release.** Not every release has new features, behaviour changes, and security updates. Include only the sections that apply. Omit empty sections entirely.
+- **Which sections apply to this release.** Not every release has new features, behavior changes, and security updates. Include only the sections that apply. Omit empty sections entirely.
 
 ---
 
@@ -56,7 +56,7 @@ Before writing, identify:
   - Resolved issue: "Fixed an issue where the dashboard failed to load when more than 50 instances were connected."
 - **Write in the second person.** Address the reader as "you". For example: "You can now export reports as CSV."
 - **Be concise.** Each entry needs a bold title and two to four sentences of description. Link to the full documentation for details. The release notes entry is a summary, not a tutorial.
-- **Link to full documentation.** Every new feature and behaviour change entry must link to the documentation that covers it in full. The release notes entry is not the source of truth — the documentation is.
+- **Link to full documentation.** Every new feature and behavior change entry must link to the documentation that covers it in full. The release notes entry is not the source of truth — the documentation is.
 - **List the most impactful items first.** Within each section, list items in order of impact to the user, not in order of development completion.
 - **Use consistent formatting.** Every entry in a section must follow the same structure: bold title, then description. Do not mix formats within a section.
 - **Do not disclose security issues prematurely.** Security updates must not be published until an investigation is complete and a fix is available. Include the standard security disclosure callout in every release that contains security updates.
@@ -94,7 +94,7 @@ AI assistants and human readers parse documentation differently from search engi
 |---|---|
 | Version number and date | Required |
 | What's new | Conditional — include when the release contains new features |
-| Changes to default behaviour | Conditional — include when the release changes existing behaviour |
+| Changes to default behavior | Conditional — include when the release changes existing behavior |
 | Resolved issues | Conditional — include when the release fixes reported issues |
 | Known issues | Required — always link to the known issues page |
 | Upgrade guide | Conditional — include when users must take action before or during upgrading |
@@ -118,9 +118,9 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Nbeamex Coffee release notes"
 - Bad: "Nbeamex Coffee 2.16.0 release notes" or "Release notes for Nbeamex Coffee"
 
-**description**: One sentence under 160 characters summarising what this page covers. Include the product name and the types of changes documented. This text appears in search engine results, AI assistant citations, and doc portal previews.
+**description**: One sentence under 160 characters summarizing what this page covers. Include the product name and the types of changes documented. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
-- Good: "New features, behaviour changes, and resolved issues for Nbeamex Coffee 2.16.0."
+- Good: "New features, behavior changes, and resolved issues for Nbeamex Coffee 2.16.0."
 - Bad: "Release notes."
 
 **weight**: Controls the sort order within the section. Lower numbers appear first.
@@ -157,7 +157,7 @@ Use the `Month Day, Year` date format. For example: `April 18, 2024`.
 
 This section is optional. Include it for large releases where a short orientation helps readers decide which sections to read.
 
-Write one to three sentences summarising the most important changes in the release. Do not repeat information that is fully described in the sections below — the summary should orient the reader, not replace the entries.
+Write one to three sentences summarizing the most important changes in the release. Do not repeat information that is fully described in the sections below — the summary should orient the reader, not replace the entries.
 
 ---
 
@@ -177,7 +177,7 @@ List new features and enhancements introduced in this release. List the most imp
 
 For each entry:
 
-1. Write a bold title that summarises the feature in one concise phrase.
+1. Write a bold title that summarizes the feature in one concise phrase.
 2. Write two to four sentences describing what the feature does and how it benefits the user. Answer: "What can I now do that I could not do before?"
 3. Link to the full documentation for the feature.
 
@@ -190,17 +190,17 @@ Use one of these formulas as a starting point:
 
 ---
 
-## Changes to default behaviour section
+## Changes to default behavior section
 
 List changes that affect how the product behaves for existing users — without being new features or bug fixes. Examples include: a default setting changing its value, a deprecated option being removed, or a built-in timeout being adjusted.
 
-These entries are important because they can cause unexpected behaviour for users who upgrade without reading the release notes. Write them clearly and always link to the documentation that describes the new behaviour.
+These entries are important because they can cause unexpected behavior for users who upgrade without reading the release notes. Write them clearly and always link to the documentation that describes the new behavior.
 
 For each entry:
 
-1. Write a bold title that summarises the change.
-2. Write one to three sentences describing what changed, what the previous behaviour was, and what the new behaviour is.
-3. Link to the documentation that covers the new behaviour.
+1. Write a bold title that summarizes the change.
+2. Write one to three sentences describing what changed, what the previous behavior was, and what the new behavior is.
+3. Link to the documentation that covers the new behavior.
 
 ---
 

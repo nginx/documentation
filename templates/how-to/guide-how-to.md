@@ -2,7 +2,7 @@
 
 This guide explains how to complete `template-how-to.md`. It covers what a how-to is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-For a worked example, see `example-how-to.md`.
+For a sample, see `example-how-to.md`.
 
 ---
 
@@ -116,7 +116,7 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Connect NGINX Plus container images"
 - Bad: "How to connect NGINX Plus container images" or "Connecting NGINX Plus container images"
 
-**description**: One sentence under 160 characters summarising what the reader will achieve. This text appears in search engine results, AI assistant citations, and doc portal previews. Write it as a complete sentence: "Configure X to do Y" or "Learn how to connect X to Y."
+**description**: One sentence under 160 characters summarizing what the reader will achieve. This text appears in search engine results, AI assistant citations, and doc portal previews. Write it as a complete sentence: "Configure X to do Y" or "Learn how to connect X to Y."
 
 **weight**: Controls the sort order within the section. Lower numbers appear first. Ask your documentation team for the correct value if you are unsure.
 

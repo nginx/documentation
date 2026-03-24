@@ -2,7 +2,7 @@
 
 This guide explains how to complete `template-reference.md`. It covers what a reference article is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-For a worked example, see `example-reference.md`.
+For a sample, see `example-reference.md`.
 
 ---
 
@@ -50,7 +50,7 @@ Before writing, identify:
 
 - **One component per article.** Cover one configuration file, one API endpoint, one CLI command, or one logical group of related parameters per page. If an article grows too large to scan easily, split it by logical subset.
 - **Be consistent across every entry.** Every entry in a table or list must use the same attributes in the same order. Inconsistency forces readers to re-orient on every row and breaks AI extraction.
-- **Use exact names.** Parameter names, type names, and default values must match the product exactly, including capitalisation and punctuation. A mismatch between the reference article and the product is the most damaging error a reference article can contain.
+- **Use exact names.** Parameter names, type names, and default values must match the product exactly, including capitalization and punctuation. A mismatch between the reference article and the product is the most damaging error a reference article can contain.
 - **State defaults explicitly.** If a parameter has a default value, always state it. If a parameter has no default and is required, state that it is required. Never leave the default or required status implied.
 - **Keep descriptions factual and brief.** Each description should answer "what does this entry do or accept?" in one to two sentences. Do not include usage instructions or examples unless they are essential to understanding the entry.
 - **Auto-generate where possible.** Reference documentation that is generated from source code or API schemas is easier to keep accurate. If auto-generation tooling exists, use it and treat the template as the structure within which generated content lives.
@@ -116,7 +116,7 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Instance Manager API — list instances"
 - Bad: "How to configure NGINX Agent" or "Configuring NGINX Agent"
 
-**description**: One sentence under 160 characters summarising what this article covers. This text appears in search engine results, AI assistant citations, and doc portal previews.
+**description**: One sentence under 160 characters summarizing what this article covers. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
 **weight**: Controls the sort order within the section. Lower numbers appear first.
 

@@ -3,7 +3,7 @@ nd-content-type: release-notes
 nd-docs: DOCS-005
 nd-product: KITCHEN
 title: "Nbeamex Coffee release notes"
-description: "New features, behaviour changes, and resolved issues for Nbeamex Coffee 2.16.0."
+description: "New features, behavior changes, and resolved issues for Nbeamex Coffee 2.16.0."
 weight: 100
 toc: true
 nd-keywords: "Nbeamex Coffee, release notes, 2.16.0, organic beans, recyclable packaging, grinder fix, CVE-2024-9999"
@@ -26,7 +26,7 @@ This release introduces organically sourced beans from the Nbeamex farm and swit
 
 ### Upgrade guide
 
-Before upgrading to Nbeamex Coffee 2.16.0, clean your grinder and coffee maker thoroughly. Residue from previous bean batches can affect the flavour profile of the new beans.
+Before upgrading to Nbeamex Coffee 2.16.0, clean your grinder and coffee maker thoroughly. Residue from previous bean batches can affect the flavor profile of the new beans.
 
 Consult the [list of authorized retailers](https://nbeamex.com/retailers) to source compatible beans for your grinder model.
 
@@ -38,7 +38,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Organically sourced beans from the Nbeamex farm**
 
-  Nbeamex Coffee now uses beans sourced exclusively from the Nbeamex farm. The beans are organically grown without synthetic pesticides or fertilisers, and have a rich flavour profile with notes of dark chocolate and citrus. See [Nbeamex Coffee bean guide](https://nbeamex.com/docs/bean-guide) for brewing recommendations by roast level.
+  Nbeamex Coffee now uses beans sourced exclusively from the Nbeamex farm. The beans are organically grown without synthetic pesticides or fertilizers, and have a rich flavor profile with notes of dark chocolate and citrus. See [Nbeamex Coffee bean guide](https://nbeamex.com/docs/bean-guide) for brewing recommendations by roast level.
 
 ---
 
@@ -78,6 +78,6 @@ This release includes the following security updates:
 
 - {{% icon-resolved %}} **Secure bag vulnerability CVE-2024-9999**
 
-  A vulnerability in the Nbeamex Coffee packaging bag (CVE-2024-9999) could allow an unauthorised party to access the coffee beans without breaking the tamper-evident seal. This issue has been resolved in this release by introducing a dual-layer tamper-evident closure. ([CVE-2024-9999](https://coffee-sec.org/CVE-2024-9999))
+  A vulnerability in the Nbeamex Coffee packaging bag (CVE-2024-9999) could allow an unauthorized party to access the coffee beans without breaking the tamper-evident seal. This issue has been resolved in this release by introducing a dual-layer tamper-evident closure. ([CVE-2024-9999](https://coffee-sec.org/CVE-2024-9999))
 
 ---

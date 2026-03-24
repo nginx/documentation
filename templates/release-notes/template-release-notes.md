@@ -24,7 +24,7 @@ nd-audience: {developer | operator | admin | architect | any}
 
 {Month Day, Year}
 
-{Optional: High-level summary — one to three sentences summarising the most important changes in this release. Omit for small releases.}
+{Optional: High-level summary — one to three sentences summarizing the most important changes in this release. Omit for small releases.}
 
 ---
 
@@ -40,7 +40,7 @@ nd-audience: {developer | operator | admin | architect | any}
 
 This release includes the following updates:
 
-- {{% icon-feature %}} **{Feature title — concise noun phrase summarising the feature}**
+- {{% icon-feature %}} **{Feature title — concise noun phrase summarizing the feature}**
 
   {Two to four sentences. Describe what the feature does and how it benefits the user. Answer: "What can I now do that I could not do before?" Link to the full documentation.}
 
@@ -48,13 +48,13 @@ This release includes the following updates:
 
 ### (Optional) Changes to default behavior
 
-{Include this section only when the release changes existing behaviour. Omit if there are none.}
+{Include this section only when the release changes existing behavior. Omit if there are none.}
 
 This release has the following changes to default behavior:
 
-- {{% icon-feature %}} **{Change title — concise noun phrase summarising the change}**
+- {{% icon-feature %}} **{Change title — concise noun phrase summarizing the change}**
 
-  {One to three sentences. Describe what changed, what the previous behaviour was, and what the new behaviour is. Link to the documentation that covers the new behaviour.}
+  {One to three sentences. Describe what changed, what the previous behavior was, and what the new behavior is. Link to the documentation that covers the new behavior.}
 
 ---
 

@@ -2,7 +2,7 @@
 
 This guide explains how to complete `template-tutorial.md`. It covers what a tutorial is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-For a worked example, see `example-tutorial.md`.
+For a sample, see `example-tutorial.md`.
 
 ---
 
@@ -115,7 +115,7 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Build a pour-over coffee setup"
 - Bad: "How to build a pour-over coffee setup" or "Building a pour-over coffee setup"
 
-**description**: One sentence under 160 characters summarising what skill the reader will gain. This text appears in search engine results, AI assistant citations, and doc portal previews.
+**description**: One sentence under 160 characters summarizing what skill the reader will gain. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
 **weight**: Controls the sort order within the section. Lower numbers appear first.
 

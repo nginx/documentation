@@ -2,7 +2,7 @@
 
 This guide explains how to complete `template-concept.md`. It covers what a concept document is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-For a worked example, see `example-concept.md`.
+For a sample, see `example-concept.md`.
 
 ---
 
@@ -119,7 +119,7 @@ AI assistants and human readers parse documentation differently from search engi
 - Good: "Coffee extraction"
 - Bad: "Understanding coffee extraction" or "About the coffee extraction process"
 
-**description**: One sentence under 160 characters summarising what the concept is and why it matters. This text appears in search engine results, AI assistant citations, and doc portal previews.
+**description**: One sentence under 160 characters summarizing what the concept is and why it matters. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
 **weight**: Controls the sort order within the section. Lower numbers appear first.
 
@@ -163,7 +163,7 @@ Write a clear, one- or two-sentence definition of the concept. Then expand it by
 
 Use an analogy when the concept is abstract. Choose analogies that are universal — avoid cultural, age-specific, or regional references. A good analogy bridges from something the reader already knows to something they do not yet understand.
 
-- Good: "Extraction is to coffee what steeping is to tea — both use water to draw flavour compounds out of a solid into a liquid."
+- Good: "Extraction is to coffee what steeping is to tea — both use water to draw flavor compounds out of a solid into a liquid."
 - Bad: "Extraction works like a DJ mixing a track — you control which frequencies come through."
 
 Define the scope explicitly. State what this document covers and what it does not.

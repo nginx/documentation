@@ -29,7 +29,7 @@ Before you begin, ensure you have:
 - **A countertop surface near a grounded electrical outlet**: The surface must support the weight of the unit (typically 1–2 kg) and leave at least 15 cm of clearance above the unit for the lid to open. Do not use an extension cord.
 - **Fresh cold tap water**: The water reservoir requires cold water only. Hot water can damage the heating element.
 - **Paper filters sized for your model**: Filter size varies by model (No. 2, No. 4, or basket-style). Check the model number on the underside of the unit against the filter packaging before starting.
-- **Ground coffee**: Use a medium grind for drip brewing. Pre-ground coffee labelled "drip" or "filter" is suitable.
+- **Ground coffee**: Use a medium grind for drip brewing. Pre-ground coffee labeled "drip" or "filter" is suitable.
 
 If you are installing a single-serve pod coffee maker instead of a drip model, see [Install a single-serve pod coffee maker](../install-pod-coffee-maker.md).
 
