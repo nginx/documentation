@@ -39,48 +39,83 @@ You can consolidate multiple keys in a single Secret or use separate Secrets for
 To follow this guide, you need the following:
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
+- [Install cert-manager](https://cert-manager.io/docs/installation/) in your cluster.
 
+### Generate certificates
 
-### Generate self-signed certificates
+The following steps use `cert-manager` to issue a local Certificate Authority (CA) and sign certificates for both Keycloak and NGINX. `cert-manager` creates the required Kubernetes Secrets directly so no manual secret creation is needed for TLS.
 
-The following steps generate a local Certificate Authority (CA) and sign certificates for both Keycloak and NGINX.
+Create a self-signed `ClusterIssuer` to bootstrap the CA, then issue the CA certificate and create a second `ClusterIssuer` backed by it:
 
-Run the following commands to generate a local Certificate Authority:
-
-```bash
-openssl genrsa -out ca.key 4096
-
-openssl req -x509 -new -nodes -key ca.key -sha256 -days 365 \
-  -out ca.crt \
-  -subj "/CN=LocalCA"
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-cluster-issuer
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: local-ca
+  namespace: cert-manager
+spec:
+  isCA: true
+  commonName: LocalCA
+  secretName: local-ca-secret
+  issuerRef:
+    name: selfsigned-cluster-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: local-ca-issuer
+spec:
+  ca:
+    secretName: local-ca-secret
+EOF
 ```
 
-Run the following commands to generate a certificate for Keycloak, signed by the CA:
+Create certificates for Keycloak and NGINX. cert-manager will create `keycloak-tls-cert` and `nginx-secret` in the `default` namespace:
 
-```bash
-openssl genrsa -out keycloak.key 4096
-
-openssl req -new -key keycloak.key -out keycloak.csr \
-  -subj "/CN=keycloak.default.svc.cluster.local"
-
-openssl x509 -req -in keycloak.csr \
-  -CA ca.crt -CAkey ca.key -CAcreateserial \
-  -out keycloak.crt -days 365 \
-  -extfile <(printf "subjectAltName=DNS:keycloak.default.svc.cluster.local,DNS:keycloak,DNS:localhost,IP:127.0.0.1")
-```
-
-Run the following commands to generate a certificate for NGINX:
-
-```bash
-openssl genrsa -out nginx.key 4096
-
-openssl req -new -key nginx.key -out nginx.csr \
-  -subj "/CN=cafe.example.com"
-
-openssl x509 -req -in nginx.csr \
-  -CA ca.crt -CAkey ca.key -CAcreateserial \
-  -out nginx.crt -days 365 \
-  -extfile <(printf "subjectAltName=DNS:cafe.example.com")
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak-cert
+  namespace: default
+spec:
+  secretName: keycloak-tls-cert
+  issuerRef:
+    name: local-ca-issuer
+    kind: ClusterIssuer
+  commonName: keycloak.default.svc.cluster.local
+  dnsNames:
+  - keycloak.default.svc.cluster.local
+  - keycloak
+  - localhost
+  ipAddresses:
+  - 127.0.0.1
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: default
+spec:
+  secretName: nginx-secret
+  issuerRef:
+    name: local-ca-issuer
+    kind: ClusterIssuer
+  commonName: cafe.example.com
+  dnsNames:
+  - cafe.example.com
+EOF
 ```
 
 ### Configure Keycloak
@@ -89,15 +124,11 @@ If you already have an IdP set up with a realm, a client, and a user, skip to [S
 
 #### Start Keycloak
 
-Deploy Keycloak using Kubernetes, using the `keycloak.crt` and `keycloak.key` files generated in the previous step. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange.
+Deploy Keycloak to your cluster. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange. The `keycloak-tls-cert` Secret was created by cert-manager in the previous step and is mounted into the Keycloak container below.
 
-Create a Kubernetes TLS Secret from the certificate and key generated in the previous step. This Secret is mounted into the Keycloak container in the deployment below. 
-
-```shell
-kubectl create secret tls keycloak-tls-cert --cert=keycloak.crt --key=keycloak.key
-```
-
-The `redirectUris` field in the realm config must include the exact hostname and port your application is exposed on. If the value does not match what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Update this field before applying.
+{{< call-out "note" >}}
+The `redirectUris` field must include the exact hostname and port your application is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. The realm config below uses `https://cafe.example.com:8442/*` because the Gateway is accessed via port-forward on port 8442. Update this value to match the port your Gateway is exposed on before applying.
+{{< /call-out >}}
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -348,11 +379,7 @@ tea-75bc9f4b6d-cx2jl      1/1     Running   0          15s
 
 ### Create a Gateway
 
-OIDC requires an HTTPS listener. The `tls.certificateRefs` entry points to a Secret containing the TLS certificate and key that NGINX presents to clients on incoming connections. Create a Secret from the `nginx.crt` and `nginx.key` files generated earlier and reference it here.
-
-```shell
-kubectl create secret tls nginx-secret --cert=nginx.crt --key=nginx.key
-```
+OIDC requires an HTTPS listener. The `tls.certificateRefs` entry points to a Secret containing the TLS certificate and key that NGINX presents to clients. The `nginx-secret` Secret was created by cert-manager in the previous step.
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -424,16 +451,12 @@ spec:
 
 ### Create the Keycloak Secret
 
-This Secret holds two pieces of material the filter needs:
-- The client secret from the `nginx-gateway` realm.
-- The CA certificate that NGINX uses to verify Keycloak's TLS certificate on outbound connections.
-
-Both come from earlier steps. `$CLIENT_SECRET` is the variable set in the Create a client step, and `ca.crt` is the local CA certificate generated in the [Generate self-signed certificates](#generate-self-signed-certificates) step.
+This Secret holds the client secret and the CA certificate NGINX uses to verify Keycloak's TLS certificate on outbound connections. The CA certificate is extracted from the `keycloak-tls-cert` Secret that cert-manager created.
 
 ```shell
 kubectl create secret generic keycloak-secret \
   --from-literal=client-secret=$CLIENT_SECRET \
-  --from-file=ca.crt=ca.crt
+  --from-file=ca.crt=<(kubectl get secret keycloak-tls-cert -o jsonpath='{.data.ca\.crt}' | base64 -d)
 ```
 
 ### Create the AuthenticationFilter
