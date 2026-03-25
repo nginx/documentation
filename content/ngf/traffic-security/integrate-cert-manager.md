@@ -303,6 +303,8 @@ Request ID: e64c54a2ac253375ac085d48980f000a
     <...>
     ```
 
+{{< include "ngf/sni-https.md" >}}
+
 ---
 
 ## See also
