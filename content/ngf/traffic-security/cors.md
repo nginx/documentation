@@ -1,6 +1,6 @@
 ---
 title: Configure Cross-Origin Request Sharing (CORS)
-weight: 500
+weight: 600
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
