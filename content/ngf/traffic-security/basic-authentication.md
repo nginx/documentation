@@ -1,6 +1,6 @@
 ---
 title: Configure basic authentication
-weight: 800
+weight: 300
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
