@@ -13,7 +13,7 @@ Cookie protections can be configured and managed directly within the policy edit
 ## Cookie properties and types
 
 Each cookie configuration includes:
-- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/waf-policy-matching-types.md" >}}) section.
+- `Cookie Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/policy/waf-policy-matching-types.md" >}}) section.
 - `Cookie Name`: The name of the cookie to be monitored or protected
 - `Enforcement Type`: 
   - **Allow**: Specifies that this cookie may be changed by the client. The cookie is not protected from modification
@@ -55,7 +55,7 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 
 1. Optional: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific cookie
-   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md/" >}})
+   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
 
 1. Select **Add Cookie** to save your configuration
 
@@ -67,7 +67,7 @@ Parameter protections can be configured and managed directly within the policy e
 
 Each parameter configuration includes:
 
-- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/waf-policy-matching-types.md" >}}) section.
+- `Parameter Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/policy/waf-policy-matching-types.md" >}}) section.
 - `Parameter Name`: The name of the parameter
 - `Location`: Where the parameter is expected (URL query string, POST data, etc.)
 - `Value Type`: The expected type of the parameter value (e.g., alpha-numeric, integer, email)
@@ -128,7 +128,7 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 
 1. Optional: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific parameter
-   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md/" >}})
+   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
 
 1. Select **Add Parameter** to save your configuration
 
@@ -139,7 +139,7 @@ URL protections can be configured and managed directly within the policy editor 
 ## URL properties and types
 
 Each URL configuration includes:
-- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/waf-policy-matching-types.md" >}}) section.
+- `URL Type`: `Explicit` or `Wildcard`. For details on explicit and wildcard matching, see the [Matching Types: Explicit vs Wildcard]({{< ref "/nginx-one-console/waf-integration/policy/waf-policy-matching-types.md" >}}) section.
 - `Method`: Specifies the HTTP method(s) for the URL (`GET`, `POST`, `PUT`, etc.)
 - `Protocol`: The protocol for the URL (`HTTP`/`HTTPS`)
 - `Enforcement Type`: 
@@ -195,6 +195,6 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 
 1. **Optional**: Configure Attack Signatures
    - If enabled, you can overwrite attack signatures for this specific URL
-   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/add-signature-sets.md/" >}})
+   - For details on signature configuration, refer to the documentation on [Add Signature Sets]({{< ref "/nginx-one-console/waf-integration/policy/add-signature-sets.md" >}})
 
 1. Select **Add URL** to save your configuration

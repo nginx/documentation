@@ -371,6 +371,7 @@ This table shows how Ingress-NGINX Controller annotations map to statements in t
 | _nginx.ingress.kubernetes.io/proxy-read-timeout_ | _read-timeout_ |
 | _nginx.ingress.kubernetes.io/proxy-send-timeout_ | _send-timeout_ |
 | _nginx.ingress.kubernetes.io/service-upstream_ | _use-cluster-ip_ |
+| _nginx.ingress.kubernetes.io/affinity_ (cookie) | _sticky-cookie-services_ |
 
 #### mTLS authentication
 
@@ -427,9 +428,9 @@ egressMTLS:
    serverName: true|false
 ```
 
-#### Session persistence with NGINX Plus
+#### Session persistence
 
-With [NGINX Plus]({{< ref "/nic/overview/nginx-plus" >}}), you can use [Policy]({{< ref "/nic/configuration/policy-resource" >}}) resources for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller.
+You can use [Policy]({{< ref "/nic/configuration/policy-resource" >}}) resources or annotations for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller. Session persistence via sticky cookie is available in both NGINX (since version 1.29.6) and NGINX Plus.
 
 Ingress-NGINX Controller:
 
@@ -481,17 +482,22 @@ This table maps the Ingress-NGINX Controller annotations to NGINX Ingress Contro
 | [_nginx.ingress.kubernetes.io/client-body-buffer-size_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#client-body-buffer-size) | [_nginx.org/client-body-buffer-size_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_client_body_buffer_size_](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) |
 | [_nginx.ingress.kubernetes.io/proxy-connect-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-connect-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_connect_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout) |
 | [_nginx.ingress.kubernetes.io/proxy-read-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-read-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_read_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) |
+| [_nginx.ingress.kubernetes.io/proxy-next-upstream_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-next-upstream_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_next_upstream_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) |
+| [_nginx.ingress.kubernetes.io/proxy-next-upstream-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-next-upstream-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_next_upstream_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_timeout) |
+| [_nginx.ingress.kubernetes.io/proxy-next-upstream-tries_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-next-upstream-tries_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_next_upstream_tries_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries) |
 | [_nginx.ingress.kubernetes.io/proxy-send-timeout_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts) | [_nginx.org/proxy-send-timeout_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#general-customization" >}}) | [_proxy_send_timeout_](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout) |
 | [_nginx.ingress.kubernetes.io/rewrite-target_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) | [_nginx.org/rewrite-target_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#request-uriheader-manipulation" >}}) | [_rewrite_](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) |
+| [_nginx.ingress.kubernetes.io/app-root_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rewrite) | [_nginx.org/app-root_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#request-uriheader-manipulation" >}}) | N/A |
 | [_nginx.ingress.kubernetes.io/ssl-ciphers_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-ciphers) | [_nginx.org/ssl-ciphers_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | [_ssl_ciphers_](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) |
 | [_nginx.ingress.kubernetes.io/ssl-prefer-server-ciphers_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-ciphers) | [_nginx.org/ssl-prefer-server-ciphers_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | [_ssl_prefer_server_ciphers_](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) |
 | [_nginx.ingress.kubernetes.io/server-snippet_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet)| [_nginx.org/server-snippets_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#snippets-and-custom-templates" >}}) | N/A |
-| [_nginx.ingress.kubernetes.io/ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) (2) | [_ingress.kubernetes.io/ssl-redirect_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | N/A |
+| [_nginx.ingress.kubernetes.io/ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) (2) | [_nginx.org/ssl-redirect_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}) | N/A |
+| [_nginx.ingress.kubernetes.io/affinity_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#session-affinity)| [_nginx.org/sticky-cookie-services_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#backend-services-upstreams" >}}) | [_sticky_](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky_cookie)|
 
 1. Ingress-NGINX Controller implements some of its load balancing algorithms with Lua, which may not have an equivalent in NGINX Ingress Controller.
-1. To redirect HTTP (80) traffic to HTTPS (443), NGINX Ingress Controller uses built-in NGINX `if` conditions while Ingress-NGINX Controller uses Lua.
+1. To redirect HTTP (80) traffic to HTTPS (443), NGINX Ingress Controller uses built-in NGINX `if` conditions while Ingress-NGINX Controller uses Lua. For [_nginx.ingress.kubernetes.io/force-ssl-redirect_](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-side-https-enforcement-through-redirect) behavior (which works when SSL is terminated at an external load balancer), use [_nginx.org/redirect-to-https_]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}).
 
-The following two snippets outline Ingress-NGINX Controller annotations that correspond to annotations for NGINX Ingress Controller with NGINX Plus.
+The following two snippets outline Ingress-NGINX Controller annotations that correspond to annotations for NGINX Ingress Controller.
 
 Ingress-NGINX Controller:
 
@@ -502,10 +508,10 @@ nginx.ingress.kubernetes.io/session-cookie-expires: "seconds"
 nginx.ingress.kubernetes.io/session-cookie-path: "/route"
 ```
 
-NGINX Ingress Controller (with NGINX Plus):
+NGINX Ingress Controller:
 
 ```yaml
-nginx.com/sticky-cookie-services: "serviceName=example-svc cookie_name expires=time path=/route"
+nginx.org/sticky-cookie-services: "serviceName=example-svc cookie_name expires=time path=/route"
 ```
 
 {{< call-out "note" >}}

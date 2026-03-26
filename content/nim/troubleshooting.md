@@ -102,24 +102,24 @@ When attempting to upgrade Instance Manager on a Debian-based system, the comman
 
 To manually update the public key, take the following steps:
 
-1. Download a new key from the NGINX Management Suite host:
+1. Download a new key from the NGINX Instance Manager host:
 
    - Secure:
 
        ```shell
-       curl https://<NMS_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
+       curl https://<NIM_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
        ```
 
    - Insecure:
 
        ```shell
-       curl --insecure https://<NMS_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
+       curl --insecure https://<NIM_FQDN>/packages-repository/nginx-signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-signing.gpg >/dev/null
        ```
 
 2. Update the `nginx-agent.list` file to reference the new key:
 
     ```shell
-    printf "deb [signed-by=/usr/share/keyrings/nginx-signing.gpg] https://<NMS_FQDN>/packages-repository/deb/ubuntu `lsb_release -cs` agent\n" | sudo tee /etc/apt/sources.list.d/nginx-agent.list
+    printf "deb [signed-by=/usr/share/keyrings/nginx-signing.gpg] https://<NIM_FQDN>/packages-repository/deb/ubuntu `lsb_release -cs` agent\n" | sudo tee /etc/apt/sources.list.d/nginx-agent.list
     ```
 
 ---

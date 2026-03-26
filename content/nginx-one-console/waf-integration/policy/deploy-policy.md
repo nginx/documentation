@@ -20,7 +20,7 @@ This page assumes you've created a policy in NGINX One Console that you're ready
 
 To deploy a policy from NGINX One Console, take the following steps:
 
-1. Select **App Protect** > **Policies**.
+1. Select **WAF** > **Policies**.
 1. Select the policy that you're ready to deploy.
 1. Select the **Details** tab.
 1. In the **Deploy Policy** window that appears, you can confirm the name of the current policy and the version to deploy. NGINX One Console defaults to the selected policy and latest version.

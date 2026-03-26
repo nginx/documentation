@@ -96,7 +96,7 @@ The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
 The table below summarizes the available annotations.
 
-{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. {{< /call-out >}}
+{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. For session persistence, use `nginx.org/sticky-cookie-services`, which works with both NGINX and NGINX Plus. {{< /call-out >}}
 
 ### General customization
 
@@ -107,6 +107,9 @@ The table below summarizes the available annotations.
 | *nginx.org/proxy-connect-timeout* | *proxy-connect-timeout* | Sets the value of the [proxy_connect_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout) and [grpc_connect_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_connect_timeout) directive. | *60s* |  |
 | *nginx.org/proxy-read-timeout* | *proxy-read-timeout* | Sets the value of the [proxy_read_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout) and [grpc_read_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_read_timeout) directive. | *60s* |  |
 | *nginx.org/proxy-send-timeout* | *proxy-send-timeout* | Sets the value of the [proxy_send_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout) and [grpc_send_timeout](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_send_timeout) directive. | *60s* |  |
+| *nginx.org/proxy-next-upstream* | N/A | Sets the value of the [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive. | *error timeout* | *off* |
+| *nginx.org/proxy-next-upstream-timeout* | N/A | Sets the value of the [proxy_next_upstream_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_timeout) directive. | *0s* | *3m* |
+| *nginx.org/proxy-next-upstream-tries* | N/A | Sets the value of the [proxy_next_upstream_tries](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries) directive. | *0* | *5* |
 | *nginx.org/client-max-body-size* | *client-max-body-size* | Sets the value of the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) directive. | *1m* |  |
 | *nginx.org/client-body-buffer-size* | *client-body-buffer-size* | Sets the value of the [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) directive. | N/A |  |
 | *nginx.org/proxy-buffering* | *proxy-buffering* | Enables or disables [buffering of responses](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) from the proxied server. | *True* |  |
@@ -116,6 +119,7 @@ The table below summarizes the available annotations.
 | *nginx.org/proxy-max-temp-file-size* | *proxy-max-temp-file-size* | Sets the value of the  [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive. | *1024m* |  |
 | *nginx.org/server-tokens* | *server-tokens* | Enables or disables the [server_tokens](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) directive. Additionally, with the NGINX Plus, you can specify a custom string value, including the empty string value, which disables the emission of the “Server” field. | *True* |  |
 | *nginx.org/path-regex* | N/A | Enables regular expression modifiers for Ingress path parameter. This translates to the NGINX [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive. You can specify one of these values: "case_sensitive", "case_insensitive", or "exact". The annotation is applied to the entire Ingress resource and its paths. While using Master and Minion Ingresses i.e. Mergeable Ingresses, this annotation can be specified on Minion types. The `path-regex` annotation specified on Master is ignored, and has no effect on paths defined on Minions.   | N/A |  [path-regex](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/path-regex) |
+| *nginx.org/policies* | N/A | Applies one or more [Policy resources]({{< ref "/nic/configuration/policy-resource.md" >}}) to an Ingress. Specify a comma-separated list of policy names. | N/A | *webapp-policy* |
 
 {{< /table >}}
 
@@ -139,8 +143,10 @@ The table below summarizes the available annotations.
 
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
-| *nginx.org/redirect-to-https* | *redirect-to-https* | Sets the 301 redirect rule based on the value of the `http_x_forwarded_proto` header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of NGINX Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115) | *False* |  |
-| *ingress.kubernetes.io/ssl-redirect* | *ssl-redirect* | Sets an unconditional 301 redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS. | *True* |  |
+| *nginx.org/app-root* | N/A | Configures the application root path that the controller redirects requests for / to. Returns 302 redirect that will take precedence over other redirects. | N/A | `/` redirects to `/coffee` |
+| *nginx.org/redirect-to-https* | *redirect-to-https* | Sets a redirect rule based on the value of the `http_x_forwarded_proto` header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of NGINX Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `nginx.org/http-redirect-code` annotation or the `http-redirect-code` ConfigMap key. | *False* |  |
+| *nginx.org/ssl-redirect* | *ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `nginx.org/http-redirect-code` annotation or the `http-redirect-code` ConfigMap key. | *True* |  |
+| *nginx.org/http-redirect-code* | *http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* | *307* |
 | *nginx.org/hsts* | *hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/)\ : the HSTS header is added to the responses from backends. The `preload` directive is included in the header. | *False* |  |
 | *nginx.org/hsts-max-age* | *hsts-max-age* | Sets the value of the `max-age` directive of the HSTS header. | *2592000* (1 month) |  |
 | *nginx.org/hsts-include-subdomains* | *hsts-include-subdomains* | Adds the `includeSubDomains` directive to the HSTS header. | *False* |  |
@@ -177,7 +183,8 @@ The table below summarizes the available annotations.
 | *nginx.org/max-conns* | N\A | Sets the value of the [max_conns](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns) parameter of the `server` directive. | *0* |  |
 | *nginx.org/upstream-zone-size* | *upstream-zone-size* | Sets the size of the shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) for upstreams. For NGINX, the special value 0 disables the shared memory zones. For NGINX Plus, shared memory zones are required and cannot be disabled. The special value 0 will be ignored. | *256K* |  |
 | *nginx.org/fail-timeout* | *fail-timeout* | Sets the value of the [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) parameter of the `server` directive. | *10s* |  |
-| *nginx.com/sticky-cookie-services* | N/A | Configures session persistence. | N/A | [session-persistence](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) |
+| *nginx.org/sticky-cookie-services* | N/A | Configures session persistence. This is the preferred annotation for session persistence configuration and works with both NGINX (since version 1.29.6) and NGINX Plus. If both `nginx.org/sticky-cookie-services` and `nginx.com/sticky-cookie-services` are set, the `nginx.org/` annotation takes precedence. *Requires NGINX >= v1.29.6*. | N/A | [session-persistence](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) |
+| *nginx.com/sticky-cookie-services* | N/A | Configures session persistence. Maintained for backward compatibility with NGINX Plus. Use `nginx.org/sticky-cookie-services` instead. | N/A | [session-persistence](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) |
 | *nginx.org/keepalive* | *keepalive* | Sets the value of the [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive. Note that `proxy_set_header Connection "";` is added to the generated configuration when the value > 0. | *0* |  |
 | *nginx.com/health-checks* | N/A | Enables active health checks. | *False* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |
 | *nginx.com/health-checks-mandatory* | N/A | Configures active health checks as mandatory. | *False* | [health-checks](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) |

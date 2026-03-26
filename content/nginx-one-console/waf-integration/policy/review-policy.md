@@ -16,7 +16,7 @@ Before you implement a policy on an NGINX instance or Config Sync Group, you may
 
 ## Review F5 WAF for NGINX policies
 
-From NGINX One Console, select **App Protect** > **Policies**. Select the name of the policy that you want to review. You'll see the following tabs:
+From NGINX One Console, select **WAF** > **Policies**. Select the name of the policy that you want to review. You'll see the following tabs:
 
 - Details, which includes:
   - Policy Details: Descriptions, status, enforcement type, latest version, and last deployed time.

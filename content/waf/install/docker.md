@@ -834,7 +834,7 @@ Create a file for the F5 WAF for NGINX repository:
 ```shell
 [app-protect-x-oss]
 name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/7/$basearch/
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/9/$basearch/
 sslclientcert=/etc/ssl/nginx/nginx-repo.crt
 sslclientkey=/etc/ssl/nginx/nginx-repo.key
 gpgcheck=0
@@ -844,7 +844,7 @@ enabled=1
 Install the F5 WAF for NGINX package and its dependencies:
 
 ```shell
-sudo yum install app-protect-module-oss
+sudo dnf install app-protect-module-oss
 ```
 
 {{% /tab %}}
@@ -858,7 +858,61 @@ Create a file for the F5 WAF for NGINX repository:
 ```shell
 [app-protect-x-plus]
 name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/8/$basearch/
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/9/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect-module-plus
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+#### RHEL 10
+
+{{< tabs name="rhel-hybrid-instructions" >}}
+
+{{% tab name="NGINX Open Source" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+`/etc/yum.repos.d/app-protect-x-oss.repo`
+
+```shell
+[app-protect-x-oss]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/10/$basearch/
+sslclientcert=/etc/ssl/nginx/nginx-repo.crt
+sslclientkey=/etc/ssl/nginx/nginx-repo.key
+gpgcheck=0
+enabled=1
+```
+
+Install the F5 WAF for NGINX package and its dependencies:
+
+```shell
+sudo dnf install app-protect-module-oss
+```
+
+{{% /tab %}}
+
+{{% tab name="NGINX Plus" %}}
+
+Create a file for the F5 WAF for NGINX repository:
+
+`/etc/yum.repos.d/app-protect-x-plus.repo`
+
+```shell
+[app-protect-x-plus]
+name=nginx-app-protect repo
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/10/$basearch/
 sslclientcert=/etc/ssl/nginx/nginx-repo.crt
 sslclientkey=/etc/ssl/nginx/nginx-repo.key
 gpgcheck=0

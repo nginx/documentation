@@ -1,6 +1,6 @@
 ---
 title: Changelog
-url: /agent/changelog
+url: /nginx-agent/changelog
 weight: 1200
 toc: true
 nd-docs: "DOCS-1093"

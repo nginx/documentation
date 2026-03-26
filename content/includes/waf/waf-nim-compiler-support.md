@@ -7,6 +7,7 @@ nd-files:
 
 | F5 WAF for NGINX version  | WAF compiler version       |
 |---------------------------|----------------------------|
+| 5.12.0                    | nms-nap-compiler-v5.607.0  |
 | 5.11.2                    | nms-nap-compiler-v5.575.2  |
 | 5.11.1                    | nms-nap-compiler-v5.575.1  |
 | 5.11.0                    | nms-nap-compiler-v5.575.0  |

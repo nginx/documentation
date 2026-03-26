@@ -1,152 +1,286 @@
-# Getting Started Guide
+# Guide: How to write a getting started guide
 
-> Thank you for downloading this template from The Good Docs Project! Before using the template, read this template guide for information about how to complete each section. Want to explore more templates? Check them out in our [templates GitLab repository](https://gitlab.com/tgdp/templates).
+This guide explains how to complete `template-getting-started.md`. It covers what a getting started guide is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-## Introduction
+For a sample, see `example-getting-started.md`.
 
-A getting started guide introduces your users to your application for the first time.
-It focuses on the **primary feature** of the application and helps your users to start using the application as quickly as possible.
+---
 
-A good quickstart answers the following questions:
+## What is a getting started guide?
 
-- Scope:
-   - What is the core purpose of this application?
-   - What is the minimal use case that is covered in this quickstart?
-- Install (if applicable):
-   - How do I download, install, and configure the application?
-   - How can I get any required access keys or authentication credentials?
-- Hello  World: 
-:memo: A hello world approach is the simplest and easiest task through which your user can get an end-to-end sense of how an application works. It also serves as a sanity check.
-   - How can I run a simple workflow for a core feature or a common use case?
-- Next steps:
-   - What other features are available to explore in the application?
+A getting started guide introduces your product to a user for the first time. It focuses on the **primary feature** of the product and helps the user experience a meaningful, working result as quickly as possible — an end-to-end "hello world" that builds confidence and motivates further exploration.
 
-Getting Started guides are often confused with getting started and marketing guides. Though these documents help the users get acquainted with the application, they widely differ in their target audience. The following table describes the differences:
+A getting started guide assumes the user has chosen your product and wants to try it. It does not make the case for the product, nor does it teach deep concepts. Users who need more context before starting should read a product overview or concept guide first.
 
-| |Getting Started Guide|Getting Started Guide| Marketing Guide|
-|--------|----------------|----------------------|---------------|
- |Target Audience|Domain experts who know the problem space|Beginners who are new to the problem space and the product|Business decision-makers who need to make strategic decisions such as whether to buy the product
-|Content|Minimal conceptual information|Detailed conceptual information on product/domain| No/less conceptual information; instead focuses on the benefits and the customers using the product
-|Focus|How-to| How-to and why|  Sales
+Getting started guides are often confused with tutorials and marketing guides. The table below shows the key differences.
 
-## Why do I need a getting started guide?
+| | Getting Started Guide | Tutorial | Marketing Guide |
+|---|---|---|---|
+| **Target audience** | Domain experts who know the problem space and have chosen the product | Beginners who are new to both the problem space and the product | Business decision-makers evaluating whether to adopt the product |
+| **Content** | Minimal conceptual information; just enough to complete the primary task | Detailed conceptual information on the product and the problem domain | Little to no conceptual information; focused on benefits and customer outcomes |
+| **Focus** | How-to: complete a working first task end-to-end | How-to and why: learn by doing, with explanations of each concept | Sales: demonstrate value and drive adoption decisions |
 
-A getting started guide is often the first opportunity for your users to form a positive impression on your product, and form an opinion on the technology it was built on. It can:
+---
 
-- Make users comfortable using the application.
-- Motivate the users to take up more complex tasks.
-- Reduce users' onboarding time and give them the feeling that the application is easy to use.
-- Improve the user experience, and help reduce costs by lowering the number of support requests.
- 
-## Before writing a getting started guide
+## Why write a getting started guide?
 
-Before you start working on your getting started guide, identify:
-- The primary feature of your application. 
-- The quickest and the easiest way to implement end-to-end the primary feature of your application. 
-- A use case that your user can complete within 1 - 2 hours with a preference for a shorter time.
-- The audience, as it helps the users determine if the getting started guide is relevant for their use.
+A well-written getting started guide:
 
-## Best practices for writing a getting started guide
--  Lengthy getting started guides can overwhelm users. Consider condensing or removing steps or reevaluating the scope of the getting started guide.
--  Avoid complicating the getting started guide by including error scenarios or complex use cases.
-- Remove the burden of setup requirements as much as possible through sandbox accounts.
-- Ensure that the getting started guide works and provides the advertised result.
-- For code samples, ensure that you include:  
-   - Any required `import` or `using` statements.
-   - Code comments that explain what the code does.
+- Creates a positive first impression of the product and reduces the time users take to reach their first working result.
+- Motivates users to explore more advanced features by giving them an early success.
+- Reduces support costs by guiding users through the most common onboarding path.
+- Provides AI assistants with structured, citable steps that can be surfaced in response to "how do I get started with X?" queries.
 
-## About the "Overview" section
+---
 
-Use this section to provide the following:
+## Before you start writing
 
-- A short description of your application and its purpose.
-- A description of what the user can accomplish in this getting started guide.
-- The intended audience for this document. 
-- The basic knowledge that you expect the user to have before using this getting started guide.
+Before writing, identify:
 
-## About the "Before you begin" section
+- **The primary feature.** A getting started guide covers one core capability — the thing the product is most known for or most commonly used for. Do not try to cover multiple features.
+- **The minimal end-to-end path.** Find the quickest route from zero to a working result. Strip away anything not essential to that path — advanced configuration, edge cases, and optional features belong in how-to guides or tutorials.
+- **The target completion time.** A getting started guide should be completable in one to two hours. If it takes longer, the scope is too wide. Reduce scope or split into multiple guides.
+- **The audience.** Knowing who the reader is — developer, operator, administrator — determines which prerequisites to list and how much product knowledge to assume.
+- **What the reader will have at the end.** State this clearly in the Overview. The reader must leave with something concrete and verifiable — a running service, a first API call, a deployed component.
 
-This section is optional.
+---
 
-Use this section to mention any requirements/configuration prerequisites that the user must complete before they start the getting started guide. 
-For easy understanding, consider classifying the prerequisites into different categories such as software prerequisites, hardware prerequisites, and so on. 
+## Best practices
 
-## About the "Install" section
+- **One feature per guide.** Cover one primary use case end-to-end. Do not add optional paths or secondary features to a getting started guide. Keep them for how-to guides.
+- **One method per task.** If multiple ways exist to complete a task, document the recommended one. Link to alternatives at the bottom of the guide.
+- **Remove setup friction wherever possible.** Use sandbox accounts, pre-configured environments, or sensible defaults to reduce the number of prerequisites the reader must satisfy before reaching the first meaningful step.
+- **Test your instructions end to end.** Run through every step on a clean environment. This uncovers missing steps, wrong commands, and version mismatches. If you cannot test them yourself, have a developer or subject matter expert demonstrate the steps and record the session.
+- **Re-test after every notable product release.** Instructions become inaccurate after product changes. Re-test end to end whenever a significant release affects the feature you are documenting.
+- **Do not document error scenarios or complex variations.** Getting started guides are optimised for the happy path. Unexpected scenarios belong in troubleshooting guides and how-tos.
+- **Limit steps.** Aim for a maximum of 8 to 10 steps per part. If more steps are required, break the guide into logical parts with separate headings.
+- **Minimise links within the guide.** Keep users on a single page. Provide links to supporting or background information at the bottom of the guide in the Next steps section, not inline.
 
-This section is optional.
+---
 
-:memo: Not all getting started guides require an installation section. Include this section if:  
-      - Installation and/or configuration is done at the same time, and by the same person running the getting started guide.   
-      - Installation of specific software(s) is a prerequisite to running the getting started guide. 
- 
-The purpose of this section is to provide instructions to your users on how to install and configure a particular software/tool before running the getting started guide. 
+## AI-ready writing principles
 
-:memo: This section may not be relevant for Cloud/API-based applications where authorization and authentication information is more applicable.
+AI assistants and human readers parse documentation differently from search engines. Apply these rules in every section of the guide.
 
-Use this section to provide:
-- Basic instructions and commands to install your application.
-   - Always validate the commands and check for technical accuracy with your engineering team.
-   - Provide instructions to verify that the installation is successful.
-- Link to the detailed installation guide if you do not provide installation instructions. 
-- Links to the upstream docs for common software installation instructions.
+**1. One idea per sentence.** Long compound sentences confuse AI extractors.
 
-## About the "Steps" section
+- Bad: "Open the config file, which is located at /etc/app/config.yml, and add your API key."
+- Good: "Open `/etc/app/config.yml`. Add your API key to the `api_key` field."
 
-The steps section is where you describe what the user needs to do. How you write your steps will vary depending on your organization's style guide.
-This template breaks down the getting started guide into parts. One part of the getting started guide may focus on completing several related steps. You're welcome to follow this structure or use the step headings on their own.
+**2. Use exact names consistently.** If the product is "NGINX Agent", never shorten it to "the agent" mid-guide. Inconsistency breaks AI entity resolution and confuses readers who arrive mid-page from search.
 
-If your getting started guide involves many complex tasks, break it down into different logical parts with each part consisting of one or more related steps. For example, you can structure a getting started guide to onboard an app as follows: 
+**3. State the outcome of each step.** After every command or code block, add one sentence describing what it does or what the reader should observe. AI assistants surface these outcome sentences when answering follow-up questions.
 
-Part 1 Configure your local dev environment
+**4. Avoid implicit pronouns.** Replace "it", "this", and "they" with the actual noun.
 
-Step 1.1 
+- Bad: "Reload it to apply the changes."
+- Good: "Reload NGINX Agent to apply the changes."
 
-Step 1.2
+**5. Keep code blocks self-contained.** Every code block must be runnable in isolation or clearly note what must be substituted. Use `ALL_CAPS_PLACEHOLDERS` for values the reader must supply — for example, `YOUR_API_KEY_HERE` or `YOUR_PROJECT_NAME_HERE`.
 
-Part 2 Build your app
+**6. Use parallel structure in lists.** Every bullet or numbered step should follow the same grammatical pattern — all start with a verb, or all are noun phrases.
 
-Step 2.1
+**7. Mark optional content explicitly.** Use "(Optional)" at the start of any step, section, or field that not every reader will need.
 
-Step 2.2
+---
 
-Part 3 Deploy your app 
+## Section requirements
 
-Step 3.1
+| Section | Required? |
+|---|---|
+| Frontmatter | Required |
+| Overview | Required |
+| Before you begin | Required |
+| At least one part with numbered steps | Required |
+| Verify | Required |
+| Next steps | Required |
+| Install | Conditional — include only when installation is not covered by a separate installation guide |
+| Troubleshooting | Omit — getting started guides cover the happy path only; link to a troubleshooting guide from Next steps if one exists |
 
-Step 3.2
+---
 
-Part 4 Test your app 
+## Frontmatter fields
 
-Step 4.1
+### Required fields
 
-Step 4.2
+**nd-content-type**: Always `getting-started` for first-use guides.
 
-However, if your getting started guide does not involve many independent tasks, only add the logical steps. For example, you can  structure  a getting started guide to create a new project in Visual Studio as follows:
+**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-Step 1 Create a new project
+**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
-Step 2 Select a template type
+**title**: Use "Get started with {product or feature name}". Keep it under 60 characters.
 
-Step 3 Configure your new project
+- Good: "Get started with NGINX Agent"
+- Bad: "Getting started with NGINX Agent" or "How to get started with NGINX Agent"
 
-### Tips for writing steps in a getting started guide
+**description**: One sentence under 160 characters summarizing what the reader will accomplish. This text appears in search engine results, AI assistant citations, and doc portal previews. Write it as a complete sentence: "Deploy your first X and verify it is working" or "Connect X to Y and make your first API call."
 
-- Number the steps in the format {part}.{step} as it helps your users to easily identify and locate procedures in the getting started guide. Also, this helps in referencing a particular step in a lengthy getting started guide.
-- Start the heading with a verb and express the step/part headings as a complete thought. Don't use the *-ing* form of the verb because it is harder to translate. For example, you could use the heading **Connect to the VM instance** instead of **Connect**.   
-- For each step, provide some background information about the task so users know what they're about to do and why. For example, while selecting a template for your Visual Studio project, you can provide details on the purpose of choosing a template and the different types of templates available in Visual Studio. 
-- Remember to orient your users when walking them through each step. If they need to open a particular file or dialog to complete the task, provide that information first.
-- Provide examples of sample output such as return data, a message so that the users can validate that they performed the step correctly or not.
--  Use plain language and define the terminology of any technical term next to it.
-- Include one action in a step.
+**weight**: Controls the sort order within the section. Lower numbers appear first. Getting started guides typically have a lower weight than how-to guides so they appear first in navigation.
 
-:information_source: For additional tips on writing steps, see [Writing Procedural Steps](writing-tips.md#writing-procedural-steps) from The Good Docs Project.
+**toc**: Set to `true` to render an in-page table of contents.
 
-## About the "Next steps" section
+### AI enrichment fields (recommended)
 
-- Use this section to provide links to other tutorials/articles that the users can try on completing the getting started guide. 
-- Consider a logical connection from the current getting started guide that can act as a basis for your users’ next learning.  
-- (Optional) Provide links to relevant resources, like blogs, reference docs, videos, how-tos, and so on under a new heading **See Also**. 
+These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-## References
+**nd-keywords**: Comma-separated terms a reader might type to find this guide. Include the product name, feature names, the primary CLI command or action used in the guide, and common alternative phrasings such as "quickstart", "first steps", "introduction", or "hello world".
 
-* [What is a quickstart to you?](https://ffeathers.wordpress.com/2018/10/08/what-is-a-quickstart-to-you/) 
+**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+
+- Sentence 1: what the reader will do and what they will have at the end
+- Sentence 2: what the primary feature does or enables
+- Sentence 3 (optional): the audience, scope limits, or assumed knowledge
+
+**nd-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Getting started guides are typically audience `any` unless the product is role-specific.
+
+---
+
+## Overview section
+
+The Overview has three parts: an introductory paragraph, a parts navigation list, and an audience and assumed knowledge statement.
+
+**Introductory paragraph**: Write two to four sentences covering what the reader will do, what the primary feature does or enables, and what they will have when they finish. The Overview is the paragraph most likely to be surfaced verbatim by AI assistants — make every sentence independently meaningful. Do not start with "This guide explains how to" — that is redundant given the title. Lead with the action: "Use this guide to deploy your first X and verify it is working."
+
+**Parts navigation list**: List each part of the guide with an anchor link. This gives readers a scannable map of the guide before they begin, and helps AI systems understand the document structure. Always include the Verify section as the final item. Use this format:
+
+```markdown
+This guide walks you through:
+
+- [Part 1: {Phase name}](#part-1-phase-name)
+- [Part 2: {Phase name}](#part-2-phase-name)
+- [Verify the setup](#verify-the-setup)
+```
+
+Omit this list for short guides with a single part and no distinct phases.
+
+**Audience and assumed knowledge**: State who the guide is intended for and list two to three concepts the reader is expected to understand before starting. Link each concept to the relevant background documentation so readers who lack that knowledge can get it without leaving the guide. This block helps readers determine quickly whether the guide is right for them, and helps AI routing systems direct questions to the correct document. Use this format:
+
+```markdown
+It is intended for {audience}. It assumes that you have basic knowledge of:
+
+- {Concept 1}
+- {Concept 2}
+```
+
+Examples of good introductory paragraphs:
+
+- "Use this guide to connect NGINX Agent to NGINX One Console and confirm the instance appears in the console dashboard. NGINX Agent is a lightweight daemon that reports configuration state and metrics from an NGINX instance to NGINX One Console."
+- "Use this guide to make your first API call with the NGINX One API and inspect the response. The NGINX One API lets you manage NGINX instances, certificates, and configuration from a single control plane."
+
+---
+
+## Before you begin section
+
+List everything the reader must have in place before starting. Each item must be independently verifiable — the reader must be able to confirm they have it without beginning the procedure.
+
+By stating requirements upfront, you prevent users from getting halfway through and discovering they need to complete other documentation first.
+
+AI systems use this section to answer "what do I need before I start with X?" — be specific.
+
+- Good: "An NGINX One account. See [Create an NGINX One account](link)."
+- Bad: "Access to NGINX One."
+
+If there are more than five prerequisites, group them by type:
+
+- Accounts and credentials
+- Software and tools
+- Configuration or environment state
+
+You can also use this section to redirect users who are in the wrong place. For example: "If you are installing on Windows, see [Get started with NGINX Agent on Windows](link)."
+
+---
+
+## Install section
+
+This section is **conditional**. Include it only when:
+
+- Installation is part of the getting started experience and is not covered by a separate installation guide.
+- The installation is quick enough to complete within the getting started guide without inflating the total completion time above two hours.
+
+If a standalone installation guide exists for the product, omit this section and add a link to the installation guide as the first item in Before you begin.
+
+If you include an Install section, follow the same conventions as for an installation guide: numbered steps, outcome sentences after each command, and expected output where relevant. See `guide-installation-guide.md` for step-writing rules.
+
+---
+
+## Part and step structure
+
+Getting started guides are broken into **parts** and **steps**.
+
+A **part** is a logical phase of the getting started experience — for example, "Configure NGINX Agent", "Connect to NGINX One Console", "Send your first metric". Each part has its own H2 heading and contains one or more numbered steps.
+
+A **step** is a single, numbered action within a part.
+
+Use this structure when the getting started guide covers several distinct phases. If the guide is short and covers a single phase, you can use steps directly under a single H2 without a part structure.
+
+**Example structure for a multi-part guide:**
+
+```
+## Part 1: Configure NGINX Agent
+### Step 1.1: Open the configuration file
+### Step 1.2: Set the connection endpoint
+
+## Part 2: Connect to NGINX One Console
+### Step 2.1: Start NGINX Agent
+### Step 2.2: Confirm the connection
+
+## Part 3: Verify the setup
+```
+
+**Example structure for a single-phase guide:**
+
+```
+## Configure and connect NGINX Agent
+1. Open the configuration file.
+2. Set the connection endpoint.
+3. Start NGINX Agent.
+
+## Verify the setup
+```
+
+### Writing individual steps
+
+- Number all steps, even single-step tasks. Numbered steps are the most reliable structure for AI to extract procedural instructions.
+- Start each step with a verb.
+- Include one action per step. If a step involves opening a file and making a change, those are two steps.
+- Orient the user before the action. If the user needs to open a file or navigate to a screen, state that first.
+- After each code block or command, add one sentence describing what it does or what the reader should observe. This is the outcome sentence — the part AI assistants are most likely to surface in follow-up answers.
+- Provide sample output where it helps the user validate the step — for example, after a CLI command that returns a status message.
+- Use plain language. Define any technical term next to where you first use it.
+- For code samples, always include any required import or using statements, and add inline comments that explain what the code does.
+
+### Code block rules
+
+- Include the language tag on every fenced code block: `sh`, `yaml`, `json`, and so on.
+- Use a consistent placeholder format throughout the guide: `YOUR_API_KEY_HERE`, not `<API_KEY>` or `$API_KEY`.
+- If a command produces output the reader must verify, show a truncated sample of that output immediately after the code block.
+
+---
+
+## Verify section
+
+This section is required. It must give the reader a definitive, observable way to confirm they have completed the getting started guide successfully.
+
+A good verification step includes:
+
+- A command or UI action that produces readable output confirming the working state.
+- A sample of the expected output so the reader can compare against what they see.
+- One sentence summarizing what a successful result means — for example, "NGINX Agent is now connected to NGINX One Console and ready to report metrics."
+
+Without a verification step, readers cannot confirm they have succeeded. This undermines the purpose of the getting started guide and increases support volume.
+
+---
+
+## Next steps section
+
+This section is required. Use it to point readers toward logical next actions after completing the getting started guide.
+
+Structure the Next steps section as follows:
+
+1. **Recommended next guides** — two or three how-to guides or tutorials that extend what the reader just built. Choose links that follow naturally from the task they just completed.
+2. **(Optional) See also** — links to reference documentation, conceptual topics, blog posts, or videos that provide deeper context.
+
+Keep this section short. Two to five links is enough. The goal is to give the reader a clear next direction, not an exhaustive catalog of related documentation.
+
+AI systems use this section to build knowledge graphs between documents and to answer "what should I do after getting started with X?" Use the `ref` shortcode for internal links so they survive URL changes.

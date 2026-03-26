@@ -7,7 +7,7 @@ nd-product: INGRESS
 nd-docs: DOCS-596
 ---
 
-The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}).
+The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}).
 
 The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
@@ -15,7 +15,7 @@ This document is the reference documentation for the Policy resource. An example
 
 ## Before you begin
 
-Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}), which you need to create separately.
+Policies work together with [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you need to create separately.
 
 ## Policy Specification
 
@@ -34,20 +34,27 @@ spec:
 
 {{% table %}}
 
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | No |
-|``ingressClassName`` | Specifies which instance of NGINX Ingress Controller must handle the Policy resource. | ``string`` | No |
-|``rateLimit`` | The rate limit policy controls the rate of processing requests per a defined key. | [rateLimit](#ratelimit) | No |
-|``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | No |
-|``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | No |
-|``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | No |
-|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | No |
-|``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | No |
-|``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | No |
+|Field | Description | Type | Supported in VS/VSR | Supported in Ingress |
+| ---| ---| ---| --- | --- |
+|``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | Yes | Yes |
+|``rateLimit`` | The rate limit policy controls the rate of processing requests per a defined key. | [rateLimit](#ratelimit) | Yes | No |
+|``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | Yes | No |
+|``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | Yes | No |
+|``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | Yes | No |
+|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
+|``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
+|``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
+|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | Yes | No |
+|``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | Yes | No |
+|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | Yes | Yes |
 
 {{% /table %}}
+
+{{< call-out "note" >}}
+
+Policy resource support for Ingress objects using annotation [`nginx.org/policies`]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) was introduced in NGINX Ingress Controller v5.4.0.
+
+{{< /call-out >}}
 
 \* A policy must include exactly one policy.
 
@@ -872,6 +879,70 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 
 A VirtualServer/VirtualServerRoute can reference multiple cache policies. However, only one can be applied: every subsequent reference will be ignored.
 
+### CORS
+
+The CORS policy configures Cross-Origin Resource Sharing headers.
+
+{{< call-out "note" >}}The feature is implemented using the NGINX `add_header` directive.{{< /call-out >}}
+
+Below is an example of a CORS policy configuring all the available options:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: cors-policy
+spec:
+  cors:
+    allowOrigin:
+      - "https://test.example.com"
+      - "https://app.example.com"
+      - "https://admin.example.com"
+
+    allowMethods:
+      - "GET"
+      - "POST"
+      - "PUT"
+
+    allowHeaders:
+      - "Content-Type"
+      - "Authorization"
+      - "X-Requested-With"
+      - "X-API-Key"
+
+    allowCredentials: true
+
+    exposeHeaders:
+      - "X-Total-Count"
+      - "X-Page-Size"
+      - "X-RateLimit-Remaining"
+      - "X-RateLimit-Reset"
+
+    maxAge: 3600 
+    
+```
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| --- | ---| ---| --- |
+|``allowOrigin`` | AllowOrigin defines the origins that are allowed to make cross-origin requests. Can be exact domains, single wildcards, or `*` for all origins. Examples: ["https://example.com", "https://*.mydomain.com", "*"] Security: When allowCredentials is true, wildcard "*" is not allowed. The server must specify explicit origins for credentialed requests. |``array[string]`` | Yes |
+|``allowMethods`` | AllowMethods defines the HTTP methods that are allowed for cross-origin requests. | ``array[string]`` | No |
+|``allowHeaders`` | AllowHeaders defines the headers that are allowed in cross-origin requests. Common safe headers: ["Accept", "Accept-Language", "Content-Language", "Content-Type"] Custom headers: ["Authorization", "X-Requested-With", "X-Custom-Header"] |  ``array[string]`` | No |
+|``allowCredentials`` | AllowCredentials indicates whether the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether the actual request can be made using credentials. | ``boolean`` | No |
+|``exposeHeaders`` |  ExposeHeaders defines the headers that browsers are allowed to access. Use this field to expose additional custom headers to the browser. Example: ["X-Total-Count", "X-Page-Size", "X-RateLimit-Remaining"] Note: Set-Cookie headers cannot be exposed via CORS per official MDN specification. | ``array[string]`` | No |
+|``maxAge`` |  MaxAge defines how long (in seconds) the results of a preflight request can be cached. Default: 86400 (24 hours). | ``integer`` | No |
+
+{{% /table %}}
+
+{{< call-out "note" >}}
+If CORS is currently configured in deployments using `snippets` or `responseHeaders.add`, migrate over the same settings to the CORS policy and remove the duplicate configuration.
+{{< /call-out >}}
+
+#### CORS Merging Behavior
+
+A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However, only one can be applied: every subsequent reference will be ignored.
+
 ### WAF
 
 {{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
@@ -960,7 +1031,7 @@ For `kubectl get` and similar commands, you can also use the short name `pol` in
 
 ### Applying Policies
 
-You can apply policies to both VirtualServer and VirtualServerRoute resources. For example:
+You can apply policies to VirtualServer, VirtualServerRoute, and Ingress resources. For example:
 
 - VirtualServer:
 
@@ -1030,6 +1101,46 @@ You can apply policies to both VirtualServer and VirtualServerRoute resources. F
     Subroute policies of the same type override spec policies. In the example above, if the type of the policies `policy-1` (in the VirtualServer) and `policy-4` is `accessControl`, then for requests to `cafe.example.com/tea`, NGINX will apply `policy-4`. As with the VirtualServer, the overriding is enforced by NGINX.
 
     Subroute policies always override route policies no matter the types. For example, the policy `policy-2` in the VirtualServer route will be ignored for the subroute `/tea`, because the subroute has its own policies (in our case, only one policy `policy4`). If the subroute didn't have any policies, then the `policy-2` would be applied. This overriding is enforced by NGINX Ingress Controller -- the `location` context for the subroute will either have route policies or subroute policies, but not both.
+
+- Ingress:
+
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: cafe-ingress
+      annotations:
+        nginx.org/policies: "webapp-policy"
+    spec:
+      ingressClassName: nginx
+      tls:
+      - hosts:
+        - cafe.example.com
+        secretName: tls-secret
+      rules:
+      - host: cafe.example.com
+        http:
+          paths:
+          - path: /tea
+            pathType: Prefix
+            backend:
+              service:
+                name: tea-svc
+                port:
+                  number: 80
+          - path: /coffee
+            pathType: Prefix
+            backend:
+              service:
+                name: coffee-svc
+                port:
+                  number: 80
+    ```
+
+    For Ingress, you can apply policies:
+  * to a single Ingress
+  * to a master Ingress, where minion Ingresses inherit the policies
+  * to minion Ingresses, where minion policies override master policies
 
 ### Invalid Policies
 

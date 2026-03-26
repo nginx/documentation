@@ -157,7 +157,7 @@ To manage certificates securely, you should rotate encryption keys regularly or 
 
 To rotate the certificate encryption key:
 
-1. Open an SSH connection to the F5 NGINX Management Suite host.
+1. Open an SSH connection to the F5 NGINX Instance Manager host.
 2. Run the following command to stop the `nms` service:
 
       ```shell
