@@ -1,142 +1,139 @@
-# Coffee maker installation guide
-
-## Introduction
-
-This installation guide provides detailed instructions for setting up your new Nbeamex countertop coffee maker. Follow these steps to ensure a smooth installation and optimal performance.
-
-{Optional: Link to a demo video of the coffee maker in operation, or provide a sandbox environment for users to explore its features.}
+---
+nd-content-type: installation-guide
+nd-docs: DOCS-003
+nd-product: KITCHEN
+title: Install a drip coffee maker
+description: "Set up a drip coffee maker on a standard kitchen countertop and brew a verified first pot."
+weight: 100
+toc: true
+nd-keywords: "coffee maker, drip coffee, install, setup, carafe, filter basket, water reservoir, brew, countertop"
+nd-summary: >
+  Use this guide to install a drip coffee maker on a kitchen countertop and brew a working first pot.
+  A drip coffee maker automates hot water flow through ground coffee, producing a full carafe with
+  minimal manual effort. This guide covers countertop installation only; for built-in or under-cabinet
+  models, see the model-specific installation guide supplied with your unit.
+nd-audience: any
+---
 
 ## Overview
 
-{This section is optional.}
+Use this guide to install a drip coffee maker and confirm it is working with a first brew cycle. A drip coffee maker heats cold water and drips it through a filter basket containing ground coffee, collecting the brewed coffee in a carafe below. After completing this guide, the coffee maker will be positioned, connected, and verified ready for daily use.
 
-List the available versions of the coffee maker and link to their specific installation guides:
-
-| **Version**- | **Build**-      | **Release date**- | **Status**- |
-|--------------|-----------------|-------------------|-------------|
-| V2.0         | Latest model    | 01/04/2024        | Latest      |
-| V1.5         | Previous model  | 15/08/2023        | Stable      |
-
-{Briefly describe the outcome of the installation, such as the coffee maker being ready to brew or specific features being enabled.}
-
-## System requirements
-
-Ensure your kitchen has the following before starting the installation:
-
-- Adequate counter space
-- Proximity to an electrical outlet
-- Water supply for models with direct plumbing
+---
 
 ## Before you begin
 
-Before installing the Nbeamex coffee maker, make sure you have:
+Before you begin, ensure you have:
 
-- An appropriate location selected
-- All included components (water reservoir, filter basket, carafe)
-- Read through the safety instructions
+- **A drip coffee maker, unpacked and undamaged**: Remove all packaging, tape, and protective inserts before starting. Check the carafe, filter basket, and water reservoir for cracks or missing parts.
+- **A countertop surface near a grounded electrical outlet**: The surface must support the weight of the unit (typically 1–2 kg) and leave at least 15 cm of clearance above the unit for the lid to open. Do not use an extension cord.
+- **Fresh cold tap water**: The water reservoir requires cold water only. Hot water can damage the heating element.
+- **Paper filters sized for your model**: Filter size varies by model (No. 2, No. 4, or basket-style). Check the model number on the underside of the unit against the filter packaging before starting.
+- **Ground coffee**: Use a medium grind for drip brewing. Pre-ground coffee labeled "drip" or "filter" is suitable.
 
-## Installation steps
+If you are installing a single-serve pod coffee maker instead of a drip model, see [Install a single-serve pod coffee maker](../install-pod-coffee-maker.md).
 
-Follow these detailed steps to install your new coffee maker.
+---
 
-### Prepare the installation area
+## Position the coffee maker
 
-Ensure the area is clean and close to an outlet.
+Place the coffee maker on the countertop before connecting it to power.
 
-#### Clear the countertop
+1. Set the coffee maker on the countertop at least 15 cm from any wall or cabinet. The steam vent on top of the unit releases hot steam during brewing — clearance prevents heat damage to surrounding surfaces.
 
-Remove any items where the coffee maker will be placed.
+2. Confirm the power cord reaches the outlet without pulling taut. A taut cord is a trip hazard and can pull the unit off the counter.
 
-#### Measure the space
+3. Check that the carafe sits flat on the warming plate at the base of the unit. A poorly seated carafe will leak during brewing.
 
-Confirm the coffee maker fits in the designated area with adequate clearance.
+---
 
-### Set up the coffee maker
+## Install the filter and add coffee
 
-Prepare your coffee maker for its first use by ensuring it is properly assembled, clean, and ready for operation.
+1. Open the filter basket lid on the top of the unit. The lid is hinged and swings open towards you.
 
-#### Unbox the coffee maker
+2. Place a paper filter inside the filter basket. Press the filter firmly against the basket walls so it sits flat with no folded edges. A filter that collapses during brewing blocks water flow and causes overflow.
 
-Carefully remove the coffee maker from its packaging. Place the coffee maker and all accessories on a clean surface. Make sure to keep all packaging materials for recycling or appropriate disposal.
+3. Add ground coffee to the filter. Use 1 tablespoon (7 g) of ground coffee per 180 ml of water as a starting point. Adjust to taste in future brews.
 
-#### Wash the carafe and other removable parts
+---
 
-To remove any manufacturing residues, wash the carafe, filter basket, and any other removable components with warm, soapy water. Rinse them thoroughly with clean water and dry them before assembly.
+## Fill the water reservoir
 
-#### Assemble the coffee maker
+1. Remove the water reservoir lid or open the reservoir access panel, depending on your model. The reservoir is typically located at the back or side of the unit.
 
-Follow these steps to assemble your coffee maker:
+2. Pour cold tap water into the reservoir up to the desired cup marking on the side of the reservoir. Each marking corresponds to one standard cup (180 ml). Do not fill above the MAX line — overfilling causes water to overflow into the unit.
 
-- Insert the filter basket into its compartment.
-- Place the carafe on the warming plate.
-- Ensure any lids or movable parts are securely fastened.
+3. Replace the reservoir lid. A correctly seated lid clicks into place.
 
-#### Install the coffee maker on the countertop
+---
 
-Position the coffee maker on a stable, flat surface near a power outlet. Ensure there is sufficient space around the coffee maker for air circulation and easy access during use.
+## Connect to power and configure settings
 
-#### Plug in the coffee maker
+1. Plug the power cord into a grounded electrical outlet. The unit indicator light turns on, confirming the unit has power.
 
-Connect the coffee maker to a power source by plugging the power cord into a suitable electrical outlet. Make sure the cord is neatly arranged to avoid any tripping hazards and not in contact with water.
+2. (Optional) Set the brew strength selector to your preferred setting. Common options are Regular and Bold. Bold reduces water flow rate, increasing the time water is in contact with the grounds and producing a stronger cup.
 
-## Verify installation
+3. (Optional) Set the keep-warm temperature if your model supports it. The warming plate maintains the carafe temperature after brewing completes. Set it to Low to reduce the rate at which the coffee degrades on the warming plate.
 
-Run a water cycle without coffee to ensure the machine functions properly.
+---
 
-## Post installation
+## Verify the installation
 
-Register your coffee maker online to activate the warranty and receive updates.
+Run a water-only brew cycle before making coffee to flush any manufacturing residue from the internal components.
 
-### Configuration options
+1. Remove the filter and ground coffee from the filter basket. Leave the empty filter basket in place.
 
-Adjust settings such as brew strength and water temperature according to your preference.
+2. Fill the water reservoir to the 4-cup marking with fresh cold water.
 
-### Upgrade options
+3. Press the Brew button. The unit will begin heating water within 30 seconds. The indicator light changes from solid to blinking on most models to show the brew cycle is active.
 
-To keep your coffee maker performing at its best, upgrading the firmware is crucial. Follow these steps to upgrade the firmware:
+    A successful brew cycle produces a steady drip of clear water into the carafe and completes within 4 to 6 minutes. No unusual sounds, burning smells, or leaks should be present.
 
-1. **Check firmware version**: Before proceeding, ensure you know the current firmware version of your coffee maker. This information can usually be found in the settings menu under "About" or "System Info."
+4. Confirm the carafe contains approximately 720 ml of hot water when the cycle completes.
 
-2. **Download firmware update**: Visit the Nbeamex support website and navigate to the 'Downloads' section. Select the latest firmware update for your coffee maker model. Download the firmware file to your computer.
+    Expected result: the water is clear, the carafe is warm to the touch, and the warming plate indicator light is on.
 
-3. **Transfer firmware to coffee maker**: Connect the coffee maker to your computer using a USB cable, or use a Wi-Fi connection if your model supports it. Transfer the downloaded firmware file to the coffee maker's internal storage.
+5. Discard the water from the carafe. The coffee maker is now ready for use.
 
-4. **Initiate firmware upgrade**: Access the settings menu on your coffee maker and select the option to upgrade the firmware. Locate the firmware file you transferred and select it to begin the upgrade process.
-
-5. **Complete the upgrade**: The coffee maker will start updating its firmware, which may take a few minutes. Ensure not to turn off the coffee maker during this process. Once completed, the device will restart automatically.
-
-6. **Verify the firmware upgrade**: After the coffee maker restarts, check the firmware version to ensure the upgrade was successful.
-
-### Uninstallation options (preparing for return)
-
-If you need to return your coffee maker, follow these guidelines to ensure it is prepared safely and correctly:
-
-1. **Power off and unplug**: Make sure the coffee maker is turned off and unplugged from the electrical outlet. This is a crucial safety step to avoid any electrical hazards during handling.
-
-2. **Cool down**: Allow the coffee maker to cool completely if it has been used recently. This prevents any risk of burns when handling hot components.
-
-3. **Empty and clean**: Remove all contents from the coffee maker, such as water from the reservoir and coffee grounds from the filter. Clean the appliance thoroughly to ensure it is free of residues and odors. If the returned item is in poor condition, there may be  issues with your return.
-
-4. **Disassemble removable parts**: Take apart removable components, such as the carafe, filter basket, and any other detachable parts. Clean each piece individually.
-
-5. **Pack securely**: Repackage the coffee maker and all its components in the original packaging if available. If the original packaging is not available, use a sturdy box with sufficient padding to protect the appliance from impacts during transit. Ensure that all parts are securely packed to prevent movement and possible damage.
-
-6. **Include all accessories and manuals**: Make sure to include all original accessories, manuals, and other materials that came with the coffee maker. Missing parts can complicate the return process and may result in additional charges.
-
-7. **Secure the box and affix a return label**: Secure the box with packing tape and attach a return label to it. Then schedule a pickup with a courier or take the package to a nearby shipping center.
+---
 
 ## Troubleshooting
 
-If you encounter issues during installation:
+### Water drips slowly or the brew cycle takes longer than 8 minutes
 
-- **Problem**- Coffee maker won't turn on.
-- **Cause**- Not plugged in.
-- **Solution**- Check the power cord and outlet.
+**Symptom**: The brew cycle runs noticeably longer than usual, or water drips from the filter basket at a very slow rate.
 
-## Next steps
+**Cause**: Mineral scale has built up inside the water heating element or internal tubing, restricting water flow. This is common in areas with hard water.
 
-Explore our [Coffee Brewing Guide](#) to learn how to make the perfect cup of coffee.
+**Fix**: Run a descaling cycle using a coffee maker descaling solution or a 50/50 mix of white vinegar and water. See [Descale a drip coffee maker](../descale-coffee-maker.md) for step-by-step instructions.
 
-## Definition of terms
+---
 
-Provide definitions for terms used in the guide, such as "carafe" or "brew cycle."
+### Water leaks from the base of the unit during brewing
+
+**Symptom**: Water pools on the countertop under or around the coffee maker during a brew cycle.
+
+**Cause**: The carafe is not seated correctly on the warming plate, or the carafe lid is blocking the drip spout.
+
+**Fix**: Stop the brew cycle by pressing the Brew button. Remove the carafe, check that the carafe lid is fully open, and reseat the carafe on the warming plate. Make sure the carafe handle aligns with the front of the unit. Restart the brew cycle.
+
+---
+
+### The brew cycle does not start after pressing the Brew button
+
+**Symptom**: The Brew button is pressed but the unit does not begin heating and no water flows.
+
+**Cause**: The water reservoir is empty, the reservoir lid is not fully seated, or the filter basket lid is open.
+
+**Fix**: Check that the water reservoir contains water above the 1-cup marking. Press the reservoir lid down firmly until it clicks. Confirm the filter basket lid is fully closed. Press the Brew button again.
+
+---
+
+## References
+
+For more information, see:
+
+- [Clean a drip coffee maker](../clean-coffee-maker.md)
+- [Descale a drip coffee maker](../descale-coffee-maker.md)
+- [Brew pour-over coffee](../brew-pour-over-coffee.md)
+- [Coffee maker user manual](../reference/coffee-maker-manual.md)

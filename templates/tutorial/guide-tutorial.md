@@ -1,160 +1,219 @@
-# The tutorial template
+# Guide: How to write a tutorial
 
-The tutorial template includes:
+This guide explains how to complete `template-tutorial.md`. It covers what a tutorial is, when to write one, how to approach it before you start, and how to complete every field and section correctly.
 
-- Placeholder text that you can replace with your own text. This text is indicated in {curly braces}.
-- Writing instructions, also in {curly braces}.
+For a sample, see `example-tutorial.md`.
 
-## Why do I need tutorials?
+---
 
-Tutorials are integral to helping your users become acquainted with your product. They are learning-oriented and are usually focused on teaching users a specific skill, like debugging a JavaScript application. 
+## What is a tutorial?
 
-Tutorials are often confused with how-to guides because they do help users achieve a specific goal. However, how-to guides assume that your users have some experience with your product or are familiar with certain concepts. They also are usually focused on helping users complete a specific task, like how to add an email account to Microsoft Outlook. 
+A tutorial is a learning-oriented guide that gives users hands-on experience with your product. It teaches a specific skill or set of skills through a practical, end-to-end activity — not just a description of what the product does. By completing a tutorial, the user gains understanding they can apply in their own work.
 
-In comparison, tutorials give your users hands-on experience with your product so that they can understand key concepts about your product in a more practical context. Hands-on learning often helps learners gain a deeper understanding of the product by helping them see how they can use a tool to accomplish a task they care about. 
-The table below identifies the differences between the two.
+A tutorial assumes little to no prior knowledge of the product. It states all required tools, concepts, and configuration explicitly. Users who already know the product and need to complete a specific task should read a how-to guide instead.
 
-| Tutorials                                                                                                                                       | How-to                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Learning oriented                                                                                                                               | Task oriented                                                                                            |
-| Helps beginners or expert users learn a new feature, in a practical way.                                                                        | Helps an expert user accomplish a task or troubleshoot an issue.                                         |
-| Follows a carefully managed path, from the start to the end.                                                                                    | Aims for a successful result, and guides the user along the safest, surest way to the goal.              |
-| Eliminates any unexpected scenarios and provides users with a successful finish.                                                                | Alerts the user to the possibility of unexpected scenarios and provides guidance on how to deal with it. |
-| Assumes that users do not have any practical knowledge and must explicitly state any tools, file configurations, conceptual details, and so on. | Assumes that users have the practical knowledge of tools, file configurations, applications, and so on.  |
+Tutorials are often confused with how-to guides. The table below shows the key differences.
 
-## Helpful tips when writing your tutorial 
+| | Tutorial | How-to guide |
+|---|---|---|
+| **Orientation** | Learning-oriented: teaches a skill through hands-on practice. | Task-oriented: helps an experienced user complete a specific task. |
+| **Assumed knowledge** | Assumes little to no practical knowledge. States all tools, configuration, and concepts explicitly. | Assumes practical knowledge of the product and common tools. |
+| **Structure** | Follows a carefully managed path from start to finish. Eliminates unexpected scenarios and guarantees a successful result. | Guides the user along the safest path to a goal. Alerts users to possible unexpected scenarios and explains how to handle them. |
+| **Output** | The user gains a skill or understanding they did not have before. | The user completes a task or resolves an issue. |
 
-- Keep your tutorial focused. If needed, include links to other pieces of documentation that explain concepts or terms in more depth. Ideally, your tutorial should take 15 to 60 minutes to complete. 
-- Lengthy tutorials can overwhelm users. Consider condensing or removing steps or reevaluating the scope of the tutorial.
-- If users will copy and paste code samples, make sure they include the following:
-  - Any required `import` or `using` statements
-  - Code comments that explain what the code does 
+---
 
-## About the tutorial template 
+## Why write a tutorial?
 
-This tutorial can be used in one of two ways: 
-- For providing a walkthrough of a particular feature.
-- Walking users through completing a small project. 
+A well-written tutorial:
 
-Ideally, your users have already completed a quickstart or "getting started" tutorial and have a general understanding of your product before they begin your tutorial.  
+- Gives new users hands-on experience that builds genuine understanding of how the product works.
+- Motivates users to explore more advanced features by giving them early, guided success.
+- Reduces the time it takes for users to become productive with the product.
+- Provides AI assistants with structured, citable content that can be surfaced in response to "how do I learn to do X?" queries.
 
-### About the "Overview" section
+---
 
-The overview section is important, as it can motivate your users to begin their learning journey with your product and help set them up for success. There are three topics you should cover in this section: learning objectives, intended audience, and any prerequisite background knowledge. 
+## Before you start writing
 
-#### Learning objectives
+Before writing, identify:
 
-One of the first things users want to know when they begin a tutorial is, "What will I be able to do? What knowledge will I gain by completing this tutorial?" Well-written learning objectives can help to answer these questions. **Learning objectives*- describe the specific skills or knowledge users will be able to demonstrate after completing your tutorial.
+- **The skill the reader will gain.** A tutorial teaches one skill or a tightly related set of skills. State this as learning objectives in the Overview — specific, observable things the reader will be able to do after completing the tutorial. Write the learning objectives before planning the content so they guide what is in scope and what is not.
+- **The audience.** Who is this tutorial for? What do they already know? What technical level do they have? A tutorial for senior database administrators looks very different from one for developers encountering your product for the first time.
+- **The scope.** A tutorial should take between 15 and 60 minutes to complete. If it takes longer, the scope is too wide. Split the tutorial or reduce the scope.
+- **The activity.** Tutorials are hands-on. Decide what the user will actually do — build something, configure something, run something — and plan the steps around that activity. The activity should demonstrate the skill in a realistic context.
+- **What the user will have at the end.** Every tutorial should end with a concrete, verifiable result — a working output the user can see, run, or inspect.
 
-Before you start writing your tutorial, develop some learning objectives. After you identify *what- skills and knowledge you want users to gain from your tutorial, you can start planning out the content itself, using the learning objectives to help you decide what topics are in scope, and which ones are out of scope. 
+---
 
-Learning objectives usually start off with, "By the end of this tutorial, you will be able to..." and are followed by a phrase that starts with a verb like *design*, *assess*, or *develop*. If your tutorial includes more than one learning objective, consider presenting them as a bulleted list.
+## Best practices
 
-Here are some examples:
+- **Teach one skill per tutorial.** A tutorial focused on one skill is easier to complete and easier to maintain. Link to other tutorials for related skills rather than combining them.
+- **Guarantee success.** Unlike how-to guides, tutorials eliminate unexpected scenarios. Every step must work exactly as written on a clean environment. If a step might behave differently in some circumstances, scope the tutorial to the environment where it will always succeed.
+- **Test your tutorial end to end.** Run through every step on a clean environment that matches the one the reader will use. This is non-negotiable for tutorials because the reader is learning, not troubleshooting. If you cannot test it yourself, have a developer or subject matter expert run through it with you and record the session.
+- **Re-test after every notable product release.** Tutorials become inaccurate after product changes. Re-test the entire tutorial whenever a significant release affects the feature it covers.
+- **Keep scope tight.** Aim for a maximum of seven primary steps per task section. If the tutorial requires more, split it into multiple task sections or multiple tutorials.
+- **Explain why, not just what.** Unlike how-to guides, tutorials should briefly explain why each significant step is taken. This is what turns a procedure into a learning experience.
+- **Make code samples complete and self-contained.** Every code sample must include all required import or using statements and inline comments that explain what the code does. Readers will copy and paste these samples — they must work without modification.
+- **Minimise links within the tutorial.** Keep readers on a single page. Provide links to background reading and next steps at the end of the tutorial, not inline.
 
-- By the end of this tutorial, you'll be able to define components in React.
-- By the end of this tutorial, you'll be able to perform common tasks in Google Drive, such as viewing, editing, and saving documents.
-- By the end of this tutorial, you'll be able to create a private channel in Slack.
+---
 
-If you need help with creating learning objectives, consider using Arizona State University's [Learning Objectives Builder tool](https://teachonline.asu.edu/objectives-builder/).
+## AI-ready writing principles
 
-#### Intended audience and background knowledge
+AI assistants and human readers parse documentation differently from search engines. Apply these rules in every section of the tutorial.
 
-Before you begin writing your tutorial, you need to think about who you're writing for. The audience will influence the content you include in the tutorial. 
+**1. One idea per sentence.** Long compound sentences confuse AI extractors.
 
-It's important to mention the intended audience and any prerequisite knowledge in the overview section. This information helps users determine if the content is appropriate for them. 
+- Bad: "Open the config file, which is located at /etc/app/config.yml, and add your API key, which you can find in the console."
+- Good: "Open `/etc/app/config.yml`. Add your API key to the `api_key` field. You can find your API key in the console under Settings."
 
-Here are some questions to think about as you plan your tutorial:
+**2. Use exact names consistently.** If the product is "NGINX Agent", never shorten it to "the agent" mid-tutorial. Inconsistency breaks AI entity resolution and confuses readers who arrive mid-page from search.
 
-- Is the tutorial intended for users looking to become more familiar with your product? Or is it for users who are already familiar with your product and are looking to build upon the skills they already have?
-- Is the tutorial intended for users with a certain level of technical knowledge? What technical knowledge should they know? 
-- Is it for a certain demographic, like senior-level database administrators who routinely complete certain tasks?
+**3. State the outcome of each step.** After every command or code block, add one sentence describing what it does or what the reader should observe. AI assistants surface these outcome sentences when answering follow-up questions.
 
-### About the "Background" section
+**4. Avoid implicit pronouns.** Replace "it", "this", and "they" with the actual noun.
 
-The purpose of the background section is to summarize any necessary context for your users before they start your tutorial. 
+- Bad: "Run it to apply the configuration."
+- Good: "Run NGINX Agent to apply the configuration."
 
-If you're writing a tutorial that's focused on learning how a particular feature works, you might describe that feature here. For example, a tutorial around using Microsoft Visio's templates to build flowcharts might start with an explanation of how flowcharts are used or what flowchart shapes represent. 
+**5. Keep code blocks self-contained.** Every code block must be runnable in isolation or clearly note what must be substituted. Use `ALL_CAPS_PLACEHOLDERS` for values the reader must supply — for example, `YOUR_API_KEY_HERE`.
 
-If you're writing a tutorial where you provide users with a starter project, you could describe the project hierarchy here. For example, a tutorial around building a website with HTML, CSS, and JavaScript might explain how the folders are organized, what code is provided for the user, or what they need to add.
+**6. Use parallel structure in lists.** Learning objectives, summary points, and prerequisite lists must all follow the same grammatical pattern. Learning objectives always start with a verb: "Configure...", "Build...", "Connect...".
 
-### About the "Before you begin" section
+**7. Mark optional content explicitly.** Use "(Optional)" at the start of any step, section, or field that not every reader will need.
 
-This section helps readers avoid getting halfway through a tutorial and then discovering they don't have something needed to complete. You can use list prerequisites for completing the tutorial, such as operating systems, languages, package managers, or software.
+---
 
-### About the "Steps" section
+## Section requirements
 
-The steps section is where you describe what the user needs to do to complete the tutorial. The template organizes steps in the following way:
+| Section | Required? |
+|---|---|
+| Frontmatter | Required |
+| Overview | Required |
+| Before you begin | Required |
+| At least one task section | Required |
+| Summary | Required |
+| Next steps | Required |
+| Background | Optional — include when context genuinely aids understanding before the reader starts |
+| Additional task sections | Optional — add when the tutorial covers distinct phases |
 
+---
 
-1. {Write the command here. Start with a verb.}
+## Frontmatter fields
 
-   {Optional: Explanatory text}
+### Required fields
 
-   {Optional: Code sample or screenshot that helps your users complete this step}
+**nd-content-type**: Always `tutorial` for tutorial content.
 
-   {Optional: Result}
+**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
+**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
-The first element is the step itself, like "Enter a name for your new repository." When writing steps, keep these tips in mind:
+**title**: Use a verb phrase that describes what the reader will learn to do. Keep it under 60 characters.
 
-- Start with an imperative verb. For example, "connect", "set up", or "arrange." Don't use the *-ing- form of the verb because it is harder to translate.
-- Express steps as a complete thought. Instead of saying, "Set up access", you might say, "Set up access to a Cloud Storage bucket."
+- Good: "Build a pour-over coffee setup"
+- Bad: "How to build a pour-over coffee setup" or "Building a pour-over coffee setup"
 
-Next, you may choose to add some additional information about the step. Continuing with the example, you might provide some best practices for creating memorable repository names.
+**description**: One sentence under 160 characters summarizing what skill the reader will gain. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
-Optionally, you can add a code sample or screenshot after the explanatory text, depending on the type of tutorial you're writing. Screenshots are a great way to show specific parts of the screen you are referring to in a step. 
+**weight**: Controls the sort order within the section. Lower numbers appear first.
 
-If you're including code samples in your repository, make sure to add comments to your code to help learners understand what each part of the code does. Additionally, make sure your code samples work, as learners will copy and paste your code to use in their own projects.
+**toc**: Set to `true` to render an in-page table of contents.
 
-The last, and optional, element in a step, is the result. Continuing with the example, you might describe what happens after a user clicks the "Create repository" button.
+### AI enrichment fields (recommended)
 
-Here is an example step:
+These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-1. Enter a name for your new repository.   
+**nd-keywords**: Comma-separated terms a reader might type to find this tutorial. Include the product name, the skill being taught, and common alternative phrasings such as "learn", "tutorial", "beginner", or "step by step".
 
-   Good repository names are short and self-explanatory. Avoid repository names with three or more words.
-   
-   After you click "Create repository", GitHub creates your repository and the main page for the repository is displayed.
+**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
-If needed, you can add substeps below a primary step. Make sure to indent the substep one tab space over if you're using Markdown:
+- Sentence 1: what skill the reader will learn and what they will build or produce
+- Sentence 2: why that skill matters or what it enables
+- Sentence 3 (optional): the intended audience and any assumed knowledge
 
-1. Create a new pull request.
+**nd-audience**: Who this tutorial is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tutorials are typically `any` or a specific role depending on the skill being taught.
 
-   a. Navigate to the main page of your repository. 
+---
 
-   b. Under your repository name, click **Pull requests**.
+## Overview section
 
-      By default, all open pull requests are displayed.
+The Overview has three parts: a learning objectives list, an audience and assumed knowledge statement, and an introductory sentence.
 
-   c. ....
+**Introductory sentence**: Write one sentence stating what the reader will learn and do. Lead with the activity: "In this tutorial, you will configure X and use it to do Y." Do not start with "This tutorial explains how to."
 
-If you're including code samples in your steps, make sure they are also indented correctly:
+**Audience and assumed knowledge**: State who the tutorial is intended for and list two to three concepts the reader is expected to understand before starting. Link each concept to the relevant background documentation.
 
-1. Set your Git username for your repository. 
-   
-   You can change the name that is associated with your Git commits using the `git config` command.
+**Learning objectives**: List two to five specific, observable skills the reader will be able to demonstrate after completing the tutorial. Each objective must start with an action verb: "Configure", "Build", "Connect", "Identify", "Deploy". Do not use vague verbs like "understand" or "learn about" — these cannot be observed or verified.
 
-   ```bash
-   git config user.name "Dakota Everson"
-   ```
+- Good: "By the end of this tutorial, you will be able to calibrate a burr grinder for medium-coarse extraction."
+- Bad: "By the end of this tutorial, you will understand coffee grinding."
 
-#### Tips for writing steps
+Write the learning objectives before planning the tutorial content. They define what is in scope and what is not.
 
-Here are some more tips to follow when writing procedural steps:
+---
 
-- Remember to orient your users when guiding them through each step. If they need to open a particular file or dialog to complete the task, provide that information first.
-- Avoid writing procedures that are more than seven primary steps long.
-- Aim for no more than four substeps in any primary step.
+## Background section
 
-### About the "Summary" section
+This section is optional. Include it only when context genuinely helps the reader before they start — for example, when the tutorial involves a concept or project structure that would be confusing without explanation.
 
-In the summary section, you can list the knowledge and skills your users have gained by completing your tutorial. Try to avoid repeating the learning objectives you listed in the overview section word for word. 
+Do not use this section to promote the product or repeat content from the Overview. Keep it to two to four sentences or a short list. If the background material is substantial, link to a standalone concept topic instead and keep this section brief.
 
-For example, if one of your learning objectives is "define components in React", you might specify *what- your users learned about defining components in React. Did they learn how to build different types of components? Or did they learn about all required functions needed to build a component? Think about some of the most important skills they gained and list them here. 
+---
 
-Listing the actual skills and knowledge your users gained can also help to motivate your users to continue using your product, or try other tutorials. 
+## Before you begin section
 
-### About the "Next Steps" section
+List everything the reader must have in place before starting. Each item must be independently verifiable — the reader must be able to confirm they have it without beginning the tutorial.
 
-Use this section to include links to other tutorials, such as tutorials that allow users to learn about related features. You can also include links to relevant resources, like articles, blogs, or videos.
+By stating requirements upfront, you prevent users from getting halfway through and discovering they need to stop and set something up.
+
+AI systems use this section to answer "what do I need before I do X?" — be specific.
+
+- Good: "A burr grinder set to a medium-coarse setting. See [Calibrate a burr grinder](link)."
+- Bad: "A coffee grinder."
+
+---
+
+## Task sections
+
+Name each task section after what the reader does, using a bare infinitive verb phrase: "Grind the coffee", not "Grinding the coffee" or "How to grind the coffee". The bare infinitive is easier to translate and clearer to scan.
+
+Add a separate H2 task section when the tutorial covers distinct phases — for example, "Prepare the equipment", then "Brew the coffee", then "Evaluate the result".
+
+### Writing individual steps
+
+- Number all steps, even single-step tasks.
+- Start each step with a verb.
+- Include one action per step.
+- Orient the user before the action. If the user needs to open a file or navigate to a screen, state that first.
+- After each code block or command, add one sentence describing what it does or what the reader should observe.
+- After significant steps, briefly explain *why* the step is done — this is what distinguishes a tutorial from a how-to guide.
+- Provide sample output where it helps the reader validate the step.
+- Use plain language. Define any technical term next to where you first use it.
+- For code samples, always include any required import or using statements and inline comments explaining what the code does.
+
+### Code block rules
+
+- Include the language tag on every fenced code block: `sh`, `yaml`, `json`, and so on.
+- Use a consistent placeholder format: `YOUR_API_KEY_HERE`, not `<API_KEY>` or `$API_KEY`.
+- If a command produces output the reader must verify, show a truncated sample of that output immediately after the code block.
+
+---
+
+## Summary section
+
+This section is required. Restate what the reader learned — but do not copy the learning objectives from the Overview word for word. Instead, describe the specific things they did and what those actions demonstrated or produced.
+
+- Good: "You calibrated a burr grinder to a medium-coarse setting, brewed a 250 ml pour-over, and adjusted the grind based on the extraction time."
+- Bad: "You learned how to make pour-over coffee."
+
+A specific, concrete summary reinforces learning and motivates readers to continue to the next tutorial.
+
+---
+
+## Next steps section
+
+This section is required. Link to two to four logical next steps — other tutorials, how-to guides, or reference articles that build on what the reader just learned.
+
+Write one sentence after each link describing what it covers and how it relates to the current tutorial. This helps readers choose their next step and helps AI systems build knowledge graphs between documents.
