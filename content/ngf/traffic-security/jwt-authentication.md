@@ -4,9 +4,14 @@ weight: 500
 toc: true
 nd-content-type: how-to
 nd-product: FABRIC
+nd-description: How to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+nd-summary: >
+  NGINX Gateway Fabric supports JWT authentication via the AuthenticationFilter CRD, validating JSON Web Tokens in incoming requests using JSON Web Key Sets (JWKS).
+  Two JWKS source types are supported: File, where the JWKS is stored in a Kubernetes Secret, and Remote, where NGINX Plus fetches the JWKS from an HTTPS endpoint at runtime.
+  JWT authentication requires NGINX Plus and is not supported with open-source NGINX.
 ---
 
-This page describes how to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).
+This guide describes how to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).
 
 JWT authentication secures applications and APIs by validating JSON Web Tokens in incoming requests. Only requests with valid JWTs are allowed access.
 
@@ -185,29 +190,14 @@ For testing purposes, the following example shows a simple JWKS with a single RS
 
 ### Create a JWKS Secret and AuthenticationFilter
 
-Deploy a Secret containing your JWKS and the AuthenticationFilter by running the following YAML with `kubectl apply`:
+Deploy a Secret containing your JWKS and the AuthenticationFilter by running these `kubectl` commands:
+
+```
+kubectl create secret generic jwks-secret --from-file=auth=jwks.json
+```
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: jwks-secret
-type: Opaque
-stringData:
-  auth: |
-    {
-      "keys": [
-        {
-          "kty": "RSA",
-          "kid": "test-key",
-          "use": "sig",
-          "n": "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx4cbbfAAtVT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMstn64tZ_2W-5JsGY4Hc5n9yBXArwl93lqt7_RN5w6Cf0h4QyQ5v-65YGjQR0_FDW2QvzqY368QQMicAtaSqzs8KJZgnYb9c7d0zgdAZHzu6qMQvRL5hajrn1n91CbOpbISD08qNLyrdkt-bFTWhAI4vMQFh6WeZu0fM4lFd2NcRwr3XPksINHaQ-G_xBniIqbw0Ls1jF44-csFCur-kEgU8awapJzKnqDKgw",
-          "e": "AQAB"
-        }
-      ]
-    }
----
 apiVersion: gateway.nginx.org/v1alpha1
 kind: AuthenticationFilter
 metadata:
@@ -635,6 +625,39 @@ spec:
       - name: tea
         port: 80
 EOF
+```
+
+
+Verify the HTTPRoute is accepted with `kubectl describe`:
+
+```shell
+kubectl describe httproute cafe-routes | grep "Status:" -A10
+```
+
+```text
+Status:
+  Parents:
+    Conditions:
+      Last Transition Time:  2026-03-10T15:18:55Z
+      Message:               The Route is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-03-10T15:18:55Z
+      Message:               All references are resolved
+      Observed Generation:   1
+      Reason:                ResolvedRefs
+      Status:                True
+      Type:                  ResolvedRefs
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+    Parent Ref:
+      Group:         gateway.networking.k8s.io
+      Kind:          Gateway
+      Name:          cafe-gateway
+      Namespace:     default
+      Section Name:  http
+Events:              <none>
 ```
 
 ### Obtain a JWT
