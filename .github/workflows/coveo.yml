@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload token for ${{matrix.env_name}}
         if: ${{ steps.generate-token.outcome == 'success' }}
-        uses: actions/upload-artifact@v6.0.0
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: ${{matrix.env_name}}
           path: "./"
@@ -138,13 +138,13 @@ jobs:
     needs: generate-coveo-search-token
     steps:
       - name: Download Coveo search token
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
 
       - name: View files
         run: ls -R
 
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2
         with:
           creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
 
