@@ -1,184 +1,235 @@
-# Release Notes Template Guide
+# Guide: How to write release notes
 
- Before using the template, read this template guide for information about how to complete each section.
+This guide explains how to complete `template-release-notes.md`. It covers what release notes are, when to write them, how to approach them before you start, and how to complete every section correctly.
 
-## Introduction
+For a sample, see `example-release-notes.md`.
 
-Release notes communicate new features, improvements, bug fixes, and known issues to stakeholders such as customers, Technical Support, Sales, Marketing, and users.
-This template guide and template are intended for customer-facing release notes, however, you can adapt it for internal release notes as needed.
+---
 
-Stakeholders with both technical and non-technical backgrounds must understand what’s changed, and why those changes are important to the user.
+## What are release notes?
 
-Release notes are usually published at the same time as a product or feature release.
+Release notes communicate new features, changes to existing behavior, resolved issues, and known issues to the people who use your product. They are published at the same time as each product release.
 
-## Why do I need release notes?
+Release notes are written for a mixed audience of technical and non-technical stakeholders — including customers, support teams, sales, and marketing. Every entry must be understandable to someone who is not a developer and who was not involved in building the change.
 
-Release notes are important for the following reasons:
-- They indicate transparency. Frequent release note updates show that you actively maintain the product and care about your stakeholders.
-- They reduce support tickets. They keep your stakeholders informed about current releases, especially new features and known issues.
-- They help your stakeholders assess impacts that might occur during upgrades.
-- They provide a plain-language record of your software’s evolution. Stakeholders don’t have to read development-heavy changelogs to find out what’s changed and why it matters to them.
+Release notes are often confused with changelogs. The table below shows the key differences.
 
-The following table describes the differences between changelogs and release notes:
+| | Release notes | Changelog |
+|---|---|---|
+| **Audience** | Customers and non-technical stakeholders | Developers and engineering teams |
+| **Language** | Plain language; explains what changed and why it matters | Technical language; describes code changes and their scope |
+| **Content** | New features, behavior changes, resolved issues, security updates — with links to full documentation | Commit messages, merge request references, issue numbers, contributor names |
+| **Effort** | Requires research to understand user impact and benefit | Light effort; derived from commit messages and version control |
+| **Written by** | Technical writer or product manager | Software developer |
 
-| Release Notes                                                                                                                                                                              | Changelogs                                                                                                                                                                                                                 |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Customer focused                                                                                                                                                                           | Developer focused                                                                                                                                                                                                          |
-| Use plain language.                                                                                                                                                                        | Use technical language.                                                                                                                                                                                                    |
-| Typically requires research to understand the features, functionality, and user experience.                                                                                                | Typically a light effort as it is closely related to developers’ current work.                                                                                                                                             |
-| Describes the changes to features and functionality. <ul><li>Can include media to enhance descriptions.</li><li> Often includes links to the user documentation for more information.</li> | A reverse chronological list that describes code changes and their impact on the features. <ul><li>Can include links to merge requests, issue numbers, or commits.</li><li>Can list contributors to the release.</li></ul> |
-| Includes what changed and why.                                                                                                                                                             | Links to the developer who made the change and specific issues.                                                                                                                                                            |
-| Typically written by a Technical Writer or Product Manager.                                                                                                                                | Typically written by a Software Developer derived from commit messages to a version control system.                                                                                                                        |
+---
 
-## About this template
+## Why write release notes?
 
-The template includes the following sections common to release notes:
+Well-written release notes:
 
-- [Release Notes version](#release-notes-version): Include a document version number and a release date.
-- [High-level summary](#high-level-summary-optional) (optional): One to two sentences that highlight the most important items in the release notes.
-- [What's new](#about-the-new-features-section-optional) (optional): Describes new features and functionality.
-- [Changes to default behavior](#about-the-changes-to-default-behavior-section-optional) (optional): Describes changes to default behavior.
-- [Resolved issues](#about-the-resolved-issues-section-optional) (oprional): Lists the issues resolved in this release, if applicable.
-- [Known issues](#about-the-known-issues-section-optional): Provides a link to a list of known issues.
-- [Security updates](#about-the-security-updates-section-optional) (optional): Describes security updates in the release, if applicable.
+- Demonstrate that the product is actively maintained and that its builders care about the user experience.
+- Reduce support tickets by informing stakeholders about new features, behavior changes, and known issues before they encounter them.
+- Help stakeholders assess the impact of upgrading to a new version.
+- Provide a plain-language record of the product's evolution that does not require reading developer-facing changelogs.
+- Give AI assistants structured, citable entries that can be surfaced in response to queries such as "what changed in version X?" or "was issue Y fixed?"
 
-## Release notes best practices
-- Write the release notes in a positive and friendly tone.
-- Write in the second person. For example “Use your menu to access the window.”
-- Be clear, concise, and consistent.
-- Use plain language.
-- Write in the present tense, except when you describe bug fixes; use the past tense for bug fixes.
+---
 
-## Release Notes version
-Each main section of your release notes should correspond to a product release number.
-This helps stakeholders identify which release the notes are describing.
-We use [semantic versioning](https://semver.org/) to number our releases.
-This is usually shown as three numbers, separated by periods.
-For example, 1.3.2.
+## Before you start writing
 
-If the product publishes release notes off a release cycle, include the date in the subtitle, in `Month Day, Year` format.
+Before writing, identify:
 
+- **The release version and date.** Use semantic versioning (MAJOR.MINOR.PATCH, for example `2.16.0`). The date should be the public release date in `Month Day, Year` format.
+- **What changed.** Work with the engineering and product teams to get a complete list of features, behavior changes, resolved issues, and security updates in the release. Do not rely on commit messages alone — they are written for developers, not customers.
+- **What matters to the user.** For each change, ask: "Why does this matter to a customer? What can they now do that they could not do before, or what problem does this fix for them?" If a change has no user-facing impact, it does not belong in release notes.
+- **Whether an upgrade guide is needed.** If the release requires users to take action before or during upgrading — such as backing up data, running a migration script, or changing configuration — include an upgrade guide section. A missing upgrade notice is one of the most damaging omissions in release notes.
+- **Which sections apply to this release.** Not every release has new features, behavior changes, and security updates. Include only the sections that apply. Omit empty sections entirely.
 
-## High-level summary (optional)
+---
 
-A high-level summary can help stakeholders quickly understand the most important items in your release notes, especially if your notes are long.
-Keep the summary short.
+## Best practices
 
-## About the "New features" section (optional)
+- **Write for the customer, not the engineer.** Every entry must answer "what does this mean for me?" from the customer's point of view. Translate technical changes into user impact.
+- **Write in the present tense for new features and changes.** Use the past tense only for resolved issues.
+  - New feature: "You can now filter instances by region."
+  - Resolved issue: "Fixed an issue where the dashboard failed to load when more than 50 instances were connected."
+- **Write in the second person.** Address the reader as "you". For example: "You can now export reports as CSV."
+- **Be concise.** Each entry needs a bold title and two to four sentences of description. Link to the full documentation for details. The release notes entry is a summary, not a tutorial.
+- **Link to full documentation.** Every new feature and behavior change entry must link to the documentation that covers it in full. The release notes entry is not the source of truth — the documentation is.
+- **List the most impactful items first.** Within each section, list items in order of impact to the user, not in order of development completion.
+- **Use consistent formatting.** Every entry in a section must follow the same structure: bold title, then description. Do not mix formats within a section.
+- **Do not disclose security issues prematurely.** Security updates must not be published until an investigation is complete and a fix is available. Include the standard security disclosure callout in every release that contains security updates.
 
-List the most important features first.
-What is important depends on your organization and stakeholder priorities.
-Consider the features from the stakeholder’s point of view, and list new features that have the most impact on their experience first.
+---
 
-When you write about new product features:
+## AI-ready writing principles
 
-1. Use an engaging, concise title to summarize the feature.
-1. Describe how the feature benefits the stakeholder. You might ask yourself, “Why is this valuable? How does it benefit the business?”
-1. Link to the feature’s full documentation in the description. The description in this section  includes only a brief description. Link to the full documentation to provide a complete description, which becomes the source of truth.
+AI assistants and human readers parse documentation differently from search engines. Apply these rules in every section of the release notes.
 
-The following is an example of a new feature:
+**1. Use exact product and feature names consistently.** If the feature is called "Instance Manager", never shorten it to "the manager" or "IM" in the same document. Inconsistency breaks AI entity resolution.
 
-- **Find Your Recent Transactions with Personal Log**
+**2. One idea per sentence.** Long compound sentences confuse AI extractors.
 
-    Use Personal Log to quickly access your most recent transactions.
-   When speaking with a customer, you can select the last five transactions that you accessed from a menu.
-   You can also perform a more extensive search to find specific transactions you accessed in your queues.
-   See [Personal Log](http://example.com) for more information.
+- Bad: "We have added a new feature that allows you to filter instances by region and also export the filtered results as a CSV file."
+- Good: "You can now filter instances by region. You can also export filtered results as a CSV file."
 
-The following formulas might be helpful when writing new features:
+**3. Include the CVE identifier in the entry text for security updates, not only in a link.** AI assistants extract CVE numbers most reliably when they appear as plain text in the entry, not only as link text.
 
-**Formula 1:**
+**4. State issue identifiers in plain text as well as in links.** Write the issue number in the entry text so it is findable by search and AI systems even when the link cannot be followed.
 
-- [ ] You can now {describe what you can do with the feature}.
-- [ ] This means you can {benefit}.
-- [ ] See {link to topic name} for more details.
+- Good: "Fixed an issue where the dashboard failed to load (issue 1234)."
+- Bad: "Fixed an issue where the dashboard failed to load ([details](https://example.com/issues/1234))."
 
-    **If we were to apply this formula, using the previous example, it reads as follows:**
+**5. Avoid implicit pronouns.** Replace "it", "this", and "they" with the actual feature or product name.
 
-    You can now quickly access your most recent transactions.
-    This means you can select the last five transactions that you accessed from a menu when speaking with a customer. You can also perform a more extensive search to find specific transactions you accessed in your queues.
-    See [Personal Log](http://example.com)  for more details.
+- Bad: "It now supports multi-region deployments."
+- Good: "NGINX Agent now supports multi-region deployments."
 
-**Formula 2:**
+---
 
-- [ ] {The application} now provides {feature}...
-- [ ] …{benefit}.
-- [ ] See {link} for more details.
+## Section requirements
 
-    **If we were to apply this formula, using the previous example, it reads as follows:**
+| Section | Required? |
+|---|---|
+| Version number and date | Required |
+| What's new | Conditional — include when the release contains new features |
+| Changes to default behavior | Conditional — include when the release changes existing behavior |
+| Resolved issues | Conditional — include when the release fixes reported issues |
+| Known issues | Required — always link to the known issues page |
+| Upgrade guide | Conditional — include when users must take action before or during upgrading |
+| Security updates | Conditional — include when the release contains security fixes |
+| High-level summary | Optional — include for large releases with many changes |
 
-    Software X now provides a Personal Log, so you can quickly access your most recent transactions.
-    See [Personal Log](http://example.com) for more details.
+---
 
+## Frontmatter fields
 
-## About the "Changes to default behavior" section (optional)
+### Required fields
 
-Changes to default behavior are changes that affect the way the software behaves, but are not new features or bug fixes.
-For example, if a default setting changes, you must communicate this to stakeholders.
+**nd-content-type**: Always `release-notes` for release note pages.
 
-When you write about changes to default behavior:
+**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-1. Use an engaging, concise title to summarize the change.
-1. Describe how the change benefits the stakeholder. You might ask yourself, “Why is this valuable? How does it benefit the business?”
-1. Link to the feature’s full documentation in the description. The description in this section includes only a brief description. Link to the full documentation to provide a complete description, which becomes the source of truth.
+**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
-The following is an example of a change to default behavior:
+**title**: Use `"{Product Name} release notes"`. Keep it under 60 characters. This page covers all versions of the product, so do not include a version number in the title.
 
-- **New Default Setting for Notifications**
+- Good: "Nbeamex Coffee release notes"
+- Bad: "Nbeamex Coffee 2.16.0 release notes" or "Release notes for Nbeamex Coffee"
 
-    Notifications are now enabled by default.
-    See [Notifications](http://example.com) for more information.
+**description**: One sentence under 160 characters summarizing what this page covers. Include the product name and the types of changes documented. This text appears in search engine results, AI assistant citations, and doc portal previews.
 
-The following formulas might be helpful when writing about changes to default behavior:
+- Good: "New features, behavior changes, and resolved issues for Nbeamex Coffee 2.16.0."
+- Bad: "Release notes."
 
-**Formula 1:**
+**weight**: Controls the sort order within the section. Lower numbers appear first.
 
-- [ ] The {application or feature} now…
-- [ ] …{describe the change}.
-- [ ] See {link} for more information.
+**toc**: Set to `true` to render an in-page table of contents. Release notes pages almost always benefit from a table of contents because they accumulate multiple version sections over time.
 
-    **If we were to apply this formula, using the previous example, it reads as follows:**
+### AI enrichment fields (recommended)
 
-    The Notifications feature now enables notifications by default. This means you will receive notifications for all new transactions.
-    See [Notifications](http://example.com) for more information.
+These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-## About the "Resolved issues" section (optional)
+**nd-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, version numbers covered, and the types of changes in the most recent release — for example, feature names, resolved issue identifiers, and CVE numbers.
 
-Resolved issues describe what was fixed and why it was useful to the stakeholder.
-For example, if new fields are added to a database, you must find out how this helps stakeholders and communicate that information to them.
+**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
-When you write about resolved issues:
+- Sentence 1: what product and version range these release notes cover
+- Sentence 2: the most significant change or theme of the release
+- Sentence 3 (optional): any scope limits, such as platform or edition
 
-1. Add the issue name (from the Known issues page).
-1. Do not describe the issue or the fix.
-1. Include the issue number and link to it in the Known issues list.
+**nd-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Release notes are typically `any` because they are read by a mixed technical and non-technical audience.
 
-The following is an example of a resolved issues:
+---
 
-- Broken links in the user interface ([12345](http://example.com/known-issues/#12345))
+## Version number and date
 
-## About the "Known issues" section (optional)
+Each release gets its own H2 heading with the version number, followed by the release date on its own line.
 
-The Known issues section provides a link to a list of known issues. We usually don't list known issues in the release notes because they are already documented in the Known issues list.
+Use semantic versioning: three numbers separated by periods (MAJOR.MINOR.PATCH). For example: `2.16.0`.
 
-## About the "Security updates" section (optional)
+Use the `Month Day, Year` date format. For example: `April 18, 2024`.
 
-The Security updates section lists resolved security updates in the release, if applicable.
+---
 
-When you write about security updates:
+## High-level summary
 
-1. Add the security issue name.
-1. Add the CVE number.
-1. Describe the security issue and how it was resolved.
-1. Link to the CVE number.
+This section is optional. Include it for large releases where a short orientation helps readers decide which sections to read.
 
-The following is an example of a security update:
+Write one to three sentences summarizing the most important changes in the release. Do not repeat information that is fully described in the sections below — the summary should orient the reader, not replace the entries.
 
-- **Secure bag vulnerability CVE-2024-9999**
+---
 
-    A vulnerability in the coffee bag ([CVE-2024-9999](https://coffee-sec.org/CVE-2024-9999)) could allow an attacker to steal the coffee beans. This issue has been resolved in this release.
+## Upgrade guide section
 
+Include this section when the release requires users to take action before, during, or after upgrading. Examples include: running a migration script, changing a configuration file format, removing a deprecated setting, or installing a new dependency.
 
-## Additional Resources
+State the required action clearly as a numbered step or a direct instruction. Link to the full upgrade documentation if a standalone upgrade guide exists.
 
-See “[How to write meaningful release notes](https://drive.google.com/file/d/1q5GVhFEcUFzYxSkeOvzAyN9Gh0xPbAI-/view)” for additional ideas.
+If no user action is required to upgrade, omit this section entirely.
+
+---
+
+## What's new section
+
+List new features and enhancements introduced in this release. List the most impactful items first.
+
+For each entry:
+
+1. Write a bold title that summarizes the feature in one concise phrase.
+2. Write two to four sentences describing what the feature does and how it benefits the user. Answer: "What can I now do that I could not do before?"
+3. Link to the full documentation for the feature.
+
+**Writing formulas**
+
+Use one of these formulas as a starting point:
+
+- "You can now {describe the new capability}. {Describe the benefit}. See [{doc title}]({link}) for more information."
+- "{Product} now {provides / supports / includes} {feature}. {Describe the benefit}. See [{doc title}]({link}) for more information."
+
+---
+
+## Changes to default behavior section
+
+List changes that affect how the product behaves for existing users — without being new features or bug fixes. Examples include: a default setting changing its value, a deprecated option being removed, or a built-in timeout being adjusted.
+
+These entries are important because they can cause unexpected behavior for users who upgrade without reading the release notes. Write them clearly and always link to the documentation that describes the new behavior.
+
+For each entry:
+
+1. Write a bold title that summarizes the change.
+2. Write one to three sentences describing what changed, what the previous behavior was, and what the new behavior is.
+3. Link to the documentation that covers the new behavior.
+
+---
+
+## Resolved issues section
+
+List the issues fixed in this release. Each entry must include the issue identifier, linked to the issue in the issue tracker.
+
+For each entry, write one sentence in the past tense describing what was broken and what was fixed. Do not describe the technical cause or the fix implementation — focus on the user-facing symptom that is now resolved.
+
+Format: "Fixed an issue where {symptom} ({issue ID with link})."
+
+---
+
+## Known issues section
+
+This section is always required. Do not list individual known issues inline — link to the standalone known issues page instead. Maintaining a separate known issues page keeps the release notes from becoming out of date as issues are resolved.
+
+Use this standard text, updated with the correct link: "You can find the list of known issues in the [Known issues]({link}) topic."
+
+---
+
+## Security updates section
+
+List security fixes included in this release. Always include the standard security disclosure callout before the list of updates.
+
+For each entry:
+
+1. Write a bold title that includes the vulnerability name and CVE identifier.
+2. Write two to three sentences describing the vulnerability, its potential impact, and that it has been resolved in this release.
+3. Link the CVE identifier to the official CVE record.
+
+Do not publish security updates until an investigation is complete and a fix is available and released.
