@@ -5,8 +5,6 @@ nd-files:
 - content/ngf/traffic-security/jwt-authenication.md
 ---
 
-### Generate certificates
-
 The following steps use `cert-manager` to issue a local Certificate Authority (CA) and sign certificates for both Keycloak and NGINX. `cert-manager` creates the required Kubernetes Secrets directly so no manual secret creation is needed for TLS.
 
 Create a self-signed `ClusterIssuer` to bootstrap the CA, then issue the CA certificate and create a second `ClusterIssuer` backed by it:

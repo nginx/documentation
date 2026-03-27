@@ -395,6 +395,8 @@ Request ID: c7eb0509303de1c160cb7e7d2ac1d99f
 
 Use remote JWT authentication when your identity provider (IdP) exposes a JWKS endpoint. NGINX Plus fetches the JWKS from the URI at runtime using an internal subrequest, so keys are always up to date without requiring a Secret or NGINX reload.
 
+### Generate certificates
+
 {{< include "/ngf/keycloak-certs.md" >}}
 
 ### Configure Keycloak
