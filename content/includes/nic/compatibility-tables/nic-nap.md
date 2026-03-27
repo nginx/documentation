@@ -10,15 +10,14 @@ nd-files:
 NGINX Ingress Controller supports the following versions of [F5 WAF for NGINX](https://docs.nginx.com/waf/):
 
 {{< table >}}
-
 | NIC Version         | NAP-WAF Version | Config Manager | Enforcer |
 | ------------------- | --------------- | -------------- | -------- |
-| {{< nic-version >}} | 36+{{< appprotect-compiler-version>}}       | {{< nic-waf-release-version >}}          | {{< nic-waf-release-version >}}   |
+| {{< nic-version >}} | 36+5.607 | 5.12.0 | 5.12.0 |
+| 5.4.1 | 36+5.607.0 | 5.12.0 | 5.12.0 |
 | 5.2.1               | 35+5.527.0      | 5.9.0          | 5.9.0    |
 | 5.1.1               | 35+5.498        | 5.8.0          | 5.8.0    |
 | 5.0.0               | 34+5.342        | 5.6.0          | 5.6.0    |
 | 4.0.1               | 33+5.264        | 5.5.0          | 5.5.0    |
 | 3.7.2               | 32+5.1          | 5.3.0          | 5.3.0    |
 | 3.6.2               | 32+5.48         | 5.2.0          | 5.2.0    |
-
 {{< /table >}}
