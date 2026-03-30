@@ -1,6175 +1,5234 @@
-<!--- GENERATED FILE - DO NOT MODIFY --->
-
-# Declarative Policy
-
-```eval_rst
-.. _policy:
-```
-
-
-### policy
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `access-profiles <policy/access-profiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``applicationLanguage``
-
-     - string
-     - The character encoding for the application. The character encoding determines how the policy processes the character sets. The default is utf-8.
-     - * big5
-       * euc-jp
-       * euc-kr
-       * gb18030
-       * gb2312
-       * gbk
-       * iso-8859-1
-       * iso-8859-10
-       * iso-8859-13
-       * iso-8859-15
-       * iso-8859-16
-       * iso-8859-2
-       * iso-8859-3
-       * iso-8859-4
-       * iso-8859-5
-       * iso-8859-6
-       * iso-8859-7
-       * iso-8859-8
-       * iso-8859-9
-       * koi8-r
-       * shift_jis
-       * utf-8
-       * windows-1250
-       * windows-1251
-       * windows-1252
-       * windows-1253
-       * windows-1255
-       * windows-1256
-       * windows-1257
-       * windows-874
-   * - `blocking-settings <policy/blocking-settings_>`_
-
-     - object
-     - This section defines policy block/alarm behaviors.
-     - 
-   * - `bot-defense <policy/bot-defense_>`_
-
-     - object
-     - This section defines the properties of the bot defense feature.
-     - 
-   * - `browser-definitions <policy/browser-definitions_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `brute-force-attack-preventions <policy/brute-force-attack-preventions_>`_
-
-     - array of objects
-     - Defines configuration for Brute Force Protection feature.
-       There is default configuration (one with bruteForceProtectionForAllLoginPages flag and without url) that applies to all configured login URLs unless there exists another brute force configuration for a specific login page.
-     - 
-   * - ``caseInsensitive``
-
-     - boolean
-     - Specifies whether the security policy treats microservice URLs, file types, URLs, and parameters as case sensitive or not. When this setting is enabled, the system stores these security policy elements in lowercase in the security policy configuration.
-     - 
-   * - `character-sets <policy/character-sets_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `cookie-settings <policy/cookie-settings_>`_
-
-     - object
-     - The maximum length of a cookie header name and value that the system processes. The system calculates and enforces a cookie header length based on the sum of the length of the cookie header name and value.
-     - 
-   * - `cookies <policy/cookies_>`_
-
-     - array of objects
-     - This section defines Cookie entities for your policy.
-       You can specify the cookies that you want to allow, and the ones you want to enforce in a security policy:
-       
-         - **Allowed cookies**: The system allows these cookies and clients can change them.
-         - **Enforced cookies**: The system enforces the cookies in the list (not allowing clients to change them) and allows clients to change all others.
-     - 
-   * - `csrf-protection <policy/csrf-protection_>`_
-
-     - object
-     - 
-     - 
-   * - `csrf-urls <policy/csrf-urls_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `data-guard <policy/data-guard_>`_
-
-     - object
-     - Data Guard feature can prevent responses from exposing sensitive information by masking the data.
-     - 
-   * - ``description``
-
-     - string
-     - Specifies the description of the policy.
-     - 
-   * - `disallowed-geolocations <policy/disallowed-geolocations_>`_
-
-     - array of objects
-     - Specifies a list of countries that may not access the web application.
-     - 
-   * - ``enforcementMode``
-
-     - string
-     - How the system processes a request that triggers a security policy violation.
-         - **Blocking:** When the enforcement mode is set to blocking, traffic is blocked if it causes a violation (configured for blocking).
-         - **Transparent:** When the enforcement mode is set to transparent, traffic is not blocked even if a violation is triggered.
-     - * blocking
-       * transparent
-   * - `enforcer-settings <policy/enforcer-settings_>`_
-
-     - object
-     - This section contains all enforcer settings.
-     - 
-   * - `filetypes <policy/filetypes_>`_
-
-     - array of objects
-     - File types are categorization of the URLs in the request by the extension appearing past the last dot at the end of the URL. For example, the file type of /index.php
-       is "php". Other well known file types are html, aspx, png, jpeg and many more. A special case is the "empty" file type called "no-ext" meaning, no extension in which the URL has no dot at its last segment as in /foo_no_dot
-       
-       File types usually imply the expected content type in the response. For example, html and php return HTML content, while jpeg, png and gif return images, each in its respective format. File types also imply the server technology deployed for rendering the page. For example, php (PHP), aspx (ASP) and many others.
-       
-       The security policy uses file types for several purposes:
-       1. Ability to define which file types are allowed and which are disallowed. By including the pure wildcard "\*" file type and a list of disallowed file types you have a file type denylist.
-       By having a list of explicit file type *without* the pure wildcard "\*" you have a file type allowlist.
-       2. Each file type implies maximum *length restrictions* for the requests of that file type. The checked lengths are per the URL, Query String, total request length, and payload (POST data).
-       3. Each file type determines whether to detect *response signatures* for requests of that file type. Typically, one would never check signatures for image file types.
-     - 
-   * - ``fullPath``
-
-     - string
-     - The full name of the policy including partition.
-     - 
-   * - `general <policy/general_>`_
-
-     - object
-     - This section includes several advanced policy configuration settings.
-     - 
-   * - `graphql-profiles <policy/graphql-profiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `grpc-profiles <policy/grpc-profiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `header-settings <policy/header-settings_>`_
-
-     - object
-     - The maximum length of an HTTP header name and value that the system processes. The system calculates and enforces the HTTP header length based on the sum of the length of the HTTP header name and value.
-     - 
-   * - `headers <policy/headers_>`_
-
-     - array of objects
-     - This section defines Header entities for your policy.
-     - 
-   * - `host-names <policy/host-names_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `idl-files <policy/idl-files_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `ip-address-lists <policy/ip-address-lists_>`_
-
-     - array of objects
-     - An IP address list is a list of IP addresses that you want the system to treat in a specific way for a security policy.
-     - 
-   * - `ip-intelligence <policy/ip-intelligence_>`_
-
-     - object
-     - 
-     - 
-   * - `json-profiles <policy/json-profiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `json-validation-files <policy/json-validation-files_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `login-enforcement <policy/login-enforcement_>`_
-
-     - object
-     - 
-     - 
-   * - `login-pages <policy/login-pages_>`_
-
-     - array of objects
-     - A login page is a URL in a web application that requests must pass through to get to the authenticated URLs. Use login pages, for example, to prevent forceful browsing of restricted parts of the web application, by defining access permissions for users. Login pages also allow session tracking of user sessions.
-     - 
-   * - `methods <policy/methods_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - The unique user-given name of the policy. Policy names cannot contain spaces or special characters. Allowed characters are a-z, A-Z, 0-9, dot, dash (-), colon (:) and underscore (_).
-     - 
-   * - `open-api-files <policy/open-api-files_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `override-rules <policy/override-rules_>`_
-
-     - array of objects
-     - This section defines policy override rules.
-     - 
-   * - `parameters <policy/parameters_>`_
-
-     - array of objects
-     - This section defines parameters that the security policy permits in requests.
-     - 
-   * - ``performStaging``
-
-     - boolean
-     - Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.
-     - 
-   * - `response-pages <policy/response-pages_>`_
-
-     - array of objects
-     - The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, <%TS.request.ID()%>, that the system replaces with a support ID number when it issues the page.
-     - 
-   * - `sensitive-parameters <policy/sensitive-parameters_>`_
-
-     - array of objects
-     - This section defines sensitive parameters.
-       The contents of these parameters are not visible in logs nor in the user interfaces.
-       Instead of actual values a string of asterisks is shown for these parameters.
-       Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request.
-       A parameter name of "password" is always defined as sensitive by default.
-     - 
-   * - `server-technologies <policy/server-technologies_>`_
-
-     - array of objects
-     - The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.
-     - 
-   * - `signature-requirements <policy/signature-requirements_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `signature-sets <policy/signature-sets_>`_
-
-     - array of objects
-     - Defines behavior when signatures found within a signature-set are detected in a request. Settings are cumulative, so if a signature is found in any set with block enabled, that signature will have block enabled.
-     - 
-   * - `signature-settings <policy/signature-settings_>`_
-
-     - object
-     - 
-     - 
-   * - `signatures <policy/signatures_>`_
-
-     - array of objects
-     - This section defines the properties of a signature on the policy.
-     - 
-   * - `template <policy/template_>`_
-
-     - object
-     - Specifies the template to populate the default attributes of a new policy.
-     - 
-   * - `threat-campaigns <policy/threat-campaigns_>`_
-
-     - array of objects
-     - This section defines the enforcement state for the threat campaigns in the security policy.
-     - 
-   * - `urls <policy/urls_>`_
-
-     - array of objects
-     - In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.
-     - 
-   * - ``wafEngineVersion``
-
-     - string
-     - 
-     - 
-   * - `xml-profiles <policy/xml-profiles_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/open-api-files:
-```
-
-
-##### open-api-files
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``link``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/template:
-```
-
-
-##### template
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``derivedFrom``
-
-     - string
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - Specifies the name of the template used for the policy creation.
-     - * POLICY_TEMPLATE_NGINX_BASE
-```
-
----
-
-
-```eval_rst
-.. _policy/access-profiles:
-```
-
-
-### access-profiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``description``
-
-     - string
-     - 
-     - 
-   * - ``enforceMaximumLength``
-
-     - boolean
-     - 
-     - 
-   * - ``enforceValidityPeriod``
-
-     - boolean
-     - 
-     - 
-   * - `keyFiles <policy/access-profiles/keyFiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `location <policy/access-profiles/location_>`_
-
-     - object
-     - 
-     - 
-   * - ``maximumLength``
-
-     - integer
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``type``
-
-     - string
-     - 
-     - * jwt
-   * - `usernameExtraction <policy/access-profiles/usernameExtraction_>`_
-
-     - object
-     - 
-     - 
-   * - ``verifyDigitalSignature``
-
-     - boolean
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/access-profiles/keyFiles:
-```
-
-
-##### keyFiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``contents``
-
-     - string
-     - 
-     - 
-   * - ``fileName``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/access-profiles/location:
-```
-
-
-##### location
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``in``
-
-     - string
-     - 
-     - * header
-       * query
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/access-profiles/usernameExtraction:
-```
-
-
-##### usernameExtraction
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``claimPropertyName``
-
-     - string
-     - 
-     - 
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - ``isMandatory``
-
-     - boolean
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/blocking-settings:
-```
-
-
-### blocking-settings
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `evasions <policy/blocking-settings_evasions_>`_
-
-     - array of objects
-     - This section defines behavior of 'Evasion technique detected' (VIOL_EVASION) violation sub-violations.
-       User can control which sub-violations are enabled (alarmed/blocked).
-       Behavior of sub-violations depends on the block/alarm settings of 'Evasion technique detected' violation,
-       defined in /policy/blocking-settings/violations section:
-        - If both alarm and block are disabled - enable flag becomes irrelevant, since there will be no block/alarm for all sub-violations
-     - 
-   * - `http-protocols <policy/blocking-settings_http-protocols_>`_
-
-     - array of objects
-     - This section defines behavior of 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation sub-violations.
-       User can control which sub-violations are enabled (alarmed/blocked).
-       Behavior of sub-violations depends on the block/alarm settings of 'HTTP protocol compliance failed' violation,
-        - If both alarm and block are disabled - enable flag becomes irrelevant, since there will be no block/alarm for all sub-violations
-     - 
-   * - `violations <policy/blocking-settings_violations_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense:
-```
-
-
-### bot-defense
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `mitigations <policy/bot-defense_mitigations_>`_
-
-     - object
-     - This section defines the mitigation to each class or signature.
-     - 
-   * - `settings <policy/bot-defense_settings_>`_
-
-     - object
-     - This section contains all bot defense settings.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/browser-definitions:
-```
-
-
-### browser-definitions
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isUserDefined``
-
-     - boolean
-     - 
-     - 
-   * - ``matchRegex``
-
-     - string
-     - 
-     - 
-   * - ``matchString``
-
-     - string
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/brute-force-attack-preventions:
-```
-
-
-### brute-force-attack-preventions
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``bruteForceProtectionForAllLoginPages``
-
-     - boolean
-     - When enabled, enables Brute Force Protection for all configured login URLs.
-       When disabled, only brute force configurations for specific login pages are applied in case they exist.
-     - 
-   * - `loginAttemptsFromTheSameIp <policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp_>`_
-
-     - object
-     - Specifies configuration for detecting brute force attacks from IP Address.
-     - 
-   * - `loginAttemptsFromTheSameUser <policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser_>`_
-
-     - object
-     - Specifies configuration for detecting brute force attacks for Username.
-     - 
-   * - ``reEnableLoginAfter``
-
-     - integer
-       minimum: 60
-       maximum: 90000
-     - Defines prevention period (measured in seconds) for source-based brute force attacks.
-     - 
-   * - ``sourceBasedProtectionDetectionPeriod``
-
-     - integer
-       minimum: 60
-       maximum: 90000
-     - Defines detection period (measured in seconds) for source-based brute force attacks.
-     - 
-   * - `url <policy/urls_>`_
-
-     - object
-     - Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.
-     - 
-```
-
-```eval_rst
-.. _policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp:
-```
-
-
-##### loginAttemptsFromTheSameIp
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``action``
-
-     - string
-     - Specifies action that is applied when defined threshold is reached.
-       
-         - **alarm**: The system will log the login attempt.
-         - **alarm-and-blocking-page**: The system will log the login attempt, block the request and send the Blocking page.
-         - **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.
-         - **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.
-         - **alarm-and-drop**: The system will log the login attempt and reset the TCP connection.
-         - **alarm-and-honeypot-page**: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.
-     - * alarm
-       * alarm-and-blocking-page
-   * - ``enabled``
-
-     - boolean
-     - When enabled, the system counts failed login attempts from IP Address.
-     - 
-   * - ``threshold``
-
-     - integer
-       minimum: 1
-       maximum: 1000
-     - After configured threshold (number of failed login attempts from IP Address) defined action will be applied for the next login attempt.
-     - 
-```
-
-```eval_rst
-.. _policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser:
-```
-
-
-##### loginAttemptsFromTheSameUser
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``action``
-
-     - string
-     - Specifies action that is applied when defined threshold is reached.
-       
-         - **alarm**: The system will log the login attempt.
-         - **alarm-and-captcha**: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.
-         - **alarm-and-client-side-integrity**: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.
-     - * alarm
-   * - ``enabled``
-
-     - boolean
-     - When enabled, the system counts failed login attempts for each Username.
-     - 
-   * - ``threshold``
-
-     - integer
-       minimum: 1
-       maximum: 100
-     - After configured threshold (number of failed login attempts for each Username) defined action will be applied for the next login attempt.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/character-sets:
-```
-
-
-### character-sets
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `characterSet <policy/character-sets/characterSet_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``characterSetType``
-
-     - string
-     - 
-     - * header
-       * url
-       * parameter-name
-       * parameter-value
-       * xml-content
-       * json-content
-```
-
-```eval_rst
-.. _policy/character-sets/characterSet:
-```
-
-
-##### characterSet
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - 
-     - 
-   * - ``metachar``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/cookie-settings:
-```
-
-
-### cookie-settings
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``maximumCookieHeaderLength``
-
-     - 
-       * integer
-         minimum: 1
-         maximum: 65536
-       * string
-     - Maximum Cookie Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or *any* are set, then no restriction on the cookie header length is applied.
-     - * Integer values
-       * "any"
-```
-
----
-
-
-```eval_rst
-.. _policy/cookies:
-```
-
-
-### cookies
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``accessibleOnlyThroughTheHttpProtocol``
-
-     - boolean
-     - Specifies, when true, that the system adds the HttpOnly attribute to the domain cookie's response header.
-       This is done to expose the cookie to only HTTP and HTTPS entities.
-       This prevents the cookie from being modified, or intercepted even if it is not modified,
-       by unwanted third parties that run scripts on the web page.
-       
-       **Notes**:
-         - The system does not validate that the cookie has not been modified or intercepted.
-         - The feature covers all security policy cookies, both enforced and allowed, explicit and wildcard.
-     - 
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - Specifies, when true, that you want attack signatures and threat campaigns to be detected on this cookie
-       and possibly override the security policy settings of an attack signature or threat campaign specifically for this cookie.
-       After you enable this setting, the system displays a list of attack signatures and threat campaigns.
-     - 
-   * - ``decodeValueAsBase64``
-
-     - string
-     - Specifies whether the the system should detect or require values to be Base64 encoded:
-       
-        - **disabled**: the value will not be decoded as Base64 content.
-        - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.
-        - **required**: the value must be decoded as Base64, and security checks will be performed on the decoded value.
-       
-        **Note**: This setting is only relevant if the Cookie Enforcement Type is set to Allowed.
-     - * disabled
-       * enabled
-       * required
-   * - ``enforcementType``
-
-     - string
-     - Specifies how the system treats this cookie.
-       
-         - **enforced**: Specifies that according to the security policy, this cookie may not be changed by the client.
-         - **allowed**: Specifies that according to the security policy, this cookie may be changed by the client. The system ignores this cookie.
-     - * allow
-       * enforce
-   * - ``insertSameSiteAttribute``
-
-     - string
-     - The introduction of the SameSite http attribute (defined in [RFC6265bis](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00))
-       allows you to declare if your cookie should be restricted to a first-party or same-site context.
-       Introducing the SameSite attribute on a cookie provides three different ways of controlling same-site vs. cross-site cookie sending:
-       
-         - **strict**: Cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar.
-         - **lax**: Cookies will be sent with top level navigation
-         - **none-value**: Cookies will be sent in a third-party context.
-     - * lax
-       * none
-       * none-value
-       * strict
-   * - ``maskValueInLogs``
-
-     - boolean
-     - Specifies, when true, that the cookie's value will be masked in the request log.
-     - 
-   * - ``name``
-
-     - string
-     - Specifies the cookie name as appearing in the http cookie header.
-       The cookie name length is limited to 500 characters.
-       
-       Names can be one of the following according to the *type* attribute:
-       
-         - **explicit**: Specifies that the cookie has a specific name and is not a wildcard entity. Type the name of a cookie exactly as you expect it to appear in the request.
-         - **wildcard**: Specifies that any cookie that matches the listed wildcard expression should be treated according to the wildcard attributes. Type a wildcard expression that matches the expected cookie. For example, the wildcard expression cookie_12* of type Enforced specifies that the security policy should not allow modified domain cookies for all cookies which match cookie_12*.
-       
-       The syntax for wildcard entities is based on shell-style wildcard characters.
-       The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.
-       
-         - **\***: Matches all characters
-         - **?**: Matches any single character
-         - **[abcde]**: Matches exactly one of the characters listed
-         - **[!abcde]**: Matches any character not listed
-         - **[a-e]**: Matches exactly one character in the range
-         - **[!a-e]**: Matches any character not in the range
-       
-       **Note**: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.
-     - 
-   * - ``securedOverHttpsConnection``
-
-     - boolean
-     - Specifies, when true, that the system adds the Secure attribute to the domain cookie's response header.
-       This is done to ensure that the cookies are returned to the server only over SSL (by using the HTTPS protocol).
-       This prevents the cookie from being intercepted, but does not guarantee its integrity.
-       
-       **Notes**:
-         - The system does not validate that the cookie was received over SSL.
-         - The feature covers all security policy cookies, both enforced and allowed, explicit and wildcard.
-     - 
-   * - `signatureOverrides <policy/cookies/signatureOverrides_>`_
-
-     - array of objects
-     - Array of signature overrides.
-       Specifies attack signatures whose security policy settings are overridden for this cookie,
-       and which action the security policy takes when it discovers a request for this cookie that matches these attack signatures.
-     - 
-   * - ``type``
-
-     - string
-     - Determines the type of the **name** attribute.
-       Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.
-     - * explicit
-       * wildcard
-   * - ``wildcardOrder``
-
-     - integer
-     - Specifies the order index for wildcard cookies matching.
-       Wildcard cookies with lower wildcard order will get checked for a match prior to cookies with higher wildcard order.
-     - 
-```
-
-```eval_rst
-.. _policy/cookies/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - Specifies, when true, that the overridden signature is enforced
-     - 
-   * - ``name``
-
-     - string
-     - The signature name which, along with the signature tag, identifies the signature.
-     - 
-   * - ``signatureId``
-
-     - integer
-     - The signature ID which identifies the signature.
-     - 
-   * - ``tag``
-
-     - string
-     - The signature tag which, along with the signature name, identifies the signature.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/csrf-protection:
-```
-
-
-### csrf-protection
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - ``expirationTimeInSeconds``
-
-     - 
-       * integer
-       * string
-     - 
-     - * Integer values
-       * "disabled"
-   * - ``sslOnly``
-
-     - boolean
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/csrf-urls:
-```
-
-
-### csrf-urls
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enforcementAction``
-
-     - string
-     - 
-     - * none
-       * verify-origin
-   * - ``method``
-
-     - string
-     - 
-     - * GET
-       * POST
-       * any
-   * - ``url``
-
-     - string
-     - 
-     - 
-   * - ``wildcardOrder``
-
-     - integer
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/data-guard:
-```
-
-
-### data-guard
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``creditCardNumbers``
-
-     - boolean
-     - If *true* the system considers credit card numbers as sensitive data.
-     - 
-   * - ``customPatterns``
-
-     - boolean
-     - If *true* the system recognizes customized patterns as sensitive data.
-     - 
-   * - ``customPatternsList``
-
-     - array of strings
-     - List of PCRE regular expressions that specify the sensitive data patterns.
-     - 
-   * - ``enabled``
-
-     - boolean
-     - If *true* the system protects sensitive data.
-     - 
-   * - ``enforcementMode``
-
-     - string
-     - Specifies the URLs for which the system enforces data guard protection.
-       
-         - **ignore-urls-in-list**: Specifies that the system enforces data guard protection for all URLs except for those URLs in the Enforcement Mode list.
-         - **enforce-urls-in-list**: Specifies that the system enforces data guard protection only for those URLs in the Enforcement Mode list
-     - * enforce-urls-in-list
-       * ignore-urls-in-list
-   * - ``enforcementUrls``
-
-     - array of strings
-     - List of URLS to be enforced based on enforcement mode of data guard protection.
-     - 
-   * - ``firstCustomCharactersToExpose``
-
-     - integer
-       minimum: 0
-       maximum: 255
-     - Specifies the number of first alphanumeric characters in Custom patterns that are exposed.
-     - 
-   * - ``lastCustomCharactersToExpose``
-
-     - integer
-       minimum: 0
-       maximum: 255
-     - Specifies the number of last alphanumeric characters in Custom patterns that are exposed.
-     - 
-   * - ``maskData``
-
-     - boolean
-     - If *true* the system intercepts the returned responses to mask sensitive data.
-     - 
-   * - ``usSocialSecurityNumbers``
-
-     - boolean
-     - If *true* the system considers U.S Social Security numbers as sensitive data.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/disallowed-geolocations:
-```
-
-
-### disallowed-geolocations
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``countryCode``
-
-     - string
-     - Specifies the ISO country code of the selected country.
-     - 
-   * - ``countryName``
-
-     - string
-     - Specifies the name of the country.
-     - * Afghanistan
-       * Aland Islands
-       * Albania
-       * Algeria
-       * American Samoa
-       * Andorra
-       * Angola
-       * Anguilla
-       * Anonymous Proxy
-       * Antarctica
-       * Antigua and Barbuda
-       * Argentina
-       * Armenia
-       * Aruba
-       * Australia
-       * Austria
-       * Azerbaijan
-       * Bahamas
-       * Bahrain
-       * Bangladesh
-       * Barbados
-       * Belarus
-       * Belgium
-       * Belize
-       * Benin
-       * Bermuda
-       * Bhutan
-       * Bolivia
-       * Bosnia and Herzegovina
-       * Botswana
-       * Bouvet Island
-       * Brazil
-       * British Indian Ocean Territory
-       * Brunei Darussalam
-       * Bulgaria
-       * Burkina Faso
-       * Burundi
-       * Cambodia
-       * Cameroon
-       * Canada
-       * Cape Verde
-       * Cayman Islands
-       * Central African Republic
-       * Chad
-       * Chile
-       * China
-       * Christmas Island
-       * Cocos (Keeling) Islands
-       * Colombia
-       * Comoros
-       * Congo
-       * Congo, The Democratic Republic of the
-       * Cook Islands
-       * Costa Rica
-       * Cote D'Ivoire
-       * Croatia
-       * Cuba
-       * Cyprus
-       * Czech Republic
-       * Denmark
-       * Djibouti
-       * Dominica
-       * Dominican Republic
-       * Ecuador
-       * Egypt
-       * El Salvador
-       * Equatorial Guinea
-       * Eritrea
-       * Estonia
-       * Ethiopia
-       * Falkland Islands (Malvinas)
-       * Faroe Islands
-       * Fiji
-       * Finland
-       * France
-       * France, Metropolitan
-       * French Guiana
-       * French Polynesia
-       * French Southern Territories
-       * Gabon
-       * Gambia
-       * Georgia
-       * Germany
-       * Ghana
-       * Gibraltar
-       * Greece
-       * Greenland
-       * Grenada
-       * Guadeloupe
-       * Guam
-       * Guatemala
-       * Guernsey
-       * Guinea
-       * Guinea-Bissau
-       * Guyana
-       * Haiti
-       * Heard Island and McDonald Islands
-       * Holy See (Vatican City State)
-       * Honduras
-       * Hong Kong
-       * Hungary
-       * Iceland
-       * India
-       * Indonesia
-       * Iran, Islamic Republic of
-       * Iraq
-       * Ireland
-       * Isle of Man
-       * Israel
-       * Italy
-       * Jamaica
-       * Japan
-       * Jersey
-       * Jordan
-       * Kazakhstan
-       * Kenya
-       * Kiribati
-       * Korea, Democratic People's Republic of
-       * Korea, Republic of
-       * Kuwait
-       * Kyrgyzstan
-       * Lao People's Democratic Republic
-       * Latvia
-       * Lebanon
-       * Lesotho
-       * Liberia
-       * Libyan Arab Jamahiriya
-       * Liechtenstein
-       * Lithuania
-       * Luxembourg
-       * Macau
-       * Macedonia
-       * Madagascar
-       * Malawi
-       * Malaysia
-       * Maldives
-       * Mali
-       * Malta
-       * Marshall Islands
-       * Martinique
-       * Mauritania
-       * Mauritius
-       * Mayotte
-       * Mexico
-       * Micronesia, Federated States of
-       * Moldova, Republic of
-       * Monaco
-       * Mongolia
-       * Montenegro
-       * Montserrat
-       * Morocco
-       * Mozambique
-       * Myanmar
-       * N/A
-       * Namibia
-       * Nauru
-       * Nepal
-       * Netherlands
-       * Netherlands Antilles
-       * New Caledonia
-       * New Zealand
-       * Nicaragua
-       * Niger
-       * Nigeria
-       * Niue
-       * Norfolk Island
-       * Northern Mariana Islands
-       * Norway
-       * Oman
-       * Other
-       * Pakistan
-       * Palau
-       * Palestinian Territory
-       * Panama
-       * Papua New Guinea
-       * Paraguay
-       * Peru
-       * Philippines
-       * Pitcairn Islands
-       * Poland
-       * Portugal
-       * Puerto Rico
-       * Qatar
-       * Reunion
-       * Romania
-       * Russian Federation
-       * Rwanda
-       * Saint Barthelemy
-       * Saint Helena
-       * Saint Kitts and Nevis
-       * Saint Lucia
-       * Saint Martin
-       * Saint Pierre and Miquelon
-       * Saint Vincent and the Grenadines
-       * Samoa
-       * San Marino
-       * Sao Tome and Principe
-       * Satellite Provider
-       * Saudi Arabia
-       * Senegal
-       * Serbia
-       * Seychelles
-       * Sierra Leone
-       * Singapore
-       * Slovakia
-       * Slovenia
-       * Solomon Islands
-       * Somalia
-       * South Africa
-       * South Georgia and the South Sandwich Islands
-       * Spain
-       * Sri Lanka
-       * Sudan
-       * Suriname
-       * Svalbard and Jan Mayen
-       * Swaziland
-       * Sweden
-       * Switzerland
-       * Syrian Arab Republic
-       * Taiwan
-       * Tajikistan
-       * Tanzania, United Republic of
-       * Thailand
-       * Timor-Leste
-       * Togo
-       * Tokelau
-       * Tonga
-       * Trinidad and Tobago
-       * Tunisia
-       * Turkey
-       * Turkmenistan
-       * Turks and Caicos Islands
-       * Tuvalu
-       * Uganda
-       * Ukraine
-       * United Arab Emirates
-       * United Kingdom
-       * United States
-       * United States Minor Outlying Islands
-       * Uruguay
-       * Uzbekistan
-       * Vanuatu
-       * Venezuela
-       * Vietnam
-       * Virgin Islands, British
-       * Virgin Islands, U.S.
-       * Wallis and Futuna
-       * Western Sahara
-       * Yemen
-       * Zambia
-       * Zimbabwe
-```
-
----
-
-
-```eval_rst
-.. _policy/enforcer-settings:
-```
-
-
-### enforcer-settings
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `enforcerStateCookies <policy/enforcer-settings/enforcerStateCookies_>`_
-
-     - object
-     - This section defines the properties of the enforcer state cookies.
-     - 
-```
-
-```eval_rst
-.. _policy/enforcer-settings/enforcerStateCookies:
-```
-
-
-##### enforcerStateCookies
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``httpOnlyAttribute``
-
-     - boolean
-     - Specifies, when true, that the system adds the state cookie HttpOnly attribute.
-     - 
-   * - ``sameSiteAttribute``
-
-     - string
-     - The value for the state cookie SameSite attribute:
-       
-         - **none**: The SameSite attribute is never added to the state cookie.
-         - **strict**: Cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar.
-         - **lax**: Cookies will be sent with top level navigation
-         - **none-value**: Cookies will be sent in a third-party context.
-     - * lax
-       * none
-       * none-value
-       * strict
-   * - ``secureAttribute``
-
-     - string
-     - The value for the state cookie Secure attribute:
-       
-         - **always**: Always add the Secure attribute to the state cookie.
-         - **never**: The Secure attribute is never added to the state cookie.
-     - * always
-       * never
-```
-
----
-
-
-```eval_rst
-.. _policy/filetypes:
-```
-
-
-### filetypes
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowed``
-
-     - boolean
-     - Determines whether the file type is allowed or disallowed. In either of these cases the VIOL_FILETYPE violation is issued (if enabled) for an incoming request-
-       1. No allowed file type matched the file type of the request.
-       2. The file type of the request matched a disallowed file type.
-     - 
-   * - ``checkPostDataLength``
-
-     - boolean
-     - Determines whether to enforce maximum length restriction for the body, a.k.a. "POST data" part of the requests that match the respective file type. The maximum length is determined by *postDataLength* attribute.
-       Although named "POST data", this applies to any content type and not restricted to POST requests, e.g. PUT requests are also checked.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``checkQueryStringLength``
-
-     - boolean
-     - Determines whether to enforce maximum length restriction for the query string of the requests that match the respective file type. The maximum length is determined by *queryStringLength* attribute.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``checkRequestLength``
-
-     - boolean
-     - Determines whether to enforce maximum length restriction for the total length of requests that match the respective file type. The maximum length is determined by *requestLength* attribute.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``checkUrlLength``
-
-     - boolean
-     - Determines whether to enforce maximum length restriction for the URL of the requests that match the respective file type. The URL does *not* include the query string, past the &. The maximum length is determined by *urlLength* attribute.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``name``
-
-     - string
-     - Specifies the file type name as appearing in the URL extension. Names can be one of the following according to the *type* attribute:
-       
-         - **Explicit** - Specifies that the name is the literal file extension to which the file type refers. The *type* attribute has to be "explicit".
-         - **No Extension** - Specifies the empty file type, lacking file extension. For this the reserved string **no_ext** should be used. The *type* attribute has to be "explicit".
-         - **Wildcard** - Specifies that any file extension that matches the wildcard expression is matched to this file type in the policy. The *type* attribute has to be "wildcard".
-       
-       The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.
-       
-         - **\***: Matches all characters
-         - **?**: Matches any single character
-         - **[abcde]**: Matches exactly one of the characters listed
-         - **[!abcde]**: Matches any character not listed
-         - **[a-e]**: Matches exactly one character in the range
-         - **[!a-e]**: Matches any character not in the range
-       
-       **Note**: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.
-     - 
-   * - ``postDataLength``
-
-     - integer
-       minimum: 0
-     - The maximum length in bytes of the body (POST data) of the request matching the file type. Enforced only if checkPostDataLength is set to *true*.
-       If the value is exceeded then VIOL_POST_DATA_LENGTH violation is issued.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``queryStringLength``
-
-     - integer
-       minimum: 0
-     - The maximum length in bytes of the query string of the request matching the file type. Enforced only if checkQueryStringLength is set to *true*.
-       If the value is exceeded then VIOL_QUERY_STRING_LENGTH violation is issued.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``requestLength``
-
-     - integer
-       minimum: 0
-     - The maximum total length in bytes of the request matching the file type. Enforced only if checkRequestLength is set to *true*.
-       If the value is exceeded then VIOL_REQUEST_LENGTH violation is issued.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``responseCheck``
-
-     - boolean
-     - Determines whether the responses to requests that match the respective file types are inspected for attack signature detection.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``responseCheckLength``
-
-     - integer
-       minimum: 0
-       maximum: 10000000000
-     - Determines how much of the response body will be checked for signatures.
-       When value is set to 0, only the header will be checked.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``type``
-
-     - string
-     - Determines the type of the **name** attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.
-     - * explicit
-       * wildcard
-   * - ``urlLength``
-
-     - integer
-       minimum: 0
-     - The maximum length in bytes of the URL of the request matching the file type, excluding the query string. Enforced only if checkUrlLength is set to *true*.
-       If the value is exceeded then VIOL_URL_LENGTH violation is issued.
-       This attribute is relevant only to *allowed* file types.
-     - 
-   * - ``wildcardOrder``
-
-     - integer
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/general:
-```
-
-
-### general
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowedResponseCodes``
-
-     - array of integers
-     - You can specify which responses a security policy permits.
-       By default, the system accepts all response codes from 100 to 399 as valid responses.
-       Response codes from 400 to 599 are considered invalid unless added to the Allowed Response Status Codes list.
-       By default, 400, 401, 404, 407, 417, and 503 are on the list as allowed HTTP response status codes.
-     - 
-   * - ``customXffHeaders``
-
-     - array of strings
-     - If you require the system to trust a server further than one hop toward the client (the last proxy traversed), you can use the Custom XFF Headers setting to define a specific header that is inserted closer to, or at the client, that the system will trust.
-       Additionally, if you require the system to trust a proxy server that uses a different header name than the X-Forwarded-For header name, you can add the desired header name to the Custom XFF Headers setting.
-       When adding a custom header, the X-Forwarded-For header is not trusted anymore. In case the X-Forwarded-For header is to be trusted along with other headers, you must add it to the custom headers list.
-     - 
-   * - ``maskCreditCardNumbersInRequest``
-
-     - boolean
-     - When enabled, the security policy masks credit card numbers that appear in any part of requests. The system does not mask the information in the actual requests, but rather in various logs:
-       * Credit card numbers appearing in entity names are masked in the requests of the Requests log.
-       * Credit card numbers appearing in entity values are masked wherever requests can be viewed: the Requests log, and violation details within that log.
-       This setting is enabled by default, and exists in addition to masking parameters defined as containing sensitive information.
-     - 
-   * - ``trustXff``
-
-     - boolean
-     - When enabled, the system has confidence in an XFF (X-Forwarded-For) header in the request. When disabled, that the system does not have confidence in an XFF header in the request. The default setting is disabled.
-       
-       Select this option if the system is deployed behind an internal or other trusted proxy. Then, the system uses the IP address that initiated the connection to the proxy instead of the internal proxy's IP address.
-       
-       Leave this option disabled if you think the HTTP header may be spoofed, or crafted, by a malicious client. With this setting disabled, if the system is deployed behind an internal proxy, the system uses the internal proxy's IP address instead of the client's IP address.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/graphql-profiles:
-```
-
-
-### graphql-profiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - 
-     - 
-   * - `defenseAttributes <policy/graphql-profiles/defenseAttributes_>`_
-
-     - object
-     - 
-     - 
-   * - ``description``
-
-     - string
-     - 
-     - 
-   * - ``hasIdlFiles``
-
-     - boolean
-     - 
-     - 
-   * - `idlFiles <policy/graphql-profiles/idlFiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``metacharElementCheck``
-
-     - boolean
-     - 
-     - 
-   * - `metacharOverrides <policy/graphql-profiles/metacharOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - `responseEnforcement <policy/graphql-profiles/responseEnforcement_>`_
-
-     - object
-     - 
-     - 
-   * - `sensitiveData <policy/graphql-profiles/sensitiveData_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `signatureOverrides <policy/graphql-profiles/signatureOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/graphql-profiles/defenseAttributes:
-```
-
-
-##### defenseAttributes
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowIntrospectionQueries``
-
-     - boolean
-     - 
-     - 
-   * - ``maximumBatchedQueries``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumQueryCost``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumStructureDepth``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumTotalLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumValueLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``tolerateParsingWarnings``
-
-     - boolean
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/graphql-profiles/idlFiles:
-```
-
-
-##### idlFiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `idlFile <policy/graphql-profiles/idlFiles/idlFile_>`_
-
-     - object
-     - 
-     - 
-   * - ``isPrimary``
-
-     - boolean
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/graphql-profiles/idlFiles/idlFile:
-```
-
-
-##### idlFile
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-```
-
-```eval_rst
-.. _policy/graphql-profiles/metacharOverrides:
-```
-
-
-##### metacharOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - 
-     - 
-   * - ``metachar``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/graphql-profiles/responseEnforcement:
-```
-
-
-##### responseEnforcement
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``blockDisallowedPatterns``
-
-     - boolean
-     - 
-     - 
-   * - ``disallowedPatterns``
-
-     - array of strings
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/graphql-profiles/sensitiveData:
-```
-
-
-##### sensitiveData
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``parameterName``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/graphql-profiles/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``signatureId``
-
-     - integer
-     - 
-     - 
-   * - ``tag``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/grpc-profiles:
-```
-
-
-### grpc-profiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``associateUrls``
-
-     - boolean
-     - 
-     - 
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - 
-     - 
-   * - ``decodeStringValuesAsBase64``
-
-     - string
-     - 
-     - * disabled
-       * enabled
-   * - `defenseAttributes <policy/grpc-profiles/defenseAttributes_>`_
-
-     - object
-     - 
-     - 
-   * - ``description``
-
-     - string
-     - 
-     - 
-   * - ``hasIdlFiles``
-
-     - boolean
-     - 
-     - 
-   * - `idlFiles <policy/grpc-profiles/idlFiles_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``metacharElementCheck``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - `signatureOverrides <policy/grpc-profiles/signatureOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/grpc-profiles/defenseAttributes:
-```
-
-
-##### defenseAttributes
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowUnknownFields``
-
-     - boolean
-     - 
-     - 
-   * - ``maximumDataLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-```
-
-```eval_rst
-.. _policy/grpc-profiles/idlFiles:
-```
-
-
-##### idlFiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `idlFile <policy/grpc-profiles/idlFiles/idlFile_>`_
-
-     - object
-     - 
-     - 
-   * - ``importUrl``
-
-     - string
-     - 
-     - 
-   * - ``isPrimary``
-
-     - boolean
-     - 
-     - 
-   * - ``primaryIdlFileName``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/grpc-profiles/idlFiles/idlFile:
-```
-
-
-##### idlFile
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-```
-
-```eval_rst
-.. _policy/grpc-profiles/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``signatureId``
-
-     - integer
-     - 
-     - 
-   * - ``tag``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/header-settings:
-```
-
-
-### header-settings
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``maximumHttpHeaderLength``
-
-     - 
-       * integer
-         minimum: 1
-         maximum: 65536
-       * string
-     - Maximum HTTP Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or *any* are set, then no restriction on the HTTP header length is applied.
-     - * Integer values
-       * "any"
-```
-
----
-
-
-```eval_rst
-.. _policy/headers:
-```
-
-
-### headers
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowEmptyValue``
-
-     - boolean
-     - 
-     - 
-   * - ``allowRepeatedOccurrences``
-
-     - boolean
-     - 
-     - 
-   * - ``autoDetectBinaryValue``
-
-     - boolean
-     - 
-     - 
-   * - ``checkSignatures``
-
-     - boolean
-     - 
-     - 
-   * - ``decodeValueAsBase64``
-
-     - string
-     - Specifies whether the the system should detect or require values to be Base64 encoded:
-       
-        - **disabled**: the value will not be decoded as Base64 content.
-        - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.
-        - **required**: the value must be decoded as Base64, and security checks will be performed on the decoded value.
-     - * disabled
-       * enabled
-       * required
-   * - ``htmlNormalization``
-
-     - boolean
-     - 
-     - 
-   * - ``mandatory``
-
-     - boolean
-     - 
-     - 
-   * - ``maskValueInLogs``
-
-     - boolean
-     - Specifies, when true, that the headers's value will be masked in the request log.
-     - 
-   * - ``name``
-
-     - string
-     - Specifies the HTTP header name.
-       The header name length is limited to 254 characters.
-       
-       Names can be one of the following according to the *type* attribute:
-       
-         - **explicit**: Specifies that the header has a specific name and is not a wildcard entity. The name of the header exactly as you expect it to appear in the request.
-         - **wildcard**: Specifies that any header that matches the listed wildcard expression should be treated according to the wildcard attributes.
-       
-       The syntax for wildcard entities is based on shell-style wildcard characters.
-       The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.
-       
-         - **\***: Matches all characters
-         - **?**: Matches any single character
-         - **[abcde]**: Matches exactly one of the characters listed
-         - **[!abcde]**: Matches any character not listed
-         - **[a-e]**: Matches exactly one character in the range
-         - **[!a-e]**: Matches any character not in the range
-       
-       **Note**: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.
-     - 
-   * - ``normalizationViolations``
-
-     - boolean
-     - 
-     - 
-   * - ``percentDecoding``
-
-     - boolean
-     - 
-     - 
-   * - `signatureOverrides <policy/headers/signatureOverrides_>`_
-
-     - array of objects
-     - Array of signature overrides.
-       Specifies attack signatures whose security policy settings are overridden for this header,
-       and which action the security policy takes when it discovers a request for this header that matches these attack signatures.
-     - 
-   * - ``type``
-
-     - string
-     - Determines the type of the **name** attribute.
-       Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.
-     - * explicit
-       * wildcard
-   * - ``urlNormalization``
-
-     - boolean
-     - 
-     - 
-   * - ``wildcardOrder``
-
-     - integer
-     - Specifies the order index for wildcard header matching.
-       Wildcard headers with lower wildcard order will get checked for a match prior to headers with higher wildcard order.
-     - 
-```
-
-```eval_rst
-.. _policy/headers/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - Specifies, when true, that the overridden signature is enforced
-     - 
-   * - ``name``
-
-     - string
-     - The signature name which, along with the signature tag, identifies the signature.
-     - 
-   * - ``signatureId``
-
-     - integer
-     - The signature ID which identifies the signature.
-     - 
-   * - ``tag``
-
-     - string
-     - The signature tag which, along with the signature name, identifies the signature.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/host-names:
-```
-
-
-### host-names
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``includeSubdomains``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/idl-files:
-```
-
-
-### idl-files
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``contents``
-
-     - string
-     - 
-     - 
-   * - ``fileName``
-
-     - string
-     - 
-     - 
-   * - ``isBase64``
-
-     - boolean
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/ip-address-lists:
-```
-
-
-### ip-address-lists
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``blockRequests``
-
-     - string
-     - Specifies how the system responds to blocking requests sent from this IP address list.
-         - **Policy Default:** Specifies that the policy enforcementMode will be used for requests from this IP address list.
-         - **Never Block:** Specifies that the system does not block requests sent from this IP address list, even if your security policy is configured to block all traffic.
-         - **Always Block:** Specifies that the system blocks requests sent from this IP address list.
-       Optional, if absent Policy Default is used.
-     - * always
-       * never
-       * policy-default
-   * - ``description``
-
-     - string
-     - Specifies a brief description of the IP address list. Optional
-     - 
-   * - `ipAddresses <policy/ip-address-lists/ipAddresses_>`_
-
-     - array of objects
-     - Specifies the IP addresses. Use CIDR notation for subnet definition.
-     - 
-   * - ``matchOrder``
-
-     - integer
-     - Specifies the order matching index between different IP Address Lists. If unspecified, the order is implicitly as the lists appear in the policy.
-       IP Address Lists with a lower matchOrder will be checked for a match prior to items with higher matchOrder.
-     - 
-   * - ``name``
-
-     - string
-     - Specifies the name of ip address list.
-     - 
-   * - ``neverLogRequests``
-
-     - boolean
-     - Specifies when enabled that the system does not log requests or responses sent from this IP address list, even if the traffic is illegal, and even if your security policy is configured to log all traffic.
-       Optional, if absent default value is false.
-     - 
-   * - ``setGeolocation``
-
-     - string
-     - Specifies a geolocation to be associated for this IP address list.
-       This will force the IP addresses in the list to be considered as though they are in that geolocation. This applies to blocking via "disallowed-geolocations" and to logging. 
-       Optional
-     - 
-```
-
-```eval_rst
-.. _policy/ip-address-lists/ipAddresses:
-```
-
-
-##### ipAddresses
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``ipAddress``
-
-     - string
-     - Specifies the IP address. Use CIDR notation for subnet definition.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/ip-intelligence:
-```
-
-
-### ip-intelligence
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - `ipIntelligenceCategories <policy/ip-intelligence/ipIntelligenceCategories_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/ip-intelligence/ipIntelligenceCategories:
-```
-
-
-##### ipIntelligenceCategories
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``alarm``
-
-     - boolean
-     - 
-     - 
-   * - ``block``
-
-     - boolean
-     - 
-     - 
-   * - ``category``
-
-     - string
-     - 
-     - * Anonymous Proxy
-       * BotNets
-       * Cloud-based Services
-       * Denial of Service
-       * Infected Sources
-       * Mobile Threats
-       * Phishing Proxies
-       * Scanners
-       * Spam Sources
-       * Tor Proxies
-       * Web Attacks
-       * Windows Exploits
-```
-
----
-
-
-```eval_rst
-.. _policy/json-profiles:
-```
-
-
-### json-profiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - 
-     - 
-   * - `defenseAttributes <policy/json-profiles/defenseAttributes_>`_
-
-     - object
-     - 
-     - 
-   * - ``description``
-
-     - string
-     - 
-     - 
-   * - ``handleJsonValuesAsParameters``
-
-     - boolean
-     - 
-     - 
-   * - ``hasValidationFiles``
-
-     - boolean
-     - 
-     - 
-   * - ``metacharElementCheck``
-
-     - boolean
-     - 
-     - 
-   * - `metacharOverrides <policy/json-profiles/metacharOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - `signatureOverrides <policy/json-profiles/signatureOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `validationFiles <policy/json-profiles/validationFiles_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/json-profiles/defenseAttributes:
-```
-
-
-##### defenseAttributes
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``maximumArrayLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumStructureDepth``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumTotalLengthOfJSONData``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumValueLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``tolerateJSONParsingWarnings``
-
-     - boolean
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/json-profiles/metacharOverrides:
-```
-
-
-##### metacharOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - 
-     - 
-   * - ``metachar``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/json-profiles/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``signatureId``
-
-     - integer
-     - 
-     - 
-   * - ``tag``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/json-profiles/validationFiles:
-```
-
-
-##### validationFiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``importUrl``
-
-     - string
-     - 
-     - 
-   * - ``isPrimary``
-
-     - boolean
-     - 
-     - 
-   * - `jsonValidationFile <policy/json-profiles/validationFiles/jsonValidationFile_>`_
-
-     - object
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/json-profiles/validationFiles/jsonValidationFile:
-```
-
-
-##### jsonValidationFile
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-```
-
----
-
-
-```eval_rst
-.. _policy/json-validation-files:
-```
-
-
-### json-validation-files
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``contents``
-
-     - string
-     - 
-     - 
-   * - ``fileName``
-
-     - string
-     - 
-     - 
-   * - ``isBase64``
-
-     - boolean
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/login-enforcement:
-```
-
-
-### login-enforcement
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``authenticatedUrls``
-
-     - array of strings
-     - 
-     - 
-   * - ``expirationTimePeriod``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 99999
-       * string
-     - 
-     - * Integer values
-       * "disabled"
-   * - `logoutUrls <policy/login-enforcement/logoutUrls_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/login-enforcement/logoutUrls:
-```
-
-
-##### logoutUrls
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``requestContains``
-
-     - string
-     - 
-     - 
-   * - ``requestOmits``
-
-     - string
-     - 
-     - 
-   * - `url <policy/urls_>`_
-
-     - object
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/login-pages:
-```
-
-
-### login-pages
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `accessValidation <policy/login-pages/accessValidation_>`_
-
-     - object
-     - Access Validation define validation criteria for the login page response. If you define more than one validation criteria, the response must meet all the criteria before the system allows the user to access the application login URL.
-     - 
-   * - ``authenticationType``
-
-     - string
-     - Authentication Type is method the web server uses to authenticate the login URL's credentials with a web user.
-       
-         - **none**: The web server does not authenticate users trying to access the web application through the login URL. This is the default setting.
-         - **form**: The web application uses a form to collect and authenticate user credentials. If using this option, you also need to type the user name and password parameters written in the code of the HTML form.
-         - **http-basic**: The user name and password are transmitted in Base64 and stored on the server in plain text.
-         - **http-digest**: The web server performs the authentication; user names and passwords are not transmitted over the network, nor are they stored in plain text.
-         - **ntlm**: Microsoft LAN Manager authentication (also called Integrated Windows Authentication) does not transmit credentials in plain text, but requires a continuous TCP connection between the server and client.
-         - **ajax-or-json-request**: The web server uses JSON and AJAX requests to authenticate users trying to access the web application through the login URL. For this option, you also need to type the name of the JSON element containing the user name and password.
-         - **request-body**: The web server uses the request body to authenticate users trying to access the web application through the login URL. This allows brute force login detection using, for example, SAML authentication used on Microsoft Federation Services for SSO which uses SOAP API to login.
-     - * ajax-or-json-request
-       * form
-       * http-basic
-       * http-digest
-       * none
-       * ntlm
-       * request-body
-   * - ``passwordParameterName``
-
-     - string
-     - A name of parameter which will contain password string.
-     - 
-   * - ``passwordRegex``
-
-     - string
-     - PCRE regular expression for capturing the password. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the password. For example: "pwd=(\w+)". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.
-     - 
-   * - `url <policy/urls_>`_
-
-     - object
-     - URL string used for login page.
-     - 
-   * - ``usernameParameterName``
-
-     - string
-     - A name of parameter which will contain username string.
-     - 
-   * - ``usernameRegex``
-
-     - string
-     - PCRE regular expression for capturing the username. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the username. For example: "user_id=(\w+)". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.
-     - 
-```
-
-```eval_rst
-.. _policy/login-pages/accessValidation:
-```
-
-
-##### accessValidation
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``cookieContains``
-
-     - string
-     - A defined domain cookie name that the response to the login URL must match to permit user access to the authenticated URL.
-     - 
-   * - ``headerContains``
-
-     - string
-     - A header name and value that the response to the login URL must match to permit user access to the authenticated URL.
-     - 
-   * - ``headerContainsMatchCondition``
-
-     - string
-     - 
-     - * exact
-       * regex
-   * - ``headerOmits``
-
-     - string
-     - A header name and value that indicates a failed login attempt and prohibits user access to the authenticated URL.
-     - 
-   * - ``headerOmitsMatchCondition``
-
-     - string
-     - 
-     - * exact
-       * regex
-   * - ``parameterContains``
-
-     - string
-     - A parameter that must exist in the login URL's HTML body to allow access to the authenticated URL.
-     - 
-   * - ``responseContains``
-
-     - string
-     - A string that must appear in the response for the system to allow the user to access the authenticated URL; for example, "Successful Login".
-     - 
-   * - ``responseHttpStatus``
-
-     - string
-     - An HTTP response code that the server must return to the user to allow access to the authenticated URL; for example, "200".
-     - 
-   * - ``responseHttpStatusOmits``
-
-     - array of strings
-     - An HTTP response code that indicates a failed login attempt and prohibits user access to the authenticated URL.
-     - 
-   * - ``responseOmits``
-
-     - string
-     - A string that indicates a failed login attempt and prohibits user access to the authenticated URL; for example, "Authentication failed".
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/methods:
-```
-
-
-### methods
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/override-rules:
-```
-
-
-### override-rules
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``actionType``
-
-     - string
-     - The action to take when the override rule is matched. Possible values are:
-       
-         - **extend-policy**: The override policy inherits the containing policy settings, allowing only the required settings to be overridden.
-         - **replace-policy**: The override policy must be a valid declarative policy that includes a name, template and all necessary settings.
-         - **violation**: The request is blocked and a the VIOL_RULE is logged based on the provided violation settings.
-     - * extend-policy
-       * replace-policy
-       * violation
-   * - ``condition``
-
-     - string
-     - Specifies the condition under which the override rule should be applied.
-       
-       Example: "clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')"
-       
-       Condition Syntax:
-       
-         - The condition consists of one or more clauses separated by **and** or **or**.
-       
-         Example: "clientIp == '10.0.0.5' and (host.startsWith('internal') or uri.contains('api'))"
-       
-         - Each clause can optionally start with **not** - to negate the expression.
-       
-         Example: "not clientIp == '127.0.0.1'"
-       
-         - **not** can also be used to negate a parenthesized expression.
-       
-         Example: "not (method == 'GET' or method == 'PUT')"
-       
-         - A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.
-       
-       Supported comparison operators:
-       
-         - **==** - Checks for equality between two value expressions.
-         - **!=** - Checks for inequality between two value expressions.
-       
-         Example: "clientIp != '10.0.0.5'" (equivalent to "not clientIp == '10.0.0.5'")
-       
-       Supported boolean functions:
-       
-         - **matches**: Performs an exact match of a value expression, equivalent to **==**.
-         - **startsWith**: Checks if a value expression starts with a specific substring.
-         - **contains**: Checks if a value expression contains a specific substring.
-       
-         Example: "uri.startsWith('/api')"
-       
-       **Note**: Functions "startsWith" and "contains" are not applicable to the "clientIp" attribute. Regular expressions are not supported.
-       
-         - Value expressions can be a request attribute, literal value, or a value function.
-         - A literal can be a string value enclosed in single quotes, or can be the keyword "null" without quotes.
-       
-         Example: "userAgent == null"
-       
-       Supported value functions:
-       
-         - **lower**: Any boolean function applied on the resulting string will be **case insensitive**. Applicable to ANSI characters only.
-       
-         Example: "uri.lower().contains('BaR')" will match the URI "/Foo/bAr"
-       
-       Request Attributes:
-       
-         - **clientIp**: Client IP address in canonical IPv4 or IPv6 format or ip-address-list. Use CIDR notation for subnet definition. Example: *192.168.1.2* or *fd00:1::/48*. If *trustXff* (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is *matches*.
-         - **host**: The value of the Host header
-         - **method**: The HTTP method in the request
-         - **uri**: The URI (path part) of the request
-         - **userAgent**: The value of the User-Agent header, or *null* (without quotes) if not present
-         - **geolocation**: The geolocation of the client IP address. The value is the ISO 3166 two-letter code of the respective country.
-         - **parameters['<name>']**: (map-type) The value of the specified parameter name (limited to query string parameters). Example: "parameters['id'] == '11'"
-         - **cookies['<name>']**: (map-type) The value of the specified cookie name. Example: "cookies['Path'].contains('product')"
-         - **headers['<name>']**: (map-type) The value of the specified header name. Example: "headers['Accept'].startsWith('application')"
-       
-       **Note**: 
-         - The "headers['<name>']" attribute does not support 'Cookie' as a header name.
-         - Attribute "clientIp" supports using "ipAddressLists" in condition: "clientIp.matches(ipAddressLists['<name>'])" 
-     - 
-   * - ``name``
-
-     - string
-     - The unique name of the override rule. Cannot contain spaces or special characters.
-     - 
-   * - `override <policy/override-rules/override_>`_
-
-     - object
-     - The overriding security policy definition.
-     - 
-   * - `violation <policy/override-rules/violation_>`_
-
-     - object
-     - Contains the details of the raised VIOL_RULE violation.
-       Mandatory if action-type is violation.
-     - 
-```
-
-```eval_rst
-.. _policy/override-rules/override:
-```
-
-
-##### override
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-```
-
-```eval_rst
-.. _policy/override-rules/violation:
-```
-
-
-##### violation
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``alarm``
-
-     - boolean
-     - Whether the violation should be marked in the security log and cause the request to be classified as "illegal".
-     - 
-   * - `attackType <policy/override-rules/violation/attackType_>`_
-
-     - object
-     - The attack type associated with the violation in the present rule. This is reflected in the security log.
-       Mandatory.
-     - 
-   * - ``block``
-
-     - boolean
-     - Whether the violation should cause the request to be blocked. On other words: the block flag of the VIOL_RULE for the present rule.
-     - 
-   * - ``description``
-
-     - string
-     - Textual description of the violation in the present rule.
-       Limited to 200 characters.
-       Not Mandatory.
-     - 
-   * - ``rating``
-
-     - integer
-       minimum: 3
-       maximum: 5
-     - The violation rating that the present rule violation  will induce. In other words, the violation rating of the request will be the maximum between this value and the calculated value based on the other violations in the request.
-       If not specified and there is no other violation, then the VR is 3.
-     - 
-```
-
-```eval_rst
-.. _policy/override-rules/violation/attackType:
-```
-
+# policy
+
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Reference</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#policy/access-profiles">access-profiles</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>applicationLanguage</code></td>
+<td>No</td>
+<td>string</td>
+<td>The character encoding for the application. The character encoding determines how the policy processes the character sets. The default is utf-8.</td>
+<td><ul>
+<li>big5</li>
+<li>euc-jp</li>
+<li>euc-kr</li>
+<li>gb18030</li>
+<li>gb2312</li>
+<li>gbk</li>
+<li>iso-8859-1</li>
+<li>iso-8859-10</li>
+<li>iso-8859-13</li>
+<li>iso-8859-15</li>
+<li>iso-8859-16</li>
+<li>iso-8859-2</li>
+<li>iso-8859-3</li>
+<li>iso-8859-4</li>
+<li>iso-8859-5</li>
+<li>iso-8859-6</li>
+<li>iso-8859-7</li>
+<li>iso-8859-8</li>
+<li>iso-8859-9</li>
+<li>koi8-r</li>
+<li>shift_jis</li>
+<li>utf-8</li>
+<li>windows-1250</li>
+<li>windows-1251</li>
+<li>windows-1252</li>
+<li>windows-1253</li>
+<li>windows-1255</li>
+<li>windows-1256</li>
+<li>windows-1257</li>
+<li>windows-874</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/blocking-settings">blocking-settings</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>This section defines policy block/alarm behaviors.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/bot-defense">bot-defense</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>This section defines the properties of the bot defense feature.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/browser-definitions">browser-definitions</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/brute-force-attack-preventions">brute-force-attack-preventions</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>Defines configuration for Brute Force Protection feature. There is default configuration (one with bruteForceProtectionForAllLoginPages flag and without url) that applies to all configured login URLs unless there exists another brute force configuration for a specific login page.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>caseInsensitive</code></td>
+<td>No</td>
+<td>boolean</td>
+<td>Specifies whether the security policy treats microservice URLs, file types, URLs, and parameters as case sensitive or not. When this setting is enabled, the system stores these security policy elements in lowercase in the security policy configuration.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/character-sets">character-sets</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/cookie-settings">cookie-settings</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>The maximum length of a cookie header name and value that the system processes. The system calculates and enforces a cookie header length based on the sum of the length of the cookie header name and value.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/cookies">cookies</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td><p>This section defines Cookie entities for your policy. You can specify the cookies that you want to allow, and the ones you want to enforce in a security policy:</p>
+<blockquote>
+<ul>
+<li><strong>Allowed cookies</strong>: The system allows these cookies and clients can change them.</li>
+<li><strong>Enforced cookies</strong>: The system enforces the cookies in the list (not allowing clients to change them) and allows clients to change all others.</li>
+</ul>
+</blockquote></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/csrf-protection">csrf-protection</a></td>
+<td>Yes</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/csrf-urls">csrf-urls</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/data-guard">data-guard</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>Data Guard feature can prevent responses from exposing sensitive information by masking the data.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>No</td>
+<td>string</td>
+<td>Specifies the description of the policy.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/disallowed-geolocations">disallowed-geolocations</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>Specifies a list of countries that may not access the web application.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enforcementMode</code></td>
+<td>No</td>
+<td>string</td>
+<td><dl>
+<dt>How the system processes a request that triggers a security policy violation.</dt>
+<dd><ul>
+<li><strong>Blocking:</strong> When the enforcement mode is set to blocking, traffic is blocked if it causes a violation (configured for blocking).</li>
+<li><strong>Transparent:</strong> When the enforcement mode is set to transparent, traffic is not blocked even if a violation is triggered.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>blocking</li>
+<li>transparent</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/enforcer-settings">enforcer-settings</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>This section contains all enforcer settings.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/filetypes">filetypes</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td><p>File types are categorization of the URLs in the request by the extension appearing past the last dot at the end of the URL. For example, the file type of /index.php is "php". Other well known file types are html, aspx, png, jpeg and many more. A special case is the "empty" file type called "no-ext" meaning, no extension in which the URL has no dot at its last segment as in /foo_no_dot</p>
+<p>File types usually imply the expected content type in the response. For example, html and php return HTML content, while jpeg, png and gif return images, each in its respective format. File types also imply the server technology deployed for rendering the page. For example, php (PHP), aspx (ASP) and many others.</p>
+The security policy uses file types for several purposes:
+1. Ability to define which file types are allowed and which are disallowed. By including the pure wildcard "*" file type and a list of disallowed file types you have a file type denylist. By having a list of explicit file type <em>without</em> the pure wildcard "*" you have a file type allowlist.
+<ol start="2" type="1">
+<li>Each file type implies maximum <em>length restrictions</em> for the requests of that file type. The checked lengths are per the URL, Query String, total request length, and payload (POST data).</li>
+<li>Each file type determines whether to detect <em>response signatures</em> for requests of that file type. Typically, one would never check signatures for image file types.</li>
+</ol></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>fullPath</code></td>
+<td>No</td>
+<td>string</td>
+<td>The full name of the policy including partition.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/general">general</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>This section includes several advanced policy configuration settings.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/graphql-profiles">graphql-profiles</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/grpc-profiles">grpc-profiles</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/header-settings">header-settings</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>The maximum length of an HTTP header name and value that the system processes. The system calculates and enforces the HTTP header length based on the sum of the length of the HTTP header name and value.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/headers">headers</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines Header entities for your policy.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/host-names">host-names</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/idl-files">idl-files</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/ip-address-lists">ip-address-lists</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>An IP address list is a list of IP addresses that you want the system to treat in a specific way for a security policy.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/ip-intelligence">ip-intelligence</a></td>
+<td>Yes</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/json-profiles">json-profiles</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/json-validation-files">json-validation-files</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/login-enforcement">login-enforcement</a></td>
+<td>Yes</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/login-pages">login-pages</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>A login page is a URL in a web application that requests must pass through to get to the authenticated URLs. Use login pages, for example, to prevent forceful browsing of restricted parts of the web application, by defining access permissions for users. Login pages also allow session tracking of user sessions.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/methods">methods</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>No</td>
+<td>string</td>
+<td>The unique user-given name of the policy. Policy names cannot contain spaces or special characters. Allowed characters are a-z, A-Z, 0-9, dot, dash (-), colon (:) and underscore (_).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/open-api-files">open-api-files</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/override-rules">override-rules</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines policy override rules.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/parameters">parameters</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines parameters that the security policy permits in requests.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>performStaging</code></td>
+<td>No</td>
+<td>boolean</td>
+<td>Determines staging handling for all applicable entities in the policy, such as signatures, URLs, parameters, and cookies. If disabled, all entities will be enforced and any violations triggered will be considered illegal.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/response-pages">response-pages</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>The Security Policy has a default blocking response page that it returns to the client when the client request, or the web server response, is blocked by the security policy. You can change the way the system responds to blocked requests. All default response pages contain a variable, &lt;%TS.request.ID()%&gt;, that the system replaces with a support ID number when it issues the page.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/sensitive-parameters">sensitive-parameters</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines sensitive parameters. The contents of these parameters are not visible in logs nor in the user interfaces. Instead of actual values a string of asterisks is shown for these parameters. Use these parameters to protect sensitive user input, such as a password or a credit card number, in a validated request. A parameter name of "password" is always defined as sensitive by default.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/server-technologies">server-technologies</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/signature-requirements">signature-requirements</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/signature-sets">signature-sets</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>Defines behavior when signatures found within a signature-set are detected in a request. Settings are cumulative, so if a signature is found in any set with block enabled, that signature will have block enabled.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/signature-settings">signature-settings</a></td>
+<td>Yes</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/signatures">signatures</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines the properties of a signature on the policy.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/template">template</a></td>
+<td>Yes</td>
+<td>object</td>
+<td>Specifies the template to populate the default attributes of a new policy.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/threat-campaigns">threat-campaigns</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>This section defines the enforcement state for the threat campaigns in the security policy.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/urls">urls</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td>In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. When you create a security policy, wildcard URLs of * (representing all HTTP URLs) are added to the Allowed HTTP URLs lists.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>wafEngineVersion</code></td>
+<td>No</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/xml-profiles">xml-profiles</a></td>
+<td>Yes</td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## open-api-files
+
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `link`     | string |             |                |
+
+## template
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>derivedFrom</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td>Specifies the name of the template used for the policy creation.</td>
+<td><ul>
+<li>POLICY_TEMPLATE_NGINX_BASE</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## access-profiles
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>description</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enforceMaximumLength</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>enforceValidityPeriod</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/access-profiles/keyFiles">keyFiles</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/access-profiles/location">location</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maximumLength</code></td>
+<td>integer</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>jwt</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/access-profiles/usernameExtraction">usernameExtraction</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>verifyDigitalSignature</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### keyFiles
+
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `contents` | string |             |                |
+| `fileName` | string |             |                |
+
+### location
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>in</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>header</li>
+<li>query</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### usernameExtraction
+
+| Field Name          | Type    | Description | Allowed Values |
+| ------------------- | ------- | ----------- | -------------- |
+| `claimPropertyName` | string  |             |                |
+| `enabled`           | boolean |             |                |
+| `isMandatory`       | boolean |             |                |
+
+## blocking-settings
+
+| Field Name                                                 | Reference | Type             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Allowed Values |
+| ---------------------------------------------------------- | --------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| [evasions](#policy/blocking-settings_evasions)             | Yes       | array of objects | This section defines behavior of 'Evasion technique detected' (VIOL\_EVASION) violation sub-violations. User can control which sub-violations are enabled (alarmed/blocked). Behavior of sub-violations depends on the block/alarm settings of 'Evasion technique detected' violation, defined in /policy/blocking-settings/violations section: - If both alarm and block are disabled - enable flag becomes irrelevant, since there will be no block/alarm for all sub-violations |                |
+| [http-protocols](#policy/blocking-settings_http-protocols) | Yes       | array of objects | This section defines behavior of 'HTTP protocol compliance failed' (VIOL\_HTTP\_PROTOCOL) violation sub-violations. User can control which sub-violations are enabled (alarmed/blocked). Behavior of sub-violations depends on the block/alarm settings of 'HTTP protocol compliance failed' violation, - If both alarm and block are disabled - enable flag becomes irrelevant, since there will be no block/alarm for all sub-violations                                         |                |
+| [violations](#policy/blocking-settings_violations)         | Yes       | array of objects |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                |
+
+## bot-defense
+
+| Field Name                                     | Reference | Type   | Description                                                     | Allowed Values |
+| ---------------------------------------------- | --------- | ------ | --------------------------------------------------------------- | -------------- |
+| [mitigations](#policy/bot-defense_mitigations) | Yes       | object | This section defines the mitigation to each class or signature. |                |
+| [settings](#policy/bot-defense_settings)       | Yes       | object | This section contains all bot defense settings.                 |                |
+
+## browser-definitions
+
+| Field Name      | Type    | Description | Allowed Values |
+| --------------- | ------- | ----------- | -------------- |
+| `isUserDefined` | boolean |             |                |
+| `matchRegex`    | string  |             |                |
+| `matchString`   | string  |             |                |
+| `name`          | string  |             |                |
+
+## brute-force-attack-preventions
+
+| Field Name                                                                                          | Type                               | Description                                                                                                                                                                         | Allowed Values |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `bruteForceProtectionForAllLoginPages`                                                              | boolean                            | When enabled, enables Brute Force Protection for all configured login URLs. When disabled, only brute force configurations for specific login pages are applied in case they exist. |                |
+| [loginAttemptsFromTheSameIp](#policy/brute-force-attack-preventions/loginAttemptsFromTheSameIp)     | object                             | Specifies configuration for detecting brute force attacks from IP Address.                                                                                                          |                |
+| [loginAttemptsFromTheSameUser](#policy/brute-force-attack-preventions/loginAttemptsFromTheSameUser) | object                             | Specifies configuration for detecting brute force attacks for Username.                                                                                                             |                |
+| `reEnableLoginAfter`                                                                                | integer minimum: 60 maximum: 90000 | Defines prevention period (measured in seconds) for source-based brute force attacks.                                                                                               |                |
+| `sourceBasedProtectionDetectionPeriod`                                                              | integer minimum: 60 maximum: 90000 | Defines detection period (measured in seconds) for source-based brute force attacks.                                                                                                |                |
+| [url](#policy/urls)                                                                                 | object                             | Reference to the URL used in login URL configuration (policy/login-pages). This login URL is protected by Brute Force Protection feature.                                           |                |
+
+### loginAttemptsFromTheSameIp
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>action</code></td>
+<td>string</td>
+<td><p>Specifies action that is applied when defined threshold is reached.</p>
+<blockquote>
+<ul>
+<li><strong>alarm</strong>: The system will log the login attempt.</li>
+<li><strong>alarm-and-blocking-page</strong>: The system will log the login attempt, block the request and send the Blocking page.</li>
+<li><strong>alarm-and-captcha</strong>: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.</li>
+<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
+<li><strong>alarm-and-drop</strong>: The system will log the login attempt and reset the TCP connection.</li>
+<li><strong>alarm-and-honeypot-page</strong>: The system will log the login attempt, block the request and send the Honeypot page. The Honeypot page is used for attacker deception. The page should look like an application failed login page. Unlike with the Blocking page, when the Honeypot page is sent an attacker is not able to distinguish a failed login response from a mitigation. As a result, the attacker will not change identity (Source IP or Device ID) and the brute force attack will be rendered ineffective. The Honeypot page is recommended when mitigation is request blocking.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>alarm</li>
+<li>alarm-and-blocking-page</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>When enabled, the system counts failed login attempts from IP Address.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>threshold</code></td>
+<td>integer minimum: 1 maximum: 1000</td>
+<td>After configured threshold (number of failed login attempts from IP Address) defined action will be applied for the next login attempt.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### loginAttemptsFromTheSameUser
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>action</code></td>
+<td>string</td>
+<td><p>Specifies action that is applied when defined threshold is reached.</p>
+<blockquote>
+<ul>
+<li><strong>alarm</strong>: The system will log the login attempt.</li>
+<li><strong>alarm-and-captcha</strong>: The system determines whether the client is a legal browser operated by a human user by sending a CAPTCHA challenge. A login attempt is logged if the client successfully passes the CAPTCHA challenge.</li>
+<li><strong>alarm-and-client-side-integrity</strong>: The system determines whether the client is a legal browser or a bot by sending a page containing JavaScript code and waiting for a response. Legal browsers are able to execute JavaScript and produce a valid response, whereas bots cannot. A login attempt is logged if the client successfully passes the Client Side Integrity challenge.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>alarm</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>When enabled, the system counts failed login attempts for each Username.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>threshold</code></td>
+<td>integer minimum: 1 maximum: 100</td>
+<td>After configured threshold (number of failed login attempts for each Username) defined action will be applied for the next login attempt.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## character-sets
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#policy/character-sets/characterSet">characterSet</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>characterSetType</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>header</li>
+<li>url</li>
+<li>parameter-name</li>
+<li>parameter-value</li>
+<li>xml-content</li>
+<li>json-content</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+### characterSet
+
+| Field Name  | Type    | Description | Allowed Values |
+| ----------- | ------- | ----------- | -------------- |
+| `isAllowed` | boolean |             |                |
+| `metachar`  | string  |             |                |
+
+## cookie-settings
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>maximumCookieHeaderLength</code></td>
+<td><ul>
+<li>integer minimum: 1 maximum: 65536</li>
+<li>string</li>
+</ul></td>
+<td>Maximum Cookie Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or <em>any</em> are set, then no restriction on the cookie header length is applied.</td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## cookies
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>accessibleOnlyThroughTheHttpProtocol</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that the system adds the HttpOnly attribute to the domain cookie's response header. This is done to expose the cookie to only HTTP and HTTPS entities. This prevents the cookie from being modified, or intercepted even if it is not modified, by unwanted third parties that run scripts on the web page.
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>The system does not validate that the cookie has not been modified or intercepted.</li>
+<li>The feature covers all security policy cookies, both enforced and allowed, explicit and wildcard.</li>
+</ul>
+</dd>
+</dl></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>attackSignaturesCheck</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that you want attack signatures and threat campaigns to be detected on this cookie and possibly override the security policy settings of an attack signature or threat campaign specifically for this cookie. After you enable this setting, the system displays a list of attack signatures and threat campaigns.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>decodeValueAsBase64</code></td>
+<td>string</td>
+<td><p>Specifies whether the the system should detect or require values to be Base64 encoded:</p>
+<blockquote>
+<ul>
+<li><strong>disabled</strong>: the value will not be decoded as Base64 content.</li>
+<li><strong>enabled</strong>: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.</li>
+<li><strong>required</strong>: the value must be decoded as Base64, and security checks will be performed on the decoded value.</li>
+</ul>
+<p><strong>Note</strong>: This setting is only relevant if the Cookie Enforcement Type is set to Allowed.</p>
+</blockquote></td>
+<td><ul>
+<li>disabled</li>
+<li>enabled</li>
+<li>required</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enforcementType</code></td>
+<td>string</td>
+<td><p>Specifies how the system treats this cookie.</p>
+<blockquote>
+<ul>
+<li><strong>enforced</strong>: Specifies that according to the security policy, this cookie may not be changed by the client.</li>
+<li><strong>allowed</strong>: Specifies that according to the security policy, this cookie may be changed by the client. The system ignores this cookie.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>allow</li>
+<li>enforce</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>insertSameSiteAttribute</code></td>
+<td>string</td>
+<td><p>The introduction of the SameSite http attribute (defined in [RFC6265bis](<a href="https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00">https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00</a>)) allows you to declare if your cookie should be restricted to a first-party or same-site context. Introducing the SameSite attribute on a cookie provides three different ways of controlling same-site vs. cross-site cookie sending:</p>
+<blockquote>
+<ul>
+<li><strong>strict</strong>: Cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar.</li>
+<li><strong>lax</strong>: Cookies will be sent with top level navigation</li>
+<li><strong>none-value</strong>: Cookies will be sent in a third-party context.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>lax</li>
+<li>none</li>
+<li>none-value</li>
+<li>strict</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maskValueInLogs</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that the cookie's value will be masked in the request log.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td><p>Specifies the cookie name as appearing in the http cookie header. The cookie name length is limited to 500 characters.</p>
+<p>Names can be one of the following according to the <em>type</em> attribute:</p>
+<blockquote>
+<ul>
+<li><strong>explicit</strong>: Specifies that the cookie has a specific name and is not a wildcard entity. Type the name of a cookie exactly as you expect it to appear in the request.</li>
+<li><strong>wildcard</strong>: Specifies that any cookie that matches the listed wildcard expression should be treated according to the wildcard attributes. Type a wildcard expression that matches the expected cookie. For example, the wildcard expression cookie_12* of type Enforced specifies that the security policy should not allow modified domain cookies for all cookies which match cookie_12*.</li>
+</ul>
+</blockquote>
+<p>The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.</p>
+<blockquote>
+<ul>
+<li><strong>*</strong>: Matches all characters</li>
+<li><strong>?</strong>: Matches any single character</li>
+<li><strong>[abcde]</strong>: Matches exactly one of the characters listed</li>
+<li><strong>[!abcde]</strong>: Matches any character not listed</li>
+<li><strong>[a-e]</strong>: Matches exactly one character in the range</li>
+<li><strong>[!a-e]</strong>: Matches any character not in the range</li>
+</ul>
+</blockquote>
+<p><strong>Note</strong>: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>securedOverHttpsConnection</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that the system adds the Secure attribute to the domain cookie's response header. This is done to ensure that the cookies are returned to the server only over SSL (by using the HTTPS protocol). This prevents the cookie from being intercepted, but does not guarantee its integrity.
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>The system does not validate that the cookie was received over SSL.</li>
+<li>The feature covers all security policy cookies, both enforced and allowed, explicit and wildcard.</li>
+</ul>
+</dd>
+</dl></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/cookies/signatureOverrides">signatureOverrides</a></td>
+<td>array of objects</td>
+<td>Array of signature overrides. Specifies attack signatures whose security policy settings are overridden for this cookie, and which action the security policy takes when it discovers a request for this cookie that matches these attack signatures.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
+<td><ul>
+<li>explicit</li>
+<li>wildcard</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>wildcardOrder</code></td>
+<td>integer</td>
+<td>Specifies the order index for wildcard cookies matching. Wildcard cookies with lower wildcard order will get checked for a match prior to cookies with higher wildcard order.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### signatureOverrides
+
+| Field Name    | Type    | Description                                                                       | Allowed Values |
+| ------------- | ------- | --------------------------------------------------------------------------------- | -------------- |
+| `enabled`     | boolean | Specifies, when true, that the overridden signature is enforced                   |                |
+| `name`        | string  | The signature name which, along with the signature tag, identifies the signature. |                |
+| `signatureId` | integer | The signature ID which identifies the signature.                                  |                |
+| `tag`         | string  | The signature tag which, along with the signature name, identifies the signature. |                |
+
+## csrf-protection
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>expirationTimeInSeconds</code></td>
+<td><ul>
+<li>integer</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"disabled"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>sslOnly</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## csrf-urls
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>enforcementAction</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>none</li>
+<li>verify-origin</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>method</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>GET</li>
+<li>POST</li>
+<li>any</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>url</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>wildcardOrder</code></td>
+<td>integer</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## data-guard
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>creditCardNumbers</code></td>
+<td>boolean</td>
+<td>If <em>true</em> the system considers credit card numbers as sensitive data.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>customPatterns</code></td>
+<td>boolean</td>
+<td>If <em>true</em> the system recognizes customized patterns as sensitive data.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>customPatternsList</code></td>
+<td>array of strings</td>
+<td>List of PCRE regular expressions that specify the sensitive data patterns.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>If <em>true</em> the system protects sensitive data.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>enforcementMode</code></td>
+<td>string</td>
+<td><p>Specifies the URLs for which the system enforces data guard protection.</p>
+<blockquote>
+<ul>
+<li><strong>ignore-urls-in-list</strong>: Specifies that the system enforces data guard protection for all URLs except for those URLs in the Enforcement Mode list.</li>
+<li><strong>enforce-urls-in-list</strong>: Specifies that the system enforces data guard protection only for those URLs in the Enforcement Mode list</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>enforce-urls-in-list</li>
+<li>ignore-urls-in-list</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enforcementUrls</code></td>
+<td>array of strings</td>
+<td>List of URLS to be enforced based on enforcement mode of data guard protection.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>firstCustomCharactersToExpose</code></td>
+<td>integer minimum: 0 maximum: 255</td>
+<td>Specifies the number of first alphanumeric characters in Custom patterns that are exposed.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>lastCustomCharactersToExpose</code></td>
+<td>integer minimum: 0 maximum: 255</td>
+<td>Specifies the number of last alphanumeric characters in Custom patterns that are exposed.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maskData</code></td>
+<td>boolean</td>
+<td>If <em>true</em> the system intercepts the returned responses to mask sensitive data.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>usSocialSecurityNumbers</code></td>
+<td>boolean</td>
+<td>If <em>true</em> the system considers U.S Social Security numbers as sensitive data.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## disallowed-geolocations
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>countryCode</code></td>
+<td>string</td>
+<td>Specifies the ISO country code of the selected country.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>countryName</code></td>
+<td>string</td>
+<td>Specifies the name of the country.</td>
+<td><ul>
+<li>Afghanistan</li>
+<li>Aland Islands</li>
+<li>Albania</li>
+<li>Algeria</li>
+<li>American Samoa</li>
+<li>Andorra</li>
+<li>Angola</li>
+<li>Anguilla</li>
+<li>Anonymous Proxy</li>
+<li>Antarctica</li>
+<li>Antigua and Barbuda</li>
+<li>Argentina</li>
+<li>Armenia</li>
+<li>Aruba</li>
+<li>Australia</li>
+<li>Austria</li>
+<li>Azerbaijan</li>
+<li>Bahamas</li>
+<li>Bahrain</li>
+<li>Bangladesh</li>
+<li>Barbados</li>
+<li>Belarus</li>
+<li>Belgium</li>
+<li>Belize</li>
+<li>Benin</li>
+<li>Bermuda</li>
+<li>Bhutan</li>
+<li>Bolivia</li>
+<li>Bosnia and Herzegovina</li>
+<li>Botswana</li>
+<li>Bouvet Island</li>
+<li>Brazil</li>
+<li>British Indian Ocean Territory</li>
+<li>Brunei Darussalam</li>
+<li>Bulgaria</li>
+<li>Burkina Faso</li>
+<li>Burundi</li>
+<li>Cambodia</li>
+<li>Cameroon</li>
+<li>Canada</li>
+<li>Cape Verde</li>
+<li>Cayman Islands</li>
+<li>Central African Republic</li>
+<li>Chad</li>
+<li>Chile</li>
+<li>China</li>
+<li>Christmas Island</li>
+<li>Cocos (Keeling) Islands</li>
+<li>Colombia</li>
+<li>Comoros</li>
+<li>Congo</li>
+<li>Congo, The Democratic Republic of the</li>
+<li>Cook Islands</li>
+<li>Costa Rica</li>
+<li>Cote D'Ivoire</li>
+<li>Croatia</li>
+<li>Cuba</li>
+<li>Cyprus</li>
+<li>Czech Republic</li>
+<li>Denmark</li>
+<li>Djibouti</li>
+<li>Dominica</li>
+<li>Dominican Republic</li>
+<li>Ecuador</li>
+<li>Egypt</li>
+<li>El Salvador</li>
+<li>Equatorial Guinea</li>
+<li>Eritrea</li>
+<li>Estonia</li>
+<li>Ethiopia</li>
+<li>Falkland Islands (Malvinas)</li>
+<li>Faroe Islands</li>
+<li>Fiji</li>
+<li>Finland</li>
+<li>France</li>
+<li>France, Metropolitan</li>
+<li>French Guiana</li>
+<li>French Polynesia</li>
+<li>French Southern Territories</li>
+<li>Gabon</li>
+<li>Gambia</li>
+<li>Georgia</li>
+<li>Germany</li>
+<li>Ghana</li>
+<li>Gibraltar</li>
+<li>Greece</li>
+<li>Greenland</li>
+<li>Grenada</li>
+<li>Guadeloupe</li>
+<li>Guam</li>
+<li>Guatemala</li>
+<li>Guernsey</li>
+<li>Guinea</li>
+<li>Guinea-Bissau</li>
+<li>Guyana</li>
+<li>Haiti</li>
+<li>Heard Island and McDonald Islands</li>
+<li>Holy See (Vatican City State)</li>
+<li>Honduras</li>
+<li>Hong Kong</li>
+<li>Hungary</li>
+<li>Iceland</li>
+<li>India</li>
+<li>Indonesia</li>
+<li>Iran, Islamic Republic of</li>
+<li>Iraq</li>
+<li>Ireland</li>
+<li>Isle of Man</li>
+<li>Israel</li>
+<li>Italy</li>
+<li>Jamaica</li>
+<li>Japan</li>
+<li>Jersey</li>
+<li>Jordan</li>
+<li>Kazakhstan</li>
+<li>Kenya</li>
+<li>Kiribati</li>
+<li>Korea, Democratic People's Republic of</li>
+<li>Korea, Republic of</li>
+<li>Kuwait</li>
+<li>Kyrgyzstan</li>
+<li>Lao People's Democratic Republic</li>
+<li>Latvia</li>
+<li>Lebanon</li>
+<li>Lesotho</li>
+<li>Liberia</li>
+<li>Libyan Arab Jamahiriya</li>
+<li>Liechtenstein</li>
+<li>Lithuania</li>
+<li>Luxembourg</li>
+<li>Macau</li>
+<li>Macedonia</li>
+<li>Madagascar</li>
+<li>Malawi</li>
+<li>Malaysia</li>
+<li>Maldives</li>
+<li>Mali</li>
+<li>Malta</li>
+<li>Marshall Islands</li>
+<li>Martinique</li>
+<li>Mauritania</li>
+<li>Mauritius</li>
+<li>Mayotte</li>
+<li>Mexico</li>
+<li>Micronesia, Federated States of</li>
+<li>Moldova, Republic of</li>
+<li>Monaco</li>
+<li>Mongolia</li>
+<li>Montenegro</li>
+<li>Montserrat</li>
+<li>Morocco</li>
+<li>Mozambique</li>
+<li>Myanmar</li>
+<li>N/A</li>
+<li>Namibia</li>
+<li>Nauru</li>
+<li>Nepal</li>
+<li>Netherlands</li>
+<li>Netherlands Antilles</li>
+<li>New Caledonia</li>
+<li>New Zealand</li>
+<li>Nicaragua</li>
+<li>Niger</li>
+<li>Nigeria</li>
+<li>Niue</li>
+<li>Norfolk Island</li>
+<li>Northern Mariana Islands</li>
+<li>Norway</li>
+<li>Oman</li>
+<li>Other</li>
+<li>Pakistan</li>
+<li>Palau</li>
+<li>Palestinian Territory</li>
+<li>Panama</li>
+<li>Papua New Guinea</li>
+<li>Paraguay</li>
+<li>Peru</li>
+<li>Philippines</li>
+<li>Pitcairn Islands</li>
+<li>Poland</li>
+<li>Portugal</li>
+<li>Puerto Rico</li>
+<li>Qatar</li>
+<li>Reunion</li>
+<li>Romania</li>
+<li>Russian Federation</li>
+<li>Rwanda</li>
+<li>Saint Barthelemy</li>
+<li>Saint Helena</li>
+<li>Saint Kitts and Nevis</li>
+<li>Saint Lucia</li>
+<li>Saint Martin</li>
+<li>Saint Pierre and Miquelon</li>
+<li>Saint Vincent and the Grenadines</li>
+<li>Samoa</li>
+<li>San Marino</li>
+<li>Sao Tome and Principe</li>
+<li>Satellite Provider</li>
+<li>Saudi Arabia</li>
+<li>Senegal</li>
+<li>Serbia</li>
+<li>Seychelles</li>
+<li>Sierra Leone</li>
+<li>Singapore</li>
+<li>Slovakia</li>
+<li>Slovenia</li>
+<li>Solomon Islands</li>
+<li>Somalia</li>
+<li>South Africa</li>
+<li>South Georgia and the South Sandwich Islands</li>
+<li>Spain</li>
+<li>Sri Lanka</li>
+<li>Sudan</li>
+<li>Suriname</li>
+<li>Svalbard and Jan Mayen</li>
+<li>Swaziland</li>
+<li>Sweden</li>
+<li>Switzerland</li>
+<li>Syrian Arab Republic</li>
+<li>Taiwan</li>
+<li>Tajikistan</li>
+<li>Tanzania, United Republic of</li>
+<li>Thailand</li>
+<li>Timor-Leste</li>
+<li>Togo</li>
+<li>Tokelau</li>
+<li>Tonga</li>
+<li>Trinidad and Tobago</li>
+<li>Tunisia</li>
+<li>Turkey</li>
+<li>Turkmenistan</li>
+<li>Turks and Caicos Islands</li>
+<li>Tuvalu</li>
+<li>Uganda</li>
+<li>Ukraine</li>
+<li>United Arab Emirates</li>
+<li>United Kingdom</li>
+<li>United States</li>
+<li>United States Minor Outlying Islands</li>
+<li>Uruguay</li>
+<li>Uzbekistan</li>
+<li>Vanuatu</li>
+<li>Venezuela</li>
+<li>Vietnam</li>
+<li>Virgin Islands, British</li>
+<li>Virgin Islands, U.S.</li>
+<li>Wallis and Futuna</li>
+<li>Western Sahara</li>
+<li>Yemen</li>
+<li>Zambia</li>
+<li>Zimbabwe</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## enforcer-settings
+
+| Field Name                                                             | Type   | Description                                                        | Allowed Values |
+| ---------------------------------------------------------------------- | ------ | ------------------------------------------------------------------ | -------------- |
+| [enforcerStateCookies](#policy/enforcer-settings/enforcerStateCookies) | object | This section defines the properties of the enforcer state cookies. |                |
+
+### enforcerStateCookies
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>httpOnlyAttribute</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that the system adds the state cookie HttpOnly attribute.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>sameSiteAttribute</code></td>
+<td>string</td>
+<td><p>The value for the state cookie SameSite attribute:</p>
+<blockquote>
+<ul>
+<li><strong>none</strong>: The SameSite attribute is never added to the state cookie.</li>
+<li><strong>strict</strong>: Cookie will only be sent in a first-party context. In user terms, the cookie will only be sent if the site for the cookie matches the site currently shown in the browser's URL bar.</li>
+<li><strong>lax</strong>: Cookies will be sent with top level navigation</li>
+<li><strong>none-value</strong>: Cookies will be sent in a third-party context.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>lax</li>
+<li>none</li>
+<li>none-value</li>
+<li>strict</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>secureAttribute</code></td>
+<td>string</td>
+<td><p>The value for the state cookie Secure attribute:</p>
+<blockquote>
+<ul>
+<li><strong>always</strong>: Always add the Secure attribute to the state cookie.</li>
+<li><strong>never</strong>: The Secure attribute is never added to the state cookie.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>always</li>
+<li>never</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## filetypes
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowed</code></td>
+<td>boolean</td>
+<td>Determines whether the file type is allowed or disallowed. In either of these cases the VIOL_FILETYPE violation is issued (if enabled) for an incoming request-
+<ol type="1">
+<li>No allowed file type matched the file type of the request.</li>
+<li>The file type of the request matched a disallowed file type.</li>
+</ol></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkPostDataLength</code></td>
+<td>boolean</td>
+<td>Determines whether to enforce maximum length restriction for the body, a.k.a. "POST data" part of the requests that match the respective file type. The maximum length is determined by <em>postDataLength</em> attribute. Although named "POST data", this applies to any content type and not restricted to POST requests, e.g. PUT requests are also checked. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>checkQueryStringLength</code></td>
+<td>boolean</td>
+<td>Determines whether to enforce maximum length restriction for the query string of the requests that match the respective file type. The maximum length is determined by <em>queryStringLength</em> attribute. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkRequestLength</code></td>
+<td>boolean</td>
+<td>Determines whether to enforce maximum length restriction for the total length of requests that match the respective file type. The maximum length is determined by <em>requestLength</em> attribute. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>checkUrlLength</code></td>
+<td>boolean</td>
+<td>Determines whether to enforce maximum length restriction for the URL of the requests that match the respective file type. The URL does <em>not</em> include the query string, past the &amp;. The maximum length is determined by <em>urlLength</em> attribute. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td><p>Specifies the file type name as appearing in the URL extension. Names can be one of the following according to the <em>type</em> attribute:</p>
+<blockquote>
+<ul>
+<li><strong>Explicit</strong> - Specifies that the name is the literal file extension to which the file type refers. The <em>type</em> attribute has to be "explicit".</li>
+<li><strong>No Extension</strong> - Specifies the empty file type, lacking file extension. For this the reserved string <strong>no_ext</strong> should be used. The <em>type</em> attribute has to be "explicit".</li>
+<li><strong>Wildcard</strong> - Specifies that any file extension that matches the wildcard expression is matched to this file type in the policy. The <em>type</em> attribute has to be "wildcard".</li>
+</ul>
+</blockquote>
+<p>The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.</p>
+<blockquote>
+<ul>
+<li><strong>*</strong>: Matches all characters</li>
+<li><strong>?</strong>: Matches any single character</li>
+<li><strong>[abcde]</strong>: Matches exactly one of the characters listed</li>
+<li><strong>[!abcde]</strong>: Matches any character not listed</li>
+<li><strong>[a-e]</strong>: Matches exactly one character in the range</li>
+<li><strong>[!a-e]</strong>: Matches any character not in the range</li>
+</ul>
+</blockquote>
+<p><strong>Note</strong>: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>postDataLength</code></td>
+<td>integer minimum: 0</td>
+<td>The maximum length in bytes of the body (POST data) of the request matching the file type. Enforced only if checkPostDataLength is set to <em>true</em>. If the value is exceeded then VIOL_POST_DATA_LENGTH violation is issued. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>queryStringLength</code></td>
+<td>integer minimum: 0</td>
+<td>The maximum length in bytes of the query string of the request matching the file type. Enforced only if checkQueryStringLength is set to <em>true</em>. If the value is exceeded then VIOL_QUERY_STRING_LENGTH violation is issued. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>requestLength</code></td>
+<td>integer minimum: 0</td>
+<td>The maximum total length in bytes of the request matching the file type. Enforced only if checkRequestLength is set to <em>true</em>. If the value is exceeded then VIOL_REQUEST_LENGTH violation is issued. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>responseCheck</code></td>
+<td>boolean</td>
+<td>Determines whether the responses to requests that match the respective file types are inspected for attack signature detection. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>responseCheckLength</code></td>
+<td>integer minimum: 0 maximum: 10000000000</td>
+<td>Determines how much of the response body will be checked for signatures. When value is set to 0, only the header will be checked. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
+<td><ul>
+<li>explicit</li>
+<li>wildcard</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>urlLength</code></td>
+<td>integer minimum: 0</td>
+<td>The maximum length in bytes of the URL of the request matching the file type, excluding the query string. Enforced only if checkUrlLength is set to <em>true</em>. If the value is exceeded then VIOL_URL_LENGTH violation is issued. This attribute is relevant only to <em>allowed</em> file types.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>wildcardOrder</code></td>
+<td>integer</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## general
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowedResponseCodes</code></td>
+<td>array of integers</td>
+<td>You can specify which responses a security policy permits. By default, the system accepts all response codes from 100 to 399 as valid responses. Response codes from 400 to 599 are considered invalid unless added to the Allowed Response Status Codes list. By default, 400, 401, 404, 407, 417, and 503 are on the list as allowed HTTP response status codes.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>customXffHeaders</code></td>
+<td>array of strings</td>
+<td>If you require the system to trust a server further than one hop toward the client (the last proxy traversed), you can use the Custom XFF Headers setting to define a specific header that is inserted closer to, or at the client, that the system will trust. Additionally, if you require the system to trust a proxy server that uses a different header name than the X-Forwarded-For header name, you can add the desired header name to the Custom XFF Headers setting. When adding a custom header, the X-Forwarded-For header is not trusted anymore. In case the X-Forwarded-For header is to be trusted along with other headers, you must add it to the custom headers list.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maskCreditCardNumbersInRequest</code></td>
+<td>boolean</td>
+<td>When enabled, the security policy masks credit card numbers that appear in any part of requests. The system does not mask the information in the actual requests, but rather in various logs:
+<ul>
+<li>Credit card numbers appearing in entity names are masked in the requests of the Requests log.</li>
+</ul>
+<p>* Credit card numbers appearing in entity values are masked wherever requests can be viewed: the Requests log, and violation details within that log. This setting is enabled by default, and exists in addition to masking parameters defined as containing sensitive information.</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>trustXff</code></td>
+<td>boolean</td>
+<td><p>When enabled, the system has confidence in an XFF (X-Forwarded-For) header in the request. When disabled, that the system does not have confidence in an XFF header in the request. The default setting is disabled.</p>
+<p>Select this option if the system is deployed behind an internal or other trusted proxy. Then, the system uses the IP address that initiated the connection to the proxy instead of the internal proxy's IP address.</p>
+<p>Leave this option disabled if you think the HTTP header may be spoofed, or crafted, by a malicious client. With this setting disabled, if the system is deployed behind an internal proxy, the system uses the internal proxy's IP address instead of the client's IP address.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## graphql-profiles
+
+| Field Name                                                          | Type             | Description | Allowed Values |
+| ------------------------------------------------------------------- | ---------------- | ----------- | -------------- |
+| `attackSignaturesCheck`                                             | boolean          |             |                |
+| [defenseAttributes](#policy/graphql-profiles/defenseAttributes)     | object           |             |                |
+| `description`                                                       | string           |             |                |
+| `hasIdlFiles`                                                       | boolean          |             |                |
+| [idlFiles](#policy/graphql-profiles/idlFiles)                       | array of objects |             |                |
+| `metacharElementCheck`                                              | boolean          |             |                |
+| [metacharOverrides](#policy/graphql-profiles/metacharOverrides)     | array of objects |             |                |
+| `name`                                                              | string           |             |                |
+| [responseEnforcement](#policy/graphql-profiles/responseEnforcement) | object           |             |                |
+| [sensitiveData](#policy/graphql-profiles/sensitiveData)             | array of objects |             |                |
+| [signatureOverrides](#policy/graphql-profiles/signatureOverrides)   | array of objects |             |                |
+
+### defenseAttributes
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowIntrospectionQueries</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maximumBatchedQueries</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumQueryCost</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumStructureDepth</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumTotalLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumValueLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>tolerateParsingWarnings</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### idlFiles
+
+| Field Name                                           | Type    | Description | Allowed Values |
+| ---------------------------------------------------- | ------- | ----------- | -------------- |
+| [idlFile](#policy/graphql-profiles/idlFiles/idlFile) | object  |             |                |
+| `isPrimary`                                          | boolean |             |                |
+
+#### idlFile
+
+| Field Name | Type | Description | Allowed Values |
+| ---------- | ---- | ----------- | -------------- |
+
+### metacharOverrides
+
+| Field Name  | Type    | Description | Allowed Values |
+| ----------- | ------- | ----------- | -------------- |
+| `isAllowed` | boolean |             |                |
+| `metachar`  | string  |             |                |
+
+### responseEnforcement
+
+| Field Name                | Type             | Description | Allowed Values |
+| ------------------------- | ---------------- | ----------- | -------------- |
+| `blockDisallowedPatterns` | boolean          |             |                |
+| `disallowedPatterns`      | array of strings |             |                |
+
+### sensitiveData
+
+| Field Name      | Type   | Description | Allowed Values |
+| --------------- | ------ | ----------- | -------------- |
+| `parameterName` | string |             |                |
+
+### signatureOverrides
+
+| Field Name    | Type    | Description | Allowed Values |
+| ------------- | ------- | ----------- | -------------- |
+| `enabled`     | boolean |             |                |
+| `name`        | string  |             |                |
+| `signatureId` | integer |             |                |
+| `tag`         | string  |             |                |
+
+## grpc-profiles
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>associateUrls</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>attackSignaturesCheck</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>decodeStringValuesAsBase64</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>disabled</li>
+<li>enabled</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/grpc-profiles/defenseAttributes">defenseAttributes</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>description</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>hasIdlFiles</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/grpc-profiles/idlFiles">idlFiles</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>metacharElementCheck</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/grpc-profiles/signatureOverrides">signatureOverrides</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### defenseAttributes
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowUnknownFields</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maximumDataLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+### idlFiles
+
+| Field Name                                        | Type    | Description | Allowed Values |
+| ------------------------------------------------- | ------- | ----------- | -------------- |
+| [idlFile](#policy/grpc-profiles/idlFiles/idlFile) | object  |             |                |
+| `importUrl`                                       | string  |             |                |
+| `isPrimary`                                       | boolean |             |                |
+| `primaryIdlFileName`                              | string  |             |                |
+
+#### idlFile
+
+| Field Name | Type | Description | Allowed Values |
+| ---------- | ---- | ----------- | -------------- |
+
+### signatureOverrides
+
+| Field Name    | Type    | Description | Allowed Values |
+| ------------- | ------- | ----------- | -------------- |
+| `enabled`     | boolean |             |                |
+| `name`        | string  |             |                |
+| `signatureId` | integer |             |                |
+| `tag`         | string  |             |                |
+
+## header-settings
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>maximumHttpHeaderLength</code></td>
+<td><ul>
+<li>integer minimum: 1 maximum: 65536</li>
+<li>string</li>
+</ul></td>
+<td>Maximum HTTP Header Length must be greater than 0 and less than 65536 bytes (64K). Note: if 0 or <em>any</em> are set, then no restriction on the HTTP header length is applied.</td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## headers
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowEmptyValue</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>allowRepeatedOccurrences</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>autoDetectBinaryValue</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkSignatures</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>decodeValueAsBase64</code></td>
+<td>string</td>
+<td><p>Specifies whether the the system should detect or require values to be Base64 encoded:</p>
+<blockquote>
+<ul>
+<li><strong>disabled</strong>: the value will not be decoded as Base64 content.</li>
+<li><strong>enabled</strong>: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.</li>
+<li><strong>required</strong>: the value must be decoded as Base64, and security checks will be performed on the decoded value.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>disabled</li>
+<li>enabled</li>
+<li>required</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>htmlNormalization</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>mandatory</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maskValueInLogs</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that the headers's value will be masked in the request log.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td><p>Specifies the HTTP header name. The header name length is limited to 254 characters.</p>
+<p>Names can be one of the following according to the <em>type</em> attribute:</p>
+<blockquote>
+<ul>
+<li><strong>explicit</strong>: Specifies that the header has a specific name and is not a wildcard entity. The name of the header exactly as you expect it to appear in the request.</li>
+<li><strong>wildcard</strong>: Specifies that any header that matches the listed wildcard expression should be treated according to the wildcard attributes.</li>
+</ul>
+</blockquote>
+<p>The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.</p>
+<blockquote>
+<ul>
+<li><strong>*</strong>: Matches all characters</li>
+<li><strong>?</strong>: Matches any single character</li>
+<li><strong>[abcde]</strong>: Matches exactly one of the characters listed</li>
+<li><strong>[!abcde]</strong>: Matches any character not listed</li>
+<li><strong>[a-e]</strong>: Matches exactly one character in the range</li>
+<li><strong>[!a-e]</strong>: Matches any character not in the range</li>
+</ul>
+</blockquote>
+<p><strong>Note</strong>: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>normalizationViolations</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>percentDecoding</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/headers/signatureOverrides">signatureOverrides</a></td>
+<td>array of objects</td>
+<td>Array of signature overrides. Specifies attack signatures whose security policy settings are overridden for this header, and which action the security policy takes when it discovers a request for this header that matches these attack signatures.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>type</code></td>
+<td>string</td>
+<td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
+<td><ul>
+<li>explicit</li>
+<li>wildcard</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>urlNormalization</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>wildcardOrder</code></td>
+<td>integer</td>
+<td>Specifies the order index for wildcard header matching. Wildcard headers with lower wildcard order will get checked for a match prior to headers with higher wildcard order.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### signatureOverrides
+
+| Field Name    | Type    | Description                                                                       | Allowed Values |
+| ------------- | ------- | --------------------------------------------------------------------------------- | -------------- |
+| `enabled`     | boolean | Specifies, when true, that the overridden signature is enforced                   |                |
+| `name`        | string  | The signature name which, along with the signature tag, identifies the signature. |                |
+| `signatureId` | integer | The signature ID which identifies the signature.                                  |                |
+| `tag`         | string  | The signature tag which, along with the signature name, identifies the signature. |                |
+
+## host-names
+
+| Field Name          | Type    | Description | Allowed Values |
+| ------------------- | ------- | ----------- | -------------- |
+| `includeSubdomains` | boolean |             |                |
+| `name`              | string  |             |                |
+
+## idl-files
+
+| Field Name | Type    | Description | Allowed Values |
+| ---------- | ------- | ----------- | -------------- |
+| `contents` | string  |             |                |
+| `fileName` | string  |             |                |
+| `isBase64` | boolean |             |                |
+
+## ip-address-lists
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>blockRequests</code></td>
+<td>string</td>
+<td><dl>
+<dt>Specifies how the system responds to blocking requests sent from this IP address list.</dt>
+<dd><ul>
+<li><strong>Policy Default:</strong> Specifies that the policy enforcementMode will be used for requests from this IP address list.</li>
+<li><strong>Never Block:</strong> Specifies that the system does not block requests sent from this IP address list, even if your security policy is configured to block all traffic.</li>
+<li><strong>Always Block:</strong> Specifies that the system blocks requests sent from this IP address list.</li>
+</ul>
+</dd>
+</dl>
+<p>Optional, if absent Policy Default is used.</p></td>
+<td><ul>
+<li>always</li>
+<li>never</li>
+<li>policy-default</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>string</td>
+<td>Specifies a brief description of the IP address list. Optional</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/ip-address-lists/ipAddresses">ipAddresses</a></td>
+<td>array of objects</td>
+<td>Specifies the IP addresses. Use CIDR notation for subnet definition.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>matchOrder</code></td>
+<td>integer</td>
+<td>Specifies the order matching index between different IP Address Lists. If unspecified, the order is implicitly as the lists appear in the policy. IP Address Lists with a lower matchOrder will be checked for a match prior to items with higher matchOrder.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td>Specifies the name of ip address list.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>neverLogRequests</code></td>
+<td>boolean</td>
+<td>Specifies when enabled that the system does not log requests or responses sent from this IP address list, even if the traffic is illegal, and even if your security policy is configured to log all traffic. Optional, if absent default value is false.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>setGeolocation</code></td>
+<td>string</td>
+<td>Specifies a geolocation to be associated for this IP address list. This will force the IP addresses in the list to be considered as though they are in that geolocation. This applies to blocking via "disallowed-geolocations" and to logging. Optional</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### ipAddresses
+
+| Field Name  | Type   | Description                                                        | Allowed Values |
+| ----------- | ------ | ------------------------------------------------------------------ | -------------- |
+| `ipAddress` | string | Specifies the IP address. Use CIDR notation for subnet definition. |                |
+
+## ip-intelligence
+
+| Field Name                                                                   | Type             | Description | Allowed Values |
+| ---------------------------------------------------------------------------- | ---------------- | ----------- | -------------- |
+| `enabled`                                                                    | boolean          |             |                |
+| [ipIntelligenceCategories](#policy/ip-intelligence/ipIntelligenceCategories) | array of objects |             |                |
+
+### ipIntelligenceCategories
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>alarm</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>block</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>category</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>Anonymous Proxy</li>
+<li>BotNets</li>
+<li>Cloud-based Services</li>
+<li>Denial of Service</li>
+<li>Infected Sources</li>
+<li>Mobile Threats</li>
+<li>Phishing Proxies</li>
+<li>Scanners</li>
+<li>Spam Sources</li>
+<li>Tor Proxies</li>
+<li>Web Attacks</li>
+<li>Windows Exploits</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## json-profiles
+
+| Field Name                                                     | Type             | Description | Allowed Values |
+| -------------------------------------------------------------- | ---------------- | ----------- | -------------- |
+| `attackSignaturesCheck`                                        | boolean          |             |                |
+| [defenseAttributes](#policy/json-profiles/defenseAttributes)   | object           |             |                |
+| `description`                                                  | string           |             |                |
+| `handleJsonValuesAsParameters`                                 | boolean          |             |                |
+| `hasValidationFiles`                                           | boolean          |             |                |
+| `metacharElementCheck`                                         | boolean          |             |                |
+| [metacharOverrides](#policy/json-profiles/metacharOverrides)   | array of objects |             |                |
+| `name`                                                         | string           |             |                |
+| [signatureOverrides](#policy/json-profiles/signatureOverrides) | array of objects |             |                |
+| [validationFiles](#policy/json-profiles/validationFiles)       | array of objects |             |                |
+
+### defenseAttributes
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>maximumArrayLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumStructureDepth</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumTotalLengthOfJSONData</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumValueLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>tolerateJSONParsingWarnings</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### metacharOverrides
+
+| Field Name  | Type    | Description | Allowed Values |
+| ----------- | ------- | ----------- | -------------- |
+| `isAllowed` | boolean |             |                |
+| `metachar`  | string  |             |                |
+
+### signatureOverrides
+
+| Field Name    | Type    | Description | Allowed Values |
+| ------------- | ------- | ----------- | -------------- |
+| `enabled`     | boolean |             |                |
+| `name`        | string  |             |                |
+| `signatureId` | integer |             |                |
+| `tag`         | string  |             |                |
+
+### validationFiles
+
+| Field Name                                                                     | Type    | Description | Allowed Values |
+| ------------------------------------------------------------------------------ | ------- | ----------- | -------------- |
+| `importUrl`                                                                    | string  |             |                |
+| `isPrimary`                                                                    | boolean |             |                |
+| [jsonValidationFile](#policy/json-profiles/validationFiles/jsonValidationFile) | object  |             |                |
+
+#### jsonValidationFile
+
+| Field Name | Type | Description | Allowed Values |
+| ---------- | ---- | ----------- | -------------- |
+
+## json-validation-files
+
+| Field Name | Type    | Description | Allowed Values |
+| ---------- | ------- | ----------- | -------------- |
+| `contents` | string  |             |                |
+| `fileName` | string  |             |                |
+| `isBase64` | boolean |             |                |
+
+## login-enforcement
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>authenticatedUrls</code></td>
+<td>array of strings</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>expirationTimePeriod</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 99999</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"disabled"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/login-enforcement/logoutUrls">logoutUrls</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### logoutUrls
+
+| Field Name          | Type   | Description | Allowed Values |
+| ------------------- | ------ | ----------- | -------------- |
+| `requestContains`   | string |             |                |
+| `requestOmits`      | string |             |                |
+| [url](#policy/urls) | object |             |                |
+
+## login-pages
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#policy/login-pages/accessValidation">accessValidation</a></td>
+<td>object</td>
+<td>Access Validation define validation criteria for the login page response. If you define more than one validation criteria, the response must meet all the criteria before the system allows the user to access the application login URL.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>authenticationType</code></td>
+<td>string</td>
+<td><p>Authentication Type is method the web server uses to authenticate the login URL's credentials with a web user.</p>
+<blockquote>
+<ul>
+<li><strong>none</strong>: The web server does not authenticate users trying to access the web application through the login URL. This is the default setting.</li>
+<li><strong>form</strong>: The web application uses a form to collect and authenticate user credentials. If using this option, you also need to type the user name and password parameters written in the code of the HTML form.</li>
+<li><strong>http-basic</strong>: The user name and password are transmitted in Base64 and stored on the server in plain text.</li>
+<li><strong>http-digest</strong>: The web server performs the authentication; user names and passwords are not transmitted over the network, nor are they stored in plain text.</li>
+<li><strong>ntlm</strong>: Microsoft LAN Manager authentication (also called Integrated Windows Authentication) does not transmit credentials in plain text, but requires a continuous TCP connection between the server and client.</li>
+<li><strong>ajax-or-json-request</strong>: The web server uses JSON and AJAX requests to authenticate users trying to access the web application through the login URL. For this option, you also need to type the name of the JSON element containing the user name and password.</li>
+<li><strong>request-body</strong>: The web server uses the request body to authenticate users trying to access the web application through the login URL. This allows brute force login detection using, for example, SAML authentication used on Microsoft Federation Services for SSO which uses SOAP API to login.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>ajax-or-json-request</li>
+<li>form</li>
+<li>http-basic</li>
+<li>http-digest</li>
+<li>none</li>
+<li>ntlm</li>
+<li>request-body</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>passwordParameterName</code></td>
+<td>string</td>
+<td>A name of parameter which will contain password string.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>passwordRegex</code></td>
+<td>string</td>
+<td>PCRE regular expression for capturing the password. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the password. For example: "pwd=(w+)". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls">url</a></td>
+<td>object</td>
+<td>URL string used for login page.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>usernameParameterName</code></td>
+<td>string</td>
+<td>A name of parameter which will contain username string.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>usernameRegex</code></td>
+<td>string</td>
+<td>PCRE regular expression for capturing the username. The regular expression must include exactly one capturing group (in rounded parentheses) for the value of the username. For example: "user_id=(w+)". The entered expression is validated and any invalid code is noted and must be corrected. Note: This setting is only relevant if authenticationType is request-body.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### accessValidation
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cookieContains</code></td>
+<td>string</td>
+<td>A defined domain cookie name that the response to the login URL must match to permit user access to the authenticated URL.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>headerContains</code></td>
+<td>string</td>
+<td>A header name and value that the response to the login URL must match to permit user access to the authenticated URL.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>headerContainsMatchCondition</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>exact</li>
+<li>regex</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>headerOmits</code></td>
+<td>string</td>
+<td>A header name and value that indicates a failed login attempt and prohibits user access to the authenticated URL.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>headerOmitsMatchCondition</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>exact</li>
+<li>regex</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>parameterContains</code></td>
+<td>string</td>
+<td>A parameter that must exist in the login URL's HTML body to allow access to the authenticated URL.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>responseContains</code></td>
+<td>string</td>
+<td>A string that must appear in the response for the system to allow the user to access the authenticated URL; for example, "Successful Login".</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>responseHttpStatus</code></td>
+<td>string</td>
+<td>An HTTP response code that the server must return to the user to allow access to the authenticated URL; for example, "200".</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>responseHttpStatusOmits</code></td>
+<td>array of strings</td>
+<td>An HTTP response code that indicates a failed login attempt and prohibits user access to the authenticated URL.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>responseOmits</code></td>
+<td>string</td>
+<td>A string that indicates a failed login attempt and prohibits user access to the authenticated URL; for example, "Authentication failed".</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## methods
+
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `name`     | string |             |                |
+
+## override-rules
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>actionType</code></td>
+<td>string</td>
+<td><p>The action to take when the override rule is matched. Possible values are:</p>
+<blockquote>
+<ul>
+<li><strong>extend-policy</strong>: The override policy inherits the containing policy settings, allowing only the required settings to be overridden.</li>
+<li><strong>replace-policy</strong>: The override policy must be a valid declarative policy that includes a name, template and all necessary settings.</li>
+<li><strong>violation</strong>: The request is blocked and a the VIOL_RULE is logged based on the provided violation settings.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>extend-policy</li>
+<li>replace-policy</li>
+<li>violation</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>condition</code></td>
+<td>string</td>
+<td><p>Specifies the condition under which the override rule should be applied.</p>
+<p>Example: "clientIp != '10.0.0.5' and userAgent.lower().contains('WebRobot')"</p>
+<p>Condition Syntax:</p>
+<blockquote>
+<ul>
+<li>The condition consists of one or more clauses separated by <strong>and</strong> or <strong>or</strong>.</li>
+</ul>
+<p>Example: "clientIp == '10.0.0.5' and (host.startsWith('internal') or uri.contains('api'))"</p>
+<ul>
+<li>Each clause can optionally start with <strong>not</strong> - to negate the expression.</li>
+</ul>
+<p>Example: "not clientIp == '127.0.0.1'"</p>
+<ul>
+<li><strong>not</strong> can also be used to negate a parenthesized expression.</li>
+</ul>
+<p>Example: "not (method == 'GET' or method == 'PUT')"</p>
+<ul>
+<li>A clause can be a simple comparison between two value expressions, or a boolean function applied to a literal value.</li>
+</ul>
+</blockquote>
+<p>Supported comparison operators:</p>
+<blockquote>
+<ul>
+<li><strong>==</strong> - Checks for equality between two value expressions.</li>
+<li><strong>!=</strong> - Checks for inequality between two value expressions.</li>
+</ul>
+<p>Example: "clientIp != '10.0.0.5'" (equivalent to "not clientIp == '10.0.0.5'")</p>
+</blockquote>
+<p>Supported boolean functions:</p>
+<blockquote>
+<ul>
+<li><strong>matches</strong>: Performs an exact match of a value expression, equivalent to <strong>==</strong>.</li>
+<li><strong>startsWith</strong>: Checks if a value expression starts with a specific substring.</li>
+<li><strong>contains</strong>: Checks if a value expression contains a specific substring.</li>
+</ul>
+<p>Example: "uri.startsWith('/api')"</p>
+</blockquote>
+<p><strong>Note</strong>: Functions "startsWith" and "contains" are not applicable to the "clientIp" attribute. Regular expressions are not supported.</p>
+<blockquote>
+<ul>
+<li>Value expressions can be a request attribute, literal value, or a value function.</li>
+<li>A literal can be a string value enclosed in single quotes, or can be the keyword "null" without quotes.</li>
+</ul>
+<p>Example: "userAgent == null"</p>
+</blockquote>
+<p>Supported value functions:</p>
+<blockquote>
+<ul>
+<li><strong>lower</strong>: Any boolean function applied on the resulting string will be <strong>case insensitive</strong>. Applicable to ANSI characters only.</li>
+</ul>
+<p>Example: "uri.lower().contains('BaR')" will match the URI "/Foo/bAr"</p>
+</blockquote>
+<p>Request Attributes:</p>
+<blockquote>
+<ul>
+<li><strong>clientIp</strong>: Client IP address in canonical IPv4 or IPv6 format or ip-address-list. Use CIDR notation for subnet definition. Example: <em>192.168.1.2</em> or <em>fd00:1::/48</em>. If <em>trustXff</em> (X-Forwarded-For) is enabled in the containing policy, then the value is taken from the configured header (XFF or other). The only supported boolean function for the clientIP attribute is <em>matches</em>.</li>
+<li><strong>host</strong>: The value of the Host header</li>
+<li><strong>method</strong>: The HTTP method in the request</li>
+<li><strong>uri</strong>: The URI (path part) of the request</li>
+<li><strong>userAgent</strong>: The value of the User-Agent header, or <em>null</em> (without quotes) if not present</li>
+<li><strong>geolocation</strong>: The geolocation of the client IP address. The value is the ISO 3166 two-letter code of the respective country.</li>
+<li><strong>parameters['&lt;name&gt;']</strong>: (map-type) The value of the specified parameter name (limited to query string parameters). Example: "parameters['id'] == '11'"</li>
+<li><strong>cookies['&lt;name&gt;']</strong>: (map-type) The value of the specified cookie name. Example: "cookies['Path'].contains('product')"</li>
+<li><strong>headers['&lt;name&gt;']</strong>: (map-type) The value of the specified header name. Example: "headers['Accept'].startsWith('application')"</li>
+</ul>
+</blockquote>
+<dl>
+<dt><strong>Note</strong>:</dt>
+<dd><ul>
+<li>The "headers['&lt;name&gt;']" attribute does not support 'Cookie' as a header name.</li>
+<li>Attribute "clientIp" supports using "ipAddressLists" in condition: "clientIp.matches(ipAddressLists['&lt;name&gt;'])"</li>
+</ul>
+</dd>
+</dl></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td>The unique name of the override rule. Cannot contain spaces or special characters.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/override-rules/override">override</a></td>
+<td>object</td>
+<td>The overriding security policy definition.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/override-rules/violation">violation</a></td>
+<td>object</td>
+<td>Contains the details of the raised VIOL_RULE violation. Mandatory if action-type is violation.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### override
+
+| Field Name | Type | Description | Allowed Values |
+| ---------- | ---- | ----------- | -------------- |
+
+### violation
+
+| Field Name                                                | Type                          | Description                                                                                                                                                                                                                                                                                             | Allowed Values |
+| --------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `alarm`                                                   | boolean                       | Whether the violation should be marked in the security log and cause the request to be classified as "illegal".                                                                                                                                                                                         |                |
+| [attackType](#policy/override-rules/violation/attackType) | object                        | The attack type associated with the violation in the present rule. This is reflected in the security log. Mandatory.                                                                                                                                                                                    |                |
+| `block`                                                   | boolean                       | Whether the violation should cause the request to be blocked. On other words: the block flag of the VIOL\_RULE for the present rule.                                                                                                                                                                    |                |
+| `description`                                             | string                        | Textual description of the violation in the present rule. Limited to 200 characters. Not Mandatory.                                                                                                                                                                                                     |                |
+| `rating`                                                  | integer minimum: 3 maximum: 5 | The violation rating that the present rule violation will induce. In other words, the violation rating of the request will be the maximum between this value and the calculated value based on the other violations in the request. If not specified and there is no other violation, then the VR is 3. |                |
+
+#### attackType
+
+| Field Name | Type   | Description                             | Allowed Values |
+| ---------- | ------ | --------------------------------------- | -------------- |
+| `name`     | string | The name of the attack type. Mandatory. |                |
+
+## parameters
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowEmptyValue</code></td>
+<td>boolean</td>
+<td>Determines whether an empty value is allowed for a parameter.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>allowRepeatedParameterName</code></td>
+<td>boolean</td>
+<td>Determines whether multiple parameter instances with the same name are allowed in one request.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>arraySerializationFormat</code></td>
+<td>string</td>
+<td><p>Specifies type of serialization for array of primitives parameter. Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:</p>
+<blockquote>
+<ul>
+<li><strong>pipe</strong>: pipe-separated values. Array color=["blue","black"] -&gt; color=blue|black.</li>
+<li><strong>form</strong>: ampersand-separated values. Array color=["blue","black"] -&gt; color=blue,black.</li>
+<li><strong>matrix</strong>: semicolon-prefixed values. Array color=["blue","black"] -&gt; ;color=blue,black.</li>
+<li><strong>tsv</strong>: tab-separated values. Array color=["blue","black"] -&gt; color=bluetblack.</li>
+<li><strong>csv</strong>: comma-separated values. Array color=["blue","black"] -&gt; color=blue,black.</li>
+<li><strong>label</strong>: dot-prefixed values. Array color=["blue","black"] -&gt; .blue.black.</li>
+<li><strong>multi</strong>: multiple parameter instances rather than multiple values. Array color=["blue","black"] -&gt; color=blue&amp;color=black.</li>
+<li><strong>ssv</strong>: space-separated values. Array color=["blue","black"] -&gt; color=blue black.</li>
+<li><strong>multipart</strong>: defines array of files.</li>
+</ul>
+</blockquote>
+<p><strong>Notes</strong>:</p>
+<blockquote>
+<ul>
+<li>This attribute is relevant only for parameters with <strong>array</strong> <em>valueType</em>.</li>
+<li><strong>multi</strong> and <strong>form</strong> serializations can be defined for parameter with <em>query</em>, <em>form-data</em> or <em>cookie</em> locations only.</li>
+<li><strong>multipart</strong> serialization can be defined for parameter with <em>form-data</em> location only.</li>
+<li><strong>matrix</strong> and <strong>label</strong> serializations can be defined for parameter with <em>path</em> location only.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>csv</li>
+<li>form</li>
+<li>label</li>
+<li>matrix</li>
+<li>multi</li>
+<li>multipart</li>
+<li>pipe</li>
+<li>ssv</li>
+<li>tsv</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>arrayUniqueItemsCheck</code></td>
+<td>boolean</td>
+<td>Determines whether items in an array parameter must be unique. This attribute is relevant only for parameters with <strong>array</strong> <em>valueType</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>attackSignaturesCheck</code></td>
+<td>boolean</td>
+<td>Determines whether attack signatures and threat campaigns must be detected in a parameter's value. This attribute is relevant only for parameters with <strong>alpha-numeric</strong> or <strong>binary</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkMaxItemsInArray</code></td>
+<td>boolean</td>
+<td>Determines whether an array parameter has a restricted maximum number of items. This attribute is relevant only for parameters with <strong>array</strong> <em>valueType</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>checkMaxValue</code></td>
+<td>boolean</td>
+<td>Determines whether the parameter has a restricted maximum value. This attribute is relevant only for parameters with <strong>integer</strong> or <strong>decimal</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkMaxValueLength</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter has a restricted maximum length for value.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>checkMetachars</code></td>
+<td>boolean</td>
+<td>Determines whether disallowed metacharacters must be detected in a parameter's name. This attribute is relevant only for <strong>wildcard</strong> parameters with <strong>alpha-numeric</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkMinItemsInArray</code></td>
+<td>boolean</td>
+<td>Determines whether an array parameter has a restricted minimum number of items. This attribute is relevant only for parameters with <strong>array</strong> <em>valueType</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>checkMinValue</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter has a restricted minimum value. This attribute is relevant only for parameters with <strong>integer</strong> or <strong>decimal</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>checkMinValueLength</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter has a restricted minimum length for value.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>checkMultipleOfValue</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter's value is a multiple of a number defined in <em>multipleOf</em>. This attribute is relevant only for parameters with <strong>integer</strong> or <strong>decimal</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/parameters/contentProfile">contentProfile</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>dataType</code></td>
+<td>string</td>
+<td><p>Specifies data type of parameter's value:</p>
+<blockquote>
+<ul>
+<li><strong>alpha-numeric</strong>: specifies that the value of parameter can be any text consisting of letters, digits, and the underscore character.</li>
+<li><strong>binary</strong>: specifies there is no text limit for the value of a parameter (length checks only).</li>
+<li><strong>phone</strong>: specifies that the value of a parameter can be text in telephone number format only.</li>
+<li><strong>email</strong>: specifies that the value of a parameter must be text in email format only.</li>
+<li><strong>boolean</strong>: specifies that the value of a parameter must be boolean (only <em>true</em> and <em>false</em> values are allowed).</li>
+<li><strong>integer</strong>: specifies that the value of a parameter must be whole numbers only (no decimals).</li>
+<li><strong>decimal</strong>: specifies that the value of a parameter is numbers only and can include decimals.</li>
+</ul>
+</blockquote>
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>This attribute is relevant for parameters with <strong>array</strong> or <strong>user-input</strong> <em>valueType</em> only.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>alpha-numeric</li>
+<li>binary</li>
+<li>phone</li>
+<li>email</li>
+<li>boolean</li>
+<li>integer</li>
+<li>decimal</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>decodeValueAsBase64</code></td>
+<td>string</td>
+<td><p>Specifies whether the the system should detect or require values to be Base64 encoded:</p>
+<blockquote>
+<ul>
+<li><strong>disabled</strong>: the value will not be decoded as Base64 content.</li>
+<li><strong>enabled</strong>: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.</li>
+<li><strong>required</strong>: the value must be decoded as Base64. Security checks will be performed on the decoded value.</li>
+</ul>
+</blockquote>
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>This attribute is relevant for parameters with <strong>binary</strong>, <strong>auto-detect</strong>, or <strong>user-input</strong> <em>valueType</em> only.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>disabled</li>
+<li>enabled</li>
+<li>required</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>disallowFileUploadOfExecutables</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter's value cannot have binary executable content. This attribute is relevant only for parameters with <strong>binary</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enableRegularExpression</code></td>
+<td>boolean</td>
+<td>Determines whether the parameter value includes the pattern defined in <em>regularExpression</em>. This attribute is relevant only for parameters with <strong>alpha-numeric</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>exclusiveMax</code></td>
+<td>boolean</td>
+<td>Determines whether the maximum value defined in <em>maximumValue</em> attribute is exclusive. This attribute is relevant only if <em>checkMaxValue</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>exclusiveMin</code></td>
+<td>boolean</td>
+<td>Determines whether a minimum value defined in <em>minimumValue</em> attribute is exclusive. This attribute is relevant only if <em>checkMinValue</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>explodeObjectSerialization</code></td>
+<td>boolean</td>
+<td>Specifies whether an array or object parameters should have separate values for each array item or object property. This attribute is relevant only if <em>objectSerializationStyle</em> is defined.
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>This attribute is not relevant for parameters with <strong>deep-object</strong>, <strong>space-delimited</strong> or <strong>pipe-delimited</strong> <em>objectSerializationStyle</em>.</li>
+</ul>
+</dd>
+</dl></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>hostNameRepresentation</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>any</li>
+<li>domain-name</li>
+<li>ip-address</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>isCookie</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter is located in the value of Cookie header. <em>parameterLocation</em> attribute is ignored if <strong>isCookie</strong> is set to <em>true</em>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>isHeader</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter is located in headers as one of the headers. <em>parameterLocation</em> attribute is ignored if <strong>isHeader</strong> is set to <em>true</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>level</code></td>
+<td>string</td>
+<td>Specifies whether the parameter is associated with a URL, a flow, or neither.</td>
+<td><ul>
+<li>global</li>
+<li>url</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>mandatory</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter must exist in the request.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maxItemsInArray</code></td>
+<td>integer minimum: 0</td>
+<td>Determines the restriction for the maximum number of items in an array parameter. This attribute is relevant only if <em>checkMaxItemsInArray</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maximumLength</code></td>
+<td>integer minimum: 0</td>
+<td>Determines the restriction for the maximum length of parameter's value. This attribute is relevant only if <em>checkMaxValueLength</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maximumValue</code></td>
+<td>number</td>
+<td>Determines the restriction for the maximum value of parameter. This attribute is relevant only if <em>checkMaxValue</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>metacharsOnParameterValueCheck</code></td>
+<td>boolean</td>
+<td>Determines whether disallowed metacharacters must be detected in a parameter's value. This attribute is relevant only for parameters with <strong>alpha-numeric</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>minItemsInArray</code></td>
+<td>integer minimum: 0</td>
+<td>Determines the restriction for the minimum number of items in an array parameter. This attribute is relevant only if <em>checkMinItemsInArray</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>minimumLength</code></td>
+<td>integer minimum: 0</td>
+<td>Determines the restriction for the minimum length of parameter's value. This attribute is relevant only if <em>checkMinValueLength</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>minimumValue</code></td>
+<td>number</td>
+<td>Determines the restriction for the minimum value of a parameter. This attribute is relevant only if <em>checkMinValue</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>multipleOf</code></td>
+<td>number</td>
+<td>Determines the number by which a parameter's value is divisible without remainder. This number must be positive and it may be a floating-point number. This attribute is relevant only if <em>checkMultipleOfValue</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td><p>Specifies the name of a parameter which must be permitted in requests. Format of parameter name attribute differs depending on <em>type</em> attribute: - <strong>explicit</strong> <em>type</em>: name of permitted parameter in request should literally match. - <strong>wildcard</strong> <em>type</em>: name of permitted parameter in request should match wildcard expression.</p>
+<p>The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.</p>
+<blockquote>
+<ul>
+<li><strong>*</strong>: Matches all characters</li>
+<li><strong>?</strong>: Matches any single character</li>
+<li><strong>[abcde]</strong>: Matches exactly one of the characters listed</li>
+<li><strong>[!abcde]</strong>: Matches any character not listed</li>
+<li><strong>[a-e]</strong>: Matches exactly one character in the range</li>
+<li><strong>[!a-e]</strong>: Matches any character not in the range</li>
+</ul>
+</blockquote>
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</li>
+<li>Empty parameter name is allowed for <strong>explicit</strong> <em>type</em></li>
+</ul>
+</dd>
+</dl></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/parameters/nameMetacharOverrides">nameMetacharOverrides</a></td>
+<td>array of objects</td>
+<td>Determines metacharacters whose security policy settings are overridden for this parameter, and which action the security policy takes when it discovers a request for this parameter that has these metacharacters in the name. This attribute is relevant only if <em>checkMetachars</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>objectSerializationStyle</code></td>
+<td>string</td>
+<td><p>Specifies the type of serialization for an object or complex array parameter. Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:</p>
+<blockquote>
+<ul>
+<li><strong>pipe-delimited</strong>: pipe-separated values. Object color={"R":100,"G":200} -&gt; color=RG|200.</li>
+<li><strong>form</strong>: ampersand-separated values. Object color={"R":100,"G":200} -&gt; color=R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; R=100&amp;G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+<li><strong>space-delimited</strong>: space-separated values. Object color={"R":100,"G":200} -&gt; color=R 100 G 200.</li>
+<li><strong>deep-object</strong>: rendering nested objects. Object color={"R":100,"G":200} -&gt; color[R]=100&amp;color[G]=200.</li>
+<li><strong>matrix</strong>: semicolon-prefixed values. Object color={"R":100,"G":200} -&gt; ;color=R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; ;R=100;G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+<li><strong>simple</strong>: comma-separated values. Object color={"R":100,"G":200} -&gt; R,100,G,200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; R=100,G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+<li><strong>label</strong>: dot-prefixed values. Object color={"R":100,"G":200} -&gt; .R.100.G.200 if <em>explodeObjectSerialization</em> set to <strong>false</strong> or -&gt; .R=100.G=200 if <em>explodeObjectSerialization</em> set to <strong>true</strong>.</li>
+</ul>
+</blockquote>
+<p><strong>Notes</strong>:</p>
+<blockquote>
+<ul>
+<li>This attribute is relevant only for parameters with <strong>object</strong> or <strong>openapi-array</strong> <em>valueType</em>.</li>
+<li><strong>form</strong> serialization can be defined for a parameter with <em>query</em>, <em>form-data</em> or <em>cookie</em> locations only.</li>
+<li><strong>matrix</strong> and <strong>label</strong> serializations can be defined for an array parameter with <em>path</em> location only.</li>
+<li><strong>simple</strong> serializations can be defined for a parameter with <em>path</em> and <em>header</em> locations only.</li>
+<li><strong>deep-object</strong> serialization can be defined for a parameter with <em>query</em> or <em>form-data</em> locations only.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>deep-object</li>
+<li>form</li>
+<li>label</li>
+<li>matrix</li>
+<li>pipe-delimited</li>
+<li>simple</li>
+<li>space-delimited</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>parameterEnumValues</code></td>
+<td>array of strings</td>
+<td>Determines the set of possible parameter's values. This attribute is not relevant for parameters with <strong>phone</strong>, <strong>email</strong> or <strong>binary</strong> <em>dataType</em>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>parameterLocation</code></td>
+<td>string</td>
+<td><p>Specifies location of parameter in request:</p>
+<blockquote>
+<ul>
+<li><strong>any</strong>: in query string, in POST data (body) or in URL path.</li>
+<li><strong>query</strong>: in query string.</li>
+<li><strong>form-data</strong>: in POST data (body).</li>
+<li><strong>cookie</strong>: in value of Cookie header.</li>
+<li><strong>path</strong>: in URL path.</li>
+<li><strong>header</strong>: in request headers.</li>
+</ul>
+</blockquote>
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li><strong>path</strong> location can be defined for parameter with <strong>global</strong> <em>level</em> only.</li>
+<li><strong>path</strong>, <strong>header</strong> and <strong>cookie</strong> location can be defined for parameter with <strong>explicit</strong> <em>type</em> only.</li>
+<li><strong>header</strong> and <strong>cookie</strong> location cannot be defined for parameter with empty <em>name</em>.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>any</li>
+<li>cookie</li>
+<li>form-data</li>
+<li>header</li>
+<li>path</li>
+<li>query</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>regularExpression</code></td>
+<td>string</td>
+<td>Determines a positive regular expression (PCRE) for a parameter's value. This attribute is relevant only if <em>enableRegularExpression</em> is set to <strong>true</strong>.
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li>The length of a regular expression is limited to 254 characters.</li>
+</ul>
+</dd>
+</dl></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>sensitiveParameter</code></td>
+<td>boolean</td>
+<td>Determines whether a parameter is sensitive and must be not visible in logs nor in the user interface. Instead of the actual value, a string of asterisks is shown for this parameter. Use it to protect sensitive user input, such as a password or a credit card number, in a validated request.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/parameters/signatureOverrides">signatureOverrides</a></td>
+<td>array of objects</td>
+<td>Determines attack signatures whose security policy settings are overridden for this parameter, and which action the security policy takes when it discovers a request for this parameter that matches these attack signatures. This attribute is relevant only if <em>signatureOverrides</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>staticValues</code></td>
+<td>array of strings</td>
+<td>Determines the set of possible parameter's values. This attribute is relevant for parameters with <strong>static-content</strong> <em>valueType</em> only.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td>Specifies the type of the <em>name</em> attribute.</td>
+<td><ul>
+<li>explicit</li>
+<li>wildcard</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls">url</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/parameters/valueMetacharOverrides">valueMetacharOverrides</a></td>
+<td>array of objects</td>
+<td>Determines metacharacters whose security policy settings are overridden for this parameter, and which action the security policy takes when it discovers a request parameter that has these metacharacters in its value. This attribute is relevant only if <em>metacharsOnParameterValueCheck</em> is set to <strong>true</strong>.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>valueType</code></td>
+<td>string</td>
+<td><p>Specifies type of parameter's value:</p>
+<blockquote>
+<ul>
+<li><strong>object</strong>: the parameter's value is complex object defined by JSON schema.</li>
+<li><strong>dynamic-content</strong>: the parameter's content changes dynamically.</li>
+<li><strong>openapi-array</strong>: the parameter's value is complex array defined by JSON schema.</li>
+<li><strong>ignore</strong>: the system does not perform validity checks on the value of the parameter.</li>
+<li><strong>static-content</strong>: the parameter has a static, or pre-defined, value(s).</li>
+<li><strong>json</strong>: the parameter's value is JSON data.</li>
+<li><strong>array</strong>: the parameter's value is array of primitives.</li>
+<li><strong>user-input</strong>: the parameter's value is provided by user-input.</li>
+<li><strong>xml</strong>: the parameter's value is XML data.</li>
+<li><strong>auto-detect</strong>: the parameter's value can be user-input, XML data or JSON data. The system automatically classifies the type of value.</li>
+<li><strong>dynamic-parameter-name</strong>: the parameter's name changes dynamically.</li>
+</ul>
+</blockquote>
+<dl>
+<dt><strong>Notes</strong>:</dt>
+<dd><ul>
+<li><strong>dynamic-parameter-name</strong> value type can be defined for a parameter with <strong>flow</strong> <em>level</em> and <strong>explicit</strong> <em>type</em> only.</li>
+<li><strong>dynamic-content</strong> value type can be defined for a parameter with <strong>explicit</strong> <em>type</em> only.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>array</li>
+<li>auto-detect</li>
+<li>ignore</li>
+<li>json</li>
+<li>object</li>
+<li>openapi-array</li>
+<li>static-content</li>
+<li>user-input</li>
+<li>xml</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>wildcardOrder</code></td>
+<td>integer</td>
+<td>Specifies the order in which wildcard entities are organized. Matching of an enforced parameter with a defined wildcard parameter happens based on order from smaller to larger.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### contentProfile
+
+| Field Name                                                         | Type   | Description | Allowed Values |
+| ------------------------------------------------------------------ | ------ | ----------- | -------------- |
+| [contentProfile](#policy/parameters/contentProfile/contentProfile) | object |             |                |
+
+#### contentProfile
+
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `name`     | string |             |                |
+
+### nameMetacharOverrides
+
+| Field Name  | Type    | Description                                                                      | Allowed Values |
+| ----------- | ------- | -------------------------------------------------------------------------------- | -------------- |
+| `isAllowed` | boolean | Specifies permission of *metachar* - when *false*, then character is prohibited. |                |
+| `metachar`  | string  | Specifies character in hexadecimal format with special allowance.                |                |
+
+### signatureOverrides
+
+| Field Name    | Type    | Description                                                                       | Allowed Values |
+| ------------- | ------- | --------------------------------------------------------------------------------- | -------------- |
+| `enabled`     | boolean | Specifies, when true, that the overridden signature is enforced                   |                |
+| `name`        | string  | The signature name which, along with the signature tag, identifies the signature. |                |
+| `signatureId` | integer | The signature ID which identifies the signature.                                  |                |
+| `tag`         | string  | The signature tag which, along with the signature name, identifies the signature. |                |
+
+### valueMetacharOverrides
+
+| Field Name  | Type    | Description                                                                      | Allowed Values |
+| ----------- | ------- | -------------------------------------------------------------------------------- | -------------- |
+| `isAllowed` | boolean | Specifies permission of *metachar* - when *false*, then character is prohibited. |                |
+| `metachar`  | string  | Specifies character in hexadecimal format with special allowance.                |                |
+
+## response-pages
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ajaxActionType</code></td>
+<td>string</td>
+<td><dl>
+<dt>Which content, or URL, the system sends to the client as a response to an AJAX request that does not comply with the security policy.</dt>
+<dd><ul>
+<li><strong>alert-popup</strong>: The system opens a message as a popup screen. Type the message the system displays in the popup screen, or leave the default text.</li>
+<li><strong>custom</strong>: A response text that will replace the frame or page which generated the AJAX request. The system provides additional options where you can type the response body you prefer.</li>
+<li><strong>redirect</strong>: The system redirects the user to a specific web page instead of viewing a response page. Type the web page's full URL path, for example, <a href="http://www.redirectpage.com">http://www.redirectpage.com</a>.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>alert-popup</li>
+<li>custom</li>
+<li>redirect</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>ajaxCustomContent</code></td>
+<td>string</td>
+<td>Custom message typed by user as a response for blocked AJAX request.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>ajaxEnabled</code></td>
+<td>boolean</td>
+<td>When enabled, the system injects JavaScript code into responses. You must enable this toggle in order to configure an Application Security Manager AJAX response page which is returned when the system detects an AJAX request that does not comply with the security policy.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>ajaxPopupMessage</code></td>
+<td>string</td>
+<td>Default message provided by the system as a response for blocked AJAX request. Can be manipulated by user, but &lt;%TS.request.ID()%&gt; must be included in this message.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>ajaxRedirectUrl</code></td>
+<td>string</td>
+<td>The system redirects the user to a specific web page instead of viewing a response page. Type the web page's full URL path, for example, <a href="http://www.redirectpage.com">http://www.redirectpage.com</a>. To redirect the blocking page to a URL with a support ID in the query string, type the URL and the support ID in the following format: <a href="http://www.example.com/blocking_page.php?support_id=">http://www.example.com/blocking_page.php?support_id=</a>&lt;%TS.request.ID()%&gt;. The system replaces &lt;%TS.request.ID%&gt; with the relevant support ID so that the blocked request is redirected to the URL with the relevant support ID.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>grpcStatusCode</code></td>
+<td><ul>
+<li>integer</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"ABORTED"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>grpcStatusMessage</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>responseActionType</code></td>
+<td>string</td>
+<td><dl>
+<dt>Which action the system takes, and which content the system sends to the client, as a response when the security policy blocks the client request.</dt>
+<dd><ul>
+<li><strong>custom</strong>: The system returns a response page with HTML code that the user defines.</li>
+<li><strong>default</strong>: The system returns the system-supplied response page in HTML. No further configuration is needed.</li>
+<li><strong>erase-cookies</strong>: The system deletes all client side domain cookies. This is done in order to block web application users once, and not from the entire web application. The system displays this text in the response page. You cannot edit this text.</li>
+<li><strong>redirect</strong>: The system redirects the user to a specific web page instead of viewing a response page. The system provides an additional setting where you can indicate the redirect web page.</li>
+<li><strong>soap-fault</strong>: Displays the system-supplied response written in SOAP fault message structure. Use this type when a SOAP request is blocked due to an XML related violation. You cannot edit this text.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>custom</li>
+<li>default</li>
+<li>erase-cookies</li>
+<li>redirect</li>
+<li>soap-fault</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>responseContent</code></td>
+<td>string</td>
+<td>The content the system sends to the client in response to an illegal blocked request.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>responseHeader</code></td>
+<td>string</td>
+<td>The response headers that the system sends to the client as a response to an illegal blocked request.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>responsePageType</code></td>
+<td>string</td>
+<td><dl>
+<dt>The different types of blocking response pages which are available from the system:</dt>
+<dd><ul>
+<li><strong>ajax</strong>: The system sends the AJAX Blocking Response Page when the security policy blocks an AJAX request that does not comply with the security policy.</li>
+<li><strong>default</strong>: The system sends the default response when the security policy blocks a client request.</li>
+<li><strong>graphql</strong>: The system sends the GraphQL response when the security policy blocks a client request that contains GraphQL message that does not comply with the settings of a GraphQL profile configured in the security policy.</li>
+<li><strong>grpc</strong>: The system sends the gRPC response when the security policy blocks a client request that contains gRPC message that does not comply with the settings of a gRPC profile configured in the security policy.</li>
+<li><strong>xml</strong>: The system sends the XML response page when the security policy blocks a client request that contains XML content that does not comply with the settings of an XML profile configured in the security policy.</li>
+</ul>
+</dd>
+</dl></td>
+<td><ul>
+<li>ajax</li>
+<li>default</li>
+<li>graphql</li>
+<li>grpc</li>
+<li>xml</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>responseRedirectUrl</code></td>
+<td>string</td>
+<td>The particular URL to which the system redirects the user. To redirect the blocking page to a URL with a support ID in the query string, type the URL and the support ID in the following format: <a href="http://www.example.com/blocking_page.php?support_id=">http://www.example.com/blocking_page.php?support_id=</a>&lt;%TS.request.ID()%&gt;. The system replaces &lt;%TS.request.ID%&gt; with the relevant support ID so that the blocked request is redirected to the URL with the relevant support ID.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## sensitive-parameters
+
+| Field Name | Type   | Description                                                            | Allowed Values |
+| ---------- | ------ | ---------------------------------------------------------------------- | -------------- |
+| `name`     | string | Name of a parameter whose values the system should consider sensitive. |                |
+
+## server-technologies
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>serverTechnologyName</code></td>
+<td>string</td>
+<td>Specifies the name of the selected policy. For example, PHP will add attack signatures that cover known PHP vulnerabilities.</td>
+<td><ul>
+<li>ASP</li>
+<li>ASP.NET</li>
+<li>AngularJS</li>
+<li>Apache Struts</li>
+<li>Apache Tomcat</li>
+<li>Apache/NCSA HTTP Server</li>
+<li>BEA Systems WebLogic Server</li>
+<li>Backbone.js</li>
+<li>CGI</li>
+<li>Cisco</li>
+<li>Citrix</li>
+<li>CodeIgniter</li>
+<li>CouchDB</li>
+<li>Django</li>
+<li>Elasticsearch</li>
+<li>Ember.js</li>
+<li>Express.js</li>
+<li>Front Page Server Extensions (FPSE)</li>
+<li>Google Web Toolkit</li>
+<li>GraphQL</li>
+<li>Handlebars</li>
+<li>IBM DB2</li>
+<li>IIS</li>
+<li>JBoss</li>
+<li>Java Servlets/JSP</li>
+<li>JavaScript</li>
+<li>JavaServer Faces (JSF)</li>
+<li>Jenkins</li>
+<li>Jetty</li>
+<li>Joomla</li>
+<li>Laravel</li>
+<li>Lotus Domino</li>
+<li>Macromedia ColdFusion</li>
+<li>Macromedia JRun</li>
+<li>Microsoft SQL Server</li>
+<li>Microsoft Windows</li>
+<li>MongoDB</li>
+<li>MooTools</li>
+<li>Mustache</li>
+<li>MySQL</li>
+<li>Neo4J</li>
+<li>Nginx</li>
+<li>Node.js</li>
+<li>Novell</li>
+<li>Oracle</li>
+<li>Oracle Application Server</li>
+<li>Oracle Identity Manager</li>
+<li>Outlook Web Access</li>
+<li>PHP</li>
+<li>PostgreSQL</li>
+<li>Prototype</li>
+<li>Proxy Servers</li>
+<li>Python</li>
+<li>React</li>
+<li>Redis</li>
+<li>RequireJS</li>
+<li>Ruby</li>
+<li>SQLite</li>
+<li>SSI (Server Side Includes)</li>
+<li>SharePoint</li>
+<li>Spring Boot</li>
+<li>Svelte</li>
+<li>Sybase/ASE</li>
+<li>TYPO3 CMS</li>
+<li>UIKit</li>
+<li>Underscore.js</li>
+<li>Unix/Linux</li>
+<li>Vue.js</li>
+<li>WebDAV</li>
+<li>WordPress</li>
+<li>XML</li>
+<li>ZURB Foundation</li>
+<li>Zend</li>
+<li>ef.js</li>
+<li>jQuery</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## signature-requirements
+
+| Field Name            | Type   | Description | Allowed Values |
+| --------------------- | ------ | ----------- | -------------- |
+| `maxRevisionDatetime` | string |             |                |
+| `minRevisionDatetime` | string |             |                |
+| `tag`                 | string |             |                |
+
+## signature-sets
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>alarm</code></td>
+<td>boolean</td>
+<td>If enabled - when a signature from this signature set is detected in a request - the request is logged.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>block</code></td>
+<td>boolean</td>
+<td>If enabled - when a signature from this signature set is detected in a request - the request is blocked.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td>If enabled - when a signature from this signature set is detected in a request -the policy builder creates a learning suggestion to disable it.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td>Signature set name.</td>
+<td><ul>
+<li>All Response Signatures</li>
+<li>All Signatures</li>
+<li>Authentication/Authorization Attack Signatures</li>
+<li>Buffer Overflow Signatures</li>
+<li>CVE Signatures</li>
+<li>Command Execution Signatures</li>
+<li>Cross Site Scripting Signatures</li>
+<li>Denial of Service Signatures</li>
+<li>Directory Indexing Signatures</li>
+<li>Generic Detection Signatures</li>
+<li>Generic Detection Signatures (High Accuracy)</li>
+<li>Generic Detection Signatures (High/Medium Accuracy)</li>
+<li>HTTP Response Splitting Signatures</li>
+<li>High Accuracy Detection Evasion Signatures</li>
+<li>High Accuracy Signatures</li>
+<li>Information Leakage Signatures</li>
+<li>Low Accuracy Signatures</li>
+<li>Medium Accuracy Signatures</li>
+<li>OS Command Injection Signatures</li>
+<li>OWA Signatures</li>
+<li>Other Application Attacks Signatures</li>
+<li>Path Traversal Signatures</li>
+<li>Predictable Resource Location Signatures</li>
+<li>Remote File Include Signatures</li>
+<li>SQL Injection Signatures</li>
+<li>Server Side Code Injection Signatures</li>
+<li>Vulnerability Scan Signatures</li>
+<li>WebSphere signatures</li>
+<li>XML External Entities (XXE) Signatures</li>
+<li>XPath Injection Signatures</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/signature-sets/signatureSet">signatureSet</a></td>
+<td>object</td>
+<td>Defines signature set.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>stagingCertificationDatetime</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+### signatureSet
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#policy/signature-sets/signatureSet/filter">filter</a></td>
+<td>object</td>
+<td>Specifies filter that defines signature set.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/signature-sets/signatureSet/signatures">signatures</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/signature-sets/signatureSet/systems">systems</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>filter-based</li>
+<li>manual</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+#### filter
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>accuracyFilter</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>eq</li>
+<li>ge</li>
+<li>le</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>accuracyValue</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>high</li>
+<li>low</li>
+<li>medium</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/signature-sets/signatureSet/filter/attackType">attackType</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>hasCve</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>no</li>
+<li>yes</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>lastUpdatedFilter</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>after</li>
+<li>all</li>
+<li>before</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>lastUpdatedValue</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>riskFilter</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>eq</li>
+<li>ge</li>
+<li>le</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>riskValue</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>high</li>
+<li>low</li>
+<li>medium</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>signatureType</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>request</li>
+<li>response</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>tagFilter</code></td>
+<td>string</td>
+<td><p>Filter by signature tagValue.</p>
+<blockquote>
+<ul>
+<li><strong>all</strong>: no filter applied.</li>
+<li><strong>eq</strong>: only signatures with a tag that equals tagValue are added to the signature set.</li>
+<li><strong>untagged</strong>: only signatures without a tag are added to the signature set.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>all</li>
+<li>eq</li>
+<li>untagged</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>tagValue</code></td>
+<td>string</td>
+<td>Value for the tagFilter. Relevant only for the <strong>eq</strong> value of tagFilter.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>userDefinedFilter</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>all</li>
+<li>no</li>
+<li>yes</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
 
 ##### attackType
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - The name of the attack type.
-       Mandatory.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/parameters:
-```
-
-
-### parameters
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowEmptyValue``
-
-     - boolean
-     - Determines whether an empty value is allowed for a parameter.
-     - 
-   * - ``allowRepeatedParameterName``
-
-     - boolean
-     - Determines whether multiple parameter instances with the same name are allowed in one request.
-     - 
-   * - ``arraySerializationFormat``
-
-     - string
-     - Specifies type of serialization for array of primitives parameter.
-       Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:
-       
-        - **pipe**: pipe-separated values. Array color=["blue","black"] -> color=blue|black.
-        - **form**: ampersand-separated values. Array color=["blue","black"] -> color=blue,black.
-        - **matrix**: semicolon-prefixed values. Array color=["blue","black"] -> ;color=blue,black.
-        - **tsv**: tab-separated values. Array color=["blue","black"] -> color=blue\tblack.
-        - **csv**: comma-separated values. Array color=["blue","black"] -> color=blue,black.
-        - **label**: dot-prefixed values. Array color=["blue","black"] -> .blue.black.
-        - **multi**: multiple parameter instances rather than multiple values. Array color=["blue","black"] -> color=blue&color=black.
-        - **ssv**: space-separated values. Array color=["blue","black"] -> color=blue black.
-        - **multipart**: defines array of files.
-       
-       **Notes**:
-       
-        - This attribute is relevant only for parameters with **array** *valueType*.
-        - **multi** and **form** serializations can be defined for parameter with *query*, *form-data* or *cookie* locations only.
-        - **multipart** serialization can be defined for parameter with *form-data* location only.
-        - **matrix** and **label** serializations can be defined for parameter with *path* location only.
-     - * csv
-       * form
-       * label
-       * matrix
-       * multi
-       * multipart
-       * pipe
-       * ssv
-       * tsv
-   * - ``arrayUniqueItemsCheck``
-
-     - boolean
-     - Determines whether items in an array parameter must be unique.
-       This attribute is relevant only for parameters with **array** *valueType*.
-     - 
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - Determines whether attack signatures and threat campaigns must be detected in a parameter's value.
-       This attribute is relevant only for parameters with **alpha-numeric** or **binary** *dataType*.
-     - 
-   * - ``checkMaxItemsInArray``
-
-     - boolean
-     - Determines whether an array parameter has a restricted maximum number of items.
-       This attribute is relevant only for parameters with **array** *valueType*.
-     - 
-   * - ``checkMaxValue``
-
-     - boolean
-     - Determines whether the parameter has a restricted maximum value.
-       This attribute is relevant only for parameters with **integer** or **decimal** *dataType*.
-     - 
-   * - ``checkMaxValueLength``
-
-     - boolean
-     - Determines whether a parameter has a restricted maximum length for value.
-     - 
-   * - ``checkMetachars``
-
-     - boolean
-     - Determines whether disallowed metacharacters must be detected in a parameter's name.
-       This attribute is relevant only for **wildcard** parameters with **alpha-numeric** *dataType*.
-     - 
-   * - ``checkMinItemsInArray``
-
-     - boolean
-     - Determines whether an array parameter has a restricted minimum number of items.
-       This attribute is relevant only for parameters with **array** *valueType*.
-     - 
-   * - ``checkMinValue``
-
-     - boolean
-     - Determines whether a parameter has a restricted minimum value.
-       This attribute is relevant only for parameters with **integer** or **decimal** *dataType*.
-     - 
-   * - ``checkMinValueLength``
-
-     - boolean
-     - Determines whether a parameter has a restricted minimum length for value.
-     - 
-   * - ``checkMultipleOfValue``
-
-     - boolean
-     - Determines whether a parameter's value is a multiple of a number defined in *multipleOf*.
-       This attribute is relevant only for parameters with **integer** or **decimal** *dataType*.
-     - 
-   * - `contentProfile <policy/parameters/contentProfile_>`_
-
-     - object
-     - 
-     - 
-   * - ``dataType``
-
-     - string
-     - Specifies data type of parameter's value:
-       
-        - **alpha-numeric**: specifies that the value of parameter can be any text consisting of letters, digits, and the underscore character.
-        - **binary**: specifies there is no text limit for the value of a parameter (length checks only).
-        - **phone**: specifies that the value of a parameter can be text in telephone number format only.
-        - **email**: specifies that the value of a parameter must be text in email format only.
-        - **boolean**: specifies that the value of a parameter must be boolean (only *true* and  *false* values are allowed).
-        - **integer**: specifies that the value of a parameter must be whole numbers only (no decimals).
-        - **decimal**: specifies that the value of a parameter is numbers only and can include decimals.
-       
-       **Notes**:
-         -  This attribute is relevant for parameters with **array** or **user-input** *valueType* only.
-     - * alpha-numeric
-       * binary
-       * phone
-       * email
-       * boolean
-       * integer
-       * decimal
-   * - ``decodeValueAsBase64``
-
-     - string
-     - Specifies whether the the system should detect or require values to be Base64 encoded:
-       
-        - **disabled**: the value will not be decoded as Base64 content.
-        - **enabled**: the value will be checked whether it can be decoded as Base64 and, if so, security checks will be performed on the decoded value.
-        - **required**: the value must be decoded as Base64. Security checks will be performed on the decoded value.
-       
-       **Notes**:
-         -  This attribute is relevant for parameters with **binary**, **auto-detect**, or **user-input** *valueType* only.
-     - * disabled
-       * enabled
-       * required
-   * - ``disallowFileUploadOfExecutables``
-
-     - boolean
-     - Determines whether a parameter's value cannot have binary executable content.
-       This attribute is relevant only for parameters with **binary** *dataType*.
-     - 
-   * - ``enableRegularExpression``
-
-     - boolean
-     - Determines whether the parameter value includes the pattern defined in *regularExpression*.
-       This attribute is relevant only for parameters with **alpha-numeric** *dataType*.
-     - 
-   * - ``exclusiveMax``
-
-     - boolean
-     - Determines whether the maximum value defined in *maximumValue* attribute is exclusive.
-       This attribute is relevant only if *checkMaxValue* is set to **true**.
-     - 
-   * - ``exclusiveMin``
-
-     - boolean
-     - Determines whether a minimum value defined in *minimumValue* attribute is exclusive.
-       This attribute is relevant only if *checkMinValue* is set to **true**.
-     - 
-   * - ``explodeObjectSerialization``
-
-     - boolean
-     - Specifies whether an array or object parameters should have separate values for each array item or object property.
-       This attribute is relevant only if *objectSerializationStyle* is defined.
-       
-       **Notes**:
-         -  This attribute is not relevant for parameters with **deep-object**, **space-delimited** or **pipe-delimited** *objectSerializationStyle*.
-     - 
-   * - ``hostNameRepresentation``
-
-     - string
-     - 
-     - * any
-       * domain-name
-       * ip-address
-   * - ``isCookie``
-
-     - boolean
-     - Determines whether a parameter is located in the value of Cookie header.
-       *parameterLocation* attribute is ignored if **isCookie** is set to *true*.
-     - 
-   * - ``isHeader``
-
-     - boolean
-     - Determines whether a parameter is located in headers as one of the headers.
-       *parameterLocation* attribute is ignored if **isHeader** is set to *true*.
-     - 
-   * - ``level``
-
-     - string
-     - Specifies whether the parameter is associated with a URL, a flow, or neither.
-     - * global
-       * url
-   * - ``mandatory``
-
-     - boolean
-     - Determines whether a parameter must exist in the request.
-     - 
-   * - ``maxItemsInArray``
-
-     - integer
-       minimum: 0
-     - Determines the restriction for the maximum number of items in an array parameter.
-       This attribute is relevant only if *checkMaxItemsInArray* is set to **true**.
-     - 
-   * - ``maximumLength``
-
-     - integer
-       minimum: 0
-     - Determines the restriction for the maximum length of parameter's value.
-       This attribute is relevant only if *checkMaxValueLength* is set to **true**.
-     - 
-   * - ``maximumValue``
-
-     - number
-     - Determines the restriction for the maximum value of parameter.
-       This attribute is relevant only if *checkMaxValue* is set to **true**.
-     - 
-   * - ``metacharsOnParameterValueCheck``
-
-     - boolean
-     - Determines whether disallowed metacharacters must be detected in a parameter's value.
-       This attribute is relevant only for parameters with **alpha-numeric** *dataType*.
-     - 
-   * - ``minItemsInArray``
-
-     - integer
-       minimum: 0
-     - Determines the restriction for the minimum number of items in an array parameter.
-       This attribute is relevant only if *checkMinItemsInArray* is set to **true**.
-     - 
-   * - ``minimumLength``
-
-     - integer
-       minimum: 0
-     - Determines the restriction for the minimum length of parameter's value.
-       This attribute is relevant only if *checkMinValueLength* is set to **true**.
-     - 
-   * - ``minimumValue``
-
-     - number
-     - Determines the restriction for the minimum value of a parameter.
-       This attribute is relevant only if *checkMinValue* is set to **true**.
-     - 
-   * - ``multipleOf``
-
-     - number
-     - Determines the number by which a parameter's value is divisible without remainder.
-       This number must be positive and it may be a floating-point number.
-       This attribute is relevant only if *checkMultipleOfValue* is set to **true**.
-     - 
-   * - ``name``
-
-     - string
-     - Specifies the name of a parameter which must be permitted in requests.
-       Format of parameter name attribute differs depending on *type* attribute:
-        - **explicit** *type*: name of permitted parameter in request should literally match.
-        - **wildcard** *type*: name of permitted parameter in request should match wildcard expression.
-       
-       The syntax for wildcard entities is based on shell-style wildcard characters.
-       The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.
-       
-        - **\***: Matches all characters
-        - **?**: Matches any single character
-        - **[abcde]**: Matches exactly one of the characters listed
-        - **[!abcde]**: Matches any character not listed
-        - **[a-e]**: Matches exactly one character in the range
-        - **[!a-e]**: Matches any character not in the range
-       
-       **Notes**:
-        - Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.
-        - Empty parameter name is allowed for **explicit** *type*
-     - 
-   * - `nameMetacharOverrides <policy/parameters/nameMetacharOverrides_>`_
-
-     - array of objects
-     - Determines metacharacters whose security policy settings are overridden for this parameter, and which action the security policy takes when it discovers a request for this parameter that has these metacharacters in the name.
-       This attribute is relevant only if *checkMetachars* is set to **true**.
-     - 
-   * - ``objectSerializationStyle``
-
-     - string
-     - Specifies the type of serialization for an object or complex array parameter.
-       Serialization defines how multiple values are delimited - format that can be transmitted and reconstructed later:
-       
-        - **pipe-delimited**: pipe-separated values. Object color={"R":100,"G":200} -> color=R|100|G|200.
-        - **form**: ampersand-separated values. Object color={"R":100,"G":200} -> color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100&G=200 if *explodeObjectSerialization* set to **true**.
-        - **space-delimited**: space-separated values. Object color={"R":100,"G":200} -> color=R 100 G 200.
-        - **deep-object**: rendering nested objects. Object color={"R":100,"G":200} -> color[R]=100&color[G]=200.
-        - **matrix**: semicolon-prefixed values. Object color={"R":100,"G":200} -> ;color=R,100,G,200 if *explodeObjectSerialization* set to **false** or -> ;R=100;G=200 if *explodeObjectSerialization* set to **true**.
-        - **simple**: comma-separated values. Object color={"R":100,"G":200} -> R,100,G,200 if *explodeObjectSerialization* set to **false** or -> R=100,G=200 if *explodeObjectSerialization* set to **true**.
-        - **label**: dot-prefixed values. Object color={"R":100,"G":200} -> .R.100.G.200 if *explodeObjectSerialization* set to **false** or -> .R=100.G=200 if *explodeObjectSerialization* set to **true**.
-       
-       **Notes**:
-       
-        - This attribute is relevant only for parameters with **object** or **openapi-array** *valueType*.
-        - **form** serialization can be defined for a parameter with *query*, *form-data* or *cookie* locations only.
-        - **matrix** and **label** serializations can be defined for an array parameter with *path* location only.
-        - **simple** serializations can be defined for a parameter with *path* and *header* locations only.
-        - **deep-object** serialization can be defined for a parameter with *query* or *form-data* locations only.
-     - * deep-object
-       * form
-       * label
-       * matrix
-       * pipe-delimited
-       * simple
-       * space-delimited
-   * - ``parameterEnumValues``
-
-     - array of strings
-     - Determines the set of possible parameter's values.
-       This attribute is not relevant for parameters with **phone**, **email** or **binary** *dataType*.
-     - 
-   * - ``parameterLocation``
-
-     - string
-     - Specifies location of parameter in request:
-       
-        - **any**: in query string, in POST data (body) or in URL path.
-        - **query**: in query string.
-        - **form-data**: in POST data (body).
-        - **cookie**: in value of Cookie header.
-        - **path**: in URL path.
-        - **header**: in request headers.
-       
-       **Notes**:
-        - **path** location can be defined for parameter with **global** *level* only.
-        - **path**, **header** and **cookie** location can be defined for parameter with **explicit** *type* only.
-        - **header** and **cookie** location cannot be defined for parameter with empty *name*.
-     - * any
-       * cookie
-       * form-data
-       * header
-       * path
-       * query
-   * - ``regularExpression``
-
-     - string
-     - Determines a positive regular expression (PCRE) for a parameter's value.
-       This attribute is relevant only if *enableRegularExpression* is set to **true**.
-       
-       **Notes**:
-        - The length of a regular expression is limited to 254 characters.
-     - 
-   * - ``sensitiveParameter``
-
-     - boolean
-     - Determines whether a parameter is sensitive and must be not visible in logs nor in the user interface.
-       Instead of the actual value, a string of asterisks is shown for this parameter.
-       Use it to protect sensitive user input, such as a password or a credit card number, in a validated request.
-     - 
-   * - `signatureOverrides <policy/parameters/signatureOverrides_>`_
-
-     - array of objects
-     - Determines attack signatures whose security policy settings are overridden for this parameter, and which action the security policy takes when it discovers a request for this parameter that matches these attack signatures.
-       This attribute is relevant only if *signatureOverrides* is set to **true**.
-     - 
-   * - ``staticValues``
-
-     - array of strings
-     - Determines the set of possible parameter's values.
-       This attribute is relevant for parameters with **static-content** *valueType* only.
-     - 
-   * - ``type``
-
-     - string
-     - Specifies the type of the *name* attribute.
-     - * explicit
-       * wildcard
-   * - `url <policy/urls_>`_
-
-     - object
-     - 
-     - 
-   * - `valueMetacharOverrides <policy/parameters/valueMetacharOverrides_>`_
-
-     - array of objects
-     - Determines metacharacters whose security policy settings are overridden for this parameter, and which action the security policy takes when it discovers a request parameter that has these metacharacters in its value.
-       This attribute is relevant only if *metacharsOnParameterValueCheck* is set to **true**.
-     - 
-   * - ``valueType``
-
-     - string
-     - Specifies type of parameter's value:
-       
-        - **object**: the parameter's value is complex object defined by JSON schema.
-        - **dynamic-content**: the parameter's content changes dynamically.
-        - **openapi-array**: the parameter's value is complex array defined by JSON schema.
-        - **ignore**: the system does not perform validity checks on the value of the parameter.
-        - **static-content**: the parameter has a static, or pre-defined, value(s).
-        - **json**: the parameter's value is JSON data.
-        - **array**: the parameter's value is array of primitives.
-        - **user-input**: the parameter's value is provided by user-input.
-        - **xml**: the parameter's value is XML data.
-        - **auto-detect**: the parameter's value can be user-input, XML data or JSON data. The system automatically classifies the type of value.
-        - **dynamic-parameter-name**: the parameter's name changes dynamically.
-       
-       **Notes**:
-        - **dynamic-parameter-name** value type can be defined for a parameter with **flow** *level* and **explicit** *type* only.
-        - **dynamic-content** value type can be defined for a parameter with **explicit** *type* only.
-     - * array
-       * auto-detect
-       * ignore
-       * json
-       * object
-       * openapi-array
-       * static-content
-       * user-input
-       * xml
-   * - ``wildcardOrder``
-
-     - integer
-     - Specifies the order in which wildcard entities are organized.
-       Matching of an enforced parameter with a defined wildcard parameter happens based on order from smaller to larger.
-     - 
-```
-
-```eval_rst
-.. _policy/parameters/contentProfile:
-```
-
-
-##### contentProfile
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `contentProfile <policy/parameters/contentProfile/contentProfile_>`_
-
-     - object
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/parameters/contentProfile/contentProfile:
-```
-
-
-##### contentProfile
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/parameters/nameMetacharOverrides:
-```
-
-
-##### nameMetacharOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - Specifies permission of *metachar* - when *false*, then character is prohibited.
-     - 
-   * - ``metachar``
-
-     - string
-     - Specifies character in hexadecimal format with special allowance.
-     - 
-```
-
-```eval_rst
-.. _policy/parameters/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - Specifies, when true, that the overridden signature is enforced
-     - 
-   * - ``name``
-
-     - string
-     - The signature name which, along with the signature tag, identifies the signature.
-     - 
-   * - ``signatureId``
-
-     - integer
-     - The signature ID which identifies the signature.
-     - 
-   * - ``tag``
-
-     - string
-     - The signature tag which, along with the signature name, identifies the signature.
-     - 
-```
-
-```eval_rst
-.. _policy/parameters/valueMetacharOverrides:
-```
-
-
-##### valueMetacharOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - Specifies permission of *metachar* - when *false*, then character is prohibited.
-     - 
-   * - ``metachar``
-
-     - string
-     - Specifies character in hexadecimal format with special allowance.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/response-pages:
-```
-
-
-### response-pages
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``ajaxActionType``
-
-     - string
-     - Which content, or URL, the system sends to the client as a response to an AJAX request that does not comply with the security policy.
-         - **alert-popup**: The system opens a message as a popup screen. Type the message the system displays in the popup screen, or leave the default text.
-         - **custom**: A response text that will replace the frame or page which generated the AJAX request. The system provides additional options where you can type the response body you prefer.
-         - **redirect**: The system redirects the user to a specific web page instead of viewing a response page. Type the web page's full URL path, for example, http://www.redirectpage.com. 
-     - * alert-popup
-       * custom
-       * redirect
-   * - ``ajaxCustomContent``
-
-     - string
-     - Custom message typed by user as a response for blocked AJAX request.
-     - 
-   * - ``ajaxEnabled``
-
-     - boolean
-     - When enabled, the system injects JavaScript code into responses. You must enable this toggle in order to configure an Application Security Manager AJAX response page which is returned when the system detects an AJAX request that does not comply with the security policy.
-     - 
-   * - ``ajaxPopupMessage``
-
-     - string
-     - Default message provided by the system as a response for blocked AJAX request. Can be manipulated by user, but <%TS.request.ID()%> must be included in this message.
-     - 
-   * - ``ajaxRedirectUrl``
-
-     - string
-     - The system redirects the user to a specific web page instead of viewing a response page. Type the web page's full URL path, for example, http://www.redirectpage.com. To redirect the blocking page to a URL with a support ID in the query string, type the URL and the support ID in the following format: http://www.example.com/blocking_page.php?support_id=<%TS.request.ID()%>. The system replaces <%TS.request.ID%> with the relevant support ID so that the blocked request is redirected to the URL with the relevant support ID.
-     - 
-   * - ``grpcStatusCode``
-
-     - 
-       * integer
-       * string
-     - 
-     - * Integer values
-       * "ABORTED"
-   * - ``grpcStatusMessage``
-
-     - string
-     - 
-     - 
-   * - ``responseActionType``
-
-     - string
-     - Which action the system takes, and which content the system sends to the client, as a response when the security policy blocks the client request.
-         - **custom**: The system returns a response page with HTML code that the user defines.
-         - **default**: The system returns the system-supplied response page in HTML. No further configuration is needed.
-         - **erase-cookies**:  The system deletes all client side domain cookies. This is done in order to block web application users once, and not from the entire web application. The system displays this text in the response page. You cannot edit this text.
-         - **redirect**: The system redirects the user to a specific web page instead of viewing a response page. The system provides an additional setting where you can indicate the redirect web page.
-         - **soap-fault**:  Displays the system-supplied response written in SOAP fault message structure. Use this type when a SOAP request is blocked due to an XML related violation. You cannot edit this text.
-     - * custom
-       * default
-       * erase-cookies
-       * redirect
-       * soap-fault
-   * - ``responseContent``
-
-     - string
-     - The content the system sends to the client in response to an illegal blocked request.
-     - 
-   * - ``responseHeader``
-
-     - string
-     - The response headers that the system sends to the client as a response to an illegal blocked request.
-     - 
-   * - ``responsePageType``
-
-     - string
-     - The different types of blocking response pages which are available from the system:
-         - **ajax**: The system sends the AJAX Blocking Response Page when the security policy blocks an AJAX request that does not comply with the security policy.
-         - **default**: The system sends the default response when the security policy blocks a client request.
-         - **graphql**: The system sends the GraphQL response when the security policy blocks a client request that contains GraphQL message that does not comply with the settings of a GraphQL profile configured in the security policy.
-         - **grpc**: The system sends the gRPC response when the security policy blocks a client request that contains gRPC message that does not comply with the settings of a gRPC profile configured in the security policy.
-         - **xml**: The system sends the XML response page when the security policy blocks a client request that contains XML content that does not comply with the settings of an XML profile configured in the security policy.
-     - * ajax
-       * default
-       * graphql
-       * grpc
-       * xml
-   * - ``responseRedirectUrl``
-
-     - string
-     - The particular URL to which the system redirects the user. To redirect the blocking page to a URL with a support ID in the query string, type the URL and the support ID in the following format: http://www.example.com/blocking_page.php?support_id=<%TS.request.ID()%>. The system replaces <%TS.request.ID%> with the relevant support ID so that the blocked request is redirected to the URL with the relevant support ID.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/sensitive-parameters:
-```
-
-
-### sensitive-parameters
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - Name of a parameter whose values the system should consider sensitive.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/server-technologies:
-```
-
-
-### server-technologies
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``serverTechnologyName``
-
-     - string
-     - Specifies the name of the selected policy. For example, PHP will add attack signatures that cover known PHP vulnerabilities.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/signature-requirements:
-```
-
-
-### signature-requirements
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``maxRevisionDatetime``
-
-     - string
-     - 
-     - 
-   * - ``minRevisionDatetime``
-
-     - string
-     - 
-     - 
-   * - ``tag``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/signature-sets:
-```
-
-
-### signature-sets
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``alarm``
-
-     - boolean
-     - If enabled - when a signature from this signature set is detected in a request - the request is logged.
-     - 
-   * - ``block``
-
-     - boolean
-     - If enabled - when a signature from this signature set is detected in a request - the request is blocked.
-     - 
-   * - ``learn``
-
-     - boolean
-     - If enabled - when a signature from this signature set is detected in a request -the policy builder creates a learning suggestion to disable it.
-     - 
-   * - ``name``
-
-     - string
-     - Signature set name.
-     - 
-   * - `signatureSet <policy/signature-sets/signatureSet_>`_
-
-     - object
-     - Defines signature set.
-     - 
-   * - ``stagingCertificationDatetime``
-
-     - string
-     - 
-     - * 
-```
-
-```eval_rst
-.. _policy/signature-sets/signatureSet:
-```
-
-
-##### signatureSet
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `filter <policy/signature-sets/signatureSet/filter_>`_
-
-     - object
-     - Specifies filter that defines signature set.
-     - 
-   * - `signatures <policy/signature-sets/signatureSet/signatures_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `systems <policy/signature-sets/signatureSet/systems_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``type``
-
-     - string
-     - 
-     - * filter-based
-       * manual
-```
-
-```eval_rst
-.. _policy/signature-sets/signatureSet/filter:
-```
-
-
-##### filter
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``accuracyFilter``
-
-     - string
-     - 
-     - * all
-       * eq
-       * ge
-       * le
-   * - ``accuracyValue``
-
-     - string
-     - 
-     - * all
-       * high
-       * low
-       * medium
-   * - `attackType <policy/signature-sets/signatureSet/filter/attackType_>`_
-
-     - object
-     - 
-     - 
-   * - ``hasCve``
-
-     - string
-     - 
-     - * all
-       * no
-       * yes
-   * - ``lastUpdatedFilter``
-
-     - string
-     - 
-     - * after
-       * all
-       * before
-   * - ``lastUpdatedValue``
-
-     - string
-     - 
-     - 
-   * - ``riskFilter``
-
-     - string
-     - 
-     - * all
-       * eq
-       * ge
-       * le
-   * - ``riskValue``
-
-     - string
-     - 
-     - * all
-       * high
-       * low
-       * medium
-   * - ``signatureType``
-
-     - string
-     - 
-     - * all
-       * request
-       * response
-   * - ``tagFilter``
-
-     - string
-     - Filter by signature tagValue.
-       
-         - **all**: no filter applied.
-         - **eq**: only signatures with a tag that equals tagValue are added to the signature set.
-         - **untagged**: only signatures without a tag are added to the signature set.
-     - * all
-       * eq
-       * untagged
-   * - ``tagValue``
-
-     - string
-     - Value for the tagFilter.
-       Relevant only for the **eq** value of tagFilter.
-     - 
-   * - ``userDefinedFilter``
-
-     - string
-     - 
-     - * all
-       * no
-       * yes
-```
-
-```eval_rst
-.. _policy/signature-sets/signatureSet/filter/attackType:
-```
-
-
-##### attackType
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/signature-sets/signatureSet/signatures:
-```
-
-
-##### signatures
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``signatureId``
-
-     - integer
-     - 
-     - 
-   * - ``tag``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/signature-sets/signatureSet/systems:
-```
-
-
-##### systems
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/signature-settings:
-```
-
-
-### signature-settings
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``minimumAccuracyForAutoAddedSignatures``
-
-     - string
-     - 
-     - * high
-       * low
-       * medium
-   * - ``signatureStaging``
-
-     - boolean
-     - 
-     - 
-   * - ``stagingCertificationDatetime``
-
-     - string
-     - 
-     - * 
-```
-
----
-
-
-```eval_rst
-.. _policy/signatures:
-```
-
-
-### signatures
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - Specifies, if true, that the signature is enabled on the security policy. When false, the signature is disable on the security policy.
-     - 
-   * - ``learn``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - The signature name which, along with the signature tag, identifies the signature.
-     - 
-   * - ``performStaging``
-
-     - boolean
-     - Specifies, if true, that the signature is in staging.
-       The system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time
-       (the Enforcement Readiness Period whose default time period is 7 days).
-       Specifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately.
-       (Blocking is performed only if the security policy's enforcement mode is Blocking.)
-     - 
-   * - ``signatureId``
-
-     - integer
-     - The signature ID which identifies the signature.
-     - 
-   * - ``tag``
-
-     - string
-     - The signature tag which, along with the signature name, identifies the signature.       
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/threat-campaigns:
-```
-
-
-### threat-campaigns
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``displayName``
-
-     - string
-     - 
-     - 
-   * - ``isEnabled``
-
-     - boolean
-     - If enabled - threat campaign is enforced in the security policy.
-     - 
-   * - ``name``
-
-     - string
-     - Name of the threat campaign.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/urls:
-```
-
-
-### urls
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `accessProfile <policy/access-profiles_>`_
-
-     - object
-     - 
-     - 
-   * - ``allowRenderingInFrames``
-
-     - string
-     - Specifies the conditions for when the browser should allow this URL to be rendered in a frame or iframe.
-       never: Specifies that this URL must never be rendered in a frame or iframe. The web application instructs browsers to hide, or disable, frame and iframe parts of this URL.
-       only-same: Specifies that the browser may load the frame or iframe if the referring page is from the same protocol, port, and domain as this URL. This limits the user to navigate only within the same web application.
-     - * never
-       * only-same
-   * - ``allowRenderingInFramesOnlyFrom``
-
-     - string
-     - Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, http://www.mywebsite.com. Do not enter a sub-URL, such as http://www.mywebsite.com/index.
-     - 
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - Specifies, when true, that you want attack signatures and threat campaigns to be detected on this URL and possibly override the security policy settings of an attack signature or threat campaign specifically for this URL. After you enable this setting, the system displays a list of attack signatures and threat campaigns.
-     - 
-   * - `authorizationRules <policy/urls/authorizationRules_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``canChangeDomainCookie``
-
-     - boolean
-     - 
-     - 
-   * - ``clickjackingProtection``
-
-     - boolean
-     - Specifies that the system adds the X-Frame-Options header to the domain URL's response header. This is done to protect the web application against clickjacking. Clickjacking occurs when an attacker lures a user to click illegitimate frames and iframes because the attacker hid them on legitimate visible website buttons. Therefore, enabling this option protects the web application from other web sites hiding malicious code behind them. The default is disabled. After you enable this option, you can select whether, and under what conditions, the browser should allow this URL to be rendered in a frame or iframe.
-     - 
-   * - ``disallowFileUploadOfExecutables``
-
-     - boolean
-     - 
-     - 
-   * - `html5CrossOriginRequestsEnforcement <policy/urls/html5CrossOriginRequestsEnforcement_>`_
-
-     - object
-     - The system extracts the Origin (domain) of the request from the Origin header.
-     - 
-   * - ``isAllowed``
-
-     - boolean
-     - If *true*, the URLs allowed by the security policy.
-     - 
-   * - ``mandatoryBody``
-
-     - boolean
-     - A request body is mandatory. This is relevant for any method acting as POST.
-     - 
-   * - `metacharOverrides <policy/urls/metacharOverrides_>`_
-
-     - array of objects
-     - To allow or disallow specific meta characters in the name of this specific URL (and thus override the global meta character settings).
-     - 
-   * - ``metacharsOnUrlCheck``
-
-     - boolean
-     - Specifies, when true, that you want meta characters to be detected on this URL and possibly override the security policy settings of a meta character specifically for this URL. After you enable this setting, the system displays a list of meta characters.
-     - 
-   * - ``method``
-
-     - string
-     - Unique ID of a URL with a protocol type and name. Select a Method for the URL to create an API endpoint: URL + Method.
-     - * ACL
-       * BCOPY
-       * BDELETE
-       * BMOVE
-       * BPROPFIND
-       * BPROPPATCH
-       * CHECKIN
-       * CHECKOUT
-       * CONNECT
-       * COPY
-       * DELETE
-       * GET
-       * HEAD
-       * LINK
-       * LOCK
-       * MERGE
-       * MKCOL
-       * MKWORKSPACE
-       * MOVE
-       * NOTIFY
-       * OPTIONS
-       * PATCH
-       * POLL
-       * POST
-       * PROPFIND
-       * PROPPATCH
-       * PUT
-       * REPORT
-       * RPC_IN_DATA
-       * RPC_OUT_DATA
-       * SEARCH
-       * SUBSCRIBE
-       * TRACE
-       * TRACK
-       * UNLINK
-       * UNLOCK
-       * UNSUBSCRIBE
-       * VERSION_CONTROL
-       * X-MS-ENUMATTS
-       * \*
-   * - `methodOverrides <policy/urls/methodOverrides_>`_
-
-     - array of objects
-     - Specifies a list of methods that are allowed or disallowed for a specific URL. The list overrides the list of methods allowed or disallowed globally at the policy level.
-     - 
-   * - ``methodsOverrideOnUrlCheck``
-
-     - boolean
-     - Specifies, when true, that you want methods to be detected on this URL and possibly override the security policy settings of a method specifically for this URL. After you enable this setting, the system displays a list of methods.
-     - 
-   * - ``name``
-
-     - string
-     - Specifies an HTTP URL that the security policy allows. The available types are:
-       
-         - **Explicit**: Specifies that the URL has a specific name and is not a wildcard entity. Type the name of a URL exactly as you expect it to appear in the request.
-         - **Wildcard**: Specifies that any URL that matches the listed wildcard expression should be treated according to the wildcard attributes. Type a wildcard expression that matches the expected URL. For example, entering the wildcard expression * specifies that any URL is allowed by the security policy.
-       The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.
-       
-         - **\***: Matches all characters
-         - **?**: Matches any single character
-         - **[abcde]**: Matches exactly one of the characters listed
-         - **[!abcde]**: Matches any character not listed
-         - **[a-e]**: Matches exactly one character in the range
-         - **[!a-e]**: Matches any character not in the range
-       
-       **Note**: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.
-     - 
-   * - ``operationId``
-
-     - string
-     - The attribute operationId is used as an OpenAPI endpoint identifier.
-     - 
-   * - `positionalParameters <policy/urls/positionalParameters_>`_
-
-     - array of objects
-     - When checked (enabled), positional parameters are enabled in the URL.
-     - 
-   * - ``protocol``
-
-     - string
-     - Specifies whether the protocol for the URL is HTTP or HTTPS.
-     - * http
-       * https
-   * - `signatureOverrides <policy/urls/signatureOverrides_>`_
-
-     - array of objects
-     - Array of signature overrides.
-       Specifies attack signatures whose security policy settings are overridden for this URL, and which action the security policy takes when it discovers a request for this URL that matches these attack signatures.
-     - 
-   * - ``type``
-
-     - string
-     - Determines the type of the **name** attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.
-     - * explicit
-       * wildcard
-   * - `urlContentProfiles <policy/urls/urlContentProfiles_>`_
-
-     - array of objects
-     - Specifies how the system recognizes and enforces requests for this URL according to the requests' header content. The system automatically creates a default header-based content profile for HTTP, and you cannot delete it. However, requests for a URL may contain other types of content, such as JSON, XML, or other proprietary formats.
-     - 
-   * - ``wildcardOrder``
-
-     - integer
-     - Specifies the order index for wildcard URLs matching. Wildcard URLs with lower wildcard order will get checked for a match prior to URLs with higher wildcard order.
-     - 
-```
-
-```eval_rst
-.. _policy/urls/authorizationRules:
-```
-
-
-##### authorizationRules
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``condition``
-
-     - string
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/urls/html5CrossOriginRequestsEnforcement:
-```
-
-
-##### html5CrossOriginRequestsEnforcement
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowOriginsEnforcementMode``
-
-     - string
-     - Allows you to specify a list of origins allowed to share data returned by this URL.
-     - * replace-with
-       * unmodified
-   * - ``checkAllowedMethods``
-
-     - boolean
-     - Allows you to specify a list of methods that other web applications hosted in different domains can use when requesting this URL.
-     - 
-   * - `crossDomainAllowedOrigin <policy/urls/html5CrossOriginRequestsEnforcement/crossDomainAllowedOrigin_>`_
-
-     - array of objects
-     - Allows you to specify a list of origins allowed to share data returned by this URL.
-     - 
-   * - ``enforcementMode``
-
-     - string
-     - Specify the option to determine how to handle CORS requests.
-       disabled: Do nothing related to cross-domain requests. Pass CORS requests exactly as set by the server.
-       enforce: Allow cross-origin resource sharing as configured in the crossDomainAllowedOrigin setting. CORS requests are allowed from the domains specified as allowed origins. 
-     - * disabled
-       * enforce
-```
-
-```eval_rst
-.. _policy/urls/html5CrossOriginRequestsEnforcement/crossDomainAllowedOrigin:
-```
-
-
-##### crossDomainAllowedOrigin
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``includeSubDomains``
-
-     - boolean
-     - If *true*, sub-domains of the allowed origin are also allowed to receive data from your web application.
-     - 
-   * - ``originName``
-
-     - string
-     - Type the domain name or IP address with which the URL can share data.
-       Wildcards are allowed in the names. For example: *.f5.com will match b.f5.com; however it will not match a.b.f5.com.
-     - 
-   * - ``originPort``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 65535
-       * string
-     - Select the port that other web applications can use to request data from your web application, or use the * wildcard for all ports.
-     - * Integer values
-       * "all"
-   * - ``originProtocol``
-
-     - string
-     - Select the appropriate protocol for the allowed origin.
-     - * http
-       * http/https
-       * https
-```
-
-```eval_rst
-.. _policy/urls/metacharOverrides:
-```
-
-
-##### metacharOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - If *true*, metacharacters and other characters are allowed in a URL.
-     - 
-   * - ``metachar``
-
-     - string
-     - ASCII representation of the character in Hex format
-     - 
-```
-
-```eval_rst
-.. _policy/urls/methodOverrides:
-```
-
-
-##### methodOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowed``
-
-     - boolean
-     - Specifies that the system allows you to override allowed methods for this URL. When selected, the global policy settings for methods are listed, and you can change what is allowed or disallowed for this URL.
-     - 
-   * - ``method``
-
-     - string
-     - Specifies a list of existing HTTP methods. All security policies accept standard HTTP methods by default.
-     - * ACL
-       * BCOPY
-       * BDELETE
-       * BMOVE
-       * BPROPFIND
-       * BPROPPATCH
-       * CHECKIN
-       * CHECKOUT
-       * CONNECT
-       * COPY
-       * DELETE
-       * GET
-       * HEAD
-       * LINK
-       * LOCK
-       * MERGE
-       * MKCOL
-       * MKWORKSPACE
-       * MOVE
-       * NOTIFY
-       * OPTIONS
-       * PATCH
-       * POLL
-       * POST
-       * PROPFIND
-       * PROPPATCH
-       * PUT
-       * REPORT
-       * RPC_IN_DATA
-       * RPC_OUT_DATA
-       * SEARCH
-       * SUBSCRIBE
-       * TRACE
-       * TRACK
-       * UNLINK
-       * UNLOCK
-       * UNSUBSCRIBE
-       * VERSION_CONTROL
-       * X-MS-ENUMATTS
-```
-
-```eval_rst
-.. _policy/urls/positionalParameters:
-```
-
-
-##### positionalParameters
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `parameter <policy/parameters_>`_
-
-     - object
-     - 
-     - 
-   * - ``urlSegmentIndex``
-
-     - integer
-       minimum: 1
-     - Select which to add: Text or Parameter and enter your desired segments. You can add multiple text and parameter segments.
-     - 
-```
-
-```eval_rst
-.. _policy/urls/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - Specifies, when true, that the overridden signature is enforced
-     - 
-   * - ``name``
-
-     - string
-     - The signature name which, along with the signature tag, identifies the signature.
-     - 
-   * - ``signatureId``
-
-     - integer
-     - The signature ID which identifies the signature.
-     - 
-   * - ``tag``
-
-     - string
-     - The signature tag which, along with the signature name, identifies the signature.
-     - 
-```
-
-```eval_rst
-.. _policy/urls/urlContentProfiles:
-```
-
-
-##### urlContentProfiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `contentProfile <policy/urls/urlContentProfiles/contentProfile_>`_
-
-     - object
-     - 
-     - 
-   * - ``decodeValueAsBase64``
-
-     - string
-     - 
-     - * disabled
-       * required
-   * - ``headerName``
-
-     - string
-     - Specifies an explicit header name that must appear in requests for this URL. This field is not case-sensitive.
-     - 
-   * - ``headerOrder``
-
-     - 
-       * integer
-       * string
-     - Displays the order in which the system checks header content of requests for this URL.
-     - * Integer values
-       * "default"
-   * - ``headerValue``
-
-     - string
-     - Specifies a simple pattern string (glob pattern matching) for the header value that must appear in legal requests for this URL; for example, *json*, xml_method?, or method[0-9]. If the header includes this pattern, the system assumes the request contains the type of data you select in the Request Body Handling setting. This field is case-sensitive.
-     - 
-   * - ``type``
-
-     - string
-     - - **Apply Content Signatures**: Do not parse the content; scan the entire payload with full-content attack signatures.
-         - **Apply Value and Content Signatures**: Do not parse the content or extract parameters; process the entire payload with value and full-content attack signatures.
-         - **Disallow**: Block requests for an URL containing this header content. Log the Illegal Request Content Type violation.
-         - **Do Nothing**: Do not inspect or parse the content. Handle the header of the request as specified by the security policy.
-         - **Form Data**: Parse content as posted form data in either URL-encoded or multi-part formats. Enforce the form parameters according to the policy.
-         - **GWT**: Perform checks for data in requests, based on the configuration of the GWT (Google Web Toolkit) profile associated with this URL.
-         - **JSON**: Review JSON data using an associated JSON profile, and use value attack signatures to scan the element values.
-         - **XML**: Review XML data using an associated XML profile.
-     - * apply-content-signatures
-       * apply-value-and-content-signatures
-       * disallow
-       * do-nothing
-       * form-data
-       * graphql
-       * grpc
-       * json
-       * xml
-```
-
-```eval_rst
-.. _policy/urls/urlContentProfiles/contentProfile:
-```
-
-
-##### contentProfile
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/urls:
-```
-
-
-### urls
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `parameters <policy/urls_parameters_>`_
-
-     - array of objects
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/xml-profiles:
-```
-
-
-### xml-profiles
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``attackSignaturesCheck``
-
-     - boolean
-     - 
-     - 
-   * - `defenseAttributes <policy/xml-profiles/defenseAttributes_>`_
-
-     - object
-     - 
-     - 
-   * - ``description``
-
-     - string
-     - 
-     - 
-   * - ``metacharAttributeCheck``
-
-     - boolean
-     - 
-     - 
-   * - ``metacharElementCheck``
-
-     - boolean
-     - 
-     - 
-   * - `metacharOverrides <policy/xml-profiles/metacharOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - `signatureOverrides <policy/xml-profiles/signatureOverrides_>`_
-
-     - array of objects
-     - 
-     - 
-   * - ``useXmlResponsePage``
-
-     - boolean
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/xml-profiles/defenseAttributes:
-```
-
-
-##### defenseAttributes
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``allowCDATA``
-
-     - boolean
-     - 
-     - 
-   * - ``allowDTDs``
-
-     - boolean
-     - 
-     - 
-   * - ``allowExternalReferences``
-
-     - boolean
-     - 
-     - 
-   * - ``allowProcessingInstructions``
-
-     - boolean
-     - 
-     - 
-   * - ``maximumAttributeValueLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumAttributesPerElement``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumChildrenPerElement``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumDocumentDepth``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumDocumentSize``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumElements``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumNSDeclarations``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumNameLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``maximumNamespaceLength``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 2147483647
-       * string
-     - 
-     - * Integer values
-       * "any"
-   * - ``tolerateCloseTagShorthand``
-
-     - boolean
-     - 
-     - 
-   * - ``tolerateLeadingWhiteSpace``
-
-     - boolean
-     - 
-     - 
-   * - ``tolerateNumericNames``
-
-     - boolean
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/xml-profiles/metacharOverrides:
-```
-
-
-##### metacharOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``isAllowed``
-
-     - boolean
-     - 
-     - 
-   * - ``metachar``
-
-     - string
-     - 
-     - 
-```
-
-```eval_rst
-.. _policy/xml-profiles/signatureOverrides:
-```
-
-
-##### signatureOverrides
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``enabled``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``signatureId``
-
-     - integer
-     - 
-     - 
-   * - ``tag``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/blocking-settings_evasions:
-```
-
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `name`     | string |             |                |
+
+#### signatures
+
+| Field Name    | Type    | Description | Allowed Values |
+| ------------- | ------- | ----------- | -------------- |
+| `name`        | string  |             |                |
+| `signatureId` | integer |             |                |
+| `tag`         | string  |             |                |
+
+#### systems
+
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `name`     | string |             |                |
+
+## signature-settings
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>minimumAccuracyForAutoAddedSignatures</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>high</li>
+<li>low</li>
+<li>medium</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>signatureStaging</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>stagingCertificationDatetime</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+## signatures
+
+| Field Name       | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Allowed Values |
+| ---------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `enabled`        | boolean | Specifies, if true, that the signature is enabled on the security policy. When false, the signature is disable on the security policy.                                                                                                                                                                                                                                                                                                                                                                         |                |
+| `learn`          | boolean |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                |
+| `name`           | string  | The signature name which, along with the signature tag, identifies the signature.                                                                                                                                                                                                                                                                                                                                                                                                                              |                |
+| `performStaging` | boolean | Specifies, if true, that the signature is in staging. The system does not enforce signatures in staging. Instead, the system records the request information and keeps it for a period of time (the Enforcement Readiness Period whose default time period is 7 days). Specifies, when false, that the staging feature is not in use, and that the system enforces the signatures' Learn/Alarm/Block settings immediately. (Blocking is performed only if the security policy's enforcement mode is Blocking.) |                |
+| `signatureId`    | integer | The signature ID which identifies the signature.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                |
+| `tag`            | string  | The signature tag which, along with the signature name, identifies the signature.                                                                                                                                                                                                                                                                                                                                                                                                                              |                |
+
+## threat-campaigns
+
+| Field Name    | Type    | Description                                                      | Allowed Values |
+| ------------- | ------- | ---------------------------------------------------------------- | -------------- |
+| `displayName` | string  |                                                                  |                |
+| `isEnabled`   | boolean | If enabled - threat campaign is enforced in the security policy. |                |
+| `name`        | string  | Name of the threat campaign.                                     |                |
+
+## urls
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#policy/access-profiles">accessProfile</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>allowRenderingInFrames</code></td>
+<td>string</td>
+<td>Specifies the conditions for when the browser should allow this URL to be rendered in a frame or iframe. never: Specifies that this URL must never be rendered in a frame or iframe. The web application instructs browsers to hide, or disable, frame and iframe parts of this URL. only-same: Specifies that the browser may load the frame or iframe if the referring page is from the same protocol, port, and domain as this URL. This limits the user to navigate only within the same web application.</td>
+<td><ul>
+<li>never</li>
+<li>only-same</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>allowRenderingInFramesOnlyFrom</code></td>
+<td>string</td>
+<td>Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, <a href="http://www.mywebsite.com">http://www.mywebsite.com</a>. Do not enter a sub-URL, such as <a href="http://www.mywebsite.com/index">http://www.mywebsite.com/index</a>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>attackSignaturesCheck</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that you want attack signatures and threat campaigns to be detected on this URL and possibly override the security policy settings of an attack signature or threat campaign specifically for this URL. After you enable this setting, the system displays a list of attack signatures and threat campaigns.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/authorizationRules">authorizationRules</a></td>
+<td>array of objects</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>canChangeDomainCookie</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>clickjackingProtection</code></td>
+<td>boolean</td>
+<td>Specifies that the system adds the X-Frame-Options header to the domain URL's response header. This is done to protect the web application against clickjacking. Clickjacking occurs when an attacker lures a user to click illegitimate frames and iframes because the attacker hid them on legitimate visible website buttons. Therefore, enabling this option protects the web application from other web sites hiding malicious code behind them. The default is disabled. After you enable this option, you can select whether, and under what conditions, the browser should allow this URL to be rendered in a frame or iframe.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>disallowFileUploadOfExecutables</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/html5CrossOriginRequestsEnforcement">html5CrossOriginRequestsEnforcement</a></td>
+<td>object</td>
+<td>The system extracts the Origin (domain) of the request from the Origin header.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>isAllowed</code></td>
+<td>boolean</td>
+<td>If <em>true</em>, the URLs allowed by the security policy.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>mandatoryBody</code></td>
+<td>boolean</td>
+<td>A request body is mandatory. This is relevant for any method acting as POST.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="#policy/urls/metacharOverrides">metacharOverrides</a></td>
+<td>array of objects</td>
+<td>To allow or disallow specific meta characters in the name of this specific URL (and thus override the global meta character settings).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>metacharsOnUrlCheck</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that you want meta characters to be detected on this URL and possibly override the security policy settings of a meta character specifically for this URL. After you enable this setting, the system displays a list of meta characters.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>method</code></td>
+<td>string</td>
+<td>Unique ID of a URL with a protocol type and name. Select a Method for the URL to create an API endpoint: URL + Method.</td>
+<td><ul>
+<li>ACL</li>
+<li>BCOPY</li>
+<li>BDELETE</li>
+<li>BMOVE</li>
+<li>BPROPFIND</li>
+<li>BPROPPATCH</li>
+<li>CHECKIN</li>
+<li>CHECKOUT</li>
+<li>CONNECT</li>
+<li>COPY</li>
+<li>DELETE</li>
+<li>GET</li>
+<li>HEAD</li>
+<li>LINK</li>
+<li>LOCK</li>
+<li>MERGE</li>
+<li>MKCOL</li>
+<li>MKWORKSPACE</li>
+<li>MOVE</li>
+<li>NOTIFY</li>
+<li>OPTIONS</li>
+<li>PATCH</li>
+<li>POLL</li>
+<li>POST</li>
+<li>PROPFIND</li>
+<li>PROPPATCH</li>
+<li>PUT</li>
+<li>REPORT</li>
+<li>RPC_IN_DATA</li>
+<li>RPC_OUT_DATA</li>
+<li>SEARCH</li>
+<li>SUBSCRIBE</li>
+<li>TRACE</li>
+<li>TRACK</li>
+<li>UNLINK</li>
+<li>UNLOCK</li>
+<li>UNSUBSCRIBE</li>
+<li>VERSION_CONTROL</li>
+<li>X-MS-ENUMATTS</li>
+<li>*</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/methodOverrides">methodOverrides</a></td>
+<td>array of objects</td>
+<td>Specifies a list of methods that are allowed or disallowed for a specific URL. The list overrides the list of methods allowed or disallowed globally at the policy level.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>methodsOverrideOnUrlCheck</code></td>
+<td>boolean</td>
+<td>Specifies, when true, that you want methods to be detected on this URL and possibly override the security policy settings of a method specifically for this URL. After you enable this setting, the system displays a list of methods.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td><p>Specifies an HTTP URL that the security policy allows. The available types are:</p>
+<blockquote>
+<ul>
+<li><strong>Explicit</strong>: Specifies that the URL has a specific name and is not a wildcard entity. Type the name of a URL exactly as you expect it to appear in the request.</li>
+<li><strong>Wildcard</strong>: Specifies that any URL that matches the listed wildcard expression should be treated according to the wildcard attributes. Type a wildcard expression that matches the expected URL. For example, entering the wildcard expression * specifies that any URL is allowed by the security policy.</li>
+</ul>
+</blockquote>
+<p>The syntax for wildcard entities is based on shell-style wildcard characters. The list below describes the wildcard characters that you can use so that the entity name can match multiple objects.</p>
+<blockquote>
+<ul>
+<li><strong>*</strong>: Matches all characters</li>
+<li><strong>?</strong>: Matches any single character</li>
+<li><strong>[abcde]</strong>: Matches exactly one of the characters listed</li>
+<li><strong>[!abcde]</strong>: Matches any character not listed</li>
+<li><strong>[a-e]</strong>: Matches exactly one character in the range</li>
+<li><strong>[!a-e]</strong>: Matches any character not in the range</li>
+</ul>
+</blockquote>
+<p><strong>Note</strong>: Wildcards do not match regular expressions. Do not use a regular expression as a wildcard.</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>operationId</code></td>
+<td>string</td>
+<td>The attribute operationId is used as an OpenAPI endpoint identifier.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/positionalParameters">positionalParameters</a></td>
+<td>array of objects</td>
+<td>When checked (enabled), positional parameters are enabled in the URL.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>protocol</code></td>
+<td>string</td>
+<td>Specifies whether the protocol for the URL is HTTP or HTTPS.</td>
+<td><ul>
+<li>http</li>
+<li>https</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/signatureOverrides">signatureOverrides</a></td>
+<td>array of objects</td>
+<td>Array of signature overrides. Specifies attack signatures whose security policy settings are overridden for this URL, and which action the security policy takes when it discovers a request for this URL that matches these attack signatures.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td>Determines the type of the <strong>name</strong> attribute. Only when setting the type to wildcard will the special wildcard characters in the name be interpreted as such.</td>
+<td><ul>
+<li>explicit</li>
+<li>wildcard</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/urlContentProfiles">urlContentProfiles</a></td>
+<td>array of objects</td>
+<td>Specifies how the system recognizes and enforces requests for this URL according to the requests' header content. The system automatically creates a default header-based content profile for HTTP, and you cannot delete it. However, requests for a URL may contain other types of content, such as JSON, XML, or other proprietary formats.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>wildcardOrder</code></td>
+<td>integer</td>
+<td>Specifies the order index for wildcard URLs matching. Wildcard URLs with lower wildcard order will get checked for a match prior to URLs with higher wildcard order.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### authorizationRules
+
+| Field Name  | Type   | Description | Allowed Values |
+| ----------- | ------ | ----------- | -------------- |
+| `condition` | string |             |                |
+| `name`      | string |             |                |
+
+### html5CrossOriginRequestsEnforcement
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowOriginsEnforcementMode</code></td>
+<td>string</td>
+<td>Allows you to specify a list of origins allowed to share data returned by this URL.</td>
+<td><ul>
+<li>replace-with</li>
+<li>unmodified</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>checkAllowedMethods</code></td>
+<td>boolean</td>
+<td>Allows you to specify a list of methods that other web applications hosted in different domains can use when requesting this URL.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="#policy/urls/html5CrossOriginRequestsEnforcement/crossDomainAllowedOrigin">crossDomainAllowedOrigin</a></td>
+<td>array of objects</td>
+<td>Allows you to specify a list of origins allowed to share data returned by this URL.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>enforcementMode</code></td>
+<td>string</td>
+<td>Specify the option to determine how to handle CORS requests. disabled: Do nothing related to cross-domain requests. Pass CORS requests exactly as set by the server. enforce: Allow cross-origin resource sharing as configured in the crossDomainAllowedOrigin setting. CORS requests are allowed from the domains specified as allowed origins.</td>
+<td><ul>
+<li>disabled</li>
+<li>enforce</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+#### crossDomainAllowedOrigin
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>includeSubDomains</code></td>
+<td>boolean</td>
+<td>If <em>true</em>, sub-domains of the allowed origin are also allowed to receive data from your web application.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>originName</code></td>
+<td>string</td>
+<td>Type the domain name or IP address with which the URL can share data. Wildcards are allowed in the names. For example: *.f5.com will match b.f5.com; however it will not match a.b.f5.com.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>originPort</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 65535</li>
+<li>string</li>
+</ul></td>
+<td>Select the port that other web applications can use to request data from your web application, or use the * wildcard for all ports.</td>
+<td><ul>
+<li>Integer values</li>
+<li>"all"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>originProtocol</code></td>
+<td>string</td>
+<td>Select the appropriate protocol for the allowed origin.</td>
+<td><ul>
+<li>http</li>
+<li>http/https</li>
+<li>https</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+### metacharOverrides
+
+| Field Name  | Type    | Description                                                          | Allowed Values |
+| ----------- | ------- | -------------------------------------------------------------------- | -------------- |
+| `isAllowed` | boolean | If *true*, metacharacters and other characters are allowed in a URL. |                |
+| `metachar`  | string  | ASCII representation of the character in Hex format                  |                |
+
+### methodOverrides
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowed</code></td>
+<td>boolean</td>
+<td>Specifies that the system allows you to override allowed methods for this URL. When selected, the global policy settings for methods are listed, and you can change what is allowed or disallowed for this URL.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>method</code></td>
+<td>string</td>
+<td>Specifies a list of existing HTTP methods. All security policies accept standard HTTP methods by default.</td>
+<td><ul>
+<li>ACL</li>
+<li>BCOPY</li>
+<li>BDELETE</li>
+<li>BMOVE</li>
+<li>BPROPFIND</li>
+<li>BPROPPATCH</li>
+<li>CHECKIN</li>
+<li>CHECKOUT</li>
+<li>CONNECT</li>
+<li>COPY</li>
+<li>DELETE</li>
+<li>GET</li>
+<li>HEAD</li>
+<li>LINK</li>
+<li>LOCK</li>
+<li>MERGE</li>
+<li>MKCOL</li>
+<li>MKWORKSPACE</li>
+<li>MOVE</li>
+<li>NOTIFY</li>
+<li>OPTIONS</li>
+<li>PATCH</li>
+<li>POLL</li>
+<li>POST</li>
+<li>PROPFIND</li>
+<li>PROPPATCH</li>
+<li>PUT</li>
+<li>REPORT</li>
+<li>RPC_IN_DATA</li>
+<li>RPC_OUT_DATA</li>
+<li>SEARCH</li>
+<li>SUBSCRIBE</li>
+<li>TRACE</li>
+<li>TRACK</li>
+<li>UNLINK</li>
+<li>UNLOCK</li>
+<li>UNSUBSCRIBE</li>
+<li>VERSION_CONTROL</li>
+<li>X-MS-ENUMATTS</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+### positionalParameters
+
+| Field Name                      | Type               | Description                                                                                                               | Allowed Values |
+| ------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| [parameter](#policy/parameters) | object             |                                                                                                                           |                |
+| `urlSegmentIndex`               | integer minimum: 1 | Select which to add: Text or Parameter and enter your desired segments. You can add multiple text and parameter segments. |                |
+
+### signatureOverrides
+
+| Field Name    | Type    | Description                                                                       | Allowed Values |
+| ------------- | ------- | --------------------------------------------------------------------------------- | -------------- |
+| `enabled`     | boolean | Specifies, when true, that the overridden signature is enforced                   |                |
+| `name`        | string  | The signature name which, along with the signature tag, identifies the signature. |                |
+| `signatureId` | integer | The signature ID which identifies the signature.                                  |                |
+| `tag`         | string  | The signature tag which, along with the signature name, identifies the signature. |                |
+
+### urlContentProfiles
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#policy/urls/urlContentProfiles/contentProfile">contentProfile</a></td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>decodeValueAsBase64</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>disabled</li>
+<li>required</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>headerName</code></td>
+<td>string</td>
+<td>Specifies an explicit header name that must appear in requests for this URL. This field is not case-sensitive.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>headerOrder</code></td>
+<td><ul>
+<li>integer</li>
+<li>string</li>
+</ul></td>
+<td>Displays the order in which the system checks header content of requests for this URL.</td>
+<td><ul>
+<li>Integer values</li>
+<li>"default"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>headerValue</code></td>
+<td>string</td>
+<td>Specifies a simple pattern string (glob pattern matching) for the header value that must appear in legal requests for this URL; for example, <em>json</em>, xml_method?, or method[0-9]. If the header includes this pattern, the system assumes the request contains the type of data you select in the Request Body Handling setting. This field is case-sensitive.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>type</code></td>
+<td>string</td>
+<td><ul>
+<li><strong>Apply Content Signatures</strong>: Do not parse the content; scan the entire payload with full-content attack signatures.
+<ul>
+<li><strong>Apply Value and Content Signatures</strong>: Do not parse the content or extract parameters; process the entire payload with value and full-content attack signatures.</li>
+<li><strong>Disallow</strong>: Block requests for an URL containing this header content. Log the Illegal Request Content Type violation.</li>
+<li><strong>Do Nothing</strong>: Do not inspect or parse the content. Handle the header of the request as specified by the security policy.</li>
+<li><strong>Form Data</strong>: Parse content as posted form data in either URL-encoded or multi-part formats. Enforce the form parameters according to the policy.</li>
+<li><strong>GWT</strong>: Perform checks for data in requests, based on the configuration of the GWT (Google Web Toolkit) profile associated with this URL.</li>
+<li><strong>JSON</strong>: Review JSON data using an associated JSON profile, and use value attack signatures to scan the element values.</li>
+<li><strong>XML</strong>: Review XML data using an associated XML profile.</li>
+</ul></li>
+</ul></td>
+<td><ul>
+<li>apply-content-signatures</li>
+<li>apply-value-and-content-signatures</li>
+<li>disallow</li>
+<li>do-nothing</li>
+<li>form-data</li>
+<li>graphql</li>
+<li>grpc</li>
+<li>json</li>
+<li>xml</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+#### contentProfile
+
+| Field Name | Type   | Description | Allowed Values |
+| ---------- | ------ | ----------- | -------------- |
+| `name`     | string |             |                |
+
+## urls
+
+| Field Name     | Reference | Type             | Description | Allowed Values |
+| -------------- | --------- | ---------------- | ----------- | -------------- |
+| [parameters]() | Yes       | array of objects |             |                |
+
+## xml-profiles
+
+| Field Name                                                    | Type             | Description | Allowed Values |
+| ------------------------------------------------------------- | ---------------- | ----------- | -------------- |
+| `attackSignaturesCheck`                                       | boolean          |             |                |
+| [defenseAttributes](#policy/xml-profiles/defenseAttributes)   | object           |             |                |
+| `description`                                                 | string           |             |                |
+| `metacharAttributeCheck`                                      | boolean          |             |                |
+| `metacharElementCheck`                                        | boolean          |             |                |
+| [metacharOverrides](#policy/xml-profiles/metacharOverrides)   | array of objects |             |                |
+| `name`                                                        | string           |             |                |
+| [signatureOverrides](#policy/xml-profiles/signatureOverrides) | array of objects |             |                |
+| `useXmlResponsePage`                                          | boolean          |             |                |
+
+### defenseAttributes
+
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>allowCDATA</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>allowDTDs</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>allowExternalReferences</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>allowProcessingInstructions</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maximumAttributeValueLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumAttributesPerElement</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumChildrenPerElement</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumDocumentDepth</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumDocumentSize</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumElements</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumNSDeclarations</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maximumNameLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>maximumNamespaceLength</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 2147483647</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"any"</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>tolerateCloseTagShorthand</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>tolerateLeadingWhiteSpace</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>tolerateNumericNames</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### metacharOverrides
+
+| Field Name  | Type    | Description | Allowed Values |
+| ----------- | ------- | ----------- | -------------- |
+| `isAllowed` | boolean |             |                |
+| `metachar`  | string  |             |                |
+
+### signatureOverrides
+
+| Field Name    | Type    | Description | Allowed Values |
+| ------------- | ------- | ----------- | -------------- |
+| `enabled`     | boolean |             |                |
+| `name`        | string  |             |                |
+| `signatureId` | integer |             |                |
+| `tag`         | string  |             |                |
 
 ### evasions
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``description``
-
-     - string
-     - Human-readable name of sub-violation.
-     - * %u decoding
-       * Apache whitespace
-       * Bad unescape
-       * Bare byte decoding
-       * Directory traversals
-       * IIS Unicode codepoints
-       * IIS backslashes
-       * Multiple decoding
-       * Multiple slashes
-       * Semicolon path parameters
-   * - ``enabled``
-
-     - boolean
-     - Defines if sub-violation is enforced - alarmed or blocked, according to the 'Evasion technique detected' (VIOL_EVASION) violation blocking settings.
-     - 
-   * - ``learn``
-
-     - boolean
-     - Defines if sub-violation is learned. Sub-violations are learned only when learn is enabled for the 'Evasion technique detected' (VIOL_EVASION) violation.
-     - 
-   * - ``maxDecodingPasses``
-
-     - integer
-       minimum: 2
-       maximum: 5
-     - Defines how many times the system decodes URI and parameter values before the request is considered an evasion.
-       Relevant only for the 'Multiple decoding' sub-violation.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/blocking-settings_http-protocols:
-```
-
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>description</code></td>
+<td>string</td>
+<td>Human-readable name of sub-violation.</td>
+<td><ul>
+<li>%u decoding</li>
+<li>Apache whitespace</li>
+<li>Bad unescape</li>
+<li>Bare byte decoding</li>
+<li>Directory traversals</li>
+<li>IIS Unicode codepoints</li>
+<li>IIS backslashes</li>
+<li>Multiple decoding</li>
+<li>Multiple slashes</li>
+<li>Semicolon path parameters</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>Defines if sub-violation is enforced - alarmed or blocked, according to the 'Evasion technique detected' (VIOL_EVASION) violation blocking settings.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td>Defines if sub-violation is learned. Sub-violations are learned only when learn is enabled for the 'Evasion technique detected' (VIOL_EVASION) violation.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maxDecodingPasses</code></td>
+<td>integer minimum: 2 maximum: 5</td>
+<td>Defines how many times the system decodes URI and parameter values before the request is considered an evasion. Relevant only for the 'Multiple decoding' sub-violation.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 ### http-protocols
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``description``
-
-     - string
-     - Human-readable name of sub-violation
-     - * POST request with Content-Length: 0
-       * Multiple host headers
-       * Host header contains IP address
-       * Null in request
-       * Header name with no header value
-       * Chunked request with Content-Length header
-       * Check maximum number of cookies
-       * Check maximum number of parameters
-       * Check maximum number of headers
-       * Body in GET or HEAD requests
-       * Bad multipart/form-data request parsing
-       * Bad multipart parameters parsing
-       * Unescaped space in URL
-       * High ASCII characters in headers
-   * - ``enabled``
-
-     - boolean
-     - Defines if sub-violation is enforced - alarmed or blocked, according to the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation blocking settings
-     - 
-   * - ``learn``
-
-     - boolean
-     - Defines if sub-violation is learned. Sub-violations is learned only when learn is enabled for the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation
-     - 
-   * - ``maxCookies``
-
-     - integer
-       minimum: 1
-       maximum: 100
-     - 
-     - 
-   * - ``maxHeaders``
-
-     - integer
-       minimum: 1
-       maximum: 150
-     - Defines maximum allowed number of headers in request.
-       Relevant only for the 'Check maximum number of headers' sub-violation
-     - 
-   * - ``maxParams``
-
-     - integer
-       minimum: 1
-       maximum: 5000
-     - Defines maximum allowed number of parameters in request.
-       Relevant only for the 'Check maximum number of parameters' sub-violation
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/blocking-settings_violations:
-```
-
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>description</code></td>
+<td>string</td>
+<td>Human-readable name of sub-violation</td>
+<td><ul>
+<li>POST request with Content-Length: 0</li>
+<li>Multiple host headers</li>
+<li>Host header contains IP address</li>
+<li>Null in request</li>
+<li>Header name with no header value</li>
+<li>Chunked request with Content-Length header</li>
+<li>Check maximum number of cookies</li>
+<li>Check maximum number of parameters</li>
+<li>Check maximum number of headers</li>
+<li>Body in GET or HEAD requests</li>
+<li>Bad multipart/form-data request parsing</li>
+<li>Bad multipart parameters parsing</li>
+<li>Unescaped space in URL</li>
+<li>High ASCII characters in headers</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>enabled</code></td>
+<td>boolean</td>
+<td>Defines if sub-violation is enforced - alarmed or blocked, according to the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation blocking settings</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td>Defines if sub-violation is learned. Sub-violations is learned only when learn is enabled for the 'HTTP protocol compliance failed' (VIOL_HTTP_PROTOCOL) violation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maxCookies</code></td>
+<td>integer minimum: 1 maximum: 100</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>maxHeaders</code></td>
+<td>integer minimum: 1 maximum: 150</td>
+<td>Defines maximum allowed number of headers in request. Relevant only for the 'Check maximum number of headers' sub-violation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>maxParams</code></td>
+<td>integer minimum: 1 maximum: 5000</td>
+<td>Defines maximum allowed number of parameters in request. Relevant only for the 'Check maximum number of parameters' sub-violation</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 ### violations
 
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>alarm</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>block</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>description</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>learn</code></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>VIOL_ACCESS_UNAUTHORIZED</li>
+<li>VIOL_ACCESS_INVALID</li>
+<li>VIOL_ACCESS_MALFORMED</li>
+<li>VIOL_ACCESS_MISSING</li>
+<li>VIOL_ASM_COOKIE_MODIFIED</li>
+<li>VIOL_BLACKLISTED_IP</li>
+<li>VIOL_BOT_CLIENT</li>
+<li>VIOL_BRUTE_FORCE</li>
+<li>VIOL_COOKIE_EXPIRED</li>
+<li>VIOL_COOKIE_LENGTH</li>
+<li>VIOL_COOKIE_MALFORMED</li>
+<li>VIOL_COOKIE_MODIFIED</li>
+<li>VIOL_CSRF</li>
+<li>VIOL_DATA_GUARD</li>
+<li>VIOL_ENCODING</li>
+<li>VIOL_EVASION</li>
+<li>VIOL_FILETYPE</li>
+<li>VIOL_FILE_UPLOAD</li>
+<li>VIOL_FILE_UPLOAD_IN_BODY</li>
+<li>VIOL_GRAPHQL_MALFORMED</li>
+<li>VIOL_GRAPHQL_FORMAT</li>
+<li>VIOL_GRAPHQL_INTROSPECTION_QUERY</li>
+<li>VIOL_GRAPHQL_ERROR_RESPONSE</li>
+<li>VIOL_GRPC_FORMAT</li>
+<li>VIOL_GRPC_MALFORMED</li>
+<li>VIOL_GRPC_METHOD</li>
+<li>VIOL_HEADER_LENGTH</li>
+<li>VIOL_HEADER_METACHAR</li>
+<li>VIOL_HEADER_REPEATED</li>
+<li>VIOL_HTTP_PROTOCOL</li>
+<li>VIOL_HTTP_RESPONSE_STATUS</li>
+<li>VIOL_JSON_FORMAT</li>
+<li>VIOL_JSON_MALFORMED</li>
+<li>VIOL_JSON_SCHEMA</li>
+<li>VIOL_LOGIN</li>
+<li>VIOL_LOGIN_URL_BYPASSED</li>
+<li>VIOL_LOGIN_URL_EXPIRED</li>
+<li>VIOL_MANDATORY_HEADER</li>
+<li>VIOL_MANDATORY_PARAMETER</li>
+<li>VIOL_MANDATORY_REQUEST_BODY</li>
+<li>VIOL_METHOD</li>
+<li>VIOL_PARAMETER</li>
+<li>VIOL_PARAMETER_ARRAY_VALUE</li>
+<li>VIOL_PARAMETER_DATA_TYPE</li>
+<li>VIOL_PARAMETER_EMPTY_VALUE</li>
+<li>VIOL_PARAMETER_LOCATION</li>
+<li>VIOL_PARAMETER_MULTIPART_NULL_VALUE</li>
+<li>VIOL_PARAMETER_NAME_METACHAR</li>
+<li>VIOL_PARAMETER_NUMERIC_VALUE</li>
+<li>VIOL_PARAMETER_REPEATED</li>
+<li>VIOL_PARAMETER_STATIC_VALUE</li>
+<li>VIOL_PARAMETER_VALUE_BASE64</li>
+<li>VIOL_PARAMETER_VALUE_LENGTH</li>
+<li>VIOL_PARAMETER_VALUE_METACHAR</li>
+<li>VIOL_PARAMETER_VALUE_REGEXP</li>
+<li>VIOL_POST_DATA_LENGTH</li>
+<li>VIOL_QUERY_STRING_LENGTH</li>
+<li>VIOL_RATING_THREAT</li>
+<li>VIOL_RATING_NEED_EXAMINATION</li>
+<li>VIOL_REQUEST_MAX_LENGTH</li>
+<li>VIOL_REQUEST_LENGTH</li>
+<li>VIOL_THREAT_CAMPAIGN</li>
+<li>VIOL_URL</li>
+<li>VIOL_URL_CONTENT_TYPE</li>
+<li>VIOL_URL_LENGTH</li>
+<li>VIOL_URL_METACHAR</li>
+<li>VIOL_XML_FORMAT</li>
+<li>VIOL_XML_MALFORMED</li>
+<li>VIOL_GEOLOCATION</li>
+<li>VIOL_WEBSOCKET_BAD_REQUEST</li>
+<li>VIOL_MALICIOUS_IP</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
 
+## mitigations
 
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``alarm``
-
-     - boolean
-     - 
-     - 
-   * - ``block``
-
-     - boolean
-     - 
-     - 
-   * - ``description``
-
-     - string
-     - 
-     - 
-   * - ``learn``
-
-     - boolean
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - * VIOL_ACCESS_UNAUTHORIZED
-       * VIOL_ACCESS_INVALID
-       * VIOL_ACCESS_MALFORMED
-       * VIOL_ACCESS_MISSING
-       * VIOL_ASM_COOKIE_MODIFIED
-       * VIOL_BLACKLISTED_IP
-       * VIOL_BOT_CLIENT
-       * VIOL_BRUTE_FORCE
-       * VIOL_COOKIE_EXPIRED
-       * VIOL_COOKIE_LENGTH
-       * VIOL_COOKIE_MALFORMED
-       * VIOL_COOKIE_MODIFIED
-       * VIOL_CSRF
-       * VIOL_DATA_GUARD
-       * VIOL_ENCODING
-       * VIOL_EVASION
-       * VIOL_FILETYPE
-       * VIOL_FILE_UPLOAD
-       * VIOL_FILE_UPLOAD_IN_BODY
-       * VIOL_GRAPHQL_MALFORMED
-       * VIOL_GRAPHQL_FORMAT
-       * VIOL_GRAPHQL_INTROSPECTION_QUERY
-       * VIOL_GRAPHQL_ERROR_RESPONSE
-       * VIOL_GRPC_FORMAT
-       * VIOL_GRPC_MALFORMED
-       * VIOL_GRPC_METHOD
-       * VIOL_HEADER_LENGTH
-       * VIOL_HEADER_METACHAR
-       * VIOL_HEADER_REPEATED
-       * VIOL_HTTP_PROTOCOL
-       * VIOL_HTTP_RESPONSE_STATUS
-       * VIOL_JSON_FORMAT
-       * VIOL_JSON_MALFORMED
-       * VIOL_JSON_SCHEMA
-       * VIOL_LOGIN
-       * VIOL_LOGIN_URL_BYPASSED
-       * VIOL_LOGIN_URL_EXPIRED
-       * VIOL_MANDATORY_HEADER
-       * VIOL_MANDATORY_PARAMETER
-       * VIOL_MANDATORY_REQUEST_BODY
-       * VIOL_METHOD
-       * VIOL_PARAMETER
-       * VIOL_PARAMETER_ARRAY_VALUE
-       * VIOL_PARAMETER_DATA_TYPE
-       * VIOL_PARAMETER_EMPTY_VALUE
-       * VIOL_PARAMETER_LOCATION
-       * VIOL_PARAMETER_MULTIPART_NULL_VALUE
-       * VIOL_PARAMETER_NAME_METACHAR
-       * VIOL_PARAMETER_NUMERIC_VALUE
-       * VIOL_PARAMETER_REPEATED
-       * VIOL_PARAMETER_STATIC_VALUE
-       * VIOL_PARAMETER_VALUE_BASE64
-       * VIOL_PARAMETER_VALUE_LENGTH
-       * VIOL_PARAMETER_VALUE_METACHAR
-       * VIOL_PARAMETER_VALUE_REGEXP
-       * VIOL_POST_DATA_LENGTH
-       * VIOL_QUERY_STRING_LENGTH
-       * VIOL_RATING_THREAT
-       * VIOL_RATING_NEED_EXAMINATION
-       * VIOL_REQUEST_MAX_LENGTH
-       * VIOL_REQUEST_LENGTH
-       * VIOL_THREAT_CAMPAIGN
-       * VIOL_URL
-       * VIOL_URL_CONTENT_TYPE
-       * VIOL_URL_LENGTH
-       * VIOL_URL_METACHAR
-       * VIOL_XML_FORMAT
-       * VIOL_XML_MALFORMED
-       * VIOL_GEOLOCATION
-       * VIOL_WEBSOCKET_BAD_REQUEST
-       * VIOL_MALICIOUS_IP
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense_mitigations:
-```
-
-
-### mitigations
-
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - `anomalies <policy/bot-defense/mitigations_anomalies_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `browsers <policy/bot-defense/mitigations_browsers_>`_
-
-     - array of objects
-     - 
-     - 
-   * - `classes <policy/bot-defense/mitigations_classes_>`_
-
-     - array of objects
-     - List of classes and their actions.
-     - 
-   * - `signatures <policy/bot-defense/mitigations_signatures_>`_
-
-     - array of objects
-     - List of signatures and their actions.
-       If a signature is not in the list - its action will be taken according to the class it belongs to.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense_settings:
-```
-
+| Field Name                                               | Reference | Type             | Description                                                                                                                              | Allowed Values |
+| -------------------------------------------------------- | --------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| [anomalies](#policy/bot-defense/mitigations_anomalies)   | Yes       | array of objects |                                                                                                                                          |                |
+| [browsers](#policy/bot-defense/mitigations_browsers)     | Yes       | array of objects |                                                                                                                                          |                |
+| [classes](#policy/bot-defense/mitigations_classes)       | Yes       | array of objects | List of classes and their actions.                                                                                                       |                |
+| [signatures](#policy/bot-defense/mitigations_signatures) | Yes       | array of objects | List of signatures and their actions. If a signature is not in the list - its action will be taken according to the class it belongs to. |                |
 
 ### settings
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``caseSensitiveHttpHeaders``
-
-     - boolean
-     - If *false* the system will not check header name with case sensitivity for both relevant anomalies: Invalid HTTP Headers, Suspicious HTTP Headers.
-     - 
-   * - ``isEnabled``
-
-     - boolean
-     - If *true* the system detects bots.
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense/mitigations_anomalies:
-```
-
+| Field Name                 | Type    | Description                                                                                                                                        | Allowed Values |
+| -------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `caseSensitiveHttpHeaders` | boolean | If *false* the system will not check header name with case sensitivity for both relevant anomalies: Invalid HTTP Headers, Suspicious HTTP Headers. |                |
+| `isEnabled`                | boolean | If *true* the system detects bots.                                                                                                                 |                |
 
 ### anomalies
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``action``
-
-     - string
-     - 
-     - * alarm
-       * block
-       * default
-       * detect
-       * ignore
-   * - ``name``
-
-     - string
-     - 
-     - 
-   * - ``scoreThreshold``
-
-     - 
-       * integer
-         minimum: 0
-         maximum: 150
-       * string
-     - 
-     - * Integer values
-       * "default"
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense/mitigations_browsers:
-```
-
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>action</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>alarm</li>
+<li>block</li>
+<li>default</li>
+<li>detect</li>
+<li>ignore</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>scoreThreshold</code></td>
+<td><ul>
+<li>integer minimum: 0 maximum: 150</li>
+<li>string</li>
+</ul></td>
+<td></td>
+<td><ul>
+<li>Integer values</li>
+<li>"default"</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
 
 ### browsers
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``action``
-
-     - string
-     - 
-     - * alarm
-       * block
-       * detect
-   * - ``maxVersion``
-
-     - integer
-       minimum: 0
-       maximum: 2147483647
-     - 
-     - 
-   * - ``minVersion``
-
-     - integer
-       minimum: 0
-       maximum: 2147483647
-     - 
-     - 
-   * - ``name``
-
-     - string
-     - 
-     - 
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense/mitigations_classes:
-```
-
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>action</code></td>
+<td>string</td>
+<td></td>
+<td><ul>
+<li>alarm</li>
+<li>block</li>
+<li>detect</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>maxVersion</code></td>
+<td>integer minimum: 0 maximum: 2147483647</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>minVersion</code></td>
+<td>integer minimum: 0 maximum: 2147483647</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 ### classes
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``action``
-
-     - string
-     - The action we set for this class.
-       
-         - **ignore**: The system will not detect or report bots from this class.
-         - **detect**: The system will detect and report the bot, but violation won't be reported.
-         - **alarm**: The system will detect and report requests made by bots from this class as illegal, but will not block them.
-         - **block**: The system will detect and report requests made by bots from this class as illegal, and block them.
-     - * alarm
-       * block
-       * detect
-       * ignore
-   * - ``name``
-
-     - string
-     - The class we set the action to.
-     - * browser
-       * malicious-bot
-       * suspicious-browser
-       * trusted-bot
-       * unknown
-       * untrusted-bot
-```
-
----
-
-
-```eval_rst
-.. _policy/bot-defense/mitigations_signatures:
-```
-
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>action</code></td>
+<td>string</td>
+<td><p>The action we set for this class.</p>
+<blockquote>
+<ul>
+<li><strong>ignore</strong>: The system will not detect or report bots from this class.</li>
+<li><strong>detect</strong>: The system will detect and report the bot, but violation won't be reported.</li>
+<li><strong>alarm</strong>: The system will detect and report requests made by bots from this class as illegal, but will not block them.</li>
+<li><strong>block</strong>: The system will detect and report requests made by bots from this class as illegal, and block them.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>alarm</li>
+<li>block</li>
+<li>detect</li>
+<li>ignore</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td>The class we set the action to.</td>
+<td><ul>
+<li>browser</li>
+<li>malicious-bot</li>
+<li>suspicious-browser</li>
+<li>trusted-bot</li>
+<li>unknown</li>
+<li>untrusted-bot</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
 
 ### signatures
 
-
-
-```eval_rst
-.. list-table::
-   :header-rows: 1
-   :widths: 5 1 8 3
-
-   * - Field Name
-     - Type
-     - Description
-     - Allowed Values
-   * - ``action``
-
-     - string
-     - The action we set for this signature.
-       
-         - **ignore**: The system will not detect or report this signature.
-         - **detect**: The system will detect and report the signature, but violation won't be reported.
-         - **alarm**: The system will detect and report requests made by those specific bots as illegal, but will not block them.
-         - **block**: The system will detect and report requests made by those specific bots as illegal, and will block them.
-     - * alarm
-       * block
-       * detect
-       * ignore
-   * - ``name``
-
-     - string
-     - The name of the signature we want to change action for.
-     - 
-```
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>action</code></td>
+<td>string</td>
+<td><p>The action we set for this signature.</p>
+<blockquote>
+<ul>
+<li><strong>ignore</strong>: The system will not detect or report this signature.</li>
+<li><strong>detect</strong>: The system will detect and report the signature, but violation won't be reported.</li>
+<li><strong>alarm</strong>: The system will detect and report requests made by those specific bots as illegal, but will not block them.</li>
+<li><strong>block</strong>: The system will detect and report requests made by those specific bots as illegal, and will block them.</li>
+</ul>
+</blockquote></td>
+<td><ul>
+<li>alarm</li>
+<li>block</li>
+<li>detect</li>
+<li>ignore</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>name</code></td>
+<td>string</td>
+<td>The name of the signature we want to change action for.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
