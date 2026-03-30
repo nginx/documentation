@@ -1,5 +1,5 @@
 ---
-title: Configure OpenID Connect authentication
+title: Configure OpenID Connect (OIDC) authentication
 weight: 400
 toc: true
 nd-content-type: how-to
@@ -11,7 +11,7 @@ nd-summary: >
    Key optional features include session management, logout configuration, PKCE, custom redirect URIs, and Certificate Revocation List support, though the feature requires NGINX Plus and does not work with open-source NGINX.
 ---
 
-This guide describes how to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+This guide describes how to configure OpenID Connect (OIDC) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
 
 ## Overview
 
