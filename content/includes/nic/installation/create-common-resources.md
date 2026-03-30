@@ -14,6 +14,7 @@ In this section, you'll create resources that most NGINX Ingress Controller inst
     By default, the server returns a _404 Not Found_ page for all requests when no ingress rules are set up. Although we provide a self-signed certificate and key for testing purposes, we recommend using your own certificate.
 
     ```shell
+    make secrets
     kubectl apply -f examples/shared-examples/default-server-secret/default-server-secret.yaml
     ```
 
