@@ -22,8 +22,8 @@ Released _March 31th, 2026_.
 
 ### Resolved issues
 
-- 14036 - fixed quoted cookie value removed
-- 14052 - Upgrade go compiler
+- 14052 - Upgrade Go compiler to 1.26.1
+- 14036 - Fix a cookie parser issue
 
 
 ### Packages
@@ -41,7 +41,7 @@ Released _March 31th, 2026_.
 | Ubuntu 24.04             | _app-protect-module-oss_1.29.3+5.607.1-1\~noble_amd64.deb_        | _app-protect-module-plus_36+5.607.1--1\~noble_amd64.deb_       | _app-protect_36+5.607.1-1\~noble_amd64.deb_        |
 | RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.3+5.607.1-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.1-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.607.1-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.607.1-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.1-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.607.1-1.el9.ngx.x86_64.rpm_      |
-| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.1-1.el10.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.1-1.el10.ngx.x86_64.rpm_      | _app-protect-36+5.607.1-1.el10.ngx.x86_64.rpm_      |
+| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.1-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-36+5.607.1-1.el10.ngx.x86_64.rpm_     | _app-protect-36+5.607.1-1.el10.ngx.x86_64.rpm_     |
 
 {{< /table >}}
 
@@ -76,7 +76,7 @@ Released _March 23th, 2026_.
 | Ubuntu 24.04             | _app-protect-module-oss_1.29.3+5.607.0-1\~noble_amd64.deb_        | _app-protect-module-plus_36+5.607.0--1\~noble_amd64.deb_       | _app-protect_36+5.607.0-1\~noble_amd64.deb_        |
 | RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.3+5.607.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.0-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.607.0-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.607.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.0-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.607.0-1.el9.ngx.x86_64.rpm_      |
-| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.0-1.el10.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.0-1.el10.ngx.x86_64.rpm_      | _app-protect-36+5.607.0-1.el10.ngx.x86_64.rpm_      |
+| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.0-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-36+5.607.0-1.el10.ngx.x86_64.rpm_     | _app-protect-36+5.607.0-1.el10.ngx.x86_64.rpm_     |
 
 {{< /table >}}
 
