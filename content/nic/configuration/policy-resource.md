@@ -44,7 +44,7 @@ spec:
 |``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
 |``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | Yes | No |
+|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | Yes | Yes |
 |``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | Yes | No |
 |``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | Yes | Yes |
 
