@@ -21,7 +21,7 @@ This guide describes how to configure the headers application to modify the head
 
 ## HTTP Header Modifiers examples
 
-The following examples use a shared Gateway for both `RequestHeaderModifier` and `ResponseHeaderModifier` filters. Header values can be plain strings or NGINX variable names such as `$remote_addr` or `$request_method`. NGINX variable support requires NGINX Gateway Fabric version 2.6 or above.
+The following examples use a shared Gateway for both `RequestHeaderModifier` and `ResponseHeaderModifier` filters. Header values can be plain strings or NGINX variable names such as `$remote_addr` or `$request_method`.
 
 ### Deploy the Gateway API resources for the Header application
 
