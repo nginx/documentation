@@ -115,6 +115,34 @@ BasicAuth
 </tr>
 <tr>
 <td>
+<code>oidc</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">
+OIDCAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>OIDC configures OpenID Connect Authentication (NGINX Plus).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>jwt</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">
+JWTAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>JWT configures JSON Web Token authentication (NGINX Plus).</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>type</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha1.AuthType">
@@ -943,6 +971,12 @@ sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 <tbody><tr><td><p>&#34;Basic&#34;</p></td>
 <td><p>AuthTypeBasic is the HTTP Basic Authentication mechanism.</p>
 </td>
+</tr><tr><td><p>&#34;JWT&#34;</p></td>
+<td><p>AuthTypeJWT is the JWT Authentication mechanism.</p>
+</td>
+</tr><tr><td><p>&#34;OIDC&#34;</p></td>
+<td><p>AuthTypeOIDC is the OpenID Connect Authentication mechanism.</p>
+</td>
 </tr></tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilterConditionReason">AuthenticationFilterConditionReason
@@ -1024,6 +1058,34 @@ BasicAuth
 </tr>
 <tr>
 <td>
+<code>oidc</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">
+OIDCAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>OIDC configures OpenID Connect Authentication (NGINX Plus).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>jwt</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">
+JWTAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>JWT configures JSON Web Token authentication (NGINX Plus).</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>type</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha1.AuthType">
@@ -1099,7 +1161,7 @@ LocalObjectReference
 </em>
 </td>
 <td>
-<p>SecretRef allows referencing a Secret in the same namespace.</p>
+<p>SecretRef references a Secret containing credentials in the same namespace.</p>
 </td>
 </tr>
 <tr>
@@ -1444,6 +1506,8 @@ longer necessary.</p>
 <a href="#gateway.nginx.org/v1alpha1.ClientBody">ClientBody</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAlive">ClientKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAliveTimeout">ClientKeepAliveTimeout</a>,
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>,
+<a href="#gateway.nginx.org/v1alpha1.OIDCSessionConfig">OIDCSessionConfig</a>,
 <a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>,
 <a href="#gateway.nginx.org/v1alpha2.TelemetryExporter">TelemetryExporter</a>)
@@ -1468,6 +1532,207 @@ letters and underscores only.
 For a full list of NGINX variables,
 refer to: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables</a></p>
 </p>
+<h3 id="gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.JWTAuth" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">AuthenticationFilterSpec</a>)
+</p>
+<p>
+<p>JWTAuth configures JWT-based authentication (NGINX Plus).</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>file</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.JWTFileKeySource">
+JWTFileKeySource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>File specifies local JWKS configuration.
+Required when Source == File.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>keyCache</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>KeyCache is the cache duration for keys.
+Configures <code>auth_jwt_key_cache</code> directive.
+<a href="https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache">https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_cache</a>
+Example: &ldquo;auth_jwt_key_cache 10m;&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>remote</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.JWTRemoteKeySource">
+JWTRemoteKeySource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Remote specifies remote JWKS configuration.
+Required when Source == Remote.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>realm</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Realm used by NGINX <code>auth_jwt</code> directive
+<a href="https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt">https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt</a>
+Configures &ldquo;realm=&rdquo;<realm_value>&rdquo; in WWW-Authenticate header in error page location.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>source</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.JWTKeySource">
+JWTKeySource
+</a>
+</em>
+</td>
+<td>
+<p>Source selects how JWT keys are provided: local file or remote JWKS.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.JWTFileKeySource">JWTFileKeySource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.JWTFileKeySource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>)
+</p>
+<p>
+<p>JWTFileKeySource specifies local JWKS key configuration.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>secretRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>SecretRef references a Secret containing the JWKS.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.JWTKeySource">JWTKeySource
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.JWTKeySource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>)
+</p>
+<p>
+<p>JWTKeySource specifies the source of the keys used to verify JWT signatures.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;File&#34;</p></td>
+<td><p>JWTKeySourceFile configures JWT to fetch JWKS from a local secret.</p>
+</td>
+</tr><tr><td><p>&#34;Remote&#34;</p></td>
+<td><p>JWTKeySourceRemote configures JWT to fetch JWKS from a remote source.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.JWTRemoteKeySource">JWTRemoteKeySource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.JWTRemoteKeySource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>)
+</p>
+<p>
+<p>JWTRemoteKeySource specifies remote JWKS configuration.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>uri</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URI is the JWKS endpoint.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>caCertificateRefs</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+[]LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>CACertificateRefs references a list of secrets containing trusted CA certificates
+in PEM format used to verify the server certificate of the JWKS endpoint.
+The referenced secrets must contain an entry with the key &ldquo;ca.crt&rdquo;.
+Only one secret can be referenced currently.
+If not specified, the system CA bundle is used.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_trusted_certificate</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.LoadBalancingType">LoadBalancingType
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LoadBalancingType" title="Permanent link">¶</a>
 </h3>
@@ -1558,7 +1823,10 @@ distributing requests evenly across all upstream servers.</p>
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth</a>)
+<a href="#gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth</a>,
+<a href="#gateway.nginx.org/v1alpha1.JWTFileKeySource">JWTFileKeySource</a>,
+<a href="#gateway.nginx.org/v1alpha1.JWTRemoteKeySource">JWTRemoteKeySource</a>,
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth</a>)
 </p>
 <p>
 <p>LocalObjectReference specifies a local Kubernetes object.</p>
@@ -1579,7 +1847,7 @@ string
 </em>
 </td>
 <td>
-<p>Name is the referenced object.</p>
+<p>Name is the name of the referenced object.</p>
 </td>
 </tr>
 </tbody>
@@ -1791,6 +2059,326 @@ Logging
 </td>
 <td>
 <em>(Optional)</em>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.OIDCAuth" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.AuthenticationFilterSpec">AuthenticationFilterSpec</a>)
+</p>
+<p>
+<p>OIDCAuth configures OpenID Connect Authentication.
+Only available for NGINX Plus users.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>crlSecretRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>CRLSecretRef references a Secret containing a certificate
+revocation list in PEM format. The referenced Secret must contain an entry with the key &ldquo;ca.crl&rdquo;.
+This is used to verify that certificates presented by the OpenID Provider endpoints have not been revoked.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>configURL</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ConfigURL sets a custom URL to retrieve the OpenID Provider metadata.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#config_url</a>
+NGINX Default: <issuer>/.well-known/openid-configuration</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>pkce</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PKCE enables Proof Key for Code Exchange (PKCE) for the authentication flow.
+If nil, NGINX automatically enables PKCE when the OpenID Provider requires it.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#pkce</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>extraAuthArgs</code><br/>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ExtraAuthArgs sets additional query arguments for the authentication request URL.
+Arguments are appended with &ldquo;&amp;&rdquo;. For example: &ldquo;prompt=consent&amp;audience=api&rdquo;.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#extra_auth_args</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>session</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.OIDCSessionConfig">
+OIDCSessionConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Session configures session management for OIDC authentication.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>logout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.OIDCLogoutConfig">
+OIDCLogoutConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Logout defines the logout behavior for OIDC authentication.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>redirectURI</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RedirectURI sets a custom redirect URI for the OIDC callback.
+If a path-only URI is specified, a callback location block is created to handle the redirect from the OIDC provider.
+If a full URI is specified, it points to an external callback handler; no location block is created.
+If not specified, defaults to /oidc<em>callback</em><filternamespace>_<filtername>.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#redirect_uri">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#redirect_uri</a>
+NGINX Default: /oidc_callback
+Example: /oidc_callback, <a href="https://cafe.example.com:8442/oidc_callback">https://cafe.example.com:8442/oidc_callback</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>issuer</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Issuer is the URL of the OpenID Provider.
+Must exactly match the &ldquo;issuer&rdquo; value from the provider&rsquo;s
+.well-known/openid-configuration endpoint.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#issuer</a>
+Examples:
+- Keycloak: &ldquo;<a href="https://keycloak.example.com/realms/my-realm&quot;">https://keycloak.example.com/realms/my-realm&rdquo;</a>
+- Okta: &ldquo;<a href="https://dev-123456.okta.com/oauth2/default&quot;">https://dev-123456.okta.com/oauth2/default&rdquo;</a>
+- Auth0: &ldquo;<a href="https://my-tenant.auth0.com/&quot;">https://my-tenant.auth0.com/&rdquo;</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>clientID</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ClientID is the client identifier registered with the OpenID Provider.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_id</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>clientSecretRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>ClientSecretRef references a Kubernetes secret which contains the OIDC client secret to be used in the
+Authentication Request: <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest</a>.
+The referenced Secret must contain an entry with the key &ldquo;client-secret&rdquo;.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#client_secret</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>caCertificateRefs</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+[]LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>CACertificateRefs references a list of secrets containing trusted CA certificates
+in PEM format used to verify the certificates of the OpenID Provider endpoints.
+The referenced secrets must contain an entry with the key &ldquo;ca.crt&rdquo;.
+Only one secret can be referenced currently.
+If not specified, the system CA bundle is used.</p>
+<p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate</a>
+NGINX Default: system CA bundle</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.OIDCLogoutConfig">OIDCLogoutConfig
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.OIDCLogoutConfig" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth</a>)
+</p>
+<p>
+<p>OIDCLogoutConfig defines the logout behavior for OIDC authentication.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>uri</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>URI defines the path for initiating session logout.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri</a>
+Example: /logout</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>postLogoutURI</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PostLogoutURI defines the URI to redirect to after logout.
+Must match the configuration on the provider&rsquo;s side.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#post_logout_uri">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#post_logout_uri</a>
+Example: /after_logout, <a href="https://example.com/after_logout">https://example.com/after_logout</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>frontChannelLogoutURI</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>FrontChannelLogoutURI defines the path for front-channel logout.
+The OpenID Provider should be configured to set &ldquo;iss&rdquo; and &ldquo;sid&rdquo; arguments.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#frontchannel_logout_uri">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#frontchannel_logout_uri</a>
+Example: /frontchannel_logout</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tokenHint</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TokenHint adds the id_token_hint argument to the provider&rsquo;s Logout Endpoint.
+Some OpenID Providers require this.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_token_hint">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_token_hint</a>
+NGINX Default: false</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.OIDCSessionConfig">OIDCSessionConfig
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.OIDCSessionConfig" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth</a>)
+</p>
+<p>
+<p>OIDCSessionConfig configures session management for OIDC authentication.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>cookieName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>CookieName sets the name of the session cookie.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#cookie_name">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#cookie_name</a>
+NGINX Default: NGX_OIDC_SESSION</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout sets the session timeout duration.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_oidc_module.html#session_timeout">https://nginx.org/en/docs/http/ngx_http_oidc_module.html#session_timeout</a>
+NGINX Default: 8h</p>
 </td>
 </tr>
 </tbody>
@@ -2928,6 +3516,29 @@ DNSResolver
 <em>(Optional)</em>
 <p>DNSResolver specifies the DNS resolver configuration for external name resolution.
 This enables support for routing to ExternalName Services.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>serverTokens</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServerTokens configures whether NGINX emits its version in the &ldquo;Server&rdquo;
+response header and on error pages.</p>
+<p>OSS NGINX accepts:
+- &ldquo;on&rdquo;: Shows nginx and version (e.g. &ldquo;nginx/1.25.0&rdquo;)
+- &ldquo;off&rdquo;: Shows nginx only (e.g. &ldquo;nginx&rdquo;)
+- &ldquo;build&rdquo;: Shows version and build name (e.g. &ldquo;nginx/1.25.0 (build-name)&rdquo;)</p>
+<p>NGINX Plus additionally accepts:
+- &ldquo;&rdquo;: Suppress the &ldquo;Server&rdquo; response header entirely
+- <custom string>: Set a custom header value and supports variables</p>
+<p>See: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens</a>
+NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens</a>
+Default is &ldquo;off&rdquo;.</p>
 </td>
 </tr>
 </table>
@@ -4376,6 +4987,29 @@ DNSResolver
 This enables support for routing to ExternalName Services.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>serverTokens</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ServerTokens configures whether NGINX emits its version in the &ldquo;Server&rdquo;
+response header and on error pages.</p>
+<p>OSS NGINX accepts:
+- &ldquo;on&rdquo;: Shows nginx and version (e.g. &ldquo;nginx/1.25.0&rdquo;)
+- &ldquo;off&rdquo;: Shows nginx only (e.g. &ldquo;nginx&rdquo;)
+- &ldquo;build&rdquo;: Shows version and build name (e.g. &ldquo;nginx/1.25.0 (build-name)&rdquo;)</p>
+<p>NGINX Plus additionally accepts:
+- &ldquo;&rdquo;: Suppress the &ldquo;Server&rdquo; response header entirely
+- <custom string>: Set a custom header value and supports variables</p>
+<p>See: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens</a>
+NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens</a>
+Default is &ldquo;off&rdquo;.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.NodePort">NodePort
@@ -4725,6 +5359,20 @@ If not specified, the default port is 8081.</p>
 </tr>
 <tr>
 <td>
+<code>path</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Path is the path on which the readiness endpoint is exposed.
+If not specified, the default path is /readyz.
+Must start with a forward slash and contain only valid URL path characters.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>initialDelaySeconds</code><br/>
 <em>
 int32
@@ -4735,6 +5383,20 @@ int32
 <p>InitialDelaySeconds is the number of seconds after the container has
 started before the readiness probe is initiated.
 If not specified, the default is 3 seconds.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>expose</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Expose toggles whether the endpoint should be exposed through
+the Gateway Service object. This allows an external LoadBalancer
+to perform healthchecks. Default is false.</p>
 </td>
 </tr>
 </tbody>
