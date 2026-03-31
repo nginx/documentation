@@ -16,8 +16,6 @@ The project's goal is to improve and standardize routing to inference workloads 
 
 Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more. 
 
-{{< call-out "warning" >}} The Gateway API Inference Extension is still in alpha status and should not be used in production yet.{{< /call-out >}}
-
 ## Set up
 
 Install the Gateway API Inference Extension CRDs:
@@ -67,7 +65,7 @@ Install an InferencePool named `vllm-llama3-8b-instruct` that selects from endpo
 
 NGINX will query the Endpoint Picker Extension to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information on the [Endpoint Picker](https://github.com/kubernetes-sigs/gateway-api-inference-extension/blob/main/pkg/epp/README.md).
 
-{{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default, as the Endpoint Picker does not currently support mounting CA certificates. The Gateway API Inference Extension is in alpha status and should not be used in production. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
+{{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default, as the Endpoint Picker does not currently support mounting CA certificates. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
 export IGW_CHART_VERSION=v1.1.0

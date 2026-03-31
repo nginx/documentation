@@ -367,4 +367,4 @@ To learn more about the Gateway API and the resources we created in this guide, 
 
 - [Gateway API Overview](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
 - [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/simple-gateway/)
-- [HTTP Routing](https://gateway-api.sigs.k8s.io/guides/http-routing/)
+- [Gateway API HTTP Header Modifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/)

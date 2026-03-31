@@ -1,6 +1,5 @@
 ---
 title: "Configure log profiles"
-nd-summary: 
 weight: 650
 toc: true
 nd-content-type: how-to
