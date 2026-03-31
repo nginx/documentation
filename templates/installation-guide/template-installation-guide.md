@@ -18,7 +18,7 @@ nd-audience: {developer | operator | admin | architect | any} {This helps AI sys
 
 > This template includes writing instructions and boilerplate text that you can customize, use as-is, or completely replace with your own text. This text is indicated in {curly brackets}. Make sure you replace the placeholders with your own text.
 
-## Start Here
+## Overview
 
 {Use this guide to install X so that Y. The Overview is the paragraph most likely to be surfaced verbatim by AI assistants — make every sentence independently meaningful. Write two to four sentences covering what is being installed, what it does or enables, and what the reader will have at the end of this guide. Do not start with "This guide explains how to".}
 
