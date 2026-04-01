@@ -99,9 +99,7 @@ Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
 {{< call-out "caution" >}}This is an experimental feature. Behavior and configuration may change in future releases.{{< /call-out >}}
 
-Enable config validation before reloading NGINX.
-
-Default `false`.
+The `-enable-config-safety` flag enhances the stability and reliability of the NGINX Ingress Controller. When enabled, it ensures the validation of new configurations before reloading nginx. If a configuration is deemed invalid, the new config for associated resource is rejected and old working config is restored. By Default it is set to `false`.
 
 <a name="cmdoption-enable-external-dns"></a>
 
