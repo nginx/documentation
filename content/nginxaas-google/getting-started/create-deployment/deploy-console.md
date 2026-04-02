@@ -130,13 +130,13 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
    # Function to display usage
    usage() {
       cat << EOF
-   Usage: $0 --project PROJECT --region REGION --network NETWORK -subnet SUBNET --service-attachment SA_URI [--ports PORTS]
+   Usage: $0 --project PROJECT --region REGION --network NETWORK --subnet SUBNET --service-attachment SA_URI [--ports PORTS]
 
    Options:
       --project                 GCP Project ID
       --region                  GCP Region
       --network                 VPC Network name
-      --subnet                  Subnet name for backend connectivity (must be in the same region and network)
+      --subnet                  GCP Subnet for Backend Connectivity (must be in the same region and network)
       --service-attachment      Service Attachment Self Link
       --ports                   Comma-separated list of ports (default: 80)
       --help                    Show this help message
@@ -154,35 +154,35 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
    # Parse command line arguments
    while [[ $# -gt 0 ]]; do
       case $1 in
-         --project)
+        --project)
             PROJECT="$2"
             shift 2
             ;;
-         --region)
+        --region)
             REGION="$2"
             shift 2
             ;;
-         --network)
+        --network)
             NETWORK="$2"
             shift 2
             ;;
-         --service-attachment)
+        --service-attachment)
             SA_URI="$2"
             shift 2
             ;;
-         --ports)
+        --ports)
             PORTS="$2"
             shift 2
             ;;
-         --subnet)
+        --subnet)
             SUBNET="$2"
             shift 2
             ;;
-         --help|-h)
+        --help|-h)
             usage
             exit 0
             ;;
-         *)
+        *)
             echo "Unknown option: $1"
             usage
             exit 1
@@ -214,6 +214,7 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
          --purpose=REGIONAL_MANAGED_PROXY \
          --role=ACTIVE
    fi
+
    echo "Using proxy-only subnet: $PROXY_SUBNET"
 
    # Create regional VIP address (skip if exists)
@@ -273,6 +274,7 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
       echo "Completed setup for port $P"
    done
    echo "Setup complete! Public Virtual IP: $VIP"
+
    ```
 
 {{< /details >}}
