@@ -233,3 +233,17 @@ For each entry:
 3. Link the CVE identifier to the official CVE record.
 
 Do not publish security updates until an investigation is complete and a fix is available and released.
+
+## Style reminders
+
+The following rules apply to tech specs pages in addition to the F5 NGINX Documentation style guide.
+
+- Follow American English spelling. Use the American Heritage Dictionary as the spelling reference.
+- Use the active voice. Write "The controller supports a maximum of..." not "A maximum of ... is supported by the controller."
+- Use the simple present tense. Write "The product requires 4 GB of RAM" not "The product will require 4 GB of RAM."
+- Use sentence case for all headings. Capitalize only the first word and proper nouns.
+- Always use the Oxford (serial) comma in lists.
+- Do not use Latin abbreviations. Write "for example" not "e.g.", "in other words" not "i.e.", and "and so on" not "etc."
+- Do not use "please", "simply", or other politeness phrases.
+- Use "select" not "click". Use "earlier than" and "later than" not "before" or "after" when describing version ranges.
+- Spell out product names in full on first mention in the document. For enterprise F5 NGINX products, include "F5" on first mention only.
