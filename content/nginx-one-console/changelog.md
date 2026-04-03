@@ -9,6 +9,12 @@ nd-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## April 7, 2026
+
+### Observability: F5 WAF for NGINX security dashboard
+
+A new Security Monitoring module provides real-time visibility into F5 WAF for NGINX security events. Monitor attack counts, violation types, and triggered signatures across your WAF instances with customizable dashboards and global filters.
+
 ## March 18, 2026
 
 ### F5 WAF for NGINX: Log profile management
