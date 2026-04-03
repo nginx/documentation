@@ -36,12 +36,12 @@ Your output should show that the service is active and running:
      Memory: 4.3M (peak: 4.9M)
         CPU: 807ms
 ```
-If NGINX Plus is not installed, see the [NGINX Plus installation guide]({{< ref "/content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+If NGINX Plus is not installed, see the [NGINX Plus installation guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
 
 ## Install F5 WAF for NGINX
 
-Install F5 WAF for NGINX on your data plane following the [installation instructions for your operating system]({{< ref "/content/waf/install/virtual-environment.md" >}}).
+Install F5 WAF for NGINX on your data plane following the [installation instructions for your operating system]({{< ref "/waf/install/virtual-environment.md" >}}).
 
 After installation, continue with the next section to configure the security dashboard log profile.
 
