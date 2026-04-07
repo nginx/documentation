@@ -20,13 +20,11 @@ Before you begin, confirm that NGINX Plus is installed and running on your syste
 
 1. Run the following command to check the NGINX Plus service status:
 
-```bash
 sudo systemctl status nginx
 ```
 
 Your output should show that the service is active and running:
 
-```
 ● nginx.service - NGINX Plus - high performance web server
      Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
      Active: active (running) since Wed 2026-03-11 17:26:52 UTC; 1 week 1 day ago
@@ -36,7 +34,7 @@ Your output should show that the service is active and running:
      Memory: 4.3M (peak: 4.9M)
         CPU: 807ms
 ```
-If NGINX Plus is not installed, see the [NGINX Plus installation guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+If you haven’t installed NGINX Plus, follow the [NGINX Plus installation guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}})
 
 
 ## Install F5 WAF for NGINX
@@ -47,19 +45,17 @@ After installation, continue with the next section to configure the security das
 
 ## Configure the security dashboard log profile
 
-The security dashboard uses the default log profile to capture security violations. This is a pre-configured, immutable log profile that is automatically compiled for all available WAF compiler versions. For more information about the default log profile, see [Default log profile]({{< ref "/nginx-one-console/waf-security-dashboard/default-log-profile.md" >}}).
+The security dashboard uses the default log profile to record security violations. This profile is preconfigured and can’t be changed. The system automatically builds it for all supported WAF compiler versions. For more information, see the [Default log profile]({{< ref "/nginx-one-console/waf-security-dashboard/default-log-profile.md" >}}) documentation.
 
 To configure the security dashboard, create the `/etc/app_protect/conf/secops_dashboard.json` file with the following content:
 
 1. Create the file:
 
-```bash
 sudo touch /etc/app_protect/conf/secops_dashboard.json
 ```
 
 2. Add the log profile configuration:
 
-```bash
 sudo tee /etc/app_protect/conf/secops_dashboard.json > /dev/null << 'EOF'
 {
   "filter": {
@@ -83,7 +79,7 @@ EOF
 
 ## Enable F5 WAF for NGINX in your configuration
 
-Update your NGINX configuration to enable F5 WAF for NGINX and specify the security dashboard log profile.
+Update your NGINX configuration to turn on F5 WAF for NGINX and set the security dashboard log profile.
 
 ### Update the main NGINX configuration
 
@@ -148,26 +144,22 @@ Make sure you specify port `1514` for the syslog server. NGINX Agent listens on 
 
 Test your NGINX configuration for syntax errors:
 
-```bash
 sudo nginx -t
 ```
 
 You should see output like this:
 
-```
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
 Restart NGINX Plus to apply the changes:
 
-```bash
 sudo systemctl restart nginx
 ```
 
 Verify NGINX Plus is running after the restart:
 
-```bash
 sudo systemctl status nginx
 ```
 
@@ -181,7 +173,6 @@ NGINX Agent forwards security telemetry from F5 WAF for NGINX to NGINX One Conso
 
 3. Copy the `curl` command and run it in your terminal:
 
-```bash
 curl <command-shown-in-console>
 ```
 
@@ -189,13 +180,11 @@ Wait a few minutes for the system to appear in NGINX One Console.
 
 4. Verify the agent is running:
 
-```bash
 sudo systemctl status nginx-agent
 ```
 
 You should see output like this:
 
-```
 ● nginx-agent.service - NGINX Agent
      Loaded: loaded (/etc/systemd/system/nginx-agent.service; enabled; preset: enabled)
      Active: active (running) since Thu 2026-03-19 23:53:00 UTC; 23s ago
@@ -208,7 +197,7 @@ You should see output like this:
 
 ## Configure NGINX Agent to forward security events
 
-Enable NGINX Agent to collect and forward security telemetry from F5 WAF for NGINX.
+Configure NGINX Agent to collect and forward security telemetry from F5 WAF for NGINX.
 
 1. Edit `/etc/nginx-agent/nginx-agent.conf` and add the following telemetry pipeline configuration at the end of the file:
 
@@ -234,13 +223,11 @@ This configuration batches security events with a 30-second timeout and a maximu
 
 2. Restart NGINX Agent to apply the changes:
 
-```bash
 sudo systemctl restart nginx-agent
 ```
 
 3. Verify NGINX Agent is running:
 
-```bash
 sudo systemctl status nginx-agent
 ```
 
@@ -248,29 +235,25 @@ sudo systemctl status nginx-agent
 
 Check that NGINX Agent successfully started the syslog receiver:
 
-```bash
 sudo tail /var/log/nginx-agent/agent.log | grep "syslogserver"
 ```
 
 You should see a log entry like this:
 
-```
 time=2026-03-20T00:05:10.212Z level=INFO msg="Found available local NGINX App Protect syslogserver configured on port 1514"
 ```
 
 To debug security events being sent to NGINX One Console, tail the agent logs:
 
-```bash
 sudo tail /var/log/nginx-agent/opentelemetry-collector-agent.log -f
 ```
 
 ## Test security event detection
 
-Generate test security violations to verify the pipeline is working.
+Generate test security violations to verify that the pipeline works.
 
 1. Trigger some violations with these example requests:
 
-```bash
 curl -X SEARCH -k -v 'http://127.0.0.1/helloworld'
 
 curl -k -v 'http://127.0.0.1/a=<script>getAllMoneyV2()</script>'
@@ -284,10 +267,9 @@ You should receive a response indicating the request was rejected:
 
 2. Verify that security events are being sent to NGINX One Console:
 
-```bash
 sudo tail /var/log/nginx-agent/opentelemetry-collector-agent.log -n 200
 ```
 
 Look for log entries showing the violations being forwarded.
 
-Your security monitoring setup is now complete. Security events from F5 WAF for NGINX are now being forwarded to NGINX One Console, where you can monitor and analyze them in the security dashboard.
+Your security monitoring setup is complete. Security events from F5 WAF for NGINX are forwarded to the NGINX One Console, where you can monitor and analyze them in the security dashboard.
