@@ -32,6 +32,7 @@ The key capabilities of NGINXaaS for Google Cloud are:
 {{< img src="nginxaas-google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how NGINXaaS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside NGINXaaS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
 - The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
+- NGINXaaS automatically adapts to application traffic demands through autoscaling
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
 - NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas-google/known-issues.md" >}}) for any networking restrictions.
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
@@ -49,6 +50,17 @@ NGINXaaS for Google has a global presence with management requests being served 
 ### Networking
 
 We use Google [Private Service Connect]((https://cloud.google.com/vpc/docs/private-service-connect)) (PSC) to securely connect NGINXaaS to your applications and enable client access to your deployments. A [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) brings the NGINXaaS deployment into your client network, allowing your application clients to connect seamlessly. A [PSC Interface](https://cloud.google.com/vpc/docs/private-service-connect#interfaces) brings the deployment into your application network, enabling secure connectivity to your applications. This approach gives you full control over traffic flow by leveraging your own networking resources, so you can apply your preferred security controls and ensure a secure deployment environment.
+
+
+#### Connection draining
+
+During scaling, some connections older than 60 seconds might be reset. The service automatically handles reconnects, so you don't need to wait before reconnecting.
+
+### NGINX Capacity Unit (NCU)
+
+An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on the underlying compute resources. This abstraction allows you to specify the desired capacity in NCUs without having to consider the regional hardware differences.
+
+You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on the traffic demands but also ensures it does not go below the minimum reserved capacity.
 
 
 ## Current Limitations
