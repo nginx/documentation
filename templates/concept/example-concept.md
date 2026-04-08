@@ -19,7 +19,7 @@ nd-audience: any
 
 Every cup of coffee is the result of a chemical negotiation between hot water and ground coffee. Getting that negotiation right — or understanding why it went wrong — requires knowing what extraction is and what controls it.
 
-## What is coffee extraction?
+## What is coffee extraction
 
 Coffee extraction is the process by which hot water dissolves soluble compounds from ground coffee and carries them into the liquid that becomes the finished drink. The ground coffee contains hundreds of soluble compounds, including acids, sugars, oils, and bitter compounds. Water does not dissolve all of them at once or in equal proportions — it dissolves them in a sequence determined by temperature, contact time, grind size, and agitation.
 
