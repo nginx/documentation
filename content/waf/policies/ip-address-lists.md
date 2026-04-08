@@ -16,6 +16,8 @@ Each IP address list includes:
 - An enforcement type (`always`, `never`, or `policy-default`)
 - A list of IP addresses
 
+For the `ipAddress` value, use either a single IP (`1.2.3.4`) or a CIDR network address (`1.2.3.0/24`). `1.2.3.4/24` is invalid. `1.2.3.4/32` is valid and equivalent to `1.2.3.4`.
+
 Here is an example of a declarative policy using an IP address lists configuration:
 
 ```json
