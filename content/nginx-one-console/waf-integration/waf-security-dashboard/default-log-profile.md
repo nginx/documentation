@@ -1,48 +1,87 @@
 ---
-title: Default log profile
-description: Learn about the security dashboard default log profile and how to deploy it
-weight: 200
 nd-content-type: concept
+nd-docs: DOCS-000
 nd-product: NONECO
+title: Default log profile
+description: "An immutable, pre-compiled F5 WAF for NGINX log profile that captures the security telemetry the security dashboard needs."
+weight: 200
+toc: true
+nd-keywords: "default log profile, security dashboard, F5 WAF for NGINX, log profile, security telemetry, NAP log profile"
+nd-summary: >
+  The default log profile is a pre-configured F5 WAF for NGINX log profile that captures security violations in a standardized format for the security monitoring dashboard.
+  Use it to send security telemetry from your NGINX Plus data planes to NGINX One Console without authoring or compiling a custom log profile.
+  This document covers what the default log profile is, when to use it, and how it differs from custom log profiles.
+nd-audience: operator
 ---
 
-The default log profile is a pre-configured F5 WAF for NGINX log profile designed specifically for security event monitoring in NGINX One Console. It captures security violation data in a standardized format optimized for analysis and troubleshooting.
+The security monitoring dashboard depends on a consistent set of fields being present on every security event. The default log profile is the contract that guarantees that consistency across every data plane forwarding events to NGINX One Console.
 
-## About the default log profile
+## What is the default log profile?
 
-The default log profile is similar to [other log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}) in structure and function, but has these key characteristics:
+The default log profile is a pre-configured, system-managed F5 WAF for NGINX log profile that captures the security telemetry fields the NGINX One Console security monitoring dashboard expects. NGINX One Console ships and maintains it; you cannot edit or delete it.
 
-- **Immutable** — The default log profile cannot be edited or deleted. This ensures the security monitoring data format remains consistent across your deployment.
-- **Pre-compiled** — NGINX One Console automatically compiles the default log profile for all available WAF compiler versions. This eliminates the need for on-demand compilation during deployment.
-- **Standardized format** — It captures all necessary security telemetry fields for the security dashboard, including support IDs, violation details, signature information, and client context.
+It is similar in structure and function to other [log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}), but it is treated as a system asset rather than a user-managed resource. The default log profile is the only log profile guaranteed to produce data the security dashboard can render correctly. Custom log profiles can coexist with it and continue to serve other logging destinations (SIEMs, file logs, custom syslog endpoints), but they are not interpreted by the security dashboard.
 
-## When to use the default log profile
+This document covers what the default log profile is and when to use it. For the steps to deploy it as part of setting up an instance, see [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}}).
 
-Use the default log profile when you want to:
-- Send security violation data to NGINX One Console for centralized monitoring
-- Analyze attack patterns and trends across your NGINX fleet
-- Review violation details and raw request data for specific security events
-- Generate baseline security metrics and trending reports
+---
 
-For specialized logging requirements beyond security monitoring, you can create and deploy custom log profiles alongside the default profile.
+## How to identify it in the console
 
-## Deploy the default log profile
+In NGINX One Console, go to **WAF** > **Log Profiles**. The default log profile appears in the list as **`secops_dashboard`** with an **F5** badge next to its name. The badge marks it as a system-managed profile created and maintained by F5.
 
-To deploy the default log profile to your NGINX instances or Config Sync Groups, follow the same process described in [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}}).
+The available **Actions** on the default log profile are limited compared to a user-created log profile. You can **Deploy**, **Download JSON**, **Manage Bundle**, and **Make a copy**, but **Edit** and **Delete** are not exposed — the profile is system-managed and cannot be modified or removed.
 
-The default log profile can be deployed using either of these methods:
+To see the compiled bundles for the default log profile, open the profile and select **Actions** > **Manage Bundle**. The **Bundles** tab lists every available WAF compiler version with its compilation status (`Compiled` or `Compiling`) and a **Download** action for each compiled bundle. NGINX One Console keeps these bundles up to date automatically — you do not need to compile them yourself.
 
-1. **Direct deployment** — Go to **WAF** > **Log Profiles**, select the default log profile, and use **Actions** > **Deploy** to send it to your target instances or Config Sync Groups.
+If you need a log profile with a different field set or filter rules, use **Make a copy** to create an editable, user-owned log profile based on `secops_dashboard`. The copy is a regular custom log profile and is not used by the security dashboard.
 
-2. **During configuration editing** — When editing an instance or Config Sync Group configuration, you can select the default log profile from **Add File** > **Existing Log Profile** and specify the deployment path.
+---
 
-Since the default log profile is pre-compiled for all WAF compiler versions, deployment completes immediately without requiring additional compilation.
+## Key characteristics
 
-For detailed deployment instructions, see [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}}).
+The default log profile has three properties that distinguish it from user-created log profiles.
 
-## Next steps
+- **Immutable**: You cannot edit or delete the default log profile. NGINX One Console manages it as a system resource so the security monitoring data format remains consistent across every instance and tenant.
+- **Pre-compiled**: NGINX One Console automatically compiles the default log profile for every available WAF compiler version. Deployment completes immediately without an on-demand compilation step.
+- **Standardized field set**: It captures every field the security dashboard reads, including the support ID, violation details, signature information, threat campaign matches, request context, and client geolocation. Filters and analytics in the dashboard assume these fields are present.
 
-After deploying the default log profile:
-- Monitor security events in the [F5 WAF for NGINX security monitoring dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/" >}})
-- Review security event details and identify attack patterns
-- Fine-tune your F5 WAF for NGINX policies based on observed violations
+---
+
+## Use cases
+
+### Operator: enable security monitoring for an NGINX Plus fleet
+
+A platform operator wants central visibility into F5 WAF for NGINX events across a fleet of NGINX Plus instances. They deploy the default log profile to every instance, knowing that every event will land in NGINX One Console with the same field set, so dashboard widgets, filters, and analytics behave the same regardless of which instance produced the event. They do not need to author, compile, or version-control a log profile to get the dashboard working.
+
+### Security engineer: keep dashboard data consistent during a policy change
+
+A security engineer is rolling out a new WAF policy to a subset of instances and wants the security dashboard to continue showing comparable metrics across the migration. Because the default log profile is immutable and shared, the data format does not change with the policy, and the engineer can compare attack counts and signature trends before and after the rollout without normalizing fields.
+
+### Operator: combine dashboard monitoring with a custom SIEM pipeline
+
+An operator already forwards security logs to an external SIEM with a custom log profile that uses a different field layout. They deploy the default log profile alongside the existing custom profile so that NGINX One Console gets the standardized format the dashboard requires, while the SIEM continues to receive the custom format unchanged.
+
+---
+
+## Comparison with custom log profiles
+
+| | Default log profile | Custom log profile |
+|:--- |:--- |:--- |
+| **Editable** | No | Yes |
+| **Deletable** | No | Yes |
+| **Compilation** | Pre-compiled for all WAF compiler versions | Compiled on demand for the target compiler version |
+| **Field layout** | Fixed; matches the security dashboard | User-defined |
+| **Used by the security dashboard** | Yes | No |
+| **Best for** | Sending data to the NGINX One Console security dashboard | Forwarding to SIEMs, custom syslog endpoints, or file logs with a non-standard field set |
+
+---
+
+## References
+
+For more information, see:
+
+- [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}})
+- [F5 WAF for NGINX security monitoring overview]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/security-monitoring-overview.md" >}})
+- [Log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}})
+- [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}})

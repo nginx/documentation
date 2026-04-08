@@ -1,293 +1,123 @@
 ---
-title: Set up security monitoring
-description: Configure NGINX Plus with F5 WAF for NGINX to forward security events to NGINX One Console
-weight: 100
 nd-content-type: how-to
+nd-docs: DOCS-000
 nd-product: NONECO
+title: Set up security monitoring
+description: "Forward F5 WAF for NGINX security events to the NGINX One Console security monitoring dashboard."
+weight: 300
+toc: true
+nd-keywords: "F5 WAF for NGINX, security monitoring, security dashboard, default log profile, security events"
+nd-summary: >
+  Forward F5 WAF for NGINX security events from an NGINX Plus instance to the NGINX One Console security monitoring dashboard.
+  You deploy the default log profile through the console, add the WAF directives to your NGINX configuration, and verify events flow into the dashboard.
+  Repeat these steps for each data plane you want to monitor.
+nd-audience: operator
 ---
 
-This guide walks you through configuring your NGINX Plus data plane to send security telemetry to NGINX One Console. You'll install F5 WAF for NGINX, configure the security dashboard log profile, and set up NGINX Agent to forward security events.
+## Overview
 
-## Prerequisites
+This guide walks you through enabling F5 WAF for NGINX security monitoring on an NGINX Plus instance that is already connected to NGINX One Console. After you complete the steps, security events appear in the [security monitoring dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/_index.md" >}}), where you can review attacks, violations, and triggered signatures.
 
-- NGINX Plus installed and running on your data plane
-- Root or sudo access on the data plane system
-- NGINX One Console access with permissions to add instances
+The flow uses the NGINX One Console UI end to end. You deploy the [default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}) to the instance, add the F5 WAF for NGINX directives to the NGINX configuration through the console's config editor, and verify the pipeline by triggering test violations. NGINX Agent automatically configures its OpenTelemetry collector to forward security events to NGINX One Console once it sees the correct directives in the NGINX configuration — you do not need to edit the agent configuration by hand.
 
-## Verify NGINX Plus is running
+---
 
-Before you begin, confirm that NGINX Plus is installed and running on your system.
+## Before you begin
 
-1. Run the following command to check the NGINX Plus service status:
+Before you begin, ensure you have:
 
-```bash
-sudo systemctl status nginx
-```
+- **NGINX Plus**: NGINX Plus installed and running on your data plane. See the [NGINX Plus installation guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+- **F5 WAF for NGINX installed and loaded**: F5 WAF for NGINX installed on the same host as NGINX Plus, with the `load_module` directive added to `nginx.conf` and `app_protect_enable on;` set in the contexts you want WAF to inspect. See [Install F5 WAF for NGINX]({{< ref "/waf/install/virtual-environment.md" >}}) and [Update configuration files]({{< ref "/waf/install/virtual-environment.md#update-configuration-files" >}}).
+- **A WAF policy deployed to the instance**: An F5 WAF for NGINX policy referenced by an `app_protect_policy_file` directive in the same context where you enable WAF. See [WAF policies]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}) for how to create and deploy a policy through NGINX One Console.
+- **Instance connected to NGINX One Console**: The data plane is registered with NGINX One Console and NGINX Agent is running on it. See [Add an instance]({{< ref "/nginx-one-console/connect-instances/add-instance.md" >}}).
 
-Your output should show that the service is active and running:
+---
 
-```
-● nginx.service - NGINX Plus - high performance web server
-     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
-     Active: active (running) since Wed 2026-03-11 17:26:52 UTC; 1 week 1 day ago
-       Docs: https://www.nginx.com/resources/
-   Main PID: 3682 (nginx)
-      Tasks: 3 (limit: 4586)
-     Memory: 4.3M (peak: 4.9M)
-        CPU: 807ms
-```
+## Deploy the default log profile
 
-If NGINX Plus is not installed, see the [NGINX Plus installation guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
+The security dashboard relies on the default log profile (`secops_dashboard`) to capture security violations in a standardized format. The default log profile is created and maintained by F5, immutable, and pre-compiled for every available WAF compiler version. It deploys exactly the same way as a custom log profile, and because it is pre-compiled, deployment completes immediately without an on-demand compile. For background, see [Default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}).
 
-## Install F5 WAF for NGINX
+1. In NGINX One Console, go to **WAF** > **Log Profiles** and select **`secops_dashboard`**.
 
-Install F5 WAF for NGINX on your data plane following the [installation instructions for your operating system]({{< ref "/waf/install/virtual-environment.md" >}}).
+2. From **Actions**, select **Deploy**. The **Deploy Log Profile** wizard opens.
 
-After installation, continue with the next section to configure the security dashboard log profile.
+3. In the wizard:
 
-## Configure the security dashboard log profile
+    - Confirm `secops_dashboard` is selected under **Log Profile**.
+    - Under **Target**, choose **Instance** or **Config Sync Group** and select your target.
+    - In **Log Profile File Path**, specify the path where the compiled bundle should be deployed on the data plane (for example, `/etc/nginx/secops_dashboard.tgz`).
 
-The security dashboard uses the default log profile to capture security violations. This is a pre-configured, immutable log profile that is automatically compiled for all available WAF compiler versions. For more information about the default log profile, see [Default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}).
+4. Select **Next**. The wizard displays the F5 WAF for NGINX directive snippet to paste into your NGINX configuration, along with the config editor for the target instance.
 
-To configure the security dashboard, create the `/etc/app_protect/conf/secops_dashboard.json` file with the following content:
+5. Open the server block where you want to enable F5 WAF for NGINX (for example, `/etc/nginx/conf.d/default.conf`) and paste the snippet into the `server`, `http`, or `location` context. The snippet looks like this:
 
-1. Create the file:
-
-```bash
-sudo touch /etc/app_protect/conf/secops_dashboard.json
-```
-
-2. Add the log profile configuration:
-
-```bash
-sudo tee /etc/app_protect/conf/secops_dashboard.json > /dev/null << 'EOF'
-{
-  "filter": {
-    "request_type": "illegal"
-  },
-  "content": {
-    "format": "user-defined",
-    "format_string": "%support_id%|%ip_client%|%src_port%|%dest_ip%|%dest_port%|%vs_name%|%policy_name%|%method%|%uri%|%protocol%|%request_status%|%response_code%|%outcome%|%outcome_reason%|%violation_rating%|%blocking_exception_reason%|%is_truncated_bool%|%sig_ids%|%sig_names%|%sig_cves%|%sig_set_names%|%threat_campaign_names%|%sub_violations%|%x_forwarded_for_header_value%|%violations%|%violation_details%|%request%|%geo_location%",
-    "max_request_size": "2048",
-    "max_message_size": "64k",
-    "escaping_characters": [
-     {
-      "from": "|",
-      "to": "%7C"
-     }
-    ]
-  }
-}
-EOF
-```
-
-## Enable F5 WAF for NGINX in your configuration
-
-Update your NGINX configuration to turn on F5 WAF for NGINX and set the security dashboard log profile.
-
-### Update the main NGINX configuration
-
-Edit `/etc/nginx/nginx.conf` and add the `load_module` directive at the top:
-
-```nginx
-user  nginx;
-worker_processes  auto;
-load_module modules/ngx_http_app_protect_module.so;
-error_log  /var/log/nginx/error.log notice;
-pid        /run/nginx.pid;
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log  /var/log/nginx/access.log  main;
-
-    sendfile        on;
-    keepalive_timeout  65;
-
-    include /etc/nginx/conf.d/*.conf;
-}
-```
-
-### Configure a server block with F5 WAF for NGINX
-
-Edit `/etc/nginx/conf.d/default.conf` to add the F5 WAF for NGINX directives:
-
-```nginx
-server {
-    listen       80 default_server;
-    server_name  localhost;
-    app_protect_enable on;
-    app_protect_policy_file "/etc/app_protect/conf/NginxStrictPolicy.json";
-    app_protect_security_log "/etc/app_protect/conf/secops_dashboard.json" syslog:server=127.0.0.1:1514;
+    ```nginx
     app_protect_security_log_enable on;
-    
-    location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
-    
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-}
-```
+    app_protect_security_log /etc/nginx/secops_dashboard.tgz syslog:server=127.0.0.1:1514;
+    ```
 
-Make sure you specify port `1514` for the syslog server. NGINX Agent listens on this port to receive security events.
+    Make sure `app_protect_enable on;` and `app_protect_policy_file` are already present in the same context (covered by the prerequisites above).
 
-## Verify your NGINX configuration
+6. Review the configuration diff the console shows for the affected files, then select **Publish**. NGINX One Console pushes the updated configuration to the instance and reloads NGINX.
 
-Test your NGINX configuration for syntax errors:
+For more on the deployment wizard and the alternative **Add File** > **Existing Log Profile** flow, see [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}}).
 
-```bash
-sudo nginx -t
-```
+---
 
-You should see output like this:
+## Verify the setup
 
-```
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-nginx: configuration file /etc/nginx/nginx.conf test is successful
-```
+When you select **Publish** in the previous step, NGINX One Console pushes the configuration change to the instance and displays a confirmation toast indicating the publish succeeded. At that point both the F5 WAF for NGINX policy and the default log profile are in place on the data plane, and the security log directive is wired up to NGINX Agent.
 
-Restart NGINX Plus to apply the changes:
+From this point on, any request that F5 WAF for NGINX inspects on the instance produces a security event that flows to NGINX One Console. To see those events:
 
-```bash
-sudo systemctl restart nginx
-```
+1. In NGINX One Console, go to **WAF** > **Security Dashboard**.
+2. As your instance handles traffic, attacks, violations, and triggered signatures appear on the dashboard within about a minute of the request being processed.
 
-Verify NGINX Plus is running after the restart:
+For details on how the dashboard is organized and how to read each widget, see the [security dashboard reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}}).
 
-```bash
-sudo systemctl status nginx
-```
+---
 
-## Install NGINX Agent
+## Troubleshooting
 
-NGINX Agent forwards security telemetry from F5 WAF for NGINX to NGINX One Console.
+### Publish fails with a configuration validation error
 
-1. In NGINX One Console, go to **Instances** and select **Add Instance**.
+**Symptom**: When you select **Publish** in the deployment wizard, NGINX One Console reports a configuration validation error such as `unknown directive "app_protect_enable"`, `unknown directive "app_protect_security_log"`, or a parser error referencing the WAF directives.
 
-2. Select **Generate new key**. This generates your data plane key and displays a `curl` command for agent installation.
+**Cause**: One or more of the F5 WAF for NGINX prerequisites is not in place on the instance — typically the `load_module` line is missing from `nginx.conf`, `app_protect_enable on;` is not set in the context where the security log directive was pasted, or `app_protect_policy_file` references a path the data plane cannot resolve.
 
-3. Copy the `curl` command and run it in your terminal:
+**Fix**: Re-check the items in [Before you begin](#before-you-begin):
 
-```bash
-curl <command-shown-in-console>
-```
+- Confirm `load_module modules/ngx_http_app_protect_module.so;` is present in the main context of `nginx.conf`. See [Update configuration files]({{< ref "/waf/install/virtual-environment.md#update-configuration-files" >}}).
+- Confirm `app_protect_enable on;` is set in the same `server`, `http`, or `location` context where you pasted the security log snippet.
+- Confirm an `app_protect_policy_file` directive references a policy already deployed to the instance. See [WAF policies]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}).
 
-Wait a few minutes for the system to appear in NGINX One Console.
+Re-run the deployment wizard after fixing the configuration.
 
-4. Verify the agent is running:
+### Publish succeeded but no events appear in the dashboard
 
-```bash
-sudo systemctl status nginx-agent
-```
+**Symptom**: The publish toast confirmed success, the instance is online in NGINX One Console, but the **WAF > Security Dashboard** shows no events for your instance.
 
-You should see output like this:
+**Cause**: The most common causes are that the default log profile is not deployed to that instance, the `app_protect_security_log` directive is in a context that does not handle traffic, or the instance has not yet processed any requests F5 WAF for NGINX would inspect.
 
-```
-● nginx-agent.service - NGINX Agent
-     Loaded: loaded (/etc/systemd/system/nginx-agent.service; enabled; preset: enabled)
-     Active: active (running) since Thu 2026-03-19 23:53:00 UTC; 23s ago
-       Docs: https://github.com/nginx/agent#readme
-   Main PID: 24716 (nginx-agent)
-      Tasks: 8 (limit: 4586)
-     Memory: 26.0M (peak: 27.2M)
-        CPU: 414ms
-```
+**Fix**:
 
-## Configure NGINX Agent to forward security events
+1. Go to **WAF** > **Log Profiles** and confirm `secops_dashboard` is listed as deployed to the target instance under **Deployed To**.
+2. Open the instance configuration and confirm the `app_protect_security_log` directive sits in a `server` or `location` block that actually handles request traffic — not in a context the data plane never enters.
+3. Confirm the instance is receiving traffic. Until F5 WAF for NGINX inspects a request, the dashboard has nothing to display.
+4. Apply a global filter on the dashboard to scope to your instance hostname or policy, in case events are present but hidden by an existing filter.
 
-Configure NGINX Agent to collect and forward security telemetry from F5 WAF for NGINX.
+If events still do not appear after a request is processed, contact F5 support with the instance hostname and the time window you tested.
 
-1. Edit `/etc/nginx-agent/nginx-agent.conf` and add the following telemetry pipeline configuration at the end of the file:
+---
 
-```yaml
-collector:
-  exporters:
-    debug: {}
-  processors:
-    batch:
-      "logs":
-        send_batch_size: 1000
-        timeout: 30s
-        send_batch_max_size: 1000
-  pipelines:
-   logs:
-     "default-security-events":
-       receivers: ["tcplog/nginx_app_protect"]
-       processors: ["batch/logs"]
-       exporters: ["debug","otlp/default"]
-```
+## References
 
-This configuration batches security events with a 30-second timeout and a maximum batch size of 1000 events. Events are forwarded to NGINX One Console through the `otlp/default` exporter.
+For more information, see:
 
-2. Restart NGINX Agent to apply the changes:
-
-```bash
-sudo systemctl restart nginx-agent
-```
-
-3. Verify NGINX Agent is running:
-
-```bash
-sudo systemctl status nginx-agent
-```
-
-## Verify the security event pipeline
-
-Check that NGINX Agent successfully started the syslog receiver:
-
-```bash
-sudo tail /var/log/nginx-agent/agent.log | grep "syslogserver"
-```
-
-You should see a log entry like this:
-
-```
-time=2026-03-20T00:05:10.212Z level=INFO msg="Found available local NGINX App Protect syslogserver configured on port 1514"
-```
-
-To debug security events being sent to NGINX One Console, tail the agent logs:
-
-```bash
-sudo tail /var/log/nginx-agent/opentelemetry-collector-agent.log -f
-```
-
-## Test security event detection
-
-Generate test security violations to verify that the pipeline works.
-
-1. Trigger some violations with these example requests:
-
-```bash
-curl -X SEARCH -k -v 'http://127.0.0.1/helloworld'
-
-curl -k -v 'http://127.0.0.1/a=<script>getAllMoneyV2()</script>'
-```
-
-You should receive a response indicating the request was rejected:
-
-```html
-<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator...
-```
-
-2. Verify that security events are being sent to NGINX One Console:
-
-```bash
-sudo tail /var/log/nginx-agent/opentelemetry-collector-agent.log -n 200
-```
-
-Look for log entries showing the violations being forwarded.
-
-Your security monitoring setup is complete. Security events from F5 WAF for NGINX are forwarded to the NGINX One Console, where you can monitor and analyze them in the security dashboard.
+- [Security monitoring overview]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/security-monitoring-overview.md" >}})
+- [Default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}})
+- [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}})
+- [Add an instance]({{< ref "/nginx-one-console/connect-instances/add-instance.md" >}})
+- [Dashboard metrics reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
+- [Find a security event by Support ID]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/find-event-by-support-id.md" >}})
+- [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}})

@@ -92,6 +92,11 @@
       "name": "Templates",
       "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\n\n* Import, list, and retrieve NGINX configuration templates.\n* Generate and preview full NGINX configurations by composing templates, before saving it as a staged config.\n",
       "x-displayName": "Templates"
+    },
+    {
+      "name": "NGINX One App Protect",
+      "description": "Security analytics endpoints for NGINX One App Protect.\n",
+      "x-displayName": "NGINX One App Protect"
     }
   ],
   "paths": {
@@ -4405,6 +4410,506 @@
         }
       }
     },
+    "/app-protect/log-profiles": {
+      "get": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "List WAF log profiles",
+        "description": "Returns a list of WAF log profiles.",
+        "operationId": "listWafLogProfiles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfilesDep"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfiles"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfile"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned WAF log profiles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Create WAF log profile",
+        "description": "Creates a WAF log profile.",
+        "operationId": "createWafLogProfile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created WAF log profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}": {
+      "delete": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Delete WAF log profile",
+        "description": "Deletes a WAF log profile.",
+        "operationId": "deleteWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted WAF log profile."
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Get WAF log profile details",
+        "description": "Returns WAF log profile details.",
+        "operationId": "getWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned WAF log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileObjectDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Update WAF log profile details",
+        "description": "Updates WAF log profile details.",
+        "operationId": "updateWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapLogProfileUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated WAF log profile details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileMetadata"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}/compile": {
+      "get": {
+        "x-feature-flag": "log-profile-deployment",
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "Compile WAF log profile",
+        "description": "Compiles a WAF log profile and returns the request status or compiled bundle.",
+        "operationId": "compileWafLogProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapCompileNapRelease"
+          },
+          {
+            "$ref": "#/components/parameters/NapCompileDownload"
+          },
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WAF log profile compiled successfully, when `download` is `true`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              },
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "example": "log_all.tar.gz"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted the WAF log profile compile request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "WAF log profile compilation failed, when `download` is `true`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app-protect/log-profiles/{nap_log_profile_object_id}/deployments": {
+      "get": {
+        "x-feature-flag": "log-profile-deployment",
+        "tags": [
+          "WAF Log Profiles"
+        ],
+        "summary": "List WAF log profile deployments",
+        "description": "Returns a list of WAF log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
+        "operationId": "listWafLogProfileDeployments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameNapLogProfileDeployments"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldNapLogProfileDeployment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned WAF log profile deployments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapLogProfileDeploymentsListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/app-protect/policies": {
       "get": {
         "tags": [
@@ -5372,506 +5877,6 @@
         }
       }
     },
-    "/app-protect/log-profiles": {
-      "get": {
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "List WAF log profiles",
-        "description": "Returns a list of WAF log profiles.",
-        "operationId": "listWafLogProfiles",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Paginated"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/SortDirection"
-          },
-          {
-            "$ref": "#/components/parameters/SortNameNapLogProfilesDep"
-          },
-          {
-            "$ref": "#/components/parameters/SortNameNapLogProfiles"
-          },
-          {
-            "$ref": "#/components/parameters/FilterOperands"
-          },
-          {
-            "$ref": "#/components/parameters/FilterValues"
-          },
-          {
-            "$ref": "#/components/parameters/FilterFieldNapLogProfile"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned WAF log profiles.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileListResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "Create WAF log profile",
-        "description": "Creates a WAF log profile.",
-        "operationId": "createWafLogProfile",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NapLogProfileCreateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successfully created WAF log profile.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileMetadata"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles/{nap_log_profile_object_id}": {
-      "delete": {
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "Delete WAF log profile",
-        "description": "Deletes a WAF log profile.",
-        "operationId": "deleteWafLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successfully deleted WAF log profile."
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "Get WAF log profile details",
-        "description": "Returns WAF log profile details.",
-        "operationId": "getWafLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned WAF log profile details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileObjectDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "Update WAF log profile details",
-        "description": "Updates WAF log profile details.",
-        "operationId": "updateWafLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NapLogProfileUpdateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully updated WAF log profile details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileMetadata"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles/{nap_log_profile_object_id}/compile": {
-      "get": {
-        "x-feature-flag": "log-profile-deployment",
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "Compile WAF log profile",
-        "description": "Compiles a WAF log profile and returns the request status or compiled bundle.",
-        "operationId": "compileWafLogProfile",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileCompileNapRelease"
-          },
-          {
-            "$ref": "#/components/parameters/NapLogProfileCompileDownload"
-          },
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "WAF log profile compiled successfully, when `download` is `true`.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapCompileStatus"
-                }
-              },
-              "application/gzip": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary",
-                  "example": "log_all.tar.gz"
-                }
-              }
-            }
-          },
-          "202": {
-            "description": "Accepted the WAF log profile compile request.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapCompileStatus"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "WAF log profile compilation failed, when `download` is `true`.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapCompileStatus"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/app-protect/log-profiles/{nap_log_profile_object_id}/deployments": {
-      "get": {
-        "x-feature-flag": "log-profile-deployment",
-        "tags": [
-          "WAF Log Profiles"
-        ],
-        "summary": "List WAF log profile deployments",
-        "description": "Returns a list of WAF log profile deployments, providing details such as:\n  * Target of the deployment, either an instance or CSG\n  * Time of deployment\n  * Deployment status\n",
-        "operationId": "listWafLogProfileDeployments",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/NapLogProfileParamObjectID"
-          },
-          {
-            "$ref": "#/components/parameters/Paginated"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/SortDirection"
-          },
-          {
-            "$ref": "#/components/parameters/SortNameNapLogProfileDeployments"
-          },
-          {
-            "$ref": "#/components/parameters/FilterOperands"
-          },
-          {
-            "$ref": "#/components/parameters/FilterValues"
-          },
-          {
-            "$ref": "#/components/parameters/FilterFieldNapLogProfileDeployment"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned WAF log profile deployments.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NapLogProfileDeploymentsListResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Request cannot be processed due to invalid input or parameters. Verify the request format and provided data.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Access denied.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The WAF log profile with the specified nap_log_profile_object_id was not found. Check that the nap_log_profile_object_id provided is correct and corresponds to an existing resource.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "An unexpected error occurred on the server. Please try the request again later.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/templates": {
       "get": {
         "tags": [
@@ -6012,6 +6017,11 @@
         }
       }
     },
+    "/templates/{templateObjectID}/copy": {},
+    "/templates/{templateObjectID}/submissions": {},
+    "/templates/{templateObjectID}/versions": {},
+    "/templates/{templateObjectID}/versions/{templateVersionObjectID}": {},
+    "/templates/{templateVersionObjectID}/config": {},
     "/templates/import": {
       "post": {
         "tags": [
@@ -6093,11 +6103,37 @@
         },
         "responses": {
           "200": {
-            "description": "Returned only when the `preview_only` flag is set to `true`.\nResponds with the rendered NGINX configuration that can be used for preview or to create/replace a staged configuration manually.\n\nNote: If `preview_only` is `false` or omitted, this operation is not yet supported and will return an error instead.\n",
+            "description": "Returned only when the `preview_only` flag is set to `true`.\nResponds with the rendered NGINX configuration that can be used for preview or to create/replace a staged configuration manually.\n",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PreviewNginxConfig"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "The template submission has been accepted and is being processed.\nPublication status(es) can be retrieved by querying the appropriate publications endpoint for the target object.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSubmissionResponse"
+                },
+                "examples": {
+                  "staged_config_outcome": {
+                    "summary": "Example successful response for a target submission that creates a staged config",
+                    "value": {
+                      "object_id": "tmplsm_frBobKIAQ_21grAwV83VYz",
+                      "target_results": [
+                        {
+                          "staged_config_status": {
+                            "status": "succeeded"
+                          },
+                          "target_object_id": "sc_cEoiYCVJRuekVpYOvV1raA"
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -6108,8 +6144,8 @@
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
-          "405": {
-            "description": "This operation is not yet implemented. Please use the action for preview (`action=preview`) or partial (`action=partial`).\n",
+          "409": {
+            "description": "The submission cannot be completed due to one or more template validation errors. See the error details for more information.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -6123,7 +6159,1572 @@
           }
         }
       }
-    }
+    },
+    "/app-protect/analytics/attacks": {
+      "post": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "Query attack analytics",
+        "operationId": "queryAttackAnalytics",
+        "description": "Returns attack analytics with optional dimensional breakdown.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` count for the time range\n- With `group_by`: Returns breakdown for that dimension, `total` is omitted\n\n**Response structure by dimension type:**\n- **Fixed enum dimensions** (`request_status`, `request_method`): Returns object with known keys and counts\n- **Dynamic dimensions** (`ip`, `country`, `policy`, `url`, etc.): Returns array of items with cross-dimension context in `distinct` object\n\n**Filter behavior:**\n- All filters are combined with AND logic\n- Use the `in` operator to achieve OR within a single dimension\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttacksQueryRequest"
+              },
+              "examples": {
+                "total_only": {
+                  "summary": "Get total attack count (no group_by)",
+                  "value": {
+                    "start_time": "now-24h"
+                  }
+                },
+                "by_request_status": {
+                  "summary": "Get breakdown by request status",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "request_status"
+                  }
+                },
+                "by_request_outcome_reason": {
+                  "summary": "Get breakdown by request outcome reason",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "request_outcome_reason"
+                  }
+                },
+                "top_ips": {
+                  "summary": "Top 10 attacking IPs",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "ip",
+                    "limit": 10
+                  }
+                },
+                "filtered_top_ips": {
+                  "summary": "Top 10 attacking IPs for blocked requests",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "ip",
+                    "filter": [
+                      {
+                        "field": "request_status",
+                        "operator": "=",
+                        "values": [
+                          "blocked"
+                        ]
+                      }
+                    ],
+                    "order_by": {
+                      "field": "count",
+                      "direction": "desc"
+                    },
+                    "limit": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully returned attack analytics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttacksQueryResponse"
+                },
+                "examples": {
+                  "without_group_by": {
+                    "summary": "Without group_by - returns total and threat_campaigns",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "total": 1500,
+                      "threat_campaigns": 3
+                    }
+                  },
+                  "by_request_status": {
+                    "summary": "With group_by=request_status (fixed enum)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "request_status": {
+                        "blocked": 1200,
+                        "alerted": 200,
+                        "passed": 100
+                      }
+                    }
+                  },
+                  "by_request_outcome_reason": {
+                    "summary": "With group_by=request_outcome_reason (fixed enum)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "request_outcome_reason": {
+                        "SECURITY_NGINX_VIOLATION": 121,
+                        "SECURITY_WAF_BYPASS": 100,
+                        "SECURITY_WAF_FLAGGED": 200,
+                        "SECURITY_WAF_OK": 0,
+                        "SECURITY_WAF_VIOLATION": 88,
+                        "SECURITY_WAF_VIOLATION_TRANSPARENT": 0
+                      }
+                    }
+                  },
+                  "by_ip": {
+                    "summary": "With group_by=ip (dynamic dimension with distinct counts)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "ip": [
+                        {
+                          "value": "203.0.113.42",
+                          "count": 450,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 3,
+                            "violations": 5,
+                            "policies": 1
+                          },
+                          "country": "CN"
+                        },
+                        {
+                          "value": "198.51.100.7",
+                          "count": 320,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 2,
+                            "violations": 3,
+                            "policies": 1
+                          },
+                          "country": "RU"
+                        }
+                      ]
+                    }
+                  },
+                  "by_country": {
+                    "summary": "With group_by=country (dynamic dimension)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "country": [
+                        {
+                          "value": "CN",
+                          "count": 500,
+                          "distinct": {
+                            "ips": 15,
+                            "urls": 8,
+                            "violations": 12,
+                            "policies": 3
+                          }
+                        },
+                        {
+                          "value": "RU",
+                          "count": 300,
+                          "distinct": {
+                            "ips": 8,
+                            "urls": 5,
+                            "violations": 7,
+                            "policies": 2
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "by_policy": {
+                    "summary": "With group_by=policy (Top WAF Policies)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "policy": [
+                        {
+                          "value": "strict-policy",
+                          "count": 850,
+                          "distinct": {
+                            "ips": 42,
+                            "urls": 15,
+                            "violations": 18,
+                            "policies": 1
+                          }
+                        },
+                        {
+                          "value": "default-policy",
+                          "count": 450,
+                          "distinct": {
+                            "ips": 28,
+                            "urls": 10,
+                            "violations": 12,
+                            "policies": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "by_request_method": {
+                    "summary": "With group_by=request_method (Request Methods)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "request_method": {
+                        "get": 800,
+                        "post": 500,
+                        "put": 50,
+                        "delete": 20
+                      }
+                    }
+                  },
+                  "by_response_code": {
+                    "summary": "With group_by=response_code (simple array)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "response_code": [
+                        {
+                          "code": "403",
+                          "count": 450
+                        },
+                        {
+                          "code": "200",
+                          "count": 320
+                        },
+                        {
+                          "code": "500",
+                          "count": 80
+                        }
+                      ]
+                    }
+                  },
+                  "by_url": {
+                    "summary": "With group_by=url (Top Attack URIs)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "url": [
+                        {
+                          "value": "/api/login",
+                          "count": 320,
+                          "distinct": {
+                            "ips": 15,
+                            "urls": 1,
+                            "violations": 8,
+                            "policies": 2
+                          }
+                        },
+                        {
+                          "value": "/admin",
+                          "count": 180,
+                          "distinct": {
+                            "ips": 8,
+                            "urls": 1,
+                            "violations": 5,
+                            "policies": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "by_hostname": {
+                    "summary": "With group_by=hostname",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "hostname": [
+                        {
+                          "value": "nginx-host-01.example.com",
+                          "count": 854,
+                          "distinct": {
+                            "ips": 543,
+                            "urls": 768,
+                            "violations": 312,
+                            "policies": 816
+                          }
+                        },
+                        {
+                          "value": "nginx-host-02.example.com",
+                          "count": 96,
+                          "distinct": {
+                            "ips": 753,
+                            "urls": 351,
+                            "violations": 232,
+                            "policies": 96
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "by_threat_campaign": {
+                    "summary": "With group_by=threat_campaign",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "threat_campaign": [
+                        {
+                          "value": "CVE-2021-44228",
+                          "count": 1240,
+                          "distinct": {
+                            "ips": 34,
+                            "urls": 12,
+                            "violations": 8,
+                            "policies": 3
+                          }
+                        },
+                        {
+                          "value": "Log4Shell",
+                          "count": 870,
+                          "distinct": {
+                            "ips": 21,
+                            "urls": 7,
+                            "violations": 5,
+                            "policies": 2
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/analytics/attacks/time-series": {
+      "post": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "Query attack analytics time series",
+        "operationId": "queryAttackAnalyticsTimeSeries",
+        "description": "Returns attack analytics as time-series data for charting.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` series (aggregate counts over time)\n- With `group_by`: Returns dimensional breakdown series, `total` is omitted\n\nData is returned with each dimension value as a separate series array,\nmaking it easy to plot directly. The bucket size is determined by the\n`resolution` field or auto-selected based on the time range.\n\n**Supported dimensions for time-series:**\n- `request_status` - Returns `blocked`, `alerted`, `passed` series\n\n**Time alignment:** All series arrays contain the same timestamps, aligned to the\nresolution boundary. Buckets with no events are zero-filled.\n\n**Filter behavior:**\n- All filters are combined with AND logic\n- Use the `in` operator to achieve OR within a single dimension\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttacksTimeSeriesQueryRequest"
+              },
+              "examples": {
+                "total_over_time": {
+                  "summary": "Total attacks over time (no group_by)",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "15m"
+                  }
+                },
+                "by_request_status": {
+                  "summary": "Breakdown by request status",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "15m",
+                    "group_by": "request_status"
+                  }
+                },
+                "by_request_outcome_reason": {
+                  "summary": "Breakdown by request outcome reason",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "15m",
+                    "group_by": "request_outcome_reason"
+                  }
+                },
+                "filtered_blocked": {
+                  "summary": "Blocked attacks only (filtered, no breakdown)",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "15m",
+                    "filter": [
+                      {
+                        "field": "request_status",
+                        "operator": "=",
+                        "values": [
+                          "blocked"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "filtered_reason_transparent": {
+                  "summary": "Attacks with transparent reason only",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "15m",
+                    "filter": [
+                      {
+                        "field": "request_outcome_reason",
+                        "operator": "=",
+                        "values": [
+                          "SECURITY_WAF_VIOLATION_TRANSPARENT"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully returned attack analytics time series.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttacksTimeSeriesQueryResponse"
+                },
+                "examples": {
+                  "without_group_by": {
+                    "summary": "Without group_by - returns total series only",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "total": [
+                        {
+                          "timestamp": "2024-01-15T00:00:00Z",
+                          "count": 150
+                        },
+                        {
+                          "timestamp": "2024-01-15T01:00:00Z",
+                          "count": 180
+                        },
+                        {
+                          "timestamp": "2024-01-15T02:00:00Z",
+                          "count": 95
+                        },
+                        {
+                          "timestamp": "2024-01-15T03:00:00Z",
+                          "count": 210
+                        },
+                        {
+                          "timestamp": "2024-01-15T04:00:00Z",
+                          "count": 175
+                        },
+                        {
+                          "timestamp": "2024-01-15T05:00:00Z",
+                          "count": 130
+                        }
+                      ]
+                    }
+                  },
+                  "with_group_by": {
+                    "summary": "With group_by=request_status - returns dimensional breakdown",
+                    "description": "All series have aligned timestamps. Note the zero-filled bucket at 02:00\nfor `passed` where no events occurred.\n",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T03:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "request_status": {
+                        "blocked": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 120
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 150
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 80
+                          }
+                        ],
+                        "passed": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 10
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 15
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 0
+                          }
+                        ],
+                        "alerted": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 20
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 15
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 10
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "no_data": {
+                    "summary": "No data in time range - returns zero-filled buckets",
+                    "description": "When no attacks occurred in the queried time range, time buckets are still\ngenerated based on the resolution with count as 0.\n",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T03:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "total": [
+                        {
+                          "timestamp": "2024-01-15T00:00:00Z",
+                          "count": 0
+                        },
+                        {
+                          "timestamp": "2024-01-15T01:00:00Z",
+                          "count": 0
+                        },
+                        {
+                          "timestamp": "2024-01-15T02:00:00Z",
+                          "count": 0
+                        }
+                      ]
+                    }
+                  },
+                  "no_data_with_group_by": {
+                    "summary": "No data with group_by - returns zero-filled series for each dimension",
+                    "description": "All dimension values have aligned timestamps with count: 0.\nThis ensures charts can render empty series correctly.\n",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T03:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "request_status": {
+                        "blocked": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 0
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 0
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 0
+                          }
+                        ],
+                        "alerted": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 0
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 0
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 0
+                          }
+                        ],
+                        "passed": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 0
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 0
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/analytics/signatures": {
+      "post": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "Query signature analytics",
+        "operationId": "querySignatureAnalytics",
+        "description": "Returns signature analytics with optional dimensional breakdown.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` (signature hits) and `unique` (distinct signatures) for the time range\n- With `group_by`: Returns breakdown for that dimension, `total` and `unique` are omitted\n\n**Response structure by dimension type:**\n- **Fixed enum dimensions** (`request_status`, `accuracy`, `risk`): Returns object with known keys and counts\n- **Dynamic dimensions** (`signature`, `cve`): Returns array of items sorted by count descending\n\n**Filter behavior:**\n- All filters are combined with AND logic\n- Use the `in` operator to achieve OR within a single dimension\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignaturesQueryRequest"
+              },
+              "examples": {
+                "total_only": {
+                  "summary": "Get total signature hits and unique count (no group_by)",
+                  "value": {
+                    "start_time": "now-24h"
+                  }
+                },
+                "by_request_status": {
+                  "summary": "Signature hits by request status",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "request_status"
+                  }
+                },
+                "by_accuracy": {
+                  "summary": "Signature hits by accuracy level",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "accuracy"
+                  }
+                },
+                "by_risk": {
+                  "summary": "Signature hits by risk level",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "risk"
+                  }
+                },
+                "top_signatures": {
+                  "summary": "Top 5 signatures by hit count",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "signature",
+                    "limit": 5
+                  }
+                },
+                "top_cves": {
+                  "summary": "Top 5 CVEs by hit count",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "cve",
+                    "limit": 5
+                  }
+                },
+                "filtered_blocked_signatures": {
+                  "summary": "Top signatures for blocked requests only",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "signature",
+                    "filter": [
+                      {
+                        "field": "request_status",
+                        "operator": "=",
+                        "values": [
+                          "blocked"
+                        ]
+                      }
+                    ],
+                    "limit": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully returned signature analytics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignaturesQueryResponse"
+                },
+                "examples": {
+                  "without_group_by": {
+                    "summary": "Without group_by - returns total and unique only",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z"
+                      },
+                      "total": 1270,
+                      "unique": 19
+                    }
+                  },
+                  "by_request_status": {
+                    "summary": "With group_by=request_status",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z"
+                      },
+                      "request_status": {
+                        "blocked": 1080,
+                        "alerted": 122,
+                        "passed": 68
+                      }
+                    }
+                  },
+                  "by_accuracy": {
+                    "summary": "With group_by=accuracy",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z"
+                      },
+                      "accuracy": {
+                        "low": 150,
+                        "medium": 420,
+                        "high": 700
+                      }
+                    }
+                  },
+                  "by_risk": {
+                    "summary": "With group_by=risk",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z"
+                      },
+                      "risk": {
+                        "low": 200,
+                        "medium": 350,
+                        "high": 520,
+                        "critical": 200
+                      }
+                    }
+                  },
+                  "by_signature": {
+                    "summary": "With group_by=signature",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z"
+                      },
+                      "signature": [
+                        {
+                          "signature_id": "200001834",
+                          "name": "Unix hidden (dot-file)",
+                          "count": 141,
+                          "accuracy": "high",
+                          "risk": "medium"
+                        },
+                        {
+                          "signature_id": "200001475",
+                          "name": "PHP injection attempt",
+                          "count": 99,
+                          "accuracy": "high",
+                          "risk": "high"
+                        },
+                        {
+                          "signature_id": "200000098",
+                          "name": "XSS script tag end (Parameter)",
+                          "count": 85,
+                          "accuracy": "medium",
+                          "risk": "high"
+                        },
+                        {
+                          "signature_id": "200001088",
+                          "name": "Directory Traversal attempt",
+                          "count": 72,
+                          "accuracy": "high",
+                          "risk": "critical"
+                        },
+                        {
+                          "signature_id": "200002550",
+                          "name": "SQL injection attempt",
+                          "count": 65,
+                          "accuracy": "high",
+                          "risk": "critical"
+                        }
+                      ]
+                    }
+                  },
+                  "by_cve": {
+                    "summary": "With group_by=cve (Top Signature CVEs table)",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z"
+                      },
+                      "cve": [
+                        {
+                          "value": "CVE-2021-44228",
+                          "count": 450
+                        },
+                        {
+                          "value": "CVE-2021-1234",
+                          "count": 320
+                        },
+                        {
+                          "value": "CVE-2021-5678",
+                          "count": 180
+                        },
+                        {
+                          "value": "CVE-2020-9484",
+                          "count": 95
+                        },
+                        {
+                          "value": "CVE-2019-11043",
+                          "count": 72
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/analytics/signatures/time-series": {
+      "post": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "Query signature analytics time series",
+        "operationId": "querySignatureAnalyticsTimeSeries",
+        "description": "Returns signature analytics as time-series data for charting.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` series (aggregate signature hits over time)\n- With `group_by`: Returns dimensional breakdown series, `total` is omitted\n\nData is returned with each dimension value as a separate series array,\nmaking it easy to plot directly. The bucket size is determined by the\n`resolution` field or auto-selected based on the time range.\n\n**Supported dimensions for time-series:**\n- `request_status` - Returns `blocked`, `alerted`, `passed` series\n- `accuracy` - Returns `low`, `medium`, `high` series\n- `risk` - Returns `low`, `medium`, `high`, `critical` series\n\n**Time alignment:** All series arrays contain the same timestamps, aligned to the\nresolution boundary. Buckets with no events are zero-filled.\n\n**Filter behavior:**\n- All filters are combined with AND logic\n- Use the `in` operator to achieve OR within a single dimension\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignaturesTimeSeriesQueryRequest"
+              },
+              "examples": {
+                "total_over_time": {
+                  "summary": "Total signature hits over time (no group_by)",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "15m"
+                  }
+                },
+                "by_request_status": {
+                  "summary": "Signature hits by request status over time",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "1h",
+                    "group_by": "request_status"
+                  }
+                },
+                "by_accuracy": {
+                  "summary": "Signature hits by accuracy over time",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "1h",
+                    "group_by": "accuracy"
+                  }
+                },
+                "by_risk": {
+                  "summary": "Signature hits by risk over time",
+                  "value": {
+                    "start_time": "now-6h",
+                    "resolution": "1h",
+                    "group_by": "risk"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully returned signature analytics time series.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignaturesTimeSeriesQueryResponse"
+                },
+                "examples": {
+                  "without_group_by": {
+                    "summary": "Without group_by - returns total series only",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T06:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "total": [
+                        {
+                          "timestamp": "2024-01-15T00:00:00Z",
+                          "count": 150
+                        },
+                        {
+                          "timestamp": "2024-01-15T01:00:00Z",
+                          "count": 180
+                        },
+                        {
+                          "timestamp": "2024-01-15T02:00:00Z",
+                          "count": 95
+                        },
+                        {
+                          "timestamp": "2024-01-15T03:00:00Z",
+                          "count": 210
+                        },
+                        {
+                          "timestamp": "2024-01-15T04:00:00Z",
+                          "count": 175
+                        },
+                        {
+                          "timestamp": "2024-01-15T05:00:00Z",
+                          "count": 130
+                        }
+                      ]
+                    }
+                  },
+                  "by_request_status": {
+                    "summary": "With group_by=request_status",
+                    "description": "All series have aligned timestamps. Note the zero-filled bucket at 02:00\nfor `passed` where no events occurred.\n",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T03:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "request_status": {
+                        "blocked": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 120
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 150
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 80
+                          }
+                        ],
+                        "passed": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 10
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 15
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 0
+                          }
+                        ],
+                        "alerted": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 20
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 15
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 10
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "by_accuracy": {
+                    "summary": "With group_by=accuracy",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T03:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "accuracy": {
+                        "low": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 15
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 20
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 12
+                          }
+                        ],
+                        "medium": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 45
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 55
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 38
+                          }
+                        ],
+                        "high": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 90
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 105
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 40
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "by_risk": {
+                    "summary": "With group_by=risk",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T03:00:00Z",
+                        "resolution": "1h"
+                      },
+                      "risk": {
+                        "low": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 20
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 25
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 15
+                          }
+                        ],
+                        "medium": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 40
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 50
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 30
+                          }
+                        ],
+                        "high": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 60
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 75
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 35
+                          }
+                        ],
+                        "critical": [
+                          {
+                            "timestamp": "2024-01-15T00:00:00Z",
+                            "count": 30
+                          },
+                          {
+                            "timestamp": "2024-01-15T01:00:00Z",
+                            "count": 30
+                          },
+                          {
+                            "timestamp": "2024-01-15T02:00:00Z",
+                            "count": 10
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/analytics/violations": {
+      "post": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "Query violation analytics",
+        "operationId": "queryViolationAnalytics",
+        "description": "Returns violation analytics with optional dimensional breakdown.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` (violation occurrences) and `unique` (distinct violation types)\n- With `group_by`: Returns breakdown for that dimension, `total` and `unique` are omitted\n\n**Response structure by dimension type:**\n- **Fixed enum dimensions** (`context`): Returns object with known keys (header, cookie, parameter, uri, request, other)\n- **Dynamic dimensions** (`violation`, `sub_violation`): Returns array of items with cross-dimension context\n\n**Filter behavior:**\n- All filters are combined with AND logic\n- Use the `in` operator to achieve OR within a single dimension\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ViolationsQueryRequest"
+              },
+              "examples": {
+                "total_only": {
+                  "summary": "Get total violation occurrences and unique count (no group_by)",
+                  "value": {
+                    "start_time": "now-24h"
+                  }
+                },
+                "by_violation": {
+                  "summary": "Top violations by occurrence count",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "violation",
+                    "limit": 10
+                  }
+                },
+                "by_sub_violation": {
+                  "summary": "Top sub-violations by occurrence count",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "sub_violation",
+                    "limit": 10
+                  }
+                },
+                "by_context": {
+                  "summary": "Violation context breakdown",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "context"
+                  }
+                },
+                "filtered_by_policy": {
+                  "summary": "Top violations for a specific policy",
+                  "value": {
+                    "start_time": "now-24h",
+                    "group_by": "violation",
+                    "filter": [
+                      {
+                        "field": "policy",
+                        "operator": "=",
+                        "values": [
+                          "app_protect_default_policy"
+                        ]
+                      }
+                    ],
+                    "limit": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully returned violation analytics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ViolationsQueryResponse"
+                },
+                "examples": {
+                  "without_group_by": {
+                    "summary": "Without group_by - returns total and unique only",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "total": 4320,
+                      "unique": 5
+                    }
+                  },
+                  "by_violation": {
+                    "summary": "With group_by=violation",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "violation": [
+                        {
+                          "value": "Bot Client Detected",
+                          "count": 1080,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 1,
+                            "policies": 1
+                          }
+                        },
+                        {
+                          "value": "Violation Rating Threat detected",
+                          "count": 960,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 1,
+                            "policies": 1
+                          }
+                        },
+                        {
+                          "value": "Attack signature detected",
+                          "count": 840,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 1,
+                            "policies": 1
+                          }
+                        },
+                        {
+                          "value": "Illegal meta character in value",
+                          "count": 480,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 1,
+                            "policies": 1
+                          }
+                        },
+                        {
+                          "value": "Illegal HTTP status in response",
+                          "count": 120,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 1,
+                            "policies": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "by_sub_violation": {
+                    "summary": "With group_by=sub_violation",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "sub_violation": [
+                        {
+                          "value": "N/A",
+                          "count": 1080,
+                          "distinct": {
+                            "ips": 1,
+                            "urls": 1,
+                            "policies": 1
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "by_context": {
+                    "summary": "With group_by=context",
+                    "value": {
+                      "query_metadata": {
+                        "start_time": "2024-01-15T00:00:00Z",
+                        "end_time": "2024-01-15T23:59:59Z"
+                      },
+                      "context": {
+                        "cookie": 0,
+                        "header": 130,
+                        "parameter": 1426,
+                        "request": 302,
+                        "uri": 0,
+                        "other": 2462
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/events": {
+      "get": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "List security events",
+        "operationId": "listSecurityEvents",
+        "description": "Returns a paginated list of security events.\n\n**Filtering:**\n- Use the `filter_fields`, `filter_values`, and `filter_ops` parameters to filter events by various dimensions\n- All filter parameters must have matching array lengths\n- `support_id` is unique per event, so filtering by it returns a single-item list\n- Time range filtering via `start_time` and `end_time` is recommended to limit results\n- Multiple filter values can be chained using the `|` character (e.g., `blocked|alerted`)\n\n**Pagination:**\n- Results are paginated using standard Nginx One Console pagination\n- Results are sorted by timestamp descending (most recent first) by default\n\n**Response:**\n- Returns summary fields suitable for list display\n- Use `GET /app-protect/events/{id}` for full event details including raw request\n",
+        "parameters": [
+          {
+            "name": "start_time",
+            "in": "query",
+            "description": "Beginning of the time range (inclusive).\nAccepts ISO 8601 format or relative offset (e.g., `now-24h`).\n",
+            "schema": {
+              "type": "string"
+            },
+            "example": "now-24h"
+          },
+          {
+            "name": "end_time",
+            "in": "query",
+            "description": "End of the time range (exclusive).\nDefaults to current time if not specified.\n",
+            "schema": {
+              "type": "string"
+            },
+            "example": "now"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldSecurityEvents"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned list of security events.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityEventListResponse"
+                },
+                "example": {
+                  "total": 1080,
+                  "count": 1,
+                  "start_index": 1,
+                  "items_per_page": 100,
+                  "items": [
+                    {
+                      "timestamp": "2024-01-22T12:13:25Z",
+                      "support_id": "1844305495056427365",
+                      "request_status": "blocked",
+                      "policy_name": "app_protect_default_policy",
+                      "client_ip": "192.168.1.100",
+                      "url": "/api/users",
+                      "method": "POST",
+                      "response_code": 403,
+                      "country_code": "US",
+                      "violation_rating": 5,
+                      "instance_object_id": "inst_8Iwn7dT7RF-PRLxkSt5EYQ",
+                      "csg_object_id": "csg_-uvR3F2TQGm18jnl7bpaGw"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/app-protect/events/{id}": {
+      "get": {
+        "tags": [
+          "NGINX One App Protect"
+        ],
+        "summary": "Get security event by supportID",
+        "operationId": "getSecurityEvent",
+        "description": "Returns a specific security event by its support ID.\n\n**Response:**\n- Returns full event details including:\n  - Request metadata (headers, method, URL, response code)\n  - WAF enforcement details (policy, outcome, violation_rating)\n  - All triggered violations with context\n  - All matched signatures with details\n  - Raw HTTP request (if available and not truncated)\n  - Threat campaign associations\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The support ID of the security event.",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "example": "1844305495056427365"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned the security event.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityEvent"
+                },
+                "example": {
+                  "id": "d1cd4806-3519-4c72-a0e4-63fd611ee6fb",
+                  "timestamp": "2024-01-22T12:13:25Z",
+                  "support_id": "1844305495056427365",
+                  "version": "v1.0",
+                  "system_id": "31ed9d05-9cb0-48c3-9f97-d63b1b6dd342",
+                  "parent_hostname": "nginx-host-01",
+                  "instance_object_id": "inst_8Iwn7dT7RF-PRLxkSt5EYQ",
+                  "csg_object_id": "csg_-uvR3F2TQGm18jnl7bpaGw",
+                  "http": {
+                    "hostname": "example.com",
+                    "remote_addr": "192.168.1.100",
+                    "remote_port": 54321,
+                    "server_addr": "10.0.0.1",
+                    "server_port": 443,
+                    "uri": "/",
+                    "request_method": "GET",
+                    "response_code": 403
+                  },
+                  "x_forwarded_for_header_value": "203.0.113.42",
+                  "country_code": "US",
+                  "policy_name": "app_protect_default_policy",
+                  "request_status": "blocked",
+                  "request_outcome": "rejected",
+                  "request_outcome_reason": "SECURITY_WAF_VIOLATION",
+                  "violation_rating": 5,
+                  "blocking_exception_reason": "",
+                  "is_truncated": false,
+                  "signatures": [
+                    {
+                      "id": 200001834,
+                      "name": "XSS script tag end (Parameter)",
+                      "accuracy": "high",
+                      "risk": "high",
+                      "cve": "",
+                      "blocking_mask": "0x0",
+                      "buffer": "param",
+                      "offset": 0,
+                      "length": 42
+                    }
+                  ],
+                  "violations": [
+                    {
+                      "name": "Illegal meta character in value",
+                      "sub_name": "",
+                      "context": "parameter",
+                      "detail_name": "VIOL_PARAMETER_VALUE_METACHAR",
+                      "detail_context": "parameter",
+                      "field_name": "param",
+                      "field_value": "<script>alert('xss')</script>"
+                    },
+                    {
+                      "name": "Attack signature detected",
+                      "sub_name": "",
+                      "context": "parameter",
+                      "detail_name": "VIOL_ATTACK_SIGNATURE",
+                      "detail_context": "parameter",
+                      "field_name": "param",
+                      "field_value": "<script>alert('xss')</script>"
+                    },
+                    {
+                      "name": "Violation Rating Threat detected",
+                      "sub_name": "",
+                      "context": "other",
+                      "detail_name": "",
+                      "detail_context": "",
+                      "field_name": "",
+                      "field_value": ""
+                    },
+                    {
+                      "name": "Bot Client Detected",
+                      "sub_name": "",
+                      "context": "other",
+                      "detail_name": "",
+                      "detail_context": "",
+                      "field_name": "",
+                      "field_value": ""
+                    }
+                  ],
+                  "threat_campaign_names": [],
+                  "request": "GET /?param=%3Cscript%3Ealert%27xss%27%3C%2Fscript%3E HTTP/1.1\r\nHost: example.com\r\nUser-Agent: curl/7.68.0\r\nAccept: */*\r\n\r\n"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/billing-usage/events": {}
   },
   "components": {
     "parameters": {
@@ -6702,7 +8303,7 @@
         "description": "Optional flag to control how the request is processed.\n  - When `false` or omitted (by default), the request creates a Staged Config directly. (`StagedConfigCreateResponse`)\n  - When `true`, the request parses the import and returns metadata you can use to create a Staged Config through a POST. ( `StagedConfigCreateRequest`)\n",
         "required": false
       },
-      "NapLogProfileCompileNapRelease": {
+      "NapCompileNapRelease": {
         "name": "nap_release",
         "in": "query",
         "schema": {
@@ -6712,14 +8313,14 @@
         "required": true,
         "example": "5.10.0"
       },
-      "NapLogProfileCompileDownload": {
+      "NapCompileDownload": {
         "name": "download",
         "in": "query",
         "schema": {
           "type": "boolean",
           "default": false
         },
-        "description": "Whether to download the NGINX App Protect log profile bundle. When `true`, the request blocks until the bundle is ready and returns the bundle content. The request may take longer depending on the bundle's compilation status.\n",
+        "description": "Whether to download the compiled bundle. When `true`, the request blocks until the bundle is ready and returns the bundle content. The request may take longer depending on the bundle's compilation status.\n",
         "required": false,
         "example": true
       },
@@ -7144,6 +8745,17 @@
           "type": "array",
           "items": {
             "$ref": "#/components/schemas/FilterNameTemplates"
+          }
+        }
+      },
+      "FilterFieldSecurityEvents": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of field names to filter by. Works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/AnalyticsFilterField"
           }
         }
       }
@@ -12335,6 +13947,14 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the compile request was last modified."
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the compiled bundle, only set when status is `succeeded`."
+          },
+          "hash": {
+            "type": "string",
+            "description": "The sha256 hash value of the compiled bundle, only set when status is `succeeded`."
           }
         },
         "example": {
@@ -12985,6 +14605,7 @@
           "modified_at": "2026-01-16T21:12:51.843434Z",
           "name": "test-log-profiles",
           "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
+          "is_f5_default": false,
           "config": "eyJsb2dfc3RyZWFtIjogIntmb3JtYXQgY29tYmluZWQgZXg=",
           "deployments": [
             {
@@ -13029,6 +14650,7 @@
           "modified_at": "2026-01-16T21:12:51.843434Z",
           "name": "test-log-profiles",
           "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
+          "is_f5_default": false,
           "deployments": [
             {
               "nap_release": "5.10.0",
@@ -13049,6 +14671,7 @@
           "name",
           "object_id",
           "hash",
+          "is_f5_default",
           "modified_at",
           "created_at"
         ],
@@ -13063,6 +14686,9 @@
           "hash": {
             "type": "string",
             "description": "The hash value of the NGINX App Protect log profile configs."
+          },
+          "is_f5_default": {
+            "$ref": "#/components/schemas/IsF5Default"
           },
           "description": {
             "description": "Optional field to describe the NGINX App Protect log profile.",
@@ -13707,6 +15333,10 @@
           "filter_name_nap_log_profile_deployment_status"
         ]
       },
+      "IsF5Default": {
+        "type": "boolean",
+        "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false)."
+      },
       "FilterNameNapLogProfileDeployment": {
         "type": "string",
         "description": "Keywords for NGINX App Protect log profile deployment filters.\nWhen filtering on `type`, only the following `filter_values` are supported:\n  * instance\n  * config_sync_group\nWhen filtering on `status`, only the following `filter_values` are supported:\n  * deployed\n  * deploying\n  * failed\n",
@@ -14322,6 +15952,17 @@
           "augments"
         ],
         "properties": {
+          "description": {
+            "type": "string",
+            "description": "Description of the submission, required when not rendering as preview only."
+          },
+          "target_object_ids": {
+            "type": "array",
+            "description": "The target object ID(s) for submitting the rendered configuration.\n",
+            "items": {
+              "$ref": "#/components/schemas/ObjectID"
+            }
+          },
           "conf_path": {
             "$ref": "#/components/schemas/ConfigPath"
           },
@@ -14334,6 +15975,9 @@
             "items": {
               "$ref": "#/components/schemas/AugmentTemplateSubmissionRequest"
             }
+          },
+          "payloads": {
+            "$ref": "#/components/schemas/NginxConfigPayloads"
           }
         },
         "example": {
@@ -14485,6 +16129,44 @@
           }
         }
       },
+      "TemplateSubmissionResponse": {
+        "description": "Details of a template submission and all target(s) status results.",
+        "required": [
+          "object_id",
+          "target_results"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/ObjectID"
+          },
+          "target_results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TemplateSubmissionTargetResult"
+            }
+          }
+        }
+      },
+      "TemplateSubmissionTargetResult": {
+        "type": "object",
+        "required": [
+          "target_object_id"
+        ],
+        "properties": {
+          "target_object_id": {
+            "$ref": "#/components/schemas/ObjectID"
+          },
+          "staged_config_status": {
+            "$ref": "#/components/schemas/StagedConfigCreation"
+          },
+          "csg_publication_status": {
+            "$ref": "#/components/schemas/ConfigSyncGroupPublication"
+          },
+          "instance_publication_status": {
+            "$ref": "#/components/schemas/PublicationInstance"
+          }
+        }
+      },
       "NginxConfigParseError": {
         "type": "object",
         "description": "Details about an error encountered during NGINX configuration rendering.",
@@ -14512,6 +16194,206 @@
           "error": "\"upstream\" directive is not allowed here in /etc/nginx/nginx.conf:1"
         }
       },
+      "TemplateSubmissionObjectID": {
+        "description": "A globally unique identifier for a template submission.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^tmplsm_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        },
+        "example": "tmplsm_frBobKIAQ_21grAwV83VYz"
+      },
+      "TemplateSubmissionListResponse": {
+        "description": "List of template submissions.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "description": "List of template submissions.",
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of template submissions.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TemplateSubmissionSummary"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TemplateSubmissionSummary": {
+        "description": "Summary of a template submission.",
+        "type": "object",
+        "required": [
+          "object_id",
+          "target_object_ids",
+          "created_at",
+          "modified_at",
+          "templates"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/TemplateSubmissionObjectID"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the submission."
+          },
+          "target_object_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectID"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the submission."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last modification timestamp of the submission."
+          },
+          "templates": {
+            "type": "array",
+            "description": "The templates associated with this submission (base + augments).",
+            "items": {
+              "$ref": "#/components/schemas/TemplateSubmissionTemplateSummary"
+            }
+          }
+        },
+        "example": {
+          "object_id": "tmplsm_frBobKIAQ_21grAwV83VYz",
+          "description": "Production reverse-proxy rollout",
+          "target_object_ids": [
+            "sc_2CjPVkxoTcubUMOG9jD6yg"
+          ],
+          "created_at": "2023-09-01T12:00:00Z",
+          "modified_at": "2023-09-15T14:30:00Z",
+          "templates": [
+            {
+              "template_object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+              "template_version_object_id": "tmplv_kX9mR4pLSNqZwT1y6vHdJA",
+              "name": "reverse-proxy",
+              "type": "base",
+              "state": "final",
+              "version": 1,
+              "latest_version": 2,
+              "latest_template_version_object_id": "tmplv_Qm7nP8wKR2eYbA3x5cFgVw",
+              "allowed_in_contexts": [],
+              "augment_includes": [
+                "http",
+                "http/server"
+              ],
+              "created_at": "2023-09-01T12:00:00Z",
+              "modified_at": "2023-09-15T14:30:00Z"
+            }
+          ]
+        }
+      },
+      "TemplateSubmissionTemplateSummary": {
+        "description": "A template entry within a submission, including the specific version used.",
+        "type": "object",
+        "required": [
+          "template_object_id",
+          "template_version_object_id",
+          "name",
+          "type",
+          "state",
+          "version",
+          "latest_version",
+          "latest_template_version_object_id",
+          "created_at",
+          "modified_at"
+        ],
+        "properties": {
+          "template_object_id": {
+            "$ref": "#/components/schemas/TemplateObjectID"
+          },
+          "template_version_object_id": {
+            "$ref": "#/components/schemas/TemplateVersionObjectID",
+            "description": "The specific template version used in this submission."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the template."
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the template."
+          },
+          "type": {
+            "$ref": "#/components/schemas/TemplateType"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TemplateVersionState"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The version number of the template version used in this submission."
+          },
+          "latest_version": {
+            "type": "integer",
+            "description": "The latest version number generated for this template."
+          },
+          "latest_template_version_object_id": {
+            "$ref": "#/components/schemas/TemplateVersionObjectID"
+          },
+          "allowed_in_contexts": {
+            "type": "array",
+            "description": "The contexts this template is allowed in (augment templates only).",
+            "items": {
+              "$ref": "#/components/schemas/TemplateContextPath"
+            }
+          },
+          "augment_includes": {
+            "type": "array",
+            "description": "The augment context paths this template includes.",
+            "items": {
+              "$ref": "#/components/schemas/TemplateContextPath"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the template."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last modification timestamp of the template."
+          }
+        },
+        "example": {
+          "template_object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+          "template_version_object_id": "tmplv_kX9mR4pLSNqZwT1y6vHdJA",
+          "name": "reverse-proxy",
+          "description": "A base template for setting up a reverse proxy",
+          "type": "base",
+          "state": "final",
+          "version": 1,
+          "latest_version": 2,
+          "latest_template_version_object_id": "tmplv_Qm7nP8wKR2eYbA3x5cFgVw",
+          "allowed_in_contexts": [],
+          "augment_includes": [
+            "http",
+            "http/server",
+            "http/upstream"
+          ],
+          "created_at": "2023-09-01T12:00:00Z",
+          "modified_at": "2023-09-15T14:30:00Z"
+        }
+      },
       "FilterNameTemplates": {
         "type": "string",
         "description": "Keywords for config templates filters.\n",
@@ -14528,36 +16410,42 @@
           "filter_name_templates_allowed_in_contexts"
         ]
       },
+      "StagedConfigCreation": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/StagedConfigObjectID"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "description": "Creation status for the staged config:\n* `failed` - The creation failed.\n* `succeeded` - The creation was successful.\n",
+            "type": "string",
+            "enum": [
+              "failed",
+              "succeeded"
+            ],
+            "x-enum-varnames": [
+              "staged_config_status_failed",
+              "staged_config_status_succeeded"
+            ]
+          }
+        }
+      },
       "EventRequestOutcome": {
         "type": "string",
-        "description": "WAF enforcement decision for the request.",
+        "description": "Binary outcome of WAF processing for the request.",
         "enum": [
-          "blocked",
           "passed",
-          "alerted"
+          "rejected"
         ],
         "x-enum-varnames": [
-          "request_outcome_blocked",
           "request_outcome_passed",
-          "request_outcome_alerted"
-        ]
-      },
-      "EventLevel": {
-        "type": "string",
-        "description": "Log level classification for the security event.\nFollows standard logging convention for severity.\n",
-        "enum": [
-          "DEBUG",
-          "INFO",
-          "WARNING",
-          "ERROR",
-          "CRITICAL"
-        ],
-        "x-enum-varnames": [
-          "event_level_debug",
-          "event_level_info",
-          "event_level_warning",
-          "event_level_error",
-          "event_level_critical"
+          "request_outcome_rejected"
         ]
       },
       "SignatureAccuracy": {
@@ -14592,27 +16480,23 @@
       },
       "RequestStatus": {
         "type": "string",
-        "description": "Status of request processing by the WAF.",
+        "description": "WAF enforcement decision for the request.",
         "enum": [
-          "complete",
-          "truncated",
-          "malformed",
-          "skipped",
-          "aborted"
+          "blocked",
+          "alerted",
+          "passed"
         ],
         "x-enum-varnames": [
-          "request_status_complete",
-          "request_status_truncated",
-          "request_status_malformed",
-          "request_status_skipped",
-          "request_status_aborted"
+          "request_status_blocked",
+          "request_status_alerted",
+          "request_status_passed"
         ]
       },
       "AttacksDimensionField": {
         "type": "string",
         "description": "Available dimensions for grouping and filtering attack analytics.\n",
         "enum": [
-          "request_outcome",
+          "request_status",
           "request_outcome_reason",
           "request_method",
           "ip",
@@ -14620,11 +16504,11 @@
           "policy",
           "url",
           "response_code",
-          "instance_object_id",
-          "csg_object_id"
+          "hostname",
+          "threat_campaign"
         ],
         "x-enum-varnames": [
-          "attacks_dimension_request_outcome",
+          "attacks_dimension_request_status",
           "attacks_dimension_request_outcome_reason",
           "attacks_dimension_request_method",
           "attacks_dimension_ip",
@@ -14632,19 +16516,19 @@
           "attacks_dimension_policy",
           "attacks_dimension_url",
           "attacks_dimension_response_code",
-          "attacks_dimension_instance_object_id",
-          "attacks_dimension_csg_object_id"
+          "attacks_dimension_hostname",
+          "attacks_dimension_threat_campaign"
         ]
       },
       "AttacksTimeSeriesDimensionField": {
         "type": "string",
         "description": "Dimensions available for time-series grouping.\nLimited to fixed enum dimensions that can be efficiently aggregated per time bucket.\n",
         "enum": [
-          "request_outcome",
+          "request_status",
           "request_outcome_reason"
         ],
         "x-enum-varnames": [
-          "attacks_ts_dimension_request_outcome",
+          "attacks_ts_dimension_request_status",
           "attacks_ts_dimension_request_outcome_reason"
         ]
       },
@@ -14696,18 +16580,77 @@
           "order_direction_desc"
         ]
       },
+      "AnalyticsFilterField": {
+        "type": "string",
+        "description": "Field names available for filtering analytics queries.\nThis is a superset of all group_by dimensions. You can filter by any field,\neven when not grouping by it.\n",
+        "enum": [
+          "request_outcome",
+          "request_outcome_reason",
+          "request_method",
+          "response_code",
+          "ip",
+          "country",
+          "url",
+          "policy",
+          "instance_object_id",
+          "csg_object_id",
+          "threat_campaign",
+          "hostname",
+          "request_host",
+          "support_id",
+          "violation_rating",
+          "request_status",
+          "accuracy",
+          "risk",
+          "signature_id",
+          "signature_name",
+          "cve",
+          "violation",
+          "sub_violation",
+          "context",
+          "context_key",
+          "context_value"
+        ],
+        "x-enum-varnames": [
+          "analytics_filter_field_request_outcome",
+          "analytics_filter_field_request_outcome_reason",
+          "analytics_filter_field_request_method",
+          "analytics_filter_field_response_code",
+          "analytics_filter_field_ip",
+          "analytics_filter_field_country",
+          "analytics_filter_field_url",
+          "analytics_filter_field_policy",
+          "analytics_filter_field_instance_object_id",
+          "analytics_filter_field_csg_object_id",
+          "analytics_filter_field_threat_campaign",
+          "analytics_filter_field_hostname",
+          "analytics_filter_field_request_host",
+          "analytics_filter_field_support_id",
+          "analytics_filter_field_violation_rating",
+          "analytics_filter_field_request_status",
+          "analytics_filter_field_accuracy",
+          "analytics_filter_field_risk",
+          "analytics_filter_field_signature_id",
+          "analytics_filter_field_signature_name",
+          "analytics_filter_field_cve",
+          "analytics_filter_field_violation",
+          "analytics_filter_field_sub_violation",
+          "analytics_filter_field_context",
+          "analytics_filter_field_context_key",
+          "analytics_filter_field_context_value"
+        ]
+      },
       "AnalyticsFilter": {
         "type": "object",
-        "description": "A single filter condition on a dimension.\nGeneric schema supporting both attacks and signature analytics filtering.\n",
+        "description": "A single filter condition.\nGeneric schema supporting both attacks and signature analytics filtering.\n",
         "required": [
-          "dimension",
+          "field",
           "operator",
           "values"
         ],
         "properties": {
-          "dimension": {
-            "type": "string",
-            "description": "The dimension to filter by. Accepts any dimension from either\nAttacksDimensionField or SignaturesDimensionField enums.\n"
+          "field": {
+            "$ref": "#/components/schemas/AnalyticsFilterField"
           },
           "operator": {
             "$ref": "#/components/schemas/FilterOperator"
@@ -14729,9 +16672,9 @@
         "type": "object",
         "description": "Specifies the sort order for dynamic dimension results.\n",
         "properties": {
-          "dimension": {
+          "field": {
             "type": "string",
-            "description": "Field to sort by.\n- `count`: Sort by count (default)\n- `value`: Sort alphabetically by dimension value\n",
+            "description": "Field to sort by.\n- `count`: Sort by count (default)\n- `value`: Sort alphabetically by field value\n",
             "enum": [
               "count",
               "value"
@@ -14743,7 +16686,7 @@
           }
         },
         "example": {
-          "dimension": "count",
+          "field": "count",
           "direction": "desc"
         }
       },
@@ -14790,8 +16733,8 @@
                     "$ref": "#/components/schemas/AttacksDimensionField"
                   },
                   {
-                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `request_outcome` - blocked, passed, alerted\n* `request_method` - GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH\n\n**Simple array dimensions** (returned as arrays with code/count):\n* `response_code` - HTTP response codes\n\n**Dynamic dimensions** (returned as arrays with cross-dimension context):\n* `ip`, `country`, `policy`, `url`, `instance_object_id`, `csg_object_id`\n\n**Response behavior:**\n- If omitted: Returns `total` count only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
-                    "example": "request_outcome"
+                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `request_status` - blocked, alerted, passed\n* `request_method` - GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH\n\n**Simple array dimensions** (returned as arrays with code/count):\n* `response_code` - HTTP response codes\n\n**Dynamic dimensions** (returned as arrays with cross-dimension context):\n* `ip`, `country`, `policy`, `url`, `hostname`\n\n**Response behavior:**\n- If omitted: Returns `total` count only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
+                    "example": "request_status"
                   }
                 ]
               },
@@ -14828,8 +16771,8 @@
                     "$ref": "#/components/schemas/AttacksTimeSeriesDimensionField"
                   },
                   {
-                    "description": "Dimension to break down time-series by.\nLimited to fixed enum dimensions for performance.\n\n* `request_outcome` - Returns `blocked`, `passed`, `alerted` series\n* `request_outcome_reason` - Returns the underlying reason for the outcome.\n\n**Common `request_outcome_reason` values:**\n- `SECURITY_WAF_OK`: Legitimate request, no violations.\n- `SECURITY_WAF_VIOLATION`: Request blocked due to signature or protocol violation.\n- `SECURITY_WAF_FLAGGED`: Violation detected, but request allowed (Transparent/Alert-only mode).\n- `SECURITY_WAF_VIOLATION_TRANSPARENT`: Request would have been blocked, but the policy/signature is in staging/transparent mode.\n- `SECURITY_NGINX_VIOLATION`: Request rejected due to NGINX-level constraints (e.g., malformed headers).\n- `SECURITY_WAF_BYPASS`: Request was explicitly allowed due to an allow-list or bypass rule.\n\n**Response behavior:**\n- If omitted: Returns `total` series only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
-                    "example": "request_outcome"
+                    "description": "Dimension to break down time-series by.\nLimited to fixed enum dimensions for performance.\n\n* `request_status` - Returns `blocked`, `alerted`, `passed` series\n* `request_outcome_reason` - Returns the underlying reason for the outcome.\n\n**Common `request_outcome_reason` values:**\n- `SECURITY_WAF_OK`: Legitimate request, no violations.\n- `SECURITY_WAF_VIOLATION`: Request blocked due to signature or protocol violation.\n- `SECURITY_WAF_FLAGGED`: Violation detected, but request allowed (Transparent/Alert-only mode).\n- `SECURITY_WAF_VIOLATION_TRANSPARENT`: Request would have been blocked, but the policy/signature is in staging/transparent mode.\n- `SECURITY_NGINX_VIOLATION`: Request rejected due to NGINX-level constraints (e.g., malformed headers).\n- `SECURITY_WAF_BYPASS`: Request was explicitly allowed due to an allow-list or bypass rule.\n\n**Response behavior:**\n- If omitted: Returns `total` series only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
+                    "example": "request_status"
                   }
                 ]
               },
@@ -14845,18 +16788,502 @@
           }
         ]
       },
+      "QueryMetadata": {
+        "type": "object",
+        "description": "Query metadata returned with analytics responses.\nReflects the actual time range and resolution used for the query.\n",
+        "properties": {
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The start of the query time range (inclusive)."
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The end of the query time range (exclusive)."
+          },
+          "resolution": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Resolution"
+              },
+              {
+                "description": "The time bucket size used for time-series queries.\nOnly present in time-series responses.\n"
+              }
+            ]
+          }
+        },
+        "example": {
+          "start_time": "2024-01-15T00:00:00Z",
+          "end_time": "2024-01-15T23:59:59Z",
+          "resolution": "1h"
+        }
+      },
+      "RequestStatusCountsResponse": {
+        "type": "object",
+        "description": "Attack counts grouped by WAF enforcement status.\nEach property represents a distinct status with its count.\n",
+        "properties": {
+          "blocked": {
+            "type": "integer",
+            "description": "Count of attacks that were blocked by the WAF."
+          },
+          "alerted": {
+            "type": "integer",
+            "description": "Count of attacks that were alerted but not blocked (transparent mode)."
+          },
+          "passed": {
+            "type": "integer",
+            "description": "Count of attacks that passed through with no violations."
+          }
+        },
+        "example": {
+          "blocked": 1200,
+          "alerted": 200,
+          "passed": 100
+        }
+      },
+      "RequestOutcomeReasonCountsResponse": {
+        "type": "object",
+        "description": "Total counts grouped by the underlying request outcome reason for the enforcement decision.\n",
+        "properties": {
+          "SECURITY_WAF_OK": {
+            "type": "integer",
+            "description": "Total requests passed with no security violations.",
+            "example": 1024
+          },
+          "SECURITY_WAF_VIOLATION": {
+            "type": "integer",
+            "description": "Total requests blocked due to a policy or signature violation.",
+            "example": 88
+          },
+          "SECURITY_WAF_FLAGGED": {
+            "type": "integer",
+            "description": "Total violations detected but allowed (Policy in Transparent/Alert mode).",
+            "example": 11
+          },
+          "SECURITY_WAF_VIOLATION_TRANSPARENT": {
+            "type": "integer",
+            "description": "Total violations detected but allowed (Individual signature in Staging).",
+            "example": 2
+          },
+          "SECURITY_NGINX_VIOLATION": {
+            "type": "integer",
+            "description": "Total requests rejected due to NGINX-level parsing errors.",
+            "example": 5
+          },
+          "SECURITY_WAF_BYPASS": {
+            "type": "integer",
+            "description": "Total requests explicitly allowed via allow-lists or bypass rules.",
+            "example": 0
+          }
+        }
+      },
+      "RequestMethodCountsResponse": {
+        "type": "object",
+        "description": "Attack counts grouped by HTTP request method.\nEach property represents an HTTP method with its count.\n",
+        "properties": {
+          "get": {
+            "type": "integer",
+            "description": "Count of attacks using GET method."
+          },
+          "post": {
+            "type": "integer",
+            "description": "Count of attacks using POST method."
+          },
+          "put": {
+            "type": "integer",
+            "description": "Count of attacks using PUT method."
+          },
+          "delete": {
+            "type": "integer",
+            "description": "Count of attacks using DELETE method."
+          },
+          "patch": {
+            "type": "integer",
+            "description": "Count of attacks using PATCH method."
+          },
+          "connect": {
+            "type": "integer",
+            "description": "Count of attacks using CONNECT method."
+          },
+          "head": {
+            "type": "integer",
+            "description": "Count of attacks using HEAD method."
+          },
+          "options": {
+            "type": "integer",
+            "description": "Count of attacks using OPTIONS method."
+          },
+          "trace": {
+            "type": "integer",
+            "description": "Count of attacks using TRACE method."
+          }
+        },
+        "example": {
+          "get": 800,
+          "post": 500,
+          "put": 50
+        }
+      },
+      "AccuracyCountsResponse": {
+        "type": "object",
+        "description": "Signature hit counts grouped by accuracy level.\nEach property represents an accuracy level with its count.\n",
+        "properties": {
+          "low": {
+            "type": "integer",
+            "description": "Count of signature hits with low accuracy."
+          },
+          "medium": {
+            "type": "integer",
+            "description": "Count of signature hits with medium accuracy."
+          },
+          "high": {
+            "type": "integer",
+            "description": "Count of signature hits with high accuracy."
+          }
+        },
+        "example": {
+          "low": 150,
+          "medium": 420,
+          "high": 700
+        }
+      },
+      "RiskCountsResponse": {
+        "type": "object",
+        "description": "Signature hit counts grouped by risk level.\nEach property represents a risk level with its count.\n",
+        "properties": {
+          "low": {
+            "type": "integer",
+            "description": "Count of signature hits with low risk."
+          },
+          "medium": {
+            "type": "integer",
+            "description": "Count of signature hits with medium risk."
+          },
+          "high": {
+            "type": "integer",
+            "description": "Count of signature hits with high risk."
+          },
+          "critical": {
+            "type": "integer",
+            "description": "Count of signature hits with critical risk."
+          }
+        },
+        "example": {
+          "low": 200,
+          "medium": 350,
+          "high": 520,
+          "critical": 200
+        }
+      },
+      "ResponseCodeItem": {
+        "type": "object",
+        "description": "Attack counts for a specific HTTP response code.\n",
+        "required": [
+          "code",
+          "count"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "HTTP response code (e.g., \"403\", \"200\", \"500\").",
+            "example": "403"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of attacks resulting in this response code."
+          }
+        },
+        "example": {
+          "code": "403",
+          "count": 450
+        }
+      },
+      "DistinctCounts": {
+        "type": "object",
+        "description": "Cross-dimension counts providing context about the attacks for a given dimension value.\nEach field represents a COUNT(DISTINCT ...) aggregation.\n\nFor example, when grouping by IP address:\n- `ips` will be 1 (the IP itself)\n- `urls` shows how many different URLs were targeted from this IP\n- `violations` shows how many different violation types were triggered\n- `policies` shows how many different WAF policies were matched\n",
+        "required": [
+          "ips",
+          "urls",
+          "violations",
+          "policies"
+        ],
+        "properties": {
+          "ips": {
+            "type": "integer",
+            "description": "Count of distinct source IP addresses associated with this dimension value."
+          },
+          "urls": {
+            "type": "integer",
+            "description": "Count of distinct URLs targeted."
+          },
+          "violations": {
+            "type": "integer",
+            "description": "Count of distinct violation types detected."
+          },
+          "policies": {
+            "type": "integer",
+            "description": "Count of distinct WAF policies that were triggered."
+          }
+        },
+        "example": {
+          "ips": 15,
+          "urls": 8,
+          "violations": 12,
+          "policies": 3
+        }
+      },
+      "DimensionItem": {
+        "type": "object",
+        "description": "A single item in a dimensional breakdown for dynamic dimensions.\n",
+        "required": [
+          "value",
+          "count",
+          "distinct"
+        ],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The dimension value being grouped. Content depends on the `group_by` dimension:\n- `ip`: Client IP address (e.g., \"203.0.113.42\")\n- `country`: ISO 3166-1 alpha-2 country code (e.g., \"US\")\n- `url`: Request URL path (e.g., \"/api/login\")\n- `policy`: WAF policy name (e.g., \"strict-policy\")\n"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Total number of attacks for this dimension value within the queried time range.\n"
+          },
+          "distinct": {
+            "$ref": "#/components/schemas/DistinctCounts"
+          },
+          "country": {
+            "type": "string",
+            "maxLength": 2,
+            "description": "ISO 3166-1 alpha-2 country code for the IP address.\nOnly present when `group_by` is `ip`.\n"
+          }
+        },
+        "example": {
+          "value": "203.0.113.42",
+          "count": 450,
+          "distinct": {
+            "ips": 1,
+            "urls": 3,
+            "violations": 5,
+            "policies": 1
+          },
+          "country": "US"
+        }
+      },
+      "AttacksQueryResponse": {
+        "type": "object",
+        "description": "Response for attack analytics query.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` count and `threat_campaigns` (distinct count)\n- With `group_by`: Returns dimensional breakdown only (e.g., `request_status`), `total` and `threat_campaigns` are omitted\n\nThe `total`/`threat_campaigns` and dimensional breakdowns are mutually exclusive.\n",
+        "required": [
+          "query_metadata"
+        ],
+        "properties": {
+          "query_metadata": {
+            "$ref": "#/components/schemas/QueryMetadata"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total attack count for the query. Only present when no `group_by` is specified.\n"
+          },
+          "threat_campaigns": {
+            "type": "integer",
+            "description": "Count of distinct threat campaigns in the queried time range.\nOnly present when no `group_by` is specified.\n"
+          },
+          "request_status": {
+            "$ref": "#/components/schemas/RequestStatusCountsResponse"
+          },
+          "request_outcome_reason": {
+            "$ref": "#/components/schemas/RequestOutcomeReasonCountsResponse"
+          },
+          "request_method": {
+            "$ref": "#/components/schemas/RequestMethodCountsResponse"
+          },
+          "ip": {
+            "type": "array",
+            "description": "Attack counts grouped by client IP address. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/DimensionItem"
+            }
+          },
+          "country": {
+            "type": "array",
+            "description": "Attack counts grouped by source country. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/DimensionItem"
+            }
+          },
+          "policy": {
+            "type": "array",
+            "description": "Attack counts grouped by WAF policy name. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/DimensionItem"
+            }
+          },
+          "url": {
+            "type": "array",
+            "description": "Attack counts grouped by request URL. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/DimensionItem"
+            }
+          },
+          "response_code": {
+            "type": "array",
+            "description": "Attack counts grouped by HTTP response code. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/ResponseCodeItem"
+            }
+          },
+          "hostname": {
+            "type": "array",
+            "description": "Attack counts grouped by NGINX instance hostname. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/DimensionItem"
+            }
+          },
+          "threat_campaign": {
+            "type": "array",
+            "description": "Attack counts grouped by threat campaign name. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/DimensionItem"
+            }
+          }
+        }
+      },
+      "TimeSeriesDataPoint": {
+        "type": "object",
+        "description": "A single data point in a time series for a given dimension.\n",
+        "required": [
+          "timestamp",
+          "count"
+        ],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The start time of this bucket."
+          },
+          "count": {
+            "type": "integer",
+            "description": "The count for this time bucket.\nRepresents the pivot entity type:\n- **For attacks endpoint**: Count of attack events\n- **For signatures endpoint**: Count of signature hits (pattern occurrences)\n"
+          }
+        },
+        "example": {
+          "timestamp": "2024-01-15T00:00:00Z",
+          "count": 120
+        }
+      },
+      "RequestStatusTimeSeries": {
+        "type": "object",
+        "description": "Time-series data grouped by WAF enforcement status.\nEach property contains an array of data points for that status.\n",
+        "properties": {
+          "blocked": {
+            "type": "array",
+            "description": "Time series of blocked attack counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "alerted": {
+            "type": "array",
+            "description": "Time series of alerted attack counts (transparent mode).",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "passed": {
+            "type": "array",
+            "description": "Time series of passed attack counts (no violations).",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          }
+        }
+      },
+      "RequestOutcomeReasonTimeSeries": {
+        "type": "object",
+        "description": "Time-series data grouped by the specific outcome reason for the enforcement decision.\nEach property contains an array of data points representing that specific reason's count over time.\n",
+        "properties": {
+          "SECURITY_WAF_OK": {
+            "type": "array",
+            "description": "Request passed with no security violations detected.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "SECURITY_WAF_VIOLATION": {
+            "type": "array",
+            "description": "Request blocked due to a confirmed signature or protocol violation.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "SECURITY_WAF_FLAGGED": {
+            "type": "array",
+            "description": "Violation detected, but allowed due to policy-level transparent mode.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "SECURITY_WAF_VIOLATION_TRANSPARENT": {
+            "type": "array",
+            "description": "Individual signature or violation was in staging/transparent mode and did not block.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "SECURITY_NGINX_VIOLATION": {
+            "type": "array",
+            "description": "Request rejected due to NGINX-level constraints (e.g., malformed headers).",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "SECURITY_WAF_BYPASS": {
+            "type": "array",
+            "description": "Request was explicitly allowed due to an allow-list or bypass rule.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          }
+        }
+      },
+      "AttacksTimeSeriesQueryResponse": {
+        "type": "object",
+        "description": "Response for attack analytics time-series query.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` series only (array of data points)\n- With `group_by`: Returns dimensional breakdown only (e.g., `request_status`), `total` is omitted\n\nThe `total` and dimensional breakdowns are mutually exclusive.\n\n**Time alignment:** All series arrays contain the same timestamps, aligned to the\nresolution boundary. Buckets with no events are zero-filled to ensure consistent\ndata points across all series for chart rendering.\n",
+        "required": [
+          "query_metadata"
+        ],
+        "properties": {
+          "query_metadata": {
+            "$ref": "#/components/schemas/QueryMetadata"
+          },
+          "total": {
+            "type": "array",
+            "description": "Total attack counts over time. Only present when no `group_by` is specified.\n",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "request_status": {
+            "$ref": "#/components/schemas/RequestStatusTimeSeries"
+          },
+          "request_outcome_reason": {
+            "$ref": "#/components/schemas/RequestOutcomeReasonTimeSeries"
+          }
+        }
+      },
       "SignaturesDimensionField": {
         "type": "string",
         "description": "Available dimensions for grouping and filtering signature analytics.\n",
         "enum": [
-          "request_outcome",
+          "request_status",
           "accuracy",
           "risk",
           "signature",
           "cve"
         ],
         "x-enum-varnames": [
-          "signatures_dimension_request_outcome",
+          "signatures_dimension_request_status",
           "signatures_dimension_accuracy",
           "signatures_dimension_risk",
           "signatures_dimension_signature",
@@ -14867,12 +17294,12 @@
         "type": "string",
         "description": "Dimensions available for time-series grouping of signature data.\nLimited to fixed enum dimensions that can be efficiently aggregated per time bucket.\n",
         "enum": [
-          "request_outcome",
+          "request_status",
           "accuracy",
           "risk"
         ],
         "x-enum-varnames": [
-          "signatures_ts_dimension_request_outcome",
+          "signatures_ts_dimension_request_status",
           "signatures_ts_dimension_accuracy",
           "signatures_ts_dimension_risk"
         ]
@@ -14892,7 +17319,7 @@
                     "$ref": "#/components/schemas/SignaturesDimensionField"
                   },
                   {
-                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `request_outcome` - blocked, passed, alerted\n* `accuracy` - low, medium, high\n* `risk` - low, medium, high, critical\n\n**Dynamic dimensions** (returned as arrays sorted by count descending):\n* `signature` - Individual signatures with id, name, accuracy, risk\n* `cve` - CVE identifiers\n\n**Response behavior:**\n- If omitted: Returns `total` (signature hits) and `unique` (distinct signatures)\n- If specified: Returns dimensional breakdown, `total` and `unique` are omitted\n",
+                    "description": "Dimension to aggregate results by.\n\n**Fixed enum dimensions** (returned as objects with known keys):\n* `request_status` - blocked, alerted, passed\n* `accuracy` - low, medium, high\n* `risk` - low, medium, high, critical\n\n**Dynamic dimensions** (returned as arrays sorted by count descending):\n* `signature` - Individual signatures with id, name, accuracy, risk\n* `cve` - CVE identifiers\n\n**Response behavior:**\n- If omitted: Returns `total` (signature hits) and `unique` (distinct signatures)\n- If specified: Returns dimensional breakdown, `total` and `unique` are omitted\n",
                     "example": "signature"
                   }
                 ]
@@ -14930,8 +17357,8 @@
                     "$ref": "#/components/schemas/SignaturesTimeSeriesDimensionField"
                   },
                   {
-                    "description": "Dimension to break down time-series by.\nLimited to fixed enum dimensions for performance.\n\n* `request_outcome` - Returns `blocked`, `passed`, `alerted` series\n* `accuracy` - Returns `low`, `medium`, `high` series\n* `risk` - Returns `low`, `medium`, `high`, `critical` series\n\n**Response behavior:**\n- If omitted: Returns `total` series only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
-                    "example": "request_outcome"
+                    "description": "Dimension to break down time-series by.\nLimited to fixed enum dimensions for performance.\n\n* `request_status` - Returns `blocked`, `alerted`, `passed` series\n* `accuracy` - Returns `low`, `medium`, `high` series\n* `risk` - Returns `low`, `medium`, `high`, `critical` series\n\n**Response behavior:**\n- If omitted: Returns `total` series only\n- If specified: Returns dimensional breakdown, `total` is omitted\n",
+                    "example": "request_status"
                   }
                 ]
               },
@@ -14946,6 +17373,235 @@
             }
           }
         ]
+      },
+      "SignatureDimensionItem": {
+        "type": "object",
+        "description": "A single item in the signature dimensional breakdown.\nIncludes signature metadata (id, name, accuracy, risk) along with hit count.\n",
+        "required": [
+          "signature_id",
+          "name",
+          "count",
+          "accuracy",
+          "risk"
+        ],
+        "properties": {
+          "signature_id": {
+            "type": "string",
+            "description": "The unique identifier for the signature.\n",
+            "example": "200001834"
+          },
+          "name": {
+            "type": "string",
+            "description": "The human-readable name of the signature.\n",
+            "example": "Unix hidden (dot-file)"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of times this signature was triggered within the queried time range.\n"
+          },
+          "accuracy": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SignatureAccuracy"
+              },
+              {
+                "description": "The accuracy level of the signature.",
+                "example": "high"
+              }
+            ]
+          },
+          "risk": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SignatureRisk"
+              },
+              {
+                "description": "The risk level of the signature.",
+                "example": "medium"
+              }
+            ]
+          },
+          "distinct": {
+            "$ref": "#/components/schemas/DistinctCounts"
+          }
+        },
+        "example": {
+          "signature_id": "200001834",
+          "name": "Unix hidden (dot-file)",
+          "count": 141,
+          "accuracy": "high",
+          "risk": "medium",
+          "distinct": {
+            "ips": 12,
+            "urls": 5,
+            "violations": 3,
+            "policies": 2
+          }
+        }
+      },
+      "CveDimensionItem": {
+        "type": "object",
+        "description": "A single item in the CVE dimensional breakdown.\n",
+        "required": [
+          "value",
+          "count"
+        ],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The CVE identifier (e.g., \"CVE-2021-44228\").\n",
+            "example": "CVE-2021-44228"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of signature hits associated with this CVE.\n"
+          },
+          "distinct": {
+            "$ref": "#/components/schemas/DistinctCounts"
+          }
+        },
+        "example": {
+          "value": "CVE-2021-44228",
+          "count": 450,
+          "distinct": {
+            "ips": 8,
+            "urls": 3,
+            "violations": 2,
+            "policies": 1
+          }
+        }
+      },
+      "SignaturesQueryResponse": {
+        "type": "object",
+        "description": "Response for signature analytics query.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` (signature hits) and `unique` (distinct signatures)\n- With `group_by`: Returns dimensional breakdown only, `total` and `unique` are omitted\n\nThe `total`/`unique` and dimensional breakdowns are mutually exclusive.\n",
+        "required": [
+          "query_metadata"
+        ],
+        "properties": {
+          "query_metadata": {
+            "$ref": "#/components/schemas/QueryMetadata"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total signature hit count for the query.\nOnly present when no `group_by` is specified.\n"
+          },
+          "unique": {
+            "type": "integer",
+            "description": "Count of distinct signatures triggered.\nOnly present when no `group_by` is specified.\n"
+          },
+          "request_status": {
+            "$ref": "#/components/schemas/RequestStatusCountsResponse"
+          },
+          "accuracy": {
+            "$ref": "#/components/schemas/AccuracyCountsResponse"
+          },
+          "risk": {
+            "$ref": "#/components/schemas/RiskCountsResponse"
+          },
+          "signature": {
+            "type": "array",
+            "description": "Signature hit counts grouped by individual signature. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/SignatureDimensionItem"
+            }
+          },
+          "cve": {
+            "type": "array",
+            "description": "Signature hit counts grouped by CVE. Sorted by count descending.",
+            "items": {
+              "$ref": "#/components/schemas/CveDimensionItem"
+            }
+          }
+        }
+      },
+      "AccuracyTimeSeries": {
+        "type": "object",
+        "description": "Time-series data grouped by signature accuracy level.\nEach property contains an array of data points for that accuracy.\n",
+        "properties": {
+          "low": {
+            "type": "array",
+            "description": "Time series of low-accuracy signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "medium": {
+            "type": "array",
+            "description": "Time series of medium-accuracy signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "high": {
+            "type": "array",
+            "description": "Time series of high-accuracy signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          }
+        }
+      },
+      "RiskTimeSeries": {
+        "type": "object",
+        "description": "Time-series data grouped by signature risk level.\nEach property contains an array of data points for that risk level.\n",
+        "properties": {
+          "low": {
+            "type": "array",
+            "description": "Time series of low-risk signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "medium": {
+            "type": "array",
+            "description": "Time series of medium-risk signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "high": {
+            "type": "array",
+            "description": "Time series of high-risk signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "critical": {
+            "type": "array",
+            "description": "Time series of critical-risk signature hit counts.",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          }
+        }
+      },
+      "SignaturesTimeSeriesQueryResponse": {
+        "type": "object",
+        "description": "Response for signature analytics time-series query.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` series only (array of data points)\n- With `group_by`: Returns dimensional breakdown only (e.g., `request_status`), `total` is omitted\n\nThe `total` and dimensional breakdowns are mutually exclusive.\n\n**Time alignment:** All series arrays contain the same timestamps, aligned to the\nresolution boundary. Buckets with no events are zero-filled to ensure consistent\ndata points across all series for chart rendering.\n",
+        "required": [
+          "query_metadata"
+        ],
+        "properties": {
+          "query_metadata": {
+            "$ref": "#/components/schemas/QueryMetadata"
+          },
+          "total": {
+            "type": "array",
+            "description": "Total signature hit counts over time. Only present when no `group_by` is specified.\n",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesDataPoint"
+            }
+          },
+          "request_status": {
+            "$ref": "#/components/schemas/RequestStatusTimeSeries"
+          },
+          "accuracy": {
+            "$ref": "#/components/schemas/AccuracyTimeSeries"
+          },
+          "risk": {
+            "$ref": "#/components/schemas/RiskTimeSeries"
+          }
+        }
       },
       "HttpMetadata": {
         "type": "object",
@@ -15123,17 +17779,6 @@
             "description": "WAF support identifier for correlating with support cases.",
             "example": "1844305495056427365"
           },
-          "request_outcome": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EventRequestOutcome"
-              },
-              {
-                "description": "WAF enforcement decision for the request.",
-                "example": "blocked"
-              }
-            ]
-          },
           "policy_name": {
             "type": "string",
             "description": "Name of the WAF policy that processed the request.",
@@ -15177,41 +17822,10 @@
               "violations"
             ],
             "properties": {
-              "type": {
-                "type": "string",
-                "description": "Event type classification.",
-                "example": "Security Event"
-              },
               "version": {
                 "type": "string",
                 "description": "Event schema version.",
                 "example": "v1.0"
-              },
-              "level": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/EventLevel"
-                  },
-                  {
-                    "description": "Log level classification for the security event.\n",
-                    "example": "WARNING"
-                  }
-                ]
-              },
-              "service_id": {
-                "type": "string",
-                "description": "Service identifier that generated the event.",
-                "example": "2b63403b-b8fc-4dd5-a0e9-0ee7d2d252fb"
-              },
-              "correlation_id": {
-                "type": "string",
-                "description": "Identifier for correlating related events.",
-                "example": "6707cc37-d416-4077-bd12-777491027011"
-              },
-              "description": {
-                "type": "string",
-                "description": "Human-readable event description.",
-                "example": "Attack detected"
               },
               "system_id": {
                 "type": "string",
@@ -15237,8 +17851,19 @@
                     "$ref": "#/components/schemas/RequestStatus"
                   },
                   {
-                    "description": "Status of request processing.",
-                    "example": "complete"
+                    "description": "WAF enforcement decision for the request.",
+                    "example": "blocked"
+                  }
+                ]
+              },
+              "request_outcome": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EventRequestOutcome"
+                  },
+                  {
+                    "description": "Binary outcome of WAF processing for the request.",
+                    "example": "rejected"
                   }
                 ]
               },
@@ -15307,7 +17932,7 @@
                 "description": "Request URI path.",
                 "example": "/"
               },
-              "method": {
+              "request_method": {
                 "type": "string",
                 "description": "HTTP request method.",
                 "example": "GET"
@@ -15316,6 +17941,17 @@
                 "type": "integer",
                 "description": "HTTP response status code.",
                 "example": 403
+              },
+              "request_status": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestStatus"
+                  },
+                  {
+                    "description": "WAF enforcement decision for the request.",
+                    "example": "blocked"
+                  }
+                ]
               }
             }
           }
@@ -15344,18 +17980,34 @@
           }
         ]
       },
+      "ViolationsMetricField": {
+        "type": "string",
+        "description": "Count metric for violation context group_by queries.\n\n* hits: Total occurrence count (default)\n* unique: Distinct violation types per context\n",
+        "enum": [
+          "hits",
+          "unique"
+        ],
+        "x-enum-varnames": [
+          "violations_metric_hits",
+          "violations_metric_unique"
+        ]
+      },
       "ViolationsDimensionField": {
         "type": "string",
-        "description": "Available dimensions for grouping and filtering violation analytics.\n\n* violation: Primary violation type (e.g., \"Attack signature detected\", \"Illegal meta character in value\")\n* sub_violation: Sub-category or additional violation classification providing more granular detail. A value of \"N/A\" indicates no additional information.\n* context: Location where violation was detected (header, cookie, parameter, uri, request, other)\n",
+        "description": "Available dimensions for grouping and filtering violation analytics.\n\n* violation: Primary violation type (e.g., \"Attack signature detected\", \"Illegal meta character in value\")\n* sub_violation: Sub-category or additional violation classification providing more granular detail. A value of \"N/A\" indicates no additional information.\n* context: Location where violation was detected (header, cookie, parameter, uri, request, other)\n* context_key: Field name within the detection context (cookie name, header name, parameter name)\n* context_value: Field value that triggered the violation\n",
         "enum": [
           "violation",
           "sub_violation",
-          "context"
+          "context",
+          "context_key",
+          "context_value"
         ],
         "x-enum-varnames": [
           "violations_dimension_violation",
           "violations_dimension_sub_violation",
-          "violations_dimension_context"
+          "violations_dimension_context",
+          "violations_dimension_context_key",
+          "violations_dimension_context_value"
         ]
       },
       "ViolationsQueryRequest": {
@@ -15378,6 +18030,17 @@
                   }
                 ]
               },
+              "metric": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ViolationsMetricField"
+                  },
+                  {
+                    "description": "Count metric when `group_by=context`. Omit for default (`hits`).\n\n* `hits`: Total violation occurrence count per context\n* `unique`: Distinct violation types per context\n",
+                    "example": "unique"
+                  }
+                ]
+              },
               "filter": {
                 "type": "array",
                 "description": "Pre-aggregation filter conditions.\nAll filters are combined with AND logic.\nUse the `in` operator to achieve `OR` within a single dimension.\n\nSupported filter dimensions include attack-level dimensions (policy, ip, url, etc.)\nin addition to violation-specific dimensions.\n",
@@ -15392,6 +18055,477 @@
             }
           }
         ]
+      },
+      "ViolationDistinctCounts": {
+        "type": "object",
+        "description": "Cross-dimension counts providing context about violations for a given dimension value.\nEach field represents a distinct count aggregation.\n",
+        "required": [
+          "ips",
+          "urls",
+          "policies"
+        ],
+        "properties": {
+          "ips": {
+            "type": "integer",
+            "description": "Count of distinct source IP addresses associated with this violation type."
+          },
+          "urls": {
+            "type": "integer",
+            "description": "Count of distinct URLs where this violation was triggered."
+          },
+          "policies": {
+            "type": "integer",
+            "description": "Count of distinct WAF policies that triggered this violation."
+          }
+        },
+        "example": {
+          "ips": 15,
+          "urls": 8,
+          "policies": 3
+        }
+      },
+      "ViolationDimensionItem": {
+        "type": "object",
+        "description": "A single item in a violation dimensional breakdown.\n",
+        "required": [
+          "value",
+          "count",
+          "distinct"
+        ],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The violation or sub-violation name.\nExamples: \"Attack signature detected\", \"Illegal meta character in value\"\n"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Total number of times this violation occurred within the queried time range.\n"
+          },
+          "distinct": {
+            "$ref": "#/components/schemas/ViolationDistinctCounts"
+          }
+        },
+        "example": {
+          "value": "Illegal meta character in value",
+          "count": 1080,
+          "distinct": {
+            "ips": 1,
+            "urls": 1,
+            "policies": 1
+          }
+        }
+      },
+      "ViolationContextCountsResponse": {
+        "type": "object",
+        "description": "Violation counts grouped by context type.\nIndicates where in the HTTP request the violation was detected.\n",
+        "properties": {
+          "cookie": {
+            "type": "integer",
+            "description": "Count of violations detected in cookie values."
+          },
+          "header": {
+            "type": "integer",
+            "description": "Count of violations detected in HTTP headers."
+          },
+          "parameter": {
+            "type": "integer",
+            "description": "Count of violations detected in request parameters (query string or body)."
+          },
+          "request": {
+            "type": "integer",
+            "description": "Count of violations detected in the request body or general request context."
+          },
+          "uri": {
+            "type": "integer",
+            "description": "Count of violations detected in the URI/URL path."
+          }
+        },
+        "example": {
+          "cookie": 0,
+          "header": 130,
+          "parameter": 1426,
+          "request": 302,
+          "uri": 0
+        }
+      },
+      "ViolationsQueryResponse": {
+        "type": "object",
+        "description": "Response for violation analytics query.\n\n**Response behavior:**\n- Without `group_by`: Returns `total` (total violation occurrences) and `unique` (distinct violation types)\n- With `group_by`: Returns dimensional breakdown only (e.g., `violation`, `context`), `total` and `unique` are omitted\n\nThe aggregate fields (`total`, `unique`) and dimensional breakdowns are mutually exclusive.\n",
+        "required": [
+          "query_metadata"
+        ],
+        "properties": {
+          "query_metadata": {
+            "$ref": "#/components/schemas/QueryMetadata"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total violation occurrence count for the query.\nOnly present when no `group_by` is specified.\n"
+          },
+          "unique": {
+            "type": "integer",
+            "description": "Count of distinct violation types triggered.\nOnly present when no `group_by` is specified.\n"
+          },
+          "violation": {
+            "type": "array",
+            "description": "Violation counts grouped by violation type.\nSorted by count descending.\n",
+            "items": {
+              "$ref": "#/components/schemas/ViolationDimensionItem"
+            }
+          },
+          "sub_violation": {
+            "type": "array",
+            "description": "Violation counts grouped by sub-violation type.\nSorted by count descending.\n",
+            "items": {
+              "$ref": "#/components/schemas/ViolationDimensionItem"
+            }
+          },
+          "context": {
+            "$ref": "#/components/schemas/ViolationContextCountsResponse"
+          },
+          "context_key": {
+            "type": "array",
+            "description": "Violation counts grouped by detection context and field name.\nSorted by count descending. Only present when `group_by=context_key`.\n",
+            "items": {
+              "$ref": "#/components/schemas/ViolationContextKeyItem"
+            }
+          },
+          "context_value": {
+            "type": "array",
+            "description": "Violation counts grouped by detection context and field value.\nSorted by count descending. Only present when `group_by=context_value`.\n",
+            "items": {
+              "$ref": "#/components/schemas/ViolationContextValueItem"
+            }
+          }
+        }
+      },
+      "ViolationContextKeyItem": {
+        "type": "object",
+        "description": "A single entry from a context_key dimension query.",
+        "properties": {
+          "context": {
+            "type": "string",
+            "description": "Detection context (cookie, header, parameter, uri, request, other).",
+            "example": "parameter"
+          },
+          "context_key": {
+            "type": "string",
+            "description": "Field name within the context (e.g. cookie name, header name, parameter name).",
+            "example": "search"
+          },
+          "context_value": {
+            "type": "string",
+            "description": "Most representative field value for this key.",
+            "example": "<script>alert('XSS')</script>"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of times this key was involved in a violation.",
+            "example": 228
+          }
+        }
+      },
+      "ViolationContextValueItem": {
+        "type": "object",
+        "description": "A single entry from a context_value dimension query.",
+        "properties": {
+          "context": {
+            "type": "string",
+            "description": "Detection context (cookie, header, parameter, uri, request, other).",
+            "example": "parameter"
+          },
+          "context_value": {
+            "type": "string",
+            "description": "Field value that triggered the violation.",
+            "example": "<script>alert('xss')</script>"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of times this value was involved in a violation.",
+            "example": 228
+          }
+        }
+      },
+      "BillingUsageEventsResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          }
+        ],
+        "description": "Paginated response for billing usage events query.\n",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "List of billing usage events matching the query.",
+            "items": {
+              "$ref": "#/components/schemas/BillingUsageEvent"
+            }
+          }
+        }
+      },
+      "BillingUsageEvent": {
+        "type": "object",
+        "description": "A single billing usage event containing NGINX information, usage metrics, NGINX metrics,\nNGINX deployment details, JWT token information, and event metadata.\n",
+        "required": [
+          "event_id",
+          "jti",
+          "nginx_uid"
+        ],
+        "properties": {
+          "nginx_uid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the NGINX instance.",
+            "example": "b84b6b2a-721b-46ce-87a4-449fcbc62bae"
+          },
+          "nginx_version": {
+            "type": "string",
+            "description": "Version of the NGINX instance.",
+            "example": "1.29.3"
+          },
+          "nap_status": {
+            "$ref": "#/components/schemas/NAPStatus"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start time of the event.",
+            "example": "2026-03-20T23:53:51.000Z"
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End time of the event.",
+            "example": "2026-03-23T19:33:19.000Z"
+          },
+          "http_client_received": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes received from HTTP clients.",
+            "example": 11
+          },
+          "http_client_sent": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes sent to HTTP clients.",
+            "example": 12
+          },
+          "http_client_connections": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of HTTP client connections.",
+            "example": 13
+          },
+          "http_client_requests": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of HTTP client requests.",
+            "example": 14
+          },
+          "http_upstream_received": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes received from HTTP upstreams.",
+            "example": 21
+          },
+          "http_upstream_sent": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes sent to HTTP upstreams.",
+            "example": 22
+          },
+          "http_upstream_connections": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of HTTP upstream connections.",
+            "example": 23
+          },
+          "stream_client_received": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes received from Stream clients.",
+            "example": 31
+          },
+          "stream_client_sent": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes sent to Stream clients.",
+            "example": 32
+          },
+          "stream_client_connections": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of Stream client connections.",
+            "example": 33
+          },
+          "stream_upstream_received": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes received from Stream upstreams.",
+            "example": 41
+          },
+          "stream_upstream_sent": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes sent to Stream upstreams.",
+            "example": 42
+          },
+          "stream_upstream_connections": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of Stream upstream connections.",
+            "example": 43
+          },
+          "stream_connections": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total number of stream connections.",
+            "example": 0
+          },
+          "user_agent": {
+            "type": "string",
+            "description": "User agent string.",
+            "example": "nginx/r36"
+          },
+          "workers": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of NGINX workers.",
+            "example": 51
+          },
+          "uptime": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "NGINX uptime.",
+            "example": 52
+          },
+          "reloads": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of NGINX reloads.",
+            "example": 53
+          },
+          "deployment_cluster_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Deployment cluster identifier.",
+            "example": "d24cdb86-9788-4bb5-8d3d-b95d914a618c"
+          },
+          "deployment_cluster_node_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of nodes in the deployment cluster.",
+            "example": 5
+          },
+          "deployment_installation_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Deployment installation identifier.",
+            "example": "c548592a-5afb-4e23-84f0-8a5b197dcf96"
+          },
+          "deployment_product_type": {
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "sub": {
+            "type": "string",
+            "description": "JWT subject claim identifying the subscription associated with this usage event.",
+            "example": "TST-ff13edf7-f912-42c0-ba2e-39c513bb3882"
+          },
+          "jti": {
+            "type": "string",
+            "format": "uuid",
+            "description": "JWT Token ID.",
+            "example": "18a10260-0ec4-11f1-bbca-5d8e192a1888"
+          },
+          "f5_sat": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "F5 service activation time expiry time, as a Unix epoch timestamp.",
+            "example": 1772323200
+          },
+          "f5_order_type": {
+            "type": "string",
+            "description": "F5 order type.",
+            "example": "paid"
+          },
+          "aud": {
+            "type": "string",
+            "description": "JWT audience claim identifying the intended recipient of the token.",
+            "example": "urn:f5:teem"
+          },
+          "iss": {
+            "type": "string",
+            "description": "JWT issuer claim identifying the entity that issued the token.",
+            "example": "F5 Inc."
+          },
+          "iat": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "JWT issued-at time as a Unix epoch timestamp.",
+            "example": 1771637081
+          },
+          "source_type": {
+            "$ref": "#/components/schemas/SourceType"
+          },
+          "dedup_version": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Deduplication version timestamp assigned for storage-level upsert/deduplication.",
+            "example": "2026-03-23T19:33:32.284Z"
+          },
+          "event_id": {
+            "type": "string",
+            "description": "Unique event identifier.",
+            "example": "4nNhnUFf23Zf4PExDYtcYZUkfHlyW48JouApQkxFqzo="
+          }
+        }
+      },
+      "SourceType": {
+        "type": "string",
+        "description": "Source type of the billing usage event.\n* `SOURCE_TYPE_NGINX_ONE` - NGINX One\n* `SOURCE_TYPE_NIM` - NGINX Instance Manager\n",
+        "enum": [
+          "SOURCE_TYPE_NGINX_ONE",
+          "SOURCE_TYPE_NIM"
+        ],
+        "x-enum-varnames": [
+          "source_type_nginx_one",
+          "source_type_nim"
+        ],
+        "example": "SOURCE_TYPE_NGINX_ONE"
+      },
+      "NAPStatus": {
+        "type": "string",
+        "description": "NGINX App Protect status of the instance.\n* `NAP_STATUS_INACTIVE_OR_UNSPECIFIED` - Not specified or inactive\n* `NAP_STATUS_ACTIVE` - Active\n",
+        "enum": [
+          "NAP_STATUS_INACTIVE_OR_UNSPECIFIED",
+          "NAP_STATUS_ACTIVE"
+        ],
+        "x-enum-varnames": [
+          "nap_status_inactive_or_unspecified",
+          "nap_status_active"
+        ],
+        "example": "NAP_STATUS_ACTIVE"
+      },
+      "ProductType": {
+        "type": "string",
+        "description": "Deployment product type.\n* `PRODUCT_TYPE_UNSPECIFIED` - Not specified is treated as being NGINX+\n* `PRODUCT_TYPE_NIC` - NGINX Ingress Controller\n* `PRODUCT_TYPE_NGF` - NGINX Gateway Fabric\n",
+        "enum": [
+          "PRODUCT_TYPE_UNSPECIFIED",
+          "PRODUCT_TYPE_NIC",
+          "PRODUCT_TYPE_NGF"
+        ],
+        "x-enum-varnames": [
+          "product_type_unspecified",
+          "product_type_nic",
+          "product_type_ngf"
+        ],
+        "example": "PRODUCT_TYPE_NIC"
       }
     },
     "examples": {
@@ -15607,6 +18741,12 @@
       "name": "NGINX One Templates",
       "tags": [
         "Templates"
+      ]
+    },
+    {
+      "name": "NGINX One App Protect Analytics",
+      "tags": [
+        "NGINX One App Protect"
       ]
     }
   ]
