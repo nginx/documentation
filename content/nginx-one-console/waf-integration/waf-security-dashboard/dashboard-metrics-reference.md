@@ -50,7 +50,7 @@ Time-series widgets bucket their data based on the selected window — shorter w
 | Last 2–7 days | 1 hour |
 | Last 14 days | 6 hours |
 
-{{< note >}}Security events are retained for **90 days**, but the dashboard time window picker is currently limited to the **last 14 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /note >}}
+{{< call-out "note" >}}Security events are retained for **90 days**, but the dashboard time window picker is currently limited to the **last 14 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
 
 ### Add Filter
 
