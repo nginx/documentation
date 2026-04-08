@@ -39,18 +39,17 @@ Every event carries the support ID, the policy that matched it, the violation an
 
 ## How data is scoped
 
-Security events inherit the scope of the instance that produced them.
+Every security event carries enough context to attribute it to a specific data plane, a specific policy, and the application it targeted.
 
-- **Tenant**: Events belong to the NGINX One Console tenant the data plane is registered to. Tenants do not see each other's data.
-- **Namespace**: Within a tenant, events are partitioned by the namespace the instance lives in. Filters and queries are scoped to the active namespace by default.
-- **Instance and policy**: Each event records the instance hostname and the F5 WAF for NGINX policy name that produced it, so you can attribute activity to a specific data plane and a specific policy version.
-- **Hostname vs. request host**: The dashboard exposes both the NGINX instance hostname and the HTTP `Host` header from the request as separate filterable fields. Use the instance hostname to scope by data plane; use the request host to scope by the application being attacked.
+- **Instance**: Each event records the NGINX instance hostname that produced it. Use this to scope by data plane.
+- **Policy**: Each event records the F5 WAF for NGINX policy that produced it, so you can compare activity across policy versions or rollouts.
+- **Destination hostname**: Each event records the HTTP `Host` header sent by the client. Use this to scope by the application being attacked, which is often distinct from the instance hostname when the same data plane fronts multiple applications.
 
 ---
 
 ## Retention
 
-Security events are retained for **90 days**. Queries that reach further back than 90 days return no results. If you need long-term retention, forward events to an external SIEM with a [custom log profile]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}) in addition to the `secops_dashboard` log profile.
+Security events are retained for **90 days**. Queries that reach further back than 90 days return no results. If you need long-term retention, forward events to an external Security Information and Event Management (SIEM) system with a [custom log profile]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}) in addition to the `secops_dashboard` log profile.
 
 ---
 

@@ -18,9 +18,9 @@ The security monitoring dashboard depends on a consistent set of fields being pr
 
 ## What is the `secops_dashboard` log profile?
 
-The `secops_dashboard` log profile is a pre-configured, system-managed F5 WAF for NGINX log profile that captures the security telemetry fields the NGINX One Console security monitoring dashboard expects. It is the default log profile used by the security dashboard. NGINX One Console ships and maintains it; you cannot edit or delete it.
+The `secops_dashboard` log profile is a pre-configured, system-managed F5 WAF for NGINX log profile that captures the security telemetry fields the NGINX One Console security monitoring dashboard expects. It is the default log profile used by the security dashboard. NGINX One Console maintains it as a system asset; you cannot edit or delete it.
 
-It is similar in structure and function to other [log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}), but it is treated as a system asset rather than a user-managed resource. The `secops_dashboard` log profile is the only log profile guaranteed to produce data the security dashboard can render correctly. Custom log profiles can coexist with it and continue to serve other logging destinations (SIEMs, file logs, custom syslog endpoints), but they are not interpreted by the security dashboard.
+It is similar in structure and function to other [log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}), but it is treated as a system asset rather than a user-managed resource. The `secops_dashboard` log profile is the only log profile guaranteed to produce data the security dashboard can render correctly. Custom log profiles can coexist with it and continue to serve other logging destinations such as Security Information and Event Management (SIEM) systems, file logs, or custom syslog endpoints, but they are not interpreted by the security dashboard.
 
 This document covers what the `secops_dashboard` log profile is and when to use it. For the steps to deploy it as part of setting up an instance, see [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}}).
 

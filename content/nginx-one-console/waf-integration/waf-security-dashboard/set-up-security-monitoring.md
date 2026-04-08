@@ -30,6 +30,7 @@ Before you begin, ensure you have:
 - **F5 WAF for NGINX installed and loaded**: F5 WAF for NGINX installed on the same host as NGINX Plus, with the `load_module` directive added to `nginx.conf` and `app_protect_enable on;` set in the contexts you want WAF to inspect. See [Install F5 WAF for NGINX]({{< ref "/waf/install/virtual-environment.md" >}}) and [Update configuration files]({{< ref "/waf/install/virtual-environment.md#update-configuration-files" >}}).
 - **A WAF policy deployed to the instance**: An F5 WAF for NGINX policy referenced by an `app_protect_policy_file` directive in the same context where you enable WAF. See [WAF policies]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}) for how to create and deploy a policy through NGINX One Console.
 - **Instance connected to NGINX One Console**: The data plane is registered with NGINX One Console and NGINX Agent is running on it. See [Add an instance]({{< ref "/nginx-one-console/connect-instances/add-instance.md" >}}).
+- **NGINX Agent 3.9.0 or later**: Security event forwarding to NGINX One Console requires NGINX Agent 3.9.0 or later. See the [NGINX Agent install and upgrade guide]({{< ref "/nginx-one-console/agent/install-upgrade/_index.md" >}}) to upgrade an existing agent.
 
 ---
 
@@ -97,14 +98,15 @@ Re-run the deployment wizard after fixing the configuration.
 
 **Symptom**: The publish toast confirmed success, the instance is online in NGINX One Console, but the **WAF > Security Dashboard** shows no events for your instance.
 
-**Cause**: The most common causes are that the `secops_dashboard` log profile is not deployed to that instance, the `app_protect_security_log` directive is in a context that does not handle traffic, or the instance has not yet processed any requests F5 WAF for NGINX would inspect.
+**Cause**: The most common causes are that NGINX Agent on the instance is older than 3.9.0 and does not include the auto-configured security event pipeline, the `secops_dashboard` log profile is not deployed to that instance, the `app_protect_security_log` directive is in a context that does not handle traffic, or the instance has not yet processed any requests F5 WAF for NGINX would inspect.
 
 **Fix**:
 
-1. Go to **WAF** > **Log Profiles** and confirm `secops_dashboard` is listed as deployed to the target instance under **Deployed To**.
-2. Open the instance configuration and confirm the `app_protect_security_log` directive sits in a `server` or `location` block that actually handles request traffic — not in a context the data plane never enters.
-3. Confirm the instance is receiving traffic. Until F5 WAF for NGINX inspects a request, the dashboard has nothing to display.
-4. Apply a global filter on the dashboard to scope to your instance hostname or policy, in case events are present but hidden by an existing filter.
+1. Confirm NGINX Agent on the instance is **3.9.0 or later**. Earlier 3.x releases publish the configuration successfully but do not forward security events to NGINX One Console. See the [NGINX Agent install and upgrade guide]({{< ref "/nginx-one-console/agent/install-upgrade/_index.md" >}}) to upgrade.
+2. Go to **WAF** > **Log Profiles** and confirm `secops_dashboard` is listed as deployed to the target instance under **Deployed To**.
+3. Open the instance configuration and confirm the `app_protect_security_log` directive sits in a `server` or `location` block that actually handles request traffic — not in a context the data plane never enters.
+4. Confirm the instance is receiving traffic. Until F5 WAF for NGINX inspects a request, the dashboard has nothing to display.
+5. Apply a global filter on the dashboard to scope to your instance hostname or policy, in case events are present but hidden by an existing filter.
 
 If events still do not appear after a request is processed, contact F5 support with the instance hostname and the time window you tested.
 

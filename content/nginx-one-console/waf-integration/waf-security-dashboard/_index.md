@@ -5,7 +5,7 @@ weight: 425
 url: /nginx-one-console/waf-integration/waf-security-dashboard
 ---
 
-Use the security monitoring module in NGINX One Console to collect, visualize, and query security events from F5 WAF for NGINX instances. Review attacks, violations, and triggered signatures to assess threats and fine-tune your policies.
+Use the security monitoring module in NGINX One Console to collect, visualize, and query security events from F5 WAF for NGINX running on NGINX Plus instances. Review attacks, violations, and triggered signatures to assess threats and fine-tune your policies.
 
 This section covers:
 

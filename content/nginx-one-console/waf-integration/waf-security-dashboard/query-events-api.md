@@ -16,7 +16,7 @@ nd-audience: developer
 
 ## Overview
 
-You can use the NGINX One Console API to query F5 WAF for NGINX security events programmatically. The API exposes the same security event store the security monitoring dashboard reads from, so any view you can build in the dashboard can also be reproduced through the API. Use the API to integrate WAF activity into your own dashboards, automated reports, SIEM enrichment pipelines, or alerting workflows.
+You can use the NGINX One Console API to query F5 WAF for NGINX security events programmatically. The API exposes the same security event store the security monitoring dashboard reads from, so any view you can build in the dashboard can also be reproduced through the API. Use the API to integrate WAF activity into your own dashboards, automated reports, Security Information and Event Management (SIEM) enrichment pipelines, or alerting workflows.
 
 For the full request and response schema of each operation, including the supported filter fields and group-by dimensions, see the [API reference guide]({{< ref "/nginx-one-console/api/api-reference-guide.md" >}}).
 
