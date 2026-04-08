@@ -1,29 +1,40 @@
-// /nginxaas-google/js/cost-calculator_v2.js
+// /nginxaas-google/js/cost-calculator_gc.js
 (() => {
-  // ---- Multi-tier pricing ----
-  const tierCosts = {
-    tier1: {
-      fixedHourly: 0.10,   // $/hour
-      ncuHourly: 0.008,    // $/NCU/hour
-      dataPerGb: 0.0096    // $/GB (monthly)
-    },
-    tier2: {
-      fixedHourly: 0.133,
-      ncuHourly: 0.0106,
-      dataPerGb: 0.0127
-    },
-    tier3: {
-      fixedHourly: 0.166,
-      ncuHourly: 0.0132,
-      dataPerGb: 0.0159
-    }
+  // ---- Region to tier mapping ----
+  const regionsTiers = {
+    "us-east1":        { label: "US East 1",        tier: 1 },
+    "us-east4":        { label: "US East 4",        tier: 1 },
+    "us-west1":        { label: "US West 1",        tier: 1 },
+    "us-west2":        { label: "US West 2",        tier: 1 },
+    "us-west3":        { label: "US West 3",        tier: 1 },
+    "us-west4":        { label: "US West 4",        tier: 1 },
+    "us-central1":     { label: "US Central 1",     tier: 1 },
+    "europe-west1":    { label: "Europe West 1",    tier: 1 },
+    "europe-west4":    { label: "Europe West 4",    tier: 1 },
+    "europe-north1":   { label: "Europe North 1",   tier: 1 },
+    "asia-south2":     { label: "Asia South 2",     tier: 1 },
+    "europe-west2":    { label: "Europe West 2",    tier: 2 },
+    "europe-west3":    { label: "Europe West 3",    tier: 2 },
+    "asia-southeast1": { label: "Asia Southeast 1", tier: 2 },
+    "asia-south1":     { label: "Asia South 1",     tier: 2 },
+    "europe-central2": { label: "Europe Central 2", tier: 3 },
   };
-  let currentTier = "tier1";
-  let costs = tierCosts[currentTier];
+
+  // ---- Tier pricing ----
+  const tierCosts = {
+    1: { fixedHourly: 0.10,  ncuHourly: 0.008,  dataPerGb: 0.0096 },
+    2: { fixedHourly: 0.133, ncuHourly: 0.0106, dataPerGb: 0.0127 },
+    3: { fixedHourly: 0.166, ncuHourly: 0.0132, dataPerGb: 0.0159 },
+  };
+
+  const HOURS_PER_MONTH = 730;
+
+  let currentRegion = Object.keys(regionsTiers)[0]; // "us-east1"
 
   const utils = {
-    calculateCost: (costs, values) => {
-      const hoursPortion = values.numHours * (costs.fixedHourly + (values.numNcus * costs.ncuHourly));
+    calculateCost: (region, values) => {
+      const costs = tierCosts[regionsTiers[region].tier];
+      const hoursPortion = HOURS_PER_MONTH * (costs.fixedHourly + (values.numNcus * costs.ncuHourly));
       const dataPortion = values.dataProcessedGb * costs.dataPerGb;
       return hoursPortion + dataPortion;
     },
@@ -36,18 +47,16 @@
     },
   };
 
-  // ---- Form state (defaults: 10 NCUs on load) ----
+  // ---- Form state (defaults: 10 NCUs, 0 GB on load) ----
   const calculatorValuesState = {
     numNcus: 10,
-    numHours: 730,
-    dataProcessedGb: 0
+    dataProcessedGb: 0,
   };
 
   // ---- Element refs ----
   const costFormElements = {
-    tierSelect: document.getElementById("tierSelect"),
+    regionSelect: document.getElementById("regionSelect"),
     numNcus: document.getElementById("numNcus"),
-    numHours: document.getElementById("numHours"),
     dataProcessedGb: document.getElementById("dataProcessedGb"),
   };
 
@@ -61,18 +70,27 @@
     total: document.getElementById("cost-detail-total"),
   };
 
+  const populateRegionSelect = () => {
+    const $select = costFormElements.regionSelect;
+    Object.keys(regionsTiers).forEach((regionKey) => {
+      const option = document.createElement("option");
+      option.value = regionKey;
+      option.textContent = `${regionsTiers[regionKey].label} (Tier ${regionsTiers[regionKey].tier})`;
+      $select.append(option);
+    });
+  };
+
   // ---- Listeners ----
   const setupChangeListeners = (values = calculatorValuesState) => {
-    Object.keys(costFormElements).forEach((elName) => {
+    costFormElements.regionSelect.addEventListener("change", (evt) => {
+      currentRegion = evt.target.value;
+      updateCost(values);
+    });
+
+    ["numNcus", "dataProcessedGb"].forEach((elName) => {
       costFormElements[elName].addEventListener("change", (evt) => {
-        if (elName === "tierSelect") {
-          currentTier = evt.target.value;
-          costs = tierCosts[currentTier];
-          updateCost(costs, values);
-        } else {
-          values[elName] = Number(evt.target.value);
-          updateCost(costs, values);
-        }
+        values[elName] = Number(evt.target.value);
+        updateCost(values);
       });
     });
 
@@ -83,27 +101,21 @@
 
   // ---- Init values ----
   const initializeValues = (values = calculatorValuesState) => {
-    Object.keys(costFormElements).forEach((elName) => {
-      const el = costFormElements[elName];
-      if (el && (el.tagName.toLowerCase() === "input" || el.tagName.toLowerCase() === "select")) {
-        if (elName === "tierSelect") {
-          el.value = currentTier;
-        } else {
-          el.value = values[elName];
-        }
-      }
-    });
+    costFormElements.regionSelect.value = currentRegion;
+    costFormElements.numNcus.value = values.numNcus;
+    costFormElements.dataProcessedGb.value = values.dataProcessedGb;
   };
 
   // ---- Updates ----
-  const updateCost = (costs, values = calculatorValuesState) => {
-    const updatedTotalCost = utils.calculateCost(costs, values);
+  const updateCost = (values = calculatorValuesState) => {
+    const updatedTotalCost = utils.calculateCost(currentRegion, values);
     document.getElementById("total-value").textContent = utils.currencyFormatter(updatedTotalCost);
-    updateTotalCostDetails(values, updatedTotalCost, costs);
+    updateTotalCostDetails(values, updatedTotalCost);
   };
 
-  const updateTotalCostDetails = (formValues, totalCost, costs) => {
-    totalCostDetailElements.hours.textContent = formValues.numHours;
+  const updateTotalCostDetails = (formValues, totalCost) => {
+    const costs = tierCosts[regionsTiers[currentRegion].tier];
+    totalCostDetailElements.hours.textContent = HOURS_PER_MONTH;
     totalCostDetailElements.ncus.textContent = formValues.numNcus;
     totalCostDetailElements.fixedHourly.textContent = utils.currencyFormatter(costs.fixedHourly, 3);
     totalCostDetailElements.ncuHourly.textContent = utils.currencyFormatter(costs.ncuHourly, 3);
@@ -124,9 +136,10 @@
 
   // ---- Boot ----
   const start = async () => {
+    populateRegionSelect();
     setupChangeListeners();
     initializeValues(calculatorValuesState);
-    updateCost(costs, calculatorValuesState); // immediately show total on load
+    updateCost(calculatorValuesState); // immediately show total on load
   };
   start();
 })();
