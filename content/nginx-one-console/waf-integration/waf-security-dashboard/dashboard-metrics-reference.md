@@ -38,19 +38,11 @@ Two controls at the top of the page apply to every widget on every tab.
 
 ### Time window
 
-Selects the query window for all widgets. The picker offers preset windows from **Last 5 minutes** to **Last 14 days**. You can also select a custom range by highlighting an area of interest on any time-series chart.
+Selects the query window for all widgets. The picker offers preset windows from **Last 5 minutes** to **Last 60 days**. You can also select a custom range by highlighting an area of interest on any time-series chart.
 
-Time-series widgets bucket their data based on the selected window — shorter windows produce finer buckets.
+Time-series widgets bucket their data automatically based on the selected window — shorter windows produce finer buckets.
 
-| Selected window | Default bucket size for time-series widgets |
-|:--- |:--- |
-| Last 5–30 minutes | 1 minute |
-| Last 1–6 hours | 1 minute |
-| Last 12–24 hours | 1 hour |
-| Last 2–7 days | 1 hour |
-| Last 14 days | 6 hours |
-
-{{< call-out "note" >}}Security events are retained for **90 days**, but the dashboard time window picker is currently limited to the **last 14 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
+{{< call-out "note" >}}Security events are retained for **90 days**, but the dashboard time window picker tops out at the **last 60 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
 
 ### Add Filter
 
@@ -73,7 +65,7 @@ Applies one or more filter expressions to every widget on every tab. The dashboa
 | **Signature ID** | The numeric F5 WAF for NGINX signature ID. |
 | **Signature Name** | The name of a triggered signature. |
 | **Signature Risk** | The risk level of a triggered signature: `low`, `medium`, or `high`. |
-| **Status** | The final WAF decision: `blocked` or `alerted`. |
+| **Status** | The final WAF decision: `blocked`, `alerted`, or `passed`. |
 | **Subviolation** | The sub-violation name within a violation. |
 | **Support ID** | The unique identifier F5 WAF for NGINX assigns to each event. |
 | **Threat Campaign** | The name of a matched threat campaign. |
@@ -143,7 +135,7 @@ The Event Logs tab lists individual security events matching the global filters 
 
 | Column | Description |
 |:--- |:--- |
-| **Status** | The final WAF decision: `blocked` or `alerted`. |
+| **Status** | The final WAF decision: `blocked`, `alerted`, or `passed`. |
 | **URI** | The request URI that triggered the event. |
 | **Policy** | The F5 WAF for NGINX policy that produced the event. |
 | **Time** | When F5 WAF for NGINX produced the event. |

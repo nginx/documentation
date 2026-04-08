@@ -29,7 +29,7 @@ This document covers what the module is and how data flows through it. For deplo
 The data pipeline has four stages:
 
 1. **Detection.** F5 WAF for NGINX inspects requests on the data plane and produces a security log entry whenever a request matches a violation, signature, or threat campaign.
-2. **Forwarding.** F5 WAF for NGINX writes the entry over syslog (port `1514` on localhost) using the [default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}). NGINX Agent's OpenTelemetry collector receives it through the `tcplog/nginx_app_protect` receiver.
+2. **Forwarding.** F5 WAF for NGINX writes the entry over syslog (port `1514` on localhost) using the [`secops_dashboard` log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}). NGINX Agent's OpenTelemetry collector receives it through the `tcplog/nginx_app_protect` receiver.
 3. **Transport.** The collector batches events and exports them to NGINX One Console through the `otlp/default` exporter. Batching keeps the upstream call rate low while keeping per-event delivery latency under a minute.
 4. **Storage and query.** NGINX One Console parses, indexes, and stores the events. The security dashboard and the analytics API both read from the same store.
 
@@ -50,7 +50,7 @@ Security events inherit the scope of the instance that produced them.
 
 ## Retention
 
-Security events are retained for **90 days**. Queries that reach further back than 90 days return no results. If you need long-term retention, forward events to an external SIEM with a [custom log profile]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}) in addition to the default log profile.
+Security events are retained for **90 days**. Queries that reach further back than 90 days return no results. If you need long-term retention, forward events to an external SIEM with a [custom log profile]({{< ref "/nginx-one-console/waf-integration/log-profiles/_index.md" >}}) in addition to the `secops_dashboard` log profile.
 
 ---
 
@@ -83,7 +83,7 @@ A platform team needs a weekly summary of WAF activity across hundreds of instan
 For more information, see:
 
 - [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}})
-- [Default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}})
+- [secops_dashboard log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}})
 - [Dashboard metrics reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
 - [Find a security event by Support ID]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/find-event-by-support-id.md" >}})
 - [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}})

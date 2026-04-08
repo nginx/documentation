@@ -51,7 +51,7 @@ The Security Event detail panel surfaces every field stored on the event:
 - **Time of Request** — when F5 WAF for NGINX produced the event.
 - **Triggered violations and signatures** — every violation and signature that fired on the event, with their full attributes (name, accuracy, risk, CVE, context).
 - **Threat campaigns** — any threat campaigns matched by the event.
-- **Policy and outcome** — the F5 WAF for NGINX policy that produced the event, the request status (`blocked` or `alerted`), and the outcome reason.
+- **Policy and outcome** — the F5 WAF for NGINX policy that produced the event, the request status (`blocked`, `alerted`, or `passed`), and the outcome reason.
 
 ---
 
@@ -59,7 +59,8 @@ The Security Event detail panel surfaces every field stored on the event:
 
 A Support ID can come from any system that observed the request:
 
-- **F5 WAF for NGINX security logs on the data plane** — the Support ID is the first field in every log line emitted by the [default log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}).
+- **NGINX One Console Event Logs tab** — every row in the Event Logs table on the [security dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md#event-logs-tab" >}}) includes the Support ID. Copy a Support ID from there to share in a ticket, support case, or follow-up message.
+- **F5 WAF for NGINX security logs on the data plane** — the Support ID is the first field in every log line emitted by the [`secops_dashboard` log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}).
 - **F5 WAF for NGINX rejection page** — when F5 WAF for NGINX blocks a request, the response page typically includes the Support ID so the user can quote it back to support.
 - **Customer support cases** — end users who hit a Request Rejected page can be asked to provide the Support ID from that page.
 
