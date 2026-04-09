@@ -14,7 +14,7 @@ nd-summary: >
 nd-audience: operator
 ---
 
-Security monitoring brings F5 WAF for NGINX events from every connected instance into a single place in NGINX One Console. Before you set it up, it helps to understand what data the system collects, how it gets there, and how it is organized.
+Security monitoring brings F5 WAF for NGINX events from every connected instance into a single place in NGINX One Console. This page explains what data the system collects, how it flows, and how it is organized.
 
 ## What is security monitoring?
 
@@ -37,13 +37,13 @@ Every event carries the support ID, the policy that matched it, the violation an
 
 ---
 
-## How data is scoped
+## Data scoping
 
 Every security event carries enough context to attribute it to a specific data plane, a specific policy, and the application it targeted.
 
 - **Instance**: Each event records the NGINX instance hostname that produced it. Use this to scope by data plane.
-- **Policy**: Each event records the F5 WAF for NGINX policy that produced it, so you can compare activity across policy versions or rollouts.
-- **Destination hostname**: Each event records the HTTP `Host` header sent by the client. Use this to scope by the application being attacked, which is often distinct from the instance hostname when the same data plane fronts multiple applications.
+- **Policy**: Each event records the F5 WAF for NGINX policy that produced it, so you can compare activity across policy versions or rollouts — useful for measuring the impact of a policy change before promoting it.
+- **Destination hostname**: Each event records the HTTP `Host` header sent by the client — the *application* being attacked, not the instance hostname (which identifies the data plane). Use this when one data plane fronts multiple applications and you need to scope by app rather than by infrastructure.
 
 ---
 
@@ -57,11 +57,11 @@ Security events are retained for **90 days**. Queries that reach further back th
 
 ### Operator: triage an active attack
 
-An operator notices a spike in attack volume on the security dashboard. They use the global filters to narrow down to the affected policy and time window, then drill into the top signatures and attacked endpoints to identify which signatures fired and which URLs were targeted. From a single event, they pull the Support ID, the X-Forwarded-For chain, and the raw request to confirm the source and decide whether to tighten the policy.
+An operator notices a spike in attack volume on the security dashboard. The operator uses the global filters to narrow down to the affected policy and time window, then drills into the top signatures and attacked endpoints to identify which signatures fired and which URLs were targeted. From a single event, the operator pulls the Support ID, the X-Forwarded-For chain, and the raw request to confirm the source and decide whether to tighten the policy.
 
 ### Security engineer: tune a noisy policy
 
-A security engineer suspects a policy is producing false positives. They open the security dashboard, filter by policy and blocked requests, and review the breakdown of triggered signatures. The high-volume signatures with low risk and accuracy stand out as candidates for tuning. They cross-check a few events against the raw requests to confirm the signature is firing on legitimate traffic before adjusting the policy.
+A security engineer suspects a policy is producing false positives. The engineer opens the security dashboard, filters by policy and blocked requests, and reviews the breakdown of triggered signatures. The high-volume signatures with low risk and accuracy stand out as candidates for tuning. The engineer cross-checks a few events against the raw requests to confirm the signature is firing on legitimate traffic before adjusting the policy.
 
 ### Platform team: report on WAF activity across the fleet
 

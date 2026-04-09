@@ -6,7 +6,7 @@ title: secops_dashboard log profile
 description: "An immutable, pre-compiled F5 WAF for NGINX log profile that captures the security telemetry the security dashboard needs."
 weight: 200
 toc: true
-nd-keywords: "default log profile, security dashboard, F5 WAF for NGINX, log profile, security telemetry, NAP log profile"
+nd-keywords: "secops_dashboard, default log profile, security dashboard, F5 WAF for NGINX, log profile, security telemetry, NAP log profile, system-managed profile, pre-compiled, immutable log profile, NGINX One Console, WAF log profile"
 nd-summary: >
   The `secops_dashboard` log profile is a pre-configured F5 WAF for NGINX log profile that captures security violations in a standardized format for the security monitoring dashboard. It is the default log profile used by the security dashboard.
   Use it to send security telemetry from your NGINX Plus data planes to NGINX One Console without authoring or compiling a custom log profile.
@@ -14,7 +14,7 @@ nd-summary: >
 nd-audience: operator
 ---
 
-The security monitoring dashboard depends on a consistent set of fields being present on every security event. The `secops_dashboard` log profile is the contract that guarantees that consistency across every data plane forwarding events to NGINX One Console.
+The security monitoring dashboard depends on a consistent set of fields being present on every security event. The `secops_dashboard` log profile is the guarantee of that consistency: it ensures every data plane forwards the same set of fields, so the dashboard can render every event correctly.
 
 ## What is the `secops_dashboard` log profile?
 
@@ -54,7 +54,7 @@ The `secops_dashboard` log profile has three properties that distinguish it from
 
 A platform operator wants central visibility into F5 WAF for NGINX events across a fleet of NGINX Plus instances. They deploy the `secops_dashboard` log profile to every instance, knowing that every event will land in NGINX One Console with the same field set, so dashboard widgets, filters, and analytics behave the same regardless of which instance produced the event. They do not need to author, compile, or version-control a log profile to get the dashboard working.
 
-### Security engineer: keep dashboard data consistent during a policy change
+### Security engineer: rolling out a policy change without touching telemetry
 
 A security engineer is rolling out a new WAF policy to a subset of instances and wants the security dashboard to continue showing comparable metrics across the migration. Because the `secops_dashboard` log profile is immutable and shared, the data format does not change with the policy, and the engineer can compare attack counts and signature trends before and after the rollout without normalizing fields.
 

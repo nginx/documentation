@@ -16,9 +16,9 @@ nd-audience: operator
 
 ## Overview
 
-This guide walks you through enabling F5 WAF for NGINX security monitoring on an NGINX Plus instance that is already connected to NGINX One Console. After you complete the steps, security events appear in the [security monitoring dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/_index.md" >}}), where you can review attacks, violations, and triggered signatures.
+Use this guide to enable F5 WAF for NGINX security monitoring on an NGINX Plus instance that is already connected to NGINX One Console. After completing the steps, security events appear in the [security monitoring dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/_index.md" >}}), where you can review attacks, violations, and triggered signatures.
 
-The flow uses the NGINX One Console UI end to end. You deploy the [`secops_dashboard` log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}) to the instance, add the F5 WAF for NGINX directives to the NGINX configuration through the console's config editor, and verify the pipeline by triggering test violations. NGINX Agent automatically configures its OpenTelemetry collector to forward security events to NGINX One Console once it sees the correct directives in the NGINX configuration — you do not need to edit the agent configuration by hand.
+You deploy the [`secops_dashboard` log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}) to the instance through NGINX One Console. You then add the F5 WAF for NGINX directives to the NGINX configuration using the console's config editor, and verify the pipeline by triggering test violations. NGINX Agent automatically configures its OpenTelemetry collector to forward security events to NGINX One Console when it detects the correct directives in the NGINX configuration. You do not need to edit the NGINX Agent configuration by hand.
 
 ---
 
@@ -48,7 +48,7 @@ The security dashboard relies on the `secops_dashboard` log profile to capture s
     - Under **Target**, choose **Instance** or **Config Sync Group** and select your target.
     - In **Log Profile File Path**, specify the path where the compiled bundle should be deployed on the data plane (for example, `/etc/nginx/secops_dashboard.tgz`).
 
-4. Select **Next**. The wizard displays the F5 WAF for NGINX directive snippet to paste into your NGINX configuration, along with the config editor for the target instance.
+4. Select **Next**. The wizard displays the F5 WAF for NGINX directive snippet to paste into your NGINX configuration. The wizard also opens the config editor for the target instance.
 
 5. Open the server block where you want to enable F5 WAF for NGINX (for example, `/etc/nginx/conf.d/default.conf`) and paste the snippet into the `server`, `http`, or `location` context. The snippet looks like this:
 
@@ -57,7 +57,7 @@ The security dashboard relies on the `secops_dashboard` log profile to capture s
     app_protect_security_log /etc/nginx/secops_dashboard.tgz syslog:server=127.0.0.1:1514;
     ```
 
-    Make sure `app_protect_enable on;` and `app_protect_policy_file` are already present in the same context (covered by the prerequisites above).
+    `app_protect_enable on;` and `app_protect_policy_file` must be present in the same context. These are covered in [Before you begin](#before-you-begin).
 
 6. Review the configuration diff the console shows for the affected files, then select **Publish**. NGINX One Console pushes the updated configuration to the instance and reloads NGINX.
 
@@ -67,9 +67,9 @@ For more on the deployment wizard and the alternative **Add File** > **Existing 
 
 ## Verify the setup
 
-When you select **Publish** in the previous step, NGINX One Console pushes the configuration change to the instance and displays a confirmation toast indicating the publish succeeded. At that point both the F5 WAF for NGINX policy and the `secops_dashboard` log profile are in place on the data plane, and the security log directive is wired up to NGINX Agent.
+When you select **Publish** in the previous step, NGINX One Console pushes the configuration change to the instance and displays a confirmation message. At that point, the F5 WAF for NGINX policy and the `secops_dashboard` log profile are in place on the data plane, and the security log directive is wired to NGINX Agent.
 
-From this point on, any request that F5 WAF for NGINX inspects on the instance produces a security event that flows to NGINX One Console. To see those events:
+Any request that F5 WAF for NGINX inspects on the instance produces a security event that flows to NGINX One Console. To see security events in the dashboard:
 
 1. In NGINX One Console, go to **WAF** > **Security Dashboard**.
 2. As your instance handles traffic, attacks, violations, and triggered signatures appear on the dashboard within about a minute of the request being processed.
@@ -114,12 +114,18 @@ If events still do not appear after a request is processed, contact F5 support w
 
 ## References
 
-For more information, see:
+**Conceptual background**
 
 - [Security monitoring overview]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/security-monitoring-overview.md" >}})
+
+**Reference**
+
 - [secops_dashboard log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}})
+- [Dashboard metrics reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
+
+**Related how-to guides**
+
 - [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}})
 - [Add an instance]({{< ref "/nginx-one-console/connect-instances/add-instance.md" >}})
-- [Dashboard metrics reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
 - [Find a security event by Support ID]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/find-event-by-support-id.md" >}})
 - [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}})

@@ -6,7 +6,7 @@ title: Find a security event by Support ID
 description: "Look up an F5 WAF for NGINX security event in NGINX One Console using its Support ID."
 weight: 500
 toc: true
-nd-keywords: "support ID, security event, F5 WAF for NGINX, security dashboard, troubleshooting, event lookup"
+nd-keywords: "support ID, security event, F5 WAF for NGINX, security dashboard, event lookup, Support ID Details, getSecurityEvent, listSecurityEvents, WAF block, rejection page, triage, 90-day retention"
 nd-summary: >
   Use the Support ID Details page in NGINX One Console to look up a single F5 WAF for NGINX security event by its Support ID.
   This is the fastest way to drill from a customer report, an upstream log line, or an alert into the full WAF event record.
@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Every request that F5 WAF for NGINX inspects is assigned a unique **Support ID**. The Support ID stays with the request through every system that touches it — F5 WAF for NGINX security logs, NGINX access logs (when configured), upstream application logs, and the security monitoring dashboard. NGINX One Console exposes a dedicated **Support ID Details** page so you can paste a Support ID and immediately see the full WAF event record without filtering through the dashboard.
+Use the Support ID Details page in NGINX One Console to look up a single F5 WAF for NGINX security event by its Support ID. F5 WAF for NGINX assigns a unique Support ID to every inspected request, and that ID travels through every system that touches the request: security logs, NGINX access logs, upstream application logs, and the security monitoring dashboard.
 
 Use this page when you already know the ID of the event you want to inspect — for example, from a customer support case, a raw F5 WAF for NGINX log line, an alert payload, or an upstream application that captured the ID from a request header. To explore events without a known ID, use the Event Logs tab on the [security monitoring dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md#event-logs-tab" >}}) instead.
 
@@ -28,7 +28,6 @@ Before you begin, ensure you have:
 
 - **A Support ID**: A numeric Support ID for the event you want to inspect. See [Where to find a Support ID](#where-to-find-a-support-id) below.
 - **Security monitoring set up**: F5 WAF for NGINX security events must already be flowing into NGINX One Console for the event to be available. See [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}}).
-- **Within the retention window**: Security events are retained for 90 days. Events older than 90 days are no longer available.
 
 ---
 
@@ -38,7 +37,15 @@ Before you begin, ensure you have:
 2. Paste the Support ID into the **Enter a Support ID** field.
 3. The page displays the **Security Event** detail panel for the matching event, including the request, source, and raw request data.
 
-If no event is found, the most likely causes are that the Support ID does not belong to a WAF-inspected request, the event is older than the 90-day retention window, or the Support ID was mistyped.
+   {{< call-out "note" >}}Security events are retained for 90 days. Events older than 90 days are no longer available.{{< /call-out >}}
+
+### Troubleshooting
+
+If no event is found, the most likely causes are:
+
+- The Support ID does not belong to a WAF-inspected request
+- The event is older than the 90-day retention window
+- The Support ID was mistyped
 
 ---
 
