@@ -6084,7 +6084,7 @@
           "Templates"
         ],
         "summary": "Submit templates for previewing NGINX configuration.",
-        "description": "Submits a set of templates for rendering NGINX configuration.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `true`, the API validates template parameters and renders the full NGINX configuration for preview **without creating a template submission object**. (**Currently, only this mode is supported.**)\n  - When `preview_only` is `false` or omitted, the API is intended to render and create a submission. This feature is **not supported yet**.\n\n**Note:** Currently, only preview mode is implemented. Submission creation will be supported in a future release.\n",
+        "description": "Submits a set of templates for rendering NGINX configuration.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `true`, the API validates template parameters and renders the full NGINX configuration for preview **without creating a template submission object**. (**Currently, only this mode is supported.**)\n  - When `preview_only` is `false` or omitted, the API is intended to render and create a submission. \n    - If no target object ID is provided, a new staged config will be created.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/TemplateSubmissionPreviewOnly"
@@ -6097,6 +6097,17 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/TemplateSubmissionRequest"
+              },
+              "examples": {
+                "SubmissionWithPreviewOnly": {
+                  "$ref": "#/components/examples/SubmissionWithPreviewOnly"
+                },
+                "SubmissionForCreateNewStagedConfig": {
+                  "$ref": "#/components/examples/SubmissionForCreateNewStagedConfig"
+                },
+                "SubmissionForUpdateExistingStagedConfigTarget": {
+                  "$ref": "#/components/examples/SubmissionForUpdateExistingStagedConfigTarget"
+                }
               }
             }
           }
@@ -15425,6 +15436,7 @@
       "TemplateDescription": {
         "type": "string",
         "description": "A human-readable description of the template.",
+        "maxLength": 2048,
         "example": "A base template for setting up a reverse proxy"
       },
       "TemplateObjectID": {
@@ -15945,7 +15957,7 @@
       },
       "TemplateSubmissionRequest": {
         "type": "object",
-        "description": "Defines a request to render an NGINX configuration by combining a single base template \nwith zero or more augment templates.\n\n### Validations and Constraints:\n- All templates referenced by Object ID must be available in the system before submission.\n- Only one base template can be submitted.\n- The base template must explicitly use custom Go function `augment_includes (\"<context_path>\", .)` to apply `augments`.\n- Its not required to include all augments in the request that base template supports.\n- The order of augments in the list determines the order in which they are rendered and applied.\n- Each augment must specify its `target_context`, indicating where it should be applied in \n  the base template.\n- Input values for each template are passed independently via the `values` \n  object, and validated against each template’s Schema.\n\n### Processing:\n- The `base_template` defines the starting point of the NGINX configuration rendering.\n- `conf_path` determines where the rendered configuration from base and augments should be placed within the NGINX directory structure.\n- Each `augment` template is applied in the order provided, inserted at the appropriate target context\n  using the `augment_includes (\"<context_path>\", .)` function declared in the base template.\n- The system validates that each augment is compatible with the specified target context.\n- The final composed configuration is validated to ensure correctness and prevent conflicts or misconfigurations.\n\n### External Template Documentation:\nFor more information on template functions and best practices, refer to:\n  - [Template Function Reference](https://yourdocs.com/templates/functions)\n  - [Template Authoring Guide](https://yourdocs.com/templates/guide)\n",
+        "description": "Defines a request to render an NGINX configuration by combining a single base template \nwith zero or more augment templates.\n\n### Validations and Constraints:\n- All templates referenced by Object ID must be available in the system before submission.\n- Only one base template can be submitted.\n- The base template must explicitly use custom Go function `augment_includes (\"<context_path>\", .)` to apply `augments`.\n- Its not required to include all augments in the request that base template supports.\n- The order of augments in the list determines the order in which they are rendered and applied.\n- Each augment must specify its `target_context`, indicating where it should be applied in \n  the base template.\n- Input values for each template are passed independently via the `values` \n  object, and validated against each template’s Schema.\n- The `payloads` for auxiliary files only accepts types of `managed_certificate` and `managed_key`.\n\n### Processing:\n- The `base_template` defines the starting point of the NGINX configuration rendering.\n- `conf_path` determines where the rendered configuration from base and augments should be placed within the NGINX directory structure.\n- Each `augment` template is applied in the order provided, inserted at the appropriate target context\n  using the `augment_includes (\"<context_path>\", .)` function declared in the base template.\n- The system validates that each augment is compatible with the specified target context.\n- The final composed configuration is validated to ensure correctness and prevent conflicts or misconfigurations.\n\n### External Template Documentation:\nFor more information on template functions and best practices, refer to:\n  - [Template Function Reference](https://yourdocs.com/templates/functions)\n  - [Template Authoring Guide](https://yourdocs.com/templates/guide)\n",
         "required": [
           "conf_path",
           "base_template",
@@ -15954,7 +15966,8 @@
         "properties": {
           "description": {
             "type": "string",
-            "description": "Description of the submission, required when not rendering as preview only."
+            "description": "Description of the submission, required when not rendering as preview only.",
+            "maxLength": 1024
           },
           "target_object_ids": {
             "type": "array",
@@ -16157,7 +16170,7 @@
             "$ref": "#/components/schemas/ObjectID"
           },
           "staged_config_status": {
-            "$ref": "#/components/schemas/StagedConfigCreation"
+            "$ref": "#/components/schemas/StagedConfigSubmission"
           },
           "csg_publication_status": {
             "$ref": "#/components/schemas/ConfigSyncGroupPublication"
@@ -16410,7 +16423,7 @@
           "filter_name_templates_allowed_in_contexts"
         ]
       },
-      "StagedConfigCreation": {
+      "StagedConfigSubmission": {
         "type": "object",
         "required": [
           "status"
@@ -16423,7 +16436,7 @@
             "type": "string"
           },
           "status": {
-            "description": "Creation status for the staged config:\n* `failed` - The creation failed.\n* `succeeded` - The creation was successful.\n",
+            "description": "Submission status for the staged config:\n* `failed` - The submission failed.\n* `succeeded` - The submission was successful.\n",
             "type": "string",
             "enum": [
               "failed",
@@ -16433,6 +16446,10 @@
               "staged_config_status_failed",
               "staged_config_status_succeeded"
             ]
+          },
+          "status_cause": {
+            "type": "string",
+            "example": "staged config does not exist"
           }
         }
       },
@@ -16534,19 +16551,29 @@
       },
       "Resolution": {
         "type": "string",
-        "description": "Time bucket size for aggregation. If not specified, auto-selected based on time range:\n* < 1 hour: 1m\n* 1-6 hours: 5m\n* 6-24 hours: 15m\n* 1-7 days: 1h\n* > 7 days: 1d\n",
+        "description": "Time bucket size for aggregation. Defaults to `1h` when not specified.\nPick a value that yields a reasonable number of buckets for the\nrequested time range (e.g. `30m` for 24h, `2h` for 7d, `12h` for 30d).\n",
         "enum": [
           "1m",
           "5m",
           "15m",
+          "30m",
           "1h",
+          "2h",
+          "4h",
+          "6h",
+          "12h",
           "1d"
         ],
         "x-enum-varnames": [
           "resolution_1m",
           "resolution_5m",
           "resolution_15m",
+          "resolution_30m",
           "resolution_1h",
+          "resolution_2h",
+          "resolution_4h",
+          "resolution_6h",
+          "resolution_12h",
           "resolution_1d"
         ],
         "example": "15m"
@@ -18626,6 +18653,158 @@
               "deployment_status": "latest",
               "object_id": "cert_Tet21AeYTHCj7taOwVfzyw"
             }
+          ]
+        }
+      },
+      "SubmissionWithPreviewOnly": {
+        "value": {
+          "conf_path": "/etc/nginx/nginx.conf",
+          "base_template": {
+            "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+            "values": {
+              "upstream_servers": [
+                "10.0.0.1:8080",
+                "10.0.0.2:8080"
+              ],
+              "server_name": "example.com"
+            }
+          },
+          "augments": [
+            {
+              "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+              "target_context": "http/upstream",
+              "values": {
+                "upstream_servers": [
+                  "10.0.0.1:8080",
+                  "10.0.0.2:8080"
+                ],
+                "server_name": "example.com"
+              }
+            },
+            {
+              "object_id": "tmplv_-xeR3F2TQGm18jnl7bpaAw",
+              "target_context": "http",
+              "values": {
+                "enabled": "on",
+                "types": "text/plain application/json"
+              }
+            },
+            {
+              "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+              "target_context": "http",
+              "values": {
+                "zone_name": "req_limit",
+                "memory": "10m",
+                "rate": "10r/s"
+              }
+            },
+            {
+              "object_id": "tmplv_-cdR3F2TQGm18jnl7bpaZw",
+              "target_context": "http/server",
+              "values": {
+                "zone_name": "req_limit",
+                "burst": 5
+              },
+              "child_augments": [
+                {
+                  "object_id": "tmplv_-cdR3F2TQGm18jnl7bpaZw",
+                  "target_context": "http/server/location",
+                  "values": {
+                    "zone_name": "req_limit",
+                    "burst": 5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "SubmissionForCreateNewStagedConfig": {
+        "value": {
+          "conf_path": "/etc/nginx/nginx.conf",
+          "base_template": {
+            "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+            "values": {
+              "upstream_servers": [
+                "10.0.0.1:8080",
+                "10.0.0.2:8080"
+              ],
+              "server_name": "example.com"
+            }
+          },
+          "augments": [
+            {
+              "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+              "target_context": "http",
+              "values": {
+                "zone_name": "req_limit",
+                "memory": "10m",
+                "rate": "10r/s"
+              }
+            }
+          ],
+          "payloads": [
+            {
+              "type": "managed_certificate",
+              "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+              "paths": [
+                "/etc/nginx/cert.pem"
+              ]
+            },
+            {
+              "type": "managed_key",
+              "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+              "paths": [
+                "/etc/nginx/key.pem"
+              ]
+            }
+          ],
+          "description": "Create a new staged config for reverse proxy with rate limiting"
+        }
+      },
+      "SubmissionForUpdateExistingStagedConfigTarget": {
+        "value": {
+          "conf_path": "/etc/nginx/nginx.conf",
+          "base_template": {
+            "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+            "values": {
+              "upstream_servers": [
+                "10.0.0.1:8080",
+                "10.0.0.2:8080"
+              ],
+              "server_name": "example.com"
+            }
+          },
+          "augments": [
+            {
+              "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+              "target_context": "http",
+              "values": {
+                "zone_name": "req_limit",
+                "memory": "10m",
+                "rate": "10r/s"
+              }
+            }
+          ],
+          "payloads": [
+            {
+              "type": "managed_certificate",
+              "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+              "paths": [
+                "/etc/nginx/cert.pem"
+              ]
+            },
+            {
+              "type": "managed_key",
+              "object_id": "cert_rto8NYiCQputrIasNx2NOA",
+              "paths": [
+                "/etc/nginx/key.pem"
+              ]
+            }
+          ],
+          "description": "Update existing staged config for reverse proxy with rate limiting",
+          "target_object_ids": [
+            "sc_cEoiYCVJRuekVpYOvV1raA"
           ]
         }
       },
