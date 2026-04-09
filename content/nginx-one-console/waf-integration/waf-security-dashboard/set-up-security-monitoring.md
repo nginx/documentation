@@ -128,4 +128,4 @@ If events still do not appear after a request is processed, contact F5 support w
 - [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}})
 - [Add an instance]({{< ref "/nginx-one-console/connect-instances/add-instance.md" >}})
 - [Find a security event by Support ID]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/find-event-by-support-id.md" >}})
-- [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}})
+- [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}})

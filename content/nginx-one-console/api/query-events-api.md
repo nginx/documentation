@@ -4,7 +4,7 @@ nd-docs: DOCS-000
 nd-product: NONECO
 title: Query security events through the API
 description: "List F5 WAF for NGINX security events and run analytics queries through the NGINX One Console API."
-weight: 600
+weight: 200
 toc: true
 nd-keywords: "security events API, analytics API, F5 WAF for NGINX, app-protect, NGINX One Console API"
 nd-summary: >

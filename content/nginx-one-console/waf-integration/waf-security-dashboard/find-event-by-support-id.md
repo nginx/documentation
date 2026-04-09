@@ -89,7 +89,7 @@ An upstream service surfaces an incident referencing a Support ID extracted from
 
 The same lookup is available through the analytics API. Use the [`getSecurityEvent`]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/getSecurityEvent" >}}) operation to fetch a single event, or [`listSecurityEvents`]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/listSecurityEvents" >}}) with `support_id` in `filter_fields` to look up by Support ID programmatically.
 
-For more on querying events through the API, see [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}).
+For more on querying events through the API, see [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}).
 
 ---
 
@@ -98,5 +98,5 @@ For more on querying events through the API, see [Query security events through 
 For more information, see:
 
 - [Security dashboard reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
-- [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}})
+- [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}})
 - [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}})

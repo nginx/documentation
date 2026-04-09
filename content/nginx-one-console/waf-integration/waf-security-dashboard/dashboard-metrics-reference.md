@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Use this reference to look up how the F5 WAF for NGINX security monitoring dashboard is organized and which underlying dimension each widget reads from. Every widget in the dashboard has an in-product tooltip that explains what the displayed values mean. This article mainly covers the dashboard structure, the global controls that affect every widget, and the mapping you need when you want to reproduce a widget's view through the [analytics API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}).
+Use this reference to look up how the F5 WAF for NGINX security monitoring dashboard is organized and which underlying dimension each widget reads from. Every widget in the dashboard has an in-product tooltip that explains what the displayed values mean. This article mainly covers the dashboard structure, the global controls that affect every widget, and the mapping you need when you want to reproduce a widget's view through the [analytics API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}).
 
 ---
 
@@ -42,7 +42,7 @@ Selects the query window for all widgets. The picker offers preset windows from 
 
 Time-series widgets bucket their data automatically based on the selected window — shorter windows produce finer buckets.
 
-{{< call-out "note" >}}Security events are retained for **90 days**, but the dashboard time window picker tops out at the **last 60 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
+{{< call-out "note" >}}Security events are retained for **90 days**, but the dashboard time window picker tops out at the **last 60 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
 
 ### Add Filter
 
@@ -101,7 +101,7 @@ Each widget on the Main tab has a tooltip describing what it displays. The table
 | **Request Methods** | Donut chart showing the share of events for each HTTP method observed in the window. |
 | **Response Codes** | Donut chart showing the share of events for each response code observed in the window. |
 
-To reproduce these widgets through the analytics API, see [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}).
+To reproduce these widgets through the analytics API, see [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}).
 
 ---
 
@@ -120,7 +120,7 @@ The Advanced tab exposes signature- and violation-level analytics for tuning and
 | **Top Threat Campaigns** | Each row shows hits, distinct URIs, IPs, violations, and policies for the threat campaign. |
 | **Top Attacked Instances** | Each row shows hits, distinct URIs, IPs, violations, and policies, scoped to the NGINX instance hostname (not the HTTP `Host` header). |
 
-To reproduce these widgets through the analytics API, see [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}).
+To reproduce these widgets through the analytics API, see [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}).
 
 ---
 
@@ -144,7 +144,7 @@ The Event Logs tab lists individual security events matching the global filters 
 | **Violation Rating** | Numeric severity rating (0–5) assigned by F5 WAF for NGINX. |
 | **Support ID** | The unique identifier F5 WAF for NGINX assigns to the event. Use this to correlate with raw F5 WAF for NGINX logs on the data plane. |
 
-To list events with the same columns through the analytics API, see [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}}).
+To list events with the same columns through the analytics API, see [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}).
 
 ### Pagination
 
@@ -173,4 +173,4 @@ For more information, see:
 - [Security monitoring overview]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/security-monitoring-overview.md" >}})
 - [Set up security monitoring]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md" >}})
 - [Find a security event by Support ID]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/find-event-by-support-id.md" >}})
-- [Query security events through the API]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/query-events-api.md" >}})
+- [Query security events through the API]({{< ref "/nginx-one-console/api/query-events-api.md" >}})
