@@ -67,21 +67,7 @@ The editing experience consists of a single view for both editing and validation
 
 ## Upload a GZIP NGINX configuration
 
-Given the example gzipped archive,
-
-```shell
-$ tar -czf nginx.tar.gz nginx
-$ tar -tzf nginx.tar.gz
-nginx/
-nginx/nginx.conf
-nginx/njs.js
-nginx/servers
-nginx/servers/
-nginx/servers/server1.conf
-nginx/servers/server2.conf
-```
-
-where `nginx` is a directory with the following structure,
+Given the example directory structure,
 
 ```shell
 $ tree nginx
@@ -95,6 +81,21 @@ nginx
 1 directory, 4 files
 ```
 
+create a gzipped archive using the `-C` option to remove the top-level directory from the archive:
+
+```shell
+$ tar -czf nginx.tar.gz -C nginx .
+$ tar -tzf nginx.tar.gz
+./
+./nginx.conf
+./njs.js
+./servers/
+./servers/server1.conf
+./servers/server2.conf
+```
+
+{{< call-out "important" >}}Use the `-C` option with `tar` to change into the configuration directory before archiving. This strips the top-level directory from the archive paths and prevents path duplication errors during upload.{{< /call-out >}}
+
 `nginx.tar.gz` can be uploaded using the following portal workflow.
 
 Before continuing, ensure the file paths in the archive match the includes in the NGINX config.
@@ -102,8 +103,8 @@ For example,
 
 ```nginx
 http {
-   include nginx/servers/server1.conf;
-   js_import nginx/njs.js;
+   include servers/server1.conf;
+   js_import njs.js;
    # ...
 }
 ```
