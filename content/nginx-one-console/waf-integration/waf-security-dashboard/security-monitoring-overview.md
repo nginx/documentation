@@ -65,7 +65,7 @@ A security engineer suspects a policy is producing false positives. The engineer
 
 ### Platform team: report on WAF activity across the fleet
 
-A platform team needs a weekly summary of WAF activity across hundreds of instances. They use the analytics API to pull attack counts, top signatures, and top violations grouped by instance, then render the result in their own reporting tool. The dashboard remains the interactive surface for ad-hoc investigation; the API is the integration point for automation.
+A platform team needs a weekly summary of WAF activity across hundreds of instances. The team uses the analytics API to pull attack counts, top signatures, and top violations grouped by instance, then renders the result in their own reporting tool. The dashboard remains the interactive surface for ad-hoc investigation; the API is the integration point for automation.
 
 ---
 

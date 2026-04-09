@@ -46,7 +46,7 @@ The security dashboard relies on the `secops_dashboard` log profile to capture s
 
     - Confirm `secops_dashboard` is selected under **Log Profile**.
     - Under **Target**, choose **Instance** or **Config Sync Group** and select your target.
-    - In **Log Profile File Path**, specify the path where the compiled bundle should be deployed on the data plane (for example, `/etc/nginx/secops_dashboard.tgz`).
+    - In **Log Profile File Path**, specify the path where NGINX One Console should deploy the compiled bundle on the data plane (for example, `/etc/nginx/secops_dashboard.tgz`).
 
 4. Select **Next**. The wizard displays the F5 WAF for NGINX directive snippet to paste into your NGINX configuration. The wizard also opens the config editor for the target instance.
 
