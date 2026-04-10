@@ -54,7 +54,7 @@ See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gatewa
 The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. This sample is configured to simulate the [meta-llama/LLama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) model. To deploy the vLLM simulator, run the following command:
 
 ```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/sim-deployment.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/release-1.1/config/manifests/vllm/sim-deployment.yaml
 ```
 
 ## Deploy the InferencePool and Endpoint Picker Extension
