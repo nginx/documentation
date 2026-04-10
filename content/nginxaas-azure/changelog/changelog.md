@@ -14,11 +14,18 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## April 10, 2026
+
+- {{% icon-resolved %}} **Azure Resource Health alerts fully functional**
+
+Users can now successfully set up alerts about the health of their NGINXaaS deployments through [Azure Resource Health]({{< ref "/nginxaas-azure/monitoring/azure-resource-health.md" >}}). We encourage users to set up alerts so that they can react quickly to health events that may impact their deployment.
+
 ## February 03, 2026
 
 - {{% icon-feature %}} **In-place plan migrations to Standard V3 and Developer Plans**
 
 You can now migrate NGINXaaS for Azure deployments between pricing plans without any downtime. Supported migrations include `Basic` to `Developer`, `Standard` to `Standard V3`, and `Standard V2` to `Standard V3`. We encourage you to migrate your existing deployments to the new plans as legacy plans will be deprecated soon. For migration steps, see [Migrate to new pricing plans]({{< ref "/nginxaas-azure/billing/change-plan/migrate-from-standardv2.md">}}).
+
 ## January 30, 2026
 
 - {{% icon-feature %}} **System-assigned managed identity is now required for all NGINXaaS deployments**
