@@ -2,29 +2,29 @@
 (() => {
   // ---- Region to tier mapping ----
   const regionsTiers = {
-    "us-east1":        { label: "US East 1",        tier: 1 },
-    "us-east4":        { label: "US East 4",        tier: 1 },
-    "us-west1":        { label: "US West 1",        tier: 1 },
-    "us-west2":        { label: "US West 2",        tier: 1 },
-    "us-west3":        { label: "US West 3",        tier: 1 },
-    "us-west4":        { label: "US West 4",        tier: 1 },
-    "us-central1":     { label: "US Central 1",     tier: 1 },
-    "europe-west1":    { label: "Europe West 1",    tier: 1 },
-    "europe-west4":    { label: "Europe West 4",    tier: 1 },
-    "europe-north1":   { label: "Europe North 1",   tier: 1 },
-    "asia-south2":     { label: "Asia South 2",     tier: 1 },
-    "europe-west2":    { label: "Europe West 2",    tier: 2 },
-    "europe-west3":    { label: "Europe West 3",    tier: 2 },
-    "asia-southeast1": { label: "Asia Southeast 1", tier: 2 },
-    "asia-south1":     { label: "Asia South 1",     tier: 2 },
-    "europe-central2": { label: "Europe Central 2", tier: 3 },
+    "us-east1":        { label: "US East 1",        tier: "Tier 1" },
+    "us-east4":        { label: "US East 4",        tier: "Tier 1" },
+    "us-west1":        { label: "US West 1",        tier: "Tier 1" },
+    "us-west2":        { label: "US West 2",        tier: "Tier 1" },
+    "us-west3":        { label: "US West 3",        tier: "Tier 1" },
+    "us-west4":        { label: "US West 4",        tier: "Tier 1" },
+    "us-central1":     { label: "US Central 1",     tier: "Tier 1" },
+    "europe-west1":    { label: "Europe West 1",    tier: "Tier 1" },
+    "europe-west4":    { label: "Europe West 4",    tier: "Tier 1" },
+    "europe-north1":   { label: "Europe North 1",   tier: "Tier 1" },
+    "asia-south2":     { label: "Asia South 2",     tier: "Tier 1" },
+    "europe-west2":    { label: "Europe West 2",    tier: "Tier 2" },
+    "europe-west3":    { label: "Europe West 3",    tier: "Tier 2" },
+    "asia-southeast1": { label: "Asia Southeast 1", tier: "Tier 2" },
+    "asia-south1":     { label: "Asia South 1",     tier: "Tier 2" },
+    "europe-central2": { label: "Europe Central 2", tier: "Tier 3" },
   };
 
   // ---- Tier pricing ----
   const tierCosts = {
-    1: { fixedHourly: 0.10,  ncuHourly: 0.008,  dataPerGb: 0.0096 },
-    2: { fixedHourly: 0.133, ncuHourly: 0.0106, dataPerGb: 0.0127 },
-    3: { fixedHourly: 0.166, ncuHourly: 0.0132, dataPerGb: 0.0159 },
+    "Tier 1": { fixedHourly: 0.10,  ncuHourly: 0.008,  dataPerGb: 0.0096 },
+    "Tier 2": { fixedHourly: 0.133, ncuHourly: 0.0106, dataPerGb: 0.0127 },
+    "Tier 3": { fixedHourly: 0.166, ncuHourly: 0.0132, dataPerGb: 0.0159 },
   };
 
   const HOURS_PER_MONTH = 730;
@@ -75,7 +75,7 @@
     Object.keys(regionsTiers).forEach((regionKey) => {
       const option = document.createElement("option");
       option.value = regionKey;
-      option.textContent = `${regionsTiers[regionKey].label} (Tier ${regionsTiers[regionKey].tier})`;
+      option.textContent = `${regionsTiers[regionKey].label} (${regionsTiers[regionKey].tier})`;
       $select.append(option);
     });
   };
