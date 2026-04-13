@@ -58,9 +58,8 @@ During scaling, some connections older than 60 seconds might be reset. The servi
 
 ### NGINX Capacity Unit (NCU)
 
-An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on the underlying compute resources. This abstraction allows you to specify the desired capacity in NCUs without having to consider the regional hardware differences.
-
-You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on the traffic demands but also ensures it does not go below the minimum reserved capacity.
+An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
+You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on traffic demand and makes sure it never drops below the reserved minimum.
 
 
 ## Current Limitations
