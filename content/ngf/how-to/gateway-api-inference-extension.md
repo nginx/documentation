@@ -54,7 +54,7 @@ See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gatewa
 The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. This sample is configured to simulate the [meta-llama/LLama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) model. To deploy the vLLM simulator, run the following command:
 
 ```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/release-1.1/config/manifests/vllm/sim-deployment.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/release-1.4/config/manifests/vllm/sim-deployment.yaml
 ```
 
 ## Deploy the InferencePool and Endpoint Picker Extension
@@ -68,10 +68,11 @@ NGINX will query the Endpoint Picker Extension to determine the appropriate pod 
 {{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default, as the Endpoint Picker does not currently support mounting CA certificates. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v1.1.0
+export IGW_CHART_VERSION=v1.4.0
 helm install vllm-llama3-8b-instruct \
 --set inferencePool.modelServers.matchLabels.app=vllm-llama3-8b-instruct \
 --version $IGW_CHART_VERSION \
+--set inferenceExtension.resources.requests.memory=4Gi \
 oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
 ```
 
