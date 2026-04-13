@@ -261,6 +261,11 @@ The table below lists attributes that are generated in the security logs. When u
 | violations | Comma-separated list of logical violation names (for example, `VIOL_ATTACK_SIGNATURES`, `VIOL_HTTP_PROTOCOL`). | default, grpc |
 | vs_name | A unique identifier of the location in the nginx.conf file that this request is associated with. It contains the line number of the containing server block in nginx.conf, the server name, a numeric discriminator that distinguishes between multiple entries within the same server, and the location name.  For example: ’34-mydomain.com:0-~/.*php(2). | default, grpc |
 | x_forwarded_for_header_value | `X-Forwarded-For` header information. This option is commonly used when proxies are involved to track the originator of the request. | default, grpc |
+| transport_protocol | The transport protocol version observed for the request. | default |
+| client_application | The identified client application for the request, when classification is available. | default |
+| client_application_version | The identified version of the client application, when classification is available. | default |
+| geo_location | The resolved client geolocation country code for the request, when available. | user-defined only |
+| session_id | The session identifier associated with the request, when session context is established. | user-defined only |
 
 ## Blocking Observability
 
