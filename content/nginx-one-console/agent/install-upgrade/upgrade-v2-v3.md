@@ -13,10 +13,8 @@ This guide explains how to migrate deployments from **NGINX Agent v2** to **NGIN
 
 The migration from Agent v2 to Agent v3 introduces critical changes that may disrupt existing workflows:
 
-### **Changed Configuration Structure**
-
 - **Environment Variables**:
-  - Agent v3 replaces Agent v2 environment variables for GRPC connectivity:
+  - Environment variables renamed (v2 → v3):
     - `NGINX_AGENT_SERVER_HOST` -> `NGINX_AGENT_COMMAND_SERVER_HOST`
     - `NGINX_AGENT_SERVER_GRPCPORT` -> `NGINX_AGENT_COMMAND_SERVER_PORT`
     - `NGINX_AGENT_SERVER_TOKEN` -> `NGINX_AGENT_COMMAND_AUTH_TOKEN`
@@ -63,17 +61,19 @@ Docker images are available in the [Deploying NGINX and NGINX Plus on Docker](ht
     ```
 - Deploy the Updated Manifest, Apply the Deployment using kubectl:
     ```shell
-    kubectl apply -f nginx-agent-v3-deployment.yaml
+    kubectl apply -n <namespace> -f nginx-agent-v3-deployment.yaml
     ```
 -  Monitor the Rollout Progress
-kubectl rollout status deployment/<name> -n nginxone
+    ```shell
+    kubectl rollout status deployment/<deployment-name> -n <namespace>
+    ```
 
 - Validate the Replacement
 Once the rollout is complete, ensure all v2 pods have been replaced with v3 pods:
 
 - Confirm all pods transistion to running:
     ```shell
-        kubectl get pods -n <namespace>
+    kubectl get pods -n <namespace>
     ```
 
 ### Post-Migration Validations
@@ -123,21 +123,16 @@ Inspect the pod to confirm all environment variables are correctly set:
 #### v2 Docker Compose Configuration
 
 ```yaml
-    version: "3.8"
-    services:
-    nginx-agent:
-        image: <registry>/nginx-agent:v2
-        environment:
-          - NGINX_AGENT_SERVER_HOST=agent.connect.nginx.com
-          - NGINX_AGENT_SERVER_GRPCPORT=50051
-          - NGINX_AGENT_SERVER_TOKEN=<auth-token>
-          - NGINX_LICENSE_JWT=${NGINX_LICENSE_JWT}
-        secrets:
-          - nginx_license_jwt
+version: "3.8"
+services:
+nginx-agent:
+    image: <registry>/nginx-agent:v2
+    environment:
+      NGINX_AGENT_SERVER_HOST: agent.connect.nginx.com
+      NGINX_AGENT_SERVER_GRPCPORT: "443"
+      NGINX_AGENT_SERVER_TOKEN: ${NGINX_AGENT_SERVER_TOKEN}
+      NGINX_LICENSE_JWT: ${NGINX_LICENSE_JWT}
 
-    secrets:
-      nginx_license_jwt:
-        file: ./nginx_license_jwt.txt
 ```
 
 #### v3 Docker Compose Configuration
@@ -146,20 +141,14 @@ Inspect the pod to confirm all environment variables are correctly set:
 version: "3.8"
 services:
   nginx-agent:
-    image: <registry>/nginx-plus/agent/debian:r36
+    image: <registry>/nginx-plus/agent/debian:<v3-tag>
     environment:
-      - NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com
-      - NGINX_AGENT_COMMAND_SERVER_PORT=443
-      - NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false
-      - NGINX_AGENT_COMMAND_AUTH_TOKEN=<auth-token>
-      - NGINX_LICENSE_JWT=${NGINX_LICENSE_JWT}
-      - NGINX_AGENT_LABELS=config-sync-group=<Config Sync Group Name>
-    secrets:
-      - nginx_license_jwt
-
-secrets:
-  nginx_license_jwt:
-    file: ./nginx_license_jwt.txt
+      NGINX_AGENT_COMMAND_SERVER_HOST: agent.connect.nginx.com
+      NGINX_AGENT_COMMAND_SERVER_PORT: "443"
+      NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY: "false"
+      NGINX_AGENT_COMMAND_AUTH_TOKEN: ${NGINX_AGENT_COMMAND_AUTH_TOKEN}
+      NGINX_LICENSE_JWT: ${NGINX_LICENSE_JWT}
+      NGINX_AGENT_LABELS: config-sync-group=<config-sync-group-name>
 ```
 
 ### Migration Steps for Docker Compose
@@ -198,18 +187,37 @@ If any issues occur, you can roll back to v2 by replacing the configuration with
     $ docker-compose up -d
   ```
 ## Migrate NGINX Agent running in containers
-
-To migrate NGINX Agent containers, we provide a script to convert NGINX Agent v2 config files to NGINX Agent v3 config files: [NGINX Agent Config Upgrade Script](https://github.com/nginx/agent/blob/v3/scripts/packages/upgrade-agent-config.sh)
-
-To upgrade the configuration, you can follow this example:
-
+1. Pull a docker image
 ```shell
-wget https://raw.githubusercontent.com/nginx/agent/refs/heads/main/scripts/packages/upgrade-agent-config.sh
-./upgrade-agent-config.sh --v2-config-file=./nginx-agent-v2.conf --v3-config-file=nginx-agent-v3.conf
+sudo docker pull private-registry.nginx.com/nginx-plus/agentv3:debian
+```
+2. Run the container
+```shell
+sudo docker run \
+--env=NGINX_LICENSE_JWT="YOUR_JWT_HERE" \
+--env=NGINX_AGENT_COMMAND_SERVER_PORT=443 \
+--env=NGINX_AGENT_COMMAND_SERVER_HOST=agent.connect.nginx.com \
+--env=NGINX_AGENT_COMMAND_AUTH_TOKEN="<DATA PLANE KEY>" \
+--env=NGINX_AGENT_COMMAND_TLS_SKIP_VERIFY=false \
+--restart=always \
+--runtime=runc \
+-d private-registry.nginx.com/nginx-plus/agentv3:debian
 ```
 
-If your NGINX Agent container was previously a member of a Config Sync Group, then your NGINX Agent config must be manually updated to add the Config Sync Group label.
-See [Add Config Sync Group]({{< ref "/nginx-one-console/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}) for more information.
+
+Note: If you container is setup to run with a mounted configuration file use the following steps to convert to a v3 configuration file.
+1. Download the conversion script (v3 branch):
+```shell
+wget https://raw.githubusercontent.com/nginx/agent/v3/scripts/packages/upgrade-agent-config.sh
+chmod +x upgrade-agent-config.sh
+```
+
+2. Run the script to conver the configuration file.
+```shell
+./upgrade-agent-config.sh --v2-config-file=./nginx-agent-v2.conf --v3-config-file=./nginx-agent-v3.conf
+```
+If your v2 agent belonged to a Config Sync Group, manually add the Config Sync Group label to the v3 config. See “Add Config Sync Group” in your docs.
+
 
 ### Rollback Procedure
 
