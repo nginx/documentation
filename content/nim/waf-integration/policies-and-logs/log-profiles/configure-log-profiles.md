@@ -90,7 +90,7 @@ Configure size restrictions for log messages:
 
 If you select **User-defined** format, create a custom format string using placeholders for log attributes. Each attribute name is delimited by percent signs. For example:
 
-```
+``` text
 Request ID %support_id%: %method% %uri% received on %date_time% from IP %ip_client% had the following violations: %violations%
 ```
 
