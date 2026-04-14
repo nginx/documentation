@@ -29,3 +29,7 @@ You may also find the [documentation folder](/documentation/) for the repository
 ## Credits
 
 - [The Good Docs Project](https://www.thegooddocsproject.dev/), whose templates we've adapted for our use.
+
+## Testing by Lam and Maximus
+
+- testing
