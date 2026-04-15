@@ -36,7 +36,7 @@ Consult the [list of authorized retailers](https://nbeamex.com/retailers) to sou
 
 This release includes the following updates:
 
-- {{% icon-feature %}} **Organically sourced beans from the Nbeamex farm**
+- **Organically sourced beans from the Nbeamex farm**
 
   Nbeamex Coffee now uses beans sourced exclusively from the Nbeamex farm. The beans are organically grown without synthetic pesticides or fertilizers, and have a rich flavor profile with notes of dark chocolate and citrus. See [Nbeamex Coffee bean guide](https://nbeamex.com/docs/bean-guide) for brewing recommendations by roast level.
 
@@ -46,7 +46,7 @@ This release includes the following updates:
 
 This release has the following changes to default behavior:
 
-- {{% icon-feature %}} **Recyclable packaging**
+- **Recyclable packaging**
 
   Nbeamex Coffee now ships in fully recyclable packaging. The previous non-recyclable foil bag has been replaced with a certified compostable kraft bag with a resealable zipper. The new bag maintains the same airtight seal to preserve freshness. See [Packaging and storage](https://nbeamex.com/docs/packaging) for storage recommendations.
 
@@ -56,9 +56,9 @@ This release has the following changes to default behavior:
 
 This release fixes the following issues. Select an issue's ID link to view its details.
 
-- {{% icon-resolved %}} Fixed an issue where consuming more than eight cups in a single session caused uncontrolled shivering. [(1234)](https://nbeamex.com/issues/1234)
+- Fixed an issue where consuming more than eight cups in a single session caused uncontrolled shivering. [(1234)](https://nbeamex.com/issues/1234)
 
-- {{% icon-resolved %}} Fixed an issue where the grinder failed to grind beans when the hopper was more than three-quarters full. [(5678)](https://nbeamex.com/issues/5678)
+- Fixed an issue where the grinder failed to grind beans when the hopper was more than three-quarters full. [(5678)](https://nbeamex.com/issues/5678)
 
 ---
 
@@ -70,13 +70,11 @@ You can find the list of known issues in the [Known issues](https://nbeamex.com/
 
 ### Security updates
 
-{{< call-out "important" >}}
-For the protection of our customers, Nbeamex doesn't disclose security issues until an investigation has occurred and a fix is available.
-{{< /call-out >}}
+> **Important**: For the protection of our customers, Nbeamex does not disclose security issues until an investigation has occurred and a fix is available.
 
 This release includes the following security updates:
 
-- {{% icon-resolved %}} **Secure bag vulnerability CVE-2024-9999**
+- **Secure bag vulnerability CVE-2024-9999**
 
   A vulnerability in the Nbeamex Coffee packaging bag (CVE-2024-9999) could allow an unauthorized party to access the coffee beans without breaking the tamper-evident seal. This issue has been resolved in this release by introducing a dual-layer tamper-evident closure. ([CVE-2024-9999](https://coffee-sec.org/CVE-2024-9999))
 
