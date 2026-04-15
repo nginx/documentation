@@ -1,11 +1,12 @@
 ---
-title: Create a security log profile
+title: Create and deploy a profile using the REST API
 description: Create and upload a new F5 WAF for NGINX security log profile to NGINX Instance Manager using the REST API.
 toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
 ---
+
 You can create and upload new F5 WAF for NGINX security log profiles using the NGINX Instance Manager REST API.
 
 A log profile defines how security events are recorded and exported from your NGINX instances.

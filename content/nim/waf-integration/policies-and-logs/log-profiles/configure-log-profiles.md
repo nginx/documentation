@@ -2,7 +2,7 @@
 nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NIMNGR
-title: Configure a security log profile
+title: Create and deploy a profile using the user interface
 description: "Configure F5 WAF for NGINX security log profiles in NGINX Instance Manager, controlling request filtering, log format, size limits, and deployment to NGINX instances."
 weight: 200
 toc: true
