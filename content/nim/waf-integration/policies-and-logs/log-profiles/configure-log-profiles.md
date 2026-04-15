@@ -46,13 +46,10 @@ Before you begin, ensure you have:
 1. Select **Add Log Profile**.
    The log profile configuration screen opens.
 1. In **General Settings**, enter a name and optional description for the log profile.
-1. Configure the filter settings to determine which requests are logged. See [Configure filter settings](#configure-filter-settings) below.
-1. Configure the content format and options for how log messages are structured. See [Configure content settings](#configure-content-settings) below.
-1. Select **Add Profile** to save the log profile.
 
----
+Next, configure the filter settings to determine which requests are logged.
 
-## Configure filter settings
+### Configure filter settings
 
 The **Request Type** filter determines which requests are logged based on what F5 WAF for NGINX detects:
 
@@ -62,13 +59,13 @@ The **Request Type** filter determines which requests are logged based on what F
 
 Select the filter option that matches your monitoring and compliance needs. For production environments, start with **Blocked** to reduce log volume, then expand to **Illegal** or **All** as needed for troubleshooting.
 
----
+Next, configure the content format and options for how log messages are structured.
 
-## Configure content settings
+### Configure content settings
 
 The content section specifies the format and structure of log messages.
 
-### Select a format
+#### Select a format
 
 Select one of the following log formats:
 
@@ -79,14 +76,14 @@ Select one of the following log formats:
 - **ArcSight**: Formatted according to ArcSight Common Event Format (CEF) with custom fields adapted for F5.
 - **BIG-IQ**: Formatted for BIG-IQ, the F5 centralized management platform for BIG-IP.
 
-### Set size limits
+#### Set size limits
 
 Configure size restrictions for log messages:
 
 - **Max request size**: Limit in bytes for the `request` and `request_body_base64` fields. The accepted range is 1–10240 bytes, with a default of 2000 bytes. You can also set this to `any`, which is equivalent to 10240 bytes.
 - **Max message size**: Total size limit in KB for the entire log message. The accepted range is 1k–64k, with a default of 2k. This value must not be smaller than `max_request_size`.
 
-### (Optional) Create a custom format string
+#### (Optional) Create a custom format string
 
 If you select **User-defined** format, create a custom format string using placeholders for log attributes. Each attribute name is delimited by percent signs. For example:
 
@@ -96,7 +93,7 @@ Request ID %support_id%: %method% %uri% received on %date_time% from IP %ip_clie
 
 Available placeholders include attributes such as `%ip_client%`, `%request%`, `%violations%`, `%attack_type%`, and others. See [Available security log attributes]({{< ref "/waf/logging/security-logs.md#available-security-log-attributes" >}}).
 
-### (Optional) Configure advanced formatting options
+#### (Optional) Configure advanced formatting options
 
 Configure additional options for how list values appear in your logs:
 
@@ -108,6 +105,8 @@ Configure additional options for how list values appear in your logs:
 For detailed information about the JSON structure of security log configuration files, see [Security log configuration file]({{< ref "/waf/logging/security-logs.md#security-log-configuration-file" >}}).
 
 ---
+
+Finally, select **Add Profile** to save the log profile.
 
 ## Compile the log profile
 
