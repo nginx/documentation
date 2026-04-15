@@ -106,7 +106,7 @@ For detailed information about the JSON structure of security log configuration 
 
 ---
 
-Finally, select **Add Profile** to save the log profile.
+Finally, select **Add Profile** to save the log profile. Next, you can optionally compile the log profile into a bundle before deploying it to your NGINX instances.
 
 ## Compile the log profile
 
