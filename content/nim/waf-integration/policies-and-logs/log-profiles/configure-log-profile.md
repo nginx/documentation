@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Use this guide to configure log profiles for F5 WAF for NGINX security logs in F5 NGINX Instance Manager. Security logs (also called Request logs or Traffic logs) provide visibility into what F5 WAF for NGINX detects and how F5 WAF for NGINX processes traffic according to your policies. F5 WAF for NGINX uses its own logging mechanism rather than NGINX's default access logging.
+Use this guide to configure log profiles for F5 WAF for NGINX security logs in NGINX Instance Manager. Security logs (also called Request logs or Traffic logs) provide visibility into what F5 WAF detects and how F5 WAF processes traffic according to your policies. F5 WAF uses its own logging mechanism rather than NGINX's default access logging.
 
 With log profiles, you control:
 
@@ -51,7 +51,7 @@ Next, configure the filter settings to determine which requests are logged.
 
 ### Configure filter settings
 
-The **Request Type** filter determines which requests are logged based on what F5 WAF for NGINX detects:
+The **Request Type** filter determines which requests are logged based on what F5 WAF detects:
 
 - **All**: Logs all requests, both legal and illegal.
 - **Illegal**: Logs requests with violations (alerted or blocked).
@@ -69,7 +69,7 @@ The content section specifies the format and structure of log messages.
 
 Select one of the following log formats:
 
-- **Default**: Default format for F5 WAF for NGINX with comma-separated key-value pairs.
+- **Default**: Default format for F5 WAF with comma-separated key-value pairs.
 - **GRPC**: Variant of the default format suited for gRPC traffic.
 - **User-defined**: Custom format that you define using a format string with placeholders.
 - **Splunk**: Formatted for Splunk SIEM with F5 plugin.
@@ -137,7 +137,7 @@ The compiled bundle is in compressed tar format (.tgz) and contains all the nece
    - **Compile**: Compile the log profile into a bundle for that compiler version.
    - **Download**: Download an existing compiled bundle for that compiler version.
 
-This allows you to maintain compatibility with different versions of F5 WAF for NGINX across your infrastructure.
+This allows you to maintain compatibility with different versions of F5 WAF across your infrastructure.
 
 ---
 
