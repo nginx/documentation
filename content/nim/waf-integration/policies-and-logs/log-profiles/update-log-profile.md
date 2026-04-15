@@ -1,8 +1,8 @@
 ---
-title: Update a security log profile
+title: Update log profiles using the REST API
 description: Update an existing F5 WAF for NGINX security log profile or create a new revision using the NGINX Instance Manager REST API.
 toc: true
-weight: 300
+weight: 700
 nd-content-type: how-to
 nd-product: NIMNGR
 ---

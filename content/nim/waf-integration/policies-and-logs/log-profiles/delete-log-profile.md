@@ -1,8 +1,8 @@
 ---
-title: Delete a security log profile
+title: Delete security log profiles using the REST API
 description: Remove an existing F5 WAF for NGINX security log profile from NGINX Instance Manager using the REST API.
 toc: true
-weight: 400
+weight: 800
 nd-content-type: how-to
 nd-product: NIMNGR
 ---

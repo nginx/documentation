@@ -1,8 +1,8 @@
 ---
-title: Create and deploy a profile using the REST API
+title: Create and deploy profiles using the REST API
 description: Create and upload a new F5 WAF for NGINX security log profile to NGINX Instance Manager using the REST API.
 toc: true
-weight: 100
+weight: 600
 nd-content-type: how-to
 nd-product: NIMNGR
 ---

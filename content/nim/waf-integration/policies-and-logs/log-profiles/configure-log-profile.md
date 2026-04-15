@@ -2,9 +2,9 @@
 nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NIMNGR
-title: Create and deploy a profile using the user interface
+title: Configure and deploy log profiles
 description: "Configure F5 WAF for NGINX security log profiles in NGINX Instance Manager, controlling request filtering, log format, size limits, and deployment to NGINX instances."
-weight: 200
+weight: 100
 toc: true
 nd-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, security logs, app protect, request logs, traffic logs, Splunk, ArcSight, syslog"
 nd-summary: >
