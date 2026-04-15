@@ -59,26 +59,11 @@ Send a POST request to the Security Log Profiles API to compile one or more log 
 
     You can compile multiple log profiles in a single request by adding entries to the `bundles` array.
 
-    ```json
-    {
-        "bundles": [
-            {
-                "logProfileName": "log_profile_01",
-                "compilerVersion": "5.607.0"
-            },
-            {
-                "logProfileName": "log_profile_02",
-                "compilerVersion": "5.575.0"
-            }
-        ]
-    }
-    ```
-
-    Replace `log_profile_01` and `log_profile_02` with the names of your log profiles, and replace the `compilerVersion` values with the WAF compiler versions you want to target.
+    
 
 2. Send the POST request using curl or your preferred API client.
 
-    ```sh
+    
     curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles/bundles \
         -H "Authorization: Bearer <ACCESS_TOKEN>" \
         -d @default-log-example-bundles.json
@@ -96,10 +81,10 @@ Send a POST request to the Security Log Profiles API to compile one or more log 
                     "status": "compiling"
                 },
                 "metadata": {
-                    "compilerVersion": "5.607.0",
+                    "compilerVersion": "<COMPILER_VERSION>",
                     "created": "2026-04-08T03:42:33.902171669Z",
                     "hash": "",
-                    "logProfileName": "log_profile_01",
+                    "logProfileName": "<LOG_PROFILE_01>",
                     "logProfileUid": "d974876d-0c70-4bae-b396-692023968cd2",
                     "modified": "2026-04-08T03:42:33.902171669Z",
                     "size": 0,
@@ -111,10 +96,10 @@ Send a POST request to the Security Log Profiles API to compile one or more log 
                     "status": "compiled"
                 },
                 "metadata": {
-                    "compilerVersion": "5.575.0",
+                    "compilerVersion": "<COMPILER_VERSION>",
                     "created": "2026-04-08T03:42:30.424Z",
                     "hash": "7b669d6b9907162ca45cc1f62e866a8c8aaee875743ab0f68c99e0afcbb1e050",
-                    "logProfileName": "log_profile_02",
+                    "logProfileName": "<LOG_PROFILE_02>",
                     "logProfileUid": "858d0ee3-da6a-4b38-a151-51db36ff163d",
                     "modified": "2026-04-08T03:42:32.379Z",
                     "size": 1647,
