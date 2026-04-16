@@ -62,7 +62,7 @@ And uses the following environment variable:
 To download the usage report from NGINX Instance Manager, run the following command:
 
 ```shell
-./offline_usage.sh download <USERNAME> <PASSWORD> <NIM-IP-ADDRESS>
+./offline_usage.sh download <USERNAME> <PASSWORD> <NIM_IP_ADDRESS>
 ``` 
 1. The script verifies connectivity to the NGINX Instance Manager instance over HTTPS.
 1. Checks that the device is in DISCONNECTED mode (exits with an error if mode is CONNECTED).
