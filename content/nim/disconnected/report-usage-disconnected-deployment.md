@@ -38,7 +38,7 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 {{%tab name="bash script (recommended)"%}}
 
-To submit the usage report in a disconnected environment, use the provided `offline_usage.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to the `https://product.connect.nginx.com/api/nginx-usage/batch` on port `443`. Replace each placeholder with your specific values.
+To submit the usage report in a disconnected environment, use the provided `offline_usage.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to the `https://product.connect.nginx.com/api/nginx-usage/batch` endpoint on port `443`. Replace each placeholder with your specific values.
 
 Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) script and make the script executable:
 
