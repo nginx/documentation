@@ -31,6 +31,17 @@ Before submitting usage data to F5, first ensure that the appropriate network po
 
 ### Configure network ports for reporting usage
 
+
+#### NGINX Instance Manager 2.22 and later
+
+To allow NGINX Instance Manager to report usage data to F5, make sure port 443 is open for this URL: `https://product.connect.nginx.com/api/nginx-usage/batch`
+
+{{< call-out "important" >}}
+   There is no [Manual reporting]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md#manual-reporting" >}}) option for connected mode in NGINX Instance Manager 2.22 and later versions (The "licensing page", "Enable Continuous Connection" toggle and "Send Usage to F5" button are not available).
+   {{< /call-out >}}
+
+#### NGINX Instance Manager 2.21 and earlier
+
 To allow NGINX Instance Manager to report usage data to F5, make sure port `443` is open for these URLs:
 
 - `https://product.apis.f5.com/`
