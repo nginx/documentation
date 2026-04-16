@@ -30,13 +30,99 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 ---
 
-## Submit usage report to F5 {#submit-usage-report}
+## Submit usage report to F5 with NGINX Instance Manager 2.22 and later {#submit-usage-report}
+
+{{< call-out "note" >}}Starting with NGINX Instance Manager 2.22, it's not possible to report usage with the REST API option.{{< /call-out >}}
+
+{{<tabs name="submit-usage-report">}}
+
+{{%tab name="bash script (recommended)"%}}
+
+To submit the usage report in a disconnected environment, use the provided `offline_usage.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to the `https://product.connect.nginx.com/api/nginx-usage/batch` endpoint on port `443`. Replace each placeholder with your specific values.
+
+Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) script and make the script executable:
+
+```shell
+    chmod +x <PATH-TO-SCRIPT>/offline_usage.sh
+```
+
+### Download usage report
+
+The download feature of the script takes the following arguments:
+- `<USERNAME>`: The admin username for NGINX Instance Manager authentication.
+- `<PASSWORD>`: The admin password for NGINX Instance Manager authentication.
+- `<NIM_IP_ADDRESS>`: The IP address of the NGINX Instance Manager instance.
+
+And uses the following environment variable:
+
+| Variable | Description | Default value |
+| --- | --- | --- |
+| CURL_TIMEOUT | 30 | Connection timeout for curl requests in seconds |
+
+To download the usage report from NGINX Instance Manager, run the following command:
+
+```shell
+./offline_usage.sh download <USERNAME> <PASSWORD> <NIM_IP_ADDRESS>
+``` 
+1. The script verifies connectivity to the NGINX Instance Manager instance over HTTPS.
+1. Checks that the device is in DISCONNECTED mode (exits with an error if mode is CONNECTED).
+1. Downloads the usage report as a ZIP file to `/tmp/response.zip`.
+
+### Upload usage report
+
+To upload the usage acknowledgment to NGINX One Console, run the following command:
+
+```shell
+./offline_usage.sh upload <FILE-PATH> --result-dir <DIR> [--endpoint-url <URL>]
+```
+Where:
+
+| Argument | Description | Required |
+| --- | --- | --- |
+| `<FILE-PATH>` | The path to the usage acknowledgment ZIP file downloaded using the `download` operation. | Yes |
+| --result-dir, -r <DIR> | Directory used to track uploaded files and store unzipped contents. | Yes |
+| --endpoint-url, -e <URL> | Upload endpoint URL. Default: https://product.connect.nginx.com/api/nginx-usage/batch | No |
+
+The script provides the following output:
+
+| File | Description |
+| --- | --- |
+| `<RESULT-DIR>/uploaded_filex.txt` | A text file containing the names of the succesfully uploaded files. |
+| `<RESULT-DIR>/unzip/` | Extracted contents of the usage report |
+| `<RESULT-DIR>/upload_usage.log` | Detailed log of all upload attempts (in CWD) |
+
+And returns one the following exit codes:
+
+| Code | Description |
+| --- | --- |
+| 0 | Operation completed successfully |
+| 1 | Error — missing arguments, connectivity failure, invalid file, wrong device mode, or upload failure |
+
+{{%/tab%}}
+
+{{%tab name="Web interface"%}}
+
+Download usage report from the `https://<NIM_FQDN>/ui/nginx-plus` page. Replace `<NIM_FQDN>` with your NGINX Instance Manager's fully qualified domain name.
+
+Move the file to a machine with internet access, run the bash script with upload option.
+
+{{< call-out "note" "Behavior change" >}}Starting with NGINX Instance Manager 2.22, it's not necessary to reupload the usage acknowledgement file back to NGINX Instance Manager.{{< /call-out >}}
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+{{< call-out "note" "File size increase" >}}NGINX Instance Manager 2.22 and later have moved from reporting aggregated usage data to reporting the raw data that data planes send; the file sizes will be larger than before.{{< /call-out >}}
+
+---
+
+## Submit usage report to F5 with NGINX Instance Manager 2.21 and earlier {#submit-usage-report-2.21}
 
 {{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</call-out>}}
 
 <br>
 
-{{<tabs name="submit-usage-report">}}
+{{<tabs name="submit-usage-report-2-21">}}
 
 {{%tab name="bash script (recommended)"%}}
 
