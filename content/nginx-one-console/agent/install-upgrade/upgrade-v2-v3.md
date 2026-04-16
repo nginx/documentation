@@ -19,6 +19,7 @@ The migration from Agent v2 to Agent v3 introduces critical changes that may dis
     - `NGINX_AGENT_SERVER_GRPCPORT` -> `NGINX_AGENT_COMMAND_SERVER_PORT`
     - `NGINX_AGENT_SERVER_TOKEN` -> `NGINX_AGENT_COMMAND_AUTH_TOKEN`
   - Ensure the new variables are correctly updated in Agent v3 configuration before deployment.
+  - [Complete list of Agent v3 environment variables](https://docs.nginx.com/nginx-one-console/agent/configure-instances/configuration-overview/)
 
 - **Config Sync Groups**
   - In v3 config sync groups are defined using the following format: 
