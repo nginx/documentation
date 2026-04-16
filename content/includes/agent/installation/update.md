@@ -23,7 +23,7 @@ The same steps apply if you are **upgrading from NGINX Agent v2 to NGINX Agent v
    successfully:
 
     - `/etc/nginx-agent`
-    - Every configuration directory specfied in `/etc/nginx-agent/nginx-agent.conf` as a `config_dirs` value
+    - Every configuration directory specified in `/etc/nginx-agent/nginx-agent.conf` as a `config_dirs` value
 
 1. Install the updated version of NGINX Agent:
 
