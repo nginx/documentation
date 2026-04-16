@@ -51,7 +51,7 @@ Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) 
 The download feature of the script takes the following arguments:
 - `<USERNAME>`: The admin username for NGINX Instance Manager authentication.
 - `<PASSWORD>`: The admin password for NGINX Instance Manager authentication.
-- `<NIM-IP-ADDRESS>`: The IP address of the NGINX Instance Manager instance.
+- `<NIM_IP_ADDRESS>`: The IP address of the NGINX Instance Manager instance.
 
 And uses the following environment variable:
 
