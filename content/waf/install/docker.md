@@ -877,7 +877,7 @@ sudo dnf install app-protect-module-plus
 
 #### RHEL 10
 
-{{< tabs name="rhel-hybrid-instructions" >}}
+{{< tabs name="rhel10-hybrid-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 

@@ -266,7 +266,7 @@ Before installing, check if your operating system and architecture are supported
 
 ### Debian packages
 
-This section covers Debian packages only. For Ubuntu-specific instructions, see [Ubuntu packages](#prebuilt_ubuntu).
+This section covers Debian packages only. For Ubuntu-specific instructions, see [Ubuntu packages](#ubuntu-packages).
 
 Before installing, check if your operating system and architecture are supported, see [Supported distributions and versions](https://nginx.org/en/linux_packages.html#distributions).
 

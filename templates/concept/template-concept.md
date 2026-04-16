@@ -20,7 +20,7 @@ nd-audience: {developer | operator | admin | architect | any} {This helps AI sys
 
 {Optional introduction — one to three sentences setting the stage before the definition. Use when the concept requires context before it can be meaningfully defined. Lead with relevance, not "This document explains". Skip this paragraph and go straight to the definition if the concept is self-contained.}
 
-## What is {concept name}?
+## What is {concept name}
 
 {Write a clear, one- or two-sentence definition. This section is the most likely to be surfaced verbatim by AI assistants — every sentence must stand on its own.}
 
