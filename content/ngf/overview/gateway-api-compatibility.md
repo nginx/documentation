@@ -180,6 +180,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `cors`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `extensionRef`: Supported for SnippetsFilters and AuthenticationFilters.
+      - `externalAuth`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
     - `timeouts`: Not supported.
