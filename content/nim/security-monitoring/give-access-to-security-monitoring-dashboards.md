@@ -9,34 +9,34 @@ nd-docs: DOCS-1026
 
 ## Overview
 
-F5 NGINX Security Monitoring tracks activity on F5 WAF for NGINX instances. The dashboards and logs show insights, detect threats, and help improve security policies.
+Security Monitoring tracks activity on F5 WAF for NGINX instances. The dashboards and logs show insights, detect threats, and help improve security policies.
 
-This guide explains how to create a role to give users access to Security Monitoring and assign it to users or groups.
+To give users access to Security Monitoring, you'll create a role and assign it to users or groups.
 
 {{< call-out "note" >}}
-This guide follows the principle of least privilege, so users only get access to Security Monitoring. You can create roles with different permissions if needed.
+These steps follow the principle of least privilege, so users only get access to Security Monitoring. You can create roles with different permissions if needed.
 {{< /call-out >}}
 
 ---
 
 ## Before you begin
 
-Make sure you complete these steps:
+Make sure you have the following:
 
-- Your account must have access to User Management in NGINX Instance Manager. Minimum permissions are:
+- Your account has access to User Management in NGINX Instance Manager. Minimum permissions are:
 
   - **Module**: Settings
   - **Feature**: User Management
   - **Access**: `READ`, `CREATE`, `UPDATE`
 
-- Use the table below to find the permissions you need:
+- You have the permissions listed in the following table:
 
   {{<bootstrap-table "table table-bordered table-hover">}}
 
   | Module(s)                         | Feature(s)            | Access                     | Description                                                                                              |
   |-----------------------------------|-----------------------|----------------------------|----------------------------------------------------------------------------------------------------------|
-  | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring | Analytics <hr> Security&nbsp;Monitoring | `READ` <hr> `READ`            | Gives read-only access to Security Monitoring dashboards. Users cannot access NGINX Instance Manager or Settings. |
-  | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring <hr> Settings | Analytics <hr> Security&nbsp;Monitoring <hr> User Management | `READ` <hr> `READ` <hr> `CREATE`,&nbsp;`READ`,&nbsp;`UPDATE` | Lets users view dashboards and manage accounts and roles.<br><br>{{< icon "lightbulb" >}} Best for "super-users" who manage dashboard access. Does not allow deleting accounts. |
+  | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring | Analytics <hr> Security&nbsp;Monitoring | `READ` <hr> `READ`            | Users can view Security Monitoring dashboards. They can't view NGINX Instance Manager or Settings. |
+  | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring <hr> Settings | Analytics <hr> Security&nbsp;Monitoring <hr> User Management | `READ` <hr> `READ` <hr> `CREATE`,&nbsp;`READ`,&nbsp;`UPDATE` | Users can view dashboards and manage accounts and roles.<br><br>{{< icon "lightbulb" >}} Best for "super-users" who manage dashboard access. Users can't delete accounts. |
 
   {{</bootstrap-table>}}
 
