@@ -132,6 +132,8 @@ Re-run the deployment wizard after fixing the configuration.
 
 If events still do not appear after a request is processed, contact F5 support with the instance hostname and the time window you tested.
 
+For local data plane checks of the embedded OpenTelemetry Collector, generated collector pipeline, and debug forwarding, see [Troubleshoot security monitoring on the local data plane]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/local-dataplane-troubleshooting.md" >}}).
+
 ---
 
 ## References
@@ -144,6 +146,7 @@ If events still do not appear after a request is processed, contact F5 support w
 
 - [secops_dashboard log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}})
 - [Dashboard metrics reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
+- [Troubleshoot security monitoring on the local data plane]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/local-dataplane-troubleshooting.md" >}})
 
 **Related how-to guides**
 
