@@ -39,7 +39,7 @@ Before you begin, ensure you have:
 
 ## 1. Check for invalid log profile errors
 
-The first check is whether NGINX Agent's embedded OpenTelemetry Collector is rejecting the incoming F5 WAF for NGINX security logs because they do not match the format expected by the security monitoring pipeline.
+Check whether NGINX Agent's embedded OpenTelemetry Collector is rejecting incoming F5 WAF for NGINX security logs. This happens when the logs don't match the format the security monitoring pipeline expects.
 
 Open the collector log on the data plane:
 
