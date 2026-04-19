@@ -493,6 +493,216 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     ```
 
 
+### RHEL 10 installation
+
+1. If you already have NGINX packages on your system, back up your configs and logs:
+
+    ```shell
+    sudo cp -a /etc/nginx /etc/nginx-plus-backup
+    sudo cp -a /var/log/nginx /var/log/nginx-plus-backup
+    ```
+
+1. {{< include "nginx-plus/install/create-dir-for-crt-key.md" >}}
+
+1. {{< include "nginx-plus/install/create-dir-for-jwt.md" >}}
+
+1. {{< include "licensing-and-reporting/download-jwt-crt-from-myf5.md" >}}
+
+1. {{< include "nginx-plus/install/copy-crt-and-key.md" >}}
+
+1. {{< include "nginx-plus/install/copy-jwt-to-etc-nginx-dir.md" >}}
+
+5. Install prerequisite packages:
+
+    ```shell
+    sudo dnf install ca-certificates wget
+    ```
+
+6. Enable the yum repositories to pull F5 DoS for NGINX dependencies:
+
+    ```shell
+    sudo subscription-manager repos --enable=rhel-10-for-x86_64-baseos-rpms
+    sudo subscription-manager repos --enable=rhel-10-for-x86_64-appstream-rpms
+    sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+    ```
+
+7. Add the NGINX Plus and NGINX App Protect DoS repositories:
+
+    ```shell
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
+    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-dos-10.repo
+    ```
+
+8. If you are performing a fresh installation, update the repository and install the most recent version of the NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf install app-protect-dos
+    ```
+
+    For L4 accelerated mitigation feature (RHEL 10):
+
+    ```shell
+    sudo dnf install app-protect-dos-ebpf-manager
+    ```
+
+    {{< call-out "note" >}}
+   L4 accelerated mitigation feature (RHEL 10):
+   - `app-protect-dos-ebpf-manager` run with root privileges.
+    {{< /call-out >}}
+
+    Alternatively, you can use the following command to list available versions:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect-dos
+    ```
+
+    Then, install a specific version from the output of command above. For example:
+
+    ```shell
+    sudo dnf install app-protect-dos-35+4.7.3
+    ```
+
+9. If you are upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
+
+    ```shell
+    sudo dnf remove nginx-plus
+    sudo dnf install app-protect-dos
+    sudo systemctl start nginx
+    ```
+
+    {{< call-out "note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+
+10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
+
+    ```shell
+    sudo nginx -v
+    ```
+
+11. Check the App Protect DoS binary version to ensure that you have the right version installed correctly:
+
+    ```shell
+    sudo admd -v
+    ```
+
+12. Load the F5 DoS for NGINX module on the main context in the `nginx.conf`:
+
+    ```nginx
+    load_module modules/ngx_http_app_protect_dos_module.so;
+    ```
+
+13. Enable F5 DoS for NGINX on an `http/server/location` context in the `nginx.conf` file:
+
+    ```nginx
+    app_protect_dos_enable on;
+    app_protect_dos_name "App1";
+    app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
+    ```
+
+14. Enable the L4 accelerated mitigation feature (RHEL 10) in the `http` context of the `nginx.conf` file:
+
+    ```nginx
+    app_protect_dos_accelerated_mitigation on;
+    ```
+
+15. Configure SELinux to allow App Protect DoS:
+
+    a. Using the vi editor, create a file:
+
+    ```shell
+    vi app-protect-dos.te
+    ```
+
+    b. Insert the following contents into the file created above:
+
+    ```shell
+    module app-protect-dos 2.0;
+    require {
+        type unconfined_t;
+        type unconfined_service_t;
+        type httpd_t;
+        type tmpfs_t;
+        type initrc_t;
+        type initrc_state_t;
+        class capability sys_resource;
+        class shm { associate read unix_read unix_write write };
+        class file { read write };
+    }
+    allow httpd_t initrc_state_t:file { read write };
+    allow httpd_t self:capability sys_resource;
+    allow httpd_t tmpfs_t:file { read write };
+    allow httpd_t unconfined_service_t:shm { associate read unix_read unix_write write };
+    allow httpd_t unconfined_t:shm { associate read write unix_read unix_write };
+    allow httpd_t initrc_t:shm { associate read unix_read unix_write write };
+    ```
+
+    c. Run the following chain of commands:
+
+    ```shell
+    sudo checkmodule -M -m -o app-protect-dos.mod app-protect-dos.te &&  \
+    sudo semodule_package -o app-protect-dos.pp -m app-protect-dos.mod &&  \
+    sudo semodule -i app-protect-dos.pp;
+    ```
+
+    For L4 accelerated mitigation feature:<br>
+    a. Using the vi editor, create a file:
+
+    ```shell
+    vi app-protect-dos-ebpf-manager.te
+    ```
+
+    b. Insert the following contents into the file created above:
+
+    ```shell
+    module app-protect-dos-ebpf-manager 1.0;
+        require {
+        type root_t;
+        type httpd_t;
+        type unconfined_service_t;
+        class sock_file write;
+        class unix_stream_socket connectto;
+        class shm { unix_read unix_write };
+    }
+    allow httpd_t root_t:sock_file write;
+    allow httpd_t unconfined_service_t:shm { unix_read unix_write };
+    allow httpd_t unconfined_service_t:unix_stream_socket connectto;
+    ```
+
+    c. Run the following chain of commands:
+
+    ```shell
+    sudo checkmodule -M -m -o app-protect-dos-ebpf-manager.mod app-protect-dos-ebpf-manager.te &&  \
+    sudo semodule_package -o app-protect-dos-ebpf-manager.pp -m app-protect-dos-ebpf-manager.mod &&  \
+    sudo semodule -i app-protect-dos-ebpf-manager.pp;
+    ```
+
+    If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting/how-to-troubleshoot.md" >}}).
+
+    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/) article for details.{{< /call-out >}}
+
+16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
+
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+
+17. Start the NGINX service:
+
+    ```shell
+    sudo systemctl start nginx
+    ```
+
+18. L4 accelerated mitigation
+
+    To enable the `app-protect-dos-ebpf-manager` service to start at boot, run the command:
+    ```shell
+    sudo systemctl enable nginx.service
+    ```
+    Start the `app-protect-dos-ebpf-manager` service:
+    ```
+    sudo systemctl start app-protect-dos-ebpf-manager
+    ```
+
+
 ### Debian / Ubuntu Installation
 
 1. If you already have NGINX packages in your system, back up your configs and logs:
@@ -567,14 +777,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos
     ```
 
-    For L4 accelerated mitigation feature (Debian 11 /  Debian 12 / Ubuntu 22.04 / Ubuntu 24.04):
+    For L4 accelerated mitigation feature (Debian 11 / Debian 12 / Debian 13 / Ubuntu 22.04 / Ubuntu 24.04):
 
     ```shell
     sudo apt-get install app-protect-dos-ebpf-manager
     ```
 
    {{< call-out "note" >}}
-   L4 accelerated mitigation feature (Debian 11 /  Debian 12 /  Ubuntu 22.04 / Ubuntu 24.04):
+   L4 accelerated mitigation feature (Debian 11 / Debian 12 / Debian 13 / Ubuntu 22.04 / Ubuntu 24.04):
    - `app-protect-dos-ebpf-manager` run with root privileges.
    {{< /call-out >}}
 
@@ -597,6 +807,12 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     ```shell
     sudo apt-get install app-protect-dos=35+4.7.3-1~bookworm nginx-plus-module-appprotectdos=35+4.7.3-1~bookworm
+    ```
+
+    For example, for Debian 13:
+
+    ```shell
+    sudo apt-get install app-protect-dos=35+4.7.3-1~trixie nginx-plus-module-appprotectdos=35+4.7.3-1~trixie
     ```
 
     For example for Ubuntu 22.04:
@@ -646,7 +862,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-15. Enable the L4 accelerated mitigation feature (Debian 11 / Debian 12 / Ubuntu 22.04 / Ubuntu 24.04) on the `http` context of the `nginx.conf` file:
+15. Enable the L4 accelerated mitigation feature (Debian 11 / Debian 12 / Debian 13 / Ubuntu 22.04 / Ubuntu 24.04) on the `http` context of the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -1037,7 +1253,7 @@ You need root permissions to execute the following steps.
 
     The `--no-cache` option tells Docker to build the image from scratch and ensures the installation of the latest version of NGINX Plus and F5 DoS for NGINX. If the Dockerfile was previously used to build an image without the `--no-cache` option, the new image uses versions from the previously built image from the Docker cache.
 
-   For RHEL8/9 with subscription manager setup add build arguments:
+   For RHEL 8/9/10 with subscription manager setup add build arguments:
    
     ```shell
     DOCKER_BUILDKIT=1 docker build --build-arg RHEL_ORG=... --build-arg RHEL_ACTIVATION_KEY=...  --no-cache --platform linux/amd64 --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t app-protect-dos .
@@ -1120,7 +1336,7 @@ You need root permissions to execute the following steps.
 
 {{< include "/dos/dockerfiles/amazon-plus-dos.md" >}}
 
-### Debian 11 (Bullseye) / Debian 12 (Bookworm) Docker Deployment Example
+### Debian 11 (Bullseye) / Debian 12 (Bookworm) / Debian 13 (Trixie) Docker Deployment Example
 
 {{< include "/dos/dockerfiles/debian-plus-dos.md" >}}
 
