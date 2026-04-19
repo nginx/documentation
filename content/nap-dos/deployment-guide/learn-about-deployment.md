@@ -23,8 +23,10 @@ F5 DoS for NGINX supports the following operating systems:
 
 - [RHEL 8.1+ / Rocky Linux 8](#rhel-8--rocky-linux-8-installation)
 - [RHEL 9.0+ / Rocky Linux 9](#rhel-9--rocky-linux-9-installation)
+- [RHEL 10.0+](#rhel-10-installation)
 - [Debian 11 (Bullseye)](#debian--ubuntu-installation)
 - [Debian 12 (Bookworm)](#debian--ubuntu-installation)
+- [Debian 13 (Trixie)](#debian--ubuntu-installation)
 - [Ubuntu 22.04 (Jammy)](#debian--ubuntu-installation)
 - [Ubuntu 24.04 (Noble)](#debian--ubuntu-installation)
 - [Alpine 3.21](#alpine-installation)
@@ -1133,6 +1135,10 @@ You need root permissions to execute the following steps.
 ### RHEL 9 Docker Deployment Example
 
 {{< include "/dos/dockerfiles/rhel9-plus-dos.md" >}}
+
+### RHEL 10 Docker deployment example
+
+{{< include "/dos/dockerfiles/rhel10-plus-dos.md" >}}
 
 ### Rocky Linux 9 Docker Deployment Example
 
