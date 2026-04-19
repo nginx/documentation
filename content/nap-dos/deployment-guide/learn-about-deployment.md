@@ -777,14 +777,14 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos
     ```
 
-    For L4 accelerated mitigation feature (Debian 11 / Debian 12 / Debian 13 / Ubuntu 22.04 / Ubuntu 24.04):
+    For L4 accelerated mitigation feature (Debian 11, 12, and 13 / Ubuntu 22.04 and 24.04):
 
     ```shell
     sudo apt-get install app-protect-dos-ebpf-manager
     ```
 
    {{< call-out "note" >}}
-   L4 accelerated mitigation feature (Debian 11 / Debian 12 / Debian 13 / Ubuntu 22.04 / Ubuntu 24.04):
+   L4 accelerated mitigation feature (Debian 11, 12, and 13 / Ubuntu 22.04 and 24.04):
    - `app-protect-dos-ebpf-manager` run with root privileges.
    {{< /call-out >}}
 
@@ -862,7 +862,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     app_protect_dos_monitor uri=serv:80/; # Assuming server_name "serv" on port 80, with the root path "/"
     ```
 
-15. Enable the L4 accelerated mitigation feature (Debian 11 / Debian 12 / Debian 13 / Ubuntu 22.04 / Ubuntu 24.04) on the `http` context of the `nginx.conf` file:
+15. Enable the L4 accelerated mitigation feature (Debian 11, 12, and 13 / Ubuntu 22.04 and 24.04) on the `http` context of the `nginx.conf` file:
 
     ```nginx
     app_protect_dos_accelerated_mitigation on;
@@ -1336,7 +1336,7 @@ You need root permissions to execute the following steps.
 
 {{< include "/dos/dockerfiles/amazon-plus-dos.md" >}}
 
-### Debian 11 (Bullseye) / Debian 12 (Bookworm) / Debian 13 (Trixie) Docker Deployment Example
+### Debian 11, 12, and 13 Docker deployment example
 
 {{< include "/dos/dockerfiles/debian-plus-dos.md" >}}
 
