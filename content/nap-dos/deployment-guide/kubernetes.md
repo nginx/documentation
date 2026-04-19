@@ -92,6 +92,18 @@ In the same folder as your credential files, create a _Dockerfile_ based on your
 
 {{< /tabs >}}
 
+### RHEL 10
+
+{{< tabs name="rhel10-instructions" >}}
+
+{{% tab name="NGINX Plus" %}}
+
+{{< include "/dos/dockerfiles/rhel10-plus-dos.md" >}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 ### Rocky Linux 9
 
 {{< tabs name="rocky-instructions" >}}
