@@ -13,7 +13,7 @@ Follow the steps below to upgrade NGINX v3 Agent to the latest version.
 
 1. Open an SSH connection to the server where you've installed NGINX Agent.
 
-1. Make a backup copy of the following locations to ensure that you can successfully recover if the upgrade does not complete
+1. Make a backup copy of the following locations to ensure that you can recover if the upgrade does not complete
    successfully:
 
     - `/etc/nginx-agent`
