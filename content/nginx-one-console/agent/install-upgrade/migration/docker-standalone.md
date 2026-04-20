@@ -7,7 +7,10 @@ nd-product: NAGENT
 ---
 
 ## Before you begin
-
+- Ensure you have:
+   - Registry access for agent v3 images.
+   - NGINX_LICENSE_JWT and the NGINX Agent command auth token (data plane key).
+   
 - Registry access for agent v3 images.
 - NGINX_LICENSE_JWT and the NGINX Agent command auth token (data plane key).
 - Plan a maintenance window and test this procedure in a non‑production environment first.
