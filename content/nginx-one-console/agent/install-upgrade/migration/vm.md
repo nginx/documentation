@@ -38,7 +38,7 @@ Do not run NGINX Agent v2 and v3 concurrently on the same host.
      sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold"
      ```
 
-3. If using a config file, ensure required values are present. If you used Config Sync Groups in v2, add the following label in v3:
+3. If you are using a config file, ensure required values are present. If you used Config Sync Groups in v2, add the following label in v3:
    - NGINX_AGENT_LABELS: config-sync-group=<config-sync-group-name>
 
 ## Validate
