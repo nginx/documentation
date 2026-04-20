@@ -7,9 +7,8 @@ nd-product: NAGENT
 ---
 
 ## Before you begin
-
 - Ensure you have:
-  - docker compose installed
+  - Docker compose installed
   - Registry credentials (if required)
   - `NGINX_LICENSE_JWT` and the NGINX Agent command auth token (data plane key)
 - Back up your existing docker-compose.yaml.
