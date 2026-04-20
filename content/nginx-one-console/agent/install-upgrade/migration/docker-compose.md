@@ -1,5 +1,5 @@
 ---
-title: Migrate NGINX Agent v2 to v3 with Docker Compose
+title: Migrate with Docker Compose
 toc: true
 weight: 120
 nd-content-type: how-to
