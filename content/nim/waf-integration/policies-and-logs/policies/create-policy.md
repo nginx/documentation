@@ -89,7 +89,7 @@ To create a security policy using the REST API, send a `POST` request to the Sec
 **Example:**
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies \
   -H "Authorization: Bearer <access token>" \
   -H "Content-Type: application/json" \
   -d @ignore-xss-example.json

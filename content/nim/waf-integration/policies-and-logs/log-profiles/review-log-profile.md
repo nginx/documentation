@@ -21,7 +21,7 @@ Use this guide to review security log profiles for F5 WAF for NGINX in NGINX Ins
 
 1. In NGINX Instance Manager, select **WAF** > **Log Profiles**.
 
-1. Select the name of the log profile that you want to review.
+1. Select the log profile name you want to review.
 
    The log profile detail view opens with the following tabs:
 
@@ -55,7 +55,7 @@ Use this guide to review security log profiles for F5 WAF for NGINX in NGINX Ins
    - **Make a Copy**: Creates a new log profile by copying the JSON content into a new log profile object. Use an existing log profile as a baseline for further customization.
    - **Export as JSON**: Downloads the log profile JSON configuration.
    - **Manage Bundles**: Opens a view to manage compiled bundles for different WAF compiler versions.
-   - **Delete**: Removes the log profile. Once confirmed, all configuration work on that log profile is permanently lost.
+   - **Delete**: Removes the log profile. After you confirm, all configuration work on that log profile is permanently lost.
 
 ---
 

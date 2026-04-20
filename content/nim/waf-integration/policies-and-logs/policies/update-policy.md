@@ -43,7 +43,7 @@ To update a policy using the REST API, send either a `POST` or `PUT` request to 
 **Example using POST (create new revision):**
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies?isNewRevision=true \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=true \
   -H "Authorization: Bearer <access token>" \
   -H "Content-Type: application/json" \
   -d @update-xss-policy.json
@@ -54,14 +54,14 @@ curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies?isNewRevisio
 1. Retrieve the policy’s unique identifier (UID):
 
    ```shell
-   curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies \
+   curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies \
      -H "Authorization: Bearer <access token>"
    ```
 
 1. Include the UID in your `PUT` request:
 
    ```shell
-   curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid> \
+   curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid> \
      -H "Authorization: Bearer <access token>" \
      -H "Content-Type: application/json" \
      -d @update-xss-policy.json

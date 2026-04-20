@@ -2,7 +2,7 @@
 nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NIMNGR
-title: Download log profile bundles
+title: Download log profile bundles (REST API)
 description: "Download a compiled F5 WAF for NGINX security log profile bundle from NGINX Instance Manager using the REST API."
 weight: 500
 toc: true
@@ -24,7 +24,7 @@ The response includes a `hash` and `size` for the downloaded bundle. Verify thes
 
 ## Before you begin
 
-Before you begin, ensure you have:
+Before you begin, make sure you have:
 
 - **NGINX Instance Manager access**: An account with sufficient permissions to manage WAF log profiles. See [Manage roles and permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
 - **A compiled log profile bundle**: A log profile that has already been compiled in NGINX Instance Manager. See [Compile a security log profile]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/compile-log-profile.md" >}}).
@@ -66,7 +66,7 @@ Send a GET request to the Security Log Profiles API to download a compiled bundl
     --header 'Authorization: Bearer <ACCESS_TOKEN>'
     ```
 
-    Replace `<NIM_FQDN>` with your NGINX Instance Manager hostname, `<LOG_PROFILE_NAME>` with the name of the log profile, `<COMPILER_VERSION>` with the target WAF compiler version, and `<ACCESS_TOKEN>` with your authentication token.
+    Replace `<NIM_FQDN>` with your NGINX Instance Manager hostname. Replace `<LOG_PROFILE_NAME>` with the name of the log profile. Replace `<COMPILER_VERSION>` with the target WAF compiler version. Replace `<ACCESS_TOKEN>` with your authentication token.
 
 3. Review the JSON response to confirm the download succeeded and to retrieve the bundle content and integrity values.
 
@@ -86,7 +86,7 @@ Send a GET request to the Security Log Profiles API to download a compiled bundl
     }
     ```
 
-    The `compiledBundle` field contains the base64-encoded bundle content. The `hash` and `size` values in `metadata` should match the values returned when the bundle was compiled. If the values do not match, do not deploy the bundle and recompile the log profile.
+    The `compiledBundle` field contains the base64-encoded bundle content. The `hash` and `size` values in `metadata` should match the values returned when the bundle was compiled. If the values don't match, don't deploy the bundle. Recompile the log profile instead.
 
 ---
 

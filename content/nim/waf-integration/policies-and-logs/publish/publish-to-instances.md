@@ -34,7 +34,7 @@ Include the following details in your request body, depending on what you’re p
 ### Example request
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/publish \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/publish \
     -H "Authorization: Bearer <access token>" \
     -H "Content-Type: application/json" \
     -d @publish-request.json

@@ -32,7 +32,7 @@ To delete a policy using the REST API:
 1. Retrieve the policy’s UID by sending a `GET` request to the Security Policies endpoint:
 
    ```shell
-   curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies \
+   curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies \
      -H "Authorization: Bearer <access token>"
    ```
 
@@ -47,7 +47,7 @@ To delete a policy using the REST API:
 **Example:**
 
 ```shell
-curl -X DELETE https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid> \
+curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid> \
   -H "Authorization: Bearer <access token>"
 ```
 

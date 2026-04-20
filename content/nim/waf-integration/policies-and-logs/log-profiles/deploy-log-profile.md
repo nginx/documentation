@@ -16,13 +16,13 @@ nd-audience: operator
 
 ## Overview
 
-Use this guide to deploy a security log profile to NGINX instances or instance groups in NGINX Instance Manager. A log profile does not capture security events until it is deployed. You can deploy a log profile directly from the Log Profiles screen, or as part of editing the NGINX configuration for an instance or instance group.
+Use this guide to deploy a security log profile to NGINX instances or instance groups in NGINX Instance Manager. A log profile doesn't capture security events until you deploy it. You can deploy a log profile directly from the Log Profiles screen, or as part of editing the NGINX configuration for an instance or instance group.
 
 ---
 
 ## Before you begin
 
-Before you begin, ensure you have:
+Before you begin, make sure you have:
 
 - **A configured log profile**: A log profile already created and saved in NGINX Instance Manager. See [Configure a log profile]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/configure-log-profile.md" >}}).
 - **A target instance or instance group**: One or more NGINX instances or instance groups registered in NGINX Instance Manager to deploy the log profile to.
@@ -59,7 +59,7 @@ Before you begin, ensure you have:
 
 You can also deploy a log profile directly when editing the NGINX configuration for an instance or instance group. Use this method to integrate log profile deployment into your regular configuration workflow.
 
-1. In NGINX Instance Manager, select **Instances** or **Instance Groups** and choose the target instance or instance group.
+1. In NGINX Instance Manager, select **Instances** or **Instance Groups** and select the target instance or instance group.
 
 1. Select the **Configuration** tab, then select **Edit Configuration**.
 

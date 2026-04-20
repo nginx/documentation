@@ -8,7 +8,7 @@ weight: 100
 toc: true
 nd-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, security logs, app protect, request logs, traffic logs, Splunk, ArcSight, syslog"
 nd-summary: >
-  Configure log profiles for F5 WAF for NGINX security logs in F5 NGINX Instance Manager.
+  Configure log profiles for F5 WAF for NGINX security logs in NGINX Instance Manager.
   Log profiles define which HTTP requests are captured, how log messages are formatted, where logs are sent, and what security event details are included.
   Log profiles must be compiled into a bundle before deployment to NGINX instances.
 nd-audience: operator
@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Use this guide to configure log profiles for F5 WAF for NGINX security logs in NGINX Instance Manager. Security logs (also called Request logs or Traffic logs) provide visibility into what F5 WAF detects and how F5 WAF processes traffic according to your policies. F5 WAF uses its own logging mechanism rather than NGINX's default access logging.
+Use this guide to configure log profiles for F5 WAF for NGINX security logs in NGINX Instance Manager. Security logs (also called Request logs or Traffic logs) show what F5 WAF detects and how it processes traffic according to your policies. F5 WAF uses its own logging mechanism rather than NGINX's default access logging.
 
 With log profiles, you control:
 
@@ -32,11 +32,11 @@ For detailed information about security logging capabilities and available log a
 
 ## Before you begin
 
-Before you begin, ensure you have:
+Before you begin, make sure you have:
 
 - **F5 NGINX Instance Manager access**: An account with sufficient permissions to create and manage WAF log profiles. See [Manage roles and permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
-- **F5 WAF for NGINX license**: A valid license with WAF capabilities enabled on your NGINX Instance Manager deployment.
-- **NGINX instances**: One or more NGINX instances registered in NGINX Instance Manager that you intend to deploy the log profile to.
+- **F5 WAF for NGINX license**: A valid license with WAF capabilities for your NGINX Instance Manager deployment.
+- **NGINX instances**: One or more NGINX instances registered in NGINX Instance Manager. You'll deploy the log profile to these.
 
 ---
 
@@ -137,13 +137,13 @@ The compiled bundle is in compressed tar format (.tgz) and contains all the nece
    - **Compile**: Compile the log profile into a bundle for that compiler version.
    - **Download**: Download an existing compiled bundle for that compiler version.
 
-This allows you to maintain compatibility with different versions of F5 WAF across your infrastructure.
+Use this to maintain compatibility with different versions of F5 WAF across your infrastructure.
 
 ---
 
 ## Deploy the log profile
 
-After saving a log profile, deploy it to your NGINX instances to enable logging of WAF security events. See [Deploy log profiles]({{< ref "/nginx-one-console/waf-integration/log-profiles/deploy-log-profiles.md" >}}) for detailed deployment steps.
+After saving a log profile, deploy it to your NGINX instances to enable logging of WAF security events. See [Deploy log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/deploy-log-profile/" >}}) for detailed deployment steps.
 
 The deployment process configures the required NGINX directives (`app_protect_security_log_enable` and `app_protect_security_log`) and ensures the log profile bundle is accessible to your instances. For detailed information about these directives and their configuration options, see [Security log directives]({{< ref "/waf/logging/security-logs.md#directives-in-nginxconf" >}}).
 
@@ -153,7 +153,7 @@ For container-specific setup requirements, see the [Log profiles]({{< ref "/nim/
 
 ## Review and manage log profiles
 
-From NGINX Instance Manager, you can review the log profiles you have saved. For detailed information about reviewing and managing log profiles, see [Update log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/update-log-profile.md" >}}).
+From NGINX Instance Manager, you can review the log profiles you've saved. For detailed information about reviewing and managing log profiles, see [Update log profiles]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/update-log-profile.md" >}}).
 
 ---
 

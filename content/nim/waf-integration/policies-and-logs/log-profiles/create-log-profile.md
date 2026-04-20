@@ -1,5 +1,5 @@
 ---
-title: Create and deploy profiles using the REST API
+title: Create and deploy profiles (REST API)
 description: Create and upload a new F5 WAF for NGINX security log profile to NGINX Instance Manager using the REST API.
 toc: true
 weight: 600
@@ -11,7 +11,7 @@ You can create and upload new F5 WAF for NGINX security log profiles using the N
 
 A log profile defines how security events are recorded and exported from your NGINX instances.
 
-To upload a log profile, send a `POST` request to the Security Log Profiles API endpoint. The log profile must be encoded in `base64`; sending plain JSON will cause the request to fail.
+To upload a log profile, send a `POST` request to the Security Log Profiles API endpoint. The log profile must be encoded in `base64`; sending plain JSON causes the request to fail.
 
 {{< call-out "note" "Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
@@ -29,7 +29,7 @@ To upload a log profile, send a `POST` request to the Security Log Profiles API 
 Example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles \
     -H "Authorization: Bearer <access token>" \
     -d @default-log-example.json
 ```
