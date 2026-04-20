@@ -60,10 +60,12 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Add an optional description for your deployment.
    - Change the **NCU Capacity** if needed.
       - The default value of `20 NCU` should be adequate for most scenarios.
-   - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
-      - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
    - Select a **Configuration Version** from the list.
+   - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
+      - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
+   - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend. 
+      - Refer to the [Service Frontend]({{< ref "/nginxaas-google/overview.md#service-frontend" >}}) documentation for more information on these two frontend types.
    - Select **Submit** to begin the deployment process.
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
@@ -83,17 +85,31 @@ In the NGINXaaS Console,
 1. Select **Update Configuration** to change the NGINX configuration associated with the deployment.
 1. To modify the contents of the NGINX configuration, see [Update an NGINX Configuration]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md#update-an-nginx-configuration" >}}).
 
-## Set up connectivity to your deployment
+## Set up connectivity (Private Endpoint only)
 
-To set up connectivity to your NGINXaaS deployment, you will need to configure a [Private Service Connect backend](https://cloud.google.com/vpc/docs/private-service-connect-backends).
+If you selected **Private Endpoint** as the service frontend type, complete the following steps to allow client access. If you selected **Managed Public Endpoint**, skip this section.**
 
-1. Access the [Google Cloud Console](https://console.cloud.google.com/) and select the project where your networking resources for connecting to your F5 NGINXaaS deployment should be created.
+### Internal traffic
+
+To set up private connectivity to your NGINXaaS deployment, create a [Private Service Connect (PSC) endpoint](https://docs.cloud.google.com/vpc/docs/configure-private-service-connect-services) in the same VPC as your internal clients.
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and select the project where you want to create networking resources for your F5 NGINXaaS deployment.
+1. Create or reuse a [VPC network](https://cloud.google.com/vpc/docs/create-modify-vpc-networks).
+1. Create a PSC endpoint. See [Google's documentation on creating an endpoint](https://docs.cloud.google.com/vpc/docs/configure-private-service-connect-services#create-endpoint) for a step-by-step guide.
+    - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
+
+
+### External traffic
+
+To set up public connectivity for external clients, configure a [Private Service Connect (PSC) backend](https://cloud.google.com/vpc/docs/private-service-connect-backends) for your NGINXaaS deployment.
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and select the project where you want to create networking resources for your F5 NGINXaaS deployment.
 1. Create or reuse a [VPC network](https://cloud.google.com/vpc/docs/create-modify-vpc-networks).
 1. Create a proxy-only subnet in your consumer VPC. See [Google's documentation on creating a proxy-only subnet](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_1) for a step-by-step guide.
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
 1. Create a Private Service Connect Network Endpoint Group (PSC NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
    - Set **Network endpoint group type** to **Private Service Connect NEG (Regional)**.
-   - Set **Taget** to **Published service**.
+   - Set **Target** to **Published service**.
    - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
    - For **Producer port**, enter the port your NGINX server is listening on. If you're using the default NGINX config, enter port `80`.
    - For **Network** and **Subnetwork** select your consumer VPC network and subnet.
@@ -281,15 +297,13 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
 
 ## Test your deployment
 
-1. To test your deployment, go to the IP address created in [Set up connectivity to your deployment]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md#set-up-connectivity-to-your-deployment" >}}) using your favorite web browser.
+1. To test your deployment, connect to the IP address created in [Set up connectivity]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}) or the service endpoint created with your managed public endpoint deployment.
 
 {{< call-out "note" >}}
 
 The deployment is privately deployed in your subnet. If you want to route traffic to an application over the public internet, consider setting up [Cloud NAT](https://docs.cloud.google.com/nat/docs/overview).
 
 {{< /call-out >}}
-
-
 
 ## What's next
 
