@@ -99,6 +99,3 @@ Then reference this policy in your NGINX configuration using the `app_protect_po
 
 For the full policy configuration reference, see the official [IP Intelligence documentation](https://docs.nginx.com/waf/policies/ip-intelligence/#configure-policies-for-ip-intelligence).
 
-## What's next
-
-- [Enable F5 WAF for NGINX Logs]({{< ref "/nginxaas-azure/app-protect/enable-logging.md" >}}) to monitor IP Intelligence violations in your security logs.
