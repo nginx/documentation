@@ -1,5 +1,5 @@
 ---
-title: Migrate NGINX Agent v2 to v3 on VMs (RPM/DEB)
+title: Migrate on VMs (RPM/DEB)
 toc: true
 weight: 100
 nd-content-type: how-to
