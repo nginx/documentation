@@ -6,13 +6,13 @@ nd-content-type: how-to
 nd-product: FABRIC
 nd-description: How to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
 nd-summary: >
-  NGINX Gateway Fabric supports external authentication via the `ExternalAuth` filter on HTTPRoute.
+  NGINX Gateway Fabric supports external authentication via the `ExternalAuth` filter on an HTTPRoute.
   Before proxying a request to the backend, NGINX performs an authorization subrequest to an external service.
   A 2xx response allows the request through, and any other status rejects it.
   This feature uses the NGINX [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html).
 ---
 
-This guide describes how to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
+This guide describes how to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on an HTTPRoute.
 
 External authentication delegates the authorization decision for each request to an external service. NGINX issues a subrequest to that service before proxying the original request, and forwards the request only if the service responds with a 2xx status.
 
@@ -160,7 +160,7 @@ GW_PORT=<port number>
 
 ## Deploy the external authentication server
 
-The authentication service is an NGINX deployment that checks the `X-Api-Key` request header. If the header value is `my-custom-secret`, the server responds with `200 OK`; otherwise it responds with `401 Unauthorized`.
+This sample authentication service is an NGINX deployment that checks the `X-Api-Key` request header. If the header value is `my-custom-secret`, the server responds with `200 OK`; otherwise it responds with `401 Unauthorized`.
 
 ```yaml
 kubectl apply -f - <<'EOF'
