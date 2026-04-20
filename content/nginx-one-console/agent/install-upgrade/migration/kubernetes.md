@@ -7,6 +7,12 @@ nd-product: NAGENT
 ---
 
 ## Before you begin
+- Ensure you have:
+   - kubectl context set to the target cluster and namespace.
+   -  Permissions to deploy to the namespace.
+   - Required registry credentials available.
+   - A Secret for NGINX_LICENSE_JWT or that you can create one.
+- Plan a maintenance window and test in a non‑production environment first.
 
 - kubectl context is set to the target cluster and namespace.
 - You have permissions to deploy to the namespace.
