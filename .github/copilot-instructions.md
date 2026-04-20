@@ -76,6 +76,17 @@ the title from the notes if one is not provided. Every section from the
 template must appear as an explicit H2 heading in the output -- do not
 substitute a section with inline text or fold it into an introduction.
 
+## Hugo includes
+
+Some docs use Hugo shortcodes to include content from other files, for example:
+
+    {{< include file="path/to/file.md" >}}
+
+When you encounter an include shortcode in a file you are editing, read the
+included file and review it for style issues as part of the same task. Apply
+the same style rules to included files. List changes to included files
+separately in your output, citing the filename.
+
 ## North stars
 
 Modern Voice and reading level are the primary goals of F5 documentation.
@@ -83,14 +94,20 @@ All other style guide topics serve them. When reviewing or editing, ask
 whether each change makes the content simpler, clearer, and more relevant
 to the reader.
 
-Target a Flesch-Kincaid Grade Level of 8--9. The main drivers of a high
-score are:
-- Long sentences -- break them up
-- Long words -- replace with shorter alternatives
-- Passive voice -- rewrite as active
-- Noun clusters -- break them apart
+Prioritize these topics above all others:
 
-Technical terms are fine. It's the surrounding prose that should be simple.
+1. sentence-length -- short sentences improve comprehension for global
+   audiences and machine translation. Task sentences: 20 words maximum.
+   Conceptual sentences: 25 words maximum.
+2. active-voice -- passive voice obscures meaning and adds words. Default
+   to active in every sentence.
+3. reading-level -- target Flesch-Kincaid Grade Level 8-9. Flag anything
+   above 10 for revision.
+4. global-audience -- avoid idioms, cultural references, and colloquialisms.
+   Write explicitly. Prefer short common words over long formal ones.
+
+Apply word list replacements, grammar rules, UI conventions, and all other
+style topics after these four are satisfied.
 
 ## Always apply these rules
 
@@ -210,10 +227,6 @@ nd-product: INGRESS           # INGRESS, FABRIC, NIMNGR, F5WAFN, etc.
 - Do not include headings -- they won't appear in the TOC
 - Do not nest includes unless unavoidable
 - Keep include files context-agnostic and modular
-
-When you encounter an include shortcode in a file you are editing, read the
-included file and review it for style issues as part of the same task. List
-changes to included files separately, citing the filename.
 
 ### Call-outs
 ```markdown
