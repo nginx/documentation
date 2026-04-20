@@ -24,7 +24,7 @@ nd-product: NAGENT
 Do not run NGINX Agent v2 and v3 in the same pod or on the same node as part of the migration.
 {{< /call-out >}}
 
-## Steps
+## Migrate
 
 1. Prepare the Deployment manifest for NGINX Agent v3. Example:
    ```yaml
