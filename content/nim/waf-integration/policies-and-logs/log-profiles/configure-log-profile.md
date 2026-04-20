@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Use this guide to configure log profiles for F5 WAF for NGINX security logs in NGINX Instance Manager. Security logs (also called Request logs or Traffic logs) show what F5 WAF detects and how it processes traffic according to your policies. F5 WAF uses its own logging mechanism rather than NGINX's default access logging.
+Use this guide to configure log profiles for F5 WAF for NGINX security logs in F5 NGINX Instance Manager. Security logs (also called Request logs or Traffic logs) provide visibility into what F5 WAF for NGINX detects and how F5 WAF for NGINX processes traffic according to your policies. F5 WAF for NGINX uses its own logging mechanism rather than NGINX's default access logging.
 
 With log profiles, you control:
 
