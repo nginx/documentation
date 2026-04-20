@@ -11,11 +11,11 @@ nd-docs: DOCS-1226
 
 ### Description
 
-If a Security Violation event is not received by the Security Monitoring module, the attack data is lost.
+If the Security Monitoring module doesn't receive a security violation event, the attack data is lost.
 
 ### Resolution
 
-F5 WAF for NGINX supports logging to multiple destinations. This allows users to send logs to the NGINX agent and store a backup. If Security Monitoring fails to receive Security Events, you can check the backup log to verify attack details. Use the following settings to enable backup logging:
+F5 WAF for NGINX supports logging to multiple destinations. You can send logs to NGINX Agent and keep a backup. If Security Monitoring doesn't receive security events, check the backup log to verify attack details. Use the following settings to turn on backup logging:
 
 1. **For an instance with Security Monitoring only:**
 
