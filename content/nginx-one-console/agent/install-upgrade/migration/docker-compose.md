@@ -19,7 +19,7 @@ nd-product: NAGENT
 Do not run NGINX Agent v2 and v3 concurrently in the same container or on the same host.
 {{< /call-out >}}
 
-## Steps
+## Migrate
 
 1. Update your compose file to use the v3 image and environment variables. Example:
    ```yaml
