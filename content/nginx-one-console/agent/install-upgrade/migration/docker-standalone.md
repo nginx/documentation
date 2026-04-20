@@ -1,5 +1,5 @@
 ---
-title: Migrate NGINX Agent v2 to v3 in a Docker container
+title: Migrate in a Docker container
 toc: true
 weight: 130
 nd-content-type: how-to
