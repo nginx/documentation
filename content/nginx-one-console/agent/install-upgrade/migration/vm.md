@@ -21,7 +21,7 @@ nd-product: NAGENT
 Do not run NGINX Agent v2 and v3 concurrently on the same host.
 {{< /call-out >}}
 
-## Steps
+## Migrate
 
 1. If you are using a version older than NGINX Agent v2.31.0, stop the agent before upgrading and start it again after the upgrade.
    - sudo systemctl stop nginx-agent
