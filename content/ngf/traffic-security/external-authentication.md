@@ -197,7 +197,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.27
+        image: nginx:latest
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -401,7 +401,5 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT
 
 ## Further reading
 
-- [HTTPRoute filters API reference]({{< ref "/ngf/reference/api.md" >}})
 - [NGINX HTTP auth request module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)
-- [Example deployment files for ExternalAuth](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/external-authentication)
 - [Gateway API HTTPExternalAuthFilter specification](https://gateway-api.sigs.k8s.io/reference/spec/#httpexternalauthfilter)
