@@ -1,5 +1,5 @@
 ---
-title: Migrate NGINX Agent v2 to v3 on Kubernetes
+title: Migrate on Kubernetes
 toc: true
 weight: 110
 nd-content-type: how-to
