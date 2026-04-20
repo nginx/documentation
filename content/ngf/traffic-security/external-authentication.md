@@ -29,9 +29,15 @@ The filter translates to NGINX's [ngx_http_auth_request_module](https://nginx.or
 - [`auth_request`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) — sends a subrequest to the specified URI and grants or denies access based on the response status.
 - [`auth_request_set`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set) — captures a value from the authentication response and stores it in a variable for use in the main request.
 
+## Note on Gateway API Experimental Features
+
+{{< call-out "important" >}} ExternalAuth is a Gateway API resource from the experimental release channel. {{< /call-out >}}
+
+{{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
+
 ## Before you begin
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
+- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with experimental features enabled.
 
 ## Deploy sample applications
 
@@ -282,7 +288,7 @@ spec:
 EOF
 ```
 
-The filter fields `backendRef` and `http.path` set the upstream and URI of the authentication subrequest, `http.allowedHeaders` and `http.allowedResponseHeaders` control which client headers flow to the authentication service and which response headers flow back onto the proxied request, and `forwardBody.maxSize` sets the maximum body size accepted for forwarding. The value is applied as `client_max_body_size` on the main request, so requests with a body larger than `maxSize` are rejected with `413 Request Entity Too Large` rather than forwarded partially.
+`backendRef` and `http.path` identify the authentication service and the URI that receives the subrequest. `http.allowedHeaders` lists the client headers that are forwarded to the authentication service. `forwardBody.maxSize` sets the largest request body the gateway will accept and forward; anything larger is rejected with `413 Request Entity Too Large`.
 
 {{< call-out "note" >}}
 By default, no headers from the authentication server response are copied onto the proxied request. To forward headers such as a user ID or role from the authentication server to the backend, list them explicitly in `allowedResponseHeaders`.
