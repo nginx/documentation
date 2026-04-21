@@ -42,9 +42,9 @@ Visit [http://127.0.0.1:9090](http://127.0.0.1:9090) to view the dashboard.
 ### Grafana
 
 ```shell
-helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add grafana-community https://grafana-community.github.io/helm-charts
 helm repo update
-helm install grafana grafana/grafana -n monitoring --create-namespace
+helm install grafana grafana-community/grafana -n monitoring --create-namespace
 ```
 
 Once running, you can access the Grafana dashboard by using port-forwarding in the background:
