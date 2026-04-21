@@ -16,7 +16,10 @@ This guide describes how to configure external authentication in NGINX Gateway F
 
 External authentication delegates the authorization decision for each request to an external service. NGINX issues a subrequest to that service before proxying the original request, and forwards the request only if the service responds with a 2xx status.
 
-By following these instructions, you will create two sample applications. The `coffee` endpoint is protected by an `ExternalAuth` filter, and the `tea` endpoint is exposed without any external authentication filter, so you can compare the behavior of each.
+Following these instructions to create two sample applications and compare the behavior of each:
+- `coffee` endpoint: Protected by an `ExternalAuth` filter.
+- `tea` endpoint: Exposed without any external authentication filter.
+
 
 ## Overview
 
@@ -26,8 +29,8 @@ Each route rule supports only one `ExternalAuth` filter. If your authentication 
 
 The filter translates to NGINX's [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) directives:
 
-- [`auth_request`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) — sends a subrequest to the specified URI and grants or denies access based on the response status.
-- [`auth_request_set`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set) — captures a value from the authentication response and stores it in a variable for use in the main request.
+- [`auth_request`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) — Sends a subrequest to the specified URI and grants or denies access based on the response status.
+- [`auth_request_set`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set) — Captures a value from the authentication response and stores it in a variable for use in the main request.
 
 ## Note on Gateway API Experimental Features
 
@@ -288,10 +291,10 @@ spec:
 EOF
 ```
 
-`backendRef` and `http.path` identify the authentication service and the URI that receives the subrequest. `http.allowedHeaders` lists the client headers that are forwarded to the authentication service. `forwardBody.maxSize` sets the largest request body the gateway will accept and forward; anything larger is rejected with `413 Request Entity Too Large`.
+`backendRef` and `http.path` identify the authentication service and the URI that receives the subrequest. `http.allowedHeaders` lists the client headers that are forwarded to the authentication service. `forwardBody.maxSize` sets the largest request body the gateway accepts and forwards; anything larger is rejected with `413 Request Entity Too Large`.
 
 {{< call-out "note" >}}
-By default, no headers from the authentication server response are copied onto the proxied request. To forward headers such as a user ID or role from the authentication server to the backend, list them explicitly in `allowedResponseHeaders`.
+By default, no headers from the authentication server response are copied onto the proxied request. To forward headers, such as a user ID or role, from the authentication server to the backend, list them explicitly in `allowedResponseHeaders`.
 {{< /call-out >}}
 
 Verify both HTTPRoutes are accepted with `kubectl describe`:
@@ -325,7 +328,7 @@ Status:
 
 Your clients should be able to resolve "cafe.example.com" to the public IP of the NGINX Service.
 
-This guide simulates that using curl's `--resolve` option.
+This guide simulates that using the `--resolve` option in curl.
 
 {{< /call-out >}}
 
@@ -359,7 +362,7 @@ URI: /coffee
 Request ID: 217931bc5fe27254d1821cec91e1f2d8
 ```
 
-The `X-Api-Key` header is listed in `allowedHeaders`, so it reaches the authentication server, which responds `200 OK`. NGINX then proxies the request to the `coffee` backend.
+The `X-Api-Key` header is listed in `allowedHeaders` so that it reaches the authentication server, which responds `200 OK`. NGINX then proxies the request to the `coffee` backend.
 
 Access `/tea`, which has no `ExternalAuth` filter and responds normally:
 
@@ -400,8 +403,8 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT
 
 - If the HTTPRoute is not accepted, run `kubectl describe httproute coffee` and check the `Status` conditions for validation errors.
 - If every request returns `401`, confirm that the authentication server is reachable from the NGINX pod and that the `backendRef` name, namespace, and port are correct.
-- If a required request header is not reaching the authentication server, confirm it is listed in `http.allowedHeaders`.
-- If a response header from the authentication server is not reaching the backend, confirm it is listed in `http.allowedResponseHeaders`.
+- If a required request header cannot reach the authentication server, confirm it is listed in `http.allowedHeaders`.
+- If a response header from the authentication server cannot reach the backend, confirm it is listed in `http.allowedResponseHeaders`.
 - If a request is rejected with `413 Request Entity Too Large`, raise `forwardBody.maxSize` to accommodate the client body.
 - If the HTTPRoute reports `ResolvedRefs: False` with an `InvalidFilter` reason mentioning `body.maxSize`, remove either the `ExternalAuth` filter's `forwardBody.maxSize` or the ClientSettingsPolicy's `body.maxSize` as they both cannot be set on the same route.
 
