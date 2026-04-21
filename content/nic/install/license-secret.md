@@ -53,7 +53,7 @@ Next, use the following command to generate the updated Secret manifest and appl
 kubectl create secret generic license-token \
 --save-config \
 --dry-run=client \
---from-file=license.jwt=license.jwt \
+--from-file=<new-jwt-file-path>=license.jwt \
 --type=nginx.com/license \
 -o yaml | \
 kubectl apply -f -
