@@ -24,23 +24,22 @@ To update a policy in the web interface:
 1. The policy editor opens. Change the policy as described in [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}}).
 1. After making your changes, select **Save**.
 
+{{< call-out "note" "Note" >}}Editing a policy creates a new revision, whether or not you've deployed it.{{< /call-out >}}
+
 {{%/tab%}}
 
 {{%tab name="API"%}}
 
-To update a policy using the REST API, send either a `POST` or `PUT` request to the Security Policies endpoint.
-
-- Use `POST` with the `isNewRevision=true` parameter to create a new revision of an existing policy.
-- Use `PUT` with the policy UID to overwrite the existing version.
+To update a policy using the REST API, use `POST` with `isNewRevision=true`. Both methods create a new revision. `PUT` is deprecated — use `POST` instead.
 
 {{< table >}}
 | Method | Endpoint |
 |--------|-----------|
 | POST | `/api/platform/v1/security/policies?isNewRevision=true` |
-| PUT | `/api/platform/v1/security/policies/{policy_uid}` |
+| PUT (deprecated) | `/api/platform/v1/security/policies/{policy_uid}` |
 {{</ table >}}
 
-**Example using POST (create new revision):**
+**Example using POST:**
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=true \
@@ -49,9 +48,11 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=
   -d @update-xss-policy.json
 ```
 
-**Example using PUT (overwrite existing):**
+**Example using PUT (deprecated):**
 
-1. Retrieve the policy’s unique identifier (UID):
+{{< call-out "caution" "Deprecated" >}}The `PUT` method is deprecated. Use `POST` with `isNewRevision=true` instead.{{< /call-out >}}
+
+1. Get the policy UID:
 
    ```shell
    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies \
