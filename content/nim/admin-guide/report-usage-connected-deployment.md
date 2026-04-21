@@ -69,7 +69,7 @@ NGINX Instance Manager will automatically report subscription entitlement and us
 
 If you prefer submitting usage reports to F5 manually, follow these steps:
 
-1. Log in to the NGINX Instance Manager web interface (`https://<NIM-FQDN>/ui/`).
+1. Log in to the NGINX Instance Manager web interface (`https://<NIM_FQDN>/ui/`).
 2. Select the **Settings** (gear) icon.
 3. On the **Licenses > Overview** page, turn off **Enable Continuous Connection**.
 4. To manually submit a usage report, select **Send Usage to F5**.

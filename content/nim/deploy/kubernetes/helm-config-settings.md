@@ -15,7 +15,7 @@ This reference guide lists the configurable Helm chart parameters and default se
 In version 2.20.0, we renamed the Helm chart from `nms-hybrid` to `nim` when we moved it to its own repository. For versions 2.19.0 and earlier, use `nms-hybrid` instead of `nim` in each parameter name.
 {{< /call-out >}}
 
-To update an existing release, run `helm upgrade` with the `-f <my-values-file>` flag, where `<my-values-file>` is the path to your values file.
+To update an existing release, run `helm upgrade` with the `-f <MY_VALUES_FILE>` flag, where `<MY_VALUES_FILE>` is the path to your values file.
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive table-sm" >}}
 

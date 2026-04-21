@@ -1605,7 +1605,7 @@ An issue has been identified in which metric data is aggregated across all dimen
 When querying the Metrics API, you can exclude the data for an aggregated dimension by specifying the dimension name in the `filterBy` query parameter.
 
 ```none
-filterBy=<dimension-name>!= ''
+filterBy=<DIMENSION_NAME>!= ''
 ```
 
 ---
@@ -1622,7 +1622,7 @@ When NGINX Plus is installed on a datapath instance, then removed and replaced w
 
 #### Workaround
 
-Use NGINX Instance Manager's NGINX Instances API to remove the inactive NGINX instance. For instructions, refer to the API reference guide, which you can find at `https://<NGINX-INSTANCE-MANAGER-FQDN>/ui/docs`.
+Use NGINX Instance Manager's NGINX Instances API to remove the inactive NGINX instance. For instructions, refer to the API reference guide, which you can find at `https://<NIM_FQDN>/ui/docs`.
 
 You may need to stop the NGINX Agent first. To stop the NGINX Agent, take the following steps:
 

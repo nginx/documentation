@@ -43,7 +43,7 @@ To submit the usage report in a disconnected environment, use the provided `offl
 Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) script and make the script executable:
 
 ```shell
-    chmod +x <PATH-TO-SCRIPT>/offline_usage.sh
+    chmod +x <PATH_TO_SCRIPT>/offline_usage.sh
 ```
 
 ### Download usage report
@@ -73,13 +73,13 @@ To download the usage report from NGINX Instance Manager, run the following comm
 To upload the usage acknowledgment to NGINX One Console, run the following command:
 
 ```shell
-./offline_usage.sh upload <FILE-PATH> --result-dir <DIR> [--endpoint-url <URL>]
+./offline_usage.sh upload <FILE_PATH> --result-dir <DIR> [--endpoint-url <URL>]
 ```
 Where:
 
 | Argument | Description | Required |
 | --- | --- | --- |
-| `<FILE-PATH>` | The path to the usage acknowledgment ZIP file downloaded using the `download` operation. | Yes |
+| `<FILE_PATH>` | The path to the usage acknowledgment ZIP file downloaded using the `download` operation. | Yes |
 | --result-dir, -r <DIR> | Directory used to track uploaded files and store unzipped contents. | Yes |
 | --endpoint-url, -e <URL> | Upload endpoint URL. Default: https://product.connect.nginx.com/api/nginx-usage/batch | No |
 
@@ -87,9 +87,9 @@ The script provides the following output:
 
 | File | Description |
 | --- | --- |
-| `<RESULT-DIR>/uploaded_filex.txt` | A text file containing the names of the succesfully uploaded files. |
-| `<RESULT-DIR>/unzip/` | Extracted contents of the usage report |
-| `<RESULT-DIR>/upload_usage.log` | Detailed log of all upload attempts (in CWD) |
+| `<RESULT_DIR>/uploaded_filex.txt` | A text file containing the names of the succesfully uploaded files. |
+| `<RESULT_DIR>/unzip/` | Extracted contents of the usage report |
+| `<RESULT_DIR>/upload_usage.log` | Detailed log of all upload attempts (in CWD) |
 
 And returns one the following exit codes:
 
@@ -136,17 +136,17 @@ To submit a usage report in a disconnected environment, use the provided `licens
 1.	Run the following command to allow the script to run:
 
     ```shell
-    chmod +x <path-to-script>/license_usage_offline.sh
+    chmod +x <PATH_TO_SCRIPT>/license_usage_offline.sh
     ```
 
 1. Run the script. Replace each placeholder with your specific values:
 
     ```shell
     ./license_usage_offline.sh \
-      -j <license-filename>.jwt \
-      -i <NIM-IP-address> \
+      -j <LICENSE_FILENAME>.jwt \
+      -i <NIM_IP_ADDRESS> \
       -u admin \
-      -p <password> \
+      -p <PASSWORD> \
       -s telemetry
     ```
 
@@ -169,18 +169,18 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 1. **Prepare the usage report**:
 
     ```shell
-    curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
+    curl -k --location 'https://<NIM_FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
     --header 'accept: application/json' \
-    --header 'authorization: Basic <base64-encoded-credentials>' \
-    --header 'referer: https://<NIM-FQDN>/ui/settings/license'
+    --header 'authorization: Basic <BASE64_ENCODED_CREDENTIALS>' \
+    --header 'referer: https://<NIM_FQDN>/ui/settings/license'
     ```
 
 1. **Download the usage report from NGINX Instance Manager**:
 
     ```shell
-    curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
+    curl -k --location 'https://<NIM_FQDN>/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \
     --header 'accept: */*' \
-    --header 'authorization: Basic <base64-encoded-credentials>' \
+    --header 'authorization: Basic <BASE64_ENCODED_CREDENTIALS>' \
     --output report.zip
     ```
 
@@ -189,7 +189,7 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     ```shell
     curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
-    --form 'file=@"<path-to-report>.zip"'
+    --form 'file=@"<PATH_TO_REPORT>.zip"'
     ```
 
     After running this command, look for the "statusLink" in the response. The `report-id` is the last part of the "statusLink" value (the UUID). For example:
@@ -204,27 +204,27 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 1. **Check the status of the usage acknowledgement**:
 
-    Replace `<report-id>` with your specific ID from the previous response.
+    Replace `<REPORT_ID>` with your specific ID from the previous response.
 
     ```shell
-    curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/<report-id>' \
+    curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/status/{report_id}' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)"
     ```
 
 1. **Download the usage acknowledgement from F5**:
 
     ```shell
-    curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/<report-id>' \
+    curl --location 'https://product.apis.f5.com/ee/v1/entitlements/telemetry/bulk/download/{report_id}' \
     --header "Authorization: Bearer $(cat /path/to/jwt-file)" \
-    --output <path-to-acknowledgement>.zip
+    --output <PATH_TO_ACKNOWLEDGEMENT>.zip
     ```
 
 1. **Upload the usage acknowledgement to NGINX Instance Manager**:
 
     ```shell
-    curl -k --location 'https://<NIM-FQDN>/api/platform/v1/report/upload' \
-    --header 'Authorization: Basic <base64-encoded-credentials>' \
-    --form 'file=@"<path-to-acknowledgement>.zip"'
+    curl -k --location 'https://<NIM_FQDN>/api/platform/v1/report/upload' \
+    --header 'Authorization: Basic <BASE64_ENCODED_CREDENTIALS>' \
+    --form 'file=@"<PATH_TO_ACKNOWLEDGEMENT>.zip"'
     ```
 
 {{%/tab%}}
