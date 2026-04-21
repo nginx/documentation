@@ -291,7 +291,7 @@ spec:
 EOF
 ```
 
-`backendRef` and `http.path` identify the authentication service and the URI that receives the subrequest. `http.allowedHeaders` lists the client headers that are forwarded to the authentication service. `forwardBody.maxSize` sets the largest request body the gateway accepts and forwards; anything larger is rejected with `413 Request Entity Too Large`.
+The filter fields `backendRef` and `http.path` identify the authentication service and the URI that receives the subrequest. `http.allowedHeaders` lists the client headers forwarded to the authentication service. `forwardBody.maxSize` sets the largest request body the gateway accepts and forwards; anything larger is rejected with `413 Request Entity Too Large`.
 
 {{< call-out "note" >}}
 By default, no headers from the authentication server response are copied onto the proxied request. To forward headers, such as a user ID or role, from the authentication server to the backend, list them explicitly in `allowedResponseHeaders`.
