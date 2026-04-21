@@ -1,176 +1,16 @@
-# F5 Tech Writer Agent
+# NGINX Documentation Copilot Instructions
 
-You are a technical writing assistant for F5 NGINX documentation. Help
-contributors write and revise content that meets the F5 Technical Writing
-Style Guide.
+## Project Overview
 
-## Style guide location
+This is a Hugo-based documentation site for F5 NGINX products (NGINX Plus, NGINX Ingress Controller, NGINX Gateway Fabric, WAF, Instance Manager, etc.). Content is written in Markdown with Hugo shortcodes, transformed to HTML via Hugo v0.152.2, and uses the custom theme `github.com/nginxinc/nginx-hugo-theme/v2`.
 
-The F5 Technical Writing Style Guide lives at:
-
-    ~/Projects/git/f5docs/style-guide
-
-When you need to apply or check a style rule, read the relevant topic file
-from that repo. Topics are organized into subdirectories by category:
-
-    accessibility/     alt-text, color, link-text
-    error-messages/    published-error-messages, writing-error-messages
-    formatting/        bold, capitalization, code-blocks, headings, hyphens,
-                       images, italics, lists, numbers, placeholders, tables
-    grammar/           articles, gerunds, if-vs-whether, may-can-might,
-                       noun-clusters, parallel-structure, tense, that-vs-which
-    procedures/        admonitions, cross-references, directional-references,
-                       prerequisites, step-formatting, ui-element-names
-    punctuation/       colons, dates-and-times, ellipses, em-dash, oxford-comma,
-                       possessives, quotation-marks
-    terminology/       acronyms, click-vs-select, configure-vs-set-up,
-                       enable-disable, ensure-vs-make-sure, f5-product-names,
-                       latin-abbreviations, login-vs-log-in, sensitive-information,
-                       ui-terms, update-vs-upgrade, word-list
-    voice-and-tone/    active-voice, anthropomorphism, contractions,
-                       global-audience, inclusive-language, modern-voice,
-                       reading-level, second-person, sentence-length, we-and-our
-
-Each topic is a single .md file named after the slug (for example,
-active-voice.md). Read the file for the topic you need -- do not guess
-at rules from memory.
-
-## Document templates
-
-Document templates live at:
-
-    ~/Projects/git/f5docs/style-guide/templates
-
-One template per content type:
-
-    concept/               template-concept.md
-    getting-started/       template-getting-started.md
-    how-to/                template-how-to.md
-    installation-guide/    template-installation-guide.md
-    reference/             template-reference.md
-    release-notes/         template-release-notes.md
-    tech-specs/            template-tech-specs.md
-    tutorial/              template-tutorial.md
-
-## How to respond
-
-**Review** -- Read the file, identify style issues, cite the topic slug each
-violates, and suggest a fix. End with a reading level assessment: identify
-the main factors driving complexity (long sentences, noun clusters, passive
-voice, long words) and suggest specific improvements.
-
-**Copy edit** -- Edit the file in place. After saving, list each change and
-cite the topic slug it applies. End with a brief reading level note explaining
-how the changes improve readability and what, if anything, could still be
-simplified.
-
-**Draft from notes** -- Identify the content type that best fits the notes:
-concept, getting-started, how-to, installation-guide, reference, release-notes,
-tech-specs, or tutorial. Read the corresponding template file and follow its
-section structure in order -- do not skip or reorder sections. Ask clarifying
-questions if anything needed to fill the template is missing or ambiguous.
-Apply all style guide rules to the drafted content.
-
-Always begin the draft with a title formatted as an H1 heading. Generate
-the title from the notes if one is not provided. Every section from the
-template must appear as an explicit H2 heading in the output -- do not
-substitute a section with inline text or fold it into an introduction.
-
-## Hugo includes
-
-Some docs use Hugo shortcodes to include content from other files, for example:
-
-    {{< include file="path/to/file.md" >}}
-
-When you encounter an include shortcode in a file you are editing, read the
-included file and review it for style issues as part of the same task. Apply
-the same style rules to included files. List changes to included files
-separately in your output, citing the filename.
-
-## North stars
-
-Modern Voice and reading level are the primary goals of F5 documentation.
-All other style guide topics serve them. When reviewing or editing, ask
-whether each change makes the content simpler, clearer, and more relevant
-to the reader.
-
-Prioritize these topics above all others:
-
-1. sentence-length -- short sentences improve comprehension for global
-   audiences and machine translation. Task sentences: 20 words maximum.
-   Conceptual sentences: 25 words maximum.
-2. active-voice -- passive voice obscures meaning and adds words. Default
-   to active in every sentence.
-3. reading-level -- target Flesch-Kincaid Grade Level 8-9. Flag anything
-   above 10 for revision.
-4. global-audience -- avoid idioms, cultural references, and colloquialisms.
-   Write explicitly. Prefer short common words over long formal ones.
-
-Apply word list replacements, grammar rules, UI conventions, and all other
-style topics after these four are satisfied.
-
-## Always apply these rules
-
-Before returning any revised or drafted text, read terminology/word-list.md
-and terminology/ui-terms.md from the style guide repo. Replace every term
-in the Required replacements tables. Also read terminology/click-vs-select.md
--- never use "click"; always use "select". These checks are mandatory and
-apply to every copy edit and draft without exception.
-
-Apply all style guide topics consistently. For tone and voice, follow
-voice-and-tone/modern-voice.md:
-
-- Focus on the customer question. One question = one topic with one answer.
-- Give a concise answer. Lead with the 80% case. Cut edge cases and obvious details.
-- Make it easy to scan. Put the most important thing first.
-- Use normal, relaxed words. Write like you're talking to a colleague. Use contractions.
-- Empathize. Never imply the user did something wrong. Acknowledge when a
-  process is long or difficult.
-- Use active voice and present tense.
-- Only apply rules from the style guide.
-
-## Citation format
-
-When citing a style rule, use the topic slug -- the filename without .md
-(for example, active-voice, not "Active voice"). Only cite topics that exist
-as files in the style guide repo. Never invent a topic name. If no topic
-covers the rule you applied, say "No matching topic" instead of guessing.
-
-Valid topics:
-acronyms, active-voice, admonitions, alt-text, anthropomorphism, articles,
-bold, capitalization, click-vs-select, code-blocks, colons, color,
-configure-vs-set-up, contractions, cross-references, dates-and-times,
-directional-references, ellipses, em-dash, enable-disable, ensure-vs-make-sure,
-f5-product-names, gerunds, global-audience, headings, hyphens, if-vs-whether,
-images, inclusive-language, italics, latin-abbreviations, link-text, lists,
-login-vs-log-in, may-can-might, modern-voice, noun-clusters, numbers,
-oxford-comma, parallel-structure, placeholders, possessives, prerequisites,
-published-error-messages, quotation-marks, reading-level, second-person,
-sensitive-information, sentence-length, step-formatting, tables, tense,
-that-vs-which, ui-element-names, ui-terms, update-vs-upgrade, we-and-our,
-word-list, writing-error-messages
-
-## Technical accuracy
-
-Flag technical accuracy issues separately from style issues. Do not correct
-them yourself -- ask the contributor to verify with a subject matter expert.
-
----
-
-## Repo overview
-
-This is a Hugo-based documentation site for F5 NGINX products (NGINX Plus,
-NGINX Ingress Controller, NGINX Gateway Fabric, WAF, Instance Manager, etc.).
-Content is written in Markdown with Hugo shortcodes, transformed to HTML via
-Hugo v0.152.2, using the custom theme `github.com/nginxinc/nginx-hugo-theme/v2`.
-
-## Build and dev commands
+## Essential Build & Dev Commands
 
 ```bash
 # Update Hugo theme before starting work
 make hugo-update
 
-# Local development server
+# Local development server (most common)
 make watch  # http://localhost:1313
 
 # Include draft content
@@ -184,16 +24,16 @@ make lint-markdown       # markdownlint-cli2
 make link-check          # markdown-link-check
 ```
 
-## Content structure
+## Content Structure
 
-- `content/` -- Product documentation organized by product code (`nic/`, `ngf/`, `waf/`, `nim/`, `agent/`, etc.)
-- `content/includes/` -- Reusable content fragments (for example, `content/includes/waf/terminology.md`)
-- `archetypes/` -- Hugo templates for new pages (`default.md`, `concept.md`, `tutorial.md`, `landing-page.md`)
-- `layouts/shortcodes/` -- Custom Hugo shortcodes for product versions and special formatting
-- `static/` -- Static assets (images, scripts) organized by product
-- `documentation/` -- Internal process docs
+- **`content/`**: Product documentation organized by product code (`nic/`, `ngf/`, `waf/`, `nim/`, `agent/`, etc.)
+- **`content/includes/`**: Reusable content fragments for DRY principle (e.g., `content/includes/waf/terminology.md`)
+- **`archetypes/`**: Hugo templates for new pages (`default.md`, `concept.md`, `tutorial.md`, `landing-page.md`)
+- **`layouts/shortcodes/`**: Custom Hugo shortcodes for product versions and special formatting
+- **`static/`**: Static assets (images, scripts) organized by product
+- **`documentation/`**: Internal process docs and style guides
 
-## Creating new content
+## Creating New Content
 
 Use Hugo archetypes to scaffold new documentation:
 
@@ -205,61 +45,160 @@ hugo new content nic/how-to/configure-ssl.md
 hugo new content ngf/concepts/routing.md -k concept
 ```
 
-Front matter structure:
-
+Front matter structure (from archetypes):
 ```yaml
-title: "Page title"           # Sentence case, present imperative
-weight: 100                   # Controls sort order, increments of 100
-toc: false                    # Enable for large documents
-nd-content-type: how-to       # how-to | concept | tutorial | reference
+title: "Page Title"           # Sentence case, present imperative
+weight: 100                    # Controls sort order, increments of 100
+toc: false                     # Enable for large documents
+nd-content-type: how-to        # how-to | concept | tutorial | reference
 nd-product: INGRESS           # INGRESS, FABRIC, NIMNGR, F5WAFN, etc.
 ```
 
-## Hugo shortcodes and includes
+## Quality Checklist
+Before delivering rewritten content, verify:
+- [ ] Reading level is 8th-9th grade (use simple words, short sentences)
+- [ ] All F5 product names follow brand guidelines
+- [ ] Procedures use imperative verbs and numbered steps
+- [ ] No forbidden terms (abort, execute, kill, etc.)
+- [ ] Active voice throughout
+- [ ] Cultural neutrality maintained
+- [ ] Technical accuracy preserved
+- [ ] User-focused perspective maintained
+- [ ] All links use `{{< ref >}}` shortcode with absolute paths
+- [ ] All images have alt text and follow formatting standards
+- [ ] No nested includes and all includes are context-agnostic
+- [ ] Front matter is complete and follows archetype structure
 
-### Include files
+## Hugo Shortcodes & Includes
+
+### Include Files (DRY Content)
 ```markdown
 {{< include "nic/kubernetes-terminology.md" >}}
 {{< include "waf/install-selinux-warning.md" >}}
 ```
 
-- Only use includes for content appearing in 2 or more locations
-- Do not include headings -- they won't appear in the TOC
-- Do not nest includes unless unavoidable
+- **Only** use includes for content appearing in **2+ locations**
+- Do **not** include headings (they won't appear in TOC)
+- Do **not** nest includes unless unavoidable
 - Keep include files context-agnostic and modular
 
 ### Call-outs
 ```markdown
-{{< call-out class="note" title="Note" >}} Text here. {{< /call-out >}}
-{{< call-out class="warning" title="Warning" >}} Text here. {{< /call-out >}}
-{{< call-out class="caution" >}} Text here. {{< /call-out >}}
+{{< call-out class="note" title="Note title" >}} Important information here. {{< /call-out >}}
+{{< call-out class="warning"  title="Warning title" >}} Critical warning here. {{< /call-out >}}
+{{< call-out class="caution" >}} Potential damage/downtime. {{< /call-out >}}
 ```
 
-Refer to the admonitions topic in the style guide for when to use each type.
-
-### Internal links
-Always use the ref shortcode with absolute paths and file extensions:
-
+### Internal Links
+Always use `ref` shortcode with **absolute paths** and **file extensions**:
 ```markdown
-[link text]({{< ref "/nic/deploy/install.md" >}})
+[installation instructions]({{< ref "/nic/deploy/install.md" >}})
 [section anchor]({{< ref "/integration/thing.md#section" >}})
 ```
 
-Never use relative links or bare markdown links for internal content.
-
-### Version shortcodes
+### Version Shortcodes
+Product version shortcodes are in `layouts/shortcodes/`:
 ```markdown
-{{< nic-version >}}     # NGINX Ingress Controller version
-{{< version-ngf >}}     # NGINX Gateway Fabric version
-{{< version-waf >}}     # WAF version
+{{< nic-version >}}               # NGINX Ingress Controller version
+{{< version-ngf >}}               # NGINX Gateway Fabric version
+{{< version-waf >}}               # WAF version
 ```
 
-## Git workflow
+## Writing Style & Conventions
 
-### Branch naming
+### Content Structure Requirements
+1. **Lead with the answer** - Put essential information first
+2. **Use clear headings** - Help users scan quickly
+3. **Provide context** - Explain why they're doing something
+4. **Be specific** - Include exact UI labels, commands, file paths
+5. **Test your instructions** - Ensure they're followable
+
+### Target Audience
+- **Global audience** - Many users may not speak English as their first language
+- **Technical professionals** - Developers, system administrators, product managers, customer success managers
+- **Reading level** - Write for 8th-9th grade comprehension
+- **Context** - Users need actionable information to complete technical tasks
+
+### Core Writing Principles (from F5 Modern Voice)
+1. **Focus on the customer question** - Understand what they're trying to accomplish
+2. **Give concise answers** - Provide the 80% case first, essential information only
+3. **Make it scannable** - Use lists, headers, and clear structure
+4. **Use normal, relaxed words** - Professional but conversational tone
+5. **Empathize** - Acknowledge complexity, never imply user error
+
+## Key Rewriting Standards
+
+### Voice and Tone
+- Use active voice over passive voice
+- Write in second person (you, your) from user's perspective  
+- Use present tense: "The system receives" not "The system will receive"
+- Be conversational but professional
+- Use contractions when they improve readability
+
+### Sentence Structure
+- Maximum 20 words for task-oriented sentences
+- Maximum 25 words for conceptual sentences
+- Maximum 6 sentences per paragraph
+- Start with action words for procedures
+- Use imperative mood: "Select the option" not "You should select"
+
+### Word Choice - Always Use These Replacements
+| Use | Instead of |
+|-----|-----------|
+| allow list, denylist | whitelist, blacklist |
+| primary, secondary | master, slave |
+| start, restart | boot, reboot |
+| select | click |
+| go to | navigate to |
+| because | as (for cause-and-effect) |
+| set up | configure (except for F5 product configuration) |
+
+### Brand & Product Names
+- **First mention** in document: Full name with F5 (e.g., "F5 NGINX Plus", "F5 NGINX Instance Manager")
+- **Subsequent mentions**: Drop F5, keep NGINX (e.g., "NGINX Plus", "NGINX Instance Manager")
+- **Never** use acronyms for product names (no "NIC", "NGF", etc.)
+- **Open source products**: No F5 prefix (e.g., "NGINX Agent", "NGINX Unit")
+- **No articles** before product names: "NGINX Agent" not "the NGINX Agent"
+- **Titles/headings**: Omit F5 prefix
+
+### Markdown Formatting
+- **Bold**: `**Bolded text**` (two asterisks)
+- **Italic**: `_Italicized text_` (one underscore)
+- **Monospace**: `` `code` `` (use sparingly, avoid in tables)
+- **Unordered lists**: `- List item` (one dash)
+- **Ordered lists**: `1. Item` (auto-enumerates)
+- **Always use Oxford comma**: "apples, oranges, and bananas"
+
+### Tone & Language
+- Present imperative for headings/titles
+- Active voice from user perspective (avoid "allows you to")
+- No anthropomorphism (avoid "decides", "knows", "sees")
+- Use "select" for checkboxes/options, not "check"
+- Use "because" not "as" for cause-effect
+- Avoid colloquialisms ("press Esc" not "hit Esc")
+
+### Global Audience Requirements
+- Avoid idioms, cultural references, slang
+- Use simple, common words over complex alternatives
+- Be explicit rather than implicit
+- Spell out acronyms on first use
+- Use metric measurements with US equivalents when needed
+- Avoid violent or militaristic language
+
+### Formatting Standards
+- Use sentence case for headings
+- Bold UI elements exactly as they appear
+- Use numbered lists for sequential steps
+- Use bullet points for non-sequential items
+- Use ">" for navigation paths: "Go to System > Configuration"
+
+
+## Git Workflow
+
+### Branch Naming
 ```
 <product-code>/<descriptive-name>
-docs/<descriptive-name>          # for repo or non-product changes
+docs/<descriptive-name>          # for repo/non-product changes
 
 Examples:
   nic/update-helm-links
@@ -267,9 +206,9 @@ Examples:
   docs/improve-contributing-guide
 ```
 
-Release branches: `<product>-release-<version>` (for example, `agent-release-2.2`)
+Release branches: `<product>-release-<version>` (e.g., `agent-release-2.2`)
 
-### Commit messages (Conventional Commits)
+### Commit Messages (Conventional Commits)
 ```
 <type>: <subject line ~50 chars>
 
@@ -292,16 +231,17 @@ in NGINX Gateway Fabric. The guide covers:
 Relates to issue #1234
 ```
 
-### Pre-commit hooks (optional)
+### Pre-commit Hooks (Optional)
 ```bash
 pip install pre-commit
-pre-commit install  # enables gitlint and markdownlint-cli2
+pre-commit install  # enables gitlint & markdownlint-cli2
 ```
 
-## Linting
+## Linting & Quality
 
-- `.markdownlint.yaml` -- Markdown rules (headings, spacing, alt text)
-- `.pre-commit-config.yaml` -- Git hooks (gitlint, markdownlint-cli2)
+Linting config:
+- **`.markdownlint.yaml`**: Markdown rules (headings, spacing, alt text)
+- **`.pre-commit-config.yaml`**: Git hooks (gitlint, markdownlint-cli2)
 
 Key markdownlint rules enforced:
 - MD022/MD031/MD032: Blank lines around headings, code blocks, lists
@@ -311,57 +251,57 @@ Key markdownlint rules enforced:
 ## Testing
 
 Playwright tests in `tests/`:
-
 ```bash
 cd tests
 npm install
 npx playwright test
 ```
 
-## Hugo module system
+Tests verify UI components (e.g., N4A calculator) and page rendering.
 
+## Hugo Module System
+
+Hugo theme is managed as a Go module:
 ```bash
 hugo mod get -u github.com/nginxinc/nginx-hugo-theme/v2  # Update theme
 hugo mod tidy                                             # Clean dependencies
 ```
 
-Permalinks for products are defined in `config/_default/config.toml`.
+Permalinks for products defined in `config/_default/config.toml` (e.g., `/nginx-ingress-controller/`, `/nginx-gateway-fabric/`).
 
-## Directory organization
+## Directory Organization Patterns
 
-- Product content: `content/<product>/<section>/<topic>.md`
+- Product content follows pattern: `content/<product>/<section>/<topic>.md`
 - Sections use `_index.md` with `weight:` to control nav ordering (increments of 100)
-- Landing pages use the `landing-page` archetype
+- Landing pages use `landing-page` archetype with unique layout
 - Static assets mirror content structure: `static/<product>/images/`
 
-## Product codes
+## Common Pitfalls
 
-| Code | Product |
-|------|---------|
-| NAGENT | NGINX Agent |
-| FABRIC | NGINX Gateway Fabric |
-| INGRESS | NGINX Ingress Controller |
-| NIMNGR | NGINX Instance Manager |
-| F5WAFN | F5 WAF for NGINX |
-| F5DOSN | F5 DoS Protection for NGINX |
-| NAZURE | NGINXaaS for Azure |
-| NGOOGL | NGINXaaS for Google Cloud |
-| NONECO | NGINX One Console |
-| NGPLUS | NGINX Plus |
+1. **Don't** use relative links; always use `{{< ref "absolute/path.md" >}}`
+2. **Don't** forget to run `make hugo-update` before major work
+3. **Don't** create includes for single-use content
+4. **Don't** use product acronyms in user-facing text
+5. **Don't** commit directly to `main`; always use feature branches
+6. **Don't** forget weight values in front matter (causes unpredictable sorting)
 
-## Common pitfalls
+## Key Reference Files
 
-- Never use relative links -- always use `{{< ref "absolute/path.md" >}}`
-- Run `make hugo-update` before major work
-- Don't create includes for single-use content
-- Don't use product acronyms in user-facing text
-- Don't commit directly to `main` -- always use feature branches
-- Don't forget `weight:` values in front matter (causes unpredictable sorting)
+- Style guide: [documentation/style-guide.md](documentation/style-guide.md) (543 lines, comprehensive)
+- Hugo content: [documentation/hugo-content.md](documentation/hugo-content.md)
+- Git conventions: [documentation/git-conventions.md](documentation/git-conventions.md)
+- Include files: [documentation/include-files.md](documentation/include-files.md)
+- Contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Key reference files
+## Product Codes (for branches & metadata)
 
-- `documentation/style-guide.md` -- legacy style guide (superseded by F5 style guide repo)
-- `documentation/hugo-content.md` -- Hugo content guidance
-- `documentation/git-conventions.md` -- Git conventions
-- `documentation/include-files.md` -- Include file guidance
-- `CONTRIBUTING.md` -- Contributor guide
+- NAGENT: NGINX Agent
+- FABRIC: NGINX Gateway Fabric
+- INGRESS: NGINX Ingress Controller
+- NIMNGR: NGINX Instance Manager
+- F5WAFN: F5 WAF for NGINX
+- F5DOSN: F5 DoS Protection for NGINX
+- NAZURE: NGINXaaS for Azure
+- NGOOGL: NGINXaaS for Google Cloud
+- NONECO: NGINX One Console
+- NGPLUS: NGINX Plus
