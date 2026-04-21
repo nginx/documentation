@@ -13,11 +13,11 @@ F5 WAF for NGINX includes an IP Intelligence feature that allows you to customiz
 
 IP Intelligence is available on NGINXaaS for Azure deployments with the **Standard v3** [plan]({{< ref "/nginxaas-azure/billing/overview.md/#standard-v3-plan" >}}).
 
-{{< call-out "note" >}} No additional license is required. F5's existing license with the BrightCloud threat intelligence provider covers all NGINXaaS deployments. The IP address database is automatically updated every 60 minutes. {{< /call-out >}}
+{{< call-out "note" >}} IP Intelligence does not require an additional license. F5's existing license with the BrightCloud threat intelligence provider covers all NGINXaaS deployments. The IP address database is automatically updated every 60 minutes. {{< /call-out >}}
 
 ## Threat categories
 
-IP Intelligence classifies IP addresses into the following threat categories. Each category can be individually configured to block, alarm, or allow traffic:
+IP Intelligence classifies IP addresses into the following threat categories. You can individually configure each category to block, alarm, or allow traffic.
 
 {{< table >}}
 | Category             | Description                                                                 |
@@ -40,16 +40,16 @@ Since the threat database is continuously updated, enforcement may change over t
 
 ## Add IP Intelligence to a WAF policy
 
-To use IP Intelligence, add the `ip-intelligence` section to a [custom WAF policy]({{< ref "/nginxaas-azure/app-protect/configure-waf.md#custom-policies" >}}). No additional setup or enablement steps are required.
+To use IP Intelligence, you must add the `ip-intelligence` section to a [custom WAF policy]({{< ref "/nginxaas-azure/app-protect/configure-waf.md#custom-policies" >}}). No additional setup or enablement steps are required.
 
-Your policy needs two additions:
+Your WAF policy needs two additions:
 
 1. The `VIOL_MALICIOUS_IP` violation in `blocking-settings`.
 2. The `ip-intelligence` section with the desired threat categories.
 
 ### Example policy
 
-The following policy enables IP Intelligence with all categories set to block and alarm:
+The following policy turns on IP Intelligence with all categories set to block and alarm.
 
 ```json
 {
@@ -95,7 +95,7 @@ The following policy enables IP Intelligence with all categories set to block an
 
 You can customize each category independently — for example, blocking botnets while only alarming on scanners.
 
-Then reference this policy in your NGINX configuration using the `app_protect_policy_file` directive, as described in [Configure F5 WAF for NGINX]({{< ref "/nginxaas-azure/app-protect/configure-waf.md" >}}).
+You can reference this policy in your NGINX configuration using the `app_protect_policy_file` directive, as described in [Configure F5 WAF for NGINX]({{< ref "/nginxaas-azure/app-protect/configure-waf.md" >}}).
 
 For the full policy configuration reference, see the official [IP Intelligence documentation](https://docs.nginx.com/waf/policies/ip-intelligence/#configure-policies-for-ip-intelligence).
 
