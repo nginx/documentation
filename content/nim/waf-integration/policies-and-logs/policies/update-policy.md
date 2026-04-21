@@ -17,11 +17,11 @@ You can update an existing F5 WAF for NGINX security policy using either the NGI
 
 To update a policy in the web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
+1. Log in to NGINX Instance Manager.
 1. From the Launchpad, select **Instance Manager**.
 1. In the left menu, select **WAF > Policies**.
 1. On the **Security Policies** page, select **Edit** from the **Actions** column for the policy you want to update.
-1. The editor opens, allowing you to modify the policy as described in [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}}).
+1. The policy editor opens. Change the policy as described in [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}}).
 1. After making your changes, select **Save**.
 
 {{%/tab%}}
@@ -61,7 +61,7 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=
 1. Include the UID in your `PUT` request:
 
    ```shell
-   curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid> \
+   curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/policies/{policy-uid} \
      -H "Authorization: Bearer <access token>" \
      -H "Content-Type: application/json" \
      -d @update-xss-policy.json
