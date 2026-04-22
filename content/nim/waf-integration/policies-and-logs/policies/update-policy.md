@@ -30,7 +30,7 @@ To update a policy in the web interface:
 
 {{%tab name="API"%}}
 
-To update a policy using the REST API, use `POST` with `isNewRevision=true`. Both methods create a new revision. `PUT` is deprecated — use `POST` instead.
+To update a policy using the REST API, use `POST` with `isNewRevision=true`. Both the `POST` and `PUT` methods create a new policy revision. However, `PUT` is deprecated — use `POST` instead.
 
 {{< table >}}
 | Method | Endpoint |
@@ -39,7 +39,7 @@ To update a policy using the REST API, use `POST` with `isNewRevision=true`. Bot
 | PUT (deprecated) | `/api/platform/v1/security/policies/{policy_uid}` |
 {{</ table >}}
 
-**Example using POST:**
+**Example using POST (creates a new policy revision):**
 
 ```shell
 curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=true \
@@ -48,7 +48,7 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=
   -d @update-xss-policy.json
 ```
 
-**Example using PUT (deprecated):**
+**Example using PUT (creates a new policy revision, deprecated):**
 
 {{< call-out "caution" "Deprecated" >}}The `PUT` method is deprecated. Use `POST` with `isNewRevision=true` instead.{{< /call-out >}}
 
