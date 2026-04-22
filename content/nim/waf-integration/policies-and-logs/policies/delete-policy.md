@@ -17,7 +17,7 @@ You can delete a security policy using either the NGINX Instance Manager web int
 
 To delete a policy in the web interface:
 
-1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
+1. Log in to NGINX Instance Manager.
 1. From the Launchpad, select **Instance Manager**.
 1. In the left menu, select **WAF > Policies**.
 1. On the **Security Policies** page, locate the policy you want to delete.
