@@ -14,13 +14,13 @@ nd-product: NIMNGR
 
 ## Overview
 
-In a disconnected environment without internet access, NGINX Plus sends usage data to NGINX Instance Manager. You’ll need to download the usage report from NGINX Instance Manager and submit it to F5 from a location with internet access. After F5 verifies the report, you can download the acknowledgement, which you must upload back to NGINX Instance Manager.
+In a disconnected environment, NGINX Plus sends usage data to NGINX Instance Manager. Download the usage report from NGINX Instance Manager and submit it to F5 from a system with internet access. After F5 verifies the report, download the acknowledgement and upload it back to NGINX Instance Manager.
 
 ---
 
 ## Before you begin
 
-Before submitting usage data to F5, first configure NGINX Plus to report telemetry data to NGINX Instance Manager.
+Before submitting usage data to F5, configure NGINX Plus to report to NGINX Instance Manager.
 
 ### Configure NGINX Plus to report usage to NGINX Instance Manager
 
@@ -38,9 +38,9 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 {{%tab name="bash script (recommended)"%}}
 
-To submit the usage report in a disconnected environment, use the provided `offline_usage.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to the `https://product.connect.nginx.com/api/nginx-usage/batch` endpoint on port `443`. Replace each placeholder with your specific values.
+To submit the usage report in a disconnected environment, use the `offline_usage.sh` script. Run it on a system that can reach NGINX Instance Manager and connect to `https://product.connect.nginx.com/api/nginx-usage/batch` on port `443`. Replace each placeholder with your values.
 
-Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) script and make the script executable:
+Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) script and make it executable:
 
 ```shell
     chmod +x <PATH_TO_SCRIPT>/offline_usage.sh
@@ -48,29 +48,29 @@ Download the {{<icon "download">}}[offline_usage.sh](/scripts/offline_usage.sh) 
 
 ### Download usage report
 
-The download feature of the script takes the following arguments:
+The download option takes these arguments:
 - `<USERNAME>`: The admin username for NGINX Instance Manager authentication.
 - `<PASSWORD>`: The admin password for NGINX Instance Manager authentication.
 - `<NIM_IP_ADDRESS>`: The IP address of the NGINX Instance Manager instance.
 
-And uses the following environment variable:
+And uses this environment variable:
 
 | Variable | Description | Default value |
 | --- | --- | --- |
 | CURL_TIMEOUT | 30 | Connection timeout for curl requests in seconds |
 
-To download the usage report from NGINX Instance Manager, run the following command:
+To download the usage report from NGINX Instance Manager:
 
 ```shell
 ./offline_usage.sh download <USERNAME> <PASSWORD> <NIM_IP_ADDRESS>
 ``` 
-1. The script verifies connectivity to the NGINX Instance Manager instance over HTTPS.
+1. The script verifies connectivity to NGINX Instance Manager over HTTPS.
 1. Checks that the device is in DISCONNECTED mode (exits with an error if mode is CONNECTED).
 1. Downloads the usage report as a ZIP file to `/tmp/response.zip`.
 
 ### Upload usage report
 
-To upload the usage acknowledgment to NGINX One Console, run the following command:
+To upload the usage acknowledgment to NGINX One Console:
 
 ```shell
 ./offline_usage.sh upload <FILE_PATH> --result-dir <DIR> [--endpoint-url <URL>]
@@ -87,11 +87,11 @@ The script provides the following output:
 
 | File | Description |
 | --- | --- |
-| `<RESULT_DIR>/uploaded_filex.txt` | A text file containing the names of the succesfully uploaded files. |
+| `<RESULT_DIR>/uploaded_files.txt` | A text file containing the names of the successfully uploaded files. |
 | `<RESULT_DIR>/unzip/` | Extracted contents of the usage report |
 | `<RESULT_DIR>/upload_usage.log` | Detailed log of all upload attempts (in CWD) |
 
-And returns one the following exit codes:
+And returns one of the following exit codes:
 
 | Code | Description |
 | --- | --- |
@@ -102,17 +102,17 @@ And returns one the following exit codes:
 
 {{%tab name="Web interface"%}}
 
-Download usage report from the `https://<NIM_FQDN>/ui/nginx-plus` page. Replace `<NIM_FQDN>` with your NGINX Instance Manager's fully qualified domain name.
+Download the usage report from `https://<NIM_FQDN>/ui/nginx-plus`. Replace `<NIM_FQDN>` with your NGINX Instance Manager's fully qualified domain name.
 
-Move the file to a machine with internet access, run the bash script with upload option.
+Move the file to a system with internet access and run the script with the upload option.
 
-{{< call-out "note" "Behavior change" >}}Starting with NGINX Instance Manager 2.22, it's not necessary to reupload the usage acknowledgement file back to NGINX Instance Manager.{{< /call-out >}}
+{{< call-out "note" "Behavior change" >}}In NGINX Instance Manager 2.22 and later, you don't need to re-upload the usage acknowledgement file to NGINX Instance Manager.{{< /call-out >}}
 
 {{%/tab%}}
 
 {{</tabs>}}
 
-{{< call-out "note" "File size increase" >}}NGINX Instance Manager 2.22 and later have moved from reporting aggregated usage data to reporting the raw data that data planes send; the file sizes will be larger than before.{{< /call-out >}}
+{{< call-out "note" "File size increase" >}}NGINX Instance Manager 2.22 and later report raw data instead of aggregated usage data. File sizes will be larger than before.{{< /call-out >}}
 
 ---
 
@@ -128,7 +128,7 @@ Move the file to a machine with internet access, run the bash script with upload
 
 ### Submit usage report with a bash script
 
-To submit a usage report in a disconnected environment, use the provided `license_usage_offline.sh` script. Run this script on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
+To submit a usage report in a disconnected environment, use the `license_usage_offline.sh` script. Run it on a system that can reach NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your values.
 
 <br>
 
@@ -150,7 +150,7 @@ To submit a usage report in a disconnected environment, use the provided `licens
       -s telemetry
     ```
 
-    This command downloads the usage report (`report.zip`), submits the report to F5 for acknowledgment, and uploads the acknowledgment back to NGINX Instance Manager.
+    This command downloads the usage report (`report.zip`), submits it to F5 for acknowledgment, and uploads the acknowledgment back to NGINX Instance Manager.
 
 {{< include "nim/disconnected/license-usage-offline-script.md" >}}
 
@@ -160,9 +160,9 @@ To submit a usage report in a disconnected environment, use the provided `licens
 
 ### Submit usage report with curl
 
-To submit a usage report using `curl`, complete each of the following steps in order.
+To submit a usage report using `curl`, complete each step in order.
 
-Run these `curl` commands on a system that can access NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
+Run these commands on a system that can reach NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your values.
 
 {{< call-out "important" >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{< /call-out >}}
 
@@ -192,15 +192,13 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
     --form 'file=@"<PATH_TO_REPORT>.zip"'
     ```
 
-    After running this command, look for the "statusLink" in the response. The `report-id` is the last part of the "statusLink" value (the UUID). For example:
+    After running this command, find the `statusLink` in the response. The `report-id` is the UUID at the end of the `statusLink` value. For example:
 
       ```json
       {"statusLink":"/status/2214e480-3401-43a3-a54c-9dc501a01f83"}
       ```
 
-    In this example, the `report-id` is `2214e480-3401-43a3-a54c-9dc501a01f83`.
-
-    You’ll need to use your specific `report-id` in the following steps.
+    In this example, the `report-id` is `2214e480-3401-43a3-a54c-9dc501a01f83`. Use your `report-id` in the following steps.
 
 1. **Check the status of the usage acknowledgement**:
 
@@ -235,21 +233,17 @@ Run these `curl` commands on a system that can access NGINX Instance Manager and
 
 #### Download usage report
 
-Download the usage report to send to F5:
-
-- On the **License > Overview** page, select **Download License Report**.
+On the **License > Overview** page, select **Download License Report**.
 
 #### Submit usage report to F5
 
-You need to submit the usage report to F5 and download the acknowledgment over REST. To do do, follow steps 3–5 in the [**REST**](#add-license-submit-initial-usage-report) tab in this section.
+To submit the report and download the acknowledgment, follow steps 3–5 in the [**REST**](#add-license-submit-initial-usage-report) tab.
 
-#### Upload the usage acknowledgement to NGINX Instance Manager
-
-To upload the the usage acknowledgement:
+#### Upload the usage acknowledgement
 
 1. On the **License > Overview** page, select **Upload Usage Acknowledgement**.
-2. Upload the acknowledgement by selecting **Browse** or dragging the file into the form.
-3. Select **Add**.
+1. Select **Browse** or drag the file into the form.
+1. Select **Add**.
 
 {{%/tab%}}
 
