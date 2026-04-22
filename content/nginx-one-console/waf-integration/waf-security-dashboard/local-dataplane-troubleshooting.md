@@ -57,7 +57,7 @@ Security violation log body is not a string. All security violation logs will be
 Security violation log does not appear to be CSV format. Ensure the NAP logging profile uses the secops-dashboard-log format. All security violation logs will be dropped until the collector is restarted.
 ```
 
-If you see either message, the most likely cause is that the data plane is not using the NGINX One Console default `secops_dashboard` log profile for the `app_protect_security_log` directive. Ensure that the http, server, or location block in which the security violation should be generated uses this log profile.
+If you see either message, the data plane probably isn't using the NGINX One Console default `secops_dashboard` log profile for `app_protect_security_log`. Make sure every http, server, or location block that should log violations uses this profile.
 
 ### Fix
 
@@ -79,7 +79,7 @@ Run the following command on the data plane:
 sudo ss -ltnp | grep 1514
 ```
 
-Confirm that no unexpected process is listening on port `1514`. If another service is bound to that port, stop or reconfigure it so the embedded collector can receive the F5 WAF for NGINX security logs.
+Confirm that no unexpected process is listening on port `1514`. If another service is bound to that port, stop or reconfigure it. The embedded collector needs port `1514` free to receive F5 WAF for NGINX security logs.
 
 ---
 
@@ -87,7 +87,7 @@ Confirm that no unexpected process is listening on port `1514`. If another servi
 
 If the collector log does **not** show either invalid-log-profile error, verify that the generated OpenTelemetry Collector config still contains the security log pipeline.
 
-{{< call-out "note" >}}NGINX Agent generates this security log pipeline only when at least one `http`, `server`, or `location` block is configured with `app_protect_security_log` pointing to `syslog:server=127.0.0.1:1514`. If no protected context uses that syslog destination, the pipeline is not generated in the collector config, and hence no WAF security logs will be forwarded to NGINX One Console.{{< /call-out >}}
+{{< call-out "note" >}}NGINX Agent generates this security log pipeline only when at least one `http`, `server`, or `location` block is set up with `app_protect_security_log` pointing to `syslog:server=127.0.0.1:1514`. If no protected context uses that syslog destination, the pipeline isn't generated. Without it, no WAF security logs are forwarded to NGINX One Console.{{< /call-out >}}
 
 Open the generated collector config:
 
@@ -109,15 +109,15 @@ logs/default:
     - otlp/default
 ```
 
-This pipeline is the path that accepts the F5 WAF for NGINX security logs from `tcplog/nginx_app_protect`, filters and batches them, and exports them to NGINX One Console through `otlp/default`.
+This pipeline accepts F5 WAF for NGINX security logs from `tcplog/nginx_app_protect`. It filters and batches the logs, then exports them to NGINX One Console through `otlp/default`.
 
-If this pipeline is missing or materially different, the collector is not configured as expected for security monitoring. In that case, review any custom collector configuration merged through `nginx-agent.conf`, then restart NGINX Agent so it regenerates the collector config.
+If this pipeline is missing or materially different, the collector isn't set up as expected for security monitoring. In that case, review any custom collector configuration merged through `nginx-agent.conf`, then restart NGINX Agent so it regenerates the collector config.
 
 ---
 
 ## 4. Enable debug logging for the collector pipeline
 
-If the collector log does not show the invalid-log-profile errors and the generated pipeline looks correct, enable debug logging so you can verify that the embedded collector is processing and forwarding security logs.
+If the collector log doesn't show the invalid-log-profile errors and the generated pipeline looks correct, turn on debug logging. This lets you confirm the embedded collector is processing and forwarding security logs.
 
 Add the following configuration to the end of `/etc/nginx-agent/nginx-agent.conf`:
 
@@ -146,7 +146,7 @@ The `debug` exporter causes the embedded OpenTelemetry Collector to write its pr
 /var/log/nginx-agent/opentelemetry-collector-agent.log
 ```
 
-This lets you verify that the collector is handling the F5 WAF for NGINX security events locally while still forwarding them to NGINX One Console through `otlp/default`.
+Use this to confirm the collector is handling F5 WAF for NGINX security events locally. It continues forwarding them to NGINX One Console through `otlp/default`.
 
 {{< call-out "note" >}}The debug exporter increases log volume. Remove it after troubleshooting so the collector log returns to its normal verbosity.{{< /call-out >}}
 
@@ -154,7 +154,7 @@ This lets you verify that the collector is handling the F5 WAF for NGINX securit
 
 ## What to do next
 
-After any action performed based on the above guide:
+After each fix:
 
 1. Restart NGINX Agent.
 2. Send a new test request through the protected application path. For example requests, see [Example test requests for a default blocking policy]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/set-up-security-monitoring.md#example-test-requests-for-a-default-blocking-policy" >}}).
