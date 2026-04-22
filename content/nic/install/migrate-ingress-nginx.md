@@ -393,7 +393,6 @@ NGINX Ingress Controller:
 ingressMTLS:
    clientCertSecret: secretName
    verifyClient: "on"
-
    verifyDepth: 1
 ```
 
