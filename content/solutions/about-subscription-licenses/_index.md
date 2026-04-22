@@ -11,9 +11,9 @@ url: /solutions/about-subscription-licenses/
 
 Starting with NGINX Plus R33, subscription licenses use JSON Web Tokens (JWTs) and require usage reporting.  
 
-To get up and running, you’ll need to add a valid license to each instance and make sure usage data can be reported.  
+To get started, add a valid license to each instance and set up usage reporting.
 
-The resources below walk you through upgrading, setting up your environment, and understanding how licensing and reporting work in NGINX Plus.
+The resources below cover upgrading, setting up your environment, and understanding how NGINX Plus licensing and reporting work.
 
 ## Featured content
 
