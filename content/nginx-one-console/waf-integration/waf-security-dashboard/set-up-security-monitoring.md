@@ -18,7 +18,7 @@ nd-audience: operator
 
 Use this guide to enable F5 WAF for NGINX security monitoring on an NGINX Plus instance that is already connected to NGINX One Console. After completing the steps, security events appear in the [security monitoring dashboard]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/_index.md" >}}), where you can review attacks, violations, and triggered signatures.
 
-You deploy the [`secops_dashboard` log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}) to the instance through NGINX One Console. You then add the F5 WAF for NGINX directives to the NGINX configuration using the console's config editor, and verify the pipeline by triggering test violations. NGINX Agent automatically configures its OpenTelemetry collector to forward security events to NGINX One Console when it detects the correct directives in the NGINX configuration. You do not need to edit the NGINX Agent configuration by hand.
+You deploy the [`secops_dashboard` log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}}) to the instance through NGINX One Console. You then add the F5 WAF for NGINX directives to the NGINX configuration using the console's config editor, generate test traffic, and confirm the resulting events appear in the dashboard. NGINX Agent automatically configures its OpenTelemetry collector to forward security events to NGINX One Console when it detects the correct directives in the NGINX configuration. You do not need to edit the NGINX Agent configuration by hand.
 
 ---
 
@@ -50,7 +50,7 @@ The security dashboard relies on the `secops_dashboard` log profile to capture s
 
 4. Select **Next**. The wizard displays the F5 WAF for NGINX directive snippet to paste into your NGINX configuration. The wizard also opens the config editor for the target instance.
 
-5. Open the server block where you want to enable F5 WAF for NGINX (for example, `/etc/nginx/conf.d/default.conf`) and paste the snippet into the `server`, `http`, or `location` context. The snippet looks like this:
+5. Open the NGINX configuration file that handles the traffic you want to monitor (for example, `/etc/nginx/conf.d/default.conf`) and paste the snippet into the `http`, `server`, or `location` context where F5 WAF for NGINX is already enabled. The snippet looks like this:
 
     ```nginx
     app_protect_security_log_enable on;
@@ -69,10 +69,32 @@ For more on the deployment wizard and the alternative **Add File** > **Existing 
 
 When you select **Publish** in the previous step, NGINX One Console pushes the configuration change to the instance and displays a confirmation message. At that point, the F5 WAF for NGINX policy and the `secops_dashboard` log profile are in place on the data plane, and the security log directive is wired to NGINX Agent.
 
-Any request that F5 WAF for NGINX inspects on the instance produces a security event that flows to NGINX One Console. To see security events in the dashboard:
+Any request that F5 WAF for NGINX inspects on the instance produces a security event that flows to NGINX One Console. Use the following checks to confirm the pipeline end to end:
 
-1. In NGINX One Console, go to **WAF** > **Security Dashboard**.
-2. As your instance handles traffic, attacks, violations, and triggered signatures appear on the dashboard within about a minute of the request being processed.
+1. Send one or more requests through the protected application path on the instance you just configured. If you have a staging policy or a known test case that triggers a violation, use it so the event is easy to identify. Otherwise, normal inspected traffic is enough to confirm the pipeline.
+2. In NGINX One Console, go to **WAF** > **Security Dashboard**.
+3. Set the time window to **Last 5 minutes**, then add a global filter for the target **Instance**, **Hostname**, or **Policy** so you only see events from the instance you just configured.
+4. Open the **Event Logs** tab and confirm at least one event appears for the request you just sent. Check that the row shows the expected URI, policy, and request status (`blocked`, `alerted`, or `passed`).
+5. Open the event row to confirm the detail panel shows the request context, triggered violations or signatures, and the generated **Support ID**. If you need to verify a single event later, copy the Support ID and use [Find a security event by Support ID]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/find-event-by-support-id.md" >}}).
+
+Events typically appear within about a minute of the request being processed.
+
+### Example test requests for a default blocking policy
+
+If the protected path uses the default F5 WAF for NGINX policy in blocking mode, the following requests commonly produce a `blocked` event because they match high-confidence attack signatures or raise the violation rating to a blocked threshold. Replace `https://app.example.com/` with a protected URL in your environment.
+
+```shell
+# Cross-site scripting (XSS) test
+curl -G "https://app.example.com/" --data-urlencode "a=<script>alert(1)</script>"
+
+# Path traversal test
+curl -G "https://app.example.com/" --data-urlencode "file=../../../../etc/passwd"
+
+# SQL injection test
+curl -G "https://app.example.com/" --data-urlencode "id=1' UNION SELECT 1,2,3--"
+```
+
+If your policy is in transparent mode, if signatures are staged, or if you heavily customized the default policy, these requests may appear as `alerted` instead of `blocked`. The dashboard still confirms that the security event pipeline is working.
 
 For details on how the dashboard is organized and how to read each widget, see the [security dashboard reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}}).
 
@@ -110,6 +132,8 @@ Re-run the deployment wizard after fixing the configuration.
 
 If events still do not appear after a request is processed, contact F5 support with the instance hostname and the time window you tested.
 
+For local data plane checks of the embedded OpenTelemetry Collector, generated collector pipeline, and debug forwarding, see [Troubleshoot security monitoring on the local data plane]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/local-dataplane-troubleshooting.md" >}}).
+
 ---
 
 ## References
@@ -122,6 +146,7 @@ If events still do not appear after a request is processed, contact F5 support w
 
 - [secops_dashboard log profile]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/default-log-profile.md" >}})
 - [Dashboard metrics reference]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/dashboard-metrics-reference.md" >}})
+- [Troubleshoot security monitoring on the local data plane]({{< ref "/nginx-one-console/waf-integration/waf-security-dashboard/local-dataplane-troubleshooting.md" >}})
 
 **Related how-to guides**
 
