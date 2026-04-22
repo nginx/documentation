@@ -1,5 +1,6 @@
 ---
 title: Add a license (disconnected)
+description: "Download a JWT license from MyF5 and apply it to NGINX Instance Manager in a disconnected (offline) environment."
 weight: 200
 toc: true
 nd-content-type: how-to
@@ -10,6 +11,8 @@ nd-docs: DOCS-1657
 ## Overview
 
 In a disconnected environment, systems don't have internet access. You'll download and apply your JSON Web Token (JWT) license to NGINX Instance Manager, then verify your entitlements with F5.
+
+{{< call-out "note" "NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
 
 {{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</ call-out >}}
 

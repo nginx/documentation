@@ -1,13 +1,14 @@
 ---
 nd-docs: DOCS-789
 title: Add a license (connected)
+description: "Download a JWT license from MyF5 and apply it to NGINX Instance Manager in a connected (internet-accessible) environment."
 toc: true
 weight: 10
 nd-content-type: how-to
 nd-product: NIMNGR
 ---
 
-{{< call-out "note" >}}For disconnected environments, see [Add a license (disconnected)]({{< ref "nim/licensing-and-reporting/add-license-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out "note" "NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
 
 ## Overview
 
