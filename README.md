@@ -20,6 +20,20 @@ If you want to contribute to [F5 NGINX documentation](https://docs.nginx.com), y
 
 You may also find the [documentation folder](/documentation/) for the repository interesting: it's where we store our process information.
 
+## Getting started
+
+Clone the repository with all submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/nginx/documentation
+```
+
+If you already have the repository cloned, initialize the submodules:
+
+```bash
+git submodule update --init
+```
+
 ## License
 
 [BSD 2-Clause "Simplified" License](/LICENSE)
