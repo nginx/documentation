@@ -1,5 +1,5 @@
 ---
-title: Manually install any version of NGINX Instance Manager (disconnected)
+title: Manually install NGINX Instance Manager (disconnected)
 weight: 100
 toc: true
 noindex: true
@@ -10,30 +10,30 @@ nd-docs: DOCS-000
 
 ## Overview
 
-This guide explains how to install and upgrade NGINX Instance Manager in environments without Internet access. It covers key steps, including downloading packages, managing dependencies, and configuring the system for offline use. You’ll also learn how to set up NGINX Instance Manager in disconnected mode and manually update the CVE list to keep your system secure.
+Use this guide to install and upgrade NGINX Instance Manager in environments without internet access. You'll download packages and dependencies manually, set up NGINX Instance Manager in disconnected mode, and update the CVE list.
 
 ## Before you begin
 
 {{< call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle" >}}
-You must complete the following prerequisite steps **before** installing NGINX Instance Manager. **Skipping these steps could cause installation issues**.
+Complete all prerequisite steps before installing NGINX Instance Manager. Skipping them can cause installation failures.
 {{</ call-out >}}
 
 ### Security considerations
 
-To ensure that your NGINX Instance Manager deployment remains secure, follow these recommendations:
+To keep your NGINX Instance Manager deployment secure:
 
 - Install NGINX Instance Manager on a dedicated machine (bare metal, container, cloud, or VM).
-- Make sure no other services are running on the same machine.
-- Ensure the machine is not accessible from the Internet.
+- Don't run other services on the same machine.
+- Don't expose the machine to the internet.
 - Place the machine behind a firewall.
 
 ### Download package files
 
-To complete the steps in this guide, you need to download the NGINX Instance Manager package files from the [MyF5 Customer Portal](https://account.f5.com/myf5).
+Download the NGINX Instance Manager package files from the [MyF5 Customer Portal](https://account.f5.com/myf5).
 
 ### Install local dependencies
 
-Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. When installing NGINX Instance Manager, your package manager will automatically install these dependencies. Without internet access, ensure your package manager can use a local package repository, such as a distribution DVD/ISO image or internal network mirror. Check your Linux distribution's documentation for details.
+Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. When installing NGINX Instance Manager, your package manager installs these dependencies automatically. Without internet access, make sure your package manager can use a local package repository — such as a distribution DVD/ISO image or internal network mirror. See your Linux distribution's documentation for details.
 
 {{< call-out "note" "RedHat on AWS" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task:
 <https://access.redhat.com/solutions/10154>.
@@ -73,13 +73,13 @@ To download external dependencies:
     sudo bash fetch-external-dependencies.sh ubuntu20.04
     ```
 
-    This will create an archive, such as `nms-dependencies-ubuntu20.04.tar.gz`, containing the required dependencies.
+    This creates an archive — for example, `nms-dependencies-ubuntu20.04.tar.gz` — containing the required dependencies.
 
 3. Copy the archive to your target machine and extract the contents:
 
     {{< call-out "note" >}}The bundled NGINX server package may conflict with existing versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep your current version.{{< /call-out >}}
 
-    - **For RHEL and RPM-Based systems**:
+    - **For RHEL and RPM-based systems**:
 
         ```shell
         tar -kzxvf nms-dependencies-<linux-distribution>.tar.gz
@@ -187,9 +187,9 @@ To upgrade NGINX Instance Manager to a newer version:
 
 ---
 
-## CVE checking {#cve-check}
+## Update the CVE list {#cve-check}
 
-To manually update the CVE list in an air-gapped environment, follow these steps to download and overwrite the `cve.xml` file in the `/usr/share/nms` directory and restart the Data Plane Manager service:
+To manually update the CVE list in an air-gapped environment, run the following command to overwrite `cve.xml` and restart the Data Plane Manager service:
 
 ```shell
 sudo chmod 777 /usr/share/nms/cve.xml && \

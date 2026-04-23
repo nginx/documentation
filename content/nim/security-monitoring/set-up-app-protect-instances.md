@@ -24,7 +24,7 @@ Make sure you've completed the following before you start.
    - [Configure F5 WAF for NGINX]({{< ref "/waf/policies/configuration.md" >}}) to fit your needs on each data plane instance.
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Upload your license]({{< ref "/nim/admin-guide/add-license.md" >}}).
+1. [Upload your license]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md" >}}).
 
 ## Install NGINX Agent
 
