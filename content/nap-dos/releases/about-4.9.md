@@ -18,8 +18,6 @@ December 1, 2025
 ### New features
 
 - R37 support
-- Add support for Alpine 3.22
-- Remove support for Alpine 3.19
 - Add support for Debian 13 (Trixie)
 - Add support for RHEL 10 and Rocky Linux 10
 - Bugs fixing
