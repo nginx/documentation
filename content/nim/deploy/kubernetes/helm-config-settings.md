@@ -1,6 +1,6 @@
 ---
 nd-docs: DOCS-1112
-title: Configurable helm settings
+title: Configurable Helm settings
 toc: true
 weight: 300
 nd-content-type: reference

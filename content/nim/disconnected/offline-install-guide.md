@@ -1,5 +1,5 @@
 ---
-title: Install the latest NGINX Instance Manager with a script (disconnected)
+title: Install NGINX Instance Manager using a script (disconnected)
 toc: true
 weight: 100
 nd-content-type: how-to
@@ -11,17 +11,15 @@ nd-docs: DOCS-803
 
 ## Overview
 
-This guide shows you how to install and upgrade F5 NGINX Instance Manager in disconnected environments.
+Use the `install-nim-bundle.sh` script to install and upgrade NGINX Instance Manager in disconnected environments.
 
 The script installs:
 
 - The latest version of NGINX Open Source
 - The latest version of NGINX Instance Manager
-- ClickHouse by default, unless you choose to skip it
+- ClickHouse, unless you choose to skip it
 
-NGINX Plus is not supported in disconnected mode.
-
-If you need to install earlier versions of NGINX or NGINX Instance Manager, follow the [manual installation process]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}) instead.
+NGINX Plus is not supported in disconnected mode. To install earlier versions of NGINX or NGINX Instance Manager, use the [manual installation process]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}) instead.
 
 ---
 
@@ -29,29 +27,29 @@ If you need to install earlier versions of NGINX or NGINX Instance Manager, foll
 
 You’ll need internet access for the steps in this section.
 
-### Prepare your system for installation
+### Prepare for installation
 
-Follow these steps to get your system ready for a successful installation with the `install-nim-bundle.sh` script:
+Before running `install-nim-bundle.sh`, address the following:
 
-#### Resolve existing installations of NGINX Instance Manager
+#### Handle an existing NGINX Instance Manager installation
 
 The script supports only new installations. If NGINX Instance Manager is already installed, take one of the following actions:
 
 - **Upgrade manually**
-  The script cannot perform upgrades. To update an existing installation, follow the [upgrade steps](#upgrade-nim) in this document.
+  The script can't perform upgrades. To update an existing installation, follow the [upgrade steps](#upgrade-nim) in this guide.
 
 - **Uninstall first**
-  Remove the current installation and its dependencies for a fresh start. Use the [uninstall steps](#uninstall-nim) to delete the primary components. Afterward, manually check for and remove leftover files such as repository configurations or custom settings to ensure a clean system.
+  To start fresh, use the [uninstall steps](#uninstall-nim) to remove the primary components, then manually check for and remove leftover files such as repository configurations or custom settings.
 
 #### Verify SSL certificates and private keys
 
-Ensure that the required `.crt` and `.key` files are available, preferably in the default **/etc/ssl/nginx** directory. Missing certificates or keys will prevent the script from completing the installation.
+Make sure the required `.crt` and `.key` files are available, preferably in the default **/etc/ssl/nginx** directory. Missing certificates or keys will prevent the script from completing the installation.
 
-#### Use the manual installation steps if needed
+#### Use manual installation if the script fails
 
-If the script fails or if you prefer more control over the process, consider using the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}). These steps provide a reliable alternative for troubleshooting or handling complex setups.
+If the script fails or you need more control, use the [manual installation steps]({{< ref "nim/disconnected/offline-install-guide-manual.md" >}}) instead.
 
-### Download the SSL Certificate and Private Key from MyF5
+### Download the SSL certificate and private key from MyF5
 
 Download the SSL certificate and private key required for NGINX Instance Manager:
 
@@ -64,9 +62,9 @@ Download the SSL certificate and private key required for NGINX Instance Manager
 
 {{<icon "download">}} {{<link "/scripts/install-nim-bundle.sh" "Download the install-nim-bundle.sh script.">}}
 
-## Package NGINX Instance Manager and dependencies for offline installation
+## Package NGINX Instance Manager for offline installation
 
-Run the installation script in `offline` mode to download NGINX Instance Manager, NGINX Open Source, ClickHouse (unless skipped), and all required dependencies into a tarball for use in disconnected environments.
+Run the script in `offline` mode to download NGINX Instance Manager, NGINX Open Source, ClickHouse (unless skipped), and all required dependencies into a tarball.
 
 ### Installation script options
 
@@ -94,26 +92,26 @@ Run the installation script in `offline` mode to download NGINX Instance Manager
 
 After you’ve packaged the installation files on a connected system, copy the tarball, script, and SSL files to your disconnected system. Then, run the script again to install NGINX Instance Manager using the tarball.
 
-## Dependencies needed for install script to run offline 
+## OS dependencies for offline installation
 
-There are OS dependencies we have for NGINX, NIM and Clickhouse. In offline mode we package only NGINX, NIM and Clickhouse packages, customers should first install OS dependencies also. Below are the dependencies list for Linux distributions with `.deb` (Debian/Ubuntu) and `.rpm` (Red Hat) packages. In online mode, these dependencies are auto resolved and installed.
+The installation script packages NGINX Open Source, NGINX Instance Manager, and ClickHouse. In offline mode, these packages are bundled but their OS-level dependencies are not. Make sure those dependencies are installed before running the script. The following packages are required for each supported distribution type:
 
-### Debian/Ubuntu and similar operating systems
+### Debian/Ubuntu
 
-- NGINX : libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g,lsb-base
-- NIM : openssl, rsyslog, systemd, tar, lsb-release, openssl, gawk
+- NGINX: libc6, libcrypt1, libpcre2-8-0, libssl3, zlib1g, lsb-base
+- NGINX Instance Manager: openssl, rsyslog, systemd, tar, lsb-release, gawk
 - ClickHouse: libcap2-bin
 
 ### Red Hat-based operating systems
 
-- NGINX : bash, glibc, libxcrypt, openssl-libs, glibc, pcre2, openssl-libs, zlib, procps-ng, glibc , shadow-utils, systemd
-- NIM : glibc, openssl, rsyslog,systemd, tar, which,zlib, yum-utils
-- ClickHouse: None
+- NGINX: bash, glibc, libxcrypt, openssl-libs, pcre2, zlib, procps-ng, shadow-utils, systemd
+- NGINX Instance Manager: glibc, openssl, rsyslog, systemd, tar, which, zlib, yum-utils
+- ClickHouse: none
 
-You can find the latest dependencies with one of the following commands:
+To find the latest dependencies for a specific package version:
 
-- Ubuntu/Debian: apt-cache depends <PACKAGE_NAME>=<VERSION>
-- Red Hat : yum deplist <PACKAGE_NAME_VERSION>
+- Ubuntu/Debian: `apt-cache depends <PACKAGE_NAME>=<VERSION>`
+- Red Hat: `yum deplist <PACKAGE_NAME_VERSION>`
 
 
 ### Required flags for installing in offline mode
@@ -143,7 +141,7 @@ You can find the latest dependencies with one of the following commands:
     -d <DISTRIBUTION>
     ```
 
-3. **Save the admin password**. In most cases, the script completes the installation of NGINX Instance Manager and associated packages. After installation is complete, the script takes a few minutes to generate a password. At the end of the process, you'll see an autogenerated password:
+3. **Save the admin password**. After installation completes, the script takes a few minutes to generate a password. At the end of the process, you'll see:
 
     ```shell
     Regenerated Admin password: <encrypted password>
@@ -151,7 +149,7 @@ You can find the latest dependencies with one of the following commands:
 
     Save that password. You'll need it when you sign in to NGINX Instance Manager.
 
-3. After installation, open a web browser, go to `https://<NIM_FQDN>` (the fully qualified domain name of the NGINX Instance Manager host), and log in.
+4. After installation, open a browser, go to `https://<NIM_FQDN>`, and log in.
 
 ---
 
@@ -217,9 +215,9 @@ To upgrade NGINX Instance Manager to a newer version:
 
 ---
 
-## CVE checking {#cve-check}
+## Update the CVE list {#cve-check}
 
-To manually update the CVE list in an air-gapped environment, follow these steps to download and overwrite the `cve.xml` file in the `/usr/share/nms` directory and restart the Data Plane Manager service:
+To manually update the CVE list in an air-gapped environment, run the following command to overwrite `cve.xml` and restart the Data Plane Manager service:
 
 ```shell
 sudo chmod 777 /usr/share/nms/cve.xml && \

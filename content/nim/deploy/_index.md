@@ -1,5 +1,5 @@
 ---
-title: Deploy in a connected environment
+title: Deploy (connected)
 description:
 weight: 20
 url: /nginx-instance-manager/deploy/
