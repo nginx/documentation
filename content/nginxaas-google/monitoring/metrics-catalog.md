@@ -30,6 +30,8 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 
 ### NGINX config statistics
 
+All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
+
 {{< table >}}
 
 | **Metric**            | **Labels** | **Type** | **Description**                                                                                                                                                                                                                                                                                                           | **Roll-up per** |
@@ -39,6 +41,8 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 {{< /table >}}
 
 ### NGINX connections statistics
+
+All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 
@@ -50,6 +54,21 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 {{< /table >}}
 
 ### NGINX requests and response statistics
+
+To collect these metrics, configure the `status_zone` directive in your NGINX configuration. Add a `status_zone` directive to your `server` or `location` blocks to enable zone-specific request and response tracking.
+
+Example:
+
+```nginx
+server {
+    listen 80;
+    status_zone my_server_zone;
+    
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
 
 {{< table >}}
 
@@ -70,6 +89,18 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 
 ### NGINX SSL statistics
 
+NGINX automatically collects these metrics when you configure SSL/TLS in your NGINX deployment. To collect SSL metrics, configure SSL certificates and enable HTTPS listeners in your NGINX configuration.
+
+Example:
+
+```nginx
+server {
+    listen 443 ssl;
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+}
+```
+
 {{< table >}}
 
 | **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
@@ -80,6 +111,23 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 {{< /table >}}
 
 ### NGINX cache statistics
+
+To collect cache metrics, configure caching in your NGINX configuration using the `proxy_cache_path` and `proxy_cache` directives.
+
+Example:
+
+```nginx
+http {
+    proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m;
+    
+    server {
+        location / {
+            proxy_cache my_cache;
+            proxy_pass http://backend;
+        }
+    }
+}
+```
 
 {{< table >}}
 
@@ -93,6 +141,8 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 {{< /table >}}
 
 ### NGINX memory statistics
+
+These metrics track shared memory zone usage. NGINX automatically collects memory statistics when you configure zones using the `status_zone` directive or other directives that create shared memory zones.
 
 {{< table >}}
 
@@ -109,6 +159,25 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 {{< /table >}}
 
 ### NGINX upstream statistics
+
+To collect upstream metrics, define `upstream` blocks in your NGINX configuration and reference them in your proxy configuration. Add `zone` directives to track upstream statistics.
+
+Example:
+
+```nginx
+upstream backend {
+    zone backend_zone 64k;
+    server 10.0.0.1:8080;
+    server 10.0.0.2:8080;
+}
+
+server {
+    status_zone my_server;
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
 
 {{< table >}}
 
@@ -134,6 +203,25 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 {{< /table >}}
 
 ### NGINX stream statistics
+
+To collect stream metrics, configure the `stream` context in your NGINX configuration and add `status_zone` directives to your stream servers.
+
+Example:
+
+```nginx
+stream {
+    server {
+        listen 12345;
+        status_zone tcp_server;
+        proxy_pass backend_stream;
+    }
+    
+    upstream backend_stream {
+        zone stream_backend 64k;
+        server 10.0.0.1:12345;
+    }
+}
+```
 
 {{< table >}}
 
