@@ -30,7 +30,7 @@ The metrics are categorized by the namespace used in Google Cloud Monitoring. Th
 
 ### NGINX config statistics
 
-These metrics are collected automatically for all NGINXaaS deployments. No additional NGINX configuration is required.
+All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 
@@ -42,7 +42,7 @@ These metrics are collected automatically for all NGINXaaS deployments. No addit
 
 ### NGINX connections statistics
 
-These metrics are collected automatically for all NGINXaaS deployments. No additional NGINX configuration is required.
+All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 
@@ -89,7 +89,7 @@ server {
 
 ### NGINX SSL statistics
 
-These metrics are collected automatically when SSL/TLS is configured in your NGINX deployment. To collect SSL metrics, configure SSL certificates and enable HTTPS listeners in your NGINX configuration.
+NGINX automatically collects these metrics when you configure SSL/TLS in your NGINX deployment. To collect SSL metrics, configure SSL certificates and enable HTTPS listeners in your NGINX configuration.
 
 Example:
 
@@ -142,7 +142,7 @@ http {
 
 ### NGINX memory statistics
 
-These metrics track shared memory zone usage. Memory statistics are collected automatically when you configure zones using the `status_zone` directive or other directives that create shared memory zones.
+These metrics track shared memory zone usage. NGINX automatically collects memory statistics when you configure zones using the `status_zone` directive or other directives that create shared memory zones.
 
 {{< table >}}
 

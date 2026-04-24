@@ -19,7 +19,7 @@ Monitoring your application's performance is crucial for maintaining its reliabi
   - `roles/monitoring.editor` — View metrics and create or import dashboards
   
   See [Google's documentation on controlling access to Cloud Monitoring with IAM](https://cloud.google.com/monitoring/access-control) for more information.
-- Configure zones in your NGINX configuration to collect zone-specific metrics. Many metrics, including HTTP request and response statistics, stream connection metrics, and memory statistics, are reported per zone. See the [Metrics Catalog]({{< ref "/nginxaas-google/monitoring/metrics-catalog.md" >}}) for details on which metrics roll up per zone.
+- Configure the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone) directive in your `server` blocks and the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive in your `upstream` blocks to collect HTTP request and response statistics, stream connection metrics, upstream statistics, and memory statistics. See the [Metrics Catalog]({{< ref "/nginxaas-google/monitoring/metrics-catalog.md" >}}) for configuration requirements.
 
 ## Export NGINXaaS metrics to a Google Cloud Project
 
@@ -49,16 +49,7 @@ To help you quickly visualize important metrics and logs from your NGINXaaS depl
 
 To import the dashboard:
 
-1. Copy the dashboard JSON configuration shown below.
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
-1. Go to your metrics project.
-1. Search for **Monitoring** and select **Dashboards**.
-1. Select **Create Custom Dashboard**.
-1. In the top-right corner, select the settings icon (⚙) and select **JSON** to switch to JSON editor mode.
-1. Replace the default JSON with the dashboard configuration you copied.
-1. Select **Apply Changes**.
-
-{{< details summary="Show dashboard JSON" >}}
+1. Copy the dashboard JSON configuration {{< details summary="Show dashboard JSON" >}}
 
 ```json
 {
@@ -440,7 +431,15 @@ To import the dashboard:
 
 {{< /details >}}
 
-{{< call-out "note" >}}The dashboard includes a filter dropdown for **nginxaas_deployment_name** at the top of the page. Use this filter to view metrics for a specific NGINXaaS deployment or select multiple deployments to compare their performance.{{< /call-out >}}
+2. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+3. Go to your metrics project.
+4. Search for **Monitoring** and select **Dashboards**.
+5. Select **Create Custom Dashboard**.
+6. Select the settings icon (⚙), and select **JSON** to switch to JSON editor mode.
+7. Replace the default JSON with the dashboard configuration you copied.
+8. Select **Apply Changes**.
+
+{{< call-out "note" >}}The dashboard includes an **nginxaas_deployment_name** filter. Use this filter to view metrics for a specific NGINXaaS deployment or select multiple deployments to compare their performance.{{< /call-out >}}
 
 ## Disable exporting NGINXaaS metrics to a Google Cloud project
 
