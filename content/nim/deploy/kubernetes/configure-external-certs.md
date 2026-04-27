@@ -1,5 +1,4 @@
 ---
-nd-docs: TECHDOCS-4603
 title: Use external TLS certificates
 toc: true
 weight: 500
