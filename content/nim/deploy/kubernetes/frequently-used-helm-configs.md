@@ -59,11 +59,11 @@ To use your own certificates, follow these steps:
    type: kubernetes.io/tls
    data:
       tls.crt: |
-         <base64-encoded-certificate>
+         <BASE64_ENCODED_CERTIFICATE>
       tls.key: |
-         <base64-encoded-key>
+         <BASE64_ENCODED_KEY>
       ca.pem: |
-         <base64-encoded-ca>
+         <BASE64_ENCODED_CA>
    ```
 
 ---
@@ -96,10 +96,10 @@ To use NGINX Plus for the API Gateway, follow these steps:
    # API-GW with NGINX-PLUS is needed to enable OIDC.
 
    # Download NMS API gateway Docker image from MyF5 Downloads, https://docs.nginx.com/nginx-management-suite/installation/helm-chart/
-   # Replace "apigw:<version>" with a known release tag.
+   # Replace "apigw:<VERSION>" with a known release tag.
    # For example: apigw:2.6.0
 
-   FROM apigw:<version> as apigw-plus
+   FROM apigw:<VERSION> as apigw-plus
 
    ARG REPO_PATH=.
 
@@ -185,16 +185,16 @@ To use NGINX Plus for the API Gateway, follow these steps:
 2. Tag the Docker image:
 
    ```shell
-   docker tag apigw-plus <my-docker-registry>/nms-apigw-plus:<version>
+   docker tag apigw-plus <MY_DOCKER_REGISTRY>/nms-apigw-plus:<VERSION>
    ```
 
-   - Replace `<my-docker-registry>` with your private Docker registry.
-   - Replace `<version>` with the version tag.
+   - Replace `<MY_DOCKER_REGISTRY>` with your private Docker registry.
+   - Replace `<VERSION>` with the version tag.
 
 3. Push the image to your private registry:
 
    ```shell
-   docker push <my-docker-registry>/nms-apigw-plus:<version>
+   docker push <MY_DOCKER_REGISTRY>/nms-apigw-plus:<VERSION>
    ```
 
 4. Edit the `values.yaml` file to configure the Helm chart to pull the `apigw` image from your private Docker registry:
@@ -206,8 +206,8 @@ To use NGINX Plus for the API Gateway, follow these steps:
            - name: regcred
        apigw:
            image:
-               repository: <my-docker-registry>/nms-apigw-plus
-               tag: <version>
+               repository: <MY_DOCKER_REGISTRY>/nms-apigw-plus
+               tag: <VERSION>
    ```
 
 This configuration specifies the name of the secret that should be used for pulling images (`regcred`) and configures the `apigw` image to be pulled from your private Docker registry.
