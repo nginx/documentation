@@ -1,10 +1,9 @@
 ---
 title: Upgrade applications without downtime
-weight: 600
-toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1841
+content-type: how-to
+product: FABRIC
+id: DOCS-1841
+canonical-url: https://docs.nginx.com/ngf/how-to/upgrade-apps-without-downtime/
 ---
 
 Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.
@@ -13,7 +12,7 @@ Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.
 
 ## Overview
 
-{{< call-out "note" >}} See the [Architecture document]({{< ref "/ngf/overview/gateway-architecture.md" >}}) to learn more about NGINX Gateway Fabric architecture.{{< /call-out >}}
+ See the [Architecture document](https://docs.nginx.com/ngf/overview/gateway-architecture) to learn more about NGINX Gateway Fabric architecture.
 
 NGINX Gateway Fabric allows upgrading applications without downtime. To understand the upgrade methods, you need to be familiar with the NGINX features that help prevent application downtime: Graceful configuration reloads and upstream server updates.
 
@@ -21,7 +20,7 @@ NGINX Gateway Fabric allows upgrading applications without downtime. To understa
 
 ### Graceful configuration reloads
 
-If a relevant gateway API or built-in Kubernetes resource is changed, NGINX Gateway Fabric will update NGINX by regenerating the NGINX configuration. NGINX Gateway Fabric then sends a reload signal to the master NGINX process to apply the new configuration.
+If a relevant gateway API or built-in Kubernetes resource changes, NGINX Gateway Fabric will update NGINX by regenerating the NGINX configuration. NGINX Gateway Fabric then sends a reload signal to the master NGINX process to apply the new configuration.
 
 We call such an operation a "reload", during which client requests are not dropped - which defines it as a graceful reload.
 
@@ -35,16 +34,16 @@ Endpoints frequently change during application upgrades: Kubernetes creates pods
 
 NGINX Gateway Fabric detects changes to endpoints by watching their corresponding [EndpointSlices](https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/).
 
-In an NGINX configuration, a service is represented as an [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream), and an endpoint as an [upstream server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server).
+In an NGINX configuration, [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) represents a service, and [upstream server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) represents an endpoint.
 
 Adding and removing endpoints are two of the most common cases:
 
-- If an endpoint is added, NGINX Gateway Fabric adds an upstream server to NGINX that corresponds to the endpoint, then reloads NGINX. Next, NGINX will start proxying traffic to that endpoint.
-- If an endpoint is removed, NGINX Gateway Fabric removes the corresponding upstream server from NGINX. After a reload, NGINX will stop proxying traffic to that server. However, it will finish proxying any pending requests to that server before switching to another endpoint.
+- If you add an endpoint, NGINX Gateway Fabric adds an upstream server to NGINX that corresponds to the endpoint, then reloads NGINX. Next, NGINX will start proxying traffic to that endpoint.
+- If you remove an endpoint, NGINX Gateway Fabric removes the corresponding upstream server from NGINX. After a reload, NGINX will stop proxying traffic to that server. However, it will finish proxying any pending requests to that server before switching to another endpoint.
 
 As long as you have more than one endpoint ready, clients won't experience downtime during upgrades.
 
-{{< call-out "note" >}}It is good practice to configure a [Readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) in the deployment so that a pod can report when it is ready to receive traffic. Note that NGINX Gateway Fabric will not add any endpoint to NGINX that is not ready.{{< /call-out >}}
+It is good practice to configure a [Readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) in the deployment so that a pod can report when it is ready to receive traffic. Note that NGINX Gateway Fabric will not add any endpoint to NGINX that is not ready.
 
 ---
 
@@ -54,7 +53,7 @@ As long as you have more than one endpoint ready, clients won't experience downt
 - The pods of the deployment belong to a [service](https://kubernetes.io/docs/concepts/services-networking/service/) so that Kubernetes creates an [endpoint](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/endpoints-v1/) for each pod.
 - You have exposed the application to the clients via an [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) resource that references that service.
 
-For example, an application can be exposed using a routing rule like below:
+For example, you can expose an application using a routing rule like below:
 
 ```yaml
 - matches:
@@ -66,7 +65,9 @@ For example, an application can be exposed using a routing rule like below:
       port: 80
 ```
 
-{{< call-out "note" >}} See the [Cafe example](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/cafe-example) for a basic example. {{< /call-out >}}
+ See the [Cafe example](https://github.com/nginx/nginx-gateway-fabric/tree/v
+2.4.2
+/examples/cafe-example) for a basic example. 
 
 The upgrade methods in the next sections cover:
 
@@ -119,7 +120,7 @@ A more flexible and precise way to implement canary releases is to configure a t
       weight: 5
 ```
 
-{{< call-out "note" >}} Every request coming from the same client won't necessarily be sent to the same backend. NGINX will independently split each request among the backend references. {{< /call-out >}}
+ Every request coming from the same client won't necessarily go to the same backend. NGINX will independently split each request among the backend references. 
 
 By updating the rule you can further increase the share of traffic the new version gets and finally completely switch to the new version:
 
@@ -137,4 +138,6 @@ By updating the rule you can further increase the share of traffic the new versi
       weight: 1
 ```
 
-See the [Traffic splitting example](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/traffic-splitting) from our repository.
+See the [Traffic splitting example](https://github.com/nginx/nginx-gateway-fabric/tree/v
+2.4.2
+/examples/traffic-splitting) from our repository.
