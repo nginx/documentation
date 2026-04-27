@@ -15,9 +15,7 @@ The Bring Your Own Certificates (BYOC) feature lets you supply pre-provisioned T
 New with this feature:
 
 - **Per-service certificate Secrets**: replace individual service certificates independently
-- **Custom API Gateway server name**: set a real domain instead of the catch-all `_`
 - **TLS auto-reload**: NGINX reloads automatically when a mounted certificate rotates
-- **OpenShift compatibility**: `seccompProfile` is no longer set explicitly on OpenShift
 
 ---
 
@@ -134,6 +132,10 @@ For the complete list of Helm settings, see [Configurable Helm settings]({{< ref
 {{< production >}}
 This procedure is recommended for production deployments.
 {{< /production >}}
+
+{{< call-out "note" >}}
+The [Generate certificates](#generate-certificates) section is provided as an example workflow. If the required certificates are already available, you can skip directly to [Create Kubernetes Secrets](#create-kubernetes-secrets).
+{{< /call-out >}}
 
 Use this procedure when you want a trusted TLS certificate for the external HTTPS endpoint (for example, `nim.example.com`) but want the chart to manage all internal mTLS certificates.
 
@@ -260,7 +262,7 @@ done
 
 ### Create Kubernetes Secrets
 
-Run the following commands before running `helm install`. The namespace must already exist.
+Run the following commands before running `helm install`. Make sure `NS` is set and you're in the directory containing your certificate files before running these commands.
 
 ```shell
 NS=nms
