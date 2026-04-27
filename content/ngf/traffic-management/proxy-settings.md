@@ -410,7 +410,7 @@ NGINX uses three independent timeouts when communicating with upstream servers:
 - `read`: time allowed between two successive **read operations** from the upstream server — not the total time to receive the full response. If the upstream does not transmit anything within this period, the connection is closed.
 - `send`: time allowed between two successive **write operations** to the upstream server — not the total time to transmit the full request.
 
-Because `read` and `send` are per-operation rather than end-to-end timeouts, a large response or request body can take longer than the configured value as long as data keeps flowing within the timeout window. NGINX does not currently support full request or response timeouts.
+Because `read` and `send` are per-operation rather than end-to-end timeouts, a large response or request body can take longer than the configured value as long as data keeps flowing within the timeout window.
 
 All three fields accept a duration value in the format `<number>(ms|s|m|h)` — for example, `5s`, `500ms`, `2m`. A value with no unit is interpreted as seconds. They are fully independent: there is no required ordering between them.
 
