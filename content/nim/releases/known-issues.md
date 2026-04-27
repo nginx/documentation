@@ -12,6 +12,34 @@ This document lists and describes the known issues and possible workarounds in F
 
 {{< call-out "tip" >}}We recommend you upgrade to the latest version of NGINX Instance Manager to take advantage of new features, improvements, and bug fixes.{{< /call-out >}}
 
+## 2.22.0
+
+April 27, 2026
+
+### {{% icon-bug %}} Custom users can't access security log profile objects {#47286}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 47286 | Open  |
+
+#### Description
+
+Custom users can't perform any actions on the **Security Log Profiles** tab.
+
+---
+
+### {{% icon-bug %}} NATS messages flush slowly after switching to connected mode {#47287}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 47287 | Open  |
+
+#### Description
+
+When NGINX Instance Manager switches from disconnected to connected mode, NATS messages flush very slowly, processing one message at a time.
+
+---
+
 ## 2.21.0
 
 November 07, 2025
