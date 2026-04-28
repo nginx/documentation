@@ -261,4 +261,22 @@ To submit the report and download the acknowledgment, follow steps 3–5 in the 
 
 ## Error log location and monitoring {#log-monitoring}
 
+{{< include "licensing-and-reporting/nim-service-log-location.md" >}}
+
+Monitor the following log prefixes to identify issues generating and exporting offline usage reports.
+
+**`[OfflineAggregator]`** — offline usage report packaging:
+
+```text
+[error] [OfflineAggregator] PullSubscribe failed consumer=<name>: <error>
+[error] [OfflineAggregator] error fetching messages: <error>
+[error] [OfflineAggregator] error processing message msg_index=<i>: <error> (skipping)
+[warn]  [OfflineAggregator] proto.Unmarshal failed: <error> (data_len=<n>)
+[warn]  [OfflineAggregator] message silently dropped (likely proto unmarshal failure) msg_index=<i>
+[error] [OfflineAggregator] failed to delete stale consumer=<name>: <error>
+[info]  [OfflineAggregator] aggregation complete: total_directories=<n> total_processed=<n> ...
+[info]  [OfflineAggregator] empty fetch attempt <n>/<max> (total_processed_so_far=<n>)
+[info]  [OfflineAggregator] <n> consecutive empty fetches, stream exhausted
+```
+
 {{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}

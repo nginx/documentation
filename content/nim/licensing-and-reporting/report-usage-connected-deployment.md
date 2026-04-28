@@ -82,4 +82,47 @@ To submit usage reports manually:
 
 ## Error log location and monitoring {#log-monitoring}
 
+{{< include "licensing-and-reporting/nim-service-log-location.md" >}}
+
+Monitor the following log prefixes to identify issues with automatic usage reporting to F5.
+
+**`[INT-NC]`** — usage report polling and submission:
+
+```text
+[error] [INT-NC] failed to get pending count: <error>
+[error] [INT-NC] failed to process NC usage batch: <error>
+[info]  [INT-NC] successfully processed NC usage batch
+[error] [INT-NC] failed to upsert telemetry event: <error>
+[info]  [INT-NC] stopping NC usage subscriber (context done)
+```
+
+**`[AIDF-SUB]`** — usage message processing:
+
+```text
+[error] [AIDF-SUB] corrupted proto msg[<i>]: <error>; terminating message
+[error] [AIDF-SUB] msg[<i>] missing jwt_token; terminating unprocessable message
+[warn]  [AIDF-SUB] no valid reports after parsing <n> messages
+[error] [AIDF-SUB] failed to create NC client for jwt group: <error>
+[warn]  [AIDF-SUB] NC submission failed for chunk <start>-<end>: <error>
+[error] [AIDF-SUB] failed to ack msg after NC success: <error>
+[warn]  [AIDF-SUB] completed with <n> errors: <errors>
+[info]  [AIDF-SUB] successfully processed <n> valid messages
+```
+
+**`[NC-POST]` / `[NC-RETRY]`** — HTTP communication with F5:
+
+```text
+[info]  [NC-POST]  NC response status=<code> batch_size=<n>
+[warn]  [NC-RETRY] retrying after error: <error> wait=<duration>
+[error] [NC-SUBMIT] failed to convert report <i>: <error>
+```
+
+**`[AIDF-PUB]`** — usage data publishing from the data plane manager:
+
+```text
+[error] [AIDF-PUB] failed to marshal proto report: <error>
+[error] [AIDF-PUB] failed to publish proto report: <error>
+[info]  [AIDF-PUB] published proto report seq=<n> nginx_version=<ver>
+```
+
 {{< include "licensing-and-reporting/log-location-and-monitoring.md" >}}
