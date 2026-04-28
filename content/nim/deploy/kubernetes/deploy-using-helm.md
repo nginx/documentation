@@ -60,7 +60,7 @@ Make sure there are no extra characters or spaces when copying the JWT token. Th
 kubectl create namespace nim
 kubectl create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
-  --docker-username=<NGINX JWT Token> \
+  --docker-username=<NGINX_JWT_TOKEN> \
   --docker-password=none \
   -n nim
 ```
@@ -71,7 +71,7 @@ kubectl create secret docker-registry regcred \
 oc new-project nim && \
 oc create secret docker-registry regcred \
   --docker-server=private-registry.nginx.com \
-  --docker-username=<NGINX JWT Token> \
+  --docker-username=<NGINX_JWT_TOKEN> \
   --docker-password=none \
   -n nim
 ```
@@ -146,7 +146,7 @@ nmsClickhouse:
 
 # when mode is external, uncomment and set this:
 # externalClickhouse:
-#   address: <clickhouse-host>:<port>
+#   address: <CLICKHOUSE_HOST>:<PORT>
 
 imagePullSecrets:
   - name: regcred
@@ -193,15 +193,15 @@ Install NGINX Instance Manager using Helm. The `adminPasswordHash` sets the defa
 helm install nim nginx-stable/nim \
   -n nim \
   --create-namespace \
-  --set adminPasswordHash=$(openssl passwd -6 '<your-password>') \
-  -f <your-values.yaml> \
-  --version <chart-version> \
+  --set adminPasswordHash=$(openssl passwd -6 '<YOUR_PASSWORD>') \
+  -f <YOUR_VALUES_FILE> \
+  --version <CHART_VERSION> \
   --wait
 ```
 
-- Replace `<your-password>` with your preferred admin password.
-- Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.1.0`).
+- Replace `<YOUR_PASSWORD>` with your preferred admin password.
+- Replace `<YOUR_VALUES_FILE>` with the path to your customized values.yaml file.
+- Replace `<CHART_VERSION>` with the version you want to install (for example, `2.1.0`).
 
 **Note:** You can set the ClickHouse mode at install time instead of editing `values.yaml`:
 
@@ -215,7 +215,7 @@ For external ClickHouse:
 
 ```shell
 --set nmsClickhouse.mode=external \
---set nim.externalClickhouse.address=<clickhouse-host>:<port>
+--set nim.externalClickhouse.address=<CLICKHOUSE_HOST>:<PORT>
 ```
 
 **Validate the deployment**
@@ -245,7 +245,7 @@ To find the right NGINX Instance Manager chart version, see the following table:
 
 A valid license is required to use all NGINX Instance Manager features.
 
-For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}).
+For instructions on downloading and applying a license, see [Add a License]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md" >}}).
 
 ---
 
@@ -260,15 +260,15 @@ To upgrade your deployment:
 ```shell
 helm upgrade nim nginx-stable/nim \
   -n nim \
-  --set adminPasswordHash=$(openssl passwd -6 '<your-password>') \
-  -f <path-to-your-values.yaml> \
-  --version <chart-version> \
+  --set adminPasswordHash=$(openssl passwd -6 '<YOUR_PASSWORD>') \
+  -f <PATH_TO_VALUES_FILE> \
+  --version <CHART_VERSION> \
   --wait
 ```
 
-- Replace `<your-password>` with your preferred admin password.
-- Replace `<your-values.yaml>` with the path to your customized values.yaml file.
-- Replace `<chart-version>` with the version you want to install (for example, `2.1.0`).
+- Replace `<YOUR_PASSWORD>` with your preferred admin password.
+- Replace `<YOUR_VALUES_FILE>` with the path to your customized values.yaml file.
+- Replace `<CHART_VERSION>` with the version you want to install (for example, `2.1.0`).
 
 
 {{< call-out "important" "Save the password!" >}}
@@ -288,7 +288,7 @@ The latest chart is now called `nginx-stable/nim`, and `nim` is the recommended 
 To uninstall NGINX Instance Manager, run:
 
 ```shell
-helm uninstall <release-name> -n <namespace>
+helm uninstall <RELEASE_NAME> -n <NAMESPACE>
 ```
 
 This command removes the deployment and all Kubernetes resources managed by the Helm chart.
@@ -312,13 +312,13 @@ To view them:
 - **Kubernetes**:
 
     ```shell
-    kubectl get netpol -n <namespace>
+    kubectl get netpol -n <NAMESPACE>
     ```
 
 - **OpenShift**:
 
     ```shell
-    oc get netpol -n <namespace>
+    oc get netpol -n <NAMESPACE>
     ```
 
 The number and names of network policies vary depending on the deployment mode (standard vs. lightweight). For example, in standard mode, you might see output like this:
@@ -363,31 +363,31 @@ imagePullSecrets:
 apigw:
   image:
     repository: private-registry.nginx.com/nms/apigw
-    tag: <version>
+    tag: <VERSION>
 core:
   image:
     repository: private-registry.nginx.com/nms/core
-    tag: <version>
+    tag: <VERSION>
 dpm:
   image:
     repository: private-registry.nginx.com/nms/dpm
-    tag: <version>
+    tag: <VERSION>
 ingestion:
   image:
     repository: private-registry.nginx.com/nms/ingestion
-    tag: <version>
+    tag: <VERSION>
 integrations:
   image:
     repository: private-registry.nginx.com/nms/integrations
-    tag: <version>
+    tag: <VERSION>
 secmon:
   image:
     repository: private-registry.nginx.com/nms/secmon
-    tag: <version>
+    tag: <VERSION>
 utility:
   image:
     repository: private-registry.nginx.com/nms/utility
-    tag: <version>
+    tag: <VERSION>
 ```
 
 
@@ -399,19 +399,19 @@ utility:
 
 Run the `helm install` command to deploy NGINX Instance Manager:
 
-1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
-2. Replace `<your-password>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
+1. Replace `<PATH_TO_VALUES_FILE>` with the path to your `values.yaml` file.
+2. Replace `<YOUR_PASSWORD>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
    {{< call-out "important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
 
 
 ```shell
 helm install -n nms-hybrid \
---set adminPasswordHash=$(openssl passwd -6 '<your-password>') \
+--set adminPasswordHash=$(openssl passwd -6 '<YOUR_PASSWORD>') \
 nms nginx-stable/nms-hybrid \
 --create-namespace \
--f <path-to-your-values.yaml> \
---version <chart-version> \
+-f <PATH_TO_VALUES_FILE> \
+--version <CHART_VERSION> \
 --wait
 ```
 
@@ -424,19 +424,19 @@ To upgrade:
 1. [Update the Helm repository list](#add-repository).
 2. [Adjust your `values.yaml` file](#configure-values-yaml) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms-hybrid` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
-4. Replace `<chart-version>` with the desired chart version of NGINX Instance Manager 2.19.x referring the Helm chart table. 
+4. Replace `<CHART_VERSION>` with the desired chart version of NGINX Instance Manager 2.19.x referring the Helm chart table. 
 
    ```shell
     helm upgrade -n nms \
-    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 '<your-password>') \
+    --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 '<YOUR_PASSWORD>') \
     nms nginx-stable/nms-hybrid \
-    -f <path-to-your-values.yaml> \
-    --version <chart-version> \
+    -f <PATH_TO_VALUES_FILE> \
+    --version <CHART_VERSION> \
     --wait
    ```
 
-   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
-   - Replace `<your-password>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
+   - Replace `<PATH_TO_VALUES_FILE>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<YOUR_PASSWORD>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
 
@@ -469,27 +469,27 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
         apigw:
             image:
                 repository: private-registry.nginx.com/nms/apigw
-                tag: <version>
+                tag: <VERSION>
         core:
             image:
                 repository: private-registry.nginx.com/nms/core
-                tag: <version>
+                tag: <VERSION>
         dpm:
             image:
                 repository: private-registry.nginx.com/nms/dpm
-                tag: <version>
+                tag: <VERSION>
         ingestion:
             image:
                 repository: private-registry.nginx.com/nms/ingestion
-                tag: <version>
+                tag: <VERSION>
         integrations:
             image:
                 repository: private-registry.nginx.com/nms/integrations
-                tag: <version>
+                tag: <VERSION>
         utility:
             image:
                 repository: private-registry.nginx.com/nms/utility
-                tag: <version>
+                tag: <VERSION>
     ```
 
 2. Save and close the `values.yaml` file.
@@ -505,15 +505,15 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 
    {{< call-out "important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
 
-3. (Optional) Replace `<chart-version>` with the desired chart version. If omitted, the latest version will be installed.
+3. (Optional) Replace `<CHART_VERSION>` with the desired chart version. If omitted, the latest version will be installed.
 
 ```shell
 helm install -n nms \
 --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
 nms nginx-stable/nms \
 --create-namespace \
--f <path-to-your-values.yaml> \
---version <chart-version> \
+-f <PATH_TO_VALUES_FILE> \
+--version <CHART_VERSION> \
 --wait
 ```
 
@@ -526,18 +526,18 @@ To upgrade:
 1. [Update the Helm repository list](#add-repository).
 2. [Adjust your `values.yaml` file](#configure-values-yaml) if needed.
 3. To upgrade the NGINX Instance Manager deployment, run the following command. This command updates the `nms` deployment with a new version from the `nginx-stable/nms` repository. It also hashes the provided password and uses the `values.yaml` file at the path you specify.
-4. Replace `<chart-version>` with the desired chart version 1.15.0 or lower. If omitted, it will lead to an unsuccessful deployment as it will try to upgrade to the latest vesrion 1.16.0 or later.
+4. Replace `<CHART_VERSION>` with the desired chart version 1.15.0 or lower. If omitted, it will lead to an unsuccessful deployment as it will try to upgrade to the latest vesrion 1.16.0 or later.
 
    ```shell
     helm upgrade -n nms \
     --set nms-hybrid.adminPasswordHash=$(openssl passwd -6 'YourPassword123#') \
     nms nginx-stable/nms \
-    -f <path-to-your-values.yaml> \
-    --version <chart-version> \
+    -f <PATH_TO_VALUES_FILE> \
+    --version <CHART_VERSION> \
     --wait
    ```
 
-   - Replace `<path-to-your-values.yaml>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
+   - Replace `<PATH_TO_VALUES_FILE>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `YourPassword123#` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
       {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}

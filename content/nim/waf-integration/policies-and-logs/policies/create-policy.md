@@ -28,7 +28,7 @@ To create a security policy using the NGINX Instance Manager web interface:
 
    In the configuration file, this is set using the `enforcementMode` property.
 
-5. To change character encoding, select **Show Advanced Fields**, then choose an application language. The default encoding is Unicode (`utf-8`).
+5. To change character encoding, select **Show Advanced Fields**, then select an application language. The default encoding is Unicode (`utf-8`).
 
 ### Configure a policy
 
@@ -89,7 +89,7 @@ To create a security policy using the REST API, send a `POST` request to the Sec
 **Example:**
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies \
   -H "Authorization: Bearer <access token>" \
   -H "Content-Type: application/json" \
   -d @ignore-xss-example.json

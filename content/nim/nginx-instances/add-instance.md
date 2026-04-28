@@ -24,7 +24,7 @@ Make sure you have:
 5. On the host where your NGINX instance is running, run the `curl` command to install NGINX Agent:
 
    ```shell
-   curl https://<NIM-FQDN>/install/nginx-agent | sudo sh
+   curl https://<NIM_FQDN>/install/nginx-agent | sudo sh
    ```
 
 6. On the same host, run the following command to start NGINX Agent:

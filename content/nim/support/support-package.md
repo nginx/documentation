@@ -42,7 +42,7 @@ To create a support package:
 2. To extract the package, use the `tar` command:
 
     ```shell
-    tar -xvf support-pkg-<timestamp>.tar.gz
+    tar -xvf support-pkg-<TIMESTAMP>.tar.gz
     ```
 
 ### Arguments

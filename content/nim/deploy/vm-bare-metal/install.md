@@ -1,6 +1,6 @@
 ---
 description: ''
-title: Install the latest NGINX Instance Manager with a script
+title: Install NGINX Instance Manager using a script
 toc: true
 weight: 10
 nd-content-type: tutorial

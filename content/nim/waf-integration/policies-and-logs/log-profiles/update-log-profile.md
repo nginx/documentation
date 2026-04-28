@@ -1,8 +1,8 @@
 ---
-title: Update a security log profile
+title: Update log profiles (REST API)
 description: Update an existing F5 WAF for NGINX security log profile or create a new revision using the NGINX Instance Manager REST API.
 toc: true
-weight: 200
+weight: 700
 nd-content-type: how-to
 nd-product: NIMNGR
 ---
@@ -25,7 +25,7 @@ To update a log profile, use one of the following methods:
 ### Create a new revision
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles?isNewRevision=true \
     -H "Authorization: Bearer <access token>" \
     -H "Content-Type: application/json" \
     -d @update-default-log.json
@@ -38,16 +38,14 @@ To overwrite an existing security log profile:
 1. Retrieve the profile’s UID:
 
     ```shell
-    curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
+    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \
-      -H "Content-Type application/json" \
-      -d @update-log-profile.json
     ```
 
 2. Update the log profile using the UID:
 
     ```shell
-    curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
+    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \
       -H "Content-Type: application/json" \
       -d @update-log-profile.json

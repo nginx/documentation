@@ -27,7 +27,7 @@ You need to create a certificate before you can add one to NGINX Instance Manage
 If you’re uploading a **PKCS12** certificate, make sure to encode it in base64 before adding it to NGINX Instance Manager. Use the following command to encode the certificate:
 
    ```shell
-    cat <filename>.pkcs12 | base64 > <new-filename>.pkcs12
+    cat <FILENAME>.pkcs12 | base64 > <NEW_FILENAME>.pkcs12
    ```
 
 To add a certificate to NGINX Instance Manager, take the following steps:
@@ -93,7 +93,7 @@ curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_wi
       ]
     },
     "instanceRefs": [
-      "/api/platform/v1/systems/<system-uuid>/instances/<instance-uuid>"
+      "/api/platform/v1/systems/{system_uuid}/instances/{instance_uuid}"
     ]
   }'
   ```
