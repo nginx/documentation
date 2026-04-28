@@ -12,5 +12,5 @@ To assign roles to a user in NGINX Instance Manager, follow these steps:
 2. Select the **Settings** gear icon in the upper-right corner.
 3. From the left navigation menu, select **Users**.
 4. Select a user from the list, then select **Edit User**.
-5. In the **Roles** list, choose the role(s) you want to assign to the user.
+5. In the **Roles** list, select the role(s) you want to assign to the user.
 6. Select **Save**.

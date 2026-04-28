@@ -43,7 +43,7 @@ If no time range is provided, the API defaults to showing bundles modified in th
 Example:
 
 ```shell
-curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
+curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
   -H "Authorization: Bearer <access token>"
 ```
 

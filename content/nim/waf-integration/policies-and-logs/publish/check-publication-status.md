@@ -28,7 +28,7 @@ To view deployment status for a specific policy, send a `GET` request to the Sec
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/deployments/associations/ignore-xss" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/deployments/associations/ignore-xss" \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -45,7 +45,7 @@ In the response, check the `lastDeploymentDetails` field under `instance` or `in
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/deployments/logprofiles/associations/default-log" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/deployments/logprofiles/associations/default-log" \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -64,7 +64,7 @@ To view deployment status for a specific instance, provide the system UID and in
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/systems/<system-uid>/instances/<instance-uid>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/<system-uid>/instances/<instance-uid>" \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -84,7 +84,7 @@ You can use this ID to check the final result of the publication.
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/systems/instances/deployments/<deployment-id>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/instances/deployments/<deployment-id>" \
   -H "Authorization: Bearer <access token>"
 ```
 

@@ -139,7 +139,7 @@ Use the NGINX Instance Manager REST API to upload the `.tgz` files.
 **Upload attack signatures**
 
 ```shell
-curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/attack-signatures' \
+curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/attack-signatures' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2022.11.16"' \
   --form 'filename=@"/attack-signatures.tgz"'
@@ -148,7 +148,7 @@ curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/attack-signatures' \
 **Upload bot signatures**
 
 ```shell
-curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/bot-signatures' \
+curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/bot-signatures' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2025.07.09"' \
   --form 'filename=@"/bot-signatures.tgz"'
@@ -157,7 +157,7 @@ curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/bot-signatures' \
 **Upload threat campaigns**
 
 ```shell
-curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/threat-campaigns' \
+curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/threat-campaigns' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2022.11.15"' \
   --form 'filename=@"/threat-campaigns.tgz"'

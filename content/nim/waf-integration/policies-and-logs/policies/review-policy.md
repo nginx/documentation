@@ -7,7 +7,7 @@ nd-content-type: how-to
 nd-product: NIMNGR
 ---
 
-Before deploying a policy to an NGINX instance or instance group, you can review it in NGINX Instance Manager. The system stores all F5 WAF for NGINX policies and their version history, so you can review details or roll back to an earlier version if needed.
+Before deploying a policy to an NGINX instance or instance group, you can review it in NGINX Instance Manager. The system stores all F5 WAF for NGINX policies and their version history. You can review any version or roll back to an earlier version if needed.
 
 ## Review policies
 

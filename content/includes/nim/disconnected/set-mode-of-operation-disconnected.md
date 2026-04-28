@@ -2,7 +2,7 @@
 nd-docs: DOCS-1663
 nd-product: NIMNGR
 nd-files:
-- content/nim/disconnected/add-license-disconnected-deployment.md
+- content/nim/licensing-and-reporting/add-license-disconnected-deployment.md
 - content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/disconnected/offline-install-guide.md
 ---

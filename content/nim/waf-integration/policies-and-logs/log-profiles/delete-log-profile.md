@@ -1,8 +1,8 @@
 ---
-title: Delete a security log profile
+title: Delete security log profiles (REST API)
 description: Remove an existing F5 WAF for NGINX security log profile from NGINX Instance Manager using the REST API.
 toc: true
-weight: 300
+weight: 800
 nd-content-type: how-to
 nd-product: NIMNGR
 ---
@@ -23,13 +23,13 @@ To delete a security log profile, send a `DELETE` request to the Security Log Pr
 1. Retrieve the UID:
 
     ```shell
-    curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles \
+    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles \
         -H "Authorization: Bearer <access token>"
     ```
 
 2. Send the delete request:
 
     ```shell
-    curl -X DELETE https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
+    curl -X DELETE https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
         -H "Authorization: Bearer <access token>"
     ```
