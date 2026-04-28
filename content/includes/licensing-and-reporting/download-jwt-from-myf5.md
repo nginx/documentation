@@ -6,9 +6,9 @@ nd-files:
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/nic/install/helm/plus.md
-- content/nim/admin-guide/add-license.md
+- content/nim/licensing-and-reporting/add-license-connected-deployment.md
 - content/nim/deploy/docker/deploy-nginx-plus-and-agent-docker.md
-- content/nim/disconnected/add-license-disconnected-deployment.md
+- content/nim/licensing-and-reporting/add-license-disconnected-deployment.md
 - content/solutions/about-subscription-licenses/getting-started.md
 - content/waf/install/kubernetes.md
 ---
