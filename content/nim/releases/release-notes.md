@@ -15,6 +15,57 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 {{< /details >}}
 
+## 2.22.0
+
+April 28, 2026
+
+### Upgrade Paths {#2-22-0-upgrade-paths}
+
+NGINX Instance Manager 2.22.0 supports upgrades from these previous versions:
+
+- 2.19.0 - 2.21.1
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's new {#2-22-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **New licensing flow sends raw usage data; JWT license no longer required**<a name="2-22-0-whats-new-New-licensing-flow-sends-raw-usage-data-JWT-license-no-longer-required-47277"></a>
+
+   NGINX Instance Manager now sends raw usage data to the new licensing endpoint instead of aggregated data to the legacy endpoint. A JWT license is no longer required, and disconnected environments no longer need to upload usage report acknowledgements.
+
+- {{% icon-feature %}} **Log profiles section added to the NGINX Instance Manager UI**<a name="2-22-0-whats-new-Log-profiles-section-added-to-the-NGINX-Instance-Manager-UI-47278"></a>
+
+   NGINX Instance Manager now includes a Log Profiles section in the UI, where you can view, manage, configure, compile, and download log profiles. The section includes form-based and JSON-based editors, similar to the WAF Policies section.
+
+- {{% icon-feature %}} **Custom TLS certificates now supported through Vault and external service certificates**<a name="2-22-0-whats-new-Custom-TLS-certificates-now-supported-through-Vault-and-external-service-certificates-47279"></a>
+
+   NGINX Instance Manager now supports custom TLS certificates for its API Gateway and externally provided internal service certificates. The Helm chart supports both the existing default certificate flow and a new external certificates flow for pre-existing per-service secrets.
+
+### Changes in default behavior{#2-22-0-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Saving a modified WAF policy now always creates a new version**<a name="2-22-0-changes-in-behavior-Saving-a-modified-WAF-policy-now-always-creates-a-new-version-47280"></a>
+
+   NGINX Instance Manager now creates a new version each time a modified WAF policy is saved, even if the current version isn't deployed. Previously, a new version was created only for deployed policy versions.
+
+   - The `PUT` endpoint for updating WAF policies is deprecated.
+   - Submit WAF policy changes through `POST` requests.
+
+- {{% icon-feature %}} **Usage reporting and the NGINX Usage page have changed in version 2.22**<a name="2-22-0-changes-in-behavior-Usage-reporting-and-the-NGINX-Usage-page-have-changed-in-version-222-47281"></a>
+
+   The new licensing endpoint is: `https://product.connect.nginx.com/api/nginx-usage/batch`
+
+   - In connected environments that restrict outbound access, add the new licensing endpoint to your allowlist.
+   - In disconnected mode, use the new bash script to process the larger download file.
+   - The NGINX Usage page no longer shows hourly aggregated data. It now shows usage reporting details such as instance and cluster IDs and last reported times.
+
+### Known issues {#2-22-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
 ## 2.21.1
 
 March 2, 2026
