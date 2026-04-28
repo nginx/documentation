@@ -179,7 +179,7 @@ The values required to pull images from the NGINX private registry are now autom
 Use the file with the `-f values.yaml` flag when installing the chart.
 
 {{< call-out "note" "OpenShift support" >}}
-OpenShift support was added in NGINX Instance Manager 2.19. To enable it, add the setting `openshift.enabled: true` to your `values.yaml` file.
+OpenShift support was added in NGINX Instance Manager 2.19. To enable it, add the setting `openshift.enabled: true` to your `values.yaml` file. Starting with NGINX Instance Manager v2.22, NGINX Instance Manager supports the default SCC on OpenShift.
 For more details, see [Appendix: OpenShift security constraints](#appendix-openshift-security-constraints).
 {{< /call-out >}}
 
@@ -552,29 +552,16 @@ For instructions on creating a support package to share with NGINX Customer Supp
 
 ## Appendix: OpenShift security constraints {#appendix-openshift-security-constraints}
 
-OpenShift restricts containers from running as root by default. To support NGINX Instance Manager, the Helm chart creates a custom Security Context Constraint (SCC) when you set:
+OpenShift restricts containers from running as root by default. When you enable OpenShift support in the NGINX Instance Manager Helm chart:
 
 ```yaml
 openshift:
   enabled: true
 ```
 
-This ensures pods can run with the user IDs required by NGINX Instance Manager services.
+NGINX Instance Manager (NIM) is deployed on OpenShift. Starting with NIM v2.22.0, the chart no longer creates or requires a custom [Security Context Constraints (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/authentication_and_authorization/managing-pod-security-policies) with fixed UIDs (**1000** for `nms`, and **101** for `nginx` and `clickhouse`). Instead, NGNIX Instance Manager runs using the **default SCC** applied by OpenShift to the NGINX Instance Manager service account.
 
-
-When `openshift.enabled: true` is set in the `values.yaml` file, the NGINX Instance Manager deployment automatically creates a custom [Security Context Constraints (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.13/html/authentication_and_authorization/managing-pod-security-policies) object and links it to the Service Account used by all pods.
-
-By default, OpenShift enforces strict security policies that require containers to run as **non-root** users. The deployment needs specific user IDs (UIDs) for certain services—**1000** for `nms`, and **101** for `nginx` and `clickhouse`. Since the default SCCs don’t allow these UIDs, the deployment creates a custom SCC. This SCC sets the `runAsUser` field to allow the necessary UIDs while still complying with OpenShift’s security standards.
-
-This deployment has been tested with OpenShift v4.13.0 Server.
-
-If you see permission errors during deployment, your account might not have access to manage SCCs. Ask a cluster administrator for access.
-
-To verify that the SCC was created after installing the Helm chart, run:
-
-```shell
-oc get scc nms-restricted-v2-scc --output=yaml
-```
+This deployment has been tested with OpenShift v4.15.0 Server.
 
 ---
 
