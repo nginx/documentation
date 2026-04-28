@@ -38,33 +38,11 @@ To use your own ClickHouse installation, follow these steps:
 This section is recommended for production deployments.
 {{< /production >}}
 
-NGINX Instance Manager generates a certificate authority and self-signs its certificates by default.
+By default, NGINX Instance Manager generates a self-signed certificate authority (CA) and all required TLS certificates. For production, you can supply your own certificates instead.
 
-To use your own certificates, follow these steps:
+The Bring Your Own Certificates (BYOC) feature lets you replace certificates for any or all NIM services — including individual service mTLS certificates and the API Gateway's external HTTPS certificate.
 
-1. Open `values.yaml` for editing.
-2. Add the name of a Kubernetes secret to `nms-hybrid.apigw.tlsSecret`. The following fields are required:
-
-   - `tls.crt`
-   - `tls.key`
-   - `ca.pem`
-
-   **Example Kubernetes secret:**
-
-   ```yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-      name: apigw-tls
-   type: kubernetes.io/tls
-   data:
-      tls.crt: |
-         <BASE64_ENCODED_CERTIFICATE>
-      tls.key: |
-         <BASE64_ENCODED_KEY>
-      ca.pem: |
-         <BASE64_ENCODED_CA>
-   ```
+For full instructions, see [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md" >}}).
 
 ---
 
