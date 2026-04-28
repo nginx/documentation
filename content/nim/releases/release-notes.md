@@ -35,6 +35,8 @@ This release includes the following updates:
 
    NGINX Instance Manager now sends raw usage data to the new licensing endpoint instead of aggregated data to the legacy endpoint. A JWT license is no longer required, and disconnected environments no longer need to upload usage report acknowledgements.
 
+   For more information, see [Add a license (connected)]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md" >}}) and [Add a license (disconnected)]({{< ref "/nim/licensing-and-reporting/add-license-disconnected-deployment.md" >}}).
+
 - {{% icon-feature %}} **Log profiles section added to the NGINX Instance Manager UI**<a name="2-22-0-whats-new-Log-profiles-section-added-to-the-NGINX-Instance-Manager-UI-47278"></a>
 
    NGINX Instance Manager now includes a Log Profiles section in the UI, where you can view, manage, configure, compile, and download log profiles. The section includes form-based and JSON-based editors, similar to the WAF Policies section.
@@ -42,6 +44,8 @@ This release includes the following updates:
 - {{% icon-feature %}} **Custom TLS certificates now supported through Vault and external service certificates**<a name="2-22-0-whats-new-Custom-TLS-certificates-now-supported-through-Vault-and-external-service-certificates-47279"></a>
 
    NGINX Instance Manager now supports custom TLS certificates for its API Gateway and externally provided internal service certificates. The Helm chart supports both the existing default certificate flow and a new external certificates flow for pre-existing per-service secrets.
+
+   For more information, see [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md" >}}).
 
 ### Changes in default behavior{#2-22-0-changes-in-behavior}
 
@@ -61,6 +65,8 @@ This release has the following changes in default behavior:
    - In connected environments that restrict outbound access, add the new licensing endpoint to your allowlist.
    - In disconnected mode, use the new bash script to process the larger download file.
    - The NGINX Usage page no longer shows hourly aggregated data. It now shows usage reporting details such as instance and cluster IDs and last reported times.
+
+   For more information, see [Report usage data to F5 (connected)]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}) and [Report usage data to F5 (disconnected)]({{< ref "/nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).
 
 ### Known issues {#2-22-0-known-issues}
 
