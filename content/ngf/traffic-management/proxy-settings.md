@@ -19,6 +19,9 @@ The settings in `ProxySettingsPolicy` correspond to the following NGINX directiv
 - [`proxy_buffer_size`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 - [`proxy_buffers`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers)
 - [`proxy_busy_buffers_size`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size)
+- [`proxy_connect_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout)
+- [`proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+- [`proxy_send_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout)
 
 `ProxySettingsPolicy` is an [Inherited PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to a Gateway, HTTPRoute, or GRPCRoute in the same namespace as the `ProxySettingsPolicy`.
 
@@ -398,6 +401,64 @@ EOF
 ```
 
 With buffering disabled, NGINX Gateway Fabric will pass responses from the upstream server to the client synchronously, without buffering them in memory.
+
+## Configure proxy timeouts
+
+NGINX uses three independent timeouts when communicating with upstream servers:
+
+- `connect`: time allowed to establish a connection with the upstream server
+- `read`: time allowed between two successive **read operations** from the upstream server — not the total time to receive the full response. If the upstream does not transmit anything within this period, the connection is closed.
+- `send`: time allowed between two successive **write operations** to the upstream server — not the total time to transmit the full request.
+
+Because `read` and `send` are per-operation rather than end-to-end timeouts, a large response or request body can take longer than the configured value as long as data keeps flowing within the timeout window.
+
+All three fields accept a duration value in the format `<number>(ms|s|m|h)` — for example, `5s`, `500ms`, `2m`. A value with no unit is interpreted as seconds. They are fully independent: there is no required ordering between them.
+
+### Set proxy timeouts for the Gateway
+
+To set default timeout values for all routes attached to a Gateway:
+
+```shell
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: ProxySettingsPolicy
+metadata:
+  name: gateway-proxy-settings
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: gateway
+  timeout:
+    connect: "5s"
+    read: "60s"
+    send: "30s"
+EOF
+```
+
+This sets a 5-second connection timeout, 60-second read timeout, and 30-second send timeout for all routes attached to the Gateway.
+
+### Override proxy timeouts for a route
+
+To override individual timeout values for a specific route, create a `ProxySettingsPolicy` targeting that route. Only the fields you specify are overridden; the rest continue to inherit from the Gateway-level policy.
+
+```shell
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: ProxySettingsPolicy
+metadata:
+  name: slow-upstream-proxy-settings
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: slow-upstream
+  timeout:
+    read: "120s"   # Allow extra time for a slow upstream
+EOF
+```
+
+Here only `read` is set, so `connect` and `send` continue to inherit from any Gateway-level policy.
 
 ## Important considerations
 
