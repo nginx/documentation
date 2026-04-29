@@ -39,7 +39,7 @@ You can also create a data plane key through the NGINX One Console. Once logged 
 
 ### Choosing the right image
 
-Starting with NGINX Ingress Controller 5.5.0, images with NGINX Agent 3 are available using the `-agent` suffix. The image you need depends on your deployment:
+Starting with NGINX Ingress Controller 5.5.0, images with F5 WAF for NGINX and NGINX Agent 3 are available using the `-agent` suffix. The image you need depends on your deployment:
 
 | Deployment type | Image variant |
 |---|---|
