@@ -11,43 +11,20 @@ This document explains how to use NGINX Ingress Controller to configure NGINX Ag
 
 You can send security metrics to either:
 
-- **NGINX Instance Manager** using NGINX Agent v2
-- **NGINX One Console** using NGINX Agent v3
+- **NGINX Instance Manager** using NGINX Agent 2
+- **NGINX One Console** using NGINX Agent 3 (available starting with NGINX Ingress Controller 5.5.0, using images with the `-agent` suffix)
 
-## Before you begin
-
-{{<tabs name="prerequisites">}}
+{{<tabs name="setup-security-monitoring">}}
 
 {{%tab name="NGINX Instance Manager"%}}
+
+## Before you begin
 
 This guide assumes that you have an installation of NGINX Instance Manager with NGINX Security Monitoring which is reachable from the Kubernetes cluster on which NGINX Ingress Controller is deployed.
 
 If you use custom container images, NGINX Agent must be installed along with F5 WAF for NGINX. See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for examples of how to install NGINX Agent or the [NGINX Agent installation documentation]({{< ref "/agent/installation-upgrade/" >}}) for more information.
 
-{{%/tab%}}
-
-{{%tab name="NGINX One Console"%}}
-
-This guide assumes that you have an NGINX One Console account with access to create data plane keys.
-
-- Create a [data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) from the NGINX One Console. Pay attention to the expiration date of that key.
-- Create a Kubernetes Secret with the data plane key in the same namespace where NGINX Ingress Controller will be deployed:
-
-    ```shell
-    kubectl create secret generic dataplane-key \
-      --from-literal=dataplane.key=<Your Dataplane Key> \
-      -n <namespace>
-    ```
-
-- If you use custom container images, use an image variant with the `-agent` suffix (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for the full list of image targets.
-
-{{%/tab%}}
-
-{{</tabs>}}
-
-## Deploying NGINX Ingress Controller with NGINX Agent configuration
-
-### Using NGINX Instance Manager
+## Deploy NGINX Ingress Controller with NGINX Agent
 
 {{<tabs name="deploy-nim">}}
 
@@ -145,7 +122,26 @@ This guide assumes that you have an NGINX One Console account with access to cre
 
 Once NGINX Ingress Controller is installed the pods will be visible in the NGINX Instance Manager Instances dashboard.
 
-### Using NGINX One Console
+{{%/tab%}}
+
+{{%tab name="NGINX One Console"%}}
+
+## Before you begin
+
+This guide assumes that you have an NGINX One Console account with access to create data plane keys.
+
+- Create a [data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) from the NGINX One Console. Pay attention to the expiration date of that key.
+- Create a Kubernetes Secret with the data plane key in the same namespace where NGINX Ingress Controller will be deployed:
+
+    ```shell
+    kubectl create secret generic dataplane-key \
+      --from-literal=dataplane.key=<Your Dataplane Key> \
+      -n <namespace>
+    ```
+
+- If you use custom container images, use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for the full list of image targets.
+
+## Deploy NGINX Ingress Controller with NGINX Agent
 
 {{<tabs name="deploy-n1">}}
 
@@ -182,7 +178,7 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
       - -agent=true
     ```
 
-{{< call-out "note" >}} When using NGINX One Console with Agent v3, the `-agent-instance-group` flag is not required.{{< /call-out >}}
+{{< call-out "note" >}} When using NGINX One Console with NGINX Agent 3, the `-agent-instance-group` flag is not required.{{< /call-out >}}
 
 2. Create a Kubernetes Secret with the data plane key if you have not already done so:
 
@@ -273,9 +269,13 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
 
 Once NGINX Ingress Controller is installed the pods will be visible in the NGINX One Console. See [Verify a connection to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md#verify-a-connection-to-nginx-one-console" >}}) for details.
 
+{{%/tab%}}
+
+{{</tabs>}}
+
 ## Configuring F5 WAF for NGINX to send metrics to NGINX Agent
 
-NGINX Agent runs a syslog listener which F5 WAF for NGINX can be configured to send logs to, which will then allow NGINX Agent to send metrics to NGINX Security Monitoring. This applies to both NGINX Instance Manager (Agent v2) and NGINX One Console (Agent v3) deployments. When using Agent v3, the `logs-nap` feature handles syslog collection automatically.
+NGINX Agent runs a syslog listener which F5 WAF for NGINX can be configured to send logs to, which will then allow NGINX Agent to send metrics to NGINX Security Monitoring. This applies to both NGINX Instance Manager (NGINX Agent 2) and NGINX One Console (NGINX Agent 3) deployments. When using NGINX Agent 3, the `logs-nap` feature handles syslog collection automatically.
 
 Configure the WAF Policy `logDest` to send logs to the NGINX Agent syslog listener at `syslog:server=127.0.0.1:1514`. The following examples show how to configure F5 WAF for NGINX to log to NGINX Agent.
 
@@ -296,7 +296,7 @@ When using F5 WAF for NGINX v5, policy and log configurations are compiled into 
 
 ## Upgrading from NGINX Instance Manager to NGINX One Console
 
-If you have an existing deployment using NGINX Instance Manager (Agent v2) and want to migrate to NGINX One Console (Agent v3), follow these steps:
+If you have an existing deployment using NGINX Instance Manager (NGINX Agent 2) and want to migrate to NGINX One Console (NGINX Agent 3, available starting with NGINX Ingress Controller 5.5.0), follow these steps:
 
 1. **Obtain a data plane key** from NGINX One Console. See [Create and manage data plane keys]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}).
 
@@ -308,7 +308,7 @@ If you have an existing deployment using NGINX Instance Manager (Agent v2) and w
       -n <namespace>
     ```
 
-3. **Update your deployment** to use Agent v3:
+3. **Update your deployment** to use NGINX Agent 3:
 
 {{<tabs name="upgrade-agent">}}
 
@@ -328,7 +328,7 @@ Update your `values.yaml` to replace the NGINX Instance Manager configuration wi
 controller:
   image:
     repository: <your-registry>/nginx-plus-ingress
-    # Use an image with the -agent suffix, for example:
+    # Use an image with the -agent suffix (available starting with NIC 5.5.0), for example:
     # debian-plus-nap-agent (WAF v4) or debian-plus-nap-v5-agent (WAF v5)
   nginxplus: true
   appprotect:
@@ -352,7 +352,7 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
 
 {{%tab name="Using Manifests"%}}
 
-1. Update the container image in your Deployment or DaemonSet to an image variant with the `-agent` suffix (for example, `debian-plus-nap-agent` for WAF v4, or `debian-plus-nap-v5-agent` for WAF v5).
+1. Update the container image in your Deployment or DaemonSet to an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for WAF v4, or `debian-plus-nap-v5-agent` for WAF v5).
 
 2. Update the container args to remove `-agent-instance-group`:
 
@@ -362,7 +362,7 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
       # Remove: - -agent-instance-group=<name>
     ```
 
-3. Replace the `nginx-agent.conf` ConfigMap with the Agent v3 configuration shown in the [Using NGINX One Console - Using Manifests](#using-nginx-one-console) section above.
+3. Replace the `nginx-agent.conf` ConfigMap with the NGINX Agent 3 configuration shown in the [Using NGINX One Console - Using Manifests](#using-nginx-one-console) section above.
 
 4. Update volumes and volumeMounts:
 

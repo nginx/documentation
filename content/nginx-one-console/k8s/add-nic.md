@@ -39,7 +39,7 @@ You can also create a data plane key through the NGINX One Console. Once logged 
 
 ### Choosing the right image
 
-When connecting NGINX Ingress Controller to NGINX One Console, use an image variant with the `-agent` suffix. The image you need depends on your deployment:
+Starting with NGINX Ingress Controller 5.5.0, images with NGINX Agent 3 are available using the `-agent` suffix. The image you need depends on your deployment:
 
 | Deployment type | Image variant |
 |---|---|
@@ -238,30 +238,7 @@ Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}
 
 When deploying NGINX Ingress Controller with F5 WAF for NGINX, you can forward WAF security events to NGINX One Console for centralized security monitoring.
 
-NGINX Agent runs a syslog listener on `127.0.0.1:1514` that collects F5 WAF for NGINX security logs. The `logs-nap` feature (enabled in the agent configuration above) handles this collection automatically.
-
-To send WAF security events to the agent, configure the `logDest` field in your WAF Policy to point to the agent's syslog listener:
-
-```yaml
-apiVersion: k8s.nginx.org/v1
-kind: Policy
-metadata:
-  name: waf-policy
-spec:
-  waf:
-    enable: true
-    apPolicy: "default/your-policy"
-    securityLogs:
-    - enable: true
-      apLogConf: "default/your-logconf"
-      logDest: "syslog:server=127.0.0.1:1514"
-```
-
-For complete examples of WAF policy and logging configuration, see the [Connect F5 WAF for NGINX to NGINX Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) tutorial.
-
-{{< call-out "note" >}}
-If you are migrating from NGINX Instance Manager (Agent v2) to NGINX One Console (Agent v3), your existing WAF Policy resources do not need to change. The `logDest` syslog destination remains `syslog:server=127.0.0.1:1514` for both agent versions.
-{{< /call-out >}}
+For full setup instructions, including WAF policy configuration and examples, see [Connect F5 WAF for NGINX to NGINX Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}).
 
 ## Verify a connection to NGINX One Console
 
@@ -278,7 +255,7 @@ Check the NGINX Agent version:
 kubectl exec -it -n <namespace> <nginx_ingress_pod_name> -- nginx-agent -v
 ```
 
-Verify that the output shows `nginx-agent version v3.x.x`. If the agent version is v2, you are using an image that includes Agent v2 instead of Agent v3. Use an image variant with the `-agent` suffix:
+Verify that the output shows `nginx-agent version v3.x.x`. If the agent version is v2, you are using an image that includes NGINX Agent 2 instead of NGINX Agent 3. Use an image variant with the `-agent` suffix (available starting with NGINX Ingress Controller 5.5.0):
 
 - For NGINX Plus without WAF: use the standard NGINX Plus image
 - For F5 WAF for NGINX v4: use an image with the `-nap-agent` suffix (for example, `debian-plus-nap-agent`)
