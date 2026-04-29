@@ -552,7 +552,10 @@ For instructions on creating a support package to share with NGINX Customer Supp
 
 ## Appendix: OpenShift security constraints {#appendix-openshift-security-constraints}
 
-OpenShift restricts containers from running as root by default. When you enable OpenShift support in the NGINX Instance Manager Helm chart:
+OpenShift restricts containers from running as root by default.
+
+To enable OpenShift support in the NGINX Instance Manager Helm chart, set the following value:
+
 
 ```yaml
 openshift:
