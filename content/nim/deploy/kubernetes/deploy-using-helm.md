@@ -179,7 +179,7 @@ The values required to pull images from the NGINX private registry are now autom
 Use the file with the `-f values.yaml` flag when installing the chart.
 
 {{< call-out "note" "OpenShift support" >}}
-OpenShift support was added in NGINX Instance Manager 2.19. To enable it, add the setting `openshift.enabled: true` to your `values.yaml` file. Starting with NGINX Instance Manager v2.22, NGINX Instance Manager supports the default SCC on OpenShift.
+OpenShift support is available in NGINX Instance Manager 2.19 and later. To enable it, add `openshift.enabled: true` to your `values.yaml` file. In NGINX Instance Manager 2.22 and later, NGINX Instance Manager supports the default Security Context Constraints (SCC) on OpenShift.
 For more details, see [Appendix: OpenShift security constraints](#appendix-openshift-security-constraints).
 {{< /call-out >}}
 
