@@ -22,13 +22,11 @@ You can send security metrics to either:
 
 This guide assumes that you have an installation of NGINX Instance Manager with NGINX Security Monitoring which is reachable from the Kubernetes cluster on which NGINX Ingress Controller is deployed.
 
-If you use custom container images, NGINX Agent must be installed along with F5 WAF for NGINX. See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for examples of how to install NGINX Agent or the [NGINX Agent installation documentation]({{< ref "/agent/installation-upgrade/" >}}) for more information.
+If you use custom container images, NGINX Agent must be installed along with F5 WAF for NGINX. See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for available image variants, or the [NGINX Agent installation documentation]({{< ref "/agent/installation-upgrade/" >}}) for more information.
 
 ## Deploy NGINX Ingress Controller with NGINX Agent
 
-{{<tabs name="deploy-nim">}}
-
-{{%tab name="Using Helm"%}}
+### Using Helm
 
 1. Add the below arguments to the `values.yaml` file:
 
@@ -41,9 +39,9 @@ If you use custom container images, NGINX Agent must be installed along with F5 
 
 2. Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
 
-{{%/tab%}}
+### Using Manifests
 
-{{%tab name="Using Manifests"%}}
+{{< call-out "note" >}} The `-agent-instance-group` flag is required when using NGINX Instance Manager with NGINX Agent 2. It is not required when using NGINX Agent 3.{{< /call-out >}}
 
 1. Add the below argument to the manifest file of NGINX Ingress Controller:
 
@@ -94,7 +92,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
 
 {{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
-3. Make sure that the ConfigMap is mounted to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config is mounted at `/var/lib/nginx-agent` by adding the following volumes and volumeMounts to the NGINX Ingress Controller deployment manifest:
+3. Mount the ConfigMap to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config at `/var/lib/nginx-agent` by adding the following to the deployment manifest:
 
    ```yaml
    volumes:
@@ -116,11 +114,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
 
 4. Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
-{{%/tab%}}
-
-{{</tabs>}}
-
-Once NGINX Ingress Controller is installed the pods will be visible in the NGINX Instance Manager Instances dashboard.
+Once installed, the pods will be visible in the NGINX Instance Manager Instances dashboard.
 
 {{%/tab%}}
 
@@ -130,7 +124,7 @@ Once NGINX Ingress Controller is installed the pods will be visible in the NGINX
 
 This guide assumes that you have an NGINX One Console account with access to create data plane keys.
 
-- Create a [data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) from the NGINX One Console. Pay attention to the expiration date of that key.
+- Create a [data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) from NGINX One Console. Pay attention to the expiration date of that key.
 - Create a Kubernetes Secret with the data plane key in the same namespace where NGINX Ingress Controller will be deployed:
 
     ```shell
@@ -139,13 +133,11 @@ This guide assumes that you have an NGINX One Console account with access to cre
       -n <namespace>
     ```
 
-- If you use custom container images, use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for the full list of image targets.
+- If you use custom container images, use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of available image variants.
 
 ## Deploy NGINX Ingress Controller with NGINX Agent
 
-{{<tabs name="deploy-n1">}}
-
-{{%tab name="Using Helm"%}}
+### Using Helm
 
 1. Add the below arguments to the `values.yaml` file:
 
@@ -167,9 +159,9 @@ This guide assumes that you have an NGINX One Console account with access to cre
 
 See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) guide for more details on connecting to NGINX One Console.
 
-{{%/tab%}}
+### Using Manifests
 
-{{%tab name="Using Manifests"%}}
+{{< call-out "note" >}} When using NGINX One Console with NGINX Agent 3, the `-agent-instance-group` flag is not required.{{< /call-out >}}
 
 1. Add the below argument to the manifest file of NGINX Ingress Controller:
 
@@ -177,8 +169,6 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
     args:
       - -agent=true
     ```
-
-{{< call-out "note" >}} When using NGINX One Console with NGINX Agent 3, the `-agent-instance-group` flag is not required.{{< /call-out >}}
 
 2. Create a Kubernetes Secret with the data plane key if you have not already done so:
 
@@ -232,7 +222,7 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
 
 {{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
-4. Mount the ConfigMap and the data plane key Secret to the NGINX Ingress Controller pod by adding the following volumes and volumeMounts to the deployment manifest:
+4. Mount the ConfigMap and the data plane key Secret to the NGINX Ingress Controller pod:
 
    ```yaml
    volumes:
@@ -263,11 +253,7 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
 
 5. Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
-{{%/tab%}}
-
-{{</tabs>}}
-
-Once NGINX Ingress Controller is installed the pods will be visible in the NGINX One Console. See [Verify a connection to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md#verify-a-connection-to-nginx-one-console" >}}) for details.
+Once installed, the pods will be visible in NGINX One Console. See [Verify a connection to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md#verify-a-connection-to-nginx-one-console" >}}) for details.
 
 {{%/tab%}}
 
@@ -277,22 +263,11 @@ Once NGINX Ingress Controller is installed the pods will be visible in the NGINX
 
 NGINX Agent runs a syslog listener which F5 WAF for NGINX can be configured to send logs to, which will then allow NGINX Agent to send metrics to NGINX Security Monitoring. This applies to both NGINX Instance Manager (NGINX Agent 2) and NGINX One Console (NGINX Agent 3) deployments. When using NGINX Agent 3, the `logs-nap` feature handles syslog collection automatically.
 
-Configure the WAF Policy `logDest` to send logs to the NGINX Agent syslog listener at `syslog:server=127.0.0.1:1514`. The following examples show how to configure F5 WAF for NGINX to log to NGINX Agent.
+Configure the WAF Policy `logDest` to send logs to the NGINX Agent syslog listener at `syslog:server=127.0.0.1:1514`.
 
-### F5 WAF for NGINX v4
+For F5 WAF for NGINX v4, see the [Custom Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring) and [Ingress Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring) in the repository. Do not modify the APLogConf in these examples, as NGINX Agent expects a specific log format.
 
-- [Custom Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring)
-- [Ingress Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/security-monitoring)
-
-{{< call-out "note" >}} Modifying the APLogConf in the examples may result in the Security Monitoring integration not working, as NGINX Agent expects a specific log format.{{< /call-out >}}
-
-### F5 WAF for NGINX v5
-
-- [Custom Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring-v5)
-
-When using F5 WAF for NGINX v5, policy and log configurations are compiled into bundles (`.tgz` files) instead of using APPolicy and APLogConf custom resources. See the [F5 WAF for NGINX v5 configuration guide]({{< ref "/nic/integrations/app-protect-waf-v5/configuration.md" >}}) for details on compiling policy and log bundles.
-
-{{< call-out "note" >}} The log bundle must be compiled from a log profile that matches the format required by NGINX Security Monitoring. Using a different log format may result in the integration not working correctly.{{< /call-out >}}
+For F5 WAF for NGINX v5, see the [Custom Resources example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/security-monitoring-v5) in the repository. Policy and log configurations are compiled into bundles (`.tgz` files) instead of using APPolicy and APLogConf custom resources. The log bundle must be compiled from a log profile that matches the format required by NGINX Security Monitoring. See the [F5 WAF for NGINX v5 configuration guide]({{< ref "/nic/integrations/app-protect-waf-v5/configuration.md" >}}) for details on compiling policy and log bundles.
 
 ## Upgrading from NGINX Instance Manager to NGINX One Console
 

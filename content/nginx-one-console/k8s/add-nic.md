@@ -48,7 +48,7 @@ Starting with NGINX Ingress Controller 5.5.0, images with NGINX Agent 3 are avai
 | NGINX Plus with F5 WAF for NGINX v4 | Use an image with the `-nap-agent` suffix (for example, `debian-plus-nap-agent`) |
 | NGINX Plus with F5 WAF for NGINX v5 | Use an image with the `-nap-v5-agent` suffix (for example, `debian-plus-nap-v5-agent`) |
 
-See the [Dockerfile](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/build/Dockerfile) for the full list of image targets available for each platform.
+See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of image variants available for each platform.
 
 ## Deploy NGINX Ingress Controller with NGINX Agent
 
