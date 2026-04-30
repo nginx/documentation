@@ -1,0 +1,125 @@
+---
+---
+
+```dos-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-protect-dos
+  namespace: app-protect-dos
+  labels:
+    app: app-protect-dos
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: app-protect-dos
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: app-protect-dos
+    spec:
+      containers:
+        - name: nginx-app-protect-dos
+          image: ${DOS_IMAGE_REPOSITORY}:${DOS_IMAGE_TAG}
+          imagePullPolicy: Always
+
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              /root/entrypoint.sh
+
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "500Mi"
+            limits:
+              cpu: "900m"
+              memory: "800Mi"
+
+          ports:
+            - containerPort: 80
+              name: web
+            - containerPort: 8090
+              name: probe
+            - containerPort: 8091
+              name: probe500
+
+          livenessProbe:
+            httpGet:
+              path: /app_protect_dos_liveness
+              port: 8090
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /app_protect_dos_readiness
+              port: 8090
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          volumeMounts:
+            - name: shared-dir
+              mountPath: /shared/
+            - name: bpf
+              mountPath: /sys/fs/bpf
+            - name: conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+            - name: log-default
+              mountPath: /etc/app_protect_dos/log-default.json
+              subPath: log-default.json
+            - name: license-token-volume
+              mountPath: /etc/nginx/license.jwt
+              subPath: license.jwt
+              readOnly: true
+
+        - name: dos-ebpf-manager
+          image: ${EBPF_IMAGE_REPOSITORY}:${EBPF_IMAGE_TAG}
+          securityContext:
+              privileged: true
+          env:
+              - name: POD_NAME
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.name # This is unique for every Pod
+          volumeMounts:
+              - name: shared-dir
+                mountPath: /shared/
+              - name: bpf
+                mountPath: /sys/fs/bpf
+
+      volumes:
+        - name: shared-dir
+          emptyDir: {}
+        - name: bpf
+          hostPath:
+            path: /sys/fs/bpf
+            type: DirectoryOrCreate
+        - name: conf
+          configMap:
+            name: dos-nginx-conf
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+        - name: log-default
+          configMap:
+            name: dos-log-default
+            defaultMode: 0644
+            items:
+              - key: log-default.json
+                path: log-default.json
+        - name: license-token-volume
+          secret:
+            secretName: license-token
+            items:
+              - key: license.jwt
+                path: license.jwt
+```
