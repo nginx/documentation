@@ -1,0 +1,264 @@
+openapi: 3.1.0
+info:
+  title: NGINX Control API
+  version: "1.0"
+  description: |
+    The nginx Control API is an HTTP REST API implemented in the nginx master process
+    that provides an HTTP interface for controlling an nginx instance,
+    in addition to [signal-based control methods](https://nginx.org/en/docs/control.html).
+    You can view basic NGINX information including worker processes and configuration files,
+    and trigger configuration reloads.
+    By default, the Control REST API is disabled.
+    You can enable it by [starting nginx](https://nginx.org/en/docs/switches.html) with the <b>-l</b> command-line option followed by the port number or a UNIX-domain socket path.
+    The Control API is currently available as part of [commercial subscription](https://www.f5.com/products/nginx).
+paths:
+  /1:
+    get:
+      operationId: getTopLevelNamespaces
+      summary: Return list of root endpoints
+      description: Returns a list of root endpoints.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TopLevelNamespaces"
+              example: ["control", "nginx"]
+        "500":
+          description: Internal server error
+
+  /1/control:
+    get:
+      operationId: getControlResources
+      summary: Return worker process and nginx configuration
+      description: Returns control namespace resources, including worker process data and loaded nginx configuration.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ControlResources"
+              example: ["processes", "config"]
+
+        "500":
+          description: Internal server error
+
+  /1/control/config:
+    get:
+      operationId: getControlConfig
+      summary: Return nginx configuration from memory
+      description: Returns a list of nginx configuration files and their full contents.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ConfigReport"
+              example:
+                - name: /etc/nginx/nginx.conf
+                  content: |
+                    user  nginx;
+                    worker_processes  auto;
+                    error_log  /var/log/nginx/error.log notice;
+                    pid        /run/nginx.pid;
+                    events {
+                        worker_connections  1024;
+                    }
+
+                    http {
+                        include       /etc/nginx/mime.types;
+                        default_type  application/octet-stream;
+                        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                                          '$status $body_bytes_sent "$http_referer" '
+                                            "$http_user_agent" "$http_x_forwarded_for"';
+                        access_log  /var/log/nginx/access.log  main;
+                        include /etc/nginx/conf.d/*.conf;
+                    }
+                - name: /etc/nginx/mime.types
+                  content: |
+                    types {
+                        text/html                                        html htm shtml;
+                        text/css                                         css;
+                        text/xml                                         xml;
+                        ...
+                    }
+                - name: /etc/nginx/conf.d/default.conf
+                  content: |
+
+                    server {
+                        listen       80;
+                        server_name  localhost;
+
+                        access_log  /var/log/nginx/host.access.log  main;
+
+                        location / {
+                            root   /usr/share/nginx/html;
+                            index  index.html index.htm;
+                        }
+                    }
+
+        "500":
+          description: Internal server error
+
+    patch:
+      operationId: reloadControlConfig
+      summary: Make a configuration reload
+      description: Triggers nginx to perform a full configuration reload.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReloadReport"
+              example:
+                logs: []
+
+        "422":
+          description: Reload failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReloadReport"
+
+        "500":
+          description: Internal server error
+
+  /1/control/processes:
+    get:
+      operationId: getControlProcesses
+      summary: List all worker processes
+      description: Returns worker processes data including name, PID and exiting state.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProcessReport"
+                example:
+                  - name: worker process
+                    pid: 94377
+                    exiting: false
+                  - name: worker process
+                    pid: 94378
+                    exiting: false
+
+        "500":
+          description: Internal server error
+
+  /1/nginx:
+    get:
+      operationId: getNginxInfo
+      summary: Return nginx version and build name
+      description: Returns nginx version and build name.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Version"
+              example:
+                version: "1.29.8"
+                build: "nginx-plus-r37.0.0"
+        "500":
+          description: Internal server error
+
+components:
+  schemas:
+
+    Version:
+      type: object
+      title: nginx version
+      description: General information about nginx version and build
+      additionalProperties: false
+      properties:
+        version:
+          type: string
+          description: Version of nginx.
+          example: "1.29.8"
+        build:
+          type: string
+          description: Build identifier.
+          example: "nginx-plus-r37.0.0"
+      required:
+        - version
+        - build
+
+    ReloadReport:
+      type: object
+      title: nginx reload report
+      description: Log messages generated during nginx reload.
+      additionalProperties: false
+      properties:
+        logs:
+          type: array
+          description: Reload log messages.
+          items:
+            type: string
+      required: [logs]
+
+    ProcessReport:
+      type: object
+      title: nginx process
+      description: General information about nginx process.
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          description: Process name.
+          example: worker process
+        pid:
+          type: integer
+          format: int32
+          description: The PID identifier of the worker process used by the operating system.
+          example: 94377
+        exiting:
+          type: boolean
+          description: Indicates whether the process in the exiting status.
+          example: false
+      required:
+        - name
+        - pid
+        - exiting
+
+    TopLevelNamespaces:
+      type: array
+      title: The "/1" top-level array
+      description: Top-level namespaces available under /1.
+      items:
+        type: string
+        enum: [control, nginx]
+
+    ControlResources:
+      type: array
+      title: The "/1/control" array
+      description: Worker processes, in-memory configuration, reload operations.
+      items:
+        type: string
+        enum: [processes, config]
+
+    ConfigReport:
+      type: object
+      additionalProperties: false
+      title: nginx config dump
+      description: In-memory dump of loaded nginx configuration files.
+      properties:
+        name:
+          type: string
+          description: Path to nginx configuration file.
+          example: /etc/nginx/nginx.conf
+        content:
+          type: string
+          description: Content of nginx configuration file.
+      required:
+        - name
+        - content

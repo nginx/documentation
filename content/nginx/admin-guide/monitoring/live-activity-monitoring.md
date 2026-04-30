@@ -398,12 +398,12 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.29.3",
-   "build" : "nginx-plus-r36",
+   "version" : "1.29.8",
+   "build" : "nginx-plus-r37.0",
    "address" : "206.251.255.64",
    "generation" : 14,
-   "load_timestamp" : "2025-12-01T10:00:00.114Z",
-   "timestamp" : "2025-12-01T14:06:36.475Z",
+   "load_timestamp" : "2026-05-13T10:00:00.114Z",
+   "timestamp" : "2026-05-13T14:06:36.475Z",
    "pid" : 2201,
    "ppid" : 92033
 }
@@ -419,8 +419,8 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.29.3",
-   "build" : "nginx-plus-r36"
+   "version" : "1.29.8",
+   "build" : "nginx-plus-r37.0"
 }
 ```
 
@@ -521,6 +521,7 @@ To enable the Swagger UI:
 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
+|[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Release [37.0]({{< ref "/nginx/releases.md#r37.0" >}}) | The `response_time_hist` data for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [33]({{< ref "/nginx/releases.md#r33" >}}), [34]({{< ref "nginx/releases.md#r34" >}}), [35]({{< ref "nginx/releases.md#r35" >}}), [36]({{< ref "nginx/releases.md#r36" >}}) | The [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30]({{< ref "nginx/releases.md#r30" >}}), [31]({{< ref "nginx/releases.md#r31" >}}), [32]({{< ref "nginx/releases.md#r32" >}}) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27]({{< ref "nginx/releases.md#r27" >}}), [28]({{< ref "nginx/releases.md#r28" >}}), [29]({{< ref "nginx/releases.md#r29" >}}) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint|
