@@ -1,4 +1,7 @@
 ---
+nd-product: F5DOSN
+nd-files:
+- content/nap-dos/deployment-guide/kubernetes.md
 ---
 
 ```dos-log-default-configmap.yaml
