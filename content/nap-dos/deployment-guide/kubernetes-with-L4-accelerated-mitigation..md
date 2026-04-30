@@ -8,26 +8,25 @@ nd-content-type: how-to
 nd-product: F5DOSN
 ---
 
-This page describes how to install F5 DOS for NGINX using Kubernetes with L4 accelerated mitigation service.
-By enabling [accelerated-mitigation-directive-app_protect_dos_accelerated_mitigation](https://docs.nginx.com/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#accelerated-mitigation-directive-app_protect_dos_accelerated_mitigation)
-and running the [DOS EBPF Manager]() as a sidecar container alongside the NGINX container, you can offload Layer 4 DoS mitigation to eBPF programs running in the Linux kernel. This improves mitigation performance and reduces CPU usage on the NGINX container.
+This guide explains how to install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation. By enabling the [`app_protect_dos_accelerated_mitigation`]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#accelerated-mitigation-directive-app_protect_dos_accelerated_mitigation" >}}) directive and running the DoS eBPF Manager as a sidecar container alongside the NGINX container, you can offload Layer 4 DoS mitigation to eBPF programs in the Linux kernel. This improves mitigation performance and reduces CPU usage on the NGINX container.
 
-Such with L4 accelerated mitigation require the NGINX and DOS containers to run with elevated privileges, as well as additional Linux capabilities. Therefore, this guide assumes you have a good understanding of Kubernetes security best practices and have taken the necessary steps to secure your cluster accordingly.
-The F5 Dos For NGINX require the service to run with [externalTrafficPolicy](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip) set to Local in order to preserve the client source IP address for accurate DoS mitigation.
-```text
+Deployments with L4 accelerated mitigation require the NGINX and DoS containers to run with elevated privileges and additional Linux capabilities. This guide assumes you have a good understanding of Kubernetes security best practices and have secured your cluster accordingly.
+
+F5 DoS for NGINX requires the service to run with [`externalTrafficPolicy`](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip) set to `Local` to preserve the client source IP address for accurate DoS mitigation:
+
+```yaml
 spec:
   externalTrafficPolicy: Local
 ```
 
-
-It explains the common steps necessary for any Kubernetes-based deployment, then provides details specific to Helm or Manifests.
+It covers the common steps for any Kubernetes-based deployment, then provides details specific to Helm or manifests.
 
 ## Before you begin
 
-To complete this guide, you will need the following pre-requisites:
+Before you start, make sure you have:
 
 - A functional Kubernetes cluster
-- An active F5 DOS for NGINX subscription (Purchased or trial)
+- An active F5 DoS for NGINX subscription (purchased or trial)
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 
 To review supported operating systems, read the [Releases]({{< ref "/nap-dos/releases" >}}) topic.

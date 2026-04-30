@@ -9,9 +9,7 @@ nd-content-type: reference
 nd-product: F5DOSN
 ---
 
-Here you can find the release information for F5 DoS for NGINX v4.9
-
-F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
+F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) attacks for your web applications.
 
 ## Release 4.9
 
@@ -19,10 +17,10 @@ December 1, 2025
 
 ### New features
 
-- R37 support
-- Add support for Debian 13 (Trixie)
-- Add support for RHEL 10 and Rocky Linux 10
-- Bugs fixing
+- NGINX Plus R37 support
+- Debian 13 (Trixie) support
+- RHEL 10 and Rocky Linux 10 support
+- Bug fixes
 
 ### Supported packages
 

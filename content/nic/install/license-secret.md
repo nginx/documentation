@@ -9,15 +9,11 @@ nd-product: INGRESS
 nd-docs: DOCS-1860
 ---
 
-This document explains how to create and use a license secret for F5 NGINX Ingress Controller.
+## Overview
 
-# Overview
+F5 NGINX Ingress Controller requires a valid JSON Web Token (JWT) to download the container image from the F5 registry. From version 4.0.0, this JWT is also required to run NGINX Plus.
 
-NGINX Plus Ingress Controller requires a valid JSON Web Token (JWT) to download the container image from the F5 registry. From version 4.0.0, this JWT token is also required to run NGINX Plus.
-
-This requirement is part of F5’s broader licensing program and aligns with industry best practices. The JWT will streamline subscription renewals and usage reporting, helping you manage your NGINX Plus subscription more efficiently. The [telemetry](#telemetry) data we collect helps us improve our products and services to better meet your needs.
-
-The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint.  In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). By default usage is reported every hour and also whenever NGINX is reloaded.
+The JWT validates your subscription and reports telemetry data. For internet-connected environments, telemetry is sent automatically to the F5 licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). By default, usage is reported every hour and whenever NGINX is reloaded.
 
 {{< call-out "note" >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{< /call-out >}}
 

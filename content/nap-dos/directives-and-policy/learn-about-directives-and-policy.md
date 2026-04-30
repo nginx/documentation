@@ -11,12 +11,13 @@ nd-product: F5DOSN
 
 ## Introduction
 
-NGINX directives are specified in the `nginx.conf` file and are used to configure various modules of NGINX.<br>
-F5 DoS for NGINX has its own set of directives, which follow the same rules as other NGINX directives, and are used to enable and configure its features.<br>
+NGINX directives are specified in the `nginx.conf` file and configure various NGINX modules.
 
-The table below provides a summary of all the F5 DoS for NGINX directives.<br>
+F5 DoS for NGINX has its own set of directives. They follow the same rules as other NGINX directives and enable and configure its features.
 
-While only the first directive is mandatory for enabling F5 DoS for NGINX, it is recommended to use as many directives as possible to leverage the product’s full range of monitoring and application health detection capabilities. After adding these directives, ensure you reload NGINX and check the error log for any errors or warnings.<br>
+The table below summarizes all F5 DoS for NGINX directives.
+
+Only the first directive is mandatory for enabling F5 DoS for NGINX. Use as many directives as possible to leverage the full range of monitoring and application health detection capabilities. After adding directives, reload NGINX and check the error log for any errors or warnings.
 
 ## Directives table
 Below is a summary of all F5 DoS for NGINX directives. Detailed descriptions of each directive can be found in the following sections.
@@ -27,12 +28,12 @@ Below is a summary of all F5 DoS for NGINX directives. Detailed descriptions of 
 |-----------------------------------------------------------------------------------------------------------|----------|----------|--------------|------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | [app_protect_dos_enable](#enable-directive-app_protect_dos_enable)                                        | [on\|off]  | http, <br> server, <br> location  |  Enable/Disable DoS protection | Yes  | off                                                                                                                                 |
 | [app_protect_dos_policy_file](#policy-directive-app_protect_dos_policy_file)                              | [FILE-PATH]  | http, <br> server, <br> location | Load DoS configuration from a policy file  | No  | `/etc/app_protect_dos/BADOSDefaultPolicy.json`                                                                                      |
-| [app_protect_dos_name](#service-name-directive-app_protect_dos_name)                                      | [SERVICE-NAME]  | http, <br> server, <br> location  | Name of protected object  | No | **line_num-server_name**:*seq*-location_name <br> <br> (i.e. `30-backend:1-/abc`)                                                   |
-| [app_protect_dos_monitor](#monitor-directive-app_protect_dos_monitor)                                     | [uri=X]  [protocol=Y]  [timeout=Z] [proxy_protocol \| proxy_protocol=on\|off] | http, <br> server, <br> location  | URI to monitor server's stress. Protocol and timeout are optional  |  Yes, unless its regular http1 traffic | uri - None <br> protocol - http1 <br> timeout - 10 seconds for http1/websocket ; 5 seconds for http2/grpc <br> proxy_protocol - off |
+| [app_protect_dos_name](#service-name-directive-app_protect_dos_name)                                      | [SERVICE-NAME]  | http, <br> server, <br> location  | Name of protected object  | No | **line_num-server_name**:*seq*-location_name <br> <br> (for example, `30-backend:1-/abc`)                                                   |
+| [app_protect_dos_monitor](#monitor-directive-app_protect_dos_monitor)                                     | [uri=X]  [protocol=Y]  [timeout=Z] [proxy_protocol \| proxy_protocol=on\|off] | http, <br> server, <br> location  | URI to monitor server stress. Protocol and timeout are optional  |  Yes, unless it is regular HTTP/1.1 traffic | uri - None <br> protocol - http1 <br> timeout - 10 seconds for http1/websocket ; 5 seconds for http2/grpc <br> proxy_protocol - off |
 | [app_protect_dos_security_log_enable](#security-log-enable-directive-app_protect_dos_security_log_enable) | [on\|off] | http, <br> server, <br> location | Enable/Disable security logger | No | off                                                                                                                                 |
 | [app_protect_dos_security_log](#security-log-directive-app_protect_dos_security_log)                      | [LOG-CONFIG-FILE] [DESTINATION] | http, <br> server, <br> location  | Security logger configuration. Second argument: <br>"syslog:server={ip}:{port}"  or <br>"stderr" or  <br>  "{absolute_file_path}" | No | `/etc/app_protect_dos/log-default.json stderr`                                                                                      |
-| [app_protect_dos_liveness](#liveness-probe-directive-app_protect_dos_liveness)                            | [on\|off] [uri:URI] [port:PORT]  |  http | Liveness prob. Second and third arguments are optional |  No | `off uri:/app_protect_dos_liveness port:8090`                                                                                       |
-| [app_protect_dos_readiness](#readiness-probe-directive-app_protect_dos_readiness)                         | 	[on\|off] [uri:URI] [port:PORT]  | http  | Readiness prob. Second and third arguments are optional  | No | `off  uri:/app_protect_dos_readiness port:8090`                                                                                     |
+| [app_protect_dos_liveness](#liveness-probe-directive-app_protect_dos_liveness)                            | [on\|off] [uri:URI] [port:PORT]  |  http | Liveness probe. Second and third arguments are optional |  No | `off uri:/app_protect_dos_liveness port:8090`                                                                                       |
+| [app_protect_dos_readiness](#readiness-probe-directive-app_protect_dos_readiness)                         | 	[on\|off] [uri:URI] [port:PORT]  | http  | Readiness probe. Second and third arguments are optional  | No | `off  uri:/app_protect_dos_readiness port:8090`                                                                                     |
 | [app_protect_dos_arb_fqdn](#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn)                           | [FQDN\|IP address]  | http | Arbitrator FQDN/IP address  | No | `svc-appprotect-dos-arb`                                                                                                            |
 | [app_protect_dos_api](#api-directive-app_protect_dos_api)                                                 | No arguments  | location | Monitoring via Rest API (also includes the dashboard)  | No | off                                                                                                                                 |
 | [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api)                              | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off                                                                                                                    |
@@ -45,7 +46,7 @@ Below is a summary of all F5 DoS for NGINX directives. Detailed descriptions of 
 
 ### Enable directive (`app_protect_dos_enable`)
 
-Enables/disables App Protect DoS module in the relevant block/s. <br>
+Enables or disables the F5 DoS for NGINX module in the relevant contexts.
 It can be written in the following contexts: `location/server/http`.
 
 The derived blocks/contexts also inherit the directive.
@@ -119,20 +120,20 @@ app_protect_dos_policy_file /etc/app_protect_dos/BADOSPolicy.json;
 
 ### Service Name directive (`app_protect_dos_name`)
 
-This is the Protected Object (VS) name, which should be unique and is used to identify the Protected Object in the logs.<br>
-It can be utilized within `location`, `server`, and `http` blocks.<br>
-<br>
-Directive is optional. If not written, then each protected object (VS) will have an auto-generated name according to the following syntax:
+This is the Protected Object (VS) name, which should be unique and identifies the Protected Object in the logs.
+It can be utilized within `location`, `server`, and `http` blocks.
+
+Directive is optional. If not written, each protected object (VS) gets an auto-generated name with the following syntax:
 
 `line_number-server_name:seq-location_name`
 
 **For example:**
 `30-backend:1-/abc`
 
-- `line number:` the line number of the server block (`server {`) in the `nginx.conf` file (i.e. `30`)<br>
-- `server name:` taken from directive `server_name` (i.e. `backend`) <br>
-seq: 0 for server block, increments for each location block. i.e. VS created from server block will have 0 and VS's from location blocks will be 1,2,3,... (i.e. `1`)
-- `location name:` the name of the location (i.e. `/abc`)
+- `line number` — the line number of the server block (`server {`) in the `nginx.conf` file (for example, `30`)
+- `server name` — taken from directive `server_name` (for example, `backend`)
+- `seq` — `0` for the server block; increments for each location block (for example, `1`)
+- `location name` — the name of the location (for example, `/abc`)
 
 F5 DoS for NGINX supports up to 300 Protected Objects for versions up to 4.3, and 1,000 Protected Objects in version 4.4 and above.<br>
 <br>
@@ -260,7 +261,7 @@ location /app/ {
 
 ### Security log enable directive (`app_protect_dos_security_log_enable`)
 
-Enable/Disable App Protect DoS security logger. It can be used in `location/server/http` blocks.
+Enable or disable the F5 DoS for NGINX security logger. It can be used in `location/server/http` blocks.
 
 Directive is optional. If not written, then logger is disabled.
 
@@ -273,13 +274,13 @@ app_protect_dos_security_log_enable on;
 
 This directive has two string arguments.
 
-First argument is the configuration file path, i.e. `/etc/app_protect_dos/log-default.json`.
+First argument is the configuration file path (for example, `/etc/app_protect_dos/log-default.json`).
 
-Second argument is the destination (the location which the events will be sent to). The destination can be one of three options:
+Second argument is the destination where events are sent. The destination can be one of three options:
 
-- `syslog:server={ip}:{port}`, i.e. `syslog:server=1.2.3.4:3000`
+- `syslog:server={ip}:{port}` (for example, `syslog:server=1.2.3.4:3000`)
 - `stderr` (**default**)
-- `{absolute_file_path}`, i.e. `/shared/dos_sec_logger.log`
+- `{absolute_file_path}` (for example, `/shared/dos_sec_logger.log`)
 
 Implemented according to: [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}})
 
@@ -440,7 +441,7 @@ This directive is used to enable the App Protect DoS monitoring capability via R
 The REST API interface provides extended metrics information of the Protected Objects.
 It can be used by sending REST API requests manually or by using the App Protect DoS dashboard page.
 
-For more information refer to [F5 DoS for NGINX Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
+For more information, see [F5 DoS for NGINX Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}})
 
 **Example:**
 
@@ -464,7 +465,7 @@ For more information refer to [F5 DoS for NGINX Live Activity Monitoring]({{< re
 
 ### Accelerated mitigation directive (`app_protect_dos_accelerated_mitigation`)
 
-This directive is used to enable or disable App Protect DoS L4 accelerated mitigation.<br>
+This directive enables or disables L4 accelerated mitigation for F5 DoS for NGINX.
 
 syn_drop is an optional parameter; the default value is "off".<br>
 syn_drop=on mode is applicable for plane HTTP services or HTTPS when the `tls_fingerprint` feature is disabled. Refer to policy parameter "tls_fingerprint" in [Policy directive](#policy-directive-app_protect_dos_policy_file).
