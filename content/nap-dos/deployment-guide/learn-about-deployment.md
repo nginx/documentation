@@ -45,7 +45,7 @@ The F5 DoS for NGINX package has the following dependencies:
 5. **openssl** - Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocol
 6. **libelf** - Software library for ELF access
 
-See the NGINX Plus full list of prerequisites for more details. F5 DoS for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with F5 WAF for NGINX.
+See the NGINX Plus full list of prerequisites for more details. F5 DoS for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with F5 DoS for NGINX installation in a clean environment or to a system with F5 WAF for NGINX.
 
 {{< call-out "note" >}}
 

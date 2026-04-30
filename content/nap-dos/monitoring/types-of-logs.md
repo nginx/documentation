@@ -39,17 +39,21 @@ The security log contains information about protected objects: traffic intensity
 
 The operation log contains system operational and health events. Events are sent to the NGINX error log with the `APP_PROTECT_DOS` prefix followed by a JSON body. The log level depends on the event: success is usually `notice`; failure is `error`. The timestamp comes from the error log. For more information, see [Operation Log]({{< ref "/nap-dos/monitoring/operation-log.md" >}}).
 
-## Request Log
- Access log is NGINX’s request log mechanism. It is controlled by two directives.
+## Request log
+
+The request log uses NGINX's access log mechanism. Two directives control it.
 
 ### log_format
- This directive determines the format of the log messages using predefined variables. App Protect DoS will enrich this set of variables with several security log attributes that are available to be included in the `log_format`. If `log_format` is not specified then the built-in format `combined` is used but, because that format does not include the extended App Protect DoS variables, this directive must be used when the user wants to add App Protect DoS information to the log.
+
+This directive sets the format of log messages using predefined variables. F5 DoS for NGINX adds security log attributes to this set. If `log_format` is not specified, the built-in `combined` format is used. Because `combined` does not include F5 DoS for NGINX variables, use this directive when you want to include them.
 
 ### access_log
-This directive determines the destination of the `access_log` and the name of the format. The default is the file `/var/log/nginx/access.log` using the combined format. In order to use the custom format that includes the F5 DoS for NGINX variables, use this directive with the name of the desired format.
 
-### App Protect DoS Variables
-These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`. <br> For more information refer to [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}})
+This directive sets the destination of the access log and the format to use. The default is `/var/log/nginx/access.log` using the `combined` format. To use a custom format that includes F5 DoS for NGINX variables, specify the format name in this directive.
+
+### F5 DoS for NGINX variables
+
+These variables are added to the access log. They are a subset of the security log attributes and are prefixed with `$app_protect_dos`. For more information, see [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}}).
 
 ## Debug log
 

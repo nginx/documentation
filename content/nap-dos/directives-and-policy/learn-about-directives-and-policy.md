@@ -417,7 +417,7 @@ http {
 
 ### Arbitrator FQDN directive (`app_protect_dos_arb_fqdn`)
 
-Arbitrator FQDN directive has one argument which is the `FQDN/IP`.
+Arbitrator fully qualified domain name (FQDN) directive has one argument which is the `FQDN/IP`.
 
 The argument is the FQDN to the desired Arbitrator.
 

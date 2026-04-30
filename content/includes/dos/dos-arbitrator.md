@@ -44,7 +44,7 @@ F5 DoS for NGINX Arbitrator maintains a consistent global state for protected ob
 
 3. Verify that the `app-protect-dos-arb` container is up and running with the `docker ps` command.
 
-4. DNS records are required for F5 DoS for NGINX Arbitrator to work properly and be accessible by F5 DoS for NGINX servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator FQDN (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
+4. DNS records are required for F5 DoS for NGINX Arbitrator to work properly and be accessible by F5 DoS for NGINX servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator fully qualified domain name (FQDN) (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
    This step is necessary only for VM/Docker deployments with arbitrator. When the arbitrator is in the same Kubernetes namespace as F5 DoS for NGINX, this step is not needed.
 
 ### Multi-VM Deployment
@@ -53,5 +53,5 @@ The Arbitrator service is standalone. If it goes down, it can be restarted and i
 
 F5 DoS for NGINX Arbitrator connects to port 3000. All modules try to connect to it automatically. If it's not accessible, each instance operates in standalone mode.
 
-F5 DoS for NGINX does not support mTLS or password authentication between DoS servers and the Arbitrator. Arbitrator is not exposed outside the namespace. It is the customer's responsibility to isolate it from external access. This applies to all Arbitrator deployments, not only multi-VM.
+F5 DoS for NGINX does not support mutual TLS (mTLS) or password authentication between DoS servers and the Arbitrator. Arbitrator is not exposed outside the namespace. It is the customer's responsibility to isolate it from external access. This applies to all Arbitrator deployments, not only multi-VM.
 

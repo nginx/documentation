@@ -52,7 +52,7 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
     Select **Continue to Subscribe** to go to the **Launch on EC2** page.
 
 3. Select the type of launch by selecting the appropriate tab (**1-Click Launch**, **Manual Launch**, or **Service Catalog**). Choose the desired options for billing, instance size, and so on, then select **Accept Software Terms**.
-4. When configuring the firewall rules, add a rule to accept web traffic on TCP ports 80 and 443 (this happens automatically if you launch from the <span style="white-space: nowrap; font-weight:bold;">1-Click Launch</span> tab).
+4. When configuring the firewall rules, add a rule to accept web traffic on TCP ports 80 and 443 (this happens automatically if you launch from the **1-Click Launch** tab).
 5. When the new EC2 instance launches, NGINX Plus starts automatically and serves a default **index.html** page. To view the page, go to the public DNS name of the new instance in a browser. To check the status of NGINX Plus, log in to the EC2 instance and run:
 
 	```nginx

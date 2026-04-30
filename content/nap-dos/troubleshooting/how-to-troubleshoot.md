@@ -22,7 +22,7 @@ Use this guide to diagnose and resolve issues with F5 DoS for NGINX.
 |Problem|Solution|
 |-------|--------|
 | NGINX is not running (`ps aux`) <br><br> Reloading NGINX fails| Check the error log at `/var/log/nginx/error.log`. <br> Fix the problem and restart NGINX.|
-| No original source IP in logs|1. XFF is not configured (or not configured correctly) <br>2. External Load Balancer doesn't forward XFF |
+| No original source IP in logs|1. X-Forwarded-For (XFF) is not configured (or not configured correctly) <br>2. External Load Balancer does not forward XFF |
 | F5 DoS for NGINX functionality is not as expected| F5 DoS for NGINX has several logs which can be used for troubleshooting. <br> Usually, it is best to look for any warning or error messages within the logs. <br> Refer to [Logs Overview]({{< ref "/nap-dos/monitoring/types-of-logs.md">}})|
 | `Too many open files` error message | Increase number of file descriptors. <br> For example: `worker_rlimit_nofile 65535;` in the main context of `nginx.conf` file. <br> Refer to [worker_rlimit_nofile directive](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile) |
 | `setrlimit ... failed (Permission denied)` error message | Increase the limit using the following command as the root user:<br> `setsebool -P httpd_setrlimit 1;` <br> Refer to [Issue 4: Too many files are open Error](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/) |
@@ -36,7 +36,7 @@ Use this guide to diagnose and resolve issues with F5 DoS for NGINX.
 
 ### ELK issues
 
-ELK issues are addressed directly in GitHub by posting the issue to Kibana dashboards for [F5 DoS for NGINX GitHub repo](https://github.com/f5devcentral/nap-dos-elk-dashboards).
+ELK (Elasticsearch, Logstash, and Kibana) issues are addressed directly in GitHub by posting the issue to Kibana dashboards for [F5 DoS for NGINX GitHub repo](https://github.com/f5devcentral/nap-dos-elk-dashboards).
 
 ### SELinux
 

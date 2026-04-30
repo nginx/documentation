@@ -8,7 +8,7 @@ nd-content-type: how-to
 nd-product: F5DOSN
 ---
 
-This guide explains how to install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation. By enabling the [`app_protect_dos_accelerated_mitigation`]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#accelerated-mitigation-directive-app_protect_dos_accelerated_mitigation" >}}) directive and running the DoS eBPF Manager as a sidecar container alongside the NGINX container, you can offload Layer 4 DoS mitigation to eBPF programs in the Linux kernel. This improves mitigation performance and reduces CPU usage on the NGINX container.
+This guide explains how to install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation. By enabling the [`app_protect_dos_accelerated_mitigation`]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#accelerated-mitigation-directive-app_protect_dos_accelerated_mitigation" >}}) directive and running the DoS eBPF (Extended Berkeley Packet Filter) Manager as a sidecar container alongside the NGINX container, you can offload Layer 4 DoS mitigation to eBPF programs in the Linux kernel. This improves mitigation performance and reduces CPU usage on the NGINX container.
 
 Deployments with L4 accelerated mitigation require the NGINX and DoS containers to run with elevated privileges and additional Linux capabilities. This guide assumes you have a good understanding of Kubernetes security best practices and have secured your cluster accordingly.
 
