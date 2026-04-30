@@ -43,7 +43,7 @@ NGINX Ingress Controller images that include F5 WAF for NGINX also include NGINX
 
 {{< call-out "note" >}} The `-agent-instance-group` flag is required when using NGINX Instance Manager with NGINX Agent 2. It is not required when using NGINX Agent 3.{{< /call-out >}}
 
-1. Add the below argument to the manifest file of NGINX Ingress Controller:
+1. Add the below arguments to the `args` section of your NGINX Ingress Controller Deployment, DaemonSet, or StatefulSet:
 
     ```yaml
     args:
@@ -92,7 +92,7 @@ NGINX Ingress Controller images that include F5 WAF for NGINX also include NGINX
 
 {{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
-3. Mount the ConfigMap to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config at `/var/lib/nginx-agent` by adding the following to the deployment manifest:
+3. Mount the ConfigMap to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config at `/var/lib/nginx-agent` by adding the following to your Deployment, DaemonSet, or StatefulSet:
 
    ```yaml
    volumes:
@@ -163,7 +163,7 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
 
 {{< call-out "note" >}} When using NGINX One Console with NGINX Agent 3, the `-agent-instance-group` flag is not required.{{< /call-out >}}
 
-1. Add the below argument to the manifest file of NGINX Ingress Controller:
+1. Add the below argument to the `args` section of your NGINX Ingress Controller Deployment, DaemonSet, or StatefulSet:
 
     ```yaml
     args:
@@ -296,7 +296,7 @@ If you have an existing deployment using NGINX Instance Manager (NGINX Agent 2) 
 Update your `values.yaml` to replace the NGINX Instance Manager configuration with NGINX One Console configuration:
 
 ```yaml
-# Remove or leave these values (they are ignored when dataplaneKeySecretName is set):
+# Remove these values:
 # nginxAgent:
 #   instanceManager:
 #     host: "nim.example.com"
