@@ -1,10 +1,11 @@
 ---
-description: Learn about the F5 DoS for NGINX Logs Overview.
+title: Logs overview
+description: "Overview of the four log types in F5 DoS for NGINX: security, operation, request, and debug logs, with configuration and destination options."
+keywords: "F5 DoS for NGINX, logs, security log, operation log, request log, debug log, monitoring, logging"
 nd-docs: DOCS-671
-title: Logs Overview
 toc: true
 weight: 130
-nd-content-type: how-to
+nd-content-type: reference
 nd-product: F5DOSN
 ---
 

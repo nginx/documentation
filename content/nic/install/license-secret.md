@@ -1,5 +1,7 @@
 ---
 title: Create a license Secret
+description: "Create and configure a Kubernetes Secret containing the JWT license for F5 NGINX Ingress Controller."
+keywords: "NGINX Ingress Controller, license, JWT, Kubernetes Secret, telemetry, subscription"
 toc: true
 weight: 300
 nd-content-type: how-to

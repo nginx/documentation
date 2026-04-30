@@ -1,7 +1,8 @@
 ---
-description: Learn about the F5 DoS for NGINX Troubleshooting Guide.
+title: Troubleshoot F5 DoS for NGINX
+description: "Resolve common F5 DoS for NGINX configuration problems, SELinux issues, and log collection for support."
+keywords: "F5 DoS for NGINX, troubleshooting, SELinux, configuration errors, support, ELK, debug"
 nd-docs: DOCS-675
-title: Troubleshooting Guide
 toc: true
 weight: 200
 nd-content-type: how-to
