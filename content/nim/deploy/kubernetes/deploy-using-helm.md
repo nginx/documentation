@@ -562,9 +562,9 @@ openshift:
   enabled: true
 ```
 
-With this setting enabled, NGINX Instance Manager deploys on OpenShift. In NGINX Instance Manager 2.22.0 and later, the chart no longer creates or requires a custom [Security Context Constraints (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/authentication_and_authorization/managing-pod-security-policies))). Instead, NGINX Instance Manager runs with the default SCC that OpenShift applies to the NGINX Instance Manager service account. The chart no longer uses fixed UIDs (**1000** for `nms`, and **101** for `nginx` and `clickhouse`).
+With this setting enabled, NGINX Instance Manager deploys on OpenShift. In NGINX Instance Manager 2.22.0 and later, the chart no longer creates or requires a custom [Security Context Constraints (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/authentication_and_authorization/managing-pod-security-policies))). Instead, NGINX Instance Manager runs with the default SCC that OpenShift applies to the NGINX Instance Manager service account. The chart no longer uses fixed UIDs (**1000** for `nms`, and **101** for `nginx` and `clickhouse`).
 
-This deployment has been tested with OpenShift v4.15.0 Server.
+This deployment has been tested with OpenShift v4.19.0 Server.
 
 ---
 
