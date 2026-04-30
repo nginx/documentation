@@ -31,6 +31,10 @@ If your NGINX Instance Manager version is older, you may need to upgrade to an i
 
 This release includes the following updates:
 
+- {{% icon-feature %}} **Use the default SCC on OpenShift**<a name="2-22-0-whats-new-Use-the-default-SCC-on-OpenShift-46497"></a>
+
+   Starting in v2.22.0, NGINX Instance Manager Helm deployments on OpenShift use the cluster's default Security Context Constraint (SCC) when you set `openshift.enabled: true`. NGINX Instance Manager no longer requires a custom SCC with fixed UIDs (1000 and 101). This simplifies installation and improves OpenShift compatibility. For details, see [Appendix: OpenShift security constraints]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#appendix-openshift-security-constraints" >}}).
+
 - {{% icon-feature %}} **New licensing flow sends raw usage data; JWT license no longer required**<a name="2-22-0-whats-new-New-licensing-flow-sends-raw-usage-data-JWT-license-no-longer-required-47277"></a>
 
    NGINX Instance Manager now sends raw usage data to the new licensing endpoint instead of aggregated data to the legacy endpoint. A JWT license is no longer required, and disconnected environments no longer need to upload usage report acknowledgements.
