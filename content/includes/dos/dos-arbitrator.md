@@ -1,8 +1,9 @@
 ---
-nd-docs: null
+nd-product: F5DOSN
 nd-files:
 - content/nap-dos/deployment-guide/kubernetes.md
 - content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation..md
+- content/nap-dos/deployment-guide/learn-about-deployment.md
 ---
 ## F5 DoS for NGINX Arbitrator
 
