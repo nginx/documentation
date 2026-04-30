@@ -44,7 +44,7 @@ F5 DoS for NGINX Arbitrator maintains a consistent global state for protected ob
 
 3. Verify that the `app-protect-dos-arb` container is up and running with the `docker ps` command.
 
-4. DNS records are required for F5 DoS for NGINX Arbitrator to work properly and be accessible by F5 DoS for NGINX servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator fully qualified domain name (FQDN) (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
+4. DNS records are required for F5 DoS for NGINX Arbitrator to work properly and be accessible by F5 DoS for NGINX servers. Ensure that the `svc-appprotect-dos-arb` or configured Arbitrator FQDN (with `app_protect_dos_arb_fqdn` directive) has a valid DNS resolution.
    This step is necessary only for VM/Docker deployments with arbitrator. When the arbitrator is in the same Kubernetes namespace as F5 DoS for NGINX, this step is not needed.
 
 ### Multi-VM Deployment

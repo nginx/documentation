@@ -11,7 +11,7 @@ nd-docs: DOCS-1860
 
 ## Overview
 
-F5 NGINX Ingress Controller requires a valid JSON Web Token (JWT) to download the container image from the F5 registry. From version 4.0.0, this JWT is also required to run NGINX Plus.
+F5 NGINX Ingress Controller requires a valid JWT to download the container image from the F5 registry. From version 4.0.0, this JWT is also required to run NGINX Plus.
 
 The JWT validates your subscription and reports telemetry data. For internet-connected environments, telemetry is sent automatically to the F5 licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). By default, usage is reported every hour and whenever NGINX is reloaded.
 
