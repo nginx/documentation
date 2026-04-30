@@ -16,6 +16,6 @@ nd-files:
 | Oracle Linux                        | 8.1+ (x86_64, aarch64) <br> 9 (x86_64)             | 8.1+ (x86_64, aarch64) <br> 9 (x86_64)                  |
 | Red Hat Enterprise Linux (RHEL)     | 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) <br> 10.0+ (x86_64, aarch64) | 8.1+ (x86_64, aarch64) <br> 9.0+ (x86_64, aarch64) <br> 10.0+ (x86_64, aarch64) **(new)**  |
 | Rocky Linux                         | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64) <br> 10.0+ (x86_64, aarch64) **(new)** | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64)           |
-| SUSE Linux Enterprise Server (SLES) | 15 SP6+ (x86_64) <br>  16 (x86_64)  **(new)**       | 15 SP6+ (x86_64)  |
+| SUSE Linux Enterprise Server (SLES) | 15 SP7+ (x86_64) <br>  16 (x86_64)  **(new)**       | 15 SP6+ (x86_64)  |
 | Ubuntu                              | 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64) | 22.04 LTS (x86_64, aarch64) <br> 24.04 LTS (x86_64, aarch64) |
 {{</bootstrap-table>}}
