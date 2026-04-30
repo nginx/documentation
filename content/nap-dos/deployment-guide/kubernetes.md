@@ -1,9 +1,11 @@
 ---
-title: Kubernetes
-description: "Install F5 DoS for NGINX on Kubernetes using Helm or manifests."
-keywords: "F5 DoS for NGINX, Kubernetes, Helm, install, container, Docker, manifest"
+# We use sentence case and present imperative tone
+title: "Kubernetes"
+# Weights are assigned in increments of 100: determines sorting order
 weight: 100
+# Creates a table of contents and sidebar, useful for large documents
 toc: true
+# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 nd-product: F5DOSN
 ---

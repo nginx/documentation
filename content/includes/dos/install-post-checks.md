@@ -36,7 +36,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     2025/12/07 09:14:34 [notice] 679#679: APP_PROTECT_DOS { "event": "shared_memory_connected", "worker_pid": 679, "mode": "operational", "mode_changed": true }
     ```
 
-3. Verify that when you simulate an attack, attacker IP addresses are blocked while legitimate traffic passes through:
+3. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
 
    a. Simulate good traffic:
 
@@ -64,7 +64,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     done
     ```
 
-   c. Verify that legitimate traffic continues as usual while the attack traffic is blocked.
+   c. See that the good traffic continue as usual while the attackers receive denial of service.
 
 4. For DOS with L4 accelerated mitigation enabled
 

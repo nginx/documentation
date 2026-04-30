@@ -1,7 +1,5 @@
 ---
 title: Directives and Policy
-description: "Reference for all F5 DoS for NGINX directives and policy configuration options, including syntax, context, defaults, and examples."
-keywords: "F5 DoS for NGINX, directives, policy, nginx.conf, app_protect_dos, configuration reference"
 toc: true
 weight: 120
 nd-docs: DOCS-667

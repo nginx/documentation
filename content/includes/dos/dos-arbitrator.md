@@ -8,24 +8,24 @@ nd-files:
 
 ### Overview
 
-F5 DoS for NGINX Arbitrator orchestrates all running F5 DoS for NGINX instances to synchronize local and global attack start and stop.
+F5 DoS for NGINX arbitrator orchestrates all the running F5 DoS for NGINX instances to synchronize local/global attack start/stop.
 
-F5 DoS for NGINX Arbitrator is a central coordinating component for managing multiple F5 DoS for NGINX instances in a network. It is needed when there is more than one F5 DoS for NGINX instance. Its primary function is to ensure that all instances are aware of and share the same state for each protected object.
+F5 DoS for NGINX arbitrator serves as a central coordinating component for managing multiple instances of  App Protect DoS in a network. It is needed when there are more than one F5 DoS for NGINX instances. Its primary function is to ensure that all instances are aware of and share the same state for each protected object. Here's a clearer breakdown of how it works and why it's necessary:
 
-### How the Arbitrator works
+How F5 DoS for NGINX Arbitrator Works:
 
-- **Collecting state periodically**: The Arbitrator regularly collects state information from all running F5 DoS for NGINX instances. This collection occurs at set intervals, typically every 10 seconds.
-- **State initialization for new instances**: When a new F5 DoS for NGINX instance starts, it retrieves the initial state for each protected object from the Arbitrator rather than starting with an empty state.
-- **Updating state during an attack**: When an F5 DoS for NGINX instance detects an attack, it sends a notification to the Arbitrator. The Arbitrator updates the state of the affected protected object and propagates that state to all other instances.
+- **Collecting State Periodically**: The arbitrator regularly collects the state information from all running instances of App Protect DoS. This collection occurs at set intervals, typically every 10 seconds.
+- **State Initialization for New Instances**: When a new App Protect DoS instance is created, it doesn't start with a blank or uninitialized state for a protected object. Instead, it retrieves the initial state for the protected object from the arbitrator.
+- **Updating State in Case of an Attack**: If an attack is detected by one of the App Protect DoS instances, that instance sends an attack notification to the arbitrator. The arbitrator then updates the state of the affected protected object to indicate that it is under attack. Importantly, this updated state is propagated to all other instances.
 
-### Why F5 DoS for NGINX Arbitrator is necessary
+### Why F5 DoS for NGINX Arbitrator is Necessary
 
 F5 DoS for NGINX Arbitrator is essential for several reasons:
 
-- **Global state management**: Without the Arbitrator, each F5 DoS for NGINX instance manages its own isolated state for each protected object. This can lead to inconsistencies. For example, if instance A declares an attack on a protected object named "PO-Example," instance B remains unaware of it, potentially leaving the object vulnerable.
-- **Uniform attack detection**: With the Arbitrator, when instance A detects an attack on "PO-Example" and reports it, the Arbitrator updates the state of "PO-Example" and propagates it to all instances, including instance B.
+- **Global State Management**: Without the arbitrator, each individual instance of App Protect DoS would manage its own isolated state for each protected object. This isolation could lead to inconsistencies. For example, if instance A declared an attack on a protected object named "PO-Example," instance B would remain unaware of this attack, potentially leaving the object vulnerable.
+- **Uniform Attack Detection**: With the arbitrator in place, when instance A detects an attack on "PO-Example" and reports it to the arbitrator, the state of "PO-Example" is immediately updated to indicate an attack. This means that all instances, including instance B, are aware of the attack and can take appropriate measures to mitigate it.
 
-F5 DoS for NGINX Arbitrator maintains a consistent global state for protected objects across all F5 DoS for NGINX instances. This ensures attacks are detected and mitigated uniformly across your deployment.
+In summary, F5 DoS for NGINX Arbitrator acts as a central coordinator to maintain a consistent and up-to-date global state for protected objects across multiple instances of App Protect DoS. This coordination helps ensure that attacks are properly detected and mitigated, and that knowledge gained by one instance is efficiently shared with others, enhancing the overall security of the network.
 
 
 ### F5 DoS for NGINX Arbitrator Deployment
@@ -49,9 +49,9 @@ F5 DoS for NGINX Arbitrator maintains a consistent global state for protected ob
 
 ### Multi-VM Deployment
 
-The Arbitrator service is standalone. If it goes down, it can be restarted and immediately recovers all required information from F5 DoS for NGINX instances, which report to it every 10 seconds. Its downtime is around 10 to 20 seconds, which does not affect F5 DoS for NGINX operation.
+The Arbitrator service is standalone. Once it is down, it can be seamlessly re-started. It will immediately recover all the needed information from F5 DoS for NGINX instances that communicate to it every 10 sec. It’s downtime is around 10-20 seconds which  will not affect the F5 DoS for NGINX working.
 
-F5 DoS for NGINX Arbitrator connects to port 3000. All modules try to connect to it automatically. If it's not accessible, each instance operates in standalone mode.
+F5 DoS for NGINX Arbitrator service connects to port 3000 and can be seen under App Protect DoS instances. All modules try to connect to this service automatically. If it’s not accessible, each instance works in standalone mode.
 
-F5 DoS for NGINX does not support mTLS or password authentication between DoS servers and the Arbitrator. Arbitrator is not exposed outside the namespace. It is the customer's responsibility to isolate it from external access. This applies to all Arbitrator deployments, not only multi-VM.
+There is no such option for authentications between F5 DoS for NGINX servers and Arbitrator service like MTLS or password . Currently Arbitrator service is not exposed outside of the namespace. It is customers responsibility to isolate it from outside. It is applicable to any deployment of Arbitrator, not only to multi-VM.
 

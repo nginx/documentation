@@ -1,8 +1,10 @@
 ---
-title: Install F5 WAF and DoS for NGINX AMIs on Amazon EC2
-description: "Deploy F5 NGINX Plus with F5 WAF for NGINX and F5 DoS for NGINX on Amazon EC2 using pre-built AMIs for Amazon Linux, RHEL, Debian, and Ubuntu."
-keywords: "F5 DoS for NGINX, Amazon Web Services, AWS, EC2, AMI, NGINX Plus, F5 WAF for NGINX, Amazon Linux, RHEL, Debian, Ubuntu"
+description: Install F5 NGINX Plus, F5 WAF & DoS for NGINX Plus on Amazon Web Services
+  (AWS), to provide sophisticated Layer 7 load balancing, Modern app security solution,
+  behavioral DoS detection and mitigation that works seamlessly in DevOps environments
+  for your apps running on AmazonLinux 2023, RHEL, Debian and Ubuntu Linux OS.
 nd-docs: DOCS-1204
+title: Installing F5 WAF & DoS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 120
 nd-content-type: how-to

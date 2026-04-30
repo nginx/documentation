@@ -1,7 +1,6 @@
 ---
 title: F5 WAF for NGINX security monitoring
 description: Monitor F5 WAF for NGINX security events in NGINX One Console.
-nd-keywords: "F5 WAF for NGINX, security monitoring, NGINX One Console, security dashboard, security events, violations, signatures"
 weight: 425
 url: /nginx-one-console/waf-integration/waf-security-dashboard
 ---

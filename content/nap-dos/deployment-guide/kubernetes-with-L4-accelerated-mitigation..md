@@ -1,9 +1,11 @@
 ---
-title: Kubernetes with L4 accelerated mitigation
-description: "Install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation using eBPF to offload DoS blocking to the Linux kernel."
-keywords: "F5 DoS for NGINX, Kubernetes, L4, eBPF, accelerated mitigation, Helm, install, Linux kernel"
+# We use sentence case and present imperative tone
+title: "Kubernetes with L4 accelerated  mitigation"
+# Weights are assigned in increments of 100: determines sorting order
 weight: 110
+# Creates a table of contents and sidebar, useful for large documents
 toc: true
+# Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 nd-content-type: how-to
 nd-product: F5DOSN
 ---
