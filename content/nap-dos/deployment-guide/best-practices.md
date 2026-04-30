@@ -129,7 +129,7 @@ app_protect_dos_arb_fqdn 10.1.10.22;
 
 ## EBPF manager
 
-The eBPF Manager is a high-performance component that simplifies and secures the deployment of eBPF programs for advanced networking use cases.
+The eBPF Manager is a high-performance component that simplifies and secures the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases.
 
 Enable the L4-accelerated mitigation feature in the `http` context of the `nginx.conf` file:
 
