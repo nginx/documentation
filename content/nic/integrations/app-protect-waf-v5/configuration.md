@@ -63,6 +63,90 @@ spec:
 
 ---
 
+## IP Intelligence {#ip-intelligence}
+
+IP intelligence lets you restrict access based on the source IP address reputation. You can block traffic from known malicious sources such as botnets, scanners, tor proxies, and more.
+
+{{< call-out "note" >}} IP intelligence requires the `waf-ip-intelligence` container to be deployed. See the [installation guide]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md#enable-ip-intelligence" >}}) for setup instructions. {{< /call-out >}}
+
+### Configure IP intelligence in policy bundles
+
+When creating policy JSON files for compilation into bundles, include the IP intelligence configuration:
+
+```json
+{
+    "policy": {
+        "name": "ip_intelligence_policy",
+        "template": {
+            "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "blocking-settings": {
+            "violations": [
+                {
+                    "name": "VIOL_MALICIOUS_IP",
+                    "alarm": true,
+                    "block": true
+                }
+            ]
+        },
+        "ip-intelligence": {
+            "enabled": true,
+            "ipIntelligenceCategories": [
+                {
+                    "category": "BotNets",
+                    "alarm": true,
+                    "block": true
+                },
+                {
+                    "category": "Scanners",
+                    "alarm": true,
+                    "block": true
+                },
+                {
+                    "category": "Anonymous Proxy",
+                    "alarm": true,
+                    "block": true
+                },
+                {
+                    "category": "Tor Proxies",
+                    "alarm": true,
+                    "block": true
+                }
+            ]
+        }
+    }
+}
+```
+
+Compile this policy into a bundle using the WAF Compiler, then copy the bundle to the `/etc/app_protect/bundles` volume. See [Compile WAF policies]({{< ref "/nic/integrations/app-protect-waf-v5/compile-waf-policies.md" >}}) for details on creating policy bundles.
+
+### Available IP intelligence categories
+
+You can configure each category independently with `alarm` and `block` settings:
+
+- Anonymous Proxy
+- BotNets
+- Cloud-based Services
+- Denial of Service
+- Infected Sources
+- Mobile Threats
+- Phishing Proxies
+- Scanners
+- Spam Sources
+- Tor Proxies
+- Web Attacks
+- Windows Exploits
+
+Setting `"block": true` rejects requests from IP addresses in that category. Setting `"alarm": true` creates a log entry for the event.
+
+The IP address database is managed by an external provider and updates every 1 minute by default. Addresses may be added, removed, or moved between categories based on reported activity.
+
+For the full policy configuration reference, see the [IP intelligence documentation]({{< ref "/waf/policies/ip-intelligence.md#configure-policies-for-ip-intelligence" >}}).
+
+---
+
 ## Configure NGINX Plus Ingress Controller using Virtual Server resources
 
 This example shows how to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX v5, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.

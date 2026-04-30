@@ -191,6 +191,37 @@ To enable the F5 DoS for NGINX Module:
 
 - Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
+## Enable IP intelligence (optional) {#enable-ip-intelligence}
+
+IP intelligence lets you customize enforcement based on the source IP address of requests, limiting access from IP addresses with questionable reputation. It's disabled by default and requires extra steps to enable.
+
+{{< call-out "note" >}} IP intelligence requires that the host can access `vector.brightcloud.com` over port 443. If connecting through a forward proxy server, configure proxy settings in `/etc/app_protect/tools/iprepd.cfg`. See the [IP intelligence documentation]({{< ref "/waf/policies/ip-intelligence.md" >}}) for proxy configuration details. {{< /call-out >}}
+
+### Install the IP intelligence package
+
+For package-based installations, install the IP intelligence package after the base WAF installation:
+
+| Operating system | Package name |
+| ---------------- | ------------ |
+| Debian           | _app-protect-ip-intelligence_ |
+| UBI (OpenShift)  | _app-protect-ip-intelligence_ |
+
+After installing the package, start the IP reputation client:
+
+```shell
+/opt/app_protect/bin/iprepd /etc/app_protect/tools/iprepd.cfg > ipi.log 2>&1 &
+```
+
+Verify the client is populating the database:
+
+```shell
+tail -f iprepd.log
+```
+
+Once the IP reputation client is running, you can configure IP intelligence policies. See the [Configuration guide]({{< ref "/nic/integrations/app-protect-waf/configuration.md#ip-intelligence" >}}) for details on adding IP intelligence to your WAF policies.
+
+For the full list of configuration options, see the [IP intelligence reference]({{< ref "/waf/policies/ip-intelligence.md" >}}).
+
 ## Confirm NGINX Ingress Controller is running
 
 {{< include "/nic/installation/manifests/verify-pods-are-running.md" >}}

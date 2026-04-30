@@ -39,6 +39,12 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
     docker pull private-registry.nginx.com/nap/waf-enforcer:<image-tag>
     ```
 
+1. Pull the WAF IP Intelligence Docker image (optional, required only if you plan to use IP intelligence):
+
+    ```shell
+    docker pull private-registry.nginx.com/nap/waf-ip-intelligence:<image-tag>
+    ```
+
 1. Clone the NGINX Ingress Controller repository:
 
     ```console
@@ -116,6 +122,12 @@ docker push <my-docker-registry>/waf-config-mgr:<your-tag>
 
 ```shell
 docker push <my-docker-registry>/waf-enforcer:<your-tag>
+```
+
+If you plan to use IP intelligence, also push the IP intelligence image:
+
+```shell
+docker push <my-docker-registry>/waf-ip-intelligence:<your-tag>
 ```
 
 {{< include "/nic/installation/create-custom-resources.md" >}}
@@ -477,6 +489,84 @@ To enable the F5 DoS for NGINX Module:
 {{%/tab%}}
 
 {{</tabs>}}
+
+## Enable IP intelligence (optional) {#enable-ip-intelligence}
+
+IP intelligence lets you customize enforcement based on the source IP address of requests, blocking traffic from IP addresses with questionable reputation. It requires an additional container (`waf-ip-intelligence`) that manages the IP reputation database.
+
+{{< call-out "note" >}} IP intelligence requires network access to `vector.brightcloud.com` over port 443 for database updates. {{< /call-out >}}
+
+{{<tabs name="enable-ip-intelligence">}}
+
+{{%tab name="Helm"%}}
+
+Enable IP intelligence by setting `controller.appprotect.ipIntelligence.enable` to `true` in your Helm values:
+
+```yaml
+controller:
+  appprotect:
+    enable: true
+    v5: true
+    ipIntelligence:
+      enable: true
+      image:
+        repository: private-registry.nginx.com/nap/waf-ip-intelligence
+        tag: <version-tag>
+```
+
+This automatically adds the `waf-ip-intelligence` container and configures the required `/var/IpRep` volume mount shared with the `waf-enforcer` container.
+
+{{%/tab%}}
+
+{{%tab name="Manifest"%}}
+
+Add the `waf-ip-intelligence` container and required volume to your Deployment, DaemonSet, or StatefulSet manifest.
+
+### Add the IP intelligence container
+
+Add to the `containers` section:
+
+```yaml
+- name: waf-ip-intelligence
+  image: private-registry.nginx.com/nap/waf-ip-intelligence:<version-tag>
+  imagePullPolicy: IfNotPresent
+  securityContext:
+    allowPrivilegeEscalation: false
+  volumeMounts:
+    - name: var-iprep
+      mountPath: /var/IpRep
+```
+
+### Add the IP reputation volume
+
+Add to the `volumes` section:
+
+```yaml
+- name: var-iprep
+  emptyDir: {}
+```
+
+### Update the WAF enforcer container
+
+Add the IP reputation volume mount to the `waf-enforcer` container:
+
+```yaml
+- name: waf-enforcer
+  # ...existing config...
+  volumeMounts:
+    - name: app-protect-bd-config
+      mountPath: /opt/app_protect/bd_config
+    - name: var-iprep
+      mountPath: /var/IpRep
+```
+
+{{%/tab%}}
+
+{{</tabs>}}
+
+After deployment, verify that four containers run in each NGINX Ingress Controller pod: `nginx-plus-ingress`, `waf-config-mgr`, `waf-enforcer`, and `waf-ip-intelligence`.
+
+For policy configuration, see the [Configuration guide]({{< ref "/nic/integrations/app-protect-waf-v5/configuration.md#ip-intelligence" >}}).
 
 ## Confirm NGINX Ingress Controller is running
 
