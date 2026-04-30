@@ -15,7 +15,7 @@ F5 NGINX Ingress Controller requires a valid JWT to download the container image
 
 The JWT validates your subscription and reports telemetry data. For internet-connected environments, telemetry is sent automatically to the F5 licensing endpoint. In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). By default, usage is reported every hour and whenever NGINX is reloaded.
 
-{{< call-out "note" >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{< /call-out >}}
+{{< call-out "note" >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses/getting-started.md#internet-connected" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{< /call-out >}}
 
 ## Set up your NGINX Plus license
 
