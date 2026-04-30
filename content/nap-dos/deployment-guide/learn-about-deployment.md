@@ -1,7 +1,8 @@
 ---
-description: Learn about F5 DoS for NGINX Deployment.
-nd-docs: DOCS-666
 title: Virtual Machine and Docker
+description: "Install and upgrade F5 DoS for NGINX on virtual machines, bare metal, and Docker across RHEL, Debian, Ubuntu, Alpine, and Amazon Linux."
+keywords: "F5 DoS for NGINX, install, deployment, virtual machine, bare metal, Docker, RHEL, Debian, Ubuntu, Alpine, Amazon Linux"
+nd-docs: DOCS-666
 toc: true
 weight: 90
 nd-content-type: how-to

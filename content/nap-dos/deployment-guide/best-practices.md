@@ -1,7 +1,8 @@
 ---
-description:  F5 DoS for NGINX Best Practices Deployment.
-nd-docs: DOCS-666
 title: Best Practices
+description: "Configure F5 DoS for NGINX using recommended settings for protected objects, monitor directives, and security logging."
+keywords: "F5 DoS for NGINX, best practices, configuration, protected object, monitor directive, security log, NGINX configuration"
+nd-docs: DOCS-666
 toc: true
 weight: 130
 nd-content-type: how-to
