@@ -65,7 +65,7 @@ data:
 
             access_log /var/log/nginx/access.log log_dos if=$loggable;
             app_protect_dos_security_log_enable on;
-            app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=<syslog-server-ip>:<port>;
+            app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=<SYSLOG_SERVER_IP>:5261;
             app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
 
             location / {

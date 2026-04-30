@@ -234,14 +234,14 @@ http {
 
         access_log /var/log/nginx/access.log log_dos if=$loggable;
         app_protect_dos_security_log_enable on;
-        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=10.197.30.219:5261;
+        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=<SYSLOG_SERVER_IP>:5261;
         app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
 
         location / {
             app_protect_dos_enable on;
             app_protect_dos_name "main_app";
             set $loggable '0';
-            access_log syslog:server=10.97.30.219:5561 log_dos if=$loggable;
+            access_log syslog:server=<SYSLOG_SERVER_IP>:5561 log_dos if=$loggable;
             app_protect_dos_monitor uri=example_srv:80/ protocol=http1 timeout=7;
             proxy_pass http://10.197.24.136:3000;
         }
