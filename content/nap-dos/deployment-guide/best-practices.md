@@ -34,7 +34,7 @@ Choose a unique name. You can set it in location, server, or http blocks.
 app_protect_dos_name po-example;
 ```
 
-{{< call-out "note" title="Protected Object name" >}}
+{{< call-out "note" "Protected Object name" >}}
 Although optional, specifying a name for each Protected Object (PO) is strongly recommended. It improves organization and makes troubleshooting easier. If no name is provided, the virtual server gets an auto-generated name using the following syntax:
 {{< /call-out >}}
 
