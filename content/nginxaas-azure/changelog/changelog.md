@@ -14,6 +14,12 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## May 1, 2026
+
+- {{% icon-feature %}} **CVE-2026-31431 Copy Fail Fix**
+
+  A Linux kernel local privilege escalation vulnerability known as "Copy Fail" has been mitigated and the fix was rolled out to all healthy deployments.
+  
 ## April 29, 2026
 
 - {{% icon-feature %}} **IP Intelligence is now available on Standard V3 plans**
