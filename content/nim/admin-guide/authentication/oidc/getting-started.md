@@ -5,11 +5,15 @@ weight: 1
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-1267
+description: "Configure OpenID Connect (OIDC) authentication for F5 NGINX Instance Manager using any OIDC-compliant identity provider to enable Single Sign-On."
+nd-summary: >
+  Configure OIDC authentication for F5 NGINX Instance Manager to enable Single Sign-On for your users.
+  OIDC is the recommended authentication method; it connects to any OIDC-compliant identity provider and simplifies user management across your organization.
 ---
 
 ## Overview
 
-We recommend using OpenID Connect (OIDC) as the preferred authentication method for NGINX Instance Manager. OIDC offers several advantages, including Single Sign-On (SSO) for users and simplified user management for administrators through user groups. OIDC also enables easy scalability and streamlined user access management.
+We recommend using OpenID Connect (OIDC) as the preferred authentication method for F5 NGINX Instance Manager. OIDC offers several advantages, including Single Sign-On (SSO) for users and simplified user management for administrators through user groups. OIDC also enables easy scalability and streamlined user access management.
 
 NGINX Instance Manager’s implementation of OIDC is designed to work with any Identity Provider (IdP) that supports the OIDC protocol. The instructions below are general and can be applied to any IdP.
 
@@ -59,9 +63,9 @@ When you configure OIDC for NGINX Instance Manager, basic authentication will be
 
 The following requirements must be met before you can use OIDC with NGINX Instance Manager:
 
-1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R21 or newer]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) installed. Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
+1. [Install NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}) on a server that also has [NGINX Plus R21 or newer]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) installed. Ensure the server hosting NGINX Plus has a fully qualified domain name (FQDN).
 
-2. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as Instance Manager. This module is required for managing communications between NGINX Plus and the identity provider.
+2. [Install the NGINX JavaScript module (njs)](https://www.nginx.com/blog/introduction-nginscript/) on the same server as NGINX Instance Manager. This module is required for managing communications between NGINX Plus and the identity provider.
 
 3. Configure an IdP to provide authentication services. This includes setting up authentication policies, scopes, and client credentials within your IdP.
 

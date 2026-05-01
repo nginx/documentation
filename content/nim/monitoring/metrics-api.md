@@ -7,6 +7,9 @@ toc: true
 weight: 200
 nd-content-type: tutorial
 nd-product: NIMNGR
+nd-summary: >
+  Query the F5 NGINX Instance Manager Metrics API to retrieve and filter system data from your NGINX instances.
+  The Metrics API lets you fine-tune queries with parameters for time ranges, dimensions, and aggregations to monitor application performance.
 ---
 
 ## Overview
@@ -31,7 +34,7 @@ You can use the Metrics API to query for desired metric names and fine-tune the 
 
 ## Authentication
 
-You can use basic authentication or JWT authentication to access the NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< ref "/nim/fundamentals/api-overview#authentication" >}}).
+You can use basic authentication or JWT authentication to access the F5 NGINX Instance Manager REST API, as described in the [NGINX Instance Manager API Overview]({{< ref "/nim/fundamentals/api-overview#authentication" >}}).
 
 The examples in this guide demonstrate using a "bearer" token for authentication. The token is sent using the "Authorization" request header field and "Bearer" schema.
 

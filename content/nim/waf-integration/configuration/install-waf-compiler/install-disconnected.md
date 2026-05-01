@@ -5,6 +5,9 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Install the WAF compiler on an F5 NGINX Instance Manager host without internet access by generating the package on a connected system and transferring it offline.
+  This approach is for environments where direct downloads from the NGINX repository are not possible.
 ---
 
 You can install the WAF compiler on a system without internet access by creating the package on a connected system, then transferring and installing it offline.

@@ -3,12 +3,12 @@ nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NIMNGR
 title: Configure and deploy log profiles
-description: "Configure F5 WAF for NGINX security log profiles in NGINX Instance Manager, controlling request filtering, log format, size limits, and deployment to NGINX instances."
+description: "Configure F5 WAF for NGINX security log profiles in F5 NGINX Instance Manager, controlling request filtering, log format, size limits, and deployment to NGINX instances."
 weight: 100
 toc: true
 nd-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, security logs, app protect, request logs, traffic logs, Splunk, ArcSight, syslog"
 nd-summary: >
-  Configure log profiles for F5 WAF for NGINX security logs in NGINX Instance Manager.
+  Configure log profiles for F5 WAF for NGINX security logs in F5 NGINX Instance Manager.
   Log profiles define which HTTP requests are captured, how log messages are formatted, where logs are sent, and what security event details are included.
   Log profiles must be compiled into a bundle before deployment to NGINX instances.
 nd-audience: operator
@@ -34,7 +34,7 @@ For detailed information about security logging capabilities and available log a
 
 Before you begin, make sure you have:
 
-- **F5 NGINX Instance Manager access**: An account with sufficient permissions to create and manage WAF log profiles. See [Manage roles and permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+- **NGINX Instance Manager access**: An account with sufficient permissions to create and manage WAF log profiles. See [Manage roles and permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
 - **F5 WAF for NGINX license**: A valid license with WAF capabilities for your NGINX Instance Manager deployment.
 - **NGINX instances**: One or more NGINX instances registered in NGINX Instance Manager. You'll deploy the log profile to these.
 

@@ -6,11 +6,15 @@ noindex: true
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-000
+description: "Manually install or upgrade F5 NGINX Instance Manager in a disconnected environment by downloading packages on a connected host and transferring them offline."
+nd-summary: >
+  Install or upgrade F5 NGINX Instance Manager in an environment without internet access by manually downloading and transferring packages.
+  This guide walks through downloading dependencies from a connected system, transferring them to the offline host, and completing the installation step by step.
 ---
 
 ## Overview
 
-Use this guide to install and upgrade NGINX Instance Manager in environments without internet access. You'll download packages and dependencies manually, set up NGINX Instance Manager in disconnected mode, and update the CVE list.
+Use this guide to install and upgrade F5 NGINX Instance Manager in environments without internet access. You'll download packages and dependencies manually, set up NGINX Instance Manager in disconnected mode, and update the CVE list.
 
 ## Before you begin
 

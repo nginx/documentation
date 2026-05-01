@@ -1,13 +1,16 @@
 ---
 title: Manually update security packages
-description: Manually download and upload F5 WAF for NGINX security packages to NGINX Instance Manager.
+description: Manually download and upload F5 WAF for NGINX security packages to F5 NGINX Instance Manager.
 toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Manually download and upload F5 WAF for NGINX security packages to F5 NGINX Instance Manager when automatic updates are not enabled.
+  This guide covers downloading attack signature, bot signature, and threat campaign packages and uploading them through the NGINX Instance Manager REST API.
 ---
 
-If you prefer not to enable automatic updates, you can manually update the attack signature, bot signature, and threat campaign packages by downloading them from the NGINX repository and uploading them to NGINX Instance Manager.
+If you prefer not to enable automatic updates, you can manually update the attack signature, bot signature, and threat campaign packages by downloading them from the NGINX repository and uploading them to F5 NGINX Instance Manager.
 
 ## Download packages from NGINX repository
 

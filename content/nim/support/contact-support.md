@@ -5,6 +5,10 @@ toc: true
 weight: 300
 nd-content-type: concept
 nd-product: NIMNGR
+description: "Find the right support channel for F5 NGINX Instance Manager, including links to the knowledge base, community, and F5 support."
+nd-summary: >
+  Find the right channel for getting help with F5 NGINX Instance Manager.
+  This page describes the support policy, links to the F5 knowledge base, and explains how to open a support case.
 ---
 
 ## Support policy

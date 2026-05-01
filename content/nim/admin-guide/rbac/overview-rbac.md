@@ -5,6 +5,10 @@ toc: true
 nd-content-type: concept
 nd-product: NIMNGR
 nd-docs: DOCS-919
+description: "Understand the role-based access control (RBAC) model in F5 NGINX Instance Manager: roles, permissions, users, user groups, and resource groups."
+nd-summary: >
+  Understand how role-based access control works in F5 NGINX Instance Manager before configuring it.
+  RBAC uses roles, permissions, users, user groups, and resource groups to define who can access and manage which resources.
 ---
 
 ## Overview

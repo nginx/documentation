@@ -5,6 +5,10 @@ toc: true
 weight: 260
 nd-content-type: how-to
 nd-product: NIMNGR
+description: "Enable or disable telemetry and web analytics sharing in F5 NGINX Instance Manager to control what usage data is sent to F5."
+nd-summary: >
+  Enable or disable telemetry and web analytics data sharing in F5 NGINX Instance Manager.
+  Telemetry data helps F5 improve the product; this guide explains what data is sent and how to control it.
 ---
 
 ## Overview

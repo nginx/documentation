@@ -1,6 +1,6 @@
 ---
 title: About NGINX config templates
-description: ''
+description: "Learn how F5 NGINX Instance Manager uses Go templating and JSON schemas to create an abstraction layer for standardizing NGINX configurations across instances."
 weight: 100
 toc: true
 nd-docs: DOCS-1502
@@ -11,6 +11,9 @@ nd-personas:
 - support
 nd-content-type: concept
 nd-product: NIMNGR
+nd-summary: >
+  Understand how NGINX config templates work in F5 NGINX Instance Manager before creating or deploying them.
+  Templates use Go templating and JSON schemas to create a standardized configuration abstraction that simplifies and enforces consistent NGINX deployments.
 ---
 
 ## Config templates
@@ -18,7 +21,7 @@ nd-product: NIMNGR
 F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) to simplify creating and standardizing NGINX configurations. These config templates create an abstraction layer for NGINX configuration files, enabling users to provide parameters to generate a working configuration without needing a deep knowledge of NGINX syntax. These templates simplify configuring NGINX, enforce best practices for configurations, and enable self-service permissions for app development.
 
 {{<call-out "tip" "Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
- Go templating in Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
+ Go templating in NGINX Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
 
 ### Types of templates {#template-types}
 

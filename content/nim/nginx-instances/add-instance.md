@@ -4,6 +4,10 @@ weight: 100
 toc: false
 nd-content-type: how-to
 nd-product: NIMNGR
+description: "Add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager by installing NGINX Agent for centralized management."
+nd-summary: >
+  Add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager by installing NGINX Agent on each instance.
+  NGINX Agent registers the instance with NGINX Instance Manager automatically after installation.
 ---
 
 This guide shows you how to add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager so you can manage them from a central dashboard.

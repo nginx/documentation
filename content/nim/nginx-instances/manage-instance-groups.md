@@ -8,11 +8,14 @@ toc: true
 weight: 600
 nd-content-type: tutorial
 nd-product: NIMNGR
+nd-summary: >
+  Create and manage instance groups in F5 NGINX Instance Manager to treat multiple NGINX instances as a single entity for configuration and management.
+  Instance groups let you push configurations and certificates to a collection of instances at the same time.
 ---
 
 ## Overview
 
-You can easily manage multiple NGINX instances as a single entity by creating an instance group in Instance Manager and adding NGINX instances to it.
+You can easily manage multiple NGINX instances as a single entity by creating an instance group in F5 NGINX Instance Manager and adding NGINX instances to it.
 
 ---
 
@@ -20,7 +23,7 @@ You can easily manage multiple NGINX instances as a single entity by creating an
 
 To complete the instructions in this guide, you need the following:
 
-- An installed version of [Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}})
+- An installed version of [NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}})
 - One or more NGINX data plane instances
 
 ---
@@ -64,7 +67,7 @@ You can assign NGINX instances to instance groups in the following ways:
 
 You can easily add instances to a default instance group that you specify. To do so, [install the NGINX Agent on an instance]({{< ref "/nginx-one-console/agent/install-upgrade/" >}}), then edit the `/var/lib/nginx-agent/agent-dynamic.conf` file as described below.
 
-{{< call-out "note" >}}If you're running Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
+{{< call-out "note" >}}If you're running NGINX Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
 
 {{< call-out "important" "Important:" >}}If the specified instance group doesn't already exist, the NGINX Agent installer will create it, using the current instance's config file as the group's config file. This means that all instances added to the group later will use this config as well. If you're using a script to add instances, you should consider carefully which instance to run the script on first.{{< /call-out >}}
 

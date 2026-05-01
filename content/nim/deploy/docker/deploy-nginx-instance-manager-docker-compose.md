@@ -6,11 +6,14 @@ weight: 100
 nd-docs: DOCS-1653
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Run F5 NGINX Instance Manager using Docker Compose and have a working control plane deployment.
+  Docker Compose pulls the required images and starts the NGINX Instance Manager services with a single command.
 ---
 
 ## Overview
 
-This guide shows you how to run NGINX Instance Manager using [Docker Compose](https://docs.docker.com/compose/).
+This guide shows you how to run F5 NGINX Instance Manager using [Docker Compose](https://docs.docker.com/compose/).
 
 You can deploy it in two ways:
 
@@ -105,7 +108,7 @@ In lightweight mode, only the NGINX Instance Manager service runs. ClickHouse an
 
 ### Supported environment variables
 
-You can control Instance Manager behavior by setting environment variables in the `docker-compose.yaml` file. Here’s a summary of commonly used variables:
+You can control NGINX Instance Manager behavior by setting environment variables in the `docker-compose.yaml` file. Here's a summary of commonly used variables:
 
 {{< include "nim/docker/docker-compose-env-vars.md" >}}
 
@@ -280,7 +283,7 @@ NGINX Instance Manager uses named Docker volumes by default to persist data. You
 
 The standard `docker-compose.yaml` file defines these named volumes:
 
-- `nim-data`: stores configuration and state for Instance Manager
+- `nim-data`: stores configuration and state for NGINX Instance Manager
 - `clickhouse-data`: used only in standard mode to persist metrics
 
 In lightweight mode, `clickhouse-data` is not needed and should be removed from the Compose file.

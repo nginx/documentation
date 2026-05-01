@@ -6,13 +6,16 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Configure ClickHouse settings for F5 NGINX Instance Manager to control how metrics, events, alerts, and configuration data are stored.
+  NGINX Instance Manager uses ClickHouse as its primary data store; this guide covers connection settings, data retention, and storage configuration.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## Overview
 
-NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
+F5 NGINX Instance Manager uses ClickHouse to store metrics, events, alerts, and configuration data.
 If your setup differs from the default configuration — for example, if you use a custom address, enable TLS, set a password, or turn off metrics — you need to update the `/etc/nms/nms.conf` file.
 
 This guide explains how to update those settings so that NGINX Instance Manager can connect to ClickHouse correctly.

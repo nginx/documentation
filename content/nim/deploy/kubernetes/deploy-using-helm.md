@@ -5,6 +5,10 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
+description: "Deploy F5 NGINX Instance Manager on Kubernetes using the official Helm chart in standard or lightweight mode."
+nd-summary: >
+  Deploy F5 NGINX Instance Manager on Kubernetes using Helm and have a running control plane cluster.
+  The Helm chart supports both standard and lightweight deployment modes and handles all required Kubernetes resources automatically.
 ---
 
 ## Overview

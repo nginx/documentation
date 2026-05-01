@@ -3,12 +3,12 @@ nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NIMNGR
 title: Compile log profiles (REST API)
-description: "Compile an F5 WAF for NGINX security log profile into a deployment bundle using the NGINX Instance Manager REST API."
+description: "Compile an F5 WAF for NGINX security log profile into a deployment bundle using the F5 NGINX Instance Manager REST API."
 weight: 300
 toc: true
 nd-keywords: "compile log profile, security log profile, WAF, NGINX Instance Manager, NIM, log profile bundle, tgz, REST API, app protect, compiler version, logprofiles, bundles"
 nd-summary: >
-  Compile an existing F5 WAF for NGINX security log profile into a bundle (.tgz) for a specific WAF compiler version using the NGINX Instance Manager REST API.
+  Compile an existing F5 WAF for NGINX security log profile into a bundle (.tgz) for a specific WAF compiler version using the F5 NGINX Instance Manager REST API.
   Compiling a log profile is required before the profile can be deployed to NGINX instances.
   The compiled bundle includes a hash and size value that you can use to validate bundle integrity at download time.
 nd-audience: operator
@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Use this guide to compile an existing F5 WAF for NGINX security log profile into a bundle using the NGINX Instance Manager REST API. Compiling a log profile produces a compressed archive (.tgz) for a specific WAF compiler version. The bundle must be compiled before the log profile can be deployed to NGINX instances.
+Use this guide to compile an existing F5 WAF for NGINX security log profile into a bundle using the F5 NGINX Instance Manager REST API. Compiling a log profile produces a compressed archive (.tgz) for a specific WAF compiler version. The bundle must be compiled before the log profile can be deployed to NGINX instances.
 
 The API response includes a hash and size for each bundle. Use these values to validate bundle integrity when you download the bundle.
 

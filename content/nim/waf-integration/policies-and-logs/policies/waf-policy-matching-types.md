@@ -5,6 +5,9 @@ toc: true
 weight: 700
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Understand the difference between explicit and wildcard matching in F5 WAF for NGINX policies before configuring URL, cookie, and parameter protection.
+  The matching type determines how closely the WAF compares incoming requests to the entities defined in your security policy.
 ---
 
 In F5 WAF for NGINX, you can use **explicit** or **wildcard** matching to define how the WAF identifies and protects URLs, cookies, and parameters. The matching type determines how closely the WAF compares incoming requests to entities in your security policy.

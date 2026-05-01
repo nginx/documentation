@@ -6,6 +6,10 @@ nd-landing-page: true
 cascade:
   logo: "NGINX-Instance-Manager-product-icon.svg"
 nd-product: NIMNGR
+nd-content-type: landing-page
+nd-summary: >
+  Use F5 NGINX Instance Manager to track, configure, and manage NGINX Open Source and NGINX Plus instances from a single dashboard.
+  NGINX Instance Manager supports deployments on virtual machines, Docker, Kubernetes, and bare metal across cloud and on-premises environments.
 ---
 
 ## About

@@ -5,13 +5,17 @@ toc: true
 weight: 400
 nd-content-type: how-to
 nd-product: NIMNGR
+description: "Common Helm chart configuration examples for F5 NGINX Instance Manager, covering ingress, persistence, resource limits, and other frequently needed settings."
+nd-summary: >
+  Apply common Helm chart configurations for F5 NGINX Instance Manager by modifying the values.yaml file.
+  This guide covers the most frequently needed settings, including ingress configuration, persistent storage, and resource limits.
 ---
 
 ## Overview
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
-This guide provides frequently used configurations for NGINX Instance Manager. To apply any of these configurations, modify the `values.yaml` file accordingly.
+This guide provides frequently used configurations for F5 NGINX Instance Manager. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
 Refer to the [configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) guide for a complete list of configurable parameters and default values used by NGINX Instance Manager and its modules when installing from a Helm chart.
 

@@ -1,10 +1,13 @@
 ---
 title: Verify instance onboarding
-description: Verify that F5 WAF for NGINX instances are connected and reporting to NGINX Instance Manager.
+description: Verify that F5 WAF for NGINX instances are connected and reporting to F5 NGINX Instance Manager.
 toc: true
 weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Verify that F5 WAF for NGINX instances are connected and reporting to F5 NGINX Instance Manager after installing and configuring NGINX Agent.
+  This check confirms that NGINX Instance Manager can see the instances and that NGINX Agent is communicating correctly.
 ---
 
 {{< call-out "note" "Before you begin" >}}
@@ -12,13 +15,13 @@ nd-product: NIMNGR
 - [Configure NGINX Agent]({{< ref "/nim/waf-integration/configuration/onboard-instances/configure-nginx-agent.md" >}})
 {{< /call-out >}}
 
-After installing and configuring NGINX Agent, verify that your F5 WAF for NGINX instances appear in NGINX Instance Manager.
+After installing and configuring NGINX Agent, verify that your F5 WAF for NGINX instances appear in F5 NGINX Instance Manager.
 
 {{<tabs name="agent-verify">}}
 
 {{%tab name="Web interface"%}}
 
-You can view your F5 WAF for NGINX instances in the Instance Manager web interface. Follow these steps to confirm that NGINX Agent is installed and reporting data correctly.
+You can view your F5 WAF for NGINX instances in the NGINX Instance Manager web interface. Follow these steps to confirm that NGINX Agent is installed and reporting data correctly.
 
 1. {{< include "nim/webui-nim-login.md" >}}
 1. In the left menu, select **Instances**.

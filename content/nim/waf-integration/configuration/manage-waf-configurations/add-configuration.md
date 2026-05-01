@@ -5,6 +5,9 @@ toc: true
 weight: 100
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Add an F5 WAF for NGINX configuration to your NGINX instances from F5 NGINX Instance Manager.
+  You can apply a built-in default security policy or reference a custom policy bundle as the starting point for your WAF configuration.
 ---
 
 Start by adding an F5 WAF for NGINX configuration to your instances. You can apply one of the built-in security policies or reference your own custom policy bundle.
@@ -20,7 +23,7 @@ You can use these defaults as-is or customize them for your application. Securit
 
 Keep the following points in mind when configuring F5 WAF for NGINX through **NGINX Instance Manager**:
 
-- **Policy bundles:** Instance Manager compiles JSON security policies into `.tgz` bundles.
+- **Policy bundles:** NGINX Instance Manager compiles JSON security policies into `.tgz` bundles.
 - **Custom policies:** Use the `app_protect_policy_file` directive to reference custom policies. If you’re using precompiled publication with NGINX Agent, change the file extension from `.json` to `.tgz`. The filename itself stays the same. **NGINX Instance Manager** doesn’t support mixing `.json` and `.tgz` references in the same configuration.
 - **Access permissions:** Ensure the NGINX Agent can access directories where your policy files are stored. Update the `config_dirs` setting in the Agent configuration if needed.
 - **Logging:** **NGINX Instance Manager** uses the default log profiles included with F5 WAF for NGINX. You can reference them with the `app_protect_security_log` directive. Custom log profiles aren’t supported.

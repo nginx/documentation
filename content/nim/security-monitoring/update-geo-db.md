@@ -5,6 +5,10 @@ toc: true
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-1108
+description: "Update the MaxMind GeoLite2 geolocation database used by Security Monitoring dashboards in F5 NGINX Instance Manager."
+nd-summary: >
+  Update the MaxMind GeoLite2 geolocation database in F5 NGINX Instance Manager to keep Security Monitoring dashboard maps accurate.
+  The geolocation database is used to display the origin country of security violations; an outdated database may show incorrect or missing location data.
 ---
 
 ## Overview
@@ -28,7 +32,7 @@ Make sure you have the following:
 1. Create a [MaxMind](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data/) account and subscribe to receive updates for the GeoLite2 database.
 1. Download the GeoLite2 Country database (Edition ID: GeoLite2-Country) in GeoIP2 Binary `.mmdb` format from the [MaxMind](https://www.maxmind.com/en/accounts/current/geoip/downloads) website. The database is included in a `.gzip` file.
 1. Extract the `.gzip` file to get the GeoLite2 Country database file, `GeoLite2-Country.mmdb`.
-1. Copy the new `GeoLite2-Country.mmdb` file to `/usr/share/nms/geolite2/GeoLite2-Country.mmdb` on the NGINX Instance Manager control plane, replacing the existing file:
+1. Copy the new `GeoLite2-Country.mmdb` file to `/usr/share/nms/geolite2/GeoLite2-Country.mmdb` on the F5 NGINX Instance Manager control plane, replacing the existing file:
 
     ```shell
     sudo scp /path/to/GeoLite2-Country.mmdb {user}@{host}:/usr/share/nms/geolite2/GeoLite2-Country.mmdb

@@ -5,6 +5,10 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
+description: "Use the Kubernetes support package script to collect system and service information for troubleshooting F5 NGINX Instance Manager deployed with Helm."
+nd-summary: >
+  Generate a support package from an F5 NGINX Instance Manager Helm deployment to share with F5 support for troubleshooting.
+  The support package script collects logs, configuration details, and service status information from all NGINX Instance Manager pods.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

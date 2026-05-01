@@ -5,6 +5,9 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Update the NGINX Agent configuration on your F5 WAF for NGINX instances to enable WAF reporting to F5 NGINX Instance Manager.
+  This step is required after installing NGINX Agent; it tells the agent to send WAF data to the NGINX Instance Manager control plane.
 ---
 
 {{< call-out "note" "Before you begin" >}}
@@ -36,7 +39,7 @@ Follow these steps to enable F5 WAF for NGINX in NGINX Agent.
 
    - Let NGINX Agent read F5 WAF for NGINX configuration directories.
    - Enable change detection for security configurations.
-   - Turn on precompiled publication of WAF configurations from NGINX Instance Manager.
+   - Turn on precompiled publication of WAF configurations from F5 NGINX Instance Manager.
 
    To apply these settings during installation, use the `--nginx-app-protect-mode` flag:
 

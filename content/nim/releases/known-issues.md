@@ -6,6 +6,10 @@ toc: true
 weight: 200
 nd-product: NIMNGR
 nd-content-type: reference
+description: "Known issues and possible workarounds for F5 NGINX Instance Manager, with issue IDs and conditions under which they occur."
+nd-summary: >
+  Look up known issues in F5 NGINX Instance Manager and find workarounds where available.
+  Issues are listed by ID with the affected version, a description of the problem, and any available workaround.
 ---
 
 This document lists and describes the known issues and possible workarounds in F5 NGINX Instance Manager. We also list the issues resolved in the latest releases.
@@ -83,7 +87,7 @@ Add license read permission to the custom role or user.  This allows the Securit
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 46867    | Fixed in Instance Manager 2.21.1 |
+| 46867    | Fixed in NGINX Instance Manager 2.21.1 |
 
 #### Description
 
@@ -99,7 +103,7 @@ June 16, 2025
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 46177    | Fixed in Instance Manager 2.21.0 |
+| 46177    | Fixed in NGINX Instance Manager 2.21.0 |
 
 #### Description
 
@@ -149,7 +153,7 @@ March 27, 2025
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45991    | Fixed in Instance Manager 2.20.0 |
+| 45991    | Fixed in NGINX Instance Manager 2.20.0 |
 
 #### Description
 
@@ -169,7 +173,7 @@ February 06, 2025
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45845    | Fixed in Instance Manager 2.19.1 |
+| 45845    | Fixed in NGINX Instance Manager 2.19.1 |
 
 #### Description
 
@@ -206,7 +210,7 @@ November 08, 2024
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45024    | Fixed in Instance Manager 2.19.0 |
+| 45024    | Fixed in NGINX Instance Manager 2.19.0 |
 
 #### Description
 
@@ -218,7 +222,7 @@ There is an issue that causes previous error messages to persist in the web inte
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45301    | Fixed in Instance Manager 2.19.0 |
+| 45301    | Fixed in NGINX Instance Manager 2.19.0 |
 
 #### Description
 
@@ -230,7 +234,7 @@ There is an issue that causes previous error messages to persist in the web inte
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45570    | Fixed in Instance Manager 2.19.0 |
+| 45570    | Fixed in NGINX Instance Manager 2.19.0 |
 
 #### Description
 
@@ -242,7 +246,7 @@ If there is an NGINX configuration error when pushing a template configuration, 
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45573    | Fixed in Instance Manager 2.19.0 |
+| 45573    | Fixed in NGINX Instance Manager 2.19.0 |
 
 #### Description
 
@@ -254,7 +258,7 @@ Saving templates as “staged configs” causes syntax errors due to Augment tem
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45846    | Fixed in Instance Manager 2.19.1 |
+| 45846    | Fixed in NGINX Instance Manager 2.19.1 |
 
 #### Description
 
@@ -274,7 +278,7 @@ September 13, 2024
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45565    | Fixed in Instance Manager 2.19.0 |
+| 45565    | Fixed in NGINX Instance Manager 2.19.0 |
 
 #### Description
 
@@ -290,7 +294,7 @@ July 10, 2024
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44971    | Fixed in Instance Manager 2.17.0 |
+| 44971    | Fixed in NGINX Instance Manager 2.17.0 |
 
 #### Description
 
@@ -302,7 +306,7 @@ When editing a template submission, you can now choose between using a snapshot 
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44975    | Fixed in Instance Manager 2.18.0 |
+| 44975    | Fixed in NGINX Instance Manager 2.18.0 |
 
 #### Description
 
@@ -318,7 +322,7 @@ When publishing a configuration template fails, the system only displays "Accept
 
 #### Description
 
-If NGINX Agent is configured to monitor NGINX App Protect before App Protect is installed, NGINX Agent will send an empty App Protect metadata structure to NGINX Instance Manager. This causes Instance Manager to fail to register the NGINX instance properly.
+If NGINX Agent is configured to monitor NGINX App Protect before App Protect is installed, NGINX Agent will send an empty App Protect metadata structure to NGINX Instance Manager. This causes NGINX Instance Manager to fail to register the NGINX instance properly.
 
 #### Workaround
 
@@ -326,7 +330,7 @@ Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_pub
 
 ---
 
-### {{% icon-bug %}} Web Analytics are not enabled after upgrading Instance Manager when keeping existing nms-http.conf {#45131}
+### {{% icon-bug %}} Web Analytics are not enabled after upgrading NGINX Instance Manager when keeping existing nms-http.conf {#45131}
 
 | Issue ID | Status |
 |----------|--------|
@@ -370,7 +374,7 @@ If you're installing NGINX Agent from package files, follow the steps in the [In
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 45512    | Fixed in Instance Manager 2.18.0 |
+| 45512    | Fixed in NGINX Instance Manager 2.18.0 |
 
 #### Description
 
@@ -386,7 +390,7 @@ April 18, 2024
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44877    | Fixed in Instance Manager 2.17.0 |
+| 44877    | Fixed in NGINX Instance Manager 2.17.0 |
 
 #### Description
 
@@ -398,7 +402,7 @@ If you get an "Error accessing resource: forbidden" message while using the NGIN
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44961    | Fixed in Instance Manager 2.17.0 |
+| 44961    | Fixed in NGINX Instance Manager 2.17.0 |
 
 #### Description
 
@@ -427,7 +431,7 @@ If you need to modify a template that you have already submitted, create a copy 
 
 December 12, 2023
 
-### {{% icon-bug %}}   Licenses for NGINX Plus applied prior to Instance Manager 2.15 don't show the full feature set {#44685}
+### {{% icon-bug %}}   Licenses for NGINX Plus applied prior to NGINX Instance Manager 2.15 don't show the full feature set {#44685}
 
 | Issue ID | Status |
 |----------|--------|
@@ -435,7 +439,7 @@ December 12, 2023
 
 #### Description
 
-With the introduction of Instance Manager 2.15, we are expanding the features available for some licenses, such as those with only NGINX Plus entitlement. If such a license was applied before upgrading to 2.15, the expanded set of features will not be available as intended.
+With the introduction of NGINX Instance Manager 2.15, we are expanding the features available for some licenses, such as those with only NGINX Plus entitlement. If such a license was applied before upgrading to 2.15, the expanded set of features will not be available as intended.
 
 #### Workaround
 
@@ -447,7 +451,7 @@ Terminate the license applied previously. Re-apply the license.
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44686    | Fixed in Instance Manager 2.17.0 |
+| 44686    | Fixed in NGINX Instance Manager 2.17.0 |
 
 #### Description
 
@@ -483,7 +487,7 @@ sudo systemctl restart nms
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44758    | Fixed in Instance Manager 2.15.1 |
+| 44758    | Fixed in NGINX Instance Manager 2.15.1 |
 
 #### Description
 
@@ -499,7 +503,7 @@ Upgrade to NGINX Instance Manager 2.15.1.
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44759    | Fixed in Instance Manager 2.15.1 |
+| 44759    | Fixed in NGINX Instance Manager 2.15.1 |
 
 #### Description
 
@@ -528,7 +532,7 @@ October 16, 2023
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44351    | Fixed in Instance Manager 2.15.0 |
+| 44351    | Fixed in NGINX Instance Manager 2.15.0 |
 
 #### Description
 
@@ -544,7 +548,7 @@ An upgrade to NGINX Agent v2.30 or later is required for instances to stream mem
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44504    | Fixed in Instance Manager 2.15.0 |
+| 44504    | Fixed in NGINX Instance Manager 2.15.0 |
 
 #### Description
 
@@ -575,7 +579,7 @@ or
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44531    | Fixed in Instance Manager 2.14.0 |
+| 44531    | Fixed in NGINX Instance Manager 2.14.0 |
 
 #### Description
 
@@ -591,7 +595,7 @@ NGINX Agent does not report NGINX App Protect as "Active" when the Attack Signat
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44536    | Fixed in Instance Manager 2.14.0 |
+| 44536    | Fixed in NGINX Instance Manager 2.14.0 |
 
 #### Description
 
@@ -631,11 +635,11 @@ When using the Scan feature, the CVE column may provide a value of '--' for inst
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44586    | Fixed in Instance Manager 2.15.0 |
+| 44586    | Fixed in NGINX Instance Manager 2.15.0 |
 
 #### Description
 
-The ClickHouse database service is a required component of the Instance Manager Dashboard. The dashboard may display an error message if the ClickHouse service does not start or quits unexpectedly.
+The ClickHouse database service is a required component of the NGINX Instance Manager Dashboard. The dashboard may display an error message if the ClickHouse service does not start or quits unexpectedly.
 
 #### Workaround
 
@@ -647,7 +651,7 @@ Restart the Clickhouse service.
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44603    | Fixed in Instance Manager 2.15.0 |
+| 44603    | Fixed in NGINX Instance Manager 2.15.0 |
 
 #### Description
 
@@ -672,7 +676,7 @@ September 05, 2023
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44323    | Fixed in Instance Manager 2.14.0 |
+| 44323    | Fixed in NGINX Instance Manager 2.14.0 |
 
 #### Description
 
@@ -716,7 +720,7 @@ If `precompiled_publication` is set to `true`, NGINX Management Suite may incorr
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44051    | Fixed in Instance Manager 2.14.0 |
+| 44051    | Fixed in NGINX Instance Manager 2.14.0 |
 
 #### Description
 
@@ -728,11 +732,11 @@ The reporting of severities has been disabled in NGINX App Protect 4.4. As a res
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44254    | Fixed in Instance Manager 2.13.1 |
+| 44254    | Fixed in NGINX Instance Manager 2.13.1 |
 
 #### Description
 
-If you upgrade to Instance Manager 2.13 and already have certificates in place, you may encounter validation errors in the web interface when you try to create or edit a Resource Group and access the Certs list. You will not be able to save the Resource Group if you encounter these errors.
+If you upgrade to NGINX Instance Manager 2.13 and already have certificates in place, you may encounter validation errors in the web interface when you try to create or edit a Resource Group and access the Certs list. You will not be able to save the Resource Group if you encounter these errors.
 
 This issue doesn't occur if you upload certificates _after_ upgrading to version 2.13, nor does it affect new 2.13 installations. Instance Groups and Systems are unaffected.
 
@@ -753,7 +757,7 @@ To work around this issue, you have two options:
 
 #### Description
 
-In Instance Manager 2.13, a new configuration is published before the compile stage of a WAF policy is complete. This happens only when the policy is first referenced. This leads to a deployment failure, and the configuration rolls back. Typically, by the time you try to submit the configuration again, the policy has finished compiling, and the request goes through.
+In NGINX Instance Manager 2.13, a new configuration is published before the compile stage of a WAF policy is complete. This happens only when the policy is first referenced. This leads to a deployment failure, and the configuration rolls back. Typically, by the time you try to submit the configuration again, the policy has finished compiling, and the request goes through.
 
 The initial failure message looks like this:
 
@@ -771,7 +775,7 @@ Retry pushing the new configuration. The deployment should work the second time 
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 44277    | Fixed in Instance Manager 2.13.1 |
+| 44277    | Fixed in NGINX Instance Manager 2.13.1 |
 
 #### Description
 
@@ -787,7 +791,7 @@ July 20, 2023
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43438    | Fixed in Instance Manager 2.13.0 |
+| 43438    | Fixed in NGINX Instance Manager 2.13.0 |
 
 #### Description
 
@@ -803,7 +807,7 @@ Choose a less verbose logging level, such as warning, error, or info.
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43580    | Fixed in Instance Manager 2.12.0 |
+| 43580    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -821,11 +825,11 @@ More information is available in the Platform API reference guide, under the Lic
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43606    | Fixed in Instance Manager 2.16.0 |
+| 43606    | Fixed in NGINX Instance Manager 2.16.0 |
 
 #### Description
 
-Upgrading to Instance Manager 2.12 will stop NGINX Management Suite from transmitting telemetry.
+Upgrading to NGINX Instance Manager 2.12 will stop NGINX Management Suite from transmitting telemetry.
 
 #### Workaround
 
@@ -837,7 +841,7 @@ Toggle the telemetry setting off and on. You can do this by selecting **Settings
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43655    | Fixed in Instance Manager 2.12.0 |
+| 43655    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -859,7 +863,7 @@ kubectl -n nms scale --replicas=0 deployment.apps/integrations; kubectl -n nms s
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43719    | Fixed in Instance Manager 2.18.0 |
+| 43719    | Fixed in NGINX Instance Manager 2.18.0 |
 
 #### Description
 
@@ -942,7 +946,7 @@ Update the Attack Signatures or Threat Campaigns package one instance at a time.
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42967    | Fixed in Instance Manager 2.13.0 |
+| 42967    | Fixed in NGINX Instance Manager 2.13.0 |
 
 #### Description
 
@@ -964,7 +968,7 @@ Delete or move the support package output files: `nms-hybrid/support-package/k8s
 
 #### Description
 
-NGINX Agent 2.26, which is packaged with Instance Manager 2.11, may fail to start on RHEL 9 systems with SELinux enabled. An error similar to the following is logged: "Unable to read dynamic config".
+NGINX Agent 2.26, which is packaged with NGINX Instance Manager 2.11, may fail to start on RHEL 9 systems with SELinux enabled. An error similar to the following is logged: "Unable to read dynamic config".
 
 #### Workaround
 
@@ -976,7 +980,7 @@ Use an earlier version of the NGINX Agent. You can install the NGINX Agent from 
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43012    | Fixed in Instance Manager 2.12.0 |
+| 43012    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -992,7 +996,7 @@ Use the unique identifier to assign specific permissions to a particular certifi
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43016    | Fixed in Instance Manager 2.12.0 |
+| 43016    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -1008,7 +1012,7 @@ Redeploy a new version of the security policy or an updated `nginx.conf`.
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43034    | Fixed in Instance Manager 2.15.0 |
+| 43034    | Fixed in NGINX Instance Manager 2.15.0 |
 
 #### Description
 
@@ -1035,7 +1039,7 @@ April 26, 2023
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 41257    | Fixed in Instance Manager 2.10.0 |
+| 41257    | Fixed in NGINX Instance Manager 2.10.0 |
 
 #### Description
 
@@ -1051,7 +1055,7 @@ Adjust the config_reload_monitoring_period parameter to a value that suits your 
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42105    | Fixed in Instance Manager 2.12.0 |
+| 42105    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -1059,15 +1063,15 @@ When you apply a filter with double backslashes (`\\`) on any of the Analytics e
 
 ---
 
-### {{% icon-resolved %}} When upgrading to Instance Manager 2.10, the publish status on App Security pages shows "Invalid Date" {#42108}
+### {{% icon-resolved %}} When upgrading to NGINX Instance Manager 2.10, the publish status on App Security pages shows "Invalid Date" {#42108}
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42108    | Fixed in Instance Manager 2.11.0 |
+| 42108    | Fixed in NGINX Instance Manager 2.11.0 |
 
 #### Description
 
-After upgrading to Instance Manager 2.10, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group.
+After upgrading to NGINX Instance Manager 2.10, the publish status on App Security pages of Policies, Attack Signatures, and Threat Campaign shows "Invalid Date" until new configurations are published to the instance or instance group.
 
 ---
 
@@ -1075,7 +1079,7 @@ After upgrading to Instance Manager 2.10, the publish status on App Security pag
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42182    | Fixed in Instance Manager 2.11.0 |
+| 42182    | Fixed in NGINX Instance Manager 2.11.0 |
 
 #### Description
 
@@ -1107,7 +1111,7 @@ Threat Campaign versions can be published with the API using the route: `api/pla
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42219    | Fixed in Instance Manager 2.11.0 |
+| 42219    | Fixed in NGINX Instance Manager 2.11.0 |
 
 #### Description
 
@@ -1136,7 +1140,7 @@ After installation, we recommend you return the default to a more secure algorit
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42598    | Fixed in Instance Manager 2.10.1 |
+| 42598    | Fixed in NGINX Instance Manager 2.10.1 |
 
 #### Description
 
@@ -1148,7 +1152,7 @@ Sometimes, valid licenses for NGINX Management Suite are incorrectly identified 
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42932    | Fixed in Instance Manager 2.12.0 |
+| 42932    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -1172,7 +1176,7 @@ sudo systemctl restart nms
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 42999    | Fixed in Instance Manager 2.12.0 |
+| 42999    | Fixed in NGINX Instance Manager 2.12.0 |
 
 #### Description
 
@@ -1188,7 +1192,7 @@ April 06, 2023
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 43031    | Fixed in Instance Manager 2.14.0 |
+| 43031    | Fixed in NGINX Instance Manager 2.14.0 |
 
 #### Description
 
@@ -1208,7 +1212,7 @@ March 21, 2023
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 41157    | Fixed in Instance Manager 2.10.0 |
+| 41157    | Fixed in NGINX Instance Manager 2.10.0 |
 
 #### Description
 
@@ -1220,15 +1224,15 @@ If you are using FreeBSD, you can download the NGINX Agent from [https://github.
 
 ---
 
-### {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading Instance Manager {#41557}
+### {{% icon-resolved %}} NGINX configurations with special characters may not be editable from the web interface after upgrading NGINX Instance Manager {#41557}
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 41557    | Fixed in Instance Manager 2.9.1 |
+| 41557    | Fixed in NGINX Instance Manager 2.9.1 |
 
 #### Description
 
-After upgrading to Instance Manager 2.9.0, the system may display a "URI malformed" error if you use the web interface to edit a staged configuration or `nginx.conf` that contains special characters, such as underscores ("_").
+After upgrading to NGINX Instance Manager 2.9.0, the system may display a "URI malformed" error if you use the web interface to edit a staged configuration or `nginx.conf` that contains special characters, such as underscores ("_").
 
 ---
 
@@ -1240,7 +1244,7 @@ January 30, 2023
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 39760    | Fixed in Instance Manager 2.9.0 |
+| 39760    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
@@ -1256,11 +1260,11 @@ Select the hostname to open the instance details page to view the full informati
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 40020    | Fixed in Instance Manager 2.9.0 |
+| 40020    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
-The default Attack Signature might be unavailable for publishing from Instance Manager, even though it is listed on the web interface. Attempting to publish this Attack Signature results in the error message "Error publishing the security content: attack signature does not exist."
+The default Attack Signature might be unavailable for publishing from NGINX Instance Manager, even though it is listed on the web interface. Attempting to publish this Attack Signature results in the error message "Error publishing the security content: attack signature does not exist."
 
 #### Workaround
 
@@ -1272,11 +1276,11 @@ The default Attack Signature might be unavailable for publishing from Instance M
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 40085    | Fixed in Instance Manager 2.9.0 |
+| 40085    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
-If you've published new policies by updating the `nginx.config` file, using the Instance Manager REST API, or through the web interface, you may not see the policy when you initially select **Assign Policy and Signature Versions** on the Policy Detail page.
+If you've published new policies by updating the `nginx.config` file, using the NGINX Instance Manager REST API, or through the web interface, you may not see the policy when you initially select **Assign Policy and Signature Versions** on the Policy Detail page.
 
 #### Workaround
 
@@ -1288,11 +1292,11 @@ To fix this issue, return to the Policy Detail page and select **Assign Policy a
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 40396    | Fixed in Instance Manager 2.8.0 |
+| 40396    | Fixed in NGINX Instance Manager 2.8.0 |
 
 #### Description
 
-If you use CentOS 7, RHEL 7, or Amazon Linux 2 and you have configured auto-downloads for new new Attack Signatures or Threat Campaigns in Instance Manager, you may encounter an error similar to the following example when attempting to publish an NGINX App Protect WAF policy:
+If you use CentOS 7, RHEL 7, or Amazon Linux 2 and you have configured auto-downloads for new new Attack Signatures or Threat Campaigns in NGINX Instance Manager, you may encounter an error similar to the following example when attempting to publish an NGINX App Protect WAF policy:
 
 ```json
 {
@@ -1315,7 +1319,7 @@ This issue is related to [bug 39563](#39563) and has the same workaround.
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 40484    | Fixed in Instance Manager 2.9.0 |
+| 40484    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
@@ -1359,7 +1363,7 @@ The instance on the NGINX Management Suite's Instance Details page should show *
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 41328    | Fixed in Instance Manager 2.9.0 |
+| 41328    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
@@ -1375,15 +1379,15 @@ Prior to upgrading, we recommend that you [back up your configuration files]({{<
 
 December 20, 2022
 
-### {{% icon-resolved %}} "Public Key Not Available" error when upgrading Instance Manager on a Debian-based system {#39431}
+### {{% icon-resolved %}} "Public Key Not Available" error when upgrading NGINX Instance Manager on a Debian-based system {#39431}
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 39431    | Fixed in Instance Manager 2.9.0 |
+| 39431    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
-When attempting to upgrade Instance Manager on a Debian-based system, the command `sudo apt-get update` may return the error “public key is not available,” preventing the NGINX Agent from being updated. To resolve this issue, you need to update the public key first.
+When attempting to upgrade NGINX Instance Manager on a Debian-based system, the command `sudo apt-get update` may return the error “public key is not available,” preventing the NGINX Agent from being updated. To resolve this issue, you need to update the public key first.
 
 #### Workaround
 
@@ -1415,7 +1419,7 @@ To manually update the public key, take the following steps:
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 41327    | Fixed in Instance Manager 2.10.0 |
+| 41327    | Fixed in NGINX Instance Manager 2.10.0 |
 
 #### Description
 
@@ -1495,11 +1499,11 @@ For example, in the F5 WAF for NGINX JSON declarative policy, these references a
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 37705    | Fixed in Instance Manager 2.11.0 |
+| 37705    | Fixed in NGINX Instance Manager 2.11.0 |
 
 #### Description
 
-When viewing the NGINX Plus usage in Instance Manager, the graph displaying usage over time requires several hours of data before displaying the count.
+When viewing the NGINX Plus usage in NGINX Instance Manager, the graph displaying usage over time requires several hours of data before displaying the count.
 
 #### Workaround
 
@@ -1511,11 +1515,11 @@ The data presented in the graph can be retrieved from the API.
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 38589    | Fixed in Instance Manager 2.7.0 |
+| 38589    | Fixed in NGINX Instance Manager 2.7.0 |
 
 #### Description
 
-When using the NMS Instance Manager Helm upgrade command on a multi worker node kubernetes cluster setup, the core, dpm and integrations deployments may fail to upgrade.
+When using the NMS NGINX Instance Manager Helm upgrade command on a multi worker node kubernetes cluster setup, the core, dpm and integrations deployments may fail to upgrade.
 
 #### Workaround
 
@@ -1531,11 +1535,11 @@ Post upgrade, do the following steps:
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 39563    | Fixed in Instance Manager 2.8.0 |
+| 39563    | Fixed in NGINX Instance Manager 2.8.0 |
 
 #### Description
 
-If you are trying to publish an NGINX App Protect WAF policy after adding a new Attack Signature or Threat Campaign to Instance Manager, either through the `security/attack-signatures` or `security/threat-campaigns` API endpoints, or by enabling auto-downloads of signatures and threat campaigns, you may encounter an error similar to the following:
+If you are trying to publish an NGINX App Protect WAF policy after adding a new Attack Signature or Threat Campaign to NGINX Instance Manager, either through the `security/attack-signatures` or `security/threat-campaigns` API endpoints, or by enabling auto-downloads of signatures and threat campaigns, you may encounter an error similar to the following:
 
 ```json
 {
@@ -1565,12 +1569,12 @@ Feb  6 18:59:02 ip-172-16-0-23 <INT>: --- stderr ---
 
 #### Workaround
 
-Download the `attack-signatures` and/or `threat-campaigns` packages for CentOS 7, RHEL 7, or Amazon Linux 2 from the NGINX repo directly to your Instance Manager host by following the instructions in the official NGINX App Protect documentation:
+Download the `attack-signatures` and/or `threat-campaigns` packages for CentOS 7, RHEL 7, or Amazon Linux 2 from the NGINX repo directly to your NGINX Instance Manager host by following the instructions in the official NGINX App Protect documentation:
 
 - [Attack Signatures Documentation](https://docs.nginx.com/nginx-app-protect/admin-guide/install/#centos--rhel-74--amazon-linux-2)
 - [Threat Campaigns Documentation](https://docs.nginx.com/nginx-app-protect/admin-guide/install/#centos--rhel-74--amazon-linux-2-1)
 
-After downloading the `attack-signatures` and/or `threat-campaigns` packages onto your Instance Manager host, give Instance Manager about 15 seconds to recognize these packages.
+After downloading the `attack-signatures` and/or `threat-campaigns` packages onto your NGINX Instance Manager host, give NGINX Instance Manager about 15 seconds to recognize these packages.
 
 If the logging level is set to `debug`, you should see the following logs that confirm a successful installation:
 
@@ -1598,7 +1602,7 @@ October 04, 2022
 
 | Issue ID | Status                           |
 |----------|----------------------------------|
-| 37479    | Fixed in Instance Manager 2.13.0 |
+| 37479    | Fixed in NGINX Instance Manager 2.13.0 |
 
 #### Description
 
@@ -1642,7 +1646,7 @@ filterBy=<DIMENSION_NAME>!= ''
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 35172    | Fixed in Instance Manager 2.9.0 |
+| 35172    | Fixed in NGINX Instance Manager 2.9.0 |
 
 #### Description
 
@@ -1680,11 +1684,11 @@ Keep config files under 50 MB.
 
 ---
 
-### {{% icon-resolved %}} Instance Manager reports old NGINX version after upgrade {#31225}
+### {{% icon-resolved %}} NGINX Instance Manager reports old NGINX version after upgrade {#31225}
 
 | Issue ID | Status                          |
 |----------|---------------------------------|
-| 31225    | Fixed in Instance Manager 2.7.0 |
+| 31225    | Fixed in NGINX Instance Manager 2.7.0 |
 
 #### Description
 
