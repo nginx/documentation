@@ -14,6 +14,12 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## April 29, 2026
+
+- {{% icon-feature %}} **IP Intelligence is now available on Standard V3 plans**
+
+  NGINXaaS for Azure now supports IP Intelligence for F5 WAF for NGINX on **Standard V3** deployments. Use IP Intelligence to block or log requests from IP addresses associated with known threat categories, such as botnets, scanners, and phishing proxies. No extra license is required—the threat database updates automatically every 60 minutes. For more information, see [IP Intelligence]({{< ref "/nginxaas-azure/app-protect/ip-intelligence.md" >}}).
+  
 ## April 10, 2026
 
 - {{% icon-resolved %}} **Azure Resource Health alerts fully functional**

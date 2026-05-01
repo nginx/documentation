@@ -37,7 +37,7 @@ You must have `"READ"` permission for the bundle to retrieve it.
 Example:
 
 ```shell
-curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid> \
+curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid> \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -46,7 +46,7 @@ The response includes a `content` field that contains the bundle in base64 forma
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
   -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 

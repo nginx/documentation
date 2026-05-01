@@ -222,7 +222,7 @@ Remove the Gateway API CRDs:
 
 ## See also
 
-- [Gateway API Inference Exntension Introduction](https://gateway-api-inference-extension.sigs.k8s.io/): for introductory details to the project.
+- [Gateway API Inference Extension Introduction](https://gateway-api-inference-extension.sigs.k8s.io/): for introductory details to the project.
 - [Gateway API Inference Extension API Overview](https://gateway-api-inference-extension.sigs.k8s.io/concepts/api-overview/): for an API overview.
 - [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/): for additional use cases and guides.
 

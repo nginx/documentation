@@ -61,7 +61,7 @@ If you don’t include `attackSignatureVersionDateTime`, `botSignatureVersionDat
 Example:
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/policies/bundles \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies/bundles \
   -H "Authorization: Bearer <access token>" \
   -H "Content-Type: application/json" \
   -d @security-policy-bundles.json

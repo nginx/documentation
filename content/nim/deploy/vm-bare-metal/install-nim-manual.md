@@ -1,5 +1,5 @@
 ---
-title: Manually install any version of NGINX Instance Manager
+title: Manually install NGINX Instance Manager
 toc: true
 weight: 10
 noindex: true
@@ -10,7 +10,7 @@ nd-docs: DOCS-1211
 
 ## Overview
 
-Follow the steps in this guide to install or upgrade a specific version of NGINX Instance Manager.
+Follow the steps in this guide to install or upgrade NGINX Instance Manager.
 
 ## Before You Begin
 

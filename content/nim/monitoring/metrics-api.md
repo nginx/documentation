@@ -201,11 +201,11 @@ curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=SUM(nginx.
 
 This parameter, as the name indicates, filters results based on the value of dimensions. Filtering by dimension value can help to refine the data that's returned into a more specific set.
 
-The `filter` query consists of one or more predicates in the form of `<dimension><operator><dimension value>`, where:
+The `filter` query consists of one or more predicates in the form of `<DIMENSION><OPERATOR><DIMENSION_VALUE>`, where:
 
-- `<dimension>` is the name of the dimension;
-- `<operator>` is one of the supported operators (`=`, `!=`, `<`, `<=`, `>=` `>`, `in` or `not`);
-- `<dimension value>` is value of the dimension(s) that you want to filter on.
+- `<DIMENSION>` is the name of the dimension;
+- `<OPERATOR>` is one of the supported operators (`=`, `!=`, `<`, `<=`, `>=` `>`, `in` or `not`);
+- `<DIMENSION_VALUE>` is value of the dimension(s) that you want to filter on.
 
 For example, the following query includes a simple filter on the app name. The query returns data for the application named `app1` for the last 12 hours.
 
