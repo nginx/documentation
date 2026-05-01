@@ -264,7 +264,7 @@ spec:
       - name: gateway-nginx-nginx-plus-registry-secret
       initContainers:
       - name: compile-attack-signatures
-        image: private-registry.nginx.com/nap/waf-compiler:5.12.1
+        image: private-registry.nginx.com/nap/waf-compiler:{{< ngf-waf-release-version >}}
         args:
         - -p
         - /policies/attack-signatures-blocking.json
@@ -276,7 +276,7 @@ spec:
         - name: bundles
           mountPath: /bundles
       - name: compile-dataguard
-        image: private-registry.nginx.com/nap/waf-compiler:5.12.1
+        image: private-registry.nginx.com/nap/waf-compiler:{{< ngf-waf-release-version >}}
         args:
         - -p
         - /policies/dataguard-blocking.json
@@ -317,7 +317,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} Replace `5.12.1` with the F5 WAF for NGINX version that matches your WAF sidecar images. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
+{{< call-out "note" >}} The compiler image tag must match the F5 WAF for NGINX version supported by your NGINX Gateway Fabric release. See the [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) for the supported version. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
 
 Wait for the init containers to compile the policies and the bundle server to start:
 
