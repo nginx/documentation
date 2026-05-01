@@ -136,7 +136,7 @@ spec:
 EOF
 ```
 
-{{< call-out "tip" >}} This creates a per-Gateway NginxProxy. You can also enable WAF for all Gateways at once using the GatewayClass-level NginxProxy or Helm values. See [Enable WAF on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md" >}}) for details, including custom WAF container images and additional settings. {{< /call-out >}}
+{{< call-out "tip" >}} This creates a per-Gateway NginxProxy. You can also enable WAF for all Gateways at once using the GatewayClass-level NginxProxy or Helm values. See [Enable WAF on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) for details, including custom WAF container images and additional settings. {{< /call-out >}}
 
 ---
 
@@ -190,7 +190,7 @@ EOF
 
 ## Create policy definitions
 
-Create a `ConfigMap` containing the WAF policy definitions used in this guide. The bundle server will compile these into `.tgz` bundles at startup.
+Create a `ConfigMap` containing the WAF policy definitions used in this guide. The bundle server will compile these into `.tgz` [bundles]({{< ref "/ngf/waf-integration/overview.md#bundles" >}}) at startup.
 
 The first policy (`attack-signatures-blocking`) blocks common attack signatures such as cross-site scripting (XSS) and SQL injection. The second policy (`dataguard-blocking`) masks sensitive data such as credit card numbers and Social Security numbers in response bodies.
 

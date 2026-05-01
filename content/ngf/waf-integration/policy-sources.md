@@ -7,9 +7,9 @@ nd-product: FABRIC
 nd-description: Configure WAFPolicy to fetch compiled bundles from NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
 ---
 
-NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles. This page covers the NIM and N1C managed sources, as well as HTTP source configuration for production environments. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
+NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles: NGINX Instance Manager (NIM), F5 NGINX One Console (N1C), and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
 
-Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md" >}}) — either per Gateway or globally via Helm values.
+Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) — either per Gateway or globally via Helm values.
 
 {{< call-out "tip" >}} By default, NGINX Gateway Fabric retries transient fetch failures up to 3 times with exponential backoff, and each fetch attempt times out after 30 seconds. You can tune these using the `retryAttempts` and `timeout` fields on `policySource` or `logSource`. {{< /call-out >}}
 

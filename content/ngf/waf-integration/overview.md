@@ -105,7 +105,15 @@ Every Gateway attached to this GatewayClass will have WAF sidecars deployed. To 
 
 ## Policy lifecycle
 
-WAF policies must be **compiled** before they can be applied. Compilation produces a `.tgz` bundle file from a JSON policy definition. The role of NGINX Gateway Fabric begins at fetching the compiled bundle — it does not compile policies.
+### Bundles
+
+A WAF bundle is a compiled policy package produced by the [F5 WAF for NGINX compiler]({{< ref "/waf/configure/compiler.md" >}}). It contains the security policy, optional logging profile, [attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}), [threat campaign]({{< ref "/waf/policies/threat-campaigns.md" >}}) data, [bot signatures]({{< ref "/waf/policies/bot-signatures.md" >}}), and related metadata in a format that the WAF engine can load and enforce at runtime. Pre-compiling policies into bundles enables faster, more reliable WAF startup — policies are resolved and validated at build time rather than on the running data plane.
+
+### Compilation
+
+WAF policies must be compiled before they can be applied. Compilation takes a JSON policy definition (and optionally [global settings]({{< ref "/waf/configure/compiler.md" >}}) such as a cookie seed and [user-defined signatures]({{< ref "/waf/policies/user-signatures.md" >}})) and produces a `.tgz` bundle. NGINX Gateway Fabric does not compile policies — its role begins at fetching a compiled bundle and deploying it to the data plane.
+
+### Source types
 
 The following policy source types are supported, selected via the `spec.type` field on the `WAFPolicy` resource:
 
