@@ -19,34 +19,33 @@ For an overview of WAF concepts and architecture, see [F5 WAF for NGINX overview
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
-- A valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and is not included with the NGINX Plus license.
-- Ensure an imagePullSecret is available to pull the images from the NGINX private container registry, or that the NGINX Plus WAF image (`nginx-plus-waf`) and the WAF sidecar images (`waf-enforcer`, `waf-config-mgr`) are available in your container registry.
-- Install [Docker](https://docs.docker.com/get-started/get-docker/) to run the F5 WAF compiler.
+- Have a valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and is not included with the NGINX Plus license.
+- Have NGINX Gateway Fabric configured with an `imagePullSecret` for the NGINX private container registry (`private-registry.nginx.com`), either through Helm values or deployment manifests. When a Gateway is deployed, NGINX Gateway Fabric automatically creates the registry secret in the Gateway's namespace with the naming convention `<gateway-name>-nginx-<image-pull-secret-name>. The bundle server Deployment in this guide references the same secret for pulling the F5 WAF compiler image, be sure to update the secret name to match your environment.
 
 ---
 
 ## Deploy the sample application
 
-Deploy the `coffee` and `tea` sample applications. The `coffee` app is configured to return a response containing fake sensitive data (credit card number and SSN), which is used later to demonstrate data guard masking:
+Deploy the `customers` and `tea` sample applications. The `customers` app is configured to return a response containing fake sensitive data (credit card number and SSN), which is used later to demonstrate data guard masking:
 
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coffee
+  name: customers
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: coffee
+      app: customers
   template:
     metadata:
       labels:
-        app: coffee
+        app: customers
     spec:
       containers:
-      - name: coffee
+      - name: customers
         image: hashicorp/http-echo:latest
         args:
         - "-listen=:8080"
@@ -57,7 +56,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: coffee
+  name: customers
 spec:
   ports:
   - port: 80
@@ -65,7 +64,7 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: coffee
+    app: customers
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -104,9 +103,9 @@ EOF
 
 ---
 
-## Enable WAF on the NginxProxy
+## Create the Gateway with WAF enabled
 
-Create a `NginxProxy` resource with `waf.enable: true`. This instructs NGINX Gateway Fabric to deploy the `waf-enforcer` and `waf-config-mgr` sidecar containers alongside the NGINX Pod for any Gateway that references this `NginxProxy`.
+Create an `NginxProxy` with `waf.enable: true` and a Gateway that references it. This instructs NGINX Gateway Fabric to deploy the WAF sidecar containers alongside the NGINX Pod for this Gateway:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -117,19 +116,7 @@ metadata:
 spec:
   waf:
     enable: true
-EOF
-```
-
-{{< call-out "note" >}} If you use custom container images for the WAF sidecars or NGINX Plus, specify them in `spec.kubernetes.deployment.wafContainers` and `spec.kubernetes.deployment.container.image`. See the [NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}}) for details. {{< /call-out >}}
-
 ---
-
-## Create the Gateway
-
-Create a Gateway that references the WAF-enabled `NginxProxy`:
-
-```yaml
-kubectl apply -f - <<EOF
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -148,6 +135,8 @@ spec:
     hostname: "*.example.com"
 EOF
 ```
+
+{{< call-out "tip" >}} This creates a per-Gateway NginxProxy. You can also enable WAF for all Gateways at once using the GatewayClass-level NginxProxy or Helm values. See [Enable WAF on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md" >}}) for details, including custom WAF container images and additional settings. {{< /call-out >}}
 
 ---
 
@@ -173,7 +162,7 @@ spec:
         type: PathPrefix
         value: /customers
     backendRefs:
-    - name: coffee
+    - name: customers
       port: 80
 ---
 apiVersion: gateway.networking.k8s.io/v1
@@ -199,9 +188,61 @@ EOF
 
 ---
 
-## Deploy a bundle server
+## Create policy definitions
 
-Deploy a simple NGINX-based server inside your cluster to host compiled bundles:
+Create a `ConfigMap` containing the WAF policy definitions used in this guide. The bundle server will compile these into `.tgz` bundles at startup.
+
+The first policy (`attack-signatures-blocking`) blocks common attack signatures such as cross-site scripting (XSS) and SQL injection. The second policy (`dataguard-blocking`) masks sensitive data such as credit card numbers and Social Security numbers in response bodies.
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: waf-policy-definitions
+data:
+  attack-signatures-blocking.json: |
+    {
+      "policy": {
+        "name": "attack-signatures-blocking",
+        "template": {
+          "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "signature-sets": [
+          {
+            "name": "All Signatures",
+            "block": true,
+            "alarm": true
+          }
+        ]
+      }
+    }
+  dataguard-blocking.json: |
+    {
+      "policy": {
+        "name": "dataguard-blocking",
+        "template": {
+          "name": "POLICY_TEMPLATE_NGINX_BASE"
+        },
+        "applicationLanguage": "utf-8",
+        "enforcementMode": "blocking",
+        "data-guard": {
+          "enabled": true,
+          "creditCardNumbers": true,
+          "usSocialSecurityNumbers": true
+        }
+      }
+    }
+EOF
+```
+
+---
+
+## Deploy the bundle server
+
+Deploy a bundle server that compiles the policy definitions into `.tgz` bundles using [F5 WAF compiler]({{< ref "/waf/configure/compiler.md" >}}) init containers, then serves them over HTTP:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -219,6 +260,33 @@ spec:
       labels:
         app: bundle-server
     spec:
+      imagePullSecrets:
+      - name: gateway-nginx-nginx-plus-registry-secret
+      initContainers:
+      - name: compile-attack-signatures
+        image: private-registry.nginx.com/nap/waf-compiler:5.12.1
+        args:
+        - -p
+        - /policies/attack-signatures-blocking.json
+        - -o
+        - /bundles/attack-signatures-blocking.tgz
+        volumeMounts:
+        - name: policies
+          mountPath: /policies
+        - name: bundles
+          mountPath: /bundles
+      - name: compile-dataguard
+        image: private-registry.nginx.com/nap/waf-compiler:5.12.1
+        args:
+        - -p
+        - /policies/dataguard-blocking.json
+        - -o
+        - /bundles/dataguard-blocking.tgz
+        volumeMounts:
+        - name: policies
+          mountPath: /policies
+        - name: bundles
+          mountPath: /bundles
       containers:
       - name: bundle-server
         image: nginx:alpine
@@ -228,6 +296,9 @@ spec:
         - name: bundles
           mountPath: /usr/share/nginx/html
       volumes:
+      - name: policies
+        configMap:
+          name: waf-policy-definitions
       - name: bundles
         emptyDir: {}
 ---
@@ -246,63 +317,12 @@ spec:
 EOF
 ```
 
-Wait for the bundle server pod to be ready:
+{{< call-out "note" >}} Replace `5.12.1` with the F5 WAF for NGINX version that matches your WAF sidecar images. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
+
+Wait for the init containers to compile the policies and the bundle server to start:
 
 ```shell
-kubectl wait --for=condition=Available deployment/bundle-server --timeout=60s
-```
-
----
-
-## Compile a policy and upload it
-
-Create a policy definition that blocks common attack signatures:
-
-```json
-cat > attack-signatures-blocking.json <<'EOF'
-{
-  "policy": {
-    "name": "attack-signatures-blocking",
-    "template": {
-      "name": "POLICY_TEMPLATE_NGINX_BASE"
-    },
-    "applicationLanguage": "utf-8",
-    "enforcementMode": "blocking",
-    "signature-sets": [
-      {
-        "name": "All Signatures",
-        "block": true,
-        "alarm": true
-      }
-    ]
-  }
-}
-EOF
-```
-
-Compile the policy definition into a `.tgz` bundle using the F5 WAF compiler:
-
-```shell
-docker run --rm \
-  -v "$(pwd):/work" \
-  private-registry.nginx.com/nap/waf-compiler:5.12.1 \
-  -p /work/attack-signatures-blocking.json \
-  -o /work/attack-signatures-blocking.tgz
-```
-
-{{< call-out "note" >}} The compiler image requires access to the NGINX private container registry. Replace `5.12.1` with the F5 WAF for NGINX version that matches your WAF sidecar images. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
-
-Copy the compiled bundle into the bundle server pod:
-
-```shell
-BUNDLE_POD=$(kubectl get pods -l app=bundle-server -o jsonpath='{.items[0].metadata.name}')
-kubectl cp attack-signatures-blocking.tgz "${BUNDLE_POD}:/usr/share/nginx/html/attack-signatures-blocking.tgz"
-```
-
-Verify the bundle is being served:
-
-```shell
-kubectl exec "${BUNDLE_POD}" -- ls -la /usr/share/nginx/html/
+kubectl wait --for=condition=Available deployment/bundle-server --timeout=120s
 ```
 
 ---
@@ -358,6 +378,7 @@ gateway-nginx-7f9b8d6c4d-xxxxx  3/3     Running   0          2m
 If a container is not starting, check its logs:
 
 ```shell
+kubectl logs <pod-name> -c nginx
 kubectl logs <pod-name> -c waf-enforcer
 kubectl logs <pod-name> -c waf-config-mgr
 ```
@@ -396,14 +417,26 @@ If any condition is `False`, the message field describes the problem. See [Troub
 
 ### Test WAF protection
 
-Save the Gateway's external IP and port:
+Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status with `kubectl describe`:
 
 ```shell
-GW_IP=$(kubectl get gateway gateway -o jsonpath='{.status.addresses[0].value}')
-GW_PORT=80
+kubectl describe gateways.gateway.networking.k8s.io cafe-gateway
 ```
 
-**Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `coffee` backend:
+```text
+Addresses:
+  Type:   IPAddress
+  Value:  10.96.20.187
+```
+
+Save the public IP address and port(s) of the Gateway into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
+
+**Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
@@ -453,41 +486,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 
 In the previous step, you saw that the `customers` route returns sensitive data (credit card numbers and SSNs) in the response body. The gateway-level `attack-signatures-blocking` policy blocks inbound attacks, but does not inspect outbound responses.
 
-To protect sensitive data in responses, apply a **data guard** policy as a route-level override on the `customers` route. This policy masks credit card numbers and Social Security numbers in response bodies.
-
-### Compile the data guard policy
-
-```json
-cat > dataguard-blocking.json <<'EOF'
-{
-  "policy": {
-    "name": "dataguard-blocking",
-    "template": {
-      "name": "POLICY_TEMPLATE_NGINX_BASE"
-    },
-    "applicationLanguage": "utf-8",
-    "enforcementMode": "blocking",
-    "data-guard": {
-      "enabled": true,
-      "creditCardNumbers": true,
-      "usSocialSecurityNumbers": true
-    }
-  }
-}
-EOF
-```
-
-Compile and upload:
-
-```shell
-docker run --rm \
-  -v "$(pwd):/work" \
-  private-registry.nginx.com/nap/waf-compiler:5.12.1 \
-  -p /work/dataguard-blocking.json \
-  -o /work/dataguard-blocking.tgz
-
-kubectl cp dataguard-blocking.tgz "${BUNDLE_POD}:/usr/share/nginx/html/dataguard-blocking.tgz"
-```
+To protect sensitive data in responses, apply a **data guard** policy as a route-level override on the `customers` route. This policy masks credit card numbers and Social Security numbers in response bodies. The `dataguard-blocking` bundle was already compiled by the bundle server init container at startup — no additional compilation is needed.
 
 ### Apply the route-level WAFPolicy
 
@@ -516,10 +515,10 @@ EOF
 
 ### Verify data guard masking
 
-Wait for the policy to be programmed, then send the same request to the `customers` route:
+Wait for the policy to be `Programmed`, then send the same request to the `customers` route:
 
 ```shell
-kubectl wait --for=jsonpath='{.status.ancestors[0].conditions[?(@.type=="Accepted")].status}'=True wafpolicy/customers-strict-protection --timeout=60s
+kubectl wait --for=jsonpath='{.status.ancestors[0].conditions[?(@.type=="Programmed")].status}'=True wafpolicy/customers-strict-protection --timeout=60s
 ```
 
 ```shell

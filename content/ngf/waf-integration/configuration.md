@@ -100,7 +100,7 @@ policySource:
 
 When WAF is enabled, NGINX Gateway Fabric automatically sets the `app_protect_cookie_seed` NGINX directive to a stable value derived from the Gateway's UID. This ensures that WAF session cookies issued by one NGINX replica can be validated by any other replica in the same deployment. Without this, each replica generates its own random seed at startup, which causes cross-replica cookie validation failures.
 
-If you have pre-compiled the cookie seed into your WAF policy bundles using the [compiler global settings]({{< ref "/waf/configure/compiler.md" >}}), disable the automatic cookie seed to avoid conflicting with the compiled-in value:
+If you have pre-compiled the cookie seed into your WAF policy bundles using the [compiler global settings]({{< ref "/waf/configure/compiler.md" >}}), disable the automatic cookie seed in the NginxProxy CRD to avoid conflicting with the compiled-in value:
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2

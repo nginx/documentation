@@ -9,6 +9,8 @@ nd-description: Configure WAFPolicy to fetch compiled bundles from NGINX Instanc
 
 NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles. This page covers the NIM and N1C managed sources, as well as HTTP source configuration for production environments. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
 
+Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md" >}}) — either per Gateway or globally via Helm values.
+
 {{< call-out "tip" >}} By default, NGINX Gateway Fabric retries transient fetch failures up to 3 times with exponential backoff, and each fetch attempt times out after 30 seconds. You can tune these using the `retryAttempts` and `timeout` fields on `policySource` or `logSource`. {{< /call-out >}}
 
 ---
@@ -124,7 +126,7 @@ spec:
 EOF
 ```
 
-This policy overrides the gateway-level policy for the `customers` route only. The `tea` route continues to use the gateway-level `ngfBlocking` policy.
+This policy overrides the gateway-level policy for the `customers` route only. Any other routes attached to the gateway continue to use the gateway-level `ngfBlocking` policy.
 
 ---
 
