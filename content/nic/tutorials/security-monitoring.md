@@ -41,8 +41,6 @@ NGINX Ingress Controller images that include F5 WAF for NGINX also include NGINX
 
 ### Using Manifests
 
-{{< call-out "note" >}} The `-agent-instance-group` flag is required when using NGINX Instance Manager with NGINX Agent 2. It is not required when using NGINX Agent 3.{{< /call-out >}}
-
 1. Add the below arguments to the `args` section of your NGINX Ingress Controller Deployment, DaemonSet, or StatefulSet:
 
     ```yaml
@@ -142,10 +140,6 @@ This guide assumes that you have an NGINX One Console account with access to cre
 1. Add the below arguments to the `values.yaml` file:
 
     ```yaml
-    controller:
-      nginxplus: true
-      appprotect:
-        enable: true
     nginxAgent:
       enable: true
       dataplaneKeySecretName: "<data_plane_key_secret_name>"
@@ -153,15 +147,11 @@ This guide assumes that you have an NGINX One Console account with access to cre
       endpointPort: 443
     ```
 
-    For F5 WAF for NGINX v5, also set `controller.appprotect.v5: true` and configure the enforcer and config manager images. See the [F5 WAF for NGINX v5 installation guide]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}) for details on the additional Helm values required.
-
 2. Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
 See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) guide for more details on connecting to NGINX One Console.
 
 ### Using Manifests
-
-{{< call-out "note" >}} When using NGINX One Console with NGINX Agent 3, the `-agent-instance-group` flag is not required.{{< /call-out >}}
 
 1. Add the below argument to the `args` section of your NGINX Ingress Controller Deployment, DaemonSet, or StatefulSet:
 
@@ -219,8 +209,6 @@ See the [Connect NGINX Ingress Controller to NGINX One Console]({{< ref "/nginx-
    ```
 
    The `logs-nap` feature enables NGINX Agent to collect F5 WAF for NGINX security events. The `/etc/app_protect` entry in `allowed_directories` is required for WAF-enabled deployments.
-
-{{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
 4. Mount the ConfigMap and the data plane key Secret to the NGINX Ingress Controller pod:
 
@@ -304,14 +292,6 @@ Update your `values.yaml` to replace the NGINX Instance Manager configuration wi
 #   napMonitoring: ...
 
 # Add NGINX One Console configuration:
-controller:
-  image:
-    repository: <your-registry>/nginx-plus-ingress
-    # Use an image with the -agent suffix (available starting with NIC 5.5.0), for example:
-    # debian-plus-nap-agent (WAF v4) or debian-plus-nap-v5-agent (WAF v5)
-  nginxplus: true
-  appprotect:
-    enable: true
 nginxAgent:
   enable: true
   dataplaneKeySecretName: "dataplane-key"
