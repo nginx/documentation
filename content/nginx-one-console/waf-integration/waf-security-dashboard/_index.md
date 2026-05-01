@@ -1,9 +1,12 @@
 ---
 title: F5 WAF for NGINX security monitoring
-description: Monitor F5 WAF for NGINX security events in NGINX One Console.
+description: Monitor F5 WAF for NGINX security events in NGINX One Console using the security dashboard to review attacks, violations, and triggered signatures.
 nd-keywords: "F5 WAF for NGINX, security monitoring, NGINX One Console, security dashboard, security events, violations, signatures"
 weight: 425
 url: /nginx-one-console/waf-integration/waf-security-dashboard
+nd-summary: >
+  Use this section to find guides for setting up, managing, and querying F5 WAF for NGINX security events in NGINX One Console.
+  Security monitoring in NGINX One Console collects WAF events from NGINX Plus instances and surfaces them through a dashboard and an analytics API.
 ---
 
 Use the security monitoring module in NGINX One Console to collect, visualize, and query security events from F5 WAF for NGINX running on NGINX Plus instances. Review attacks, violations, and triggered signatures to assess threats and fine-tune your policies.

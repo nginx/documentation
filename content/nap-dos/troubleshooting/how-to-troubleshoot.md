@@ -7,6 +7,9 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Diagnose and resolve common F5 DoS for NGINX problems using the configuration reference table, SELinux steps, and log collection guidance.
+  F5 DoS for NGINX exposes security, operation, request, and debug logs that you can use to isolate and fix most configuration and runtime issues.
 ---
 
 ## Overview

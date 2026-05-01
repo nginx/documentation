@@ -7,6 +7,10 @@ toc: true
 weight: 90
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Install or upgrade F5 DoS for NGINX on a virtual machine, bare metal host, or Docker container and have a working deployment protecting your web applications.
+  F5 DoS for NGINX is a dynamic NGINX Plus module that uses behavioral analysis to detect and mitigate DoS attacks in real time.
+  Instructions cover RHEL 8, 9, and 10, Rocky Linux, Debian, Ubuntu, Alpine, and Amazon Linux.
 ---
 
 ## Overview

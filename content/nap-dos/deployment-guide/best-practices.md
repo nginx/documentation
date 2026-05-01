@@ -7,6 +7,10 @@ toc: true
 weight: 130
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Configure protected objects with unique names, add the monitor directive, and enable security logging to improve detection accuracy and observability.
+  F5 DoS for NGINX uses protected objects and monitor directives to build a behavioral baseline and identify denial-of-service threats.
+  These settings apply to any deployment where F5 DoS for NGINX is already installed.
 ---
 
 This guide shows how to configure F5 DoS for NGINX to protect a proxy server.

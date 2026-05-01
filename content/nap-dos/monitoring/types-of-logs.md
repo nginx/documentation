@@ -7,6 +7,9 @@ toc: true
 weight: 130
 nd-content-type: reference
 nd-product: F5DOSN
+nd-summary: >
+  Identify which log type covers your monitoring or troubleshooting need and configure where each log is written.
+  F5 DoS for NGINX generates four log types—security, operation, request, and debug—each capturing a different aspect of traffic handling and system behavior.
 ---
 
 F5 DoS for NGINX has four log types:

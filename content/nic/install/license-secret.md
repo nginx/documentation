@@ -7,6 +7,9 @@ weight: 300
 nd-content-type: how-to
 nd-product: INGRESS
 nd-docs: DOCS-1860
+nd-summary: >
+  Create a Kubernetes Secret containing your JWT to license F5 NGINX Ingress Controller and enable image downloads from the F5 registry.
+  The JWT validates your subscription and reports telemetry to the F5 licensing endpoint directly for internet-connected environments, or through NGINX Instance Manager for offline deployments.
 ---
 
 ## Overview

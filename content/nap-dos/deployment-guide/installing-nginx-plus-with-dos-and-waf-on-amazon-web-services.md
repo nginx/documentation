@@ -7,6 +7,10 @@ toc: true
 weight: 120
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Launch a pre-built AMI from the AWS Marketplace to get F5 NGINX Plus with F5 DoS for NGINX and F5 WAF for NGINX running on Amazon EC2.
+  AMIs are available for Amazon Linux, RHEL, Debian, and Ubuntu, with NGINX Plus and the protection modules pre-configured for EC2.
+  You need an AWS account and an active F5 subscription to subscribe to the AMI.
 ---
 
 

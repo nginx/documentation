@@ -7,6 +7,9 @@ weight: 120
 nd-docs: DOCS-667
 nd-content-type: reference
 nd-product: F5DOSN
+nd-summary: >
+  Look up the syntax, context, defaults, and examples for every F5 DoS for NGINX directive and configure your deployment accordingly.
+  F5 DoS for NGINX directives extend nginx.conf with controls for behavioral detection, protected object management, monitor settings, and security logging.
 ---
 
 ## Introduction

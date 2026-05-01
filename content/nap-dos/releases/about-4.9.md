@@ -7,6 +7,9 @@ weight: 30
 nd-docs: DOCS-1783
 nd-content-type: reference
 nd-product: F5DOSN
+nd-summary: >
+  Review what changed in F5 DoS for NGINX 4.9 and check whether your platform and NGINX Plus version are supported.
+  Version 4.9 adds support for Debian 13, RHEL 10, Rocky Linux 10, and NGINX Plus R37, and includes bug fixes.
 ---
 
 F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) attacks for your web applications.

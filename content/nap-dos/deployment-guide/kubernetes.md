@@ -1,11 +1,15 @@
 ---
 title: Kubernetes
-description: "Install F5 DoS for NGINX on Kubernetes using Helm or manifests."
+description: "Install F5 DoS for NGINX on Kubernetes using Helm or manifests to deploy DoS protection as a sidecar container alongside NGINX Plus."
 keywords: "F5 DoS for NGINX, Kubernetes, Helm, install, container, Docker, manifest"
 weight: 100
 toc: true
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Install F5 DoS for NGINX on Kubernetes using Helm or manifests and have a working deployment that protects your applications against behavioral DoS attacks.
+  F5 DoS for NGINX runs as a sidecar container alongside NGINX Plus, using real-time traffic analysis to detect and block denial-of-service attacks.
+  This guide covers the standard Kubernetes deployment; for L4 accelerated mitigation with eBPF, see the separate guide.
 ---
 
 This guide explains how to install F5 DoS for NGINX on Kubernetes. It covers the common steps for any Kubernetes-based deployment, then provides details specific to Helm or manifests.
