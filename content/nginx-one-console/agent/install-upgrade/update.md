@@ -1,5 +1,5 @@
 ---
-title: Upgrade NGINX Agent
+title: Upgrade NGINX Agent v3 to a new version 
 toc: true
 weight: 400
 nd-content-type: how-to
@@ -9,25 +9,28 @@ nd-product: NAGENT
 
 ## Overview
 
-{{< include "/agent/installation/update.md" >}}
+Follow the steps below to upgrade NGINX v3 Agent to the latest version.
 
-## Migrate NGINX Agent running in containers
+1. Open an SSH connection to the server where you've installed NGINX Agent.
 
-To migrate NGINX Agent containers, we provide a script to convert NGINX Agent v2 config files to NGINX Agent v3 config files: [NGINX Agent Config Upgrade Script](https://github.com/nginx/agent/blob/v3/scripts/packages/upgrade-agent-config.sh)
+1. Make a backup copy of the following locations to ensure that you can recover if the upgrade does not complete
+   successfully:
 
-To upgrade the configuration, you can follow this example:
+    - `/etc/nginx-agent`
+    - Every configuration directory specfied in `/etc/nginx-agent/nginx-agent.conf` as a `config_dirs` value
 
-```shell
-wget https://raw.githubusercontent.com/nginx/agent/refs/heads/main/scripts/packages/upgrade-agent-config.sh
-./upgrade-agent-config.sh --v2-config-file=./nginx-agent-v2.conf --v3-config-file=nginx-agent-v3.conf
-```
+1. Install the updated version of NGINX Agent:
 
-If your NGINX Agent container was previously a member of a Config Sync Group, then your NGINX Agent config must be manually updated to add the Config Sync Group label.
-See [Add Config Sync Group]({{< ref "/nginx-one-console/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}) for more information.
+    - CentOS, RHEL, RPM-Based
 
-### Rolling back from NGINX Agent v3 to v2
+        ```shell
+        sudo yum -y makecache
+        sudo yum update -y nginx-agent
+        ```
 
-If you need to roll back your environment to NGINX Agent v2, the upgrade process creates a backup of the NGINX Agent v2 config in the file `/etc/nginx-agent/nginx-agent-v2-backup.conf`.
+    - Debian, Ubuntu, Deb-Based
 
-Replace the contents of `/etc/nginx-agent/nginx-agent.conf` with the contents of `/etc/nginx-agent/nginx-agent-v2-backup.conf` and then reinstall an older version of NGINX Agent.
+        ```shell
+        sudo apt-get update
+        sudo apt-get install -y --only-upgrade nginx-agent -o Dpkg::Options::="--force-confold"
 
