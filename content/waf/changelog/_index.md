@@ -18,7 +18,7 @@ Released _May_ 13th, 2026_.
 ### New features
 
 - Added support for Debian 13
-- Added support for NGINX Plus R37
+- Added support for NGINX Plus R37.0
 - Upgrade PCRE with PCRE2
 
 ### Resolved issues
@@ -39,7 +39,7 @@ Released _May_ 13th, 2026_.
 | Amazon Linux 2023        | _app-protect-module-oss-1.29.8+5.629.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-37.0+5.629.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-37.0+5.629.0-1.amzn2023.ngx.x86_64.rpm_ |
 | Debian 11                | _app-protect-module-oss_1.29.8+5.629.0-1\~bullseye_amd64.deb_     | _app-protect-module-plus_37.0+5.629.0-1\~bullseye_amd64.deb_     | _app-protect_37.0+5.629.0-1\~bullseye_amd64.deb_     |
 | Debian 12                | _app-protect-module-oss_1.29.8+5.629.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_37.0+5.629.0-1\~bookworm_amd64.deb_     | _app-protect_37.0+5.629.0-1\~bookworm_amd64.deb_     |
-| Debian 13                | _app-protect-module-oss_1.29.8+5.629.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_37.0+5.629.0-1\~bookworm_amd64.deb_     | _app-protect_37.0+5.629.0-1\~trixie_amd64.deb_       |
+| Debian 13                | _app-protect-module-oss_1.29.8+5.629.0-1\~trixie_amd64.deb_     | _app-protect-module-plus_37.0+5.629.0-1\~trixie_amd64.deb_     | _app-protect_37.0+5.629.0-1\~trixie_amd64.deb_       |
 | Ubuntu 22.04             | _app-protect-module-oss_1.29.8+5.629.0-1\~jammy_amd64.deb_        | _app-protect-module-plus_37.0+5.629.0-1\~jammy_amd64.deb_        | _app-protect_37.0+5.629.0-1\~jammy_amd64.deb_        |
 | Ubuntu 24.04             | _app-protect-module-oss_1.29.8+5.629.0-1\~noble_amd64.deb_        | _app-protect-module-plus_37.0+5.629.0-1\~noble_amd64.deb_        | _app-protect_37.0+5.629.0-1\~noble_amd64.deb_        |
 | Oracle Linux 8           | _app-protect-module-oss-1.29.8+5.629.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.629.0-1.el8.ngx.x86_64.rpm_      | _app-protect-37.0+5.629.0-1.el8.ngx.x86_64.rpm_      |
