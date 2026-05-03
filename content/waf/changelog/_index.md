@@ -19,7 +19,6 @@ Released _May_ 13th, 2026_.
 
 - Added support for Debian 13
 - Added support for NGINX Plus R37.0
-- Upgrade PCRE with PCRE2
 
 ### Resolved issues
 
