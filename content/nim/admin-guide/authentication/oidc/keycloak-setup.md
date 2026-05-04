@@ -5,6 +5,10 @@ toc: true
 weight: 400
 nd-content-type: tutorial
 nd-product: NIMNGR
+description: "Configure Keycloak as the OIDC identity provider for F5 NGINX Instance Manager to enable Single Sign-On and centralized user management."
+nd-summary: >
+  Configure Keycloak as the identity provider for F5 NGINX Instance Manager using OpenID Connect.
+  This tutorial walks through creating a Keycloak client, configuring redirect URIs, and connecting Keycloak to NGINX Instance Manager for OIDC authentication.
 ---
 
 ## Overview

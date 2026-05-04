@@ -1,10 +1,13 @@
 ---
 title: Add cookies, parameters, and URLs
-description: Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using NGINX Instance Manager.
+description: Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using F5 NGINX Instance Manager.
 toc: true
 weight: 500
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using F5 NGINX Instance Manager.
+  These settings let you define how the WAF handles specific cookies, query parameters, and URL paths in incoming requests.
 ---
 
 ## Add cookies

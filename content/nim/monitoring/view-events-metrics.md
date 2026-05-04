@@ -6,6 +6,9 @@ weight: 300
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-847
+nd-summary: >
+  View events and metrics data for your NGINX instances in F5 NGINX Instance Manager using the web interface or the REST API.
+  The events and metrics views show real-time and historical data to help you monitor instance health and diagnose issues.
 ---
 
 ## Overview
@@ -264,7 +267,7 @@ The **Metrics Summary** page includes a highlights section of the most important
 To view the metrics summary for an NGINX instance, take the following steps:
 
 1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
-1. Under **Modules**, select the **Instance Manager**.
+1. Under **Modules**, select the **NGINX Instance Manager**.
 1. Select an instance on the **Instances** detail page.
 1. Select the **Metrics Summary** tab.
 1. To view detailed metrics as graphs, select the **Metrics** tab.

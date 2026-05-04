@@ -5,6 +5,10 @@ toc: true
 weight: 200
 nd-content-type: tutorial
 nd-product: NIMNGR
+description: "Configure F5 NGINX Instance Manager to store secrets in an existing HashiCorp Vault installation instead of the default on-disk encrypted store."
+nd-summary: >
+  Configure F5 NGINX Instance Manager to store secrets in HashiCorp Vault.
+  NGINX Instance Manager provides a Vault driver that connects to an existing Vault installation, letting you centralize secret management across your organization.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

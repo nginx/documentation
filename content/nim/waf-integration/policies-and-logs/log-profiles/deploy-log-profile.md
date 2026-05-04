@@ -3,12 +3,12 @@ nd-content-type: how-to
 nd-docs: DOCS-000
 nd-product: NIMNGR
 title: Deploy log profiles
-description: "Deploy an F5 WAF for NGINX security log profile to NGINX instances or instance groups in NGINX Instance Manager."
+description: "Deploy an F5 WAF for NGINX security log profile to NGINX instances or instance groups in F5 NGINX Instance Manager."
 weight: 300
 toc: true
 nd-keywords: "deploy log profile, security log profile, WAF, NGINX Instance Manager, NIM, app protect, instance groups, log profile bundle, tgz, app_protect_security_log, app_protect_security_log_enable, configuration editor"
 nd-summary: >
-  Deploy a configured F5 WAF for NGINX security log profile to NGINX instances or instance groups in NGINX Instance Manager.
+  Deploy a configured F5 WAF for NGINX security log profile to NGINX instances or instance groups in F5 NGINX Instance Manager.
   A log profile must be deployed before it can capture security events on your NGINX instances.
   If the log profile has not yet been compiled for the target WAF compiler version, NGINX Instance Manager automatically compiles it into a bundle before deployment.
 nd-audience: operator
@@ -16,7 +16,7 @@ nd-audience: operator
 
 ## Overview
 
-Use this guide to deploy a security log profile to NGINX instances or instance groups in NGINX Instance Manager. A log profile doesn't capture security events until you deploy it. You can deploy a log profile directly from the Log Profiles screen, or as part of editing the NGINX configuration for an instance or instance group.
+Use this guide to deploy a security log profile to NGINX instances or instance groups in F5 NGINX Instance Manager. A log profile doesn't capture security events until you deploy it. You can deploy a log profile directly from the Log Profiles screen, or as part of editing the NGINX configuration for an instance or instance group.
 
 ---
 

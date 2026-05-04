@@ -5,6 +5,9 @@ toc: true
 weight: 400
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Update your Docker Compose file to run F5 WAF for NGINX as part of your containerized NGINX deployment.
+  After adding the WAF configuration to the Compose file, NGINX Agent connects the instance to F5 NGINX Instance Manager for centralized policy management.
 ---
 
 ## Before you begin
@@ -14,7 +17,7 @@ Before setting up Docker Compose, make sure you’ve done the following:
 - Install F5 WAF for NGINX by following the [installation guide]({{< ref "/waf/install/docker.md#hybrid-configuration" >}}).  
 - Create a `docker-compose.yaml` file as part of the installation process.  
 
-In this section, you’ll update the file so F5 WAF for NGINX can integrate with NGINX Instance Manager.
+In this section, you’ll update the file so F5 WAF for NGINX can integrate with F5 NGINX Instance Manager.
 
 ## Edit the Docker Compose file
 

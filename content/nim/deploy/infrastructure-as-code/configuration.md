@@ -5,6 +5,10 @@ toc: true
 weight: 200
 nd-content-type: how-to
 nd-product: NIMNGR
+description: "Install F5 NGINX Instance Manager using the open-source Ansible role for repeatable, automated deployments."
+nd-summary: >
+  Install F5 NGINX Instance Manager using the provided open-source Ansible role.
+  The Ansible role automates the installation of NGINX Instance Manager and its dependencies, including NGINX and ClickHouse, across your target hosts.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

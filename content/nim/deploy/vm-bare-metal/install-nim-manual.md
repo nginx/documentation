@@ -6,11 +6,15 @@ noindex: true
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-1211
+description: "Manually install or upgrade F5 NGINX Instance Manager on a virtual machine or bare metal host by following step-by-step package installation instructions."
+nd-summary: >
+  Install or upgrade F5 NGINX Instance Manager manually on a virtual machine or bare metal host.
+  This guide covers each installation step individually for environments where the automated script is not appropriate.
 ---
 
 ## Overview
 
-Follow the steps in this guide to install or upgrade NGINX Instance Manager.
+Follow the steps in this guide to install or upgrade F5 NGINX Instance Manager.
 
 ## Before You Begin
 
@@ -99,13 +103,13 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 {{< include "installation/add-nms-repo.md" >}}
 
-## Install Instance Manager
+## Install NGINX Instance Manager
 
 {{<tabs name="install-nim">}}
 
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To install the latest version of Instance Manager, run the following command:
+1. To install the latest version of NGINX Instance Manager, run the following command:
 
     ```shell
     sudo yum install -y nms-instance-manager
@@ -119,7 +123,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To install the latest version of Instance Manager, run the following commands:
+1. To install the latest version of NGINX Instance Manager, run the following commands:
 
     ```shell
     sudo apt-get update
@@ -170,12 +174,12 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 {{< include "nim/admin-guide/license/connected-install-license-note.md" >}}
 
-## Upgrade Instance Manager {#upgrade-nim}
+## Upgrade NGINX Instance Manager {#upgrade-nim}
 
 {{<tabs name="upgrade_nim">}}
 {{%tab name="CentOS, RHEL, RPM-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manager, run the following command:
+1. To upgrade to the latest version of NGINX Instance Manager, run the following command:
 
    ```shell
    sudo yum update -y nms-instance-manager
@@ -185,7 +189,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
 
 {{%tab name="Debian, Ubuntu, Deb-Based"%}}
 
-1. To upgrade to the latest version of the Instance Manager, run the following command:
+1. To upgrade to the latest version of NGINX Instance Manager, run the following command:
 
    ```shell
    sudo apt-get update && \

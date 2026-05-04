@@ -1,6 +1,6 @@
 ---
 title: Augment templates
-description: ''
+description: "Customize NGINX configurations in F5 NGINX Instance Manager beyond the base template using augment templates to add settings for specific instances or groups."
 weight: 120
 toc: true
 nd-docs: DOCS-1656
@@ -11,6 +11,9 @@ nd-personas:
 - support
 nd-content-type: concept
 nd-product: NIMNGR
+nd-summary: >
+  Extend the F5 Global Default base template with augment templates to customize NGINX configurations for specific instances or instance groups.
+  Augment templates let administrators and developers add settings beyond the base template without modifying it directly.
 ---
 
 ## Overview {#augmenting-global-default-base-template}

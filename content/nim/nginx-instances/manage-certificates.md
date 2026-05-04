@@ -5,6 +5,10 @@ toc: true
 weight: 650
 nd-content-type: tutorial
 nd-product: NIMNGR
+description: "Add, update, and delete TLS certificates in F5 NGINX Instance Manager using the web interface or REST API."
+nd-summary: >
+  Manage TLS certificates for your NGINX instances from F5 NGINX Instance Manager using the web interface or the REST API.
+  You can add certificates once and deploy them to one or more instances, making it easy to renew and rotate certificates across your fleet.
 ---
 
 {{< include "nim/decoupling/note-legacy-nms-references.md" >}}
@@ -33,7 +37,7 @@ If you’re uploading a **PKCS12** certificate, make sure to encode it in base64
 To add a certificate to NGINX Instance Manager, take the following steps:
 
 1. Open the NGINX Instance Manager web interface and log in.
-2. Under **Modules**, select **Instance Manager**.
+2. Under **Modules**, select **NGINX Instance Manager**.
 3. In the left menu, select **Certificates**.
 4. Select **Add**.
 5. In the **Name** box, enter a name for the certificate.
@@ -49,7 +53,7 @@ To add a certificate to NGINX Instance Manager, take the following steps:
 To identify certificates that are expired or expiring soon:
 
 1. Open the NGINX Instance Manager web interface and log in.
-2. Under **Modules**, select **Instance Manager**.
+2. Under **Modules**, select **NGINX Instance Manager**.
 3. In the left menu, select **Certificates**.
 
 You will see the status of certificates as either `Expired`, `Expiring`, or `Healthy`, along with the expiration date. A certificate is considered `Expiring` if it will expire in fewer than 30 days.
@@ -65,7 +69,7 @@ To update expiring or expired certificates, select **Edit** and provide the new 
 To replace a certificate using the web interface:
 
 1. Open the NGINX Instance Manager web interface and log in.
-2. Under **Modules**, select **Instance Manager**.
+2. Under **Modules**, select **NGINX Instance Manager**.
 3. In the left menu, select **Certificates**.
 4. Select the certificate you want to replace, then select **Edit**.
 5. Paste the appropriate certificate contents into the **Private Key**, **Public Certificate**, and **Issuing CA Certificates** boxes.
@@ -107,7 +111,7 @@ curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_wi
 To delete a certificate using the web interface:
 
 1. Open the NGINX Instance Manager web interface and log in.
-2. Under **Modules**, select **Instance Manager**.
+2. Under **Modules**, select **NGINX Instance Manager**.
 3. In the left menu, select **Certificates**.
 4. Select the certificate you want to delete, then select **Delete**.
 
@@ -157,7 +161,7 @@ To manage certificates securely, you should rotate encryption keys regularly or 
 
 To rotate the certificate encryption key:
 
-1. Open an SSH connection to the F5 NGINX Instance Manager host.
+1. Open an SSH connection to the NGINX Instance Manager host.
 2. Run the following command to stop the `nms` service:
 
       ```shell

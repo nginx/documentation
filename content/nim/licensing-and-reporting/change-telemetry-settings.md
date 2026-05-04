@@ -1,15 +1,18 @@
 ---
 title: Change telemetry settings
-description: "Change advanced settings in /etc/nms/nms.conf to control how NGINX Instance Manager processes and reports usage data."
+description: "Change advanced settings in /etc/nms/nms.conf to control how F5 NGINX Instance Manager processes and reports usage data."
 weight: 400
 toc: true
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Adjust advanced telemetry settings in F5 NGINX Instance Manager to control how usage data is collected and reported to F5.
+  These settings rarely need changing; modify them only when the defaults don't fit your connected or disconnected deployment.
 ---
 
 ## Overview
 
-The telemetry settings in `/etc/nms/nms.conf` control how NGINX Instance Manager collects, processes, and sends usage data to F5. You don't need to change these settings unless the defaults don't fit your environment.
+The telemetry settings in `/etc/nms/nms.conf` control how F5 NGINX Instance Manager collects, processes, and sends usage data to F5. You don't need to change these settings unless the defaults don't fit your environment.
 
 Settings are grouped into two sections: connected mode and disconnected mode. To learn which mode you're running in, see your NGINX Instance Manager configuration file.
 

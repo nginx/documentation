@@ -5,6 +5,10 @@ toc: true
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-1109
+description: "Update the attack signature database used by Security Monitoring in F5 NGINX Instance Manager to keep signature names, risk scores, and accuracy data current."
+nd-summary: >
+  Update the attack signature database in F5 NGINX Instance Manager so Security Monitoring dashboards show accurate signature names, risk scores, and accuracy ratings.
+  The signature database version must match the version used in F5 WAF for NGINX; a mismatch causes new signatures to appear without attributes.
 ---
 
 The Security Monitoring module tracks security violations on F5 WAF for NGINX instances. Its analytics dashboards use a Signature Database to show details about Attack Signatures, including their name, accuracy, and risk.

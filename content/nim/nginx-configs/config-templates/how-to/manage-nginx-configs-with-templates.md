@@ -1,6 +1,6 @@
 ---
 title: Manage NGINX configs with templates
-description: ''
+description: "Create and deploy NGINX config templates in F5 NGINX Instance Manager to predefine and standardize configurations across your NGINX instances."
 weight: 200
 toc: true
 nd-docs: DOCS-1506
@@ -11,6 +11,9 @@ nd-personas:
 - support
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Create NGINX config templates in F5 NGINX Instance Manager and deploy them to your NGINX instances to standardize configurations.
+  Templates predefine and enforce consistent NGINX settings, reducing manual configuration work and the risk of configuration drift.
 ---
 
 ## Create a Config Template
@@ -63,7 +66,7 @@ _Replace the placeholder values with the actual details of your template._
 To import an existing template from a `.tar.gz` archive file:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
-2. From the Launchpad menu, choose **Instance Manager**.
+2. From the Launchpad menu, choose **NGINX Instance Manager**.
 3. In the left navigation pane, select **Templates > Overview**.
 4. On the Config Templates "Overview" page, select **Create**.
 5. In the **Create Template** dialog, select **Import**.
@@ -79,7 +82,7 @@ To import an existing template from a `.tar.gz` archive file:
 To create a new config template:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
-2. From the Launchpad menu, choose **Instance Manager**.
+2. From the Launchpad menu, choose **NGINX Instance Manager**.
 3. In the left navigation pane, select **Templates**.
 4. On the Config Templates "Overview" page, select **Create**.
 5. In the **Create Template** dialog:
@@ -123,7 +126,7 @@ Previewing a config from a template lets you see how your NGINX configurations w
 To preview, generate, and submit a config from a template:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
-2. Select **Instance Manager** from the LaunchPad.
+2. Select **NGINX Instance Manager** from the LaunchPad.
 3. On the left sidebar, select **Templates**.
 4. Locate the desired template on the "Overview" page and select the ellipsis (three dots) in the **Actions** column, then select **Preview and Generate**.
 5. Complete the forms on the **Preview and Generate Config** dialog in sequence, selecting **Next** to move forward:
@@ -151,7 +154,7 @@ When managing your NGINX configurations, you might find that certain parameters 
 To edit a template submission:
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
-2. Select **Instance Manager** from the LaunchPad.
+2. Select **NGINX Instance Manager** from the LaunchPad.
 3. On the left sidebar, select **Template Submissions** to view a list of all template submissions.
 4. Locate and select the template submission you want to edit.
 5. Select the tab that corresponds to the type of target for your template submission: **Instances**, **Instance Groups**, or **Staged Configs**.

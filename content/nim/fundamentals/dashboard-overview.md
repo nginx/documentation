@@ -5,9 +5,13 @@ toc: true
 weight: 300
 nd-content-type: reference
 nd-product: NIMNGR
+description: "A tour of the F5 NGINX Instance Manager dashboard, explaining each panel and how to use it to monitor your NGINX fleet."
+nd-summary: >
+  Understand what information the F5 NGINX Instance Manager dashboard displays and how to use it.
+  The dashboard gives you a high-level view of your instance fleet, including instance health, licenses, certificates, and recent events.
 ---
 
-The NGINX Instance Manager dashboard gives you a high-level view of the health and performance of your NGINX instances. It provides a central place to identify, diagnose, and resolve issues in your data plane. You can also track how deployments affect the performance of individual instances and identify trends over time.
+The F5 NGINX Instance Manager dashboard gives you a high-level view of the health and performance of your NGINX instances. It provides a central place to identify, diagnose, and resolve issues in your data plane. You can also track how deployments affect the performance of individual instances and identify trends over time.
 
 This document walks you through the different panels in the dashboard and shows how to use them to monitor your data plane.
 

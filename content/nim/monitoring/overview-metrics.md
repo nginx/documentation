@@ -6,6 +6,9 @@ toc: true
 weight: 100
 nd-content-type: reference
 nd-product: NIMNGR
+nd-summary: >
+  Understand how F5 NGINX Instance Manager collects and reports metrics from NGINX instances.
+  NGINX Instance Manager collects two types of data — system metrics and NGINX metrics — through the NGINX Agent running on each instance.
 ---
 
 ## Overview

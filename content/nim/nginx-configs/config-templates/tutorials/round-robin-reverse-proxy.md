@@ -7,11 +7,14 @@ toc: true
 nd-docs: DOCS-1655
 nd-content-type: tutorial
 nd-product: NIMNGR
+nd-summary: >
+  Set up a round-robin reverse proxy using base and augment templates in F5 NGINX Instance Manager and have a working load-balanced NGINX configuration.
+  This tutorial walks through creating the base template, adding an augment template for upstream configuration, and deploying the result to NGINX instances.
 ---
 
 ## Overview
 
-This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations.
+This tutorial guides you through setting up a round-robin reverse proxy using base and augment templates in F5 NGINX Instance Manager. It's intended for network administrators and developers familiar with basic NGINX configurations.
 
 Using templates, especially augment templates, provides significant advantages. Augment templates allow you to modify and extend configurations without altering the base template, making it easier to manage and update settings. This approach enhances modularity, enabling specific teams to control parts of the configuration while maintaining overall system integrity. For instance, using an augment template for round-robin reverse proxy settings allows you to efficiently distribute incoming traffic across multiple servers, enhancing load balancing and reliability. [Role-Based Access Control (RBAC) for templates and template submissions]({{< ref "/nim/nginx-configs/config-templates/how-to/rbac-config-templates-and-submissions.md" >}}) ensures that only authorized users can make changes, promoting security and efficiency. This means that while administrators can manage the base configuration, development teams can independently manage specific proxy settings, improving collaboration and streamlining operations.
 
@@ -25,7 +28,7 @@ By the end, you'll be able to:
 
 ## Background
 
-F5 NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
+NGINX Instance Manager simplifies the management of NGINX configurations across a wide network. Using templates, administrators can ensure consistent configurations while easily customizing individual settings with augment templates.
 
 ---
 
@@ -45,7 +48,7 @@ Before you start the tutorial, you should:
 In this section, you'll learn how to create a [base config template]({{< ref "nim/nginx-configs/config-templates/concepts/config-templates.md" >}}).
 
 1. Open your web browser, go to the Fully Qualified Domain Name (FQDN) of your NGINX Instance Manager host, and log in.
-2. From the Launchpad menu, choose **Instance Manager**.
+2. From the Launchpad menu, choose **NGINX Instance Manager**.
 3. On the left menu, select **Templates**.
 4. Select **Create**.
 5. Select **New**.

@@ -5,9 +5,12 @@ toc: true
 weight: 400
 nd-content-type: how-to
 nd-product: NIMNGR
+nd-summary: >
+  Download and install the WAF compiler manually from MyF5 when the F5 NGINX Instance Manager host can't reach the public NGINX repository.
+  This guide covers downloading the correct compiler version for your F5 WAF for NGINX release and installing it on the NGINX Instance Manager host.
 ---
 
-If your NGINX Instance Manager host doesn’t have access to the public NGINX repository, you can manually download and install the WAF compiler from [MyF5](https://my.f5.com/).
+If your F5 NGINX Instance Manager host doesn’t have access to the public NGINX repository, you can manually download and install the WAF compiler from [MyF5](https://my.f5.com/).
 
 ---
 

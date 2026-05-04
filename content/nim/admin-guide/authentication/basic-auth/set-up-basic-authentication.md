@@ -1,11 +1,14 @@
 ---
 title: Set up basic authentication
-description: Learn how to manage user access in NGINX Instance Manager using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords.
+description: Learn how to manage user access in F5 NGINX Instance Manager using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords.
 toc: true
 weight: 10
 nd-content-type: how-to
 nd-product: NIMNGR
 nd-docs: DOCS-792
+nd-summary: >
+  Set up basic authentication for F5 NGINX Instance Manager to control user access with usernames and passwords.
+  NGINX Instance Manager uses NGINX as a front-end proxy for basic auth; this guide covers first-time login, creating additional users, and setting passwords.
 ---
 
 <style>
@@ -17,7 +20,7 @@ h2 {
 
 ## Overview
 
-NGINX Instance Manager uses NGINX as a front-end proxy and for managing user access. By default, NGINX Instance Manager uses basic authentication, requiring you to send your username and password with each request to confirm your identity. When logging in for the first time, use the default `admin` account and password. After that, you can create additional user accounts. Instructions for adding users and setting passwords are provided below.
+F5 NGINX Instance Manager uses NGINX as a front-end proxy and for managing user access. By default, NGINX Instance Manager uses basic authentication, requiring you to send your username and password with each request to confirm your identity. When logging in for the first time, use the default `admin` account and password. After that, you can create additional user accounts. Instructions for adding users and setting passwords are provided below.
 
 {{< call-out "warning" "Security consideration" >}} While convenient, basic authentication is less secure than other methods: credentials are sent as base64-encoded text, which is not a secure encryption method. If your data is intercepted, the encoding can be easily reversed. If you're using NGINX Plus for your front-end proxy, consider [switching to OpenID Connect (OIDC) for authentication]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). For production environments, we strongly recommend OIDC.{{< /call-out >}}
 
