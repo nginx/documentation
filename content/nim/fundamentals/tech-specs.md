@@ -34,6 +34,7 @@ Use the table below to check the end-of-support (EoS) dates for recent versions.
 
 | NGINX Instance Manager | End of Support (EoS) |
 |------------------------|----------------------|
+| 2.22.x                 | April 27, 2028       |
 | 2.21.x                 | November 07, 2027    |
 | 2.20.x                 | June 16, 2027        |
 | 2.19.x                 | February 06, 2027    |

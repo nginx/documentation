@@ -23,8 +23,8 @@ Host discovery, the first stage in instance discovery, is used to enumerate live
 
 ```shell
 curl --request POST \
-  --url https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/servers/scan \
-  --header 'Authorization: Bearer <access token>.' \
+  --url https://<NIM_FQDN>/api/platform/v1/servers/scan \
+  --header 'Authorization: Bearer <ACCESS_TOKEN>.' \
   --header 'content-type: application/json' \
   --data '{"cidr": "192.0.2.0/24","hostDiscovery": "none","portRanges": ["80","443"]}'
 ```
@@ -45,12 +45,12 @@ There's a CVE that's not reported for NGINX that involves [unfiltered logging](h
 
 ## Scan using the API {#scan-api}
 
-To start a scan using the Instance Manager API, send a POST request similar to the following example to the Scan endpoint, `https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/servers/scan`.
+To start a scan using the Instance Manager API, send a POST request similar to the following example to the Scan endpoint, `https://<NIM_FQDN>/api/platform/v1/servers/scan`.
 
 ```shell
 curl --request POST \
-  --url https://<NGINX-INSTANCE-MANAGER-FQDN>/api/platform/v1/servers/scan \
-  --header 'Authorization: Bearer <access token>' \
+  --url https://<NIM_FQDN>/api/platform/v1/servers/scan \
+  --header 'Authorization: Bearer <ACCESS_TOKEN>' \
   --header 'content-type: application/json' \
   --data '{"cidr": "192.0.2.0/24","portRanges": ["80","443"]}'
 ```
@@ -80,7 +80,7 @@ The response looks similar to the following example:
 To get the scanned servers, send a GET request to the Servers endpoint:
 
 ```shell
-curl -X GET "https://<NGINX-INSTANCE-MANAGER-FQDN>/api/v1/servers" -H  "accept: application/json" -H 'Authorization: Bearer <access token>'
+curl -X GET "https://<NIM_FQDN>/api/v1/servers" -H  "accept: application/json" -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 The result looks similar to the following:

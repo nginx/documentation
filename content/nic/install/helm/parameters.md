@@ -152,7 +152,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX v5 Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
 | **controller.appprotect.logLevel** | Sets the log level for F5 WAF for NGINX | N/A |
 | **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
-| **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.debug** | Enable debugging for App Protect DoS. | false |
 | **controller.appprotectdos.maxDaemons** | Max number of ADMD instances. | 1 |
 | **controller.appprotectdos.maxWorkers** | Max number of nginx processes to support. | Number of CPU cores in the machine |

@@ -1,5 +1,5 @@
 ---
-title: Kubernetes
+title: "Kubernetes"
 description: "Install F5 DoS for NGINX on Kubernetes using manifests to deploy DoS protection as a sidecar container alongside NGINX Plus."
 keywords: "F5 DoS for NGINX, Kubernetes, install, container, Docker, manifest"
 weight: 100
@@ -9,7 +9,6 @@ nd-product: F5DOSN
 nd-summary: >
   Install F5 DoS for NGINX on Kubernetes using manifests and have a working deployment that protects your applications against behavioral DoS attacks.
   F5 DoS for NGINX runs as a sidecar container alongside NGINX Plus, using real-time traffic analysis to detect and block denial-of-service attacks.
-  This guide covers the standard Kubernetes deployment; for L4 accelerated mitigation with eBPF, see the separate guide.
 ---
 
 This guide explains how to install F5 DoS for NGINX on Kubernetes. It covers the common steps for any Kubernetes-based deployment, then provides the manifest-based installation steps.
@@ -152,11 +151,67 @@ sudo docker build --no-cache --platform linux/amd64 \
   -t <your-nginx-dos-image-name> .
 ```
 
-Once you have built the image, push it to your private image repository, which should be accessible to your Kubernetes cluster.
+Once you have built the image, push it to your private image repository, which must be accessible to your Kubernetes cluster.
+
+From this point, the steps change based on your installation method:
+
+- [Use Helm to install F5 DOS for NGINX](#use-helm-to-install-f5-dos-for-nginx)
+- [Use Manifests to install F5 DOS for NGINX](#use-manifests-to-install-f5-dos-for-nginx)
+
+## Use Helm to install F5 DOS for NGINX
+
+You will need to edit the `values.yaml` file for a few changes:
+
+- Update _appprotectdos.image.repository_ and _appprotectdos.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
+
+The `<JWT Token>` argument must be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
+
+On helm deployment environment variables need to be set for image repository and tag.
+`set enviorment variable DOS_IMAGE_REPOSITORY` with your actual nginx-dos image anmae.
+`set enviorment variable DOS_IMAGE_TAG` with your actual nginx-dos image tag.
+
+Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
+
+```shell
+export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
+export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
+
+kubectl create namespace <namespace> --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret generic license-token \ 
+        --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license --namespace <namespace>
+
+# Install DOS Arbitrator
+helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
+helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace>
+
+# Install DOS for NGINX
+# release-version example: 4.8.3
+helm pull oci://private-registry.nginx.com/nap-dos/nginx-app-protect --version <release-version> --untar
+cd nginx-app-protect-dos
+
+helm install nginx-app-protect-dos --namespace <namespace> \
+      --set namespace.create=false --set service.type=NodePort \
+      --set appProtectDos.image.repository=${DOS_IMAGE_REPOSITORY} \
+      --set appProtectDos.image.tag=${DOS_IMAGE_TAG} .
+       
+kubectl wait --for=condition=available --timeout=300s deployment/app-protect-dos -n <namespace>
+```
+You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
+
+```shell
+kubectl get pods -n <namespace>
+kubectl get svc -n <namespace>
+```
+
+{{< call-out "note" >}}
+
+At this stage, you have finished deploying F5 DOS for NGINX and can look at [Post-installation checks](#post-installation-checks).
+
+{{< /call-out >}}
 
 ## Use Manifests to install F5 DOS for NGINX
 
-The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
+The `<JWT Token>` argument must be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
 ### Create Manifest files
 
@@ -242,7 +297,7 @@ app-protect-dos-586fb94947-8sjnc   1/1     Running   0          1m
 NAME                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 nap-dos             LoadBalancer   10.43.83.225    <pending>     80:30307/TCP   1m
 ```
-## Post-Installation Checks
+## Post-installation checks
 At this stage, you have finished deploying F5 DOS for NGINX.
 You csn login to app-protect-dos pod like following command
 ```text
@@ -251,7 +306,7 @@ kubectl exec -it app-protect-dos-586fb94947-8sjnc -n app-protect-dos -c nginx-ap
 and can look at .
 {{< include "dos/install-post-checks.md" >}}
 
-## F5 DoS for NGINX Arbitrator
+## F5 DoS for NGINX arbitrator
 
 {{< include "/dos/dos-arbitrator.md" >}}
 
