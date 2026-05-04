@@ -1,13 +1,13 @@
 ---
 title: Kubernetes with L4 accelerated mitigation
 description: "Install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation using eBPF to offload DoS blocking to the Linux kernel."
-keywords: "F5 DoS for NGINX, Kubernetes, L4, eBPF, accelerated mitigation, Helm, install, Linux kernel"
+keywords: "F5 DoS for NGINX, Kubernetes, L4, eBPF, accelerated mitigation, install, Linux kernel"
 weight: 110
 toc: true
 nd-content-type: how-to
 nd-product: F5DOSN
 nd-summary: >
-  Install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation using Helm or manifests, ending with a deployment that offloads DoS blocking to the Linux kernel.
+  Install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation using manifests, ending with a deployment that offloads DoS blocking to the Linux kernel.
   The eBPF Manager sidecar intercepts Layer 4 DoS traffic in the kernel, reducing CPU load on the NGINX container compared to a standard deployment.
   This deployment requires elevated container privileges; familiarity with Kubernetes security practices is assumed.
 ---
@@ -23,7 +23,7 @@ spec:
   externalTrafficPolicy: Local
 ```
 
-It covers the common steps for any Kubernetes-based deployment, then provides details specific to Helm or manifests.
+It covers the common steps for any Kubernetes-based deployment, then provides the manifest-based installation steps.
 
 ## Before you begin
 
@@ -262,69 +262,6 @@ sudo docker build --no-cache --platform linux/amd64 \
 ```
 
 Once you have built the DOS and EBPF images, push them to your private image repository, which should be accessible to your Kubernetes cluster.
-
-From this point, the steps change based on your installation method:
-
-- [Use Helm to install F5 DOS for NGINX](#use-helm-to-install-f5-dos-for-nginx)
-- [Use Manifests to install F5 DOS for NGINX](#use-manifests-to-install-f5-dos-for-nginx)
-
-## Use Helm to install F5 DOS for NGINX
-
-You will need to edit the `values.yaml` file for a few changes:
-
-- Update _appprotectdos.nginxImage.repository_ and _appprotectdos.nginxImage.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
-
-The `<JWT Token>` argument should be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
-
-On helm deployment environment variables need to be set for image repository and tag.
-`set enviorment variable DOS_IMAGE_REPOSITORY` with your actual nginx-dos image anmae.
-`set enviorment variable DOS_IMAGE_TAG` with your actual nginx-dos image tag.
-`set enviorment variable EBPF_IMAGE_REPOSITORY` with your actual ebpf-manager image name.
-`set enviorment variable EBPF_IMAGE_TAG` with your actual ebpf-manager image tag.
-
-Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
-
-```shell
-export DOS_IMAGE_REPOSITORY=<your-nginx-dos-image-name>
-export DOS_IMAGE_TAG=<your-nginx-dos-image-tag>
-export EBPF_IMAGE_REPOSITORY=<your-ebpf-manager-image-name>
-export EBPF_IMAGE_TAG=<your-ebpf-manager-image-tag>
-
-kubectl create namespace <namespace> --dry-run=client -o yaml | kubectl apply -f -
-kubectl create secret generic license-token \ 
-        --from-file=license.jwt=${PWD}/license.jwt --type=nginx.com/license --namespace <namespace>
-
-# Install DOS Arbitrator
-helm repo add nginx-stable https://helm.nginx.com/stable && helm repo update
-helm install dos-arbitrator nginx-stable/nginx-appprotect-dos-arbitrator --namespace <namespace>
-
-# Install DOS with EBPF Manager
-# release-version example: 4.8.3
-helm pull oci://private-registry.nginx.com/nap-dos/nginx-app-protect-ebpf --version <release-version> --untar
-cd nginx-app-protect-dos-ebpf
-
-helm install nginx-app-protect-dos-ebpf --namespace <namespace> \
-      --set namespace.create=false --set service.type=NodePort \
-      --set appProtectDos.image.repository=${DOS_IMAGE_REPOSITORY} \
-      --set appProtectDos.image.tag=${DOS_IMAGE_TAG} \
-      --set appProtectDos.ebpfManagerImage.repository=$EBPF_IMAGE_REPOSITORY} \
-      --set appProtectDos.ebpfManagerImage.tag=${EBPF_IMAGE_TAG} .
-       
-kubectl wait --for=condition=available --timeout=300s deployment/app-protect-dos -n <namespace>
-```
-
-You can verify the deployment is successful with `kubectl get`, replacing `namespace` accordingly:
-
-```shell
-kubectl get pods --namespac <namespace>
-kubectl get svc --namespac <namespace>
-```
-
-{{< call-out "note" >}}
-
-At this stage, you have finished deploying F5 DOS for NGINX and can look at [Post-installation checks](#post-installation-checks).
-
-{{< /call-out >}}
 
 ## Use Manifests to install F5 DOS for NGINX
 
