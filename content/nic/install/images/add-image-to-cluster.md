@@ -2,9 +2,9 @@
 title: Add an NGINX Ingress Controller image to your cluster
 toc: true
 weight: 150
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1454
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1454
 ---
 
 This document describes how to add an F5 NGINX Plus Ingress Controller image from the F5 Docker registry into your Kubernetes cluster using a JWT token.

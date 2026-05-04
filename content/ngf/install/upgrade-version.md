@@ -2,9 +2,9 @@
 title: Upgrade NGINX Gateway Fabric
 weight: 700
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1852
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1852
 ---
 
 This document describes how to upgrade NGINX Gateway Fabric when a new version releases.

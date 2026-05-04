@@ -3,9 +3,9 @@ title: Manually update the WAF compiler
 description: Download and install the WAF compiler manually from MyF5 when your system can’t access the public NGINX repository.
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Download and install the WAF compiler manually from MyF5 when the F5 NGINX Instance Manager host can't reach the public NGINX repository.
   This guide covers downloading the correct compiler version for your F5 WAF for NGINX release and installing it on the NGINX Instance Manager host.
 ---

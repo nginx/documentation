@@ -2,11 +2,11 @@
 title: Update the attack signature database
 weight: 300
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1109
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1109
 description: "Update the attack signature database used by Security Monitoring in F5 NGINX Instance Manager to keep signature names, risk scores, and accuracy data current."
-nd-summary: >
+f5-summary: >
   Update the attack signature database in F5 NGINX Instance Manager so Security Monitoring dashboards show accurate signature names, risk scores, and accuracy ratings.
   The signature database version must match the version used in F5 WAF for NGINX; a mismatch causes new signatures to appear without attributes.
 ---

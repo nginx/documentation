@@ -3,10 +3,10 @@ description: ''
 title: Deploy using Docker Compose
 toc: true
 weight: 100
-nd-docs: DOCS-1653
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-docs: DOCS-1653
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Run F5 NGINX Instance Manager using Docker Compose and have a working control plane deployment.
   Docker Compose pulls the required images and starts the NGINX Instance Manager services with a single command.
 ---

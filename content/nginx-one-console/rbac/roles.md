@@ -2,9 +2,9 @@
 title: "Review default roles"
 weight: 500
 toc: true
-nd-content-type: reference
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: reference
+f5-docs: DOCS-000
+f5-product: NONECO
 ---
 
 ## Default roles

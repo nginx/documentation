@@ -2,10 +2,10 @@
 title: Billing overview
 weight: 100
 toc: true
-nd-docs: DOCS-885
+f5-docs: DOCS-885
 url: /nginxaas/azure/billing/overview/
-nd-content-type: concept
-nd-product: NAZURE
+f5-content-type: concept
+f5-product: NAZURE
 ---
 
 NGINXaaS for Azure is deployed into your Azure subscription. Your NGINXaaS deployment resource is visible within your subscription, while the underlying infrastructure is managed by F5 and is abstracted away from you.

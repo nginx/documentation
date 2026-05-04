@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1476
-nd-product: NAZURE
-nd-files:
+f5-docs: DOCS-1476
+f5-product: NAZURE
+f5-files:
 - content/nginxaas-azure/billing/overview.md
 - content/nginxaas-azure/quickstart/scaling.md
 ---

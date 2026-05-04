@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-805
+f5-docs: DOCS-805
 title: Technical Specifications
 toc: true
 weight: 20
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
 description: "Technical specifications for F5 NGINX Instance Manager, including supported operating systems, Kubernetes distributions, NGINX versions, browsers, and hardware requirements."
-nd-summary: >
+f5-summary: >
   Check the technical specifications for F5 NGINX Instance Manager before you install it.
   This reference lists supported operating systems, Kubernetes distributions, NGINX versions, browsers, and hardware requirements.
 ---

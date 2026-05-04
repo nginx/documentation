@@ -2,9 +2,9 @@
 title: HTTP redirects and rewrites
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1424
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1424
 ---
 
 Learn how to redirect or rewrite your HTTP traffic using NGINX Gateway Fabric.

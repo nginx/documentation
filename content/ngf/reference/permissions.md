@@ -3,8 +3,8 @@ title: Permissions
 description: NGINX Gateway Fabric permissions required by components.
 weight: 300
 toc: true
-nd-content-type: reference
-nd-product: FABRIC
+f5-content-type: reference
+f5-product: FABRIC
 ---
 
 ## Overview

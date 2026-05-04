@@ -107,11 +107,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `release-notes` for release note pages.
+**f5-content-type**: Always `release-notes` for release note pages.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use `"{Product Name} release notes"`. Keep it under 60 characters. This page covers all versions of the product, so do not include a version number in the title.
 
@@ -131,15 +131,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, version numbers covered, and the types of changes in the most recent release — for example, feature names, resolved issue identifiers, and CVE numbers.
+**f5-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, version numbers covered, and the types of changes in the most recent release — for example, feature names, resolved issue identifiers, and CVE numbers.
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what product and version range these release notes cover
 - Sentence 2: the most significant change or theme of the release
 - Sentence 3 (optional): any scope limits, such as platform or edition
 
-**nd-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Release notes are typically `any` because they are read by a mixed technical and non-technical audience.
+**f5-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Release notes are typically `any` because they are read by a mixed technical and non-technical audience.
 
 ---
 

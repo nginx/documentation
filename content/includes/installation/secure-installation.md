@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1405
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-1405
+f5-product: NIMNGR
+f5-files:
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---
 

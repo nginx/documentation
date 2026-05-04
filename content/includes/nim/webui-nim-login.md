@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1334
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-1334
+f5-product: NIMNGR
+f5-files:
 - content/nim/nginx-instances/manage-instance-groups.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/edit-waf-configuration.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/onboard-custom-security-policies.md

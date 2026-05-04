@@ -2,9 +2,9 @@
 title: F5 DoS for NGINX 4.1
 toc: true
 weight: 110
-nd-docs: DOCS-1203
-nd-content-type: reference
-nd-product: F5DOSN
+f5-docs: DOCS-1203
+f5-content-type: reference
+f5-product: F5DOSN
 ---
 
 Here you can find the release information for F5 DoS for NGINX v4.1. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.

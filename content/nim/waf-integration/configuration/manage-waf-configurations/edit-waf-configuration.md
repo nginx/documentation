@@ -3,9 +3,9 @@ title: Edit WAF configuration
 description: Apply F5 WAF for NGINX directives in your NGINX configuration files.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Edit your NGINX configuration files to apply the required F5 WAF for NGINX directives after you've added a WAF configuration to your instances.
   Adding the correct directives enables protection and ensures the configuration references the right policy and log profile bundles.
 ---

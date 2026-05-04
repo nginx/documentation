@@ -1,8 +1,8 @@
 ---
-nd-product:
+f5-product:
 - NIMNGR
 - NONECO
-nd-files:
+f5-files:
 - content/nginx-one-console/agent/configure-instances/configure-selinux.md
 - content/nim/system-configuration/configure-selinux.md
 ---

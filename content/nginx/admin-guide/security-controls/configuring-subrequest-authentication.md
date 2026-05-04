@@ -1,12 +1,12 @@
 ---
 description: Authenticate clients during request processing by making a subrequest
   to an external authentication service, such as LDAP or OAuth.
-nd-docs: DOCS-430
+f5-docs: DOCS-430
 title: Authentication Based on Subrequest Result
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

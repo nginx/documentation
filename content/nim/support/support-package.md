@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-818
+f5-docs: DOCS-818
 title: Create a support package
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
 description: "Use the support package script to collect system and service information about your F5 NGINX Instance Manager installation for troubleshooting."
-nd-summary: >
+f5-summary: >
   Generate a support package from your F5 NGINX Instance Manager installation to share with F5 support for troubleshooting.
   The script collects logs, service status, and configuration details into a single archive that you can attach to a support case.
 ---

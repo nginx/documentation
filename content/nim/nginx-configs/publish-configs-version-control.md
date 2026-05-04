@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1348
+f5-docs: DOCS-1348
 title: Publish NGINX configs with version control
 toc: true
 weight: 3
-nd-product: NIMNGR
-nd-content-type: how-to
+f5-product: NIMNGR
+f5-content-type: how-to
 description: "Publish NGINX configurations stored in a Git repository to your NGINX instances using F5 NGINX Instance Manager for GitOps-style config management."
-nd-summary: >
+f5-summary: >
   Publish NGINX configurations from a Git repository to your NGINX instances using F5 NGINX Instance Manager.
   This approach gives you version control over your NGINX configurations and lets you roll back to a previous version when needed.
 ---

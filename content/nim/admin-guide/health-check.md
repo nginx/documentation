@@ -7,9 +7,9 @@ weight: 800
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Check the health of each F5 NGINX Instance Manager module individually or run a script that checks all modules at once.
   The health check confirms that each module is running and responding as expected.
 ---

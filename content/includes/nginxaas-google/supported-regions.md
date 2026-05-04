@@ -1,9 +1,9 @@
 ---
-nd-docs: DOCS-000
-nd-files:
+f5-docs: DOCS-000
+f5-files:
 - content/nginxaas-google/getting-started/create-deployment/deploy-console.md
 - content/nginxaas-google/overview.md
-nd-product: NGOOGL
+f5-product: NGOOGL
 ---
 
 NGINXaaS for Google Cloud is supported in the following regions per geography:

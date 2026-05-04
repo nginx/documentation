@@ -2,11 +2,11 @@
 title: Update the geolocation database used in dashboards
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1108
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1108
 description: "Update the MaxMind GeoLite2 geolocation database used by Security Monitoring dashboards in F5 NGINX Instance Manager."
-nd-summary: >
+f5-summary: >
   Update the MaxMind GeoLite2 geolocation database in F5 NGINX Instance Manager to keep Security Monitoring dashboard maps accurate.
   The geolocation database is used to display the origin country of security violations; an outdated database may show incorrect or missing location data.
 ---

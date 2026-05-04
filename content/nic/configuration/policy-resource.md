@@ -2,9 +2,9 @@
 title: Policy resources
 weight: 500
 toc: true
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-596
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-596
 ---
 
 The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}).

@@ -2,8 +2,8 @@
 title: "Uninstall F5 WAF for NGINX"
 weight: 800
 toc: false
-nd-content-type: how-to
-nd-product: F5WAFN
+f5-content-type: how-to
+f5-product: F5WAFN
 ---
 
 This document describes how to uninstall F5 WAF for NGINX.

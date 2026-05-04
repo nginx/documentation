@@ -1,18 +1,18 @@
 ---
-nd-content-type: tutorial
-nd-docs: DOCS-006
-nd-product: KITCHEN
+f5-content-type: tutorial
+f5-docs: DOCS-006
+f5-product: KITCHEN
 title: Brew pour-over coffee with a burr grinder
 description: "Learn to calibrate a burr grinder, prepare a pour-over brewer, and produce a well-extracted cup."
 weight: 100
 toc: true
-nd-keywords: "pour-over, coffee, burr grinder, V60, Chemex, grind size, extraction, tutorial, learn, brew"
-nd-summary: >
+f5-keywords: "pour-over, coffee, burr grinder, V60, Chemex, grind size, extraction, tutorial, learn, brew"
+f5-summary: >
   In this tutorial, you will calibrate a burr grinder, prepare a pour-over brewer, and brew a
   single well-extracted cup of coffee from whole beans. Pour-over brewing gives you precise manual
   control over extraction, which produces a cleaner and more flavorful cup than automatic drip
   machines. This tutorial is intended for home brewers who are new to manual brewing methods.
-nd-audience: any
+f5-audience: any
 ---
 
 ## Overview

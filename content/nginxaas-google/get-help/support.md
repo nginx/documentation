@@ -2,10 +2,10 @@
 title: Support
 weight: 100
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/get-help/support
-nd-content-type: how-to
-nd-product: NGOOGL
+f5-content-type: how-to
+f5-product: NGOOGL
 ---
 
 ## Contact F5 support

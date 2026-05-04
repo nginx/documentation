@@ -1,12 +1,12 @@
 ---
 description: Understanding how the NGINX Agent collects and reports metrics
-nd-docs: DOCS-826
+f5-docs: DOCS-826
 title: 'Overview: NGINX instance metrics'
 toc: true
 weight: 100
-nd-content-type: reference
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
   Understand how F5 NGINX Instance Manager collects and reports metrics from NGINX instances.
   NGINX Instance Manager collects two types of data — system metrics and NGINX metrics — through the NGINX Agent running on each instance.
 ---

@@ -2,9 +2,9 @@
 title: Custom policies
 weight: 700
 toc: true
-nd-content-type: reference
-nd-product: FABRIC
-nd-docs: DOCS-1835
+f5-content-type: reference
+f5-product: FABRIC
+f5-docs: DOCS-1835
 ---
 
 This topic explains the custom policies for NGINX Gateway Fabric CRDs (Custom Resource Definitions), which allow users to configure NGINX data plane features that are unavailable in the Gateway API.

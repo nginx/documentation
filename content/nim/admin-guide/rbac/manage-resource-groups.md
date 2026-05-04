@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1271
+f5-docs: DOCS-1271
 title: Manage resource groups
 toc: true
 weight: 300
-nd-content-type: tutorial
-nd-product: NIMNGR
+f5-content-type: tutorial
+f5-product: NIMNGR
 description: "Create and manage resource groups in F5 NGINX Instance Manager to organize instances, certificates, and other resources for collective RBAC assignment."
-nd-summary: >
+f5-summary: >
   Create resource groups in F5 NGINX Instance Manager to organize instances, instance groups, and certificates for collective access control.
   Assigning RBAC permissions to a resource group lets you control access to all resources in the group with a single role assignment.
 ---

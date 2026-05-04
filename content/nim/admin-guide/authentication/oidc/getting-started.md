@@ -2,11 +2,11 @@
 title: Get started with OIDC
 toc: true
 weight: 1
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1267
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1267
 description: "Configure OpenID Connect (OIDC) authentication for F5 NGINX Instance Manager using any OIDC-compliant identity provider to enable Single Sign-On."
-nd-summary: >
+f5-summary: >
   Configure OIDC authentication for F5 NGINX Instance Manager to enable Single Sign-On for your users.
   OIDC is the recommended authentication method; it connects to any OIDC-compliant identity provider and simplifies user management across your organization.
 ---

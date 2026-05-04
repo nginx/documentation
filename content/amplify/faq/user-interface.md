@@ -3,8 +3,8 @@ title: NGINX Amplify User Interface
 description: Questions about F5 NGINX Amplify's User Interface
 weight: 30
 toc: true
-nd-docs: DOCS-959
-nd-product: AMPLIF
+f5-docs: DOCS-959
+f5-product: AMPLIF
 ---
 
 ### What Browsers are Supported?

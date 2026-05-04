@@ -2,9 +2,9 @@
 title: Host and Listener collisions
 toc: true
 weight: 800
-nd-docs: DOCS-590
-nd-product: INGRESS
-nd-content-type: reference
+f5-docs: DOCS-590
+f5-product: INGRESS
+f5-content-type: reference
 ---
 
 This document explains how F5 NGINX Ingress Controller handles host and listener collisions between resources.

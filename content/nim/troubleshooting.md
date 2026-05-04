@@ -1,14 +1,14 @@
 ---
 description: This topic describes possible issues users might encounter when using
   F5 NGINX Instance Manager. When possible, suggested workarounds are provided.
-nd-docs: DOCS-1224
+f5-docs: DOCS-1224
 title: Troubleshooting
 toc: true
 weight: 1000
 draft: true
-nd-content-type: reference
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
   Diagnose and resolve common issues with F5 NGINX Instance Manager, including instances not appearing after installation and configuration problems.
   This reference lists known issues with possible workarounds and steps to verify your setup.
 ---

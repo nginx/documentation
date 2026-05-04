@@ -2,9 +2,9 @@
 title: Reporting resource status
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-589
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-589
 ---
 
 This page describes how to view the status of resources managed by F5 NGINX Ingress Controller.

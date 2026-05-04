@@ -3,9 +3,9 @@ title: Install the WAF compiler
 description: Install the WAF compiler on the F5 NGINX Instance Manager host to precompile security configurations for F5 WAF for NGINX.
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Install the WAF compiler on the F5 NGINX Instance Manager host to enable precompilation of security configurations before deployment.
   The WAF compiler must be installed before you can create or deploy security policies and log profiles to F5 WAF for NGINX instances.
 ---

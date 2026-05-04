@@ -2,10 +2,10 @@
 title: High availability with keepalived
 weight: 3
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
 description: "Configure active-passive high availability for F5 NGINX Instance Manager using keepalived so the system stays available if one server fails."
-nd-summary: >
+f5-summary: >
   Configure active-passive high availability for F5 NGINX Instance Manager using keepalived.
   In this setup, a standby server takes over automatically if the primary server fails, minimizing downtime for your NGINX management platform.
 ---

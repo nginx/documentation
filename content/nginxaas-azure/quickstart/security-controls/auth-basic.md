@@ -2,10 +2,10 @@
 title: Restricting access with HTTP basic authentication
 weight: 100
 toc: true
-nd-docs: DOCS-990
+f5-docs: DOCS-990
 url: /nginxaas/azure/security-controls/auth-basic/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 You can restrict access to resources by implementing username/password authentication using the "HTTP Basic Authentication" protocol.

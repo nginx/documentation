@@ -1,12 +1,12 @@
 ---
 description: Release information for F5 NGINX Plus, a complete application delivery
   platform, including new features and a list of supported platforms.
-nd-docs: DOCS-472
+f5-docs: DOCS-472
 title: Releases
 toc: true
 weight: 300
-nd-content-type: reference
-nd-product: NGPLUS
+f5-content-type: reference
+f5-product: NGPLUS
 ---
 
 ### Software Development Policy {#support}

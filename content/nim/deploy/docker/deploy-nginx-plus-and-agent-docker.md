@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1654
+f5-docs: DOCS-1654
 title: Deploy NGINX Plus in a container (data plane)
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
 description: "Build and run an NGINX Plus container that connects to F5 NGINX Instance Manager using NGINX Agent for centralized data plane management."
-nd-summary: >
+f5-summary: >
   Build an NGINX Plus container image and connect it to F5 NGINX Instance Manager using NGINX Agent.
   The containerized NGINX Plus instance acts as a managed data plane and appears in the NGINX Instance Manager dashboard after NGINX Agent registers it.
 ---

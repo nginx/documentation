@@ -3,9 +3,9 @@ title: Install the WAF compiler in a disconnected environment
 description: Install the WAF compiler on a system without internet access by generating and transferring the package from a connected system.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Install the WAF compiler on an F5 NGINX Instance Manager host without internet access by generating the package on a connected system and transferring it offline.
   This approach is for environments where direct downloads from the NGINX repository are not possible.
 ---

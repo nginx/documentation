@@ -1,13 +1,13 @@
 ---
 title: Set up WAF configuration management
 description: Learn how to manage F5 WAF for NGINX configurations in F5 NGINX Instance Manager using the web interface or REST API.
-nd-docs: 
+f5-docs: 
 weight: 200
-nd-content-type: landing-page
-nd-landing-page: true
-nd-product: NIMNGR
+f5-content-type: landing-page
+f5-landing-page: true
+f5-product: NIMNGR
 url: /nginx-instance-manager/waf-integration/configuration/
-nd-summary: >
+f5-summary: >
   Set up F5 WAF for NGINX configuration management in F5 NGINX Instance Manager.
   This section covers installing the WAF compiler, onboarding WAF instances, managing configurations on those instances, and updating attack signatures and threat campaigns.
 ---

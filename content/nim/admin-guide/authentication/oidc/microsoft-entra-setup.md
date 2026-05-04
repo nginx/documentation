@@ -2,11 +2,11 @@
 title: 'Microsoft Entra: Set up OIDC authentication'
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-795
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-795
 description: "Configure Microsoft Entra (Azure AD) as the OIDC identity provider for F5 NGINX Instance Manager to enable Single Sign-On and centralized user management."
-nd-summary: >
+f5-summary: >
   Configure Microsoft Entra as the identity provider for F5 NGINX Instance Manager using OpenID Connect.
   This guide covers registering NGINX Instance Manager as an application in Microsoft Entra and configuring NGINX Instance Manager to accept Entra tokens.
 ---

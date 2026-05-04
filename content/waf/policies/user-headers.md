@@ -2,8 +2,8 @@
 title: "User-defined HTTP headers"
 weight: 2100
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 HTTP header enforcement occurs in the headers section as part of a HTTP request: the header elements are parsed to check criteria used for enforcement.

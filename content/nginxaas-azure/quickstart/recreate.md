@@ -2,10 +2,10 @@
 title: Recreating a deployment
 weight: 500
 toc: true
-nd-docs: DOCS-1378
+f5-docs: DOCS-1378
 url: /nginxaas/azure/quickstart/recreate/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 Learn how to recreate an existing F5 NGINXaaS for Azure (NGINXaaS) deployment using an Azure Resource Manager (ARM) template.

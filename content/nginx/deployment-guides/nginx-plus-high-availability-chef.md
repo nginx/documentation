@@ -1,12 +1,12 @@
 ---
 description: Step-by-step instructions for using Chef to automate the setup and maintenance
   of an active-passive high availability cluster of F5 NGINX Plus instances.
-nd-docs: DOCS-461
+f5-docs: DOCS-461
 draft: true
 title: NGINX Plus High Availability Chef
 toc: true
 weight: 100
-nd-content-type: how-to
+f5-content-type: how-to
 ---
 
 In a [previous blog post](https://www.nginx.com/blog/installing-nginx-nginx-plus-chef/), we went over how to deploy F5 NGINX Plus using Chef. In this blog post we will build on the Chef configs from the last blog post and use Chef to deploy a highly available (HA) NGINX Plus active/passive cluster.

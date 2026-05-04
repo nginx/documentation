@@ -3,9 +3,9 @@ title: Download a security policy bundle
 description: Download a compiled F5 WAF for NGINX security bundle from F5 NGINX Instance Manager as a `.tgz` file for reuse or offline deployment.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Download a compiled F5 WAF for NGINX security bundle from F5 NGINX Instance Manager as a .tgz file.
   Downloaded bundles can be reused for offline deployments or transferred to other NGINX Instance Manager environments.
 ---

@@ -3,9 +3,9 @@ title: Change telemetry settings
 description: "Change advanced settings in /etc/nms/nms.conf to control how F5 NGINX Instance Manager processes and reports usage data."
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Adjust advanced telemetry settings in F5 NGINX Instance Manager to control how usage data is collected and reported to F5.
   These settings rarely need changing; modify them only when the defaults don't fit your connected or disconnected deployment.
 ---

@@ -1,12 +1,12 @@
 ---
 description: Learn how to use F5 NGINX Instance Manager to set up and manage F5 WAF for NGINX security policies.
-nd-docs: DOCS-992
+f5-docs: DOCS-992
 title: "How WAF policy management works"
 toc: true
 weight: 100
-nd-content-type: reference
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
   Understand how F5 NGINX Instance Manager manages F5 WAF for NGINX security policies before you start configuring them.
   NGINX Instance Manager lets you define policies centrally and push them to some or all of your F5 WAF for NGINX instances from a single control plane.
 ---

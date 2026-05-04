@@ -2,9 +2,9 @@
 title: Migrate from Ingress-NGINX Controller to NGINX Ingress Controller
 toc: true
 weight: 1000
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1469
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1469
 ---
 
 This document describes how to migrate from the community-maintained Ingress-NGINX Controller to F5 NGINX Ingress Controller.

@@ -2,9 +2,9 @@
 title: Resource validation
 weight: 500
 toc: true
-nd-content-type: reference
-nd-product: FABRIC
-nd-docs: DOCS-1414
+f5-content-type: reference
+f5-product: FABRIC
+f5-docs: DOCS-1414
 ---
 
 ## Overview

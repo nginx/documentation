@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 DoS for NGINX Live Activity Monitoring.
-nd-docs: DOCS-1389
+f5-docs: DOCS-1389
 title: Live Activity Monitoring
 toc: true
 weight: 140
-nd-content-type: how-to
-nd-product: F5DOSN
+f5-content-type: how-to
+f5-product: F5DOSN
 ---
 
 {{< img src="/dashboard/dos-tab.png" alt="F5 DoS for NGINX Dashboard" >}}

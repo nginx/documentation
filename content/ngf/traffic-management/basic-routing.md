@@ -2,9 +2,9 @@
 title: Routing traffic to applications
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1426
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1426
 ---
 
 Learn how to route external traffic to your Kubernetes applications using NGINX Gateway Fabric.

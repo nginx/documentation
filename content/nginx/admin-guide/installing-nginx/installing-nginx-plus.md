@@ -4,9 +4,9 @@ description: Install and upgrade F5 NGINX Plus with step-by-step instructions fo
   the base package and dynamic modules on all supported Linux distributions.
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
-nd-docs: DOCS-414
+f5-content-type: how-to
+f5-product: NGPLUS
+f5-docs: DOCS-414
 ---
 
 This article explains how to install NGINX Plus on different operating systems, upgrade existing NGINX Plus installation, install and enable dynamic modules, install in rootless mode or when offline.

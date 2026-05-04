@@ -1,17 +1,17 @@
 ---
-nd-content-type: concept
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: concept
+f5-docs: DOCS-000
+f5-product: NONECO
 title: secops_dashboard log profile
 description: "An immutable, pre-compiled F5 WAF for NGINX log profile that captures the security telemetry the security dashboard needs."
 weight: 200
 toc: true
-nd-keywords: "secops_dashboard, default log profile, security dashboard, F5 WAF for NGINX, log profile, security telemetry, NAP log profile, system-managed profile, pre-compiled, immutable log profile, NGINX One Console, WAF log profile"
-nd-summary: >
+f5-keywords: "secops_dashboard, default log profile, security dashboard, F5 WAF for NGINX, log profile, security telemetry, NAP log profile, system-managed profile, pre-compiled, immutable log profile, NGINX One Console, WAF log profile"
+f5-summary: >
   The `secops_dashboard` log profile is a pre-configured F5 WAF for NGINX log profile that captures security violations in a standardized format for the security monitoring dashboard. It is the default log profile used by the security dashboard.
   Use it to send security telemetry from your NGINX Plus data planes to NGINX One Console without authoring or compiling a custom log profile.
   This document covers what the `secops_dashboard` log profile is, when to use it, and how it differs from custom log profiles.
-nd-audience: operator
+f5-audience: operator
 ---
 
 The security monitoring dashboard depends on a consistent set of fields being present on every security event. The `secops_dashboard` log profile is the guarantee of that consistency: it ensures every data plane forwards the same set of fields, so the dashboard can render every event correctly.

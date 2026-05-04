@@ -1,12 +1,12 @@
 ---
 description: ''
-nd-docs: DOCS-998
+f5-docs: DOCS-998
 title: Configure ClickHouse
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Configure ClickHouse settings for F5 NGINX Instance Manager to control how metrics, events, alerts, and configuration data are stored.
   NGINX Instance Manager uses ClickHouse as its primary data store; this guide covers connection settings, data retention, and storage configuration.
 ---

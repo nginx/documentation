@@ -2,9 +2,9 @@
 title: Upgrade applications without downtime
 weight: 600
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1841
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1841
 ---
 
 Learn how to use NGINX Gateway Fabric to upgrade applications without downtime.

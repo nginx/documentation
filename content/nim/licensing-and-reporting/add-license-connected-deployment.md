@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-789
+f5-docs: DOCS-789
 title: Add a license (connected)
 description: "Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a connected (internet-accessible) environment."
 toc: true
 weight: 10
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a connected environment to unlock all features.
   The license validates your subscription and enables automatic usage reporting to F5 over the internet.
 ---

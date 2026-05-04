@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1112
+f5-docs: DOCS-1112
 title: Configurable Helm settings
 toc: true
 weight: 300
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
 description: "Reference for all configurable Helm chart parameters and their default values for the F5 NGINX Instance Manager Kubernetes deployment."
-nd-summary: >
+f5-summary: >
   Look up all configurable Helm chart parameters and their defaults for deploying F5 NGINX Instance Manager on Kubernetes.
   Use this reference when customizing values.yaml to tune the deployment for your environment.
 ---

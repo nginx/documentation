@@ -3,10 +3,10 @@ title: View events and metrics
 description: Learn how to view events and metrics in F5 NGINX Instance Manager.
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-847
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-847
+f5-summary: >
   View events and metrics data for your NGINX instances in F5 NGINX Instance Manager using the web interface or the REST API.
   The events and metrics views show real-time and historical data to help you monitor instance health and diagnose issues.
 ---

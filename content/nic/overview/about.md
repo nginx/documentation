@@ -1,9 +1,9 @@
 ---
 title: About
 weight: 100
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-612
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-612
 ---
 
 This document describes the F5 NGINX Ingress Controller, an Ingress Controller implementation for NGINX and NGINX Plus.

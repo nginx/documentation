@@ -3,15 +3,15 @@ title: Template resource files
 description: "Reference guide for template resource files in F5 NGINX Instance Manager: the Go templates and JSON schemas that define reusable NGINX configuration components."
 weight: 200
 toc: true
-nd-docs: DOCS-1501
-nd-personas:
+f5-docs: DOCS-1501
+f5-personas:
 - devops
 - netops
 - secops
 - support
-nd-content-type: reference
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
   Understand how template resource files work in F5 NGINX Instance Manager to define reusable NGINX configuration components.
   Resource files combine Go templates and JSON schemas to create flexible configuration building blocks used by base and augment templates.
 ---

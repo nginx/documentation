@@ -3,8 +3,8 @@ title: Use Manifests to uninstall NGINX Gateway Fabric
 linkTitle: Uninstall
 weight: 500
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
+f5-content-type: how-to
+f5-product: FABRIC
 ---
 
 This page describes how to uninstall NGINX Gateway Fabric in a Manifest-based deployment, its custom resource definitions, and its Gateway API resources.

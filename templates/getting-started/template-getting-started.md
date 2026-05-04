@@ -1,17 +1,17 @@
 ---
-nd-content-type: getting-started
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: getting-started
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: Get started with {product or feature name}
 description: "{One-sentence summary of what the reader will accomplish, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{keyword1}, {keyword2}, {keyword3}, quickstart, first steps, introduction"
-nd-summary: >
+f5-keywords: "{keyword1}, {keyword2}, {keyword3}, quickstart, first steps, introduction"
+f5-summary: >
   {Sentence 1: what the reader will do and what they will have at the end.}
   {Sentence 2: what the primary feature does or enables.}
   {Sentence 3 (optional): intended audience, scope limits, or assumed knowledge.}
-nd-audience: {developer | operator | admin | architect | any}
+f5-audience: {developer | operator | admin | architect | any}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-getting-started.md).

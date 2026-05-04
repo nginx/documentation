@@ -3,11 +3,11 @@ title: Manually install NGINX Instance Manager
 toc: true
 weight: 10
 noindex: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1211
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1211
 description: "Manually install or upgrade F5 NGINX Instance Manager on a virtual machine or bare metal host by following step-by-step package installation instructions."
-nd-summary: >
+f5-summary: >
   Install or upgrade F5 NGINX Instance Manager manually on a virtual machine or bare metal host.
   This guide covers each installation step individually for environments where the automated script is not appropriate.
 ---
