@@ -2,9 +2,9 @@
 title: Features configuration
 weight: 150
 toc: true
-nd-docs: DOCS-000
-nd-content-type: how-to
-nd-product: NAGENT
+f5-docs: DOCS-000
+f5-content-type: how-to
+f5-product: NAGENT
 ---
 
 ## Overview

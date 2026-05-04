@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1449
+f5-docs: DOCS-1449
 doctypes:
 - concept
 title: Customizing NGINX Ingress Controller Ports
 toc: true
 weight: 1800
-nd-product: INGRESS
-nd-content-type: how-to
+f5-product: INGRESS
+f5-content-type: how-to
 ---
 
 This document explains how to change the default ports that NGINX Ingress Controller is configured to use, as well as how to add additional `listen` settings. For more information, please read the [NGINX Listen documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen).

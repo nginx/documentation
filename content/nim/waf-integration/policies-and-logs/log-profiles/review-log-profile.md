@@ -2,14 +2,14 @@
 title: Review log profiles
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
 description: "Review and manage F5 WAF for NGINX security log profiles in F5 NGINX Instance Manager, including deployment status and bundle compilation state."
-nd-summary: >
+f5-summary: >
   Review WAF log profiles in F5 NGINX Instance Manager to inspect configuration details, deployment status, and bundle compilation state.
   Manage profiles via Actions to edit, copy, export as JSON, manage bundles, or delete.
-nd-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, review log profiles, security logs, app protect, deployment status, bundle compilation, instance groups, manage bundles, export JSON"
-nd-audience: operator
+f5-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, review log profiles, security logs, app protect, deployment status, bundle compilation, instance groups, manage bundles, export JSON"
+f5-audience: operator
 ---
 
 ## Overview

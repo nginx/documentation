@@ -3,9 +3,9 @@ description: "Reference catalogs for the dimensions, metrics, and events collect
 title: Catalogs
 weight: 400
 url: /nginx-instance-manager/monitoring/catalogs/
-nd-product: NIMNGR
-nd-content-type: landing-page
-nd-summary: >
+f5-product: NIMNGR
+f5-content-type: landing-page
+f5-summary: >
   Look up the dimensions, metrics, and events that NGINX Agent collects and reports to F5 NGINX Instance Manager.
   The catalogs describe each data field's name, type, and meaning, and are useful when querying the Metrics API or building custom dashboards.
 ---

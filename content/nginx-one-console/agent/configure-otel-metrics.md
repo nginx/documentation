@@ -2,9 +2,9 @@
 title: Export NGINX instance metrics
 weight: 500
 toc: true
-nd-content-type: how-to
-nd-docs: DOCS-1882
-nd-product: NAGENT
+f5-content-type: how-to
+f5-docs: DOCS-1882
+f5-product: NAGENT
 ---
 
 ## Overview

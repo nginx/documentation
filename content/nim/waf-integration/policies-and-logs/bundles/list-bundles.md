@@ -3,9 +3,9 @@ title: List security policy bundles
 description: View and filter the list of compiled F5 WAF for NGINX security bundles in F5 NGINX Instance Manager, including their status, version, and associated policies.
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   View and filter the list of compiled F5 WAF for NGINX security bundles in F5 NGINX Instance Manager.
   The bundle list shows each bundle's name, status, version, and associated policy so you can track what is deployed across your instances.
 ---

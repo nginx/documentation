@@ -3,8 +3,8 @@ title: Connect to upstreams with Azure Private Link
 url: /nginxaas/azure/quickstart/security-controls/private-link-to-upstreams/
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 [Azure Private Link](https://learn.microsoft.com/en-us/azure/private-link/private-link-overview) eliminates exposure to the public internet by handling traffic over Microsoft's backbone network. This is especially useful if your NGINXaaS deployment and your upstreams are in different virtual networks.

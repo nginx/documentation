@@ -3,9 +3,9 @@ title: Check publication status
 description: Verify the deployment status of published F5 WAF for NGINX security policies, log profiles, and related updates in F5 NGINX Instance Manager.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Check the deployment status of published F5 WAF for NGINX security updates in F5 NGINX Instance Manager using the REST API.
   These endpoints confirm whether policies, log profiles, and other security configurations were successfully applied to instances or instance groups.
 ---

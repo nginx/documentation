@@ -2,9 +2,9 @@
 title: Health checks
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-docs: DOCS-1677
-nd-product: NAGENT
+f5-content-type: how-to
+f5-docs: DOCS-1677
+f5-product: NAGENT
 ---
 
 ## Overview

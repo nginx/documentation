@@ -1,17 +1,17 @@
 ---
-nd-content-type: how-to
-nd-docs: DOCS-000
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-docs: DOCS-000
+f5-product: NIMNGR
 title: Configure and deploy log profiles
 description: "Configure F5 WAF for NGINX security log profiles in F5 NGINX Instance Manager, controlling request filtering, log format, size limits, and deployment to NGINX instances."
 weight: 100
 toc: true
-nd-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, security logs, app protect, request logs, traffic logs, Splunk, ArcSight, syslog"
-nd-summary: >
+f5-keywords: "log profiles, WAF, NGINX Instance Manager, NIM, security logs, app protect, request logs, traffic logs, Splunk, ArcSight, syslog"
+f5-summary: >
   Configure log profiles for F5 WAF for NGINX security logs in F5 NGINX Instance Manager.
   Log profiles define which HTTP requests are captured, how log messages are formatted, where logs are sent, and what security event details are included.
   Log profiles must be compiled into a bundle before deployment to NGINX instances.
-nd-audience: operator
+f5-audience: operator
 ---
 
 ## Overview

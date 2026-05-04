@@ -1,7 +1,7 @@
 ---
-nd-product: NIMNGR
-nd-docs: DOCS-1028
-nd-files:
+f5-product: NIMNGR
+f5-docs: DOCS-1028
+f5-files:
 - content/nim/admin-guide/authentication/oidc/getting-started.md
 - content/nim/admin-guide/authentication/oidc/keycloak-setup.md
 - content/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md

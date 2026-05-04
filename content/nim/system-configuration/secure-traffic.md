@@ -2,11 +2,11 @@
 title: Secure client access and network traffic
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-794
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-794
 description: "Configure TLS certificates and mutual TLS in F5 NGINX Instance Manager to secure client connections and inter-service network traffic."
-nd-summary: >
+f5-summary: >
   Secure client connections to F5 NGINX Instance Manager and internal service-to-service traffic using TLS.
   This guide covers configuring custom TLS certificates and enabling mutual TLS for both external clients and internal NGINX Instance Manager components.
 ---

@@ -2,11 +2,11 @@
 title: Troubleshooting
 weight: 500
 toc: true
-nd-content-type: reference
-nd-product: NIMNGR
-nd-docs: DOCS-1226
+f5-content-type: reference
+f5-product: NIMNGR
+f5-docs: DOCS-1226
 description: "Troubleshoot Security Monitoring issues in F5 NGINX Instance Manager when security violation events are not received or dashboards are not populated."
-nd-summary: >
+f5-summary: >
   Diagnose and resolve common Security Monitoring issues in F5 NGINX Instance Manager.
   This reference covers the most likely causes when the Security Monitoring module doesn't receive security violation events and how to fix each one.
 ---

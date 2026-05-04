@@ -3,10 +3,10 @@ title: Scan and discover NGINX instances
 description: Follow the steps in this guide to scan for and discover NGINX instances.
 toc: true
 weight: 110
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-828
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-828
+f5-summary: >
   Scan your network to discover NGINX instances and add them to F5 NGINX Instance Manager for centralized management.
   The scan process uses NGINX Agent on target instances to register them with NGINX Instance Manager automatically.
 ---

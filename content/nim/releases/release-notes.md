@@ -2,11 +2,11 @@
 title: Release notes
 weight: 100
 toc: true
-nd-content-type: reference
-nd-product: NIMNGR
-nd-docs: DOCS-938
+f5-content-type: reference
+f5-product: NIMNGR
+f5-docs: DOCS-938
 description: "Release notes for F5 NGINX Instance Manager, listing new features, improvements, resolved issues, and upgrade notes for each version."
-nd-summary: >
+f5-summary: >
   Review what changed in each release of F5 NGINX Instance Manager.
   Release notes cover new features, improvements, resolved issues, and notes for upgrading from a previous version.
 ---

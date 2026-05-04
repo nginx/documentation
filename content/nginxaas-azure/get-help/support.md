@@ -2,10 +2,10 @@
 title: Support
 weight: 100
 toc: true
-nd-docs: DOCS-882
+f5-docs: DOCS-882
 url: /nginxaas/azure/get-help/support
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 ## Contact NGINX support

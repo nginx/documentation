@@ -1,10 +1,10 @@
 ---
-nd-docs: DOCS-1458
+f5-docs: DOCS-1458
 title: Troubleshooting Ingress resources
 toc: true
 weight: 300
-nd-product: INGRESS
-nd-content-type: how-to
+f5-product: INGRESS
+f5-content-type: how-to
 ---
 
 This page describes how to troubleshoot NGINX Ingress Controller Policy Resources.

@@ -1,6 +1,6 @@
 ---
-nd-product: MISCEL
-nd-files:
+f5-product: MISCEL
+f5-files:
 - content/nginx-one-console/getting-started.md
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
 - content/nim/monitoring/overview-metrics.md

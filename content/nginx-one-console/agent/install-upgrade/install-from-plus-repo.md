@@ -2,9 +2,9 @@
 title: Install from NGINX Plus repo
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-docs: DOCS-1877
-nd-product: NAGENT
+f5-content-type: how-to
+f5-docs: DOCS-1877
+f5-product: NAGENT
 ---
 
 {{< call-out "note" >}}

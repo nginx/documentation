@@ -1,6 +1,6 @@
 ---
-nd-product: INGRESS
-nd-files:
+f5-product: INGRESS
+f5-files:
 - content/glossary/_index.md
 ---
 

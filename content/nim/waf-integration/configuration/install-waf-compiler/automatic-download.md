@@ -3,9 +3,9 @@ title: Automatically update the WAF compiler
 description: Enable F5 NGINX Instance Manager to automatically download and install new WAF compiler versions when needed.
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Enable F5 NGINX Instance Manager to automatically download and install new WAF compiler versions as needed.
   Automatic updates require uploading an F5 WAF for NGINX certificate and key so NGINX Instance Manager can authenticate with the NGINX package repository.
 ---

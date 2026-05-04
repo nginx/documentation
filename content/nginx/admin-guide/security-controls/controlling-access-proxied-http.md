@@ -1,12 +1,12 @@
 ---
 description: Protect your upstream web and application servers by limiting connections,
   rate of requests, or bandwidth, based on client IP address or other variables.
-nd-docs: DOCS-432
+f5-docs: DOCS-432
 title: Limiting Access to Proxied HTTP Resources
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.

@@ -1,12 +1,12 @@
 ---
 description: Follow the steps in this guide to create tags for organizing your instances.
-nd-docs: DOCS-829
+f5-docs: DOCS-829
 title: Organize instances with tags
 toc: true
 weight: 650
-nd-content-type: tutorial
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: tutorial
+f5-product: NIMNGR
+f5-summary: >
   Create tags and apply them to NGINX instances in F5 NGINX Instance Manager to organize and filter your instance fleet.
   Tags let you label and group NGINX instances so you can quickly identify and act on subsets of your deployment.
 ---

@@ -3,8 +3,8 @@ title: Analyzer
 description: Learn about the Analyzer page of the User Interface.
 weight: 50
 toc: false
-nd-docs: DOCS-980
-nd-product: AMPLIF
+f5-docs: DOCS-980
+f5-product: AMPLIF
 ---
 
 F5 NGINX Amplify Agent parses NGINX configuration files and transmits them to the backend component for further analysis. NGINX Amplify offers configuration recommendations to help improve the performance, reliability, and security of your applications. With well-thought-out and detailed recommendations, you’ll know exactly where the problem is, why it is a problem, and how to fix it.

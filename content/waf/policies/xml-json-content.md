@@ -2,8 +2,8 @@
 title: "XML and JSON content"
 weight: 2300
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This guide explains how to configure XML and JSON content profiles in an F5 WAF for NGINX policy. The examples below use JSON for illustration, but the same concepts apply to XML profiles unless noted otherwise.

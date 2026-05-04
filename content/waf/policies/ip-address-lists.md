@@ -2,9 +2,9 @@
 title: IP address lists
 weight: 1500
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
-nd-docs: DOCS-000
+f5-content-type: reference
+f5-product: F5WAFN
+f5-docs: DOCS-000
 ---
 
 IP address lists are a feature that let you organize allowed and forbidden IP addresses into reusable lists with common attributes.

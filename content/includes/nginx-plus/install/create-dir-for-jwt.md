@@ -1,6 +1,6 @@
 ---
-nd-product: NGPLUS
-nd-files:
+f5-product: NGPLUS
+f5-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 ---
 

@@ -103,11 +103,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `tutorial` for tutorial content.
+**f5-content-type**: Always `tutorial` for tutorial content.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use a verb phrase that describes what the reader will learn to do. Keep it under 60 characters.
 
@@ -124,15 +124,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this tutorial. Include the product name, the skill being taught, and common alternative phrasings such as "learn", "tutorial", "beginner", or "step by step".
+**f5-keywords**: Comma-separated terms a reader might type to find this tutorial. Include the product name, the skill being taught, and common alternative phrasings such as "learn", "tutorial", "beginner", or "step by step".
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what skill the reader will learn and what they will build or produce
 - Sentence 2: why that skill matters or what it enables
 - Sentence 3 (optional): the intended audience and any assumed knowledge
 
-**nd-audience**: Who this tutorial is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tutorials are typically `any` or a specific role depending on the skill being taught.
+**f5-audience**: Who this tutorial is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tutorials are typically `any` or a specific role depending on the skill being taught.
 
 ---
 

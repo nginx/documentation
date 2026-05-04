@@ -1,11 +1,11 @@
 ---
 description: Learn about F5 DoS for NGINX Deployment.
-nd-docs: DOCS-666
+f5-docs: DOCS-666
 title: Deployment
 toc: true
 weight: 90
-nd-content-type: how-to
-nd-product: F5DOSN
+f5-content-type: how-to
+f5-product: F5DOSN
 ---
 
 ## Overview

@@ -1,11 +1,11 @@
 ---
 description: HTTP traffic tunneling via the HTTP CONNECT method, enabling centralized egress control through a trusted NGINX Plus server.
-nd-docs: DOCS-441
+f5-docs: DOCS-441
 title: HTTP CONNECT forward proxy
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 In corporate networks, NGINX Plus R36 and later can be configured as a forward proxy server, facilitating client access to external resources. A forward proxy operates between internal clients and the global network, enabling centralized traffic control.

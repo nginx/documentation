@@ -6,10 +6,10 @@ weight: i00
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: concept
+f5-content-type: concept
 # Intended for internal catalogue and search, case sensitive:
 # NAGENT, NAZURE, NGOOGL, FABRIC, INGRESS, NIMNGR, NONECO, NGPLUS, SOLUTI, F5WAFN, F5DOSN, MISCEL
-nd-product:
+f5-product:
 ---
 
 [//]: # "These are Markdown comments to guide you through document structure. Remove them as you go, as well as any unnecessary sections."

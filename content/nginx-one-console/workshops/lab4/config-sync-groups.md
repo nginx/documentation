@@ -2,8 +2,8 @@
 title: "Lab 4: Config Sync Groups"
 weight: 400
 toc: true
-nd-content-type: tutorial
-nd-product: NONECO
+f5-content-type: tutorial
+f5-product: NONECO
 ---
 
 ## Introduction

@@ -3,14 +3,14 @@ title: "F5 WAF for NGINX"
 url: /waf/
 cascade:
   logo: NGINX-App-Protect-WAF-product-icon.svg
-nd-banner:
+f5-banner:
     enabled: true
     start-date: 2025-08-30
     md: /_banners/waf-unification-notice.md
-nd-subtitle: A lightweight, high-performance web application firewall for protecting APIs and applications
-nd-landing-page: true
-nd-content-type: landing-page
-nd-product: F5WAFN
+f5-subtitle: A lightweight, high-performance web application firewall for protecting APIs and applications
+f5-landing-page: true
+f5-content-type: landing-page
+f5-product: F5WAFN
 ---
 
 ## About

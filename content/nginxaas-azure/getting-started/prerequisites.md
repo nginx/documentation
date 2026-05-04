@@ -2,10 +2,10 @@
 title: Overview and prerequisites
 weight: 100
 toc: true
-nd-docs: DOCS-880
+f5-docs: DOCS-880
 url: /nginxaas/azure/getting-started/prerequisites/
-nd-content-type: concept
-nd-product: NAZURE
+f5-content-type: concept
+f5-product: NAZURE
 ---
 
 ## Before you begin

@@ -3,9 +3,9 @@ title: Automatically update security packages
 description: Enable automatic updates in F5 NGINX Instance Manager to keep F5 WAF for NGINX packages current.
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Enable F5 NGINX Instance Manager to automatically download and update F5 WAF for NGINX security packages such as attack signatures, bot signatures, and threat campaigns.
   Automatic updates require uploading the F5 WAF for NGINX repository certificate and key to authenticate with the NGINX package repository.
 ---

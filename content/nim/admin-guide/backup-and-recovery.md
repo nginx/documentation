@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1098
+f5-docs: DOCS-1098
 title: Back up and restore
 toc: true
 weight: 900
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
 description: "Back up and restore F5 NGINX Instance Manager configuration files, secrets, and databases using the included scripts."
-nd-summary: >
+f5-summary: >
   Back up and restore F5 NGINX Instance Manager data using the included scripts.
   The backup scripts capture configuration files, secrets, and databases; the restore scripts return the platform to a previous known-good state.
 ---

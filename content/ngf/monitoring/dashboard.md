@@ -2,9 +2,9 @@
 title: Access the NGINX Plus dashboard
 weight: 300
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1417
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1417
 ---
 
 This topic describes how to view the NGINX Plus dashboard to see real-time metrics.

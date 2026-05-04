@@ -1,12 +1,12 @@
 ---
 description: Load modules dynamically into F5 NGINX Plus at runtime to add specialized
   functionality, including features authored by third parties.
-nd-docs: DOCS-383
+f5-docs: DOCS-383
 title: Dynamic Modules
 toc: true
 weight: 10
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 ## Overview

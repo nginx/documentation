@@ -2,9 +2,9 @@
 title: "Configure log profiles"
 weight: 650
 toc: true
-nd-content-type: how-to
-nd-product: NONECO
-nd-summary: Configure F5 WAF for NGINX security log profiles in NGINX One Console, controlling request filtering (all/illegal/blocked), log format (default/Splunk/ArcSight/custom), size limits, and deployment to NGINX instances via compiled .tgz bundles.
+f5-content-type: how-to
+f5-product: NONECO
+f5-summary: Configure F5 WAF for NGINX security log profiles in NGINX One Console, controlling request filtering (all/illegal/blocked), log format (default/Splunk/ArcSight/custom), size limits, and deployment to NGINX instances via compiled .tgz bundles.
 ---
 
 This document describes how to configure log profiles for F5 WAF for NGINX security logs in F5 NGINX One Console. Security logs contain information about HTTP requests and responses, how F5 WAF for NGINX processes them, and the final decision made based on your configured policy. Log profiles define which information is captured, the format of log messages, the destination for logs, and the filtering criteria for security events.

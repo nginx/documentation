@@ -1,13 +1,13 @@
 ---
 title: Set up attack signatures, bot signatures, and threat campaigns
-nd-docs: 
+f5-docs: 
 weight: 200
-nd-landing-page: true
+f5-landing-page: true
 url: /nginx-instance-manager/waf-integration/configuration/setup-signatures-and-threats/
-nd-product: NIMNGR
-nd-content-type: landing-page
+f5-product: NIMNGR
+f5-content-type: landing-page
 description: "Keep F5 WAF for NGINX attack signature, bot signature, and threat campaign packages current in F5 NGINX Instance Manager using automatic or manual updates."
-nd-summary: >
+f5-summary: >
   Update F5 WAF for NGINX security packages in F5 NGINX Instance Manager to keep detection current.
   This section covers enabling automatic downloads from the NGINX repository, performing manual updates, and updating the Security Monitoring attack signature database.
 ---

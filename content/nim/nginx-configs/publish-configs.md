@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-822
+f5-docs: DOCS-822
 title: Publish NGINX configs
 toc: true
 weight: 2
-nd-content-type: tutorial
-nd-product: NIMNGR
+f5-content-type: tutorial
+f5-product: NIMNGR
 description: "Edit and publish NGINX configuration files to your NGINX instances using the F5 NGINX Instance Manager web interface or REST API."
-nd-summary: >
+f5-summary: >
   Edit and publish NGINX configuration files to your NGINX instances from F5 NGINX Instance Manager.
   You can edit configs directly in the browser and push them to one or more instances with immediate feedback on errors.
 ---

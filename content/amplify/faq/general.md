@@ -4,8 +4,8 @@ description: General questions about F5 NGINX Amplify
 weight: 10
 toc: true
 noindex: true
-nd-docs: DOCS-956
-nd-product: AMPLIF
+f5-docs: DOCS-956
+f5-product: AMPLIF
 ---
 
 ### What Is F5 NGINX Amplify?

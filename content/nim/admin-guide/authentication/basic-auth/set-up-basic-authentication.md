@@ -3,10 +3,10 @@ title: Set up basic authentication
 description: Learn how to manage user access in F5 NGINX Instance Manager using basic authentication with NGINX as a front-end proxy. This guide covers first-time login, creating additional users, and setting passwords.
 toc: true
 weight: 10
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-792
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-792
+f5-summary: >
   Set up basic authentication for F5 NGINX Instance Manager to control user access with usernames and passwords.
   NGINX Instance Manager uses NGINX as a front-end proxy for basic auth; this guide covers first-time login, creating additional users, and setting passwords.
 ---

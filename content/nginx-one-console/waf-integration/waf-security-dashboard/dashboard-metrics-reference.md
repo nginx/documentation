@@ -1,17 +1,17 @@
 ---
-nd-content-type: reference
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: reference
+f5-docs: DOCS-000
+f5-product: NONECO
 title: Security dashboard reference
 description: "Tabs, global controls, and widget-to-dimension mapping for the F5 WAF for NGINX security monitoring dashboard."
 weight: 400
 toc: true
-nd-keywords: "security dashboard, tabs, global filters, widgets, dimensions, F5 WAF for NGINX"
-nd-summary: >
+f5-keywords: "security dashboard, tabs, global filters, widgets, dimensions, F5 WAF for NGINX"
+f5-summary: >
   Use this reference to look up how the security monitoring dashboard is organized and which underlying dimension each widget reads from.
   This article covers the dashboard tabs, the global filter and time controls, and the mapping from widget to API dimension.
   Each widget has an in-product tooltip explaining what its values mean; this article focuses on what is not in those tooltips.
-nd-audience: operator
+f5-audience: operator
 ---
 
 ## Overview

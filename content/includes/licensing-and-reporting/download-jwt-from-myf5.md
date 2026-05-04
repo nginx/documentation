@@ -1,6 +1,6 @@
 ---
-nd-product: MISCEL
-nd-files:
+f5-product: MISCEL
+f5-files:
 - content/includes/nim/docker/docker-registry-login.md
 - content/includes/use-cases/credential-download-instructions.md
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md

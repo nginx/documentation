@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 DoS for NGINX Security Log.
-nd-docs: DOCS-670
+f5-docs: DOCS-670
 title: Security Log
 toc: true
 weight: 140
-nd-content-type: how-to
-nd-product: F5DOSN
+f5-content-type: how-to
+f5-product: F5DOSN
 ---
 
 ## Overview

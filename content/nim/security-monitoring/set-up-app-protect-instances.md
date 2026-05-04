@@ -2,11 +2,11 @@
 title: Set up F5 WAF for NGINX instances for Security Monitoring
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1107
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1107
 description: "Connect F5 WAF for NGINX instances to Security Monitoring in F5 NGINX Instance Manager to collect and display security violation data."
-nd-summary: >
+f5-summary: >
   Connect F5 WAF for NGINX instances to Security Monitoring in F5 NGINX Instance Manager.
   Security Monitoring supports syslog and gRPC streaming; this guide covers both use cases and the NGINX Agent configuration required for each.
 ---

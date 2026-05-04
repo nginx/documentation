@@ -2,9 +2,9 @@
 title: "Review log profiles"
 weight: 655
 toc: false
-nd-content-type: how-to
-nd-product: NONECO
-nd-summary: Review WAF log profiles in NGINX One Console to inspect configuration details, deployment status, and bundle compilation state, and manage profiles via Actions to edit, copy, deploy, download JSON, manage bundles, or delete.
+f5-content-type: how-to
+f5-product: NONECO
+f5-summary: Review WAF log profiles in NGINX One Console to inspect configuration details, deployment status, and bundle compilation state, and manage profiles via Actions to edit, copy, deploy, download JSON, manage bundles, or delete.
 ---
 
 Before you deploy a log profile to an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a log profile for your F5 WAF for NGINX security logging.

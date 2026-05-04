@@ -102,11 +102,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `getting-started` for first-use guides.
+**f5-content-type**: Always `getting-started` for first-use guides.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use "Get started with {product or feature name}". Keep it under 60 characters.
 
@@ -123,15 +123,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this guide. Include the product name, feature names, the primary CLI command or action used in the guide, and common alternative phrasings such as "quickstart", "first steps", "introduction", or "hello world".
+**f5-keywords**: Comma-separated terms a reader might type to find this guide. Include the product name, feature names, the primary CLI command or action used in the guide, and common alternative phrasings such as "quickstart", "first steps", "introduction", or "hello world".
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what the reader will do and what they will have at the end
 - Sentence 2: what the primary feature does or enables
 - Sentence 3 (optional): the audience, scope limits, or assumed knowledge
 
-**nd-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Getting started guides are typically audience `any` unless the product is role-specific.
+**f5-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Getting started guides are typically audience `any` unless the product is role-specific.
 
 ---
 

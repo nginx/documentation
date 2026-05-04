@@ -3,9 +3,9 @@ title: Review policy
 description: Review and manage stored F5 WAF for NGINX policies and their version history in F5 NGINX Instance Manager.
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-summary: >
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
   Review stored F5 WAF for NGINX policies and their version history in F5 NGINX Instance Manager before deploying them.
   You can inspect any version of a policy and roll back to an earlier version if a deployment causes issues.
 ---

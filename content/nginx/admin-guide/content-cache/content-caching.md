@@ -1,12 +1,12 @@
 ---
 description: Cache both static and dynamic content from your proxied web and application
   servers, to speed delivery to clients and reduce the load on the servers.
-nd-docs: DOCS-380
+f5-docs: DOCS-380
 title: NGINX Content Caching
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

@@ -1,12 +1,12 @@
 ---
 description: Monitor the health of gRPC servers in an upstream group by sending periodic
   health checks.
-nd-docs: DOCS-416
+f5-docs: DOCS-416
 title: gRPC Health Checks
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

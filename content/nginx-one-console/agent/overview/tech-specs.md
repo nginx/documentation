@@ -2,9 +2,9 @@
 title: Technical Specifications
 toc: false
 weight: 200
-nd-content-type: reference
-nd-docs: DOCS-1871
-nd-product: NAGENT
+f5-content-type: reference
+f5-docs: DOCS-1871
+f5-product: NAGENT
 ---
 
 NGINX Agent is designed to operate efficiently on any system that meets the standard

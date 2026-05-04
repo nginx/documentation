@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-821
+f5-docs: DOCS-821
 title: Manage SSL certificates
 toc: true
 weight: 650
-nd-content-type: tutorial
-nd-product: NIMNGR
+f5-content-type: tutorial
+f5-product: NIMNGR
 description: "Add, update, and delete TLS certificates in F5 NGINX Instance Manager using the web interface or REST API."
-nd-summary: >
+f5-summary: >
   Manage TLS certificates for your NGINX instances from F5 NGINX Instance Manager using the web interface or the REST API.
   You can add certificates once and deploy them to one or more instances, making it easy to renew and rotate certificates across your fleet.
 ---

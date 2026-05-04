@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/nginx-one-console/k8s/add-ngf-helm.md
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---

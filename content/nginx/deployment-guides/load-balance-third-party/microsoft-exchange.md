@@ -1,12 +1,12 @@
 ---
 description: Load balance Microsoft Exchange servers with the advanced features in
   F5 NGINX Plus, following our step-by-step setup instructions.
-nd-docs: DOCS-452
+f5-docs: DOCS-452
 title: Load Balancing Microsoft Exchange Servers with NGINX Plus
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of Microsoft Exchange<sup>TM</sup> servers. You can deploy Exchange and NGINX Plus on premises, in a private cloud, or in public clouds including Amazon Web Services (AWS), the Google Cloud Platform, and Microsoft Azure. The guide covers the different installation types, and provides complete instructions for customizing both NGINX Plus and Exchange as required.

@@ -1,12 +1,12 @@
 ---
 description: Configure NGINX and F5 NGINX Plus as a web server, with support for virtual
   server multi-tenancy, URI and response rewriting, variables, and error handling.
-nd-docs: DOCS-443
+f5-docs: DOCS-443
 title: Configuring NGINX and NGINX Plus as a Web Server
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This article explains how to configure NGINX Open Source and F5 NGINX Plus as a web server.

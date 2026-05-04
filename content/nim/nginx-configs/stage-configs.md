@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1277
+f5-docs: DOCS-1277
 title: Stage NGINX configs
 toc: true
 weight: 1
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
 description: "Pre-configure and stage NGINX configuration files in F5 NGINX Instance Manager before deploying them to your NGINX instances."
-nd-summary: >
+f5-summary: >
   Stage NGINX configuration files in F5 NGINX Instance Manager before pushing them to your instances.
   Staging lets you prepare, validate, and review configurations without immediately applying them to production instances.
 ---

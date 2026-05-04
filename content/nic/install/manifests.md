@@ -2,9 +2,9 @@
 title: Install NGINX Ingress Controller with Manifests
 toc: true
 weight: 500
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-603
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-603
 ---
 
 This guide explains how to use Manifests to install F5 NGINX Ingress Controller, then create both common and custom resources and set up role-based access control.
