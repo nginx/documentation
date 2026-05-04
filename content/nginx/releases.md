@@ -149,6 +149,8 @@ NGINX Plus R35 is a feature release:
 
 - [Automatic renewal]({{< ref "/solutions/about-subscription-licenses/getting-started.md#update-license" >}}) of NGINX Plus license.
 
+{{< include "licensing-and-reporting/fcp-renewal-caution.md" >}}
+
 - [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 
 - The [`auth_require`](https://nginx.org/en/docs/http/ngx_http_auth_require_module.html) module that allows access decisions to be made based on any variable values available at the time of invocation, including [key-value](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) pairs and [njs](https://nginx.org/en/docs/njs/) variables. The module is primarily designed for authentication, especially in conjunction with OIDC.
