@@ -1,17 +1,17 @@
 ---
-nd-content-type: how-to
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: how-to
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: {Verb + object}
 description: "{One-sentence summary of what the reader achieves, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{keyword1}, {keyword2}, {keyword3}"
-nd-summary: >
+f5-keywords: "{keyword1}, {keyword2}, {keyword3}"
+f5-summary: >
   {Sentence 1: what the reader will configure or achieve.}
   {Sentence 2: why they would need to do this.}
   {Sentence 3 (optional): any important constraints or scope boundaries.}
-nd-audience: {developer | operator | admin | architect | any}
+f5-audience: {developer | operator | admin | architect | any}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-how-to.md).

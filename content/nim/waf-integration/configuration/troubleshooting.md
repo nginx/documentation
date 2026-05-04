@@ -1,10 +1,13 @@
 ---
 title: Troubleshooting
-description: Resolve common issues with F5 WAF for NGINX and NGINX Instance Manager by verifying installation, configuration, and connectivity.
+description: Resolve common issues with F5 WAF for NGINX and F5 NGINX Instance Manager by verifying installation, configuration, and connectivity.
 toc: true
 weight: 1000
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Diagnose and fix common problems with F5 WAF for NGINX and F5 NGINX Instance Manager.
+  This guide covers the most likely causes of WAF integration issues, including installation conflicts, configuration errors, and connectivity problems.
 ---
 
 If you're having trouble with F5 WAF for NGINX, try the steps below.
@@ -16,7 +19,7 @@ If these steps don’t fix the issue, contact F5 Support.
 
 F5 WAF for NGINX and the WAF compiler shouldn’t run on the same host. To check:
 
-1. Log in to the NGINX Instance Manager host from a terminal.
+1. Log in to the F5 NGINX Instance Manager host from a terminal.
 1. Run the command that matches your operating system:
 
    - For Debian-based systems:

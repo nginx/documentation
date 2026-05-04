@@ -2,9 +2,9 @@
 title: Installation from GitHub release
 weight: 200
 toc: true
-nd-docs: DOCS-1090
-nd-content-type: how-to
-nd-product: NAGENT
+f5-docs: DOCS-1090
+f5-content-type: how-to
+f5-product: NAGENT
 ---
 
 ## Overview

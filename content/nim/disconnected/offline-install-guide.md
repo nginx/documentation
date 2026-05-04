@@ -2,16 +2,20 @@
 title: Install NGINX Instance Manager using a script (disconnected)
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-803
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-803
+description: "Use the install-nim-bundle.sh script to install or upgrade F5 NGINX Instance Manager in a disconnected (offline) environment."
+f5-summary: >
+  Install or upgrade F5 NGINX Instance Manager in a disconnected environment using the install-nim-bundle.sh script.
+  The script automates package transfer and installation for systems without internet access after you download the bundle on a connected host.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## Overview
 
-Use the `install-nim-bundle.sh` script to install and upgrade NGINX Instance Manager in disconnected environments.
+Use the `install-nim-bundle.sh` script to install and upgrade F5 NGINX Instance Manager in disconnected environments.
 
 The script installs:
 

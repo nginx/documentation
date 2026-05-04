@@ -2,9 +2,9 @@
 title: Basic configuration
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: NAGENT
-nd-docs: DOCS-1229
+f5-content-type: how-to
+f5-product: NAGENT
+f5-docs: DOCS-1229
 ---
 
 The following sections explain how to configure NGINX Agent using configuration files, CLI flags, and environment variables.

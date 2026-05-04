@@ -3,8 +3,8 @@ title: Usage dashboard
 weight: 300
 toc: true
 url: /nginxaas/google/billing/usage-dashboard/
-nd-content-type: concept
-nd-product: NGOOGL
+f5-content-type: concept
+f5-product: NGOOGL
 ---
 
 # Usage dashboard

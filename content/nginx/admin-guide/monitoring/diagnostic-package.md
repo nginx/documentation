@@ -1,12 +1,12 @@
 ---
 description: This page describes how to trigger the automatic collection of data required
   to troubleshoot issues in a NGINX or F5 NGINX Plus deployment.
-nd-docs: DOCS-1357
+f5-docs: DOCS-1357
 title: NGINX Diagnostic Package
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

@@ -1,17 +1,17 @@
 ---
-nd-content-type: concept
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: concept
+f5-docs: DOCS-000
+f5-product: NONECO
 title: Security monitoring overview
 description: "What the F5 WAF for NGINX security monitoring module is, the data pipeline behind it, and what you can do with the data."
 weight: 100
 toc: true
-nd-keywords: "security monitoring, security dashboard, F5 WAF for NGINX, security events, analytics, NGINX One Console"
-nd-summary: >
+f5-keywords: "security monitoring, security dashboard, F5 WAF for NGINX, security events, analytics, NGINX One Console"
+f5-summary: >
   Security monitoring in NGINX One Console centralizes security events from F5 WAF for NGINX instances and exposes them through dashboards and an analytics API.
   Use this document to understand what the dashboard shows, where the data comes from, and how it is scoped and retained.
   This document is conceptual; for setup steps see Set up security monitoring.
-nd-audience: operator
+f5-audience: operator
 ---
 
 Security monitoring brings F5 WAF for NGINX events from every connected instance into a single place in NGINX One Console. This page explains what data the system collects, how it flows, and how it is organized.

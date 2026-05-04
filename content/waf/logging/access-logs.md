@@ -2,8 +2,8 @@
 title: Access logs
 toc: false
 weight: 500
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 Access logs are NGINX's mechanism for logging requests.

@@ -1,6 +1,6 @@
 ---
-nd-product: FABRIC
-nd-files:
+f5-product: FABRIC
+f5-files:
 - content/ngf/traffic-management/tls-passthrough.md
 - content/ngf/traffic-security/secure-backend.md
 ---

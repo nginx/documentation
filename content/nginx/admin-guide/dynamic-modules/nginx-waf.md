@@ -1,12 +1,12 @@
 ---
 description: Protect against Layer 7 attacks such as SQLi, XSS, CSRF, LFI, and RFI,
   with the F5 NGINX ModSecurity WAF dynamic module, supported by NGINX.
-nd-docs: DOCS-394
+f5-docs: DOCS-394
 title: NGINX ModSecurity WAF
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 {{< call-out "note" >}} The `nginx-plus-module-modsecurity` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

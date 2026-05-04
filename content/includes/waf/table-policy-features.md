@@ -1,6 +1,6 @@
 ---
-nd-product: F5WAFN
-nd-files:
+f5-product: F5WAFN
+f5-files:
 - content/waf/fundamentals/technical-specifications.md
 - content/waf/policies/configuration.md
 ---

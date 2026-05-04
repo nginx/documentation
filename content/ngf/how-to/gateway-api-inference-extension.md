@@ -2,9 +2,9 @@
 title: Gateway API Inference Extension
 weight: 800
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-0000
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-0000
 ---
 
 Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension to optimize traffic routing to self-hosting Generative AI Models on Kubernetes. 

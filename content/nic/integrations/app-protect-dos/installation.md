@@ -2,9 +2,9 @@
 title: Build NGINX Ingress Controller with F5 DoS for NGINX
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-583
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-583
 ---
 
 This document explains how to build an image for F5 NGINX Ingress Controller with F5 DoS for NGINX from source code.

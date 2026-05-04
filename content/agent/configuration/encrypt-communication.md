@@ -2,8 +2,8 @@
 title: Encrypt communication
 toc: true
 weight: 200
-nd-docs: DOCS-802
-nd-product: NAGENT
+f5-docs: DOCS-802
+f5-product: NAGENT
 ---
 
 ## Overview

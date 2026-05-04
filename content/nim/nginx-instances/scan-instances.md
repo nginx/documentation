@@ -3,23 +3,26 @@ title: Scan and discover NGINX instances
 description: Follow the steps in this guide to scan for and discover NGINX instances.
 toc: true
 weight: 110
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-828
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-828
+f5-summary: >
+  Scan your network to discover NGINX instances and add them to F5 NGINX Instance Manager for centralized management.
+  The scan process uses NGINX Agent on target instances to register them with NGINX Instance Manager automatically.
 ---
 
 {{< shortversions "2.0.0" "latest" "nimvers" >}}
 
 ## Prerequisites {#prerequisites}
 
-1. [Install Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}).
-2. Start and enable Instance Manager.
+1. [Install F5 NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}).
+2. Start and enable NGINX Instance Manager.
 
 {{< call-out "note" >}}
 To update the CVE list manually or offline, refer to the [Offline Installation]({{<ref "/nim/disconnected/offline-install-guide.md#cve-check">}}) guide.
 {{< /call-out >}}
 
-Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The Instance Manager API provides a method for disabling host discovery in scanning.
+Host discovery, the first stage in instance discovery, is used to enumerate live hosts on a given network. However, in certain environments, Internet Control Message Protocol (ICMP) echo requests are disabled. The NGINX Instance Manager API provides a method for disabling host discovery in scanning.
 
 ```shell
 curl --request POST \
@@ -29,11 +32,11 @@ curl --request POST \
   --data '{"cidr": "192.0.2.0/24","hostDiscovery": "none","portRanges": ["80","443"]}'
 ```
 
-If no host discovery options are provided, Instance Manager sends an ICMP echo request to each host on the network.
+If no host discovery options are provided, NGINX Instance Manager sends an ICMP echo request to each host on the network.
 
 ## Scan using the web interface {#scan-ui}
 
-1. In a web browser, go to the FQDN for your F5 NGINX Instance Manager host and log in.
+1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
 2. In the left menu, select **Scan**.
 3. Enter subnets and masks that correspond to your network.
 
@@ -45,7 +48,7 @@ There's a CVE that's not reported for NGINX that involves [unfiltered logging](h
 
 ## Scan using the API {#scan-api}
 
-To start a scan using the Instance Manager API, send a POST request similar to the following example to the Scan endpoint, `https://<NIM_FQDN>/api/platform/v1/servers/scan`.
+To start a scan using the NGINX Instance Manager API, send a POST request similar to the following example to the Scan endpoint, `https://<NIM_FQDN>/api/platform/v1/servers/scan`.
 
 ```shell
 curl --request POST \

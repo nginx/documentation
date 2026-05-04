@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1068
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-1068
+f5-product: NIMNGR
+f5-files:
 - content/nim/fundamentals/tech-specs.md
 - content/nim/releases/release-notes.md
 ---

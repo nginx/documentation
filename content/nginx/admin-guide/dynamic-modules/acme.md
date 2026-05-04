@@ -3,8 +3,8 @@ description: Automates SSL/TLS certificate lifecycle management by enabling dire
 title: ACME
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The ACME protocol automates SSL/TLS certificate lifecycle management by enabling direct communication between clients and certificate authorities for issuance, installation, revocation, and replacement of SSL certificates. 

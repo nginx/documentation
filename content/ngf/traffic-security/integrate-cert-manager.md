@@ -2,9 +2,9 @@
 title: Secure traffic using Let's Encrypt and cert-manager
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1425
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1425
 ---
 
 Learn how to issue and manage certificates using Let's Encrypt and cert-manager.

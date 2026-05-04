@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-796
+f5-docs: DOCS-796
 title: Configure SELinux
 toc: true
 weight: 250
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Apply the optional SELinux policy module for F5 NGINX Instance Manager to run it on systems with SELinux in Enforcing mode."
+f5-summary: >
+  Apply the optional SELinux policy module to run F5 NGINX Instance Manager on systems with SELinux in Enforcing mode.
+  Without the policy module, NGINX Instance Manager will not start correctly on SELinux-enforced hosts.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

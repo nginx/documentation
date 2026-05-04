@@ -2,8 +2,8 @@
 title: "Disallowed file type extensions"
 weight: 1000
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This page describes the disallowed file type extensions feature for F5 WAF by NGINX.

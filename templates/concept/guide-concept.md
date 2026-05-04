@@ -107,11 +107,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `concept` for conceptual background documents.
+**f5-content-type**: Always `concept` for conceptual background documents.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use a noun phrase that names the concept directly. Do not use "Understanding X" or "About X" — these add words without adding meaning.
 
@@ -128,15 +128,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this document. Include the concept name, related terms, common synonyms, and the product or domain context.
+**f5-keywords**: Comma-separated terms a reader might type to find this document. Include the concept name, related terms, common synonyms, and the product or domain context.
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what the concept is, in plain language
 - Sentence 2: why it matters to the reader or what it enables
 - Sentence 3 (optional): scope, boundaries, or what this document does not cover
 
-**nd-audience**: Who this document is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
+**f5-audience**: Who this document is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
 
 ---
 

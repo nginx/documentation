@@ -2,7 +2,7 @@
 title: "Policies"
 url: /waf/policies/
 cascade:
-  nd-banner:
+  f5-banner:
     enabled: true
     type: deprecation
     start-date: 2025-09-30

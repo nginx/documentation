@@ -1,6 +1,6 @@
 ---
-nd-product: FABRIC
-nd-files:
+f5-product: FABRIC
+f5-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 

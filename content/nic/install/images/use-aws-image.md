@@ -1,11 +1,11 @@
 ---
-nd-docs: DOCS-607
+f5-docs: DOCS-607
 title: Use the AWS Marketplace NGINX Ingress Controller image
 toc: true
 weight: 200
 draft: true
-nd-content-type: how-to
-nd-product: INGRESS
+f5-content-type: how-to
+f5-product: INGRESS
 ---
 
 This guide walks you through the steps to set up NGINX Ingress Controller using the AWS Marketplace

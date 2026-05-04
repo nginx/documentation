@@ -4,8 +4,8 @@ description: Questions about F5 NGINX Amplify's Metrics and Metadata
 weight: 40
 toc: true
 noindex: true
-nd-docs: DOCS-957
-nd-product: AMPLIF
+f5-docs: DOCS-957
+f5-product: AMPLIF
 ---
 
 ### What Data Does F5 NGINX Amplify Agent Gather?

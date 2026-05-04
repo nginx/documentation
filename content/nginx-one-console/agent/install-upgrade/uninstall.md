@@ -2,9 +2,9 @@
 title: Uninstall NGINX Agent
 toc: false
 weight: 500
-nd-content-type: how-to
-nd-docs: DOCS-1874
-nd-product: NAGENT
+f5-content-type: how-to
+f5-docs: DOCS-1874
+f5-product: NAGENT
 ---
 
 ## Overview

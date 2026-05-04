@@ -1,7 +1,7 @@
 ---
 title: Shortcode report
 description: Shortcode report
-nd-content-type: reference
+f5-content-type: reference
 toc: true
 ---
 

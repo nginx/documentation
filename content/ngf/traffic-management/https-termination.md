@@ -2,9 +2,9 @@
 title: HTTPS termination
 weight: 300
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1421
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1421
 ---
 
 Learn how to terminate HTTPS traffic using NGINX Gateway Fabric.

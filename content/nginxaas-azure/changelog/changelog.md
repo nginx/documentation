@@ -2,9 +2,9 @@
 title: "2026"
 weight: 100
 toc: true
-nd-content-type: reference
-nd-docs: "DOCS-870"
-nd-product: NAZURE
+f5-content-type: reference
+f5-docs: "DOCS-870"
+f5-product: NAZURE
 url: /nginxaas/azure/changelog/
 ---
 

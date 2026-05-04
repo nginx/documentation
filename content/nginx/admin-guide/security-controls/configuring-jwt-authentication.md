@@ -1,12 +1,12 @@
 ---
 description: This article explains how to control authentication of your web resources
   using JWT authentication.
-nd-docs: DOCS-429
+f5-docs: DOCS-429
 title: Setting up JWT Authentication
 toc: true
 weight: 500
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

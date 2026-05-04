@@ -1,13 +1,16 @@
 ---
 title: Delete a security policy
-description: Remove an existing F5 WAF for NGINX security policy using the NGINX Instance Manager web interface or REST API.
+description: Remove an existing F5 WAF for NGINX security policy using the F5 NGINX Instance Manager web interface or REST API.
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Remove an existing F5 WAF for NGINX security policy from F5 NGINX Instance Manager using the web interface or REST API.
+  Deleting a policy permanently removes it and its version history from NGINX Instance Manager.
 ---
 
-You can delete a security policy using either the NGINX Instance Manager web interface or the REST API.
+You can delete a security policy using either the F5 NGINX Instance Manager web interface or the REST API.
 
 ---
 
@@ -18,7 +21,7 @@ You can delete a security policy using either the NGINX Instance Manager web int
 To delete a policy in the web interface:
 
 1. Log in to NGINX Instance Manager.
-1. From the Launchpad, select **Instance Manager**.
+1. From the Launchpad, select **NGINX Instance Manager**.
 1. In the left menu, select **WAF > Policies**.
 1. On the **Security Policies** page, locate the policy you want to delete.
 1. Select the **Actions** menu (**...**) and choose **Delete**.

@@ -2,9 +2,9 @@
 title: Connect F5 WAF for NGINX to NGINX Security Monitoring
 toc: true
 weight: 1800
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1856
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1856
 ---
 
 This document explains how to use NGINX Ingress Controller to configure NGINX Agent for sending F5 WAF for NGINX metrics to NGINX Security Monitoring.

@@ -3,8 +3,8 @@ title: NGINX Ingress Controller Helm chart parameters
 linkTitle: Helm chart parameters
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
+f5-content-type: how-to
+f5-product: INGRESS
 ---
 
 This page describes the Helm chart parameters of F5 NGINX Ingress Controllers.

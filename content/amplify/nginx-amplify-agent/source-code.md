@@ -4,8 +4,8 @@ description: Learn where to find F5 NGINX Amplify Agent's source code.
 weight: 700
 toc: true
 noindex: true
-nd-docs: DOCS-965
-nd-product: AMPLIF
+f5-docs: DOCS-965
+f5-product: AMPLIF
 ---
 
 F5 NGINX Amplify Agent is an open source application. It is licensed under the [2-clause BSD license](https://github.com/nginxinc/nginx-amplify-agent/blob/master/LICENSE), and is available here:

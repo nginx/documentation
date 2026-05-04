@@ -2,10 +2,10 @@
 title: Identity and access management
 weight: 600
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/getting-started/access-management/
-nd-content-type: how-to
-nd-product: NGOOGL
+f5-content-type: how-to
+f5-product: NGOOGL
 ---
 
 

@@ -2,9 +2,9 @@
 title: Changelog
 toc: true
 weight: 99999
-nd-content-type: reference
-nd-product: NONECO
-nd-docs: DOCS-1394
+f5-content-type: reference
+f5-product: NONECO
+f5-docs: DOCS-1394
 ---
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.

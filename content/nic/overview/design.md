@@ -2,9 +2,9 @@
 title: The design of NGINX Ingress Controller
 toc: true
 weight: 200
-nd-content-type: concept
-nd-product: INGRESS
-nd-docs: DOCS-609
+f5-content-type: concept
+f5-product: INGRESS
+f5-docs: DOCS-609
 ---
 
 This document explains how the F5 NGINX Ingress Controller is designed, and how it differs when using NGINX or NGINX Plus.

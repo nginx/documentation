@@ -1,12 +1,12 @@
 ---
 description: Terminate SSL/TLS-encrypted traffic from clients, relieving your upstream
   TCP servers of the computational load.
-nd-docs: DOCS-438
+f5-docs: DOCS-438
 title: SSL Termination for TCP Upstream Servers
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This article explains how to set up SSL termination for F5 NGINX Plus and a load-balanced group of servers that accept TCP connections.

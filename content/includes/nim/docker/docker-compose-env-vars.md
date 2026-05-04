@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md
 ---
 

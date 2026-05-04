@@ -2,9 +2,9 @@
 title: Client Settings Policy API
 toc: true
 weight: 900
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1846
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1846
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.

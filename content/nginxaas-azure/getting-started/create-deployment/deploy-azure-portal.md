@@ -3,10 +3,10 @@ title: Deploy using the Azure portal
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NAZURE
-nd-docs: DOCS-878
-nd-review-priority: high
+f5-content-type: how-to
+f5-product: NAZURE
+f5-docs: DOCS-878
+f5-review-priority: high
 ---
 
 ## Overview

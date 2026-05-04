@@ -1,12 +1,12 @@
 ---
 description: Load balance Oracle E-Business Suite applications with the advanced features
   in F5 NGINX Plus, following our step-by-step setup instructions.
-nd-docs: DOCS-454
+f5-docs: DOCS-454
 title: Load Balancing Oracle E-Business Suite with NGINX Plus
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.

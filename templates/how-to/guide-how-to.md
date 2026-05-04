@@ -104,11 +104,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `how-to` for task-based guides.
+**f5-content-type**: Always `how-to` for task-based guides.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Ask your team lead or the technical writers if you are unsure which code to use. You can also check the code of an existing document for the same product.
+**f5-product**: The product code. Ask your team lead or the technical writers if you are unsure which code to use. You can also check the code of an existing document for the same product.
 
 **title**: Use an imperative verb phrase — the same verb form you would use to tell someone what to do. Keep it under 60 characters so it fits cleanly in navigation menus and search results.
 
@@ -125,15 +125,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this guide. Include product names, feature names, CLI commands, file paths, and common misspellings or alternative phrasings.
+**f5-keywords**: Comma-separated terms a reader might type to find this guide. Include product names, feature names, CLI commands, file paths, and common misspellings or alternative phrasings.
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what the reader will configure or achieve
 - Sentence 2: why they would need to do this, or the problem it solves
 - Sentence 3 (optional): any important constraints or scope boundaries
 
-**nd-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
+**f5-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
 
 ---
 

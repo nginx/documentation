@@ -1,8 +1,8 @@
 ---
 description: ''
-nd-content-type: how-to
-nd-docs: DOCS-1397
-nd-product: NONECO
+f5-content-type: how-to
+f5-docs: DOCS-1397
+f5-product: NONECO
 title: Authentication
 toc: true
 weight: 10

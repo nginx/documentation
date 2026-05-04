@@ -3,9 +3,9 @@ title: Single Sign-On with Keycloak
 description: Enable OpenID Connect-based single sign-on (SSO) for applications proxied by NGINX Plus, using Keycloak as the identity provider (IdP).
 toc: true
 weight: 500
-nd-content-type: how-to
-nd-product: NGPLUS
-nd-docs: DOCS-1682
+f5-content-type: how-to
+f5-product: NGPLUS
+f5-docs: DOCS-1682
 ---
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Keycloak](https://www.keycloak.org/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.

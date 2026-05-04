@@ -212,8 +212,8 @@ Front matter structure:
 title: "Page title"           # Sentence case, present imperative
 weight: 100                   # Controls sort order, increments of 100
 toc: false                    # Enable for large documents
-nd-content-type: how-to       # how-to | concept | tutorial | reference
-nd-product: INGRESS           # INGRESS, FABRIC, NIMNGR, F5WAFN, etc.
+f5-content-type: how-to       # how-to | concept | tutorial | reference
+f5-product: INGRESS           # INGRESS, FABRIC, NIMNGR, F5WAFN, etc.
 ```
 
 ## Hugo shortcodes and includes

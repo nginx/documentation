@@ -2,10 +2,10 @@
 title: Add certificates using the Console
 weight: 100
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console/
-nd-content-type: how-to
-nd-product: NGOOGL
+f5-content-type: how-to
+f5-product: NGOOGL
 ---
 
 You can manage SSL/TLS certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using the NGINXaaS console.

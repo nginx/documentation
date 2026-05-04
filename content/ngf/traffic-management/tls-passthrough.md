@@ -2,9 +2,9 @@
 title: Configure TLS passthrough
 weight: 600
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1850
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1850
 ---
 
 Learn how to use TLSRoutes to configure TLS passthrough load-balancing with NGINX Gateway Fabric.

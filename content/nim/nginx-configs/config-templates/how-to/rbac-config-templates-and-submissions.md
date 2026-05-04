@@ -1,16 +1,19 @@
 ---
 title: RBAC for config templates and submissions
-description: ''
+description: "Configure role-based access control for NGINX config templates and submissions in F5 NGINX Instance Manager to control who can create, edit, and submit templates."
 weight: 300
 toc: true
-nd-docs: DOCS-1505
-nd-personas:
+f5-docs: DOCS-1505
+f5-personas:
 - devops
 - netops
 - secops
 - support
-nd-content-type: tutorial
-nd-product: NIMNGR
+f5-content-type: tutorial
+f5-product: NIMNGR
+f5-summary: >
+  Configure RBAC for NGINX config templates and submissions in F5 NGINX Instance Manager to control who can create, update, and submit templates.
+  RBAC for templates lets administrators define precise access controls, ensuring users can only perform the template actions their role permits.
 ---
 
 ## Overview
@@ -20,7 +23,7 @@ With role-based access control (RBAC), administrators can determine who can crea
 ## Before You Begin
 
 - Ensure the user is added as a [basic authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}) or [OpenID Connect (OIDC)]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}) user in F5 NGINX Instance Manager.
-- Familiarize yourself with the concepts of [Roles]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}}) and [Permissions]({{< ref "/nim/admin-guide/rbac/create-roles.md" >}}) within Instance Manager as they are crucial for managing access.
+- Familiarize yourself with the concepts of [Roles]({{< ref "/nim/admin-guide/rbac/assign-roles.md" >}}) and [Permissions]({{< ref "/nim/admin-guide/rbac/create-roles.md" >}}) within NGINX Instance Manager as they are crucial for managing access.
 
 ## Assign Roles for Templates and Template Submissions
 

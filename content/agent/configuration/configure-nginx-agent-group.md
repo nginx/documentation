@@ -2,9 +2,9 @@
 title: "Add NGINX users to nginx-agent group"
 weight: 300
 toc: true
-nd-docs: DOCS-933
-nd-content-type: how-to
-nd-product: NAGENT
+f5-docs: DOCS-933
+f5-content-type: how-to
+f5-product: NAGENT
 ---
 
 ## Overview

@@ -2,9 +2,9 @@
 title: "Changelog"
 url: /waf/changelog/
 weight: 600
-nd-landing-page: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-landing-page: true
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2026.

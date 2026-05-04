@@ -2,8 +2,8 @@
 title: "Lab 2: Run workshop components with Docker"
 weight: 200
 toc: true
-nd-content-type: tutorial
-nd-product: NONECO
+f5-content-type: tutorial
+f5-product: NONECO
 ---
 
 ## Introduction
