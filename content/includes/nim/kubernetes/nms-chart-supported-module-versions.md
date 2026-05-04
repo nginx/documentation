@@ -9,6 +9,7 @@ nd-files:
 
 | NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
+| 2.2.0                        | nginx-stable/nim           | 2.22.0           |
 | 2.1.1                        | nginx-stable/nim           | 2.21.1           |
 | 2.1.0                        | nginx-stable/nim           | 2.21.0           |
 | 2.0.1                        | nginx-stable/nim           | 2.20.1           |

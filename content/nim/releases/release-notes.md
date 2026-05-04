@@ -15,6 +15,67 @@ The release notes for F5 NGINX Instance Manager highlight the latest features, i
 
 {{< /details >}}
 
+## 2.22.0
+
+April 28, 2026
+
+### Upgrade Paths {#2-22-0-upgrade-paths}
+
+NGINX Instance Manager 2.22.0 supports upgrades from these previous versions:
+
+- 2.19.0 - 2.21.1
+
+If your NGINX Instance Manager version is older, you may need to upgrade to an intermediate version before upgrading to the target version.
+
+### What's new {#2-22-0-whats-new}
+
+This release includes the following updates:
+
+- {{% icon-feature %}} **Use the default SCC on OpenShift**<a name="2-22-0-whats-new-Use-the-default-SCC-on-OpenShift-46497"></a>
+
+   Starting in v2.22.0, NGINX Instance Manager Helm deployments on OpenShift use the cluster's default Security Context Constraint (SCC) when you set `openshift.enabled: true`. NGINX Instance Manager no longer requires a custom SCC with fixed UIDs (1000 and 101). This simplifies installation and improves OpenShift compatibility. For details, see [Appendix: OpenShift security constraints]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#appendix-openshift-security-constraints" >}}).
+
+- {{% icon-feature %}} **New licensing flow sends raw usage data; JWT license no longer required**<a name="2-22-0-whats-new-New-licensing-flow-sends-raw-usage-data-JWT-license-no-longer-required-47277"></a>
+
+   NGINX Instance Manager now sends raw usage data to the new licensing endpoint instead of aggregated data to the legacy endpoint. A JWT license is no longer required, and disconnected environments no longer need to upload usage report acknowledgements.
+
+   For more information, see [Add a license (connected)]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md" >}}) and [Add a license (disconnected)]({{< ref "/nim/licensing-and-reporting/add-license-disconnected-deployment.md" >}}).
+
+- {{% icon-feature %}} **Log profiles section added to the NGINX Instance Manager UI**<a name="2-22-0-whats-new-Log-profiles-section-added-to-the-NGINX-Instance-Manager-UI-47278"></a>
+
+   NGINX Instance Manager now includes a Log Profiles section in the UI, where you can view, manage, configure, compile, and download log profiles. The section includes form-based and JSON-based editors, similar to the WAF Policies section.
+
+- {{% icon-feature %}} **Custom TLS certificates now supported through Vault and external service certificates**<a name="2-22-0-whats-new-Custom-TLS-certificates-now-supported-through-Vault-and-external-service-certificates-47279"></a>
+
+   NGINX Instance Manager now supports custom TLS certificates for its API Gateway and externally provided internal service certificates. The Helm chart supports both the existing default certificate flow and a new external certificates flow for pre-existing per-service secrets.
+
+   For more information, see [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md" >}}).
+
+### Changes in default behavior{#2-22-0-changes-in-behavior}
+
+This release has the following changes in default behavior:
+
+- {{% icon-feature %}} **Saving a modified WAF policy now always creates a new version**<a name="2-22-0-changes-in-behavior-Saving-a-modified-WAF-policy-now-always-creates-a-new-version-47280"></a>
+
+   NGINX Instance Manager now creates a new version each time a modified WAF policy is saved, even if the current version isn't deployed. Previously, a new version was created only for deployed policy versions.
+
+   - The `PUT` endpoint for updating WAF policies is deprecated.
+   - Submit WAF policy changes through `POST` requests.
+
+- {{% icon-feature %}} **Usage reporting and the NGINX Usage page have changed in version 2.22**<a name="2-22-0-changes-in-behavior-Usage-reporting-and-the-NGINX-Usage-page-have-changed-in-version-222-47281"></a>
+
+   The new licensing endpoint is: `https://product.connect.nginx.com/api/nginx-usage/batch`
+
+   - In connected environments that restrict outbound access, add the new licensing endpoint to your allowlist.
+   - In disconnected mode, use the new bash script to process the larger download file.
+   - The NGINX Usage page no longer shows hourly aggregated data. It now shows usage reporting details such as instance and cluster IDs and last reported times.
+
+   For more information, see [Report usage data to F5 (connected)]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}) and [Report usage data to F5 (disconnected)]({{< ref "/nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).
+
+### Known issues {#2-22-0-known-issues}
+
+You can find information about known issues in the [Known Issues]({{< ref "/nim/releases/known-issues.md" >}}) topic.
+
 ## 2.21.1
 
 March 2, 2026
@@ -514,7 +575,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Entitlement and visibility for NGINX Plus R33 – Telemetry reporting for disconnected environments**<a name="2-18-0-whats-new-Entitlement-and-visibility-for-NGINX-Plus-R33-Telemetry-reporting-for-disconnected-environments-45106"></a>
 
-   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/admin-guide/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
+   If NGINX Instance Manager has internet access, customers can [automatically or manually send the usage data to F5]({{< ref "nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}) as part of the new NGINX Plus R33 changes.
 
    For customers who have NGINX Instance Manager deployed in [disconnected environments]({{< ref "nim/disconnected" >}}), this release also includes support for manual usage reporting. Customers can now manually license NGINX Instance Manager and export usage telemetry for fully disconnected environments. For usage reporting, customers can:
 
@@ -980,7 +1041,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Use NGINX Plus Health Checks to easily track NGINX Plus Usage with NGINX Instance Manager**<a name="2-13-0-whats-new-Use-NGINX-Plus-Health-Checks-to-easily-track-NGINX-Plus-Usage-with-NGINX-Instance-Manager-43614"></a>
 
-   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}).
+   The NGINX Plus Health Check feature now allows you to monitor the count of both NGINX Plus and NGINX App Protect instances that you've deployed. You can view this information in the "NGINX Plus" area of the "Instance Manager" web interface, or through the `/inventory` API. For guidance on how to set this up, refer to the following documentation: [View Count of NGINX Plus Instances]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}).
 
 - {{% icon-feature %}} **Improved log output for better JSON parsing**<a name="2-13-0-whats-new-Improved-log-output-for-better-JSON-parsing-44118"></a>
 
@@ -1016,7 +1077,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **New support for license tokens for automatic entitlement updates, renewals, and Flexible Consumption Reporting**<a name="2-12-0-whats-new-New-support-for-license-tokens-for-automatic-entitlement-updates-renewals-and-Flexible-Consumption-Reporting-41960"></a>
 
-   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/admin-guide/add-license.md" >}}) topic.
+   NGINX Management Suite now supports license tokens formatted as a JSON Web Token (JWT). With JWT licensing, you can automatically update entitlements during subscription renewals or amendments, and you can automate reporting for the Flexible Consumption Program (FCP). For more information, see the [Add a License]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md" >}}) topic.
 
 ### Resolved issues {#2-12-0-resolved-issues}
 
@@ -1609,7 +1670,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track NGINX Plus usage over time**<a name="2-5-0-whats-new-Track-NGINX-Plus-usage-over-time-34862"></a>
 
-   When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
+   When viewing your NGINX Plus instances in the Instance Manager web interface, you can set a date and time filter to review the [NGINX Plus instance count]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}) for a specific period. Also, you can use the Instance Manager REST API to view the lowest, highest, and average number of NGINX Plus instances over time.
 
 - {{% icon-feature %}} **New helm charts for each release of Instance Manager**<a name="2-5-0-whats-new-New-helm-charts-for-each-release-of-Instance-Manager-34880"></a>
 
@@ -1649,7 +1710,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **See which of your NGINX Plus instances have NGINX App Protect installed**<a name="2-4-0-whats-new-See-which-of-your-NGINX-Plus-instances-have-NGINX-App-Protect-installed-34879"></a>
 
-   Now, when you [view your NGINX Plus inventory]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
+   Now, when you [view your NGINX Plus inventory]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}), you can see which instances have [NGINX App Protect](https://www.nginx.com/products/nginx-app-protect/) installed. NGINX App Protect is a modern app‑security solution that works seamlessly in DevOps environments as a robust WAF or app‑level DoS defense, helping you deliver secure apps from code to customer.
 
 ### Changes in default behavior{#2-4-0-changes-in-behavior}
 
@@ -1736,7 +1797,7 @@ This release includes the following updates:
 
 - {{% icon-feature %}} **Track the details for your NGINX Plus instances**<a name="2-3-0-whats-new-Track-the-details-for-your-NGINX-Plus-instances-33744"></a>
 
-   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/admin-guide/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
+   Easily track your NGINX Plus instances from the new NGINX Plus inventory list page. [View the current count for all your NGINX Plus instances]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}), as well as each instance's hostname, UID, version, and the last time each instance was reported to Instance Manager. Select the `Export` button to export the list of NGINX Plus instances to a `.csv` file.
 
 - {{% icon-feature %}} **Explore events in NGINX Instance Manager with the Events Catalogs API**<a name="2-3-0-whats-new-Explore-events-in-NGINX-Instance-Manager-with-the-Events-Catalogs-API-34106"></a>
 

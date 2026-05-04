@@ -33,7 +33,7 @@ Follow these steps to get and upload the certificate and key:
 1. Upload the file to NGINX Instance Manager using the REST API:
 
    ```shell
-   curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/certs'    --header "Authorization: Bearer <access token>"    --header "Content-Type: application/json"    -d @nginx-repo-certs.json
+   curl -X POST 'https://<NIM_FQDN>/api/platform/v1/certs'    --header "Authorization: Bearer <access token>"    --header "Content-Type: application/json"    -d @nginx-repo-certs.json
    ```
 
 1. If successful, you’ll see a response similar to this:
