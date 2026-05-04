@@ -4,7 +4,7 @@ nd-product: F5DOSN
 
 ```dockerfile
 
-# Where can be bullseye/bookworm
+# Where can be bullseye/bookworm/trixie
 FROM debian:bullseye
 
 # Install F5 DoS for NGINX
