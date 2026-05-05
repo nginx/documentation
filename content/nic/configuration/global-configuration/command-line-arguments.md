@@ -32,6 +32,8 @@ Secret with a TLS certificate and key for TLS termination of the default server.
 
 Format: `<namespace>/<name>`
 
+When `-allow-empty-ingress-host` is enabled, this secret also provides TLS for Ingress resources without a `host`.
+
 <a name="cmdoption-wildcard-tls-secret"></a>
 
 ### -wildcard-tls-secret `<string>`
@@ -164,6 +166,18 @@ Default `nginx`.
 ### -ingress-template-path `<string>`
 
 Path to the ingress NGINX configuration template for an ingress resource. Default for NGINX is `nginx.ingress.tmpl`; default for NGINX Plus is `nginx-plus.ingress.tmpl`.
+
+<a name="cmdoption-allow-empty-ingress-host"></a>
+
+### -allow-empty-ingress-host
+
+Allows Ingress resources to omit the `host` field.
+
+Default `false`.
+
+If multiple Ingress resources without a `host` conflict, NGINX Ingress Controller resolves the collision using the [winner selection algorithm]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}). To use multiple Ingress resources without a `host` across namespaces without conflict, use [mergeable Ingress]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
+
+To configure TLS, use the command-line argument [`-default-server-tls-secret`](#cmdoption-default-server-tls-secret). To configure listener ports, use the command-line arguments [`-default-http-listener-port`](#cmdoption-default-http-listener-port) or [`-default-https-listener-port`](#cmdoption-default-https-listener-port).
 
 <a name="cmdoption-leader-election-lock-name"></a>
 
@@ -509,6 +523,8 @@ Sets the port for the HTTP `default_server` listener.
 
 Default `80`.
 
+When [-allow-empty-ingress-host](#cmdoption-allow-empty-ingress-host) is enabled, also configures the HTTP listener port for Ingress resources without a `host`.
+
 <a name="cmdoption-default-http-listener-port"></a>
 
 ### -default-https-listener-port
@@ -516,6 +532,8 @@ Default `80`.
 Sets the port for the HTTPS `default_server` listener.
 
 Default `443`.
+
+When [-allow-empty-ingress-host](#cmdoption-allow-empty-ingress-host) is enabled, also configures the HTTPS listener port for Ingress resources without a `host`.
 
 <a name="cmdoption-default-https-listener-port"></a>
 
