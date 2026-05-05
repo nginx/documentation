@@ -312,3 +312,35 @@ Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set
 {{% /tab %}}
 
 {{< /tabs >}}
+
+## Custom NGINX templates
+
+If you use custom NGINX configuration templates, review and apply any upstream template changes before upgrading. For more information, see [Custom templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}).
+
+1. Clone the repository:
+
+   ```shell
+   git clone https://github.com/nginx/kubernetes-ingress.git
+   ```
+
+2. Generate a diff between the version you are upgrading from and the version you are upgrading to:
+
+   ```shell
+   git diff v<current-version>..v<target-version> -- internal/configs/<template-file> > upstream.patch
+   ```
+
+3. Extract your custom template from the ConfigMap to a local file. The valid key names are `main-template`, `ingress-template`, `virtualserver-template`, and `transportserver-template`:
+
+   ```shell
+   kubectl get configmap <name> -n nginx-ingress -o jsonpath='{.data.<template-key>}' > my-template.tmpl
+   ```
+
+4. Apply the patch to your custom template:
+
+   ```shell
+   patch my-template.tmpl < upstream.patch
+   ```
+
+   If any hunks fail, review `my-template.tmpl.rej` and apply those changes manually.
+
+5. Update the template key with the patched content. If you manage your ConfigMap directly, update the relevant key in your manifest and run `kubectl apply -f <your-configmap.yaml>`. If you use Helm, set the key under `controller.config.entries` in your values file and run `helm upgrade`.

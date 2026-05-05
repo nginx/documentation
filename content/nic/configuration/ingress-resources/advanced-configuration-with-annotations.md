@@ -166,8 +166,8 @@ The table below summarizes the available annotations.
 
 | Annotation | ConfigMap Key | Description | Default |
 | ---| ---| ---| ---|
-| *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. | *[80]* |
-| *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. | *[443]* |
+| *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. Not supported on Ingress resources without a `host`; use the `-default-http-listener-port` command-line argument instead. | *[80]* |
+| *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. Not supported on Ingress resources without a `host`; use the `-default-https-listener-port` command-line argument instead. | *[443]* |
 
 ### Backend services (Upstreams)
 
