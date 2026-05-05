@@ -53,7 +53,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 - For NGINX, use the 5.4.2 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.4.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.4.2 images from the F5 Container registry or build your own image using the 5.4.2 source code.
-- For Helm, use version 2.6.2 of the chart.
+- For Helm, use version 2.5.2 of the chart.
 
 ### {{% icon life-buoy %}} Supported platforms
 
