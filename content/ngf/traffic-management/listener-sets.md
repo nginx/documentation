@@ -2,9 +2,9 @@
 title: ListenerSet API
 toc: true
 weight: 1500
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-0000
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-0000
 ---
 
 Learn how to use the `ListenerSet` API.
@@ -340,7 +340,7 @@ The `Attached Routes` field should now report `1` as the HTTPRoute has attached 
 Send a request to the `coffee` service with this command:
 
 ```shell
-curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee 
+curl --resolve coffee.example.com:$GW_PORT:$GW_IP http://coffee.example.com:$GW_PORT/coffee 
 ```
 
 ```text
