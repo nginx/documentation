@@ -2,9 +2,9 @@
 title: "Known issues"
 weight: 1000
 toc: true
-nd-content-type: reference
-nd-docs: "DOCS-871"
-nd-product: NAZURE
+f5-content-type: reference
+f5-docs: "DOCS-871"
+f5-product: NAZURE
 url: /nginxaas/azure/known-issues/
 
 ---

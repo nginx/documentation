@@ -1,17 +1,21 @@
 ---
-nd-docs: DOCS-1275
+f5-docs: DOCS-1275
 title: Frequently used Helm configurations
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Common Helm chart configuration examples for F5 NGINX Instance Manager, covering ingress, persistence, resource limits, and other frequently needed settings."
+f5-summary: >
+  Apply common Helm chart configurations for F5 NGINX Instance Manager by modifying the values.yaml file.
+  This guide covers the most frequently needed settings, including ingress configuration, persistent storage, and resource limits.
 ---
 
 ## Overview
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
-This guide provides frequently used configurations for NGINX Instance Manager. To apply any of these configurations, modify the `values.yaml` file accordingly.
+This guide provides frequently used configurations for F5 NGINX Instance Manager. To apply any of these configurations, modify the `values.yaml` file accordingly.
 
 Refer to the [configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-config-settings.md" >}}) guide for a complete list of configurable parameters and default values used by NGINX Instance Manager and its modules when installing from a Helm chart.
 
@@ -38,33 +42,11 @@ To use your own ClickHouse installation, follow these steps:
 This section is recommended for production deployments.
 {{< /production >}}
 
-NGINX Instance Manager generates a certificate authority and self-signs its certificates by default.
+By default, NGINX Instance Manager generates a self-signed certificate authority (CA) and all required TLS certificates. For production, you can supply your own certificates instead.
 
-To use your own certificates, follow these steps:
+The Bring Your Own Certificates (BYOC) feature lets you replace certificates for any or all NIM services — including individual service mTLS certificates and the API Gateway's external HTTPS certificate.
 
-1. Open `values.yaml` for editing.
-2. Add the name of a Kubernetes secret to `nms-hybrid.apigw.tlsSecret`. The following fields are required:
-
-   - `tls.crt`
-   - `tls.key`
-   - `ca.pem`
-
-   **Example Kubernetes secret:**
-
-   ```yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-      name: apigw-tls
-   type: kubernetes.io/tls
-   data:
-      tls.crt: |
-         <base64-encoded-certificate>
-      tls.key: |
-         <base64-encoded-key>
-      ca.pem: |
-         <base64-encoded-ca>
-   ```
+For full instructions, see [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md" >}}).
 
 ---
 
@@ -96,10 +78,10 @@ To use NGINX Plus for the API Gateway, follow these steps:
    # API-GW with NGINX-PLUS is needed to enable OIDC.
 
    # Download NMS API gateway Docker image from MyF5 Downloads, https://docs.nginx.com/nginx-management-suite/installation/helm-chart/
-   # Replace "apigw:<version>" with a known release tag.
+   # Replace "apigw:<VERSION>" with a known release tag.
    # For example: apigw:2.6.0
 
-   FROM apigw:<version> as apigw-plus
+   FROM apigw:<VERSION> as apigw-plus
 
    ARG REPO_PATH=.
 
@@ -185,16 +167,16 @@ To use NGINX Plus for the API Gateway, follow these steps:
 2. Tag the Docker image:
 
    ```shell
-   docker tag apigw-plus <my-docker-registry>/nms-apigw-plus:<version>
+   docker tag apigw-plus <MY_DOCKER_REGISTRY>/nms-apigw-plus:<VERSION>
    ```
 
-   - Replace `<my-docker-registry>` with your private Docker registry.
-   - Replace `<version>` with the version tag.
+   - Replace `<MY_DOCKER_REGISTRY>` with your private Docker registry.
+   - Replace `<VERSION>` with the version tag.
 
 3. Push the image to your private registry:
 
    ```shell
-   docker push <my-docker-registry>/nms-apigw-plus:<version>
+   docker push <MY_DOCKER_REGISTRY>/nms-apigw-plus:<VERSION>
    ```
 
 4. Edit the `values.yaml` file to configure the Helm chart to pull the `apigw` image from your private Docker registry:
@@ -206,8 +188,8 @@ To use NGINX Plus for the API Gateway, follow these steps:
            - name: regcred
        apigw:
            image:
-               repository: <my-docker-registry>/nms-apigw-plus
-               tag: <version>
+               repository: <MY_DOCKER_REGISTRY>/nms-apigw-plus
+               tag: <VERSION>
    ```
 
 This configuration specifies the name of the secret that should be used for pulling images (`regcred`) and configures the `apigw` image to be pulled from your private Docker registry.

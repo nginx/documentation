@@ -3,8 +3,8 @@ title: Change from developer/basic plan to standard plan
 weight: 200
 toc: false
 url: /nginxaas/azure/change-plan/basic-to-standard/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 The developer/basic plan is designed for early-stage trials and testing and is not intended for production use. If you are ready to create a standard plan deployment and wish to preserve the configuration of an existing developer/basic plan deployment, you can [create a new deployment]({{< ref "/nginxaas-azure/getting-started/create-deployment.md">}}), selecting the latest standard pricing plan, and manually reapply your NGINX configuration and certificates. You can also follow the instructions below to recreate your deployment using an Azure Resource Manager (ARM) template.

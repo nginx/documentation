@@ -2,9 +2,9 @@
 title: Troubleshoot F5 WAF for NGINX
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1864
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1864
 ---
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller and the F5 WAF for NGINX module version 5.

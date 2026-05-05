@@ -2,9 +2,9 @@
 title: Troubleshooting common issues
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1459
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1459
 ---
 
 This page describes how to troubleshoot common issues with NGINX Ingress Controller. Instruction for specific resources is available in the [Troubleshooting]({{< ref "/nic/troubleshooting/" >}}) section.

@@ -2,9 +2,9 @@
 title: Gateway API Inference Extension
 weight: 800
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-0000
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-0000
 ---
 
 Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension to optimize traffic routing to self-hosting Generative AI Models on Kubernetes. 
@@ -73,6 +73,7 @@ helm install vllm-qwen3-32b \
 --dependency-update \
 --set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
 --version $IGW_CHART_VERSION \
+--set inferenceExtension.resources.requests.memory=4Gi \
 oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
 ```
 
@@ -219,7 +220,7 @@ Remove the Gateway API CRDs:
 
 ## See also
 
-- [Gateway API Inference Exntension Introduction](https://gateway-api-inference-extension.sigs.k8s.io/): for introductory details to the project.
+- [Gateway API Inference Extension Introduction](https://gateway-api-inference-extension.sigs.k8s.io/): for introductory details to the project.
 - [Gateway API Inference Extension API Overview](https://gateway-api-inference-extension.sigs.k8s.io/concepts/api-overview/): for an API overview.
 - [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/): for additional use cases and guides.
 - [llm-d](https://github.com/llm-d/llm-d): for information on the llm-d project.

@@ -2,9 +2,9 @@
 title: "Threat campaigns"
 weight: 2000
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
-nd-docs: DOCS-000
+f5-content-type: reference
+f5-product: F5WAFN
+f5-docs: DOCS-000
 ---
 
 Threat campaigns is a threat intelligence feature included in an F5 WAF for NGINX subscription. The feature provides frequent update feeds containing contextual information about active attack campaigns currently being observed by F5 Threat Labs that F5 WAF for NGINX can protect against. For example, without threat campaign updates F5 WAF for NGINX (and any WAF in general) may detect an attack pattern in a web application form parameter, but it cannot correlate the individual incident as part of a broader and more sophisticated campaign. Threat campaigns provide highly specific, contextual information about current attack activity, which makes false positives virtually non-existent.

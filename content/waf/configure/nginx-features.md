@@ -2,8 +2,8 @@
 title: "Configure NGINX features with F5 WAF"
 weight: 700
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 This document shows examples of how to modify your NGINX configuration to enable F5 WAF for NGINX features.
 

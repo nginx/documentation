@@ -2,8 +2,8 @@
 title: Connect NGINX Ingress Controller
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NONECO
+f5-content-type: how-to
+f5-product: NONECO
 ---
 
 This document explains how to connect F5 NGINX Ingress Controller to F5 NGINX One Console using NGINX Agent.

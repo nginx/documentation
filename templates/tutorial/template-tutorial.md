@@ -1,17 +1,17 @@
 ---
-nd-content-type: tutorial
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: tutorial
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: {Verb phrase describing what the reader will learn to do}
 description: "{One-sentence summary of what skill the reader will gain, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{product name}, {skill}, {keyword3}, tutorial, learn, step by step, beginner"
-nd-summary: >
+f5-keywords: "{product name}, {skill}, {keyword3}, tutorial, learn, step by step, beginner"
+f5-summary: >
   {Sentence 1: what skill the reader will learn and what they will build or produce.}
   {Sentence 2: why that skill matters or what it enables.}
   {Sentence 3 (optional): intended audience and any assumed knowledge.}
-nd-audience: {developer | operator | admin | architect | any}
+f5-audience: {developer | operator | admin | architect | any}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-tutorial.md).

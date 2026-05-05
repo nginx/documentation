@@ -2,9 +2,9 @@
 title: Install NGINX Ingress Controller and F5 WAF for NGINX with Docker and Helm
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1861
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1861
 ---
 
 This document describes how to build a local F5 WAF for NGINX v5 Docker image with NGINX Plus Ingress

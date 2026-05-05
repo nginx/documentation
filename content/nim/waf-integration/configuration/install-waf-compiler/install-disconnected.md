@@ -3,8 +3,11 @@ title: Install the WAF compiler in a disconnected environment
 description: Install the WAF compiler on a system without internet access by generating and transferring the package from a connected system.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Install the WAF compiler on an F5 NGINX Instance Manager host without internet access by generating the package on a connected system and transferring it offline.
+  This approach is for environments where direct downloads from the NGINX repository are not possible.
 ---
 
 You can install the WAF compiler on a system without internet access by creating the package on a connected system, then transferring and installing it offline.
@@ -57,11 +60,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.607.0
+   sudo apt-get download nms-nap-compiler-v5.607.1
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.607.0 \
+     nms-nap-compiler-v5.607.1 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -105,11 +108,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.607.0
+   sudo apt-get download nms-nap-compiler-v5.607.1
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.607.0 \
+     nms-nap-compiler-v5.607.1 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -154,7 +157,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.607.0
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.607.1
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 
@@ -188,7 +191,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.607.0
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.607.1
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 

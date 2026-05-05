@@ -2,10 +2,10 @@
 title: Changelog
 url: /nginx-ingress-controller/changelog
 weight: 10200
-nd-landing-page: true
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-616
+f5-landing-page: true
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-616
 ---
 
 This changelog lists all of the information for F5 NGINX Ingress Controller releases in 2026.

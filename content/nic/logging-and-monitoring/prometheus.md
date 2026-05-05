@@ -2,9 +2,9 @@
 title: Enable Prometheus metrics
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-614
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-614
 ---
 
 This topic describes how to enable [Prometheus metrics](https://prometheus.io/) for F5 NGINX Ingress Controller.

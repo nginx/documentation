@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-1654
+f5-docs: DOCS-1654
 title: Deploy NGINX Plus in a container (data plane)
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Build and run an NGINX Plus container that connects to F5 NGINX Instance Manager using NGINX Agent for centralized data plane management."
+f5-summary: >
+  Build an NGINX Plus container image and connect it to F5 NGINX Instance Manager using NGINX Agent.
+  The containerized NGINX Plus instance acts as a managed data plane and appears in the NGINX Instance Manager dashboard after NGINX Agent registers it.
 ---
 
 ## Overview
@@ -76,13 +80,13 @@ The NGINX Plus registry contains images for the two most recent versions of NGIN
 For a complete tag list for NGINX Plus bundled with NGINX Agent images, use the command:
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-plus/<nginxplus-image-type>/tags/list --key <nginx-repo.key> --cert <nginx-repo.crt> | jq
+curl https://private-registry.nginx.com/v2/nginx-plus/<NGINXPLUS_IMAGE_TYPE>/tags/list --key <NGINX_REPO.KEY> --cert <NGINX_REPO.CRT> | jq
 ```
 
 where:
-- the `<nginxplus-image-type>` is the location of images in NGINX Plus private registry: `base`, `rootless-base`, `agent`, `rootless-agent`
-- the `<nginx-repo.key>` is a local path to your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
-- the `<nginx-repo.crt>` is a local path to your client certificate from MyF5, for example,`/etc/ssl/nginx/nginx-repo-x12345.crt`
+- the `<NGINXPLUS_IMAGE_TYPE>` is the location of images in NGINX Plus private registry: `base`, `rootless-base`, `agent`, `rootless-agent`
+- the `<NGINX_REPO.KEY>` is a local path to your client key from MyF5, for example, `/etc/ssl/nginx/nginx-repo-x12345.key`
+- the `<NGINX_REPO.CRT>` is a local path to your client certificate from MyF5, for example,`/etc/ssl/nginx/nginx-repo-x12345.crt`
 - the `jq` command is used to format the JSON output for easier reading and requires the [jq](https://jqlang.github.io/jq/) JSON processor to be installed.
 
 ---
@@ -119,19 +123,19 @@ After pulling the image, tag it and upload it to your private registry.
 1. Log in to your private registry:
 
    ```shell
-   docker login <my-docker-registry>
+   docker login <MY_DOCKER_REGISTRY>
    ```
 
-2. Tag the image. Replace `<my-docker-registry>` with your registry’s path and `<my-version-tag>` with the your NGINX Plus version, OS version, or both:
+2. Tag the image. Replace `<MY_DOCKER_REGISTRY>` with your registry's path and `<MY_VERSION_TAG>` with the your NGINX Plus version, OS version, or both:
 
    ```shell
-   docker tag private-registry.nginx.com/nginx-plus/agent:<version-tag> <my-docker-registry>/nginx-plus/agent:<my-version-tag>
+   docker tag private-registry.nginx.com/nginx-plus/agent:<VERSION_TAG> <MY_DOCKER_REGISTRY>/nginx-plus/agent:<MY_VERSION_TAG>
    ```
 
 3. Push the image to the private registry and tag it:
 
    ```shell
-   docker push <my-docker-registry>/nginx-plus/agent:<my-version-tag>
+   docker push <MY_DOCKER_REGISTRY>/nginx-plus/agent:<MY_VERSION_TAG>
    ```
 
 ---
@@ -148,7 +152,7 @@ sudo docker run \
 --env=NGINX_AGENT_TLS_SKIP_VERIFY=false \
 --restart=always \
 --runtime=runc \
--d <my-docker-registry>/nginx-plus/agent:<my-version-tag>
+-d <MY_DOCKER_REGISTRY>/nginx-plus/agent:<MY_VERSION_TAG>
 ```
 
 where:
@@ -156,8 +160,8 @@ where:
  - `NGINX_AGENT_SERVER_GRPCPORT` sets a GRPC port used by NGINX Agent to communicate with NGINX Instance Manager.
  - `NGINX_AGENT_SERVER_HOST` sets the domain name or IP address of NGINX Instance Manager. Note that for production environments it is not recommended to expose NGINX Instance Manager to public networks.
  - `NGINX_AGENT_TLS_ENABLE` and `NGINX_AGENT_TLS_SKIP_VERIFY` enable mutual TLS, server-side TLS, or insecure mode (not recommended for production environments). See [Encrypt communication](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) for details.
- - `<my-docker-registry>` is the path to your private registry.
- - `<my-version-tag>` is the tag assigned when pushing to your registry.
+ - `<MY_DOCKER_REGISTRY>` is the path to your private registry.
+ - `<MY_VERSION_TAG>` is the tag assigned when pushing to your registry.
 
 Full list of CLI flags with their default values can be found in [CLI flags and environment variables]({{< ref "/agent/configuration/configuration-overview.md#cli-flags-and-environment-variables" >}}).
 <br>
@@ -166,7 +170,7 @@ Full list of CLI flags with their default values can be found in [CLI flags and 
 
 1. In a web browser, enter the address for your NGINX Instance Manager, for example, `https://127.0.0.1/ui/`, and log in.
 
-2. In the **Modules** section, select **Instance Manager**:
+2. In the **Modules** section, select **NGINX Instance Manager**:
 
 3. Search for live hosts with NGINX Open Source or NGINX Plus.
 

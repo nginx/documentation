@@ -2,9 +2,9 @@
 title: Gateway API compatibility
 weight: 200
 toc: true
-nd-content-type: reference
-nd-product: FABRIC
-nd-docs: DOCS-1412
+f5-content-type: reference
+f5-product: FABRIC
+f5-docs: DOCS-1412
 ---
 
 This page describes which Gateway API resources NGINX Gateway Fabric supports and to which level.

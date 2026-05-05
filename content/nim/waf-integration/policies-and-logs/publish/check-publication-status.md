@@ -1,13 +1,16 @@
 ---
 title: Check publication status
-description: Verify the deployment status of published F5 WAF for NGINX security policies, log profiles, and related updates in NGINX Instance Manager.
+description: Verify the deployment status of published F5 WAF for NGINX security policies, log profiles, and related updates in F5 NGINX Instance Manager.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Check the deployment status of published F5 WAF for NGINX security updates in F5 NGINX Instance Manager using the REST API.
+  These endpoints confirm whether policies, log profiles, and other security configurations were successfully applied to instances or instance groups.
 ---
 
-After you publish security updates, you can check their deployment status using the NGINX Instance Manager REST API.
+After you publish security updates, you can check their deployment status using the F5 NGINX Instance Manager REST API.
 
 These endpoints help you verify whether security policies, log profiles, and other configurations were successfully deployed to instances or instance groups.
 
@@ -28,7 +31,7 @@ To view deployment status for a specific policy, send a `GET` request to the Sec
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/deployments/associations/ignore-xss" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/deployments/associations/ignore-xss" \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -45,7 +48,7 @@ In the response, check the `lastDeploymentDetails` field under `instance` or `in
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/deployments/logprofiles/associations/default-log" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/deployments/logprofiles/associations/default-log" \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -64,7 +67,7 @@ To view deployment status for a specific instance, provide the system UID and in
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/systems/<system-uid>/instances/<instance-uid>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/<system-uid>/instances/<instance-uid>" \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -84,7 +87,7 @@ You can use this ID to check the final result of the publication.
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/systems/instances/deployments/<deployment-id>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/systems/instances/deployments/<deployment-id>" \
   -H "Authorization: Bearer <access token>"
 ```
 

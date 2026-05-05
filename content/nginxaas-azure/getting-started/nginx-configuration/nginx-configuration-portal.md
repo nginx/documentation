@@ -2,9 +2,9 @@
 title: Upload using the Azure portal
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-docs: DOCS-873
-nd-product: NAZURE
+f5-content-type: how-to
+f5-docs: DOCS-873
+f5-product: NAZURE
 url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
 ---
 
@@ -32,14 +32,14 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
 
    {{< call-out "note" >}}If you don't see the default configuration, it's likely the deployment was created through a client tool other than the portal (For example, Terraform), or the "Apply default NGINX configuration" was unchecked during the deployment creation process in the portal. You can still proceed with the steps below to provide your own NGINX configuration for the deployment.{{< /call-out >}}
 
-1. Select {{< icon "fa fa-plus">}}**New File** to add a file path, then **Confirm**.
+1. Select {{<icon "plus">}}**New File** to add a file path, then **Confirm**.
 
    {{< table >}}
    | Property | Description |
    | -------- | ----------- |
    | File path | Each NGINX configuration file can be uniquely identified by a file path (for example, nginx.conf or /etc/nginx/nginx.conf) to align with the intended NGINX configuration file structure. |
    | Root file | The root file is the main NGINX configuration file.<ul><li>The first file created will be the root file by default. You can designate a different root file if you have more than a single configuration file in your deployment.</li><li>The root file is designated with a {{< golden-star >}} icon on the portal.</li></ul> |
-   | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<icon "solid fa-toggle-on">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<icon "solid fa-lock">}} icon on the portal.</li></ul> |
+   | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<icon "toggle-right">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<icon "lock">}} icon on the portal.</li></ul> |
    {{< /table >}}
 
    {{< call-out "note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
@@ -67,21 +67,7 @@ The editing experience consists of a single view for both editing and validation
 
 ## Upload a GZIP NGINX configuration
 
-Given the example gzipped archive,
-
-```shell
-$ tar -czf nginx.tar.gz nginx
-$ tar -tzf nginx.tar.gz
-nginx/
-nginx/nginx.conf
-nginx/njs.js
-nginx/servers
-nginx/servers/
-nginx/servers/server1.conf
-nginx/servers/server2.conf
-```
-
-where `nginx` is a directory with the following structure,
+Given the example directory structure,
 
 ```shell
 $ tree nginx
@@ -95,6 +81,21 @@ nginx
 1 directory, 4 files
 ```
 
+create a gzipped archive using the `-C` option to remove the top-level directory from the archive:
+
+```shell
+$ tar -czf nginx.tar.gz -C nginx .
+$ tar -tzf nginx.tar.gz
+./
+./nginx.conf
+./njs.js
+./servers/
+./servers/server1.conf
+./servers/server2.conf
+```
+
+{{< call-out "important" >}}Use the `-C` option with `tar` to change into the configuration directory before archiving. This strips the top-level directory from the archive paths and prevents path duplication errors during upload.{{< /call-out >}}
+
 `nginx.tar.gz` can be uploaded using the following portal workflow.
 
 Before continuing, ensure the file paths in the archive match the includes in the NGINX config.
@@ -102,8 +103,8 @@ For example,
 
 ```nginx
 http {
-   include nginx/servers/server1.conf;
-   js_import nginx/njs.js;
+   include servers/server1.conf;
+   js_import njs.js;
    # ...
 }
 ```
@@ -146,7 +147,7 @@ http {
 
 1. Select the configuration file you want to delete from the File path list.
 
-1. Select the delete icon {{< icon "fa fa-trash">}}.
+1. Select the delete icon {{< icon "trash-2">}}.
 
 1. Confirm your action to delete the configuration file.
 

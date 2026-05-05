@@ -1,20 +1,23 @@
 ---
 title: Automatically update the WAF compiler
-description: Enable NGINX Instance Manager to automatically download and install new WAF compiler versions when needed.
+description: Enable F5 NGINX Instance Manager to automatically download and install new WAF compiler versions when needed.
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Enable F5 NGINX Instance Manager to automatically download and install new WAF compiler versions as needed.
+  Automatic updates require uploading an F5 WAF for NGINX certificate and key so NGINX Instance Manager can authenticate with the NGINX package repository.
 ---
 
-After you manually [install at least one version of the F5 WAF for NGINX compiler]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/install.md" >}}), NGINX Instance Manager can automatically download and install newer versions as needed.
+After you manually [install at least one version of the F5 WAF for NGINX compiler]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/install.md" >}}), F5 NGINX Instance Manager can automatically download and install newer versions as needed.
 
 Automatic updates occur when:
 
 - A managed instance is upgraded to a newer version of F5 WAF for NGINX.  
 - You add a new instance running a different version of F5 WAF for NGINX.
 
-To enable this feature, upload your F5 WAF for NGINX certificate and key to NGINX Instance Manager. This lets Instance Manager securely connect to the NGINX package repository and download the required compiler files.  
+To enable this feature, upload your F5 WAF for NGINX certificate and key to NGINX Instance Manager. This lets NGINX Instance Manager securely connect to the NGINX package repository and download the required compiler files.  
 
 You only need to upload the certificate and key once.
 
@@ -32,7 +35,7 @@ If NGINX Instance Manager can’t connect to the repository, or the certificate 
 missing the specific compiler, please install it and try again.
 ```
 
-This means the certificate or key might be missing, invalid, or expired, or that Instance Manager can’t reach the NGINX repository.
+This means the certificate or key might be missing, invalid, or expired, or that NGINX Instance Manager can’t reach the NGINX repository.
 
 Check for related errors in the log file:
 

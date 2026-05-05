@@ -1,12 +1,15 @@
 ---
-title: Update a security log profile
-description: Update an existing F5 WAF for NGINX security log profile or create a new revision using the NGINX Instance Manager REST API.
+title: Update log profiles (REST API)
+description: Update an existing F5 WAF for NGINX security log profile or create a new revision using the F5 NGINX Instance Manager REST API.
 toc: true
-weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+weight: 700
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Update an existing F5 WAF for NGINX security log profile in F5 NGINX Instance Manager by overwriting it or creating a new revision using the REST API.
+  This guide covers both methods and when to use each.
 ---
-You can update an existing F5 WAF for NGINX security log profile using the NGINX Instance Manager REST API. Depending on your workflow, you can either overwrite the current version or create a new revision.
+You can update an existing F5 WAF for NGINX security log profile using the F5 NGINX Instance Manager REST API. Depending on your workflow, you can either overwrite the current version or create a new revision.
 
 To update a log profile, use one of the following methods:
 
@@ -25,7 +28,7 @@ To update a log profile, use one of the following methods:
 ### Create a new revision
 
 ```shell
-curl -X POST https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles?isNewRevision=true \
+curl -X POST https://<NIM_FQDN>/api/platform/v1/security/logprofiles?isNewRevision=true \
     -H "Authorization: Bearer <access token>" \
     -H "Content-Type: application/json" \
     -d @update-default-log.json
@@ -38,16 +41,14 @@ To overwrite an existing security log profile:
 1. Retrieve the profile’s UID:
 
     ```shell
-    curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
+    curl -X GET https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \
-      -H "Content-Type application/json" \
-      -d @update-log-profile.json
     ```
 
 2. Update the log profile using the UID:
 
     ```shell
-    curl -X PUT https://{{NIM_FQDN}}/api/platform/v1/security/logprofiles/<log-profile-uid> \
+    curl -X PUT https://<NIM_FQDN>/api/platform/v1/security/logprofiles/<log-profile-uid> \
       -H "Authorization: Bearer <access token>" \
       -H "Content-Type: application/json" \
       -d @update-log-profile.json

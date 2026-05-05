@@ -3,8 +3,8 @@ linkTitle: "Instructional videos"
 title: "NGINX Plus subscription licensing videos"
 weight: 300
 toc: false
-nd-content-type: reference
-nd-product: SOLUTI
+f5-content-type: reference
+f5-product: SOLUTI
 ---
 
 These videos show how to set up usage reporting in internet-connected and network-restricted environments, and how to install or upgrade to NGINX Plus R33 or later.
@@ -28,7 +28,7 @@ See how to configure NGINX Plus to send usage reports to NGINX Instance Manager.
 See also:
 
 - [Prepare your environment for reporting]({{< ref "solutions/about-subscription-licenses/getting-started.md#set-up-environment" >}})  
-- [Submit usage reports to F5 from NGINX Instance Manager]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}})
+- [Submit usage reports to F5 from NGINX Instance Manager]({{< ref "/nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}})
 
 ## Install or upgrade to NGINX Plus R33 or later
 

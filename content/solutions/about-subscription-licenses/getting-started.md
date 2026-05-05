@@ -2,18 +2,18 @@
 title: Getting started
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: SOLUTI
-nd-resource: https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
-nd-docs: DOCS-1780
+f5-content-type: how-to
+f5-product: SOLUTI
+f5-resource: https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
+f5-docs: DOCS-1780
 ---
 
-Starting with NGINX Plus R33, NGINX Plus instances require a valid JSON Web Token (JWT) license.  
+NGINX Plus R33 and later require a valid JSON Web Token (JWT) license.  
 
 The license:
 
 - Is tied to your subscription (not to individual instances).  
-- Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/disconnected/report-usage-disconnected-deployment.md" >}}).  
+- Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).  
 
 {{< call-out "note" "If you have multiple subscriptions" >}}
 
@@ -32,10 +32,7 @@ For flowcharts that show how these requirements work in practice, see [NGINX Plu
 
 ### Starting NGINX Plus
 
-Starting NGINX Plus requires:
-
-- A valid license.
-- A license that has not been expired for more than 90 days.
+Starting NGINX Plus requires a valid, unexpired license. If the license has expired, NGINX Plus can still start during the 90-day grace period.
 
 ### Processing traffic
 
@@ -57,8 +54,6 @@ After you download the JWT license, deploy it to your NGINX Plus instances in on
   - In [NGINX Instance Manager]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}), use an **instance group**, which works the same way as a Config Sync Group.  
 - **Copy the license manually:** Place the license file on each NGINX Plus instance yourself.  
 
-Both methods ensure your NGINX Plus instances have access to the required license file.  
-
 Choose the option that fits your environment:  
 
 {{< details summary="Deploy with a group sync feature (recommended)" >}}
@@ -68,7 +63,7 @@ Choose the option that fits your environment:
 {{< include "/licensing-and-reporting/deploy-jwt-with-csgs.md" >}}
 
 {{< call-out "note" "" >}}
-In NGINX Instance Manager, *instance groups* provide the same sync functionality as Config Sync Groups in the NGINX One Console.  
+In NGINX Instance Manager, **instance groups** provide the same sync functionality as Config Sync Groups in the NGINX One Console.  
 See [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}) for setup instructions.
 {{< /call-out >}}
 
@@ -106,7 +101,7 @@ In connected environments, NGINX Plus sends usage reports directly to the F5 lic
 
 Allow the necessary outbound traffic so reports can reach F5.
 
-1. Allow NGINX Plus instances to connect to the F5 licensing endpoint (`product.connect.nginx.com`) over HTTPS (TCP `443`). Make sure the following IP addresses are allowed:
+1. Allow NGINX Plus instances to connect to the F5 licensing endpoint (`product.connect.nginx.com`) over HTTPS (TCP `443`). Allow the following IP addresses:
 
    - `3.135.72.139`  
    - `3.133.232.50`  
@@ -134,7 +129,7 @@ To configure NGINX Plus to send usage reports to NGINX Instance Manager:
 
 {{< include "/licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
-{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/disconnected/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 {{< /details >}}
 
@@ -152,8 +147,7 @@ mgmt {
 ```
 
 {{< call-out "important" "Important" >}}
-After 180 days, if usage reporting still hasn’t been established,
-NGINX Plus will stop processing traffic.
+After 180 days without usage reporting, NGINX Plus stops processing traffic.
 {{< /call-out >}}
 
 ## Update the license {#update-license}
@@ -162,6 +156,8 @@ How you update the JWT license depends on your NGINX Plus release and environmen
 
 - In R35 and later, the license is updated automatically when the subscription renews (if reporting is configured).  
 - In earlier releases or disconnected environments, you need to update the license manually.  
+
+{{< include "licensing-and-reporting/fcp-renewal-caution.md" >}}
 
 {{< details summary="Update the license automatically (R35 and later)" >}}
 
@@ -186,7 +182,6 @@ Automatic updates only work if:
 
 If these conditions aren’t met, you must [update the JWT license manually](#manually-update-license).  
 {{< /call-out >}}
-
 {{< /details >}}
 
 {{< details summary="Update the license manually (all releases)" >}}
@@ -198,8 +193,8 @@ If automatic updates are not available (for example, in disconnected environment
 1. [Download the new JWT license](#download-jwt) from MyF5.  
 1. [Deploy the JWT license](#deploy-jwt) to your NGINX Plus instances.
 
-{{< call-out "note" "Note for Internet-connected environments" >}}
-If you manually updated your JWT license after subscription renewal, you may see this [error log message](#log-monitoring): `[notice] renewed license does not match the original one; using original license`. No action is needed and you can safely ignore this message. For details, see [K000159013](https://my.f5.com/manage/s/article/K000159013).
+{{< call-out "note" "Note for internet-connected environments" >}}
+If you manually updated your JWT license after subscription renewal, you may see this [error log message](#log-monitoring): `[notice] renewed license does not match the original one; using original license`. You don't need to take action. You can safely ignore this message. For details, see [K000159013](https://my.f5.com/manage/s/article/K000159013).
 {{< /call-out >}}
 
 {{< /details >}}

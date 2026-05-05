@@ -1,13 +1,16 @@
 ---
 title: Manually update security packages
-description: Manually download and upload F5 WAF for NGINX security packages to NGINX Instance Manager.
+description: Manually download and upload F5 WAF for NGINX security packages to F5 NGINX Instance Manager.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Manually download and upload F5 WAF for NGINX security packages to F5 NGINX Instance Manager when automatic updates are not enabled.
+  This guide covers downloading attack signature, bot signature, and threat campaign packages and uploading them through the NGINX Instance Manager REST API.
 ---
 
-If you prefer not to enable automatic updates, you can manually update the attack signature, bot signature, and threat campaign packages by downloading them from the NGINX repository and uploading them to NGINX Instance Manager.
+If you prefer not to enable automatic updates, you can manually update the attack signature, bot signature, and threat campaign packages by downloading them from the NGINX repository and uploading them to F5 NGINX Instance Manager.
 
 ## Download packages from NGINX repository
 
@@ -139,7 +142,7 @@ Use the NGINX Instance Manager REST API to upload the `.tgz` files.
 **Upload attack signatures**
 
 ```shell
-curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/attack-signatures' \
+curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/attack-signatures' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2022.11.16"' \
   --form 'filename=@"/attack-signatures.tgz"'
@@ -148,7 +151,7 @@ curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/attack-signatures' \
 **Upload bot signatures**
 
 ```shell
-curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/bot-signatures' \
+curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/bot-signatures' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2025.07.09"' \
   --form 'filename=@"/bot-signatures.tgz"'
@@ -157,7 +160,7 @@ curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/bot-signatures' \
 **Upload threat campaigns**
 
 ```shell
-curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/security/threat-campaigns' \
+curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/threat-campaigns' \
   --header "Authorization: Bearer <access token>" \
   --form 'revisionTimestamp="2022.11.15"' \
   --form 'filename=@"/threat-campaigns.tgz"'

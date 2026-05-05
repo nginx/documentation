@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-1123
+f5-docs: DOCS-1123
 title: Create a support package from a Helm installation
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Use the Kubernetes support package script to collect system and service information for troubleshooting F5 NGINX Instance Manager deployed with Helm."
+f5-summary: >
+  Generate a support package from an F5 NGINX Instance Manager Helm deployment to share with F5 support for troubleshooting.
+  The support package script collects logs, configuration details, and service status information from all NGINX Instance Manager pods.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
@@ -37,7 +41,7 @@ The F5 NGINX Instance Manager Helm chart includes the `k8s-support-package.sh` s
     helm repo add nginx-stable https://helm.nginx.com/stable
     helm repo update
     helm pull nginx-stable/nms
-    tar zxvf nms-<version>.tgz
+    tar zxvf nms-<VERSION>.tgz
     ```
 
 2. Run the Kubernetes support package script. For available options, refer to the [arguments](#arguments) section:
@@ -51,7 +55,7 @@ The F5 NGINX Instance Manager Helm chart includes the `k8s-support-package.sh` s
 3. Extract the package using the `tar` command:
 
     ```shell
-    tar -xvf k8s-support-pkg-<timestamp>.tar.gz
+    tar -xvf k8s-support-pkg-<TIMESTAMP>.tar.gz
     ```
 
 ---

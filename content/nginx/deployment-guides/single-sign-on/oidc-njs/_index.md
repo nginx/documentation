@@ -4,5 +4,5 @@ description: Learn how to use OpenID Connect (OIDC) Provider Servers and Service
 title: Legacy njs-based Single Sign-On Solutions
 weight: 990
 url: /nginx/deployment-guides/single-signon/oidc-njs/
-nd-product: NPLUS
+f5-product: NPLUS
 ---

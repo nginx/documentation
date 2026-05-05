@@ -1,9 +1,9 @@
 ---
-nd-docs: DOCS-1438
-nd-product:
+f5-docs: DOCS-1438
+f5-product:
 - FABRIC
 - NONECO
-nd-files:
+f5-files:
 - content/ngf/install/helm.md
 - content/ngf/install/manifests.md
 - content/nginx-one-console/k8s/add-ngf-helm.md

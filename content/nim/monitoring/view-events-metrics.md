@@ -3,9 +3,12 @@ title: View events and metrics
 description: Learn how to view events and metrics in F5 NGINX Instance Manager.
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-847
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-847
+f5-summary: >
+  View events and metrics data for your NGINX instances in F5 NGINX Instance Manager using the web interface or the REST API.
+  The events and metrics views show real-time and historical data to help you monitor instance health and diagnose issues.
 ---
 
 ## Overview
@@ -61,7 +64,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events" -H "Auth
 		},
 		"id": "uuid",
 		"level": "INFO",
-		"message": "successfully applied config on <instance>",
+		"message": "successfully applied config on <INSTANCE>",
 		"status": "Config Apply Success",
 		"timestamp": "2021-12-14T01:03:11Z"
 	}, {
@@ -76,7 +79,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events" -H "Auth
 		"error": "Config apply failed (write): Error running nginx -t exit status 1",
 		"id": "uuid",
 		"level": "INFO",
-		"message": "failed to apply nginx config on <instance>",
+		"message": "failed to apply nginx config on <INSTANCE>",
 		"status": "Config Apply Failure",
 		"timestamp": "2021-12-14T00:57:48Z"
 	},{
@@ -90,7 +93,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events" -H "Auth
 		},
 		"id": "uuid",
 		"level": "INFO",
-		"message": "nginx-agent v2.1.6 stopped on <instance>",
+		"message": "nginx-agent v2.1.6 stopped on <INSTANCE>",
 		"status": "Agent Stop",
 		"timestamp": "2021-12-13T20:08:49Z"
 	}, {
@@ -104,7 +107,7 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events" -H "Auth
 		},
 		"id": "uuid",
 		"level": "INFO",
-		"message": "nginx-agent v2.1.6 started on <instance>",
+		"message": "nginx-agent v2.1.6 started on <INSTANCE>",
 		"status": "Agent Start",
 		"timestamp": "2021-12-13T03:20:00Z"
 	}]
@@ -159,11 +162,11 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events?startTime
 
 The `filter` parameter enables filtering events based on predicates. Predicates are in the form:
 
-`<dimension><operator><dimension value>`
+`<DIMENSION><OPERATOR><DIMENSION_VALUE>`
 
-Where a `<dimension>` is one of the event's dimensions
-`<operator>` is one of `=`, `!=`, `>=`, `<=`, `<`, `>`, `in`, `not`
-`<dimension>` and `<dimension value>` are both case sensitive.
+Where a `<DIMENSION>` is one of the event's dimensions
+`<OPERATOR>` is one of `=`, `!=`, `>=`, `<=`, `<`, `>`, `in`, `not`
+`<DIMENSION>` and `<DIMENSION_VALUE>` are both case sensitive.
 
 Predicates can be combined into logical expressions using `OR`, `AND`, `(` and `)`. Wildcards (`*`) are supported for matching values.
 
@@ -264,7 +267,7 @@ The **Metrics Summary** page includes a highlights section of the most important
 To view the metrics summary for an NGINX instance, take the following steps:
 
 1. In a web browser, go to the FQDN for your NGINX Instance Manager host and log in.
-1. Under **Modules**, select the **Instance Manager**.
+1. Under **Modules**, select the **NGINX Instance Manager**.
 1. Select an instance on the **Instances** detail page.
 1. Select the **Metrics Summary** tab.
 1. To view detailed metrics as graphs, select the **Metrics** tab.

@@ -1,17 +1,20 @@
 ---
 title: Download a security policy bundle
-description: Download a compiled F5 WAF for NGINX security bundle from NGINX Instance Manager as a `.tgz` file for reuse or offline deployment.
+description: Download a compiled F5 WAF for NGINX security bundle from F5 NGINX Instance Manager as a `.tgz` file for reuse or offline deployment.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Download a compiled F5 WAF for NGINX security bundle from F5 NGINX Instance Manager as a .tgz file.
+  Downloaded bundles can be reused for offline deployments or transferred to other NGINX Instance Manager environments.
 ---
 
 {{<tabs name="download-bundle">}}
 
 {{%tab name="Web interface"%}}
 
-To download a security policy bundle using the NGINX Instance Manager web interface:
+To download a security policy bundle using the F5 NGINX Instance Manager web interface:
 
 1. In your browser, go to the FQDN for your NGINX Instance Manager host and log in.
 2. In the left menu, select **WAF > Policies**.
@@ -37,7 +40,7 @@ You must have `"READ"` permission for the bundle to retrieve it.
 Example:
 
 ```shell
-curl -X GET https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid> \
+curl -X GET https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid> \
   -H "Authorization: Bearer <access token>"
 ```
 
@@ -46,7 +49,7 @@ The response includes a `content` field that contains the bundle in base64 forma
 Example:
 
 ```shell
-curl -X GET "https://{{NIM_FQDN}}/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
+curl -X GET "https://<NIM_FQDN>/api/platform/v1/security/policies/<policy-uid>/bundles/<bundle-uid>" \
   -H "Authorization: Bearer <access token>" | jq -r '.content' | base64 -d > security-policy-bundle.tgz
 ```
 

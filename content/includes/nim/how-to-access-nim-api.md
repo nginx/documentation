@@ -1,9 +1,9 @@
 ---
-nd-docs: DOCS-1050
-nd-product: NIMNGR
-nd-files:
-- content/nim/disconnected/add-license-disconnected-deployment.md
-- content/nim/disconnected/report-usage-disconnected-deployment.md
+f5-docs: DOCS-1050
+f5-product: NIMNGR
+f5-files:
+- content/nim/licensing-and-reporting/add-license-disconnected-deployment.md
+- content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md
 - content/nim/nginx-instances/manage-certificates.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/edit-waf-configuration.md
 - content/nim/waf-integration/configuration/manage-waf-configurations/onboard-custom-security-policies.md

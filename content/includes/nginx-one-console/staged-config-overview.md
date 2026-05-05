@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/nginx-one-console/nginx-configs/staged-configs/add-staged-config.md
 - content/nginx-one-console/nginx-configs/staged-configs/edit-staged-config.md
 - content/nginx-one-console/nginx-configs/staged-configs/import-export-staged-config.md

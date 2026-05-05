@@ -2,9 +2,9 @@
 title: Build NGINX Ingress Controller with F5 WAF for NGINX
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-579
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-579
 ---
 
 This document explains how to build a F5 NGINX Ingress Controller image with F5 WAF for NGINX from source code.

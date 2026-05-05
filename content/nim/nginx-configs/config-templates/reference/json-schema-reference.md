@@ -1,16 +1,19 @@
 ---
 title: JSON Schemas for Dynamic Web Forms
-description: ''
+description: "Reference for the JSON schemas used by F5 NGINX Instance Manager to define and validate user inputs in the template web form builder."
 weight: 300
 toc: true
-nd-docs: DOCS-1504
-nd-personas:
+f5-docs: DOCS-1504
+f5-personas:
 - devops
 - netops
 - secops
 - support
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
+  Use this reference to understand how JSON schemas define the dynamic web form inputs for NGINX config templates in F5 NGINX Instance Manager.
+  JSON schemas validate user input when creating NGINX configurations from templates, providing a structured and guided configuration experience.
 ---
 
 ## Overview

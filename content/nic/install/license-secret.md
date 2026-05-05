@@ -2,9 +2,9 @@
 title: Create a license Secret
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1860
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1860
 ---
 
 This document explains how to create and use a license secret for F5 NGINX Ingress Controller.
@@ -40,6 +40,30 @@ kubectl create secret generic license-token --from-file=license.jwt=<path-to-you
 Once created, you can download the `.jwt` file.
 
 {{< include "/nic/installation/jwt-password-note.md" >}}
+
+### Update the Secret
+
+If you've already deployed NGINX Ingress Controller and need to rotate or renew the JWT (for example, when the existing token is about to expire or has been replaced), update the existing Secret in place.
+
+First, take your new JWT license token, and save it to your existing `license.jwt` file.
+
+Next, use the following command to generate the updated Secret manifest and apply it:
+
+```shell
+kubectl create secret generic license-token \
+--save-config \
+--dry-run=client \
+--from-file=license.jwt=<new-jwt-file-path> \
+--type=nginx.com/license \
+-o yaml | \
+kubectl apply -f -
+```
+
+Notes:
+- Replace `license.jwt` on the `--from-file` flag with the path to your renewed JWT file if it's not in the current directory.
+- If your Secret resides in a specific namespace, include `-n <your-namespace>` on the `kubectl create secret` command so the generated YAML contains the correct namespace.
+- Ensure the Secret name (`license-token` by default) matches the name referenced by your Helm values or Management ConfigMap.
+- After the Secret is updated, the mounted Secret volume in the Pod is refreshed automatically by Kubernetes. NGINX Plus applies the updated license automatically. If you do not see the update take effect after a short period, restart the Ingress Controller Pod(s) to force a re-read of the Secret.
 
 ### Add the license Secret to your deployment
 

@@ -2,15 +2,48 @@
 title: "Changelog"
 url: /waf/changelog/
 weight: 600
-nd-landing-page: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-landing-page: true
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2026.
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+
+## F5 WAF for NGINX 5.12.1
+
+Released _March 31th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 14052 - Upgrade Go compiler to 1.26.1
+- 14036 - Fix a cookie parser issue
+
+
+### Packages
+
+{{< table >}}
+
+| Distribution name        | NGINX Open Source (5.12)                                           |  NGINX Plus (5.12)                                              | NGINX Plus (5.12)                                |
+| ------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- |----------------------------------------------------|
+| Alpine 3.22              | _app-protect-module-oss-1.29.3+5.607.1-r1.apk_                    | _app-protect-module-plus-36+5.607.1-r1.apk_                    | _app-protect-36.5.607.1-r1.apk_                    |
+| Amazon Linux 2023        | _app-protect-module-oss-1.29.3+5.607.1-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-36+5.607.1-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-36+5.607.1-1.amzn2023.ngx.x86_64.rpm_ |
+| Debian 11                | _app-protect-module-oss_1.29.3+5.607.1-1\~bullseye_amd64.deb_     | _app-protect-module-plus_36+5.607.1--1\~bullseye_amd64.deb_    | _app-protect_36+5.607.1-1\~bullseye_amd64.deb_     |
+| Debian 12                | _app-protect-module-oss_1.29.3+5.607.1-1\~bookworm_amd64.deb_     | _app-protect-module-plus_36+5.607.1--1\~bookworm_amd64.deb_    | _app-protect_36+5.607.1-1\~bookworm_amd64.deb_     |
+| Oracle Linux 8           | _app-protect-module-oss-1.29.3+5.607.1-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.1-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.607.1-1.el8.ngx.x86_64.rpm_      |
+| Ubuntu 22.04             | _app-protect-module-oss_1.29.3+5.607.1-1\~jammy_amd64.deb_        | _app-protect-module-plus_36+5.607.1--1\~jammy_amd64.deb_       | _app-protect_36+5.607.1-1\~jammy_amd64.deb_        |
+| Ubuntu 24.04             | _app-protect-module-oss_1.29.3+5.607.1-1\~noble_amd64.deb_        | _app-protect-module-plus_36+5.607.1--1\~noble_amd64.deb_       | _app-protect_36+5.607.1-1\~noble_amd64.deb_        |
+| RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.3+5.607.1-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.1-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.607.1-1.el8.ngx.x86_64.rpm_      |
+| RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.607.1-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.1-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.607.1-1.el9.ngx.x86_64.rpm_      |
+| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.1-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-36+5.607.1-1.el10.ngx.x86_64.rpm_     | _app-protect-36+5.607.1-1.el10.ngx.x86_64.rpm_     |
+
+{{< /table >}}
 
 ## F5 WAF for NGINX 5.12
 
@@ -43,7 +76,7 @@ Released _March 23th, 2026_.
 | Ubuntu 24.04             | _app-protect-module-oss_1.29.3+5.607.0-1\~noble_amd64.deb_        | _app-protect-module-plus_36+5.607.0--1\~noble_amd64.deb_       | _app-protect_36+5.607.0-1\~noble_amd64.deb_        |
 | RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.3+5.607.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.0-1.el8.ngx.x86_64.rpm_      | _app-protect-36+5.607.0-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.607.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.0-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.607.0-1.el9.ngx.x86_64.rpm_      |
-| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.0-1.el10.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.607.0-1.el10.ngx.x86_64.rpm_      | _app-protect-36+5.607.0-1.el10.ngx.x86_64.rpm_      |
+| RHEL 10                  | _app-protect-module-oss-1.29.3+5.607.0-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-36+5.607.0-1.el10.ngx.x86_64.rpm_     | _app-protect-36+5.607.0-1.el10.ngx.x86_64.rpm_     |
 
 {{< /table >}}
 

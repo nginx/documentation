@@ -1,15 +1,18 @@
 ---
 title: Add cookies, parameters, and URLs
-description: Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using NGINX Instance Manager.
+description: Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using F5 NGINX Instance Manager.
 toc: true
 weight: 500
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using F5 NGINX Instance Manager.
+  These settings let you define how the WAF handles specific cookies, query parameters, and URL paths in incoming requests.
 ---
 
 ## Add cookies
 
-Cookie protections can be configured and managed directly in the policy editor by selecting **Cookies** in the web interface.
+Configure and manage cookie protections in the policy editor by selecting **Cookies** in the web interface.
 
 ### Cookie properties and types
 
@@ -21,7 +24,7 @@ Each cookie configuration includes:
   - **Allow**: The cookie can be changed by the client and is not protected from modification.
   - **Enforce**: The cookie cannot be changed by the client.
 - `Attack Signatures`: Indicates whether attack signatures and threat campaigns are enabled, disabled, or not applicable.
-- `Mask value in logs`: When enabled, the cookie's value is masked in the request log for improved security and privacy.
+- `Mask value in logs`: When turned on, the cookie's value is masked in the request log for security and privacy.
 
 For a complete list of configurable cookie properties and options, see the [Cookie Configuration Parameters]({{< ref "/waf/policies/parameter-reference.md" >}}) documentation under the `cookies` section.
 
@@ -37,17 +40,17 @@ Select **Edit configuration** to configure cookie violations. The following viol
 For each violation type, you can:
 
 - Set the enforcement action.
-- Toggle `Alarm`, `Alarm and Block`, or `Disabled` settings.
+- Set the action to **Alarm**, **Alarm and Block**, or **Disabled**.
 
 See [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
 ### Add a cookie to your policy
 
-1. Choose a **Cookie Type**:
+1. Select a **Cookie Type**:
    - Select either `Explicit` for exact cookie matching or `Wildcard` for pattern-based matching.
 2. Configure basic properties:
    - Enter the `Cookie Name`.
-   - Choose whether to mask the cookie value in logs.
+   - Specify whether to mask the cookie value in logs.
 3. Set an **Enforcement Type**:
    - Choose either `Allow` or `Enforce`.
 4. (Optional) Configure attack signatures:
@@ -57,7 +60,7 @@ See [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violat
 
 ## Add parameters
 
-Parameter protections can be configured and managed directly in the policy editor by selecting **Parameters** in the web interface.
+Configure and manage parameter protections in the policy editor by selecting **Parameters** in the web interface.
 
 ### Parameter properties and types
 
@@ -68,7 +71,7 @@ Each parameter configuration includes:
 - `Location`: Where the parameter is expected (URL query string, POST data, etc.).
 - `Value Type`: The expected type of the parameter value (for example, alphanumeric, integer, or email).
 - `Attack Signatures`: Whether attack signature checking is enabled for this parameter.
-- `Mask value in logs`: When enabled, the parameter's value is masked in the request log for enhanced security and privacy. This sets the `sensitiveParameter` property of the parameter item.
+- `Mask value in logs`: When turned on, the parameter's value is masked in the request log for security and privacy. This sets the `sensitiveParameter` property of the parameter item.
 
 For a complete list of configurable parameter properties and options, see the [Parameter Configuration Parameters]({{< ref "/waf/policies/parameter-reference.md" >}}) documentation under the `parameters` section.
 
@@ -94,13 +97,13 @@ Select **Edit configuration** to configure parameter violations. The following v
 For each violation type, you can:
 
 - Set the enforcement action.
-- Toggle `Alarm`, `Alarm and Block`, or `Disabled` settings.
+- Set the action to **Alarm**, **Alarm and Block**, or **Disabled**.
 
 See [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
 ### Add a parameter to your policy
 
-1. Choose a **Parameter Type**:
+1. Select a **Parameter Type**:
    - Select either `Explicit` for exact parameter matching or `Wildcard` for pattern-based matching.
 2. Configure basic properties:
    - Enter the `Parameter Name`.
@@ -122,7 +125,7 @@ See [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violat
 
 ## Add URLs
 
-URL protections can be configured and managed directly in the policy editor by selecting **URLs** in the web interface.
+Configure and manage URL protections in the policy editor by selecting **URLs** in the web interface.
 
 ### URL properties and types
 
@@ -137,7 +140,7 @@ Each URL configuration includes:
 - `Attack Signatures`: Indicates whether attack signatures and threat campaigns are enabled, disabled, or not applicable.
 
 {{< call-out "important" >}}
-Attack signatures are automatically shown as “Not applicable” when the Enforcement Type is set to `Disallow`, since the URL is explicitly blocked and signature checking is unnecessary.
+Attack signatures are automatically shown as "Not applicable" when the Enforcement Type is set to `Disallow`, because the URL is explicitly blocked and signature checking is unnecessary.
 {{< /call-out >}}
 
 For a complete list of configurable URL properties and options, see the [URL Configuration Parameters]({{< ref "/waf/policies/parameter-reference.md" >}}) documentation under the `urls` section.
@@ -154,13 +157,13 @@ Select **Edit configuration** to configure URL violations. The following violati
 For each violation type, you can:
 
 - Set the enforcement action.
-- Toggle `Alarm`, `Alarm and Block`, or `Disabled` settings.
+- Set the action to **Alarm**, **Alarm and Block**, or **Disabled**.
 
 See [Supported Violations]({{< ref "/waf/policies/violations.md#supported-violations" >}}) for additional details.
 
 ### Add a URL to your policy
 
-1. Choose a **URL Type**:
+1. Select a **URL Type**:
    - Select either `Explicit` for exact URL matching or `Wildcard` for pattern-based matching.
 2. Configure basic properties:
    - Enter the `URL` path (for example, `/index.html`, `/api/data`).

@@ -1,12 +1,12 @@
 ---
 description: Troubleshoot problems and track down bugs in an NGINX or F5 NGINX Plus
   deployment, with the debugging binary, debug logging, and core dumps.
-nd-docs: DOCS-424
+f5-docs: DOCS-424
 title: Debugging NGINX
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 ## Introduction

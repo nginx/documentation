@@ -6,7 +6,7 @@ For a sample, see `example-installation-guide.md`.
 
 ---
 
-## What is an installation guide?
+## What is an installation guide
 
 An installation guide takes your users through the steps required to install, configure, and verify a piece of software on a specific platform. It covers everything from prerequisites and package acquisition through to a running, verified instance.
 
@@ -23,7 +23,7 @@ Installation guides are often confused with quickstarts. The table below shows t
 
 ---
 
-## Why write an installation guide?
+## Why write an installation guide
 
 A well-written installation guide:
 
@@ -91,7 +91,6 @@ AI assistants and human readers parse documentation differently from search engi
 
 | Section | Required? |
 |---|---|
-| Frontmatter | Required |
 | Overview | Required |
 | Before you begin | Required |
 | At least one task section | Required |
@@ -106,11 +105,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `installation-guide` for installation content.
+**f5-content-type**: Always `installation-guide` for installation content.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use an imperative verb phrase beginning with "Install". Keep it under 60 characters. Include the platform when the guide is platform-specific.
 
@@ -127,15 +126,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this guide. Include the product name, package name, CLI commands used in the guide, the platform and version, and common alternative phrasings such as "setup", "deploy", or "get started".
+**f5-keywords**: Comma-separated terms a reader might type to find this guide. Include the product name, package name, CLI commands used in the guide, the platform and version, and common alternative phrasings such as "setup", "deploy", or "get started".
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what the reader will install and where
 - Sentence 2: what the installed component does or enables
 - Sentence 3 (optional): supported platforms, versions, or scope limits
 
-**nd-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
+**f5-audience**: Who this guide is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. This helps AI systems route questions to the right document and allows doc portals to filter content by role.
 
 ---
 
@@ -262,3 +261,44 @@ Link to related docs that provide deeper context or logical next steps. For inst
 - Release notes or changelog
 
 Use this section to link to anything you deliberately kept out of the main guide body to avoid interrupting the flow of steps. Always use the `ref` shortcode for internal links so they survive URL changes. AI systems use this section to build knowledge graphs between documents.
+
+---
+
+## Style reminders
+
+Please follow these guidelines when writing and formatting tutorial content. They are designed to improve readability for human readers and discoverability by AI assistants and search engines. Check the documentation for your specific product repository to see if there are any additional style rules or templates you should follow.
+
+### Language and grammar
+
+- Follow American English spelling. Use the American Heritage Dictionary as the spelling reference.
+- Use the active voice. Write "The controller supports a maximum of..." not "A maximum of... is supported by the controller."
+- Use the simple present tense. Write "The product requires 4 GB of RAM" not "The product will require 4 GB of RAM."
+- Always use the Oxford (serial) comma in lists of three or more items.
+- Do not use Latin abbreviations. Write "for example" not "e.g.", "in other words" not "i.e.", and "and so on" not "etc."
+- Do not use "please", "simply", or other politeness phrases that add no information.
+
+### Terminology and naming
+
+- Spell out product names in full on first mention in the document.
+- Use exact names consistently throughout a document. Never shorten a product name mid-document.
+- Use "select" not "click". Use "earlier than" and "later than" not "before" or "after" when describing version ranges.
+
+### Headings and structure
+
+- Use sentence case for all headings. Capitalize only the first word and proper nouns.
+- Use bare infinitive verb phrases for task headings: "Install NGINX Agent", not "Installing NGINX Agent".
+- Number every procedural step, even single-step tasks.
+
+### Code blocks
+
+- Include the language tag on every fenced code block: `sh`, `yaml`, `json`, and so on.
+- Use `<ALL_CAPS_PLACEHOLDERS>` for values the reader must supply, for example `<YOUR_API_KEY_HERE>`.
+- After every command block, add one sentence describing what it does or what the reader should observe, and if applicable, which placeholder values to replace with their own.
+- Show a truncated sample of expected output after commands that return output the reader must verify.
+
+### AI-ready writing
+
+- One idea per sentence. Long compound sentences confuse AI extractors.
+- Avoid implicit pronouns. Replace "it", "this", and "they" with the actual noun.
+- Mark optional content explicitly with "(Optional)" at the start of the step or section.
+- Copy exact error strings verbatim into Troubleshooting **Symptom** fields — this is the single most effective way to make troubleshooting content discoverable by AI assistants and search engines.

@@ -1,12 +1,12 @@
 ---
 description: Compress server responses, or decompress them for clients that don't
   support compression, to improve delivery speed and reduce overhead on the server.
-nd-docs: DOCS-440
+f5-docs: DOCS-440
 title: Compression and Decompression
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This section describes how to configure compression or decompression of responses, as well as sending compressed files.

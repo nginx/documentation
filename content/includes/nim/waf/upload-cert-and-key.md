@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/waf-integration/configuration/install-waf-compiler/automatic-download.md
 - content/nim/waf-integration/configuration/setup-signatures-and-threats/automatic-download.md
 ---
@@ -33,7 +33,7 @@ Follow these steps to get and upload the certificate and key:
 1. Upload the file to NGINX Instance Manager using the REST API:
 
    ```shell
-   curl -X POST 'https://{{NIM_FQDN}}/api/platform/v1/certs'    --header "Authorization: Bearer <access token>"    --header "Content-Type: application/json"    -d @nginx-repo-certs.json
+   curl -X POST 'https://<NIM_FQDN>/api/platform/v1/certs'    --header "Authorization: Bearer <access token>"    --header "Content-Type: application/json"    -d @nginx-repo-certs.json
    ```
 
 1. If successful, you’ll see a response similar to this:

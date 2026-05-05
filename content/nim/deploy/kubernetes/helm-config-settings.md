@@ -1,13 +1,17 @@
 ---
-nd-docs: DOCS-1112
-title: Configurable helm settings
+f5-docs: DOCS-1112
+title: Configurable Helm settings
 toc: true
 weight: 300
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
+description: "Reference for all configurable Helm chart parameters and their default values for the F5 NGINX Instance Manager Kubernetes deployment."
+f5-summary: >
+  Look up all configurable Helm chart parameters and their defaults for deploying F5 NGINX Instance Manager on Kubernetes.
+  Use this reference when customizing values.yaml to tune the deployment for your environment.
 ---
 
-This reference guide lists the configurable Helm chart parameters and default settings for NGINX Instance Manager.
+This reference guide lists the configurable Helm chart parameters and default settings for F5 NGINX Instance Manager.
 
 ## NGINX Instance Manager Helm chart settings {#helm-settings}
 
@@ -15,7 +19,7 @@ This reference guide lists the configurable Helm chart parameters and default se
 In version 2.20.0, we renamed the Helm chart from `nms-hybrid` to `nim` when we moved it to its own repository. For versions 2.19.0 and earlier, use `nms-hybrid` instead of `nim` in each parameter name.
 {{< /call-out >}}
 
-To update an existing release, run `helm upgrade` with the `-f <my-values-file>` flag, where `<my-values-file>` is the path to your values file.
+To update an existing release, run `helm upgrade` with the `-f <MY_VALUES_FILE>` flag, where `<MY_VALUES_FILE>` is the path to your values file.
 
 {{< bootstrap-table "table table-bordered table-striped table-responsive table-sm" >}}
 
@@ -46,7 +50,23 @@ To update an existing release, run `helm upgrade` with the `-f <my-values-file>`
 | `nim.externalClickhouse.password`           | Password for the external ClickHouse service.                                                                                                                                                                                                                        |            |
 | `nim.serviceAccount.annotations`            | Set custom annotations for the service account used by NGINX Instance Manager.                                                                                                                                                                                         | `{}`       |
 | `nim.apigw.name`                            | Name for API Gateway resources.                                                                                                                                                                                                                                       | `apigw`    |
-| `nim.apigw.tlsSecret`                       | By default, the chart creates its own CA to self-sign HTTPS server certs. To bring your own certificates, set `tlsSecret` to an existing Kubernetes secret in the target namespace. The secret must include `tls.crt`, `tls.key`, and `ca.pem`. See [Use your own certificates]({{< ref "/nim/deploy/kubernetes/frequently-used-helm-configs.md#use-your-own-certificates" >}}). |            |
+| `nim.apigw.tlsSecret`                       | Name of a `kubernetes.io/tls` Secret containing `tls.crt` and `tls.key` for the API Gateway's external HTTPS endpoint. Leave empty to use the chart's self-signed certificate. See [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md" >}}). |            |
+| `nim.apigw.serverName`                      | The NGINX `server_name` value for the API Gateway. Accepts a single domain or space-separated list. Defaults to `_` (catch-all) when empty. See [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md#set-a-custom-api-gateway-server-name" >}}). |            |
+| `nim.apigw.tlsReload.enabled`               | When `true`, a watcher monitors the mounted certificate volume and sends `SIGHUP` to NGINX when the certificate rotates. See [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md#set-up-tls-auto-reload-for-the-api-gateway" >}}). | `false`    |
+| `nim.externalCerts.ca.enabled`              | When `true`, the chart doesn't generate the CA Secret. You must create it before installation. See [Use external TLS certificates]({{< ref "/nim/deploy/kubernetes/configure-external-certs.md" >}}). | `false`    |
+| `nim.externalCerts.ca.secretName`           | Overrides the default CA Secret name. Default: `nms-ca`.                                                                                                                                              |            |
+| `nim.externalCerts.core.enabled`            | When `true`, the chart doesn't generate the `core` mTLS Secret.                                                                                                                                       | `false`    |
+| `nim.externalCerts.core.secretName`         | Overrides the default `core` Secret name. Default: `nms-core-certs`.                                                                                                                                  |            |
+| `nim.externalCerts.dpm.enabled`             | When `true`, the chart doesn't generate the `dpm` mTLS Secret.                                                                                                                                        | `false`    |
+| `nim.externalCerts.dpm.secretName`          | Overrides the default `dpm` Secret name. Default: `nms-dpm-certs`.                                                                                                                                    |            |
+| `nim.externalCerts.ingestion.enabled`       | When `true`, the chart doesn't generate the `ingestion` mTLS Secret.                                                                                                                                  | `false`    |
+| `nim.externalCerts.ingestion.secretName`    | Overrides the default `ingestion` Secret name. Default: `nms-ingestion-certs`.                                                                                                                        |            |
+| `nim.externalCerts.integrations.enabled`    | When `true`, the chart doesn't generate the `integrations` mTLS Secret.                                                                                                                               | `false`    |
+| `nim.externalCerts.integrations.secretName` | Overrides the default `integrations` Secret name. Default: `nms-integrations-certs`.                                                                                                                  |            |
+| `nim.externalCerts.secmon.enabled`          | When `true`, the chart doesn't generate the `secmon` mTLS Secret.                                                                                                                                     | `false`    |
+| `nim.externalCerts.secmon.secretName`       | Overrides the default `secmon` Secret name. Default: `nms-secmon-certs`.                                                                                                                              |            |
+| `nim.externalCerts.apigw.enabled`           | When `true`, the chart doesn't generate the `apigw` client mTLS Secret.                                                                                                                               | `false`    |
+| `nim.externalCerts.apigw.secretName`        | Overrides the default `apigw` client Secret name. Default: `nms-apigw-client-certs`.                                                                                                                 |            |
 | `nim.apigw.image.repository`                | Repository path for the `apigw` image.                                                                                                                                                                                                                                 | `apigw`    |
 | `nim.apigw.image.tag`                       | Tag used for pulling `apigw` images.                                                                                                                                                                                                                                  | `latest`   |
 | `nim.apigw.image.pullPolicy`                | Image pull policy.                                                                                                                                                                                                                                                     | `IfNotPresent` |

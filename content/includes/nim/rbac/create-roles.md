@@ -1,7 +1,7 @@
 ---
-nd-product: NIMNGR
-nd-docs: DOCS-1028
-nd-files:
+f5-product: NIMNGR
+f5-docs: DOCS-1028
+f5-files:
 - content/nim/admin-guide/authentication/oidc/getting-started.md
 - content/nim/admin-guide/authentication/oidc/keycloak-setup.md
 - content/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md
@@ -11,7 +11,7 @@ nd-files:
 
 Roles in NGINX Instance Manager are a critical part of [role-based access control (RBAC)]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}). By creating roles, you define the access levels and permissions for different user groups that correspond to groups in your Identity Provider (IdP).
 
-NGINX Instance Manager comes pre-configured with an administrator role called `admin`. Additional roles can be created as needed.
+NGINX Instance Manager includes a built-in administrator role called `admin`. You can create additional roles as needed.
 
 The `admin` user or any user with `CREATE` permission for the **User Management** feature can create a role.
 
@@ -30,10 +30,10 @@ Follow these steps to create a role and set its permissions:
 1. To add permissions:
 
    1. Select **Add Permission**.
-   2. Choose the NGINX Instance Manager module you're creating the permission for from the **Module** list.
-   3. Select the feature you're granting permission for from the **Feature** list. To learn more about features, refer to [Get started with RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
+   2. Select the NGINX Instance Manager module you're creating the permission for from the **Module** list.
+   3. Select the feature you're granting permission for from the **Feature** list. To learn more about features, see [Get started with RBAC]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}).
    4. Select **Add Additional Access** to choose a CRUD (Create, Read, Update, Delete) access level.
-      - Choose the access level(s) you want to grant from the **Access** list.
+      - Select the access level(s) you want to grant from the **Access** list.
    5. Select **Save**.
 
 1. Repeat step 6 if you need to add more permissions for other features.
@@ -41,4 +41,4 @@ Follow these steps to create a role and set its permissions:
 
 #### Example scenario
 
-Suppose you need to create an "app-developer" role. This role allows users to create and edit applications but not delete them or perform administrative tasks. You would name the role `app-developer`, select the relevant features, and grant permissions that align with the application development process while restricting administrative functions.
+Suppose you need to create an "app-developer" role. With this role, users can create and edit applications but not delete them or do administrative tasks. Name the role `app-developer`, select the relevant features, and grant permissions that align with the application development process while restricting administrative functions.

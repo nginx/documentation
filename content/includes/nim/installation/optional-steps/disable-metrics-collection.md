@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/deploy/vm-bare-metal/install.md
 - content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/disconnected/offline-install-guide.md

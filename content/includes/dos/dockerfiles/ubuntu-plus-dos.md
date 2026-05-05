@@ -1,5 +1,5 @@
 ---
-nd-product: F5DOSN
+f5-product: F5DOSN
 ---
 
 ```dockerfile

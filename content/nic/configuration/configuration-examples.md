@@ -1,10 +1,10 @@
 ---
-nd-docs: DOCS-584
+f5-docs: DOCS-584
 title: Configuration examples
 toc: true
 weight: 400
-nd-content-type: reference
-nd-product: INGRESS
+f5-content-type: reference
+f5-product: INGRESS
 ---
 
 Our [GitHub repo](https://github.com/nginx/kubernetes-ingress) includes a number of configuration examples:

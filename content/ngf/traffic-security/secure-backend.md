@@ -2,9 +2,9 @@
 title: Securing backend traffic using mutual TLS
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1423
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1423
 ---
 
 Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend pods using mutual TLS between Gateway and Backend applications.

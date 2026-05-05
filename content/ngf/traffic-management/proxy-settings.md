@@ -2,9 +2,9 @@
 title: Proxy Settings Policy API
 toc: true
 weight: 1400
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-0000
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-0000
 ---
 
 Learn how to use the `ProxySettingsPolicy` API.

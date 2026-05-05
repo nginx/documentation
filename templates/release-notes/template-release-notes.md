@@ -1,17 +1,17 @@
 ---
-nd-content-type: release-notes
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: release-notes
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: "{Product Name} release notes"
 description: "{One-sentence summary of what this release covers, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{product name}, release notes, changelog, {version}, new features, resolved issues"
-nd-summary: >
+f5-keywords: "{product name}, release notes, changelog, {version}, new features, resolved issues"
+f5-summary: >
   {Sentence 1: what product and version range these release notes cover.}
   {Sentence 2: the most significant change or theme of the release.}
   {Sentence 3 (optional): any scope limits, such as platform or edition.}
-nd-audience: {developer | operator | admin | architect | any}
+f5-audience: {developer | operator | admin | architect | any}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-release-notes.md).
@@ -40,7 +40,7 @@ nd-audience: {developer | operator | admin | architect | any}
 
 This release includes the following updates:
 
-- {{% icon-feature %}} **{Feature title — concise noun phrase summarizing the feature}**
+- **{Feature title — concise noun phrase summarizing the feature}**
 
   {Two to four sentences. Describe what the feature does and how it benefits the user. Answer: "What can I now do that I could not do before?" Link to the full documentation.}
 
@@ -52,7 +52,7 @@ This release includes the following updates:
 
 This release has the following changes to default behavior:
 
-- {{% icon-feature %}} **{Change title — concise noun phrase summarizing the change}**
+- **{Change title — concise noun phrase summarizing the change}**
 
   {One to three sentences. Describe what changed, what the previous behavior was, and what the new behavior is. Link to the documentation that covers the new behavior.}
 
@@ -64,7 +64,7 @@ This release has the following changes to default behavior:
 
 This release fixes the following issues. Select an issue's ID link to view its details.
 
-- {{% icon-resolved %}} {One sentence in the past tense describing the user-facing symptom that was fixed.} [({Issue ID})](https://example.com/issues/{Issue ID})
+- {One sentence in the past tense describing the user-facing symptom that was fixed.} [({Issue ID})](https://example.com/issues/{Issue ID})
 
 ---
 
@@ -78,13 +78,11 @@ You can find the list of known issues in the [Known issues](https://example.com/
 
 {Include this section only when the release contains security fixes. Do not publish security updates until an investigation is complete and a fix is available.}
 
-{{< call-out "important" >}}
-For the protection of our customers, F5 NGINX doesn't disclose security issues until an investigation has occurred and a fix is available.
-{{< /call-out >}}
+> **Important**: For the protection of our customers, F5 NGINX does not disclose security issues until an investigation has occurred and a fix is available.
 
 This release includes the following security updates:
 
-- {{% icon-resolved %}} **{Vulnerability name} {CVE identifier}**
+- **{Vulnerability name} {CVE identifier}**
 
   {Two to three sentences. Describe the vulnerability and its potential impact. State that the issue has been resolved in this release. Link the CVE identifier to the official CVE record.} ([{CVE identifier}]({CVE link}))
 

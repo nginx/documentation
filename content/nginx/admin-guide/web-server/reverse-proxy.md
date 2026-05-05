@@ -1,12 +1,12 @@
 ---
 description: Configure NGINX as a reverse proxy for HTTP and other protocols, with
   support for modifying request headers and fine-tuned buffering of responses.
-nd-docs: DOCS-441
+f5-docs: DOCS-441
 title: NGINX Reverse Proxy
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This article describes the basic configuration of a proxy server. You will learn how to pass a request from NGINX to proxied servers over different protocols, modify client request headers that are sent to the proxied server, and configure buffering of responses coming from the proxied servers.

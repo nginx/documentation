@@ -2,9 +2,9 @@
 title: IP address lists
 weight: 1500
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
-nd-docs: DOCS-000
+f5-content-type: reference
+f5-product: F5WAFN
+f5-docs: DOCS-000
 ---
 
 IP address lists are a feature that let you organize allowed and forbidden IP addresses into reusable lists with common attributes.
@@ -15,6 +15,8 @@ Each IP address list includes:
 - A unique name
 - An enforcement type (`always`, `never`, or `policy-default`)
 - A list of IP addresses
+
+For the `ipAddress` value, use either a single IP (`192.0.2.1`) or a CIDR network address (`192.0.2.0/24`). `192.0.2.1/24` is invalid. `192.0.2.1/32` is valid and equivalent to `192.0.2.1`.
 
 Here is an example of a declarative policy using an IP address lists configuration:
 

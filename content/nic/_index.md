@@ -8,14 +8,14 @@ cascade:
   # The logo file is resolved from the theme, in the folder /static/images/icons/
   logo: NGINX-Ingress-Controller-product-icon.svg
 # The subtitle displays directly underneath the heading of a given page
-nd-subtitle:
+f5-subtitle:
 # Indicates that this is a custom landing page
-nd-landing-page: true
+f5-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: landing-page
+f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: INGRESS
+f5-product: INGRESS
 ---
 
 ## About

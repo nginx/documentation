@@ -2,8 +2,12 @@
 title: High availability with keepalived
 weight: 3
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Configure active-passive high availability for F5 NGINX Instance Manager using keepalived so the system stays available if one server fails."
+f5-summary: >
+  Configure active-passive high availability for F5 NGINX Instance Manager using keepalived.
+  In this setup, a standby server takes over automatically if the primary server fails, minimizing downtime for your NGINX management platform.
 ---
 
 ## Overview
@@ -13,7 +17,7 @@ High availability (HA) keeps a system running even if some components fail. In a
 - The active server handles all requests.
 - The passive server stays on standby and takes over if the active server fails.
 
-This guide shows how to configure HA for NGINX Instance Manager using `keepalived`. This setup includes:
+This guide shows how to configure HA for F5 NGINX Instance Manager using `keepalived`. This setup includes:
 
 - A virtual IP address (VIP)
 - A shared Network File System (NFS)

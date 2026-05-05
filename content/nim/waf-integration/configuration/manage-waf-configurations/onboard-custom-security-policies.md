@@ -1,10 +1,13 @@
 ---
 title: Onboard custom security policies
-description: Upload and prepare your own security policy bundles for use with NGINX Instance Manager.
+description: Upload and prepare your own security policy bundles for use with F5 NGINX Instance Manager.
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Upload and prepare custom F5 WAF for NGINX security policies for use in F5 NGINX Instance Manager.
+  Use this option when you need application-specific rules or want to integrate policies created outside NGINX Instance Manager.
 ---
 
 After verifying that F5 WAF for NGINX is active on your instances, you can onboard your own custom security policies. Use this option when you need to apply application-specific rules or integrate policies created in other environments. You’ll upload your JSON policy files, package them into `.tgz` bundles, and publish them through **F5 NGINX Instance Manager**.

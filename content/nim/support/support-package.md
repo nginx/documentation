@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-818
+f5-docs: DOCS-818
 title: Create a support package
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Use the support package script to collect system and service information about your F5 NGINX Instance Manager installation for troubleshooting."
+f5-summary: >
+  Generate a support package from your F5 NGINX Instance Manager installation to share with F5 support for troubleshooting.
+  The script collects logs, service status, and configuration details into a single archive that you can attach to a support case.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
@@ -33,7 +37,7 @@ To create a support package:
 
     The support package is saved in the same location from where the script was run (if no `-t` argument is passed).
 
-    (Optional) If you use a different Instance Manager config file than the default `/etc/nms/nms.conf` file, run the support package script with the `-c` flag and specify the path to your config file:
+    (Optional) If you use a different NGINX Instance Manager config file than the default `/etc/nms/nms.conf` file, run the support package script with the `-c` flag and specify the path to your config file:
 
       ```bash
       sudo bash /etc/nms/scripts/support-package.sh -c /your/config.conf
@@ -42,7 +46,7 @@ To create a support package:
 2. To extract the package, use the `tar` command:
 
     ```shell
-    tar -xvf support-pkg-<timestamp>.tar.gz
+    tar -xvf support-pkg-<TIMESTAMP>.tar.gz
     ```
 
 ### Arguments
@@ -56,9 +60,9 @@ The following table lists the arguments you can use with the support package scr
 | `-h`  | `--help`               | Prints information about the script arguments to stdout.            | `--help`               | N/A                 |
 | `-o`  | `--output_dir`         | The output directory where the tar archive is saved.                | `-o ~/output`          | `$(pwd)`            |
 | `-n`  | `--nginx_log_path`     | The directory where the NGINX log files are located.                | `-n /var/log/nginx`    | `/var/log/nginx`    |
-| `-c`  | `--nms_config_path`    | The path to the Instance Manager config file.                       | `-c /etc/nms/nms.conf` | `/etc/nms/nms.conf` |
-| `-m`  | `--manager_log_path`   | The directory where the Instance Manager log file is located.       | `-m /var/log/nms`      | `/var/log/nms`      |
-| `-t`  | `--target_host`        | The Instance Manager address (host:port).                           | `-t 127.0.0.1:443`     | `127.0.0.1:443`     |
+| `-c`  | `--nms_config_path`    | The path to the NGINX Instance Manager config file.                       | `-c /etc/nms/nms.conf` | `/etc/nms/nms.conf` |
+| `-m`  | `--manager_log_path`   | The directory where the NGINX Instance Manager log file is located.       | `-m /var/log/nms`      | `/var/log/nms`      |
+| `-t`  | `--target_host`        | The NGINX Instance Manager address (host:port).                           | `-t 127.0.0.1:443`     | `127.0.0.1:443`     |
 | `-xd` | `--exclude_databases`  | Excludes database data from the support package.                    | `--exclude_databases`  | N/A                 |
 | `-xt`| `--exclude_timeseries` | Excludes timeseries data from the support package.                  | `--exclude_timeseries` | N/A                 |
 
@@ -72,13 +76,13 @@ The information included is based on the NGINX products installed and configured
 
 ### nginx-logs
 
-The access and error logs of the instances that Instance Manager monitors.
+The access and error logs of the instances that NGINX Instance Manager monitors.
 
-The access logs display the HTTP traffic for Instance Manager that's routed by the NGINX instance. The error log contains NGINX errors that occurred during runtime.
+The access logs display the HTTP traffic for NGINX Instance Manager that's routed by the NGINX instance. The error log contains NGINX errors that occurred during runtime.
 
 ### nms-logs
 
-The logs of the Instance Manager processes.
+The logs of the NGINX Instance Manager processes.
 
 You can pipe the logs to `grep` to view entries belonging to only one of the three `nms` processes. For example, to view `nms-core` logs, run the following command:
 
@@ -100,32 +104,32 @@ The following table shows the `nms` processes and pattern to `grep` on:
 
 ### service-information
 
-Information about the Instance Manager and NGINX services running on the host. For each `nms` process and the `nginx` instance, the script collects:
+Information about the NGINX Instance Manager and NGINX services running on the host. For each `nms` process and the `nginx` instance, the script collects:
 
 - `journalctl` (10000 most recent rows)
 - `systemctl status`
 
 ### system-information
 
-The status and state information of the host running Instance Manager, including the following:
+The status and state information of the host running NGINX Instance Manager, including the following:
 
 - System metrics (memory usage, CPU usage, etc.)
-- File permissions of the Instance Manager
+- File permissions of the NGINX Instance Manager
 - Firewall or SELinux state
 - Network interfaces
 - Network information (hostname, iptables)
 - Environment variables
 - Disk usage of select directories
 - Operating system version
-- Installed Instance Manager version
-- Instance Manager license
+- Installed NGINX Instance Manager version
+- NGINX Instance Manager license
 
 ### dqlite snapshot
 
-The support package script uses the `-c` flag ( or `--nms_config_path`) to get the Instance Manager configuration. If the configuration file is not specified, the script uses the default value `/etc/nms/nms.conf`.
+The support package script uses the `-c` flag ( or `--nms_config_path`) to get the NGINX Instance Manager configuration. If the configuration file is not specified, the script uses the default value `/etc/nms/nms.conf`.
 
 {{< call-out "note" >}}
-If the Instance Manager configuration file does not specify addresses for the `core` and `dpm` databases, the default values are assumed: `127.0.0.1:7891` and `127.0.0.1:7890`.
+If the NGINX Instance Manager configuration file does not specify addresses for the `core` and `dpm` databases, the default values are assumed: `127.0.0.1:7891` and `127.0.0.1:7890`.
 {{< /call-out >}}
 
 The support package script uses a small Go executable file called `dqlite-backup` (located in `/etc/nms/scripts/`) to connect to the databases and generate data dumps.

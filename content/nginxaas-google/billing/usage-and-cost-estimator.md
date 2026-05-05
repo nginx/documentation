@@ -2,10 +2,10 @@
 title: Usage and cost estimator
 weight: 200
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/billing/usage-and-cost-estimator/
-nd-content-type: concept
-nd-product: NGOOGL
+f5-content-type: concept
+f5-product: NGOOGL
 ---
 
 {{< raw-html >}}
@@ -22,24 +22,14 @@ nd-product: NGOOGL
         <h4 id="calculator-section-heading">Estimate Monthly Cost</h4>
 
         <div class="form-field">
-          <label for="tierSelect">Tier</label>
-          <select id="tierSelect">
-            <option value="tier1">Tier 1</option>
-            <option value="tier2">Tier 2</option>
-            <option value="tier3">Tier 3</option>
+          <label for="regionSelect">Region</label>
+          <select id="regionSelect">
           </select>
-        </div>
-        
-        <div class="form-field">
-          <label for="numNcus">NCUs</label>
-          <input id="numNcus" type="number" step="10" min="10" />
         </div>
 
         <div class="form-field">
-          <label for="numHours">
-            Hours <span class="label-details">- used in a month</span>
-          </label>
-          <input id="numHours" type="number" />
+          <label for="numNcus">NCUs</label>
+          <input id="numNcus" type="number" step="10" min="10" />
         </div>
 
         <div class="form-field">

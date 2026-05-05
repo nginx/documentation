@@ -1,12 +1,12 @@
 ---
 description: Design and limitations of the zone synchronization feature that allows
   synchronizing data in an nginx cluster.
-nd-docs: DOCS-408
+f5-docs: DOCS-408
 title: How NGINX Plus Performs Zone Synchronization
 toc: true
 weight: 500
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This chapter describes the design and limitations of the zone synchronization feature that allows synchronizing data in an nginx cluster.

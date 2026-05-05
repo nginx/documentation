@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 DoS for NGINX Logs Overview.
-nd-docs: DOCS-671
+f5-docs: DOCS-671
 title: Logs Overview
 toc: true
 weight: 130
-nd-content-type: how-to
-nd-product: F5DOSN
+f5-content-type: how-to
+f5-product: F5DOSN
 ---
 
 There are 4 types of logs corresponding to App Protect DoS:

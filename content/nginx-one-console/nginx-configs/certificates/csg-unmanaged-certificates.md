@@ -1,7 +1,7 @@
 ---
-nd-content-type: concept
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: concept
+f5-docs: DOCS-000
+f5-product: NONECO
 title: Unmanaged certificates in Config Sync Groups
 toc: true
 weight: 200

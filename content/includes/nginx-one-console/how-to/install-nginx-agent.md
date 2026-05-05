@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/nginx-one-console/secure-your-fleet/set-up-security-alerts.md
 ---
 

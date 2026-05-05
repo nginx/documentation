@@ -2,9 +2,9 @@
 title: Command-line arguments
 toc: true
 weight: 100
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-585
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-585
 ---
 
 F5 NGINX Ingress Controller supports several command-line arguments, which are set based on installation method:
@@ -97,11 +97,9 @@ Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
 ### -enable-config-safety
 
-{{< call-out "caution" >}}This is an experimental feature. Behavior and configuration may change in future releases.{{< /call-out >}}
+{{< call-out "caution" >}}This is an experimental feature. Behavior and configuration may change in future releases. When this feature is turned on, users can experience delayed pod startup times as resources are validated prior to being written. Delays are directly proportional to the number and complexity of resources.  {{< /call-out >}}
 
-Enable config validation before reloading NGINX.
-
-Default `false`.
+The `-enable-config-safety` flag enhances the stability and reliability of the NGINX Ingress Controller. When turned on, this feature ensures the validation of new configurations before reloading nginx. If a configuration is deemed invalid, the new config for the associated resource is rejected and the old working config is restored. By Default it is set to `false`. 
 
 <a name="cmdoption-enable-external-dns"></a>
 

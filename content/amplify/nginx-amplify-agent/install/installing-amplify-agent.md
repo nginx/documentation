@@ -3,8 +3,8 @@ title: Install NGINX Amplify Agent
 description: Learn how to install F5 NGINX Amplify Agent.
 weight: 100
 toc: true
-nd-docs: DOCS-968
-nd-product: AMPLIF
+f5-docs: DOCS-968
+f5-product: AMPLIF
 ---
 
 To use F5 NGINX Amplify to monitor your infrastructure, you need to install NGINX Amplify Agent on each system you wish to monitor.

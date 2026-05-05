@@ -89,7 +89,6 @@ AI assistants and human readers parse documentation differently from search engi
 
 | Section | Required? |
 |---|---|
-| Frontmatter | Required |
 | Overview | Required |
 | Before you begin | Required |
 | At least one task section | Required |
@@ -104,11 +103,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `tutorial` for tutorial content.
+**f5-content-type**: Always `tutorial` for tutorial content.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use a verb phrase that describes what the reader will learn to do. Keep it under 60 characters.
 
@@ -125,15 +124,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this tutorial. Include the product name, the skill being taught, and common alternative phrasings such as "learn", "tutorial", "beginner", or "step by step".
+**f5-keywords**: Comma-separated terms a reader might type to find this tutorial. Include the product name, the skill being taught, and common alternative phrasings such as "learn", "tutorial", "beginner", or "step by step".
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what skill the reader will learn and what they will build or produce
 - Sentence 2: why that skill matters or what it enables
 - Sentence 3 (optional): the intended audience and any assumed knowledge
 
-**nd-audience**: Who this tutorial is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tutorials are typically `any` or a specific role depending on the skill being taught.
+**f5-audience**: Who this tutorial is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tutorials are typically `any` or a specific role depending on the skill being taught.
 
 ---
 
@@ -217,3 +216,44 @@ A specific, concrete summary reinforces learning and motivates readers to contin
 This section is required. Link to two to four logical next steps — other tutorials, how-to guides, or reference articles that build on what the reader just learned.
 
 Write one sentence after each link describing what it covers and how it relates to the current tutorial. This helps readers choose their next step and helps AI systems build knowledge graphs between documents.
+
+---
+
+## Style reminders
+
+Please follow these guidelines when writing and formatting tutorial content. They are designed to improve readability for human readers and discoverability by AI assistants and search engines. Check the documentation for your specific product repository to see if there are any additional style rules or templates you should follow.
+
+### Language and grammar
+
+- Follow American English spelling. Use the American Heritage Dictionary as the spelling reference.
+- Use the active voice. Write "The controller supports a maximum of..." not "A maximum of... is supported by the controller."
+- Use the simple present tense. Write "The product requires 4 GB of RAM" not "The product will require 4 GB of RAM."
+- Always use the Oxford (serial) comma in lists of three or more items.
+- Do not use Latin abbreviations. Write "for example" not "e.g.", "in other words" not "i.e.", and "and so on" not "etc."
+- Do not use "please", "simply", or other politeness phrases that add no information.
+
+### Terminology and naming
+
+- Spell out product names in full on first mention in the document.
+- Use exact names consistently throughout a document. Never shorten a product name mid-document.
+- Use "select" not "click". Use "earlier than" and "later than" not "before" or "after" when describing version ranges.
+
+### Headings and structure
+
+- Use sentence case for all headings. Capitalize only the first word and proper nouns.
+- Use bare infinitive verb phrases for task headings: "Install NGINX Agent", not "Installing NGINX Agent".
+- Number every procedural step, even single-step tasks.
+
+### Code blocks
+
+- Include the language tag on every fenced code block: `sh`, `yaml`, `json`, and so on.
+- Use `<ALL_CAPS_PLACEHOLDERS>` for values the reader must supply, for example `<YOUR_API_KEY_HERE>`.
+- After every command block, add one sentence describing what it does or what the reader should observe, and if applicable, which placeholder values to replace with their own.
+- Show a truncated sample of expected output after commands that return output the reader must verify.
+
+### AI-ready writing
+
+- One idea per sentence. Long compound sentences confuse AI extractors.
+- Avoid implicit pronouns. Replace "it", "this", and "they" with the actual noun.
+- Mark optional content explicitly with "(Optional)" at the start of the step or section.
+- Copy exact error strings verbatim into Troubleshooting **Symptom** fields — this is the single most effective way to make troubleshooting content discoverable by AI assistants and search engines.

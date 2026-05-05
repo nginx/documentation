@@ -2,20 +2,24 @@
 title: Troubleshooting
 weight: 500
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1226
+f5-content-type: reference
+f5-product: NIMNGR
+f5-docs: DOCS-1226
+description: "Troubleshoot Security Monitoring issues in F5 NGINX Instance Manager when security violation events are not received or dashboards are not populated."
+f5-summary: >
+  Diagnose and resolve common Security Monitoring issues in F5 NGINX Instance Manager.
+  This reference covers the most likely causes when the Security Monitoring module doesn't receive security violation events and how to fix each one.
 ---
 
 ## Security event log backup with Security Monitoring
 
 ### Description
 
-If a Security Violation event is not received by the Security Monitoring module, the attack data is lost.
+If the Security Monitoring module doesn't receive a security violation event, the attack data is lost.
 
 ### Resolution
 
-F5 WAF for NGINX supports logging to multiple destinations. This allows users to send logs to the NGINX agent and store a backup. If Security Monitoring fails to receive Security Events, you can check the backup log to verify attack details. Use the following settings to enable backup logging:
+F5 WAF for NGINX supports logging to multiple destinations. You can send logs to NGINX Agent and keep a backup. If Security Monitoring doesn't receive security events, check the backup log to verify attack details. Use the following settings to turn on backup logging:
 
 1. **For an instance with Security Monitoring only:**
 
@@ -27,7 +31,7 @@ F5 WAF for NGINX supports logging to multiple destinations. This allows users to
    # Example: app_protect_security_log "/etc/app_protect/conf/log_sm.json" /var/log/app_protect/security.log;
    ```
 
-2. **For an instance with Security Monitoring and NGINX Instance Manager:**
+2. **For an instance with Security Monitoring and F5 NGINX Instance Manager:**
 
    ```nginx
    app_protect_policy_file "/etc/nms/NginxDefaultPolicy.tgz";

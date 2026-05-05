@@ -2,9 +2,9 @@
 title: Monitoring with Prometheus and Grafana
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1418
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1418
 ---
 
 This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.
@@ -42,9 +42,9 @@ Visit [http://127.0.0.1:9090](http://127.0.0.1:9090) to view the dashboard.
 ### Grafana
 
 ```shell
-helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add grafana-community https://grafana-community.github.io/helm-charts
 helm repo update
-helm install grafana grafana/grafana -n monitoring --create-namespace
+helm install grafana grafana-community/grafana -n monitoring --create-namespace
 ```
 
 Once running, you can access the Grafana dashboard by using port-forwarding in the background:

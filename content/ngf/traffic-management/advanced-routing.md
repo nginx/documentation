@@ -2,9 +2,9 @@
 title: Application routes using HTTP matching conditions
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1422
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1422
 ---
 
 Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters

@@ -3,8 +3,8 @@ title: Create NGINXaaS Dataplane API Key
 weight: 50
 toc: true
 url: /nginxaas/azure/quickstart/dataplane-api-key/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 ## Overview

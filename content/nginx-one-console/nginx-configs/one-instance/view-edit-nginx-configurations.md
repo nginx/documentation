@@ -2,8 +2,8 @@
 title: View and edit an NGINX instance
 weight: 200
 toc: true
-nd-content-type: tutorial
-nd-product: NONECO
+f5-content-type: tutorial
+f5-product: NONECO
 ---
 <!-- Possible future include, with similar files in config-sync-groups/ and staged-configs/ subdirectories -->
 

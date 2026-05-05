@@ -3,13 +3,16 @@ title: "Add signature sets and exceptions"
 description: Configure attack signature sets and exceptions in F5 WAF for NGINX policies to fine-tune protection and reduce false positives.
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Configure attack signature sets and exceptions in F5 WAF for NGINX policies to fine-tune protection and reduce false positives.
+  You can add, modify, and remove signature sets and exceptions when creating or editing a policy in F5 NGINX Instance Manager.
 ---
 
-This topic describes how to configure signature sets and signature exceptions in F5 WAF for NGINX policies. When you add or edit a policy, NGINX Instance Manager provides options to customize attack signatures to better protect your applications.
+You can configure attack signature sets and exceptions in your F5 WAF for NGINX policies. When you add or edit a policy, you can customize attack signatures to better protect your applications.
 
-## Understanding signature sets and exceptions
+## Signature sets and exceptions
 
 Attack signatures are rules or patterns that identify known attack sequences or classes of attacks on a web application. F5 WAF for NGINX includes predefined attack signatures grouped into signature sets.
 
@@ -21,14 +24,14 @@ For example, you might have sets for SQL Injection Signatures, Cross-Site Script
 
 ### Signature exceptions
 
-A **signature exception** allows you to explicitly enable or disable individual attack signatures within a set. This gives you fine-grained control over your policy. For example:
+Use a **signature exception** to enable or disable individual attack signatures within a set. This gives you fine-grained control over your policy. For example:
 
 - If a signature in a set causes false positives (blocking legitimate traffic), you can create an exception to disable that signature while keeping the rest of the set active.
 - If you want to enable blocking for a single attack signature rather than an entire set, you can create an exception to enable just that signature.
 
 ## Add signature sets
 
-From the NGINX Instance Manager web interface, go to **WAF** > **Policies** and select **Add policy**. The policy editor opens, where you can:
+From the F5 NGINX Instance Manager web interface, go to **WAF** > **Policies** and select **Add policy**. The policy editor opens, where you can:
 
 1. In **General Settings**, name and describe the policy.
 2. Go to the **Web Protection** section and select **Attack Signature Sets**. Here, you can:
@@ -122,6 +125,6 @@ From the **Web Protection** section, select **Attack Signature Exceptions**. Thi
 
 4. Select **Add policy**. The policy JSON updates with your changes, and the new policy appears in the list under the name you provided.
 
-From the **NGINX Instance Manager** web interface, you can review and modify saved policies at any time. Go to **WAF** > **Policies** to view or edit an existing policy.
+In the NGINX Instance Manager web interface, you can review and change saved policies at any time. Go to **WAF** > **Policies** to view or edit an existing policy.
 
 For a complete list of available signature sets and detailed information about attack signatures, see the [Attack Signatures]({{< ref "/waf/policies/attack-signatures.md" >}}) documentation.

@@ -2,9 +2,9 @@
 title: Migrate from Ingress-NGINX Controller to NGINX Ingress Controller
 toc: true
 weight: 1000
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1469
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1469
 ---
 
 This document describes how to migrate from the community-maintained Ingress-NGINX Controller to F5 NGINX Ingress Controller.
@@ -393,7 +393,6 @@ NGINX Ingress Controller:
 ingressMTLS:
    clientCertSecret: secretName
    verifyClient: "on"
-
    verifyDepth: 1
 ```
 
@@ -414,17 +413,11 @@ NGINX Ingress Controller:
 ```yaml
 egressMTLS:
    tlsSecret: secretName
-
    verifyServer: true|false
-
    verifyDepth: 1
-
    protocols: TLSv1.2
-
    ciphers: DEFAULT
-
    sslName: server-name
-
    serverName: true|false
 ```
 
@@ -437,7 +430,7 @@ Ingress-NGINX Controller:
 ```yaml
 nginx.ingress.kubernetes.io/affinity: "cookie"
 nginx.ingress.kubernetes.io/session-cookie-name: "cookieName"
-nginx.ingress.kubernetes.io/session-cookie-expires: "x"
+nginx.ingress.kubernetes.io/session-cookie-expires: "3600"
 nginx.ingress.kubernetes.io/session-cookie-path: "/route"
 nginx.ingress.kubernetes.io/session-cookie-secure: "true"
 ```
@@ -447,13 +440,9 @@ NGINX Ingress Controller:
 ```yaml
 sessionCookie:
   enable: true
-
   name: cookieName
-
-  expires: xh
-
+  expires: 3h
   path: /route
-
   secure: true
 ```
 

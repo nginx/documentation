@@ -107,11 +107,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `release-notes` for release note pages.
+**f5-content-type**: Always `release-notes` for release note pages.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use `"{Product Name} release notes"`. Keep it under 60 characters. This page covers all versions of the product, so do not include a version number in the title.
 
@@ -131,15 +131,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, version numbers covered, and the types of changes in the most recent release — for example, feature names, resolved issue identifiers, and CVE numbers.
+**f5-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, version numbers covered, and the types of changes in the most recent release — for example, feature names, resolved issue identifiers, and CVE numbers.
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what product and version range these release notes cover
 - Sentence 2: the most significant change or theme of the release
 - Sentence 3 (optional): any scope limits, such as platform or edition
 
-**nd-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Release notes are typically `any` because they are read by a mixed technical and non-technical audience.
+**f5-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Release notes are typically `any` because they are read by a mixed technical and non-technical audience.
 
 ---
 
@@ -233,3 +233,44 @@ For each entry:
 3. Link the CVE identifier to the official CVE record.
 
 Do not publish security updates until an investigation is complete and a fix is available and released.
+
+---
+
+## Style reminders
+
+Please follow these guidelines when writing and formatting tutorial content. They are designed to improve readability for human readers and discoverability by AI assistants and search engines. Check the documentation for your specific product repository to see if there are any additional style rules or templates you should follow.
+
+### Language and grammar
+
+- Follow American English spelling. Use the American Heritage Dictionary as the spelling reference.
+- Use the active voice. Write "The controller supports a maximum of..." not "A maximum of... is supported by the controller."
+- Use the simple present tense. Write "The product requires 4 GB of RAM" not "The product will require 4 GB of RAM."
+- Always use the Oxford (serial) comma in lists of three or more items.
+- Do not use Latin abbreviations. Write "for example" not "e.g.", "in other words" not "i.e.", and "and so on" not "etc."
+- Do not use "please", "simply", or other politeness phrases that add no information.
+
+### Terminology and naming
+
+- Spell out product names in full on first mention in the document.
+- Use exact names consistently throughout a document. Never shorten a product name mid-document.
+- Use "select" not "click". Use "earlier than" and "later than" not "before" or "after" when describing version ranges.
+
+### Headings and structure
+
+- Use sentence case for all headings. Capitalize only the first word and proper nouns.
+- Use bare infinitive verb phrases for task headings: "Install NGINX Agent", not "Installing NGINX Agent".
+- Number every procedural step, even single-step tasks.
+
+### Code blocks
+
+- Include the language tag on every fenced code block: `sh`, `yaml`, `json`, and so on.
+- Use `<ALL_CAPS_PLACEHOLDERS>` for values the reader must supply, for example `<YOUR_API_KEY_HERE>`.
+- After every command block, add one sentence describing what it does or what the reader should observe, and if applicable, which placeholder values to replace with their own.
+- Show a truncated sample of expected output after commands that return output the reader must verify.
+
+### AI-ready writing
+
+- One idea per sentence. Long compound sentences confuse AI extractors.
+- Avoid implicit pronouns. Replace "it", "this", and "they" with the actual noun.
+- Mark optional content explicitly with "(Optional)" at the start of the step or section.
+- Copy exact error strings verbatim into Troubleshooting **Symptom** fields — this is the single most effective way to make troubleshooting content discoverable by AI assistants and search engines.

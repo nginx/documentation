@@ -1,10 +1,13 @@
 ---
 title: Troubleshooting
-description: Resolve common issues with F5 WAF for NGINX and NGINX Instance Manager by verifying installation, configuration, and connectivity.
+description: Resolve common issues with F5 WAF for NGINX and F5 NGINX Instance Manager by verifying installation, configuration, and connectivity.
 toc: true
 weight: 1000
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Diagnose and fix common problems with F5 WAF for NGINX and F5 NGINX Instance Manager.
+  This guide covers the most likely causes of WAF integration issues, including installation conflicts, configuration errors, and connectivity problems.
 ---
 
 If you're having trouble with F5 WAF for NGINX, try the steps below.
@@ -16,7 +19,7 @@ If these steps don’t fix the issue, contact F5 Support.
 
 F5 WAF for NGINX and the WAF compiler shouldn’t run on the same host. To check:
 
-1. Log in to the NGINX Instance Manager host from a terminal.
+1. Log in to the F5 NGINX Instance Manager host from a terminal.
 1. Run the command that matches your operating system:
 
    - For Debian-based systems:
@@ -59,21 +62,21 @@ sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 **Example:**
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile -h
 ```
 
 **Expected output:**
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.607.0/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.607.1/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
 ---

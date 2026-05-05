@@ -1,12 +1,12 @@
 ---
 description: Release information for F5 NGINX Plus, a complete application delivery
   platform, including new features and a list of supported platforms.
-nd-docs: DOCS-472
+f5-docs: DOCS-472
 title: Releases
 toc: true
 weight: 300
-nd-content-type: reference
-nd-product: NGPLUS
+f5-content-type: reference
+f5-product: NGPLUS
 ---
 
 ### Software Development Policy {#support}
@@ -148,6 +148,8 @@ NGINX Plus R35 is a feature release:
 - [Automated Certificate Management Environment](https://blog.nginx.org/blog/native-support-for-acme-protocol) (ACME) protocol [support](https://nginx.org/en/docs/http/ngx_http_acme_module.html).
 
 - [Automatic renewal]({{< ref "/solutions/about-subscription-licenses/getting-started.md#update-license" >}}) of NGINX Plus license.
+
+  {{< include "licensing-and-reporting/fcp-renewal-caution.md" >}}
 
 - [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 

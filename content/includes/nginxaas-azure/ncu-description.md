@@ -1,12 +1,12 @@
 ---
-nd-docs: DOCS-1476
-nd-product: NAZURE
-nd-files:
+f5-docs: DOCS-1476
+f5-product: NAZURE
+f5-files:
 - content/nginxaas-azure/billing/overview.md
 - content/nginxaas-azure/quickstart/scaling.md
 ---
 
-An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX instance based on the underlying compute resources. This abstraction allows you to specify the desired capacity in NCUs without having to consider the regional hardware differences.
+An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX instance based on the underlying compute resources. This abstraction allows you to specify the desired minimum capacity in NCUs without having to consider the regional hardware differences.
 
 An NGINX Capacity Unit consists of the following parameters:
 

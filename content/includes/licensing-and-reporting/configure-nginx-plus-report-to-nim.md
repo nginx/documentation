@@ -1,10 +1,10 @@
 ---
-nd-product:
+f5-product:
 - NIMNGR
 - SOLUTI
-nd-files:
-- content/nim/admin-guide/report-usage-connected-deployment.md
-- content/nim/disconnected/report-usage-disconnected-deployment.md
+f5-files:
+- content/nim/licensing-and-reporting/report-usage-connected-deployment.md
+- content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md
 - content/solutions/about-subscription-licenses/getting-started.md
 ---
 

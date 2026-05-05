@@ -2,47 +2,25 @@
 title: Scaling guidance
 weight: 100
 toc: true
-nd-docs: DOCS-989
+f5-docs: DOCS-989
 url: /nginxaas/azure/quickstart/scaling/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
-F5 NGINXaaS for Azure (NGINXaaS) supports manual and automatic scaling of your deployment, allowing you to adapt to application traffic demands while controlling cost.
+F5 NGINXaaS for Azure (NGINXaaS) supports automatic scaling of your deployment to adapt to application traffic demands allowing you to control costs.
 
-{{< call-out "note" >}}This feature is only available for Standard plan(s).{{< /call-out >}}
+When enabled, your NGINXaaS deployment will automatically scaled out to increase the capacity (and cost) or scaled in to decrease the capacity (and cost). Capacity is measured in [NGINX Capacity Units (NCU)](#nginx-capacity-unit-ncu).
 
-An NGINXaaS deployment can be scaled out to increase the capacity (increasing the cost) or scaled in to decrease the capacity (reducing the cost). Capacity is measured in [NGINX Capacity Units (NCU)](#nginx-capacity-unit-ncu).
-
-In this document you will learn:
-
-- What an NGINX Capacity Unit (NCU) is
-- How to manually scale your deployment
-- How to enable autoscaling on your deployment
-- What capacity restrictions apply for your Marketplace plan
-- How to monitor capacity usage
-- How to estimate the amount of capacity to provision
+{{< call-out "note" >}} This feature is only available for Standard plan(s). For the Developer plan, the capacity cannot be changed{{< /call-out >}}
 
 ## NGINX Capacity Unit (NCU)
 
 {{< include "/nginxaas-azure/ncu-description.md" >}}
 
-## Manual scaling
-
-To update the capacity of your deploymentv using the Azure Portal,
-
- 1. Select **NGINXaaS scaling** in the left menu.
- 1. Select `Manual`.
- 1. Set the desired number of NCUs. Scale increases in 10 NCU intervals (10, 20, 30, and so on).
- 1. Select **Submit** to update your deployment.
-
-  {{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
-
-  {{< call-out "note" >}}When using manual scaling, consider setting up alerts on the `system.cpu` metric to be notified when scaling may be needed. See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for more information on available metrics.{{< /call-out >}}
-
 ## Autoscaling
 
-With autoscaling enabled, the size of your NGINXaaS deployment will automatically adjust based on traffic requirements without the need to guess how many NCUs to provision. You must specify a minimum and maximum NCU count. NGINXaaS will maintain the size of the deployment ensuring the number of provisioned NCUs does not fall below the set minimum NCUs and does not grow beyond the maximum NCUs. Refer to the [Capacity Restrictions](#capacity-restrictions) when setting the minimum and maximum capacity.
+With autoscaling enabled, the size of your NGINXaaS deployment will automatically adjust based on traffic requirements without the need to guess how many NCUs to provision. You must specify a minimum and maximum NCU count. NGINXaaS will maintain the size of the deployment ensuring the number of provisioned NCUs does not fall below the set minimum NCUs. Refer to the [Capacity Restrictions](#capacity-restrictions) when setting the minimum and maximum capacity.
 
 When creating a new NGINXaaS deployment with autoscaling enabled, the initial size of the deployment will match the minimum NCU count.
 
@@ -53,6 +31,8 @@ To enable autoscaling using the Azure Portal,
  1. Specify the minimum and maximum NCU count.
  1. Select **Submit** to enable NGINXaaS deployment autoscaling.
 
+{{< call-out "note" >}} For bandwidth-heavy workloads, NGINXaaS may automatically allocate NCUs beyond your configured autoscale maximum to satisfy demand, and you’ll be billed for any additional bandwidth consumed during the billing interval. For all other workloads, capacity is capped at the configured autoscale maximum{{< /call-out >}}
+
 ### Scaling rules
 
 NGINXaaS automatically adjusts the number of NCUs based on "scaling rules." A scaling rule defines when to scale, what direction to scale, and how much to scale. NGINXaaS will evaluate the following scaling rules, in order, based on the percentage capacity consumed metric and the provisioned NCU metric.
@@ -62,6 +42,23 @@ NGINXaaS automatically adjusts the number of NCUs based on "scaling rules." A sc
 - *Decrease Rule*: Over the last 10 minutes, if the average capacity consumed is less than or equal to 60% of the average provisioned NCUs, decrease capacity by 10%.
 
 To avoid creating a loop between scaling rules, NGINXaaS will not apply a scaling rule if it predicts that doing so would immediately trigger an opposing rule. For example, if the the "Urgent Increase Rule" is triggered due to a sudden spike in traffic, but the new capacity will cause the "Decrease Rule" to trigger immediately after, the autoscaler will not increase capacity. This prevents the deployment's capacity from increasing and decreasing erratically.
+
+## Manual scaling
+
+We continue to support manual scaling for backwards compatibility with legacy plans. In manual mode, the NCU value you set will impact the capacity that we provision for your NGINXaaS deployment. If your workload exceeds this capacity, then we may or may not be able to support this additional load. We recommend using autoscaling to automatically adjust capacity based on traffic.
+
+To update the capacity of your deployment using the Azure Portal,
+
+ 1. Select **NGINXaaS scaling** in the left menu.
+ 1. Select `Manual`.
+ 1. Set the desired number of NCUs. Scale increases in 10 NCU intervals (10, 20, 30, and so on).
+ 1. Select **Submit** to update your deployment.
+
+{{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
+
+{{< call-out "note" >}}When using manual scaling, consider setting up alerts on the `system.cpu` metric to be notified when scaling may be needed. See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for more information on available metrics.{{< /call-out >}}
+
+{{< call-out "note" >}} For bandwidth-intensive workloads, NGINXaaS may automatically allocate NCUs beyond your configured value to satisfy demand, and you’ll be billed for any additional bandwidth consumed during the billing interval. For all other workloads, capacity is capped at the configured value{{< /call-out >}}
 
 ## Capacity restrictions
 

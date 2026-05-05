@@ -2,39 +2,43 @@
 title: Set up F5 WAF for NGINX instances for Security Monitoring
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1107
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1107
+description: "Connect F5 WAF for NGINX instances to Security Monitoring in F5 NGINX Instance Manager to collect and display security violation data."
+f5-summary: >
+  Connect F5 WAF for NGINX instances to Security Monitoring in F5 NGINX Instance Manager.
+  Security Monitoring supports syslog and gRPC streaming; this guide covers both use cases and the NGINX Agent configuration required for each.
 ---
 
 ## Overview
 
-F5 NGINX Security Monitoring supports two main use cases:
+Security Monitoring supports two main use cases:
 
-- **Security Monitoring only**: Use only the Security Monitoring module to monitor data from F5 WAF for NGINX instances. You will be able to review the security dashboards to assess potential threats and identify opportunities to fine-tune your policies. Your F5 WAF for NGINX configurations are managed outside of the NGINX Instance Manager context.
-- **Security Monitoring and Instance Manager**: Use the Security Monitoring module with the NGINX Instance Manager. In addition to monitoring your application security, you will be able to manage your F5 WAF for NGINX  configurations and security policies in a single location and push pre-compiled updates to an instance or instance group.
+- **Security Monitoring only**: Use only the Security Monitoring module to monitor data from F5 WAF for NGINX instances. You can review the security dashboards to assess potential threats and find opportunities to fine-tune your policies. You manage your F5 WAF for NGINX configurations outside of F5 NGINX Instance Manager.
+- **Security Monitoring and NGINX Instance Manager**: Use the Security Monitoring module with NGINX Instance Manager. In addition to monitoring your application security, you can manage your F5 WAF for NGINX configurations and security policies in one place and push precompiled updates to an instance or instance group.
 
 ## Before you begin
 
-Complete the following prerequisites before proceeding with the steps in this guide.
+Make sure you've completed the following before you start.
 
-1. If you are new to F5 WAF for NGINX, follow the instructions in the installation and configuration guides to get up and running:
+1. If you're new to F5 WAF for NGINX, follow the installation and configuration guides:
 
-   - [Install F5 WAF for NGINX]({{< ref "/waf/install/" >}}) on one or more data plane instances. Each data plane instance must have connectivity to the NGINX Instance Manager host.
-   - [Configure F5 WAF for NGINX]({{< ref "/waf/policies/configuration.md" >}}) according to your needs on each of the data plane instance.
+   - [Install F5 WAF for NGINX]({{< ref "/waf/install/" >}}) on one or more data plane instances. Each instance must be able to reach the NGINX Instance Manager host.
+   - [Configure F5 WAF for NGINX]({{< ref "/waf/policies/configuration.md" >}}) to fit your needs on each data plane instance.
 
 1. Determine your use case: **Security Monitoring only** or **Security Monitoring and Configuration Management**.
-1. [Upload your license]({{< ref "/nim/admin-guide/add-license.md" >}}).
+1. [Upload your license]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md" >}}).
 
 ## Install NGINX Agent
 
-NGINX Agent is a companion daemon for NGINX Open Source or NGINX Plus instance that provides:
+NGINX Agent is a companion daemon for your NGINX Open Source or NGINX Plus instance. It provides:
 
 - Remote management of NGINX configurations
 - Collection and reporting of real-time NGINX performance and operating system metrics
 - Notifications of NGINX events
 
-Repeat the steps in this section on each F5 WAF for NGINX data plane host to install and configure NGINX Agent for use with  Security Monitoring. **These settings apply to both of the Security Monitoring use cases.**
+Repeat these steps on each F5 WAF for NGINX data plane host to install and configure NGINX Agent for Security Monitoring. **These settings apply to both Security Monitoring use cases.**
 
 1. Use SSH to connect to the data plane host.
 1. Install the NGINX Agent package from the NGINX Instance Manager host.
@@ -108,7 +112,7 @@ Repeat the steps in this section on each F5 WAF for NGINX data plane host to ins
    ```
 
 {{< call-out "important" >}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs.
-   You must use the same values when configuring logging for the Security Monitoring module. If the `syslog:<server><port>` configuration does not match these settings, the monitoring dashboards will not display any data. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
+   Use the same values when you configure logging for the Security Monitoring module. If the `syslog:<server><port>` configuration doesn't match these settings, the monitoring dashboards won't show any data. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
 
    {{< call-out "note" >}}You can use the NGINX Agent installation script to add the fields for `nginx_app_protect` and `nap_monitoring`:
 
@@ -135,17 +139,17 @@ sudo systemctl restart nginx-agent
 
 ## Create instances for Security Monitoring only
 
-Complete the steps in this section if you are only using the Security Monitoring module to monitor your application security. In this use case, you are **not using Instance Manager** to manage your WAF security policies.
+Complete the steps in this section if you're only using the Security Monitoring module to monitor your application security. In this use case, you're **not** using NGINX Instance Manager to manage your WAF security policies.
 
-Repeat the steps below on each F5 WAF for NGINX data plane instance.
+Repeat these steps on each F5 WAF for NGINX data plane instance.
 
 1. Use SSH to connect to the data plane host.
 
-1. Create a new log format definition file with the name `/etc/app_protect/conf/log_sm.json` and the contents shown below.
+1. Create a log format definition file named `/etc/app_protect/conf/log_sm.json` with the following contents.
    This defines the log format for the Security Monitoring module.
 
-   This configuration sets the maximum accepted request payload to 2048 bytes and the maximum message size to 5k. The latter setting truncates messages larger than 5k.
-2. Add character escaping for the used separator `,` to be escaped with its standard URL encoding `%2C`.
+   This sets the maximum request payload to 2048 bytes and the maximum message size to 5k. Messages larger than 5k are truncated.
+2. Add character escaping so the `,` separator is escaped with its standard URL encoding `%2C`.
 
    ``` json
    {
@@ -168,15 +172,15 @@ Repeat the steps below on each F5 WAF for NGINX data plane instance.
    }
    ```
 
-1. Find the context in your NGINX configuration where F5 WAF for NGINX logging is enabled.
-   In the same context, add the `app_protect_security_log` directive shown in the example below to configure attack data logging for use with the Security Monitoring dashboards.
+1. Find the context in your NGINX configuration where F5 WAF for NGINX logging is turned on.
+   In the same context, add the following `app_protect_security_log` directive to configure attack data logging for the Security Monitoring dashboards.
 
    ```nginx
       app_protect_security_log_enable on;
       app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
    ```
 
-   {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#install-nginx-agent). The dashboards won't display any data if these settings don't match. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
+   {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the [NGINX Agent configuration file](#install-nginx-agent). The dashboards won't show any data if these settings don't match. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
 
 1. Restart NGINX Agent and the NGINX web server.
 
@@ -185,18 +189,18 @@ Repeat the steps below on each F5 WAF for NGINX data plane instance.
    sudo systemctl restart nginx
    ```
 
-You should now be able to view data from your F5 WAF for NGINX instances in the NGINX Security Monitoring dashboards.
+You can now view data from your F5 WAF for NGINX instances in the Security Monitoring dashboards.
 
-## Create instances for Security Monitoring with Instance Manager
+## Create instances for Security Monitoring with NGINX Instance Manager
 
-Complete the steps in this section if you want to use the Security Monitoring module **and** Instance Manager. In this use case, you will use NGINX Instance Manager to monitor threats and to manage your F5 WAF for NGINX configurations and security policies.
+Complete the steps in this section if you want to use the Security Monitoring module **and** NGINX Instance Manager. In this use case, you'll use NGINX Instance Manager to monitor threats and manage your F5 WAF for NGINX configurations and security policies.
 
-Take the steps below to update your F5 WAF for NGINX configurations by using Instance Manager.
+Follow these steps to update your F5 WAF for NGINX configurations with NGINX Instance Manager.
 
 1. Log in to the NGINX Instance Manager user interface and go to **Modules** > **Instance Manager**.
 1. Select **Instances** or **Instance Groups**, as appropriate.
-1. Select **Edit Config** from the **Actions** menu for the desired instance or instance group.
-1. Next, edit the desired configuration file. You will add directives that reference the security policies bundle and enable the F5 WAF for NGINX logs required by the Security Monitoring dashboards. An example configuration is provided below.
+1. Select **Edit Config** from the **Actions** menu for the instance or instance group you want to update.
+1. Edit the configuration file. Add directives that reference the security policy bundle and turn on the F5 WAF for NGINX logs that the Security Monitoring dashboards need.
 
    ```nginx
       app_protect_enable on;
@@ -207,21 +211,21 @@ Take the steps below to update your F5 WAF for NGINX configurations by using Ins
 
    - Add the `app_protect_policy_file` directive with a reference to a security policy.
 
-      The policy reference must use the `.tgz` file extension when using Instance Manager to perform precompiled publication of F5 WAF for NGINX policies and log profiles. The file path referenced must exist on the NGINX Instance Manager host, but it's ok if the policy file doesn't exist yet. If your Instance is not configured for precompiled publication, then use the `.json` file extension for policies and log profiles. In this case, the file path referenced in the NGINX configuration must reside on the Instance.
+      When you use NGINX Instance Manager for precompiled publication, the policy reference must use the `.tgz` file extension. The file path must exist on the NGINX Instance Manager host, but the policy file doesn't need to exist yet. If your instance isn't set up for precompiled publication, use the `.json` file extension for policies and log profiles. In this case, the file path in the NGINX configuration must exist on the instance.
 
-      If you are using custom security policies, at this stage, it's fine to use the default security policy shown in the example above. After completing the steps in this guide, refer to the instructions in [Set Up F5 WAF for NGINX Configuration Management]({{< ref "/nim/waf-integration/configuration/manage-waf-configurations" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
+      If you're using custom security policies, you can use the default policy from the example for now. After you finish this guide, see [Set Up F5 WAF for NGINX Configuration Management]({{< ref "/nim/waf-integration/configuration/manage-waf-configurations" >}}) to add your custom security policy files to NGINX Instance Manager and update your NGINX configuration.
 
-   - Add the `app_protect_security_log_enable on` and the `app_protect_security_log` directive to any NGINX context where F5 WAF for NGINX is enabled and you want to be able to review attack data.
+   - Add the `app_protect_security_log_enable on` and `app_protect_security_log` directives to any NGINX context where F5 WAF for NGINX is on and you want to review attack data.
 
       The logging configuration must reference `"/etc/nms/secops_dashboard.tgz"`, as shown in the example.
 
       If the `app_protect_security_log_enable` setting is already present, just add the `app_protect_security_log` beneath it in the same context.
 
-      {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values specified in the [NGINX Agent configuration file](#install-nginx-agent). The Security Monitoring dashboards won't display any data if these settings don't match. Also, the networking changes for F5 WAF for NGINX Version 5 preclude the use of `127.0.0.1` as a syslog server address. For Version 5, the address of the `docker0` interface (typically `192.0.10.1`) or the IP address of the data plane host can be used for the syslog server address.{{< /call-out >}}
+      {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the [NGINX Agent configuration file](#install-nginx-agent). The Security Monitoring dashboards won't show any data if these settings don't match. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
 
-1. Select **Publish** to immediately push the configuration file updates out to your NGINX instance or instance group.
+1. Select **Publish** to push the configuration updates to your instance or instance group.
 
-You should now be able to view data from your F5 WAF for NGINX instances in the Security Monitoring dashboard.
+You can now view data from your F5 WAF for NGINX instances in the Security Monitoring dashboard.
 
 ## See also
 

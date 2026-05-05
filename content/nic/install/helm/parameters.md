@@ -3,8 +3,8 @@ title: NGINX Ingress Controller Helm chart parameters
 linkTitle: Helm chart parameters
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
+f5-content-type: how-to
+f5-product: INGRESS
 ---
 
 This page describes the Helm chart parameters of F5 NGINX Ingress Controllers.
@@ -46,7 +46,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.hostNetwork** | Enables NGINX Ingress Controller pods to use the host's network namespace. | false |
 | **controller.dnsPolicy** | DNS policy for NGINX Ingress Controller pods. | ClusterFirst |
 | **controller.nginxDebug** | Enables debugging for NGINX. Uses the `nginx-debug` binary. Requires `error-log-level: debug` in the ConfigMap via `controller.config.entries`. | false |
-| **controller.enableConfigSafety** | Enable config validation prior to reloading NGINX. *Experimental feature.* | false |
+| **controller.enableConfigSafety** | Enhances the stability and reliability of the NGINX Ingress Controller. When this feature is turned on, it ensures the validation of new configurations before reloading nginx. If a configuration is deemed invalid, the new config for the associated resource is rejected and the old working config is restored. This is an experimental feature. Behavior and configuration may change in future releases. When turned on, users can experience delayed pod startup times as resources are validated prior to being written. Delays are directly proportional to the number and complexity of resources. | false |
 | **controller.logLevel** | The log level of NGINX Ingress Controller. | info |
 | **controller.logFormat** | The log format of NGINX Ingress Controller. | glog |
 | **controller.directiveAutoAdjust** | Automatically adjusts NGINX buffer directives to prevent configuration errors. | false |
@@ -151,7 +151,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.appprotect.configManager.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Configuration Manager image. | IfNotPresent |
 | **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX v5 Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
 | **controller.appprotect.logLevel** | Sets the log level for F5 WAF for NGINX | N/A |
-| **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.debug** | Enable debugging for App Protect DoS. | false |
 | **controller.appprotectdos.maxDaemons** | Max number of ADMD instances. | 1 |

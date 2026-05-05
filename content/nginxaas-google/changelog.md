@@ -2,15 +2,25 @@
 title: "Changelog"
 weight: 900
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/changelog/
-nd-content-type: reference
-nd-product: NGOOGL
+f5-content-type: reference
+f5-product: NGOOGL
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Google Cloud.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
+
+## April 16, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google now supports Managed Public Endpoint deployments (Preview)**
+
+You can now deploy NGINXaaS with an internet-facing managed public endpoint. Unlike private endpoint deployments, which require Private Service Connect (PSC) in your Google Cloud project, managed public endpoints provide a publicly resolvable, unique DNS name you can use to route traffic directly to your deployment over the internet.
+
+**Note:** This feature is currently in preview; pricing may change.
+
+See the [Service Frontend]({{< ref "/nginxaas-google/overview.md#service-frontend" >}}) documentation for more information about managed public endpoint.
 
 ## February 11, 2026
 
