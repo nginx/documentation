@@ -1,13 +1,13 @@
 ---
-title: Validate client requests
+title: Configure client request validation
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-000
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-000
 ---
 
-Learn how to validate client requests at the Gateway using Frontend TLS configuration in NGINX Gateway Fabric.
+Learn how to configure client request validation at the Gateway using Frontend TLS configuration in NGINX Gateway Fabric.
 
 ## Overview
 
