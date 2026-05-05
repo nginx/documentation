@@ -7,7 +7,7 @@ f5-product: FABRIC
 f5-docs: DOCS-0000
 ---
 
-Learn how to use the `ListenerSet` API.
+Learn how to use the `ListenerSet` API to specify additional listeners for a Gateway
 
 ## Overview
 
