@@ -103,7 +103,11 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `type`: Partially supported. Allowed value: `IPAddress`.
       - `value`: Partially supported. Dynamic address allocation when value is unspecified is not supported.
   - `TLS`:
-    - `frontend`: Not supported.
+    - `frontend`:
+      - `default`:
+        - `caCertificateRefs`: Supported.
+      - `perPort`:
+        - `caCertificateRefs`: Supported.
     - `backend`:
       - `clientCertificateRef`: Supported.
   - `allowedListeners`: Not supported.
@@ -128,6 +132,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `ResolvedRefs/False/ParametersRefInvalid`
     - `ResolvedRefs/False/InvalidClientCertificateRef`
     - `ResolvedRefs/False/RefNotPermitted`
+    - `InsecureFrontendValidationMode/True/ConfigurationChanged`
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -136,6 +141,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/True/Accepted`
       - `Accepted/False/UnsupportedProtocol`
       - `Accepted/False/InvalidCertificateRef`
+      - `Accepted/False/NoValidCACertificate`
       - `Accepted/False/ProtocolConflict`
       - `Accpeted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`
@@ -144,6 +150,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Programmed/False/Invalid`
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidCertificateRef`
+      - `ResolvedRefs/False/InvalidCACertificateRef`
       - `ResolvedRefs/False/InvalidRouteKinds`
       - `ResolvedRefs/False/RefNotPermitted`
       - `Conflicted/True/ProtocolConflict`
