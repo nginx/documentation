@@ -5,6 +5,11 @@ weight: 1500
 f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-0000
+f5-description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
+f5-summary: >
+    NGINX Gateway Fabric supports the ListenerSet Gateway API resource, which allows users to specify additional listeners for a Gateway.
+    This reinforces Gateway API defined roles and personas by allowing application developers to configure their attachment points on a 
+    Gateway without modifying the Gateway directly.
 ---
 
 Learn how to use the `ListenerSet` API to specify additional listeners for a Gateway
