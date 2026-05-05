@@ -443,7 +443,6 @@ Fields:
       - `Conflicted/False/NoConflicts`
       - `OverlappingTLSConfig/True/OverlappingHostnames`
 
-
 ### Custom Policies
 
 {{< table >}}
