@@ -218,7 +218,7 @@ For production environments, you would typically host compiled bundles on an HTT
 
 ## Management console visibility
 
-When using NIM or N1C as your policy source, be aware that neither management console currently displays WAF policy deployments to NGINX Gateway Fabric, nor does it show which compiled bundle versions NGINX Gateway Fabric has fetched.
+When using NGINX Instance Manager or NGINX One Console as your policy source, be aware that neither management console currently displays WAF policy deployments to NGINX Gateway Fabric, nor does it show which compiled bundle versions NGINX Gateway Fabric has fetched.
 
 This is by design: NGINX Gateway Fabric pulls compiled bundles from the management plane using a pull model and deploys them directly in Kubernetes using native Kubernetes manifests, rather than through the NIM or N1C console. This workflow ensures that policies can be created, compiled, and made available to NGINX Gateway Fabric via API without requiring console-managed deployment flows.
 

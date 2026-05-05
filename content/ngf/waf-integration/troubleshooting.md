@@ -7,7 +7,7 @@ nd-product: FABRIC
 nd-description: Status condition reference and common issues for WAFPolicy in NGINX Gateway Fabric.
 ---
 
-Use `kubectl describe wafpolicy <name>` to inspect status conditions. This page documents all condition types, reasons, and common troubleshooting steps.
+Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. This page documents all condition types, reasons, and common troubleshooting steps.
 
 ---
 

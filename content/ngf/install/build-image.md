@@ -90,7 +90,7 @@ To use [F5 WAF for NGINX]({{< ref "/ngf/waf-integration/overview.md" >}}) with N
 
 {{< call-out "important" >}} The WAF-enabled image can only be built for `amd64` architecture. ARM64 is not supported. {{< /call-out >}}
 
-### Before you begin
+### Additional prerequisites
 
 In addition to the [prerequisites listed above](#before-you-begin), you need:
 
@@ -105,11 +105,11 @@ In addition to the [prerequisites listed above](#before-you-begin), you need:
    make PREFIX=myregistry.example.com/nginx-gateway-fabric build-images-with-nap-waf
    ```
 
-   This builds:
+   The previous `make` command builds:
    - The NGINX Gateway Fabric control plane image: `myregistry.example.com/nginx-gateway-fabric:{{< version-ngf >}}`
    - The NGINX Plus WAF data plane image: `myregistry.example.com/nginx-gateway-fabric/nginx-plus:{{< version-ngf >}}`
 
-   To build only the NGINX Plus WAF image (without the control plane image):
+   To build only the NGINX Plus WAF image (without the control plane image) use the following command:
 
    ```makefile
    make PREFIX=myregistry.example.com/nginx-gateway-fabric build-nginx-plus-image-with-nap-waf
