@@ -26,6 +26,39 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 
 
+## 5.4.2
+
+05 May 2026
+
+### {{% icon bug %}} Fixes
+
+- [9510](https://github.com/nginx/kubernetes-ingress/pull/9510) Warn user when policy on ingress needs custom resources enabling
+- [9620](https://github.com/nginx/kubernetes-ingress/pull/9620) Fix oidc policy leaking into non-referenced locations
+
+### {{% icon arrow-up %}} Dependencies
+
+- [9480](https://github.com/nginx/kubernetes-ingress/pull/9480), [9541](https://github.com/nginx/kubernetes-ingress/pull/9541), [9596](https://github.com/nginx/kubernetes-ingress/pull/9596), [9595](https://github.com/nginx/kubernetes-ingress/pull/9595), [9538](https://github.com/nginx/kubernetes-ingress/pull/9538) & [9670](https://github.com/nginx/kubernetes-ingress/pull/9670) Bump Go dependencies
+- [9493](https://github.com/nginx/kubernetes-ingress/pull/9493), [9492](https://github.com/nginx/kubernetes-ingress/pull/9492), [9494](https://github.com/nginx/kubernetes-ingress/pull/9494), [9729](https://github.com/nginx/kubernetes-ingress/pull/9478, https://github.com/nginx/kubernetes-ingress/pull/9527, https://github.com/nginx/kubernetes-ingress/pull/9686, https://github.com/nginx/kubernetes-ingress/pull/9729), [9730](https://github.com/nginx/kubernetes-ingress/pull/9479, https://github.com/nginx/kubernetes-ingress/pull/9528, https://github.com/nginx/kubernetes-ingress/pull/9603, https://github.com/nginx/kubernetes-ingress/pull/9730), [9515](https://github.com/nginx/kubernetes-ingress/pull/9515), [9566](https://github.com/nginx/kubernetes-ingress/pull/9566), [9651](https://github.com/nginx/kubernetes-ingress/pull/9651), [9648](https://github.com/nginx/kubernetes-ingress/pull/9648), [9664](https://github.com/nginx/kubernetes-ingress/pull/9664), [9604](https://github.com/nginx/kubernetes-ingress/pull/9604), [9731](https://github.com/nginx/kubernetes-ingress/pull/9562, https://github.com/nginx/kubernetes-ingress/pull/9706, https://github.com/nginx/kubernetes-ingress/pull/9731), [9668](https://github.com/nginx/kubernetes-ingress/pull/9668), [9705](https://github.com/nginx/kubernetes-ingress/pull/9705), [9704](https://github.com/nginx/kubernetes-ingress/pull/9704) & [9707](https://github.com/nginx/kubernetes-ingress/pull/9707) Bump Docker dependencies
+- [9774](https://github.com/nginx/kubernetes-ingress/pull/9774) Update red hat ubi images (release-5.4)
+- [9755](https://github.com/nginx/kubernetes-ingress/pull/9755) Update aws sdk v2 (release-5.4)
+- [9737](https://github.com/nginx/kubernetes-ingress/pull/9737) Update red hat ubi images (release-5.4)
+- [9687](https://github.com/nginx/kubernetes-ingress/pull/9687) Update red hat ubi images (release-5.4)
+- [9665](https://github.com/nginx/kubernetes-ingress/pull/9665) Update red hat ubi images (release-5.4)
+- [9666](https://github.com/nginx/kubernetes-ingress/pull/9666) Update aws sdk v2 (release-5.4)
+- [9667](https://github.com/nginx/kubernetes-ingress/pull/9667) Update kubernetes ecosystem (release-5.4)
+- [9688](https://github.com/nginx/kubernetes-ingress/pull/9617, https://github.com/nginx/kubernetes-ingress/pull/9688) Update dependency preflight to v1.17.2 (release-5.4)
+- [9583](https://github.com/nginx/kubernetes-ingress/pull/9583) Update go to v1.26.2, nginx to 1.29.8, waf to 5.12.1
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.4.2 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.4.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.4.2 images from the F5 Container registry or build your own image using the 5.4.2 source code.
+- For Helm, use version 2.6.2 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.29-1.34.
+
 ## 5.4.1
 
 26 Mar 2026
