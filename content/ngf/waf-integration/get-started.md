@@ -541,6 +541,6 @@ SSN: *******6789
 
 ## Next steps
 
-- [Configure policy sources (NIM and N1C)]({{< ref "/ngf/waf-integration/policy-sources.md" >}}) for managed policy workflows.
+- [Configure policy sources (NIM and NGINX One Console)]({{< ref "/ngf/waf-integration/policy-sources.md" >}}) for managed policy workflows.
 - [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for polling, TLS, authentication, security logging, and fail-open behavior.
 - [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) if a condition is `False`.

@@ -117,11 +117,11 @@ WAF policies must be compiled before they can be applied. Compilation takes a JS
 
 The following policy source types are supported, selected via the `spec.type` field on the `WAFPolicy` resource:
 
-| Type   | Description                                                            |
-|--------|------------------------------------------------------------------------|
-| `NIM`  | NGINX Instance Manager — fetched by policy name or UID via NIM API     |
-| `N1C`  | F5 NGINX One Console — fetched by policy name or object ID via N1C API |
-| `HTTP` | Direct HTTP/HTTPS URL to a compiled bundle file                        |
+| Type   | Description                                                                          |
+|--------|--------------------------------------------------------------------------------------|
+| `NIM`  | NGINX Instance Manager — fetched by policy name or UID via NGINX Instance Manager API|
+| `N1C`  | NGINX One Console — fetched by policy name or object ID via NGINX One Console API    |
+| `HTTP` | Direct HTTP/HTTPS URL to a compiled bundle file                                      |
 
 For details on configuring each source type, see [Configure policy sources]({{< ref "/ngf/waf-integration/policy-sources.md" >}}).
 
@@ -149,7 +149,7 @@ Route-level WAFPolicy   → Overrides Gateway-level for that route only
 ## See also
 
 - [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}})
-- [Configure policy sources (NIM, N1C, and HTTP)]({{< ref "/ngf/waf-integration/policy-sources.md" >}})
+- [Configure policy sources (NGINX Instance Manager, NGINX One Console, and HTTP)]({{< ref "/ngf/waf-integration/policy-sources.md" >}})
 - [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}})
 - [WAFPolicy and NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}})
 - [F5 WAF for NGINX documentation]({{< ref "/waf/" >}})

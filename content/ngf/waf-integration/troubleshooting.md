@@ -49,9 +49,9 @@ Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. 
 
 The credentials Secret is either missing, contains the wrong keys, or the credentials are invalid. Verify the Secret exists in the same namespace as the `WAFPolicy` and that the keys match the authentication method (`username`/`password` for Basic Auth, `token` for Bearer/APIToken).
 
-### `FetchError` with HTTP 404 on NIM or N1C
+### `FetchError` with HTTP 404 on NGINX Instance Manager or NGINX One Console
 
-The referenced policy was not found or has not been compiled yet. For NIM, verify that compilation succeeded in the NIM console before creating the `WAFPolicy`. For N1C, NGINX Gateway Fabric triggers compilation if no bundle exists, and a 404 after initial setup may indicate the policy was deleted in N1C.
+The referenced policy was not found or has not been compiled yet. For NGINX Instance Manager, verify that compilation succeeded in the NGINX Instance Manager console before creating the `WAFPolicy`. For NGINX One Console, NGINX Gateway Fabric triggers compilation if no bundle exists, and a 404 after initial setup may indicate the policy was deleted in NGINX One Console.
 
 ### `Pending`
 

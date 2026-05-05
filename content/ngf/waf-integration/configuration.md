@@ -31,8 +31,8 @@ Each log entry must specify a `logSource` using one of:
 |------------------|--------------------------------------|
 | `defaultProfile` | A built-in WAF log profile name      |
 | `httpSource`     | URL to a compiled log profile bundle |
-| `nimSource`      | NIM log profile configuration        |
-| `n1cSource`      | N1C log profile configuration        |
+| `nimSource`      | NGINX Instance Manager log profile configuration        |
+| `n1cSource`      | NGINX One Console log profile configuration        |
 
 **Built-in log profiles:** `log_default`, `log_all`, `log_blocked`, `log_illegal`, `log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`
 
@@ -87,10 +87,10 @@ policySource:
 
 **How polling works by source type:**
 
-- **NIM and N1C**: NGINX Gateway Fabric first fetches only the bundle checksum or metadata. The full bundle is downloaded only if the checksum has changed, avoiding unnecessary traffic.
+- **NGINX Instance Manager and NGINX One Console**: NGINX Gateway Fabric first fetches only the bundle checksum or metadata. The full bundle is downloaded only if the checksum has changed, avoiding unnecessary traffic.
 - **HTTP**: NGINX Gateway Fabric sends a conditional GET using the stored `ETag` or `Last-Modified` header from the previous fetch. A `304 Not Modified` response skips the download entirely.
 
-**When not to enable polling:** If you pin a specific version — `policyUID` for NIM, `policyVersionID` for N1C, or a version-specific URL for HTTP — the source always returns the same bundle. Every poll will detect "unchanged" and trigger no action. In that case, disable polling to avoid unnecessary network requests.
+**When not to enable polling:** If you pin a specific version — `policyUID` for NGINX Instance Manager, `policyVersionID` for NGINX One Console, or a version-specific URL for HTTP — the source always returns the same bundle. Every poll will detect "unchanged" and trigger no action. In that case, disable polling to avoid unnecessary network requests.
 
 **On poll failure:** If a poll attempt fails, the existing deployed bundle remains active. WAF protection is not interrupted. The error is recorded in the `WAFPolicy` status with reason `StaleBundleWarning`.
 
@@ -151,11 +151,11 @@ The CA certificate is appended to the system CA pool. This is supported for all 
 
 NGINX Gateway Fabric infers the authentication method from the keys present in the Secret referenced by `auth.secretRef`:
 
-| Secret keys             | Authentication method                |
-|-------------------------|--------------------------------------|
-| `username` + `password` | HTTP Basic Auth                      |
-| `token`                 | Bearer Token (NIM) or APIToken (N1C) |
-| (none)                  | No authentication header             |
+| Secret keys             | Authentication method                                                 |
+|-------------------------|-----------------------------------------------------------------------|
+| `username` + `password` | HTTP Basic Auth                                                       |
+| `token`                 | Bearer Token (NGINX Instance Manager) or APIToken (NGINX One Console) |
+| (none)                  | No authentication header                                              |
 
 Secrets must be in the same namespace as the `WAFPolicy`.
 
@@ -253,7 +253,7 @@ NGINX Gateway Fabric retries on the next reconciliation or poll cycle. No manual
 ## See also
 
 - [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}})
-- [Configure policy sources (NIM and N1C)]({{< ref "/ngf/waf-integration/policy-sources.md" >}})
+- [Configure policy sources (NGINX Instance Manager and NGINX One Console)]({{< ref "/ngf/waf-integration/policy-sources.md" >}})
 - [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}})
 - [WAFPolicy and NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}})
 - [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}})
