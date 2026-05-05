@@ -1,5 +1,5 @@
 ---
-title: Validate client requests at the Gateway
+title: Validate client requests
 weight: 200
 toc: true
 nd-content-type: how-to
