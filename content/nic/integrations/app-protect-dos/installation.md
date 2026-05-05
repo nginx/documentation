@@ -179,7 +179,7 @@ Alternatively, you can install the App Protect DoS Arbitrator using the YAML man
       kubectl apply -f common/ns-and-sa.yaml
     ```
 
-2. Deploy the NGINX App Protect Arbitrator as a Deployment and service:
+2. Deploy the F5 WAF for NGINX Arbitrator as a Deployment and service:
 
     ```shell
     kubectl apply -f deployment/appprotect-dos-arb.yaml

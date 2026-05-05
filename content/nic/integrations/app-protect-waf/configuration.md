@@ -1,5 +1,5 @@
 ---
-title: Configure NGINX App Protect with NGINX Ingress Controller
+title: Configure F5 WAF for NGINX with NGINX Ingress Controller
 weight: 200
 toc: true
 type: how-to
@@ -297,7 +297,7 @@ These are the typical steps to deploy an OpenAPI protection Policy in NGINX Ingr
 2. Add the reference to the desired OpenAPI file.
 3. Make other custom changes if needed (e.g. enable Data Guard protection).
 4. Use a tool to convert the result to YAML. There are many, for example: [`yq` utility](https://github.com/mikefarah/yq).
-5. Add the YAML properties to create an `APPolicy` Custom Resource putting the policy itself (as in step 4) within the `spec` property of the Custom Resource. Refer to the [NGINX App Protect Policies](#nginx-app-protect-waf-policies) section above.
+5. Add the YAML properties to create an `APPolicy` Custom Resource putting the policy itself (as in step 4) within the `spec` property of the Custom Resource. Refer to the [F5 WAF for NGINX Policies](#nginx-app-protect-waf-policies) section above.
 6. Create a `Policy` object which references the `APPolicy` Custom Resource as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/waf.yaml).
 7. Finally, attach the `Policy` object to a `VirtualServer` resource as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/virtual-server.yaml).
 

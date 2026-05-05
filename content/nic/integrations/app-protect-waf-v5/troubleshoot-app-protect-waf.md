@@ -89,7 +89,7 @@ kubectl replace appolicy -f your-policy-manifest.yaml --force
 
 ### Check the availability of APPolicy external references
 
-{{< call-out "note" >}} This method only applies if you're using [external references](/nginx-app-protect/v4/configuration/#external-references) in NGINX App Protect policies. {{< /call-out >}}
+{{< call-out "note" >}} This method only applies if you're using [external references](/nginx-app-protect/v4/configuration/#external-references) in F5 WAF for NGINX policies. {{< /call-out >}}
 
 To check which servers host the external references of a policy:
 
@@ -133,4 +133,4 @@ You can increase this timeout by setting the `nginx-reload-timeout` [cli-argumen
 
 When using the User Defined Signature feature, an update to an `APUserSig` requires more reload time from NGINX Plus compared with the other AppProtect resources. As a consequence, we recommend increasing the `nginx-reload-timeout` to 30 seconds if you're planning to use this feature.
 
-If you are using external references in your NGINX App Protect policies, verify if the servers hosting the referenced resources are available and that their response time is as short as possible (see the Check the Availability of APPolicy External References section). If the references are not available during NGINX Ingress Controller startup, the pod will fail to start. In case the resources are not available during a reload, the reload will fail, and NGINX Plus will use the previous correct configuration.
+If you are using external references in your F5 WAF for NGINX policies, verify if the servers hosting the referenced resources are available and that their response time is as short as possible (see the Check the Availability of APPolicy External References section). If the references are not available during NGINX Ingress Controller startup, the pod will fail to start. In case the resources are not available during a reload, the reload will fail, and NGINX Plus will use the previous correct configuration.
