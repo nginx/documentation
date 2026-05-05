@@ -149,7 +149,7 @@ NGINX Plus R35 is a feature release:
 
 - [Automatic renewal]({{< ref "/solutions/about-subscription-licenses/getting-started.md#update-license" >}}) of NGINX Plus license.
 
-{{< include "licensing-and-reporting/fcp-renewal-caution.md" >}}
+  {{< include "licensing-and-reporting/fcp-renewal-caution.md" >}}
 
 - [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 
