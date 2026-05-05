@@ -14,7 +14,7 @@ Here’s an example of a usage report:
 {
     "version": "<nginx_version>",
     "uuid": "<nginx_uuid>",
-    "nap": "<active/inactive>", // NGINX App Protect status
+    "nap": "<active/inactive>", // F5 WAF for NGINX status
     "http": {
         "client": {
             "received": 0, // bytes received
