@@ -87,7 +87,7 @@ metadata:
 spec:
   gatewayClassName: nginx
   listeners:
-    - name: http-example
+    - name: gateway-listener
       port: 80
       protocol: HTTP
       hostname: "gateway.example.com"
@@ -155,7 +155,7 @@ spec:
     kind: Gateway
     group: gateway.networking.k8s.io
   listeners:
-  - name: listenerset-http
+  - name: listenerset-listener
     port: 80
     protocol: HTTP
     hostname: "coffee.example.com"
@@ -165,7 +165,7 @@ spec:
 EOF
 ```
 
-This will create a `ListenerSet` named `listenerset`, attached to the Gateway we created previously, and with a single listener named `listenerset-http`. 
+This will create a `ListenerSet` named `listenerset`, attached to the Gateway we created previously, and with a single listener named `listenerset-listener`. 
 
 Verify the `ListenerSet` has been configured:
 
@@ -234,7 +234,7 @@ spec:
   - kind: ListenerSet
     group: gateway.networking.k8s.io
     name: listenerset
-    sectionName: listenerset-http
+    sectionName: listenerset-listener
   rules:
   - matches:
     - path:
@@ -274,7 +274,7 @@ Status:
       Kind:          ListenerSet
       Name:          listenerset
       Namespace:     default
-      Section Name:  listenerset-http
+      Section Name:  listenerset-listener
 ```
 
 Verify the ListenerSet listener's status has been updated:
@@ -325,7 +325,7 @@ Status:
       Reason:                NoConflicts
       Status:                False
       Type:                  Conflicted
-    Name:                    listenerset-http
+    Name:                    listenerset-listener
     Supported Kinds:
       Group:  gateway.networking.k8s.io
       Kind:   HTTPRoute
@@ -353,7 +353,7 @@ Request ID: 7dbd29ec0c783475d50ed3b563b0a8a6
 
 ## See Also
 
-To set up HTTPS Termination or TLS passthrough on a listener from a `ListenerSet`, the configuration for the listener on the `ListenerSet` should be the same as it is on a Gateway. Follow our [HTTPS Termination]({{< ref "ngf/traffic-management/https-termination.md" >}}) and [TLS passthrough]({{<ref "ngf/traffic-management/tls-passthrough.md" >}}) guides and copy the Gateway listener's configuration onto a `ListenerSet` to mimic the behavior. 
+To set up HTTPS Termination or TLS passthrough on a listener from a `ListenerSet`, configure the listener on the `ListenerSet` as you would on a Gateway. Follow our [HTTPS Termination]({{< ref "ngf/traffic-management/https-termination.md" >}}) and [TLS passthrough]({{<ref "ngf/traffic-management/tls-passthrough.md" >}}) guides and copy the Gateway listener's configuration onto a `ListenerSet` to mimic the behavior.
 
 To learn more about the `ListenerSet` Gateway API, see the following resources:
 
