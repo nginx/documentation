@@ -73,6 +73,7 @@ spec:
     kind: Gateway
     name: gateway
   policySource:
+    # insecureSkipVerify: true # testing only - do not use in production
     nimSource:
       url: https://nim.example.com
       policyName: ngfBlocking
@@ -90,6 +91,8 @@ EOF
 ```
 
 Replace `https://nim.example.com` with your NIM base URL, and `ngfBlocking` with your compiled policy name.
+
+{{< call-out "tip" >}} To skip TLS certificate verification when fetching bundles (for testing only - not recommended for production), uncomment 'insecureSkipVerify: true'. {{< /call-out >}}
 
 {{< call-out "tip" >}} To pin a specific policy version, use `policyUID` instead of `policyName`. Find the UID in the NIM console or API. A pinned UID always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. {{< /call-out >}}
 
