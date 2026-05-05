@@ -41,7 +41,7 @@ spec:
 |``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | Yes | No |
 |``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | Yes | No |
 |``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | Yes | No |
-|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
+|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | Yes |
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
 |``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
 |``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | Yes | No |
@@ -541,6 +541,11 @@ A VirtualServer that references an IngressMTLS policy must:
 - Enable [TLS termination]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualservertls" >}}).
 - Reference the policy in the VirtualServer [`spec`]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}). It is not allowed to reference an IngressMTLS policy in a [`route`](({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute" >}}) or in a VirtualServerRoute [`subroute`]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroutesubroute" >}}).
 
+A Kubernetes Ingress that references an IngressMTLS policy must:
+
+- Enable [TLS termination]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}).
+- Reference the policy on the Ingress. For [mergeable Ingresses]({{< ref "/nic/configuration/ingress-resources/custom-annotations.md#custom-annotations-with-mergeable-ingress-resources" >}}), the policy must be on the master Ingress only; referencing an IngressMTLS policy on a minion Ingress is not allowed.
+
 If the conditions above are not met, NGINX will send the `500` status code to clients.
 
 You can pass the client certificate details, including the certificate, to the upstream servers. For example:
@@ -638,7 +643,7 @@ Please refer to the Kubernetes documentation on [volumes](https://kubernetes.io/
 
 #### IngressMTLS Merging Behavior
 
-A VirtualServer can reference only a single IngressMTLS policy. Every subsequent reference will be ignored. For example, here we reference two policies:
+A VirtualServer and a Kubernetes Ingress can reference only a single IngressMTLS policy. Every subsequent reference will be ignored. For example, here we reference two policies:
 
 ```yaml
 policies:
