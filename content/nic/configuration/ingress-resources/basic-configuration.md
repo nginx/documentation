@@ -80,7 +80,7 @@ Starting from Kubernetes 1.18, you can use the following new features:
 
 NGINX Ingress Controller imposes the following restrictions on Ingress resources:
 
-- When defining an Ingress resource, the `host` field is required.
+- The `host` field is required by default. To allow Ingress resources to omit the `host` field, use the [`-allow-empty-ingress-host`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-allow-empty-ingress-host" >}}) command-line argument.
 - The `host` value needs to be unique among all Ingress and VirtualServer resources unless the Ingress resource is a [mergeable minion]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}). View the [Host and Listener collisions]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}) topic for more information.
 - The `path` field in `spec.rules[].http.paths[]` is required for `Exact` and `Prefix` `pathTypes`.
 - The ImplementationSpecific `pathType` is treated as equivalent to `Prefix` `pathType`, with the exception that when this `pathType` is configured, the `path` field in `spec.rules[].http.paths[]` is not mandatory. `path` defaults to `/` if not set but the `pathType` is set to ImplementationSpecific.
