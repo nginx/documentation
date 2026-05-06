@@ -2,10 +2,10 @@
 title: Configure external authentication
 weight: 600
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-description: How to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
-nd-summary: >
+f5-content-type: how-to
+f5-product: FABRIC
+f5-description: How to configure external authentication in NGINX Gateway Fabric using the `ExternalAuth` filter on HTTPRoute.
+f5-summary: >
   NGINX Gateway Fabric supports external authentication via the `ExternalAuth` filter on an HTTPRoute.
   Before proxying a request to the backend, NGINX performs an authorization subrequest to an external service.
   A 2xx response allows the request through, and any other status rejects it.
