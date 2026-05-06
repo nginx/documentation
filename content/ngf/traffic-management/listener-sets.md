@@ -5,6 +5,7 @@ weight: 1500
 f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-0000
+f5-keywords: "NGINX Gateway Fabric, Gateway API, ListenerSet, ListenerSets, Kubernetes, Gateways"
 f5-description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
 f5-summary: >
     NGINX Gateway Fabric supports the ListenerSet Gateway API resource, which allows users to specify additional listeners for a Gateway.
@@ -163,7 +164,7 @@ spec:
   - name: listenerset-listener
     port: 80
     protocol: HTTP
-    hostname: "coffee.example.com"
+    hostname: "cafe.example.com"
     allowedRoutes:
       namespaces:
         from: All
@@ -345,7 +346,7 @@ The `Attached Routes` field should now report `1` as the HTTPRoute has attached 
 Send a request to the `coffee` service with this command:
 
 ```shell
-curl --resolve coffee.example.com:$GW_PORT:$GW_IP http://coffee.example.com:$GW_PORT/coffee 
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee 
 ```
 
 ```text
