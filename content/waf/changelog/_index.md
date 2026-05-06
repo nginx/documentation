@@ -23,10 +23,10 @@ Released _May_ 13th, 2026_.
 ### Resolved issues
 
 - 14197 - Upgrade Go compiler to 1.26.2
-- 14043 - wrong value in total memory used under bd-socket-plugin
+- 14043 - Wrong value in total memory used under bd-socket-plugin
 - 14078 - Remove Mojolicious test files from the  product
-- 14147 - fix recompilation race condition 
-- 14002 - bd_cfg_manifest consumed with a corrupted record length header
+- 14147 - Fix recompilation race condition 
+- 14002 - The bd_cfg_manifest consumed with a corrupted record length header
 
 ### Packages
 
