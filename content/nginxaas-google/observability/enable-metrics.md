@@ -1,9 +1,9 @@
 ---
-title: Enable monitoring
+title: Enable Metrics
 weight: 200
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/google/monitoring/enable-monitoring/
+url: /nginxaas/google/observability/enable-metrics/
 f5-content-type: how-to
 f5-product: NGOOGL
 ---
@@ -17,9 +17,9 @@ Monitoring your application's performance is crucial for maintaining its reliabi
 - Grant your principal access to one of the following IAM roles depending on your needs:
   - `roles/monitoring.viewer` — View metrics in Cloud Monitoring (read-only access)
   - `roles/monitoring.editor` — View metrics and create or import dashboards
-  
+
   See [Google's documentation on controlling access to Cloud Monitoring with IAM](https://cloud.google.com/monitoring/access-control) for more information.
-- Configure the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone) directive in your `server` blocks and the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive in your `upstream` blocks to collect HTTP request and response statistics, stream connection metrics, upstream statistics, and memory statistics. See the [Metrics Catalog]({{< ref "/nginxaas-google/monitoring/metrics-catalog.md" >}}) for configuration requirements.
+- Configure the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone) directive in your `server` blocks and the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive in your `upstream` blocks to collect HTTP request and response statistics, stream connection metrics, upstream statistics, and memory statistics. See the [Metrics Catalog]({{< ref "/nginxaas-google/observability/metrics-catalog.md" >}}) for configuration requirements.
 
 ## Export NGINXaaS metrics to a Google Cloud Project
 
@@ -32,7 +32,7 @@ To enable sending metrics to your desired Google Cloud project, you must specify
 
 ## View NGINXaaS metrics in Google Cloud Monitoring
 
-See the [Metrics Catalog]({{< ref "/nginxaas-google/monitoring/metrics-catalog.md" >}}) for a full list of metrics NGINXaaS provides.
+See the [Metrics Catalog]({{< ref "/nginxaas-google/observability/metrics-catalog.md" >}}) for a full list of metrics NGINXaaS provides.
 
 ### Google Cloud Console's Metrics Explorer
 

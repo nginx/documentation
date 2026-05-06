@@ -1435,16 +1435,16 @@
 - [Known issues](https://docs.nginx.com/nginxaas/google/known-issues/)
 
 ## Monitoring
-- [Logging and monitoring](https://docs.nginx.com/nginxaas/google/monitoring/)
+- [Logging and monitoring](https://docs.nginx.com/nginxaas/google/observability/)
 
 ### Enable Monitoring
-- [Enable monitoring](https://docs.nginx.com/nginxaas/google/monitoring/enable-monitoring/)
+- [Enable monitoring](https://docs.nginx.com/nginxaas/google/observability/enable-metrics/)
 
 ### Enable Nginx Logs
-- [Enable NGINX logs](https://docs.nginx.com/nginxaas/google/monitoring/enable-nginx-logs/)
+- [Enable NGINX logs](https://docs.nginx.com/nginxaas/google/observability/enable-logs/)
 
 ### Metrics Catalog
-- [Metrics catalog](https://docs.nginx.com/nginxaas/google/monitoring/metrics-catalog/)
+- [Metrics catalog](https://docs.nginx.com/nginxaas/google/observability/metrics-catalog/)
 
 ## Overview
 - [Overview and architecture](https://docs.nginx.com/nginxaas/google/overview/)
