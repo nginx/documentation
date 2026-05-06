@@ -37,8 +37,8 @@ metadata:
   name: nim-credentials
 type: Opaque
 stringData:
-  username: "<NGINX Instance Manager_USERNAME>"
-  password: "<NGINX Instance Manager_PASSWORD>"
+  username: "<NIM_USERNAME>"
+  password: "<NIM_PASSWORD>"
 EOF
 ```
 
