@@ -48,7 +48,6 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 - [9666](https://github.com/nginx/kubernetes-ingress/pull/9666) Update aws sdk v2 (release-5.4)
 - [9786](https://github.com/nginx/kubernetes-ingress/pull/9786) Update kubernetes ecosystem and regexp2 to v2.0.1
 - [9688](https://github.com/nginx/kubernetes-ingress/pull/9688) Update dependency preflight to v1.17.2 (release-5.4)
-- [9786](https://github.com/nginx/kubernetes-ingress/pull/9786) Update Kubernetes ecosystem 0.36 and REGEXP2 to v2.0.1
 
 ### {{% icon download %}} Upgrade
 
