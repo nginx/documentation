@@ -1,6 +1,6 @@
 ---
 title: Secure traffic using Let's Encrypt and cert-manager
-weight: 100
+weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC

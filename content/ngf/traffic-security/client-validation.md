@@ -1,10 +1,16 @@
 ---
 title: Configure client request validation
-weight: 200
+weight: 100
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-000
+f5-summary: >
+    NGINX Gateway Fabric now supports configuration of client request validation through Frontend TLS.
+    When configured, client requests to a specific HTTPS listener will be validated against a referenced CA cert for that listener.
+    Frontend TLS provides a required default validation configuration, which will be applied to all HTTPS listeners for the Gateway.
+    This default configuration can be overwritten for a specific port using the perPort configuration.
+f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure
 ---
 
 Learn how to configure client request validation at the Gateway using Frontend TLS configuration in NGINX Gateway Fabric.
@@ -50,12 +56,6 @@ Before starting, you will need:
 - [Helm](https://helm.sh/) and [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) must be installed locally.
 - [NGINX Gateway Fabric deployed]({{< ref "/ngf/install/" >}}) in the Kubernetes cluster.
 
-## Install Gateway API CRDs
-
-```shell
-kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.6.0" | kubectl apply -f -
-```
-
 ## Install cert-manager
 
 Frontend TLS requires CA certificates for client certificate validation. In this example, we will use [cert-manager](https://cert-manager.io/) to issue these certificates.
@@ -80,16 +80,20 @@ helm install \
   --set crds.enabled=true
 ```
 
-## Create a CA Issuer
+## Create CA certificates and issuers
 
 Create a CA issuer to generate our certificates.
 
 {{< call-out "warning" >}} This example uses a `selfSigned` Issuer, which should not be used in production environments. For production environments, use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
 
 Next, we create the following resources:
-1. A self-signed issuer
-2. A CA certificate named `default-validation-ca-secret` for our **default** frontend TLS validation
-3. A CA certificate named `per-port-validation-ca-secret` for our **perPort** frontend TLS validation
+1. A self-signed issuer.
+2. A CA certificate named `default-validation-ca-secret` for our **default** frontend TLS validation.
+3. A CA certificate named `per-port-validation-ca-secret` for our **perPort** frontend TLS validation.
+4. A CA certificate named `cafe-secret`. This will be referenced by the HTTPS listeners on the Gateway, and will be presented to the client during the TLS handshake.
+
+
+{{< call-out "warning" >}} For the Gateway's certificate, replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -103,7 +107,7 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: local-ca-default
+  name: ca-certificate-default
 spec:
   isCA: true
   commonName: LocalCA
@@ -124,7 +128,7 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: local-ca-per-port
+  name: ca-certificate-per-port
 spec:
   isCA: true
   commonName: LocalCA
@@ -141,6 +145,20 @@ metadata:
 spec:
   ca:
     secretName: per-port-validation-ca-secret # CA cert for perPort validation
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gateway-certificate
+spec:
+  commonName: cafe.example.com # Change to appropriate hostname for your environment
+  secretName: cafe-secret # Gateway HTTPS Listener cert
+  dnsNames:
+  - cafe.example.com # Change to appropriate hostname for your environment
+  issuerRef:
+    name: selfsigned-issuer
+    kind: Issuer
+    group: cert-manager.io
 EOF
 ```
 
@@ -231,28 +249,8 @@ coffee-6b8b6d6486-7fc78    1/1     Running   0          9s
 tea-6fb46d899f-qlmz9       1/1     Running   0          9s
 ```
 
-## Create TLS certificate and CA certificate resources
-
-Create the TLS certificate and a Secret containing the server certificate that the Gateway will present to clients:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cafe-secret
-type: kubernetes.io/tls
-data:
-  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNzakNDQVpvQ0NRQzdCdVdXdWRtRkNEQU5CZ2txaGtpRzl3MEJBUXNGQURBYk1Sa3dGd1lEVlFRRERCQmoKWVdabExtVjRZVzF3YkdVdVkyOXRNQjRYRFRJeU1EY3hOREl4TlRJek9Wb1hEVEl6TURjeE5ESXhOVEl6T1ZvdwpHekVaTUJjR0ExVUVBd3dRWTJGbVpTNWxlR0Z0Y0d4bExtTnZiVENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFECmdnRVBBRENDQVFvQ2dnRUJBTHFZMnRHNFc5aStFYzJhdnV4Q2prb2tnUUx1ek10U1Rnc1RNaEhuK3ZRUmxIam8KVzFLRnMvQVdlS25UUStyTWVKVWNseis4M3QwRGtyRThwUisxR2NKSE50WlNMb0NEYUlRN0Nhck5nY1daS0o4Qgo1WDNnVS9YeVJHZjI2c1REd2xzU3NkSEQ1U2U3K2Vab3NPcTdHTVF3K25HR2NVZ0VtL1Q1UEMvY05PWE0zZWxGClRPL051MStoMzROVG9BbDNQdTF2QlpMcDNQVERtQ0thaEROV0NWbUJQUWpNNFI4VERsbFhhMHQ5Z1o1MTRSRzUKWHlZWTNtdzZpUzIrR1dYVXllMjFuWVV4UEhZbDV4RHY0c0FXaGRXbElweHlZQlNCRURjczN6QlI2bFF1OWkxZAp0R1k4dGJ3blVmcUVUR3NZdWxzc05qcU95V1VEcFdJelhibHhJZVVDQXdFQUFUQU5CZ2txaGtpRzl3MEJBUXNGCkFBT0NBUUVBcjkrZWJ0U1dzSnhLTGtLZlRkek1ISFhOd2Y5ZXFVbHNtTXZmMGdBdWVKTUpUR215dG1iWjlpbXQKL2RnWlpYVE9hTElHUG9oZ3BpS0l5eVVRZVdGQ2F0NHRxWkNPVWRhbUloOGk0Q1h6QVJYVHNvcUNOenNNLzZMRQphM25XbFZyS2lmZHYrWkxyRi8vblc0VVNvOEoxaCtQeDljY0tpRDZZU0RVUERDRGh1RUtFWXcvbHpoUDJVOXNmCnl6cEJKVGQ4enFyM3paTjNGWWlITmgzYlRhQS82di9jU2lyamNTK1EwQXg4RWpzQzYxRjRVMTc4QzdWNWRCKzQKcmtPTy9QNlA0UFlWNTRZZHMvRjE2WkZJTHFBNENCYnExRExuYWRxamxyN3NPbzl2ZzNnWFNMYXBVVkdtZ2todAp6VlZPWG1mU0Z4OS90MDBHUi95bUdPbERJbWlXMGc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRQzZtTnJSdUZ2WXZoSE4KbXI3c1FvNUtKSUVDN3N6TFVrNExFeklSNS9yMEVaUjQ2RnRTaGJQd0ZuaXAwMFBxekhpVkhKYy92TjdkQTVLeApQS1VmdFJuQ1J6YldVaTZBZzJpRU93bXF6WUhGbVNpZkFlVjk0RlAxOGtSbjl1ckV3OEpiRXJIUncrVW51L25tCmFMRHF1eGpFTVBweGhuRklCSnYwK1R3djNEVGx6TjNwUlV6dnpidGZvZCtEVTZBSmR6N3Rid1dTNmR6MHc1Z2kKbW9RelZnbFpnVDBJek9FZkV3NVpWMnRMZllHZWRlRVJ1VjhtR041c09va3R2aGxsMU1udHRaMkZNVHgySmVjUQo3K0xBRm9YVnBTS2NjbUFVZ1JBM0xOOHdVZXBVTHZZdFhiUm1QTFc4SjFINmhFeHJHTHBiTERZNmpzbGxBNlZpCk0xMjVjU0hsQWdNQkFBRUNnZ0VBQnpaRE50bmVTdWxGdk9HZlFYaHRFWGFKdWZoSzJBenRVVVpEcUNlRUxvekQKWlV6dHdxbkNRNlJLczUyandWNTN4cU9kUU94bTNMbjNvSHdNa2NZcEliWW82MjJ2dUczYnkwaVEzaFlsVHVMVgpqQmZCcS9UUXFlL2NMdngvSkczQWhFNmJxdFRjZFlXeGFmTmY2eUtpR1dzZk11WVVXTWs4MGVJVUxuRmZaZ1pOCklYNTlSOHlqdE9CVm9Sa3hjYTVoMW1ZTDFsSlJNM3ZqVHNHTHFybmpOTjNBdWZ3ZGRpK1VDbGZVL2l0K1EvZkUKV216aFFoTlRpNVFkRWJLVStOTnYvNnYvb2JvandNb25HVVBCdEFTUE05cmxFemIralQ1WHdWQjgvLzRGY3VoSwoyVzNpcjhtNHVlQ1JHSVlrbGxlLzhuQmZ0eVhiVkNocVRyZFBlaGlPM1FLQmdRRGlrR3JTOTc3cjg3Y1JPOCtQClpoeXltNXo4NVIzTHVVbFNTazJiOTI1QlhvakpZL2RRZDVTdFVsSWE4OUZKZnNWc1JRcEhHaTFCYzBMaTY1YjIKazR0cE5xcVFoUmZ1UVh0UG9GYXRuQzlPRnJVTXJXbDVJN0ZFejZnNkNQMVBXMEg5d2hPemFKZUdpZVpNYjlYTQoybDdSSFZOcC9jTDlYbmhNMnN0Q1lua2Iwd0tCZ1FEUzF4K0crakEyUVNtRVFWNXA1RnRONGcyamsyZEFjMEhNClRIQ2tTazFDRjhkR0Z2UWtsWm5ZbUt0dXFYeXNtekJGcnZKdmt2eUhqbUNYYTducXlpajBEdDZtODViN3BGcVAKQWxtajdtbXI3Z1pUeG1ZMXBhRWFLMXY4SDNINGtRNVl3MWdrTWRybVJHcVAvaTBGaDVpaGtSZS9DOUtGTFVkSQpDcnJjTzhkUVp3S0JnSHA1MzRXVWNCMVZibzFlYStIMUxXWlFRUmxsTWlwRFM2TzBqeWZWSmtFb1BZSEJESnp2ClIrdzZLREJ4eFoyWmJsZ05LblV0YlhHSVFZd3lGelhNcFB5SGxNVHpiZkJhYmJLcDFyR2JVT2RCMXpXM09PRkgKcmppb21TUm1YNmxhaDk0SjRHU0lFZ0drNGw1SHhxZ3JGRDZ2UDd4NGRjUktJWFpLZ0w2dVJSSUpBb0dCQU1CVApaL2p5WStRNTBLdEtEZHUrYU9ORW4zaGxUN3hrNXRKN3NBek5rbWdGMU10RXlQUk9Xd1pQVGFJbWpRbk9qbHdpCldCZ2JGcXg0M2ZlQ1Z4ZXJ6V3ZEM0txaWJVbWpCTkNMTGtYeGh3ZEVteFQwVit2NzZGYzgwaTNNYVdSNnZZR08KditwVVovL0F6UXdJcWZ6dlVmV2ZxdStrMHlhVXhQOGNlcFBIRyt0bEFvR0FmQUtVVWhqeFU0Ym5vVzVwVUhKegpwWWZXZXZ5TW54NWZyT2VsSmRmNzlvNGMvMHhVSjh1eFBFWDFkRmNrZW96dHNpaVFTNkN6MENRY09XVWxtSkRwCnVrdERvVzM3VmNSQU1BVjY3NlgxQVZlM0UwNm5aL2g2Tkd4Z28rT042Q3pwL0lkMkJPUm9IMFAxa2RjY1NLT3kKMUtFZlNnb1B0c1N1eEpBZXdUZmxDMXc9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
-EOF
-```
-
-{{< call-out "note" >}} This example TLS certificate can be issued and managed by [cert-manager](https://cert-manager.io/) as well. See our [integration with cert-manager]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}) page to learn more. {{< /call-out >}}
-
 
 ## Configure the Gateway with Frontend TLS
-
 
 Create a Gateway resource with HTTPS listeners and Frontend TLS client certificate validation configured. This example shows:
 
@@ -423,20 +421,45 @@ EOF
 Verify the HTTPRoute was created
 
 ```shell
-kubectl describe httproutes
+kubectl describe httproutes | grep -i status -A 10
 ```
 
 ```text
 Status:
   Parents:
     Conditions:
-      Last Transition Time:  2026-05-01T11:15:41Z
+      Last Transition Time:  2026-05-06T06:57:53Z
       Message:               The Route is accepted
       Observed Generation:   1
       Reason:                Accepted
       Status:                True
       Type:                  Accepted
-      Last Transition Time:  2026-05-01T11:15:41Z
+      Last Transition Time:  2026-05-06T06:57:53Z
+      Message:               All references are resolved
+      Observed Generation:   1
+      Reason:                ResolvedRefs
+      Status:                True
+      Type:                  ResolvedRefs
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+    Parent Ref:
+      Group:         gateway.networking.k8s.io
+      Kind:          Gateway
+      Name:          gateway
+      Namespace:     default
+      Section Name:  https-2
+Events:              <none>
+
+--
+Status:
+  Parents:
+    Conditions:
+      Last Transition Time:  2026-05-06T06:57:53Z
+      Message:               The Route is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-05-06T06:57:53Z
       Message:               All references are resolved
       Observed Generation:   1
       Reason:                ResolvedRefs
@@ -466,8 +489,7 @@ kubectl apply -f - <<EOF
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: ca-valid-default
-  namespace: default
+  name: nginx-cert-default
 spec:
   secretName: nginx-secret-default
   issuerRef:
@@ -480,8 +502,7 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: ca-valid-per-port
-  namespace: default
+  name: nginx-cert-per-port
 spec:
   secretName: nginx-secret-per-port
   issuerRef:
@@ -551,8 +572,7 @@ Request ID: c326f89b0541b6109cf2a9306c45d0cd
 
 ## See also
 
+- [Gateway API TLS configuration](https://gateway-api.sigs.k8s.io/guides/tls/)
 - [HTTPS Termination](https://docs.nginx.com/nginx-gateway-fabric/traffic-management/https-termination/)
 - [Secure traffic using Let's Encrypt and cert-manager](https://docs.nginx.com/nginx-gateway-fabric/traffic-security/integrate-cert-manager/)
-- [Add certificates for secure authentication](https://docs.nginx.com/nginx-gateway-fabric/install/secure-certificates/)
-- [Gateway API TLS configuration](https://gateway-api.sigs.k8s.io/guides/tls/)
 - [Securing backend traffic using mutual TLS](https://docs.nginx.com/nginx-gateway-fabric/traffic-security/secure-backend/)

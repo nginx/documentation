@@ -1,6 +1,6 @@
 ---
 title: Securing backend traffic using mutual TLS
-weight: 200
+weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
