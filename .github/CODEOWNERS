@@ -1,15 +1,15 @@
-# Each of these groups of CODEOWNERS have approval and merge authority over 
+# Each of these groups of CODEOWNERS have approval and merge authority over
 # the noted directories.
 #
 # If you want to add, modify, or delete files in any of these directories,
 # open a pull request. Then add the appropriate group name (without the `@`)
 # to the list of "Reviewers."
 #
-# Order is important; the last matching pattern takes precedence. 
-# For example, when someone opens a pull request that only modifies files 
+# Order is important; the last matching pattern takes precedence.
+# For example, when someone opens a pull request that only modifies files
 # in the content/nginx-one directory, you should assign @nginxinc/one-docs-approvers
 # as a reviewer.
-# 
+#
 # Lines starting with '#' are comments.
 # Each line is a file pattern followed by one or more owners.
 
@@ -20,7 +20,7 @@
 .github/*                   @nginx/docs-engineering
 
 # NGINX Agent
-content/nginx/nms/agent/*   @nginx/nginx-agent 
+content/nginx/nms/agent/*   @nginx/nginx-agent
 
 # F5 DoS for NGINX
 content/nap-dos/*           @nginx/dos-docs-approvers
@@ -29,13 +29,13 @@ content/nap-dos/*           @nginx/dos-docs-approvers
 content/waf/*               @nginx/nap-dev
 content/includes/waf/*      @nginx/nap-dev
 
-# NGINXaaS for Azure 
-content/nginxaas-azure/*          @nginx/nginxaas-docs-approvers
-content/includes/nginxaas-azure/* @nginx/nginxaas-docs-approvers
+# NGINXaaS for Azure
+content/nginxaas/azure/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas/azure/* @nginx/nginxaas-docs-approvers
 
-# NGINXaaS for Google Cloud 
-content/nginxaas-google/*          @nginx/nginxaas-docs-approvers
-content/includes/nginxaas-google/* @nginx/nginxaas-docs-approvers
+# NGINXaaS for Google Cloud
+content/nginxaas/google/*          @nginx/nginxaas-docs-approvers
+content/includes/nginxaas/google/* @nginx/nginxaas-docs-approvers
 
 # NGINX Gateway Fabric
 content/ngf/*               @nginx/nginx-gateway-fabric
@@ -54,4 +54,3 @@ content/nginx/*             @nginx/plus-docs-approvers
 
 # NGINX One
 content/nginx-one-console/*         @nginx/one-docs-approvers
-

@@ -1,4 +1,4 @@
-// /nginxaas-google/js/cost-calculator_gc.js
+// /nginxaas/google/js/cost-calculator_gc.js
 (() => {
   // ---- Region to tier mapping ----
   const regionsTiers = {

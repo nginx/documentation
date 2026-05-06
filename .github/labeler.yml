@@ -61,11 +61,11 @@ product/nginx-one-console:
           - 'content/nginx-one-console/**'
           - 'content/includes/nginx-one-console/**'
 
-product/nginxaas-azure:
+product/nginxaas/azure:
   - changed-files:
       - any-glob-to-any-file:
-          - 'content/nginxaas-azure/**'
-          - 'content/includes/nginxaas-azure/**'
+          - 'content/nginxaas/azure/**'
+          - 'content/includes/nginxaas/azure/**'
 
 product/nic:
   - changed-files:

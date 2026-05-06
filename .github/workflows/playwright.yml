@@ -1,18 +1,18 @@
 name: Running Playwright test on UI
-on: 
+on:
   push:
     branches: [main]
     paths:
-      - 'static/nginxaas-azure/js/cost-calculator_v2.js'
-      - 'content/nginxaas-azure/billing/usage-and-cost-estimator.md'
-      - 'static/nginxaas-google/js/cost-calculator_gc.js'
-      - 'content/nginxaas-google/billing/usage-and-cost-estimator.md'
+      - 'static/nginxaas/azure/js/cost-calculator_v2.js'
+      - 'content/nginxaas/azure/billing/usage-and-cost-estimator.md'
+      - 'static/nginxaas/google/js/cost-calculator_gc.js'
+      - 'content/nginxaas/google/billing/usage-and-cost-estimator.md'
   pull_request:
     paths:
-      - 'static/nginxaas-azure/js/cost-calculator_v2.js'
-      - 'content/nginxaas-azure/billing/usage-and-cost-estimator.md'
-      - 'static/nginxaas-google/js/cost-calculator_gc.js'
-      - 'content/nginxaas-google/billing/usage-and-cost-estimator.md'
+      - 'static/nginxaas/azure/js/cost-calculator_v2.js'
+      - 'content/nginxaas/azure/billing/usage-and-cost-estimator.md'
+      - 'static/nginxaas/google/js/cost-calculator_gc.js'
+      - 'content/nginxaas/google/billing/usage-and-cost-estimator.md'
 permissions:
   contents: read
 jobs:
@@ -46,7 +46,7 @@ jobs:
         hugo-version: '0.147.8'
         extended: true
     - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 #v6.2.0
-      with: 
+      with:
         go-version: '1.24.6'
     - name: Install dependencies
       run: npm ci

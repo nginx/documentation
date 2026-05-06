@@ -1,0 +1,42 @@
+---
+title: Add certificates using Terraform
+weight: 300
+toc: true
+url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/
+f5-content-type: how-to
+f5-product: NAZURE
+---
+
+## Overview
+
+You can manage SSL/TLS certificates for F5 NGINXaaS for Azure (NGINXaaS) using Terraform.
+
+## Prerequisites
+
+{{< include "/nginxaas/azure/terraform-prerequisites.md" >}}
+
+## Upload and manage a certificate
+
+You can find examples of Terraform configurations in the [NGINXaaS for Azure Snippets GitHub repository](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/certificates)
+
+To create a deployment, add a certificate, and use it in a configuration, run the following commands:
+
+   ```shell
+   terraform init
+   terraform plan
+   terraform apply --auto-approve
+   ```
+
+## Delete a deployment
+
+Once the deployment is no longer needed, run the following to clean up the deployment and related resources:
+
+   ```shell
+   terraform destroy --auto-approve
+   ```
+
+## Additional resources
+
+- [Terraform NGINX certificate documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/nginx_certificate)
+
+{{< include "/nginxaas/azure/terraform-resources.md" >}}
