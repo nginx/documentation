@@ -28,7 +28,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ## 5.4.2
 
-06 May 2026
+07 May 2026
 
 ### {{% icon bug %}} Fixes
 
