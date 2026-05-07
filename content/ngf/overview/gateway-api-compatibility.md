@@ -145,7 +145,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/False/InvalidCertificateRef`
       - `Accepted/False/NoValidCACertificate`
       - `Accepted/False/ProtocolConflict`
-      - `Accpeted/False/HostnameConflict`
+      - `Accepted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`
       - `Accepted/False/RefNotPermitted`
       - `Programmed/True/Programmed`
