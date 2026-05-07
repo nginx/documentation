@@ -35,6 +35,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 - [9510](https://github.com/nginx/kubernetes-ingress/pull/9510) Warn user when policy on ingress needs custom resources enabling
 - [9620](https://github.com/nginx/kubernetes-ingress/pull/9620) Fix oidc policy leaking into non-referenced locations
 - [9792](https://github.com/nginx/kubernetes-ingress/pull/9792) Implement policy support checks for Ingress resources
+
 ### {{% icon arrow-up %}} Dependencies
 
 - [9480](https://github.com/nginx/kubernetes-ingress/pull/9480), [9541](https://github.com/nginx/kubernetes-ingress/pull/9541), [9596](https://github.com/nginx/kubernetes-ingress/pull/9596), [9595](https://github.com/nginx/kubernetes-ingress/pull/9595), [9538](https://github.com/nginx/kubernetes-ingress/pull/9538), [9670](https://github.com/nginx/kubernetes-ingress/pull/9670), [9755](https://github.com/nginx/kubernetes-ingress/pull/9755), [9666](https://github.com/nginx/kubernetes-ingress/pull/9666), [9786](https://github.com/nginx/kubernetes-ingress/pull/9786), [9688](https://github.com/nginx/kubernetes-ingress/pull/9617, https://github.com/nginx/kubernetes-ingress/pull/9688) Bump Go dependencies
