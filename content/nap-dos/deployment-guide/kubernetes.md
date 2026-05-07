@@ -167,8 +167,8 @@ You will need to edit the `values.yaml` file for a few changes:
 The `<JWT Token>` argument must be the _contents_ of the file, not the file itself. Ensure there are no additional characters such as extra whitespace.
 
 On helm deployment environment variables need to be set for image repository and tag.
-`set enviorment variable DOS_IMAGE_REPOSITORY` with your actual nginx-dos image anmae.
-`set enviorment variable DOS_IMAGE_TAG` with your actual nginx-dos image tag.
+`set environment variable DOS_IMAGE_REPOSITORY` with your actual nginx-dos image anmae.
+`set environment variable DOS_IMAGE_TAG` with your actual nginx-dos image tag.
 
 Once you have updated `values.yaml`, you can install F5 WAF for NGINX using `helm install`:
 
