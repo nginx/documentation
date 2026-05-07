@@ -3,7 +3,7 @@ title: Metrics catalog
 weight: 400
 toc: false
 f5-docs: DOCS-000
-url: /nginxaas/google/monitoring/metrics-catalog/
+url: /nginxaas/google/observability/metrics-catalog/
 f5-content-type: reference
 f5-product: NGOOGL
 ---
@@ -19,7 +19,7 @@ F5 NGINXaaS for Google Cloud (NGINXaaS) provides a rich set of metrics that you 
   - [NGINX requests and response statistics](#nginx-requests-and-response-statistics)
   - [NGINX SSL statistics](#nginx-ssl-statistics)
   - [NGINX cache statistics](#nginx-cache-statistics)
-  - [NGINX worker statistics](#nginx-worker-statistics)
+  - [NGINX memory statistics](#nginx-memory-statistics)
   - [NGINX upstream statistics](#nginx-upstream-statistics)
   - [NGINX stream statistics](#nginx-stream-statistics)
 
@@ -63,7 +63,7 @@ Example:
 server {
     listen 80;
     status_zone my_server_zone;
-    
+
     location / {
         proxy_pass http://backend;
     }
@@ -119,7 +119,7 @@ Example:
 ```nginx
 http {
     proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m;
-    
+
     server {
         location / {
             proxy_cache my_cache;
@@ -215,7 +215,7 @@ stream {
         status_zone tcp_server;
         proxy_pass backend_stream;
     }
-    
+
     upstream backend_stream {
         zone stream_backend 64k;
         server 10.0.0.1:12345;

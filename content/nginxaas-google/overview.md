@@ -40,7 +40,7 @@ The key capabilities of NGINXaaS for Google Cloud are:
 
 ### Service Frontend
 
-The service frontend of an NGINXaaS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
+The service frontend of an NGINXaaS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: **Managed Public Endpoint** and **Private Endpoint**.
 
 #### Managed Public Endpoint
 
