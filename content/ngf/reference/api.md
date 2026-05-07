@@ -1,9 +1,9 @@
 ---
 title: API reference
 weight: 100
-f5-content-type: reference
-f5-product: FABRIC
-f5-docs: DOCS-1855
+nd-content-type: reference
+nd-product: FABRIC
+nd-docs: DOCS-1855
 ---
 ## Overview
 NGINX Gateway API Reference
@@ -38,6 +38,8 @@ Resource Types:
 <a href="#gateway.nginx.org/v1alpha1.SnippetsPolicy">SnippetsPolicy</a>
 </li><li>
 <a href="#gateway.nginx.org/v1alpha1.UpstreamSettingsPolicy">UpstreamSettingsPolicy</a>
+</li><li>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicy">WAFPolicy</a>
 </li></ul>
 <h3 id="gateway.nginx.org/v1alpha1.AuthenticationFilter">AuthenticationFilter
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthenticationFilter" title="Permanent link">¶</a>
@@ -456,6 +458,20 @@ ProxyBuffering
 <td>
 <em>(Optional)</em>
 <p>Buffering configures the buffering of responses from the proxied server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ProxyTimeout">
+ProxyTimeout
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout configures timeouts for the connection to the proxied server.</p>
 </td>
 </tr>
 <tr>
@@ -951,6 +967,144 @@ sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.WAFPolicy">WAFPolicy
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.WAFPolicy" title="Permanent link">¶</a>
+</h3>
+<p>
+<p>WAFPolicy is an Inherited Attached Policy. It provides a way to configure F5 WAF for NGINX
+for Gateways and Routes by referencing compiled WAF policy bundles. Bundles can be fetched directly from an
+HTTP/HTTPS URL (type: HTTP), from an NGINX Instance Manager instance (type: NIM), or from an F5 NGINX One
+Console instance (type: N1C).</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>apiVersion</code><br/>
+string</td>
+<td>
+<code>
+gateway.nginx.org/v1alpha1
+</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>kind</code><br/>
+string
+</td>
+<td><code>WAFPolicy</code></td>
+</tr>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicySpec">
+WAFPolicySpec
+</a>
+</em>
+</td>
+<td>
+<p>Spec defines the desired state of the WAFPolicy.</p>
+<br/>
+<br/>
+<table class="table table-bordered table-striped">
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.
+Objects must be in the same namespace as the policy.
+All targets must be of the same Kind (all Gateways OR all HTTPRoutes OR all GRPCRoutes).
+Support: Gateway, HTTPRoute, GRPCRoute.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PolicySourceType">
+PolicySourceType
+</a>
+</em>
+</td>
+<td>
+<p>Type identifies the source type for the policy bundle.
+HTTP fetches directly from a URL; NIM uses the NGINX Instance Manager bundles API;
+N1C uses the F5 NGINX One Console security policies API.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policySource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">
+PolicySource
+</a>
+</em>
+</td>
+<td>
+<p>PolicySource holds all policy bundle fetch configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>securityLogs</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.WAFSecurityLog">
+[]WAFSecurityLog
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SecurityLogs defines security logging configurations.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#PolicyStatus">
+sigs.k8s.io/gateway-api/apis/v1.PolicyStatus
+</a>
+</em>
+</td>
+<td>
+<p>Status defines the state of the WAFPolicy.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.AuthType">AuthType
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.AuthType" title="Permanent link">¶</a>
 </h3>
@@ -1179,6 +1333,148 @@ Also configures &ldquo;realm=&rdquo;<realm_value>&rdquo; in WWW-Authenticate hea
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.BundleAuth">BundleAuth
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.BundleAuth" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>,
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
+</p>
+<p>
+<p>BundleAuth configures authentication for bundle fetching.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>secretRef</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<p>SecretRef references a Kubernetes Secret in the same namespace as the WAFPolicy.
+The Secret may contain:
+- &ldquo;username&rdquo; and &ldquo;password&rdquo; fields for HTTP Basic Authentication
+- &ldquo;token&rdquo; field for Bearer Token Authentication (NIM) or APIToken Authentication (N1C)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.BundlePolling">BundlePolling
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.BundlePolling" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>,
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
+</p>
+<p>
+<p>BundlePolling configures automatic re-fetching of a bundle.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>interval</code><br/>
+<em>
+<a href="https://pkg.go.dev/k8s.io/apimachinery/pkg/apis/meta/v1#Duration">
+Kubernetes meta/v1.Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Interval is the period between poll cycles.
+Defaults to 5m when polling is enabled but no interval is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>enabled</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Enabled activates periodic re-fetching of the bundle.
+When true, NGF fetches the bundle on each interval and deploys it only if
+its checksum differs from the last successfully fetched version.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.BundleValidation">BundleValidation
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.BundleValidation" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>,
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
+</p>
+<p>
+<p>BundleValidation configures integrity verification for a bundle.
+Exactly one of verifyChecksum or expectedChecksum may be set.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>expectedChecksum</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ExpectedChecksum is the expected SHA256 checksum of the bundle.
+If set, the downloaded bundle must match this checksum or it will be rejected.
+For N1C sources, the checksum reported by the N1C API is verified automatically;
+set this field only if you want to enforce an additional, independently known value.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>verifyChecksum</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>VerifyChecksum enables automatic checksum verification by fetching a companion
+checksum file at <url>.sha256 and comparing it against the downloaded bundle.
+Only supported when the policy source type is HTTP (policySource.httpSource or
+logSource.url); setting this for NIM or N1C sources is rejected at admission.
+Note: for N1C sources, bundle integrity is always verified automatically using
+the checksum returned by the N1C compile API — this field is not needed.
+Mutually exclusive with expectedChecksum.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.ClientBody">ClientBody
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ClientBody" title="Permanent link">¶</a>
 </h3>
@@ -1297,6 +1593,23 @@ ClientKeepAliveTimeout
 <td>
 <em>(Optional)</em>
 <p>Timeout defines the keep-alive timeouts for clients.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>minTimeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MinTimeout defines the timeout for which the keep-alive client connection
+will not be closed on the server side for connection reuse or on
+graceful shutdown of worker processes.
+Default: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_min_timeout">https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_min_timeout</a>.</p>
 </td>
 </tr>
 </tbody>
@@ -1498,6 +1811,46 @@ longer necessary.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.DefaultLogProfile">DefaultLogProfile
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.DefaultLogProfile" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>)
+</p>
+<p>
+<p>DefaultLogProfile identifies a built-in WAF log profile bundle.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;log_all&#34;</p></td>
+<td><p>DefaultLogProfileAll logs all events.</p>
+</td>
+</tr><tr><td><p>&#34;log_blocked&#34;</p></td>
+<td><p>DefaultLogProfileBlocked logs blocked events.</p>
+</td>
+</tr><tr><td><p>&#34;log_default&#34;</p></td>
+<td><p>DefaultLogProfileDefault logs illegal events (equivalent to log_illegal).</p>
+</td>
+</tr><tr><td><p>&#34;log_grpc_all&#34;</p></td>
+<td><p>DefaultLogProfileGRPCAll logs all gRPC events.</p>
+</td>
+</tr><tr><td><p>&#34;log_grpc_blocked&#34;</p></td>
+<td><p>DefaultLogProfileGRPCBlocked logs blocked gRPC events.</p>
+</td>
+</tr><tr><td><p>&#34;log_grpc_illegal&#34;</p></td>
+<td><p>DefaultLogProfileGRPCIllegal logs illegal gRPC events.</p>
+</td>
+</tr><tr><td><p>&#34;log_illegal&#34;</p></td>
+<td><p>DefaultLogProfileIllegal logs illegal events.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.Duration">Duration
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Duration" title="Permanent link">¶</a>
 </h3>
@@ -1508,6 +1861,7 @@ longer necessary.</p>
 <a href="#gateway.nginx.org/v1alpha1.ClientKeepAliveTimeout">ClientKeepAliveTimeout</a>,
 <a href="#gateway.nginx.org/v1alpha1.JWTAuth">JWTAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.OIDCSessionConfig">OIDCSessionConfig</a>,
+<a href="#gateway.nginx.org/v1alpha1.ProxyTimeout">ProxyTimeout</a>,
 <a href="#gateway.nginx.org/v1alpha1.UpstreamKeepAlive">UpstreamKeepAlive</a>,
 <a href="#gateway.nginx.org/v1alpha2.DNSResolver">DNSResolver</a>,
 <a href="#gateway.nginx.org/v1alpha2.TelemetryExporter">TelemetryExporter</a>)
@@ -1518,6 +1872,39 @@ Duration can be specified in milliseconds (ms), seconds (s), minutes (m), hours 
 A value without a suffix is seconds.
 Examples: 120s, 50ms, 5m, 1h.</p>
 </p>
+<h3 id="gateway.nginx.org/v1alpha1.HTTPBundleSource">HTTPBundleSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.HTTPBundleSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>,
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
+</p>
+<p>
+<p>HTTPBundleSource configures direct bundle fetching from an HTTP/HTTPS URL.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>url</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URL is the full URL of the compiled policy bundle (.tgz),
+e.g. &ldquo;<a href="https://storage.example.com/bundles/policy.tgz&quot;">https://storage.example.com/bundles/policy.tgz&rdquo;</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.HashMethodKey">HashMethodKey
 (<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.HashMethodKey" title="Permanent link">¶</a>
 </h3>
@@ -1824,9 +2211,12 @@ distributing requests evenly across all upstream servers.</p>
 <p>
 (<em>Appears on: </em>
 <a href="#gateway.nginx.org/v1alpha1.BasicAuth">BasicAuth</a>,
+<a href="#gateway.nginx.org/v1alpha1.BundleAuth">BundleAuth</a>,
 <a href="#gateway.nginx.org/v1alpha1.JWTFileKeySource">JWTFileKeySource</a>,
 <a href="#gateway.nginx.org/v1alpha1.JWTRemoteKeySource">JWTRemoteKeySource</a>,
-<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth</a>)
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>,
+<a href="#gateway.nginx.org/v1alpha1.OIDCAuth">OIDCAuth</a>,
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
 </p>
 <p>
 <p>LocalObjectReference specifies a local Kubernetes object.</p>
@@ -1886,6 +2276,189 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.LogSource">LogSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.LogSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFSecurityLog">WAFSecurityLog</a>)
+</p>
+<p>
+<p>LogSource holds all configuration for fetching a WAF log profile bundle.
+Exactly one of DefaultProfile, HTTPSource, NIMSource, or N1CSource must be set.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>defaultProfile</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.DefaultLogProfile">
+DefaultLogProfile
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DefaultProfile selects one of the built-in WAF log profile bundles shipped with the WAF engine.
+Mutually exclusive with HTTPSource, NIMSource, and N1CSource.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>httpSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.HTTPBundleSource">
+HTTPBundleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HTTPSource configures direct bundle fetching from an HTTP/HTTPS URL.
+Mutually exclusive with DefaultProfile, NIMSource and N1CSource.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nimSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.NIMLogProfileBundleSource">
+NIMLogProfileBundleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NIMSource configures bundle fetching from NGINX Instance Manager.
+Mutually exclusive with DefaultProfile, HTTPSource and N1CSource.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>n1cSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.N1CLogProfileBundleSource">
+N1CLogProfileBundleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>N1CSource configures bundle fetching from F5 NGINX One Console.
+Mutually exclusive with DefaultProfile, HTTPSource, and NIMSource.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>auth</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BundleAuth">
+BundleAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Auth configures authentication credentials for fetching the log bundle.
+Only applicable when url is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tlsSecret</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TLSSecretRef references a Secret containing a custom CA certificate (key: &ldquo;ca.crt&rdquo;).
+Only applicable when url is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>validation</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BundleValidation">
+BundleValidation
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Validation configures integrity verification for the downloaded log bundle.
+Only applicable when url is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>polling</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BundlePolling">
+BundlePolling
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Polling configures automatic periodic re-fetching of the log bundle.
+Only applicable when url is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="https://pkg.go.dev/k8s.io/apimachinery/pkg/apis/meta/v1#Duration">
+Kubernetes meta/v1.Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout is the maximum duration for a single log bundle fetch attempt.
+Defaults to 30s when not set. Only applicable when url is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>retryAttempts</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>RetryAttempts is the maximum number of additional fetch attempts on transient failures
+(network errors, HTTP 5xx). Set to 0 to disable retries. Defaults to 3.
+Non-transient errors (HTTP 4xx, checksum mismatch) are never retried.
+Only applicable when url is set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>insecureSkipVerify</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InsecureSkipVerify disables TLS certificate verification when fetching the bundle.
+Not recommended for production use.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.Logging">Logging
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.Logging" title="Permanent link">¶</a>
 </h3>
@@ -1916,6 +2489,260 @@ ControllerLogLevel
 <td>
 <em>(Optional)</em>
 <p>Level defines the logging level.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.N1CBundleSource">N1CBundleSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.N1CBundleSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
+</p>
+<p>
+<p>N1CBundleSource configures bundle fetching from F5 NGINX One Console (N1C).
+Exactly one of policyName or policyObjectID must be set.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>policyName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyName is the name of the security policy in N1C.
+Mutually exclusive with policyObjectID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policyObjectID</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyObjectID is the unique object identifier of the security policy in N1C
+(e.g. &ldquo;pol_-IUuEUN7ST63oRC7AlQPLw&rdquo;).
+Mutually exclusive with policyName.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policyVersionID</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyVersionID pins a specific version of the policy bundle using its opaque version ID
+(e.g. &ldquo;pv_UJ2gL5fOQ3Gnb3OVuVo1XA&rdquo;). When omitted, the latest available version is used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>url</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URL is the base URL of the F5 NGINX One Console instance,
+e.g. &ldquo;https://<tenant>.volterra.us&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Namespace is the NGINX One Console namespace that owns the security policy.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.N1CLogProfileBundleSource">N1CLogProfileBundleSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.N1CLogProfileBundleSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>)
+</p>
+<p>
+<p>N1CLogProfileBundleSource configures log profile bundle fetching from F5 NGINX One Console (N1C).
+Exactly one of profileName or profileObjectID must be set.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>profileName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ProfileName is the name of the log profile in N1C that corresponds to the log profile bundle.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>profileObjectID</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ProfileObjectID is the unique object identifier of the log profile in N1C
+(e.g. &ldquo;lp_8s8uZxLpThWwEGF7LTn_rA&rdquo;) that corresponds to the log profile bundle.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>url</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URL is the base URL of the F5 NGINX One Console instance,
+e.g. &ldquo;https://<tenant>.volterra.us&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>namespace</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Namespace is the NGINX One Console namespace that owns the log profile.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.NIMBundleSource">NIMBundleSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NIMBundleSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">PolicySource</a>)
+</p>
+<p>
+<p>NIMBundleSource configures bundle fetching from NGINX Instance Manager (NIM).
+Exactly one of policyName or policyUID must be set.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>policyName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyName is the name of the compiled policy bundle in NIM.
+Mutually exclusive with policyUID.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policyUID</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PolicyUID is the unique identifier of the compiled policy bundle in NIM.
+Mutually exclusive with policyName.
+Must be a valid UUID (e.g. &ldquo;2bc1e3ac-7990-4ca4-910a-8634c444c804&rdquo;).</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>url</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URL is the base URL of the NGINX Instance Manager instance,
+e.g. &ldquo;<a href="https://nim.example.com&quot;">https://nim.example.com&rdquo;</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.NIMLogProfileBundleSource">NIMLogProfileBundleSource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.NIMLogProfileBundleSource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">LogSource</a>)
+</p>
+<p>
+<p>NIMLogProfileBundleSource configures log profile bundle fetching from NGINX Instance Manager (NIM).</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>profileName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ProfileName is the name of the compiled log profile bundle in NIM.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>url</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URL is the base URL of the NGINX Instance Manager instance,
+e.g. &ldquo;<a href="https://nim.example.com&quot;">https://nim.example.com&rdquo;</a>.</p>
 </td>
 </tr>
 </tbody>
@@ -2383,6 +3210,200 @@ NGINX Default: 8h</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.PolicySource">PolicySource
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PolicySource" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicySpec">WAFPolicySpec</a>)
+</p>
+<p>
+<p>PolicySource holds all configuration for fetching a WAF policy bundle.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>httpSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.HTTPBundleSource">
+HTTPBundleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>HTTPSource configures direct bundle fetching from an HTTP/HTTPS URL.
+Required when type is HTTP; must not be set for other types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>nimSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.NIMBundleSource">
+NIMBundleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>NIMSource configures bundle fetching from NGINX Instance Manager.
+Required when type is NIM; must not be set for other types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>n1cSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.N1CBundleSource">
+N1CBundleSource
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>N1CSource configures bundle fetching from F5 NGINX One Console.
+Required when type is N1C; must not be set for other types.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>auth</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BundleAuth">
+BundleAuth
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Auth configures authentication credentials for fetching the bundle.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tlsSecret</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LocalObjectReference">
+LocalObjectReference
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TLSSecretRef references a Secret containing a custom CA certificate (key: &ldquo;ca.crt&rdquo;) for
+verifying the bundle server&rsquo;s TLS certificate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>validation</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BundleValidation">
+BundleValidation
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Validation configures integrity verification for the downloaded bundle.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>polling</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.BundlePolling">
+BundlePolling
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Polling configures automatic periodic re-fetching of the bundle.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeout</code><br/>
+<em>
+<a href="https://pkg.go.dev/k8s.io/apimachinery/pkg/apis/meta/v1#Duration">
+Kubernetes meta/v1.Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout is the maximum duration for a single bundle fetch attempt.
+Defaults to 30s when not set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>retryAttempts</code><br/>
+<em>
+int32
+</em>
+</td>
+<td>
+<p>RetryAttempts is the maximum number of additional fetch attempts on transient failures
+(network errors, HTTP 5xx). Set to 0 to disable retries. Defaults to 3.
+Non-transient errors (HTTP 4xx, checksum mismatch) are never retried.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>insecureSkipVerify</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InsecureSkipVerify disables TLS certificate verification when fetching the bundle.
+Not recommended for production use.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.PolicySourceType">PolicySourceType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.PolicySourceType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicySpec">WAFPolicySpec</a>)
+</p>
+<p>
+<p>PolicySourceType identifies the source type for a WAF bundle.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;HTTP&#34;</p></td>
+<td><p>PolicySourceTypeHTTP fetches a compiled .tgz bundle directly from an HTTP/HTTPS URL.</p>
+</td>
+</tr><tr><td><p>&#34;N1C&#34;</p></td>
+<td><p>PolicySourceTypeN1C fetches a compiled bundle from the F5 NGINX One Console security policies API.
+Requires managedSource.n1cNamespace in addition to managedSource.policyName.
+Authentication uses the APIToken scheme: the &ldquo;token&rdquo; key from the referenced Secret is sent as
+&ldquo;Authorization: APIToken <token>&rdquo;.</p>
+</td>
+</tr><tr><td><p>&#34;NIM&#34;</p></td>
+<td><p>PolicySourceTypeNIM fetches a compiled bundle from the NGINX Instance Manager security policies API.</p>
+</td>
+</tr></tbody>
+</table>
 <h3 id="gateway.nginx.org/v1alpha1.ProxyBuffering">ProxyBuffering
 <a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProxyBuffering" title="Permanent link">¶</a>
 </h3>
@@ -2543,6 +3564,20 @@ ProxyBuffering
 </tr>
 <tr>
 <td>
+<code>timeout</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.ProxyTimeout">
+ProxyTimeout
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Timeout configures timeouts for the connection to the proxied server.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>targetRefs</code><br/>
 <em>
 <a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
@@ -2554,6 +3589,71 @@ ProxyBuffering
 <p>TargetRefs identifies the API object(s) to apply the policy to.
 Objects must be in the same namespace as the policy.
 Support: Gateway, HTTPRoute, GRPCRoute</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.ProxyTimeout">ProxyTimeout
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.ProxyTimeout" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.ProxySettingsPolicySpec">ProxySettingsPolicySpec</a>)
+</p>
+<p>
+<p>ProxyTimeout defines timeout settings for the connection to the proxied server.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>connect</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Connect sets the timeout for establishing a connection with the proxied server.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>read</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Read sets the timeout for reading a response from the proxied server.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<code>send</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.Duration">
+Duration
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Send sets the timeout for transmitting a request to the proxied server.
+Directive: <a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout">https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_send_timeout</a></p>
 </td>
 </tr>
 </tbody>
@@ -2828,6 +3928,160 @@ string
 <p>Key represents the key to which the rate limit is applied. The key can contain text, variables,
 and their combination.</p>
 <p>Directive: <a href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone">https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.SecurityLogDestination">SecurityLogDestination
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SecurityLogDestination" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFSecurityLog">WAFSecurityLog</a>)
+</p>
+<p>
+<p>SecurityLogDestination defines the destination for security logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>file</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogFile">
+SecurityLogFile
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>File defines the file destination configuration.
+Only valid when type is &ldquo;file&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>syslog</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogSyslog">
+SecurityLogSyslog
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Syslog defines the syslog destination configuration.
+Only valid when type is &ldquo;syslog&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogDestinationType">
+SecurityLogDestinationType
+</a>
+</em>
+</td>
+<td>
+<p>Type identifies the type of security log destination.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.SecurityLogDestinationType">SecurityLogDestinationType
+(<code>string</code> alias)</p><a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SecurityLogDestinationType" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogDestination">SecurityLogDestination</a>)
+</p>
+<p>
+<p>SecurityLogDestinationType defines the supported security log destination types.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr><td><p>&#34;file&#34;</p></td>
+<td><p>SecurityLogDestinationTypeFile writes logs to a specified file path.</p>
+</td>
+</tr><tr><td><p>&#34;stderr&#34;</p></td>
+<td><p>SecurityLogDestinationTypeStderr outputs logs to container stderr.</p>
+</td>
+</tr><tr><td><p>&#34;syslog&#34;</p></td>
+<td><p>SecurityLogDestinationTypeSyslog sends logs to a syslog server via TCP.</p>
+</td>
+</tr></tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.SecurityLogFile">SecurityLogFile
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SecurityLogFile" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogDestination">SecurityLogDestination</a>)
+</p>
+<p>
+<p>SecurityLogFile defines the file destination configuration for security logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>path</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Path is the file path where security logs will be written.
+Must be accessible to the waf-enforcer container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.SecurityLogSyslog">SecurityLogSyslog
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.SecurityLogSyslog" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogDestination">SecurityLogDestination</a>)
+</p>
+<p>
+<p>SecurityLogSyslog defines the syslog destination configuration for security logs.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>server</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Server is the syslog server address in the format &ldquo;host:port&rdquo;.</p>
 </td>
 </tr>
 </tbody>
@@ -3284,6 +4538,132 @@ Support: Service</p>
 </tr>
 </tbody>
 </table>
+<h3 id="gateway.nginx.org/v1alpha1.WAFPolicySpec">WAFPolicySpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.WAFPolicySpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicy">WAFPolicy</a>)
+</p>
+<p>
+<p>WAFPolicySpec defines the desired state of a WAFPolicy.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>targetRefs</code><br/>
+<em>
+<a href="https://pkg.go.dev/sigs.k8s.io/gateway-api/apis/v1#LocalPolicyTargetReference">
+[]sigs.k8s.io/gateway-api/apis/v1.LocalPolicyTargetReference
+</a>
+</em>
+</td>
+<td>
+<p>TargetRefs identifies API object(s) to apply the policy to.
+Objects must be in the same namespace as the policy.
+All targets must be of the same Kind (all Gateways OR all HTTPRoutes OR all GRPCRoutes).
+Support: Gateway, HTTPRoute, GRPCRoute.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PolicySourceType">
+PolicySourceType
+</a>
+</em>
+</td>
+<td>
+<p>Type identifies the source type for the policy bundle.
+HTTP fetches directly from a URL; NIM uses the NGINX Instance Manager bundles API;
+N1C uses the F5 NGINX One Console security policies API.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>policySource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.PolicySource">
+PolicySource
+</a>
+</em>
+</td>
+<td>
+<p>PolicySource holds all policy bundle fetch configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>securityLogs</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.WAFSecurityLog">
+[]WAFSecurityLog
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>SecurityLogs defines security logging configurations.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha1.WAFSecurityLog">WAFSecurityLog
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha1.WAFSecurityLog" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha1.WAFPolicySpec">WAFPolicySpec</a>)
+</p>
+<p>
+<p>WAFSecurityLog defines security logging configuration for app_protect_security_log directives.
+Exactly one of logSource.defaultProfile, logSource.httpSource, logSource.nimSource, or logSource.n1cSource must be set.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>logSource</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.LogSource">
+LogSource
+</a>
+</em>
+</td>
+<td>
+<p>LogSource configures the log profile bundle source for this log entry.
+Exactly one of url or defaultProfile must be set.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>destination</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha1.SecurityLogDestination">
+SecurityLogDestination
+</a>
+</em>
+</td>
+<td>
+<p>Destination defines where security logs are sent.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <hr/>
 <h2 id="gateway.nginx.org/v1alpha2">gateway.nginx.org/v1alpha2</h2>
 <p>
@@ -3539,6 +4919,20 @@ response header and on error pages.</p>
 <p>See: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens</a>
 NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens</a>
 Default is &ldquo;off&rdquo;.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>waf</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.WAFSpec">
+WAFSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WAF configures NGINX App Protect WAF functionality.</p>
 </td>
 </tr>
 </table>
@@ -4100,6 +5494,21 @@ ContainerSpec
 </tr>
 <tr>
 <td>
+<code>wafContainers</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.WAFContainerSpec">
+WAFContainerSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WAFContainers defines container specifications for NGINX App Protect WAF v5 containers.
+These containers are only deployed when WAF is enabled in the NginxProxy spec.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>pod</code><br/>
 <em>
 <a href="#gateway.nginx.org/v1alpha2.PodSpec">
@@ -4170,6 +5579,21 @@ AutoscalingSpec
 <td>
 <em>(Optional)</em>
 <p>Autoscaling defines the configuration for Horizontal Pod Autoscaling.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>wafContainers</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.WAFContainerSpec">
+WAFContainerSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WAFContainers defines container specifications for NGINX App Protect WAF v5 containers.
+These containers are only deployed when WAF is enabled in the NginxProxy spec.</p>
 </td>
 </tr>
 <tr>
@@ -4248,7 +5672,7 @@ ContainerSpec
 <p>
 <p>ExternalTrafficPolicy describes how nodes distribute service traffic they
 receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
-and LoadBalancer IPs. Ignored for ClusterIP services.</p>
+and LoadBalancer IPs).</p>
 </p>
 <table class="table table-bordered table-striped">
 <thead>
@@ -4342,7 +5766,8 @@ int32
 </h3>
 <p>
 (<em>Appears on: </em>
-<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec</a>)
+<a href="#gateway.nginx.org/v1alpha2.ContainerSpec">ContainerSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.WAFContainerConfig">WAFContainerConfig</a>)
 </p>
 <p>
 <p>Image is the NGINX image to use.</p>
@@ -5010,6 +6435,20 @@ NGINX directive: <a href="https://nginx.org/en/docs/http/ngx_http_core_module.ht
 Default is &ldquo;off&rdquo;.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>waf</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.WAFSpec">
+WAFSpec
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>WAF configures NGINX App Protect WAF functionality.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="gateway.nginx.org/v1alpha2.NodePort">NodePort
@@ -5627,7 +7066,7 @@ ExternalTrafficPolicy
 <em>(Optional)</em>
 <p>ExternalTrafficPolicy describes how nodes distribute service traffic they
 receive on one of the Service&rsquo;s &ldquo;externally-facing&rdquo; addresses (NodePorts, ExternalIPs,
-and LoadBalancer IPs.</p>
+and LoadBalancer IPs).</p>
 </td>
 </tr>
 <tr>
@@ -6026,6 +7465,188 @@ Examples of invalid names: some-$value, quoted-&ldquo;value&rdquo;-name, unescap
 <td>
 <em>(Optional)</em>
 <p>SpanAttributes are custom key/value attributes that are added to each span.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.WAFContainerConfig">WAFContainerConfig
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.WAFContainerConfig" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.WAFContainerSpec">WAFContainerSpec</a>)
+</p>
+<p>
+<p>WAFContainerConfig defines the configuration for a single WAF container.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>image</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.Image">
+Image
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Image is the container image to use for this WAF container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>resources</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#resourcerequirements-v1-core">
+Kubernetes core/v1.ResourceRequirements
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Resources describes the compute resource requirements for this WAF container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>volumeMounts</code><br/>
+<em>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volumemount-v1-core">
+[]Kubernetes core/v1.VolumeMount
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>VolumeMounts describe the mounting of Volumes within the WAF container.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.WAFContainerSpec">WAFContainerSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.WAFContainerSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.DaemonSetSpec">DaemonSetSpec</a>,
+<a href="#gateway.nginx.org/v1alpha2.DeploymentSpec">DeploymentSpec</a>)
+</p>
+<p>
+<p>WAFContainerSpec defines the container specifications for NGINX App Protect WAF v5.
+NAP v5 requires two additional containers: waf-enforcer and waf-config-mgr.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>enforcer</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.WAFContainerConfig">
+WAFContainerConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Enforcer defines the configuration for the WAF enforcer container.
+This container performs the actual WAF enforcement and policy application.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>configManager</code><br/>
+<em>
+<a href="#gateway.nginx.org/v1alpha2.WAFContainerConfig">
+WAFContainerConfig
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ConfigManager defines the configuration for the WAF configuration manager container.
+This container manages policy configuration and communication with the enforcer.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gateway.nginx.org/v1alpha2.WAFSpec">WAFSpec
+<a class="headerlink" href="#gateway.nginx.org%2fv1alpha2.WAFSpec" title="Permanent link">¶</a>
+</h3>
+<p>
+(<em>Appears on: </em>
+<a href="#gateway.nginx.org/v1alpha2.NginxProxySpec">NginxProxySpec</a>)
+</p>
+<p>
+<p>WAFSpec configures NGINX App Protect WAF.</p>
+</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>enable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Enable enables NGINX App Protect WAF functionality.
+When enabled, NGINX Gateway Fabric will deploy additional WAF containers
+(waf-enforcer and waf-config-mgr) alongside the main NGINX container.
+Default is false.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableCookieSeed</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>DisableCookieSeed disables the app_protect_cookie_seed directive.
+By default, NGF sets this directive to a stable value derived from the Gateway UID,
+ensuring WAF session cookies are consistent across multiple NGINX replicas.
+Set this to true if you have pre-compiled the cookie seed into your WAF policy bundles
+via the compiler global settings, to avoid conflicting with the compiled-in value.
+Default is false.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>bundleFailOpen</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>BundleFailOpen controls the behavior when a WAF policy bundle (policy or log profile)
+has not yet been successfully fetched. When set to true, NGINX configuration is pushed
+and traffic is served without WAF protection until the bundle becomes available. When
+false (the default), the configuration push is withheld until the bundle is fetched,
+maintaining a fail-closed posture.</p>
 </td>
 </tr>
 </tbody>
