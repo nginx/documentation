@@ -436,7 +436,7 @@ Fields:
       - `Accepted/False/UnsupportedProtocol`
       - `Accepted/False/InvalidCertificateRef`
       - `Accepted/False/ProtocolConflict`
-      - `Accpeted/False/HostnameConflict`
+      - `Accepted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`
       - `Accepted/False/RefNotPermitted`
       - `Programmed/True/Programmed`
