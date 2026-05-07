@@ -420,7 +420,7 @@ If any condition is `False`, the message field describes the problem. See [Troub
 Confirm the Gateway was assigned an IP address and reports a `Programmed=True` status with `kubectl describe`:
 
 ```shell
-kubectl describe gateways.gateway.networking.k8s.io cafe-gateway
+kubectl describe gateways.gateway.networking.k8s.io gateway
 ```
 
 ```text
@@ -480,7 +480,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c nginx`. {{< /call-out >}}
+{{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
 
 ---
 
