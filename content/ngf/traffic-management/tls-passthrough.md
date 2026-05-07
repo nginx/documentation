@@ -240,7 +240,7 @@ Using the external IP address and port for the NGINX Service, send traffic to th
 
 {{< call-out "note" >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
-Send a request to the `secure-app` Service on the TLS port with the `--insecure` flag. The `--insecure` flag is required because the `secure-app` is using a certificate signed by a local self-signed CA that curl does not trust.
+Send a request to the `secure-app` Service on the TLS port with the `--insecure` flag. The flag is required because `secure-app` uses a certificate signed by a local self-signed CA that curl does not trust.
 
 ```shell
 curl --resolve app.example.com:$GW_TLS_PORT:$GW_IP https://app.example.com:$GW_TLS_PORT --insecure -v
