@@ -54,7 +54,7 @@ See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gatewa
 The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. To deploy the vLLM simulator, run the following command:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v1.5.0/config/manifests/vllm/sim-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
 ```
 
 ## Deploy the InferencePool and Endpoint Picker Extension
@@ -68,7 +68,7 @@ NGINX will query the Endpoint Picker Extension to determine the appropriate pod 
 {{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v1.5.0
+export IGW_CHART_VERSION=v{{< version-inference-extension >}}
 helm install vllm-qwen3-32b \
 --dependency-update \
 --set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
@@ -184,7 +184,7 @@ Uninstall the InferencePool and model server resources:
 
 ```shell
 helm uninstall vllm-qwen3-32b
-kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v1.5.0/config/manifests/vllm/sim-deployment.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
 ```
 
 Uninstall the Gateway API Inference Extension CRDs:
