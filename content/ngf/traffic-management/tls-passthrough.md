@@ -27,7 +27,7 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 
 {{< include "ngf/cert-manager-local-ca.md" >}}
 
-Create a `Certificate` for `app.example.com`. cert-manager will create the `app-tls-secret` Secret (containing `tls.crt`, `tls.key`, and `ca.crt`) that the `secure-app` Pod mounts:
+Create a `Certificate` for `app.example.com`. cert-manager creates the `app-tls-secret` Secret, which contains `tls.crt`, `tls.key`, and `ca.crt` and is mounted by the `secure-app` Pod:
 
 ```yaml
 kubectl apply -f - <<EOF

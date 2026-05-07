@@ -282,7 +282,7 @@ Location: https://cafe.example.com/coffee
 ...
 ```
 
-Now we will access the application over HTTPS. Since our certificate is signed by a local self-signed CA that curl does not trust, we will use curl's `--insecure` option to turn off certificate verification.
+Now access the application over HTTPS. Because the certificate is signed by a local self-signed CA that curl does not trust, use curl's `--insecure` option to turn off certificate verification.
 
 ```shell
 curl --resolve cafe.example.com:$GW_HTTPS_PORT:$GW_IP https://cafe.example.com:$GW_HTTPS_PORT/coffee --insecure
