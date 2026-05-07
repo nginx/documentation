@@ -1,23 +1,24 @@
 ---
-title: Configure client request validation
-weight: 100
+title: Securing frontend client traffic using mutual TLS
+weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-000
 f5-summary: >
-    NGINX Gateway Fabric now supports configuration of client request validation through Frontend TLS.
-    When configured, client requests to a specific HTTPS listener will be validated against a referenced CA cert for that listener.
-    Frontend TLS provides a required default validation configuration, which will be applied to all HTTPS listeners for the Gateway.
-    This default configuration can be overwritten for a specific port using the perPort configuration.
+    Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabric using the Gateway's
+    Listener HTTPS and Frontend TLS settings. The Listener HTTPS settings configure the certificate presented
+    by the Gateway to clients, while Frontend TLS validates incoming client certificates against referenced
+    CA certificates. Frontend TLS provides a required default validation configuration applied to all HTTPS
+    listeners, which can be overridden for a specific port using the perPort configuration.
 f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure
 ---
 
-Learn how to configure client request validation at the Gateway using Frontend TLS configuration in NGINX Gateway Fabric.
+Learn how to secure frontend client traffic at the Gateway using Frontend TLS configuration in NGINX Gateway Fabric.
 
 ## Overview
 
-In this guide, we will configure client to Gateway validation (mTLS) using the Gateway's Frontend TLS settings. This example shows how to validate client certificates at the Gateway, to ensure that communication between the client and the Gateway is secure, and that only authorized requests are processed and sent to the backend.
+In this guide, we will configure client to Gateway validation using the Gateway's Listener HTTPS (HTTP over TLS) settings, together with the Gateway's Frontend TLS settings. This example shows how to validate client certificates and present the Gateway's certificate to the client. This ensures communication between the client and the Gateway is protected with mutual TLS, and only authorized requests are processed and sent to the backend.
 
 With Frontend TLS, the Gateway validates incoming client certificates against one or more CA certificates. You can configure validation at two levels:
 
@@ -31,13 +32,13 @@ Both **Default** and **Per-port** can be configured with one of two validation m
 
 CA certificates can be stored in either a `Secret` or a `ConfigMap`, and must contain the `ca.crt` key.
 
-The following diagram shows how the mTLS handshake takes place between the client, and NGINX Gateway Fabric:
+The following diagram shows how the TLS handshake takes place between the client, and NGINX Gateway Fabric:
 
 ```mermaid
 sequenceDiagram
     participant client as Client
     participant gw as NGINX Gateway Fabric
-    participant app as backend application
+    participant app as Backend application
 
     client->>gw: Send request and present cert for validation
     gw->>client: Present certificate from Secret: cafe-secret
@@ -90,7 +91,7 @@ Next, we create the following resources:
 1. A self-signed issuer.
 2. A CA certificate named `default-validation-ca-secret` for our **default** frontend TLS validation.
 3. A CA certificate named `per-port-validation-ca-secret` for our **perPort** frontend TLS validation.
-4. A CA certificate named `cafe-secret`. This will be referenced by the HTTPS listeners on the Gateway, and will be presented to the client during the TLS handshake.
+4. A CA certificate named `cafe-secret`. This will be referenced by the HTTPS listeners on the Gateway, and will be presented to the client during the TLS handshake. This is required to ensure mutual TLS.
 
 
 {{< call-out "warning" >}} For the Gateway's certificate, replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
@@ -151,10 +152,10 @@ kind: Certificate
 metadata:
   name: gateway-certificate
 spec:
-  commonName: cafe.example.com # Change to appropriate hostname for your environment
+  commonName: cafe.example.com
   secretName: cafe-secret # Gateway HTTPS Listener cert
   dnsNames:
-  - cafe.example.com # Change to appropriate hostname for your environment
+  - cafe.example.com
   issuerRef:
     name: selfsigned-issuer
     kind: Issuer
@@ -495,9 +496,9 @@ spec:
   issuerRef:
     name: default-validation-issuer
     kind: Issuer
-  commonName: cafe.example.com # Change to appropriate hostname for your environment
+  commonName: cafe.example.com
   dnsNames:
-  - cafe.example.com # Change to appropriate hostname for your environment
+  - cafe.example.com
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -508,9 +509,9 @@ spec:
   issuerRef:
     name: per-port-validation-issuer
     kind: Issuer
-  commonName: cafe.example.com # Change to appropriate hostname for your environment
+  commonName: cafe.example.com
   dnsNames:
-  - cafe.example.com # Change to appropriate hostname for your environment
+  - cafe.example.com
 EOF
 ```
 
