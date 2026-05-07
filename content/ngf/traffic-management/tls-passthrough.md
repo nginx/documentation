@@ -1,13 +1,17 @@
 ---
-title: Configure TLS passthrough
+title: Configure TLS passthrough with TLSRoute
 weight: 600
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-1850
+f5-summary: >
+   NGINX Gateway Fabric can route encrypted TLS traffic straight to a backend without decrypting it, using a TLSRoute resource and SNI-based routing.
+   The backend terminates TLS itself with its own certificate, issued in this guide by cert-manager. The Gateway only reads the SNI to pick the right backend.
+   Use TLS passthrough when the backend needs to handle its own TLS, keep its private key off the Gateway, or serve a non-HTTP protocol over TLS.
 ---
 
-Learn how to use TLSRoutes to configure TLS passthrough load-balancing with NGINX Gateway Fabric.
+Learn how to use TLSRoutes to forward TLS traffic through NGINX Gateway Fabric.
 
 ## Overview
 
@@ -18,6 +22,30 @@ In this guide, we will show how to configure TLS passthrough for your applicatio
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric.
 
 ## Set up
+
+{{< include "ngf/deploy-cert-manager.md" >}}
+
+{{< include "ngf/cert-manager-local-ca.md" >}}
+
+Create a `Certificate` for `app.example.com`. cert-manager will create the `app-tls-secret` Secret (containing `tls.crt`, `tls.key`, and `ca.crt`) that the `secure-app` Pod mounts:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: app-cert
+  namespace: default
+spec:
+  secretName: app-tls-secret
+  issuerRef:
+    name: local-ca-issuer
+    kind: ClusterIssuer
+  commonName: app.example.com
+  dnsNames:
+  - app.example.com
+EOF
+```
 
 Create the `secure-app` application by copying and pasting the following block into your terminal:
 
@@ -90,18 +118,10 @@ data:
         return 200 "hello from pod \$hostname\n";
       }
     }
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: app-tls-secret
-data:
-  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURGRENDQWZ3Q0NRQ3EzQWxhdnJiaWpqQU5CZ2txaGtpRzl3MEJBUXNGQURCTU1Rc3dDUVlEVlFRR0V3SlYKVXpFTE1Ba0dBMVVFQ0F3Q1EwRXhGakFVQmdOVkJBY01EVk5oYmlCR2NtRnVZMmx6WTI4eEdEQVdCZ05WQkFNTQpEMkZ3Y0M1bGVHRnRjR3hsTG1OdmJUQWVGdzB5TURBek1qTXlNekl3TkROYUZ3MHlNekF6TWpNeU16SXdORE5hCk1Fd3hDekFKQmdOVkJBWVRBbFZUTVFzd0NRWURWUVFJREFKRFFURVdNQlFHQTFVRUJ3d05VMkZ1SUVaeVlXNWoKYVhOamJ6RVlNQllHQTFVRUF3d1BZWEJ3TG1WNFlXMXdiR1V1WTI5dE1JSUJJakFOQmdrcWhraUc5dzBCQVFFRgpBQU9DQVE4QU1JSUJDZ0tDQVFFQTJCRXhZR1JPRkhoN2VPMVlxeCtWRHMzRzMrVEhyTEZULzdEUFFEQlkza3pDCi9oZlprWCt3OW1NNkQ1RU9uK2lpVlNhUWlQMm1aNFA3N29pR0dmd3JrNjJ0eEQ5cHphODM5NC9aSjF5Q0dXZ1QKK2NWUEVZbkxjQktzSTRMcktJZ21oWVIwUjNzWWRjR1JkSXJWUFZlNUVUQlk1Z1U0RGhhMDZOUEIraitmK0krWgphWGIvMlRBekJhNHozMWpIQzg2amVQeTFMdklGazFiY3I2cSsxRGR5eklxcWxkRDYvU3Q4Q2t3cDlOaDFCUGFhCktZZ1ZVd010UVBib2s1cFFmbVMrdDg4NHdSM0dTTEU4VkxRbzgyYnJhNUR3emhIamlzOTlJRGhzbUt0U3lWOXMKaWNJbXp5dHBnSXlhTS9zWEhRQU9KbVFJblFteWgyekd1WFhTQ0lkRGtRSURBUUFCTUEwR0NTcUdTSWIzRFFFQgpDd1VBQTRJQkFRQ0tsVkhOZ1k5VHZLaW9Xb0tvdllCdnNRMmYrcmFOOEJwdWNDcnRvRm15NUczcGIzU2lPTndaCkF2cnhtSm4vR3lsa3JKTHBpQVA1eUNBNGI2Y2lYMnRGa3pQRmhJVFZKRTVBeDlpaEF2WWZwTUFSdWVqM29HN2UKd0xwQk1iUnlGbHJYV29NWUVBMGxsV0JueHRQQXZYS2Y4SVZGYTRSSDhzV1JJSDB4M2hFdjVtQ3VUZjJTRTg0QwpiNnNjS3Z3MW9CQU5VWGxXRVZVYTFmei9rWWZBa1lrdHZyV2JUcTZTWGxodXRJYWY4WEYzSUMrL2x1b3gzZThMCjBBcEFQVE5sZ0JwOTkvcXMrOG9PMWthSmQ1TmV6TnlJeXhSdUtJMzlDWkxuQm9OYmkzdlFYY1NzRCtYU2lYT0cKcEVnTjNtci8xRms4OVZMSENhTnkyKzBqMjZ0eWpiclcKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRRFlFVEZnWkU0VWVIdDQKN1Zpckg1VU96Y2JmNU1lc3NWUC9zTTlBTUZqZVRNTCtGOW1SZjdEMll6b1BrUTZmNktKVkpwQ0kvYVpuZy92dQppSVlaL0N1VHJhM0VQMm5OcnpmM2o5a25YSUlaYUJQNXhVOFJpY3R3RXF3amd1c29pQ2FGaEhSSGV4aDF3WkYwCml0VTlWN2tSTUZqbUJUZ09GclRvMDhINlA1LzRqNWxwZHYvWk1ETUZyalBmV01jTHpxTjQvTFV1OGdXVFZ0eXYKcXI3VU4zTE1pcXFWMFByOUszd0tUQ24wMkhVRTlwb3BpQlZUQXkxQTl1aVRtbEIrWkw2M3p6akJIY1pJc1R4VQp0Q2p6WnV0cmtQRE9FZU9LejMwZ09HeVlxMUxKWDJ5SndpYlBLMm1Bakpveit4Y2RBQTRtWkFpZENiS0hiTWE1CmRkSUloME9SQWdNQkFBRUNnZ0VCQUxYaW16ODZrT1A0bkhBcTFPYVEyb2l3dndhQTczbTNlUytZSm84eFk4NFcKcmxyNXRzUWR5dGxPcEhTd05yQjBSQnNNTU1XeFNPQ0JJWlltUlVVZ200cGd2Uk9rRWl2OG9VOThQMkE4SnFTKwprWHBFRjVCNi84K2pXRmM0Z1Q4SWhlMEZtR0VJQllvelhYL08wejBsV0h4WXg2MHluWUoycU9vS1FKT3A5YjlsCmpiUVBkaC9mN2ErRWF0RzZNUFlrNG5xSEY3a0FzcmNsRXo2SGUvaEx6NmRkSTJ1N2RMRjB6QlN0QjM5WDFRZysKZ1JzTittOXg1S1FVTXYxMktvajdLc2hEelozOG5hSjd5bDgycGhBV1lGZzBOZHlzRlBRbmt0WmlNSUxOblFjNwpOeUt0cHNQaUxIRE9ha05hdEZLU2lOaUJrUk1lY1ZUMlJNMzMzUG54bFVFQ2dZRUEvYTY5MEEralU4VFJNbVZyCk4vRnlYWkxYa1c5b2NxVjBRbTA0TDMrSExybFNCTlRWSzk2U1pVT203VjViTzIxNmd4S2dJK3IwYm5kdE5GTUQKLzFncDhsdlJNcUlIeGZTeUo4SHpsSzViT0lnaUpxRGhzK3BKWTZmLytIVzZ1QkZyN3NGS3lxbVlIQlA0SC9BdApsT3lLeEVjMHFXazFlT2tCMWNNSGx0WDRwemtDZ1lFQTJncDhDVDVYWjNMSWRQN2M1SHpDS1YwczBYS1hGNmYyCkxzclhPVlZaTmJCN1NIS1NsOTBIU2VWVGx3czdqSnNxcC9yWFY2aHF0eUdEaTg4aTFZekthcEF6dXl3b0U3TnEKMUJpd2ZYSURQeTlPNUdGNXFYNXFUeENzSWNIcmo2Z21XMEZVQWhoS1lQcDRxd1JMdzFMZkJsd3U1VmhuN3I3ego0SkZBTEFpdlp4a0NnWUJicnpuKzVvZjdFSmtqQTdDYWlYTHlDczVLUzkrTi8rcGl6NktNMkNSOWFKRVNHZkhwClp3bTErNXRyRXIwYVgxajE0bGRxWTlKdjBrM3ZxVWs2a2h5bThUUk1mbThjeG5GVkdTMzF3SVpMaWpmOWlndkkKd0paQnBFaEkvaE83enVBWmJGYWhwR1hMVUJSUFJyalNxQ01IQ1UwcEpWTWtIZUtCNVhqcXRPNm5VUUtCZ0NJUAp6VHlzYm44TW9XQVZpSEJ4Uk91dFVKa1BxNmJZYUU3N0JSQkIwd1BlSkFRM1VjdERqaVh2RzFYWFBXQkR4VEFrCnNZdFNGZ214eEprTXJNWnJqaHVEbDNFLy9xckZOb1VYcmtxS2l4Tk4wcWMreXdDOWJPSVpHcXJUWG5jOHIzRkcKRFZlZWI5QWlrTU0ya3BkYTFOaHJnaS8xMVphb1lmVE0vQmRrNi9IUkFvR0JBSnFzTmFZYzE2clVzYzAzUEwybApXUGNzRnZxZGI3SEJyakVSRkhFdzQ0Vkt2MVlxK0ZWYnNNN1FTQVZ1V1llcGxGQUpDYzcrSEt1YjRsa1hRM1RkCndSajJLK2pOUzJtUXp1Y2hOQnlBZ1hXVnYveHhMZEE3NnpuWmJYdjl5cXhnTVVjTVZwZGRuSkxVZm9QVVZ1dTcKS0tlVVU3TTNIblRKUStrcldtbUxraUlSCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
 EOF
 ```
 
-This will create the **secure-app** Service and a Deployment. The secure app is configured to serve HTTPS traffic on port 8443 for the host app.example.com. For TLS termination, a self-signed TLS certificate, with the common name `app.example.com`, and key are used. The app responds to a client's HTTPS requests with a simple text response "hello from pod $POD_HOSTNAME".
+This will create the **secure-app** Service and a Deployment. The secure app is configured to serve HTTPS traffic on port 8443 for the host `app.example.com`, using the cert-manager-issued TLS certificate from `app-tls-secret`. The app responds to a client's HTTPS requests with a simple text response "hello from pod $POD_HOSTNAME".
 
 Run the following command to verify the resources were created:
 
@@ -220,7 +240,7 @@ Using the external IP address and port for the NGINX Service, send traffic to th
 
 {{< call-out "note" >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
-Send a request to the `secure-app` Service on the TLS port with the `--insecure` flag. The `--insecure` flag is required because the `secure-app` is using self-signed certificates.
+Send a request to the `secure-app` Service on the TLS port with the `--insecure` flag. The `--insecure` flag is required because the `secure-app` is using a certificate signed by a local self-signed CA that curl does not trust.
 
 ```shell
 curl --resolve app.example.com:$GW_TLS_PORT:$GW_IP https://app.example.com:$GW_TLS_PORT --insecure -v
@@ -232,6 +252,7 @@ Added app.example.com:8443:127.0.0.1 to DNS cache
 *   Trying 127.0.0.1:8443...
 * Connected to app.example.com (127.0.0.1) port 8443
 * ALPN: curl offers h2,http/1.1
+Handling connection for 8443
 * (304) (OUT), TLS handshake, Client hello (1):
 * (304) (IN), TLS handshake, Server hello (2):
 * (304) (IN), TLS handshake, Unknown (8):
@@ -239,28 +260,29 @@ Added app.example.com:8443:127.0.0.1 to DNS cache
 * (304) (IN), TLS handshake, CERT verify (15):
 * (304) (IN), TLS handshake, Finished (20):
 * (304) (OUT), TLS handshake, Finished (20):
-* SSL connection using TLSv1.3 / AEAD-AES256-GCM-SHA384 / [blank] / UNDEF
+* SSL connection using TLSv1.3 / AEAD-CHACHA20-POLY1305-SHA256 / [blank] / UNDEF
 * ALPN: server accepted http/1.1
 * Server certificate:
-*  subject: C=US; ST=CA; L=San Francisco; CN=app.example.com
-*  start date: Mar 23 23:20:43 2020 GMT
-*  expire date: Mar 23 23:20:43 2023 GMT
-*  issuer: C=US; ST=CA; L=San Francisco; CN=app.example.com
-*  SSL certificate verify result: self signed certificate (18), continuing anyway.
+*  subject: CN=app.example.com
+*  start date: May  6 21:23:51 2026 GMT
+*  expire date: Aug  4 21:23:51 2026 GMT
+*  issuer: CN=LocalCA
+*  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
 * using HTTP/1.x
 > GET / HTTP/1.1
 > Host: app.example.com:8443
-> User-Agent: curl/8.6.0
+> User-Agent: curl/8.7.1
 > Accept: */*
 >
+* Request completely sent off
 < HTTP/1.1 200 OK
-< Server: nginx/1.27.0
-< Date: Wed, 14 Aug 2024 20:41:21 GMT
+< Server: nginx/1.29.1
+< Date: Wed, 06 May 2026 21:25:18 GMT
 < Content-Type: text/plain
-< Content-Length: 43
+< Content-Length: 42
 < Connection: keep-alive
 <
-hello from pod secure-app-575785644-kzqf6
+hello from pod secure-app-59bbd475b-phgsv
 ```
 
 Note that the server certificate used to terminate the TLS connection has the subject common name of `app.example.com`. This is the server certificate that the `secure-app` is configured with and shows that the TLS connection was terminated by the `secure-app`, not NGINX Gateway Fabric.
