@@ -93,22 +93,28 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `name`: Supported.
     - `hostname`: Supported.
     - `port`: Supported.
-    - `protocol`: Partially supported. Allowed values: `HTTP`, `HTTPS`.
+    - `protocol`: Supported.
     - `tls`
-      - `mode`: Partially supported. Allowed value: `Terminate`.
-      - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`. Only a single reference is supported.
+      - `mode`: Supported.
+      - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`.
       - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
   - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
       - `type`: Partially supported. Allowed value: `IPAddress`.
       - `value`: Partially supported. Dynamic address allocation when value is unspecified is not supported.
   - `TLS`:
-    - `frontend`: Not supported.
+    - `frontend`:
+      - `default`:
+        - `caCertificateRefs`: Supported.
+      - `perPort`:
+        - `caCertificateRefs`: Supported.
     - `backend`:
       - `clientCertificateRef`: Supported.
-  - `allowedListeners`: Not supported.
+  - `allowedListeners`: Supported.
+  - `defaultScope`: Not supported.
 - `status`
   - `addresses`: Partially supported (LoadBalancer and ClusterIP).
+  - `attachedListenerSets`: Supported.
   - `conditions`: Supported (Condition/Status/Reason):
     - `Accepted/True/Accepted`
     - `Accepted/True/ListenersNotValid`
@@ -128,6 +134,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `ResolvedRefs/False/ParametersRefInvalid`
     - `ResolvedRefs/False/InvalidClientCertificateRef`
     - `ResolvedRefs/False/RefNotPermitted`
+    - `InsecureFrontendValidationMode/True/ConfigurationChanged`
   - `listeners`
     - `name`: Supported.
     - `supportedKinds`: Supported.
@@ -136,6 +143,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Accepted/True/Accepted`
       - `Accepted/False/UnsupportedProtocol`
       - `Accepted/False/InvalidCertificateRef`
+      - `Accepted/False/NoValidCACertificate`
       - `Accepted/False/ProtocolConflict`
       - `Accpeted/False/HostnameConflict`
       - `Accepted/False/UnsupportedValue`
@@ -144,6 +152,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `Programmed/False/Invalid`
       - `ResolvedRefs/True/ResolvedRefs`
       - `ResolvedRefs/False/InvalidCertificateRef`
+      - `ResolvedRefs/False/InvalidCACertificateRef`
       - `ResolvedRefs/False/InvalidRouteKinds`
       - `ResolvedRefs/False/RefNotPermitted`
       - `Conflicted/True/ProtocolConflict`
@@ -382,6 +391,64 @@ Fields:
       - `ResolvedRefs/False/InvalidKind`
 
 {{< call-out "note" >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /call-out >}}
+
+### ListenerSet
+
+{{< table >}}
+
+| Resource    | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
+|-------------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
+| ListenerSet | Supported          | Supported              | Not supported                         | v1          | Standard            |
+
+{{< /table >}}
+
+**Fields**:
+
+- `spec`
+  - `parentRef`: Supported.
+  - `listeners`
+    - `name`: Supported.
+    - `hostname`: Supported.
+    - `port`: Supported.
+    - `protocol`: Supported.
+    - `tls`
+      - `mode`: Supported.
+      - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
+    - `allowedRoutes`: Supported.
+- `status`
+  - `conditions`: Supported (Condition/Status/Reason):
+    - `Accepted/True/Accepted`
+    - `Accepted/True/ListenersNotValid`
+    - `Accepted/False/NotAllowed`
+    - `Accepted/False/ParentNotAllowed`
+    - `Accepted/False/ListenersNotValid`
+    - `Programmed/True/Programmed`
+    - `Programmed/False/NotAllowed`
+    - `Programmed/False/ParentNotAllowed`
+    - `Programmed/False/ListenersNotValid`
+  - `listeners`
+    - `name`: Supported.
+    - `supportedKinds`: Supported.
+    - `attachedRoutes`: Supported.
+    - `conditions`: Supported (Condition/Status/Reason):
+      - `Accepted/True/Accepted`
+      - `Accepted/False/UnsupportedProtocol`
+      - `Accepted/False/InvalidCertificateRef`
+      - `Accepted/False/ProtocolConflict`
+      - `Accpeted/False/HostnameConflict`
+      - `Accepted/False/UnsupportedValue`
+      - `Accepted/False/RefNotPermitted`
+      - `Programmed/True/Programmed`
+      - `Programmed/False/Invalid`
+      - `ResolvedRefs/True/ResolvedRefs`
+      - `ResolvedRefs/False/InvalidCertificateRef`
+      - `ResolvedRefs/False/InvalidRouteKinds`
+      - `ResolvedRefs/False/RefNotPermitted`
+      - `Conflicted/True/ProtocolConflict`
+      - `Conflicted/True/HostnameConflict`
+      - `Conflicted/False/NoConflicts`
+      - `OverlappingTLSConfig/True/OverlappingHostnames`
 
 ### Custom Policies
 
