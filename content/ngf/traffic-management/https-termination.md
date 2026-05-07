@@ -83,7 +83,7 @@ service/coffee       ClusterIP   10.96.189.37   <none>        80/TCP    40s
 
 ## Configure HTTPS termination and routing
 
-For HTTPS, we need a certificate and key stored in a Secret. This Secret will live in a separate namespace, so we will need a ReferenceGrant in order to access it. We use cert-manager to issue the certificate from a local self-signed CA, which creates the `cafe-secret` Secret automatically.
+For HTTPS, the deployment requires a certificate and a private key stored in a Secret. The Secret lives in a separate namespace, so a ReferenceGrant is required to access it. cert-manager issues the certificate from a local self-signed CA and automatically creates the `cafe-secret` Secret.
 
 To create the **certificate** namespace, copy and paste the following into your terminal:
 
@@ -100,7 +100,7 @@ EOF
 
 {{< include "ngf/cert-manager-local-ca.md" >}}
 
-Create a `Certificate` for `cafe.example.com` in the `certificate` namespace. cert-manager will create the `cafe-secret` Secret containing `tls.crt`, `tls.key`, and `ca.crt`:
+Create a `Certificate` for `cafe.example.com` in the `certificate` namespace. cert-manager creates the `cafe-secret` Secret, which contains `tls.crt`, `tls.key`, and `ca.crt`.
 
 ```yaml
 kubectl apply -f - <<EOF
