@@ -78,7 +78,9 @@ For connection and request rate limiting, consider using these NGINX modules:
 
 ## Configuration directives list
 
-NGINXaaS supports a limited set of NGINX directives.
+NGINXaaS supports a limited set of NGINX directives. The directives with the "app_protect" prefix require [F5 WAF for NGINX](https://docs.nginx.com/waf) to be enabled for the deployment.
+
+NGINXaaS does not yet support F5 WAF for NGINX custom security policies or logging profiles. Support is limited to the [prebuilt policies](https://docs.nginx.com/waf/policies/configuration/#default-policy) and the [default logging profiles](https://docs.nginx.com/waf/logging/logs-overview/#default-logging-profile-bundles).
 
 {{< details summary="Alphabetical index of directives">}}
 
@@ -99,6 +101,19 @@ NGINXaaS supports a limited set of NGINX directives.
 [allow (ngx_stream_access_module)](https://nginx.org/en/docs/stream/ngx_stream_access_module.html#allow)\
 [ancient_browser](https://nginx.org/en/docs/http/ngx_http_browser_module.html#ancient_browser)\
 [ancient_browser_value](https://nginx.org/en/docs/http/ngx_http_browser_module.html#ancient_browser_value)\
+[app_protect_compressed_requests_action](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_cookie_seed](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_cpu_thresholds](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_custom_log_attribute](https://docs.nginx.com/waf/policies/directives/#f5-waf-for-nginx-directives)\
+[app_protect_enable](https://docs.nginx.com/waf/policies/directives/#f5-waf-for-nginx-directives)\
+[app_protect_failure_mode_action](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_physical_memory_util_thresholds](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_policy_file](https://docs.nginx.com/waf/policies/directives/#f5-waf-for-nginx-directives)\
+[app_protect_reconnect_period_seconds](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_request_buffer_overflow_action](https://docs.nginx.com/waf/policies/directives/#global-directives)\
+[app_protect_security_log](https://docs.nginx.com/waf/policies/directives/#f5-waf-for-nginx-directives)\
+[app_protect_security_log_enable](https://docs.nginx.com/waf/policies/directives/#f5-waf-for-nginx-directives)\
+[app_protect_user_defined_signatures](https://docs.nginx.com/waf/policies/directives/#global-directives)\
 [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic)\
 [auth_basic_user_file](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file)\
 [auth_delay](https://nginx.org/en/docs/http/ngx_http_core_module.html#auth_delay)\

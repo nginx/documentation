@@ -12,6 +12,15 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
 
+
+## May 15, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google now supports F5 WAF for NGINX (Preview)**
+
+You can now deploy NGINXaaS with [F5 WAF for NGINX](https://docs.nginx.com/waf); an advanced high-performance web application firewall (WAF) to provide protection from OWASP Top 10 web application security risks.
+
+**Note:** This feature is currently in preview and does not yet support custom security policies or custom logging profiles.
+
 ## April 16, 2026
 
 - {{% icon-feature %}} **NGINXaaS for Google now supports Managed Public Endpoint deployments (Preview)**

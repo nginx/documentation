@@ -8,7 +8,7 @@ f5-content-type: how-to
 f5-product: NGOOGL
 ---
 
-F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs.
+F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs, and F5 WAF for NGINX security logs.
 
 ## Prerequisites
 
@@ -23,6 +23,10 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 ## Setting up access logs
 
 {{< include "/nginxaas-google/logging-config-access-logs.md" >}}
+
+## Setting up F5 WAF for NGINX security logs
+
+{{< include "/nginxaas-google/logging-config-security-logs.md" >}}
 
 ## Export NGINX logs to a Google Cloud Project
 
