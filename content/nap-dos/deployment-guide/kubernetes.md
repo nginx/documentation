@@ -160,7 +160,7 @@ From this point, the steps change based on your installation method:
 
 ## Use Helm to install F5 DOS for NGINX
 
-You will need to edit the `values.yaml` file for a few changes:
+To use Helm to install F5 DOS for NGINX you need to edit the `values.yaml` and apply the following changes:
 
 - Update _appprotectdos.image.repository_ and _appprotectdos.image.tag_  with the image name chosen during when [building the Docker image](#build-the-docker-image).
 
