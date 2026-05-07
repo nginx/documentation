@@ -1,14 +1,19 @@
 ---
-description:  F5 DoS for NGINX Best Practices Deployment.
-nd-docs: DOCS-666
 title: Best Practices
+description: "Configure F5 DoS for NGINX using recommended settings for protected objects, monitor directives, and security logging."
+keywords: "F5 DoS for NGINX, best practices, configuration, protected object, monitor directive, security log, NGINX configuration"
+nd-docs: DOCS-666
 toc: true
 weight: 130
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Configure protected objects with unique names, add the monitor directive, and enable security logging to improve detection accuracy and observability.
+  F5 DoS for NGINX uses protected objects and monitor directives to build a behavioral baseline and identify denial-of-service threats.
+  These settings apply to any deployment where F5 DoS for NGINX is already installed.
 ---
 
-This guide shows how to modify your NGINX configuration to enable F5 DoS for NGINX (NGINX App Protect DoS). We will configure F5 DoS For NGINX to protect a proxy server.
+This guide shows how to configure F5 DoS for NGINX to protect a proxy server.
 
 ## F5 DoS Configuration
 
@@ -19,7 +24,8 @@ load_module modules/ngx_http_app_protect_dos_module.so;
 ```
 
 ### Enable
-Add the directive in the appropriate context, You can set it in location, server, or http blocks:
+
+Add the directive in the appropriate context. You can set it in `location`, `server`, or `http` blocks:
 
 ```nginx
 app_protect_dos_enable on;
@@ -32,7 +38,9 @@ Choose a unique name. You can set it in location, server, or http blocks.
 app_protect_dos_name po-example;
 ```
 
-**Note**: Although optional, we strongly recommend specifying a name for each Protected Object (PO) to improve organization and maintainability. If no name is provided, the virtual server is assigned an auto-generated name using the following syntax:
+{{< call-out "note" "Protected Object name" >}}
+Although optional, specifying a name for each Protected Object (PO) is strongly recommended. It improves organization and makes troubleshooting easier. If no name is provided, the virtual server gets an auto-generated name using the following syntax:
+{{< /call-out >}}
 
 ```nginx
 line_number-server_name:seq-location_name
@@ -41,15 +49,15 @@ Example: 30-backend:1-/abc
 
 Where:
 
-- `line number:` the line number of the server block (`server {`) in the `nginx.conf` file (i.e. `30`)<br>
-- `server name:` taken from directive `server_name` (i.e. `backend`) <br>
-seq: 0 for server block, increments for each location block. i.e. VS created from server block will have 0 and VS's from location blocks will be 1,2,3,... (i.e. `1`)
-- `location name:` the name of the location (i.e. `/abc`)
+- `line number` — the line number of the `server {` block in `nginx.conf` (for example, `30`)
+- `server name` — taken from the `server_name` directive (for example, `backend`)
+- `seq` — `0` for the server block; increments for each location block (`1`, `2`, `3`, …)
+- `location name` — the name of the location (for example, `/abc`)
 
-Capacity limits
+**Capacity limits**
 
-- Up to 300 Protected Objects in versions up to 4.3 <br>
-- Up to 1,000 Protected Objects in versions 4.4 and later <br>
+- Up to 300 Protected Objects in versions up to 4.3
+- Up to 1,000 Protected Objects in versions 4.4 and later
 
 
 ### Set a Monitor directive
@@ -62,25 +70,26 @@ app_protect_dos_monitor uri=<server_name[:port]/path> [protocol=http1|http2|grpc
 - `uri` is the value of `server_name`, optionally followed by `:port`, and then the location path.  
   Examples: `my_server/`, `example_server:81/abc`  
  
-A complete guide on configuring the Monitor Directive can be found here: [Monitor Directive](https://docs.nginx.com/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#monitor-directive-app_protect_dos_monitor).
+For full configuration details, see [Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md#monitor-directive-app_protect_dos_monitor" >}}).
 
 **Monitor directive best practice**
-- Monitor the same virtual host and path that your users hit. Set `uri=` to the `server_name[:port]/path` that matches the `server_name` and `listen` directives, **not** to the upstream IP:port.<br>
- 
-Examples:<br>
- 
-For `server_name "my_server"` on port `80` and path `/` (port 80 is default, so it can be omitted):  
+
+- Monitor the same virtual host and path that your users hit. Set `uri=` to the `server_name[:port]/path` that matches the `server_name` and `listen` directives, **not** to the upstream IP:port.
+
+Examples:
+
+For `server_name "my_server"` on port `80` and path `/` (port 80 is the default, so it can be omitted):
 ```nginx
     app_protect_dos_monitor uri=my_server/;
 ```
  
-For `server_name "serv"` on port `81` with location path `/abc`:  
+For `server_name "serv"` on port `81` with location path `/abc`:
 ```nginx
     app_protect_dos_monitor uri=serv:81/abc protocol=http1 timeout=7;
 ```
- 
-A full example with upstream:<br>
- 
+
+A full example with upstream:
+
 ```nginx
     upstream backend {
         server 10.197.24.136:3000;
@@ -105,14 +114,17 @@ A full example with upstream:<br>
     }
 ```
  
-- Avoid monitors that short-circuit upstreams (for example, `return 200` locally); this will under-estimate stress.<br>
-- Choose `timeout` slightly above your upstream’s p95/p99 latency under normal load, but low enough to react quickly under stress.<br>
-- Monitor traffic originates from `127.0.0.1`. Exclude it from rate and connection limits as needed.<br>
-- Define the monitor inside each protected `location` block.<br>
+- Avoid monitors that short-circuit upstreams (for example, `return 200` locally); this under-estimates stress.
+- Set `timeout` slightly above your upstream p95/p99 latency under normal load, but low enough to react quickly under stress.
+- Monitor traffic originates from `127.0.0.1`. Exclude it from rate and connection limits as needed.
+- Define the monitor inside each protected `location` block.
 
 ## Arbitrator
-It is required when more than one F5 DoS for NGINX instance is deployed. Its primary function is to ensure that all instances are aware of—and share—the same state for each Protected Object.<br>
-A complete guide on configuring  F5 DoS for NGINX Arbitrator  be found here: [F5 DoS for NGINX Arbitrator](https://docs.nginx.com/nginx-app-protect-dos/deployment-guide/learn-about-deployment/#f5-dos-for-nginx-arbitrator) <br>
+
+The Arbitrator is required when more than one F5 DoS for NGINX instance is deployed. Its primary function is to ensure all instances share the same state for each Protected Object.
+
+For configuration details, see [F5 DoS for NGINX Arbitrator]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md#f5-dos-for-nginx-arbitrator" >}}).
+
 Enable the F5 DoS for NGINX Arbitrator in the `http` context of the `nginx.conf` file:
 
 ```nginx
@@ -120,17 +132,22 @@ app_protect_dos_arb_fqdn 10.1.10.22;
 ```
 
 ## EBPF manager
+
 The eBPF Manager is a high-performance component that simplifies and secures the deployment of eBPF (Extended Berkeley Packet Filter) programs for advanced networking use cases.
-Enable the L4-accelerated mitigation feature in the http context of the nginx.conf file:
+
+Enable the L4-accelerated mitigation feature in the `http` context of the `nginx.conf` file:
 
 ```nginx
 app_protect_dos_accelerated_mitigation on;
 ```
 
 ## ELK Dashboards
-ELK stands for Elasticsearch, Logstash, and Kibana. Logstash receives logs from F5 DoS, normalizes them, and stores them in the Elasticsearch index. Kibana allows you to visualize and navigate the logs using purpose-built dashboards.<br>
-A complete guide on configuring ELK can be found here: [F5 DoS for NGINX ELK Dashboards](https://github.com/f5devcentral/nap-dos-elk-dashboards) <br>
-F5 DoS directives should appear in your `nginx.conf` as shown. Replace `ip_kibana` with the hostname of the server running your ELK Docker container:<br>
+
+ELK stands for Elasticsearch, Logstash, and Kibana. Logstash receives logs from F5 DoS for NGINX, normalizes them, and stores them in the Elasticsearch index. Kibana lets you visualize and navigate the logs using purpose-built dashboards.
+
+For configuration details, see [F5 DoS for NGINX ELK Dashboards](https://github.com/f5devcentral/nap-dos-elk-dashboards).
+
+F5 DoS directives should appear in your `nginx.conf` as shown. Replace `ip_kibana` with the hostname of the server running your ELK Docker container:
 
 ```nginx
 http {
@@ -160,12 +177,13 @@ http {
 
 F5 DoS for NGINX provides a range of application monitoring tools:
 
-- F5 DoS for NGINX Dashboard: A dynamic interface for real-time monitoring and detailed views of Protected Objects.<br>
-- F5 DoS for NGINX REST API: An interface that exposes comprehensive metrics for Protected Objects.<br>
+- F5 DoS for NGINX Dashboard: A dynamic interface for real-time monitoring and detailed views of Protected Objects.
+- F5 DoS for NGINX REST API: An interface that exposes comprehensive metrics for Protected Objects.
 
-A complete guide on configuring  F5 DoS for NGINX Live Activity Monitoring  be found here: [F5 DoS for NGINX Live Activity Monitoring](https://docs.nginx.com/nginx-app-protect-dos/monitoring/live-activity-monitoring/) <br>
-Below is an example configuration that limits API location access to the local network using the allow and deny directives, and uses HTTP Basic Authentication to restrict the PATCH, POST, and DELETE methods to specific users.<br>
-To view the dashboard, enter its address in your browser’s address bar.For example, http://192.168.1.23/dashboard-dos.html displays the dashboard page located in `/usr/share/nginx/html`, as specified by the root directive.<br>
+For configuration details, see [F5 DoS for NGINX Live Activity Monitoring]({{< ref "/nap-dos/monitoring/live-activity-monitoring.md" >}}).
+
+The following example limits API location access to the local network using the `allow` and `deny` directives, and uses HTTP Basic Authentication to restrict `PATCH`, `POST`, and `DELETE` methods to specific users.
+To view the dashboard, enter its address in your browser's address bar. For example, `http://192.168.1.23/dashboard-dos.html` displays the dashboard page located in `/usr/share/nginx/html`, as specified by the `root` directive.
 
 ```nginx
 http {
@@ -220,14 +238,14 @@ http {
 
         access_log /var/log/nginx/access.log log_dos if=$loggable;
         app_protect_dos_security_log_enable on;
-        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=10.197.30.219:5261;
+        app_protect_dos_security_log "/etc/app_protect_dos/log-default.json" syslog:server=<SYSLOG_SERVER_IP>:5261;
         app_protect_dos_policy_file "/etc/app_protect_dos/BADOSDefaultPolicy.json";
 
         location / {
             app_protect_dos_enable on;
             app_protect_dos_name "main_app";
             set $loggable '0';
-            access_log syslog:server=10.97.30.219:5561 log_dos if=$loggable;
+            access_log syslog:server=<SYSLOG_SERVER_IP>:5561 log_dos if=$loggable;
             app_protect_dos_monitor uri=example_srv:80/ protocol=http1 timeout=7;
             proxy_pass http://10.197.24.136:3000;
         }

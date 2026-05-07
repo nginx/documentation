@@ -1,15 +1,18 @@
 ---
 title: F5 DoS for NGINX 4.9
+description: "Release notes for F5 DoS for NGINX 4.9, including new platform support for Debian 13, RHEL 10, Rocky Linux 10, and NGINX Plus R37."
+keywords: "F5 DoS for NGINX, release notes, 4.9, Debian 13, RHEL 10, Rocky Linux 10, NGINX Plus R37"
 toc: true
 weight: 30
 nd-docs: DOCS-1783
 nd-content-type: reference
 nd-product: F5DOSN
+nd-summary: >
+  Review what changed in F5 DoS for NGINX 4.9 and check whether your platform and NGINX Plus version are supported.
+  Version 4.9 adds support for Debian 13, RHEL 10, Rocky Linux 10, and NGINX Plus R37, and includes bug fixes.
 ---
 
-Here you can find the release information for F5 DoS for NGINX v4.9
-
-F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
+F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) attacks for your web applications.
 
 ## Release 4.9
 
@@ -17,10 +20,10 @@ December 1, 2025
 
 ### New features
 
-- R37 support
-- Add support for Debian 13 (Trixie)
-- Add support for RHEL 10 and Rocky Linux 10
-- Bugs fixing
+- NGINX Plus R37 support
+- Debian 13 (Trixie) support
+- RHEL 10 and Rocky Linux 10 support
+- Bug fixes
 
 ### Supported packages
 

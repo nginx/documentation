@@ -1,19 +1,23 @@
 ---
-description: Learn about the F5 DoS for NGINX Logs Overview.
+title: Logs overview
+description: "Overview of the four log types in F5 DoS for NGINX: security, operation, request, and debug logs, with configuration and destination options."
+keywords: "F5 DoS for NGINX, logs, security log, operation log, request log, debug log, monitoring, logging"
 nd-docs: DOCS-671
-title: Logs Overview
 toc: true
 weight: 130
-nd-content-type: how-to
+nd-content-type: reference
 nd-product: F5DOSN
+nd-summary: >
+  Identify which log type covers your monitoring or troubleshooting need and configure where each log is written.
+  F5 DoS for NGINX generates four log types—security, operation, request, and debug—each capturing a different aspect of traffic handling and system behavior.
 ---
 
-There are 4 types of logs corresponding to App Protect DoS:
+F5 DoS for NGINX has four log types:
 
-- [Security Log](#security-log): The general picture of the site and how App Protect DoS processed it, including anomalies and signatures found.
-- [Operation Log](#operation-log): Events such as configuration errors or warnings.
-- [Request Logging](#request-log): F5 DoS for NGINX adds information to each request logged to NGINX's access logging mechanism.
-- [Debug Logs](#debug-log): Technical messages at different levels of severity used to debug and resolve incidents and error behaviors.
+- [Security log](#security-log): The overall picture of the site and how F5 DoS for NGINX processed it, including anomalies and signatures found.
+- [Operation log](#operation-log): Events such as configuration errors or warnings.
+- [Request log](#request-log): Per-request information added to the NGINX access log.
+- [Debug log](#debug-log): Technical messages at different severity levels used to debug and resolve issues.
 
 {{< call-out "note" >}}
 NGINX does not have audit logs in the sense of *"**who** did **what**"*. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
@@ -26,36 +30,41 @@ NGINX does not have audit logs in the sense of *"**who** did **what**"*. This ca
 | Debug | Log file name is the redirection in the invocation of the `admd` command line in the start script | Global (not part of `nginx.conf`)|Yes. Log file is in /var/log/adm/admd.log directory. There is currently no file rotation capability available for this log.|  No |
 |  Operation  |  `error_log` directive, part of core NGINX | `nginx.conf` - global | Yes, NGINX error log | Yes, NGINX error log   |
 |Request |NGINX has two directives for the access log: <br> - **access_log** - to turn [on\|off] <br> - **log_format** - to specify the required information regarding each request <br><br> F5 DoS for NGINX has several variables that can be added to the log_format directive, such as $app_protect_dos_outcome. <br><br> For more information refer to [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}}) | `nginx.conf` - global| Yes, NGINX access log | Yes, NGINX access log |
-| Security  | F5 DoS for NGINX has two directives in `nginx.conf`: <br> - app_protect_dos_security_log_enable to turn logging [on\|off] <br> - app_protect_dos_security_log to set it's logging configuration and destination <br><br> For more information refer: <br> - **Configuration**: [App Protect DoS - Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md">}}) <br> - **Usage**: [F5 DoS for NGINX - Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) | `nginx.conf`: http, server, location  | Yes, either stderr, or an absolute path to a local file are supported | Yes |
+| Security  | F5 DoS for NGINX has two directives in `nginx.conf`: <br> - `app_protect_dos_security_log_enable` to turn logging on or off <br> - `app_protect_dos_security_log` to set its logging configuration and destination <br><br> For more information see: <br> - **Configuration**: [Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md">}}) <br> - **Usage**: [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) | `nginx.conf`: http, server, location  | Yes — either stderr or an absolute file path | Yes |
 
  {{</bootstrap-table>}}
 
-## Security Log
- The security logs contain information about the status of the protected objects. It gives a general picture about each protected object in terms of traffic intensity, health of the backend server, learning and mitigations. For more information refer to [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) documentation.
+## Security log
 
-## Operation Log
- The operation logs consists of system operational and health events. The events are sent to the NGINX error log and are distinguished by the `APP_PROTECT_DOS` prefix followed by JSON body. The log level depends on the event: success is usually indicated by `notice`, while failure is indicated by `error`. The timestamp is inherent in the error log. For more information refer to [App Protect DoS Operation Log]({{< ref "/nap-dos/monitoring/operation-log.md" >}}) documentation.
+The security log contains information about protected objects: traffic intensity, backend health, learning progress, and active mitigations. For more information, see [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}).
 
-## Request Log
- Access log is NGINX’s request log mechanism. It is controlled by two directives.
+## Operation log
+
+The operation log contains system operational and health events. Events are sent to the NGINX error log with the `APP_PROTECT_DOS` prefix followed by a JSON body. The log level depends on the event: success is usually `notice`; failure is `error`. The timestamp comes from the error log. For more information, see [Operation Log]({{< ref "/nap-dos/monitoring/operation-log.md" >}}).
+
+## Request log
+
+The request log uses NGINX's access log mechanism. Two directives control it.
 
 ### log_format
- This directive determines the format of the log messages using predefined variables. App Protect DoS will enrich this set of variables with several security log attributes that are available to be included in the `log_format`. If `log_format` is not specified then the built-in format `combined` is used but, because that format does not include the extended App Protect DoS variables, this directive must be used when the user wants to add App Protect DoS information to the log.
+
+This directive sets the format of log messages using predefined variables. F5 DoS for NGINX adds security log attributes to this set. If `log_format` is not specified, the built-in `combined` format is used. Because `combined` does not include F5 DoS for NGINX variables, use this directive when you want to include them.
 
 ### access_log
-This directive determines the destination of the `access_log` and the name of the format. The default is the file `/var/log/nginx/access.log` using the combined format. In order to use the custom format that includes the F5 DoS for NGINX variables, use this directive with the name of the desired format.
 
-### App Protect DoS Variables
-These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`. <br> For more information refer to [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}})
+This directive sets the destination of the access log and the format to use. The default is `/var/log/nginx/access.log` using the `combined` format. To use a custom format that includes F5 DoS for NGINX variables, specify the format name in this directive.
 
-## Debug Log
-The F5 DoS for NGINX Debug log is used to troubleshoot the functionality of the product. <br>
+### F5 DoS for NGINX variables
 
-The path of the log is at a fixed location: `/var/log/adm/admd.log`.
+These variables are added to the access log. They are a subset of the security log attributes and are prefixed with `$app_protect_dos`. For more information, see [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}}).
 
-There are several log levels - `error`, `warning`, `info` and `debug`. The default is `info`.
+## Debug log
 
-In order to change the log level at run time, the following command can be called:
+Use the debug log to troubleshoot F5 DoS for NGINX. The log is always at `/var/log/adm/admd.log`.
+
+Available log levels are `error`, `warning`, `info`, and `debug`. The default is `info`.
+
+To change the log level at runtime, run:
 
 ```shell
 admd -l DEBUG_LEVEL
@@ -65,11 +74,11 @@ admd -l DEBUG_LEVEL
 `nginx.conf` does not refer to the F5 DoS for NGINX debug log configuration neither directly nor indirectly.
 {{< /call-out >}}
 
-## NGINX Error log
+## NGINX error log
 
-The NGINX Error log is used to troubleshoot the configuration portion of F5 DoS for NGINX.
+Use the NGINX error log to troubleshoot the configuration of F5 DoS for NGINX.
 
-The file is called `error.log` and its path and debug level is determined in `nginx.conf` by the directive `error_log`. <br>
+The file is `error.log`. Its path and debug level are set in `nginx.conf` by the `error_log` directive.
 
 For example:
 

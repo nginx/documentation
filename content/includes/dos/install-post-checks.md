@@ -1,9 +1,9 @@
 ---
-nd-docs: null
+nd-product: F5DOSN
 nd-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 - content/nap-dos/deployment-guide/kubernetes.md
-- content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation..md
+- content/nap-dos/deployment-guide/kubernetes-with-L4-accelerated-mitigation.md
 ---
 
 You can run the following commands to ensure that F5 DoS for NGINX enforcement is operational.
@@ -36,7 +36,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     2025/12/07 09:14:34 [notice] 679#679: APP_PROTECT_DOS { "event": "shared_memory_connected", "worker_pid": 679, "mode": "operational", "mode_changed": true }
     ```
 
-3. Check that by applying an attack, the attacker IP addresses are blocked while the good traffic pass through:
+3. Verify that when you simulate an attack, attacker IP addresses are blocked while legitimate traffic passes through:
 
    a. Simulate good traffic:
 
@@ -64,7 +64,7 @@ You can run the following commands to ensure that F5 DoS for NGINX enforcement i
     done
     ```
 
-   c. See that the good traffic continue as usual while the attackers receive denial of service.
+   c. Verify that legitimate traffic continues as usual while the attack traffic is blocked.
 
 4. For DOS with L4 accelerated mitigation enabled
 

@@ -1,14 +1,16 @@
 ---
-description: Install F5 NGINX Plus, F5 WAF & DoS for NGINX Plus on Amazon Web Services
-  (AWS), to provide sophisticated Layer 7 load balancing, Modern app security solution,
-  behavioral DoS detection and mitigation that works seamlessly in DevOps environments
-  for your apps running on AmazonLinux 2023, RHEL, Debian and Ubuntu Linux OS.
+title: Install F5 WAF and DoS for NGINX AMIs on Amazon EC2
+description: "Deploy F5 NGINX Plus with F5 WAF for NGINX and F5 DoS for NGINX on Amazon EC2 using pre-built AMIs for Amazon Linux, RHEL, Debian, and Ubuntu."
+keywords: "F5 DoS for NGINX, Amazon Web Services, AWS, EC2, AMI, NGINX Plus, F5 WAF for NGINX, Amazon Linux, RHEL, Debian, Ubuntu"
 nd-docs: DOCS-1204
-title: Installing F5 WAF & DoS for NGINX AMIs on Amazon EC2
 toc: true
 weight: 120
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Launch a pre-built AMI from the AWS Marketplace to get F5 NGINX Plus with F5 DoS for NGINX and F5 WAF for NGINX running on Amazon EC2.
+  AMIs are available for Amazon Linux, RHEL, Debian, and Ubuntu, with NGINX Plus and the protection modules pre-configured for EC2.
+  You need an AWS account and an active F5 subscription to subscribe to the AMI.
 ---
 
 
@@ -51,11 +53,11 @@ To quickly set up an environment with NGINX Plus, F5 WAF for NGINX and F5 DoS fo
     - [NGINX Plus with F5 WAF & DoS for NGINX Plus – Ubuntu 24.04 Linux AMI HVM](https://aws.amazon.com/marketplace/pp/prodview-pz64pqetwyrhw)
 
 
-    Click the **Continue to Subscribe** button to proceed to the **Launch on EC2** page.
+    Select **Continue to Subscribe** to go to the **Launch on EC2** page.
 
-3. Select the type of launch by clicking the appropriate tab (<span style="white-space: nowrap; font-weight:bold;">1‑Click Launch</span>, **Manual Launch**, or **Service Catalog**). Choose the desired options for billing, instance size, and so on, and click the <span style="white-space: nowrap; font-weight:bold;">Accept Software Terms…</span> button.
-4. When configuring the firewall rules, add a rule to accept web traffic on TCP ports 80 and 443 (this happens automatically if you launch from the <span style="white-space: nowrap; font-weight:bold;">1-Click Launch</span> tab).
-5. As soon as the new EC2 instance launches, NGINX Plus starts automatically and serves a default **index.html** page. To view the page, use a web browser to access the public DNS name of the new instance. You can also check the status of the NGINX Plus server by logging into the EC2 instance and running this command:
+3. Select the type of launch by selecting the appropriate tab (**1-Click Launch**, **Manual Launch**, or **Service Catalog**). Choose the desired options for billing, instance size, and so on, then select **Accept Software Terms**.
+4. When configuring the firewall rules, add a rule to accept web traffic on TCP ports 80 and 443 (this happens automatically if you launch from the **1-Click Launch** tab).
+5. When the new EC2 instance launches, NGINX Plus starts automatically and serves a default **index.html** page. To view the page, go to the public DNS name of the new instance in a browser. To check the status of NGINX Plus, log in to the EC2 instance and run:
 
 	```nginx
 	/etc/init.d/nginx status

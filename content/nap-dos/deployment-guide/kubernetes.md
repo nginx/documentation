@@ -11,16 +11,14 @@ nd-summary: >
   F5 DoS for NGINX runs as a sidecar container alongside NGINX Plus, using real-time traffic analysis to detect and block denial-of-service attacks.
 ---
 
-This page describes how to install F5 DOS for NGINX using Kubernetes.
-
-It explains the common steps necessary for any Kubernetes-based deployment, then provides details specific to Helm or Manifests.
+This guide explains how to install F5 DoS for NGINX on Kubernetes. It covers the common steps for any Kubernetes-based deployment, then provides the manifest-based installation steps.
 
 ## Before you begin
 
-To complete this guide, you will need the following pre-requisites:
+Before you start, make sure you have:
 
 - A functional Kubernetes cluster
-- An active F5 DOS for NGINX subscription (Purchased or trial)
+- An active F5 DoS for NGINX subscription (purchased or trial)
 - [Docker](https://docs.docker.com/get-started/get-docker/)
 
 To review supported operating systems, read the [Releases]({{< ref "/nap-dos/releases" >}}) topic.

@@ -1,21 +1,27 @@
 ---
-description: Learn about F5 DoS for NGINX Deployment.
-nd-docs: DOCS-666
 title: Virtual Machine and Docker
+description: "Install and upgrade F5 DoS for NGINX on virtual machines, bare metal, and Docker across RHEL, Debian, Ubuntu, Alpine, and Amazon Linux."
+keywords: "F5 DoS for NGINX, install, deployment, virtual machine, bare metal, Docker, RHEL, Debian, Ubuntu, Alpine, Amazon Linux"
+nd-docs: DOCS-666
 toc: true
 weight: 90
 nd-content-type: how-to
 nd-product: F5DOSN
+nd-summary: >
+  Install or upgrade F5 DoS for NGINX on a virtual machine, bare metal host, or Docker container and have a working deployment protecting your web applications.
+  F5 DoS for NGINX is a dynamic NGINX Plus module that uses behavioral analysis to detect and mitigate DoS attacks in real time.
+  Instructions cover RHEL 8, 9, and 10, Rocky Linux, Debian, Ubuntu, Alpine, and Amazon Linux.
 ---
 
 ## Overview
 
-F5 DoS for NGINX provides behavioral protection against DoS for your web applications. <br><br>
-This guide explains how to deploy F5 DoS for NGINX as well as upgrade App Protect DoS.
+F5 DoS for NGINX provides behavioral protection against DoS for your web applications.
+
+This guide explains how to deploy and upgrade F5 DoS for NGINX.
 
 ## Prerequisites
 
-F5 DoS for NGINX is available to the customers as a downloadable dynamic module at an additional cost. To purchase or add F5 DoS for NGINX to an existing NGINX Plus subscription, contact the NGINX sales team.
+F5 DoS for NGINX is available to customers as a downloadable dynamic module at an additional cost. To purchase or add F5 DoS for NGINX to an existing NGINX Plus subscription, contact the NGINX sales team.
 
 NGINX Plus Release 24 and later supports F5 DoS for NGINX.
 
@@ -36,29 +42,29 @@ F5 DoS for NGINX supports the following operating systems:
 
 The F5 DoS for NGINX package has the following dependencies:
 
-1. **nginx-plus-module-appprotectdos** - NGINX Plus dynamic module for App Protect DoS
+1. **nginx-plus-module-appprotectdos** - NGINX Plus dynamic module for F5 DoS for NGINX
 2. **libcurl** - Software library for HTTP access
 3. **zeromq4** - Software library for fast, message-based applications
 4. **boost** - The free peer-reviewed portable C++ source libraries
 5. **openssl** - Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocol
 6. **libelf** - Software library for ELF access
 
-See the NGINX Plus full list of prerequisites for more details. F5 DoS for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with F5 WAF for NGINX.
+See the NGINX Plus full list of prerequisites for more details. F5 DoS for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with F5 DoS for NGINX installation in a clean environment or to a system with F5 WAF for NGINX.
 
 {{< call-out "note" >}}
 
 - gRPC, HTTP/2 and WebSocket protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
-- Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
+- Monitor directive `app_protect_dos_monitor` with the `proxy_protocol` parameter cannot be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
 - Regularly update the Operating System (OS) to avoid known OS vulnerabilities which may impact the service.
 {{< /call-out >}}
 
 ## Platform Security Considerations
 
-When deploying App Protect DoS on NGINX Plus take the following precautions to secure the platform. This avoids the risk of causing a Denial of Service condition or compromising the platform security.
+When deploying F5 DoS for NGINX on NGINX Plus take the following precautions to secure the platform. This avoids the risk of causing a Denial of Service condition or compromising the platform security.
 
 - Restrict permissions to the files on the F5 DoS for NGINX platform to user **nginx** and group **nginx**, especially for the sensitive areas containing the configuration.
 - Remove unnecessary remote access services on the platform.
-- Configure a Syslog destination on the same machine as App Protect DoS and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
+- Configure a Syslog destination on the same machine as F5 DoS for NGINX and proxy to an external destination. This avoids eavesdropping and [man-in-the-middle](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attacks on the Syslog channel.
 
 ## Virtual machine or bare metal Deployment
 
