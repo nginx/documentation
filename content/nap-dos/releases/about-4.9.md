@@ -16,7 +16,7 @@ F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) 
 
 ## Release 4.9
 
-December 1, 2025
+May 13, 2026
 
 ### New features
 
