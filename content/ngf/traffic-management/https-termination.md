@@ -13,6 +13,8 @@ Learn how to terminate HTTPS traffic using NGINX Gateway Fabric.
 
 In this guide, we will show how to configure HTTPS termination for your application, using an [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) redirect filter, secret, and [ReferenceGrant](https://gateway-api.sigs.k8s.io/api-types/referencegrant/).
 
+{{< call-out "note" >}}To validate client certificates using mutual TLS (mTLS), see [Securing frontend client traffic using mutual TLS]({{< ref "/ngf/traffic-security/client-validation.md" >}}).{{< /call-out >}}
+
 ---
 
 ## Before you begin
@@ -280,8 +282,6 @@ Server name: coffee-6b8b6d6486-7fc78
 
 ## See also
 
-To set up a production-ready integration with cert-manager for HTTPS traffic, see the [Secure traffic using Let's Encrypt]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}) guide.
-
-To learn more about redirects using the Gateway API, see the following resource:
-
-- [Gateway API Redirects](https://gateway-api.sigs.k8s.io/guides/http-redirect-rewrite/)
+- [Securing frontend client traffic using mutual TLS]({{< ref "/ngf/traffic-security/client-validation.md" >}}): Configure client certificate validation (mTLS) at the Gateway.
+- [Secure traffic using Let's Encrypt]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}}): Set up a production-ready integration with cert-manager.
+- [Gateway API Redirects](https://gateway-api.sigs.k8s.io/guides/http-redirect-rewrite/): Learn more about redirects using the Gateway API.
