@@ -60,6 +60,7 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Add an optional description for your deployment.
    - Change the **NCU Capacity** if needed.
       - The default value of `20 NCU` should be adequate for most scenarios.
+   - Enable **WAF** if you want [F5 WAF for NGINX](https://docs.nginx.com/waf) enabled for your deployment.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
    - Select a **Configuration Version** from the list.
    - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
@@ -78,7 +79,7 @@ In the NGINXaaS Console,
 
 1. To open the details of your deployment, select its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
-1. Select **Edit** to modify the deployment description, and NCU Capacity.
+1. Select **Edit** to modify the deployment description, NCU Capacity, and WAF enablement.
    - You can also configure monitoring from here. Detailed instructions can be found in [Enable Monitoring]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
 1. Select **Update** to save your changes.
 1. Select the Configuration tab to view the current NGINX configuration associated with the deployment.
