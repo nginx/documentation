@@ -317,6 +317,10 @@ Normal  ScalingReplicaSet  98s    deployment-controller  Scaled down replica set
 
 If you use custom NGINX configuration templates, review and apply any upstream template changes before upgrading. For more information, see [Custom templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}).
 
+{{< call-out "warning" >}}
+**Upgrading to version 5.5 or later:** Starting in version 5.5, the default server is generated as a separate include file (`conf.d/_default-server.conf`). If your custom `main-template` was created before version 5.5 and contains a `default_server` server block, remove that block when patching your template. Keeping it produces a duplicate `default_server` nginx configuration error at startup. This applies regardless of whether you enable `-allow-empty-ingress-host`.
+{{< /call-out >}}
+
 1. Clone the repository:
 
    ```shell
@@ -326,7 +330,7 @@ If you use custom NGINX configuration templates, review and apply any upstream t
 2. Generate a diff between the version you are upgrading from and the version you are upgrading to:
 
    ```shell
-   git diff v<current-version>..v<target-version> -- internal/configs/<template-file> > upstream.patch
+   git diff v<current-version>..v<target-version> -- internal/configs/version1/<template-file> > upstream.patch
    ```
 
 3. Extract your custom template from the ConfigMap to a local file. The valid key names are `main-template`, `ingress-template`, `virtualserver-template`, and `transportserver-template`:
