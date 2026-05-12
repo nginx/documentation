@@ -482,7 +482,7 @@ Status:
 Events:              <none>
 ```
 
-## Set up the configuration test
+## Setup configuration test
 
 To send requests to the Gateway, you must provide a valid certificate and key signed by a valid Certificate Authority (CA).
 
