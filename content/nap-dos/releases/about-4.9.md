@@ -4,10 +4,10 @@ description: "Release notes for F5 DoS for NGINX 4.9, including new platform sup
 keywords: "F5 DoS for NGINX, release notes, 4.9, Debian 13, RHEL 10, Rocky Linux 10, NGINX Plus R37"
 toc: true
 weight: 30
-nd-docs: DOCS-1783
-nd-content-type: reference
-nd-product: F5DOSN
-nd-summary: >
+f5-docs: DOCS-1783
+f5-content-type: reference
+f5-product: F5DOSN
+f5-summary: >
   Review what changed in F5 DoS for NGINX 4.9 and check whether your platform and NGINX Plus version are supported.
   Version 4.9 adds support for Debian 13, RHEL 10, Rocky Linux 10, and NGINX Plus R37, and includes bug fixes.
 ---

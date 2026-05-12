@@ -1,7 +1,7 @@
 ---
-nd-content-type: how-to
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: how-to
+f5-docs: DOCS-000
+f5-product: NONECO
 title: Add a file to an instance
 toc: true
 weight: 300

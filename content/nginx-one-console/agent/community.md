@@ -2,9 +2,9 @@
 title: Community and contribution
 toc: true
 weight: 600
-nd-content-type: reference
-nd-docs: DOCS-1869
-nd-product: NAGENT
+f5-content-type: reference
+f5-docs: DOCS-1869
+f5-product: NAGENT
 ---
 
 Discover the various ways you can participate in the F5 NGINX Agent project:

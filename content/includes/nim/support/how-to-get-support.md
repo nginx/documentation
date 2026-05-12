@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1225
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-1225
+f5-product: NIMNGR
+f5-files:
 - content/nim/security-monitoring/troubleshooting.md
 - content/nim/troubleshooting.md
 ---

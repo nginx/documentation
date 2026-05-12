@@ -1,6 +1,6 @@
 ---
-nd-product: FABRIC
-nd-files:
+f5-product: FABRIC
+f5-files:
 - content/ngf/install/helm.md
 - content/ngf/install/manifests.md
 - content/ngf/install/nginx-plus.md

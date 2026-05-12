@@ -2,9 +2,9 @@
 title: Configuring VirtualServer with custom HTTP and HTTPS listener ports
 toc: true
 weight: 1800
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1452
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1452
 ---
 
 This tutorial outlines how to configure and deploy a VirtualServer resource with custom HTTP and HTTPS listener ports.

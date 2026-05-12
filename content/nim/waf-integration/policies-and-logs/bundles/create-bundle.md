@@ -3,11 +3,14 @@ title: Create a security policy bundle
 description: Create a precompiled security bundle that packages your F5 WAF for NGINX policies, signatures, and threat campaigns into a single file for efficient, reusable deployment across instances.
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Create a precompiled F5 WAF for NGINX security policy bundle in F5 NGINX Instance Manager that packages your policies, signatures, and threat campaigns into a single deployable file.
+  Bundles simplify deployment by letting you push a complete, ready-to-run configuration to multiple instances at once.
 ---
 
-NGINX Instance Manager lets you package your complete F5 WAF for NGINX configuration into a precompiled bundle for faster, more reliable deployments.
+F5 NGINX Instance Manager lets you package your complete F5 WAF for NGINX configuration into a precompiled bundle for faster, more reliable deployments.
 
 A security policy bundle includes your policies, attack signatures, bot signatures, and threat campaigns—compiled into a single `.tgz` file that can be deployed across multiple instances.
 

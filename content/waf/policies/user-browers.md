@@ -2,8 +2,8 @@
 title: "User-defined browser control"
 weight: 2050
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This page describes the User-defined browser control feature for F5 WAF for NGINX.

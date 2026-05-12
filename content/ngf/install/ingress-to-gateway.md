@@ -2,8 +2,8 @@
 title: Migrate from NGINX Ingress Controller to NGINX Gateway Fabric
 weight: 800
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
+f5-content-type: how-to
+f5-product: FABRIC
 ---
 
 This document describes how to migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric.

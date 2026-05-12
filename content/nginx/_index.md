@@ -2,13 +2,13 @@
 description: "Documentation for NGINX Open Source and F5 NGINX Plus."
 title: F5 NGINX Plus
 weight: 100
-nd-subtitle: Optimize, secure, and scale your modern apps
+f5-subtitle: Optimize, secure, and scale your modern apps
 url: /nginx/
-nd-landing-page: true
+f5-landing-page: true
 cascade:
   logo: NGINX-Plus-product-icon.svg
-nd-content-type: landing-page
-nd-product: NGPLUS
+f5-content-type: landing-page
+f5-product: NGPLUS
 ---
 Request your [free 30‑day trial](https://www.nginx.com/free-trial-request) today.
 

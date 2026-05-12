@@ -1,7 +1,7 @@
 ---
 description: ''
-nd-docs: DOCS-1398
-nd-content-type: redoc
+f5-docs: DOCS-1398
+f5-content-type: redoc
 doctypes:
   - reference
 type: redoc
@@ -10,6 +10,6 @@ tags:
 title: API reference guide
 toc: false
 weight: null
-nd-api-reference: "./nginx-one-console/api/one.json"
-nd-product: NONECO
+f5-api-reference: "./nginx-one-console/api/one.json"
+f5-product: NONECO
 ---

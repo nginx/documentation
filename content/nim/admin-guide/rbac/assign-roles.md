@@ -1,15 +1,19 @@
 ---
-nd-docs: DOCS-1273
+f5-docs: DOCS-1273
 title: Assign roles to users or user groups
 toc: true
 weight: 210
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Assign RBAC roles to individual users or user groups in F5 NGINX Instance Manager to grant access based on job function."
+f5-summary: >
+  Assign roles to users or user groups in F5 NGINX Instance Manager to control their access to resources.
+  Role-based access control ensures that users can only view and manage the resources their role permits.
 ---
 
 ## Overview
 
-In NGINX Instance Manager, role-based access control (RBAC) lets you assign permissions to users or user groups based on their roles in the organization. This ensures that users only have access to the features they need. Before assigning roles, make sure you’ve created the necessary users or user groups. This guide covers how to assign roles to users using basic authentication and to user groups when using an OpenID Connect (OIDC) identity provider.
+In F5 NGINX Instance Manager, role-based access control (RBAC) lets you assign permissions to users or user groups based on their roles in the organization. This ensures that users only have access to the features they need. Before assigning roles, make sure you’ve created the necessary users or user groups. This guide covers how to assign roles to users using basic authentication and to user groups when using an OpenID Connect (OIDC) identity provider.
 
 ## Before you begin
 

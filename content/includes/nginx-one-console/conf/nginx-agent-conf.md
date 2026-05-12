@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/nginx-one-console/agent/containers/run-agent-container.md
 - content/nginx-one-console/getting-started.md
 ---

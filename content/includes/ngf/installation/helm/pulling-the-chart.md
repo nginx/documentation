@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1439
-nd-product: FABRIC
-nd-files:
+f5-docs: DOCS-1439
+f5-product: FABRIC
+f5-files:
 - content/ngf/install/helm.md
 - content/ngf/install/upgrade-version.md
 - content/nginx-one-console/k8s/add-ngf-helm.md

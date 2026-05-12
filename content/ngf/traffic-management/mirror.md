@@ -2,9 +2,9 @@
 title: Configure Request Mirroring
 toc: true
 weight: 700
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1847
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1847
 ---
 
 Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.

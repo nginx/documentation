@@ -2,10 +2,10 @@
 title: Enable NGINX logs using CLI
 weight: 100
 toc: true
-nd-docs: DOCS-1369
+f5-docs: DOCS-1369
 url: /nginxaas/azure/monitoring/enable-logging/logging-using-cli/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 ## Overview

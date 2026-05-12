@@ -1,8 +1,8 @@
 ---
 description: ''
-nd-content-type: how-to
-nd-docs: DOCS-1395
-nd-product: NONECO
+f5-content-type: how-to
+f5-docs: DOCS-1395
+f5-product: NONECO
 title: Prepare - Create and manage data plane keys
 toc: true
 weight: 100

@@ -2,8 +2,8 @@
 title: JWT protection
 weight: 1700
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 JSON Web Tokens (JWTs) are a compact and self-contained way to represent information between two parties in JSON format, commonly used for authentication and authorization.

@@ -1,10 +1,10 @@
 ---
-title: Configure NGINX App Protect with NGINX Ingress Controller
+title: Configure F5 WAF for NGINX with NGINX Ingress Controller
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1866
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1866
 ---
 
 ## Overview

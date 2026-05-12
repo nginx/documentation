@@ -2,9 +2,9 @@
 title: Support
 weight: 800
 toc: true
-nd-content-type: reference
-nd-product: FABRIC
-nd-docs: DOCS-1411
+f5-content-type: reference
+f5-product: FABRIC
+f5-docs: DOCS-1411
 ---
 
 F5 NGINX Gateway Fabric adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).

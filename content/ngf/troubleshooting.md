@@ -2,9 +2,9 @@
 title: Troubleshooting
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1419
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1419
 ---
 
 This topic describes possible issues when using NGINX Gateway Fabric and general troubleshooting techniques. When possible, suggested workarounds are provided.

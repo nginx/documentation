@@ -1,6 +1,6 @@
 ---
-nd-product: SOLUTI
-nd-files:
+f5-product: SOLUTI
+f5-files:
 - content/nim/licensing-and-reporting/report-usage-connected-deployment.md
 - content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md
 - content/solutions/about-subscription-licenses/getting-started.md

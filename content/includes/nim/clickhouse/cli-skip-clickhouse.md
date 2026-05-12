@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/includes/nim/installation/install-script-flags/skip-clickhouse.md
 ---
 

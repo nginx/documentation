@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/nginx-one-console/workshops/lab3/explore-nginx-one-console-features.md
 - content/nginx-one-console/workshops/lab4/config-sync-groups.md
 - content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-latest-version.md

@@ -1,6 +1,6 @@
 ---
-nd-product: INGRESS
-nd-files:
+f5-product: INGRESS
+f5-files:
 - content/nic/install/images/add-image-to-cluster.md
 - content/nic/install/license-secret.md
 ---

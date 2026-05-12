@@ -1,12 +1,12 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains registered with
   DNS services provider NS1 and proxied by F5 NGINX Plus.
-nd-docs: DOCS-449
+f5-docs: DOCS-449
 title: Global Server Load Balancing with NS1 and NGINX Plus
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 Global server load balancing (GSLB) refers to the intelligent distribution of traffic across server resources located in multiple points of presence (PoPs). GSLB is most commonly implemented by controlling the responses to DNS requests, directing each user to the most appropriate destination IP address based on the availability, performance, and proximity of each PoP.

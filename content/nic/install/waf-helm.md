@@ -2,9 +2,9 @@
 title: Install NGINX Ingress Controller and F5 WAF for NGINX with Docker and Helm
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1861
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1861
 ---
 
 This document describes how to build a local F5 WAF for NGINX v5 Docker image with NGINX Plus Ingress
@@ -15,7 +15,7 @@ This is accomplished with the following steps:
 - Prepare license secrets to enable a Kubernetes deployment
 - Use a F5 WAF for NGINX Docker image to transform a policy JSON file into a compiled bundle
 - Configure PersistentVolumes so the deployed F5 WAF for NGINX instance can access the compiled bundle
-- Deploy NGINX Plus Ingress Controller with NGINX App Protect
+- Deploy NGINX Plus Ingress Controller with F5 WAF for NGINX
 - Test example services to validate that the WAF policies work
 
 ## Prepare Secrets and credentials
@@ -342,6 +342,6 @@ administrator.<br><br>Your support ID is: 11241918873745059631<br><br>
 This is mostly the same as the [examples/custom_resources/app-protect-waf-v5](https://github.com/nginx/kubernetes-ingress/tree/main/examples/custom-resources/app-protect-waf-v5)
 deployment in a single file with the policy bundle already set.
 
-You now have a fully operational NGINX Ingress Controller instance with NGINX App Protect deployed in your Kubernetes environment.
+You now have a fully operational NGINX Ingress Controller instance with F5 WAF for NGINX deployed in your Kubernetes environment.
 
 For further details, troubleshooting, or support, refer to the [official NGINX documentation]({{< ref "/" >}}) or reach out directly to your F5/NGINX account team.

@@ -1,10 +1,13 @@
 ---
 title: Create a security policy
-description: Create and customize F5 WAF for NGINX security policies in NGINX Instance Manager using the web interface or REST API.
+description: Create and customize F5 WAF for NGINX security policies in F5 NGINX Instance Manager using the web interface or REST API.
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Create a new F5 WAF for NGINX security policy in F5 NGINX Instance Manager using the web interface or REST API.
+  Policies control WAF behavior; you can start from a preset or write custom JSON to define exactly what traffic to inspect and block.
 ---
 
 You can create and manage security policies in F5 NGINX Instance Manager to control F5 WAF for NGINX behavior. When you create a policy, the interface provides guided options and presets aligned with F5 WAF for NGINX. If you’re familiar with WAF configuration, you can also customize your policy directly in JSON.

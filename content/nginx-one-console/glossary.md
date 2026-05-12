@@ -2,9 +2,9 @@
 title: Glossary
 toc: true
 weight: 1000
-nd-content-type: reference
-nd-product: NONECO
-nd-docs: DOCS-1396
+f5-content-type: reference
+f5-product: NONECO
+f5-docs: DOCS-1396
 ---
 
 This glossary defines terms used in the F5 NGINX One Console and F5 Distributed Cloud.

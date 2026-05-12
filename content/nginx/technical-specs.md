@@ -5,9 +5,9 @@ description: Platforms supported by F5 NGINX Plus and dynamically loaded modules
   built into NGINX Plus.
 toc: true
 weight: 400
-nd-content-type: reference
-nd-product: NGPLUS
-nd-docs: DOCS-473
+f5-content-type: reference
+f5-product: NGPLUS
+f5-docs: DOCS-473
 ---
 
 NGINX Plus is available only as a binary; it is not distributed as source code. For additional platforms and modules, [contact us](https://www.f5.com/products/get-f5).

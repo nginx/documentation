@@ -2,8 +2,8 @@
 title: "Add cookies, parameters and URLs"
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: NONECO
+f5-content-type: how-to
+f5-product: NONECO
 ---
 
 ## Add cookies

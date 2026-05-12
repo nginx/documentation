@@ -3,10 +3,10 @@ title: Azure CLI
 weight: 900
 description: Learn how to setup the Azure CLI to manage NGINXaaS for Azure.
 toc: true
-nd-docs: DOCS-1234
+f5-docs: DOCS-1234
 url: /nginxaas/azure/client-tools/cli/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). This document outlines how to install the CLI tool including the NGINX extension.

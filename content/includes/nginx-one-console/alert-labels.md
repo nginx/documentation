@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/glossary/_index.md
 - content/nginx-one-console/glossary.md
 ---

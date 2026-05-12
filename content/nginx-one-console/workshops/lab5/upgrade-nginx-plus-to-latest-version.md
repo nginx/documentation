@@ -2,8 +2,8 @@
 title: "Lab 5: Upgrade NGINX Plus to the latest version"
 weight: 500
 toc: true
-nd-content-type: tutorial
-nd-product: 
+f5-content-type: tutorial
+f5-product: 
 - nginx-one
 - nginx-plus
 ---

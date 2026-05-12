@@ -2,9 +2,9 @@
 title: Install NGINX Ingress Controller with NGINX Ingress Operator
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-604
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-604
 ---
 
 This document explains how to install F5 NGINX Ingress Controller using NGINX Ingress Operator.

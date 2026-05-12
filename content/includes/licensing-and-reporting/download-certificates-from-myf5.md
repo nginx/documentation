@@ -1,7 +1,7 @@
 ---
-nd-product:
+f5-product:
 - MISCEL
-nd-files:
+f5-files:
 - content/includes/use-cases/credential-download-instructions.md
 - content/waf/configure/compiler.md
 - content/waf/install/docker.md

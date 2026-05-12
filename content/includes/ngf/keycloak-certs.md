@@ -1,6 +1,6 @@
 ---
-nd-product: FABRIC
-nd-files:
+f5-product: FABRIC
+f5-files:
 - content/ngf/traffic-security/oidc-authenication.md
 - content/ngf/traffic-security/jwt-authenication.md
 ---

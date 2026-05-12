@@ -3,8 +3,8 @@ title: IP Intelligence
 weight: 350
 toc: true
 url: /nginxaas/azure/app-protect/ip-intelligence/
-nd-content-type: concept
-nd-product: NAZURE
+f5-content-type: concept
+f5-product: NAZURE
 ---
 
 ## Overview

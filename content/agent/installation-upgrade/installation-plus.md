@@ -2,9 +2,9 @@
 title: Installation from NGINX Plus repository
 weight: 400
 toc: true
-nd-docs: DOCS-1217
-nd-content-type: how-to
-nd-product: NAGENT
+f5-docs: DOCS-1217
+f5-content-type: how-to
+f5-product: NAGENT
 ---
 
 ## Overview

@@ -100,11 +100,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `tech-specs` for technical specifications pages.
+**f5-content-type**: Always `tech-specs` for technical specifications pages.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use a noun phrase ending in "technical specifications". Keep it under 60 characters.
 
@@ -123,15 +123,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, the names of key specifications covered, and common alternative phrasings such as "requirements", "limits", "compatibility", "specs", and "supported".
+**f5-keywords**: Comma-separated terms a reader might type to find this page. Include the product name, the names of key specifications covered, and common alternative phrasings such as "requirements", "limits", "compatibility", "specs", and "supported".
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose. Cover:
 
 - Sentence 1: what product, component, or system this page covers.
 - Sentence 2: what types of specifications the reader can look up here.
 - Sentence 3 (optional): version scope or platform constraints.
 
-**nd-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tech specs pages are typically `operator` or `architect`.
+**f5-audience**: Who this page is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Tech specs pages are typically `operator` or `architect`.
 
 ---
 

@@ -3,8 +3,8 @@ title: Use Helm to Install NGINX Ingress Controller with NGINX Plus
 linkTitle: NGINX Plus
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: INGRESS
+f5-content-type: how-to
+f5-product: INGRESS
 ---
 
 This page describes how to use Helm to install F5 NGINX Ingress Controller with NGINX Plus. 

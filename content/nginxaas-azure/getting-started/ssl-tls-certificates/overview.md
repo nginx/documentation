@@ -3,8 +3,8 @@ title: Overview
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/overview/
 toc: true
 weight: 50
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) enables customers to secure traffic by adding SSL/TLS certificates to a deployment. NGINXaaS can fetch certificates directly from Azure Key Vault, rotate certificates, and provide observability on the status of your certificates.

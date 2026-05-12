@@ -3,9 +3,9 @@ title: Set up OIDC authentication
 url: /nginxaas/azure/quickstart/security-controls/oidc/
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NAZURE
-nd-docs: DOCS-1646
+f5-content-type: how-to
+f5-product: NAZURE
+f5-docs: DOCS-1646
 ---
 
 ## Overview

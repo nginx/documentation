@@ -1,15 +1,19 @@
 ---
-nd-docs: DOCS-1197
+f5-docs: DOCS-1197
 title: Automate OIDC with Microsoft Entra
 toc: true
 weight: 300
-nd-content-type: tutorial
-nd-product: NIMNGR
+f5-content-type: tutorial
+f5-product: NIMNGR
+description: "Automate OIDC authentication for F5 NGINX Instance Manager using the Microsoft Entra client credentials flow for non-interactive, machine-to-machine access."
+f5-summary: >
+  Secure F5 NGINX Instance Manager with OIDC using the client credentials flow and Microsoft Entra as the identity provider.
+  This setup is intended for automation scenarios where a human user is not present; the client authenticates directly with Microsoft Entra using a client ID and secret.
 ---
 
 ## Overview
 
-This guide explains how to secure NGINX Instance Manager with OpenID Connect (OIDC) using the client credentials flow and Microsoft Entra as the identity provider. You can use this setup for automation services, such as in CI/CD pipelines.
+This guide explains how to secure F5 NGINX Instance Manager with OpenID Connect (OIDC) using the client credentials flow and Microsoft Entra as the identity provider. You can use this setup for automation services, such as in CI/CD pipelines.
 
 ## Before you begin
 

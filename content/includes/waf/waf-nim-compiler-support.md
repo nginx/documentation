@@ -1,6 +1,6 @@
 ---
-nd-product: F5WAFN
-nd-files:
+f5-product: F5WAFN
+f5-files:
 - content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
 - content/nim/waf-integration/configuration/install-waf-compiler/install.md
 ---

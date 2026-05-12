@@ -2,9 +2,9 @@
 title: Prepare - Set up an explicit forward proxy
 toc: true
 weight: 250
-nd-content-type: how-to
-nd-docs: DOCS-000
-nd-product: NONECO
+f5-content-type: how-to
+f5-docs: DOCS-000
+f5-product: NONECO
 ---
 
 NGINX Agent can be configured to connect to NGINX One using an explicit forward

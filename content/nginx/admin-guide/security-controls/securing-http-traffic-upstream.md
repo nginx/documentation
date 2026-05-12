@@ -1,12 +1,12 @@
 ---
 description: Secure HTTP traffic between NGINX or F5 NGINX Plus and upstream servers,
   using SSL/TLS encryption.
-nd-docs: DOCS-435
+f5-docs: DOCS-435
 title: Securing HTTP Traffic to Upstream Servers
 toc: true
 weight: 900
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This article explains how to encrypt HTTP traffic between NGINX and an upstream group or a proxied server.

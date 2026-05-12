@@ -2,8 +2,8 @@
 title: "Bot signatures"
 weight: 550
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 Bot signatures are a feature that protects applications by detecting signatures and clients that falsely claim to be browsers or search engines.

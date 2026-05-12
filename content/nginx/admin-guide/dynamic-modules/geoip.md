@@ -1,12 +1,12 @@
 ---
 description: Capture information from the client IP address in variables, using the
   MaxMind GeoIP databases, with the GeoIP dynamic module supported by NGINX, Inc.
-nd-docs: DOCS-386
+f5-docs: DOCS-386
 title: GeoIP
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The GeoIP dynamic module captures information from the client IP address in variables using the MaxMind GeoLite databases.

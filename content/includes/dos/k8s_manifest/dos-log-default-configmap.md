@@ -1,6 +1,6 @@
 ---
-nd-product: F5DOSN
-nd-files:
+f5-product: F5DOSN
+f5-files:
 - content/nap-dos/deployment-guide/kubernetes.md
 ---
 

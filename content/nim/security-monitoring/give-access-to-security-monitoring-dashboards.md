@@ -2,9 +2,13 @@
 title: Add user access to Security Monitoring dashboards
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-1026
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-1026
+description: "Grant users access to Security Monitoring dashboards in F5 NGINX Instance Manager using role-based access control."
+f5-summary: >
+  Grant users access to the Security Monitoring dashboards in F5 NGINX Instance Manager by assigning the required RBAC permissions.
+  Security Monitoring tracks activity on F5 WAF for NGINX instances; the dashboards show threat insights and help improve security policies.
 ---
 
 ## Overview
@@ -23,7 +27,7 @@ This guide follows the principle of least privilege, so users only get access to
 
 Make sure you have the following:
 
-- Your account must have access to User Management in NGINX Instance Manager. Minimum permissions are:
+- Your account must have access to User Management in F5 NGINX Instance Manager. Minimum permissions are:
 
   - **Module**: Settings
   - **Feature**: User Management

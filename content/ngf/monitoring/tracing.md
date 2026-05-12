@@ -2,9 +2,9 @@
 title: Configure tracing
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1844
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1844
 ---
 
 This guide explains how to enable tracing on HTTPRoutes in NGINX Gateway Fabric using the OpenTelemetry Collector. Jaeger is used to process and collect the traces.

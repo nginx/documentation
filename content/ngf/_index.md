@@ -7,20 +7,20 @@ url: /nginx-gateway-fabric/
 cascade:
   # The logo file is resolved from the theme, in the folder /static/images/icons/
   logo: NGINX-Gateway-Fabric-product-icon.svg
-  nd-banner:
+  f5-banner:
     enabled: true
     type: deprecation
     start-date: 2025-05-30
     md: /_banners/ngf-2.0-release.md
 # The subtitle displays directly underneath the heading of a given page
-nd-subtitle: Implement the Gateway API across hybrid and multi-cloud Kubernetes environments with a secure, fast, and reliable NGINX data plane.
+f5-subtitle: Implement the Gateway API across hybrid and multi-cloud Kubernetes environments with a secure, fast, and reliable NGINX data plane.
 # Indicates that this is a custom landing page
-nd-landing-page: true
+f5-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: landing-page
+f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: FABRIC
+f5-product: FABRIC
 ---
 
 ## About

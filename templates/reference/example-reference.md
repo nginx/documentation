@@ -1,19 +1,19 @@
 ---
-nd-content-type: reference
-nd-docs: DOCS-004
-nd-product: KITCHEN
+f5-content-type: reference
+f5-docs: DOCS-004
+f5-product: KITCHEN
 title: Drip coffee maker — settings and indicators
 description: "Reference for all user-configurable settings and indicator light states on a standard drip coffee maker."
 weight: 100
 toc: true
-nd-keywords: "coffee maker, drip coffee, brew strength, keep-warm, indicator light, settings, carafe, filter basket, water reservoir, configuration"
-nd-summary: >
+f5-keywords: "coffee maker, drip coffee, brew strength, keep-warm, indicator light, settings, carafe, filter basket, water reservoir, configuration"
+f5-summary: >
   Use this reference to look up all user-configurable settings and indicator light states for a
   standard drip coffee maker. Each entry includes the setting name, accepted values, the default
   value, and a description of its effect on the brew. This reference applies to drip coffee makers
   with a manual control panel; models with a digital display may include additional settings not
   listed here.
-nd-audience: any
+f5-audience: any
 ---
 
 ## Overview

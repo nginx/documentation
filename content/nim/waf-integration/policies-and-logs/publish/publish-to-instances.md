@@ -3,11 +3,14 @@ title: Publish updates to instances
 description: Deploy updated F5 WAF for NGINX security policies, log profiles, signatures, and threat campaigns to your NGINX instances or instance groups using the Publish API.
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Deploy updated F5 WAF for NGINX security configurations to your NGINX instances or instance groups using the F5 NGINX Instance Manager Publish API.
+  You can publish security policies, log profiles, attack signatures, bot signatures, and threat campaigns in a single request.
 ---
 
-Use the NGINX Instance Manager Publish API to deploy updated security configurations to your NGINX instances or instance groups.
+Use the F5 NGINX Instance Manager Publish API to deploy updated security configurations to your NGINX instances or instance groups.
 You can publish security policies, log profiles, attack signatures, bot signatures, and threat campaigns.
 
 Call this endpoint **after** you’ve created or updated the resources you want to deploy.

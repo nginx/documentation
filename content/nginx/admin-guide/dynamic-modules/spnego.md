@@ -1,12 +1,12 @@
 ---
 description: This module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support
   to F5 NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.
-nd-docs: DOCS-401
+f5-docs: DOCS-401
 title: SPNEGO
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The SPNEGO Auth module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support to F5 NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.

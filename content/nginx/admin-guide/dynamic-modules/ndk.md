@@ -1,11 +1,11 @@
 ---
 description: ''
-nd-docs: DOCS-392
+f5-docs: DOCS-392
 title: NGINX Developer Kit
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The NGINX Developer Kit (NDK) module makes it easier for module developers to develop NGINX modules.

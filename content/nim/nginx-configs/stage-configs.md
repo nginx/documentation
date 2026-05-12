@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-1277
+f5-docs: DOCS-1277
 title: Stage NGINX configs
 toc: true
 weight: 1
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Pre-configure and stage NGINX configuration files in F5 NGINX Instance Manager before deploying them to your NGINX instances."
+f5-summary: >
+  Stage NGINX configuration files in F5 NGINX Instance Manager before pushing them to your instances.
+  Staging lets you prepare, validate, and review configurations without immediately applying them to production instances.
 ---
 
 ## Overview
@@ -17,7 +21,7 @@ To complete the instructions in this guide, ensure:
 
 - NGINX Instance Manager is installed, licensed, and running.
 
-{{<call-out "tip" "Interacting with the API" >}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< ref "/nim/fundamentals/api-overview.md" >}}). {{</call-out>}}
+{{<call-out "tip" "Interacting with the API" >}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the NGINX Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< ref "/nim/fundamentals/api-overview.md" >}}). {{</call-out>}}
 
 ---
 
@@ -79,7 +83,7 @@ To publish a staged configuration to an NGINX instance or instance group:
 
 ### Publish configs with hash versioning (API only) {#hash-versioning-staged-configs}
 
-With the Instance Manager REST API, you can add a commit hash to NGINX configurations if you use version control, such as Git. This allows you to retrieve a configuration with a unique version identifier.
+With the NGINX Instance Manager REST API, you can add a commit hash to NGINX configurations if you use version control, such as Git. This allows you to retrieve a configuration with a unique version identifier.
 
 #### HTTP request (POST)
 
@@ -118,7 +122,7 @@ When adding version control identifiers to a config, include the following param
 }
 ```
 
-{{<call-out "important" "Commit information reset upon direct edits" >}} If you edit an NGINX configuration in the Instance Manager web interface or directly on the data plane, previous hashed commit information will be lost: `externalID` will revert to `null` and `externalIdType` will revert to `other` automatically.{{</call-out>}}
+{{<call-out "important" "Commit information reset upon direct edits" >}} If you edit an NGINX configuration in the NGINX Instance Manager web interface or directly on the data plane, previous hashed commit information will be lost: `externalID` will revert to `null` and `externalIdType` will revert to `other` automatically.{{</call-out>}}
 
 #### HTTP request (GET)
 

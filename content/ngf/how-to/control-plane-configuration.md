@@ -2,9 +2,9 @@
 title: Control plane configuration
 weight: 400
 toc: true
-nd-product: FABRIC
-nd-docs: DOCS-1839
-nd-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1839
+f5-content-type: how-to
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric control plane configuration.

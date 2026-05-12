@@ -1,8 +1,8 @@
 ---
-nd-product:
+f5-product:
 - NIMNGR
 - NONECO
-nd-files:
+f5-files:
 - content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/disconnected/offline-install-guide.md
 ---

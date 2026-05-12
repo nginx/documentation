@@ -2,9 +2,9 @@
 title: Scaling the control plane and data plane
 weight: 700
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1840
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1840
 ---
 
 This document describes how you can separately scale the NGINX Gateway Fabric control plane and data plane.

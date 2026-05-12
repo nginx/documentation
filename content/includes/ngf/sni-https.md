@@ -1,5 +1,5 @@
 ---
-nd-product: FABRIC
+f5-product: FABRIC
 ---
 
 ## HTTPS Traffic without SNI (Server Name Indication)

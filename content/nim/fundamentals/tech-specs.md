@@ -1,15 +1,19 @@
 ---
-nd-docs: DOCS-805
+f5-docs: DOCS-805
 title: Technical Specifications
 toc: true
 weight: 20
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
+description: "Technical specifications for F5 NGINX Instance Manager, including supported operating systems, Kubernetes distributions, NGINX versions, browsers, and hardware requirements."
+f5-summary: >
+  Check the technical specifications for F5 NGINX Instance Manager before you install it.
+  This reference lists supported operating systems, Kubernetes distributions, NGINX versions, browsers, and hardware requirements.
 ---
 
 ## Overview
 
-NGINX Instance Manager provides centralized management for NGINX Open Source and NGINX Plus instances across various environments, including bare metal, containers, public clouds (AWS, Azure, Google Cloud), and virtual machines. It supports several Linux distributions, including Amazon Linux, CentOS, Debian, RHEL, and Ubuntu. This guide outlines the technical specifications, minimum requirements, and supported platforms for deploying NGINX Instance Manager, ensuring optimal performance in both small and large environments.
+F5 NGINX Instance Manager provides centralized management for NGINX Open Source and NGINX Plus instances across various environments, including bare metal, containers, public clouds (AWS, Azure, Google Cloud), and virtual machines. It supports several Linux distributions, including Amazon Linux, CentOS, Debian, RHEL, and Ubuntu. This guide outlines the technical specifications, minimum requirements, and supported platforms for deploying NGINX Instance Manager, ensuring optimal performance in both small and large environments.
 
 ## Supported deployment environments {#supported-environments}
 

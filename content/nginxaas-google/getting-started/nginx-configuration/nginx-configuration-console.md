@@ -2,10 +2,10 @@
 title: Create or upload using the NGINXaaS Console
 weight: 100
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/getting-started/nginx-configuration/nginx-configuration-console/
-nd-content-type: how-to
-nd-product: NGOOGL
+f5-content-type: how-to
+f5-product: NGOOGL
 ---
 
 You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINXaaS) deployment using the NGINXaaS Console.

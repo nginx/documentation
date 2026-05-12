@@ -2,9 +2,9 @@
 title: Snippets
 weight: 800
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1848
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1848
 ---
 
 {{< call-out "important" >}}This guide previously showed how to use `SnippetsFilters` to configure Rate Limiting in NGINX. However, first-class support for Rate Limiting is now supported through the `RateLimitPolicy` API. This guide has been changed to provide an example of how to use `limit_conn` to limit the number of connections to a location and `limit_except` to limit the allowed HTTP methods.

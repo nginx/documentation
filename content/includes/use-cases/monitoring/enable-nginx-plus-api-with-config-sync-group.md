@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md
 - content/nginx-one-console/workshops/lab5/upgrade-nginx-plus-to-latest-version.md
 ---

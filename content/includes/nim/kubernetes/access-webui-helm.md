@@ -1,7 +1,7 @@
 ---
-nd-product: NIMNGR
-nd-docs: DOCS-1323
-nd-files:
+f5-product: NIMNGR
+f5-docs: DOCS-1323
+f5-files:
 - content/nim/deploy/kubernetes/deploy-using-helm.md
 ---
 

@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1464
-nd-product: INGRESS
-nd-files:
+f5-docs: DOCS-1464
+f5-product: INGRESS
+f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
 - content/nic/integrations/app-protect-waf/installation.md

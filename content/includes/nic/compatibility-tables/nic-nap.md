@@ -1,6 +1,6 @@
 ---
-nd-product: INGRESS
-nd-files:
+f5-product: INGRESS
+f5-files:
 - content/nic/changelog/_index.md
 - content/nic/install/waf-helm.md
 - content/nic/integrations/app-protect-waf-v5/installation.md

@@ -2,9 +2,9 @@
 title: NGINX Ingress Controller and Linkerd
 toc: true
 weight: 1800
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1450
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1450
 ---
 
 This document explains how to integrate NGINX Ingress Controller with Linkerd using Linkerd's sidecar proxy. Linkerd works with both NGINX Ingress Controller open source and NGINX Ingress Controller using NGINX Plus.

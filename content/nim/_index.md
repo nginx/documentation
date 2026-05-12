@@ -2,10 +2,14 @@
 title: F5 NGINX Instance Manager
 description: Track and control NGINX Open Source and NGINX Plus instances.
 url: /nginx-instance-manager/
-nd-landing-page: true
+f5-landing-page: true
 cascade:
   logo: "NGINX-Instance-Manager-product-icon.svg"
-nd-product: NIMNGR
+f5-product: NIMNGR
+f5-content-type: landing-page
+f5-summary: >
+  Use F5 NGINX Instance Manager to track, configure, and manage NGINX Open Source and NGINX Plus instances from a single dashboard.
+  NGINX Instance Manager supports deployments on virtual machines, Docker, Kubernetes, and bare metal across cloud and on-premises environments.
 ---
 
 ## About

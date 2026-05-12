@@ -1,6 +1,6 @@
 ---
-nd-product: NAZURE
-nd-files:
+f5-product: NAZURE
+f5-files:
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md
 ---

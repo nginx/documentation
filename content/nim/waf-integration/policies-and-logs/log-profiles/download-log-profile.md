@@ -1,22 +1,22 @@
 ---
-nd-content-type: how-to
-nd-docs: DOCS-000
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-docs: DOCS-000
+f5-product: NIMNGR
 title: Download log profile bundles (REST API)
-description: "Download a compiled F5 WAF for NGINX security log profile bundle from NGINX Instance Manager using the REST API."
+description: "Download a compiled F5 WAF for NGINX security log profile bundle from F5 NGINX Instance Manager using the REST API."
 weight: 500
 toc: true
-nd-keywords: "download log profile bundle, security log profile, WAF, NGINX Instance Manager, NIM, log profile bundle, tgz, REST API, app protect, compiler version, logprofiles, bundles, hash, integrity"
-nd-summary: >
-  Download a compiled F5 WAF for NGINX security log profile bundle from NGINX Instance Manager using the REST API.
+f5-keywords: "download log profile bundle, security log profile, WAF, NGINX Instance Manager, NIM, log profile bundle, tgz, REST API, app protect, compiler version, logprofiles, bundles, hash, integrity"
+f5-summary: >
+  Download a compiled F5 WAF for NGINX security log profile bundle from F5 NGINX Instance Manager using the REST API.
   The downloaded bundle is the compiled output produced by the compile a security log profile API.
   The response includes a hash and size that you can use to verify the integrity of the downloaded bundle against the values returned at compile time.
-nd-audience: operator
+f5-audience: operator
 ---
 
 ## Overview
 
-Use this guide to download a compiled F5 WAF for NGINX security log profile bundle from NGINX Instance Manager using the REST API. The bundle is the compiled output produced by the [compile a security log profile]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/compile-log-profile.md" >}}) API.
+Use this guide to download a compiled F5 WAF for NGINX security log profile bundle from F5 NGINX Instance Manager using the REST API. The bundle is the compiled output produced by the [compile a security log profile]({{< ref "/nim/waf-integration/policies-and-logs/log-profiles/compile-log-profile.md" >}}) API.
 
 The response includes a `hash` and `size` for the downloaded bundle. Verify these values against the `hash` and `size` returned when the bundle was compiled to confirm the integrity of the download.
 

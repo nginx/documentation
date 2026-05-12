@@ -2,8 +2,8 @@
 title: Operation logs
 toc: false
 weight: 400
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 

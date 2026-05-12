@@ -1,6 +1,6 @@
 ---
-nd-content-type: how-to
-nd-product: NONECO
+f5-content-type: how-to
+f5-product: NONECO
 title: Submit templates
 toc: true
 weight: 200

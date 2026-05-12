@@ -2,9 +2,9 @@
 title: Session Persistence
 weight: 1100
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs:
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs:
 ---
 
 Learn how to configure session persistence using NGINX Gateway Fabric.

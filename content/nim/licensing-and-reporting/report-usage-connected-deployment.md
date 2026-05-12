@@ -1,23 +1,26 @@
 ---
 title: Report usage data to F5 (connected)
-description: "Configure NGINX Plus to report usage data to NGINX Instance Manager, and submit the report to F5 for verification in a connected (internet-accessible) environment."
+description: "Configure NGINX Plus to report usage data to F5 NGINX Instance Manager, and submit the report to F5 for verification in a connected (internet-accessible) environment."
 weight: 20
 toc: true
-nd-docs: DOCS-1650
-nd-personas:
+f5-docs: DOCS-1650
+f5-personas:
 - devops
 - netops
 - secops
 - support
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-summary: >
+  Configure NGINX Plus to report usage data to F5 NGINX Instance Manager, which then forwards the report automatically to F5 in a connected environment.
+  This setup is used when NGINX Plus instances don't have direct internet access but NGINX Instance Manager does.
 ---
 
 {{< call-out "note" >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 ## Overview
 
-In environments where NGINX Instance Manager has internet access but NGINX Plus doesn't, NGINX Plus sends usage data to NGINX Instance Manager. NGINX Instance Manager automatically sends the usage reports to F5 for verification, or you can send them manually.
+In environments where F5 NGINX Instance Manager has internet access but NGINX Plus doesn't, NGINX Plus sends usage data to NGINX Instance Manager. NGINX Instance Manager automatically sends the usage reports to F5 for verification, or you can send them manually.
 
 **If usage reporting fails, NGINX Plus stops processing traffic.** Previously reported instances are an exception — see [handling outages](#handling-outages) for details.
 

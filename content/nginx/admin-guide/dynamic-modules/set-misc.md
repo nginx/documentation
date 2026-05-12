@@ -1,11 +1,11 @@
 ---
 description: Implement numerous additional `set_*` directives to extend the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module, with the Set-Misc dynamic module supported by NGINX, Inc.
-nd-docs: DOCS-400
+f5-docs: DOCS-400
 title: Set-Misc
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The Set-Misc dynamic module extends the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) by implementing numerous additional `set_*` directives. 

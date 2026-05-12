@@ -1,9 +1,15 @@
 ---
 title: Set up attack signatures, bot signatures, and threat campaigns
-nd-docs: 
+f5-docs: 
 weight: 200
-nd-landing-page: true
+f5-landing-page: true
 url: /nginx-instance-manager/waf-integration/configuration/setup-signatures-and-threats/
+f5-product: NIMNGR
+f5-content-type: landing-page
+description: "Keep F5 WAF for NGINX attack signature, bot signature, and threat campaign packages current in F5 NGINX Instance Manager using automatic or manual updates."
+f5-summary: >
+  Update F5 WAF for NGINX security packages in F5 NGINX Instance Manager to keep detection current.
+  This section covers enabling automatic downloads from the NGINX repository, performing manual updates, and updating the Security Monitoring attack signature database.
 ---
 
 ## Overview 
@@ -16,7 +22,7 @@ F5 WAF for NGINX protects your applications using predefined and regularly updat
 
 - **Bot signatures**: Detection patterns designed to identify and classify automated bot traffic. These signatures help distinguish between legitimate bots, such as search engine crawlers, and malicious ones that perform credential stuffing, scraping, or denial-of-service attacks. See the [bot signatures documentation]({{< ref "/waf/policies/bot-signatures.md" >}}) for more information.
 
-To take advantage of the latest updates, you must upload the attack signature, bot signature, and threat campaign packages to NGINX Instance Manager.
+To take advantage of the latest updates, you must upload the attack signature, bot signature, and threat campaign packages to F5 NGINX Instance Manager.
 
 You can either:
 

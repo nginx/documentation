@@ -3,8 +3,8 @@ title: Uninstall NGINX Amplify Agent
 description: Learn how to uninstall F5 NGINX Amplify Agent.
 weight: 400
 toc: true
-nd-docs: DOCS-969
-nd-product: AMPLIF
+f5-docs: DOCS-969
+f5-product: AMPLIF
 ---
 
 To completely delete a previously monitored object, perform the following steps:

@@ -1,11 +1,14 @@
 ---
 title: Manage security policies and log profiles
-description: Create, update, and deploy F5 WAF for NGINX security policies and log profiles using NGINX Instance Manager.
+description: Create, update, and deploy F5 WAF for NGINX security policies and log profiles using F5 NGINX Instance Manager.
 weight: 300
-nd-content-type: landing-page
-nd-landing-page: true
+f5-content-type: landing-page
+f5-landing-page: true
 url: /nginx-instance-manager/waf-integration/policies-and-logs/
-nd-product: NIMNGR
+f5-product: NIMNGR
+f5-summary: >
+  Use this section to create, update, and deploy F5 WAF for NGINX security policies and log profiles.
+  F5 NGINX Instance Manager provides a centralized interface for managing security policies, log profiles, attack signatures, bot signatures, and threat campaigns through the web interface or REST API.
 ---
 
 ## Overview
@@ -35,7 +38,7 @@ Before you start, complete these prerequisites:
 
 - [Set up F5 WAF for NGINX configuration management]({{< ref "/nim/waf-integration/configuration/_index.md" >}}).
 - Make sure your user account has the [required permissions]({{< ref "/nim/admin-guide/rbac/overview-rbac.md" >}}) to access the REST API:
-  - **Module:** Instance Manager
+  - **Module:** NGINX Instance Manager
   - **Feature:** Instance Management → `READ`
   - **Feature:** Security Policies → `READ`, `CREATE`, `UPDATE`, `DELETE`
 

@@ -2,9 +2,9 @@
 title: Client Settings Policy API
 toc: true
 weight: 900
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1846
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1846
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.
@@ -20,6 +20,7 @@ The settings in `ClientSettingsPolicy` correspond to the following NGINX directi
 - [`keepalive_requests`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests)
 - [`keepalive_time`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_time)
 - [`keepalive_timeout`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout)
+- [`keepalive_min_timeout`](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_min_timeout)
 
 `ClientSettingsPolicy` is an [Inherited PolicyAttachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to a Gateway, HTTPRoute, or GRPCRoute in the same namespace as the `ClientSettingsPolicy`.
 

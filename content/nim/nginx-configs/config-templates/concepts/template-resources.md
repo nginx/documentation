@@ -1,16 +1,19 @@
 ---
 title: Template resource files
-description: ''
+description: "Reference guide for template resource files in F5 NGINX Instance Manager: the Go templates and JSON schemas that define reusable NGINX configuration components."
 weight: 200
 toc: true
-nd-docs: DOCS-1501
-nd-personas:
+f5-docs: DOCS-1501
+f5-personas:
 - devops
 - netops
 - secops
 - support
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
+  Understand how template resource files work in F5 NGINX Instance Manager to define reusable NGINX configuration components.
+  Resource files combine Go templates and JSON schemas to create flexible configuration building blocks used by base and augment templates.
 ---
 
 ## Config Template, Schema, and README Files
@@ -18,7 +21,7 @@ nd-product: NIMNGR
 F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) and JSON schemas to create flexible and robust NGINX configuration templates. This allows users to efficiently customize and validate configurations without needing expert knowledge of NGINX syntax.
 
 {{<call-out "tip" "Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
- Go templating in Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
+ Go templating in NGINX Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
 
 This guide covers the following resource files for creating templates:
 

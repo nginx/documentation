@@ -2,9 +2,9 @@
 title: Monitoring with Prometheus and Grafana
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1418
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1418
 ---
 
 This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.

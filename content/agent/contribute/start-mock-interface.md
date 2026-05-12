@@ -2,10 +2,10 @@
 title: Start mock control plane interface
 toc: true
 weight: 300
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 draft: true
-nd-product: NAGENT
-nd-content-type: how-to
+f5-product: NAGENT
+f5-content-type: how-to
 ---
 
 This document describes how to configure and run F5 NGINX Agent using a mock interface ("control plane") for NGINX Agent to report to.

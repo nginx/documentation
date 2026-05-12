@@ -2,8 +2,8 @@
 title: "Apply security policy updates without reloading NGINX using apreload"
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: F5WAFN
+f5-content-type: how-to
+f5-product: F5WAFN
 ---
 
 This document describes how to use `apreload`, a tool for updating F5 WAF for NGINX configuration without reloading NGINX.

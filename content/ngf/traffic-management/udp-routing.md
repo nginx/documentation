@@ -2,9 +2,9 @@
 title: UDPRoute
 weight: 1300
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-0000
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-0000
 ---
 
 Learn how to configure a UDPRoute to handle a UDP connection between NGINX Gateway Fabric and the backend applications. 

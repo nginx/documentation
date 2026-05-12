@@ -2,9 +2,9 @@
 title: F5 BIG-IP
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-600
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-600
 ---
 
 Learn how to use F5 IngressLink with NGINX Ingress Controller to configure your F5 BIG-IP device.

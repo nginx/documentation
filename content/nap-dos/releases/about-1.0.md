@@ -2,9 +2,9 @@
 title: NGINX App Protect 1.0
 toc: true
 weight: 260
-nd-docs: DOCS-672
-nd-content-type: reference
-nd-product: F5DOSN
+f5-docs: DOCS-672
+f5-content-type: reference
+f5-product: F5DOSN
 ---
 
 Here you can find the release information for F5 DoS for NGINX v1. F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) for your web applications.
