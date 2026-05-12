@@ -1,12 +1,12 @@
 ---
 title: F5 NGINXaaS for Azure
-nd-subtitle: Azure native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX
+f5-subtitle: Azure native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX
 url: /nginxaas/azure/
-nd-landing-page: true
+f5-landing-page: true
 cascade:
   logo: F5-NGINXaaS-icon.svg
-nd-content-type: landing-page
-nd-product: NAZURE
+f5-content-type: landing-page
+f5-product: NAZURE
 ---
 
 

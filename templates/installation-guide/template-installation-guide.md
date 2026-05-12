@@ -1,17 +1,17 @@
 ---
-nd-content-type: installation-guide
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: installation-guide
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: {Install + product or component name}
 description: "{One-sentence summary of what the reader installs and on what platform, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{keyword1}, {keyword2}, {keyword3}, {platform}, {package-manager}, {CLI command}"
-nd-summary: >
+f5-keywords: "{keyword1}, {keyword2}, {keyword3}, {platform}, {package-manager}, {CLI command}"
+f5-summary: >
   {Sentence 1: what the reader will install and where. Write in plain prose and avoid jargon.}
   {Sentence 2: what the installed component does or enables.}
   {Sentence 3 (optional): supported platforms, versions, or scope limits.}
-nd-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
+f5-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-installation-guide.md).

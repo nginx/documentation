@@ -2,9 +2,9 @@
 title: Custom annotations
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-595
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-595
 ---
 
 This topic explains how you can use custom annotations with F5 NGINX Ingress Controller.

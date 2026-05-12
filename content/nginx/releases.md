@@ -1,12 +1,12 @@
 ---
 description: Release information for F5 NGINX Plus, a complete application delivery
   platform, including new features and a list of supported platforms.
-nd-docs: DOCS-472
+f5-docs: DOCS-472
 title: Releases
 toc: true
 weight: 300
-nd-content-type: reference
-nd-product: NGPLUS
+f5-content-type: reference
+f5-product: NGPLUS
 ---
 
 {{< call-out "note" "Important" >}} Since May 13, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: [Long-Term Support Releases (LTS)](#lts) and [Continuous Releases (CR)](#cr). {{< /call-out >}}
@@ -26,33 +26,31 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 ## Long-term support releases (LTS) {#lts}
 
-{{< call-out "note" "Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]() for details. {{< /call-out >}}
+{{< call-out "note" "Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
-### NGINX Plus LTS 37.0.0 {#r37.0}
+### NGINX Plus  PLS.37.0.0.1 LTS {#r37.0}
 _May 13, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
 
-NGINX Plus LTS 37.0.0 is the first LTS release.
+NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 
-- New release model: Long-Term Support (LTS) Releases and Continuous Releases (CR).
-- CONTROL API
-- JSON Log Formatting: the `json` parameter of the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive and the new [`error_log_tag`](https://nginx.org/en/docs/ngx_core_module.html#error_log_tag) directive.
-- Upstream latency metrics.
-- HTTP CONNECT forward proxy authentication: the `auth_proxy` directive.
-- HTTP2 to upstreams.
-- Encrypted Client Hello (ECH) Support.
-- Multipath TCP support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive
-- Default HTTP 1.1 version to backends and keepalive enabled by default.
-- Support for OpenSSL 4.0.
+- [New release model](https://community.f5.com/kb/devcentralnews/announcing-the-first-f5-nginx-commercial-long-term-support-release/346419): Long-Term Support (LTS) Releases and Continuous Releases (CR).
+- [NGINX control REST API](https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/#control-api) that provides an HTTP interface for controlling an NGINX Plus instance in addition to signal-based control.
+- JSON-formatted error logs: the `json` parameter of the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive and the [`error_log_tag`](https://nginx.org/en/docs/ngx_core_module.html#error_log_tag) directive.
+- Enhanced upstream latency metrics with latency histograms for each upstream.
+- Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
+- Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
+- Multipath TCP support: the `multipath` parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) directive.
 - The [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers) directive that sets the maximum allowed number of header lines in requests.
-- MCP Agentic Observability
-- Enhancements in the [ACME](https://nginx.org/en/docs/http/ngx_http_acme_module.html) module.
-- Enhancements in the [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) module.
-- Enhancements in the [Prometheus-njs module]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) module.
+- HTTP2 to upstreams support.
+- Default HTTP 1.1 version to upstreams with keepalive enabled by default.
+- Support for OpenSSL 4.0.
+- Agentic observability: Real-time MCP traffic monitoring 
+- Enhancements in the [ACME](https://nginx.org/en/docs/http/ngx_http_acme_module.html), [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) and [Prometheus-njs]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) modules.
 
-{{< call-out "note" "More info" >}} [Announcing NGINX Plus R37](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r37-release-now-available/344514) blog post. {{< /call-out >}}
+{{< call-out "note" "More info" >}} [Announcing NGINX Plus PLS.37.0.0.1 LTS](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
 
-NGINX Plus R37.0.0 is supported on:
+NGINX Plus PLS.37.0.0.1 LTS is supported on:
 
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}
 | Distribution   | Versions                  | Architecture    |
@@ -81,7 +79,7 @@ NGINX Plus R37.0.0 is supported on:
 
 ## Continuous releases (CR) {#cr}
 
-Currently, there are no CR releases for the NGINX Plus LTS 37.0.0.
+Currently, there are no CR releases for the NGINX Plus PLS.37.0.0.1 LTS.
 
 ## Other supported releases
 
@@ -213,6 +211,8 @@ NGINX Plus R35 is a feature release:
 - [Automated Certificate Management Environment](https://blog.nginx.org/blog/native-support-for-acme-protocol) (ACME) protocol [support](https://nginx.org/en/docs/http/ngx_http_acme_module.html).
 
 - [Automatic renewal]({{< ref "/solutions/about-subscription-licenses/getting-started.md#update-license" >}}) of NGINX Plus license.
+
+  {{< include "licensing-and-reporting/fcp-renewal-caution.md" >}}
 
 - [Native OIDC enhancements](https://community.f5.com/kb/technicalarticles/we-heard-you-r35-brings-frictionless-oidc-logout-and-richer-claims-to-nginx-plus/342914): [Relying party (RP) initiated Logout](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#logout_uri) and [UserInfo](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#userinfo) endpoint.
 

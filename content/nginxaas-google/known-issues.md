@@ -2,10 +2,10 @@
 title: "Known issues"
 weight: 1000
 toc: true
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 url: /nginxaas/google/known-issues/
-nd-content-type: reference
-nd-product: NGOOGL
+f5-content-type: reference
+f5-product: NGOOGL
 ---
 
 List of known issues in the latest release of F5 NGINXaaS for Google Cloud (NGINXaaS).

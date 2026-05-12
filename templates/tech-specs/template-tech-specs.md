@@ -1,17 +1,17 @@
 ---
-nd-content-type: tech-specs
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: tech-specs
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: {Product or component name} technical specifications
 description: "{One-sentence summary of what component or system this page covers, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{component name}, {spec1}, {spec2}, technical specifications, requirements, limits, performance, compatibility"
-nd-summary: >
+f5-keywords: "{component name}, {spec1}, {spec2}, technical specifications, requirements, limits, performance, compatibility"
+f5-summary: >
   {Sentence 1: what product, component, or system this page covers.}
   {Sentence 2: what types of specifications the reader can look up here, for example: hardware requirements, performance limits, or compatibility matrices.}
   {Sentence 3 (optional): version scope or platform constraints this page applies to.}
-nd-audience: {developer | operator | admin | architect | any}
+f5-audience: {developer | operator | admin | architect | any}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-tech-specs.md).

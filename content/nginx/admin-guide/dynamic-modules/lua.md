@@ -1,11 +1,11 @@
 ---
 description: ''
-nd-docs: DOCS-391
+f5-docs: DOCS-391
 title: Lua
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 Integrate Lua co-routines into the NGINX event-processing model with the community-authored Lua dynamic module.

@@ -4,8 +4,8 @@ description: Learn about F5 NGINX Amplify Agent.
 weight: 1
 toc: true
 noindex: true
-nd-docs: DOCS-960
-nd-product: AMPLIF
+f5-docs: DOCS-960
+f5-product: AMPLIF
 ---
 
 F5 NGINX Amplify Agent is a compact application written in Python. Its role is to collect various metrics and metadata and send them securely to the backend for storage and visualization.

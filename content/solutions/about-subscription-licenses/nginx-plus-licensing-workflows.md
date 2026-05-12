@@ -2,10 +2,10 @@
 title: NGINX Plus licensing workflows
 toc: true
 weight: 100
-nd-content-type:
+f5-content-type:
 - reference
-nd-product: SOLUTI
-nd-docs:
+f5-product: SOLUTI
+f5-docs:
 ---
 
 This reference shows how NGINX Plus validates license status and sends usage reports to F5. The workflows include startup, license expiration, and reporting in both online and offline (disconnected) environments.

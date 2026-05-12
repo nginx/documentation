@@ -1,18 +1,18 @@
 ---
-nd-content-type: how-to
-nd-docs: DOCS-001
-nd-product: KITCHEN
+f5-content-type: how-to
+f5-docs: DOCS-001
+f5-product: KITCHEN
 title: Prepare pour-over coffee
 description: "Configure a pour-over coffee setup and brew a single cup using freshly ground beans."
 weight: 100
 toc: true
-nd-keywords: "pour-over, coffee, brew, filter, kettle, grind, V60, Chemex, hand grinder"
-nd-summary: >
+f5-keywords: "pour-over, coffee, brew, filter, kettle, grind, V60, Chemex, hand grinder"
+f5-summary: >
   Use this guide to set up a pour-over coffee brewer and produce a single, well-extracted cup.
   Pour-over brewing gives you precise control over extraction time and water temperature, which
   produces a cleaner, more flavorful cup than automatic drip machines.
   This guide covers a single serving; scale the coffee and water quantities proportionally for larger batches.
-nd-audience: any
+f5-audience: any
 ---
 
 ## Overview

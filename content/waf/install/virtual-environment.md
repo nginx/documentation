@@ -2,12 +2,12 @@
 title: "Virtual machine or bare metal"
 weight: 100
 toc: true
-nd-banner:
+f5-banner:
     enabled: true
     start-date: 2025-08-30
     md: /_banners/waf-virtual-restriction.md
-nd-content-type: how-to
-nd-product: F5WAFN
+f5-content-type: how-to
+f5-product: F5WAFN
 ---
 
 This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment.

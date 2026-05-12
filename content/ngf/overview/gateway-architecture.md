@@ -2,9 +2,9 @@
 title: Gateway architecture
 weight: 100
 toc: true
-nd-content-type: reference
-nd-product: FABRIC
-nd-docs: DOCS-1413
+f5-content-type: reference
+f5-product: FABRIC
+f5-docs: DOCS-1413
 ---
 
 Learn about the architecture and design principles of NGINX Gateway Fabric: a Kubernetes Gateway API implementation which uses NGINX as the data plane. 

@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1500
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-1500
+f5-product: NIMNGR
+f5-files:
 - content/nim/nginx-configs/config-templates/concepts/augment-templates.md
 - content/nim/nginx-configs/config-templates/concepts/config-templates.md
 - content/nim/nginx-configs/config-templates/concepts/default-base-template.md

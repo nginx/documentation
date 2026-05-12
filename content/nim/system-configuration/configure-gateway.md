@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-1131
+f5-docs: DOCS-1131
 title: Optimize NGINX proxy gateway for large data planes
 toc: true
 weight: 400
-nd-content-type: tutorial
-nd-product: NIMNGR
+f5-content-type: tutorial
+f5-product: NIMNGR
+description: "Tune the NGINX proxy gateway worker connections and other settings in F5 NGINX Instance Manager to support a large number of managed instances."
+f5-summary: >
+  Tune the NGINX proxy gateway in F5 NGINX Instance Manager to handle a large number of connected NGINX instances.
+  When the number of worker connections is too low, the gateway generates alerts; this guide explains how to increase the limit and validate the change.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

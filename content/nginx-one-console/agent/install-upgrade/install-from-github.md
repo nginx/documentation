@@ -2,9 +2,9 @@
 title: Install from GitHub package files
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-docs: DOCS-1876
-nd-product: NAGENT
+f5-content-type: how-to
+f5-docs: DOCS-1876
+f5-product: NAGENT
 ---
 
 {{< call-out "note" >}}

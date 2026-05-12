@@ -2,9 +2,9 @@
 title: DoS protected resource specification
 toc: true
 weight: 300
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-581
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-581
 ---
 
 F5 DoS for NGINX protected resource specification

@@ -1,5 +1,5 @@
 ---
-nd-docs: DOCS-587
+f5-docs: DOCS-587
 title: Custom templates
 toc: true
 weight: 500

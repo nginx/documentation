@@ -1,15 +1,19 @@
 ---
-nd-docs: DOCS-918
+f5-docs: DOCS-918
 title: Provision users and groups using SCIM
 toc: true
 weight: 500
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Use SCIM 2.0 to provision, update, and deprovision users and groups in F5 NGINX Instance Manager from your identity provider."
+f5-summary: >
+  Automate user and group management in F5 NGINX Instance Manager using SCIM 2.0 from your identity provider.
+  SCIM provisioning keeps user accounts and group memberships in sync with your identity provider without manual intervention.
 ---
 
 ## Overview
 
-Starting with NGINX Instance Manager 2.3, you can use SCIM 2.0 (System for Cross-domain Identity Management) to provision, update, or deprovision users and user groups through an open API for managing identities.
+Starting with F5 NGINX Instance Manager 2.3, you can use SCIM 2.0 (System for Cross-domain Identity Management) to provision, update, or deprovision users and user groups through an open API for managing identities.
 
 ## Access SCIM APIs
 

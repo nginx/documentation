@@ -1,16 +1,19 @@
 ---
 description: This topic describes possible issues users might encounter when using
-  Instance Manager. When possible, suggested workarounds are provided.
-nd-docs: DOCS-1224
+  F5 NGINX Instance Manager. When possible, suggested workarounds are provided.
+f5-docs: DOCS-1224
 title: Troubleshooting
 toc: true
 weight: 1000
 draft: true
-nd-content-type: reference
-nd-product: NIMNGR
+f5-content-type: reference
+f5-product: NIMNGR
+f5-summary: >
+  Diagnose and resolve common issues with F5 NGINX Instance Manager, including instances not appearing after installation and configuration problems.
+  This reference lists known issues with possible workarounds and steps to verify your setup.
 ---
 
-## New NGINX instances don't show up in Instance Manager
+## New NGINX instances don't show up in NGINX Instance Manager
 
 ### Description
 
@@ -76,27 +79,27 @@ This behavior is **by design**. As a security precaution when F5 WAF for NGINX i
 
 ---
 
-## The NGINX Agent does not reconnect after a containerized Instance Manager with no persistent volumes is restarted
+## The NGINX Agent does not reconnect after a containerized NGINX Instance Manager with no persistent volumes is restarted
 
 ### Description
 
-If Instance Manager is restarted without any persistent volumes configured, the NGINX Agent won't reconnect automatically.
+If F5 NGINX Instance Manager is restarted without any persistent volumes configured, the NGINX Agent won't reconnect automatically.
 
 ### Resolution
 
-When Instance Manager is restarted, its internal API gateway may be assigned a new IP address.
+When NGINX Instance Manager is restarted, its internal API gateway may be assigned a new IP address.
 
-To update the NGINX Agent's configuration with the new Instance Manager IP address, run the NGINX Agent with the `--server-host` CLI parameter or edit the `nginx-agent.conf` file. Using the `--server-host` CLI parameter will ensure that the setting persists across restarts.
+To update the NGINX Agent's configuration with the new NGINX Instance Manager IP address, run the NGINX Agent with the `--server-host` CLI parameter or edit the `nginx-agent.conf` file. Using the `--server-host` CLI parameter will ensure that the setting persists across restarts.
 
 To learn more, refer to the [NGINX Agent documentation]({{< ref "/nms/nginx-agent/install-nginx-agent.md#nginx-agent-cli-flags-usage" >}}).
 
 ---
 
-## "Public Key Not Available" error when upgrading Instance Manager on a Debian-based system
+## "Public Key Not Available" error when upgrading NGINX Instance Manager on a Debian-based system
 
 ### Description
 
-When attempting to upgrade Instance Manager on a Debian-based system, the command `sudo apt-get update` may return the error “public key is not available,” preventing the NGINX Agent from being updated. To resolve this issue, you need to update the public key first.
+When attempting to upgrade NGINX Instance Manager on a Debian-based system, the command `sudo apt-get update` may return the error "public key is not available," preventing the NGINX Agent from being updated. To resolve this issue, you need to update the public key first.
 
 ### Workaround
 

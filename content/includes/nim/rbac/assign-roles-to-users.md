@@ -1,7 +1,7 @@
 ---
-nd-product: NIMNGR
-nd-docs: DOCS-1025
-nd-files:
+f5-product: NIMNGR
+f5-docs: DOCS-1025
+f5-files:
 - content/nim/admin-guide/rbac/assign-roles.md
 - content/nim/security-monitoring/give-access-to-security-monitoring-dashboards.md
 ---

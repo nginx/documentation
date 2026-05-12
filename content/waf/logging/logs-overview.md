@@ -2,8 +2,8 @@
 title: Log types
 toc: true
 weight: 100
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 F5 WAF for NGINX generates three types of logs:

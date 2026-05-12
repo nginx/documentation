@@ -1,12 +1,12 @@
 ---
 description: Control access using HTTP Basic authentication, and optionally in combination
   with IP address-based access control.
-nd-docs: DOCS-428
+f5-docs: DOCS-428
 title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

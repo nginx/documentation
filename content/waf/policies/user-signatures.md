@@ -6,10 +6,10 @@ weight: 2125
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: reference
+f5-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
-nd-product: F5WAFN
-nd-docs: DOCS-1596
+f5-product: F5WAFN
+f5-docs: DOCS-1596
 ---
 
 This document describes the user-defined signatures feature of F5 WAF for NGINX.

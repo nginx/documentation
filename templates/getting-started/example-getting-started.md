@@ -1,18 +1,18 @@
 ---
-nd-content-type: getting-started
-nd-docs: DOCS-002
-nd-product: KITCHEN
+f5-content-type: getting-started
+f5-docs: DOCS-002
+f5-product: KITCHEN
 title: Get started with your drip coffee maker
 description: "Unbox, set up, and brew a verified first cup with a drip coffee maker in under 20 minutes."
 weight: 100
 toc: true
-nd-keywords: "coffee maker, drip coffee, setup, quickstart, first brew, getting started, install, countertop, carafe, filter"
-nd-summary: >
+f5-keywords: "coffee maker, drip coffee, setup, quickstart, first brew, getting started, install, countertop, carafe, filter"
+f5-summary: >
   Use this guide to set up a drip coffee maker and brew a working first cup from scratch.
   A drip coffee maker automates hot water flow through ground coffee, producing a full carafe
   with minimal manual effort. This guide is intended for first-time users and assumes no prior
   experience with drip coffee equipment.
-nd-audience: any
+f5-audience: any
 ---
 
 ## Overview

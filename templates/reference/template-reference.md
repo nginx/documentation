@@ -1,17 +1,17 @@
 ---
-nd-content-type: reference
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: reference
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: {Noun phrase identifying the component or set of entries}
 description: "{One-sentence summary of what this article covers, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{component name}, {parameter1}, {parameter2}, {keyword3}, config, settings, options, parameters"
-nd-summary: >
+f5-keywords: "{component name}, {parameter1}, {parameter2}, {keyword3}, config, settings, options, parameters"
+f5-summary: >
   {Sentence 1: what component or set of entries this article covers.}
   {Sentence 2: what the reader can use this article to look up.}
   {Sentence 3 (optional): scope limits, such as the product version this applies to.}
-nd-audience: {developer | operator | admin | architect | any}
+f5-audience: {developer | operator | admin | architect | any}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-reference.md).

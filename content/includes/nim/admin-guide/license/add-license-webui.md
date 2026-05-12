@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1660
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-1660
+f5-product: NIMNGR
+f5-files:
 - content/nim/licensing-and-reporting/add-license-connected-deployment.md
 - content/nim/licensing-and-reporting/add-license-disconnected-deployment.md
 ---

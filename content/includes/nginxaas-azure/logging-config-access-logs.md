@@ -1,6 +1,6 @@
 ---
-nd-product: NAZURE
-nd-files:
+f5-product: NAZURE
+f5-files:
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-terraform.md

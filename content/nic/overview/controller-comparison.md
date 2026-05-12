@@ -3,9 +3,9 @@ title: Which Ingress Controller Do I Need?
 toc: true
 draft: true
 weight: 400
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-610
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-610
 ---
 
 This document describes the key differences between the community Ingress-NGINX Controller and F5 NGINX Ingress Controller.

@@ -1,12 +1,12 @@
 ---
 description: Control access or forward traffic to different upstream servers based
   on the client's geographical location, using the GeoIP2 dynamic module.
-nd-docs: DOCS-431
+f5-docs: DOCS-431
 title: Restricting Access by Geographical Location
 toc: true
 weight: 800
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="intro"></span>

@@ -1,15 +1,19 @@
 ---
-nd-docs: DOCS-1272
+f5-docs: DOCS-1272
 title: Create and manage roles
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Create custom RBAC roles in F5 NGINX Instance Manager to grant users and groups precisely the permissions they need."
+f5-summary: >
+  Create and manage custom roles in F5 NGINX Instance Manager to control what users and groups can do.
+  The predefined admin role is available for initial setup; create additional roles to limit access for operators, read-only users, or other job functions.
 ---
 
 ## Overview
 
-NGINX Instance Manager emphasizes role-based access control (RBAC) to manage user permissions. A predefined `admin` role is available for initial setup and administration, but you can create custom roles to match specific responsibilities, such as for API Owners or Infrastructure Admins. This lets organizations fine-tune access and permissions to suit their needs.
+F5 NGINX Instance Manager emphasizes role-based access control (RBAC) to manage user permissions. A predefined `admin` role is available for initial setup and administration, but you can create custom roles to match specific responsibilities, such as for API Owners or Infrastructure Admins. This lets organizations fine-tune access and permissions to suit their needs.
 
 ## Create roles {#create-roles}
 

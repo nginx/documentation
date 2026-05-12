@@ -2,8 +2,8 @@
 title: "Configure SELinux"
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: F5WAFN
+f5-content-type: how-to
+f5-product: F5WAFN
 ---
 
 The default settings for Security-Enhanced Linux (SELinux) on modern Red Hat Enterprise Linux (RHEL) and related distros can be very strict, prioritizing security over user convenience.

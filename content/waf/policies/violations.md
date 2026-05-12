@@ -2,8 +2,8 @@
 title: "Violations"
 weight: 250
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This page describes the violations in F5 WAF for NGINX and how they are rated.

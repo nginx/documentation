@@ -2,9 +2,9 @@
 title: Proxy Buffer Configuration Auto-Adjustment
 toc: true
 weight: 850
-nd-docs: DOCS-590
-nd-product: INGRESS
-nd-content-type: how-to
+f5-docs: DOCS-590
+f5-product: INGRESS
+f5-content-type: how-to
 ---
 
 This document explains how the `--enable-directive-autoadjust` option prevents NGINX configuration errors by automatically adjusting some HTTP proxy buffer directives.

@@ -1,12 +1,12 @@
 ---
 description: Set and clear input and output headers to extend the NGINX core [Headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html)
   module, with the Headers-More dynamic module supported by NGINX, Inc.
-nd-docs: DOCS-388
+f5-docs: DOCS-388
 title: Headers-More
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The Headers-More dynamic module extends the NGINX core [Headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html) module by enabling the functionality of setting or clearing input and output headers.

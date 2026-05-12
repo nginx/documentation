@@ -1,17 +1,17 @@
 ---
-nd-content-type: concept
-nd-docs: DOCS-000
-nd-product: {PRODUCT_CODE}
+f5-content-type: concept
+f5-docs: DOCS-000
+f5-product: {PRODUCT_CODE}
 title: {Concept name — use a noun phrase, not "Understand X" or "About X"}
 description: "{One sentence summarizing what the concept is and why it matters, under 160 characters.}"
 weight: 100
 toc: true
-nd-keywords: "{concept name}, {related term}, {synonym}, {product or domain context}"
-nd-summary: >
+f5-keywords: "{concept name}, {related term}, {synonym}, {product or domain context}"
+f5-summary: >
   {Sentence 1: what the concept is, in plain language. Write in plain prose and avoid jargon.}
   {Sentence 2: why it matters to the reader or what it enables.}
   {Sentence 3 (optional): scope, boundaries, or what this document does not cover.}
-nd-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
+f5-audience: {developer | operator | admin | architect | any} {This helps AI systems route questions to the right document and allows doc portals to filter content by role.}
 ---
 
 > If you need more information about how to fill in this template, read the accompanying [guide](./guide-concept.md).

@@ -2,8 +2,8 @@
 title: "HTTP compliance"
 weight: 1300
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This topic describes the HTTP compliance feature for F5 WAF for NGINX.

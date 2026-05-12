@@ -1,10 +1,10 @@
 ---
 title: Subscription licensing & solutions
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 toc: true
 weight: 1
-nd-content-type: landing-page
-nd-landing-page: true
+f5-content-type: landing-page
+f5-landing-page: true
 ---
 
 ## Subscription licensing

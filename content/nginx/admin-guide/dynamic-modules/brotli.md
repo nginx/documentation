@@ -1,11 +1,11 @@
 ---
 description: Learn how to use the Brotli module with F5 NGINX Plus
-nd-docs: DOCS-381
+f5-docs: DOCS-381
 title: Brotli
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 ## Overview

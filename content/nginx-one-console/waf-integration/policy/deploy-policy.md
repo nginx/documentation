@@ -6,10 +6,10 @@ weight: 600
 # Creates a table of contents and sidebar, useful for large documents
 toc: false
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: how-to
+f5-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-nd-product: NONECO
+f5-product: NONECO
 ---
 
 After you've set up a policy, it won't do anything, until you deploy it to one or more instances and Config Sync Groups.

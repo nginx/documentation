@@ -3,10 +3,10 @@ title: Deploy using the Azure CLI
 weight: 200
 toc: true
 url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-cli/
-nd-content-type: how-to
-nd-docs: DOCS-1096
-nd-review-priority: high
-nd-product: NAZURE
+f5-content-type: how-to
+f5-docs: DOCS-1096
+f5-review-priority: high
+f5-product: NAZURE
 ---
 
 ## Overview

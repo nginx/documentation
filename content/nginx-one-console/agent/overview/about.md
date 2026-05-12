@@ -2,9 +2,9 @@
 title: About
 weight: 100
 toc: true
-nd-content-type: concept
-nd-docs: DOCS-1870
-nd-product: NAGENT
+f5-content-type: concept
+f5-docs: DOCS-1870
+f5-product: NAGENT
 ---
 
 {{< call-out "note" "F5 NGINX Agent v3.0 is available now" >}}

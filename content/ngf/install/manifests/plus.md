@@ -3,8 +3,8 @@ title: Use Manifests to install NGINX Gateway Fabric with NGINX Plus
 linkTitle: NGINX Plus
 weight: 200
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
+f5-content-type: how-to
+f5-product: FABRIC
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Plus.

@@ -1,7 +1,7 @@
 ---
-nd-product: FABRIC
-nd-docs: DOCS-1427
-nd-files:
+f5-product: FABRIC
+f5-docs: DOCS-1427
+f5-files:
 - content/ngf/install/helm.md
 - content/ngf/install/manifests.md
 ---

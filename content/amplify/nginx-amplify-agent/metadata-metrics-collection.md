@@ -4,8 +4,8 @@ description: Learn how F5 NGINX Amplify Agent collects data.
 weight: 200
 toc: true
 noindex: true
-nd-docs: DOCS-964
-nd-product: AMPLIF
+f5-docs: DOCS-964
+f5-product: AMPLIF
 ---
 
 F5 NGINX Amplify Agent collects the following types of data:

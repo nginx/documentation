@@ -2,9 +2,9 @@
 title: Troubleshoot F5 DoS for NGINX
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1456
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1456
 ---
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller and the App Protect DoS module.

@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-991
-nd-product: NIMNGR
-nd-files:
+f5-docs: DOCS-991
+f5-product: NIMNGR
+f5-files:
 - content/nim/admin-guide/rbac/manage-resource-groups.md
 - content/nim/fundamentals/api-overview.md
 - content/nim/waf-integration/overview.md

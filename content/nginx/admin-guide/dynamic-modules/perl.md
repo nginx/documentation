@@ -2,12 +2,12 @@
 description: Implement location and variable handlers in Perl and insert Perl calls
   into Server Side Includes (SSI), with the Perl dynamic module, supported by NGINX,
   Inc.
-nd-docs: DOCS-397
+f5-docs: DOCS-397
 title: Perl
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The Perl dynamic module allows implementing location and variable handlers in Perl and insert Perl calls into Server Side Includes (SSI).

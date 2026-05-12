@@ -1,6 +1,6 @@
 ---
-nd-product: NGOOGL
-nd-files:
+f5-product: NGOOGL
+f5-files:
 - content/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md
 - content/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---

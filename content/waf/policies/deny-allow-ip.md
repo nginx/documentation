@@ -2,8 +2,8 @@
 title: "Deny and Allow IP lists"
 weight: 900
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This page describes the Deny and Allow IP lists feature of F5 WAF for NGINX.

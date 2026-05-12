@@ -2,9 +2,9 @@
 title: Override rules
 weight: 1800
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
-nd-docs: DOCS-000
+f5-content-type: reference
+f5-product: F5WAFN
+f5-docs: DOCS-000
 ---
 
 This topic describes override rules feature of F5 WAF for NGINX.

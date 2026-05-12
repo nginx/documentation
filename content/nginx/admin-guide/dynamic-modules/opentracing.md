@@ -4,12 +4,12 @@ description: Instrument NGINX with OpenTracing-compliant requests for a range of
   module provides the framework for recording traces; you will also need to install
   a service-specific tracing module.  This module (“tracer”) pushes traces to the
   collector and analyser provided by that service.
-nd-docs: DOCS-395
+f5-docs: DOCS-395
 title: OpenTracing
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 {{< call-out "note" >}} The `nginx-plus-module-opentracing` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

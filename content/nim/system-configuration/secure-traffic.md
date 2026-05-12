@@ -2,16 +2,20 @@
 title: Secure client access and network traffic
 toc: true
 weight: 600
-nd-content-type: how-to
-nd-product: NIMNGR
-nd-docs: DOCS-794
+f5-content-type: how-to
+f5-product: NIMNGR
+f5-docs: DOCS-794
+description: "Configure TLS certificates and mutual TLS in F5 NGINX Instance Manager to secure client connections and inter-service network traffic."
+f5-summary: >
+  Secure client connections to F5 NGINX Instance Manager and internal service-to-service traffic using TLS.
+  This guide covers configuring custom TLS certificates and enabling mutual TLS for both external clients and internal NGINX Instance Manager components.
 ---
 
 {{< include "nim/decoupling/note-legacy-nms-references.md" >}}
 
 ## Overview
 
-This guide explains how to secure client connections to NGINX Instance Manager and protect traffic between NGINX Instance Manager and NGINX instances.
+This guide explains how to secure client connections to F5 NGINX Instance Manager and protect traffic between NGINX Instance Manager and NGINX instances.
 
 With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoint, such as NGINX Instance Manager. This data validates subscription entitlements and tracks usage metrics. This guide also covers how to use the [`ssl_verify`](#ssl_verify-and-usage-reporting-in-nginx-plus-r33) directive to secure telemetry reporting through certificate verification.
 

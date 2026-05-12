@@ -1,8 +1,8 @@
 ---
-nd-product:
+f5-product:
 - NONECO
 - FABRIC
-nd-files:
+f5-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 

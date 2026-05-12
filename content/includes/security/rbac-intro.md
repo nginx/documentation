@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-000
-nd-product: MISCEL
-nd-files:
+f5-docs: DOCS-000
+f5-product: MISCEL
+f5-files:
 - content/nginx-one-console/rbac/overview.md
 - content/nim/admin-guide/rbac/overview-rbac.md
 ---

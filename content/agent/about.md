@@ -2,9 +2,9 @@
 title: About
 weight: 100
 toc: true
-nd-docs: DOCS-1091
-nd-content-type: how-to
-nd-product: NAGENT
+f5-docs: DOCS-1091
+f5-content-type: how-to
+f5-product: NAGENT
 ---
 
 ## Overview

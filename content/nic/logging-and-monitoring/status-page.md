@@ -2,9 +2,9 @@
 title: View the NGINX status page
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-615
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-615
 ---
 
 This document explains how to get access to the stub status in NGINX and the dashboard in NGINX Plus.

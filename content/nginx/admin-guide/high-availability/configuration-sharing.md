@@ -1,12 +1,12 @@
 ---
 description: Sychronize configuration across a cluster of F5 NGINX Plus instances.
   Though designed for high-availability deployments, the solution works for any cluster.
-nd-docs: DOCS-404
+f5-docs: DOCS-404
 title: Synchronizing NGINX Configuration in a Cluster
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 <span id="overview"></span>

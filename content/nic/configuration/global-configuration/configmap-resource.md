@@ -2,9 +2,9 @@
 title: ConfigMap resources
 weight: 300
 toc: true
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-586
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-586
 ---
 
 When using F5 NGINX Ingress Controller, you can customize or fine tune NGINX behavior using ConfigMap resources. Examples include setting the number of worker processes or customizing the access log format.

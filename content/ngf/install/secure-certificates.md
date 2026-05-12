@@ -2,9 +2,9 @@
 title: Add certificates for secure authentication
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1851
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1851
 ---
 
 By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed.

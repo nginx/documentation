@@ -5,8 +5,8 @@ description: List of known issues in the latest release of F5 NGINX Amplify
 toc: false
 draft: true
 noindex: true
-nd-docs: DOCS-1692
-nd-product: AMPLIF
+f5-docs: DOCS-1692
+f5-product: AMPLIF
 ---
 
 ### {{% icon-bug %}} Unable to add some NGINX HTTP requests metrics to custom graph {#631}

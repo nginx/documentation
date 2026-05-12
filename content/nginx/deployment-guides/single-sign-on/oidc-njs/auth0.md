@@ -1,14 +1,14 @@
 ---
 description: Learn how to enable single sign-on (SSO) with [Auth0](https://auth0.com/)
   for applications proxied by F5 NGINX Plus.
-nd-docs: DOCS-884
+f5-docs: DOCS-884
 type:
 - tutorial
 title: Single Sign-On With Auth0 and njs
 toc: false
 weight: 100
-nd-product: NGPLUS
-nd-content-type: how-to
+f5-product: NGPLUS
+f5-content-type: how-to
 ---
 
 {{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).

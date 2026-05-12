@@ -2,9 +2,9 @@
 title: Enable OpenTracing (Removed in v5.0.0)
 toc: true
 weight: 700
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-618
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-618
 ---
 
 This topic describes how to OpenTracing with F5 NGINX Ingress Controller.

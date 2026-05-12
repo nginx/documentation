@@ -1,12 +1,12 @@
 ---
 description: Load balance HTTP traffic across web or application server groups, with
   several algorithms and advanced features like slow-start and session persistence.
-nd-docs: DOCS-418
+f5-docs: DOCS-418
 title: HTTP Load Balancing
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 ## Overview {#overview}

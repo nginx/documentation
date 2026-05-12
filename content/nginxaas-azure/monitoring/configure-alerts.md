@@ -2,10 +2,10 @@
 title: Configure alerts
 weight: 300
 toc: true
-nd-docs: DOCS-985
+f5-docs: DOCS-985
 url: /nginxaas/azure/monitoring/configure-alerts/
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 ## Overview

@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-1247
+f5-docs: DOCS-1247
 title: Build and deploy images
 toc: true
 weight: 300
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Build and deploy F5 NGINX Instance Manager images on AWS, Azure, or Google Cloud using the provided Packer and Terraform configurations."
+f5-summary: >
+  Build F5 NGINX Instance Manager images and deploy them to a cloud provider using the provided infrastructure-as-code configurations.
+  This guide covers building images with Packer and deploying infrastructure with Terraform on AWS, Azure, and Google Cloud.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}

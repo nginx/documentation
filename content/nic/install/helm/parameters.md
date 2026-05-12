@@ -3,8 +3,8 @@ title: NGINX Ingress Controller Helm chart parameters
 linkTitle: Helm chart parameters
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
+f5-content-type: how-to
+f5-product: INGRESS
 ---
 
 This page describes the Helm chart parameters of F5 NGINX Ingress Controllers.
@@ -151,7 +151,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.appprotect.configManager.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Configuration Manager image. | IfNotPresent |
 | **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX v5 Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
 | **controller.appprotect.logLevel** | Sets the log level for F5 WAF for NGINX | N/A |
-| **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.debug** | Enable debugging for App Protect DoS. | false |
 | **controller.appprotectdos.maxDaemons** | Max number of ADMD instances. | 1 |

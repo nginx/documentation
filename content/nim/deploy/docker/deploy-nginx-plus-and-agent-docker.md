@@ -1,10 +1,14 @@
 ---
-nd-docs: DOCS-1654
+f5-docs: DOCS-1654
 title: Deploy NGINX Plus in a container (data plane)
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Build and run an NGINX Plus container that connects to F5 NGINX Instance Manager using NGINX Agent for centralized data plane management."
+f5-summary: >
+  Build an NGINX Plus container image and connect it to F5 NGINX Instance Manager using NGINX Agent.
+  The containerized NGINX Plus instance acts as a managed data plane and appears in the NGINX Instance Manager dashboard after NGINX Agent registers it.
 ---
 
 ## Overview
@@ -166,7 +170,7 @@ Full list of CLI flags with their default values can be found in [CLI flags and 
 
 1. In a web browser, enter the address for your NGINX Instance Manager, for example, `https://127.0.0.1/ui/`, and log in.
 
-2. In the **Modules** section, select **Instance Manager**:
+2. In the **Modules** section, select **NGINX Instance Manager**:
 
 3. Search for live hosts with NGINX Open Source or NGINX Plus.
 

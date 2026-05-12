@@ -1,12 +1,12 @@
 ---
 description: Stream video in multiple formats, including  Real-Time Messaging Protocol
   (RTMP), HLS, and DASH, with the RTMP dynamic module, supported by NGINX, Inc.
-nd-docs: DOCS-399
+f5-docs: DOCS-399
 title: RTMP
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 The RTMP dynamic module enables video streaming in multiple formats, including  Real-Time Messaging Protocol (RTMP), HLS, and DASH.

@@ -2,9 +2,9 @@
 title: Time-based signature staging
 weight: 1950
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
-nd-docs: DOCS-000
+f5-content-type: reference
+f5-product: F5WAFN
+f5-docs: DOCS-000
 ---
 
 When new attack signatures are introduced in an F5 WAF for NGINX policy, they are first tested in a staging environment before being promoted to production.

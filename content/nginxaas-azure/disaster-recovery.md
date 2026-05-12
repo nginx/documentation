@@ -3,8 +3,8 @@ title: Disaster recovery
 url: /nginxaas/azure/disaster-recovery/
 toc: true
 weight: 650
-nd-content-type: how-to
-nd-product: NAZURE
+f5-content-type: how-to
+f5-product: NAZURE
 ---
 
 This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for Azure deployments in separate (ideally [paired](https://learn.microsoft.com/en-us/azure/reliability/regions-paired)) Azure regions, ensuring upstream access remains available even if the primary NGINXaaS deployment in a region fails. The deployment architecture ensures users can access backend application servers (upstreams) continuously from an alternative region if the primary NGINXaaS deployment becomes unavailable. The solution leverages Terraform, Azure Traffic Manager, Azure Virtual Network (VNet) peering, and unique subnets to support failover.

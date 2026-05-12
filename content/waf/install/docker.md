@@ -2,8 +2,8 @@
 title: "Docker"
 weight: 400
 toc: true
-nd-content-type: how-to
-nd-product: F5WAFN
+f5-content-type: how-to
+f5-product: F5WAFN
 ---
 
 This page describes how to install F5 WAF for NGINX using Docker.

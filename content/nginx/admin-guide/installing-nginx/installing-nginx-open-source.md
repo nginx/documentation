@@ -3,9 +3,9 @@ title: Installing NGINX Open Source
 description: Install NGINX Open Source either as a prebuilt package or from source, following step-by-step instructions for all supported Linux distributions.
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: NGPLUS
-nd-docs: DOCS-410
+f5-content-type: how-to
+f5-product: NGPLUS
+f5-docs: DOCS-410
 ---
 
 This article explains how to install NGINX Open Source on various operating systems, including an overview of existing NGINX Open Source versions, installation types and methods, modules included in the default package and dynamic modules packages, and the basics of compiling NGINX from the source code.

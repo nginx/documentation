@@ -2,8 +2,8 @@
 title: "Brute force attack preventions"
 weight: 600
 toc: true
-nd-content-type: reference
-nd-product: F5WAFN
+f5-content-type: reference
+f5-product: F5WAFN
 ---
 
 This topic describes the brute force attack prevention feature of F5 WAF for NGINX.

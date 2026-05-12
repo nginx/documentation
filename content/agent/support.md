@@ -2,9 +2,9 @@
 title: Support
 weight: 800
 toc: false
-nd-content-type: reference
-nd-product: NAGENT
-nd-docs: DOCS-1883
+f5-content-type: reference
+f5-product: NAGENT
+f5-docs: DOCS-1883
 ---
 
 ## Support policy

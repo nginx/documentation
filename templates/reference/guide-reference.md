@@ -103,11 +103,11 @@ AI assistants and human readers parse documentation differently from search engi
 
 ### Required fields
 
-**nd-content-type**: Always `reference` for reference articles.
+**f5-content-type**: Always `reference` for reference articles.
 
-**nd-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
+**f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**nd-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
 
 **title**: Use a noun phrase identifying the component or set of entries. Do not use a verb phrase or start with "How to". Keep it under 60 characters.
 
@@ -125,15 +125,15 @@ AI assistants and human readers parse documentation differently from search engi
 
 These fields are not rendered in the product UI, but they are consumed by AI systems, search indexes, and docs-as-code tooling. Filling them in improves discoverability and the quality of AI-generated answers that cite this page.
 
-**nd-keywords**: Comma-separated terms a reader might type to find this article. Include the component name, all parameter names covered in the article, and common alternative phrasings such as "config", "settings", "options", or "parameters".
+**f5-keywords**: Comma-separated terms a reader might type to find this article. Include the component name, all parameter names covered in the article, and common alternative phrasings such as "config", "settings", "options", or "parameters".
 
-**nd-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
+**f5-summary**: Two to three sentences expanding on `description`. AI assistants use this field when generating answers that cite this page. Write in plain prose and avoid jargon. Cover:
 
 - Sentence 1: what component or set of entries this article covers
 - Sentence 2: what the reader can use this article to look up
 - Sentence 3 (optional): scope limits, such as the product version this applies to
 
-**nd-audience**: Who this article is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Reference articles are typically `developer` or `operator` depending on who configures or calls the component.
+**f5-audience**: Who this article is for. Accepted values: `developer`, `operator`, `admin`, `architect`, `any`. Reference articles are typically `developer` or `operator` depending on who configures or calls the component.
 
 ---
 

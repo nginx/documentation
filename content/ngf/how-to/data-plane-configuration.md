@@ -2,9 +2,9 @@
 title: Data plane configuration
 weight: 500
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1838
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1838
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric global data plane configuration.

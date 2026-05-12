@@ -1,14 +1,14 @@
 ---
 description: Deploy global server load balancing (GSLB) for domains hosted in multiple
   AWS regions, with Amazon Route 53 and F5 NGINX Plus in an HA configuration.
-nd-docs: DOCS-448
+f5-docs: DOCS-448
 title: Global Server Load Balancing with Amazon Route 53 and NGINX Plus
 toc: true
 weight: 300
 draft: true
 noindex: true
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This deployment guide explains how to configure global server load balancing (GSLB) of traffic for web domains hosted in Amazon [Elastic Compute Cloud](https://aws.amazon.com/ec2/) (EC2). For high availability and improved performance, you set up multiple backend servers (web servers, application servers, or both) for a domain in two or more AWS regions. Within each region, NGINX Plus load balances traffic across the backend servers.

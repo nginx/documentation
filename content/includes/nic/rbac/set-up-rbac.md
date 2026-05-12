@@ -1,7 +1,7 @@
 ---
-nd-docs: DOCS-1468
-nd-product: INGRESS
-nd-files:
+f5-docs: DOCS-1468
+f5-product: INGRESS
+f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
 - content/nic/integrations/app-protect-waf/installation.md
@@ -23,9 +23,9 @@ nd-files:
 
 <br>
 
-If you're planning to use NGINX App Protect or F5 DoS for NGINX, additional roles and bindings are needed.
+If you're planning to use F5 WAF for NGINX or F5 DoS for NGINX, additional roles and bindings are needed.
 
-1. (NGINX App Protect only) Create the *App Protect* role and binding:
+1. (F5 WAF for NGINX only) Create the *App Protect* role and binding:
 
     ```shell
     kubectl apply -f deployments/rbac/ap-rbac.yaml

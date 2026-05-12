@@ -1,12 +1,12 @@
 ---
 description: Modify XML code in response bodies using one or more XSLT stylesheets,
   with the XSLT dynamic module, supported by NGINX, Inc.
-nd-docs: DOCS-403
+f5-docs: DOCS-403
 title: XSLT
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 With the XSLT dynamic module, you can modify XML code in response bodies using one or more XSLT stylesheets.

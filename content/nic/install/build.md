@@ -2,9 +2,9 @@
 title: Build NGINX Ingress Controller
 toc: true
 weight: 700
-nd-content-type: how-to
-nd-product: INGRESS
-nd-docs: DOCS-1453
+f5-content-type: how-to
+f5-product: INGRESS
+f5-docs: DOCS-1453
 ---
 
 This document describes how to build an F5 NGINX Ingress Controller image from source code and upload it to a private Docker registry.

@@ -1,8 +1,8 @@
 ---
-nd-product:
+f5-product:
 - NGPLUS
 - SOLUTI
-nd-files:
+f5-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/solutions/about-subscription-licenses/getting-started.md
 ---

@@ -2,9 +2,9 @@
 title: Technical specifications
 toc: true
 weight: 200
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-617
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-617
 ---
 
 This page describes technical specifications for F5 NGINX Ingress Controller, such as its version compatibility with Kubernetes and other NGINX software.
@@ -27,12 +27,12 @@ We provide the following Docker images, which include NGINX or NGINX Plus bundle
 
 ### Images with NGINX
 
-_All images include NGINX 1.29.7._
+_All images include NGINX 1.29.8._
 
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
-|Alpine-based image | ``nginx:1.29.7-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
-|Debian-based image | ``nginx:1.29.7``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
+|Alpine-based image | ``nginx:1.29.8-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
+|Debian-based image | ``nginx:1.29.8``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
 |Ubi-based image | ``redhat/ubi9-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
 
 ### Images with NGINX Plus

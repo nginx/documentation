@@ -6,9 +6,9 @@ weight: 200
 # Creates a table of contents and sidebar, useful for large documents
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
-nd-content-type: tutorial
+f5-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
-nd-product: NONECO
+f5-product: NONECO
 ---
 
 ## Overview

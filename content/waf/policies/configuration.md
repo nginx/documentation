@@ -2,8 +2,8 @@
 title: "Configure policies"
 weight: 100
 toc: true
-nd-content-type: how-to
-nd-product: F5WAFN
+f5-content-type: how-to
+f5-product: F5WAFN
 ---
 
 This page describes the security features available with F5 WAF for NGINX and how to configure policies.

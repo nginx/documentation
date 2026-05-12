@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/security-monitoring/update-signatures.md
 - content/nim/waf-integration/configuration/setup-signatures-and-threats/update-security-monitoring-signature-db.md
 ---

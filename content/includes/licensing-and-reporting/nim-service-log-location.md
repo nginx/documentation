@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/licensing-and-reporting/report-usage-connected-deployment.md
 - content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md
 ---

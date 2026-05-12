@@ -1,6 +1,6 @@
 ---
-nd-product: NONECO
-nd-files:
+f5-product: NONECO
+f5-files:
 - content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md
 - content/nginx-one-console/getting-started.md
 - content/nginx-one-console/nginx-configs/metrics/enable-metrics.md

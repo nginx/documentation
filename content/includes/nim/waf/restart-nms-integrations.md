@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/waf-integration/configuration/compiler-resource-pruning.md
 - content/nim/waf-integration/configuration/install-waf-compiler/download-from-myf5.md
 - content/nim/waf-integration/configuration/install-waf-compiler/install.md

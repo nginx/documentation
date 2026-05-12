@@ -1,11 +1,11 @@
 ---
 description: Learn about the F5 DoS for NGINX Troubleshooting Guide.
-nd-docs: DOCS-675
+f5-docs: DOCS-675
 title: Troubleshooting Guide
 toc: true
 weight: 200
-nd-content-type: how-to
-nd-product: F5DOSN
+f5-content-type: how-to
+f5-product: F5DOSN
 ---
 
 ## Overview

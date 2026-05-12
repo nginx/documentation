@@ -3,9 +3,9 @@ title: Use Manifests to install NGINX Gateway Fabric (experimental) with NGINX O
 linkTitle: NGINX Open Source (experimental)
 weight: 300
 toc: true
-nd-content-type: how-to
-nd-product: FABRIC
-nd-docs: DOCS-1429
+f5-content-type: how-to
+f5-product: FABRIC
+f5-docs: DOCS-1429
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric (experimental) with NGINX Open Source.

@@ -2,9 +2,9 @@
 title: GlobalConfiguration resource
 toc: true
 weight: 200
-nd-content-type: reference
-nd-product: INGRESS
-nd-docs: DOCS-588
+f5-content-type: reference
+f5-product: INGRESS
+f5-docs: DOCS-588
 ---
 
 This page explains how to use the GlobalConfiguration resource to define the global configuration parameters of F5 NGINX Ingress Controller.

@@ -33,7 +33,7 @@ Use Copilot Chat to generate new pages following project conventions:
 
 Copilot will:
 - Use the correct archetype structure
-- Include proper front matter (title, weight, nd-content-type, nd-product)
+- Include proper front matter (title, weight, f5-content-type, f5-product)
 - Follow brand naming guidelines
 - Use Hugo shortcodes correctly
 
@@ -252,8 +252,8 @@ Result:
 title: "TLS termination"
 weight: 400
 toc: false
-nd-content-type: concept
-nd-product: FABRIC
+f5-content-type: concept
+f5-product: FABRIC
 ---
 ```
 

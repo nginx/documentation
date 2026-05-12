@@ -1,9 +1,9 @@
 ---
 title: About subscription licenses
-nd-docs: DOCS-000
+f5-docs: DOCS-000
 weight: 1
-nd-content-type: landing-page
-nd-landing-page: true
+f5-content-type: landing-page
+f5-landing-page: true
 url: /solutions/about-subscription-licenses/
 ---
 

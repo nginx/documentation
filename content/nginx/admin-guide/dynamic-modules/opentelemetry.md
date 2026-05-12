@@ -1,12 +1,12 @@
 ---
 description: Analyze your software performance by instrumenting, generating, collecting,
   and exporting telemetry data.
-nd-docs: DOCS-1207
+f5-docs: DOCS-1207
 title: OpenTelemetry
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.

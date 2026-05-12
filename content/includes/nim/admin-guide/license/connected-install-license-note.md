@@ -1,6 +1,6 @@
 ---
-nd-product: NIMNGR
-nd-files:
+f5-product: NIMNGR
+f5-files:
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md
 - content/nim/deploy/vm-bare-metal/install.md
 ---

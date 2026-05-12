@@ -3,8 +3,8 @@ title: Use Helm to uninstall NGINX Ingress Controller
 linkTitle: Uninstall
 toc: true
 weight: 400
-nd-content-type: how-to
-nd-product: INGRESS
+f5-content-type: how-to
+f5-product: INGRESS
 ---
 
 This page describes how to use Helm to uninstall F5 NGINX Ingress Controller.

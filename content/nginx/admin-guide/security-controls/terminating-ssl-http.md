@@ -1,12 +1,12 @@
 ---
 description: Terminate HTTPS traffic from clients, relieving your upstream web and
   application servers of the computational load of SSL/TLS encryption.
-nd-docs: DOCS-437
+f5-docs: DOCS-437
 title: NGINX SSL Termination
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NGPLUS
+f5-content-type: how-to
+f5-product: NGPLUS
 ---
 
 This section describes how to configure an HTTPS server on NGINX and F5 NGINX Plus.

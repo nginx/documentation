@@ -2,9 +2,9 @@
 title: The design of NGINX Ingress Controller
 toc: true
 weight: 200
-nd-content-type: concept
-nd-product: INGRESS
-nd-docs: DOCS-609
+f5-content-type: concept
+f5-product: INGRESS
+f5-docs: DOCS-609
 ---
 
 This document explains how the F5 NGINX Ingress Controller is designed, and how it differs when using NGINX or NGINX Plus.
@@ -145,7 +145,7 @@ The desired state is based on the following built-in Kubernetes resources and Cu
 
 NGINX Ingress Controller can watch additional Custom Resources, which are less common and not enabled by default:
 
-- [NGINX App Protect resources]({{< ref "/nic/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
+- [F5 WAF for NGINX resources]({{< ref "/nic/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
 - IngressLink resource (only one resource)
 
 ## NGINX Ingress Controller process components

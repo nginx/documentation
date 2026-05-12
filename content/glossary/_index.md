@@ -1,12 +1,12 @@
 ---
 description: ''
 title: F5 NGINX Glossary
-nd-docs: DOCS-602
+f5-docs: DOCS-602
 weight: 1000
 toc: true
-nd-content-type: reference
-nd-product: MISCEL
-nd-landing-page: true
+f5-content-type: reference
+f5-product: MISCEL
+f5-landing-page: true
 url: /glossary/
 ---
 

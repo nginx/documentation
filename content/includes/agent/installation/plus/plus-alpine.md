@@ -1,6 +1,6 @@
 ---
-nd-product: NAGENT
-nd-files:
+f5-product: NAGENT
+f5-files:
 - content/agent/installation-upgrade/installation-plus.md
 - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
 ---

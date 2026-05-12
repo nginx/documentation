@@ -1,6 +1,6 @@
 ---
 docs:
-nd-files:
+f5-files:
 - content/solutions/about-subscription-licenses/getting-started.md
 - content/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md
 ---

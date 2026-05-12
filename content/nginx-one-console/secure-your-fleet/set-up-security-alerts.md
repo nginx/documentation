@@ -2,8 +2,8 @@
 title: "Set up security alerts"
 weight: 500
 toc: true
-nd-content-type: how-to
-nd-product: NONECO
+f5-content-type: how-to
+f5-product: NONECO
 ---
 
 With this page, you'll learn how to set up alerts in F5 Distributed Cloud. Once configured, you'll see the CVEs and insecure configurations associated with your NGINX fleet. These instructions are intended for those responsible for keeping their NGINX infrastructure and application traffic secure. It assumes you know how to:

@@ -1,12 +1,12 @@
 ---
 title: F5 NGINX One Console
-nd-subtitle: Optimize, secure, and scale your modern apps
+f5-subtitle: Optimize, secure, and scale your modern apps
 url: /nginx-one-console/
-nd-landing-page: true
+f5-landing-page: true
 cascade:
   logo: "NGINX-One-product-icon.svg"
-nd-content-type: landing-page
-nd-product: NONECO
+f5-content-type: landing-page
+f5-product: NONECO
 ---
 
 ## About

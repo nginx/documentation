@@ -1,15 +1,19 @@
 ---
-nd-docs: DOCS-1249
+f5-docs: DOCS-1249
 title: Overview
 toc: true
 weight: 100
-nd-content-type: how-to
-nd-product: NIMNGR
+f5-content-type: how-to
+f5-product: NIMNGR
+description: "Use the F5 NGINX Instance Manager Ansible role to install NGINX Instance Manager and its dependencies in an automated, repeatable way."
+f5-summary: >
+  Understand the infrastructure-as-code options for deploying F5 NGINX Instance Manager before you start.
+  The Ansible role installs NGINX Instance Manager, NGINX (OSS or Plus), and ClickHouse in a single automated operation.
 ---
 
 {{< include "/nim/decoupling/note-legacy-nms-references.md" >}}
 
-Use our user-friendly Ansible role to easily install NGINX Instance Manager. The role also installs NGINX (OSS or Plus) and [ClickHouse](https://clickhouse.com), both of which are required for NGINX Instance Manager. Simplify your infrastructure management with our innovative Infrastructure as Code project, which enables you to set up the control plane and data plane as a unified solution.
+Use our user-friendly Ansible role to easily install F5 NGINX Instance Manager. The role also installs NGINX (OSS or Plus) and [ClickHouse](https://clickhouse.com), both of which are required for NGINX Instance Manager. Simplify your infrastructure management with our innovative Infrastructure as Code project, which enables you to set up the control plane and data plane as a unified solution.
 
 ## NGINX Instance Manager Ansible role
 
