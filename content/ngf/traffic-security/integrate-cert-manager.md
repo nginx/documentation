@@ -5,6 +5,10 @@ toc: true
 f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-1425
+f5-summary: >
+   cert-manager automates issuance and renewal of TLS certificates from public Certificate Authorities such as Let's Encrypt by responding to ACME challenges on your behalf.
+   The Gateway API HTTP01 solver lets cert-manager use an NGINX Gateway Fabric Gateway as the challenge solver: cert-manager creates a temporary HTTPRoute, Let's Encrypt verifies domain ownership over HTTP, and the signed certificate is stored in a Secret referenced by the Gateway's HTTPS listener.
+   Once issued, NGINX Gateway Fabric serves HTTPS using the keypair in the Secret, and cert-manager rotates the material in place before expiry without operator intervention.
 ---
 
 Learn how to issue and manage certificates using Let's Encrypt and cert-manager.
@@ -54,27 +58,7 @@ At a high level, the process looks like this:
 
 ### Deploy cert-manager
 
-The first step is to deploy cert-manager onto the cluster.
-
-- Add the Helm repository.
-
-  ```shell
-  helm repo add jetstack https://charts.jetstack.io
-  helm repo update
-  ```
-
-- Install cert-manager, and enable the GatewayAPI feature gate:
-
-  ```shell
-  helm install \
-    cert-manager jetstack/cert-manager \
-    --namespace cert-manager \
-    --create-namespace \
-    --set config.apiVersion="controller.config.cert-manager.io/v1alpha1" \
-    --set config.kind="ControllerConfiguration" \
-    --set config.enableGatewayAPI=true \
-    --set crds.enabled=true
-  ```
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ---
 
