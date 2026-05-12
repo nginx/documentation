@@ -111,12 +111,14 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*stream-log-format* | Sets the custom [log format](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#log_format) for TCP, UDP, and TLS Passthrough traffic. For convenience, it is possible to define the log format across multiple lines (each line separated by *\n*). In that case, the Ingress Controller will replace every *\n* character with a space character. All *'* characters must be escaped. | See the [template file](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/internal/configs/version1/nginx.tmpl). |  |
 |*stream-log-format-escaping* | Sets the characters escaping for the variables of the stream log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
 
-### Request URI/Header manipulation
+### Header manipulation
 
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
 |*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |
 |*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
+|*add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive in the `http` context. Use the format *Header-Name: value[:always]* and separate entries with commas. Example: `X-Frame-Options: DENY` or  `X-Frame-Options: DENY: always`.  | N/A |
+|*add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are *on*, *off*, and *merge*. | N/A |
 
 ### Auth and SSL/TLS
 
