@@ -38,18 +38,18 @@ Supported policy types are:
 
 | Policy type | Description | VirtualServer / VirtualServerRoute | Ingress |
 | --- | --- | --- | --- |
-| `accessControl` | The access control policy based on the client IP address. | Yes | Yes, with `nginx.org/policies` |
-| `cors` | The CORS policy configures Cross-Origin Resource Sharing headers. | Yes | Yes, with `nginx.org/policies` |
-| `egressMTLS` | The EgressMTLS policy configures upstreams authentication and certificate verification. | Yes | Yes, with `nginx.org/policies` |
-| `ingressMTLS` | The IngressMTLS policy configures client certificate verification. | Yes | Yes, with `nginx.org/policies` |
-| `waf` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}). | Yes | Yes, with `nginx.com/policies` |
-| `externalAuth` | The External Auth policy configures NGINX to authenticate client requests using an external authentication server. | Yes | Yes, with `nginx.org/policies` |
-| `rateLimit` | The rate limit policy controls the rate of processing requests per a defined key. | Yes | No |
-| `apiKey` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | Yes | No |
-| `basicAuth` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | Yes | No |
-| `jwt` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | Yes | No |
-| `oidc` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | No |
-| `cache` | The cache policy configures proxy caching for serving cached content. | Yes | No |
+| [`accessControl`](#accesscontrol) | The access control policy based on the client IP address. | Yes | Yes, with `nginx.org/policies` |
+| [`cors`](#cors) | The CORS policy configures Cross-Origin Resource Sharing headers. | Yes | Yes, with `nginx.org/policies` |
+| [`egressMTLS`](#egressmtls) | The EgressMTLS policy configures upstreams authentication and certificate verification. | Yes | Yes, with `nginx.org/policies` |
+| [`ingressMTLS`](#ingressmtls) | The IngressMTLS policy configures client certificate verification. | Yes | Yes, with `nginx.org/policies` |
+| [`waf`](#waf) | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}). | Yes | Yes, with `nginx.com/policies` |
+| [`externalAuth`](#externalauth) | The External Auth policy configures NGINX to authenticate client requests using an external authentication server. | Yes | Yes, with `nginx.org/policies` |
+| [`rateLimit`](#ratelimit) | The rate limit policy controls the rate of processing requests per a defined key. | Yes | No |
+| [`apiKey`](#apikey) | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | Yes | No |
+| [`basicAuth`](#basicauth) | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | Yes | No |
+| [`jwt`](#jwt-using-local-kubernetes-secret) | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | Yes | No |
+| [`oidc`](#oidc) | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | No |
+| [`cache`](#cache) | The cache policy configures proxy caching for serving cached content. | Yes | No |
 
 {{% /table %}}
 
