@@ -11,11 +11,9 @@ The Policy resource lets you define reusable configuration such as access contro
 
 The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-Policies work with `VirtualServer`, `VirtualServerRoute`, and `Ingress` resources.
-
 ## Before you begin
 
-Policies work together with [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you create separately.
+Policies work together with [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you create separately.
 
 ## Policy Specification
 
@@ -71,7 +69,7 @@ This is valid:
 apiVersion: k8s.nginx.org/v1
 kind: Policy
 metadata:
-  name: allow-office
+  name: allow-localhost
 spec:
   accessControl:
     allow:
