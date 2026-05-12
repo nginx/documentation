@@ -381,7 +381,7 @@ GW_PER_PORT=<port number>
 
 ## Create HTTPRoutes
 
-Copy the YAML below into your terminal to create HTTPRoutes to route traffic to the backend applications:
+Copy the YAML code below into your terminal to create HTTPRoutes to route traffic to the backend applications:
 
 ```yaml
 kubectl apply -f - <<EOF
