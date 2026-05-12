@@ -32,7 +32,7 @@ Both **Default** and **Per-port** can be configured with one of two validation m
 
 CA certificates can be stored in either a `Secret` or a `ConfigMap`, and must contain the `ca.crt` key.
 
-The following diagram shows how the TLS handshake takes place between the client, and NGINX Gateway Fabric:
+The following diagram shows how the TLS handshake takes place between the client and NGINX Gateway Fabric:
 
 ```mermaid
 sequenceDiagram
@@ -309,7 +309,7 @@ Key details:
 
 **HTTPS termination**:
 - The `listeners[].tls.mode: Terminate` setting tells the Gateway to terminate TLS and decrypt traffic.
-- The `certificateRefs` field references the Secret containing the Gateway's TLS certificate and key. The Gateway presents this certificate to clients during the handshake.
+- The `certificateRefs` field references the Secret containing the Gateway's TLS certificate and key. The Gateway presents this certificate to clients during the TLS handshake.
 
 **Frontend TLS**:
 - The `tls.frontend.default.validation` section defines the default client certificate validation. This applies to all HTTPS listeners unless overridden by a `perPort` configuration. This references the Secret `default-validation-ca-secret`.
@@ -381,7 +381,7 @@ GW_PER_PORT=<port number>
 
 ## Create HTTPRoutes
 
-Copy the yaml below into your terminal to create HTTPRoutes to route traffic to the backend applications:
+Copy the YAML below into your terminal to create HTTPRoutes to route traffic to the backend applications:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -425,7 +425,7 @@ spec:
 EOF
 ```
 
-Verify the HTTPRoute was created
+Verify the HTTPRoute was created:
 
 ```shell
 kubectl describe httproutes | grep -i status -A 10
@@ -487,7 +487,7 @@ Events:              <none>
 To send requests to the Gateway, you must provide a valid certificate and key signed by a valid Certificate Authority (CA).
 
 Copy the following block into your terminal to create two Certificate resources.
-These generate two `Secret` resources with TLS certs and keys signed by the CAs created earlier in this example.
+This will create two `Secret` resources with TLS certs and keys signed by the CAs created earlier in this example.
 
 {{< call-out "warning" >}} Replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
 
