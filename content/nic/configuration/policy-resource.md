@@ -59,11 +59,11 @@ Policy resource support for Ingress objects using annotation [`nginx.org/policie
 
 {{< /call-out >}}
 
-## Important Rule: One Policy Type Per Resource
+## Important rule: One Policy type per resource
 
 A `Policy` resource must define exactly one policy type under `.spec`.
 
-This is valid:
+The following example is valid:
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -76,7 +76,7 @@ spec:
     - 10.0.0.0/8
 ```
 
-This is not valid:
+The following example is **not** valid:
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -94,7 +94,7 @@ spec:
 
 If you need multiple behaviors, create multiple policies and reference them together.
 
-## Applying Policies
+## Applying policies
 
 Policies can be referenced from the following resources:
 
