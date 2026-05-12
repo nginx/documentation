@@ -2561,7 +2561,7 @@ string
 </td>
 <td>
 <p>URL is the base URL of the F5 NGINX One Console instance,
-e.g. &ldquo;https://<tenant>.volterra.us&rdquo;.</p>
+e.g. &ldquo;https://&lt;tenant&gt;.console.ves.volterra.io&rdquo;.</p>
 </td>
 </tr>
 <tr>
@@ -2628,7 +2628,7 @@ string
 </td>
 <td>
 <p>URL is the base URL of the F5 NGINX One Console instance,
-e.g. &ldquo;https://<tenant>.volterra.us&rdquo;.</p>
+e.g. &ldquo;https://&lt;tenant&gt;.console.ves.volterra.io&rdquo;.</p>
 </td>
 </tr>
 <tr>
