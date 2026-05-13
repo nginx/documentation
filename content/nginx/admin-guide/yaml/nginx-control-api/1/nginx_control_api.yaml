@@ -9,7 +9,7 @@ info:
     You can view basic NGINX information including worker processes and configuration files,
     and trigger configuration reloads.
     By default, the Control REST API is disabled.
-    You can enable it by [starting nginx](https://nginx.org/en/docs/switches.html) with the <b>-l</b> command-line option followed by the port number or a UNIX-domain socket path.
+    You can enable it by [starting nginx](https://nginx.org/en/docs/switches.html) with the <b>-l</b> command-line option followed by a UNIX-domain socket path or a port number.
     The Control API is currently available as part of [commercial subscription](https://www.f5.com/products/nginx).
 paths:
   /1:

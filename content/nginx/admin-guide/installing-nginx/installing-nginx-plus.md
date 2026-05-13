@@ -742,7 +742,7 @@ For a community dynamic module to work with NGINX Plus, it must be compiled alon
    Expected output of the command:
 
    ```shell
-   nginx version: nginx/1.29.8 (nginx-plus-r37.0)
+   nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
    ```
 
 1. Prepare the build environment.

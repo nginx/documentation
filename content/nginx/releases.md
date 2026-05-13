@@ -15,7 +15,7 @@ f5-product: NGPLUS
 
 Since May 13, 2026, NGINX Plus follows a new release model: [Long-Term Support (LTS)](#lts) and [Continuous Releases (CR)](#cr).
 
-[**NGINX Plus Long-Term Support (LTS) Releases**](#lts) are published once a year and focus on stability and security. Each LTS version is supported for up to three years and receives only security fixes and CVE mitigations - no new features. New features are delivered through [Continuous Releases (CRs)](#cr) within the LTS release period.
+[**NGINX Plus Long-Term Support (LTS) Releases**](#lts) are published once a year and focus on stability and security. Each LTS version is supported for up to three years and receives only security fixes and CVE mitigations during his time. New features are delivered through [Continuous Releases (CRs)](#cr) within the LTS release period.
 
 LTS is identified by a `0` as the second numeric component of the version number, for example, PLS.37.`0`.0.1. An LTS release update increments the third numeric component, for example, PLS.37.0.`1`.1.
 
@@ -35,8 +35,10 @@ _Based on NGINX Open Source 1.29.8_
 NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 
 - [New release model](https://community.f5.com/kb/devcentralnews/announcing-the-first-f5-nginx-commercial-long-term-support-release/346419): Long-Term Support (LTS) Releases and Continuous Releases (CR).
+- [Agentic observability module](https://github.com/nginx/nginx-mcp-js/tree/main): real-time MCP traffic monitoring.
 - [NGINX control REST API]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md#control-api" >}}) that provides an HTTP interface for controlling an NGINX Plus instance in addition to signal-based control.
-- JSON-formatted error logs: the `json` parameter of the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive and the [`error_log_tag`](https://nginx.org/en/docs/ngx_core_module.html#error_log_tag) directive.
+- JSON-formatted error logs: the `json` parameter of the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
+- Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/ngx_core_module.html#error_log_tag) directive.
 - Enhanced upstream latency metrics with latency histograms for each upstream.
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
 - Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
@@ -45,7 +47,6 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - HTTP2 to upstreams support.
 - Default HTTP 1.1 version to upstreams with keepalive enabled by default.
 - Support for OpenSSL 4.0.
-- Agentic observability: Real-time MCP traffic monitoring 
 - Enhancements in the [ACME](https://nginx.org/en/docs/http/ngx_http_acme_module.html), [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) and [Prometheus-njs]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) modules.
 
 {{< call-out "note" "More info" >}} [Announcing NGINX Plus PLS.37.0.0.1 LTS](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
@@ -183,7 +184,7 @@ _February 4, 2026_
 
 This is a security release for NGINX Plus R36.
 
-- Security Fix: when proxying to upstream TLS servers, an attacker with
+- Security fix: when proxying to upstream TLS servers, an attacker with
 Man-in-the-Middle position on the upstream server side along with conditions beyond the attackers control may be able to inject plain text data to the response from an upstream server ([CVE-2026-1642](https://my.f5.com/manage/s/article/K000159824)).
 
 NGINX Plus R36 P3<br/>
@@ -191,15 +192,28 @@ _March 24, 2026_
 
 This is a security release for NGINX Plus R36.
 
-- Security Fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
+- Security fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
 
-- Security Fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
+- Security fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
 
-- Security Fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
+- Security fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
 
-- Security Fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
+- Security fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
 
-- Security Fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
+- Security fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
+
+NGINX Plus R36 P4<br/>
+_May 13, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: a heap memory buffer overflow might occur in a worker process while handling a specially crafted request by the module, potentially resulting in arbitrary code execution ([CVE-2026-42945](https://www.cve.org/CVERecord?id=CVE-2026-42945)).
+
+- Security fix in the [`ngx_http_scgi_module`](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) and [`ngx_http_uwsgi_module`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) modules: a heap memory buffer overread might occur in a worker process while handling a specially crafted response by these modules, allowing an attacker to cause a disclosure of worker process memory or segmentation fault in a worker process ([CVE-2026-42946](https://www.cve.org/CVERecord?id=CVE-2026-42946)).
+
+- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: a heap memory buffer overread might occur in a worker process while handling a specially sent response with decoding from UTF-8 via the [`charset_map`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset_map) directive, allowing an attacker to cause a limited disclosure of worker proccess memory or segmentation fault in a worker process ([CVE-2026-42934](https://www.cve.org/CVERecord?id=CVE-2026-42934)).
+
+- Security fix for HTTP/3: when using HTTP/3, processing of connection migration might cause new QUIC streams to receive a new client address before validation, allowing an attacker to cause address spoofing ([CVE-2026-40460](https://www.cve.org/CVERecord?id=CVE-2026-40460)).
 
 
 ### NGINX Plus Release 35 (R35) {#r35}
@@ -566,15 +580,28 @@ _March 24, 2026_
 
 This is a security release for NGINX Plus R32.
 
-- Security Fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
+- Security fix in the [`ngx_http_dav_module`](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module: a buffer overflow might occur while handling a `COPY` or `MOVE` request in a location with [`alias`](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias), allowing an attacker to modify the source or destination path outside of the document root ([CVE-2026-27654](https://my.f5.com/manage/s/article/K000160382)).
 
-- Security Fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
+- Security fix in the [`ngx_http_mp4_module`](https://nginx.org/en/docs/http/ngx_http_mp4_module.html) module: processing of a specially crafted `mp4` file might cause a worker process crash, or might have potential other impact ([CVE-2026-32647](https://my.f5.com/manage/s/article/K000160366)).
 
-- Security Fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
+- Security fix in the [`ngx_mail_auth_http_module`](https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html) module: a segmentation fault might occur in a worker process if the `CRAM-MD5` or `APOP` authentication methods were used and authentication retry was enabled ([CVE-2026-27651](https://my.f5.com/manage/s/article/K000160383)).
 
-- Security Fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
+- Security fix in the [`ngx_mail_smtp_module`](https://nginx.org/en/docs/mail/ngx_mail_smtp_module.html) module: an attacker might use PTR DNS records to inject data in auth_http requests, as well as in the `XCLIENT` command in the backend SMTP connection ([CVE-2026-28753](https://my.f5.com/manage/s/article/K000160367)).
 
-- Security Fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
+- Security fix in the [`ngx_stream_ssl_module`](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html) module: SSL handshake might succeed despite OCSP rejecting a client certificate ([CVE-2026-28755](https://my.f5.com/manage/s/article/K000160368)).
+
+NGINX Plus R32 P6<br/>
+_May 13, 2026_
+
+This is a security release for NGINX Plus R32.
+
+- Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: a heap memory buffer overflow might occur in a worker process while handling a specially crafted request by the module, potentially resulting in arbitrary code execution ([CVE-2026-42945](https://www.cve.org/CVERecord?id=CVE-2026-42945)).
+
+- Security fix in the [`ngx_http_scgi_module`](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) and [`ngx_http_uwsgi_module`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) modules: a heap memory buffer overread might occur in a worker process while handling a specially crafted response by these modules, allowing an attacker to cause a disclosure of worker process memory or segmentation fault in a worker process ([CVE-2026-42946](https://www.cve.org/CVERecord?id=CVE-2026-42946)).
+
+- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: a heap memory buffer overread might occur in a worker process while handling a specially sent response with decoding from UTF-8 via the [`charset_map`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset_map) directive, allowing an attacker to cause a limited disclosure of worker proccess memory or segmentation fault in a worker process ([CVE-2026-42934](https://www.cve.org/CVERecord?id=CVE-2026-42934)).
+
+- Security fix for HTTP/3: when using HTTP/3, processing of connection migration might cause new QUIC streams to receive a new client address before validation, allowing an attacker to cause address spoofing ([CVE-2026-40460](https://www.cve.org/CVERecord?id=CVE-2026-40460)).
 
 
 ## End-of-life (EoL) releases

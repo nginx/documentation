@@ -75,7 +75,7 @@ Before upgrading, verify the following:
      The output of the command:
 
      ```shell
-     nginx version: nginx/1.29.8 (nginx-plus-r37.0)
+     nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
      ```
 
    - Check the error log:

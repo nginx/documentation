@@ -41,37 +41,43 @@ For more information about advanced signals (for performing live binary upgrades
 
 ## NGINX Control API {#control-api}
 
-In addition to signal-based controls, NGINX Plus can be controlled with the Control REST API, available since [NGINX Plus R37.0]({{< ref "nginx/releases.md#t37.0" >}}).
+In addition to signal-based controls, NGINX Plus can be controlled with the Control REST API, available since [NGINX Plus PLS R37.0.0 LTS]({{< ref "nginx/releases.md#r37.0" >}}).
 
 The Control API is implemented in the NGINX master process and provides a REST interface for runtime control and inspection. It allows you to:
 
 - view worker process information (process name, PID, and exit state);
 - get a memory dump of loaded NGINX configuration files;
-- trigger a configuration reload and review reload logs.
+- trigger a configuration reload similar to `nginx -s reload` and review reload logs.
 
-By default, the Control API is disabled. To enable it, start NGINX PLus with the `-l` option, specifying a TCP port or a UNIX-domain socket for the API listener:
+The Control API provides the following endpoints:
 
-```shell
-sudo nginx -l 8080
-```
-
-### Control API documentation
-
-The Control API is described by an OpenAPI specification in YAML format, which can be downloaded [{{<icon "download">}}here](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml). The specification can be explored with standard OpenAPI-compatible tools such as Redocly or Swagger UI.
-
-The API provides endpoints for getting worker processes information, retrieving the loaded configuration from memory, and triggering configuration reloads. The current endpoints are:
-
-- `/1` — list top-level namespaces;
-- `/1/control` — list resources available in the control namespace;
 - `/1/control/processes` — return worker process information;
-- `/1/control/config` — return the loaded NGINX configuration and trigger reloads with `PATCH`;
+- `/1/control/config` — return the in-memory NGINX configuration and trigger reloads with `PATCH`;
 - `/1/nginx` — return NGINX version and build information.
 
-[{{<icon "download">}}Control API YAML download link.](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml)
+See [{{<icon "download">}}OpenAPI specification](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml) for the Control API for details.
+
+### Enable NGINX Control API
+
+By default, the Control API is disabled. To enable it, start NGINX Plus with the `-l` option, specifying a UNIX-domain socket or TCP port:
+
+```shell
+sudo nginx -l unix:/tmp/nginx.sock
+```
 
 ### Security implications
 
-Never expose the Control API to the public Internet. Keep the management listener off the Internet (firewall/ACL), on a dedicated interface/VLAN. Keep NGINX Plus and the underlying operating system patched and up-to-date.
+- Never expose the Control API to the public Internet. Restrict access to the Control API listener with firewalls or ACLs, where possible, place it on a dedicated interface or VLAN.
+- Configure the Control API to listen on a UNIX-domain socket. This is currently the most effective way to control access, because authorization can be managed through file permissions, and the created socket file is accessible only to the user running NGINX.
+- Keep NGINX Plus and the operating system up to date.
+
+### Control API specification
+
+The Control API is described by an OpenAPI specification in YAML format:
+
+[{{<icon "download">}}Download Control API OpenAPI YAML specification](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml)
+
+The specification can be explored with standard OpenAPI-compatible tools such as Redocly or Swagger UI.
 
 
 
