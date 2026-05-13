@@ -34,7 +34,7 @@ If you'd like to discuss something NGINX-related that doesn't involve documentat
 
 ## Submit a pull request
 
-Before making documentation changes, you should view the [documentation style guide](/documentation/style-guide.md) and [Managing content with Hugo](/documentation/hugo-content.md).
+Before making documentation changes, you should view the [F5 Technical Writing Style Guide](https://github.com/F5Docs/style-guide) and [Managing content with Hugo](/documentation/hugo-content.md).
 
 To understand how we use Git in this repository, read our [Git conventions](/documentation/git-conventions.md) documentation.
 
