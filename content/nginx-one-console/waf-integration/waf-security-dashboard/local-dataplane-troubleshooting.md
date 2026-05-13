@@ -106,7 +106,7 @@ logs/default:
     - batch/default_logs
     - resource/default
   exporters:
-    - otlp/default
+    - otlp_grpc/default
 ```
 
 This pipeline accepts F5 WAF for NGINX security logs from `tcplog/nginx_app_protect`. It filters and batches the logs, then exports them to NGINX One Console through `otlp/default`.
