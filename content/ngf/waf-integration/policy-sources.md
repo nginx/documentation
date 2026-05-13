@@ -177,7 +177,7 @@ spec:
     name: gateway
   policySource:
     n1cSource:
-      url: https://<tenant>.volterra.us
+      url: https://<tenant>.console.ves.volterra.io
       namespace: default
       policyObjectID: pol_12345_WTHGmDEX9qnbVjQ
       policyVersionID: pv_Tm__12345oWmJgwxiKlHAg
@@ -191,7 +191,7 @@ spec:
         server: syslog-svc.default.svc.cluster.local:514
     logSource:
       n1cSource:
-        url: https://<tenant>.volterra.us
+        url: https://<tenant>.console.ves.volterra.io
         namespace: default
         profileObjectID: "lp_8s8uZxLpThWwEGF7LTn_rA"
       auth:
@@ -244,7 +244,7 @@ spec:
   type: N1C
   policySource:
     n1cSource:
-      url: https://<tenant>.volterra.us
+      url: https://<tenant>.console.ves.volterra.io
       namespace: default
       policyName: "ngfExample"
     auth:
@@ -257,7 +257,7 @@ spec:
         server: localhost:1514
     logSource:
       n1cSource:
-        url: https://<tenant>.volterra.us
+        url: https://<tenant>.console.ves.volterra.io
         namespace: default
         profileName: "secops_dashboard"
       auth:
