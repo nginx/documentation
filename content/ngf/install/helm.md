@@ -20,6 +20,8 @@ To complete this guide, you will need:
 - [Helm 3.0 or later](https://helm.sh/docs/intro/install/), for deploying and managing applications on Kubernetes.
 - [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}) in a production environment.
 
+For a list of available images and their registries, see [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}}).
+
 {{< call-out "important" >}} If you’d like to use NGINX Plus, some additional setup is also required: {{< /call-out >}}
 
 {{< details summary="NGINX Plus JWT setup" >}}
