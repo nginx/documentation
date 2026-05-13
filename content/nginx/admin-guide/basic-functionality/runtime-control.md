@@ -37,3 +37,50 @@ where `<SIGNAL>` can be one of the following:
 The `kill` utility can also be used to send a signal directly to the master process. The process ID of the master process is written, by default, to the **nginx.pid** file, which is located in the **/usr/local/nginx/logs** or **/var/run** directory.
 
 For more information about advanced signals (for performing live binary upgrades, for example), see [Control nginx](https://nginx.org/en/docs/control.html) at **nginx.org**.
+
+
+## NGINX Control API {#control-api}
+
+In addition to signal-based controls, NGINX Plus can be controlled with the Control REST API, available since [NGINX Plus PLS R37.0.0 LTS]({{< ref "nginx/releases.md#r37.0" >}}).
+
+The Control API is implemented in the NGINX master process and provides a REST interface for runtime control and inspection. It allows you to:
+
+- view worker process information (process name, PID, and exit state);
+- get a memory dump of loaded NGINX configuration files;
+- trigger a configuration reload similar to `nginx -s reload` and review reload logs.
+
+The Control API provides the following endpoints:
+
+- `/1/control/processes` — return worker process information;
+- `/1/control/config` — return the in-memory NGINX configuration and trigger reloads with `PATCH`;
+- `/1/nginx` — return NGINX version and build information.
+
+See [{{<icon "download">}}OpenAPI specification](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml) for the Control API for details.
+
+### Enable NGINX Control API
+
+By default, the Control API is disabled. To enable it, start NGINX Plus with the `-l` option, specifying a UNIX-domain socket or TCP port:
+
+```shell
+sudo nginx -l unix:/tmp/nginx.sock
+```
+
+### Security implications
+
+- Never expose the Control API to the public Internet. Restrict access to the Control API listener with firewalls or ACLs, where possible, place it on a dedicated interface or VLAN.
+- Configure the Control API to listen on a UNIX-domain socket. This is currently the most effective way to control access, because authorization can be managed through file permissions, and the created socket file is accessible only to the user running NGINX.
+- Keep NGINX Plus and the operating system up to date.
+
+### Control API specification
+
+The Control API is described by an OpenAPI specification in YAML format:
+
+[{{<icon "download">}}Download Control API OpenAPI YAML specification](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml)
+
+The specification can be explored with standard OpenAPI-compatible tools such as Redocly or Swagger UI.
+
+
+
+
+
+
