@@ -21,7 +21,7 @@ If multiple resources contend for the same host or listener, NGINX Ingress Contr
 
 ## Host collisions
 
-A host collision occurs when multiple Ingress, VirtualServer, and TransportServer (configured for TLS Passthrough) resources configure the same `host`. NGINX Ingress Controller has two strategies for handling host collisions:
+A host collision occurs when multiple Ingress, VirtualServer, and TransportServer (configured for TLS Passthrough) resources configure the same `host`. When [`-allow-empty-ingress-host`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-allow-empty-ingress-host" >}}) is enabled, multiple Ingress resources without a `host` also constitute a host collision for the default server slot. NGINX Ingress Controller has two strategies for handling host collisions:
 
 - Choosing a single "winner" resource to handle the host.
 - Merging the configuration of the conflicting resources.
