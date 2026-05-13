@@ -39,6 +39,12 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
     docker pull private-registry.nginx.com/nap/waf-enforcer:<image-tag>
     ```
 
+1. Pull the WAF IP Intelligence image (if you plan to use the WAF IP Intelligence module with your WAF v5 policies):
+
+    ```shell
+    docker pull private-registry.nginx.com/nap/waf-ip-intelligence:<image-tag>
+    ```
+
 1. Clone the NGINX Ingress Controller repository:
 
     ```console
@@ -147,7 +153,7 @@ Add volume mounts to the `containers` section:
 ...
 volumeMounts:
 - name: <volume_mount_name>
-    mountPath: /etc/app_protect/bundles
+  mountPath: /etc/app_protect/bundles
 ...
 ```
 

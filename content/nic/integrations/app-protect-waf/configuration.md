@@ -260,6 +260,101 @@ spec:
       logDest: "syslog:server=syslog-svc.default:514"
 ```
 
+## IP intelligence {#ip-intelligence}
+
+IP intelligence lets you restrict access based on the source IP address reputation. You can block traffic from known malicious sources such as botnets, scanners, tor proxies, and more.
+
+{{< call-out "note" >}} IP intelligence requires additional setup during installation. See the [installation guide]({{< ref "/nic/integrations/app-protect-waf/installation.md#enable-ip-intelligence" >}}) for setup instructions. {{< /call-out >}}
+
+To enable IP intelligence in your WAF policy:
+
+1. Add the `VIOL_MALICIOUS_IP` violation to your policy's `blocking-settings`.
+2. Add an `ip-intelligence` section with the desired categories.
+
+### Example APPolicy with IP intelligence
+
+```yaml
+apiVersion: appprotect.f5.com/v1beta1
+kind: APPolicy
+metadata:
+  name: ip-intelligence-policy
+spec:
+  policy:
+    name: ip_intelligence_policy
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    applicationLanguage: utf-8
+    enforcementMode: blocking
+    blocking-settings:
+      violations:
+        - name: VIOL_MALICIOUS_IP
+          alarm: true
+          block: true
+    ip-intelligence:
+      enabled: true
+      ipIntelligenceCategories:
+        - category: BotNets
+          alarm: true
+          block: true
+        - category: Scanners
+          alarm: true
+          block: true
+        - category: Anonymous Proxy
+          alarm: true
+          block: true
+        - category: Tor Proxies
+          alarm: true
+          block: true
+...
+```
+
+### IP intelligence blocking settings
+
+`enforcementMode: blocking` enables the enforcement.
+
+```yaml
+...   
+    blocking-settings:
+      violations:
+        - name: VIOL_MALICIOUS_IP
+          alarm: true
+          block: true
+...
+```
+
+enables `block` and `alarm` on requests from malicious IP addresses.
+
+IP intelligence categories are configured in the `ipIntelligenceCategories` section of the policy.
+
+You can configure each category independently with `alarm` and `block` settings:
+
+`"alarm": true` creates a log entry for each matching request.
+
+`"block": true` rejects requests from IP addresses in that category. 
+
+The available categories are:
+
+- `Anonymous Proxy`
+- `BotNets`
+- `Cloud-based Services`
+- `Denial of Service`
+- `Infected Sources`
+- `Mobile Threats`
+- `Phishing Proxies`
+- `Scanners`
+- `Spam Sources`
+- `Tor Proxies`
+- `Web Attacks`
+- `Windows Exploits`
+
+The IP address database is managed by an external provider and updates on an interval (default 1 minute). 
+
+Addresses may be added, removed, or moved between categories based on reported activity.
+
+For the full policy configuration reference, see the [IP intelligence documentation]({{< ref "/waf/policies/ip-intelligence.md#configure-policies-for-ip-intelligence" >}}).
+
+---
+
 ## OpenAPI Specification in NGINX Ingress Controller
 
 The OpenAPI Specification defines the spec file format needed to describe RESTful APIs. The spec file can be written either in JSON or YAML. Using a spec file simplifies the work of implementing API protection. Refer to the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) (formerly called Swagger) for details.
@@ -310,21 +405,20 @@ In this example, we are adding an OpenAPI Specification file reference to `/etc/
 **Policy configuration:**
 
 ```yaml
----
 apiVersion: appprotect.f5.com/v1beta1
-  kind: APPolicy
-  metadata:
+kind: APPolicy
+metadata:
+  name: petstore_api_security_policy
+spec:
+  policy:
     name: petstore_api_security_policy
-  spec:
-    policy:
-      name: petstore_api_security_policy
-      description: F5 WAF for NGINX API Security Policy for the Petstore API
-      template:
-        name: POLICY_TEMPLATE_NGINX_BASE
-      open-api-files:
+    description: F5 WAF for NGINX API Security Policy for the Petstore API
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    open-api-files:
       - link: https://raw.githubusercontent.com/aws-samples/api-gateway-secure-pet-store/master/src/main/resources/swagger.yaml
-      blocking-settings:
-        violations:
+    blocking-settings:
+      violations:
         - block: true
           description: Disallowed file upload content detected in body
           name: VIOL_FILE_UPLOAD_IN_BODY
