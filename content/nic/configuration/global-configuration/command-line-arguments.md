@@ -167,9 +167,7 @@ Default `nginx`.
 
 Path to the ingress NGINX configuration template for an ingress resource. Default for NGINX is `nginx.ingress.tmpl`; default for NGINX Plus is `nginx-plus.ingress.tmpl`.
 
-<a name="cmdoption-allow-empty-ingress-host"></a>
-
-### -allow-empty-ingress-host
+### -allow-empty-ingress-host {#cmdoption-allow-empty-ingress-host}
 
 Allows Ingress resources to omit the `host` field.
 
