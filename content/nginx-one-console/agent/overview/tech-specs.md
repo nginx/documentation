@@ -45,7 +45,7 @@ NGINX Agent runs with an embedded OpenTelemetry Collector that provides the foll
 |-----------------------|---------|------|--------|
 | **NGINX Open Source** | Yes     | No   | No     |
 | **NGINX Plus**        | Yes     | No   | No     |
-| **NGINX App Protect** | No      | Yes  | No     |
+| **F5 WAF for NGINX** | No      | Yes  | No     |
 | **NGINX Agent**       | No      | No   | No     |
 
 {{< /table >}}

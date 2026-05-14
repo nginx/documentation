@@ -26,7 +26,7 @@ The script collects the following information:
 - NGINX versions, dynamically linked libraries
 - NGINX Plus API endpoints
 - NGINX Agent logs and configs if NGINX Agent is present
-- NGINX App Protect logs and configs if F5 NGINX App Protect is present
+- F5 WAF for NGINX logs and configs if F5 WAF for NGINX is present
 
 The script does not collect or create:
 
@@ -105,8 +105,8 @@ The following table lists the arguments you can use to customize the data that n
 | `-xl` | `--exclude_nginx_logs`   | Excludes all NGINX log files from the support package.                | `--exclude_nginx_logs`   | N/A              |
 | `-ac` | `--exclude_agent_configs`| Excludes all NGINX Agent configuration files from the support package.| `--exclude_agent_configs`|  N/A             |
 | `-al` | `--exclude_agent_logs`   | Excludes all NGINX Agent logs from the support package.               | `--exclude_agent_logs`   | N/A              |
-| `-nc` | `--exclude_nap_configs`  | Excludes all NGINX App Protect config files from the support package. | `--exclude_nap_configs`  | N/A              |
-| `-nl` | `--exclude_nap_logs`     | Excludes all NGINX App Protect log files from the support package.    | `--exclude_nap_logs`     | N/A              |
+| `-nc` | `--exclude_nap_configs`  | Excludes all F5 WAF for NGINX config files from the support package. | `--exclude_nap_configs`  | N/A              |
+| `-nl` | `--exclude_nap_logs`     | Excludes all F5 WAF for NGINX log files from the support package.    | `--exclude_nap_logs`     | N/A              |
 | `-ea` | `--exclude_api_stats`    | Excludes NGINX Plus API stats from the support package.               | `--exclude_api_stats`    | N/A              |
 | `-pi` | `--profile_interval`     | Profiling interval in seconds.                                        | `-pi 20`                 | 15               |
 

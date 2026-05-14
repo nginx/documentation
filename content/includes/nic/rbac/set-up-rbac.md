@@ -23,9 +23,9 @@ f5-files:
 
 <br>
 
-If you're planning to use NGINX App Protect or F5 DoS for NGINX, additional roles and bindings are needed.
+If you're planning to use F5 WAF for NGINX or F5 DoS for NGINX, additional roles and bindings are needed.
 
-1. (NGINX App Protect only) Create the *App Protect* role and binding:
+1. (F5 WAF for NGINX only) Create the *App Protect* role and binding:
 
     ```shell
     kubectl apply -f deployments/rbac/ap-rbac.yaml

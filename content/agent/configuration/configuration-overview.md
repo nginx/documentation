@@ -103,9 +103,9 @@ queue_size: 100
 extensions:
   - nginx-app-protect
 
-# Enable reporting NGINX App Protect details to the control plane.
+# Enable reporting F5 WAF for NGINX details to the control plane.
 nginx_app_protect:
-  # Report interval for NGINX App Protect details - the frequency NGINX Agent checks NGINX App Protect for changes.
+  # Report interval for F5 WAF for NGINX details - the frequency NGINX Agent checks F5 WAF for NGINX for changes.
   report_interval: 15s
   # Enable precompiled publication from NGINX Instance Manager (true) or perform compilation on the data plane host (false).
   precompiled_publication: true

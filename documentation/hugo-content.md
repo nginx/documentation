@@ -6,7 +6,7 @@ You will need [git](https://git-scm.com/) to interact with the repository and fi
 
 Our workflow is to develop content locally, then [submit a pull request](/documentation/git-conventions.md) once we've done our initial draft and editing passes.
 
-For guidance around how to write content, please check [the style guide](/documentation/style-guide.md).
+For guidance around how to write content, please check [the style guide](https://github.com/F5Docs/style-guide).
 
 ## Setup
 
@@ -154,7 +154,7 @@ An example of this can be seen in [/content/ngf/get-started.md](https://github.c
 #### Add images to documentation pages
 
 > [!IMPORTANT]
-> We have strict guidelines for using images. Review them in our [style guide](/documentation/style-guide.md#guidelines-for-screenshots).
+> We have strict guidelines for using images. Review them in our [style guide](https://github.com/F5Docs/style-guide/blob/main/formatting/images.md).
 
 Use the `img` shortcode to add images to documentation pages. It has the same parameters as the Hugo [figure shortcode](https://gohugo.io/content-management/shortcodes/#figure).
 

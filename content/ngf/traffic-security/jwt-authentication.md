@@ -1,6 +1,6 @@
 ---
 title: Configure JSON Web Token (JWT) authentication
-weight: 500
+weight: 600
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC

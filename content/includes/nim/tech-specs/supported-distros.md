@@ -6,11 +6,11 @@ f5-files:
 - content/nim/fundamentals/tech-specs.md
 ---
 
-The following table lists the Linux distributions supported by NGINX Instance Manager and NGINX App Protect:
+The following table lists the Linux distributions supported by NGINX Instance Manager and F5 WAF for NGINX:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 
-| Distribution    | Version                                | Architecture     | NGINX Instance Manager Support                      | NGINX App Protect Support                          |
+| Distribution    | Version                                | Architecture     | NGINX Instance Manager Support                      | F5 WAF for NGINX Support                          |
 |-----------------|----------------------------------------|------------------|-----------------------------------------------------|----------------------------------------------------|
 | Debian          | 11<hr>12                               | x86_64<hr>x86_64 | Supported<hr>Supported                              | Supported<hr>Supported                             |
 | Oracle Linux    | 8.0 and later in the 8.x family        | x86_64           | Supported                                           | Supported                                          |
