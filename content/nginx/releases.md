@@ -37,7 +37,7 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - [New release model](https://community.f5.com/kb/devcentralnews/announcing-the-first-f5-nginx-commercial-long-term-support-release/346419): Long-Term Support (LTS) Releases and Continuous Releases (CR).
 - [Agentic observability module](https://github.com/nginx/nginx-mcp-js/tree/main): real-time MCP traffic monitoring.
 - [NGINX control REST API]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md#control-api" >}}) that provides an HTTP interface for controlling an NGINX Plus instance in addition to signal-based control.
-- JSON-formatted error logs: the `json` parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
+- JSON-formatted error logs: the [`json`](https://nginx.org/en/docs/ngx_core_module.html#error_log_json) parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
 - Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag) directive.
 - Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream).
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
