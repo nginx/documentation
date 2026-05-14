@@ -359,7 +359,7 @@ Request ID: 7dbd29ec0c783475d50ed3b563b0a8a6
 
 ## See Also
 
-To set up HTTPS Termination or TLS passthrough on a listener from a `ListenerSet`, configure the listener on the `ListenerSet` as you would on a Gateway. Follow our [HTTPS Termination]({{< ref "ngf/traffic-management/https-termination.md" >}}) and [TLS passthrough]({{<ref "ngf/traffic-management/tls-passthrough.md" >}}) guides and copy the Gateway listener's configuration onto a `ListenerSet` to mimic the behavior.
+To set up HTTPS Termination, TLS passthrough, or TLSRoute Terminate mode on a listener from a `ListenerSet`, configure the listener on the `ListenerSet` as you would on a Gateway. Follow our [HTTPS Termination]({{< ref "ngf/traffic-management/https-termination.md" >}}) and [TLS routing with TLSRoute]({{<ref "ngf/traffic-management/tls-passthrough.md" >}}) guides and copy the Gateway listener's configuration onto a `ListenerSet` to mimic the behavior.
 
 To learn more about the `ListenerSet` Gateway API, see the following resources:
 
