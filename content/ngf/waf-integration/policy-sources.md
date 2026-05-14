@@ -224,6 +224,10 @@ This is by design: NGINX Gateway Fabric pulls compiled bundles from the manageme
 
 Policy association visibility for NGINX Instance Manager and NGINX One Console will be added in a future release. In the meantime, use `kubectl describe wafpolicy <name>` to check deployment status.
 
+### Connect NGINX Gateway Fabric to NGINX One Console
+
+Ensure that NGINX Gateway Fabric is configured to connect to NGINX One Console. Follow the guidance at [Connect NGINX Gateway Fabric with Helm]({{< ref "/nginx-one-console/k8s/add-ngf-helm.md" >}}) or [Connect NGINX Gateway Fabric with Manifests]({{< ref "/nginx-one-console/k8s/add-ngf-manifests.md" >}}) before continuing.
+
 ### Export security logs to F5 NGINX One Console
 
 Although the NGINX One Console console does not display which policies are deployed to NGINX Gateway Fabric data planes, you can export WAF security events to the NGINX One Console security dashboard. This gives your security operations team visibility into blocked attacks, violations, and traffic patterns directly in the console.
