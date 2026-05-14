@@ -19,7 +19,7 @@ f5-summary: >
 
 After installing NGINX and the NGINX Agent on an instance, the instance is not returned when calling `GET https://hostname/api/platform/v1/systems`.
 
-### Resolution
+### Resolution   
 
 The NGINX service must be running **before** you start the NGINX Agent.
 
