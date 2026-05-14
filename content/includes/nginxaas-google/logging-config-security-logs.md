@@ -4,7 +4,7 @@ f5-files:
 - content/nginxaas-google/monitoring/enable-nginx-logs.md
 ---
 
-You can enable security logs by adding **app_protect_security_log** directives to your NGINX configuration to specify the location of the logs and formats. The log path should always be configured to be inside **/var/log/app_protect**.
+You can enable security logs by adding **app_protect_security_log** directives to your NGINX configuration to specify the location of the logs and logging formats. The log path should always be configured under **/var/log/app_protect**.
 
 ```nginx
 app_protect_security_log_enable on;
