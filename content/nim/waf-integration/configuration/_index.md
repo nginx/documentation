@@ -41,3 +41,11 @@ This guide explains how to set up NGINX Instance Manager to manage your WAF conf
     Resolve common issues with F5 WAF for NGINX and NGINX Instance Manager by verifying installation, configuration, and connectivity.
   {{</ card >}}
 {{</card-section>}}  
+
+
+## Limitations
+
+Instance Manager does not support the following NGINX App Protect features:
+- [Policies with external references]({{< ref "/nginx-app-protect/v4/configuration/#external-references" >}})
+- Custom signatures
+- A gRPC policy can be crated/edited in NIM, but cannot be compiled.
