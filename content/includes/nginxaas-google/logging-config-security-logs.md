@@ -13,5 +13,5 @@ app_protect_security_log log_default /var/log/app_protect/security.log;
 
 NGINXaaS does not support custom logging profiles and is limited to the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
 
-{{< call-out "warning" >}}Keep F5 WAF for NGINX logs in the **/var/log/app_protect** directory. Otherwise, you may lose data from your logs.
+{{< call-out "warning" >}}WAF logs should always be stored under the **/var/log/app_protect** directory. You may lose logging data if you choose any other log paths.
 {{< /call-out >}}
