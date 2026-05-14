@@ -13,7 +13,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/wa
 
 ## F5 WAF for NGINX 5.13
 
-Released _May_ 13th, 2026_.
+Released _May 14th, 2026_.
 
 ### New features
 
