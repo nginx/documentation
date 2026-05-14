@@ -60,7 +60,6 @@ jobs:
           - nginx-amplify
           - nginx-controller
           - nginx-waf
-          - nginx-management-suite
           - nginx-gateway-fabric
           - nginx-agent
           - nginx
