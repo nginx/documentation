@@ -64,7 +64,7 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Select a **Configuration Version** from the list.
    - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
       - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
-   - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend. 
+   - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend.
       - Refer to the [Service Frontend]({{< ref "/nginxaas-google/overview.md#service-frontend" >}}) documentation for more information on these two frontend types.
    - Select **Submit** to begin the deployment process.
 
@@ -79,7 +79,7 @@ In the NGINXaaS Console,
 1. To open the details of your deployment, select its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
 1. Select **Edit** to modify the deployment description, and NCU Capacity.
-   - You can also configure monitoring from here. Detailed instructions can be found in [Enable Monitoring]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
+   - You can also configure monitoring from here. Detailed instructions can be found in [Enable Monitoring]({{< ref "/nginxaas-google/observability/enable-metrics.md" >}})
 1. Select **Update** to save your changes.
 1. Select the Configuration tab to view the current NGINX configuration associated with the deployment.
 1. Select **Update Configuration** to change the NGINX configuration associated with the deployment.
@@ -87,7 +87,7 @@ In the NGINXaaS Console,
 
 ## Set up connectivity (Private Endpoint only)
 
-If you selected **Private Endpoint** as the service frontend type, complete the following steps to allow client access. If you selected **Managed Public Endpoint**, skip this section.**
+If you selected service frontend of type **Managed Public Endpoint**, skip this section.** If you selected **Private Endpoint** as the service frontend type, complete the following steps to allow client access.
 
 ### Internal traffic
 

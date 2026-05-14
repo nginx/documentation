@@ -113,5 +113,5 @@ In the NGINXaaS Console,
 
 ## What's next
 
-- [Monitor your deployment]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
-- [Enable NGINX Logs]({{< ref "/nginxaas-google/monitoring/enable-nginx-logs.md" >}})
+- [Monitor your deployment]({{< ref "/nginxaas-google/observability/enable-metrics.md" >}})
+- [Enable NGINX Logs]({{< ref "/nginxaas-google/observability/enable-logs.md" >}})

@@ -1,9 +1,9 @@
 ---
-title: Enable NGINX logs
+title: Enable Logs
 weight: 350
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/google/monitoring/enable-nginx-logs/
+url: /nginxaas/google/observability/enable-logs/
 f5-content-type: how-to
 f5-product: NGOOGL
 ---

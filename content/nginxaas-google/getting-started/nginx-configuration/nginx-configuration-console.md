@@ -34,4 +34,4 @@ You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINX
 1. Confirm that you want to delete the configuration.
 
 ## What's next
-[Monitor your deployment]({{< ref "/nginxaas-google/monitoring/enable-monitoring.md" >}})
+[Monitor your deployment]({{< ref "/nginxaas-google/observability/enable-metrics.md" >}})
