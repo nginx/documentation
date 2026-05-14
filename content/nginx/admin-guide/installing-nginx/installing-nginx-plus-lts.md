@@ -11,7 +11,7 @@ nd-docs: DOCS-000
 
 Since May 13, 2026, NGINX Plus is published in two release types: Long-Term Support (LTS) and Continuous Release (CR).
 
-The NGINX Plus LTS release model is designed for mission-critical production environments. Each LTS release is supported for three years and receives security fixes and CVE mitigations without introducing new features. New features are delivered in [Continuous Releases (CR)](#cr) during the same annual LTS cycle.
+The NGINX Plus LTS release model is designed for mission-critical production environments. Each LTS release is supported for three years and receives security fixes and CVE mitigations without introducing new features. New features are delivered in [Continuous Releases (CR)] during the same annual LTS cycle.
 
 - **Cadence**: one LTS per year
 - **Patching model**: security/CVE fixes only, no feature changes
@@ -19,7 +19,7 @@ The NGINX Plus LTS release model is designed for mission-critical production env
 - **Concurrency**: up to 3 LTS versions supported at the same time
 - **Version format**: an LTS release has `0` as the second numeric component, for example: `PLS.37.0.0.1`. LTS updates increment the third component, for example: `PLS.37.0.1.1`.
 
-NGINX Plus Continuous Releases (CR) are published several times within an annual [LTS](#lts) cycle. Each CR contains the latest features and performance improvements. The CR cycle ends when a new LTS is released.
+NGINX Plus Continuous Releases (CR) are published several times within an annual [LTS] cycle. Each CR contains the latest features and performance improvements. The CR cycle ends when a new LTS is released.
 
 
 ## Repository configuration options {#repo-options}
@@ -28,7 +28,7 @@ By default, NGINX Plus repositories are configured to receive [Continuous Releas
 
 - **Pin to current LTS only**: receive only security updates for this LTS, no CRs, no automatic update to next LTS; supported up to three years
 - **Pin to LTS track**: automatically upgrade to the newest LTS when it is released annually, no CRs.
-- **Default**: receive Continuous Releases within the current LTS release. No actions needed.
+- **Default**: receive Continuous Releases within the current LTS release, automatically upgrade to each new LTS when it is released annually and then receive its CRs. No actions needed.
 
 ## Prerequisites {#prereq}
 
@@ -37,8 +37,8 @@ Before you begin, make sure you have:
 - [MyF5 Customer Portal](https://account.f5.com/myf5) access, credentials are provided in the email from F5, Inc.
 - An active NGINX Plus subscription. Details can be verified on the [MyF5 Customer Portal](https://account.f5.com/myf5).
 - A [supported operating system and architecture]({{< ref "nginx/technical-specs.md" >}}).
-- Administrative privileges: `root` access or `sudo`, or see [Unprivileged installation](#unpriv_install).
-- Internet access, or see [Offline installation](#offline_install).
+- Administrative privileges: `root` access or `sudo`, or see [Unprivileged installation]({{< ref "/nginx/admin-guide/installing-nginx/upgrading-nginx-plus.md#unpriv_install" >}}).
+- Internet access, or see [Offline installation]({{< ref "/nginx/admin-guide/installing-nginx/upgrading-nginx-plus.md#offline_install" >}}).
 
 ## Preparation steps for all operating systems {#common-steps}
 
@@ -281,8 +281,6 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
    ```shell
    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
    ```
-
-   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. **Modify your NGINX Plus repository configuration to pin to the desired LTS track**. To change your update channel, edit the `/etc/apt/sources.list.d/nginx-plus.list` file and update the URL to the [appropriate value](#repo-options) for your target version.
 
@@ -607,5 +605,5 @@ Supported RHEL-based operating systems include Red Hat Enterprise Linux, Oracle 
 
 ## Upgrade NGINX Plus {#upgrade}
 
-For general upgrade instructions, see [Upgrading NGNIX Plus]({{< ref "/nginx/admin-guide/installing-nginx/upgrading-nginx-plus.md" >}})
+For general upgrade instructions, see [Upgrading NGNIX Plus]({{< ref "/nginx/admin-guide/installing-nginx/upgrading-nginx-plus.md" >}}).
 

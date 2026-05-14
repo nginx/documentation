@@ -19,7 +19,7 @@ Since May 13, 2026, NGINX Plus follows a new release model: [Long-Term Support (
 
 LTS is identified by a `0` as the second numeric component of the version number, for example, PLS.37.`0`.0.1. An LTS release update increments the third numeric component, for example, PLS.37.0.`1`.1.
 
-[**NGINX Plus Continuous Releases (CR)**](#cr) are published multiple times during the life of the latest [LTS](#lts) release and include the newest features and performance improvements. CRs are never patched, securiry fixes are delivered as the next CR. F5 provides support for the latest CR only - when a new CR is released, the previous CR immediately reaches End of Support.
+[**NGINX Plus Continuous Releases (CR)**](#cr) are published multiple times during the life of the latest [LTS](#lts) release and include the newest features and performance improvements. CRs are never patched, security fixes are delivered as the next CR. F5 provides support for the latest CR only - when a new CR is released, the previous CR immediately reaches End of Support.
 
 CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0, PLS.37.`2`.0.0.
 
@@ -37,12 +37,12 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - [New release model](https://community.f5.com/kb/devcentralnews/announcing-the-first-f5-nginx-commercial-long-term-support-release/346419): Long-Term Support (LTS) Releases and Continuous Releases (CR).
 - [Agentic observability module](https://github.com/nginx/nginx-mcp-js/tree/main): real-time MCP traffic monitoring.
 - [NGINX control REST API]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md#control-api" >}}) that provides an HTTP interface for controlling an NGINX Plus instance in addition to signal-based control.
-- JSON-formatted error logs: the `json` parameter of the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
-- Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/ngx_core_module.html#error_log_tag) directive.
-- Enhanced upstream latency metrics with latency histograms for each upstream.
+- JSON-formatted error logs: the `json` parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
+- Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag) directive.
+- Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream).
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
 - Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
-- Multipath TCP support: the `multipath` parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) directive.
+- Multipath TCP support: the [`multipath`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
 - The [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers) directive that sets the maximum allowed number of header lines in requests.
 - HTTP2 to upstreams support.
 - Default HTTP 1.1 version to upstreams with keepalive enabled by default.
