@@ -24,8 +24,8 @@ Before sharing this pull request, I completed the following checklist:
 
 - [ ] I read the [Contributing guidelines](https://github.com/nginx/documentation/blob/main/CONTRIBUTING.md)
 - [ ] My branch adheres to the [Git conventions](https://github.com/nginx/documentation/blob/main/documentation/git-conventions.md)
-- [ ] My content changes adhere to the [F5 NGINX Documentation style guide](https://github.com/nginx/documentation/blob/main/documentation/style-guide.md)
+- [ ] My content changes adhere to the [F5 Technical Writing Style Guide](https://github.com/F5Docs/style-guide)
 - [ ] If my changes involve potentially sensitive information[^1], I have assessed the possible impact
 - [ ] I have waited to ensure my changes pass tests, and addressed any discovered issues
 
-[^1]: Potentially sensitive information includes personally identify information (PII), authentication credentials, and live URLs. Refer to the [style guide](https://github.com/nginx/documentation/blob/main/documentation/style-guide.md) for guidance about placeholder content.
+[^1]: Potentially sensitive information includes personally identify information (PII), authentication credentials, and live URLs. Refer to the [style guide](https://github.com/F5Docs/style-guide/blob/main/terminology/sensitive-information.md) for guidance about placeholder content.

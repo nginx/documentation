@@ -351,7 +351,7 @@ Permalinks for products are defined in `config/_default/config.toml`.
 
 ## Key reference files
 
-- `documentation/style-guide.md` -- legacy style guide (superseded by F5 style guide repo)
+- `.style-guide/` -- F5 Technical Writing Style Guide (Git submodule)
 - `documentation/hugo-content.md` -- Hugo content guidance
 - `documentation/git-conventions.md` -- Git conventions
 - `documentation/include-files.md` -- Include file guidance

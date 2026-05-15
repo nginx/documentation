@@ -6,7 +6,7 @@ This guide explains how to use GitHub Copilot to draft and review documentation 
 
 - [GitHub Copilot subscription](https://github.com/features/copilot) (individual or organization)
 - VS Code with the GitHub Copilot extension installed
-- Familiarity with the [style guide](/documentation/style-guide.md) and [Hugo content guidelines](/documentation/hugo-content.md)
+- Familiarity with the [style guide](https://github.com/F5Docs/style-guide) and [Hugo content guidelines](/documentation/hugo-content.md)
 
 ## How Copilot uses copilot-instructions.md
 
@@ -407,7 +407,7 @@ For larger rewrites, use Copilot Edits:
 ## Additional resources
 
 - [GitHub Copilot documentation](https://docs.github.com/en/copilot)
-- [Style guide](/documentation/style-guide.md)
+- [Style guide](https://github.com/F5Docs/style-guide)
 - [Hugo content management](/documentation/hugo-content.md)
 - [Git conventions](/documentation/git-conventions.md)
 - [copilot-instructions.md](/.github/copilot-instructions.md)
