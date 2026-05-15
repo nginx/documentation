@@ -100,7 +100,7 @@ Confirm it includes the following pipeline:
 ```yaml
 logs/default:
   receivers:
-    - tcplog/nginx_app_protect
+    - tcp_log/nginx_app_protect
   processors:
     - securityviolationsfilter/default
     - batch/default_logs
