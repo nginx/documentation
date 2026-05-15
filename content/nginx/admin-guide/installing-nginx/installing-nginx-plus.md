@@ -20,7 +20,7 @@ Since May 13, 2026, NGINX Plus is published in two release types:
 
 ### Long-Term Support (LTS) {#lts}
 
-The NGINX Plus LTS release model is intended for mission-critical production environments. During an LTS lifecycle, F5 delivers security fixes and CVE mitigations without introducing new features. New features are delivered in [Continuous Releases (CR)](#cr) during the same annual cycle.
+The NGINX Plus LTS release model is intended for mission-critical production environments. During an LTS lifecycle, F5 delivers security fixes and CVE mitigations without introducing new features. New features are delivered in Continuous Releases (CR) during the same annual cycle.
 
 - **Cadence**: annual (one LTS per year)
 - **Patching model**: security/CVE fixes only (no feature changes within the LTS line)
