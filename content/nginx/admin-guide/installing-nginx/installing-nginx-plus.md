@@ -20,7 +20,7 @@ Since May 13, 2026, NGINX Plus is published in two release types:
 
 ### Long-Term Support (LTS) {#lts}
 
-The NGINX Plus LTS release model is intended for mission-critical production environments. During an LTS lifecycle, F5 delivers security fixes and CVE mitigations without introducing new features. New features are delivered in [Continuous Releases (CR)](#cr) during the same annual cycle.
+The NGINX Plus LTS release model is intended for mission-critical production environments. During an LTS lifecycle, F5 delivers security fixes and CVE mitigations without introducing new features. New features are delivered in Continuous Releases (CR) during the same annual cycle.
 
 - **Cadence**: annual (one LTS per year)
 - **Patching model**: security/CVE fixes only (no feature changes within the LTS line)
@@ -38,6 +38,17 @@ NGINX Plus Continuous Releases (CR) are published several times within an annual
 - **Patching model**: CRs are never patched; fixes, including CVEs, are delivered as the next CR
 - **Support window**: latest CR only; when a new CR is released, the previous CR immediately reaches End of Support
 - **Version format**: CRs increment the second numeric component, for example: `PLS.37.1.0.0`, `PLS.37.2.0.0`
+
+
+### Repository configuration options
+
+By default, NGINX Plus repositories are configured to receive Continuous Releases. To use LTS, update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
+
+Available repository configuration options:
+
+- **Default**: receive Continuous Releases within the current LTS release, automatically upgrade to each new LTS when it is released annually and then receive its CRs. Follow the steps for your operating system in this guide.
+- **Pin to current LTS only**: receive only security updates for this LTS, no CRs, no automatic update to next LTS; supported up to three years. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
+- **Pin to LTS track**: automatically upgrade to the newest LTS when it is released annually, no CRs. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
 
 ## Prerequisites {#prereq}
 
