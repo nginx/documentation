@@ -11,7 +11,7 @@ weight: 400
 
 This guide shows how to extend a working submission from the [Submit Templates Guide]({{< ref "submit-templates.md" >}}) by adding server augments for new services with dedicated location augments.
 
-{{< call-out "note" "Note" >}}Because you can’t retrieve previous submissions, you must include the full request with any updates.{{< /call-out >}}
+{{< call-out "note" "Note" >}}Submissions are persistent objects. Use the [Get a submission]({{< ref "submit-templates.md#get-a-submission" >}}) operation to retrieve the stored values from a previous submission before building an update.{{< /call-out >}}
 
 ## Import template
 
