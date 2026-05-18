@@ -60,18 +60,14 @@ The control plane image contains the NGINX Gateway Fabric binary.
 
 ### Data plane images with NGINX
 
-_All images include NGINX 1.30.0._
-
 | Name            | Base image                 | Image                                                              | Architectures |
 |-----------------|----------------------------|--------------------------------------------------------------------|----------------|
-| Default image   | `nginx:1.30.0-alpine-otel` | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}`     | amd64<br>arm64 |
+| Default image   | `nginx:alpine-otel`        | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}`     | amd64<br>arm64 |
 | UBI-based image | `redhat/ubi9-minimal`      | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
  
 ### Data plane images with NGINX Plus
 
 NGINX Plus images are available through the F5 Container registry `private-registry.nginx.com`. For setup instructions and authentication details, see [Install NGINX Gateway Fabric with NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}).
-
-_All images include NGINX Plus R36._
 
 | Name                                  | Base image            | Image                                                                                      | Architectures  |
 |---------------------------------------|-----------------------|--------------------------------------------------------------------------------------------|----------------|

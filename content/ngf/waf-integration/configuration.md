@@ -252,9 +252,9 @@ NGINX Gateway Fabric retries on the next reconciliation or poll cycle. No manual
 
 ## Configure WAF containers
 
-When WAF is enabled, NGINX Gateway Fabric deploys two sidecar containers — `waf-enforcer` and `waf-config-mgr` — alongside the main NGINX container. You can customize the image, resource requirements, and additional volume mounts for each container using the `NginxProxy` resource.
+When WAF is enabled, NGINX Gateway Fabric deploys two sidecar containers — `waf-enforcer` and `waf-config-mgr` — alongside the main NGINX container.
 
-These settings are configured under `spec.kubernetes.deployment.wafContainers` (or `spec.kubernetes.daemonSet.wafContainers` for DaemonSet mode). This follows the same infrastructure configuration pattern described in [Configure infrastructure-related settings]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-infrastructure-related-settings" >}}). For the full list of configurable fields, see the `NginxProxy` spec in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+These settings are configured under `spec.kubernetes.deployment.wafContainers` (or `spec.kubernetes.daemonSet.wafContainers` for DaemonSet mode) in the NginxProxy resource. This follows the same infrastructure configuration pattern described in [Configure infrastructure-related settings]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-infrastructure-related-settings" >}}). For the full list of configurable fields, see the `NginxProxy` spec in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
 
 Each container (`enforcer` and `configManager`) supports the following fields:
 
@@ -278,7 +278,7 @@ spec:
         enforcer:
           image:
             repository: registry.example.com/nap/waf-enforcer
-            tag: "5.12.1"
+            tag: "{{< ngf-waf-release-version >}}"
           resources:
             requests:
               cpu: 100m
@@ -289,7 +289,7 @@ spec:
         configManager:
           image:
             repository: registry.example.com/nap/waf-config-mgr
-            tag: "5.12.1"
+            tag: "{{< ngf-waf-release-version >}}"
           resources:
             requests:
               cpu: 50m
@@ -311,7 +311,7 @@ nginx:
     enforcer:
       image:
         repository: registry.example.com/nap/waf-enforcer
-        tag: "5.12.1"
+        tag: "{{< ngf-waf-release-version >}}"
       resources:
         requests:
           cpu: 100m
@@ -319,7 +319,7 @@ nginx:
     configManager:
       image:
         repository: registry.example.com/nap/waf-config-mgr
-        tag: "5.12.1"
+        tag: "{{< ngf-waf-release-version >}}"
       resources:
         requests:
           cpu: 50m

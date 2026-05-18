@@ -59,7 +59,14 @@ metadata:
 spec:
   waf:
     enable: true
+  kubernetes:
+    deployment:
+      container:
+        image:
+          repository: private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf
 ```
+
+{{< call-out "important" >}} The per-Gateway NginxProxy must specify the WAF-enabled NGINX Plus image (`nginx-plus-f5waf`). If you installed with an explicit NGINX Plus image, the standard `nginx-plus` image is inherited from the GatewayClass and does not include the WAF module. See [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}}) for the full list of available images. {{< /call-out >}}
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
@@ -81,11 +88,14 @@ spec:
 
 ### Enable WAF for all Gateways
 
-To enable WAF globally, set `nginx.config.waf.enable` in your Helm values. This configures the GatewayClass-level `NginxProxy` that is created automatically at install time:
+To enable WAF globally, set `nginx.config.waf.enable` and `nginx.image.repository` in your Helm values. This configures the GatewayClass-level `NginxProxy` that is created automatically at install time:
 
 ```yaml
 # values.yaml
 nginx:
+  image:
+    repository: private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf
+  plus: true
   config:
     waf:
       enable: true
@@ -94,6 +104,7 @@ nginx:
 ```shell
 helm upgrade --install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
   --namespace nginx-gateway --create-namespace \
+  --set nginx.imagePullSecret=nginx-plus-registry-secret \
   -f values.yaml
 ```
 

@@ -116,6 +116,11 @@ metadata:
 spec:
   waf:
     enable: true
+  kubernetes:
+    deployment:
+      container:
+        image:
+          repository: private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -136,7 +141,9 @@ spec:
 EOF
 ```
 
-{{< call-out "tip" >}} This creates a per-Gateway NginxProxy. You can also enable WAF for all Gateways at once using the GatewayClass-level NginxProxy or Helm values. See [Enable WAF on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) for details, including custom WAF container images and additional settings. {{< /call-out >}}
+{{< call-out "important" >}} The per-Gateway NginxProxy must specify the WAF-enabled NGINX Plus image (`nginx-plus-f5waf`). If you installed NGINX Gateway Fabric with an explicit NGINX Plus image (as shown in the [Helm install guide]({{< ref "/ngf/install/helm.md" >}})), that image is inherited by the per-Gateway NginxProxy through the [merging semantics]({{< ref "/ngf/how-to/data-plane-configuration.md#merging-semantics" >}}). The standard `nginx-plus` image does not include the WAF module, so you must override it here. {{< /call-out >}}
+
+{{< call-out "tip" >}} You can also enable WAF for all Gateways at once using the GatewayClass-level NginxProxy or Helm values. See [Enable WAF on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) for details. {{< /call-out >}}
 
 ---
 
