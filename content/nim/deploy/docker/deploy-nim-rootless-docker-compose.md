@@ -1,5 +1,5 @@
 ---
-description: Deploy F5 NGINX Instance Manager in a rootless Docker environment using Docker Compose, with runtime configuration injection via environment variables.
+description: Deploy F5 NGINX Instance Manager in a rootless Docker environment using Docker Compose, with runtime configuration injection using environment variables.
 title: Deploy rootless using Docker Compose
 toc: true
 weight: 150
@@ -8,20 +8,20 @@ f5-content-type: how-to
 f5-product: NIMNGR
 f5-summary: >
   Deploy F5 NGINX Instance Manager in a secure, rootless Docker Compose environment where all
-  processes run as a non-root user. Change NIM configuration at runtime using environment
+  processes run as a non-root user. Change NGINX Instance Manager configuration at runtime using environment
   variables—no image rebuild required.
 ---
 
 ## Overview
 
-This guide shows you how to deploy F5 NGINX Instance Manager (NIM) using Docker Compose in a **rootless** configuration. In this setup, all container processes run as a non-root user (`nms`), following the principle of least privilege for production environments.
+This guide shows you how to deploy F5 NGINX Instance Manager using Docker Compose in a **rootless** configuration. In this setup, all container processes run as a non-root user (`nms`), following the principle of least privilege for production environments.
 
-A key capability of this deployment is **runtime configuration injection**: NIM settings can be changed by editing environment variable files and restarting the stack. No Docker image rebuild is required.
+A key capability of this deployment is **runtime configuration injection**: you can change NGINX Instance Manager settings by editing environment variable files and restarting the stack. You don't need to rebuild the Docker image.
 
 Key characteristics of this deployment:
 
 - **Rootless by design** — All processes run as `nms` (non-root), reducing the attack surface and satisfying security hardening requirements.
-- **Runtime configuration** — Modify NIM settings by updating `.env` and `docker-compose.yaml`. No image rebuild needed.
+- **Runtime configuration** — Change NGINX Instance Manager settings by updating `.env` and `docker-compose.yaml`. You don't need to rebuild the image.
 - **Production-hardened** — Startup scripts are idempotent and avoid fragile patterns such as recursive permission changes.
 - **Flexible licensing** — Supports both connected and disconnected license modes, switchable at runtime.
 
@@ -34,7 +34,7 @@ Before you begin, make sure you have the following:
 - [Docker Engine](https://docs.docker.com/get-docker/) 20.10 or later installed on a Linux host (amd64 or arm64).
 - Docker Compose plugin v2 or later.
 - A valid NGINX Instance Manager license file, base64-encoded.
-- An NGINX certificate and private key, required to download NIM packages during image build.
+- An NGINX certificate and private key, required to download NGINX Instance Manager packages during image build.
 - Basic familiarity with Docker Compose and YAML syntax.
 
 ---
@@ -50,7 +50,7 @@ cd nginx-demos/nginx-instance-manager/docker-deployment
 
 ---
 
-## Build the NIM image
+## Build the NGINX Instance Manager image
 
 Run the build script, supplying your NGINX certificate, key, and a name for the resulting image:
 
@@ -64,7 +64,7 @@ Replace the placeholders:
 - `<NGINX_CERTIFICATE_KEY>` — Path to your NGINX TLS private key file.
 - `<IMAGE_NAME>` — Your preferred Docker image tag (for example, `nim:latest`).
 
-The build script downloads NIM packages from the NGINX repository using your certificate and key, and produces a self-contained rootless image.
+The build script downloads NGINX Instance Manager packages from the NGINX repository using your certificate and key, and produces a self-contained rootless image.
 
 ---
 
@@ -83,7 +83,7 @@ NIM_CLICKHOUSE_PASSWORD=<password>
 NIM_LICENSE_MODE_OF_OPERATION=connected
 ```
 
-Replace `<IMAGE_NAME>` with the tag used in the build step, and `<BASE64_ENCODED_LICENSE_FILE>` with your base64-encoded NIM license. Set `NIM_LICENSE_MODE_OF_OPERATION` to `connected` or `disconnected` depending on your environment (see [License modes](#license-modes) below).
+Replace `<IMAGE_NAME>` with the tag used in the build step, and `<BASE64_ENCODED_LICENSE_FILE>` with your base64-encoded NGINX Instance Manager license. Set `NIM_LICENSE_MODE_OF_OPERATION` to `connected` or `disconnected` depending on your environment (see [License modes](#license-modes) below).
 
 {{< call-out "note" >}} Change `NIM_USERNAME` and `NIM_PASSWORD` to values appropriate for your environment before deploying to production. {{< /call-out >}}
 
@@ -110,7 +110,7 @@ If you add new configuration variables later, add a corresponding line here to m
 
 ## Start the stack
 
-Launch NIM and its dependencies (including ClickHouse) with:
+Start NGINX Instance Manager and its dependencies (including ClickHouse) with:
 
 ```shell
 docker compose -f docker-compose.yaml up -d
@@ -118,9 +118,9 @@ docker compose -f docker-compose.yaml up -d
 
 ---
 
-## Access the NIM web interface
+## Access the NGINX Instance Manager web interface
 
-Once the containers are running, open a browser and go to:
+When the containers are running, open a browser and go to:
 
 ```text
 https://localhost/
@@ -132,12 +132,12 @@ Accept the self-signed TLS certificate warning if prompted. Log in using the `NI
 
 ## How runtime configuration injection works
 
-When the NIM container starts, the entrypoint script `startNIM.sh` reads environment variables passed in by Docker Compose and writes their values directly into the NIM configuration files using `yq`, a YAML processor. The two configuration files are:
+When the NGINX Instance Manager container starts, `startNIM.sh` reads the environment variables that Docker Compose passes in. It writes their values into the NGINX Instance Manager configuration files using `yq`, a YAML processor. The two configuration files are:
 
 - `/etc/nms/nms.conf`
 - `/etc/nms/nms-sm-conf.yaml`
 
-This means configuration is applied fresh on every container start. You change a setting by updating the variable in `.env` and restarting the stack—no image rebuild is required.
+This means NGINX Instance Manager applies fresh configuration on every container start. You change a setting by updating the variable in `.env` and restarting the stack. You don't need to rebuild the image.
 
 The script exposes two helper functions:
 
@@ -146,9 +146,9 @@ The script exposes two helper functions:
 
 ---
 
-## Add or change NIM configuration
+## Add or change NGINX Instance Manager configuration
 
-To inject a new or modified configuration value, complete three steps:
+To inject a new or changed configuration value, complete these steps:
 
 1. **Add the variable to `.env`**
 
@@ -179,17 +179,17 @@ Then restart the stack to apply the change:
 docker compose -f docker-compose.yaml up -d
 ```
 
-No image rebuild is needed.
+You don't need to rebuild the image.
 
 ---
 
 ## License modes {#license-modes}
 
-NIM supports two license operating modes. The correct choice depends on whether your host has outbound internet access to the NGINX licensing service.
+NGINX Instance Manager supports two license operating modes. The correct choice depends on whether your host has outbound internet access to the NGINX licensing service.
 
 ### Connected mode
 
-NIM contacts the NGINX licensing service directly over the internet. Use this mode when the host has reliable outbound HTTPS access.
+NGINX Instance Manager contacts the NGINX licensing service directly over the internet. Use this mode when the host has reliable outbound HTTPS access.
 
 Set in `.env`:
 
@@ -199,7 +199,7 @@ NIM_LICENSE_MODE_OF_OPERATION=connected
 
 ### Disconnected mode
 
-NIM operates without outbound internet access and validates the license locally. Use this mode for air-gapped or restricted environments.
+NGINX Instance Manager operates without outbound internet access and validates the license locally. Use this mode for air-gapped or restricted environments.
 
 Set in `.env`:
 
@@ -247,7 +247,7 @@ docker compose -f docker-compose.yaml down
 
 ### Permission errors on startup
 
-All processes run as the `nms` non-root user. If you see permission errors, check that any host-mounted volumes are readable and writable by the `nms` user. Avoid using recursive `chown` or `chmod` commands, as these can interfere with rootless operation.
+All processes run as the `nms` non-root user. If you see permission errors, check that any host-mounted volumes are readable and writable by the `nms` user. Avoid using recursive `chown` or `chmod` commands, because these can interfere with rootless operation.
 
 ### Configuration changes not taking effect
 
