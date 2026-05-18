@@ -14,7 +14,7 @@ This guide explains how to view detailed information about a template using the 
 ## Navigate to the Template Detail page
 
 1. In the NGINX One Console, go to **Manage > Config Templates**.
-2. Select a template name from the list.
+2. Select a template name from the list. Templates provided by F5 are identified by the F5 logo icon in the list.
 
 The Template Detail page opens showing the **Details** tab by default. Select the **Versions** tab to view the full version history.
 
@@ -27,6 +27,7 @@ The **Details** tab displays a summary card with the following fields:
 |-------|-------------|
 | **Created** | The date and time the template was originally created. |
 | **Type** | The template type: `base` or `augment`. See [Template types]({{< ref "author-templates.md#template-types" >}}) for details. |
+| **Is F5 Default** | Displayed for templates provided by F5. F5 default templates are immutable and cannot be modified or deleted. |
 | **Object ID** | The unique identifier for the template (`tmpl_...`). Use the copy button to copy this value for template-level API operations such as [updating metadata]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/updateTemplateMetadata" >}}) or [copying a template]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/copyTemplate" >}}). |
 | **State** | The state of the latest template version: `draft` (editable) or `final` (immutable, shown with a lock icon). |
 | **Latest Version** | The version number of the most recent template version. |
