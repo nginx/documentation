@@ -26,27 +26,6 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 
 
-## 5.4.3
-
-15 May 2026
-
-### {{% icon arrow-up %}} Dependencies
-
-- [9870](https://github.com/nginx/kubernetes-ingress/pull/9870) Update NGINX OSS to 1.31.0, NGINX Plus to R37.0, WAF to 5.13.0 & NGINX Agent to latest 3.x
-- [9851](https://github.com/nginx/kubernetes-ingress/pull/9851) Update Go version to 1.26.3
-- [9841](https://github.com/nginx/kubernetes-ingress/pull/9841), [9833](https://github.com/nginx/kubernetes-ingress/pull/9833), [9818](https://github.com/nginx/kubernetes-ingress/pull/9818), [9831](https://github.com/nginx/kubernetes-ingress/pull/9831) & [9813](https://github.com/nginx/kubernetes-ingress/pull/9813) Bump Go dependencies
-- [9867](https://github.com/nginx/kubernetes-ingress/pull/9867), [9809](https://github.com/nginx/kubernetes-ingress/pull/9809), [9814](https://github.com/nginx/kubernetes-ingress/pull/9814), [9823](https://github.com/nginx/kubernetes-ingress/pull/9823), [9868](https://github.com/nginx/kubernetes-ingress/pull/9868), [9810](https://github.com/nginx/kubernetes-ingress/pull/9810) & [9832](https://github.com/nginx/kubernetes-ingress/pull/9832) Bump Docker dependencies
-
-### {{% icon download %}} Upgrade
-
-- For NGINX, use the 5.4.3 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.4.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
-- For NGINX Plus, use the 5.4.3 images from the F5 Container registry or build your own image using the 5.4.3 source code.
-- For Helm, use version 2.5.3 of the chart.
-
-### {{% icon life-buoy %}} Supported platforms
-
-We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.28 - 1.35.
-
 ## 5.4.2
 
 07 May 2026
