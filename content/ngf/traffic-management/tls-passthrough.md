@@ -6,9 +6,9 @@ f5-content-type: how-to
 f5-product: FABRIC
 f5-docs: DOCS-1850
 f5-summary: >
-   NGINX Gateway Fabric supports two TLS modes for TLSRoute: Passthrough and Terminate.
-   In Passthrough mode, the Gateway forwards encrypted traffic to the backend using SNI-based routing, and the backend terminates TLS with its own certificate.
-   In Terminate mode, the Gateway holds the certificate and terminates TLS, then forwards plain TCP traffic to the backend.
+   NGINX Gateway Fabric supports two TLS modes for TLSRoute: passthrough and terminate.
+   In passthrough mode, the Gateway forwards encrypted traffic to the backend using SNI-based (Server Name Indication) routing, and the backend terminates TLS with its own certificate.
+   In terminate mode, the Gateway holds the certificate and terminates TLS, then forwards plain TCP traffic to the backend.
 ---
 
 Learn how to configure TLS routing with [TLSRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tlsroute) using NGINX Gateway Fabric.
@@ -148,7 +148,7 @@ NAME                  TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)    AGE
 service/secure-app    ClusterIP   192.168.194.152   <none>        8443/TCP   12s
 ```
 
-Create a Gateway with a TLS listener in Passthrough mode. Copy and paste this into your terminal:
+Create a Gateway with a TLS listener in passthrough mode. Copy and paste this into your terminal:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -296,7 +296,7 @@ Note that the server certificate used to terminate the TLS connection has the su
 
 ## TLS terminate
 
-In Terminate mode, NGINX Gateway Fabric holds the TLS certificate, terminates the TLS connection, and forwards plain TCP traffic to the backend. The backend doesn't need a certificate or TLS configuration.
+In terminate mode, NGINX Gateway Fabric holds the TLS certificate, terminates the TLS connection, and forwards plain TCP traffic to the backend. The backend doesn't need a certificate or TLS configuration.
 
 Use TLS terminate mode when:
 
@@ -382,7 +382,7 @@ NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
 service/app   ClusterIP   192.168.194.87   <none>        80/TCP    10s
 ```
 
-Create a Gateway with a TLS listener in Terminate mode. Copy and paste this into your terminal:
+Create a Gateway with a TLS listener in terminate mode. Copy and paste this into your terminal:
 
 ```yaml
 kubectl apply -f - <<EOF
