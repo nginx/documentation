@@ -95,6 +95,7 @@ Use the [List Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#op
 - **type** - Identifies base templates (use exactly one) vs augment templates (use zero or more)
 - **allowed_in_contexts** - Shows where augment templates can be applied within a base template
 - **augment_includes** - Shows which contexts the base template supports for augments
+- **is_f5_default** - When `true`, the template is provided by F5 and is immutable. These templates are also identified in the NGINX One Console by the F5 logo icon in the templates list.
 
 The API response contains all information needed for creating a submission to render NGINX configurations. You need template details **only** if you want to examine the actual template content or variable requirements.
 
