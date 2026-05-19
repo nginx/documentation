@@ -75,7 +75,7 @@ sudo nginx -l unix:/tmp/nginx.sock
 
 See [NGINX Control REST API reference]({{< ref "nginx/admin-guide/basic-functionality/control-api-reference.md" >}}) for details on available endpoints, request parameters, and response schemas.
 
-[{{<icon "download">}}Download Control API OpenAPI YAML specification](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml) to explore the API using standard OpenAPI-compatible tools such as Redocly or Swagger UI.
+[{{<icon "download">}}Download Control API OpenAPI YAML specification](/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml) or copy this link to explore the API using standard OpenAPI-compatible tools such as Redoc or Swagger UI.
 
 
 
