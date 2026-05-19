@@ -55,7 +55,7 @@ The Control API provides the following endpoints:
 - `/1/control/config` — return the in-memory NGINX configuration and trigger reloads with `PATCH`;
 - `/1/nginx` — return NGINX version and build information.
 
-See [{{NGINX Control API reference]({{< ref "nginx/admin-guide/basic-functionality/control-api-reference.md" >}}) for details.
+See [NGINX Control REST API reference]({{< ref "nginx/admin-guide/basic-functionality/control-api-reference.md" >}}) for details.
 
 ### Enable NGINX Control API
 

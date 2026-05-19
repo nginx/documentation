@@ -424,7 +424,7 @@ The JSON data returned:
 }
 ```
 
-For a complete list of available endpoints and supported methods see [reference documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html).
+For a complete list of available endpoints and supported methods see [reference documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html). This documentation is also available in [Redoc format]({{< ref "nginx/admin-guide/monitoring/nginx-plus-api-reference.md" >}}).
 
 <span id="json_delete"></span>
 ### Resetting the statistics
