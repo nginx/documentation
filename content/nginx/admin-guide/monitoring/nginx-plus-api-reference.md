@@ -7,9 +7,9 @@ doctypes:
 type: redoc
 tags:
   - api
-title: NGINX Control REST API reference
+title: NGINX Plus REST API reference
 toc: false
 weight: null
-f5-api-reference: "./nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml"
+f5-api-reference: "./nginx/admin-guide/yaml/v9/nginx_api.yaml"
 f5-product: NONECO
 ---
