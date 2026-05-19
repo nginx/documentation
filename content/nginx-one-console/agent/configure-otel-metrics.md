@@ -118,13 +118,11 @@ service:
         - prometheus
 ```
 
-
-
 #### Third-party OTel Collector
 
 ```yaml
 exporters:
-  otlp/local-collector:
+  otlp_grpc/local-collector:
     endpoint: "my-local-collector.com:443"
 
 service:
@@ -135,7 +133,7 @@ service:
       processors:
         - resource/default
       exporters:
-        - otlp/local-collector
+        - otlp_grpc/local-collector
 ```
 
 #### Add Debug Exporter
@@ -157,8 +155,6 @@ service:
       exporters:
         - debug
 ```
-
-
 
 ### Troubleshooting
 
