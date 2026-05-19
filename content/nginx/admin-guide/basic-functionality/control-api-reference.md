@@ -10,6 +10,6 @@ tags:
 title: Control API reference
 toc: false
 weight: null
-f5-api-reference: "/nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml"
+f5-api-reference: "./nginx/admin-guide/yaml/nginx-control-api/1/nginx_control_api.yaml"
 f5-product: NONECO
 ---
