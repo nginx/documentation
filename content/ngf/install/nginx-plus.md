@@ -192,6 +192,8 @@ docker pull private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< versi
 
 Once you have successfully pulled the image, you can tag it as needed, then push it to a different container registry.
 
+For a complete list of available NGINX Plus images, including UBI-based and WAF variants, see [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}}).
+
 ## Alternative installation options
 
 There are alternative ways to get an NGINX Plus image for NGINX Gateway Fabric:
