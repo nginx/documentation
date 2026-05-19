@@ -46,6 +46,6 @@ This guide explains how to set up NGINX Instance Manager to manage your WAF conf
 ## Limitations
 
 NGINX Instance Manager does not support the following F5 WAF for NGINX features:
-- [Policies with external references]({{< ref "/nap-waf/v4/configuration-guide/configuration.md#external-references" >}})
+- [Policies with external references]({{< ref "/waf/policies/external-references.md" >}})
 - Custom signatures
 - A gRPC policy can be created or edited in NGINX Instance Manager, but cannot be compiled.
