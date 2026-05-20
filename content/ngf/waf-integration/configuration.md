@@ -4,10 +4,10 @@ weight: 400
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
-f5-description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, and fail-open behavior for F5 WAF for NGINX.
+f5-description: Configure security logging, polling, TLS, authentication, cookie seed, bundle integrity, fail-open behavior, and WAF container settings for F5 WAF for NGINX.
 ---
 
-This page covers operational configuration for F5 WAF for NGINX in NGINX Gateway Fabric: security logging, automatic policy updates, TLS and authentication, bundle integrity verification, cookie seed management, and fetch failure handling.
+This page covers operational configuration for F5 WAF for NGINX in NGINX Gateway Fabric: security logging, automatic policy updates, TLS and authentication, bundle integrity verification, cookie seed management, fetch failure handling, and WAF container settings.
 
 ---
 
@@ -250,10 +250,92 @@ NGINX Gateway Fabric retries on the next reconciliation or poll cycle. No manual
 
 ---
 
+## Configure WAF containers
+
+When WAF is enabled, NGINX Gateway Fabric deploys two sidecar containers — `waf-enforcer` and `waf-config-mgr` — alongside the main NGINX container.
+
+These settings are configured under `spec.kubernetes.deployment.wafContainers` (or `spec.kubernetes.daemonSet.wafContainers` for DaemonSet mode) in the NginxProxy resource. This follows the same infrastructure configuration pattern described in [Configure infrastructure-related settings]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-infrastructure-related-settings" >}}). For the full list of configurable fields, see the `NginxProxy` spec in the [API reference]({{< ref "/ngf/reference/api.md" >}}).
+
+Each container (`enforcer` and `configManager`) supports the following fields:
+
+- **`image`**: Override the default image repository, tag, and pull policy. If not specified, NGINX Gateway Fabric uses the defaults from the F5 Container registry. For the default images, see [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}}).
+- **`resources`**: Set CPU and memory requests and limits.
+- **`volumeMounts`**: Add extra volume mounts. NGINX Gateway Fabric automatically configures the shared volumes required for communication between the NGINX, `waf-enforcer`, and `waf-config-mgr` containers. Additional mounts are appended to these defaults.
+
+The following example uses custom images from a private registry and sets resource requirements for both containers:
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: waf-enabled-proxy
+spec:
+  waf:
+    enable: true
+  kubernetes:
+    deployment:
+      wafContainers:
+        enforcer:
+          image:
+            repository: registry.example.com/nap/waf-enforcer
+            tag: "{{< ngf-waf-release-version >}}"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+        configManager:
+          image:
+            repository: registry.example.com/nap/waf-config-mgr
+            tag: "{{< ngf-waf-release-version >}}"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+```
+
+When installing with Helm, set the equivalent values under `nginx.wafContainers`:
+
+```yaml
+# values.yaml
+nginx:
+  config:
+    waf:
+      enable: true
+  wafContainers:
+    enforcer:
+      image:
+        repository: registry.example.com/nap/waf-enforcer
+        tag: "{{< ngf-waf-release-version >}}"
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+    configManager:
+      image:
+        repository: registry.example.com/nap/waf-config-mgr
+        tag: "{{< ngf-waf-release-version >}}"
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+```
+
+{{< call-out "note" >}} Image pull Secrets for private registries must be configured at install time using the `nginx.imagePullSecret` or `nginx.imagePullSecrets` Helm values (or the `--nginx-docker-secret` flag for manifest installs). The control plane copies these Secrets into any namespace where NGINX is deployed. For details, see [Install NGINX Gateway Fabric with NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}). {{< /call-out >}}
+
+---
+
 ## See also
 
 - [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}})
 - [Configure policy sources (NGINX Instance Manager and NGINX One Console)]({{< ref "/ngf/waf-integration/policy-sources.md" >}})
+- [Configure infrastructure-related settings]({{< ref "/ngf/how-to/data-plane-configuration.md#configure-infrastructure-related-settings" >}})
 - [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}})
+- [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}})
 - [WAFPolicy and NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}})
 - [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}})

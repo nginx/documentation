@@ -73,10 +73,10 @@ To ensure that your NGINX Instance Manager deployment remains secure, follow the
 
 Download the SSL certificate and private key needed for NGINX Instance Manager to add the official repository during installation. These can also be used when [installing NGINX Plus]({{< ref "nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}).
 
-1. On the host where you're installing NGINX Instance Manager, create the **/etc/ssl/nginx/** directory:
+1. On the host where you're installing NGINX Instance Manager, create the **/etc/ssl/nginx/** and **/etc/nginx/** directories:
 
     ```shell
-    sudo mkdir -p /etc/ssl/nginx
+    sudo mkdir -p /etc/ssl/nginx /etc/nginx
     ```
 
 2. Download the **SSL Certificate**, **Private Key** and ***JSON Web Token*** files from [MyF5](https://account.f5.com/myf5) or use the download link provided in your trial activation email.
