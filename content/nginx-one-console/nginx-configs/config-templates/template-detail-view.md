@@ -20,7 +20,9 @@ The Template Detail page opens showing the **Details** tab by default. Select th
 
 ## Details tab
 
-The **Details** tab displays a summary card with the following fields:
+The **Details** tab contains a metadata summary card for the template and a [Submissions section]({{< ref "template-submissions-view.md" >}}) below it listing all submissions made using this template.
+
+The metadata summary card displays the following fields:
 
 {{<bootstrap-table "table table-striped table-bordered">}}
 | Field | Description |
@@ -57,6 +59,7 @@ The Template Detail page uses the [Retrieve a Template]({{< ref "/nginx-one-cons
 ## See also
 
 - [View template versions]({{< ref "template-versions.md" >}})
+- [View template submissions]({{< ref "template-submissions-view.md" >}})
 - [Author templates]({{< ref "author-templates.md" >}})
 - [Import templates]({{< ref "import-templates.md" >}})
 - [Submit templates]({{< ref "submit-templates.md" >}})
