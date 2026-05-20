@@ -51,26 +51,27 @@ See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gatewa
 
 ## Deploy a sample model server
 
-The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. This sample is configured to simulate the [meta-llama/LLama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) model. To deploy the vLLM simulator, run the following command:
+The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. To deploy the vLLM simulator, run the following command:
 
 ```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/release-1.4/config/manifests/vllm/sim-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v1.5.0/config/manifests/vllm/sim-deployment.yaml
 ```
 
 ## Deploy the InferencePool and Endpoint Picker Extension
 
 The InferencePool is a Gateway API Inference Extension resource that represents a set of Inference-focused Pods. With InferencePool, you can configure a routing extension as well as inference-specific routing optimizations. For more information on this resource, refer to the Gateway API Inference Extension [InferencePool documentation](https://gateway-api-inference-extension.sigs.k8s.io/api-types/inferencepool/).
 
-Install an InferencePool named `vllm-llama3-8b-instruct` that selects from endpoints with label `app: vllm-llama3-8b-instruct` and listening on port 8000. The Helm install command automatically installs the Endpoint Picker Extension and InferencePool.
+Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with label `app: vllm-qwen3-32b` and listening on port 8000. The Helm install command automatically installs the Endpoint Picker Extension and InferencePool.
 
 NGINX will query the Endpoint Picker Extension to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information on the [Endpoint Picker](https://github.com/kubernetes-sigs/gateway-api-inference-extension/blob/main/pkg/epp/README.md).
 
-{{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default, as the Endpoint Picker does not currently support mounting CA certificates. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
+{{< call-out "warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v1.4.0
-helm install vllm-llama3-8b-instruct \
---set inferencePool.modelServers.matchLabels.app=vllm-llama3-8b-instruct \
+export IGW_CHART_VERSION=v1.5.0
+helm install vllm-qwen3-32b \
+--dependency-update \
+--set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
 --version $IGW_CHART_VERSION \
 --set inferenceExtension.resources.requests.memory=4Gi \
 oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
@@ -79,7 +80,7 @@ oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
 Confirm that the Endpoint Picker was deployed and is running:
 
 ```shell
-kubectl describe deployment vllm-llama3-8b-instruct-epp
+kubectl describe deployment vllm-qwen3-32b-epp
 ```
 
 ## Deploy an Inference Gateway
@@ -149,7 +150,7 @@ spec:
   - backendRefs:
     - group: inference.networking.k8s.io
       kind: InferencePool
-      name: vllm-llama3-8b-instruct
+      name: vllm-qwen3-32b
     matches:
     - path:
         type: PathPrefix
@@ -178,15 +179,12 @@ curl -i $GW_IP:$GW_PORT/v1/completions -H 'Content-Type: application/json' -d '{
 
 ## Cleanup
 
-Uninstall the InferencePool, InferenceObjective, and model server resources:
+Uninstall the InferencePool and model server resources:
 
 
 ```shell
-helm uninstall vllm-llama3-8b-instruct
-kubectl delete -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/inferenceobjective.yaml --ignore-not-found
-kubectl delete -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/cpu-deployment.yaml --ignore-not-found
-kubectl delete -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/gpu-deployment.yaml --ignore-not-found
-kubectl delete -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/sim-deployment.yaml --ignore-not-found
+helm uninstall vllm-qwen3-32b
+kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v1.5.0/config/manifests/vllm/sim-deployment.yaml
 ```
 
 Uninstall the Gateway API Inference Extension CRDs:
@@ -225,4 +223,5 @@ Remove the Gateway API CRDs:
 - [Gateway API Inference Extension Introduction](https://gateway-api-inference-extension.sigs.k8s.io/): for introductory details to the project.
 - [Gateway API Inference Extension API Overview](https://gateway-api-inference-extension.sigs.k8s.io/concepts/api-overview/): for an API overview.
 - [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/): for additional use cases and guides.
+- [llm-d](https://github.com/llm-d/llm-d): for information on the llm-d project.
 

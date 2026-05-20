@@ -21,7 +21,7 @@ This guide describes how to configure the headers application to modify the head
 
 ## HTTP Header Modifiers examples
 
-We will configure a common gateway for the `RequestHeaderModifier` and `ResponseHeaderModifier` examples mentioned below.
+The following examples use a shared Gateway for both `RequestHeaderModifier` and `ResponseHeaderModifier` filters. Header values can be plain strings or NGINX variable names such as `$remote_addr` or `$request_method`.
 
 ### Deploy the Gateway API resources for the Header application
 
@@ -135,11 +135,15 @@ spec:
         set:
         - name: My-Overwrite-Header
           value: this-is-the-only-value
+        - name: X-Client-IP
+          value: $remote_addr
         add:
         - name: Accept-Encoding
           value: compress
         - name: My-Cool-header
           value: this-is-an-appended-value
+        - name: X-Request-Method
+          value: $request_method
         remove:
         - User-Agent
     backendRefs:
@@ -155,8 +159,8 @@ This HTTPRoute has a few important properties:
 - The `match` rule defines that all requests with the path prefix `/headers` are sent to the `headers` Service.
 - It has a `RequestHeaderModifier` filter defined for the path prefix `/headers`. This filter:
 
-  1. Sets the value for header `My-Overwrite-Header` to `this-is-the-only-value`.
-  1. Appends the value `compress` to the `Accept-Encoding` header and `this-is-an-appended-value` to the `My-Cool-header`.
+  1. Sets `My-Overwrite-Header` to `this-is-the-only-value` and `X-Client-IP` to the value of `$remote_addr`.
+  1. Appends `compress` to `Accept-Encoding`, `this-is-an-appended-value` to `My-Cool-header`, and the value of `$request_method` to `X-Request-Method`.
   1. Removes `User-Agent` header.
 
 ### Send traffic to the Headers application
@@ -164,17 +168,18 @@ This HTTPRoute has a few important properties:
 To access the application, use `curl` to send requests to the `headers` Service, which includes headers within the request.
 
 ```shell
-curl -s --resolve echo.example.com:$GW_PORT:$GW_IP http://echo.example.com:$GW_PORT/headers -H "My-Cool-Header:my-client-value" -H "My-Overwrite-Header:dont-see-this"
+curl -s --resolve echo.example.com:$GW_PORT:$GW_IP http://echo.example.com:$GW_PORT/headers -H "My-Cool-Header:my-client-value" -H "My-Overwrite-Header:dont-see-this" -H "X-Request-Method:POST"
 ```
 
 ```text
-  Headers:
+Headers:
   header 'Accept-Encoding' is 'compress'
-  header 'My-Cool-header' is 'my-client-value,this-is-an-appended-value'
+  header 'My-cool-header' is 'my-client-value,this-is-an-appended-value'
+  header 'X-Request-Method' is 'POST,GET'
   header 'My-Overwrite-Header' is 'this-is-the-only-value'
+  header 'X-Client-IP' is '127.0.0.1'
   header 'Host' is 'echo.example.com:8080'
   header 'X-Forwarded-For' is '127.0.0.1'
-  header 'Connection' is 'close'
   header 'X-Real-IP' is '127.0.0.1'
   header 'X-Forwarded-Proto' is 'http'
   header 'X-Forwarded-Host' is 'echo.example.com'
@@ -186,6 +191,8 @@ In the output above, you can see that the headers application modifies the follo
 
 - `User-Agent` header is absent.
 - The header `My-Cool-header` gets appended with the new value `my-client-value`.
+- The header `X-Request-Method` is appended with the value `GET`, resolved from the `$request_method` variable.
+- The header `X-Client-IP` is set to `127.0.0.1`, the remote address of the client that sent the request resolved from the `$remote_addr` variable.
 - The header `My-Overwrite-Header` gets overwritten from `dont-see-this` to `this-is-the-only-value`.
 - The header `Accept-encoding` remains unchanged as we did not modify it in the curl request sent.
 
@@ -270,8 +277,8 @@ curl -i --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_P
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.25.5
-Date: Mon, 06 May 2024 19:08:39 GMT
+Server: nginx
+Date: Mon, 30 Mar 2026 21:24:25 GMT
 Content-Type: text/plain
 Content-Length: 2
 Connection: keep-alive
@@ -279,6 +286,7 @@ X-Header-Unmodified: unmodified
 X-Header-Add: add-to
 X-Header-Set: overwrite
 X-Header-Remove: remove
+X-Real-IP: 10.244.0.53
 
 ok
 ```
@@ -289,6 +297,7 @@ In the output above, you can see that the headers application adds the following
 - X-Header-Add: add-to
 - X-Header-Set: overwrite
 - X-Header-Remove: remove
+- X-Real-IP: set to the value of `$server_addr`, the IP address of the server that accepted the request.
 
 The next section will modify these headers by adding a ResponseHeaderModifier filter to the headers HTTPRoute.
 
@@ -319,11 +328,13 @@ spec:
         set:
         - name: X-Header-Set
           value: overwritten-value
+        - name: X-Real-IP
+          value: $remote_addr
         add:
         - name: X-Header-Add
           value: this-is-the-appended-value
-        remove:
-        - X-Header-Remove
+        - name: X-Request-ID
+          value: $request_id
     backendRefs:
     - name: headers
       port: 80
@@ -333,7 +344,9 @@ EOF
 Notice that this HTTPRoute has a `ResponseHeaderModifier` filter defined for the path prefix `/headers`. This filter:
 
 - Sets the value for the header `X-Header-Set` to `overwritten-value`.
+- Overwrites the value for the header `X-Real-IP` to `$remote_addr` variable.
 - Adds the value `this-is-the-appended-value` to the header `X-Header-Add`.
+- Adds the value `$request_id` to the header `X-Request-ID`.
 - Removes `X-Header-Remove` header.
 
 ### Send traffic to the modified Headers application
@@ -346,20 +359,22 @@ curl -i --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_P
 
 ```text
 HTTP/1.1 200 OK
-Server: nginx/1.25.5
-Date: Mon, 06 May 2024 17:58:33 GMT
+Server: nginx
+Date: Mon, 30 Mar 2026 21:26:40 GMT
 Content-Type: text/plain
 Content-Length: 2
 Connection: keep-alive
 X-Header-Unmodified: unmodified
 X-Header-Add: add-to
 X-Header-Add: this-is-the-appended-value
+X-Request-ID: dad7ece8fd0d1cb83301be8a361a55b1
 X-Header-Set: overwritten-value
+X-Real-IP: 127.0.0.1
 
 ok
 ```
 
-In the output above you can notice the modified response headers as the `X-Header-Unmodified` remains unchanged as we did not include it in the filter and `X-Header-Remove` header is absent. The header `X-Header-Add` gets appended with the new value and `X-Header-Set` gets overwritten to `overwritten-value` as defined in the _HttpRoute_.
+The output confirms the filter was applied. `X-Header-Unmodified` is unchanged because it was not included in the filter. `X-Header-Remove` is absent. `X-Header-Add` appears twice with both the original and appended values. `X-Header-Set` is overwritten to `overwritten-value`. `X-Real-IP` is overwritten with the resolved value of `$remote_addr`, the client's IP address. `X-Request-ID` is added with the resolved value of `$request_id`.
 
 ## See also
 

@@ -39,7 +39,7 @@ Some cloud platforms don’t allow direct IP management with `keepalived`. If yo
 
 ### Limitations
 
-<i class="fa-solid fa-triangle-exclamation"></i> This HA setup has the following restrictions:
+{{% icon triangle-alert %}} This HA setup has the following restrictions:
 
 - This setup **supports only two nodes** — one active and one passive. Configurations with three or more nodes are not supported.
 - Active/active HA is not supported. This configuration works only in an active-passive setup.

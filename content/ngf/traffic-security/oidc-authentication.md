@@ -1,6 +1,6 @@
 ---
 title: Configure OpenID Connect (OIDC) authentication
-weight: 400
+weight: 500
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC

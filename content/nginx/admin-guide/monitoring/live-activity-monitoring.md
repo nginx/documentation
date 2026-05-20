@@ -398,12 +398,12 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.29.3",
-   "build" : "nginx-plus-r36",
+   "version" : "1.29.8",
+   "build" : "nginx-plus-r37.0.0",
    "address" : "206.251.255.64",
    "generation" : 14,
-   "load_timestamp" : "2025-12-01T10:00:00.114Z",
-   "timestamp" : "2025-12-01T14:06:36.475Z",
+   "load_timestamp" : "2026-05-13T10:00:00.114Z",
+   "timestamp" : "2026-05-13T14:06:36.475Z",
    "pid" : 2201,
    "ppid" : 92033
 }
@@ -419,12 +419,12 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.29.3",
-   "build" : "nginx-plus-r36"
+   "version" : "1.29.8",
+   "build" : "nginx-plus-r37.0.0"
 }
 ```
 
-For a complete list of available endpoints and supported methods see [reference documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html).
+For a complete list of available endpoints and supported methods see [reference documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html). This documentation is also available in [Redoc format]({{< ref "nginx/admin-guide/monitoring/nginx-plus-api-reference.md" >}}).
 
 <span id="json_delete"></span>
 ### Resetting the statistics
@@ -495,32 +495,31 @@ To set the `down` parameter for the first server in the group (with ID `0`):
 curl -X PATCH -d '{ "down": true }' -s 'http://192.168.1.23/api/9/http/upstreams/appservers/servers/0'
 ```
 
-<span id="swagger"></span>
-## OpenAPI Specification
+## OpenAPI Specification {#swagger}
 
-NGINX Plus allows you to explore the REST API documentation and send API commands with a graphical user interface. This can be done with the NGINX Plus OpenAPI specification in YAML format and the Swagger UI.
+The NGINX Plus OpenAPI Specification is available in several formats:
 
-The main purpose of Swagger UI and the YAML OpenAPI spec is to document and visualize NGINX API commands. For security reasons it is not recommended using it in a production environment.
+- as [reference documentation](https://nginx.org/en/docs/http/ngx_http_api_module.html)
+- in [Redoc format]({{< ref "nginx/admin-guide/monitoring/nginx-plus-api-reference.md" >}})
+- as a [YAML file](#yaml-version)
+
+The YAML version can be used with external tools, such as Swagger UI, to explore the REST API and send API commands through a graphical interface. You can [enable the Swagger UI](#swagger_enable) in your environment or copy the link to the [appropriate YAML file](#yaml-version), and import it into another OpenAPI v2-compatible tool.
+
+{{< call-out "warning" >}}Swagger UI and the YAML OpenAPI spec are intended for documentation and visualization of NGINX API commands only. For security reasons it is not recommended using it in a production environment.{{< /call-out >}}
 
 Prior to NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}), the Swagger UI was shipped together with NGINX Plus packages. Since NGINX Plus [Release 26]({{< ref "nginx/releases.md#r26" >}}), the OpenAPI YAML specification and the Swagger UI is published separately, below.
 
-Alternatively, copy the link to the appropriate YAML file, and import into your preferred OpenAPI v2 tool.
 
 
-<span id="swagger_enable"></span>
-### Enabling the Swagger UI
+### OpenAPI versions {#yaml-version}
 
-
-To enable the Swagger UI:
-
-1. Install and configure the Swagger UI. The installation package and instructions can be found on the [Swagger UI page](https://swagger.io/tools/swagger-ui/download/).
-
-2. Choose the version of the OpenAPI YAML file that matches your version of NGINX Plus, download the file, and put it to the folder containing the Swagger UI files:
+This table matches each OpenAPI YAML file version to the corresponding [NGINX Plus release]({{< ref "nginx/releases.md" >}}).
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
+|[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Release [PLS37.0.0 LTS]({{< ref "/nginx/releases.md#r37.0" >}}) | The `response_time_hist` data for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [33]({{< ref "/nginx/releases.md#r33" >}}), [34]({{< ref "nginx/releases.md#r34" >}}), [35]({{< ref "nginx/releases.md#r35" >}}), [36]({{< ref "nginx/releases.md#r36" >}}) | The [`/license`](https://nginx.org/en/docs/http/ngx_http_api_module.html#license) data were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v9/nginx_api.yaml) for API version 9 | NGINX Plus Releases [30]({{< ref "nginx/releases.md#r30" >}}), [31]({{< ref "nginx/releases.md#r31" >}}), [32]({{< ref "nginx/releases.md#r32" >}}) | The [`/workers/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#workers_) data were added|
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v8/nginx_api.yaml) for API version 8 | NGINX Plus Releases [27]({{< ref "nginx/releases.md#r27" >}}), [28]({{< ref "nginx/releases.md#r28" >}}), [29]({{< ref "nginx/releases.md#r29" >}}) | SSL statistics for each HTTP [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and stream [upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream), SSL statistics for each HTTP [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_server_zone) and stream [server zone](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_server_zone), extended statistics for [SSL](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_ssl_object) endpoint|
@@ -534,6 +533,16 @@ To enable the Swagger UI:
 
 {{</bootstrap-table>}}
 
+
+<span id="swagger_enable"></span>
+### Enabling the Swagger UI
+
+To enable the Swagger UI:
+
+1. Install and configure the Swagger UI. The installation package and instructions can be found on the [Swagger UI page](https://swagger.io/tools/swagger-ui/download/).
+
+2. Choose the [version of the OpenAPI YAML file](#yaml-version) that matches your version of NGINX Plus, download the file, and put it to the folder containing the Swagger UI files:
+
 3. Configure NGINX Plus to work with the Swagger UI. Create a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), for example, */swagger-ui*:
 
     ```nginx
@@ -542,7 +551,7 @@ To enable the Swagger UI:
     }
     ```
 
-2. Specify the path to the Swagger UI files and the YAML spec with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, to `usr/share/nginx/html`:
+4. Specify the path to the Swagger UI files and the YAML spec with the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, to `usr/share/nginx/html`:
 
     ```nginx
     location /swagger-ui {
@@ -554,7 +563,7 @@ To enable the Swagger UI:
    For NGINX Plus Release 25 and earlier, the Swagger UI is located in the root directory specified by the [`root`](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, for example, */usr/share/nginx/html*.
 
 
-3. Restrict access to this location only from a local network with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives:
+5. Restrict access to this location only from a local network with [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow) and [`deny`](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny) directives:
 
     ```nginx
     location /swagger-ui {
@@ -564,7 +573,7 @@ To enable the Swagger UI:
     }
     ```
 
-4. It is also recommended enabling Content Security Policy headers that define that all resources are loaded from the same origin as Swagger UI with the [`add_header`](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive:
+6. It is also recommended enabling Content Security Policy headers that define that all resources are loaded from the same origin as Swagger UI with the [`add_header`](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive:
 
     ```nginx
     location /swagger-ui {
