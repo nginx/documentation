@@ -82,7 +82,7 @@ add_header 'Access-Control-Allow-Methods' 'GET, POST' always;
 
 ### Static include files
 
-Templates can bundle static, non-templated files that are deployed alongside the rendered NGINX configuration. These are declared with `file_type: include` and are referenced from within the template using a standard NGINX `include` directive.
+Templates can bundle static files that are deployed alongside the rendered NGINX configuration. Unlike template files (which use Go template syntax and the `.tmpl` extension), these files contain plain static content — such as NGINX configuration snippets or data files — and are not processed by the template engine. They are declared with `file_type: include` and are referenced from within the template using a standard NGINX `include` directive.
 
 **When to use include files:**
 
