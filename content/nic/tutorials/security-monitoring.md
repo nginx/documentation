@@ -112,7 +112,7 @@ NGINX Ingress Controller images that include F5 WAF for NGINX also include NGINX
 
 4. Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller with custom resources enabled.
 
-Once installed, the pods will be visible in the NGINX Instance Manager Instances dashboard.
+Once installed and configured, the pods will be visible in the NGINX Instance Manager Instances dashboard.
 
 {{%/tab%}}
 
