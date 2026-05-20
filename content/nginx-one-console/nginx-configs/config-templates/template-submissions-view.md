@@ -49,7 +49,7 @@ Deleting a submission is **irreversible** and permanently removes all stored inp
 
 ## Refresh
 
-Select **Refresh** at the top right of the Details tab to reload both the template metadata card and the submissions list from the server.
+Select **Refresh** at the top right of the **Details** tab to reload both the template metadata card and the submissions list from the server.
 
 ## API reference
 
