@@ -78,7 +78,9 @@ For connection and request rate limiting, consider using these NGINX modules:
 
 ## Configuration directives list
 
-NGINXaaS supports a limited set of NGINX directives.
+NGINXaaS supports a limited set of NGINX directives. The directives with the "app_protect" prefix require [F5 WAF for NGINX]({{< ref "/waf" >}}) to be enabled for the deployment.
+
+NGINXaaS does not yet support F5 WAF for NGINX custom security policies or logging profiles. Support is limited to the [prebuilt policies]({{< ref "/waf/policies/configuration.md#default-policy" >}}) and the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
 
 {{< details summary="Alphabetical index of directives">}}
 
@@ -99,6 +101,19 @@ NGINXaaS supports a limited set of NGINX directives.
 [allow (ngx_stream_access_module)](https://nginx.org/en/docs/stream/ngx_stream_access_module.html#allow)\
 [ancient_browser](https://nginx.org/en/docs/http/ngx_http_browser_module.html#ancient_browser)\
 [ancient_browser_value](https://nginx.org/en/docs/http/ngx_http_browser_module.html#ancient_browser_value)\
+[app_protect_compressed_requests_action]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_compressed_requests_action" >}})\
+[app_protect_cookie_seed]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_cookie_seed" >}})\
+[app_protect_cpu_thresholds]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_cpu_thresholds" >}})\
+[app_protect_custom_log_attribute]({{< ref "/waf/policies/directives/#f5-waf-for-nginx-directives:~:text=app_protect_custom_log_attribute" >}})\
+[app_protect_enable]({{< ref "/waf/policies/directives/#f5-waf-for-nginx-directives:~:text=modules/ngx_http_app_protect_module.so-,app_protect_enable" >}})\
+[app_protect_failure_mode_action]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_failure_mode_action" >}})\
+[app_protect_physical_memory_util_thresholds]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_physical_memory_util_thresholds" >}})\
+[app_protect_policy_file](<{{< ref "/waf/policies/directives/#f5-waf-for-nginx-directives:~:text=app_protect_enable%20on-%2Capp_protect_policy_file" >}}>)\
+[app_protect_reconnect_period_seconds]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_reconnect_period_seconds" >}})\
+[app_protect_request_buffer_overflow_action]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_request_buffer_overflow_action" >}})\
+[app_protect_security_log]({{< ref "/waf/policies/directives/#f5-waf-for-nginx-directives:~:text=app_protect_security_log" >}})\
+[app_protect_security_log_enable]({{< ref "/waf/policies/directives/#f5-waf-for-nginx-directives:~:text=app_protect_security_log_enable" >}})\
+[app_protect_user_defined_signatures]({{< ref "/waf/policies/directives/#global-directives:~:text=app_protect_user_defined_signatures" >}})\
 [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic)\
 [auth_basic_user_file](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file)\
 [auth_delay](https://nginx.org/en/docs/http/ngx_http_core_module.html#auth_delay)\

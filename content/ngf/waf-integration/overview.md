@@ -42,14 +42,22 @@ WAF is enabled by setting `waf.enable: true` on an `NginxProxy` resource. This i
 
 You can enable WAF at two levels:
 
-- **Per Gateway** — Create an `NginxProxy` and reference it from a Gateway's `spec.infrastructure.parametersRef`. Only that Gateway gets WAF sidecars.
 - **All Gateways** — Set WAF on the GatewayClass-level `NginxProxy` so that every Gateway managed by this NGINX Gateway Fabric instance gets WAF sidecars by default. A per-Gateway `NginxProxy` can override this (for example, to disable WAF on a specific Gateway).
+- **Per Gateway** — Create an `NginxProxy` and reference it from a Gateway's `spec.infrastructure.parametersRef`. Only that Gateway gets WAF sidecars.
 
 For details on how GatewayClass and Gateway-level NginxProxy settings are merged, see [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
 
+### Enable WAF for all Gateways
+
+To enable WAF at install time use the **NGINX Plus with WAF** tab in the [Helm install guide]({{< ref "/ngf/install/helm.md" >}}). This sets the WAF-enabled NGINX Plus image (`nginx-plus-f5waf`) and enables WAF on the GatewayClass-level `NginxProxy`, so every Gateway gets WAF sidecars by default.
+
+To disable WAF for a specific Gateway, create a per-Gateway `NginxProxy` with `waf.enable: false` and reference it from that Gateway.
+
+{{< call-out "note" >}} For additional WAF-related NginxProxy settings — including `disableCookieSeed`, `bundleFailOpen`, and custom WAF container images — see [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}). {{< /call-out >}}
+
 ### Enable WAF per Gateway
 
-Create an `NginxProxy` and reference it from your Gateway:
+If you installed with the standard NGINX Plus image and want WAF on a specific Gateway only, create a per-Gateway `NginxProxy`. You must also set the NGINX image to `nginx-plus-f5waf`, since the standard `nginx-plus` image inherited from the GatewayClass does not include the WAF module:
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2
@@ -59,6 +67,11 @@ metadata:
 spec:
   waf:
     enable: true
+  kubernetes:
+    deployment:
+      container:
+        image:
+          repository: private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf
 ```
 
 ```yaml
@@ -79,27 +92,7 @@ spec:
     protocol: HTTP
 ```
 
-### Enable WAF for all Gateways
-
-To enable WAF globally, set `nginx.config.waf.enable` in your Helm values. This configures the GatewayClass-level `NginxProxy` that is created automatically at install time:
-
-```yaml
-# values.yaml
-nginx:
-  config:
-    waf:
-      enable: true
-```
-
-```shell
-helm upgrade --install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
-  --namespace nginx-gateway --create-namespace \
-  -f values.yaml
-```
-
-Every Gateway attached to this GatewayClass will have WAF sidecars deployed. To disable WAF for a specific Gateway, create a per-Gateway `NginxProxy` with `waf.enable: false` and reference it from that Gateway.
-
-{{< call-out "note" >}} For additional WAF-related NginxProxy settings — including `disableCookieSeed`, `bundleFailOpen`, and custom WAF container images — see [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}). {{< /call-out >}}
+For the full list of available images, see [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}}).
 
 ---
 

@@ -8,11 +8,23 @@ f5-product: INGRESS
 f5-docs: DOCS-616
 ---
 
+{{< call-out "note" "Important" >}} Since May 21, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: Long-Term Support Releases (LTS) and Continuous Releases (CR). {{< /call-out >}}
+
+## New release model {#intro}
+
+Since May 21, 2026, NGINX Ingress Controller follows a new release model: Long-Term Support (LTS) and Continuous Releases (CR).
+
+**NGINX Ingress Controller Long-Term Support (LTS) Releases** are published once a year and focus on stability and security. Each LTS version is supported for up to three years and receives only security fixes and CVE mitigations during his time. New features are delivered through Continuous Releases (CRs) within the LTS release period.
+
+**NGINX Ingress Controller Continuous Releases (CR)** are published multiple times during the life of the latest LTS release and include the newest features and performance improvements
+
 This changelog lists all of the information for F5 NGINX Ingress Controller releases in 2026.
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/nic/changelog/2025.md" >}}), [2024]({{< ref "/nic/changelog/2024.md" >}}), [2023]({{< ref "/nic/changelog/2023.md" >}}), [2022]({{< ref "/nic/changelog/2022.md" >}}), [2021]({{< ref "/nic/changelog/2021.md" >}}), [2020]({{< ref "/nic/changelog/2020.md" >}}), [2019]({{< ref "/nic/changelog/2019.md" >}}).
 
-{{< details summary="NGINX Ingress Controller compatibility matrix" open=false >}}
+{{< details summary="NGINX Ingress Controller CR and NGINX Ingress Controller LTS compatibility matrix" open=false >}}
+ 
+{{< include "/nic/compatibility-tables/nic-lts-k8s.md" >}}
 
 {{< include "/nic/compatibility-tables/nic-k8s.md" >}}
 
@@ -24,7 +36,9 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 2026-lts-r1
 
+ Based on 5.4.x (see changelog)
 
 ## 5.4.2
 
@@ -38,8 +52,8 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon arrow-up %}} Dependencies
 
-- [9480](https://github.com/nginx/kubernetes-ingress/pull/9480), [9541](https://github.com/nginx/kubernetes-ingress/pull/9541), [9596](https://github.com/nginx/kubernetes-ingress/pull/9596), [9595](https://github.com/nginx/kubernetes-ingress/pull/9595), [9538](https://github.com/nginx/kubernetes-ingress/pull/9538), [9670](https://github.com/nginx/kubernetes-ingress/pull/9670), [9755](https://github.com/nginx/kubernetes-ingress/pull/9755), [9666](https://github.com/nginx/kubernetes-ingress/pull/9666), [9786](https://github.com/nginx/kubernetes-ingress/pull/9786), [9688](https://github.com/nginx/kubernetes-ingress/pull/9617, https://github.com/nginx/kubernetes-ingress/pull/9688) Bump Go dependencies
-- [9493](https://github.com/nginx/kubernetes-ingress/pull/9493), [9492](https://github.com/nginx/kubernetes-ingress/pull/9492), [9494](https://github.com/nginx/kubernetes-ingress/pull/9494), [9764](https://github.com/nginx/kubernetes-ingress/pull/9478, https://github.com/nginx/kubernetes-ingress/pull/9527, https://github.com/nginx/kubernetes-ingress/pull/9686, https://github.com/nginx/kubernetes-ingress/pull/9729, https://github.com/nginx/kubernetes-ingress/pull/9764), [9784](https://github.com/nginx/kubernetes-ingress/pull/9479, https://github.com/nginx/kubernetes-ingress/pull/9528, https://github.com/nginx/kubernetes-ingress/pull/9603, https://github.com/nginx/kubernetes-ingress/pull/9730, https://github.com/nginx/kubernetes-ingress/pull/9765, https://github.com/nginx/kubernetes-ingress/pull/9784), [9515](https://github.com/nginx/kubernetes-ingress/pull/9515), [9566](https://github.com/nginx/kubernetes-ingress/pull/9566), [9651](https://github.com/nginx/kubernetes-ingress/pull/9651), [9648](https://github.com/nginx/kubernetes-ingress/pull/9648), [9664](https://github.com/nginx/kubernetes-ingress/pull/9664), [9604](https://github.com/nginx/kubernetes-ingress/pull/9604), [9731](https://github.com/nginx/kubernetes-ingress/pull/9562, https://github.com/nginx/kubernetes-ingress/pull/9706, https://github.com/nginx/kubernetes-ingress/pull/9731), [9668](https://github.com/nginx/kubernetes-ingress/pull/9668), [9705](https://github.com/nginx/kubernetes-ingress/pull/9705), [9704](https://github.com/nginx/kubernetes-ingress/pull/9704), [9707](https://github.com/nginx/kubernetes-ingress/pull/9707), [9763](https://github.com/nginx/kubernetes-ingress/pull/9763), [9774](https://github.com/nginx/kubernetes-ingress/pull/9774), [9737](https://github.com/nginx/kubernetes-ingress/pull/9737), [9687](https://github.com/nginx/kubernetes-ingress/pull/9687) & [9665](https://github.com/nginx/kubernetes-ingress/pull/9665) Bump Docker dependencies
+- [9480](https://github.com/nginx/kubernetes-ingress/pull/9480), [9541](https://github.com/nginx/kubernetes-ingress/pull/9541), [9596](https://github.com/nginx/kubernetes-ingress/pull/9596), [9595](https://github.com/nginx/kubernetes-ingress/pull/9595), [9538](https://github.com/nginx/kubernetes-ingress/pull/9538), [9670](https://github.com/nginx/kubernetes-ingress/pull/9670), [9755](https://github.com/nginx/kubernetes-ingress/pull/9755), [9666](https://github.com/nginx/kubernetes-ingress/pull/9666), [9786](https://github.com/nginx/kubernetes-ingress/pull/9786) & [9688](https://github.com/nginx/kubernetes-ingress/pull/9688) Bump Go dependencies
+- [9493](https://github.com/nginx/kubernetes-ingress/pull/9493), [9492](https://github.com/nginx/kubernetes-ingress/pull/9492), [9494](https://github.com/nginx/kubernetes-ingress/pull/9494), [9764](https://github.com/nginx/kubernetes-ingress/pull/9764), [9784](https://github.com/nginx/kubernetes-ingress/pull/9784), [9515](https://github.com/nginx/kubernetes-ingress/pull/9515), [9566](https://github.com/nginx/kubernetes-ingress/pull/9566), [9651](https://github.com/nginx/kubernetes-ingress/pull/9651), [9648](https://github.com/nginx/kubernetes-ingress/pull/9648), [9664](https://github.com/nginx/kubernetes-ingress/pull/9664), [9604](https://github.com/nginx/kubernetes-ingress/pull/9604), [9731](https://github.com/nginx/kubernetes-ingress/pull/9731), [9668](https://github.com/nginx/kubernetes-ingress/pull/9668), [9705](https://github.com/nginx/kubernetes-ingress/pull/9705), [9704](https://github.com/nginx/kubernetes-ingress/pull/9704), [9707](https://github.com/nginx/kubernetes-ingress/pull/9707), [9763](https://github.com/nginx/kubernetes-ingress/pull/9763), [9774](https://github.com/nginx/kubernetes-ingress/pull/9774), [9737](https://github.com/nginx/kubernetes-ingress/pull/9737), [9687](https://github.com/nginx/kubernetes-ingress/pull/9687) & [9665](https://github.com/nginx/kubernetes-ingress/pull/9665) Bump Docker dependencies
 - [9583](https://github.com/nginx/kubernetes-ingress/pull/9583) Update go to v1.26.2, nginx to 1.29.8, waf to 5.12.1
 
 ### {{% icon download %}} Upgrade

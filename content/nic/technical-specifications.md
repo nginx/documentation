@@ -19,11 +19,29 @@ We provide technical support for NGINX Ingress Controller on any Kubernetes plat
 
 We provide technical support for F5 customers who are using the most recent version of NGINX Ingress Controller, and any version released within two years of the current release.
 
+### NGINX Ingress Controller LTS releases
+
+{{< include "/nic/compatibility-tables/nic-lts-k8s.md" >}}
+
+### NGINX Ingress Controller CR releases
+
 {{< include "/nic/compatibility-tables/nic-k8s.md" >}}
 
 ## Supported Docker images
 
 We provide the following Docker images, which include NGINX or NGINX Plus bundled with the Ingress Controller binary.
+
+### Images with NGINX Plus for LTS 2026 
+
+NGINX Ingress Controller LTS image include NGINX Plus LTS R37.0
+
+{{< table >}}
+
+| Name | Base image | <div style="width:200px">Additional modules</div> | F5 Container Registry Image | Architectures | Based on CR |
+| ---| ---| --- | --- | --- | --- |
+|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>Agent (NGINX Agent 3) | ``private-registry.nginx.com/lts/nginx-ic/nginx-plus-ingress:2026-lts-r1`` | arm64<br>amd64 | 5.4.x |
+
+{{< /table >}}
 
 ### Images with NGINX
 
