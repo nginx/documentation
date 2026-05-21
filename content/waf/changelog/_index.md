@@ -22,7 +22,7 @@ Released _May 21th, 2026_.
 ### Resolved issues
 
 - 14197 - Upgrade Go compiler to 1.26.3
-- 14546 - Undefined behavior when VIOL_EVASION and "Multiple slashes" are enabled in a policy.
+- 14546 - Fixed an issue and improved traffic handling with rule override
 
 ## F5 WAF for NGINX 5.13
 
