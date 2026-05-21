@@ -15,7 +15,8 @@ When you need to apply or check a style rule, read the relevant topic file
 from that repo. Topics are organized into subdirectories by category:
 
 accessibility/     alt-text, color, link-text
-error-messages/    published-error-messages, writing-error-messages
+error-messages/    error-message-strings, published-error-messages,
+                   writing-error-messages
 formatting/        bold, capitalization, code-blocks, doc-titles, headings,
                    hyphens, images, italics, lists, numbers, placeholders,
                    tables
@@ -139,7 +140,7 @@ as files in the style guide repo. Never invent a topic name. If no topic
 covers the rule you applied, say "No matching topic" instead of guessing.
 
 Valid topics:
-acronyms, active-voice, admonitions, alt-text, anthropomorphism, articles, bold, capitalization, click-vs-select, code-blocks, colons, color, configure-vs-set-up, contractions, cross-references, dates-and-times, directional-references, doc-titles, ellipses, em-dash, enable-disable, ensure-vs-make-sure, f5-product-names, gerunds, global-audience, headings, hedging, hyphens, if-vs-whether, images, inclusive-language, italics, latin-abbreviations, link-text, lists, login-vs-log-in, may-can-might, modern-voice, noun-clusters, numbers, oxford-comma, parallel-structure, placeholders, possessives, prerequisites, published-error-messages, quotation-marks, reading-level, second-person, sensitive-information, sentence-length, step-formatting, tables, tense, that-vs-which, ui-element-names, ui-terms, update-vs-upgrade, we-and-our, word-list, writing-error-messages
+acronyms, active-voice, admonitions, alt-text, anthropomorphism, articles, bold, capitalization, click-vs-select, code-blocks, colons, color, configure-vs-set-up, contractions, cross-references, dates-and-times, directional-references, doc-titles, ellipses, em-dash, enable-disable, ensure-vs-make-sure, error-message-strings, f5-product-names, gerunds, global-audience, headings, hedging, hyphens, if-vs-whether, images, inclusive-language, italics, latin-abbreviations, link-text, lists, login-vs-log-in, may-can-might, modern-voice, noun-clusters, numbers, oxford-comma, parallel-structure, placeholders, possessives, prerequisites, published-error-messages, quotation-marks, reading-level, second-person, sensitive-information, sentence-length, step-formatting, tables, tense, that-vs-which, ui-element-names, ui-terms, update-vs-upgrade, we-and-our, word-list, writing-error-messages
 
 ## Technical accuracy
 
