@@ -53,17 +53,17 @@ NGINX Gateway Fabric provides container images for the control plane and the NGI
 
 The control plane image contains the NGINX Gateway Fabric binary.
 
-| Name            | Base image            | Image                                                        | Architectures  |
-|-----------------|-----------------------|--------------------------------------------------------------|----------------|
-| Default image   | `scratch`             | `ghcr.io/nginx/nginx-gateway-fabric:{{< version-ngf >}}`     | amd64<br>arm64 |
-| UBI-based image | `redhat/ubi9-minimal` | `ghcr.io/nginx/nginx-gateway-fabric:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
+| Name            | Base image             | Image                                                        | Architectures  |
+|-----------------|------------------------|--------------------------------------------------------------|----------------|
+| Default image   | `scratch`              | `ghcr.io/nginx/nginx-gateway-fabric:{{< version-ngf >}}`     | amd64<br>arm64 |
+| UBI-based image | `redhat/ubi10-minimal` | `ghcr.io/nginx/nginx-gateway-fabric:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
 
 ### Data plane images with NGINX
 
 | Name            | Base image                 | Image                                                              | Architectures |
 |-----------------|----------------------------|--------------------------------------------------------------------|----------------|
 | Default image   | `nginx:alpine-otel`        | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}`     | amd64<br>arm64 |
-| UBI-based image | `redhat/ubi9-minimal`      | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
+| UBI-based image | `redhat/ubi10-minimal`     | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
  
 ### Data plane images with NGINX Plus
 
@@ -72,9 +72,9 @@ NGINX Plus images are available through the F5 Container registry `private-regis
 | Name                                  | Base image            | Image                                                                                      | Architectures  |
 |---------------------------------------|-----------------------|--------------------------------------------------------------------------------------------|----------------|
 | Default image                         | `alpine:3.22`         | `private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< version-ngf >}}`           | amd64<br>arm64 |
-| UBI-based image                       | `redhat/ubi9-minimal` | `private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< version-ngf >}}-ubi`       | amd64<br>arm64 |
+| UBI-based image                       | `redhat/ubi10-minimal` | `private-registry.nginx.com/nginx-gateway-fabric/nginx-plus:{{< version-ngf >}}-ubi`       | amd64<br>arm64 |
 | Default image with F5 WAF for NGINX   | `alpine:3.22`         | `private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf:{{< version-ngf >}}`     | amd64          |
-| UBI-based image with F5 WAF for NGINX | `redhat/ubi9-minimal` | `private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf:{{< version-ngf >}}-ubi` | amd64          |
+| UBI-based image with F5 WAF for NGINX | `redhat/ubi10-minimal` | `private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf:{{< version-ngf >}}-ubi` | amd64          |
 
 ### WAF sidecar images
 
