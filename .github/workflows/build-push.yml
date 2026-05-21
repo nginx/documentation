@@ -10,7 +10,11 @@ on:
         default: preview
         type: string
     secrets:
-      AZURE_CREDENTIALS_DOCS:
+      DOCS_OIDC_CLIENT:
+        required: true
+      DOCS_OIDC_TENANT:
+        required: true
+      DOCS_OIDC_SUB:
         required: true
       AZURE_KEY_VAULT_DOCS:
         required: true
@@ -58,7 +62,7 @@ jobs:
 
   call-docs-build-push:
     needs: prod-check-branch
-    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@54da3ca1694da6ce34840123a133054d847efcd6 # v1.0.13
+    uses: nginxinc/docs-actions/.github/workflows/docs-build-push.yml@fc64eb24f05ca8015a913c1726e44ecf4526e8b3 # v1.0.17
     with:
       production_url_path: ""
       preview_url_path: "${{ vars.PREVIEW_URL_PATH }}"
@@ -70,7 +74,9 @@ jobs:
       auto_deploy_branch: "main"
       auto_deploy_env: "prod"
     secrets:
-      AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS_DOCS}}
+      OIDC_CLIENT_ID: ${{secrets.DOCS_OIDC_CLIENT}}
+      OIDC_TENANT_ID: ${{secrets.DOCS_OIDC_TENANT}}
+      OIDC_SUBSCRIPTION_ID: ${{secrets.DOCS_OIDC_SUB}}
       AZURE_KEY_VAULT: ${{secrets.AZURE_KEY_VAULT_DOCS}}
 
   trigger-theme-slack-notification:
