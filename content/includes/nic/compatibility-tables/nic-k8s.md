@@ -5,8 +5,6 @@ f5-files:
 - content/nic/technical-specifications.md
 ---
 
-NGINX Ingress Controller supports the following versions of [NGINX Plus]({{< ref "/nginx/" >}}) and [Kubernetes](https://kubernetes.io/):
-
 {{< table >}}
 
 | NIC version | Kubernetes versions tested  | NIC Helm Chart version | NIC Operator version | NGINX / NGINX Plus version | End of Technical Support |
