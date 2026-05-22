@@ -49,7 +49,7 @@ kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gate
 Run the following command to upgrade the CRDs:
 
 ```shell
-kubectl apply --server-side -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
+kubectl apply --server-side --force-conflicts -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
 {{< call-out "note" >}}
@@ -59,6 +59,12 @@ Ignore the following warning, as it is expected.
 ```text
 Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply.
 ```
+
+{{< /call-out >}}
+
+{{< call-out "note" >}}
+
+`--force-conflicts` is used since the original CRDs may have been installed and owned by Helm, while the upgrade is handled by kubectl.
 
 {{< /call-out >}}
 
