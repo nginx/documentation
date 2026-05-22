@@ -53,7 +53,7 @@ Select **Refresh** at the top right of the **Details** tab to reload both the te
 
 ## API reference
 
-The Submissions section uses the following API operations:
+The **Submissions** section uses the following API operations:
 
 - [List Template Submissions for Template]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/listTemplateSubmissionsForTemplate" >}}) — retrieves all submissions scoped to a specific template.
 - [Delete a Template Submission]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/deleteTemplateSubmission" >}}) — permanently removes a submission by its `submissionObjectID`.
