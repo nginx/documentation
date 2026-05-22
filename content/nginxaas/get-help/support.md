@@ -3,14 +3,16 @@ title: Support
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/google/get-help/support
+url: /nginxaas/get-help/support
 f5-content-type: how-to
-f5-product: NGOOGL
+f5-product:
+- NGOOGL
+- NAZURE
 ---
 
 ## Contact F5 support
 
-To contact support about F5 NGINXaaS for Google Cloud (NGINXaaS):
+To contact support about F5 NGINXaaS:
 
 1. Go to the [MyF5 portal](https://my.f5.com) and log in with your F5 account.
 
@@ -18,7 +20,7 @@ To contact support about F5 NGINXaaS for Google Cloud (NGINXaaS):
 
 1. Select **NGINX Products** as the product family.
 
-1. Select **NGINXaaS for Google Cloud** product module.
+1. Select the appropriate **NGINXaaS** product module.
 
 1. Fill out the **Subject** and **Description** sections, and include the following details about the specific issue:
 
@@ -28,8 +30,8 @@ To contact support about F5 NGINXaaS for Google Cloud (NGINXaaS):
     1. Issue Details:
        - A detailed description of the issue
        - The specific resources involved (for example: deployment, configuration, certificate, and so on)
-       - The operation you were performing when the issue occurred (for example: creating a deployment, uploading a configuration, adding a certificate, and so on)
-       - Any error messages displayed
+       - The operation you were performing when the issue occurred (for example: subscribing from cloud marketplace, creating a deployment, uploading a configuration, adding a certificate, and so on)
+       - Any error messages or request IDs displayed
        - The time when the issue occurred
 
 1. Fill out the fields in the **Additional information** section including: 
