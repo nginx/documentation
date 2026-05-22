@@ -28,6 +28,14 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 {{< call-out "note" "Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
+### NGINX Plus  PLS.37.0.1.1 LTS {#pls.37.0.1}
+_May 22, 2026_<br/>
+
+NGINX Plus PLS.37.0.1.1 LTS is a security release.
+
+- Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
+
+
 ### NGINX Plus  PLS.37.0.0.1 LTS {#r37.0}
 _May 13, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
@@ -60,7 +68,7 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 | Alpine Linux   | 3.21, 3.22, 3.23          | x86_64, aarch64 |
 | Amazon Linux   | 2 LTS, 2023               | x86_64, aarch64 |
 | Debian         | 11, 12, 13                | x86_64, aarch64 |
-| FreeBSD        | 13.5+, 14.3+              | amd64           |
+| FreeBSD        | 13.5+, 14.3+, 15.0+       | amd64           |
 | Oracle Linux   | 8.1+, 9.7+                | x86_64, aarch64 |
 | RHEL           | 8.1+, 9.7+, 10.1+         | x86_64, aarch64 |
 | Rocky Linux    | 8.1+, 9.7+, 10.1+         | x86_64, aarch64 |
@@ -216,6 +224,13 @@ This is a security release for NGINX Plus R36.
 - Security fix for HTTP/3: when using HTTP/3, processing of connection migration might cause new QUIC streams to receive a new client address before validation, allowing an attacker to cause address spoofing ([CVE-2026-40460](https://my.f5.com/manage/s/article/K000161068)).
 
 - Security fix in the [`ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module: when the [`ssl_verify_client`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive is set to `on` or `optional,` and the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive is set to `on` or the `leaf` parameters are configured with a resolver. With this configuration, an unauthenticated attacker can send requests along with conditions beyond its control that may cause a heap-use-after-free error in the NGINX worker process. This vulnerability may result in limited modification of data or the NGINX worker process restarting. ([CVE-2026-40701](https://my.f5.com/manage/s/article/K000161021)).
+
+NGINX Plus R36 P5<br/>
+_May 22, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
 
 
 ### NGINX Plus Release 35 (R35) {#r35}
@@ -606,6 +621,13 @@ This is a security release for NGINX Plus R32.
 - Security fix for HTTP/3: when using HTTP/3, processing of connection migration might cause new QUIC streams to receive a new client address before validation, allowing an attacker to cause address spoofing ([CVE-2026-40460](https://my.f5.com/manage/s/article/K000161068)).
 
 - Security fix in the [`ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module: when the [`ssl_verify_client`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive is set to `on` or `optional,` and the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive is set to `on` or the `leaf` parameters are configured with a resolver. With this configuration, an unauthenticated attacker can send requests along with conditions beyond its control that may cause a heap-use-after-free error in the NGINX worker process. This vulnerability may result in limited modification of data or the NGINX worker process restarting. ([CVE-2026-40701](https://my.f5.com/manage/s/article/K000161021)).
+
+NGINX Plus R32 P7<br/>
+_May 22, 2026_
+
+This is a security release for NGINX Plus R32.
+
+- Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
 
 
 ## End-of-life (EoL) releases
