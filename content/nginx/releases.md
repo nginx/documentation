@@ -28,7 +28,7 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 {{< call-out "note" "Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
-### NGINX Plus  PLS.37.0.1.1 LTS {#r37.0.1}
+### NGINX Plus  PLS.37.0.1.1 LTS {#pls.37.0.1}
 _May 22, 2026_<br/>
 
 NGINX Plus PLS.37.0.1.1 LTS is a security release.
@@ -68,7 +68,7 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 | Alpine Linux   | 3.21, 3.22, 3.23          | x86_64, aarch64 |
 | Amazon Linux   | 2 LTS, 2023               | x86_64, aarch64 |
 | Debian         | 11, 12, 13                | x86_64, aarch64 |
-| FreeBSD        | 13.5+, 14.3+              | amd64           |
+| FreeBSD        | 13.5+, 14.3+, 15.0+       | amd64           |
 | Oracle Linux   | 8.1+, 9.7+                | x86_64, aarch64 |
 | RHEL           | 8.1+, 9.7+, 10.1+         | x86_64, aarch64 |
 | Rocky Linux    | 8.1+, 9.7+, 10.1+         | x86_64, aarch64 |
