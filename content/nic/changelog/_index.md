@@ -38,7 +38,9 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ## 2026-lts-r1
 
- Based on 5.4.x (see changelog)
+22 May 2026
+
+Based on [5.4.3](#543) (see changelog)
 
 ## 5.4.2
 
