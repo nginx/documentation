@@ -3,7 +3,7 @@ f5-docs: DOCS-937
 type: reference
 title: Known issues
 toc: true
-weight: 200
+weight: 2
 f5-product: NIMNGR
 f5-content-type: reference
 description: "Known issues and possible workarounds for F5 NGINX Instance Manager, with issue IDs and conditions under which they occur."
