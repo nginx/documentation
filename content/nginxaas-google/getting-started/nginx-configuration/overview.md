@@ -456,6 +456,7 @@ NGINXaaS does not yet support F5 WAF for NGINX custom security policies or loggi
 [open_log_file_cache (ngx_stream_log_module)](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#open_log_file_cache)\
 [otel_exporter](https://nginx.org/en/docs/ngx_otel_module.html#otel_exporter)\
 [otel_service_name](https://nginx.org/en/docs/ngx_otel_module.html#otel_service_name)\
+[otel_resource_attr](https://nginx.org/en/docs/ngx_otel_module.html#otel_resource_attr)\
 [otel_trace](https://nginx.org/en/docs/ngx_otel_module.html#otel_trace)\
 [otel_trace_context](https://nginx.org/en/docs/ngx_otel_module.html#otel_trace_context)\
 [otel_span_name](https://nginx.org/en/docs/ngx_otel_module.html#otel_span_name)\
