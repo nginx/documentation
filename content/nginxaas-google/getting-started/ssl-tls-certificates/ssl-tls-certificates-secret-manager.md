@@ -45,10 +45,17 @@ To add your Secret Manager certificate and key to an NGINX configuration in the 
 
    | Field                       | Description                  | Note |
    |---------------------------- | ---------------------------- | ---- |
-   | Google Secret ID       | The resource name of the secret in Secret Manager | The resource name must match the format `projects/$PROJECT_ID/secrets/$SECRET_ID/versions/$VERSION` where `$VERSION` can be a specific version or an alias such as `latest`. |
+   | Google Secret ID       | The resource name of the secret in Secret Manager | The resource name must match the format `projects/$PROJECT_ID/secrets/$SECRET_ID/versions/$VERSION` where `$VERSION` can be a specific version number (for example, `3`) or an alias such as `latest`. Using `latest` enables automatic certificate rotation — see [Rotate a Secret Manager certificate (automatic)]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/overview.md#rotate-a-secret-manager-certificate-automatic" >}}). |
    | File Path               | The secret will be written to this file path so it can be used with NGINX directives such as ssl_certificate or ssl_certificate_key in your NGINX configuration. | The path must be unique within the configuration. |
 
     {{< /table >}}
+
+{{< call-out "tip" "Enable automatic rotation with latest" >}}
+
+If you set `$VERSION` to `latest`, NGINXaaS automatically picks up any new secret version you add to Secret Manager without a configuration change. NGINXaaS applies new versions to your deployment within approximately 4 hours. See [Rotate a Secret Manager certificate (automatic)]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/overview.md#rotate-a-secret-manager-certificate-automatic" >}}) for details.
+
+{{< /call-out >}}
+
 - Update the NGINX configuration to reference the certificate you just added by the path value.
 - Select **Add**, **Next**, and then **Save** to save your changes.
 
