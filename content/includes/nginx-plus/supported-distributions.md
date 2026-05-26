@@ -5,7 +5,7 @@ f5-files:
 ---
 
 {{<bootstrap-table "table table-striped table-bordered">}}
-| Distribution                 | Supported on [R37.0]({{< ref "nginx/releases.md#r37.0" >}})                     | Supported on [R36]({{< ref "nginx/releases.md#r36" >}}) |
+| Distribution                 | Supported on [PLS.37.0]({{< ref "nginx/releases.md#r37.0" >}})                     | Supported on [R36]({{< ref "nginx/releases.md#r36" >}}) |
 |------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
 | AlmaLinux                    | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10 (x86_64, aarch64)    | 8.1+ (x86_64, aarch64) <br> 9 (x86_64, aarch64) <br> 10 (x86_64, aarch64)      |
 | Alpine Linux                 | 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) <br> 3.23 (x86_64, aarch64)  | 3.20 (x86_64, aarch64) <br> 3.21 (x86_64, aarch64) <br> 3.22 (x86_64, aarch64) |

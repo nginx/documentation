@@ -26,6 +26,31 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 
 
+## 5.4.3
+
+22 May 2026
+
+### {{% icon bug %}} Fixes
+
+- [9878](https://github.com/nginx/kubernetes-ingress/pull/9878) Improve transportserver and nginx.org/limit-req-key annotation - release 5.4
+
+### {{% icon arrow-up %}} Dependencies
+
+- [9870](https://github.com/nginx/kubernetes-ingress/pull/9870), [998x](https://github.com/nginx/kubernetes-ingress/pull/998x) Update NGINX OSS to 1.31.1, NGINX Plus to R37.0.1.1, WAF to 5.13.1 & NGINX Agent to latest version
+- [9851](https://github.com/nginx/kubernetes-ingress/pull/9851) Update Go version to 1.26.3
+- [9841](https://github.com/nginx/kubernetes-ingress/pull/9841), [9833](https://github.com/nginx/kubernetes-ingress/pull/9833), [9818](https://github.com/nginx/kubernetes-ingress/pull/9818), [9831](https://github.com/nginx/kubernetes-ingress/pull/9831), [9813](https://github.com/nginx/kubernetes-ingress/pull/9813) & [9974](https://github.com/nginx/kubernetes-ingress/pull/9974) Bump Go dependencies
+- [9926](https://github.com/nginx/kubernetes-ingress/pull/9926), [9924](https://github.com/nginx/kubernetes-ingress/pull/9924), [9814](https://github.com/nginx/kubernetes-ingress/pull/9814), [9948](https://github.com/nginx/kubernetes-ingress/pull/9948), [9868](https://github.com/nginx/kubernetes-ingress/pull/9868), [9898](https://github.com/nginx/kubernetes-ingress/pull/9898), [9832](https://github.com/nginx/kubernetes-ingress/pull/9832), [9870](https://github.com/nginx/kubernetes-ingress/pull/9870), [9884](https://github.com/nginx/kubernetes-ingress/pull/9884) & [9947](https://github.com/nginx/kubernetes-ingress/pull/9947) Bump Docker dependencies
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.4.3 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.4.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.4.3 images from the F5 Container registry or build your own image using the 5.4.3 source code.
+- For Helm, use version 2.5.3 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.28 - 1.35.
+
 ## 5.4.2
 
 07 May 2026
