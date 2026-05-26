@@ -185,11 +185,16 @@ volumeMounts:
 
 {{< include "/nic/installation/manifests/statefulset.md" >}}
 
-## Enable F5 WAF for NGINX module
+## Enable F5 WAF for NGINX module (requires NGINX Plus)
 
-To enable the F5 DoS for NGINX Module:
+To enable the F5 WAF for NGINX Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
+- Add the `--enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
+
+Additional WAF modules can be enabled by adding the appropriate command-line arguments:
+
+- To enable F5 WAF DoS Protection, add the `--enable-app-protect-dos` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect-dos" >}}).
+- To enable F5 WAF IP Intelligence, add the `--enable-app-protect-ip-intelligence` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect-ip-intelligence" >}}).
 
 ## Confirm NGINX Ingress Controller is running
 
