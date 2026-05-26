@@ -27,74 +27,16 @@ Encrypt your certificates, keys, and PEM files using one of these standards:
 
 ## Add SSL/TLS certificates
 
-Add a certificate to your NGINXaaS deployment using your preferred client tool:
+NGINXaaS supports two ways to manage your certificates and keys securely:
 
-- [Add certificates from Secret Manager]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}})
-- [Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})
+**NGINXaaS console** — Manage certificates alongside the NGINX configurations that reference them. See [Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
 
-## Rotate a Secret Manager certificate (manual)
+**Google Secret Manager** — Fetch secrets directly from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview), keeping credentials within Google Cloud. See [Add certificates from Secret Manager]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}).
 
-To immediately refetch secrets without editing your NGINX configuration, use **Sync Configuration**. This is useful in two scenarios:
+## Certificate rotation
 
-- **New secret version**: You've uploaded a new certificate and want NGINXaaS to use it right away.
-- **WIF or permissions fix**: You've updated a WIF provider or granted Secret Manager permissions and want NGINXaaS to retry immediately.
+NGINXaaS supports automatic and manual rotation for Secret Manager certificates:
 
-To reapply your configuration:
+**Automatic rotation** — Let NGINXaaS pick up new certificate versions automatically with no configuration changes needed. See [Rotate a Secret Manager certificate (automatic)]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-automatic" >}}).
 
-1. In the NGINXaaS console, go to your deployment.
-2. Open the **Configuration Info** panel.
-3. Select **Reapply Configuration**.
-
-NGINXaaS reapplies your current configuration version and immediately refetches all referenced secrets.
-
-## Rotate a Secret Manager certificate (automatic)
-
-If your configuration references secrets using the `versions/latest` alias, NGINXaaS automatically picks up new certificate versions. When you add a new secret version in Secret Manager, the next scheduled sync fetches it and reloads NGINX. No configuration changes are required.
-
-### Rotation timeline
-
-New secret versions are usually applied to your deployment within approximately 4 hours.
-
-To rotate your certificate:
-
-1. Generate your new certificate and key.
-2. Add the updated certificate and key as new secret versions in Secret Manager. No configuration changes are needed.
-3. Wait for NGINXaaS to apply the updated certificate. Rotation is complete when the new certificate serial number appears on your NGINX endpoint and in the NGINXaaS **Certificates** list.
-
-{{< call-out "note" >}}
-
-Automatic rotation only works when the Google Secret ID uses the `latest` version alias. If you've pinned a specific version number, manually rotate using **Reapply Configuration**.
-
-{{< /call-out >}}
-
-## Monitor secret fetch events
-
-NGINXaaS generates an event each time it fetches — or fails to fetch — a certificate or key from Secret Manager. Use these events to track successful rotations and troubleshoot access failures.
-
-### Event types
-
-{{< table >}}
-
-| Event type | Description |
-|---|---|
-| Successful Secret Fetch from Google | The secret was fetched from Secret Manager and applied to NGINX. |
-| Failed Secret Fetch from Google | NGINXaaS couldn't fetch the secret. The event message includes the error details. |
-
-{{< /table >}}
-
-### View events in the console
-
-- Select **Overview** in the left menu, then select **Events**.
-- To narrow results to a specific deployment, filter by its object ID using the controls at the top of the page.
-- For a summary of recent events, select **Deployments**, select the deployment, and look for the **Recent Events** card. Select **See Events Details** to go to the full Events page pre-filtered for that deployment.
-
-### Common failure messages and remediation
-
-{{< table >}}
-
-| Message | Likely cause | Remediation |
-|---|---|---|
-| `Failed to fetch secret ... PermissionDenied: Permission 'secretmanager.versions.access' denied` | The Workload Identity Federation principal doesn't have the required IAM role on the secret. | Verify the WIF principal has the Secret Manager Secret Accessor role on the project or secret. |
-| `Failed to fetch secret ... NotFound: Secret [...] has no alias [latest]` | No versions exist for the referenced secret, or the specified version alias or number doesn't exist. | Confirm the secret has at least one enabled version and that the resource name in your configuration uses a valid version or alias. |
-
-{{< /table >}}
+**Manual rotation** — When you need to update certificates immediately, use **Reapply Configuration** in the console to refetch secrets right away. See [Rotate a Secret Manager certificate (manual)]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-manual" >}}).
