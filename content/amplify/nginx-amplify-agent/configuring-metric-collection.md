@@ -87,7 +87,7 @@ nginx.http.request.writing = stub_status.writing
 
 For NGINX Plus, NGINX Amplify Agent will automatically use similar metrics available from the status API.
 
-For more information about the metric list, please refer to [Metrics and Metadata]({{< ref "/amplify/metrics-metadata" >}}).
+For more information about the metric list, refer to the Metrics and Metadata documentation.
 
 ## Metrics from access.log and error.log
 
@@ -97,7 +97,7 @@ You don't have to specifically point NGINX Amplify Agent to either the NGINX con
 
 NGINX Amplify Agent will also try to detect the [log format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) for a particular log to parse it properly and try to extract even more useful metrics, for example, [$upstream_response_time](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time).
 
-{{< call-out "note" >}}Several metrics outlined in [Metrics and Metadata]({{< ref "metrics-metadata" >}}) will only be available if the corresponding variables are included in a custom [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) format used for logging requests. You can find a complete list of NGINX log variables [here](http://nginx.org/en/docs/varindex.html).{{< /call-out >}}
+{{< call-out "note" >}}Several Metrics and Metadata metrics will only be available if the corresponding variables are included in a custom [access.log](http://nginx.org/en/docs/http/ngx_http_log_module.html) format used for logging requests. You can find a complete list of NGINX log variables [here](http://nginx.org/en/docs/varindex.html).{{< /call-out >}}
 
 ## Using Syslog for Metric Collection
 
