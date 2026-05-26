@@ -481,7 +481,7 @@ Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmd
 
 <a name="cmdoption-app-protect-dos-memory"></a>
 
-### -app-protect-dos-memory
+### -app-protect-dos-memory 
 
 RAM memory size to consume in MB
 
@@ -490,6 +490,14 @@ Default `50% of free RAM in the container or 80MB, the smaller`.
 Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmdoption-enable-app-protect-dos).
 
 - If the argument is set, but `nginx-plus` and `enable-app-protect-dos` are set to false, NGINX Ingress Controller will fail to start.
+
+<a name="cmdoption-app-protect-ip-intelligence"></a>
+
+### -enable-app-protect-ip-intelligence
+
+Enables App Protect IP Intelligence. Defaults to `false`. *Only applies to WAF single-container deployments*.
+
+Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
 
 <a name="cmdoption-ready-status"></a>
 
