@@ -87,7 +87,7 @@ nginx.http.request.writing = stub_status.writing
 
 For NGINX Plus, NGINX Amplify Agent will automatically use similar metrics available from the status API.
 
-For more information about the metric list, please refer to [Metrics and Metadata]({{< ref "/amplify/metrics-metadata" >}}).
+For more information about the metric list, refer to the Metrics and Metadata documentation.
 
 ## Metrics from access.log and error.log
 

@@ -25,4 +25,4 @@ The NGINX Amplify Agent identifies an NGINX instance as any running NGINX master
 
 {{< call-out "note" >}}There's no need to manually add or configure anything in the web interface after installing NGINX Amplify Agent. When NGINX Amplify Agent is started, the metrics and the metadata are automatically reported to the Amplify backend and visualized in the web interface.{{< /call-out >}}
 
-When an NGINX instance is no longer in use it must be manually deleted in the web interface. The "Remove object" button can be found in the metadata viewer popup — see the [User Interface]({{< ref "/amplify/user-interface/">}}) documentation.
+When an NGINX instance is no longer in use it must be manually deleted in the web interface. The "Remove object" button can be found in the metadata viewer popup.
