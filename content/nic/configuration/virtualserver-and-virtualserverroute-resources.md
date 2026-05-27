@@ -1119,7 +1119,7 @@ NGINX Ingress Controller validates VirtualServerRoute resources in a similar way
 
 ## Multiple regex routes in a VirtualServerRoute
 
-F5 NGINX Ingress Controller lets you reference the same VirtualServerRoute from multiple regex routes in a VirtualServer. This means you can group related regex paths by concern — for example, all `/api` paths go to one team's VirtualServerRoute and all `/images` paths go to another.
+NGINX Ingress Controller lets you reference the same VirtualServerRoute from multiple regex routes in a VirtualServer. This means you can group related regex paths by concern — for example, all `/api` paths go to one team's VirtualServerRoute and all `/images` paths go to another.
 
 ### How it works
 
