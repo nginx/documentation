@@ -23,7 +23,7 @@ This guide explains how to write NGINX configuration templates for NGINX One Con
 | **Context Path** | A path notation representing the hierarchical structure of NGINX configuration blocks (e.g., `http`, `http/server`, `http/server/location`). Used to specify where augments can be inserted in base templates via `augment_includes` and where augments target during submission via `target_context`. |
 | **Extension Point** | A placeholder in a template using `{{ augment_includes "context_path" . }}` that marks where augment content can be inserted during rendering. Base templates use extension points to enable modular composition with augments. |
 | **Schema** | A JSON Schema Draft 7 file (YAML or JSON format) that defines template variables, their types, descriptions, and validation rules. Required for templates that use variables. Schema properties become available as template variables via dot notation. |
-| **Template Submission** | The process of composing base and augment templates with values to render a complete NGINX configuration. Submissions are currently preview-only and generate rendered configurations that can be saved as Staged Configs. |
+| **Template Submission** | The process of composing base and augment templates with values to render and deploy a complete NGINX configuration. Submissions are persistent objects that can be retrieved, updated, and deleted. A submission targets one or more existing staged configs, Config Sync Groups, or instances, and automatically re-publishes when updated. |
 | **Template Variable** | A placeholder in a template (e.g., `{{ .backend_url }}`) that gets replaced with user-provided values during rendering. All variables must be defined in the template's schema and provided during submission if marked as required. |
 {{</bootstrap-table>}}
 
@@ -79,6 +79,73 @@ Augment templates add functionality to existing configuration structures. They c
 add_header 'Access-Control-Allow-Origin' '*' always;
 add_header 'Access-Control-Allow-Methods' 'GET, POST' always;
 ```
+
+### Static include files
+
+Templates can bundle static files that are deployed alongside the rendered NGINX configuration. Unlike template files (which use Go template syntax and the `.tmpl` extension), these files contain plain static content — such as NGINX configuration snippets or data files — and are not processed by the template engine. They are declared with `file_type: include` and are referenced from within the template using a standard NGINX `include` directive.
+
+**When to use include files:**
+
+- Bundling `mime.types` or other standard NGINX data files that the template requires
+- Shipping shared configuration snippets (for example, TLS cipher lists, proxy header sets) as separate files that are included into the rendered output
+- Any file that should be deployed to the NGINX host as-is, without Go template processing
+
+**How include files work:**
+
+When a submission is rendered, include files are written to the same directory as the rendered base configuration (derived from `conf_path`). The template references them using a relative or absolute `include` path matching the deployed filename.
+
+**Example:**
+
+`reverse-proxy.tmpl` (references an include file):
+```nginx
+user nginx;
+worker_processes auto;
+
+http {
+    include mime.types;
+
+    server {
+        listen {{ .listen_port }};
+        proxy_pass {{ .backend_url }};
+    }
+}
+```
+
+`mime.types` (the bundled static file):
+```nginx
+types {
+    text/html   html htm;
+    text/css    css;
+    # ...
+}
+```
+
+When importing using the API, declare the include file alongside the template file:
+
+```json
+{
+  "name": "reverse-proxy",
+  "type": "base",
+  "items": [
+    {
+      "name": "reverse-proxy.tmpl",
+      "file_type": "template",
+      "file_format": "plain",
+      "mime_type": "text/plain",
+      "contents": "..."
+    },
+    {
+      "name": "mime.types",
+      "file_type": "include",
+      "file_format": "plain",
+      "mime_type": "text/plain",
+      "contents": "types {\n    text/html html;\n}"
+    }
+  ]
+}
+```
+
+When using the import archive (`.tar.gz`), include files are placed at the root of the archive alongside the `.tmpl` and schema files. See [Import templates]({{< ref "import-templates.md" >}}) for archive structure details.
 
 ### Type declaration during import
 
@@ -678,11 +745,78 @@ additionalProperties: false
 ## Template Limitations
 
 - Template files must use the `.tmpl` file extension
-- Templates cannot reference external files - all configuration must be contained within the template content
-- External file references (such as `include /etc/nginx/mime.types`) are not supported
+- Static files that a template references via NGINX `include` directives must be bundled with the template as `file_type: include` files. See [Static include files](#static-include-files) for details.
+
+## Template lifecycle management
+
+After a template has been imported, several API operations are available to manage its metadata and create copies.
+
+### Update template metadata
+
+Use the [Update template metadata]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/updateTemplateMetadata" >}}) API operation (`PUT /templates/{templateObjectID}`) to replace all metadata on the latest template version. The `name` field is required; `description` and `state` are optional.
+
+**Example request body:**
+
+```json
+{
+  "name": "reverse-proxy-v2",
+  "description": "Updated reverse proxy configuration",
+  "state": "final"
+}
+```
+
+### Partially update template metadata
+
+Use the [Patch template metadata]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/patchTemplateMetadata" >}}) API operation (`PATCH /templates/{templateObjectID}`) to update only the fields provided. Omitted fields retain their existing values.
+
+**Example — promote a draft version to final:**
+
+```json
+{
+  "state": "final"
+}
+```
+
+{{< call-out "caution" >}}
+Promoting a template version from `draft` to `final` is **irreversible**. A `final` version cannot be edited. Any subsequent content changes (via [Create a new template version]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/createTemplateVersion" >}})) will create a new draft version rather than modifying the finalized one.
+{{< /call-out >}}
+
+### Copy a template
+
+Use the [Copy a Template]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/copyTemplate" >}}) API operation (`POST /templates/{templateObjectID}/copy`) to create a new template from the latest version of an existing template.
+
+The new template starts at version 1 in `draft` state. All files, the template type, and context configuration are copied from the source template. The `name` and `description` fields are optional — if omitted, the values are inherited from the source template.
+
+**Example request body:**
+
+```json
+{
+  "name": "reverse-proxy-copy",
+  "description": "Variant of the reverse proxy template"
+}
+```
+
+**Example response (201 Created):**
+
+```json
+{
+  "object_id": "tmpl_-xeR3F2TQGm18jnl7bpaAw",
+  "latest_template_version_object_id": "tmplv_-xeR3F2TQGm18jnl7bpaAw",
+  "version": 1,
+  "latest_version": 1,
+  "state": "draft",
+  "name": "reverse-proxy-copy",
+  "description": "Variant of the reverse proxy template",
+  "type": "base"
+}
+```
+
+This is useful for creating variations of a production template without modifying the original, or for experimenting with changes before promoting a new version.
 
 ## See also
 
 - [Import Templates]({{< ref "import-templates.md" >}})
+- [View template details]({{< ref "template-detail-view.md" >}})
+- [View template versions]({{< ref "template-versions.md" >}})
 - [Submit Templates Guide]({{< ref "submit-templates.md" >}})
 
