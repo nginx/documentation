@@ -1132,7 +1132,7 @@ The VirtualServer paths and VirtualServerRoute subroutes must form a **bidirecti
 - Every VirtualServer regex path that references the VirtualServerRoute must have a corresponding subroute.
 - Every subroute in the VirtualServerRoute must be referenced by a VirtualServer regex path.
 
-If either side has a path the other doesn't, NGINX Ingress Controller rejects the VirtualServerRoute and the VirtualServer enters a warning state.
+If a VirtualServer has a path that the referenced VirtualServerRoute does not, or if a VirtualServerRoute has a subpath that isn't present in the VirtualServer, NGINX Ingress Controller rejects the VirtualServerRoute and the VirtualServer enters a warning state.
 
 {{< table >}}
 
