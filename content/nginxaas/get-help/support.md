@@ -5,9 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/get-help/support
 f5-content-type: how-to
-f5-product:
-- NGOOGL
-- NAZURE
+f5-product: NGXAAS
 ---
 
 ## Contact F5 support

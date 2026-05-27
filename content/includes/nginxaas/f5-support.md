@@ -1,7 +1,5 @@
 ---
-f5-product:
-- NGOOGL
-- NAZURE
+f5-product: NGXAAS
 f5-files:
 - content/nginxaas/get-help/support.md
 - content/nginxaas-google/get-help/support.md
