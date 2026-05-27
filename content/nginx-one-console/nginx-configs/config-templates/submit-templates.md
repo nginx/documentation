@@ -6,32 +6,26 @@ toc: true
 weight: 200
 ---
 
-# Template submission and preview guide
+# Template submission guide
 
-This guide explains how to submit templates for rendering NGINX configurations and preview the results using the Templates API.
+This guide explains how to submit templates to render and deploy NGINX configurations, and how to manage existing submissions using the Templates API.
 
-Before submitting templates for preview, you need to import templates into NGINX One Console. 
+Before submitting templates, you need to import them into NGINX One Console.
 
-- See the [Import Templates Guide]({{< ref "import-templates.md" >}}) for instructions on creating templates. 
+- See the [Import Templates Guide]({{< ref "import-templates.md" >}}) for instructions on creating and importing templates.
 - For guidance on writing templates, see the [Template Authoring Guide]({{< ref "author-templates.md" >}}).
 
 ## Overview
 
-Template submission allows you to compose templates that generate complete NGINX configuration. The process involves:
+Template submission allows you to compose templates that generate a complete NGINX configuration and deploy it to a target. The process involves:
 
 1. **Discovering templates** - Find base and augment templates that match your infrastructure needs
 1. **Understanding capabilities** - Review what contexts and features the base template supports
 1. **Selecting augments** - Choose augments for additional features (CORS, rate limiting, SSL, etc.)
 1. **Providing values** - Supply values for all template variables
-1. **Preview and validate** - Generate and review the complete NGINX configuration
-1. **Save as staged config** - Use NGINX One Console to save the preview as a staged configuration for deployment
+1. **Submit** - Submit the composed request to render the NGINX configuration and create a staged config
 
-## Current limitations
-
-- **Preview only:** Template submission currently only supports preview mode (`preview_only=true`)
-- **No submission persistence:** Submissions are not saved as objects (planned for future release)
-- **Manual staged config creation:** After preview, use the NGINX One Console to manually save the rendered configuration as a staged config for deployment to instances or Config Sync Groups
-- **Static includes:** Templates cannot include external static files (planned for future release)
+To review the rendered configuration before committing, use [preview mode](#preview-mode-preview_onlytrue) with `preview_only=true`. See [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}}) for the preview-first workflow.
 
 ## Template discovery
 
@@ -76,7 +70,7 @@ Use the [List Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#op
         "http/server",
         "http/server/location"
       ],
-      "created_at": "2025-09-25T19:20:47.473935Z",
+      "created_at": "2025-09-25T19:20:47.473955Z",
       "description": "",
       "name": "reverse-proxy-base",
       "object_id": "tmpl_0rQSkSNSTamthLQVtSZb1g",
@@ -101,6 +95,7 @@ Use the [List Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#op
 - **type** - Identifies base templates (use exactly one) vs augment templates (use zero or more)
 - **allowed_in_contexts** - Shows where augment templates can be applied within a base template
 - **augment_includes** - Shows which contexts the base template supports for augments
+- **is_f5_default** - When `true`, the template is provided by F5 and is immutable. These templates are also identified in the NGINX One Console by the F5 logo icon in the templates list.
 
 The API response contains all information needed for creating a submission to render NGINX configurations. You need template details **only** if you want to examine the actual template content or variable requirements.
 
@@ -125,12 +120,12 @@ Use the [Retrieve a Template]({{< ref "/nginx-one-console/api/api-reference-guid
     "http/server",
     "http/server/location"
   ],
-  "created_at": "2025-09-25T19:20:47.473935Z",
+  "created_at": "2025-09-25T19:20:47.473955Z",
   "description": "",
   "items": [
     {
       "contents": "user nginx;\nworker_processes auto;\n\nhttp {\n    {{ augment_includes \"http\" . }}\n    \n    server {\n        listen 80;\n        server_name _;\n\n        {{ augment_includes \"http/server\" . }}\n        \n        location / {\n            proxy_pass {{ .backend_url }};\n            {{ augment_includes \"http/server/location\" . }}\n        }\n    }\n}\n",
-      "ctime": "2025-09-25T19:20:47.473935Z",
+      "ctime": "2025-09-25T19:20:47.473955Z",
       "file_format": "FILE_FORMAT_PLAIN",
       "file_type": "FILE_TYPE_TEMPLATE",
       "mime_type": "FILE_MIME_TYPE_TEXT",
@@ -139,7 +134,7 @@ Use the [Retrieve a Template]({{< ref "/nginx-one-console/api/api-reference-guid
     },
     {
       "contents": "$schema: \"http://json-schema.org/draft-07/schema#\"\ntype: object\nproperties:\n  backend_url:\n    type: string\n    description: \"Backend server URL\"\nrequired:\n  - backend_url\nadditionalProperties: false\n",
-      "ctime": "2025-09-25T19:20:47.473935Z",
+      "ctime": "2025-09-25T19:20:47.473955Z",
       "file_format": "FILE_FORMAT_PLAIN",
       "file_type": "FILE_TYPE_SCHEMA",
       "mime_type": "FILE_MIME_TYPE_YAML",
@@ -161,17 +156,20 @@ Use the [Retrieve a Template]({{< ref "/nginx-one-console/api/api-reference-guid
 
 ## API endpoint
 
-Use the [Submit templates for previewing NGINX configuration]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/submitTemplates" >}}) API operation to render and preview NGINX configurations from templates.
+Use the [Submit templates for previewing NGINX configuration]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/submitTemplates" >}}) API operation to render NGINX configurations from templates.
+
+The `preview_only` query parameter controls the mode:
+
+{{<bootstrap-table "table table-striped table-bordered">}}
+| `preview_only` | Behavior | Response |
+|---|---|---|
+| `false` (default) | Renders the configuration, creates a persistent submission, and publishes to the target(s). | `202 Accepted` with submission `object_id` and target results. |
+| `true` | Renders the configuration for inspection **without** creating a submission or publishing. | `200 OK` with the rendered NGINX configuration. |
+{{</bootstrap-table>}}
 
 ## Request structure
 
-The following sections describe what you need for the request:
-
-### Required parameters
-
-**Query Parameter:**
-
-- `preview_only=true` - Currently the only supported mode. Renders configuration for preview without creating a submission object.
+The following sections describe what you need for the request.
 
 ### Configuration path (`conf_path`)
 
@@ -200,12 +198,12 @@ Where `base_dir` is derived from `conf_path`:
 
 **Base Template:**
 
-- `object_id` - Template unique identifier (use a template where `type` is `base`)
+- `object_id` - Template version unique identifier (`tmplv_...`) for the version to use
 - `values` - Key-value pairs for template variables
 
 **Augment Templates:**
 
-- `object_id` - Template unique identifier (use a template where `type` is `augment`)
+- `object_id` - Template version unique identifier (`tmplv_...`)
 - `target_context` - NGINX context where the augment should be applied
 - `values` - Key-value pairs for template variables (optional if template has no variables)
 - `child_augments` - Optional nested augments that render within this augment's output
@@ -231,9 +229,103 @@ See the [Template Authoring Guide]({{< ref "author-templates.md#config-templates
 
 For more information, see [Understanding Rendering Order](#understanding-rendering-order).
 
-## Make the request
+## Submission mode (default)
 
-Use the [Submit Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/submitTemplates" >}}) API operation with your composed request and the required `preview_only=true` parameter.
+Use the [Submit Templates]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/submitTemplates" >}}) API operation without `preview_only=true` (or explicitly with `preview_only=false`) to render and persist a submission.
+
+{{< call-out "note" >}}
+**Current limitation:** Submission targets are currently limited to staged configurations. Targeting Config Sync Groups or instances directly is not yet supported.
+{{< /call-out >}}
+
+### Create a new staged config
+
+Omit `target_object_ids` from the request body. The API renders the configuration and automatically creates a new staged config.
+
+**Required fields:**
+
+- `conf_path` - Configuration file path
+- `base_template` - Base template version and values
+- `augments` - Ordered list of augment templates (can be empty)
+- `description` - A description for the submission (required in submission mode)
+
+**Request body:**
+
+```json
+{
+  "conf_path": "/etc/nginx/nginx.conf",
+  "description": "Reverse proxy with rate limiting",
+  "base_template": {
+    "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+    "values": {
+      "backend_url": "http://example.com:8080"
+    }
+  },
+  "augments": [
+    {
+      "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+      "target_context": "http",
+      "values": {
+        "zone_name": "req_limit",
+        "memory": "10m",
+        "rate": "10r/s"
+      }
+    }
+  ]
+}
+```
+
+**Successful response (202 Accepted):**
+
+```json
+{
+  "object_id": "tmplsm_frBobKIAQ_21grAwV83VYz",
+  "target_results": [
+    {
+      "staged_config_status": {
+        "status": "succeeded"
+      },
+      "target_object_id": "sc_cEoiYCVJRuekVpYOvV1raA"
+    }
+  ]
+}
+```
+
+The `object_id` in the response is your **submission ID** (`tmplsm_...`). Save this value — it is used to retrieve, update, or delete the submission later. The `target_object_id` is the newly created staged config.
+
+### Update an existing staged config
+
+Include `target_object_ids` in the request body with the ID of an existing staged config. The API renders the configuration and publishes it to the specified target.
+
+**Request body:**
+
+```json
+{
+  "conf_path": "/etc/nginx/nginx.conf",
+  "description": "Reverse proxy with rate limiting - updated",
+  "base_template": {
+    "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+    "values": {
+      "backend_url": "http://example.com:8080"
+    }
+  },
+  "augments": [
+    {
+      "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+      "target_context": "http",
+      "values": {
+        "zone_name": "req_limit",
+        "memory": "10m",
+        "rate": "10r/s"
+      }
+    }
+  ],
+  "target_object_ids": ["sc_cEoiYCVJRuekVpYOvV1raA"]
+}
+```
+
+## Preview mode (`preview_only=true`)
+
+Add `?preview_only=true` to the request URL to render the configuration for inspection without creating a submission or publishing to any target. This is useful for validating your template values before committing.
 
 ### Request body
 
@@ -243,14 +335,14 @@ Here's an example of what you need to include with the API request:
 {
   "conf_path": "/etc/nginx/nginx.conf",
   "base_template": {
-    "object_id": "<id of your template object>",
+    "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
     "values": {
       "backend_url": "http://example.com:8080"
     }
   },
   "augments": [
     {
-      "object_id": "<id of your template object>",
+      "object_id": "tmplv_AFVNBQcoRDeV9jk9panxbw",
       "target_context": "http/server/location",
       "values": {
         "cors_allowed_origins": "https://app.example.com",
@@ -258,7 +350,7 @@ Here's an example of what you need to include with the API request:
       }
     },
     {
-      "object_id": "<id of your template object>",
+      "object_id": "tmplv_rT6Ul8RvQtSZPkNfsIExPQ",
       "target_context": "http/server"
     }
   ]
@@ -312,7 +404,7 @@ Here's an example of what you need to include with the API request:
 
 #### Response with parse errors (200 OK)
 
-If the rendered configuration has NGINX syntax errors. You can use this information to debug and correct your submission request.
+If the rendered configuration has NGINX syntax errors, you can use this information to debug and correct your submission request.
 
 {{< call-out "caution" >}}
 Parse errors indicate the rendered configuration has NGINX syntax issues, often due to missing include files or incomplete template logic. See [Template Limitations]({{< ref "author-templates.md#template-limitations" >}}).
@@ -328,30 +420,13 @@ Parse errors indicate the rendered configuration has NGINX syntax issues, often 
       {
         "files": [
           {
-            "contents": "dXNlciBuZ2lueDsKd29ya2VyX3Byb2Nlc3NlcyBhdXRvOwoKaHR0cCB7CiAgICAKICAgIAogICAgc2VydmVyIHsKICAgICAgICBsaXN0ZW4gODA7CiAgICAgICAgc2VydmVyX25hbWUgXzsKCiAgICAgICAgaW5jbHVkZSAvZXRjL25naW54L2NvbmYuZC9hdWdtZW50cy9oZWFsdGgtY2hlY2sudG1wbC43ODM0NmRlNGRhZTQuY29uZjsKCiAgICAgICAgCiAgICAgICAgbG9jYXRpb24gLyB7CiAgICAgICAgICAgIHByb3h5X3Bhc3MgaHR0cDovL2FwaS1zZXJ2aWNlOjgwODA7CiAgICAgICAgICAgIGluY2x1ZGUgL2V0Yy9uZ2lueC9jb25mLmQvYXVnbWVudHMvY29ycy1oZWFkZXJzLnRtcGwuNGFhZjM2ZDRhNjQzLmNvbmY7CgogICAgICAgIH0KICAgIH0KfQo=",
+            "contents": "<base64_encoded_nginx_conf>",
             "mtime": "0001-01-01T00:00:00Z",
             "name": "nginx.conf",
             "size": 371
           }
         ],
         "name": "/etc/nginx"
-      },
-      {
-        "files": [
-          {
-            "contents": "YWRkX2hlYWRlciAnQWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2luJyAnaHR0cHM6Ly9hcHAuZXhhbXBsZS5jb20nIGFsd2F5czsKYWRkX2hlYWRlciAnQWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcycgJ0dFVCwgUE9TVCwgUFVULCBERUxFVEUsIE9QVElPTlMnIGFsd2F5czsK",
-            "mtime": "0001-01-01T00:00:00Z",
-            "name": "cors-headers.tmpl.4aaf36d4a643.conf",
-            "size": 159
-          },
-          {
-            "contents": "bG9jYXRpb24gL2hlYWx0aCB7CiAgICBhY2Nlc3NfbG9nIG9mZjsKICAgIHJldHVybiAyMDAgImhlYWx0aHlcbiI7CiAgICBhZGRfaGVhZGVyIENvbnRlbnQtVHlwZSB0ZXh0L3BsYWluOwp9Cg==",
-            "mtime": "0001-01-01T00:00:00Z",
-            "name": "health-check.tmpl.78346de4dae4.conf",
-            "size": 109
-          }
-        ],
-        "name": "/etc/nginx/conf.d/augments"
       }
     ]
   },
@@ -364,6 +439,122 @@ Parse errors indicate the rendered configuration has NGINX syntax issues, often 
   ]
 }
 ```
+
+## Manage template submissions
+
+Submissions are persistent objects that store the template composition and input values used to generate a configuration. Each submission tracks its target(s) and can be retrieved, updated, or deleted.
+
+### Get a submission
+
+Use the [Get a Template Submission]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/getTemplateSubmission" >}}) API operation (`GET /templates/submissions/{submissionObjectID}`) to retrieve the full details of a submission, including the templates used, their input values, and target object IDs.
+
+**Example response:**
+
+```json
+{
+  "object_id": "tmplsm_frBobKIAQ_21grAwV83VYz",
+  "description": "Reverse proxy with rate limiting",
+  "target_object_ids": ["sc_cEoiYCVJRuekVpYOvV1raA"],
+  "created_at": "2025-09-25T19:20:47.473955Z",
+  "modified_at": "2025-09-25T19:20:47.473955Z",
+  "templates": [
+    {
+      "template_object_id": "tmpl_-uvR3F2TQGm18jnl7bpaGw",
+      "template_version_object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+      "name": "reverse-proxy-base",
+      "type": "base",
+      "state": "final",
+      "version": 1,
+      "latest_version": 1,
+      "values": {
+        "backend_url": "http://example.com:8080"
+      }
+    }
+  ]
+}
+```
+
+### Update a submission
+
+Use the [Update a Template Submission]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/updateTemplateSubmission" >}}) API operation (`PUT /templates/submissions/{submissionObjectID}`) to fully replace the input values and payloads for all templates in the submission.
+
+The `conf_path` and target object IDs are preserved from the original submission and cannot be changed through this endpoint. After the update, the configuration is re-rendered and re-published to the existing target(s).
+
+**Request body:**
+
+```json
+{
+  "base_template": {
+    "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
+    "values": {
+      "backend_url": "http://new-backend.example.com:9090"
+    }
+  },
+  "augments": [
+    {
+      "object_id": "tmplv_-abR3F2TQGm18jnl7bpaXw",
+      "target_context": "http",
+      "values": {
+        "zone_name": "req_limit",
+        "memory": "20m",
+        "rate": "20r/s"
+      }
+    }
+  ]
+}
+```
+
+**Successful response (202 Accepted):**
+
+```json
+{
+  "object_id": "tmplsm_frBobKIAQ_21grAwV83VYz",
+  "target_results": [
+    {
+      "staged_config_status": {
+        "status": "succeeded"
+      },
+      "target_object_id": "sc_cEoiYCVJRuekVpYOvV1raA"
+    }
+  ]
+}
+```
+
+To preview the updated configuration before persisting, add `?preview_only=true` to the request. The response returns the re-rendered configuration as a `200 OK` without saving any changes.
+
+### Update a single template's values
+
+Use the [Update a single template's values in a submission]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/updateSingleTemplateSubmission" >}}) API operation (`PUT /templates/{templateObjectID}/submissions/{submissionObjectID}`) to update the input values for one specific template within a submission, without changing any other template's values.
+
+All other templates in the submission retain their stored values. Payloads, target objects, and `conf_path` are preserved. The full configuration is re-rendered using the merged values and re-published to the existing target(s).
+
+This is useful when only one template's configuration needs to change — for example, updating a rate limiting zone name without resubmitting the full composition.
+
+**Request body:**
+
+```json
+{
+  "values": {
+    "zone_name": "api_limit",
+    "memory": "10m",
+    "rate": "5r/s"
+  }
+}
+```
+
+**Successful response (202 Accepted):** Same shape as the full update — the submission `object_id` and updated target results.
+
+To preview the change before persisting, add `?preview_only=true`. The response returns the re-rendered configuration as a `200 OK` without saving any changes.
+
+### Delete a submission
+
+Use the [Delete a Template Submission]({{< ref "/nginx-one-console/api/api-reference-guide/#operation/deleteTemplateSubmission" >}}) API operation (`DELETE /templates/submissions/{submissionObjectID}`) to permanently remove a submission.
+
+{{< call-out "caution" >}}
+Deleting a submission is **irreversible** and removes all stored input values and payloads for that submission. The target staged config is not affected — only the submission record is deleted.
+{{< /call-out >}}
+
+**Successful response:** `204 No Content`
 
 ## Rendered file structure
 
@@ -462,18 +653,18 @@ When multiple augments target the same context, they render in the order specifi
 {
   "conf_path": "/etc/nginx/nginx.conf",
   "base_template": {
-    "object_id": "<id of your template object>",
+    "object_id": "tmplv_-uvR3F2TQGm18jnl7bpaGw",
     "values": {
       "backend_url": "http://example.com:8080"
     }
   },
   "augments": [
     {
-      "object_id": "tmpl_rate_limit_zone",
+      "object_id": "tmplv_rate_limit_zone",
       "target_context": "http"
     },
     {
-      "object_id": "tmpl_upstream_definition", 
+      "object_id": "tmplv_upstream_definition",
       "target_context": "http"
     }
   ]
@@ -504,9 +695,10 @@ For example:
 - Upstream blocks should be defined before server blocks reference them
 - Map directives typically appear early in the http block
 
-When composing templates submissions, arrange your augments array to match the required directive order for valid NGINX configuration.
+When composing template submissions, arrange your augments array to match the required directive order for valid NGINX configuration.
 
 ## See also
 
 - [Template Authoring Guide]({{< ref "author-templates.md" >}})
-- [Add More Services]({{< ref "add-multiple-services.md" >}})
+- [Add Service-Specific Locations]({{< ref "add-multiple-services.md" >}})
+- [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}})
