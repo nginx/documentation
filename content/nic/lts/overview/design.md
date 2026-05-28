@@ -73,7 +73,7 @@ This table describes each connection, starting with its type:
 |16|Signal| The _NGINX master_ controls the [lifecycle of _NGINX workers_](https://nginx.org/en/docs/control.html#reconfiguration) it creates workers with the new configuration and shutdowns workers with the old configuration.
 |17|File I/O| An _NGINX worker_ writes logs to its _stdout_ and _stderr_, which are collected by the container runtime.
 |18|UDP| An _NGINX worker_ sends the HTTP upstream server response latency logs via the Syslog protocol over the UNIX socket `/var/lib/nginx/nginx-syslog.sock` to _NGINX Ingress Controller LTS_. In turn, _NGINX Ingress Controller LTS_ analyzes and transforms the logs into Prometheus metrics.
-|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic//configuration/global-configuration/globalconfiguration-resource.md" >}}).
+|19|HTTP,HTTPS,TCP,UDP| A _client_ sends traffic to and receives traffic from any of the _NGINX workers_ on ports 80 and 443 and any additional ports exposed by the [GlobalConfiguration resource]({{< ref "/nic/lts/configuration/global-configuration/globalconfiguration-resource.md" >}}).
 |20|HTTP,HTTPS,TCP,UDP| An _NGINX worker_ sends traffic to and receives traffic from the _backends_.
 |21|HTTP| _Admin_ can connect to the [NGINX stub_status](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html#stub_status) using port 8080 via an _NGINX worker_. By default, NGINX only allows connections from `localhost`.
 
@@ -144,7 +144,7 @@ The desired state is based on the following built-in Kubernetes resources and Cu
 
 NGINX Ingress Controller LTS can watch additional Custom Resources, which are less common and not enabled by default:
 
-- [F5 WAF for NGINX resources]({{< ref "/nic/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
+- [F5 WAF for NGINX resources]({{< ref "/nic/lts/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
 - IngressLink resource (only one resource)
 
 ## NGINX Ingress Controller LTS process components
@@ -298,7 +298,7 @@ Reloads occur with this sequence of steps:
 1. NGINX Ingress Controller LTS updates the config version in `/etc/nginx/config-version.conf`.
 1. NGINX Ingress Controller LTS runs `nginx -s reload`. If the command fails, NGINX Ingress Controller LTS logs the error and considers the reload failed.
 1. If the command succeeds, NGINX Ingress Controller LTS periodically checks for the config version by sending an HTTP request to the config version server on  `unix:/var/lib/nginx/nginx-config-version.sock`.
-1. Once NGINX Ingress Controller LTS sees the correct config version returned by NGINX, it considers the reload successful. If it doesn't see the correct configuration version after the configurable timeout ( [`-nginx-reload-timeout`]({{<ref "/nic/configuration/global-configuration/command-line-arguments">}})), NGINX Ingress Controller LTS considers the reload failed.
+1. Once NGINX Ingress Controller LTS sees the correct config version returned by NGINX, it considers the reload successful. If it doesn't see the correct configuration version after the configurable timeout ( [`-nginx-reload-timeout`]({{<ref "/nic/lts/configuration/global-configuration/command-line-arguments">}})), NGINX Ingress Controller LTS considers the reload failed.
 
 The [NGINX Ingress Controller LTS Control Loop](#the-control-loop) stops during a reload so that it cannot affect configuration files or reload NGINX until the current reload succeeds or fails.
 
