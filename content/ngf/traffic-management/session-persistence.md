@@ -27,7 +27,7 @@ The NGINX directives discussed in this guide are:
 
 ## Note
 
-{{< call-out "important" >}}Cookie-based `SessionPersistence` is only available for [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) users, with alternatives provided for NGINX OSS users. Session Persistence is a Gateway API field from the experimental release channel and is subject to change. {{< /call-out >}}
+{{< call-out class="important" >}}Cookie-based `SessionPersistence` is only available for [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) users, with alternatives provided for NGINX OSS users. Session Persistence is a Gateway API field from the experimental release channel and is subject to change. {{< /call-out >}}
 
 ## Before you begin
 
@@ -216,7 +216,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
+{{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 ## Session Persistence Methods
 

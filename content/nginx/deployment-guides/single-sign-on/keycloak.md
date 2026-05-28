@@ -10,7 +10,7 @@ f5-docs: DOCS-1682
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Keycloak](https://www.keycloak.org/) as the Identity Provider (IdP), and NGINX Plus as the Relying Party, or OIDC client application that verifies user identity.
 
-{{< call-out "note" >}} This guide applies to [NGINX Plus Release 36]({{< ref "nginx/releases.md#r36" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. Starting from NGINX Plus version R34, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
+{{< call-out class="note" >}} This guide applies to [NGINX Plus Release 36]({{< ref "nginx/releases.md#r36" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. Starting from NGINX Plus version R34, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 ## Prerequisites
 
@@ -125,7 +125,7 @@ Check the OpenID Connect Discovery URL. By default, Keycloak publishes the `.wel
 
 2. Copy the **issuer** value, you will need it later when configuring NGINX Plus. Typically, the OpenID Connect Issuer for Keycloak is `https://<keycloak-server>/realms/<realm_name>`.
 
-{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
+{{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
 ## Set up NGINX Plus {#nginx-plus-setup}
 
@@ -203,7 +203,7 @@ With Keycloak configured, you can enable OIDC on NGINX Plus. NGINX Plus serves a
 
     - The module automatically selects the client authentication method for the token endpoint based on the provider metadata `token_endpoint_auth_methods_supported`. When only `client_secret_post` is advertised, NGINX Plus uses the `client_secret_post` method and sends the client credentials in the POST body. When both `client_secret_basic` and `client_secret_post` are present, the module prefers HTTP Basic (`client_secret_basic`), which remains the default for Keycloak.
 
-    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate. {{< /call-out >}}
+    - {{< call-out class="important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system’s CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP’s certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP’s certificate. {{< /call-out >}}
 
     ```nginx
     http {

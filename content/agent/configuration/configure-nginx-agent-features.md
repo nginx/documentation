@@ -38,7 +38,7 @@ The following table lists the NGINX Agent features:
 | agent-api          | Enable the NGINX Agent REST API.                                                       | Default             |
 {{< /table >}}
 
-{{< call-out "note" "Metrics Feature" >}}
+{{< call-out class="note" title="Metrics Feature" >}}
 The **metrics** feature is the equivalent of having the 3 sub-features **metrics-collection**, **metrics-throttle**, **metrics-sender** being configured.
 {{< /call-out >}}
 

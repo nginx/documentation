@@ -87,7 +87,7 @@ Confirm that no unexpected process is listening on port `1514`. If another servi
 
 If the collector log does **not** show either invalid-log-profile error, verify that the generated OpenTelemetry Collector config still contains the security log pipeline.
 
-{{< call-out "note" >}}NGINX Agent generates this security log pipeline only when at least one `http`, `server`, or `location` block is set up with `app_protect_security_log` pointing to `syslog:server=127.0.0.1:1514`. If no protected context uses that syslog destination, the pipeline isn't generated. Without it, no WAF security logs are forwarded to NGINX One Console.{{< /call-out >}}
+{{< call-out class="note" >}}NGINX Agent generates this security log pipeline only when at least one `http`, `server`, or `location` block is set up with `app_protect_security_log` pointing to `syslog:server=127.0.0.1:1514`. If no protected context uses that syslog destination, the pipeline isn't generated. Without it, no WAF security logs are forwarded to NGINX One Console.{{< /call-out >}}
 
 Open the generated collector config:
 
@@ -148,7 +148,7 @@ The `debug` exporter causes the embedded OpenTelemetry Collector to write its pr
 
 Use this to confirm the collector is handling F5 WAF for NGINX security events locally. It continues forwarding them to NGINX One Console through `otlp/default`.
 
-{{< call-out "note" >}}The debug exporter increases log volume. Remove it after troubleshooting so the collector log returns to its normal verbosity.{{< /call-out >}}
+{{< call-out class="note" >}}The debug exporter increases log volume. Remove it after troubleshooting so the collector log returns to its normal verbosity.{{< /call-out >}}
 
 ---
 

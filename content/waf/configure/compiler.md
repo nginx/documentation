@@ -12,7 +12,7 @@ You can use it to get the latest security updates for [Attack signatures]({{< re
 
 The compiler is packaged as a Docker image and can executed using the Docker CLI or as part of a continuous integration/continuous delivery (CI/CD) pipeline.
 
-{{< call-out "note" "Alternatives to the compiler tool">}}
+{{< call-out class="note" title="Alternatives to the compiler tool">}}
 
 If you are using a virtual machine/bare-metal installation, read the [Update F5 WAF for NGINX signatures]({{< ref "/waf/install/update-signatures.md" >}}) topic.
 
@@ -89,7 +89,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 USER nginx
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 You can can upgrade or downgrade one of the Signatures by specifying a specific version, such as _app-protect-attack-signatures-2020.04.30_.
 
@@ -114,7 +114,7 @@ sudo docker build --no-cache --platform linux/amd64 \
 -t waf-compiler-<version-tag>:custom .
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 Never upload your F5 WAF for NGINX images to a public container registry such as Docker Hub. Doing so violates your license agreement.
 
@@ -135,7 +135,7 @@ docker run --rm \
  -p $(pwd)/policy.json -o $(pwd)/compiled_policy.tgz
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 Ensure that the output directory is writable, otherwise you may encounter a permission denied error.
 
@@ -257,7 +257,7 @@ The global settings allows configuration of the following items:
 }
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 When deploying multiple scalability instances (Such as Kubernetes deployment replicas), ensure that all policy bundles are compiled with the same global settings and security updates.
 

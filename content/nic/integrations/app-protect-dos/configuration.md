@@ -7,7 +7,7 @@ f5-product: INGRESS
 f5-docs: DOCS-580
 ---
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 
 Check out the complete [NGINX Ingress Controller with App Protect DoS example for VirtualServer](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-dos) and the [NGINX Ingress Controller with App Protect DoS example for Ingress](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-dos).
 

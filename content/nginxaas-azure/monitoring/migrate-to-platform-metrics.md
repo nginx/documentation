@@ -31,4 +31,4 @@ Follow the steps in this section to migrate your deployment monitoring from Cust
    7. Review and adjust the alert logic, thresholds, and conditions as needed.
    8. Select **Review + create**, then **Create** to save the updated alert rule.
 
-   {{< call-out "note" >}}For a complete list of available Platform metrics, see the [metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}). To learn more about editing alert rules, refer to the [Edit an existing alert rule](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#edit-an-existing-alert-rule) section in the Azure documentation.{{< /call-out >}}
+   {{< call-out class="note" >}}For a complete list of available Platform metrics, see the [metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}). To learn more about editing alert rules, refer to the [Edit an existing alert rule](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule#edit-an-existing-alert-rule) section in the Azure documentation.{{< /call-out >}}

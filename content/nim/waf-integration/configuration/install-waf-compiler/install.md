@@ -36,7 +36,7 @@ Use the table below to find the correct WAF compiler version for each release of
 
 {{< include "/waf/waf-nim-compiler-support.md" >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Beginning with version 5.9.0, both the virtual machine and container installation packages are categorized under the 5.x.x tag.  
 Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0) and 5.x.x for container packages (for example, NAP 5.7.0, NAP 5.8.0).
 {{< /call-out >}}

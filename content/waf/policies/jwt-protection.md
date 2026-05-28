@@ -77,7 +77,7 @@ This is a header example:
 
 F5 WAF for NGINX introduces a new policy entity known as `accessProfile` to authenticate JSON Web Token. Access profile is added to the F5 WAF for NGINX policy to enforce JWT settings. JSON Web Token needs to be applied to the URLs for enforcement and includes the actions to be taken with respect to access tokens. It is specifically associated with HTTP URLs and does not have any predefined default profiles.
 
-{{< call-out "note" >}}Currently, only one `accessProfile` is supported per policy{{< /call-out >}}
+{{< call-out class="note" >}}Currently, only one `accessProfile` is supported per policy{{< /call-out >}}
 
 The access profile includes:
 
@@ -142,7 +142,7 @@ Refer to the following example where all access profile properties are configure
 }
 ```
 
-{{< call-out "note" >}} For access profile default values and their related field names, see F5 WAF for NGINX [Policy parameter reference]({{< ref "/waf/policies/parameter-reference.md" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} For access profile default values and their related field names, see F5 WAF for NGINX [Policy parameter reference]({{< ref "/waf/policies/parameter-reference.md" >}}). {{< /call-out >}}
 
 #### Access profile in URL settings
 
@@ -201,7 +201,7 @@ Only structure nesting is supported using the `.` notation.
 - Accessing individual cells within JSON arrays is not supported. The entire array is serialized as a string, and its elements can be evaluated using string operators like `contains`.
 - Although it is possible to consolidate all conditions into one with `and`, it is not recommended. Splitting conditions improves readability and helps explain authorization failures.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 For the full reference of `authorizationRules` condition syntax and usage, see the F5 WAF for NGINX [Policy parameter reference]({{< ref "/waf/policies/parameter-reference.md" >}}).
 {{< /call-out >}}
 

@@ -39,7 +39,7 @@ After saving the changes, restart the client to apply the new settings:
 
 ### Install virtual machine packages
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 This section **only** applies to virtual machines/bare metal installations.
 
@@ -75,7 +75,7 @@ Once complete, you can now [Configure policies for IP intelligence](#configure-p
 
 ### Modify Docker Compose file
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 This section **only** applies to installations using Docker.
 

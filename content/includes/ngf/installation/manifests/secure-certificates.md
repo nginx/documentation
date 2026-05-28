@@ -2,7 +2,7 @@
 f5-product: FABRIC
 ---
 
-{{< call-out "note" >}} These steps use a self-signed issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
+{{< call-out class="note" >}} These steps use a self-signed issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
 
 First, create a CA (certificate authority) issuer:
 
@@ -57,7 +57,7 @@ issuer.cert-manager.io/nginx-gateway-issuer created
 
 You will then need to create a server certificate for the NGINX Gateway Fabric control plane (server):
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The default service name is _nginx-gateway_, and the namespace is _nginx-gateway_, so the `dnsNames` value should be `nginx-gateway.nginx-gateway.svc`.
 

@@ -9,7 +9,7 @@ f5-docs: DOCS-579
 
 This document explains how to build a F5 NGINX Ingress Controller image with F5 WAF for NGINX from source code.
 
-{{< call-out "tip" "Pre-built image alternatives" >}} 
+{{< call-out class="tip" title="Pre-built image alternatives" >}} 
 If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.
 {{< /call-out >}}
 
@@ -65,7 +65,7 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX.
 
      **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{< call-out "note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
+{{< call-out class="note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
@@ -76,7 +76,7 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX.
 | **ubi-image-nap-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect-waf/) module. | OpenShift |
 | **ubi-image-nap-dos-plus** | Builds a UBNI-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect-waf/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
 
-{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md#makefile-details" >}}) topic. {{< /call-out>}}
+{{< call-out class="note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md#makefile-details" >}}) topic. {{< /call-out>}}
 
 ## Push the image to your private registry
 
@@ -102,7 +102,7 @@ make push PREFIX=<my-docker-registry>/nginx-plus-ingress
 
 ## Create F5 WAF for NGINX custom resources
 
-{{< call-out "note" >}} If you're using NGINX Ingress Controller with the F5 WAF for NGINX module and policy bundles, you can skip this section. You will need to create and configure [Persistent Volume and Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your Kubernetes cluster. {{< /call-out >}}
+{{< call-out class="note" >}} If you're using NGINX Ingress Controller with the F5 WAF for NGINX module and policy bundles, you can skip this section. You will need to create and configure [Persistent Volume and Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your Kubernetes cluster. {{< /call-out >}}
 
 {{<tabs name="install-waf-crds">}}
 
@@ -122,7 +122,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{%tab name="Install CRDs after cloning the repo"%}}
 
-{{< call-out "note" >}} If you are installing the CRDs this way, ensure you have first cloned the repository. {{< /call-out >}}
+{{< call-out class="note" >}} If you are installing the CRDs this way, ensure you have first cloned the repository. {{< /call-out >}}
 
 These YAML files create CRDs for the following resources:
 
@@ -144,7 +144,7 @@ kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
 
 {{< include "/nic/installation/deploy-controller.md" >}}
 
-{{< call-out "note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes and volume mounts.
+{{< call-out class="note" >}} If you're using NGINX Ingress Controller with the AppProtect WAF module and policy bundles, you will need to modify the Deployment, DaemonSet, or StatefulSet file to include volumes and volume mounts.
 
 NGINX Ingress Controller **requires** the volume mount path to be `/etc/nginx/waf/bundles`. {{< /call-out >}}
 
@@ -169,7 +169,7 @@ volumeMounts:
 ...
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 **StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. F5 WAF for NGINX v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
 {{< /call-out >}}
 

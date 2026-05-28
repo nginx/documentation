@@ -12,7 +12,7 @@ f5-product: NAZURE
 
 F5 NGINXaaS for Azure (NGINXaaS) supports integrating Azure Diagnostic Settings to collect NGINX error and access logs.
 
-{{< call-out "caution"  >}}
+{{< call-out class="caution"  >}}
 Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now deprecated. This feature will be removed in an upcoming update. If you have issues accessing your NGINX logs using the deprecated method, please follow the steps in this guide to access your NGINX logs.
 {{< /call-out >}}
 
@@ -24,7 +24,7 @@ Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now 
 
 - A system-assigned managed identity.
 
-{{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the logging functionality described in this section. You will need to make sure that the managed identity has the appropriate role assignments to access other resources that it is attached to (for example, certificates stored in Azure Key Vault).
+{{< call-out class="note" >}}The system-assigned managed identity does not need any role assignments to enable the logging functionality described in this section. You will need to make sure that the managed identity has the appropriate role assignments to access other resources that it is attached to (for example, certificates stored in Azure Key Vault).
 {{< /call-out >}}
 
 - User must be an owner or user access administrator for the NGINX deployment resource.
@@ -39,7 +39,7 @@ Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now 
 
 1. Choose the **NGINX Logs** option and complete the details on the form, including the **Diagnostic setting name**.
 
-{{< call-out "note" >}}You will need to configure the system-assigned managed identity in order to see and select the **NGINX Logs** option.
+{{< call-out class="note" >}}You will need to configure the system-assigned managed identity in order to see and select the **NGINX Logs** option.
 {{< /call-out >}}
 
 1. Select preferred **Destination details**.
@@ -50,10 +50,10 @@ As NGINXaaS logs are stored in your storage, you can define the retention policy
 
 For more information about diagnostic settings destinations, please see the [Diagnostic Settings Destinations](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings#destinations) documentation.
 
-{{< call-out "note" >}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
+{{< call-out class="note" >}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
 {{< /call-out >}}
 
-{{< call-out "note" >}}If you are a Terraform user, please refer to [examples](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/deployments/with-diagnostic-setting-logging) provided to setup diagnostic settings for your NGINXaaS deployment{{< /call-out >}}
+{{< call-out class="note" >}}If you are a Terraform user, please refer to [examples](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/terraform/deployments/with-diagnostic-setting-logging) provided to setup diagnostic settings for your NGINXaaS deployment{{< /call-out >}}
 
 ### Analyzing NGINX logs in Azure Storage
 
@@ -73,7 +73,7 @@ For more information about diagnostic settings destinations, please see the [Dia
 
 1. Select **Delete**.
 
-{{< call-out "note" >}}It can take up to 90 minutes after removing the diagnostic settings for logs to stop publishing to the diagnostic destinations.{{< /call-out >}}
+{{< call-out class="note" >}}It can take up to 90 minutes after removing the diagnostic settings for logs to stop publishing to the diagnostic destinations.{{< /call-out >}}
 
 ## Setting up error logs
 

@@ -15,7 +15,7 @@ If you are using NGINX Plus, get the NGINX Ingress Controller JWT and [create a 
 
 ### Get the NGINX Controller Image
 
-{{< call-out "note" >}} We recommend the most recent stable version of NGINX Ingress Controller, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
+{{< call-out class="note" >}} We recommend the most recent stable version of NGINX Ingress Controller, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
 
 Choose one of the following methods to get the NGINX Ingress Controller image:
 
@@ -85,7 +85,7 @@ _F5 DoS for NGINX_:
 
 _F5 WAF for NGINX_:
 
-{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
+{{< call-out class="note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
@@ -103,7 +103,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 _F5 WAF for NGINX_:
 
-{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
+{{< call-out class="note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
 
 ```shell
 kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml
@@ -203,7 +203,7 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
          kubectl apply -f deployments/common/nginx-config.yaml
          ```
 
-    {{< call-out "note" >}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{< /call-out >}}
+    {{< call-out class="note" >}}AWS users have more customization options for their load balancers. These include choosing the load balancer type and configuring SSL termination. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer) to learn more. {{< /call-out >}}
 
 3. To access NGINX Ingress Controller, get the public IP of your load balancer.
 
@@ -233,7 +233,7 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
 
 ## Uninstall NGINX Ingress Controller
 
-{{< call-out "warning" >}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{< /call-out >}}
+{{< call-out class="warning" >}}Proceed with caution when performing these steps, as they will remove NGINX Ingress Controller and all related resources, potentially affecting your running services.{{< /call-out >}}
 
 1. **Delete the nginx-ingress namespace**: To remove NGINX Ingress Controller and all auxiliary resources, run:
 

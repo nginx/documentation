@@ -40,7 +40,7 @@ A RHEL-based system would use the following command instead:
 podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your-image-name> .
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The `--no-cache` option is used to ensure the image is built from scratch, installing the latest versions of NGINX Plus and F5 WAF for NGINX.
 

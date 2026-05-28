@@ -18,7 +18,7 @@ Use this guide to install and upgrade F5 NGINX Instance Manager in environments 
 
 ## Before you begin
 
-{{< call-out "important" "Complete the required prerequisites" "fas fa-exclamation-triangle" >}}
+{{< call-out class="important" title="Complete the required prerequisites" icon="triangle-alert" >}}
 Complete all prerequisite steps before installing NGINX Instance Manager. Skipping them can cause installation failures.
 {{</ call-out >}}
 
@@ -39,7 +39,7 @@ Download the NGINX Instance Manager package files from the [MyF5 Customer Portal
 
 Local dependencies are common Linux packages like `curl` or `openssl`, which most Linux distributions include by default. When installing NGINX Instance Manager, your package manager installs these dependencies automatically. Without internet access, make sure your package manager can use a local package repository — such as a distribution DVD/ISO image or internal network mirror. See your Linux distribution's documentation for details.
 
-{{< call-out "note" "RedHat on AWS" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task:
+{{< call-out class="note" title="RedHat on AWS" >}}If you're using AWS and can't attach remote or local RedHat package repositories, download the necessary packages on another RedHat machine and copy them to your target machine. Use the `yumdownloader` utility for this task:
 <https://access.redhat.com/solutions/10154>.
 {{</ call-out >}}
 
@@ -81,7 +81,7 @@ To download external dependencies:
 
 3. Copy the archive to your target machine and extract the contents:
 
-    {{< call-out "note" >}}The bundled NGINX server package may conflict with existing versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep your current version.{{< /call-out >}}
+    {{< call-out class="note" >}}The bundled NGINX server package may conflict with existing versions of NGINX or NGINX Plus. Delete the package from the bundle if you want to keep your current version.{{< /call-out >}}
 
     - **For RHEL and RPM-based systems**:
 
@@ -101,7 +101,7 @@ To download external dependencies:
 
 ## Install NGINX Instance Manager {#install-nim-offline}
 
-{{< call-out "important" "Save the password!" "" >}}
+{{< call-out class="important" title="Save the password!" >}}
 The administrator username (default: **admin**) and the generated password are displayed in the terminal during installation. Be sure to record the password and store it securely.
 {{</ call-out >}}
 

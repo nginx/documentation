@@ -156,7 +156,7 @@ Using only `names` and time window parameters will give you the raw data points 
 
 To get a more organized response, you can provide an aggregate function for each queried metric: `AVG`, `SUM`, `COUNT`, `MAX`, `MIN`, or `RATE`.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 In the following definitions, `time period` refers to the `resolution` (if provided) or the difference between the `endTime` and `startTime` (when `resolution` is not provided).
 {{< /call-out >}}
 
@@ -166,11 +166,11 @@ In the following definitions, `time period` refers to the `resolution` (if provi
 - `MIN`/`MAX` - returns the minimal/maximal data sample of the metric from the given period
 - `RATE` - returns an average value of the metric calculated per second (always *per second*, regardless of the provided `resolution`), based on the data available in the given period
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 You must define a `startTime` when using aggregate functions.
 {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The list of supported aggregate functions for any particular metric is available in the [Metrics Catalog]({{< ref "/nim/monitoring/catalogs/metrics.md" >}})).
 {{< /call-out>}}
 
@@ -216,7 +216,7 @@ For example, the following query includes a simple filter on the app name. The q
 curl -X GET --url "<NIM_FQDN>/api/platform/v1/analytics/metrics?names=nginx.http.request.count&filter=nginx_id='nginx_id1'&startTime=now-12h" -H "Authorization: Bearer <access token>"
 ```
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 
 - Predicates can be combined into logical expressions using `OR`, `AND`, and `(` `)`.
 - For matching values, wildcard (`*`) use is supported.
@@ -236,7 +236,7 @@ Using filters and aggregation functions may not be enough to allow you to get co
 
 The `groupBy` parameter helps to gather results according to the specified dimension(s). You can provide multiple dimension names as a comma-separated list.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 - When using `groupBy`, you must use an aggregate function and a time window (`startTime` must be defined; `endTime` is optional).
 - If a request contains aggregated and non-aggregated metrics, the `groupBy` parameter will apply only to the aggregated metrics.

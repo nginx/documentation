@@ -15,7 +15,7 @@ It explains the following topics:
 - How to run NGINX Ingress Controller in the same cluster with another Ingress Controller and prevent conflicts between them
 - How to run multiple NGINX Ingress Controllers.
 
-{{< call-out "note" >}} This document refers to [Ingress]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}}), [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}), [VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute-specification" >}}), and [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resources as "configuration resources".{{< /call-out >}}
+{{< call-out class="note" >}} This document refers to [Ingress]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}}), [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}), [VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute-specification" >}}), and [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}}) resources as "configuration resources".{{< /call-out >}}
 
 ## Ingress class
 
@@ -30,7 +30,7 @@ The IngressClass has the following characteristics:
 
 The default Ingress class of NGINX Ingress Controller is `nginx`, which means that it only handles configuration resources with the Ingress class set to `nginx`. You can customize the class through the `-ingress-class` command-line argument.
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 If the class of an Ingress resource is not set, Kubernetes will set it to the class of the default Ingress Controller. To make the Ingress Controller the default one, the `ingressclass.kubernetes.io/is-default-class` property must be set on the IngressClass resource. To learn more, see Step 3 *Create an IngressClass resource* of the [Create Common Resources]({{< ref "/nic/install/manifests.md#create-common-resources" >}}) section.
 
@@ -54,7 +54,7 @@ When running NGINX Ingress Controller, you have the following options with regar
 
 These options allow you to run multiple NGINX Ingress Controllers, each handling a different set of configuration resources.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 There is a reference available for all [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}})
 

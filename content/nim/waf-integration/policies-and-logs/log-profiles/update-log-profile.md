@@ -16,7 +16,7 @@ To update a log profile, use one of the following methods:
 - `POST` with the `isNewRevision=true` parameter to create a new revision.
 - `PUT` with the log profile UID to overwrite the existing version.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

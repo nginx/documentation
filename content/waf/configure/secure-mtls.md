@@ -18,7 +18,7 @@ This adds an extra layer of security, ensuring that both parties are who they cl
 
 To enable mTLS, you must first create certificates.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The following commands will generate self-signed certificates in _/etc/ssl/certs/_ valid for the default period of 30 days. You can adjust the command to fit your needs.
 
@@ -143,7 +143,7 @@ http {
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 With a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment.md" >}}) installation, you have finished all necessary steps.
 
@@ -151,7 +151,7 @@ With a [Virtual machine or bare metal]({{< ref "/waf/install/virtual-environment
 
 ## Modify Docker Compose file
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 This section **only** applies to installations using Docker.
 

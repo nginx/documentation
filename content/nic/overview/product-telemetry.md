@@ -17,7 +17,7 @@ NGINX Ingress Controller collects product telemetry data to allow its developers
 
 Product telemetry is enabled by default, collected once every 24 hours. It's then sent over HTTPS to a service managed by F5 at `oss.edge.df.f5.com`.
 
-{{< call-out "note" >}} If you would prefer not to send any telemetry data, you can [opt-out](#opt-out) when installing NGINX Ingress Controller. {{< /call-out >}}
+{{< call-out class="note" >}} If you would prefer not to send any telemetry data, you can [opt-out](#opt-out) when installing NGINX Ingress Controller. {{< /call-out >}}
 
 ---
 

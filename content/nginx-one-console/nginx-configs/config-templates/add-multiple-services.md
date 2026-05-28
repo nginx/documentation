@@ -11,7 +11,7 @@ weight: 400
 
 This guide shows how to extend a working submission from the [Submit Templates Guide]({{< ref "submit-templates.md" >}}) by adding server augments for new services with dedicated location augments.
 
-{{< call-out "note" "Note" >}}Submissions are persistent objects. Use the [Get a submission]({{< ref "submit-templates.md#get-a-submission" >}}) operation to retrieve the stored values from a previous submission before building an update.{{< /call-out >}}
+{{< call-out class="note" title="Note" >}}Submissions are persistent objects. Use the [Get a submission]({{< ref "submit-templates.md#get-a-submission" >}}) operation to retrieve the stored values from a previous submission before building an update.{{< /call-out >}}
 
 ## Import template
 
@@ -68,7 +68,7 @@ When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this templat
 
 Create a location augment template to add location blocks within each server.
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 If you already have a "health-check" location augment from earlier steps, you can add it to the new servers.
 {{< /call-out >}}
 

@@ -15,7 +15,7 @@ TCPRoute is a Gateway API resource that is used to configure routing for TCP con
 
 ## Note on Gateway API Experimental Features
 
-{{< call-out "important" >}} TCPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
+{{< call-out class="important" >}} TCPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
 
 {{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
@@ -175,7 +175,7 @@ GW_PORT_1=<Listener-1 Port number>
 GW_PORT_2=<Listener-2 Port number>
 ```
 
-{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
+{{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 Create TCPRoutes for routing to `coffee` and `tea` applications:
 
@@ -270,7 +270,7 @@ server {
 
 Using the external IP address and ports for the NGINX Service, we can send traffic to our coffee and tea applications.
 
-{{< call-out "note" >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
+{{< call-out class="note" >}}If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 Send requests to Gateway on different ports and observe which server the response comes from:
 

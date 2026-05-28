@@ -15,7 +15,7 @@ UDPRoute enables you to expose and route UDP traffic through a Gateway. In this 
 
 ## Note on Gateway API Experimental Features
 
-{{< call-out "important" >}} UDPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
+{{< call-out class="important" >}} UDPRoute is a Gateway API resource from the experimental release channel. {{< /call-out >}}
 
 {{< include "/ngf/installation/install-gateway-api-experimental-features.md" >}}
 
@@ -162,7 +162,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
+{{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 Create UDPRoute for routing to `coredns` application:
 

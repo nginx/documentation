@@ -24,7 +24,7 @@ This guide describes how to configure disaster recovery (DR) for F5 NGINXaaS for
 - Unique, non-overlapping VNet and subnet address spaces for each region.
 - Terraform 1.3+ and AzureRM provider 4.23+.
 
-{{< call-out "note" >}} Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
+{{< call-out class="note" >}} Each NGINX deployment **must run on separate subnets and non-overlapping address spaces**. This is critical for [Virtual Network (VNet) peering](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering) between the two regions. For example:
 
   - Primary Region Virtual Network Address Space: `10.0.0.0/16`
   - Secondary Region Virtual Network Address Space: `172.16.0.0/16`
@@ -220,7 +220,7 @@ resource "azurerm_linux_virtual_machine" "nginx_upstream_vm" {
 
 {{< /details >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 As a best practice, maintain identical upstream resources in your secondary region as in your primary region to ensure full protection and availability in the event of a region-wide outage or disaster.
 
@@ -253,7 +253,7 @@ resource "azurerm_virtual_network_peering" "secondary_vnet_to_primary_vnet" {
 - **Subnet Peering for Overlapping VNets:**
 If overlapping address spaces are unavoidable, use subnet-level peering to selectively peer only the required subnets.
 
-   {{< call-out "note" >}}As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).{{< /call-out >}}
+   {{< call-out class="note" >}}As of May 2025, subnet peering is not available by default for all subscriptions. To use this feature, you must have the subscription on which you want to configure subnet peering be registered with Azure. Please review the configuration details and limitations in this [document](https://learn.microsoft.com/en-us/azure/virtual-network/how-to-configure-subnet-peering).{{< /call-out >}}
 
 
 ### Step 5: Deploy NGINXaaS for Azure in each region

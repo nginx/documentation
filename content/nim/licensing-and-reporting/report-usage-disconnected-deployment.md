@@ -36,7 +36,7 @@ To configure NGINX Plus (R33 and later) to report usage data to NGINX Instance M
 
 ## Submit usage report to F5 with NGINX Instance Manager 2.22 and later {#submit-usage-report}
 
-{{< call-out "note" >}}Starting with NGINX Instance Manager 2.22, it's not possible to report usage with the REST API option.{{< /call-out >}}
+{{< call-out class="note" >}}Starting with NGINX Instance Manager 2.22, it's not possible to report usage with the REST API option.{{< /call-out >}}
 
 {{<tabs name="submit-usage-report">}}
 
@@ -110,19 +110,19 @@ Download the usage report from `https://<NIM_FQDN>/ui/nginx-plus`. Replace `<NIM
 
 Move the file to a system with internet access and run the script with the upload option.
 
-{{< call-out "note" "Behavior change" >}}In NGINX Instance Manager 2.22 and later, you don't need to re-upload the usage acknowledgement file to NGINX Instance Manager.{{< /call-out >}}
+{{< call-out class="note" title="Behavior change" >}}In NGINX Instance Manager 2.22 and later, you don't need to re-upload the usage acknowledgement file to NGINX Instance Manager.{{< /call-out >}}
 
 {{%/tab%}}
 
 {{</tabs>}}
 
-{{< call-out "note" "File size increase" >}}NGINX Instance Manager 2.22 and later report raw data instead of aggregated usage data. File sizes will be larger than before.{{< /call-out >}}
+{{< call-out class="note" title="File size increase" >}}NGINX Instance Manager 2.22 and later report raw data instead of aggregated usage data. File sizes will be larger than before.{{< /call-out >}}
 
 ---
 
 ## Submit usage report to F5 with NGINX Instance Manager 2.21 and earlier {#submit-usage-report-2.21}
 
-{{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</call-out>}}
+{{< call-out class="tip" title="Using the REST API" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</call-out>}}
 
 <br>
 
@@ -168,7 +168,7 @@ To submit a usage report using `curl`, complete each step in order.
 
 Run these commands on a system that can reach NGINX Instance Manager and connect to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your values.
 
-{{< call-out "important" >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{< /call-out >}}
+{{< call-out class="important" >}}The `-k` flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system.{{< /call-out >}}
 
 1. **Prepare the usage report**:
 

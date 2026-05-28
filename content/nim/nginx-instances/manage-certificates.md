@@ -77,7 +77,7 @@ To replace a certificate using the web interface:
 
 #### API
 
-{{<call-out "tip" "Using the NGINX Instance Manager REST API" "">}}{{< include "nim/how-to-access-nim-api.md" >}}{{</call-out>}}
+{{<call-out class="tip" title="Using the NGINX Instance Manager REST API" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</call-out>}}
 
 To replace a certificate using the NGINX Instance Manager REST API, send a `PUT` request like the following to the Certificates API endpoint:
 
@@ -157,7 +157,7 @@ curl -X PUT "https://nginx-manager.example.com/api/platform/v1/certs/pem_cert_wi
 
 To manage certificates securely, you should rotate encryption keys regularly or when a key is compromised.
 
-{{< call-out "important" "Service Disruption Warning" "fas fa-exclamation-triangle" >}}You must stop the `nms-core` service to rotate keys. Stopping this service is disruptive, so you should plan a downtime window for the rotation.{{< /call-out >}}
+{{< call-out class="important" title="Service Disruption Warning" icon="triangle-alert" >}}You must stop the `nms-core` service to rotate keys. Stopping this service is disruptive, so you should plan a downtime window for the rotation.{{< /call-out >}}
 
 To rotate the certificate encryption key:
 

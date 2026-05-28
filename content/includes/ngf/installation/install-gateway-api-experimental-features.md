@@ -7,7 +7,7 @@ f5-files:
 
 To use Gateway API experimental resources, the Gateway API resources from the experimental channel must be installed before deploying NGINX Gateway Fabric. Additionally, NGINX Gateway Fabric must have experimental features enabled.
 
-{{< call-out "caution"  >}}As noted in the [Gateway API documentation](https://gateway-api.sigs.k8s.io/guides/#install-experimental-channel), future releases of the Gateway API can include breaking changes to experimental resources and fields. {{< /call-out >}}
+{{< call-out class="caution"  >}}As noted in the [Gateway API documentation](https://gateway-api.sigs.k8s.io/guides/#install-experimental-channel), future releases of the Gateway API can include breaking changes to experimental resources and fields. {{< /call-out >}}
 
 To install the Gateway API resources from the experimental channel, run the following:
 
@@ -15,7 +15,7 @@ To install the Gateway API resources from the experimental channel, run the foll
 kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/experimental?ref=v{{< version-ngf >}}" | kubectl apply -f -
 ```
 
-{{< call-out "note" >}}If you plan to use the `edge` version of NGINX Gateway Fabric, you can replace the version in `ref` with `main`, for example `ref=main`. {{< /call-out >}}
+{{< call-out class="note" >}}If you plan to use the `edge` version of NGINX Gateway Fabric, you can replace the version in `ref` with `main`, for example `ref=main`. {{< /call-out >}}
 
 To enable experimental features on NGINX Gateway Fabric:
 

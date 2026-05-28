@@ -116,7 +116,7 @@ Now, let’s assume that your JSON registration form contains a specific field t
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Defining a JSON or XML profile in a policy has no effect until you assign it to a URL or Parameter you defined in that policy. Profiles can be shared by more than one URL and/or Parameter.
 {{< /call-out >}}
 
@@ -221,7 +221,7 @@ This produces the following policy:
 
 When a request to the `/register` URL is sent with JSON content that does not comply with the schema, the **VIOL_JSON_SCHEMA** violation is triggered. In the default base template, the `alarm` flag is enabled for this violation, meaning it contributes to the Violation Rating when triggered. You can also enable the `block` flag so that the request is blocked whenever this violation occurs.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 - The schema file is embedded as a quoted string, so all quotes inside the schema itself must be escaped.
 - The nesting depth check was removed from the JSON profile because it is already enforced by the schema. Keeping both checks is not technically incorrect, but in practice the schema usually provides more precise restrictions. Leaving the profile restriction may be redundant at best or cause false positives at worst.
 {{< /call-out >}}

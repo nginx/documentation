@@ -10,7 +10,7 @@ f5-docs: DOCS-1683
 
 This guide explains how to enable single sign-on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Microsoft Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) (AD FS) as the Identity Provider (IdP) and NGINX Plus as the Relying Party (RP), or OIDC client application that verifies user identity.
 
-{{< call-out "note" >}} This guide applies to [NGINX Plus Release 36]({{< ref "nginx/releases.md#r36" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
+{{< call-out class="note" >}} This guide applies to [NGINX Plus Release 36]({{< ref "nginx/releases.md#r36" >}}) and later. In earlier versions, NGINX Plus relied on an [njs-based solution](#legacy-njs-guide), which required NGINX JavaScript files, key-value stores, and advanced OpenID Connect logic. In the latest NGINX Plus version, the new [OpenID Connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html) simplifies this process to just a few directives.{{< /call-out >}}
 
 ## Prerequisites
 
@@ -119,7 +119,7 @@ Check the OpenID Connect endpoint URL. By default, AD FS publishes the `.well-kn
 
    `https://adfs-server-address/adfs`.
 
-{{< call-out "note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
+{{< call-out class="note" >}} You will need the values of **Client ID**, **Client Secret**, and **Issuer** in the next steps. {{< /call-out >}}
 
 ## Set up NGINX Plus {#nginx-plus-setup}
 
@@ -189,7 +189,7 @@ With AD FS configured, you can enable OIDC on NGINX Plus. NGINX Plus serves as t
 
     - PKCE (Proof Key for Code Exchange) is automatically enabled when the provider's OpenID Connect discovery document advertises the S256 code challenge method in the code_challenge_methods_supported field. You can override this behavior with the pkce directive: set `pkce off;` to disable PKCE even when S256 is advertised, or `pkce on;` to force PKCE even if the IdP's metadata does not list S256.
 
-    - {{< call-out "important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate. {{< /call-out >}}
+    - {{< call-out class="important" >}} All interaction with the IdP is secured exclusively over SSL/TLS, so NGINX must trust the certificate presented by the IdP. By default, this trust is validated against your system's CA bundle (the default CA store for your Linux or FreeBSD distribution). If the IdP's certificate is not included in the system CA bundle, you can explicitly specify a trusted certificate or chain with the [`ssl_trusted_certificate`](https://nginx.org/en/docs/http/ngx_http_oidc_module.html#ssl_trusted_certificate) directive so that NGINX can validate and trust the IdP's certificate. {{< /call-out >}}
 
     ```nginx
     http {

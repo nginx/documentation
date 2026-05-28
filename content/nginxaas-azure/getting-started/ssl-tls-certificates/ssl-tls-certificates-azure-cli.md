@@ -43,7 +43,7 @@ az nginx deployment certificate create --certificate-name
       --key-vault-secret-id keyVaultSecretId
    ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The `--key-vault-secret-id` must be the **Secret Identifier**, not the Certificate Identifier.
 To find the Secret Identifier, see [Finding the Azure Key Vault Secret Identifier]({{< ref "/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/#finding-the-azure-key-vault-secret-identifier" >}}).
 {{< /call-out >}}

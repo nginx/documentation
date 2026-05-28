@@ -15,7 +15,7 @@ The license:
 - Is tied to your subscription (not to individual instances).  
 - Checks your subscription and reports usage either to F5’s licensing endpoint (`product.connect.nginx.com`) or, in disconnected environments, through [NGINX Instance Manager]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).  
 
-{{< call-out "note" "If you have multiple subscriptions" >}}
+{{< call-out class="note" title="If you have multiple subscriptions" >}}
 
 If you have multiple subscriptions, you’ll also have multiple JWT licenses. You can assign each NGINX Plus instance to the license you prefer. NGINX combines usage reporting across all licensed instances. 
 
@@ -26,7 +26,7 @@ Combining licenses with NGINX Instance Manager requires version **2.20 or later*
 
 NGINX Plus requires a valid license and regular usage reporting to run. The sections below explain the requirements and what happens if they aren’t met.  
 
-{{< call-out "note" "Licensing workflows" >}}
+{{< call-out class="note" title="Licensing workflows" >}}
 For flowcharts that show how these requirements work in practice, see [NGINX Plus licensing workflows]({{< ref "/solutions/about-subscription-licenses/nginx-plus-licensing-workflows.md" >}}).
 {{< /call-out >}}
 
@@ -62,7 +62,7 @@ Choose the option that fits your environment:
 
 {{< include "/licensing-and-reporting/deploy-jwt-with-csgs.md" >}}
 
-{{< call-out "note" "" >}}
+{{< call-out class="note" >}}
 In NGINX Instance Manager, **instance groups** provide the same sync functionality as Config Sync Groups in the NGINX One Console.  
 See [Manage instance groups]({{< ref "/nim/nginx-instances/manage-instance-groups.md" >}}) for setup instructions.
 {{< /call-out >}}
@@ -129,7 +129,7 @@ To configure NGINX Plus to send usage reports to NGINX Instance Manager:
 
 {{< include "/licensing-and-reporting/configure-nginx-plus-report-to-nim.md" >}}
 
-{{< call-out "note" "Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out class="note" title="Forwarding reports in network-restricted environments" >}} For instructions on forwarding usage reports from NGINX Instance Manager to F5, see [Report usage data to F5 (disconnected)]({{< ref "/nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 {{< /details >}}
 
@@ -146,7 +146,7 @@ mgmt {
 }
 ```
 
-{{< call-out "important" "Important" >}}
+{{< call-out class="important" title="Important" >}}
 After 180 days without usage reporting, NGINX Plus stops processing traffic.
 {{< /call-out >}}
 
@@ -175,7 +175,7 @@ Here’s how the automatic update works:
 - This process also applies if the license has already expired but is still within the 90-day grace period.  
 - Traffic continues without interruption.  
 
-{{< call-out "important" "Important" >}}  
+{{< call-out class="important" title="Important" >}}  
 Automatic updates only work if:  
 - License reporting is configured, and  
 - At least one usage report has already been sent successfully.  
@@ -193,7 +193,7 @@ If automatic updates are not available (for example, in disconnected environment
 1. [Download the new JWT license](#download-jwt) from MyF5.  
 1. [Deploy the JWT license](#deploy-jwt) to your NGINX Plus instances.
 
-{{< call-out "note" "Note for internet-connected environments" >}}
+{{< call-out class="note" title="Note for internet-connected environments" >}}
 If you manually updated your JWT license after subscription renewal, you may see this [error log message](#log-monitoring): `[notice] renewed license does not match the original one; using original license`. You don't need to take action. You can safely ignore this message. For details, see [K000159013](https://my.f5.com/manage/s/article/K000159013).
 {{< /call-out >}}
 

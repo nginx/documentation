@@ -8,7 +8,7 @@ f5-product: F5WAFN
 
 This document describes the tools F5 WAF for NGINX has to convert existing resources or configuration files from a BIG-IP environment for use with F5 WAF for NGINX.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 These tools are available in the [compiler image]({{< ref "/waf/configure/compiler.md" >}}), and do not require a full deployment of F5 WAF for NGINX.
 
@@ -56,7 +56,7 @@ cp <path-to-your-xml-policy-file> tmp/convert/
 
 Run the compiler Docker image with the temporary folder as a mounted volume, and execute the policy converter script:
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 
@@ -132,7 +132,7 @@ docker run -it --rm \
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
 
@@ -221,7 +221,7 @@ Optionally, using --help will issue this help message.
 
 This is an example of how to convert a single XML file (With the default tag):
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 
@@ -355,7 +355,7 @@ An example _signatures.json_ file:
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
 
@@ -509,7 +509,7 @@ An example _signature-report.json_ file:
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
 

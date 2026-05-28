@@ -11,7 +11,7 @@ This document describes how to build an F5 NGINX Ingress Controller image from s
 
 It also includes information on the Makefile targets and variables.
 
-{{< call-out "tip" "Pre-built image alternatives" >}} If you do not need to build a custom image, see the [pre-built image options](#pre-built-images) at the end of this guide. {{< /call-out >}}
+{{< call-out class="tip" title="Pre-built image alternatives" >}} If you do not need to build a custom image, see the [pre-built image options](#pre-built-images) at the end of this guide. {{< /call-out >}}
 
 ## Before you begin
 
@@ -55,7 +55,7 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
 
 After setting up your environment, follow these steps to build the NGINX Ingress Controller image.
 
-{{< call-out "note" >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /call-out >}}
+{{< call-out class="note" >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /call-out >}}
 
 ### For NGINX
 
@@ -97,7 +97,7 @@ make debian-image-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=dow
 
 **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_](#makefile-details). This version number is used for tracking and deployment purposes.
 
-{{< call-out "note" >}} If a patch for NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
+{{< call-out class="note" >}} If a patch for NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ## Push the image to your private registry {#push-image}
 
@@ -125,7 +125,7 @@ This section provides comprehensive information on the targets and variables ava
 
 ### Key Makefile targets {#key-makefile-targets}
 
-{{< call-out "tip" >}}To view available _Makefile_ targets, run `make` with no target or type `make help`.{{< /call-out >}}
+{{< call-out class="tip" >}}To view available _Makefile_ targets, run `make` with no target or type `make help`.{{< /call-out >}}
 
 Key targets include:
 
@@ -149,7 +149,7 @@ Key targets include:
 | _ubi-image-dos-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.                                               |
 | _ubi-image-nap-dos-plus_      | <p>Builds a UBI-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect/) and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.|
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 For RHEL, save your organization and activation keys in a file named _rhel_license_ at the project root. Ensure they are on separate lines, such as:
 

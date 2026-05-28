@@ -34,6 +34,6 @@ Examples of log entries:
   [emerg] license expired
   ```
 
-{{< call-out "important" "Important" >}}
+{{< call-out class="important" title="Important" >}}
 NGINX Plus stops processing traffic if the license has been expired for more than 90 days.
 {{< /call-out >}}

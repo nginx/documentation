@@ -9,13 +9,13 @@ weight: 100
 f5-product: NGPLUS
 ---
 
-{{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
+{{< call-out class="note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
 
 See [Single Sign-On With Amazon Cognito]({{< ref "nginx/deployment-guides/single-sign-on/cognito.md" >}}) for details.{{< /call-out >}}
 
 This guide explains how to enable single sign‑on (SSO) for applications being proxied by F5 NGINX Plus. The solution uses OpenID Connect as the authentication mechanism, with [Amazon Cognito](https://aws.amazon.com/cognito/) as the identity provider (IdP), and NGINX Plus as the relying party.
 
-{{< call-out "note" >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /call-out>}}
+{{< call-out class="note" >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /call-out>}}
 
 
 <span id="prereqs"></span>

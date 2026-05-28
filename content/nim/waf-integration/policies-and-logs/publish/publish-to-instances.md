@@ -15,7 +15,7 @@ You can publish security policies, log profiles, attack signatures, bot signatur
 
 Call this endpoint **after** you’ve created or updated the resources you want to deploy.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

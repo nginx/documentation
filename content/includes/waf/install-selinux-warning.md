@@ -5,7 +5,7 @@ f5-files:
 - content/waf/install/virtual-environment.md
 ---
 
-{{< call-out "caution" >}}
+{{< call-out class="caution" >}}
 
 Security mechanisms like SELinux or AppArmor may potentially block necessary file access for the NGINX process and any component containers.
 

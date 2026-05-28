@@ -115,7 +115,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
     sudo yum install -y nms-instance-manager
     ```
 
-   {{< call-out "warning" >}}
+   {{< call-out class="warning" >}}
    NGINX Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
    {{< /call-out >}}
 
@@ -130,7 +130,7 @@ To install NGINX Instance Manager, you need to add the official repository to pu
     sudo apt-get install -y nms-instance-manager
     ```
 
-   {{< call-out "warning" >}}
+   {{< call-out class="warning" >}}
    NGINX Instance Manager's administrator username (default is `admin`) and generated password are displayed in the terminal during installation. You should make a note of the password and store it securely.
    {{< /call-out >}}
 

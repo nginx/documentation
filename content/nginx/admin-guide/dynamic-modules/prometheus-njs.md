@@ -36,7 +36,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 - [Stream Upstreams](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream): `/stream/upstreams/`
 - [Stream Limit Conn](http://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_limit_conn_zone): `/stream/limit_conns/`
 
-{{< call-out "note" >}} The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
+{{< call-out class="note" >}} The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
 
 
 {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
@@ -97,7 +97,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
      sudo pkg install nginx-plus-module-prometheus
      ```
 
-   {{< call-out "note" >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /call-out >}}
+   {{< call-out class="note" >}} The [`nginx-plus-module-njs`]({{< ref "nginscript.md" >}}) module will also be installed together with the module. {{< /call-out >}}
 
 
 ## Configuration {#conf}

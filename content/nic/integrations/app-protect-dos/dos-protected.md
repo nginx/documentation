@@ -9,7 +9,7 @@ f5-docs: DOCS-581
 
 F5 DoS for NGINX protected resource specification
 
-{{< call-out "note" >}} This feature is only available using the NGINX Plus [F5 DoS for NGINX Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} This feature is only available using the NGINX Plus [F5 DoS for NGINX Module]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}). {{< /call-out >}}
 
 ## DoS Protected resource specification
 
@@ -129,4 +129,4 @@ Events:
 
 The events section has Warning event with the rejection error in the message.
 
-{{< call-out "warning" >}} If you invalidate an existing resource, NGINX Ingress Controller will reject it. {{< /call-out >}}
+{{< call-out class="warning" >}} If you invalidate an existing resource, NGINX Ingress Controller will reject it. {{< /call-out >}}

@@ -17,9 +17,9 @@ We recommend using OpenID Connect (OIDC) as the preferred authentication method 
 
 NGINX Instance Manager’s implementation of OIDC is designed to work with any Identity Provider (IdP) that supports the OIDC protocol. The instructions below are general and can be applied to any IdP.
 
-{{<call-out "tip" "Do you need to configure a specific IdP?">}}To learn how to configure OIDC with a specific identity provider, refer to the linked topics in the [Set up specific IdPs for OIDC](#oidc-specific-idps) section at the bottom of this page.{{</call-out>}}
+{{<call-out class="tip" title="Do you need to configure a specific IdP?">}}To learn how to configure OIDC with a specific identity provider, refer to the linked topics in the [Set up specific IdPs for OIDC](#oidc-specific-idps) section at the bottom of this page.{{</call-out>}}
 
-{{<call-out "important" "OIDC is not supported in forward-proxy mode" "fa-solid fa-triangle-exclamation" >}}OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.{{</call-out>}}
+{{<call-out class="important" title="OIDC is not supported in forward-proxy mode" icon="triangle-alert" >}}OpenID Connect (OIDC) authentication is not supported when NGINX Instance Manager is running in [forward-proxy mode]({{< ref "nim/system-configuration/configure-forward-proxy.md" >}}). OIDC is configured on the NGINX Plus layer and cannot pass authentication requests through a forward proxy.{{</call-out>}}
 
 ## Create roles and user groups in NGINX Instance Manager {#configure-nim}
 
@@ -51,7 +51,7 @@ Now that you've created a user group and assigned a role in NGINX Instance Manag
 
 ### Before you begin
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 Before switching from basic authentication to OIDC, make sure to add at least one admin user to your IdP. Failure to do so can result in admin users being locked out of NGINX Instance Manager. If this occurs, you can restore access by reverting back to basic authentication.
 {{< /call-out >}}
 

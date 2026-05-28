@@ -11,4 +11,4 @@ f5-files:
 3. Find your NGINX products or services subscription, and select the **Subscription ID** for details.
 4. Download the **JSON Web Token (JWT)** from the subscription page.
 
-{{< call-out "note" >}} The Connectivity Stack for Kubernetes JWT does not work with NGINX Plus reporting. A regular NGINX Plus instance JWT must be used. {{< /call-out >}}
+{{< call-out class="note" >}} The Connectivity Stack for Kubernetes JWT does not work with NGINX Plus reporting. A regular NGINX Plus instance JWT must be used. {{< /call-out >}}

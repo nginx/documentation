@@ -15,7 +15,7 @@ This guide serves as a step-by-step guide to run NGINX Agent in a container. It 
 
 Before you begin this guide ensure:
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 This guide uses Docker but NGINX Agent also works with other container applications.
 {{< /call-out >}}
 

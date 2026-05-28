@@ -25,7 +25,7 @@ Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/
 - _Not supported_. The resource or field is not yet supported. It will become partially or fully supported in future
   releases.
 
-{{< call-out "note" >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. 
+{{< call-out class="note" >}} It's possible that NGINX Gateway Fabric will never support some resources or fields of the Gateway API. They will be documented on a case by case basis. 
 
 Please note that while we make every effort to reflect the support status of experimental fields in our code and documentation, there may be instances where this is not explicitly 
 indicated. Support for such fields is provided on a best-effort basis.{{< /call-out >}}
@@ -220,7 +220,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/InvalidInferencePool`
       - `PartiallyInvalid/True/UnsupportedValue`
 
-      {{< call-out "note" >}} If `name`, `timeouts`, or `retry` are defined for a HTTPRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
+      {{< call-out class="note" >}} If `name`, `timeouts`, or `retry` are defined for a HTTPRoute rule, they will be ignored and rule still will be created. {{< /call-out >}}
 
 ### GRPCRoute
 
@@ -276,7 +276,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `ResolvedRefs/False/InvalidFilter`
       - `PartiallyInvalid/True/UnsupportedValue`
 
-{{< call-out "note" >}} If `name` is defined for a GRPCRoute rule, it will be ignored and rule still will be created. {{< /call-out >}}
+{{< call-out class="note" >}} If `name` is defined for a GRPCRoute rule, it will be ignored and rule still will be created. {{< /call-out >}}
 
 ### ReferenceGrant
 
@@ -390,7 +390,7 @@ Fields:
       - `ResolvedRefs/False/InvalidCACertificateRef`
       - `ResolvedRefs/False/InvalidKind`
 
-{{< call-out "note" >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /call-out >}}
+{{< call-out class="note" >}} If multiple `backendRefs` are defined for a HTTPRoute rule, all the referenced Services *must* have matching BackendTLSPolicy configuration. BackendTLSPolicy configuration is considered to be matching if 1. CACertRefs reference the same ConfigMap, or 2. WellKnownCACerts are the same, and 3. Hostname is the same. {{< /call-out >}}
 
 ### ListenerSet
 

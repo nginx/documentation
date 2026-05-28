@@ -25,6 +25,6 @@ When you deploy NGINX Ingress Controller as a StatefulSet, Kubernetes creates po
 
     Update the `nginx-plus-ingress.yaml` file to include your chosen image from the F5 Container registry or your custom container image.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 StatefulSets include persistent volume claims for nginx cache storage via `volumeClaimTemplates`. You may need to configure a StorageClass in your cluster or modify the volumeClaimTemplates section in the manifest to match your storage requirements. Other volumes (like those needed for App Protect modules) are configured in the regular `volumes` section, not in volumeClaimTemplates. 
 {{< /call-out >}}

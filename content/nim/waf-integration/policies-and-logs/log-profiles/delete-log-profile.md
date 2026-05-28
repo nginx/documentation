@@ -14,7 +14,7 @@ Deleting a log profile permanently removes it from the system.
 
 To delete a security log profile, send a `DELETE` request to the Security Log Profiles API using the profile’s UID.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

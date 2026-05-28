@@ -52,7 +52,7 @@ You must specify a version tag that matches your distribution. The `latest` tag 
 
 <br>
 
-{{<call-out "" "Example:" "" >}}
+{{<call-out class="" title="Example:" >}}
 To pull the `debian` image:
 
 ```sh
@@ -84,7 +84,7 @@ sudo docker run \
 
 <br>
 
-{{<call-out "" "Example:" "" >}}
+{{<call-out class="" title="Example:" >}}
 To start the container with the `debian` image:
 
 ```sh

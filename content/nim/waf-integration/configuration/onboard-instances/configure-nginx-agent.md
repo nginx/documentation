@@ -10,7 +10,7 @@ f5-summary: >
   This step is required after installing NGINX Agent; it tells the agent to send WAF data to the NGINX Instance Manager control plane.
 ---
 
-{{< call-out "note" "Before you begin" >}}
+{{< call-out class="note" title="Before you begin" >}}
 - [Install NGINX Agent]({{< ref "/nim/waf-integration/configuration/onboard-instances/install-nginx-agent.md" >}})
 {{< /call-out >}}
 
@@ -54,6 +54,6 @@ Follow these steps to enable F5 WAF for NGINX in NGINX Agent.
    sudo systemctl restart nginx-agent
    ```
 
-{{< call-out "note" "Next steps" >}}
+{{< call-out class="note" title="Next steps" >}}
 - [Verify the installation]({{< ref "/nim/waf-integration/configuration/onboard-instances/verify-installation.md" >}})
 {{< /call-out >}}

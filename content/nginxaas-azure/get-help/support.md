@@ -22,7 +22,7 @@ To contact support about F5 NGINXaaS for Azure (NGINXaaS):
 
 1. You will be redirected to **MyF5** to create a new case. Log in to MyF5 with your F5 account.
 
-{{< call-out "note" >}}If you can't complete a deployment successfully, the "New support request" option won't be available on the left-hand navigation menu. To raise a support ticket, go to the [MyF5 portal](https://my.f5.com). {{< /call-out >}}
+{{< call-out class="note" >}}If you can't complete a deployment successfully, the "New support request" option won't be available on the left-hand navigation menu. To raise a support ticket, go to the [MyF5 portal](https://my.f5.com). {{< /call-out >}}
 
 1. Go to the **Support** section and select **Create a Case**.
 

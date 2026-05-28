@@ -45,7 +45,7 @@ As an authenticated user, you may modify the authorized domains and name of an N
 1. To remove an existing authorized domain, select the Recycle Bin button next to it.
 1. Select **Update** to save changes.
 
-{{< call-out "note" >}}You cannot remove an authorized domain from the list if it matches an existing user's Google Identity Domain. To remove access from that domain you must first delete every NGINXaaS user that is associated with the domain.{{< /call-out >}}
+{{< call-out class="note" >}}You cannot remove an authorized domain from the list if it matches an existing user's Google Identity Domain. To remove access from that domain you must first delete every NGINXaaS user that is associated with the domain.{{< /call-out >}}
 
 ### Modify the name of an organization
 

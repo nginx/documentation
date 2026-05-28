@@ -36,7 +36,7 @@ NGINXaaS enables customers to securely store SSL/TLS certificates in Azure Key V
 
 If you do not have an NGINXaaS deployment, follow the steps in [Deploy using the Azure portal]({{< ref "/nginxaas-azure/getting-started/create-deployment/deploy-azure-portal.md" >}}).
 
-{{< call-out "note" >}} Your NGINXaaS deployment and your key vault must be in the same subscription. {{< /call-out >}}
+{{< call-out class="note" >}} Your NGINXaaS deployment and your key vault must be in the same subscription. {{< /call-out >}}
 
 ## Add an SSL/TLS certificate to your key vault
 
@@ -66,7 +66,7 @@ In order for your NGINXaaS deployment to access your key vault, it must have an 
 1. Go to your NGINXaaS deployment.
 1. Select **Identity** in the left menu.
 1. Under **System assigned**, ensure the status is set to "On".
-  {{< call-out "note" >}} When you create a deployment through the Azure portal, a system-assigned managed identity is automatically enabled for your deployment. {{< /call-out >}}
+  {{< call-out class="note" >}} When you create a deployment through the Azure portal, a system-assigned managed identity is automatically enabled for your deployment. {{< /call-out >}}
 1. Under **System assigned**, select **Azure role assignments**.
 1. Select {{< icon "plus">}}**Add role assignment** and provide the following information:
 
@@ -205,7 +205,7 @@ By default, the key vault will be associated to the NSP in [Learning mode](https
 1. Select the `nginxaas-kv` resource association.
 1. Select **Change access mode**, set to **Enforced**, and select **Apply**.
 
-{{< call-out "note" >}} If you are using the Azure portal to add certificates, you will also need to add an inbound access rule to allow your IP address, so the portal can list the certificates in your key vault. {{< /call-out >}}
+{{< call-out class="note" >}} If you are using the Azure portal to add certificates, you will also need to add an inbound access rule to allow your IP address, so the portal can list the certificates in your key vault. {{< /call-out >}}
 
 ### Integrate with Private Endpoint
 
@@ -243,4 +243,4 @@ Once a private link is configured and public access is disabled on Azure Key Vau
 1. Select {{< icon "plus">}} **Add existing virtual network**.
 1. Select the virtual network and subnet that is delegated to the NGINXaaS deployment.
 
-{{< call-out "note" >}} Ensure that the Network Security Group on the subnet delegated to the NGINXaaS deployment allows outbound traffic to the internet{{< /call-out >}}
+{{< call-out class="note" >}} Ensure that the Network Security Group on the subnet delegated to the NGINXaaS deployment allows outbound traffic to the internet{{< /call-out >}}
