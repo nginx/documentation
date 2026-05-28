@@ -20,7 +20,7 @@ You can manage SSL/TLS certificates for F5 NGINXaaS for Azure (NGINXaaS) using t
 
 When adding a certificate using the Azure CLI, Terraform, or ARM/Bicep templates, you need to provide the **Secret Identifier** from Azure Key Vault.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 **Use the Secret Identifier, not the Certificate Identifier.**
 
 NGINXaaS requires the **Secret Identifier** to access the certificate and its private key.
@@ -71,9 +71,9 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
       If you need to create a new key vault or certificate, you can do so by selecting **Create new key vault** or **Create new** under the **Key Vault** and **Certificate** fields, respectively.
 
-      {{< call-out "note" >}}If specifying an absolute file path as the `Certificate path` or `Key path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
+      {{< call-out class="note" >}}If specifying an absolute file path as the `Certificate path` or `Key path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 
-      {{< call-out "note" >}}A certificate added to an NGINXaaS for Azure deployment using the Azure Portal refers to an unversioned Azure Key Vault (AKV) secret identifier. To add a certificate with a versioned AKV secret identifier, follow the documented steps with alternative [Client tools]({{< ref "/nginxaas-azure/client-tools/_index.md" >}}) for NGINXaaS for Azure.{{< /call-out >}}
+      {{< call-out class="note" >}}A certificate added to an NGINXaaS for Azure deployment using the Azure Portal refers to an unversioned Azure Key Vault (AKV) secret identifier. To add a certificate with a versioned AKV secret identifier, follow the documented steps with alternative [Client tools]({{< ref "/nginxaas-azure/client-tools/_index.md" >}}) for NGINXaaS for Azure.{{< /call-out >}}
 
 1. Select **Add certificate**.
 
@@ -114,7 +114,7 @@ Before you begin, refer Azure documentation to [Import a certificate to your Key
 
 1. Confirm the delete action.
 
-{{< call-out "warning" >}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Azure deployment will cause an error.{{< /call-out >}}
+{{< call-out class="warning" >}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Azure deployment will cause an error.{{< /call-out >}}
 
 ## What's next
 

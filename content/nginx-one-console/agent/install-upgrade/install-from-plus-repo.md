@@ -7,7 +7,7 @@ f5-docs: DOCS-1877
 f5-product: NAGENT
 ---
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If you are using [NGINX One Console]({{< ref "/nginx-one-console/getting-started.md" >}})
 to manage your NGINX instances, NGINX Agent is installed automatically when you
 add an NGINX instance to NGINX One Console.

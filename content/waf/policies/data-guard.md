@@ -44,7 +44,7 @@ The following example enables _blocking mode_:
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In _blocking mode_, data masking has no effect.
 

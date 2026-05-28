@@ -57,7 +57,7 @@ Both solutions require these initial steps:
    }
    ```
 
-   {{< call-out "note" >}}The `oidc_jwt_keyfile` endpoint is not listed in the Microsoft App Registration's endpoints pane but is required for proper OIDC configuration.{{< /call-out >}}
+   {{< call-out class="note" >}}The `oidc_jwt_keyfile` endpoint is not listed in the Microsoft App Registration's endpoints pane but is required for proper OIDC configuration.{{< /call-out >}}
 
 1. Configure DNS resolution appropriately:
    - For dual-stack subnets, ensure both IPv4 and IPv6 address spaces are configured
@@ -73,7 +73,7 @@ Both solutions require these initial steps:
    }
    ```
 
-   {{< call-out "important" >}}If you plan to use IPv6 addresses on the frontend, ensure your subnet is dual-stack with both IPv4 and IPv6 address spaces. For IPv4-only deployments, set `ipv6=off` in your resolver configuration.{{< /call-out >}}
+   {{< call-out class="important" >}}If you plan to use IPv6 addresses on the frontend, ensure your subnet is dual-stack with both IPv4 and IPv6 address spaces. For IPv4-only deployments, set `ipv6=off` in your resolver configuration.{{< /call-out >}}
 
 ## Configure connectivity using Azure NAT Gateway
 
@@ -94,7 +94,7 @@ When you create an NGINXaaS deployment, Azure automatically creates and attaches
    - **Destination**: Internet
    - **Purpose**: Override the default `AllowInternetOutBound` rule
 
-   {{< call-out "important" >}}The default `AllowInternetOutBound` rule cannot be edited, so you must create a higher-priority rule to deny general internet access while allowing the specific Microsoft IP ranges. The priority of the custom deny rule should be a higher numerical value (lower priority) than the Microsoft IP allow rules.{{< /call-out >}}
+   {{< call-out class="important" >}}The default `AllowInternetOutBound` rule cannot be edited, so you must create a higher-priority rule to deny general internet access while allowing the specific Microsoft IP ranges. The priority of the custom deny rule should be a higher numerical value (lower priority) than the Microsoft IP allow rules.{{< /call-out >}}
 
 ### Create and configure Azure NAT Gateway
 
@@ -122,13 +122,13 @@ When you create an NGINXaaS deployment, Azure automatically creates and attaches
 
 This configuration allows NGINXaaS to reach Microsoft Entra ID endpoints while blocking general internet access.
 
-{{< call-out "note" >}}Using Azure NAT Gateway with NSG rules still requires allowing broad IP address ranges. Based on Microsoft's documentation, you need to allow at least two /18 subnets and two /19 subnets for complete Microsoft Entra ID connectivity. For more precise filtering, consider using Azure Firewall instead.{{< /call-out >}}
+{{< call-out class="note" >}}Using Azure NAT Gateway with NSG rules still requires allowing broad IP address ranges. Based on Microsoft's documentation, you need to allow at least two /18 subnets and two /19 subnets for complete Microsoft Entra ID connectivity. For more precise filtering, consider using Azure Firewall instead.{{< /call-out >}}
 
 ## Configure connectivity using Azure Firewall
 
 This solution provides more granular control using Azure Firewall with DNS-based filtering.
 
-{{< call-out "note" >}}Azure Firewall provides DNS-based filtering capabilities but comes at a significantly higher cost compared to Azure NAT Gateway (approximately 28x cost increase). However, it enables more precise firewall rules for better security.{{< /call-out >}}
+{{< call-out class="note" >}}Azure Firewall provides DNS-based filtering capabilities but comes at a significantly higher cost compared to Azure NAT Gateway (approximately 28x cost increase). However, it enables more precise firewall rules for better security.{{< /call-out >}}
 
 ### Create firewall subnets
 
@@ -188,7 +188,7 @@ az network vnet subnet create \
      --firewall-policy <firewall-policy-name>
    ```
 
-   {{< call-out "note" >}}The Standard SKU is required at minimum because it allows Azure Firewall to be configured as a DNS proxy, which is necessary for FQDN-based filtering. During creation, choose to create a new Firewall Policy and use your existing virtual network that contains the NGINXaaS subnet.{{< /call-out >}}
+   {{< call-out class="note" >}}The Standard SKU is required at minimum because it allows Azure Firewall to be configured as a DNS proxy, which is necessary for FQDN-based filtering. During creation, choose to create a new Firewall Policy and use your existing virtual network that contains the NGINXaaS subnet.{{< /call-out >}}
 
 ### Configure firewall policy
 

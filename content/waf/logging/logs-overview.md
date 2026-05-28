@@ -14,7 +14,7 @@ F5 WAF for NGINX generates three types of logs:
 
 F5 WAF for NGINX can also be configured to add additional data to the NGINX [access logs]({{< ref "/waf/logging/access-logs.md" >}}).
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 F5 WAF for NGINX and NGINX itself do not have logs for auditing system user interactions.
 
@@ -124,7 +124,7 @@ You can modify the attributes and add directories to rotate in the file `/etc/lo
 
 All logs in the `/var/log/app_protect/` folder will be rotated, which can include the security log if configured accordingly.
 
-{{< call-out "note" >}} The default log rotation policy is provided as a default policy can be customized for your use cases. {{< /call-out >}}
+{{< call-out class="note" >}} The default log rotation policy is provided as a default policy can be customized for your use cases. {{< /call-out >}}
 
 To output security logs to the `/var/log/app_protect/` folder, update `/etc/nginx/nginx.conf`:
 

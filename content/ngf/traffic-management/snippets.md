@@ -7,7 +7,7 @@ f5-product: FABRIC
 f5-docs: DOCS-1848
 ---
 
-{{< call-out "important" >}}This guide previously showed how to use `SnippetsFilters` to configure Rate Limiting in NGINX. However, first-class support for Rate Limiting is now supported through the `RateLimitPolicy` API. This guide has been changed to provide an example of how to use `limit_conn` to limit the number of connections to a location and `limit_except` to limit the allowed HTTP methods.
+{{< call-out class="important" >}}This guide previously showed how to use `SnippetsFilters` to configure Rate Limiting in NGINX. However, first-class support for Rate Limiting is now supported through the `RateLimitPolicy` API. This guide has been changed to provide an example of how to use `limit_conn` to limit the number of connections to a location and `limit_except` to limit the allowed HTTP methods.
 
 For a guide on how to configure Rate Limiting, see our guide on the [RateLimitPolicy API]({{< ref"./rate-limit.md" >}}). {{< /call-out >}}
 
@@ -27,7 +27,7 @@ Users can configure Snippets through either the `SnippetsFilter` or `SnippetsPol
 
 ## Disadvantages of Snippets
 
-{{< call-out "warning" >}} We recommend managing NGINX configuration through Gateway API resources, [first-class policies]({{< ref "/ngf/overview/custom-policies.md" >}}), and other existing [NGINX extensions]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
+{{< call-out class="warning" >}} We recommend managing NGINX configuration through Gateway API resources, [first-class policies]({{< ref "/ngf/overview/custom-policies.md" >}}), and other existing [NGINX extensions]({{< ref "/ngf/how-to/data-plane-configuration.md" >}})
 before using Snippets. {{< /call-out >}}
 
 Snippets are configured using the `SnippetsFilter` or `SnippetsPolicy` API, but are disabled by default due to their complexity and security implications.
@@ -114,7 +114,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /call-out >}}
+{{< call-out class="note" >}} In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for. {{< /call-out >}}
 
 
 Create HTTPRoutes for the coffee and tea applications:
@@ -545,7 +545,7 @@ Conditions:
       Type:                  ResolvedRefs
 ```
 
-{{< call-out "note" >}} If you run into situations where an NGINX directive fails to be applied and the troubleshooting information here isn't sufficient, please create an issue in the [NGINX Gateway Fabric Github repository](https://github.com/nginx/nginx-gateway-fabric). {{< /call-out >}}
+{{< call-out class="note" >}} If you run into situations where an NGINX directive fails to be applied and the troubleshooting information here isn't sufficient, please create an issue in the [NGINX Gateway Fabric Github repository](https://github.com/nginx/nginx-gateway-fabric). {{< /call-out >}}
 
 ## See also
 

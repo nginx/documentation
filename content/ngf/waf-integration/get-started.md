@@ -123,7 +123,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} If you installed with the standard NGINX Plus image and need to enable WAF on a specific Gateway, see [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} If you installed with the standard NGINX Plus image and need to enable WAF on a specific Gateway, see [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
 
 ---
 
@@ -304,7 +304,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} The compiler image tag must match the F5 WAF for NGINX version supported by your NGINX Gateway Fabric release. See the [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) for the supported version. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
+{{< call-out class="note" >}} The compiler image tag must match the F5 WAF for NGINX version supported by your NGINX Gateway Fabric release. See the [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) for the supported version. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
 
 Wait for the init containers to compile the policies and the bundle server to start:
 
@@ -341,7 +341,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} If you deployed the resources in a different namespace, replace `default` in the bundle server URL with your namespace: `http://bundle-server.<namespace>.svc.cluster.local/attack-signatures-blocking.tgz`. {{< /call-out >}}
+{{< call-out class="note" >}} If you deployed the resources in a different namespace, replace `default` in the bundle server URL with your namespace: `http://bundle-server.<namespace>.svc.cluster.local/attack-signatures-blocking.tgz`. {{< /call-out >}}
 
 ---
 
@@ -425,7 +425,7 @@ GW_PORT=<port number>
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
-{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
+{{< call-out class="note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
@@ -467,7 +467,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
+{{< call-out class="note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
 
 ---
 

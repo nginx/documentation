@@ -26,7 +26,7 @@ To add an SSL/TLS certificate and key as a secret to Secret Manager,
 - Ensure your certificate and key file(s) are in one of our [accepted formats]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/overview.md#supported-certificate-types-and-formats" >}}).
 - Follow Google's [instructions to upload your certificate and key file(s) to Secret Manager](https://docs.cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#console_1).
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 There are many ways to manage your SSL/TLS certificates and keys. For example, one option is to include the PEM certificate data in the same secret as your private key because NGINX's `ssl_certificate` directive supports a single file containing multiple certificates and a key. See NGINX's [Configuring HTTPS servers](https://nginx.org/en/docs/http/configuring_https_servers.html) guide for more details.
 

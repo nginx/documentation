@@ -29,7 +29,7 @@ Augment templates add specific features or modify existing configurations genera
 
 ## How to use augment templates
 
-{{<call-out "tip" "Deploying config templates">}}<i class="far fa-file-code" aria-hidden="true"></i>
+{{<call-out class="tip" title="Deploying config templates">}}<i class="far fa-file-code" aria-hidden="true"></i>
  For instructions on setting up and deploying config templates, including augment templates, see [Manage NGINX Configs with Templates]({{< ref "/nim/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates.md" >}}).{{</call-out>}}
 
 1. **Identify needs**: Determine the additional functionalities or configuration segments needed beyond the base template. This could include specific NGINX modules, security enhancements, or custom routing requirements.

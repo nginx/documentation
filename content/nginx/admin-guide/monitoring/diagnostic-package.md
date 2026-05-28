@@ -34,7 +34,7 @@ The script does not collect or create:
 - Lua scripts
 - Core dumps
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 It is highly recommended that you review the script and the created resources and verify that they conform with your organization's data sharing policies.
 {{< /call-out >}}
 

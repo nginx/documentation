@@ -32,7 +32,7 @@ OIDC configuration references Kubernetes `Opaque` Secrets for sensitive material
 
 You can consolidate multiple keys in a single Secret or use separate Secrets for each. Either approach works as long as each Secret contains the correct key name.
 
-{{< call-out "important" >}}OIDC authentication requires [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) and is not supported with open-source NGINX. {{< /call-out >}}
+{{< call-out class="important" >}}OIDC authentication requires [NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}) and is not supported with open-source NGINX. {{< /call-out >}}
 
 ## Before you begin
 
@@ -53,7 +53,7 @@ If you already have an IdP set up with a realm, a client, and a user, skip to [S
 
 Deploy Keycloak to your cluster. Keycloak must serve HTTPS because NGINX connects to it over TLS for token exchange. The `keycloak-tls-cert` Secret was created by cert-manager in the previous step and is mounted into the Keycloak container below.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The `redirectUris` field must include the exact hostname and port that the NGINX Gateway is exposed on. If you are accessing the Gateway via port-forward or on a non-standard port, include that port explicitly. For example, `https://cafe.example.com:9443/*`. If the URI does not match exactly what NGINX sends, Keycloak will reject the request with an `Invalid parameter: redirect_uri` error. Our default callback location is set to `/oidc_callback_<namespace>_<filtername>`
 {{< /call-out >}}
 
@@ -308,7 +308,7 @@ tea-75bc9f4b6d-cx2jl      1/1     Running   0          15s
 
 OIDC requires an HTTPS listener. The `tls.certificateRefs` entry points to a Secret containing the TLS certificate and key that NGINX presents to clients. The `nginx-secret` Secret was created by cert-manager in the previous step.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If you are accessing the Gateway using port-forward, the local port must match the Gateway listener port. Keycloak redirects the browser back to NGINX using the listener port, so if there is a mismatch the redirect will fail. This may require updating the Gateway listener port to a non-standard value such as 9443.
 {{< /call-out >}}
 

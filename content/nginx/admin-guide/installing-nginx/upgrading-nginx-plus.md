@@ -112,7 +112,7 @@ Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JW
        sudo mkdir -p /usr/local/etc/nginx
        ```
 
-    {{<call-out "note" "Using custom paths" "" >}}{{< include "licensing-and-reporting/custom-paths-jwt.md" >}}{{</call-out>}}
+    {{<call-out class="note" title="Using custom paths" >}}{{< include "licensing-and-reporting/custom-paths-jwt.md" >}}{{</call-out>}}
 
 3. After downloading the JWT file, copy it to the **/etc/nginx/** directory for Linux, or to the **/usr/local/etc/nginx** directory for FreeBSD, and make sure it's named **license.jwt**:
 
@@ -163,6 +163,6 @@ The upgrade procedure depends on how the module was supplied and installed.
 
 - [NGINX‑authored]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) and [NGINX‑certified community]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-certified-community-dynamic-modules" >}}) dynamic modules are updated automatically together with NGINX Plus.
 
-  {{< call-out "note" >}} For FreeBSD, each NGINX‑authored and NGINX‑certified module must be updated separately using FreeBSD package management tool. {{< /call-out >}}
+  {{< call-out class="note" >}} For FreeBSD, each NGINX‑authored and NGINX‑certified module must be updated separately using FreeBSD package management tool. {{< /call-out >}}
 
 - [Community]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#community-dynamic-modules" >}}) dynamic modules must be recompiled against the corresponding NGINX Open Source  version. See [Installing NGINX Community Modules]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_modules_oss" >}}).

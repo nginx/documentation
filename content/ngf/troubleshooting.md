@@ -79,7 +79,7 @@ kubectl exec -it -n <nginx-deployment-namespace> <nginx-deployment-name> -- /bin
 
 Logs from the NGINX Gateway Fabric control plane and data plane can contain information that isn't available to status or events. These can include errors in processing or passing traffic.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 You can see logs for a crashed or killed container by adding the `-p` flag to the `kubectl logs` commands below.
 {{< /call-out >}}
 
@@ -268,7 +268,7 @@ Handling connection for 8080
 </body>
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 The configuration may change in future releases. This configuration is valid for version 1.3.
 {{< /call-out >}}
 

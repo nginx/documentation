@@ -113,7 +113,7 @@ spec:
     disableCookieSeed: true
 ```
 
-{{< call-out "note" >}} Only set `disableCookieSeed: true` if your compiled bundles already contain a cookie seed. If neither the bundle nor NGINX Gateway Fabric provides a seed, each replica generates its own random value, which breaks WAF session cookie validation in multi-replica deployments. {{< /call-out >}}
+{{< call-out class="note" >}} Only set `disableCookieSeed: true` if your compiled bundles already contain a cookie seed. If neither the bundle nor NGINX Gateway Fabric provides a seed, each replica generates its own random value, which breaks WAF session cookie validation in multi-replica deployments. {{< /call-out >}}
 
 ---
 
@@ -145,7 +145,7 @@ policySource:
 
 The CA certificate is appended to the system CA pool. This is supported for all source types.
 
-{{< call-out "caution" >}} Do not set `insecureSkipVerify: true` in production environments. This disables TLS certificate verification and should be used only for local testing. {{< /call-out >}}
+{{< call-out class="caution" >}} Do not set `insecureSkipVerify: true` in production environments. This disables TLS certificate verification and should be used only for local testing. {{< /call-out >}}
 
 ### Authentication methods
 
@@ -190,7 +190,7 @@ policySource:
 
 The `expectedChecksum` must be a 64-character hexadecimal SHA-256 digest.
 
-{{< call-out "note" >}} `verifyChecksum` and `expectedChecksum` are mutually exclusive. You can use one or the other on the same policy source, but not both. {{< /call-out >}}
+{{< call-out class="note" >}} `verifyChecksum` and `expectedChecksum` are mutually exclusive. You can use one or the other on the same policy source, but not both. {{< /call-out >}}
 
 ---
 
@@ -227,9 +227,9 @@ spec:
     bundleFailOpen: true
 ```
 
-{{< call-out "caution" >}} `bundleFailOpen: true` means traffic is served without WAF protection if the initial bundle fetch fails. Use this only when availability is more critical than security posture during startup. Monitor the WAFPolicy status to confirm when the bundle becomes active. {{< /call-out >}}
+{{< call-out class="caution" >}} `bundleFailOpen: true` means traffic is served without WAF protection if the initial bundle fetch fails. Use this only when availability is more critical than security posture during startup. Monitor the WAFPolicy status to confirm when the bundle becomes active. {{< /call-out >}}
 
-{{< call-out "note" >}} The first-time fetch rules apply whenever NGINX Gateway Fabric starts without an already-fetched bundle. This includes upgrades, control plane pod restarts, and new Gateway deployments, because policy bundles are not persisted across pod restarts. With the default fail-closed setting, configuration pushes are withheld until all bundles have been re-fetched after each restart. Set `bundleFailOpen: true` if you need traffic to flow immediately after a restart and can accept a brief window without WAF protection. {{< /call-out >}}
+{{< call-out class="note" >}} The first-time fetch rules apply whenever NGINX Gateway Fabric starts without an already-fetched bundle. This includes upgrades, control plane pod restarts, and new Gateway deployments, because policy bundles are not persisted across pod restarts. With the default fail-closed setting, configuration pushes are withheld until all bundles have been re-fetched after each restart. Set `bundleFailOpen: true` if you need traffic to flow immediately after a restart and can accept a brief window without WAF protection. {{< /call-out >}}
 
 In both cases, the WAFPolicy status condition is set to `Programmed=False` with reason `Pending` until the bundle is successfully fetched.
 
@@ -326,7 +326,7 @@ nginx:
           memory: 64Mi
 ```
 
-{{< call-out "note" >}} Image pull Secrets for private registries must be configured at install time using the `nginx.imagePullSecret` or `nginx.imagePullSecrets` Helm values (or the `--nginx-docker-secret` flag for manifest installs). The control plane copies these Secrets into any namespace where NGINX is deployed. For details, see [Install NGINX Gateway Fabric with NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} Image pull Secrets for private registries must be configured at install time using the `nginx.imagePullSecret` or `nginx.imagePullSecrets` Helm values (or the `--nginx-docker-secret` flag for manifest installs). The control plane copies these Secrets into any namespace where NGINX is deployed. For details, see [Install NGINX Gateway Fabric with NGINX Plus]({{< ref "/ngf/install/nginx-plus.md" >}}). {{< /call-out >}}
 
 ---
 

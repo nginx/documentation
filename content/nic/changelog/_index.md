@@ -18,7 +18,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### Supported F5 WAF for NGINX versions
 
-{{<call-out "note" "Note">}}To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.{{< /call-out >}}
+{{<call-out class="note" title="Note">}}To use F5 WAF for NGINX with NGINX Ingress Controller, you must have NGINX Plus.{{< /call-out >}}
 
 {{< include "/nic/compatibility-tables/nic-nap.md" >}}
 

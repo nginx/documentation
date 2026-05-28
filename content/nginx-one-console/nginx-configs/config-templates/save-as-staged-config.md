@@ -103,7 +103,7 @@ Once a submission exists, use the [Update a Template Submission]({{< ref "/nginx
 
 Use this approach when you need to review or modify the rendered NGINX configuration before committing it as a staged config. This two-step workflow does not create a persistent submission object.
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 You can save an NGINX configuration preview as a staged config, even if it contains parse errors.
 {{< /call-out >}}
 

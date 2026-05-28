@@ -17,7 +17,7 @@ http {
 }
 ```
 
-{{< call-out "note" >}} The **$time_local** variable includes the date and time for each log. It helps with ordering logs after export. {{< /call-out >}}
+{{< call-out class="note" >}} The **$time_local** variable includes the date and time for each log. It helps with ordering logs after export. {{< /call-out >}}
 
 To explicitly disable access logs, apply the following config:
 
@@ -37,5 +37,5 @@ http {
 
 To learn more about how to specify `access_log` in different configuration levels and their effect, see [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)
 
-{{< call-out "warning" >}}Keep NGINX logs in the **/var/log/nginx** directory. Otherwise, you may lose data from your logs.
+{{< call-out class="warning" >}}Keep NGINX logs in the **/var/log/nginx** directory. Otherwise, you may lose data from your logs.
 {{< /call-out >}}

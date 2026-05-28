@@ -17,7 +17,7 @@ This guide explains how to secure F5 NGINX Instance Manager with OpenID Connect 
 
 ## Before you begin
 
-{{<call-out "important" "Required steps">}}
+{{<call-out class="important" title="Required steps">}}
 Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC) using Microsoft Entra as the identity provider. Complete the steps in the [Set up OIDC authentication with Microsoft Entra]({{< ref "/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md" >}}) guide. Afterward, you'll have a registered application (for example, "NGINX Instance Manager") in Microsoft Entra, as well as a client ID and secret to configure automation.
 {{</call-out>}}
 
@@ -66,7 +66,7 @@ Before proceeding, first secure NGINX Instance Manager with OpenID Connect (OIDC
 6. Under **Application permissions**, select the role you created earlier (for example, "Admin").
 7. Select **Add permissions**.
 
-{{< call-out "note" >}}If the permission is not granted, contact your Microsoft Entra administrator to approve it.{{< /call-out >}}
+{{< call-out class="note" >}}If the permission is not granted, contact your Microsoft Entra administrator to approve it.{{< /call-out >}}
 
 ## Configure NGINX OIDC to use Microsoft Entra as the IdP
 
@@ -158,7 +158,7 @@ Additionally, complete the following steps:
     }
     ```
 
-    {{< call-out "note" >}}The `roles` claim will contain the role ID of the role you created in the [Create an app role](#create-app-role) step.{{< /call-out >}}
+    {{< call-out class="note" >}}The `roles` claim will contain the role ID of the role you created in the [Create an app role](#create-app-role) step.{{< /call-out >}}
 
 ## Access NGINX Instance Manager API using the access token
 

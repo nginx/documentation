@@ -88,7 +88,7 @@ If building the NGINX Plus image, you will also need a valid NGINX Plus license 
 
 To use [F5 WAF for NGINX]({{< ref "/ngf/waf-integration/overview.md" >}}) with NGINX Gateway Fabric, you need an NGINX Plus image that includes the F5 WAF module. This image is built from the same Dockerfile as the standard NGINX Plus image, with a build argument that includes the `app-protect-module-plus` package.
 
-{{< call-out "important" >}} The WAF-enabled image can only be built for `amd64` architecture. ARM64 is not supported. {{< /call-out >}}
+{{< call-out class="important" >}} The WAF-enabled image can only be built for `amd64` architecture. ARM64 is not supported. {{< /call-out >}}
 
 ### Additional prerequisites
 

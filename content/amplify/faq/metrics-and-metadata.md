@@ -12,4 +12,4 @@ f5-product: AMPLIF
 
 [NGINX Amplify Agent Metrics and Metadata]({{< ref "/amplify/nginx-amplify-agent/metadata-metrics-collection" >}})
 
-{{< call-out "note" >}}For a complete list of metrics, refer to the Metrics and Metadata documentation.{{< /call-out >}}
+{{< call-out class="note" >}}For a complete list of metrics, refer to the Metrics and Metadata documentation.{{< /call-out >}}

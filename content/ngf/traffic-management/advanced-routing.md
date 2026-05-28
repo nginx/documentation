@@ -124,7 +124,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
@@ -199,14 +199,14 @@ This HTTPRoute has a few important properties:
   - Request with the path prefix `/coffee` and header `version=v2`.
   - Request with the path prefix `/coffee` and the query parameter `TEST=v2`.
 
-  {{< call-out "note" >}} The match type is `Exact` for both header and query param, by default. {{< /call-out >}}
+  {{< call-out class="note" >}} The match type is `Exact` for both header and query param, by default. {{< /call-out >}}
 
 - The third rule defines two matching conditions. If *either* of these conditions match, requests are forwarded to the `coffee-v3` Service:
 
   - Request with the path prefix `/coffee` and header `HeaderRegex=Header-[a-z]{1}`.
   - Request with the path prefix `/coffee` and the query parameter `QueryRegex=Query-[a-z]{1}`.
 
-  {{< call-out "note" >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /call-out >}}
+  {{< call-out class="note" >}} The match type used here is `RegularExpression`. A request will succeed if the header or query parameter value matches the specified regular expression. {{< /call-out >}}
 
   If you want both conditions to be required, you can define headers and queryParams in the same match object.
 
@@ -214,7 +214,7 @@ This HTTPRoute has a few important properties:
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our coffee applications.
 
-{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
+{{< call-out class="note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/coffee
@@ -321,7 +321,7 @@ The properties of this HTTPRoute include:
 
 Using the external IP address and port for the NGINX Service, we can send traffic to our tea applications.
 
-{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
+{{< call-out class="note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/tea
@@ -355,7 +355,7 @@ NGINX Gateway Fabric supports three types of path matching:
 - **Exact**: Matches the exact path in the request. For example, `/coffee` matches only `/coffee`.
 - **RegularExpression**: Matches based on RE2-compatible regular expressions. For example, `/coffee/[a-z]+` matches `/coffee/latte` and `/coffee/mocha` but not `/coffee/123`.
 
-{{< call-out "note" >}} Regular expression path matching uses the RE2 syntax. Patterns are automatically anchored to the beginning of the path. {{< /call-out >}}
+{{< call-out class="note" >}} Regular expression path matching uses the RE2 syntax. Patterns are automatically anchored to the beginning of the path. {{< /call-out >}}
 
 ### Example: Using regex path matching
 

@@ -9,7 +9,7 @@ f5-content-type: reference
 f5-product: NGPLUS
 ---
 
-{{< call-out "note" "Important" >}} Since May 13, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: [Long-Term Support Releases (LTS)](#lts) and [Continuous Releases (CR)](#cr). {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} Since May 13, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: [Long-Term Support Releases (LTS)](#lts) and [Continuous Releases (CR)](#cr). {{< /call-out >}}
 
 ## New release model {#intro}
 
@@ -26,7 +26,7 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 ## Long-term support releases (LTS) {#lts}
 
-{{< call-out "note" "Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
 ### NGINX Plus  PLS.37.0.1.1 LTS {#pls.37.0.1}
 _May 22, 2026_<br/>
@@ -57,7 +57,7 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - Support for OpenSSL 4.0.
 - Enhancements in the [ACME](https://nginx.org/en/docs/http/ngx_http_acme_module.html), [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) and [Prometheus-njs]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) modules.
 
-{{< call-out "note" "More info" >}} [Announcing NGINX Plus PLS.37.0.0.1 LTS](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.0.0.1 LTS](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
 
 NGINX Plus PLS.37.0.0.1 LTS is supported on:
 
@@ -143,7 +143,7 @@ NGINX Plus R36 is a feature release:
 
   - Support for OpenSSL 3.5.
 
-    {{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
+    {{< call-out class="note" title="Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
 
 - Inheritance control for [headers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) and [trailers](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_trailer_inherit).
 
@@ -151,7 +151,7 @@ NGINX Plus R36 is a feature release:
 
 - Container images with popular modules, now including ACME, OpenTelemetry, and Prometheus exporter modules.
 
-{{< call-out "note" "More info" >}} [Announcing NGINX Plus R36](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r36-release-now-available/344514) blog post. {{< /call-out >}}
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus R36](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r36-release-now-available/344514) blog post. {{< /call-out >}}
 
 NGINX Plus R36 is supported on:
 
@@ -255,7 +255,7 @@ NGINX Plus R35 is a feature release:
 
 - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
-{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R35 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r35-release-now-available/342962).{{< /call-out >}}
+{{< call-out class="note" title="Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R35 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r35-release-now-available/342962).{{< /call-out >}}
 
 
 NGINX Plus R35 is supported on:
@@ -332,7 +332,7 @@ NGINX Plus R34 is a feature release:
 
 - Security: insufficient check in virtual servers handling with TLSv1.3 SNI allowed to reuse SSL sessions in a different virtual server, to bypass client SSL certificates verification ([CVE-2025-23419](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23419)).
 
-{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R34 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300).{{< /call-out >}}
+{{< call-out class="note" title="Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R34 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r34-release-now-available/340300).{{< /call-out >}}
 
 NGINX Plus R34 is supported on:
 
@@ -412,7 +412,7 @@ The argument is a file name in the `SSLKEYLOGFILE` format compatible with Wiresh
 
 - Added initial support for Post Quantum Cryptography.
 
-{{< call-out "note" "Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R33 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r33-release-now-available/336403).{{< /call-out >}}
+{{< call-out class="note" title="Learn more" >}}For highlights of all new features and enhancements in this release, see the [NGINX Plus R33 release blog](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-r33-release-now-available/336403).{{< /call-out >}}
 
 
 {{<bootstrap-table "table table-striped table-bordered table-sm">}}

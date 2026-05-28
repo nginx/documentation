@@ -32,7 +32,7 @@ By default, the ServiceAccount has access to all Secret resources in the cluster
 
 ### Configure root filesystem as read-only
 
-{{< call-out "caution"  >}}
+{{< call-out class="caution"  >}}
 
 This feature has its own documentation in [F5 WAF for NGINX]({{< ref "/waf/configure/kubernetes-read-only.md" >}}) documentation.
 
@@ -97,7 +97,7 @@ Snippets allow raw NGINX configuration to be inserted into resources. They are i
 
 Snippets are disabled by default. To use snippets, set the [**enable-snippets**]({{< ref"/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument.
 
-{{< call-out "caution"  >}}
+{{< call-out class="caution"  >}}
  Snippets are **always** enabled for ConfigMap.
 {{< /call-out >}}
 

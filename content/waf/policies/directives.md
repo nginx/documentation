@@ -108,7 +108,7 @@ http {
 
 ## Handling compressed requests
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 From F5 WAF for NGINX release version 4.6, the `app_protect_compressed_requests_action` directive was removed deprecated from the NGINX configuration.
 

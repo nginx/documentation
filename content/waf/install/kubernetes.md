@@ -31,19 +31,19 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 To access private-registry.nginx.com, you will need to download the JWT license file even when using NGINX Open Source as a base image. 
 {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
 {{< /call-out >}}
 
 {{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
 
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+{{< call-out class="note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 When using the provided values.yaml for Helm, setting the `appprotect.config.nginxJWT` value ensures that your JWT license is automatically copied to `/etc/nginx/license.jwt` inside the NGINX container. No additional manual copying of the file is needed when deploying with the provided YAML configuration.
 {{< /call-out >}}
 
@@ -61,7 +61,7 @@ This example uses NGINX Open Source as a base: it requires NGINX to be installed
 
 {{< /details >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 If you are not using using `custom_log_format.json` or the IP intelligence feature,  you should remove any references to them from your Dockerfile.
 
@@ -301,7 +301,7 @@ kubectl get pods -n <namespace>
 kubectl get svc -n <namespace>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 At this stage, you have finished deploying F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
 
@@ -396,7 +396,7 @@ In each file, replace `<your-private-registry>/waf:<your-tag>` with your actual 
 
 {{% tab name="waf-storage.yaml" %}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This configuration uses a _hostPath_ backed persistent volume claim.
 
@@ -547,7 +547,7 @@ persistentvolume/nap5-bundles-pv created
 persistentvolumeclaim/nap5-bundles-pvc created
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 At this stage, you have finished deploying F5 WAF for NGINX and can look at [Post-installation checks](#post-installation-checks).
 

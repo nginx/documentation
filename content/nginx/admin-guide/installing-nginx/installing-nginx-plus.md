@@ -28,7 +28,7 @@ The NGINX Plus LTS release model is intended for mission-critical production env
 - **Concurrency**: up to 3 LTS versions supported at the same time
 - **Version format**: an LTS release has `0` as the second numeric component, for example: `PLS.37.0.0.1`. LTS updates increment the third component, for example: `PLS.37.0.1.1`.
 
-{{< call-out "note" "Important" >}} To use the LTS release, update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS](). {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} To use the LTS release, update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS](). {{< /call-out >}}
 
 ### Continuous Release (CR) {#cr}
 
@@ -145,7 +145,7 @@ Supported RHEL-based systems include RHEL 8.1+, Oracle Linux 8.1+, AlmaLinux 8, 
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-8.repo
    ```
 
-   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}{{< /call-out >}}
+   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out class="note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel8-R32.md" >}}{{< /call-out >}}
 
    {{< /details >}}
 
@@ -184,7 +184,7 @@ Supported RHEL-based systems include RHEL 9.0+, Oracle Linux 9, AlmaLinux 9, Roc
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
    ```
 
-   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{< /call-out >}}{{< /details >}}
+   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out class="note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
@@ -221,7 +221,7 @@ Supported RHEL-based systems include RHEL 10.0+, Oracle Linux 10.0+, AlmaLinux 1
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
    ```
 
-   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{< /call-out >}}{{< /details >}}
+   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out class="note">}}{{< include "nginx-plus/install/pin-to-version/pin-rhel9-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. {{< include "nginx-plus/install/install-nginx-plus-package-dnf.md" >}}
 
@@ -282,7 +282,7 @@ Supported RHEL-based systems include RHEL 10.0+, Oracle Linux 10.0+, AlmaLinux 1
    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
    ```
 
-   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
+   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out class="note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. Update the repository information:
 
@@ -350,7 +350,7 @@ Supported RHEL-based systems include RHEL 10.0+, Oracle Linux 10.0+, AlmaLinux 1
    sudo wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx
    ```
 
-   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out "note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
+   {{< details summary="Pin NGINX Plus to a specific version" >}}{{< call-out class="note">}}{{< include "nginx-plus/install/pin-to-version/pin-debian-ubuntu-R32.md" >}}{{< /call-out >}}{{< /details >}}
 
 1. Update the repository information:
 

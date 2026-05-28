@@ -14,7 +14,7 @@ It explains how to install the Gateway API resources and add authentication cert
 
 By following these instructions, you will finish with a functional NGINX Gateway Fabric instance for your Kubernetes cluster.
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 To learn which Gateway API resources NGINX Gateway Fabric currently supports, view the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) topic. 
 
@@ -54,7 +54,7 @@ By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace
 
 If you want to deploy it in another namespace, you must modify the Manifest files.
 
-{{< call-out "note" >}} By default, NGINX Gateway Fabric watches all namespaces. To limit the namespaces that it watches, add `--watch-namespaces=x,y,z` to the Deployment arguments, specifying the names of your namespaces. {{< /call-out >}}
+{{< call-out class="note" >}} By default, NGINX Gateway Fabric watches all namespaces. To limit the namespaces that it watches, add `--watch-namespaces=x,y,z` to the Deployment arguments, specifying the names of your namespaces. {{< /call-out >}}
 
 Your next step is dependent on how you intend to expose NGINX Gateway Fabric:
 

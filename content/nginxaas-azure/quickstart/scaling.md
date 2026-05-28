@@ -12,7 +12,7 @@ F5 NGINXaaS for Azure (NGINXaaS) supports automatic scaling of your deployment t
 
 When enabled, your NGINXaaS deployment will automatically scaled out to increase the capacity (and cost) or scaled in to decrease the capacity (and cost). Capacity is measured in [NGINX Capacity Units (NCU)](#nginx-capacity-unit-ncu).
 
-{{< call-out "note" >}} This feature is only available for Standard plan(s). For the Developer plan, the capacity cannot be changed{{< /call-out >}}
+{{< call-out class="note" >}} This feature is only available for Standard plan(s). For the Developer plan, the capacity cannot be changed{{< /call-out >}}
 
 ## NGINX Capacity Unit (NCU)
 
@@ -31,7 +31,7 @@ To enable autoscaling using the Azure Portal,
  1. Specify the minimum and maximum NCU count.
  1. Select **Submit** to enable NGINXaaS deployment autoscaling.
 
-{{< call-out "note" >}} For bandwidth-heavy workloads, NGINXaaS may automatically allocate NCUs beyond your configured autoscale maximum to satisfy demand, and you’ll be billed for any additional bandwidth consumed during the billing interval. For all other workloads, capacity is capped at the configured autoscale maximum{{< /call-out >}}
+{{< call-out class="note" >}} For bandwidth-heavy workloads, NGINXaaS may automatically allocate NCUs beyond your configured autoscale maximum to satisfy demand, and you’ll be billed for any additional bandwidth consumed during the billing interval. For all other workloads, capacity is capped at the configured autoscale maximum{{< /call-out >}}
 
 ### Scaling rules
 
@@ -54,11 +54,11 @@ To update the capacity of your deployment using the Azure Portal,
  1. Set the desired number of NCUs. Scale increases in 10 NCU intervals (10, 20, 30, and so on).
  1. Select **Submit** to update your deployment.
 
-{{< call-out "note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
+{{< call-out class="note" >}}There's no downtime while an NGINXaaS deployment changes capacity.{{< /call-out >}}
 
-{{< call-out "note" >}}When using manual scaling, consider setting up alerts on the `system.cpu` metric to be notified when scaling may be needed. See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for more information on available metrics.{{< /call-out >}}
+{{< call-out class="note" >}}When using manual scaling, consider setting up alerts on the `system.cpu` metric to be notified when scaling may be needed. See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for more information on available metrics.{{< /call-out >}}
 
-{{< call-out "note" >}} For bandwidth-intensive workloads, NGINXaaS may automatically allocate NCUs beyond your configured value to satisfy demand, and you’ll be billed for any additional bandwidth consumed during the billing interval. For all other workloads, capacity is capped at the configured value{{< /call-out >}}
+{{< call-out class="note" >}} For bandwidth-intensive workloads, NGINXaaS may automatically allocate NCUs beyond your configured value to satisfy demand, and you’ll be billed for any additional bandwidth consumed during the billing interval. For all other workloads, capacity is capped at the configured value{{< /call-out >}}
 
 ## Capacity restrictions
 
@@ -71,7 +71,7 @@ The following table outlines constraints on the specified capacity based on the 
 | Standard plan(s)                  | 10                          | 500                         | 10                         |
 {{< /table >}}
 
-{{< call-out "note" >}}If you need a higher maximum capacity, please [open a request](https://my.f5.com/manage/s/) and specify the Resource ID of your NGINXaaS deployment, the region, and the desired maximum capacity you wish to scale to.{{< /call-out >}}
+{{< call-out class="note" >}}If you need a higher maximum capacity, please [open a request](https://my.f5.com/manage/s/) and specify the Resource ID of your NGINXaaS deployment, the region, and the desired maximum capacity you wish to scale to.{{< /call-out >}}
 
 ## Connection processing methods restrictions
 
@@ -90,8 +90,8 @@ NGINXaaS provides metrics for visibility of the current and historical capacity 
 
 See the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a reference of all metrics.
 
-{{< call-out "note" >}}These metrics aren't visible unless enabled, see how to [Enable Metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}) for details.{{< /call-out >}}
-{{< call-out "warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
+{{< call-out class="note" >}}These metrics aren't visible unless enabled, see how to [Enable Metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}) for details.{{< /call-out >}}
+{{< call-out class="warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
 
 ## Estimating how many NCUs to provision
 

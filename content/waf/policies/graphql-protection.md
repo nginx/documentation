@@ -8,7 +8,7 @@ f5-product: F5WAFN
 
 This topic describes the GraphQL protection feature for F5 WAF for NGINX.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 GraphQL is supported by F5 WAF for NGINX version 4.2 on.
 {{< /call-out >}}
 

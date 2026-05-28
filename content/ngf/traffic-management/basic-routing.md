@@ -198,7 +198,7 @@ graph LR
 
 The **coffee** service is omitted from the diagram above because the NGINX Pod routes directly to the pods that the **coffee** service targets.
 
-{{< call-out "note" >}}In the diagrams above, all resources that are the responsibility of the cluster operator are shown in blue. The orange resources are the responsibility of the application developers.
+{{< call-out class="note" >}}In the diagrams above, all resources that are the responsibility of the cluster operator are shown in blue. The orange resources are the responsibility of the application developers.
 
 See the [roles and personas](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1) Gateway API document for more information on these roles.{{< /call-out >}}
 
@@ -258,7 +258,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
@@ -307,7 +307,7 @@ The [**rules**](https://gateway-api.sigs.k8s.io/reference/spec/#httprouterule) f
 
 To test the configuration, we will send a request to the public IP and port of the NGINX Service that you saved earlier after creating the Gateway resource and verify that the response comes from one of the **coffee** pods.
 
-{{< call-out "note" >}}Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. In this guide we will simulate that using curl's `--resolve` option. {{< /call-out >}}
+{{< call-out class="note" >}}Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. In this guide we will simulate that using curl's `--resolve` option. {{< /call-out >}}
 
 
 First, let's send a request to the path "/":
@@ -522,7 +522,7 @@ If you have any issues while testing the configuration, try the following to deb
   }
   ```
 
-{{< call-out "note" >}} The entire configuration is not shown because it is subject to change. Ellipses indicate that there's configuration not shown. {{< /call-out >}}
+{{< call-out class="note" >}} The entire configuration is not shown because it is subject to change. Ellipses indicate that there's configuration not shown. {{< /call-out >}}
 
 If your issue persists, [contact us](https://github.com/nginx/nginx-gateway-fabric#contacts).
 

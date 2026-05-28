@@ -166,7 +166,7 @@ curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/threat-campaigns' \
   --form 'filename=@"/threat-campaigns.tgz"'
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The bundle you upload must match both the operating system and version of your NGINX Instance Manager host.  
 Create the `.tgz` file using the package built for the same OS and version to ensure compatibility.
 {{< /call-out >}}

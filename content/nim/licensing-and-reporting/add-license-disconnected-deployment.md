@@ -15,9 +15,9 @@ f5-summary: >
 
 In a disconnected environment, systems don't have internet access. You'll download and apply your JSON Web Token (JWT) license to F5 NGINX Instance Manager, then verify your entitlements with F5.
 
-{{< call-out "note" "NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
+{{< call-out class="note" title="NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
 
-{{< call-out "tip" "Using the REST API" "" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</ call-out >}}
+{{< call-out class="tip" title="Using the REST API" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{</ call-out >}}
 
 ## Before you begin
 
@@ -41,7 +41,7 @@ To set up NGINX Instance Manager for a disconnected environment, set `mode_of_op
 
 To add a license and submit the initial usage report in a disconnected environment, use the `license_usage_offline.sh` script. Run this script on a system that can connect to NGINX Instance Manager and to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-{{< call-out "important" >}} The script won't work if you've already added a license. {{< /call-out >}}
+{{< call-out class="important" >}} The script won't work if you've already added a license. {{< /call-out >}}
 
 1. {{<icon "download">}} [Download license_usage_offline.sh](/scripts/license_usage_offline.sh).
 1.	Run the following command to allow the script to run:
@@ -73,11 +73,11 @@ To add a license and submit the initial usage report in a disconnected environme
 
 To license NGINX Instance Manager, complete each of the following steps in order.
 
-{{< call-out "important" >}} This command won't work if you've already added a license. {{< /call-out >}}
+{{< call-out class="important" >}} This command won't work if you've already added a license. {{< /call-out >}}
 
 Run these `curl` commands on a system that can connect to NGINX Instance Manager and to `https://product.apis.f5.com/` on port `443`. Replace each placeholder with your specific values.
 
-{{< call-out "important" "TLS certificate validation">}} The -k flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system. {{< /call-out >}}
+{{< call-out class="important" title="TLS certificate validation">}} The -k flag skips SSL certificate validation. Use this only if your NGINX Instance Manager is using a self-signed certificate or if the certificate is not trusted by your system. {{< /call-out >}}
 
 1. **Add the license to NGINX Instance Manager**:
 

@@ -13,7 +13,7 @@ This document describes how to monitor NGINX Gateway Fabric using Prometheus and
 
 NGINX Gateway Fabric metrics are displayed in [Prometheus](https://prometheus.io/) format. These metrics are served through a metrics server orchestrated by the controller-runtime package on HTTP port `9113`. When installed, Prometheus automatically scrapes this port and collects metrics. [Grafana](https://grafana.com/) can be used for rich visualization of these metrics.
 
-{{< call-out "important" "Security note for metrics" >}}
+{{< call-out class="important" title="Security note for metrics" >}}
 
 Metrics are served over HTTP by default. Enabling HTTPS will secure the metrics endpoint with a self-signed certificate. When using HTTPS, adjust the Prometheus Pod scrape settings by adding the `insecure_skip_verify` flag to handle the self-signed certificate. For further details, refer to the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_config).
 
@@ -21,7 +21,7 @@ Metrics are served over HTTP by default. Enabling HTTPS will secure the metrics 
 
 ## Installing Prometheus and Grafana
 
-{{< call-out "note" >}} These installations are for demonstration purposes and have not been tuned for a production environment. {{< /call-out >}}
+{{< call-out class="note" >}} These installations are for demonstration purposes and have not been tuned for a production environment. {{< /call-out >}}
 
 ### Prometheus
 

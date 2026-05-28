@@ -75,7 +75,7 @@ Select  _Create new_ below the **Public IP** field, then select the **Standard R
 
 In the **Name** field, accept the default created by Azure, _ngx-plus-1-ip_, and confirm it by selecting **Ok**.
 
-{{< call-out "note" "Active-Active HA requirements" >}}
+{{< call-out class="note" title="Active-Active HA requirements" >}}
 
 If you are creating VMs to use with [Active-Active HA for NGINX Plus]({{< ref "/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer.md" >}}), the two VMs must have public IP addresses with SKU type **Standard** instead of the default **Basic**.
 
@@ -143,7 +143,7 @@ After you’ve successfully connected to your Azure VM, you can install NGINX Op
 
 ## Install NGINX Open Source or NGINX Plus with Ansible
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For Chef and Puppet, see the following articles on the NGINX blog:
 
@@ -171,7 +171,7 @@ Once Ansible is installed, you can use `ansible-galaxy` to install the official 
 ansible-galaxy install nginxinc.nginx
 ```
 
-{{< call-out "note" "NGINX Plus" >}}
+{{< call-out class="note" title="NGINX Plus" >}}
 
 If you are using NGINX Plus, at this stage you should copy the **nginx-repo.key** and **nginx-repo.crt** files from [MyF5](https://my.f5.com/manage/s/) to **~/.ssh/ngx-certs/**.
 

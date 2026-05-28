@@ -7,7 +7,7 @@ f5-files:
 
 This step describes how to use Docker to communicate with the F5 Container Registry located at `private-registry.nginx.com`.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The steps provided are for Linux. For Mac or Windows, see the [Docker for Mac](https://docs.docker.com/docker-for-mac/#add-client-certificates) or [Docker for Windows](https://docs.docker.com/docker-for-windows/#how-do-i-add-client-certificates) documentation. 
 

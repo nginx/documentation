@@ -37,7 +37,7 @@ Before you begin, ensure you have:
 2. Paste the Support ID into the **Enter a Support ID** field.
 3. The page displays the **Security Event** detail panel for the matching event, including the request, source, and raw request data.
 
-   {{< call-out "note" >}}Security events are retained for 90 days. Events older than 90 days are no longer available.{{< /call-out >}}
+   {{< call-out class="note" >}}Security events are retained for 90 days. Events older than 90 days are no longer available.{{< /call-out >}}
 
 ### Troubleshooting
 

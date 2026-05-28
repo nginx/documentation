@@ -18,7 +18,7 @@ f5-summary: >
 
 You can check the health of each F5 NGINX Instance Manager module individually, or run a script that checks all modules at once. This guide explains both methods.
 
-{{< call-out "note" "New in 2.21.1" >}}
+{{< call-out class="note" title="New in 2.21.1" >}}
 Health monitoring is available in NGINX Instance Manager 2.21.1 and later.
 
 You can use the script as-is or customize it to fit your environment, security needs, and monitoring tools.

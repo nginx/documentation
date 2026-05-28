@@ -18,7 +18,7 @@ F5 NGINX as a Service for Azure (NGINXaaS) supports using the Managed Identity (
 
 NGINX Plus instances that are part of the NGINXaaS deployment now have access to query the identity endpoint in [Instance Metadata Service](https://learn.microsoft.com/en-us/azure/virtual-machines/instance-metadata-service?tabs=windows) to fetch access tokens.
 
-{{< call-out "important" >}}Exposing the IMDS endpoint externally can allow unintended third parties to retrieve the access tokens associated with the managed identities assigned to the deployment. To mitigate this risk, ensure the endpoint is restricted to internal access or apply appropriate access controls. {{< /call-out >}}
+{{< call-out class="important" >}}Exposing the IMDS endpoint externally can allow unintended third parties to retrieve the access tokens associated with the managed identities assigned to the deployment. To mitigate this risk, ensure the endpoint is restricted to internal access or apply appropriate access controls. {{< /call-out >}}
 
 ## Configuration
 
@@ -36,4 +36,4 @@ The example below contains a sample NGINX config that uses [njs](https://nginx.o
 
 Sending an HTTP request to the `queryBlob` endpoint triggers njs, which fetches an access token from IMDS and uses it to query blob storage.
 
-{{< call-out "note" >}} IMDS enforces a rate limit of 5 requests per second. To optimize performance, cache the access token in NGINX instead of retrieving it for every request. {{< /call-out >}}
+{{< call-out class="note" >}} IMDS enforces a rate limit of 5 requests per second. To optimize performance, cache the access token in NGINX instead of retrieving it for every request. {{< /call-out >}}

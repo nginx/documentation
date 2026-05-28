@@ -6,7 +6,7 @@ f5-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---
 
-{{< call-out "note" >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /call-out >}}
+{{< call-out class="note" >}} By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace. You can deploy in another namespace by modifying the manifest files. {{< /call-out >}}
 
 {{<tabs name="install-manifests">}}
 
@@ -70,7 +70,7 @@ Deploys NGINX Gateway Fabric with NGINX OSS and experimental features.
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/experimental/deploy.yaml
 ```
 
-{{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
+{{< call-out class="note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
 
 {{% /tab %}}
 
@@ -84,7 +84,7 @@ The NGINX Plus JWT Secret used to run NGINX Plus is also specified in a volume m
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus-experimental/deploy.yaml
 ```
 
-{{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
+{{< call-out class="note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
 
 {{% /tab %}}
 

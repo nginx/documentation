@@ -170,7 +170,7 @@ f5-product: AMPLIF
 
 ## Agent Metrics
 
-{{< call-out "note" >}} Agent metrics are available only if you are using F5 NGINX Amplify Agent.{{< /call-out >}}
+{{< call-out class="note" >}} Agent metrics are available only if you are using F5 NGINX Amplify Agent.{{< /call-out >}}
 
 - ####  **amplify.agent.status**
 

@@ -95,7 +95,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
@@ -280,7 +280,7 @@ EOF
 
 This will let the `RateLimitPolicy` affect both the coffee HTTPRoute and the grpc-route GRPCRoute.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 RateLimitPolicy does not allow mixing Gateway kind with HTTPRoute or GRPCRoute kinds in targetRefs.
 

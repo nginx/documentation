@@ -164,7 +164,7 @@ NGINX One templates use Go's built-in template engine. For complete Go template 
 
 Template syntax is validated during [Import]({{< ref "import-templates.md" >}}). NGINX directive syntax is validated when configurations are rendered during [Submission]({{< ref "submit-templates.md" >}}) preview.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 When any unsupported template syntax is used, you will see a validation error during the import operation
 {{< /call-out >}}
 
@@ -198,7 +198,7 @@ Templates that use variables must include schema files for validation and UI gen
 - Use required array to specify variables that must be provided during submission
 - Variables not in the required array are optional; if not provided, they render as empty strings
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 All variables used in your template must be explicitly provided during submission if they are in the `required` array. Optional variables (not in `required`) will render as empty strings if not provided - ensure your template handles this appropriately using Go template conditionals if needed.
 {{< /call-out >}}
 
@@ -257,7 +257,7 @@ server {
 
 During [Submission]({{< ref "submit-templates.md" >}}), users provide values for these variables, which are then inserted into the template during rendering.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 - Every variable used in your template must be defined in the schema
 - All variables used in templates must be provided during submission
 {{< /call-out >}}
