@@ -14,8 +14,8 @@ The GitHub repository has [examples of the resources](https://github.com/nginx/k
 
 ## Prerequisites
 
-- For TCP and UDP, the TransportServer resource must be used in conjunction with the [GlobalConfiguration resource]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}), which must be created separately.
-- For TLS Passthrough, make sure to enable the [`-enable-tls-passthrough`]({{< ref "/nic/configuration/global-configuration/command-line-arguments#cmdoption-enable-tls-passthrough.md" >}}) command-line argument of NGINX Ingress Controller LTS.
+- For TCP and UDP, the TransportServer resource must be used in conjunction with the [GlobalConfiguration resource]({{< ref "/nic/lts/configuration/global-configuration/globalconfiguration-resource.md" >}}), which must be created separately.
+- For TLS Passthrough, make sure to enable the [`-enable-tls-passthrough`]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments#cmdoption-enable-tls-passthrough.md" >}}) command-line argument of NGINX Ingress Controller LTS.
 
 ## TransportServer Specification
 
@@ -104,7 +104,7 @@ The TransportServer resource defines load balancing configuration for TCP, UDP, 
 
 ### Listener
 
-The listener field references a listener that NGINX will use to accept incoming traffic for the TransportServer. For TCP and UDP, the listener must be defined in the [GlobalConfiguration resource]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}). When referencing a listener, both the name and the protocol must match. For TLS Passthrough, use the built-in listener with the name `tls-passthrough` and the protocol `TLS_PASSTHROUGH`.
+The listener field references a listener that NGINX will use to accept incoming traffic for the TransportServer. For TCP and UDP, the listener must be defined in the [GlobalConfiguration resource]({{< ref "/nic/lts/configuration/global-configuration/globalconfiguration-resource.md" >}}). When referencing a listener, both the name and the protocol must match. For TLS Passthrough, use the built-in listener with the name `tls-passthrough` and the protocol `TLS_PASSTHROUGH`.
 
 The combination of ``spec.listener.name`` and ``spec.host`` must be unique among all TransportServers. If two TransportServers specify the same combination of ``spec.listener.name`` and ``spec.host``, one of them will be rejected to prevent conflicts. In the case where no host is specified, it is considered an empty string.
 
@@ -327,7 +327,7 @@ spec:
 
 {{< call-out "note" >}} To configure snippets in the `stream` context, use `stream-snippets` ConfigMap key. {{< /call-out >}}
 
-For additional information, view the [Advanced configuration with Snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) topic.
+For additional information, view the [Advanced configuration with Snippets]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) topic.
 
 ### Validation
 
@@ -401,4 +401,4 @@ Note how the events section includes a Warning event with the Rejected reason.
 
 ## Customization via ConfigMap
 
-The [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) keys (except for `stream-snippets`, `stream-log-format`, `resolver-addresses`, `resolver-ipv6`, `resolver-valid` and `resolver-timeout`) do not affect TransportServer resources.
+The [ConfigMap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md" >}}) keys (except for `stream-snippets`, `stream-log-format`, `resolver-addresses`, `resolver-ipv6`, `resolver-valid` and `resolver-timeout`) do not affect TransportServer resources.

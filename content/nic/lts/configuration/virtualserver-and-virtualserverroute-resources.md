@@ -61,7 +61,7 @@ spec:
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. The ``host`` value needs to be unique among all Ingress and VirtualServer resources. See also [Handling Host and Listener Collisions]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}). | ``string`` | Yes |
+|``host`` | The host (domain name) of the server. Must be a valid subdomain as defined in RFC 1123, such as ``my-app`` or ``hello.example.com``. When using a wildcard domain like ``*.example.com`` the domain must be contained in double quotes. The ``host`` value needs to be unique among all Ingress and VirtualServer resources. See also [Handling Host and Listener Collisions]({{< ref "/nic/lts/configuration/host-and-listener-collisions.md" >}}). | ``string`` | Yes |
 |``listener`` | Sets a custom HTTP and/or HTTPS listener. Valid fields are `listener.http` and `listener.https`. Each field must reference the name of a valid listener defined in a GlobalConfiguration resource | [listener](#virtualserverlistener) | No |
 |``tls`` | The TLS termination configuration. | [tls](#virtualservertls) | No |
 |``gunzip`` | Enables or disables [decompression]({{< ref "/nginx/admin-guide/web-server/compression.md" >}}) of gzipped responses for clients. Allowed values “on”/“off”, “true”/“false” or “yes”/“no”. If the ``gunzip`` value is not set, it defaults to ``off``.   | ``boolean`` | No |
@@ -87,7 +87,7 @@ redirect:
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the VirtualServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the host of the VirtualServer. If the secret is not specified but [wildcard TLS secret]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-wildcard-tls-secret" >}}) is configured, NGINX will use the wildcard secret for TLS termination. | ``string`` | No |
+|``secret`` | The name of a secret with a TLS certificate and key. The secret must belong to the same namespace as the VirtualServer. The secret must be of the type ``kubernetes.io/tls`` and contain keys named ``tls.crt`` and ``tls.key`` that contain the certificate and private key as described [here](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls). If the secret doesn't exist or is invalid, NGINX will break any attempt to establish a TLS connection to the host of the VirtualServer. If the secret is not specified but [wildcard TLS secret]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md#cmdoption-wildcard-tls-secret" >}}) is configured, NGINX will use the wildcard secret for TLS termination. | ``string`` | No |
 |``redirect`` | The redirect configuration of the TLS for a VirtualServer. | [tls.redirect](#virtualservertlsredirect) | No | ### VirtualServer.TLS.Redirect |
 |``cert-manager`` | The cert-manager configuration of the TLS for a VirtualServer. | [tls.cert-manager](#virtualservertlscertmanager) | No | ### VirtualServer.TLS.CertManager |
 
@@ -131,7 +131,7 @@ cert-manager:
 ### VirtualServer.Listener
 
 The listener field defines a custom HTTP and/or HTTPS listener.
-The respective listeners used must reference the name of a listener defined using a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource.
+The respective listeners used must reference the name of a listener defined using a [GlobalConfiguration]({{< ref "/nic/lts/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource.
 For example:
 
 ```yaml
@@ -141,8 +141,8 @@ https: https-8443
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``http`` |  The name of am HTTP listener defined in a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource. | ``string`` | No |
-|``https`` |  The name of an HTTPS listener defined in a [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource. | ``string`` | No |
+|``http`` |  The name of am HTTP listener defined in a [GlobalConfiguration]({{< ref "/nic/lts/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource. | ``string`` | No |
+|``https`` |  The name of an HTTPS listener defined in a [GlobalConfiguration]({{< ref "/nic/lts/configuration/global-configuration/globalconfiguration-resource.md" >}}) resource. | ``string`` | No |
 
 ### VirtualServer.ExternalDNS
 
@@ -178,7 +178,7 @@ The providerSpecific field of the externalDNS block allows the specification of 
 
 ### VirtualServer.Policy
 
-The policy field references a [Policy resource]({{< ref "/nic/configuration/policy-resource.md" >}}) by its name and optional namespace. For example:
+The policy field references a [Policy resource]({{< ref "/nic/lts/configuration/policy-resource.md" >}}) by its name and optional namespace. For example:
 
 ```yaml
 name: access-control
@@ -204,7 +204,7 @@ The route defines rules for matching client requests to actions like passing a r
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``path`` | The path of the route. NGINX will match it against the URI of a request. Possible values are: a prefix ( ``/`` , ``/path`` ), an exact match ( ``=/exact/match`` ), a case insensitive regular expression ( ``~*^/Bar.*\.jpg`` ) or a case sensitive regular expression ( ``~^/foo.*\.jpg`` ). In the case of a prefix (must start with ``/`` ) or an exact match (must start with ``=`` ), the path must not include any whitespace characters, ``{`` , ``}`` or ``;``. In the case of the regex matches, all double quotes ``"`` must be escaped and the match can't end in an unescaped backslash ``\``. The path must be unique among the paths of all routes of the VirtualServer. Check the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive for more information. | ``string`` | Yes |
-|``policies`` | A list of policies. The policies override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
+|``policies`` | A list of policies. The policies override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/lts/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
 |``action`` | The default action to perform for a request. | [action](#action) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServer route. | ``string`` | No |
 |``splits`` | The default splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
@@ -231,7 +231,7 @@ See the [VirtualServerRoute specification](#virtualserverroute-specification) se
 
 ## VirtualServerRoute specification
 
-The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
+The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types]({{< ref "/nic/lts/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
 
 VirtualServer routes can reference VirtualServerRoute resources in two ways: by name using the `route` field, or dynamically using the `routeSelector` field with label selectors. The `routeSelector` approach allows you to add new VirtualServerRoute resources without modifying the VirtualServer configuration.
 
@@ -375,7 +375,7 @@ action:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``path`` | The path of the subroute. NGINX will match it against the URI of a request. Possible values are: a prefix ( ``/`` , ``/path`` ), an exact match ( ``=/exact/match`` ), a case insensitive regular expression ( ``~*^/Bar.*\.jpg`` ) or a case sensitive regular expression ( ``~^/foo.*\.jpg`` ). In the case of a prefix, the path must start with the same path as the path of the route of the VirtualServer that references this resource. In the case of an exact or regex match, the path must be the same as the path of the route of the VirtualServer that references this resource. A matching path of the route of the VirtualServer but in different type is not accepted, e.g. a regex path (`~/match`) cannot be used with a prefix path in VirtualServer (`/match`) In the case of a prefix or an exact match, the path must not include any whitespace characters, ``{`` , ``}`` or ``;``.  In the case of the regex matches, all double quotes ``"`` must be escaped and the match can't end in an unescaped backslash ``\``. The path must be unique among the paths of all subroutes of the VirtualServerRoute. | ``string`` | Yes |
-|``policies`` | A list of policies. The policies override *all* policies defined in the route of the VirtualServer that references this resource. The policies also override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
+|``policies`` | A list of policies. The policies override *all* policies defined in the route of the VirtualServer that references this resource. The policies also override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/lts/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
 |``action`` | The default action to perform for a request. | [action](#action) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServerRoute subroute. | ``string`` | No |
 |``splits`` | The default splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
@@ -448,7 +448,7 @@ tls:
 |``buffer-size`` | Sets the size of the buffer used for reading the first part of a response received from the upstream server. See the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directive. The default is set in the ``proxy-buffer-size`` ConfigMap key. | ``string`` | No |
 |``busy-buffers-size`` | Sets the size of the buffer used for reading a response from the upstream server when the response is larger than the ``buffer-size``. See the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. The default is set in the ``proxy-busy-buffers-size`` ConfigMap key. | ``string`` | No |
 |``ntlm`` | Allows proxying requests with NTLM Authentication. See the [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive. In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers using the ``keepalive`` field. Note: this feature is supported only in NGINX Plus.| ``boolean`` | No |
-|``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, it is necessary to enable HTTP/2 in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}}) and configure TLS termination in the VirtualServer. | ``string`` | No |
+|``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, it is necessary to enable HTTP/2 in the [ConfigMap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#listeners" >}}) and configure TLS termination in the VirtualServer. | ``string`` | No |
 |``backup`` | The name of the backup service of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname). This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods. | ``string`` | No |
 |``backupPort`` | The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range ``1..65535``. | ``uint16`` | No |
 
@@ -474,7 +474,7 @@ See the [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.htm
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables HTTPS for requests to upstream servers. The default is ``False`` , meaning that HTTP will be used. Note: by default, NGINX will not verify the upstream server certificate. To enable the verification, configure an [EgressMTLS Policy]({{< ref "/nic/configuration/policy-resource/#egressmtls" >}}). | ``boolean`` | No |
+|``enable`` | Enables HTTPS for requests to upstream servers. The default is ``False`` , meaning that HTTP will be used. Note: by default, NGINX will not verify the upstream server certificate. To enable the verification, configure an [EgressMTLS Policy]({{< ref "/nic/lts/configuration/policy-resource/#egressmtls" >}}). | ``boolean`` | No |
 
 ### Upstream.Queue
 
@@ -1018,7 +1018,7 @@ spec:
       pass: coffee
 ```
 
-For additional information, view the [Advanced configuration with Snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) topic.
+For additional information, view the [Advanced configuration with Snippets]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) topic.
 
 ### Validation
 
@@ -1115,7 +1115,7 @@ NGINX Ingress Controller LTS validates VirtualServerRoute resources in a similar
 
 ## Customization using ConfigMap
 
-You can customize the NGINX configuration for VirtualServer and VirtualServerRoutes resources using the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}). Most of the ConfigMap keys are supported, with the following exceptions:
+You can customize the NGINX configuration for VirtualServer and VirtualServerRoutes resources using the [ConfigMap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md" >}}). Most of the ConfigMap keys are supported, with the following exceptions:
 
 - `proxy-hide-headers`
 - `proxy-pass-headers`

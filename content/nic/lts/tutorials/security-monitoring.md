@@ -29,7 +29,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
             host: "<FQDN or IP address of NGINX Instance Manager>"
     ```
 
-2. Follow the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller LTS with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
+2. Follow the [Installation with Helm]({{< ref "/nic/lts/install/helm.md" >}}) instructions to deploy NGINX Ingress Controller LTS with custom resources enabled, and optionally set other `nginxAgent.*` values if required.
 
 {{%/tab%}}
 
@@ -104,7 +104,7 @@ If you use custom container images, NGINX Agent must be installed along with F5 
        mountPath: /var/lib/nginx-agent
    ```
 
-4. Follow the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller LTS with custom resources enabled.
+4. Follow the [Installation with Manifests]({{< ref "/nic/lts/install/manifests.md" >}}) instructions to deploy NGINX Ingress Controller LTS with custom resources enabled.
 
 {{%/tab%}}
 

@@ -8,7 +8,7 @@ f5-product: INGRESS
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller LTS and the F5 WAF for NGINX module version 5.
 
-For general troubleshooting of NGINX Ingress Controller LTS, check the general [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common" >}}) documentation.
+For general troubleshooting of NGINX Ingress Controller LTS, check the general [troubleshooting]({{< ref "/nic/lts/troubleshooting/troubleshoot-common" >}}) documentation.
 
 ## Potential problems
 
@@ -29,7 +29,7 @@ The table below categorizes some potential problems with NGINX Ingress Controlle
 
 ### Check NGINX Ingress Controller LTS and App Protect logs
 
-App Protect logs are part of NGINX Ingress Controller LTS logs when the module is enabled. To check NGINX Ingress Controller LTS logs, follow the steps of [Checking the Ingress Controller Logs]({{< ref "/nic/troubleshooting/troubleshoot-common#checking-the-ingress-controller-logs" >}}) of the Troubleshooting guide.
+App Protect logs are part of NGINX Ingress Controller LTS logs when the module is enabled. To check NGINX Ingress Controller LTS logs, follow the steps of [Checking the Ingress Controller Logs]({{< ref "/nic/lts/troubleshooting/troubleshoot-common#checking-the-ingress-controller-logs" >}}) of the Troubleshooting guide.
 
 For App Protect specific logs, look for messages starting with `APP_PROTECT`, for example:
 
@@ -39,7 +39,7 @@ For App Protect specific logs, look for messages starting with `APP_PROTECT`, fo
 
 ### Check Ingress resource events
 
-Read the topic [Troubleshooting Ingress resources]({{< ref "/nic/troubleshooting/troubleshoot-ingress" >}}).
+Read the topic [Troubleshooting Ingress resources]({{< ref "/nic/lts/troubleshooting/troubleshoot-ingress" >}}).
 
 ### Check APLogConf events
 
@@ -105,7 +105,7 @@ curl -w '%{time_total}' http://192.168.100.100/resources/headersettings.txt
 
 ## Run App Protect in debug mode
 
-When you set NGINX Ingress Controller LTS to use debug mode, the setting also applies to the F5 WAF for NGINX module.  See  [Running NGINX in the Debug Mode]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
+When you set NGINX Ingress Controller LTS to use debug mode, the setting also applies to the F5 WAF for NGINX module.  See  [Running NGINX in the Debug Mode]({{< ref "/nic/lts/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
 
 ## Known issues
 
@@ -128,7 +128,7 @@ This timeout should be more than enough to verify configurations. However, when 
 - You need to apply a large amount of Ingress Resources at once.
 - You are running NGINX Ingress Controller LTS for the first time in a cluster where the Ingress resources with App Protect enabled are already present.
 
-You can increase this timeout by setting the `nginx-reload-timeout` [cli-argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-nginx-reload-timeout" >}}).
+You can increase this timeout by setting the `nginx-reload-timeout` [cli-argument]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md#cmdoption-nginx-reload-timeout" >}}).
 
 When using the User Defined Signature feature, an update to an `APUserSig` requires more reload time from NGINX Plus compared with the other AppProtect resources. As a consequence, we recommend increasing the `nginx-reload-timeout` to 30 seconds if you're planning to use this feature.
 

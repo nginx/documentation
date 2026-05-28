@@ -15,13 +15,13 @@ The response body holds information about the total, down and the unhealthy numb
 The service is indicated as not healthy (HTTP response code different than 200 OK) if all upstreams (pods) are determined unhealthy by NGINX Plus.
 The service is healthy if at least one upstream pod is healthy as determined by NGINX Plus. In this case, the endpoint returns HTTP code 200 OK.
 
-NGINX Plus determination of healthy can be tuned using advanced health checks, and also dynamically relate to pods responses and responsiveness.  See [Upstream Healthcheck]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#upstream" >}})
+NGINX Plus determination of healthy can be tuned using advanced health checks, and also dynamically relate to pods responses and responsiveness.  See [Upstream Healthcheck]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources.md#upstream" >}})
 
 ## Enabling Service Insight Endpoint
 
 If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) to install the Ingress Controller, to enable the Service Insight endpoint:
 
-1. Run the Ingress Controller with the `-enable-service-insight` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}). This will expose the Ingress Controller endpoint via paths `/probe/{hostname}` for Virtual Servers, and `/probe/ts/{service_name}` for Transport Servers on port `9114` (customizable with the `-service-insight-listen-port` command-line argument). The `service_name` parameter refers to the name of the deployed service (the service specified under `upstreams` in the transport server).
+1. Run the Ingress Controller with the `-enable-service-insight` [command-line argument]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md" >}}). This will expose the Ingress Controller endpoint via paths `/probe/{hostname}` for Virtual Servers, and `/probe/ts/{service_name}` for Transport Servers on port `9114` (customizable with the `-service-insight-listen-port` command-line argument). The `service_name` parameter refers to the name of the deployed service (the service specified under `upstreams` in the transport server).
 1. To enable TLS for the Service Insight endpoint, configure the `-service-insight-tls-secret` cli argument with the namespace and name of a TLS Secret.
 1. Add the Service Insight port to the list of the ports of the Ingress Controller container in the template of the Ingress Controller pod:
 
@@ -30,7 +30,7 @@ If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) t
       containerPort: 9114
     ```
 
-If you're using *Helm* to install the Ingress Controller, to enable Service Insight endpoint, configure the `serviceInsight.*` parameters of the Helm chart. See the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) doc.
+If you're using *Helm* to install the Ingress Controller, to enable Service Insight endpoint, configure the `serviceInsight.*` parameters of the Helm chart. See the [Installation with Helm]({{< ref "/nic/lts/install/helm.md" >}}) doc.
 
 ## Available Statistics and HTTP Response Codes
 

@@ -26,17 +26,17 @@ The default value is `info`. Other options include: `trace`, `debug`, `info`, `w
 
 The value `debug` is useful for troubleshooting: you will be able to see how NGINX Ingress Controller LTS gets updates from the Kubernetes API, generates NGINX configuration and reloads NGINX.
 
-Read more about NGINX Ingress Controller LTS [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}).
+Read more about NGINX Ingress Controller LTS [command-line arguments]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md" >}}).
 
 ## NGINX Logs
 
 NGINX includes two logs:
 
-- *Access log*, where NGINX writes information about client requests in the access log right after the request is processed. The access log is configured via the [logging-related]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#logging" >}}) ConfigMap keys:
+- *Access log*, where NGINX writes information about client requests in the access log right after the request is processed. The access log is configured via the [logging-related]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#logging" >}}) ConfigMap keys:
   - `log-format` for HTTP and HTTPS traffic.
   - `stream-log-format` for TCP, UDP, and TLS Passthrough traffic.
 
     Additionally, you can disable access logging with the `access-log-off` ConfigMap key.
-- *Error log*, where NGINX writes information about encountered issues of different severity levels. It is configured via the `error-log-level` [ConfigMap key]({{< ref "/nic/configuration/global-configuration.md#configmap-resource#logging" >}}). To enable debug logging, set the level to `debug` and also set the `-nginx-debug` [command-line argument]({{< ref "/nic/configuration/global-configuration.md#command-line-arguments" >}}), so that NGINX is started with the debug binary `nginx-debug`.
+- *Error log*, where NGINX writes information about encountered issues of different severity levels. It is configured via the `error-log-level` [ConfigMap key]({{< ref "/nic/lts/configuration/global-configuration.md#configmap-resource#logging" >}}). To enable debug logging, set the level to `debug` and also set the `-nginx-debug` [command-line argument]({{< ref "/nic/lts/configuration/global-configuration.md#command-line-arguments" >}}), so that NGINX is started with the debug binary `nginx-debug`.
 
 Read more about [NGINX logs]({{< ref "/nginx/admin-guide/monitoring/logging.md" >}}) from NGINX Admin guide.

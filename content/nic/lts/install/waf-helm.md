@@ -164,9 +164,10 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 Using Helm, install NGINX Ingress Controller LTS
 
 ```shell
-helm upgrade --install nic nginx-stable/nginx-ingress \
+helm upgrade --install nic oci://ghcr.io/nginx/charts/nginx-ingress \
+   --version {{< nic-helm-version >}} \
    --set controller.image.repository="private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress" \
-   --set controller.image.tag="{{< nic-version >}}-alpine-fips" \
+   --set controller.image.tag="2026-lts-r1" \
    --set controller.nginxplus=true \
    --set controller.appprotect.enable=true \
    --set controller.appprotect.v5=true \

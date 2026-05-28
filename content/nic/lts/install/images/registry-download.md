@@ -18,9 +18,8 @@ To follow these steps, you will need the following pre-requisites:
 
 You can also get the NGINX Ingress Controller LTS image using the following alternate methods:
 
-- [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/install/images/add-image-to-cluster.md" >}})
-- [Build NGINX Ingress Controller LTS]({{< ref "/nic/install/build.md" >}}) 
-- For NGINX Open Source, you can pull [an image from DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/)
+- [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}})
+- [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}})
 
 ### Download your subscription credential files
 
@@ -32,23 +31,17 @@ You can also get the NGINX Ingress Controller LTS image using the following alte
 
 ## Pull the image
 
-Identify which image you need using the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) topic.
+Identify which image you need using the [Technical specifications]({{< ref "/nic/lts/technical-specifications.md#images-with-nginx-plus" >}}) topic.
 
 Next, pull the image from `private-registry.nginx.com`. 
 
-Replace `<version-tag>` with the specific version you need, for example, `{{< nic-version >}}`.
+Replace `<version-tag>` with the specific version you need, for example, `2026-lts-r1`.
 
 - For NGINX Plus Ingress Controller, run:
 
   ```shell
   docker pull private-registry.nginx.com/nginx-ic/nginx-plus-ingress:<version-tag>
   ```
-
-- For NGINX Plus Ingress Controller with F5 WAF for NGINX, run:
-
-   ```shell
-   docker pull private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag>
-   ```
 
 - For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
 
@@ -88,25 +81,20 @@ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list
 {
   "name": "nginx-ic/nginx-plus-ingress",
   "tags": [
-    "{{< nic-version >}}-alpine",
-    "{{< nic-version >}}-alpine-fips",
-    "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "2026-lts-r1"
   ]
 }
 ```
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic-nap-v5/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
 
 ```json
 {
-  "name": "nginx-ic-nap/nginx-plus-ingress",
+  "name": "nginx-ic-nap-v5/nginx-plus-ingress",
   "tags": [
-    "{{< nic-version >}}-alpine-fips",
-    "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "2026-lts-r1"
   ]
 }
 ```
@@ -119,8 +107,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/
 {
   "name": "nginx-ic-dos/nginx-plus-ingress",
   "tags": [
-    "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "2026-lts-r1"
   ]
 }
 ```
@@ -135,7 +122,7 @@ After pulling the image, tag it and upload it to your private registry.
    docker login <my-docker-registry>
    ```
 
-1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `{{< nic-version >}}`:
+1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `2026-lts-r1`:
 
    - For NGINX Plus Ingress Controller, run:
 
@@ -144,14 +131,7 @@ After pulling the image, tag it and upload it to your private registry.
       docker push <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
       ```
 
-   - For NGINX Controller with F5 WAF for NGINX, run:
-
-      ```shell
-      docker tag private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
-      docker push <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
-      ```
-
-      - For NGINX Controller with F5 WAF for NGINX v5, run:
+   - For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
@@ -189,7 +169,7 @@ If you encounter issues while following this guide, here are some possible solut
 
 - **Can't pull the image**
   - **Likely Cause**: Mismatched image name or tag.
-  - **Solution**: Double-check the image name and tag matches the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) document.
+  - **Solution**: Double-check the image name and tag matches the [Technical specifications]({{< ref "/nic/lts/technical-specifications.md#images-with-nginx-plus" >}}) document.
 
 - **Failed to push to private registry**
   - **Likely Cause**: Not logged into your private registry or incorrect image tagging.

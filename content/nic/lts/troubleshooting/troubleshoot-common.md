@@ -6,7 +6,7 @@ f5-content-type: how-to
 f5-product: INGRESS
 ---
 
-This page describes how to troubleshoot common issues with NGINX Ingress Controller LTS. Instruction for specific resources is available in the [Troubleshooting]({{< ref "/nic/troubleshooting/" >}}) section.
+This page describes how to troubleshoot common issues with NGINX Ingress Controller LTS. Instruction for specific resources is available in the [Troubleshooting]({{< ref "/nic/lts/troubleshooting/" >}}) section.
 
 ## Common issues
 
@@ -62,7 +62,7 @@ However, this command will fail if any of the configuration files is not valid.
 
 ### Check the Live Activity Monitoring Dashboard
 
-The live activity monitoring dashboard shows the real-time information about NGINX Plus and the applications it is load balancing, which is helpful for troubleshooting. To access the dashboard, read the [Status Page]({{< ref "/nic/logging-and-monitoring/status-page.md" >}}) topic.
+The live activity monitoring dashboard shows the real-time information about NGINX Plus and the applications it is load balancing, which is helpful for troubleshooting. To access the dashboard, read the [Status Page]({{< ref "/nic/lts/logging-and-monitoring/status-page.md" >}}) topic.
 
 ### Enable debugging for NGINX Ingress Controller LTS
 

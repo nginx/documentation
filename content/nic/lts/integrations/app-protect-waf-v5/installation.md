@@ -14,7 +14,7 @@ This document explains how to build a F5 NGINX Ingress Controller LTS image with
 
 - To use F5 WAF for NGINX with NGINX Ingress Controller LTS, you must have NGINX Plus.
 
-{{< include "/nic/compatibility-tables/nic-nap.md" >}}
+{{< include "/nic/lts/compatibility-tables/nic-nap.md" >}}
 
 ## Prepare the environment
 
@@ -73,22 +73,17 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX v5.
     make debian-image-nap-v5-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=download
     ```
 
-   **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
+   **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/lts/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
 {{< call-out "note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
-Create Docker image for NGINX Ingress Controller LTS (Alpine with NGINX Plus, F5 WAF for NGINX v5 and FIPS)
+| Makefile Target           | Description                                                       |
+|---------------------------|-------------------------------------------------------------------|
+| **debian-image-nap-v5-plus** | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module. |
 
-| Makefile Target           | Description                                                       | Compatible Systems  |
-|---------------------------|-------------------------------------------------------------------|---------------------|
-| **alpine-image-nap-v5-plus-fips** | Builds a Alpine-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module with FIPS. | Alpine  |
-| **debian-image-nap-v5-plus** | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module. | Debian  |
-| **ubi-image-nap-v5-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module. | OpenShift |
-| **ubi-image-nap-dos-v5-plus** | Builds a UBI-based image with NGINX Plus, [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
-
-{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller LTS]({{< ref "/nic/install/build.md#makefile-details" >}}) guide. {{< /call-out>}}
+{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md#makefile-details" >}}) guide. {{< /call-out>}}
 
 If you intend to use [external references](/nginx-app-protect-waf/v5/configuration-guide/configuration/#external-references) in F5 WAF for NGINX policies, you may want to provide a custom CA certificate to authenticate with the hosting server.
 
@@ -117,7 +112,7 @@ docker push <my-docker-registry>/waf-config-mgr:<your-tag>
 docker push <my-docker-registry>/waf-enforcer:<your-tag>
 ```
 
-{{< include "/nic/installation/create-custom-resources.md" >}}
+{{< include "/nic/lts/installation/create-custom-resources.md" >}}
 
 ## Deploy NGINX Ingress Controller LTS {#deploy-ingress-controller}
 
@@ -457,21 +452,21 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 
 ### Using a Deployment
 
-{{< include "/nic/installation/manifests/deployment.md" >}}
+{{< include "/nic/lts/installation/manifests/deployment.md" >}}
 
 ### Using a DaemonSet
 
-{{< include "/nic/installation/manifests/daemonset.md" >}}
+{{< include "/nic/lts/installation/manifests/daemonset.md" >}}
 
 ### Using a StatefulSet
 
-{{< include "/nic/installation/manifests/statefulset.md" >}}
+{{< include "/nic/lts/installation/manifests/statefulset.md" >}}
 
 ### Enable F5 WAF for NGINX module
 
 To enable the F5 DoS for NGINX Module:
 
-- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
+- Add the `enable-app-protect` [command-line argument]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-app-protect" >}}) to your Deployment, DaemonSet, or StatefulSet file.
 
 {{%/tab%}}
 
@@ -479,13 +474,13 @@ To enable the F5 DoS for NGINX Module:
 
 ## Confirm NGINX Ingress Controller LTS is running
 
-{{< include "/nic/installation/manifests/verify-pods-are-running.md" >}}
+{{< include "/nic/lts/installation/manifests/verify-pods-are-running.md" >}}
 
-For more information, see the [Configuration guide]({{< ref "/nic/integrations/app-protect-waf-v5/configuration.md" >}}) and the NGINX Ingress Controller LTS with App Protect version 5 example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).
+For more information, see the [Configuration guide]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md" >}}) and the NGINX Ingress Controller LTS with App Protect version 5 example resources on GitHub [for VirtualServer resources](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).
 
 ## Alternatives to building your own image {#pre-built-images}
 
 If you prefer not to build your own NGINX Ingress Controller LTS image, you can use pre-built images. Here are your options:
 
-- Download the image using your NGINX Ingress Controller LTS subscription certificate and key. View the [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/install/images/registry-download.md" >}}) topic.
-- The [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/install/images/add-image-to-cluster.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- Download the image using your NGINX Ingress Controller LTS subscription certificate and key. View the [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download.md" >}}) topic.
+- The [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}}) topic describes how to use your subscription JWT token to get the image.

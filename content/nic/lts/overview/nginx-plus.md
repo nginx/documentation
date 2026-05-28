@@ -15,17 +15,17 @@ NGINX Ingress Controller LTS works with [NGINX](https://nginx.org/) as well as [
 
 ## Additional features
 
-- _Real-time metrics_: Metrics for NGINX Plus and application performance are available through the API or the [NGINX Status Page]({{< ref "/nic/logging-and-monitoring/status-page">}}). These metrics can also be exported to [Prometheus]({{< ref "/nic/logging-and-monitoring/prometheus">}}).
+- _Real-time metrics_: Metrics for NGINX Plus and application performance are available through the API or the [NGINX Status Page]({{< ref "/nic/lts/logging-and-monitoring/status-page">}}). These metrics can also be exported to [Prometheus]({{< ref "/nic/lts/logging-and-monitoring/prometheus">}}).
 - _Additional load balancing methods_: The `least_time` and `random two least_time` methods and their derivatives become available. The NGINX [`ngx_http_upstream_module` documentation](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) has the complete list of load balancing methods.
 - _Session persistence_: While the *sticky cookie* method is available in both NGINX and NGINX Plus, NGINX Plus provides additional session persistence methods, including *sticky route* and *sticky learn*. See the [Ingress Resource](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/session-persistence) and [Custom Resource](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/session-persistence) examples.
 - _Active health checks_:  See the [Ingress Resource](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/health-checks) and [Custom Resource](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/health-checks) examples.
 - _JWT validation_: See the [Ingress Resource](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/jwt) and [Custom Resource](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/jwt) examples.
 
-For a comprehensive guide of NGINX Plus features available with Ingress resources, see the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource">}}) and [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations">}}) documentation.
+For a comprehensive guide of NGINX Plus features available with Ingress resources, see the [ConfigMap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource">}}) and [Annotations]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-annotations">}}) documentation.
 
 {{< call-out "note" >}} NGINX Plus features are configured for Ingress resources using Annotations that start with `nginx.com`. {{< /call-out >}}
 
-For a comprehensive guide of NGINX Plus features available with custom resources, see the [Policy]({{< ref "/nic/configuration/policy-resource" >}}), [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources" >}}) and [TransportServer]({{< ref "/nic/configuration/transportserver-resource" >}}) documentation.
+For a comprehensive guide of NGINX Plus features available with custom resources, see the [Policy]({{< ref "/nic/lts/configuration/policy-resource" >}}), [VirtualServer]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources" >}}) and [TransportServer]({{< ref "/nic/lts/configuration/transportserver-resource" >}}) documentation.
 
 ---
 

@@ -41,7 +41,7 @@ It is compatible with a Kubernetes deployment: it **is not** compatible with [F5
 
 NGINX Ingress Controller LTS is designed to be resilient against attacks in various ways, such as running the service as non-root to avoid changes to files. We recommend setting filesystems on all containers to read-only, this includes `nginx-ingress-controller`, though also includes `waf-enforcer` and `waf-config-mgr` when F5 WAF for NGINXv5 is in use.  This is so that the attack surface is further reduced by limiting changes to binaries and libraries.
 
-This is not enabled by default, but can be enabled with **Helm** using the [**readOnlyRootFilesystem**]({{< ref "/nic/install/helm.md#configuration" >}}) argument in security contexts on all containers: `nginx-ingress-controller`, `waf_enforcer` and `waf_config_mgr`.
+This is not enabled by default, but can be enabled with **Helm** using the [**readOnlyRootFilesystem**]({{< ref "/nic/lts/install/helm.md#configuration" >}}) argument in security contexts on all containers: `nginx-ingress-controller`, `waf_enforcer` and `waf_config_mgr`.
 
 For **Manifests**, uncomment the following sections of the deployment and add sections for `waf-enforcer` and `waf-config-mgr` containers:
 
@@ -88,13 +88,13 @@ The block below shows the code you will look for:
 
 ### Prometheus
 
-If Prometheus metrics are [enabled]({{< ref "/nic/logging-and-monitoring/prometheus.md" >}}), we recommend [using HTTPS]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-prometheus-tls-secret" >}}).
+If Prometheus metrics are [enabled]({{< ref "/nic/lts/logging-and-monitoring/prometheus.md" >}}), we recommend [using HTTPS]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md#cmdoption-prometheus-tls-secret" >}}).
 
 ### Snippets
 
 Snippets allow raw NGINX configuration to be inserted into resources. They are intended for advanced NGINX users and could create vulnerabilities in a cluster if misused.
 
-Snippets are disabled by default. To use snippets, set the [**enable-snippets**]({{< ref"/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument.
+Snippets are disabled by default. To use snippets, set the [**enable-snippets**]({{< ref"/nic/lts/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument.
 
 {{< call-out "caution"  >}}
  Snippets are **always** enabled for ConfigMap.
@@ -102,7 +102,7 @@ Snippets are disabled by default. To use snippets, set the [**enable-snippets**]
 
 For more information, read the following:
 
-- [Advanced configuration using Snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}})
-- [Using Snippets with VirtualServer/VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#using-snippets" >}})
-- [Using Snippets with TransportServer]({{< ref "/nic/configuration/transportserver-resource.md#using-snippets" >}})
-- [ConfigMap snippets and custom templates]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}})
+- [Advanced configuration using Snippets]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}})
+- [Using Snippets with VirtualServer/VirtualServerRoute]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources.md#using-snippets" >}})
+- [Using Snippets with TransportServer]({{< ref "/nic/lts/configuration/transportserver-resource.md#using-snippets" >}})
+- [ConfigMap snippets and custom templates]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#snippets-and-custom-templates" >}})

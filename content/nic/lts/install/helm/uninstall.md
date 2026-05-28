@@ -72,7 +72,7 @@ If you run multiple NGINX Ingress Controller LTS releases in your cluster with c
 
 When uninstalling a release, ensure that you don’t remove the CRDs until there are no other NGINX Ingress Controller LTS releases running in the cluster.
 
-The [Run multiple NGINX Ingress Controller LTSs]({{< ref "/nic/install/multiple-controllers.md" >}}) topic has more details.
+The [Run multiple NGINX Ingress Controller LTSs]({{< ref "/nic/lts/install/multiple-controllers.md" >}}) topic has more details.
 
 {{< /call-out >}}
 

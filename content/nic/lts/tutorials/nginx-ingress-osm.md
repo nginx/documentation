@@ -56,8 +56,8 @@ The above command will use the mark the `nginx-ingress` namespace, where OSM wil
 
 Links to the complete install guides:
 
-[Using Helm to install NGINX Ingress]({{< ref "/nic/install/helm.md" >}})
-[Using Manifests to install NGINX Ingress]({{< ref "/nic/install/manifests.md" >}})
+[Using Helm to install NGINX Ingress]({{< ref "/nic/lts/install/helm.md" >}})
+[Using Manifests to install NGINX Ingress]({{< ref "/nic/lts/install/manifests.md" >}})
 
 When using the sidecar method, ensure that you add the correct annotations listed below. This ensures proper integration of NGINX Ingress Controller LTS with the envoy sidecar proxy.
 
@@ -227,8 +227,8 @@ osm namespace add nginx-ingress --mesh-name osm-nginx --disable-sidecar-injectio
 
 Links to the complete install guides:
 
-[Using Helm to install NGINX Ingress]({{< ref "/nic/install/helm.md" >}})
-[Using Manifests to install NGINX Ingress]({{< ref "/nic/install/manifests.md" >}})
+[Using Helm to install NGINX Ingress]({{< ref "/nic/lts/install/helm.md" >}})
+[Using Manifests to install NGINX Ingress]({{< ref "/nic/lts/install/manifests.md" >}})
 
 *NOTE*: This method does NOT require annotations added to the deployment, compared to the sidecar install method.
 

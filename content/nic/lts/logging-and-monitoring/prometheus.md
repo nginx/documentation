@@ -16,7 +16,7 @@ The metrics exposed include NGINX Ingress Controller LTS data, as well as NGINX 
 
 To enable Prometheus metrics when using *Helm* to install NGINX Ingress Controller LTS, configure the `prometheus.*` parameters of the Helm chart.
 
-See the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) topic.
+See the [Installation with Helm]({{< ref "/nic/lts/install/helm.md" >}}) topic.
 
 #### Using ServiceMonitor
 
@@ -37,7 +37,7 @@ curl https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/$
 
 If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) to install the Ingress Controller, to enable Prometheus metrics:
 
-1. Run the Ingress Controller with the `-enable-prometheus-metrics` [command-line argument]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}). As a result, the Ingress Controller will expose NGINX or NGINX Plus metrics in the Prometheus format via the path `/metrics` on port `9113` (customizable via the `-prometheus-metrics-listen-port` command-line argument).
+1. Run the Ingress Controller with the `-enable-prometheus-metrics` [command-line argument]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md" >}}). As a result, the Ingress Controller will expose NGINX or NGINX Plus metrics in the Prometheus format via the path `/metrics` on port `9113` (customizable via the `-prometheus-metrics-listen-port` command-line argument).
 1. To enable TLS for the Prometheus endpoint, configure the `-prometheus-tls-secret` cli argument with the namespace and name of a TLS Secret.
 1. Add the Prometheus port to the list of the ports of the Ingress Controller container in the template of the Ingress Controller pod:
 
@@ -70,7 +70,7 @@ The Ingress Controller exports the following metrics:
   - `controller_nginx_last_reload_status`. Status of the last NGINX reload, 0 meaning down and 1 up.
   - `controller_nginx_last_reload_milliseconds`. Duration in milliseconds of the last NGINX reload.
   - `controller_nginx_worker_processes_total`. Number of NGINX worker processes. This metric includes the constant label `generation` with two possible values `old` (the shutting down processes of the old generations) or `current` (the processes of the current generation).
-  - `controller_ingress_resources_total`. Number of handled Ingress resources. This metric includes the label type, that groups the Ingress resources by their type (regular, [minion or master]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}). **Note**: The metric doesn't count minions without a master.
+  - `controller_ingress_resources_total`. Number of handled Ingress resources. This metric includes the label type, that groups the Ingress resources by their type (regular, [minion or master]({{< ref "/nic/lts/configuration/ingress-resources/cross-namespace-configuration.md" >}}). **Note**: The metric doesn't count minions without a master.
   - `controller_virtualserver_resources_total`. Number of handled VirtualServer resources.
   - `controller_virtualserverroute_resources_total`. Number of handled VirtualServerRoute resources. **Note**: The metric counts only VirtualServerRoutes that have a reference from a VirtualServer.
   - `location_zone` (upstream services) metrics:

@@ -10,7 +10,7 @@ When using F5 NGINX Ingress Controller LTS, you can customize or fine tune NGINX
 
 ## Using ConfigMap
 
-1. The [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) documentation deploy an empty ConfigMap while the default installation manifests specify it in the command-line arguments of the Ingress Controller. However, if you customized the manifests, to use ConfigMap, make sure to specify the ConfigMap resource to use the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}) of NGINX Ingress Controller LTS.
+1. The [Installation with Manifests]({{< ref "/nic/lts/install/manifests.md" >}}) documentation deploy an empty ConfigMap while the default installation manifests specify it in the command-line arguments of the Ingress Controller. However, if you customized the manifests, to use ConfigMap, make sure to specify the ConfigMap resource to use the [command-line arguments]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments" >}}) of NGINX Ingress Controller LTS.
 
 1. Create a ConfigMap file with the name *nginx-config.yaml* and set the values
 that make sense for your setup:
@@ -43,13 +43,13 @@ that make sense for your setup:
 
 ConfigMap applies globally, meaning that it affects every Ingress resource. In contrast, annotations always apply to their Ingress resource. Annotations can override some ConfigMap keys: an example is that the `nginx.org/proxy-connect-timeout` annotations overrides the `proxy-connect-timeout` ConfigMap key.
 
-For more information, view the [Advanced configuration with annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations" >}}) topic.
+For more information, view the [Advanced configuration with annotations]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-annotations" >}}) topic.
 
 ## ConfigMap and VirtualServer/VirtualServerRoute resources
 
 The ConfigMap affects every VirtualServer and VirtualServerRoute resources. However, the fields of those resources allow overriding some ConfigMap keys. For example, the `connect-timeout` field of the `upstream` overrides the `proxy-connect-timeout` ConfigMap key.
 
-For more information, view the [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources" >}}) topic.
+For more information, view the [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources" >}}) topic.
 
 ## ConfigMap keys
 
@@ -57,7 +57,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 |ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| --- |
-|*external-status-address* | Sets the address to be reported in the status of Ingress resources. Requires the *-report-status* command-line argument. Overrides the *-external-service* argument. | N/A | [Reporting resource status]({{< ref "/nic/configuration/global-configuration/reporting-resources-status" >}}) |
+|*external-status-address* | Sets the address to be reported in the status of Ingress resources. Requires the *-report-status* command-line argument. Overrides the *-external-service* argument. | N/A | [Reporting resource status]({{< ref "/nic/lts/configuration/global-configuration/reporting-resources-status" >}}) |
 
 ### General customization
 
@@ -154,7 +154,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 Zone Sync enables the [ngx_stream_zone_sync_module](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) in NGINX Ingress Controller LTS when NGINX Plus is used.  Multiple replicas are required to effectively utililise this functionality. More information is available in the [How NGINX Plus Performs Zone Synchronization]({{< ref "/nginx/admin-guide/high-availability/zone_sync_details.md" >}}) topic.
 
-Zone synchronization with TLS for NGINX Ingress Controller LTS is not yet available with ConfigMap. If you would like to enable Zone Sync with TLS, please remove `zone-sync` from ConfigMap and add Zone Sync parameters via [`stream-snippets`]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) similar to [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-config.yaml) and adding the [zone_sync_ssl directive](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_ssl) along with any other TLS parameters to the `stream-snippets`.
+Zone synchronization with TLS for NGINX Ingress Controller LTS is not yet available with ConfigMap. If you would like to enable Zone Sync with TLS, please remove `zone-sync` from ConfigMap and add Zone Sync parameters via [`stream-snippets`]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) similar to [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-config.yaml) and adding the [zone_sync_ssl directive](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync_ssl) along with any other TLS parameters to the `stream-snippets`.
 
 You will also need to manually add the headless service, such as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml).
 
@@ -193,10 +193,10 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 |*location-snippets* | Sets a custom snippet in location context. | N/A |  |
 |*server-snippets* | Sets a custom snippet in server context. | N/A |  |
 |*stream-snippets* | Sets a custom snippet in stream context. | N/A | [Support for TCP/UDP Load Balancing](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/tcp-udp). |
-|*main-template* | Sets the main NGINX configuration template. | By default the template is read from the file in the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
-|*ingress-template* | Sets the NGINX configuration template for an Ingress resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
-|*virtualserver-template* | Sets the NGINX configuration template for an VirtualServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}). |
-|*transportserver-template* | Sets the NGINX configuration template for a TransportServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}) |
+|*main-template* | Sets the main NGINX configuration template. | By default the template is read from the file in the container. | [Custom Templates]({{< ref "/nic/lts/configuration/global-configuration/custom-templates.md" >}}). |
+|*ingress-template* | Sets the NGINX configuration template for an Ingress resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/lts/configuration/global-configuration/custom-templates.md" >}}). |
+|*virtualserver-template* | Sets the NGINX configuration template for an VirtualServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/lts/configuration/global-configuration/custom-templates.md" >}}). |
+|*transportserver-template* | Sets the NGINX configuration template for a TransportServer resource. | By default the template is read from the file on the container. | [Custom Templates]({{< ref "/nic/lts/configuration/global-configuration/custom-templates.md" >}}) |
 
 ### Modules
 
@@ -209,7 +209,7 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 |*otel-exporter-header-value* | The value of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-name` required. | N/A | *"custom-value"* |
 |*otel-service-name* | Sets the `service.name` attribute of the OTel resource. `otel-exporter-endpoint` required. | N/A | *"nginx-ingress-controller:nginx"* |
 | *otel-trace-in-http* | Enables [OpenTelemetry](https://opentelemetry.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Set this to *"false"* to enable OpenTelemetry for individual routes with snippets. `otel-exporter-endpoint` required. | *"false"* | *"true"* |
-|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. See the [docs]({{< ref "/nic/logging-and-monitoring/opentracing.md" >}}) for more information. | *False* |  |
+|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. See the [docs]({{< ref "/nic/lts/logging-and-monitoring/opentracing.md" >}}) for more information. | *False* |  |
 |*opentracing-tracer* | Removed in v5.0.0.  Sets the path to the vendor tracer binary plugin. | N/A |  |
 |*opentracing-tracer-config* | Removed in v5.0.0.  Sets the tracer configuration in JSON format. | N/A |  |
 |*app-protect-compressed-requests-action* | Sets the *app_protect_compressed_requests_action* [global directive](/nginx-app-protect/configuration/#global-directives). | *drop* |  |

@@ -24,9 +24,9 @@ The `--enable-directive-autoadjust` feature automatically fixes common proxy buf
 - Empty or invalid buffer settings get corrected automatically
 
 **Works with:**
-- [ConfigMap settings]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#general-customization" >}})
-- [Ingress annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations/#general-customization" >}})
-- [VirtualServer upstream buffer configurations]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources/#upstream" >}})
+- [ConfigMap settings]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#general-customization" >}})
+- [Ingress annotations]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-annotations/#general-customization" >}})
+- [VirtualServer upstream buffer configurations]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources/#upstream" >}})
 ---
 
 ## How to enable auto-adjustment

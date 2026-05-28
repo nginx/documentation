@@ -12,13 +12,12 @@ This document describes how to add an F5 NGINX Plus Ingress Controller image fro
 
 To follow these steps, you will need the following pre-requisite:
 
-- [Create a license Secret]({{< ref "/nic/install/license-secret.md" >}})
+- [Create a license Secret]({{< ref "/nic/lts/install/license-secret.md" >}})
 
 You can also get the NGINX Ingress Controller LTS image using the following alternate methods:
 
-- [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/install/images/registry-download.md" >}})
-- [Build NGINX Ingress Controller LTS]({{< ref "/nic/install/build.md" >}}) 
-- For NGINX Open Source, you can pull the [nginx/nginx-ingress image](https://hub.docker.com/r/nginx/nginx-ingress/) from DockerHub
+- [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download.md" >}})
+- [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}})
 
 ## Helm deployments
 
@@ -29,7 +28,7 @@ If you are using Helm for deployment, there are two main methods: using a _chart
 The following command installs NGINX Ingress Controller LTS with a Helm chart, passing required arguments using the `set` parameter.
 
 ```shell
-helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag={{< nic-version >}} --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
+helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag=2026-lts-r1 --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
 ```
 
 You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
@@ -42,25 +41,20 @@ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list
 {
 "name": "nginx-ic/nginx-plus-ingress",
 "tags": [
-    "{{< nic-version >}}-alpine",
-    "{{< nic-version >}}-alpine-fips",
-    "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "2026-lts-r1"
 ]
 }
 ```
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic-nap-v5/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
 
 ```json
 {
-"name": "nginx-ic-nap/nginx-plus-ingress",
+"name": "nginx-ic-nap-v5/nginx-plus-ingress",
 "tags": [
-    "{{< nic-version >}}-alpine-fips",
-    "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "2026-lts-r1"
 ]
 }
 ```
@@ -73,8 +67,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/
 {
 "name": "nginx-ic-dos/nginx-plus-ingress",
 "tags": [
-    "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "2026-lts-r1"
 ]
 }
 ```
@@ -83,7 +76,7 @@ The `jq` command was used in these examples to make the JSON output easier to re
 
 ### Add the image from source
 
-The [Installation with Helm]({{< ref "/nic/install/helm.md#install-the-helm-chart-from-source" >}}) documentation has a section describing how to use sources: these are the unique steps for Docker secrets using JWT tokens.
+The [Installation with Helm]({{< ref "/nic/lts/install/helm/#install-the-helm-chart-from-source" >}}) documentation has a section describing how to use sources: these are the unique steps for Docker secrets using JWT tokens.
 
 1. Clone the NGINX [`kubernetes-ingress` repository](https://github.com/nginx/kubernetes-ingress).
 1. Navigate to the `charts/nginx-ingress` folder of your local clone.
@@ -108,7 +101,7 @@ image:
 repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
 
 ## The version tag
-tag: {{< nic-version >}}
+tag: 2026-lts-r1
 
 serviceAccount:
     ## The annotations of the service account of the Ingress Controller pods.
@@ -136,7 +129,7 @@ If the namespace does not exist, `--create-namespace` will create it. Using `-f 
 
 ## Manifest deployment
 
-The page ["Installation with Manifests"]({{< ref "/nic/install/manifests.md" >}}) explains how to install NGINX Ingress Controller LTS using manifests. The following snippet is an example of a deployment:
+The page ["Installation with Manifests"]({{< ref "/nic/lts/install/manifests.md" >}}) explains how to install NGINX Ingress Controller LTS using manifests. The following snippet is an example of a deployment:
 
 ```yaml
 spec:
@@ -148,7 +141,7 @@ spec:
     seccompProfile:
       type: RuntimeDefault
   containers:
-  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:{{< nic-version >}}
+  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:2026-lts-r1
     imagePullPolicy: IfNotPresent
     name: nginx-plus-ingress
 ```

@@ -8,7 +8,7 @@ f5-product: INGRESS
 
 This document describes how to troubleshoot problems when using NGINX Ingress Controller LTS and the App Protect DoS module.
 
-To troubleshoot other parts of NGINX Ingress Controller LTS, check the [troubleshooting]({{< ref "/nic/troubleshooting/troubleshoot-common.md" >}}) section of the documentation.
+To troubleshoot other parts of NGINX Ingress Controller LTS, check the [troubleshooting]({{< ref "/nic/lts/troubleshooting/troubleshoot-common.md" >}}) section of the documentation.
 
 ## Potential problems
 
@@ -27,7 +27,7 @@ The table below outlines potential problems with NGINX Ingress Controller LTS wh
 
 ### Checking NGINX Ingress Controller LTS and App Protect DoS logs
 
-App Protect DoS logs are part of the NGINX Ingress Controller LTS logs when the module is enabled. To check the Ingress Controller logs, follow the steps of [Checking the Ingress Controller Logs]({{< ref "/nic/troubleshooting/troubleshoot-common#checking-nginx-ingress-controller-logs" >}}s) of the Troubleshooting guide.
+App Protect DoS logs are part of the NGINX Ingress Controller LTS logs when the module is enabled. To check the Ingress Controller logs, follow the steps of [Checking the Ingress Controller Logs]({{< ref "/nic/lts/troubleshooting/troubleshoot-common#checking-nginx-ingress-controller-logs" >}}s) of the Troubleshooting guide.
 
 For App Protect DoS specific logs, look for messages starting with `APP_PROTECT_DOS`, such as:
 
@@ -37,11 +37,11 @@ For App Protect DoS specific logs, look for messages starting with `APP_PROTECT_
 
 ### Checking Ingress Resource Events
 
-Follow the steps of [Troubleshooting Ingress Resources]({{< ref "/nic/troubleshooting/troubleshoot-ingress" >}}).
+Follow the steps of [Troubleshooting Ingress Resources]({{< ref "/nic/lts/troubleshooting/troubleshoot-ingress" >}}).
 
 ### Checking VirtualServer Resource Events
 
-Follow the steps of [Troubleshooting VirtualServer Resources]({{< ref "/nic/troubleshooting/troubleshoot-virtualserver" >}}).
+Follow the steps of [Troubleshooting VirtualServer Resources]({{< ref "/nic/lts/troubleshooting/troubleshoot-virtualserver" >}}).
 
 ### Checking for DoSProtectedResource Events
 
@@ -108,6 +108,6 @@ The events section has a *Normal* event with the *AddedOrUpdated reason*, indica
 ## Run App Protect DoS in Debug log Mode
 
 When you configure NGINX Ingress Controller LTS to use debug log mode, the setting also applies to the App Protect DoS module. See [Enable debugging for NGINX Ingress Controller LTS
-]({{< ref "/nic/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
+]({{< ref "/nic/lts/troubleshooting/troubleshoot-common.md#enable-debugging-for-nginx-ingress-controller" >}}) for instructions.
 
-You can enable debug log mode to App Protect DoS module only by setting the `app-protect-dos-debug` [configmap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}).
+You can enable debug log mode to App Protect DoS module only by setting the `app-protect-dos-debug` [configmap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#modules" >}}).

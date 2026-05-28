@@ -12,7 +12,7 @@ F5 IngressLink is an integration between NGINX Ingress Controller LTS and [F5 BI
 
 ## Install NGINX Ingress Controller LTS with the integration enabled
 
-The steps to enable the integration depend on the option chosen to install NGINX Ingress Controller LTS: Using [Manifests]({{< ref "/nic/install/manifests" >}}) or using the [Helm chart]({{< ref "/nic/install/helm" >}}).
+The steps to enable the integration depend on the option chosen to install NGINX Ingress Controller LTS: Using [Manifests]({{< ref "/nic/lts/install/manifests" >}}) or using the [Helm chart]({{< ref "/nic/lts/install/helm" >}}).
 
 ### Installation using manifests
 
@@ -42,7 +42,7 @@ The steps to enable the integration depend on the option chosen to install NGINX
 
     Note the label `app: ingresslink`. We will use it in the [Configure CIS](#configure-cis) step.
 
-1. In the [ConfigMap resource]({{< ref "/nic/configuration/global-configuration/configmap-resource" >}}) enable the proxy protocol, which the BIG-IP system will use to pass the client IP and port information to NGINX. For the  `set-real-ip-from` key, use the subnet of the IP which the BIG-IP system uses to send traffic to NGINX:
+1. In the [ConfigMap resource]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource" >}}) enable the proxy protocol, which the BIG-IP system will use to pass the client IP and port information to NGINX. For the  `set-real-ip-from` key, use the subnet of the IP which the BIG-IP system uses to send traffic to NGINX:
 
     ```yaml
     proxy-protocol: "True"
@@ -50,7 +50,7 @@ The steps to enable the integration depend on the option chosen to install NGINX
     set-real-ip-from: "0.0.0.0/0"
     ```
 
-1. Deploy NGINX Ingress Controller LTS with additional [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments" >}}):
+1. Deploy NGINX Ingress Controller LTS with additional [command-line arguments]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments" >}}):
 
     ```yaml
     args:
@@ -59,7 +59,7 @@ The steps to enable the integration depend on the option chosen to install NGINX
     . . .
     ```
 
-    where `ingresslink` references the name of the IngressLink resource from step 1, and `report-ingress-status` enables [reporting ingress statuses]({{< ref "/nic/configuration/global-configuration/reporting-resources-status#ingress-resources" >}}).
+    where `ingresslink` references the name of the IngressLink resource from step 1, and `report-ingress-status` enables [reporting ingress statuses]({{< ref "/nic/lts/configuration/global-configuration/reporting-resources-status#ingress-resources" >}}).
 
 ### Installation using Helm
 

@@ -12,11 +12,11 @@ This topic describes how to enable [OpenTelemetry](https://opentelemetry.io/) fo
 
 To complete this guide, you need the following pre-requisites:
 
-- An [NGINX Ingress Controller LTS installation]({{< ref "/nic/install/" >}}) with OpenTelemetry (v5.1.0+)
+- An [NGINX Ingress Controller LTS installation]({{< ref "/nic/lts/install/" >}}) with OpenTelemetry (v5.1.0+)
 
 ## Load the OpenTelemetry module
 
-To enable OpenTelemetry, you must first load the module by adding the [_otel-exporter-endpoint_ ConfigMap key]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}), which takes an endpoint argument.
+To enable OpenTelemetry, you must first load the module by adding the [_otel-exporter-endpoint_ ConfigMap key]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#modules" >}}), which takes an endpoint argument.
 
 The following is an example of a OpenTelemetry collector running in your cluster as the target for exporting data:
 
@@ -46,7 +46,7 @@ otel-trace-in-http: "true"
 
 You can configure OpenTelemetry on a per resource basis in NGINX Ingress Controller LTS.
 
-For this functionality, you must [enable snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) with the `-enable-snippets` command-line argument.
+For this functionality, you must [enable snippets]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-snippets.md" >}}) with the `-enable-snippets` command-line argument.
 
 Based on the state of global configuration, you can selectively enable or disable metrics for each resource.
 
@@ -59,7 +59,7 @@ nginx.org/server-snippets: |
     otel_trace on;
 ```
 
-You can enable it for specific paths using [Mergeable Ingress resources]({{<  ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
+You can enable it for specific paths using [Mergeable Ingress resources]({{<  ref "/nic/lts/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
 
 Use the server snippet annotation for the paths of a specific Minion Ingress resource:
 
@@ -77,7 +77,7 @@ nginx.org/server-snippets: |
     otel_trace off;
 ```
 
-You can disable it for specific paths using [Mergeable Ingress resources]({{<  ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
+You can disable it for specific paths using [Mergeable Ingress resources]({{<  ref "/nic/lts/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
 
 Use the server snippet annotation for the paths of a specific Minion Ingress resource:
 

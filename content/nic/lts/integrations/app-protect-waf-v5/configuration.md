@@ -14,11 +14,11 @@ This document explains how to use F5 NGINX Ingress Controller LTS to configure [
 
 ## Global configuration
 
-NGINX Ingress Controller LTS has global configuration parameters that match those in F5 WAF for NGINX. They are found in the [ConfigMap resource]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}): the F5 WAF for NGINX parameters are prefixed with `app-protect*`.
+NGINX Ingress Controller LTS has global configuration parameters that match those in F5 WAF for NGINX. They are found in the [ConfigMap resource]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#modules" >}}): the F5 WAF for NGINX parameters are prefixed with `app-protect*`.
 
 ## Enable F5 WAF for NGINX v5
 
-F5 WAF for NGINX v5 can be enabled and configured for custom resources only(VirtualServer, VirtualServerRoute). You need to create a Policy Custom Resource referencing a policy bundle, then add it to the VirtualServer/VirtualServerRoute definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
+F5 WAF for NGINX v5 can be enabled and configured for custom resources only(VirtualServer, VirtualServerRoute). You need to create a Policy Custom Resource referencing a policy bundle, then add it to the VirtualServer/VirtualServerRoute definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/lts/configuration/policy-resource.md#waf" >}}).
 
 ---
 
@@ -70,7 +70,7 @@ This example shows how to deploy NGINX Ingress Controller LTS with NGINX Plus an
 
 ### Prerequisites
 
-1. Follow the installation [instructions]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}) to deploy NGINX Ingress Controller LTS with NGINX Plus and F5 WAF for NGINX version 5.
+1. Follow the installation [instructions]({{< ref "/nic/lts/integrations/app-protect-waf-v5/installation.md" >}}) to deploy NGINX Ingress Controller LTS with NGINX Plus and F5 WAF for NGINX version 5.
 
 2. Save the public IP address of NGINX Ingress Controller LTS into a shell variable:
 

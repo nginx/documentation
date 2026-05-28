@@ -15,7 +15,7 @@ Check out the complete [NGINX Ingress Controller LTS with App Protect DoS exampl
 ## App Protect DoS Configuration
 
 A `DosProtectedResource` is a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that holds the configuration of a collection of protected resources.
-An [Ingress]({{< ref "/nic/configuration/ingress-resources/basic-configuration" >}}), [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) can be protected by specifying a reference to the DosProtectedResource.
+An [Ingress]({{< ref "/nic/lts/configuration/ingress-resources/basic-configuration" >}}), [VirtualServer and VirtualServerRoute]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) can be protected by specifying a reference to the DosProtectedResource.
 
 1. Create an `DosProtectedResource` Custom resource manifest. As an example:
 
@@ -160,4 +160,4 @@ Then add a reference in the `DosProtectedResource` to the `APDosLogConf`:
 
 ## Global Configuration
 
-NGINX Ingress Controller LTS has a set of global configuration parameters that align with those available in the F5 DoS for NGINX module. See [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#modules" >}}) for the complete list. The App Protect parameters use the `app-protect-dos*` prefix.
+NGINX Ingress Controller LTS has a set of global configuration parameters that align with those available in the F5 DoS for NGINX module. See [ConfigMap keys]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#modules" >}}) for the complete list. The App Protect parameters use the `app-protect-dos*` prefix.

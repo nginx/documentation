@@ -10,7 +10,7 @@ This document explains how to create and use a license secret for F5 NGINX Ingre
 
 # Overview
 
-NGINX Plus Ingress Controller requires a valid JSON Web Token (JWT) to download the container image from the F5 registry. From version 4.0.0, this JWT token is also required to run NGINX Plus.
+NGINX Plus Ingress Controller requires a valid JSON Web Token (JWT) to download the container image from the F5 registry. This JWT token is also required to run NGINX Plus.
 
 This requirement is part of F5’s broader licensing program and aligns with industry best practices. The JWT will streamline subscription renewals and usage reporting, helping you manage your NGINX Plus subscription more efficiently. The [telemetry](#telemetry) data we collect helps us improve our products and services to better meet your needs.
 
@@ -74,7 +74,7 @@ If using a name other than the default `license-token`, provide the name of this
 
 Specify the Secret name using the `controller.mgmt.licenseTokenSecretName` Helm value.
 
-For detailed guidance on creating the Management block with Helm, refer to the [Helm installation topics]({{< ref "/nic/install/helm/" >}}).
+For detailed guidance on creating the Management block with Helm, refer to the [Helm installation topics]({{< ref "/nic/lts/install/helm/" >}}).
 
 {{% /tab %}}
 
@@ -82,13 +82,13 @@ For detailed guidance on creating the Management block with Helm, refer to the [
 
 Specify the Secret name in the `license-token-secret-name` Management ConfigMap key.
 
-For detailed guidance on creating the Management ConfigMap, refer to the [Management ConfigMap Resource Documentation]({{< ref "/nic/configuration/global-configuration/mgmt-configmap-resource/" >}}).
+For detailed guidance on creating the Management ConfigMap, refer to the [Management ConfigMap Resource Documentation]({{< ref "/nic/lts/configuration/global-configuration/mgmt-configmap-resource/" >}}).
 
 {{% /tab %}}
 
 {{</tabs>}}
 
-If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Ingress Controller LTS]({{< ref "/nic/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager
+If you are reporting to the default licensing endpoint, then you can now proceed with [installing NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/" >}}). Otherwise, follow the steps below to configure reporting to NGINX Instance Manager
 
 ### Create report for NGINX Instance Manager {#nim}
 
@@ -153,7 +153,7 @@ Specify the SSL trusted certificate Secret name in the `ssl-trusted-certificate-
 
 {{</tabs>}}
 
-Once these Secrets are created and configured, you can now [install NGINX Ingress Controller LTS ]({{< ref "/nic/install/" >}}).
+Once these Secrets are created and configured, you can now [install NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/" >}}).
 
 ## What’s reported and how it’s protected {#telemetry}
 

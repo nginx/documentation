@@ -56,24 +56,6 @@ After setting up your environment, follow these steps to build the NGINX Ingress
 
 {{< call-out "note" >}} If you have a local Golang environment and want to build the binary yourself, remove `TARGET=download` from the make commands. If you don't have Golang but still want to build the binary, use `TARGET=container`. {{< /call-out >}}
 
-### For NGINX
-
-Build the image. Replace `<my-docker-registry>` with your private registry's path.
-
-- For a Debian-based image:
-
-    ```shell
-    make debian-image PREFIX=<my-docker-registry>/nginx-ingress TARGET=download
-    ```
-
-- For an Alpine-based image:
-
-    ```shell
-    make alpine-image PREFIX=<my-docker-registry>/nginx-ingress TARGET=download
-    ```
-
-**What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_](#makefile-details). This version number is used for tracking and deployment purposes.
-
 ### For NGINX Plus
 
 Place your NGINX Plus license files (_nginx-repo.crt_ and _nginx-repo.key_) in the project's root folder. To verify they're in place, run:
@@ -100,15 +82,7 @@ make debian-image-plus PREFIX=<my-docker-registry>/nginx-plus-ingress TARGET=dow
 
 ## Push the image to your private registry {#push-image}
 
-Once you've successfully built the NGINX or NGINX Plus Ingress Controller image, the next step is to upload it to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
-
-### For NGINX
-
-Upload the NGINX image. If you're using a custom tag, append `TAG=your-tag` to the command. Replace `<my-docker-registry>` with your private registry's path.
-
-```shell
-make push PREFIX=<my-docker-registry>/nginx-ingress
-```
+Once you've successfully built the NGINX Plus Ingress Controller image, the next step is to upload it to your private Docker registry. This makes the image available for deployment to your Kubernetes cluster.
 
 ### For NGINX Plus
 
@@ -120,7 +94,7 @@ make push PREFIX=<my-docker-registry>/nginx-plus-ingress
 
 ## Makefile details {#makefile-details}
 
-This section provides comprehensive information on the targets and variables available in the _Makefile_. These targets and variables allow you to customize how you build, tag, and push your NGINX or NGINX Plus images.
+This section provides comprehensive information on the targets and variables available in the _Makefile_. These targets and variables allow you to customize how you build, tag, and push your NGINX Plus images.
 
 ### Key Makefile targets {#key-makefile-targets}
 
@@ -131,31 +105,10 @@ Key targets include:
 | Target | Description                                                                                                                                                                                                  |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _build_                       | Creates the NGINX Ingress Controller LTS binary with your local Go environment.                                                                                                                                  |
-| _alpine-image_                | Builds an Alpine-based image with NGINX.                                                                                                                                                                     |
-| _alpine-image-plus_           | Builds an Alpine-based image with NGINX Plus.                                                                                                                                                                |
-| _alpine-image-plus-fips_      | Builds an Alpine-based image with NGINX Plus and FIPS.                                                                                                                                                       |
-| _alpine-image-nap-v5-plus-fips_      | Builds an Alpine-based image with NGINX Plus, the [F5 WAF for NGINX v5](/nginx-app-protect/) module and FIPS.                                                                                                                                                       |
-| _debian-image_                | Builds a Debian-based image with NGINX.                                                                                                                                                                      |
 | _debian-image-plus_           | Builds a Debian-based image with NGINX Plus.                                                                                                                                                                 |
-| _debian-image-nap-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect/) module.                                                                                                     |
 | _debian-image-nap-v5-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect/) module.                                                                                                     |
 | _debian-image-dos-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module.                                                                                                 |
 | _debian-image-nap-dos-plus_   | Builds a Debian-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect/) and [F5 DoS for NGINX](/nginx-app-protect-dos/) modules.                                                      |
-| _ubi-image_                   | Builds a UBI-based image with NGINX for [OpenShift](https://www.openshift.com/) clusters.                                                                                                                    |
-| _ubi-image-plus_              | Builds a UBI-based image with NGINX Plus for [OpenShift](https://www.openshift.com/) clusters.                                                                                                               |
-| _ubi-image-nap-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX](/nginx-app-protect/) module for [OpenShift](https://www.openshift.com/) clusters.                                                   |
-| _ubi-image-nap-v5-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect/) module for [OpenShift](https://www.openshift.com/) clusters.                                                   |
-| _ubi-image-dos-plus_          | Builds a UBI-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.                                               |
-| _ubi-image-nap-dos-plus_      | <p>Builds a UBI-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect/) and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module for [OpenShift](https://www.openshift.com/) clusters.|
-
-{{< call-out "important" >}}
-
-For RHEL, save your organization and activation keys in a file named _rhel_license_ at the project root. Ensure they are on separate lines, such as:
-
-- RHEL_ORGANIZATION=1111111 
-- RHEL_ACTIVATION_KEY=your-key
-
-{{< /call-out >}}
 
 ### Additional useful targets {#other-makefile-targets}
 
@@ -183,9 +136,7 @@ The _Makefile_ includes several key variables. You have the option to either mod
 
 If you prefer not to build your own NGINX Ingress Controller LTS image, you can use pre-built images. Here are your options:
 
-**NGINX Ingress Controller LTS**: Download the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress) or [GitHub](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress).
+**NGINX Plus Ingress Controller LTS**: You have two options for this:
 
-**NGINX Plus Ingress Controller**: You have two options for this:
-
-- Download the image using your NGINX Ingress Controller LTS subscription certificate and key. View the [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/install/images/registry-download.md" >}}) topic.
-- Use your NGINX Ingress Controller LTS subscription JWT token to get the image. View the [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/install/images/add-image-to-cluster.md" >}}) topic.
+- Download the image using your NGINX Ingress Controller LTS subscription certificate and key. View the [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download.md" >}}) topic.
+- Use your NGINX Ingress Controller LTS subscription JWT token to get the image. View the [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}}) topic.

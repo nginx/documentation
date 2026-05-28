@@ -10,19 +10,18 @@ This guide explains how to use Manifests to install F5 NGINX Ingress Controller 
 
 ## Before you begin
 
-If you are using NGINX Plus, get the NGINX Ingress Controller LTS JWT and [create a license secret]({{< ref "/nic/install/license-secret.md" >}}).
+If you are using NGINX Plus, get the NGINX Ingress Controller LTS JWT and [create a license secret]({{< ref "/nic/lts/install/license-secret.md" >}}).
 
 ### Get the NGINX Controller Image
 
-{{< call-out "note" >}} We recommend the most recent stable version of NGINX Ingress Controller LTS, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
+{{< call-out "note" >}} We recommend installing the latest LTS patch release of NGINX Ingress Controller LTS, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
 
 Choose one of the following methods to get the NGINX Ingress Controller LTS image:
 
-- **NGINX Ingress Controller LTS**: Download the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
 - **NGINX Plus Ingress Controller**: You have two options for this, both requiring an NGINX Ingress Controller LTS subscription.
-- - [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/install/images/registry-download.md" >}}) topic.
-- - [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/install/images/add-image-to-cluster.md" >}})
-- **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller LTS]({{< ref "/nic/install/build.md" >}}) topic.
+- - [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download.md" >}}) topic.
+- - [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}})
+- **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}}) topic.
 
 ### Clone the repository
 
@@ -130,7 +129,7 @@ You have three options for deploying NGINX Ingress Controller LTS:
 - **DaemonSet**. Choose this method if you want NGINX Ingress Controller LTS to run on all nodes or a subset of nodes.
 - **StatefulSet**. Choose this method when you need stable, persistent storage and ordered deployment/scaling for your NGINX Ingress Controller LTS pods.
 
-Before you start, update the [command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller LTS container in the relevant manifest file to meet your specific requirements.
+Before you start, update the [command-line arguments]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md" >}}) for the NGINX Ingress Controller LTS container in the relevant manifest file to meet your specific requirements.
 
 ### Using a Deployment
 
@@ -224,7 +223,7 @@ For more information about the _LoadBalancer_ service, refer to the [Kubernetes 
         nslookup <dns-name>
         ```
 
-    You can also find more details about the public IP in the status section of an ingress resource. For more details, refer to the [Reporting Resources Status doc]({{< ref "/nic/configuration/global-configuration/reporting-resources-status.md" >}}).
+    You can also find more details about the public IP in the status section of an ingress resource. For more details, refer to the [Reporting Resources Status doc]({{< ref "/nic/lts/configuration/global-configuration/reporting-resources-status.md" >}}).
 
 ### Using a DaemonSet
 

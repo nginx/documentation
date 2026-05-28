@@ -28,7 +28,7 @@ You can do this through the use of NGINX Ingress Controller LTS's custom resourc
 
 ### During Installation
 
-When installing NGINX Ingress Controller LTS with Manifests, you can [create a custom resource]({{< ref "/nic/install/manifests.md#create-optional-custom-resources" >}}) for Linkerd.
+When installing NGINX Ingress Controller LTS with Manifests, you can [create a custom resource]({{< ref "/nic/lts/install/manifests.md#create-optional-custom-resources" >}}) for Linkerd.
 
 ```yaml
 apiVersion: apps/v1

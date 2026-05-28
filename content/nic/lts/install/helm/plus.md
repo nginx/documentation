@@ -16,7 +16,7 @@ By following these instructions, you will finish with a functional NGINX Ingress
 ## Before you begin
 
 - An active NGINX Plus subscription (Purchased or trial)
-- A [supported Kubernetes version]({{< ref "/nic/technical-specifications.md#supported-kubernetes-versions" >}})
+- A [supported Kubernetes version]({{< ref "/nic/lts/technical-specifications.md#supported-kubernetes-versions" >}})
 - A functional Kubernetes cluster
 - [Helm 3.19+.](https://helm.sh/docs/intro/install)
 
@@ -55,27 +55,7 @@ Use Helm to install NGINX Ingress Controller LTS with NGINX Plus:
 helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
   --version {{< nic-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
-  --set controller.image.tag={{< nic-version >}} \
-  --set controller.nginxplus=true \
-  --set controller.serviceAccount.imagePullSecretName=regcred \
-  --set controller.mgmt.licenseTokenSecretName=nplus-license
-```
-
-{{< call-out "warning" >}}
-
-The `edge` version **is not intended for production use**. It is intended for testing and development purposes only.
-
-{{< /call-out >}}
-
-If you'd like to test the latest changes in NGINX Ingress Controller LTS before a new release, you can install the `edge` version, which is built from the `main` branch of the [NGINX Ingress Controller LTS repository](https://github.com/nginx/kubernetes-ingress).
-
-You can install the `edge` version by specifying the `--version` flag with the value `0.0.0-edge`:
-
-```shell
-helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
-  --version 0.0.0-edge \
-  --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
-  --set controller.image.tag={{< nic-version >}} \
+  --set controller.image.tag=2026-lts-r1 \
   --set controller.nginxplus=true \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
@@ -138,7 +118,7 @@ To install NGINX Ingress Controller LTS using the F5 registry, run this command 
 helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
   --version {{< nic-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress \
-  --set controller.image.tag={{< nic-version >}} \
+  --set controller.image.tag=2026-lts-r1 \
   --set controller.nginxplus=true \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
@@ -157,7 +137,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller LTS {{< nic-version >}} has been installed.
+NGINX Ingress Controller LTS 2026-lts-r1 has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
@@ -206,7 +186,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller LTS {{< nic-version >}} has been installed.
+NGINX Ingress Controller LTS 2026-lts-r1 has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
@@ -246,7 +226,7 @@ The following chart parameters should be set to `false`:
 
 ## Next steps
 
-- [NGINX Ingress Controller LTS Helm chart parameters]({{< ref "/nic/install/helm/parameters.md" >}})
-- [Security recommendations]({{< ref "/nic/configuration/security.md" >}})
-- [Basic configuration]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}})
-- [Extensibility with NGINX Plus]({{< ref "/nic/overview/nginx-plus.md" >}})
+- [NGINX Ingress Controller LTS Helm chart parameters]({{< ref "/nic/lts/install/helm/parameters.md" >}})
+- [Security recommendations]({{< ref "/nic/lts/configuration/security.md" >}})
+- [Basic configuration]({{< ref "/nic/lts/configuration/ingress-resources/basic-configuration.md" >}})
+- [Extensibility with NGINX Plus]({{< ref "/nic/lts/overview/nginx-plus.md" >}})

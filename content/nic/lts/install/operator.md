@@ -10,16 +10,15 @@ This document explains how to install F5 NGINX Ingress Controller LTS using NGIN
 
 ## Before you begin
 
-If you're using NGINX Plus, get the NGINX Ingress Controller LTS JWT and [create a license secret]({{< ref "/nic/install/license-secret.md" >}}).
+If you're using NGINX Plus, get the NGINX Ingress Controller LTS JWT and [create a license secret]({{< ref "/nic/lts/install/license-secret.md" >}}).
 
-{{< call-out "note" >}} We recommend the most recent stable version of NGINX Ingress Controller LTS, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
+{{< call-out "note" >}} We recommend installing the latest LTS patch release of NGINX Ingress Controller LTS, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
 
  Make sure you have access to the NGINX Ingress Controller LTS image:
 
-- For NGINX Ingress Controller LTS, use the image `nginx/nginx-ingress` from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress).
-- For NGINX Plus Ingress Controller, view the [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/install/images/registry-download" >}}) topic for details on how to pull the image from the F5 Docker registry.
-- The [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/install/images/add-image-to-cluster.md" >}}) topic describes how to use your subscription JWT token to get the image.
- - The [Build NGINX Ingress Controller LTS]({{< ref "/nic/install/build.md" >}}) topic explains how to push an image to a private Docker registry.
+- View the [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download" >}}) topic for details on how to pull the image from the F5 Docker registry.
+- The [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}}) topic describes how to use your subscription JWT token to get the image.
+- The [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}}) topic explains how to push an image to a private Docker registry.
 
 Install the NGINX Ingress Operator following the [instructions](https://github.com/nginx/nginx-ingress-helm-operator/blob/main/docs/installation.md).
 
@@ -41,18 +40,16 @@ spec:
   controller:
     image:
       pullPolicy: IfNotPresent
-      repository: nginx/nginx-ingress
-      tag: {{< nic-version >}}-ubi
+      repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
+      tag: 2026-lts-r1
     ingressClass:
       name: nginx
     kind: deployment
-    nginxplus: false
+    nginxplus: true
     replicaCount: 1
     serviceAccount:
-      imagePullSecretName: ""
+      imagePullSecretName: regcred
 ```
-
-{{< call-out "note" >}} For NGINX Plus, change the `image.repository` and `image.tag` values and change `nginxPlus` to `True`. If required, set the `serviceAccount.imagePullSecretName` or `serviceAccount.imagePullSecretsNames` to the name of the pre-created docker config secret that should be associated with the ServiceAccount. {{< /call-out >}}
 
 ## Deploy NGINX Ingress Controller LTS
 

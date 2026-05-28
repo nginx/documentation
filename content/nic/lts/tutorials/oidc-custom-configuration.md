@@ -14,7 +14,7 @@ This guide will walk through how to customize and configure this default impleme
 
 {{< call-out "note" >}}This guide only works with F5 NGINX Ingress Controller LTS version 5.3.0 or above. Please make sure you are using a compatible version before proceeding.{{< /call-out >}}
 
-This guide assumes that you have an F5 NGINX Ingress Controller LTS deployed. If not, please follow the installation steps using either the [Manifest]({{< ref "/nic/install/manifests.md" >}}) or [Helm]({{< ref "/nic/install/helm.md" >}}) approach.
+This guide assumes that you have an F5 NGINX Ingress Controller LTS deployed. If not, please follow the installation steps using either the [Manifest]({{< ref "/nic/lts/install/manifests.md" >}}) or [Helm]({{< ref "/nic/lts/install/helm.md" >}}) approach.
 
 To customize the NGINX OpenID Connect Reference implementation, you will need to:
 

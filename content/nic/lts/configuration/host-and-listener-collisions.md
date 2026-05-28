@@ -99,7 +99,7 @@ For example, if `cafe-ingress` had an additional rule host rule for `pub.example
 
 It is possible to merge configuration for multiple Ingress resources for the same host. One common use case for this approach is distributing resources across multiple namespaces.
 
-The [Cross-namespace configuration]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md">}}) topic has more information.
+The [Cross-namespace configuration]({{< ref "/nic/lts/configuration/ingress-resources/cross-namespace-configuration.md">}}) topic has more information.
 
 It is *not* possible to merge the configurations for multiple VirtualServer resources for the same host. However, you can split the VirtualServers into multiple VirtualServerRoute resources, which a single VirtualServer can then reference. See the [corresponding example](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/cross-namespace-configuration) on GitHub.
 

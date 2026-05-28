@@ -29,7 +29,7 @@ NGINX Ingress Controller LTS must be configured to report an Ingress status:
     1. A user defined address, specified in the `external-status-address` ConfigMap key.
     1. A Service of the type LoadBalancer configured with an external IP or address and specified by the `-external-service` command-line flag.
 
-View the [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
+View the [ConfigMap keys]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
 
 {{< call-out "note" >}} NGINX Ingress Controller LTS does not clear the status of Ingress resources when it is being shut down. {{< /call-out >}}
 
@@ -106,7 +106,7 @@ NGINX Ingress Controller LTS must be configured to report a VirtualServer or Vir
     1. A user defined address, specified in the `external-status-address` ConfigMap key.
     1. A Service of the type LoadBalancer configured with an external IP or address and specified by the `-external-service` command-line flag.
 
-View the [ConfigMap keys]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
+View the [ConfigMap keys]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md" >}}) and [Command-line arguments]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md" >}}) topics for more information.
 
 {{< call-out "note" >}} NGINX Ingress Controller LTS does not clear the status of VirtualServer and VirtualServerRoute resources when it is being shut down. {{< /call-out >}}
 

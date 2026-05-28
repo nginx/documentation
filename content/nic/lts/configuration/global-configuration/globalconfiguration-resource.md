@@ -10,11 +10,11 @@ This page explains how to use the GlobalConfiguration resource to define the glo
 
 The resource supports configuring listeners for TCP and UDP load balancing, and is implemented as a [Custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-Listeners are required by [TransportServer resources]({{< ref "/nic/configuration/transportserver-resource.md" >}}) and can be used to [configure custom listeners for VirtualServers]({{< ref "/nic/tutorials/virtual-server-with-custom-listener-ports.md" >}}).
+Listeners are required by [TransportServer resources]({{< ref "/nic/lts/configuration/transportserver-resource.md" >}}) and can be used to [configure custom listeners for VirtualServers]({{< ref "/nic/lts/tutorials/virtual-server-with-custom-listener-ports.md" >}}).
 
 ## Prerequisites
 
-When [installing NGINX Ingress Controller LTS using Manifests]({{< ref "/nic/install/manifests.md" >}}), you need to reference a GlobalConfiguration resource in the [`-global-configuration`]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-global-configuration" >}}) command-line argument. NGINX Ingress Controller LTS only needs one GlobalConfiguration resource.
+When [installing NGINX Ingress Controller LTS using Manifests]({{< ref "/nic/lts/install/manifests.md" >}}), you need to reference a GlobalConfiguration resource in the [`-global-configuration`]({{< ref "/nic/lts/configuration/global-configuration/command-line-arguments.md#cmdoption-global-configuration" >}}) command-line argument. NGINX Ingress Controller LTS only needs one GlobalConfiguration resource.
 
 ## GlobalConfiguration specification
 
@@ -49,7 +49,7 @@ spec:
 
 ### Listener
 
-The `listeners:` key defines a listener (a combination of a protocol and a port) that NGINX will use to accept traffic for a [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}})  and a [VirtualServer]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}):
+The `listeners:` key defines a listener (a combination of a protocol and a port) that NGINX will use to accept traffic for a [TransportServer]({{< ref "/nic/lts/configuration/transportserver-resource.md" >}})  and a [VirtualServer]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources.md" >}}):
 
 ```yaml
 - name: dns-tcp
@@ -63,7 +63,7 @@ The `listeners:` key defines a listener (a combination of a protocol and a port)
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 | *name* | The name of the listener. Must be a valid DNS label as defined in RFC 1035. For example, ``hello`` and ``listener-123`` are valid. The name must be unique among all listeners. The name ``tls-passthrough`` is reserved for the built-in TLS Passthrough listener and cannot be used. | *string* | Yes |
-| *port* | The port of the listener. The port must fall into the range ``1..65535`` with the following exceptions: ``80``, ``443``, the [status port]({{< ref "/nic/logging-and-monitoring/status-page.md" >}}), the [Prometheus metrics port]({{< ref "/nic/logging-and-monitoring/prometheus.md" >}}). Among all listeners, only a single combination of a port-protocol is allowed. | *int* | Yes |
+| *port* | The port of the listener. The port must fall into the range ``1..65535`` with the following exceptions: ``80``, ``443``, the [status port]({{< ref "/nic/lts/logging-and-monitoring/status-page.md" >}}), the [Prometheus metrics port]({{< ref "/nic/lts/logging-and-monitoring/prometheus.md" >}}). Among all listeners, only a single combination of a port-protocol is allowed. | *int* | Yes |
 | *protocol* | The protocol of the listener. Supported values: ``TCP``, ``UDP`` and ``HTTP``. | *string* | Yes |
 | *ssl* | Configures the listener with SSL. This is currently only supported for ``HTTP`` listeners. Default value is ``false`` | *bool* | No |
 | *ipv4* | Specifies the IPv4 address to listen on. | *string* | No |

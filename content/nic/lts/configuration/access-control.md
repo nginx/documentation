@@ -6,13 +6,13 @@ f5-content-type: how-to
 f5-product: INGRESS
 ---
 
-This topic describes how to use F5 NGINX Ingress Controller LTS to apply and update a Policy for access control. You can use access control policies with [VirtualServer custom resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) or with [Ingress resources]({{< ref "/nic/configuration/ingress-resources/basic-configuration.md" >}}) using the `nginx.org/policies` annotation.
+This topic describes how to use F5 NGINX Ingress Controller LTS to apply and update a Policy for access control. You can use access control policies with [VirtualServer custom resources]({{< ref "/nic/lts/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) or with [Ingress resources]({{< ref "/nic/lts/configuration/ingress-resources/basic-configuration.md" >}}) using the `nginx.org/policies` annotation.
 
 ---
 
 ## Before you begin
 
-You should have a [working NGINX Ingress Controller LTS]({{< ref "/nic/install/helm.md" >}}) instance.
+You should have a [working NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/helm.md" >}}) instance.
 
 For ease of use in shell commands, set the following shell variables:
 

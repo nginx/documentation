@@ -12,7 +12,7 @@ The Ingress resource can use basic NGINX features such as host or path-based rou
 
 Outside of advanced features, Annotations are necessary for customizing NGINX behavior such as setting the value of connection timeouts.
 
-Customization is also available through the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) resources: Annotations take priority.
+Customization is also available through the [ConfigMap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md" >}}) resources: Annotations take priority.
 
 ## Using Annotations
 
@@ -118,7 +118,7 @@ The table below summarizes the available annotations.
 | *nginx.org/proxy-max-temp-file-size* | *proxy-max-temp-file-size* | Sets the value of the  [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive. | *1024m* |  |
 | *nginx.org/server-tokens* | *server-tokens* | Enables or disables the [server_tokens](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) directive. Additionally, with the NGINX Plus, you can specify a custom string value, including the empty string value, which disables the emission of the “Server” field. | *True* |  |
 | *nginx.org/path-regex* | N/A | Enables regular expression modifiers for Ingress path parameter. This translates to the NGINX [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive. You can specify one of these values: "case_sensitive", "case_insensitive", or "exact". The annotation is applied to the entire Ingress resource and its paths. While using Master and Minion Ingresses i.e. Mergeable Ingresses, this annotation can be specified on Minion types. The `path-regex` annotation specified on Master is ignored, and has no effect on paths defined on Minions.   | N/A |  [path-regex](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/path-regex) |
-| *nginx.org/policies* | N/A | Applies one or more [Policy resources]({{< ref "/nic/configuration/policy-resource.md" >}}) to an Ingress. Specify a comma-separated list of policy names. | N/A | *webapp-policy* |
+| *nginx.org/policies* | N/A | Applies one or more [Policy resources]({{< ref "/nic/lts/configuration/policy-resource.md" >}}) to an Ingress. Specify a comma-separated list of policy names. | N/A | *webapp-policy* |
 
 {{< /table >}}
 
@@ -208,7 +208,7 @@ The table below summarizes the available annotations.
 | *nginx.org/limit-req-dry-run* | N/A | Enables the dry run mode. In this mode, the rate limit is not actually applied, but the number of excessive requests is accounted as usual in the shared memory zone. | false | true |
 | *nginx.org/limit-req-log-level* | N/A | Sets the desired logging level for cases when the server refuses to process requests due to rate exceeding, or delays request processing. Allowed values are info, notice, warn or error. | error | info |
 | *nginx.org/limit-req-reject-code* | N/A | Sets the status code to return in response to rejected requests. Must fall into the range 400..599. | 429 | 503 |
-| *nginx.org/limit-req-scale* | N/A | Enables a constant rate-limit by dividing the configured rate by the number of nginx-ingress pods currently serving traffic. This adjustment ensures that the rate-limit remains consistent, even as the number of nginx-pods fluctuates due to autoscaling. Note: This will not work properly if requests from a client are not evenly distributed accross all ingress pods (sticky sessions, long lived TCP-Connections with many requests etc.). In such cases using [zone-sync]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) instead would give better results.  Enabling `zone-sync` will suppress this setting. | false | true |
+| *nginx.org/limit-req-scale* | N/A | Enables a constant rate-limit by dividing the configured rate by the number of nginx-ingress pods currently serving traffic. This adjustment ensures that the rate-limit remains consistent, even as the number of nginx-pods fluctuates due to autoscaling. Note: This will not work properly if requests from a client are not evenly distributed accross all ingress pods (sticky sessions, long lived TCP-Connections with many requests etc.). In such cases using [zone-sync]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) instead would give better results.  Enabling `zone-sync` will suppress this setting. | false | true |
 
 {{< /table >}}
 
@@ -221,7 +221,7 @@ The table below summarizes the available annotations.
 
 ### F5 WAF for NGINX {#app-protect}
 
-{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< ref "/nic/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< ref "/nic/lts/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
 
 {{< table >}}
 
@@ -237,8 +237,8 @@ The table below summarizes the available annotations.
 
 ### App Protect DoS
 
-{{< call-out "note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< ref "/nic/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< ref "/nic/lts/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
 
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |
-| *appprotectdos.f5.com/app-protect-dos-resource* | N/A | Enable App Protect DoS for the Ingress Resource by specifying a [DosProtectedResource]({{< ref "/nic/integrations/app-protect-dos/dos-protected.md" >}}). | N/A | [app-protect-dos](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-dos) |
+| *appprotectdos.f5.com/app-protect-dos-resource* | N/A | Enable App Protect DoS for the Ingress Resource by specifying a [DosProtectedResource]({{< ref "/nic/lts/integrations/app-protect-dos/dos-protected.md" >}}). | N/A | [app-protect-dos](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/app-protect-dos) |

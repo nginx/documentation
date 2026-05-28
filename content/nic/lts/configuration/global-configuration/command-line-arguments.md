@@ -8,8 +8,8 @@ f5-product: INGRESS
 
 F5 NGINX Ingress Controller LTS supports several command-line arguments, which are set based on installation method:
 
-- If you're using *Kubernetes Manifests* to install NGINX Ingress Controller LTS, modify the Manifests to set the command-line arguments. View the [Installation with Manifests]({{< ref "/nic/install/manifests.md" >}}) topic for more information.
-- If you're using *Helm* to install NGINX Ingress Controller LTS, modify the parameters of the Helm chart to set the command-line arguments. View the [Installation with Helm]({{< ref "/nic/install/helm.md" >}}) topic for more information.
+- If you're using *Kubernetes Manifests* to install NGINX Ingress Controller LTS, modify the Manifests to set the command-line arguments. View the [Installation with Manifests]({{< ref "/nic/lts/install/manifests.md" >}}) topic for more information.
+- If you're using *Helm* to install NGINX Ingress Controller LTS, modify the parameters of the Helm chart to set the command-line arguments. View the [Installation with Helm]({{< ref "/nic/lts/install/helm.md" >}}) topic for more information.
 
 <a name="cmdoption-enable-snippets"></a>
 
@@ -546,7 +546,7 @@ The default value is `false`.
 
 When enabled, the controller automatically adjusts `proxy_buffers`, `proxy_buffer_size`, and `proxy_busy_buffers_size` to ensure they work together properly and NGINX can start successfully.
 
-More explanation about this feature can be found in the guide [here]({{< ref "/nic/configuration/proxy-buffers-configuration.md" >}}).
+More explanation about this feature can be found in the guide [here]({{< ref "/nic/lts/configuration/proxy-buffers-configuration.md" >}}).
 
 <a name="cmdoption-enable-directive-autoadjust"></a>
 

@@ -73,14 +73,14 @@ Starting from Kubernetes 1.18, you can use the following new features:
     . . .
   ```
 
-  When using this field you need to create the `IngressClass` resource with the corresponding `name`. View the [Create common resources]({{< ref "/nic/install/manifests.md#create-common-resources" >}}) section of the Installation with Manifests topic for more information.
+  When using this field you need to create the `IngressClass` resource with the corresponding `name`. View the [Create common resources]({{< ref "/nic/lts/install/manifests.md#create-common-resources" >}}) section of the Installation with Manifests topic for more information.
 
 ## Restrictions
 
 NGINX Ingress Controller LTS imposes the following restrictions on Ingress resources:
 
 - When defining an Ingress resource, the `host` field is required.
-- The `host` value needs to be unique among all Ingress and VirtualServer resources unless the Ingress resource is a [mergeable minion]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}). View the [Host and Listener collisions]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}) topic for more information.
+- The `host` value needs to be unique among all Ingress and VirtualServer resources unless the Ingress resource is a [mergeable minion]({{< ref "/nic/lts/configuration/ingress-resources/cross-namespace-configuration.md" >}}). View the [Host and Listener collisions]({{< ref "/nic/lts/configuration/host-and-listener-collisions.md" >}}) topic for more information.
 - The `path` field in `spec.rules[].http.paths[]` is required for `Exact` and `Prefix` `pathTypes`.
 - The ImplementationSpecific `pathType` is treated as equivalent to `Prefix` `pathType`, with the exception that when this `pathType` is configured, the `path` field in `spec.rules[].http.paths[]` is not mandatory. `path` defaults to `/` if not set but the `pathType` is set to ImplementationSpecific.
 
@@ -94,7 +94,7 @@ The Ingress resource only allows you to use basic NGINX features: host and path-
 
 For advanced configuration, you have two options:
 
-- [Annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) can be used to rewrite request URIs or inserting additional response headers.
-- [Snippets]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-snippets" >}}) can be used to insert raw NGINX configuration, changing generated files.
+- [Annotations]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) can be used to rewrite request URIs or inserting additional response headers.
+- [Snippets]({{< ref "/nic/lts/configuration/ingress-resources/advanced-configuration-with-snippets" >}}) can be used to insert raw NGINX configuration, changing generated files.
 
-Additionally, it is possible to customize the template, described in the [Custom templates]({{< ref "/nic/configuration/global-configuration/custom-templates.md" >}}) topic.
+Additionally, it is possible to customize the template, described in the [Custom templates]({{< ref "/nic/lts/configuration/global-configuration/custom-templates.md" >}}) topic.
