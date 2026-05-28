@@ -14,7 +14,6 @@ f5-landing-page: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
-# NAGENT, NAZURE, NGOOGL, NGXAAS, FABRIC, INGRESS, NIMNGR, NONECO, NGPLUS, SOLUTI, F5WAFN, F5DOSN, MISCEL
 f5-product:
 ---
 
