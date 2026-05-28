@@ -272,7 +272,8 @@ To view the full list of supported log levels, see the `NginxProxy spec` in the 
 
 {{< call-out "note" >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
 be [run with NGINX in debug mode](#run-nginx-gateway-fabric-with-nginx-in-debug-mode) upon startup through the addition
-of a few arguments. {{< /call-out >}}
+of a few arguments. 
+JSON error log format is not supported in debug mode. {{< /call-out >}}
 
 ---
 
@@ -309,6 +310,8 @@ spec:
       disable: true
 EOF
 ```
+
+NGINX Gateway Fabric supports errorLog in JSON format for NGINX Plus users. When  `errorLogFormat` is set to `json` and no custom access log format is defined, the access log also defaults to JSON format.
 
 {{< call-out "note" >}} File destinations in `logging.accessLog` are not currently supported it is always set to `/dev/stdout`. {{< /call-out >}}
 
