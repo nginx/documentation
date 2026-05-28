@@ -6,7 +6,7 @@ f5-content-type: concept
 f5-product: INGRESS
 ---
 
-This document explains how the F5 NGINX Ingress Controller LTS is designed, and how it differs when using NGINX or NGINX Plus.
+This document explains how the F5 NGINX Ingress Controller LTS is designed.
 
 The intended audience for this information is primarily the two following groups:
 
@@ -79,12 +79,12 @@ This table describes each connection, starting with its type:
 
 {{< /table >}}
 
-### Differences with NGINX Plus
+### NGINX Plus capabilities
 
-The previous diagram depicts NGINX Ingress Controller LTS using NGINX. NGINX Ingress Controller LTS with NGINX Plus has the following differences:
+NGINX Ingress Controller LTS uses NGINX Plus and provides the following capabilities:
 
 - To configure NGINX Plus, NGINX Ingress Controller LTS uses [configuration reloads](#reloading-nginx) and the [NGINX Plus API](http://nginx.org/en/docs/http/ngx_http_api_module.html#api). This allows NGINX Ingress Controller LTS to dynamically change the upstream servers.
-- Instead of the stub status metrics, the extended metrics available from the NGINX Plus API are used.
+- Extended metrics available from the NGINX Plus API are used instead of stub status metrics.
 - In addition to TLS certs and keys, NGINX Ingress Controller LTS writes JWKs from the secrets of the type `nginx.org/jwk`, and NGINX workers read them.
 
 ## The NGINX Ingress Controller LTS process
@@ -310,4 +310,4 @@ There are three special cases:
 
 - *Start*. When NGINX Ingress Controller LTS starts, it processes all resources in the cluster and only then reloads NGINX. This avoids a "reload storm" by reloading only once.
 - *Batch updates*. When NGINX Ingress Controller LTS receives a number of concurrent requests from the Kubernetes API, it will pause NGINX reloads until the task queue is empty. This reduces the number of reloads to minimize the impact of batch updates and reduce the risk of OOM (Out of Memory) errors.
-- *NGINX Plus*. If NGINX Ingress Controller LTS is using NGINX Plus, it will not reload NGINX Plus for changes to the Endpoints resources. In this case, NGINX Ingress Controller LTS will use the NGINX Plus API to update the corresponding upstreams and skip reloading.
+- *Endpoint updates*. NGINX Ingress Controller LTS uses the NGINX Plus API to update the corresponding upstreams for endpoint changes and skips reloading.

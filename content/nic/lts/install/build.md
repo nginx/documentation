@@ -127,7 +127,7 @@ The _Makefile_ includes several key variables. You have the option to either mod
 | Variable | Description   |
 |-----------------------------------------|---------------|
 | _ARCH_                                | Defines the architecture for the image and binary. The default is `amd64`, but you can also use `arm64`. |
-| _PREFIX_                              | Gives the image its name. The default is `nginx/nginx-ingress`.  |
+| _PREFIX_                              | Gives the image its name. The default is `nginx-plus-ingress`.  |
 | _TAG_                                 | Adds a tag to the image. This is often the version of NGINX Ingress Controller LTS.   |
 | _DOCKER\_BUILD\_OPTIONS_                | Allows for additional [options](https://docs.docker.com/engine/reference/commandline/build/#options) during the `docker build` process, like `--pull`.  |
 | _TARGET_                              | <p>Determines the build environment. NGINX Ingress Controller LTS compiles locally in a Golang environment by default. Ensure the NGINX Ingress Controller LTS repo resides in your `$GOPATH` if you select this option.</p><p>Alternatively, you can set `TARGET=container` to build using a Docker [Golang](https://hub.docker.com/_/golang/) container. To skip compiling the binary if you're on a specific tag or the latest `main` branch commit, set `TARGET=download`.</p>  |

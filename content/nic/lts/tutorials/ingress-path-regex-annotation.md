@@ -11,7 +11,7 @@ This document describes how to customize Ingress and Mergeable Ingress types wit
 ## Customizing NGINX Ingress Controller LTS with Path-Regex Annotations
 
 We suggest reading the NGINX [documentation on resolve location priority]({{< ref "/nginx/admin-guide/web-server/web-server.md#nginx-location-priority" >}})
-to gain additional context about NGINX and NGINX Plus before using the ``path-regex`` annotation.
+to gain additional context about NGINX Plus before using the ``path-regex`` annotation.
 
 ## Ingress Type
 
