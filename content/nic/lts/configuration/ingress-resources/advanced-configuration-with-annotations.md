@@ -221,7 +221,7 @@ The table below summarizes the available annotations.
 
 ### F5 WAF for NGINX {#app-protect}
 
-{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< ref "/nic/lts/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< ref "/nic/lts/integrations/app-protect-waf-v5/installation.md" >}}). {{< /call-out >}}
 
 {{< table >}}
 

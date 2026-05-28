@@ -209,7 +209,7 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 |*otel-exporter-header-value* | The value of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-name` required. | N/A | *"custom-value"* |
 |*otel-service-name* | Sets the `service.name` attribute of the OTel resource. `otel-exporter-endpoint` required. | N/A | *"nginx-ingress-controller:nginx"* |
 | *otel-trace-in-http* | Enables [OpenTelemetry](https://opentelemetry.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Set this to *"false"* to enable OpenTelemetry for individual routes with snippets. `otel-exporter-endpoint` required. | *"false"* | *"true"* |
-|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. See the [docs]({{< ref "/nic/lts/logging-and-monitoring/opentracing.md" >}}) for more information. | *False* |  |
+|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. | *False* |  |
 |*opentracing-tracer* | Removed in v5.0.0.  Sets the path to the vendor tracer binary plugin. | N/A |  |
 |*opentracing-tracer-config* | Removed in v5.0.0.  Sets the tracer configuration in JSON format. | N/A |  |
 |*app-protect-compressed-requests-action* | Sets the *app_protect_compressed_requests_action* [global directive](/nginx-app-protect/configuration/#global-directives). | *drop* |  |
