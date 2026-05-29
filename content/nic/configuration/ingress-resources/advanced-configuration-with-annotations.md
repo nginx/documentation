@@ -120,10 +120,11 @@ The table below summarizes the available annotations.
 | *nginx.org/server-tokens* | *server-tokens* | Enables or disables the [server_tokens](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) directive. Additionally, with the NGINX Plus, you can specify a custom string value, including the empty string value, which disables the emission of the “Server” field. | *True* |  |
 | *nginx.org/path-regex* | N/A | Enables regular expression modifiers for Ingress path parameter. This translates to the NGINX [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive. You can specify one of these values: "case_sensitive", "case_insensitive", or "exact". The annotation is applied to the entire Ingress resource and its paths. While using Master and Minion Ingresses i.e. Mergeable Ingresses, this annotation can be specified on Minion types. The `path-regex` annotation specified on Master is ignored, and has no effect on paths defined on Minions.   | N/A |  [path-regex](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/path-regex) |
 | *nginx.org/policies* | N/A | Applies one or more [Policy resources]({{< ref "/nic/configuration/policy-resource.md" >}}) to an Ingress. Specify a comma-separated list of policy names. | N/A | *webapp-policy* |
+| *nginx.com/policies* | N/A | Applies one or more [Policy resources]({{< ref "/nic/configuration/policy-resource.md" >}}) to an Ingress enabling NGINX Plus use-cases. Specify a comma-separated list of policy names. | N/A | *waf-policy* |
 
 {{< /table >}}
 
-### Request URI/Header Manipulation
+### URI and Header Manipulation
 
 {{< table >}}
 
@@ -134,6 +135,10 @@ The table below summarizes the available annotations.
 | *nginx.org/rewrites* | N/A | Configures URI rewriting using [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive. | N/A | [rewrites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/rewrites) |
 | *nginx.org/rewrite-target* | N/A | Configures URI rewriting using the [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) directive. The annotation value specifies the target path that requests should be rewritten to. Supports regex capture groups (`$1`, `$2`, etc.) when used with `nginx.org/path-regex`. Mutually exclusive with `nginx.org/rewrites`. | N/A | [rewrite-target](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/rewrite-target) |
 |*nginx.org/proxy-set-headers* | N/A | Enables customization of proxy headers and values using the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive. Example: `"nginx.org/proxy-set-headers": "header-a: valueA,header-b: valueB,header-c: valueC"` | N/A | [Proxy Set Headers](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/proxy-set-headers). |
+| *nginx.org/add-header* | *add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive. Use the format `Header-Name: value[:always]` and separate entries with commas. | N/A | *X-Frame-Options: DENY: always, X-Content-Type-Options: nosniff* |
+| *nginx.org/add-header-inherit* | *add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are `on`, `off`, and `merge`. | N/A | *merge* |
+| *nginx.org/proxy-redirect-from* | N/A | The `redirect` parameter for [proxy_redirect](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect). Accepts `off`, `default`, a URL string, or a regex prefixed with `~` (case-sensitive) or `~*` (case-insensitive). Requires `nginx.org/proxy-redirect-to` when value is a URL or regex. | N/A | *http://redirect-backend-svc/v1/* or *off* |
+| *nginx.org/proxy-redirect-to* | N/A | The `replacement` parameter for [proxy_redirect](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect). Required when `nginx.org/proxy-redirect-from` is a URL or regex; must not be set without `nginx.org/proxy-redirect-from`. | N/A | *http://cafe.example.com/coffee/* |
 
 {{< /table >}}
 
@@ -166,8 +171,8 @@ The table below summarizes the available annotations.
 
 | Annotation | ConfigMap Key | Description | Default |
 | ---| ---| ---| ---|
-| *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. | *[80]* |
-| *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. | *[443]* |
+| *nginx.org/listen-ports* | N/A | Configures HTTP ports that NGINX will listen on. Not supported on Ingress resources without a `host`; use the `-default-http-listener-port` command-line argument instead. | *[80]* |
+| *nginx.org/listen-ports-ssl* | N/A | Configures HTTPS ports that NGINX will listen on. Not supported on Ingress resources without a `host`; use the `-default-https-listener-port` command-line argument instead. | *[443]* |
 
 ### Backend services (Upstreams)
 

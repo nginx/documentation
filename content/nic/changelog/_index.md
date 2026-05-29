@@ -24,7 +24,70 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.5.0
 
+29 May 2026
+
+Release 5.5.0 focuses on key enhancements for security, performance, flexibility, and migration from `ingress-nginx` to F5 NGINX Ingress Controller.
+
+This release adds new capabilities and additional security features, expands support for Kubernetes `Ingress` resources, and introduces more annotations to make migrations from `ingress-nginx` easier, including support for External Authentication.
+
+Major highlights include:
+
+  * External Authentication support: External Authentiation is now supported for both `Ingress` and `VirtualServer` resources. Based on analysis of the `ingress-nginx` project, ExternalAuth is one of the most common `ingress-nginx` use cases and has been a frequent request from users migrating to F5 NGINX Ingress Controller.
+  * WAF IP Intelligence support: WAF IP Intelligence can now automatically block or limit access from IP addresses with poor reputations, using real-time threat intelligence for categories such as botnets, Windows exploits, and web attacks.
+  * mTLS support for `Ingress`: Mutual TLS for ingress and egress traffic is now supported on the `Ingress` resource.
+  * Additional annotation support: This release adds support for more annotations, including `add-header`, `add_header_inherit`, `proxy-redirect-from`, and `proxy-redirect-to`.
+  * Improved startup performance at scale: NIC startup time has been significantly improved for environments with hundreds or thousands of configured resources. In a large-scale test environment with 100 regular Ingresses, 250 master Ingresses, 1,000 minion Ingresses, and 100 VirtualServers, startup time went from minutes to seconds.
+  * Expanded `VirtualServerRoute` path matching: `VirtualServerRoute` now supports multiple regular expression paths, making routing configurations more flexible.
+  * WAF `Policy` support for `Ingress`: F5 WAF `Policy` resources no longer requires VirtualServer and can now be associated directly with `Ingress` resources, enabling customers to use advanced WAF capabilities while continuing to use standard Kubernetes `Ingress`.
+  * Optional `Host` support: `Host` field in Ingress is now optional through an opt-in approach. This enables IP-based routing for environments that do not use DNS, such as test environments and labs, while preserving host-based routing as the standard Kubernetes routing model.
+
+### {{% icon rocket %}} Features
+
+- [9450](https://github.com/nginx/kubernetes-ingress/pull/9450) Add waf policy support to ingress object
+- [9635](https://github.com/nginx/kubernetes-ingress/pull/9635) Add egress mtls policy to ingress object
+- [9521](https://github.com/nginx/kubernetes-ingress/pull/9521) Add external auth policy to ingress
+- [9519](https://github.com/nginx/kubernetes-ingress/pull/9519) Add external auth policy to vs/vsr
+- [9711](https://github.com/nginx/kubernetes-ingress/pull/9711) Improve pod startup times
+- [9671](https://github.com/nginx/kubernetes-ingress/pull/9671) Add support for multiple regex paths in a single vsr
+- [9743](https://github.com/nginx/kubernetes-ingress/pull/9743) Add support for add_header in configmap and ingress
+- [9628](https://github.com/nginx/kubernetes-ingress/pull/9628) Attach ingressmtls policy to ingress
+- [9547](https://github.com/nginx/kubernetes-ingress/pull/9547) Support add_header_inherit directive
+- [9622](https://github.com/nginx/kubernetes-ingress/pull/9622) Support waf ip intelligence
+- [9728](https://github.com/nginx/kubernetes-ingress/pull/9728) Support empty host ingress
+- [9862](https://github.com/nginx/kubernetes-ingress/pull/9862) Add support for proxy_redirect in ingress
+- [9740](https://github.com/nginx/kubernetes-ingress/pull/9740) Add nginx agent 3.x waf support
+- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalisation
+
+### {{% icon bug %}} Fixes
+
+- [9332](https://github.com/nginx/kubernetes-ingress/pull/9332) Fix authentication issue in external pr workflow
+- [9406](https://github.com/nginx/kubernetes-ingress/pull/9406) Fix external pr branch creation
+- [9452](https://github.com/nginx/kubernetes-ingress/pull/9452) Missing policies on ingress will return 500
+- [9486](https://github.com/nginx/kubernetes-ingress/pull/9486) Fix dereference panic
+- [9613](https://github.com/nginx/kubernetes-ingress/pull/9613) Fix oidc policy leaking into non-referenced locations
+- [9791](https://github.com/nginx/kubernetes-ingress/pull/9791) Implement policy support checks for ingress resources
+- [9877](https://github.com/nginx/kubernetes-ingress/pull/9877) Improve transportserver and nginx.org/limit-req-key annotation
+- [9955](https://github.com/nginx/kubernetes-ingress/pull/9955) Fix overly restrictive validation in cors policy fields
+
+### {{% icon arrow-up %}} Dependencies
+
+- [9403](https://github.com/nginx/kubernetes-ingress/pull/9403), [9446](https://github.com/nginx/kubernetes-ingress/pull/9446), [9445](https://github.com/nginx/kubernetes-ingress/pull/9445), [9466](https://github.com/nginx/kubernetes-ingress/pull/9466), [9840](https://github.com/nginx/kubernetes-ingress/pull/9840), [9476](https://github.com/nginx/kubernetes-ingress/pull/9476), [9530](https://github.com/nginx/kubernetes-ingress/pull/9530), [9569](https://github.com/nginx/kubernetes-ingress/pull/9569), [9660](https://github.com/nginx/kubernetes-ingress/pull/9660), [9661](https://github.com/nginx/kubernetes-ingress/pull/9661), [9669](https://github.com/nginx/kubernetes-ingress/pull/9669), [9697](https://github.com/nginx/kubernetes-ingress/pull/9697), [9726](https://github.com/nginx/kubernetes-ingress/pull/9726), [9754](https://github.com/nginx/kubernetes-ingress/pull/9754), [9776](https://github.com/nginx/kubernetes-ingress/pull/9776), [9777](https://github.com/nginx/kubernetes-ingress/pull/9777), [9990](https://github.com/nginx/kubernetes-ingress/pull/9990), [9491](https://github.com/nginx/kubernetes-ingress/pull/9491), [9807](https://github.com/nginx/kubernetes-ingress/pull/9807), [9830](https://github.com/nginx/kubernetes-ingress/pull/9830), [9703](https://github.com/nginx/kubernetes-ingress/pull/9703), [9966](https://github.com/nginx/kubernetes-ingress/pull/9966), [9983](https://github.com/nginx/kubernetes-ingress/pull/9983), [10004](https://github.com/nginx/kubernetes-ingress/pull/10004), [10051](https://github.com/nginx/kubernetes-ingress/pull/10051) & [9987](https://github.com/nginx/kubernetes-ingress/pull/9987) Bump Go dependencies
+
+- [9378](https://github.com/nginx/kubernetes-ingress/pull/9378), [9430](https://github.com/nginx/kubernetes-ingress/pull/9430), [9444](https://github.com/nginx/kubernetes-ingress/pull/9444), [9608](https://github.com/nginx/kubernetes-ingress/pull/9608), [9607](https://github.com/nginx/kubernetes-ingress/pull/9607), [9606](https://github.com/nginx/kubernetes-ingress/pull/9606), [9964](https://github.com/nginx/kubernetes-ingress/pull/9964), [9881](https://github.com/nginx/kubernetes-ingress/pull/9881), [10012](https://github.com/nginx/kubernetes-ingress/pull/10012), [9474](https://github.com/nginx/kubernetes-ingress/pull/9474), [9558](https://github.com/nginx/kubernetes-ingress/pull/9558), [9567](https://github.com/nginx/kubernetes-ingress/pull/9567), [9568](https://github.com/nginx/kubernetes-ingress/pull/9568), [9643](https://github.com/nginx/kubernetes-ingress/pull/9643), [9577](https://github.com/nginx/kubernetes-ingress/pull/9577), [9637](https://github.com/nginx/kubernetes-ingress/pull/9637), [9642](https://github.com/nginx/kubernetes-ingress/pull/9642), [9663](https://github.com/nginx/kubernetes-ingress/pull/9663), [9659](https://github.com/nginx/kubernetes-ingress/pull/9659), [9658](https://github.com/nginx/kubernetes-ingress/pull/9658), [9680](https://github.com/nginx/kubernetes-ingress/pull/9680), [9802](https://github.com/nginx/kubernetes-ingress/pull/9802), [9685](https://github.com/nginx/kubernetes-ingress/pull/9685), [9683](https://github.com/nginx/kubernetes-ingress/pull/9683), [9701](https://github.com/nginx/kubernetes-ingress/pull/9701), [9699](https://github.com/nginx/kubernetes-ingress/pull/9699), [9736](https://github.com/nginx/kubernetes-ingress/pull/9736), [9772](https://github.com/nginx/kubernetes-ingress/pull/9772), [9793](https://github.com/nginx/kubernetes-ingress/pull/9793), [9849](https://github.com/nginx/kubernetes-ingress/pull/9849), [9880](https://github.com/nginx/kubernetes-ingress/pull/9880), [9829](https://github.com/nginx/kubernetes-ingress/pull/9829), [9896](https://github.com/nginx/kubernetes-ingress/pull/9896), [9910](https://github.com/nginx/kubernetes-ingress/pull/9910), [9911](https://github.com/nginx/kubernetes-ingress/pull/9911), [9982](https://github.com/nginx/kubernetes-ingress/pull/9982), [10011](https://github.com/nginx/kubernetes-ingress/pull/10011), [10009](https://github.com/nginx/kubernetes-ingress/pull/10009), [10010](https://github.com/nginx/kubernetes-ingress/pull/10010), [9940](https://github.com/nginx/kubernetes-ingress/pull/9940), [10048](https://github.com/nginx/kubernetes-ingress/pull/10048) & [10047](https://github.com/nginx/kubernetes-ingress/pull/10047) Bump Docker dependencies
+
+- [9526](https://github.com/nginx/kubernetes-ingress/pull/9526) Update dependency more-itertools to v11 (main)
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.5.0 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.5.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.5.0 images from the F5 Container registry or build your own image using the 5.5.0 source code.
+- For Helm, use version 2.6.0 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.29 - 1.36.
 
 ## 5.4.3
 
