@@ -41,7 +41,7 @@ Major highlights include:
   * Improved startup performance at scale: NIC startup time has been significantly improved for environments with hundreds or thousands of configured resources. In a large-scale test environment with 100 regular Ingresses, 250 master Ingresses, 1,000 minion Ingresses, and 100 VirtualServers, startup time went from minutes to seconds.
   * Expanded `VirtualServerRoute` path matching: `VirtualServerRoute` now supports multiple regular expression paths, making routing configurations more flexible.
   * WAF `Policy` support for `Ingress`: F5 WAF `Policy` resources no longer requires VirtualServer and can now be associated directly with `Ingress` resources, enabling customers to use advanced WAF capabilities while continuing to use standard Kubernetes `Ingress`.
-  * Optional `Host` support: `Host` is now optional through an opt-in approach. This enables IP-based routing for environments that do not use DNS, such as test environments and labs, while preserving host-based routing as the standard Kubernetes routing model.
+  * Optional `Host` support: `Host` field in Ingress is now optional through an opt-in approach. This enables IP-based routing for environments that do not use DNS, such as test environments and labs, while preserving host-based routing as the standard Kubernetes routing model.
 
 ### {{% icon rocket %}} Features
 
