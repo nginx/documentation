@@ -19,7 +19,7 @@ Once connected, you'll see a **read-only** configuration of NGINX Ingress Contro
 
 If you do not already have a [data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}), you can create one. Pay attention to the expiration date of that key. Any instance that's connected to a data plane key that's expired or revoked will stop working.
 
-You can create a data plane key through the NGINX One Console. Once logged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown.
+You can create a data plane key through the NGINX One Console. Once logged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown. Pay attention to the expiration date of that key.
 
 Before connecting NGINX Ingress Controller to NGINX One Console, you need to create a Kubernetes Secret with the data plane key. Use the following command:
 

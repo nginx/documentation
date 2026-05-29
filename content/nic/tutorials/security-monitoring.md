@@ -118,21 +118,6 @@ Once installed and configured, the pods will be visible in the NGINX Instance Ma
 
 {{%tab name="NGINX One Console"%}}
 
-## Before you begin
-
-This guide assumes that you have an NGINX One Console account with access to create data plane keys.
-
-- Create a [data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md" >}}) from NGINX One Console. Pay attention to the expiration date of that key.
-- Create a Kubernetes Secret with the data plane key in the same namespace where NGINX Ingress Controller will be deployed:
-
-    ```shell
-    kubectl create secret generic dataplane-key \
-      --from-literal=dataplane.key=<Your Dataplane Key> \
-      -n <namespace>
-    ```
-
-- Use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). Images without the `-agent` suffix include NGINX Agent 2 and are not compatible with NGINX One Console. See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of available image variants.
-
 ## Deploy NGINX Ingress Controller with NGINX Agent
 
 ### Use Helm
