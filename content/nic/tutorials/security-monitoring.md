@@ -262,7 +262,7 @@ If you have an existing deployment using NGINX Instance Manager (NGINX Agent 2) 
       -n <namespace>
     ```
 
-3. **Update your deployment** to use NGINX Agent 3:
+3. To continue the conversion to NGINX One Console, **update your deployment** to use NGINX Agent 3:
 
 {{<tabs name="upgrade-agent">}}
 
