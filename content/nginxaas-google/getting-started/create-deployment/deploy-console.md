@@ -20,7 +20,7 @@ Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref 
 
 NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your NGINXaaS deployment to your VPC network. The network attachment must be created in a region we support.
 
-{{< call-out "caution" >}}
+{{< call-out class="caution" >}}
 {{< include "/nginxaas-google/supported-regions.md" >}}
 {{< /call-out >}}
 
@@ -29,7 +29,7 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
    - The region you select for the network attachment determines the region where your NGINXaaS deployment will be created. You do not manually select a region when creating an NGINXaaS deployment; it will automatically be created in the same region as the network attachment.
 1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide. To ensure secure and controlled access to your network attachments, we strongly recommend configuring the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This option helps maintain security by ensuring only trusted providers can connect to your service by letting you manually approve trusted connections. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
 
-   {{< call-out "caution" >}}
+   {{< call-out class="caution" >}}
    For development and testing purposes, or in scenarios where speed and simplicity are prioritized over security, you have the option to configure the **Connection Preference** to **Automatically accept connections for all projects**. Please note that this approach is inherently less secure and may expose your service to unintended or unauthorized access. We encourage you to exercise caution if using the less restrictive option and to avoid using it in production or sensitive environments.
    {{< /call-out >}}
 
@@ -71,7 +71,7 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
 
-{{< call-out "important" >}}If the **Connection preference** on the Network Attachment resource is set to **Accept connections from selected projects**, you will need to add the **NGINXaaS deployment project** to the list of **Accepted projects** for the deployment to provision successfully. The NGINXaaS deployment `Project ID` can be found under the `Cloud Info` section for your deployment. Failing to do so will leave the deployment in a `Pending` state, with details provided on the necessary actions required to proceed.{{< /call-out >}}
+{{< call-out class="important" >}}If the **Connection preference** on the Network Attachment resource is set to **Accept connections from selected projects**, you will need to add the **NGINXaaS deployment project** to the list of **Accepted projects** for the deployment to provision successfully. The NGINXaaS deployment `Project ID` can be found under the `Cloud Info` section for your deployment. Failing to do so will leave the deployment in a `Pending` state, with details provided on the necessary actions required to proceed.{{< /call-out >}}
 
 ## Configure your deployment
 
@@ -300,7 +300,7 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
 
 1. To test your deployment, connect to the IP address created in [Set up connectivity]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}) or the service endpoint created with your managed public endpoint deployment.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The deployment is privately deployed in your subnet. If you want to route traffic to an application over the public internet, consider setting up [Cloud NAT](https://docs.cloud.google.com/nat/docs/overview).
 

@@ -14,7 +14,7 @@ It allows you to separate policy information into smaller files, which can be ea
 
 You can create and populate specific files with the configuration relevant to your policy, and then compile the policy to include the latest version of these files, ensuring that your policy is always up to date when it comes to a constantly changing environment.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Updating a single file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration.
 
@@ -24,7 +24,7 @@ To use external references, replace the direct property in the policy file with 
 
 For example, a `modifications` section could be replaced by `modificationsReference` and `data-guard` could be replaced by `dataGuardReference`.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Not all policy fields support external references.
 
 To check which fields do, see the [Parameter Reference]({{< ref "/waf/policies/parameter-reference.md" >}}) page. Each table on that page includes a **Reference** column for every policy field.
@@ -43,7 +43,7 @@ URL reference is the method of referencing an external source by providing its f
 
 This is a useful method when trying to combine or consolidate parts of the policy that are present on different host machines.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 You need to make sure that the server where the resource files are located is always available when you are compiling your policy.
 
@@ -282,7 +282,7 @@ A policy template is provided with F5 WAF for NGINX packages containing violatio
 
 F5 WAF for NGINX supports only one OpenAPI specification file reference per policy.
 
-{{< call-out "note" >}} Any update of an OpenAPI Specification file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration. {{< /call-out >}}
+{{< call-out class="note" >}} Any update of an OpenAPI Specification file referenced in the policy will not trigger a policy compilation. This action needs to be done actively by reloading the NGINX configuration. {{< /call-out >}}
 
 Configuring and referencing OpenAPI specification files are similar to other external references.
 

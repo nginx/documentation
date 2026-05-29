@@ -23,7 +23,7 @@ The script collects system and service information and then packages the data in
 
 The F5 NGINX Instance Manager installer copies the `support-package.sh` script to the following location: `/etc/nms/scripts/support-package.sh`.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The supported shell is `bash`.
 {{< /call-out >}}
 
@@ -128,7 +128,7 @@ The status and state information of the host running NGINX Instance Manager, inc
 
 The support package script uses the `-c` flag ( or `--nms_config_path`) to get the NGINX Instance Manager configuration. If the configuration file is not specified, the script uses the default value `/etc/nms/nms.conf`.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If the NGINX Instance Manager configuration file does not specify addresses for the `core` and `dpm` databases, the default values are assumed: `127.0.0.1:7891` and `127.0.0.1:7890`.
 {{< /call-out >}}
 

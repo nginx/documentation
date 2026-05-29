@@ -27,7 +27,7 @@ To update a policy in the web interface:
 1. The policy editor opens. Change the policy as described in [Create a security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}}).
 1. After making your changes, select **Save**.
 
-{{< call-out "note" "Note" >}}Editing a policy creates a new revision, whether or not you've deployed it.{{< /call-out >}}
+{{< call-out class="note" title="Note" >}}Editing a policy creates a new revision, whether or not you've deployed it.{{< /call-out >}}
 
 {{%/tab%}}
 
@@ -53,7 +53,7 @@ curl -X POST https://<NIM_FQDN>/api/platform/v1/security/policies?isNewRevision=
 
 **Example using PUT (creates a new policy revision, deprecated):**
 
-{{< call-out "caution" "Deprecated" >}}The `PUT` method is deprecated. Use `POST` with `isNewRevision=true` instead.{{< /call-out >}}
+{{< call-out class="caution" title="Deprecated" >}}The `PUT` method is deprecated. Use `POST` with `isNewRevision=true` instead.{{< /call-out >}}
 
 1. Get the policy UID:
 

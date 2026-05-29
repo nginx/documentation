@@ -12,7 +12,7 @@ In the same folder, create three files:
 - _entrypoint.sh_ - A Docker startup script which spins up all F5 WAF for NGINX processes, requiring executable permissions
 - _custom_log_format.json_ - An optional user-defined security log format file
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 If you are not using `custom_log_format.json`, you should remove any references to it from your nginx.conf and entrypoint.sh files.
 

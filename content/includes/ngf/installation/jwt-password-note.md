@@ -6,7 +6,7 @@ f5-files:
 - content/ngf/install/nginx-plus.md
 ---
 
-{{< call-out "note" >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:
+{{< call-out class="note" >}} For security, follow these practices with JSON Web Tokens (JWTs), passwords, and shell history:
 
 1. **JWTs:** JWTs are sensitive information. Store them securely. Delete them after use to prevent unauthorized access.
 

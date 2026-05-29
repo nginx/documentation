@@ -109,7 +109,7 @@ Depending on whether this is your first time using NGINX One Console or you've u
 
 After entering your data plane key, you'll see a `curl` command similar to the one below. Copy and run this command on each NGINX instance to install NGINX Agent. Once installed, NGINX Agent typically registers with NGINX One within a few seconds.
 
-{{<call-out "important" "Connecting to NGINX One" >}}
+{{<call-out class="important" title="Connecting to NGINX One" >}}
 NGINX Agent must be able to establish a connection to NGINX One Console's Agent endpoint (`agent.connect.nginx.com`). Ensure that any firewall rules you have in place for your NGINX hosts allows network traffic to port `443` for all of the following IP address ranges:
 
 - `3.135.72.139/32`
@@ -149,7 +149,7 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 {{< include "/nginx-one-console/conf/nginx-agent-conf.md" >}}
 
-{{<call-out "note" "Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
+{{<call-out class="note" title="Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
 
 <br>
 

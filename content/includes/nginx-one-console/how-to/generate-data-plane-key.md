@@ -14,7 +14,7 @@ To generate a data plane key, select **Manage > Instances > Add Instance**:
 - **For a new key:** In the **Add Instance** pane, select **Generate Data Plane Key**.
 - **To reuse an existing key:** If you already have a data plane key and want to use it again, select **Use existing key**. Then, enter the key's value in the **Data Plane Key** box.
 
-{{<call-out "caution" "Data plane key guidelines" "fas fa-key" >}}
+{{<call-out class="caution" title="Data plane key guidelines" icon="key" >}}
 Data plane keys are displayed only once and cannot be retrieved later. Be sure to copy and store this key securely.
 
 Data plane keys expire after one year. You can change this expiration date later by [editing the key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md#change-expiration-date" >}}). If you [revoke a data plane key]({{< ref "/nginx-one-console/connect-instances/create-manage-data-plane-keys.md#revoke-data-plane-key" >}}) you disconnect all instances registered with that key.

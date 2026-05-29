@@ -14,7 +14,7 @@ For troubleshooting, you may use permissive (SELinux) or complain (AppArmor) mod
 
 Although F5 WAF for NGINX provides an optional package with prebuilt a SELinux policy (`app-protect-selinux`), your specific configuration might be blocked unless you adjust the policy or modify file labels.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 You may want to read the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) blog post for more information.
 

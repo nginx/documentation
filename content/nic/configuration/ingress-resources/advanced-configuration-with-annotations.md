@@ -88,7 +88,7 @@ Events:
 
 Note how the events section includes a Warning event with the Rejected reason.
 
-{{< call-out "note" >}} If you make an existing Ingress invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX. {{< /call-out >}}
+{{< call-out class="note" >}} If you make an existing Ingress invalid, NGINX Ingress Controller will reject it and remove the corresponding configuration from NGINX. {{< /call-out >}}
 
 The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
@@ -96,7 +96,7 @@ The `nginx.com/jwt-token` Ingress annotation has limited validation.
 
 The table below summarizes the available annotations.
 
-{{< call-out "note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. For session persistence, use `nginx.org/sticky-cookie-services`, which works with both NGINX and NGINX Plus. {{< /call-out >}}
+{{< call-out class="note" >}} Annotations that start with `nginx.com` are only supported with NGINX Plus. For session persistence, use `nginx.org/sticky-cookie-services`, which works with both NGINX and NGINX Plus. {{< /call-out >}}
 
 ### General customization
 
@@ -227,7 +227,7 @@ The table below summarizes the available annotations.
 
 ### F5 WAF for NGINX {#app-protect}
 
-{{< call-out "note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< ref "/nic/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} The App Protect annotations only work if the F5 WAF for NGINX module is [installed]({{< ref "/nic/integrations/app-protect-waf/installation.md" >}}). {{< /call-out >}}
 
 {{< table >}}
 
@@ -243,7 +243,7 @@ The table below summarizes the available annotations.
 
 ### App Protect DoS
 
-{{< call-out "note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< ref "/nic/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} The App Protect DoS annotations only work if the App Protect DoS module is [installed]({{< ref "/nic/integrations/app-protect-dos/installation.md" >}}). {{< /call-out >}}
 
 |Annotation | ConfigMap Key | Description | Default | Example |
 | ---| ---| ---| ---| --- |

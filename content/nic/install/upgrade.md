@@ -16,7 +16,7 @@ Many of the nuances in upgrade paths relate to how custom resource definitions (
 
 ### Upgrade NGINX Ingress Controller CRDs
 
-{{< call-out "note" >}} If you are running NGINX Ingress Controller v3.x, you should read [Upgrade from NGINX Ingress Controller v3.x to v4.0.0]({{< ref "/nic/install/upgrade.md#upgrade-from-3x-to-4x" >}}) before continuing. {{< /call-out >}}
+{{< call-out class="note" >}} If you are running NGINX Ingress Controller v3.x, you should read [Upgrade from NGINX Ingress Controller v3.x to v4.0.0]({{< ref "/nic/install/upgrade.md#upgrade-from-3x-to-4x" >}}) before continuing. {{< /call-out >}}
 
 To upgrade the CRDs, pull the Helm chart source, then use _kubectl apply_:
 
@@ -33,7 +33,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 In the above command, `v{{< nic-version >}}` represents the version of the NGINX Ingress Controller release rather than the Helm chart version.
 
-{{< call-out "note" >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
+{{< call-out class="note" >}} The following warning is expected and can be ignored: `Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply`.
 
 Check the [release notes](https://www.github.com/nginx/kubernetes-ingress/releases) for a new release for any special upgrade procedures.
 {{< /call-out >}}
@@ -68,7 +68,7 @@ helm upgrade my-release .
 
 ## Upgrade from 3.x to 4.x
 
-{{< call-out "warning" "This upgrade path is intended for 3.x to 4.0.0 only" >}}
+{{< call-out class="warning" title="This upgrade path is intended for 3.x to 4.0.0 only" >}}
 
 The instructions in this section are intended only for users upgrading from NGINX Ingress Controller 3.x to 4.0.0. Internal changes meant that backwards compability was not possible, requiring extra steps to upgrade.
 
@@ -127,7 +127,7 @@ spec:
 
 {{< /tabs >}}
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 If a *GlobalConfiguration*, *Policy* or *TransportServer* resource is deployed with `apiVersion: k8s.nginx.org/v1alpha1`, it will be **deleted** during the upgrade process.
 
@@ -147,7 +147,7 @@ kubectl patch customresourcedefinitions globalconfigurations.k8s.nginx.org --sub
 
 To configure structured logging, you must update your log deployment arguments from an integer to a string. You can also choose different formats for the log output.
 
-{{< call-out "note" >}} These options apply to NGINX Ingress Controller logs, and do not affect NGINX logs. {{< /call-out >}}
+{{< call-out class="note" >}} These options apply to NGINX Ingress Controller logs, and do not affect NGINX logs. {{< /call-out >}}
 
 | **Level arguments** | **Format arguments** |
 |---------------------|----------------------|
@@ -206,7 +206,7 @@ When you upgrade with Helm from a version earlier than 3.1.0, some resources suc
 
 To reduce downtime, update all resources to use the new naming convention. The following steps help you do that.
 
-{{< call-out "note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
+{{< call-out class="note" >}} The following steps apply to both 2.x and 3.0.x releases.  {{</ call-out >}}
 
 The steps you should follow depend on your Helm release name:
 

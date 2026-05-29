@@ -69,7 +69,7 @@ To use a certificate in an NGINX configuration, follow these steps:
 - Select **Delete**.
 - Confirm that you want to delete the certificate.
 
-{{< call-out "warning" >}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Google Cloud deployment will cause an error.{{< /call-out >}}
+{{< call-out class="warning" >}}Deleting a TLS/SSL certificate currently in-use by the NGINXaaS for Google Cloud deployment will cause an error.{{< /call-out >}}
 
 ## What's next
 

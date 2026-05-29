@@ -26,7 +26,7 @@ f5-product: NGPLUS
    sudo yum install nginx-plus-module-geoip2
    ```
 
-   {{< call-out "note" >}} the GeoIP2 module cannot be installed on ppc64le version of CentOS, Oracle Linux, and RHEL. {{< /call-out >}}
+   {{< call-out class="note" >}} the GeoIP2 module cannot be installed on ppc64le version of CentOS, Oracle Linux, and RHEL. {{< /call-out >}}
 
    For Amazon Linux 2023, AlmaLinux, Rocky Linux:
 

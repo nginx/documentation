@@ -139,7 +139,7 @@ When you set up an email alert for a problem, you'll see the alert in:
 
 You may also get a follow-up email with the subject **Alert Resolved**.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 Sometimes an **Alert Resolved** email is sent even though the issue is still active.
 To check the current status, go to the NGINX One Console.

@@ -262,7 +262,7 @@ Without upstream TLS enabled, the egress mTLS policy has TLS settings to apply, 
 
 In practice, that usually results in NGINX sending plain HTTP to an HTTPS upstream port.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For Ingress, `egressMTLS` configures how NGINX uses TLS when connecting to the upstream. It does not decide whether the upstream connection uses TLS. That is controlled separately, for example with `nginx.org/ssl-services` or `nginx.org/grpc-services`.
 
@@ -328,7 +328,7 @@ accessControl:
   - 10.0.0.0/8
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The feature is implemented using the NGINX [ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html). NGINX Ingress Controller access control policy supports either allow or deny rules, but not both (as the module does).
 
@@ -377,13 +377,13 @@ rateLimit:
   key: ${binary_remote_addr}
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The feature is implemented using the NGINX [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html).
 
 {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 When the [Zone Sync feature]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) is enabled with NGINX Plus, the rate limiting zone will be synchronized across all replicas in the cluster.  This means all replicas are aware of the requests that have been rate limited by other replicas in the cluster.
 
@@ -407,7 +407,7 @@ When the [Zone Sync feature]({{< ref "/nic/configuration/global-configuration/co
 
 {{% /table %}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For each policy referenced in a VirtualServer and/or its VirtualServerRoutes, NGINX Ingress Controller will generate a single rate limiting zone defined by the [`limit_req_zone`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive. If two VirtualServer resources reference the same policy, NGINX Ingress Controller will generate two different rate limiting zones, one zone per VirtualServer.
 
@@ -447,7 +447,7 @@ condition:
 
 {{% /table %}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Conditions (`jwt` or `variables`) are optional, but each policy can only have one. 
 If conditions are used, a request doesn't match any, and a `default` has been defined, the `default` policy applies. Otherwise, if no `default` is set, the request isn't rate limited.
 {{< /call-out >}}
@@ -456,7 +456,7 @@ The rate limit policy with condition is designed to be used in combination with 
 
 ### RateLimit.Condition.JWT
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This feature is only available with NGINX Plus.
 
@@ -500,7 +500,7 @@ variables:
     match: GET
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Only one variable at a time is supported at present.
 {{< /call-out >}}
 
@@ -517,7 +517,7 @@ Only one variable at a time is supported at present.
 
 The API Key auth policy configures NGINX to authorize client requests based on the presence of a valid API Key in a header or query param specified in the policy.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The feature is implemented using NGINX [ngx_http_auth_request_module](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
@@ -562,7 +562,7 @@ data:
 
 {{% /table %}}
 
-{{< call-out "important" >}}An APIKey Policy must include a minimum of one of the `suppliedIn.header` or `suppliedIn.query` parameters.  Both can also be supplied.{{< /call-out >}}
+{{< call-out class="important" >}}An APIKey Policy must include a minimum of one of the `suppliedIn.header` or `suppliedIn.query` parameters.  Both can also be supplied.{{< /call-out >}}
 
 #### APIKey Merging Behavior
 
@@ -609,7 +609,7 @@ basicAuth:
   realm: "My API"
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The feature is implemented using the NGINX [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html).
 {{< /call-out >}}
 
@@ -636,7 +636,7 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 ### JWT Using Local Kubernetes Secret
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This feature is only available with NGINX Plus.
 
@@ -671,7 +671,7 @@ We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/vi
 
 The value of the `${jwt_claim_user}` variable is the `user` claim of a JWT. For other claims, use `${jwt_claim_name}`, where `name` is the name of the claim. Note that nested claims and claims that include a period (`.`) are not supported. Similarly, use `${jwt_header_name}` where `name` is the name of a header. In our example, we use the `alg` header.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This feature is implemented using the NGINX Plus [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
@@ -701,7 +701,7 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 ### JWT Using JWKS From Remote Location
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This feature is only available with NGINX Plus.
 
@@ -719,7 +719,7 @@ jwt:
   keyCache: 1h
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This feature is implemented using the NGINX Plus directive [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) under [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
@@ -741,7 +741,7 @@ This feature is implemented using the NGINX Plus directive [auth_jwt_key_request
 
 {{% /table %}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Content caching is enabled by default for each JWT policy with a default time of 12 hours.
 
@@ -814,7 +814,7 @@ action:
 
 We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#actionproxy" >}}) to set the values of the two headers that NGINX will pass to the upstream servers. See the [list of embedded variables](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#variables) that are supported by the `ngx_http_ssl_module`, which you can use to pass the client certificate details.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
  The feature is implemented using the NGINX [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html).
 
@@ -825,7 +825,7 @@ We use the `requestHeaders` of the [Action.Proxy]({{< ref "/nic/configuration/vi
 The IngressMTLS policy supports configuring at CRL for your policy.
 This can be done in one of two ways.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
  Only one of these configurations options can be used at a time.
 
@@ -847,7 +847,7 @@ data:
 
 2. Adding the `crlFileName` field to your IngressMTLS policy spec with the name of the CRL file.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This configuration option should only be used when using a CRL that is larger than 1MiB.
 
@@ -870,7 +870,7 @@ ingressMTLS:
     verifyDepth: 1
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 When configuring a CRL with the `ingressMTLS.crlFileName` field, there is additional context to keep in mind:
 
 1. NGINX Ingress Controller will expect the CRL, in this case `webapp.crl`, will be in `/etc/nginx/secrets`. A volume mount will need to be added to NGINX Ingress Controller deployment add your CRL to `/etc/nginx/secrets`
@@ -917,7 +917,7 @@ egressMTLS:
   verifyDepth: 2
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html).
 
@@ -1019,7 +1019,7 @@ This means all routes on the same host that require OAuth2 sign-in must use the 
 
 ### OIDC
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 
 This feature is disabled by default. To enable it, set the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument of NGINX Ingress Controller.
 
@@ -1045,7 +1045,7 @@ spec:
 
 NGINX Plus will pass the ID of an authenticated user to the backend in the HTTP header `username`.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The feature is implemented using the [reference implementation](https://github.com/nginxinc/nginx-openid-connect/) of NGINX Plus as a relying party for OpenID Connect authentication.
 
@@ -1056,7 +1056,7 @@ The feature is implemented using the [reference implementation](https://github.c
 In order to use OIDC, you need to enable [zone synchronization]({{< ref "/nginx/admin-guide/high-availability/zone_sync.md" >}}). If you don't set up zone synchronization, NGINX Plus will fail to reload.
 You also need to configure a resolver, which NGINX Plus will use to resolve the IDP authorization endpoint. You can find an example configuration [in our GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/oidc#step-7---configure-nginx-plus-zone-synchronization-and-resolver).
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 The configuration in the example doesn't enable TLS and the synchronization between the replica happens in clear text. This could lead to the exposure of tokens.
 
@@ -1089,7 +1089,7 @@ The OIDC policy defines a few internal locations that can't be customized: `/_jw
 
 {{% /table %}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Only one OIDC policy can be referenced in a VirtualServer and its VirtualServerRoutes. However, the same policy can still be applied to different routes in the VirtualServer and VirtualServerRoutes.
 
@@ -1155,7 +1155,7 @@ cache:
     bypass: [ "$http_authorization" ]
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) proxy_cache_path and related directives.
 
@@ -1204,7 +1204,7 @@ A VirtualServer/VirtualServerRoute can reference multiple cache policies. Howeve
 
 The CORS policy configures Cross-Origin Resource Sharing headers.
 
-{{< call-out "note" >}}The feature is implemented using the NGINX `add_header` directive.{{< /call-out >}}
+{{< call-out class="note" >}}The feature is implemented using the NGINX `add_header` directive.{{< /call-out >}}
 
 Below is an example of a CORS policy configuring all the available options:
 
@@ -1256,7 +1256,7 @@ spec:
 
 {{% /table %}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If CORS is currently configured in deployments using `snippets` or `responseHeaders.add`, migrate over the same settings to the CORS policy and remove the duplicate configuration.
 {{< /call-out >}}
 
@@ -1266,7 +1266,7 @@ A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However
 
 ### WAF
 
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
 
 The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 
@@ -1285,7 +1285,7 @@ waf:
     logDest: "syslog:server=syslog-svc-secondary.default:514"
 ```
 
-{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
+{{< call-out class="note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
 
 {{% table %}}
 

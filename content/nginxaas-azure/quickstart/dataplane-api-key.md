@@ -13,7 +13,7 @@ The NGINXaaS dataplane API key is used to authenticate with your NGINXaaS deploy
 
 ## Requirements
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The data plane API key has the following requirements:
 
 - The key should have an expiration date. The default expiration date is six months from the date of creation. The expiration date cannot be longer than two years from the date of creation.
@@ -40,7 +40,7 @@ The data plane API key can be created using the Azure CLI or portal.
 5. Select the **Add API Key** button.
 6. Copy the value of the new API key.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Make sure to write down the key value in a safe location after creation, as you cannot retrieve it again. If you lose the generated value, delete the existing key and create a new one.
 {{< /call-out >}}
 

@@ -108,11 +108,11 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. To test your deployment, you can go to the IP address noted on the overview page. The default NGINX welcome screen should load.
 
-   {{< call-out "note" >}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< ref "/nginxaas-azure/getting-started/create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration.md#networking-tab" >}}) section.{{< /call-out >}}
+   {{< call-out class="note" >}}You will not see the default NGINX welcome screen if you unchecked "Apply default NGINX configuration" in the [Networking Tab screen]({{< ref "/nginxaas-azure/getting-started/create-deployment.md#networking-tab" >}}) above. You can proceed with providing your own NGINX configuration as outlined in the [NGINX configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration.md#networking-tab" >}}) section.{{< /call-out >}}
 
    {{< img src="nginxaas-azure/test-deployment.png" alt="NGINXaaS Overview page showing the IP address of the deployment in the Essentials section." >}}
 
-{{< call-out "note" >}}It's not possible to manually stop or start NGINXaaS. If necessary, you have the option to delete the deployment and re-deploy at a future date.{{< /call-out >}}
+{{< call-out class="note" >}}It's not possible to manually stop or start NGINXaaS. If necessary, you have the option to delete the deployment and re-deploy at a future date.{{< /call-out >}}
 
 
 ## What's next

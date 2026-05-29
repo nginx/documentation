@@ -273,7 +273,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
+{{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 ---
 
@@ -281,7 +281,7 @@ GW_PORT=<port number>
 
 Using the external IP address and port for the NGINX Service, send traffic to the secure-app application. To show what happens before we configure backend TLS and have the Gateway present its client certificate for verification, send a request now and observe how the connection to the application fails with a bad request error.
 
-{{< call-out "note" >}}If you have a DNS record allocated for `secure-app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
+{{< call-out class="note" >}}If you have a DNS record allocated for `secure-app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 ```shell
 curl --resolve secure-app.example.com:$GW_PORT:$GW_IP http://secure-app.example.com:$GW_PORT/

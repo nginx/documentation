@@ -167,7 +167,7 @@ EOF
 
 This Gateway will configure NGINX Gateway Fabric to accept TLS connections on port 443 and route them to the corresponding backend Services without decryption. The routing is done based on the SNI, which allows clients to specify a server name (like example.com) during the SSL handshake.
 
-{{< call-out "note" >}}It is possible to add an HTTPS listener on the same port that terminates TLS connections so long as the hostname does not overlap with the TLS listener hostname.{{< /call-out >}}
+{{< call-out class="note" >}}It is possible to add an HTTPS listener on the same port that terminates TLS connections so long as the hostname does not overlap with the TLS listener hostname.{{< /call-out >}}
 
 After creating the Gateway resource, NGINX Gateway Fabric will provision an NGINX Pod and Service fronting it to route traffic. Verify the gateway is created:
 
@@ -204,7 +204,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_TLS_PORT=<port number>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the Gateway will forward for.
 
@@ -232,13 +232,13 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#referencegrant) to permit the cross-namespace reference. {{< /call-out >}}
+{{< call-out class="note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#referencegrant) to permit the cross-namespace reference. {{< /call-out >}}
 
 ## Send traffic
 
 Using the external IP address and port for the NGINX Service, send traffic to the `secure-app` application.
 
-{{< call-out "note" >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
+{{< call-out class="note" >}}If you have a DNS record allocated for `app.example.com`, you can send the request directly to that hostname, without needing to resolve.{{< /call-out >}}
 
 Send a request to the `secure-app` Service on the TLS port with the `--insecure` flag. The flag is required because `secure-app` uses a certificate signed by a local self-signed CA that curl does not trust.
 

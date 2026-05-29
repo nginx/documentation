@@ -152,7 +152,7 @@ GW_PORT=<port number>
 
 Deploy a secret with user credentials, and the AuthenticationFilter by running the following YAML with `kubectl apply`:
 
-{{< call-out "important" >}} Ensure the secret deployed is of type `nginx.org/htpasswd` and the key is `auth` {{< /call-out >}}
+{{< call-out class="important" >}} Ensure the secret deployed is of type `nginx.org/htpasswd` and the key is `auth` {{< /call-out >}}
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -274,7 +274,7 @@ Events:              <none>
 
 ## Verify Basic Authentication
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. 
 

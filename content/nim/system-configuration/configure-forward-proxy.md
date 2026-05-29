@@ -25,7 +25,7 @@ Ensure you have:
 - Permissions to modify `/etc/nms/nms.conf`
 - Proxy authentication credentials, if required
 
-{{<call-out "note" "Important considerations:" "">}}
+{{<call-out class="note" title="Important considerations:" >}}
 #### Proxy SSL verification
 
 - `proxy_ssl_verify` applies **only when** `proxy_protocol` is set to `https`.
@@ -190,7 +190,7 @@ If you’re deploying NGINX Instance Manager with Docker Compose, update the `do
 
 If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance Manager expects the proxy’s CA certificate to be trusted. If the proxy certificate is self-signed or issued by an untrusted Certificate Authority (CA), you must manually add it to the system’s trusted store.
 
-{{< call-out "note" >}}For Kubernetes deployments, perform these steps inside the **integrations pod**.{{< /call-out >}}
+{{< call-out class="note" >}}For Kubernetes deployments, perform these steps inside the **integrations pod**.{{< /call-out >}}
 
 1. Copy the proxy CA certificate into the system’s trusted certificate directory. The path varies by distribution:
    - **Debian/Ubuntu**: `/usr/local/share/ca-certificates/`

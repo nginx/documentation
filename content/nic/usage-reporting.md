@@ -9,7 +9,7 @@ f5-product: INGRESS
 f5-docs: DOCS-1445
 ---
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 This page is only applicable to NGINX Ingress Controller versions 3.2.0 - 3.7.2.
 
 For more recent versions of NGINX Ingress Controller, view the [Upgrade to NGINX Ingress Controller 4.0.0]({{< ref "/nic/installation/install-nic/upgrade-to-v4.md" >}}) topic.
@@ -103,7 +103,7 @@ Save this in a file named `nms-basic-auth.yaml`. In the example, the namespace i
 
 If you are using a different namespace, change the namespace in the `metadata` section of the file above.
 
-{{< call-out "note" >}} Usage Reporting only supports basic-auth secret type in `data` format, not `stringData`, with the username and password encoded in base64. {{< /call-out >}}
+{{< call-out class="note" >}} Usage Reporting only supports basic-auth secret type in `data` format, not `stringData`, with the username and password encoded in base64. {{< /call-out >}}
 
 ---
 
@@ -126,7 +126,7 @@ Download and save the deployment file [cluster-connector.yaml](https://raw.githu
 - `-nms-server-address` should be the address of the Usage Reporting API, which will be the combination of NGINX Instance Manager server hostname and the URI `api/platform/v1`
 - `nms-basic-auth-secret` should be the namespace/name of the secret created in step 3: `nginx-cluster-connector/nms-basic-auth`.
 
-{{< call-out "note" >}}  OpenShift requires a SecurityContextConstraints object for NGINX Cluster Connector.
+{{< call-out class="note" >}}  OpenShift requires a SecurityContextConstraints object for NGINX Cluster Connector.
 
 It can be created with the command `oc create -f scc.yaml`, using the file found in `shared-examples/` {{< /call-out >}}
 
@@ -284,7 +284,7 @@ The display name of the Kubernetes cluster.
 
 Skip TLS verification for the NGINX Instance Manager server.
 
-{{< call-out "warning" >}} This argument is intended for using a self-assigned certificate for testing purposes only. {{< /call-out >}}
+{{< call-out class="warning" >}} This argument is intended for using a self-assigned certificate for testing purposes only. {{< /call-out >}}
 
 ---
 
@@ -293,4 +293,4 @@ Skip TLS verification for the NGINX Instance Manager server.
 The minimum interval between updates to the NGINX Instance Manager.
 Default: `24h`.
 
-{{< call-out "warning" >}} This argument is intended for testing purposes only. {{< /call-out >}}
+{{< call-out class="warning" >}} This argument is intended for testing purposes only. {{< /call-out >}}

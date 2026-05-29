@@ -40,7 +40,7 @@ When you work with such archives, consider the following:
   - If you import or export such files in archives, NGINX One Console does not include those files.
 - The size of the archive is limited to 5 MB.  The size of all uncompressed files in the archive is limited to 10 MB.
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 
 Before you unpack an archive, run the `tar -tvzf <archive-name>.tar.gz` command. It displays the files and directories in that archive, without overwriting anything.
 You'll then know where files are written when you extract an archive with a command like `tar -xvzf <archive-name>.tar.gz`.

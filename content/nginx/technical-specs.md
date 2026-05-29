@@ -54,7 +54,7 @@ TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in N
 
 TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
-{{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
 
 ## Supported Deployment Environments
 

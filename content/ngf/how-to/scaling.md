@@ -36,7 +36,7 @@ To update worker connections (default: 1024), replicas, or enable autoscaling, y
 kubectl edit nginxproxies.gateway.nginx.org ngf-proxy-config -n nginx-gateway
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The NginxProxy resource in this example lives in the control plane namespace (default: `nginx-gateway`) and applies to the GatewayClass, but you can also define one per Gateway. See the [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) document for more information.
 

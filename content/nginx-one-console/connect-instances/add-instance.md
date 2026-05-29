@@ -21,7 +21,7 @@ Before you add an instance to NGINX One Console, ensure:
 - You have or are ready to configure a [data plane key]({{< ref "/nginx-one-console/getting-started.md#generate-data-plane-key" >}}).
 - You have or are ready to set up [managed certificates]({{< ref "/nginx-one-console/nginx-configs/certificates/manage-certificates.md" >}}).
 
-{{< call-out "note" >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "/nginx-one-console/nginx-configs/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /call-out >}}
+{{< call-out class="note" >}}If this is the first time an instance is being added to a Config Sync Group, and you have not yet defined the configuration for that Config Sync Group, that instance provides the template for that group. For more information, see [Configuration management]({{< ref "/nginx-one-console/nginx-configs/config-sync-groups/manage-config-sync-groups#configuration-management" >}}).{{< /call-out >}}
 
 ## Add an instance
 

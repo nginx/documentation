@@ -9,7 +9,7 @@ f5-product: NAGENT
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 - NGINX Agent interprets configuration values set by configuration files, CLI flags, and environment variables in the following priorities:
 

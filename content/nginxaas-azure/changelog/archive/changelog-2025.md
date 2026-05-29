@@ -64,7 +64,7 @@ See the [Supported Regions]({{< ref "/nginxaas-azure/overview/overview.md#suppor
   - `nginx-plus-module-njs`
    For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#configuration-directives-list" >}}).
 
-  {{< call-out "important" >}}
+  {{< call-out class="important" >}}
 
   The [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature, available in NGINX Plus R35 as a [dynamic module]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}), is not currently supported in NGINXaaS due to active-active deployments.
 

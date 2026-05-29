@@ -173,7 +173,7 @@ You can bundle your configuration files into a `.tar.gz` archive and upload it a
 
    Create a gzip compress tarball package.
 
-   {{< call-out "important" "Directory structure requirement" >}}The package must start at the `etc` level. Your tarball must contain the `etc/nginx/` directory structure.{{< /call-out >}}
+   {{< call-out class="important" title="Directory structure requirement" >}}The package must start at the `etc` level. Your tarball must contain the `etc/nginx/` directory structure.{{< /call-out >}}
 
    ```shell
    $ tar -czf nginx.tar.gz etc
@@ -306,7 +306,7 @@ az nginx deployment configuration update [--add]
 See the [Azure CLI Configuration Update Documentation](https://learn.microsoft.com/en-us/cli/azure/nginx/deployment/configuration?view=azure-cli-latest#az-nginx-deployment-configuration-update) for more details on the available parameters.
 
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 
 See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:

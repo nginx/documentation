@@ -16,7 +16,7 @@ A security policy bundle includes your policies, attack signatures, bot signatur
 
 Precompiling with NGINX Instance Manager reduces processing overhead on WAF instances and ensures consistent, reusable configurations.
 
-{{< call-out "note" "See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
+{{< call-out class="note" title="See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
 
 {{<tabs name="create-bundles">}}
 

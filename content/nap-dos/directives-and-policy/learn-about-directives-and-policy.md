@@ -155,12 +155,12 @@ Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **
 - **URI** - The URI of the Protected Object as defined in the `nginx.conf`. This must point to a location block that proxies traffic to the backend (upstream) to ensure accurate monitoring.<br>
   Format: **scheme://server_name:port/location**.
 
-  {{< call-out "note" >}}For gRPC, the URI must specify a valid gRPC method (for example, /RouteGuide/GetFeature).<br>
+  {{< call-out class="note" >}}For gRPC, the URI must specify a valid gRPC method (for example, /RouteGuide/GetFeature).<br>
   The health check is not a true gRPC client, so its requests do not conform to the gRPC wire protocol. As a result, the backend responds with grpc-status: 12 (UNIMPLEMENTED), which is expected and treated as a successful health check. Regular gRPC client traffic is unaffected by this behavior.{{< /call-out >}}
 
 - **Protocol** -  determines the protocol type of the service. Options are `http1 / http2 / grpc / websocket`.<br>Default: `http1`.<br>
 
-  {{< call-out "note" >}}HTTP2 and gRPC are supported from F5 DoS for NGINX v2, while WebSocket is supported from F5 DoS for NGINX v4. {{< /call-out >}}
+  {{< call-out class="note" >}}HTTP2 and gRPC are supported from F5 DoS for NGINX v2, while WebSocket is supported from F5 DoS for NGINX v4. {{< /call-out >}}
 
 - **Timeout** - determines how long (in seconds) should F5 DoS for NGINX wait for a response. <br>Default: 10 seconds for `http1/http2/websocket` and 5 seconds for `grpc`.<br>
 
@@ -169,7 +169,7 @@ Monitor directive has four arguments - **uri**, **protocol**, **timeout** and **
   <br>Format is **proxy_protocol | proxy_protocol=on**.<br>
   Default: off.<br>
 
-  {{< call-out "note" >}}The proxy_protocol is supported from F5 DoS for NGINX v3.1. {{< /call-out >}}
+  {{< call-out class="note" >}}The proxy_protocol is supported from F5 DoS for NGINX v3.1. {{< /call-out >}}
 
 
 #### For Older Versions (F5 DoS for NGINX v1)
@@ -192,7 +192,7 @@ location / {
 }
 ```
 
-{{< call-out "note" >}}For F5 DoS for NGINX v1, use: app_protect_dos_monitor <http://serv:80/>; {{< /call-out >}}
+{{< call-out class="note" >}}For F5 DoS for NGINX v1, use: app_protect_dos_monitor <http://serv:80/>; {{< /call-out >}}
 
 2. HTTP/2 Over SSL
 
@@ -281,7 +281,7 @@ Second argument is the destination (the location which the events will be sent t
 
 Implemented according to: [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}})
 
-   {{< call-out "note" >}}
+   {{< call-out class="note" >}}
 
 - When using stderr, make sure that the process `admd` is not redirecting the stderr output to file.
 - When using the Docker `entrypoint.sh` startup script from the admin guide, make sure that it doesn’t redirect stderr.
@@ -332,7 +332,7 @@ This directive has 3 arguments.
 
 {{</bootstrap-table>}}
 
-   {{< call-out "note" >}}
+   {{< call-out class="note" >}}
 Second and Third arguments are optional; if one or more is not written, the default will take place.
    {{< /call-out >}}
 
@@ -359,7 +359,7 @@ This directive has 3 arguments.
 {{</bootstrap-table>}}
 
 
-   {{< call-out "note" >}}
+   {{< call-out class="note" >}}
 Second and Third arguments are optional; if one or more is not written, the default will take place.
    {{< /call-out >}}
 
@@ -437,7 +437,7 @@ In syn_drop mode, the SYN packet of detected bad actors will be dropped.
 syn_drop mode is recommended for the deployments of F5 DoS for NGINX at the perimeter network or behind L3 load balancer.
 Using this mode when F5 DoS for NGINX is deployed behind L4/L7 load balancer may result in the load balancer’s starvation during an attack.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 To use this directive you need to install the eBPF package.
 
 For more information about eBPF, you can read the [Accelerating DDoS Mitigation with eBPF in F5 DoS for NGINX](https://www.f5.com/company/blog/nginx/accelerating-ddos-mitigation-with-ebpf-in-f5-nginx-app-protect-dos) article.

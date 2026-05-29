@@ -13,7 +13,7 @@ However, because these certificates are self-signed and will expire after 3 year
 
 This guide will step through how to install and use `cert-manager` to secure this connection.
 
-{{< call-out "caution"  >}}
+{{< call-out class="caution"  >}}
 
 These steps should be completed before you install NGINX Gateway Fabric.
 
@@ -62,7 +62,7 @@ This also enables Gateway API features for cert-manager, which can be useful for
 
 The first step is to create the CA (certificate authority) issuer.
 
-{{< call-out "note" >}} This example uses a self-signed Issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
+{{< call-out class="note" >}} This example uses a self-signed Issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
 
 Create the namespace:
 

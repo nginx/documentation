@@ -8,7 +8,7 @@ f5-product: F5WAFN
 
 This page describes the Deny and Allow IP lists feature of F5 WAF for NGINX.
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 This feature is deprecated in the latest F5 WAF for NGINX versions.
 
@@ -76,7 +76,7 @@ In this IPv4 example, the default configuration is used while enabling the deny 
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The above configuration assumes the IP address represents the original requestor.
 
 It is common that the client address may instead represent a downstream proxy device as opposed to the original requestor's IP address.

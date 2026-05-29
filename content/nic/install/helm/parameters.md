@@ -13,7 +13,7 @@ It is a reference for each parameter name, a description of the parameter, and a
 
 ## NGINX Ingress Controller Helm chart parameters
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [values.yaml](https://github.com/nginx/kubernetes-ingress/blob/main/charts/nginx-ingress/values.yaml) file of the Helm chart is a single source of truth and includes parameter descriptions: the table may become outdated.
 

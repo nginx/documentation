@@ -40,7 +40,7 @@ server {
 }
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 When using the common Microsoft Entra signing keys you will need to increase the size of the subrequest output buffer as the key file will not fit in the default buffer.
 If the buffer is not sized properly, requests will result in empty responses. If [error logging is enabled]({{< ref "/nginxaas-azure/monitoring/enable-logging/" >}}), you will see an error in the error log.{{< /call-out >}}
 

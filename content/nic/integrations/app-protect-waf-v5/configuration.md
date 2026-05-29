@@ -11,7 +11,7 @@ f5-docs: DOCS-1866
 
 This document explains how to use F5 NGINX Ingress Controller to configure [F5 WAF for NGINX v5]({{< ref "/waf/" >}}).
 
-{{< call-out "note" >}} There are complete NGINX Ingress Controller with F5 WAF for NGINX [example resources on GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5). {{< /call-out >}}
+{{< call-out class="note" >}} There are complete NGINX Ingress Controller with F5 WAF for NGINX [example resources on GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5). {{< /call-out >}}
 
 ## Global configuration
 
@@ -29,7 +29,7 @@ F5 WAF for NGINX bundles for VirtualServer custom resources are defined by creat
 
 Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/app_protect/bundles`.
 
-{{< call-out "note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles. Log bundles must also be copied to a volume mounted to `/etc/app_protect/bundles`. {{< /call-out >}}
+{{< call-out class="note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles. Log bundles must also be copied to a volume mounted to `/etc/app_protect/bundles`. {{< /call-out >}}
 
 This example shows how a policy is configured by referencing a generated WAF Policy Bundle:
 
@@ -67,7 +67,7 @@ spec:
 
 This example shows how to deploy NGINX Ingress Controller with NGINX Plus and F5 WAF for NGINX v5, deploy a simple web application, and then configure load balancing and WAF protection for that application using the VirtualServer resource.
 
-{{< call-out "note" >}} You can find the files for this example on [GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).{{< /call-out >}}
+{{< call-out class="note" >}} You can find the files for this example on [GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5).{{< /call-out >}}
 
 ### Prerequisites
 
@@ -103,7 +103,7 @@ Create the syslog service and pod for the F5 WAF for NGINX security logs:
 
 ### Deploy the WAF Policy
 
-{{< call-out "note" >}} Configuration settings in the Policy resource enable WAF protection by configuring F5 WAF for NGINX with the log configuration created in the previous step. The policy bundle referenced as `your_policy_bundle_name.tgz` need to be created and placed in the `/etc/app_protect/bundles` volume first.{{< /call-out >}}
+{{< call-out class="note" >}} Configuration settings in the Policy resource enable WAF protection by configuring F5 WAF for NGINX with the log configuration created in the previous step. The policy bundle referenced as `your_policy_bundle_name.tgz` need to be created and placed in the `/etc/app_protect/bundles` volume first.{{< /call-out >}}
 
 Create and deploy the WAF policy.
 
@@ -113,7 +113,7 @@ Create and deploy the WAF policy.
 
 ### Configure load balancing
 
-{{< call-out "note" >}} VirtualServer references the `waf-policy` created in Step 3.{{< /call-out >}}
+{{< call-out class="note" >}} VirtualServer references the `waf-policy` created in Step 3.{{< /call-out >}}
 
 1. Create the VirtualServer Resource:
 

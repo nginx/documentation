@@ -111,10 +111,10 @@ Repeat these steps on each F5 WAF for NGINX data plane host to install and confi
    sudo systemctl restart nginx
    ```
 
-{{< call-out "important" >}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs.
+{{< call-out class="important" >}}You can change the values of `syslog_ip` and `syslog_port` to meet your needs.
    Use the same values when you configure logging for the Security Monitoring module. If the `syslog:<server><port>` configuration doesn't match these settings, the monitoring dashboards won't show any data. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
 
-   {{< call-out "note" >}}You can use the NGINX Agent installation script to add the fields for `nginx_app_protect` and `nap_monitoring`:
+   {{< call-out class="note" >}}You can use the NGINX Agent installation script to add the fields for `nginx_app_protect` and `nap_monitoring`:
 
 ```shell
 # Download install script via API
@@ -180,7 +180,7 @@ Repeat these steps on each F5 WAF for NGINX data plane instance.
       app_protect_security_log "/etc/app_protect/conf/log_sm.json" syslog:server=127.0.0.1:514;
    ```
 
-   {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the [NGINX Agent configuration file](#install-nginx-agent). The dashboards won't show any data if these settings don't match. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
+   {{< call-out class="important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the [NGINX Agent configuration file](#install-nginx-agent). The dashboards won't show any data if these settings don't match. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
 
 1. Restart NGINX Agent and the NGINX web server.
 
@@ -221,7 +221,7 @@ Follow these steps to update your F5 WAF for NGINX configurations with NGINX Ins
 
       If the `app_protect_security_log_enable` setting is already present, just add the `app_protect_security_log` beneath it in the same context.
 
-      {{< call-out "important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the [NGINX Agent configuration file](#install-nginx-agent). The Security Monitoring dashboards won't show any data if these settings don't match. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
+      {{< call-out class="important" >}}The `syslog:server=<syslog_ip>:<syslog_port>` must match the `syslog_ip` and `syslog_port` values in the [NGINX Agent configuration file](#install-nginx-agent). The Security Monitoring dashboards won't show any data if these settings don't match. F5 WAF for NGINX Version 5 networking changes don't support `127.0.0.1` as a syslog server address. For Version 5, use the `docker0` interface address (typically `192.0.10.1`) or the data plane host IP address instead.{{< /call-out >}}
 
 1. Select **Publish** to push the configuration updates to your instance or instance group.
 

@@ -16,7 +16,7 @@ f5-summary: >
   This setup is used when NGINX Plus instances don't have direct internet access but NGINX Instance Manager does.
 ---
 
-{{< call-out "note" >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
+{{< call-out class="note" >}}For disconnected environments, see [Report usage data to F5 (disconnected)]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}).{{< /call-out >}}
 
 ## Overview
 
@@ -39,7 +39,7 @@ Before submitting usage data to F5, open the required network ports and configur
 
 Open port 443 for `https://product.connect.nginx.com/api/nginx-usage/batch`.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
    There is no [Manual reporting]({{< ref "/nim/licensing-and-reporting/report-usage-connected-deployment.md#manual-reporting" >}}) option for connected mode in NGINX Instance Manager 2.22 and later versions (The "licensing page", "Enable Continuous Connection" toggle and "Send Usage to F5" button are not available).
    {{< /call-out >}}
 
@@ -66,7 +66,7 @@ When you [add your JSON Web Token (JWT)]({{< ref "nim/licensing-and-reporting/ad
 
 ### Manual reporting
 
-{{<call-out "important" "Usage reporting requirement:" "fa-solid fa-exclamation-triangle" >}}Report usage to F5 regularly. **If usage isn't reported for 180 days, NGINX Plus stops processing traffic**. See [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}) for details.{{</call-out>}}
+{{<call-out class="important" title="Usage reporting requirement:" icon="triangle-alert" >}}Report usage to F5 regularly. **If usage isn't reported for 180 days, NGINX Plus stops processing traffic**. See [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}) for details.{{</call-out>}}
 
 To submit usage reports manually:
 

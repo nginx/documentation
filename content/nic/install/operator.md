@@ -13,7 +13,7 @@ This document explains how to install F5 NGINX Ingress Controller using NGINX In
 
 If you're using NGINX Plus, get the NGINX Ingress Controller JWT and [create a license secret]({{< ref "/nic/install/license-secret.md" >}}).
 
-{{< call-out "note" >}} We recommend the most recent stable version of NGINX Ingress Controller, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
+{{< call-out class="note" >}} We recommend the most recent stable version of NGINX Ingress Controller, available on the GitHub repository's [releases page](https://github.com/nginx/kubernetes-ingress/releases). {{< /call-out >}}
 
  Make sure you have access to the NGINX Ingress Controller image:
 
@@ -26,7 +26,7 @@ Install the NGINX Ingress Operator following the [instructions](https://github.c
 
 Create the SecurityContextConstraint as outlined in the ["Getting Started" instructions](https://github.com/nginx/nginx-ingress-helm-operator/blob/main/README.md#getting-started).
 
-{{< call-out "note" >}} If you're upgrading your operator installation to a later release, navigate [here](https://github.com/nginx/nginx-ingress-helm-operator/blob/main/helm-charts/nginx-ingress) and run `kubectl apply -f crds/` or `oc apply -f crds/` as a prerequisite {{< /call-out >}}
+{{< call-out class="note" >}} If you're upgrading your operator installation to a later release, navigate [here](https://github.com/nginx/nginx-ingress-helm-operator/blob/main/helm-charts/nginx-ingress) and run `kubectl apply -f crds/` or `oc apply -f crds/` as a prerequisite {{< /call-out >}}
 
 ## Create the NGINX Ingress Controller manifest
 
@@ -53,7 +53,7 @@ spec:
       imagePullSecretName: ""
 ```
 
-{{< call-out "note" >}} For NGINX Plus, change the `image.repository` and `image.tag` values and change `nginxPlus` to `True`. If required, set the `serviceAccount.imagePullSecretName` or `serviceAccount.imagePullSecretsNames` to the name of the pre-created docker config secret that should be associated with the ServiceAccount. {{< /call-out >}}
+{{< call-out class="note" >}} For NGINX Plus, change the `image.repository` and `image.tag` values and change `nginxPlus` to `True`. If required, set the `serviceAccount.imagePullSecretName` or `serviceAccount.imagePullSecretsNames` to the name of the pre-created docker config secret that should be associated with the ServiceAccount. {{< /call-out >}}
 
 ## Deploy NGINX Ingress Controller
 

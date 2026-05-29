@@ -42,7 +42,7 @@ Selects the query window for all widgets. The picker offers preset windows from 
 
 Time-series widgets bucket their data automatically based on the selected window — shorter windows produce finer buckets.
 
-{{< call-out "note" >}}Security events are retained for **90 days**, but the dashboard time window picker tops out at the **last 60 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
+{{< call-out class="note" >}}Security events are retained for **90 days**, but the dashboard time window picker tops out at the **last 60 days**. To query the full retention window, use the [analytics API]({{< ref "/nginx-one-console/api/query-events-api.md" >}}), which accepts any time range up to 90 days.{{< /call-out >}}
 
 ### Add Filter
 

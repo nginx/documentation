@@ -13,7 +13,7 @@ This document describes how to migrate from the community-maintained Ingress-NGI
 
 This page explains two different ways to migrate from the community-maintained [Ingress-NGINX Controller](https://github.com/kubernetes/ingress-nginx) project to NGINX Ingress Controller: using NGINX's Ingress Resources or with Kubernetes's built-in Ingress Resources. This is typically because of implementation differences, and to take advantage of features such as [NGINX Plus integration]({{< ref "/nic/overview/nginx-plus" >}}).
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For more information, you may want to read the two-part blog series from the [NGINX Community Blog](https://blog.nginx.org/) on Migrating from ingress-nginx to NGINX Ingress Controller:
 
@@ -452,7 +452,7 @@ The other option for migrating from the community Ingress-NGINX Controller to NG
 
 This ensures that all configuration is kept in the Ingress object.
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 You should avoid altering the `spec` field of the Ingress resource when taking this option. Ingress-NGINX Controller and NGINX Ingress Controller differ slightly in their implementations: changing the Kubernetes Ingress can create incompatibility issues.
 {{< /call-out >}}
 
@@ -503,7 +503,7 @@ NGINX Ingress Controller:
 nginx.org/sticky-cookie-services: "serviceName=example-svc cookie_name expires=time path=/route"
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 NGINX Ingress Controller has additional annotations for features using NGINX Plus that have no Ingress-NGINX Controller equivalent, such as active health checks and authentication using JSON Web Tokens (JWTs).
 {{< /call-out >}}
 
@@ -519,7 +519,7 @@ The following table outlines annotation conversions for enabling TLS and gRPC pr
 
 {{< /table >}}
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_http2 ConfigMap key_]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#listeners" >}})).
 {{< /call-out >}}
 
@@ -527,7 +527,7 @@ GRPC services require Ingresses with TLS termination and HTTP/2 enabled (see [_h
 
 This table maps the Ingress-NGINX Controller ConfigMap keys to NGINX Ingress Controller's equivalent ConfigMap keys.
 
-<!-- {{< call-out "note" >}}
+<!-- {{< call-out class="note" >}}
 Some of the key names are identical, and each Ingress Controller has ConfigMap keys that the other does not (Which are indicated).
 {{< /call-out >}} -->
 

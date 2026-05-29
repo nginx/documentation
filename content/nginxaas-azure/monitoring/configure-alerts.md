@@ -10,7 +10,7 @@ f5-product: NAZURE
 
 ## Overview
 
-{{< call-out "note" >}}F5 NGINXaaS for Azure (NGINXaaS) publishes platform metrics to Azure Monitor. To learn more about how to create and manage metrics-based alert rules, refer to the [Alerts section in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric) documentation from Microsoft. {{< /call-out >}}
+{{< call-out class="note" >}}F5 NGINXaaS for Azure (NGINXaaS) publishes platform metrics to Azure Monitor. To learn more about how to create and manage metrics-based alert rules, refer to the [Alerts section in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric) documentation from Microsoft. {{< /call-out >}}
 
 This guide explains how to create and configure metrics-based alerts for your NGINXaaS for Azure deployment using Azure Monitor.
 
@@ -23,7 +23,7 @@ This guide explains how to create and configure metrics-based alerts for your NG
 
 - To enable metrics, see [Enable Metrics]({{< ref "/nginxaas-azure/monitoring/enable-metrics.md" >}}).
 
-{{< call-out "note" >}} See [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) documentation to familiarize with Azure Monitor. {{< /call-out >}}
+{{< call-out class="note" >}} See [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azure-monitor/overview) documentation to familiarize with Azure Monitor. {{< /call-out >}}
 
 ## Create metrics-based alerts for proactive monitoring.
 
@@ -35,7 +35,7 @@ This guide explains how to create and configure metrics-based alerts for your NG
 
 4. Select the **Scope** tab, and choose NGINX deployment as the scope of the alert.
 
-{{< call-out "note" >}} The scope is auto-selected as NGINX deployment. {{< /call-out >}}
+{{< call-out class="note" >}} The scope is auto-selected as NGINX deployment. {{< /call-out >}}
 
 5. In the **Conditions** tab, select a **Signal name**, for example, "nginx.http.request.count".
 
@@ -59,4 +59,4 @@ This guide explains how to create and configure metrics-based alerts for your NG
     - Specify the **severity** of the alert, and the name of the rule.
     - In the **advanced options** tab, you can turn on "Enable alert upon creation" and "Automatically resolve alerts".
 
-{{< call-out "note" >}} [Standard Azure alert charges will apply](https://azure.microsoft.com/en-us/pricing/details/monitor/).{{< /call-out >}}
+{{< call-out class="note" >}} [Standard Azure alert charges will apply](https://azure.microsoft.com/en-us/pricing/details/monitor/).{{< /call-out >}}

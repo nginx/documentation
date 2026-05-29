@@ -27,7 +27,7 @@ Before you start, make sure that:
 
 - NGINX Instance Manager is [installed]({{< ref "/nim/deploy/vm-bare-metal/install.md" >}}).
 
-  {{< call-out "note" >}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
+  {{< call-out class="note" >}} When installing and configuring NGINX Instance Manager, remember the domain name/IP address and the gRPC port number. You will need them to configure the NGINX Agent to communicate with NGINX Instance Manager.
   {{< /call-out >}}
 - You have the JSON Web Token (JWT) from MyF5 Customer Portal. The [download instructions](#download-jwt) are below.
 - The [Docker Engine](https://docs.docker.com/engine/install/) command-line tool is installed.
@@ -71,7 +71,7 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic operating system tag returns the latest version of NGINX Plus built for the latest version of this operating system.
 
-{{<call-out "tip" "Example:" "fas fa-terminal" >}}
+{{<call-out class="tip" title="Example:" icon="terminal" >}}
 `nginx-plus-r32-ubi-9`, `nginx-plus-r31-alpine-3.19`.
 {{</call-out>}}
 
@@ -106,7 +106,7 @@ where:
    ```
    <br>
 
-   {{<call-out "tip" "Example:" "fas fa-terminal" >}}
+   {{<call-out class="tip" title="Example:" icon="terminal" >}}
    To pull the latest version of NGINX Plus with NGINX Agent image for Debian or Ubuntu, use the command:
 
    ```shell

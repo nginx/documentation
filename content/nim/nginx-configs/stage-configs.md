@@ -21,7 +21,7 @@ To complete the instructions in this guide, ensure:
 
 - NGINX Instance Manager is installed, licensed, and running.
 
-{{<call-out "tip" "Interacting with the API" >}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the NGINX Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< ref "/nim/fundamentals/api-overview.md" >}}). {{</call-out>}}
+{{<call-out class="tip" title="Interacting with the API" >}} You can use tools such as `curl` or [Postman](https://www.postman.com) to interact with the NGINX Instance Manager REST API. The API URL follows the format `https://<NIM_FQDN>/api/nim/<API_VERSION>` and must include authentication information with each call. For more information about authentication options, refer to the [API Overview]({{< ref "/nim/fundamentals/api-overview.md" >}}). {{</call-out>}}
 
 ---
 
@@ -122,7 +122,7 @@ When adding version control identifiers to a config, include the following param
 }
 ```
 
-{{<call-out "important" "Commit information reset upon direct edits" >}} If you edit an NGINX configuration in the NGINX Instance Manager web interface or directly on the data plane, previous hashed commit information will be lost: `externalID` will revert to `null` and `externalIdType` will revert to `other` automatically.{{</call-out>}}
+{{<call-out class="important" title="Commit information reset upon direct edits" >}} If you edit an NGINX configuration in the NGINX Instance Manager web interface or directly on the data plane, previous hashed commit information will be lost: `externalID` will revert to `null` and `externalIdType` will revert to `other` automatically.{{</call-out>}}
 
 #### HTTP request (GET)
 

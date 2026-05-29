@@ -21,4 +21,4 @@ f5-files:
 - content/nim/system-configuration/secure-traffic.md
 ---
 
-{{<call-out "tip" "Legacy 'nms' references" "fa-solid fa-sync" >}}Some commands, file paths, and configuration references still use `nms` due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.{{</call-out>}}
+{{<call-out class="tip" title="Legacy 'nms' references" icon="refresh-ccw" >}}Some commands, file paths, and configuration references still use `nms` due to the ongoing transition from NGINX Management Suite (NMS) to NGINX Instance Manager (NIM). These will be updated in future releases.{{</call-out>}}

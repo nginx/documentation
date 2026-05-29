@@ -15,7 +15,7 @@ This reference guide lists the configurable Helm chart parameters and default se
 
 ## NGINX Instance Manager Helm chart settings {#helm-settings}
 
-{{< call-out "important" "legacy chart name" >}}
+{{< call-out class="important" title="legacy chart name" >}}
 In version 2.20.0, we renamed the Helm chart from `nms-hybrid` to `nim` when we moved it to its own repository. For versions 2.19.0 and earlier, use `nms-hybrid` instead of `nim` in each parameter name.
 {{< /call-out >}}
 

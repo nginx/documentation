@@ -33,7 +33,7 @@ After verifying that F5 WAF for NGINX is active on your instances, you can onboa
 
 {{%tab name="API"%}}
 
-{{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
+{{< call-out class="note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
 Use the **NGINX Instance Manager** REST API to onboard policies programmatically.
 

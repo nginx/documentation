@@ -139,7 +139,7 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 
 {{</bootstrap-table>}}
 
-{{< call-out "note" "Note" >}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{< /call-out >}}
+{{< call-out class="note" title="Note" >}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{< /call-out >}}
 
 #### Storage requirements for NGINX OSS
 
@@ -162,7 +162,7 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 
 Below are the directory requirements and storage recommendations for fresh, minimal, and moderate usage (<100 instances) of NGINX Instance Manager (NIM).
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 These recommendations apply if you are using NGINX Agent to connect NGINX instances to NIM for full management capabilities, including:
 
 - Managing configurations

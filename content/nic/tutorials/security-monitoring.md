@@ -88,7 +88,7 @@ NGINX Ingress Controller images that include F5 WAF for NGINX also include NGINX
 
    See the [NGINX Agent Configuration Overview]({{< ref "/agent/configuration/configuration-overview.md" >}}) for more configuration options.
 
-{{< call-out "note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
+{{< call-out class="note" >}} The `features` list must not contain `nginx-config-async` or `nginx-ssl-config` as these features can cause conflicts with NGINX Ingress Controller.{{< /call-out >}}
 
 3. Mount the ConfigMap to the NGINX Ingress Controller pod at `/etc/nginx-agent/nginx-agent.conf` and the dynamic agent config at `/var/lib/nginx-agent` by adding the following to your Deployment, DaemonSet, or StatefulSet:
 
@@ -375,4 +375,4 @@ helm upgrade <release-name> oci://ghcr.io/nginx/charts/nginx-ingress --version {
     kubectl delete secret <nim-tls-secret> <nim-ca-secret> -n <namespace>
     ```
 
-{{< call-out "note" >}} Your F5 WAF for NGINX Policy resources (APPolicy, APLogConf, or compiled bundles for v5) do not need to change during this migration. The WAF configuration and the `logDest` syslog destination (`syslog:server=127.0.0.1:1514`) remain the same.{{< /call-out >}}
+{{< call-out class="note" >}} Modifying the APLogConf in the examples may result in the Security Monitoring integration not working, as NGINX Agent expects a specific log format.{{< /call-out >}}

@@ -80,7 +80,7 @@ Your base template should now include the following files:
 
 This snippet defines the structure of the final NGINX configuration file. It uses [Go's text/template](https://pkg.go.dev/text/template) module to dynamically add input into the NGINX configuration. You can identify where augment templates will be inserted by looking for lines like:
 
-{{<call-out "tip" "Augment template injection point" "fas fa-code-branch" >}}
+{{<call-out class="tip" title="Augment template injection point" icon="git-branch" >}}
 ``` go
 {{ $input.ExecTemplateAugments "main" }}
 ```

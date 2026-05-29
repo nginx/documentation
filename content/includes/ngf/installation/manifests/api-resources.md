@@ -2,7 +2,7 @@
 f5-product: FABRIC
 ---
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 If you have already installed Gateway API resources in your cluster, ensure they are a version [supported by NGINX Gateway Fabric]({{< ref "/ngf/overview/technical-specifications.md" >}}) 
 

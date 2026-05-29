@@ -17,7 +17,7 @@ Use our user-friendly Ansible role to easily install F5 NGINX Instance Manager. 
 
 ## NGINX Instance Manager Ansible role
 
-{{< call-out "tip" "Open-Source Project on GitHub" >}}
+{{< call-out class="tip" title="Open-Source Project on GitHub" >}}
 The steps in this guide refer to the <a href="https://github.com/nginxinc/ansible-role-nginx-management-suite" target="_blank">Ansible NGINX Instance Manager Role project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
 {{</ call-out >}}
 
@@ -34,7 +34,7 @@ For more information, see [Install with Ansible]({{< relref "./configuration.md"
 
 ## NGINX Instance Manager Infrastructure as Code
 
-{{< call-out "tip" "Open-Source Project on GitHub" >}}
+{{< call-out class="tip" title="Open-Source Project on GitHub" >}}
 The steps in this guide refer to the <a href="https://github.com/nginxinc/nginx-management-suite-iac" target="_blank">NGINX Instance Manager Infrastructure as Code project on GitHub.</a> <i class="fa-solid fa-arrow-up-right-from-square" style="color:#009639;"></i>
 {{< / call-out >}}
 

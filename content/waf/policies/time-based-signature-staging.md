@@ -37,7 +37,7 @@ The **Latest Signature Certification Time** is the timestamp (in ISO date-time f
 
 A signature is considered **new** if it was introduced by a recent signature update applied to the policy.
 
-{{< call-out "note" >}} Signatures added later by including a new signature set are **not** considered new unless they were added in the most recent signature update. These signatures will not be in staging.{{< /call-out >}}
+{{< call-out class="note" >}} Signatures added later by including a new signature set are **not** considered new unless they were added in the most recent signature update. These signatures will not be in staging.{{< /call-out >}}
 
 ## New policy
 
@@ -104,7 +104,7 @@ To do this:
 2. This moves all the signatures out of staging.
 3. When you install a new signature update in the future, all new or modified signatures in that update will automatically be placed in staging.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 Do **not** set the `stagingCertificationDatetime` to the current time (when you finish reviewing).
 - A future signature update might have been created **before** that time.
 - If so, modified signatures from that update would be older than the `stagingCertificationDatetime`, and they would **not** be staged as expected.

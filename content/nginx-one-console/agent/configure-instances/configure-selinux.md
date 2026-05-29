@@ -11,7 +11,7 @@ f5-product: NAGENT
 
 You can use the optional SELinux policy module included in the package to secure F5 NGINX Agent operations with flexible, mandatory access control that follows the principle of least privilege.
 
-{{< call-out "important" >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /call-out >}}
+{{< call-out class="important" >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /call-out >}}
 
 ## Before you begin
 
@@ -21,7 +21,7 @@ Take these preparatory steps before configuring SELinux:
 2. Install the tools `load_policy`, `semodule`, and `restorecon`.
 3. [Install NGINX Agent]({{< ref "/nginx-one-console/agent/install-upgrade/_index.md" >}}) with SELinux module files in place.
 
-{{< call-out "important" >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /call-out >}}
+{{< call-out class="important" >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /call-out >}}
 
 ---
 
