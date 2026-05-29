@@ -37,7 +37,7 @@ you need to add the dataplane key secret to the watched namespaces. This secret 
 You can also create a data plane key through the NGINX One Console. Once loggged in, select **Manage > Control Planes > Add Control Plane**, and follow the steps shown.
 {{< /call-out >}}
 
-### Choosing the right image
+### Choose the right image
 
 Starting with NGINX Ingress Controller 5.5.0, images with F5 WAF for NGINX and NGINX Agent 3 are available using the `-agent` suffix. The image you need depends on your deployment:
 
