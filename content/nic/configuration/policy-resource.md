@@ -7,19 +7,63 @@ f5-product: INGRESS
 f5-docs: DOCS-596
 ---
 
-The Policy resource allows you to configure features like access control and rate-limiting, which you can add to your [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}).
+The Policy resource lets you define reusable configuration such as access control, CORS, egress mTLS, and WAF, and then attach that configuration to [VirtualServer and VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) or [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}).
 
 The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-This document is the reference documentation for the Policy resource. An example of a Policy for access control is available in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/access-control).
-
 ## Before you begin
 
-Policies work together with [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you need to create separately.
+Policies work together with [VirtualServer, VirtualServerRoute resources]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}}) and [Ingress resources]({{< ref "/nic/configuration/ingress-resources" >}}), which you create separately.
 
 ## Policy Specification
 
-Below is an example of a policy that allows access for clients from the subnet `10.0.0.0/8` and denies access for any other clients:
+A `Policy` resource defines exactly one policy type under `.spec`.
+
+Supported policy types are:
+
+- `accessControl`
+- `rateLimit`
+- `apiKey`
+- `basicAuth`
+- `jwt`
+- `ingressMTLS`
+- `egressMTLS`
+- `oidc`
+- `cache`
+- `cors`
+- `waf`
+- `externalAuth`
+
+{{% table %}}
+
+| Policy type | Description | VirtualServer / VirtualServerRoute | Ingress |
+| --- | --- | --- | --- |
+| [`accessControl`](#accesscontrol) | The access control policy based on the client IP address. | Yes | Yes, with `nginx.org/policies` |
+| [`cors`](#cors) | The CORS policy configures Cross-Origin Resource Sharing headers. | Yes | Yes, with `nginx.org/policies` |
+| [`egressMTLS`](#egressmtls) | The EgressMTLS policy configures upstreams authentication and certificate verification. | Yes | Yes, with `nginx.org/policies` |
+| [`ingressMTLS`](#ingressmtls) | The IngressMTLS policy configures client certificate verification. | Yes | Yes, with `nginx.org/policies` |
+| [`waf`](#waf) | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}). | Yes | Yes, with `nginx.com/policies` |
+| [`externalAuth`](#externalauth) | The External Auth policy configures NGINX to authenticate client requests using an external authentication server. | Yes | Yes, with `nginx.org/policies` |
+| [`rateLimit`](#ratelimit) | The rate limit policy controls the rate of processing requests per a defined key. | Yes | No |
+| [`apiKey`](#apikey) | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | Yes | No |
+| [`basicAuth`](#basicauth) | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | Yes | No |
+| [`jwt`](#jwt-using-local-kubernetes-secret) | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | Yes | No |
+| [`oidc`](#oidc) | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | No |
+| [`cache`](#cache) | The cache policy configures proxy caching for serving cached content. | Yes | No |
+
+{{% /table %}}
+
+{{< call-out "note" >}}
+
+Policy resource support for Ingress objects using annotation [`nginx.org/policies`]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) was introduced in NGINX Ingress Controller v5.4.0.
+
+{{< /call-out >}}
+
+## Important rule: One Policy type per resource
+
+A `Policy` resource must define exactly one policy type under `.spec`.
+
+The following example is valid:
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -32,31 +76,237 @@ spec:
     - 10.0.0.0/8
 ```
 
-{{% table %}}
+The following example is **not** valid:
 
-|Field | Description | Type | Supported in VS/VSR | Supported in Ingress |
-| ---| ---| ---| --- | --- |
-|``accessControl`` | The access control policy based on the client IP address. | [accessControl](#accesscontrol) | Yes | Yes |
-|``rateLimit`` | The rate limit policy controls the rate of processing requests per a defined key. | [rateLimit](#ratelimit) | Yes | No |
-|``apiKey`` | The API Key policy configures NGINX to authorize requests which provide a valid API Key in a specified header or query param. | [apiKey](#apikey) | Yes | No |
-|``basicAuth`` | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | [basicAuth](#basicauth) | Yes | No |
-|``jwt`` | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | [jwt](#jwt) | Yes | No |
-|``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
-|``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
-|``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/integrations/app-protect-waf/configuration.md" >}}) | [WAF](#waf) | Yes | No |
-|``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | Yes | No |
-|``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | Yes | Yes |
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: Policy
+metadata:
+  name: invalid-policy
+spec:
+  accessControl:
+    allow:
+    - 10.0.0.0/8
+  cors:
+    allowOrigin:
+    - https://example.com
+```
 
-{{% /table %}}
+If you need multiple behaviors, create multiple policies and reference them together.
 
-{{< call-out class="note" >}}
+## Applying policies
 
-Policy resource support for Ingress objects using annotation [`nginx.org/policies`]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md" >}}) was introduced in NGINX Ingress Controller v5.4.0.
+Policies can be referenced from the following resources:
+
+- `VirtualServer`
+- `VirtualServerRoute`
+- `Ingress`
+
+How you attach them depends on the resource type.
+
+### VirtualServer
+
+You can attach policies at:
+
+- `spec.policies` for server-wide behavior
+- `spec.routes[].policies` for route-specific behavior
+
+Example:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe
+spec:
+  host: cafe.example.com
+  policies:
+  - name: access-policy
+  upstreams:
+  - name: coffee
+    service: coffee-svc
+    port: 80
+  routes:
+  - path: /coffee
+    policies:
+    - name: route-cors-policy
+    action:
+      pass: coffee
+```
+
+### VirtualServerRoute
+
+You can attach policies at:
+
+- `spec.subroutes[].policies`
+
+Example:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: tea
+spec:
+  host: cafe.example.com
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  subroutes:
+  - path: /tea
+    policies:
+    - name: subroute-policy
+    action:
+      pass: tea
+```
+
+### Ingress
+
+Ingress uses annotations rather than a `policies` field.
+
+Supported annotations are:
+
+- `nginx.org/policies`
+- `nginx.com/policies`
+
+Example:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp
+  annotations:
+    nginx.org/policies: access-policy,cors-policy
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: webapp.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: webapp
+            port:
+              number: 80
+```
+
+## Ingress-specific behavior
+
+### Ingress does not support every Policy type
+
+Ingress policy support is narrower than `VirtualServer` support.
+
+If you need route-level control for features like JWT, OIDC, cache, or rate limiting, use `VirtualServer` and `VirtualServerRoute` instead.
+
+### WAF on Ingress must use `nginx.com/policies`
+
+WAF is a Plus-only feature. When using a WAF policy with Ingress, reference it through:
+
+```yaml
+metadata:
+  annotations:
+    nginx.com/policies: waf-policy
+```
+
+Do not attach WAF to Ingress with `nginx.org/policies`.
+
+{{< call-out "important" >}}
+
+On Ingress, `nginx.org/policies` and `nginx.com/policies` are not interchangeable. WAF policies must be referenced through `nginx.com/policies`.
 
 {{< /call-out >}}
 
-\* A policy must include exactly one policy.
+### Egress mTLS on Ingress only configures TLS parameters
+
+`egressMTLS` defines how NGINX should authenticate to the upstream and verify the upstream certificate.
+
+It does not switch the upstream transport from plain HTTP to HTTPS.
+
+For Ingress, you still need the upstream connection itself to use TLS.
+
+Typical ways that happens are:
+
+- `nginx.org/ssl-services` for HTTPS upstreams
+- `nginx.org/grpc-services` for gRPC upstreams
+
+For example:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-ingress
+  annotations:
+    nginx.org/policies: egress-mtls-policy
+    nginx.org/ssl-services: "secure-app"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: webapp.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: secure-app
+            port:
+              number: 8443
+```
+
+Without upstream TLS enabled, the egress mTLS policy has TLS settings to apply, but no TLS connection to apply them to.
+
+In practice, that usually results in NGINX sending plain HTTP to an HTTPS upstream port.
+
+{{< call-out class="note" >}}
+
+For Ingress, `egressMTLS` configures how NGINX uses TLS when connecting to the upstream. It does not decide whether the upstream connection uses TLS. That is controlled separately, for example with `nginx.org/ssl-services` or `nginx.org/grpc-services`.
+
+{{< /call-out >}}
+
+### Mergeable Ingress behavior
+
+For mergeable Ingress:
+
+- policies on the master apply to inherited minion configuration
+- policies on the minion override policies of the same type from the master
+
+This matches the general expectation that a more specific resource overrides a broader one.
+
+For `egressMTLS`, there is one extra detail:
+
+- master or standard Ingress policy is applied at server scope
+- minion override is applied at location scope so the minion can replace the master's value
+
+## Precedence and override rules
+
+### VirtualServer and VirtualServerRoute
+
+Policy precedence goes from broader scope to narrower scope:
+
+- `VirtualServer.spec.policies`
+- `VirtualServer.route.policies`
+- `VirtualServerRoute.subroute.policies`
+
+If the same policy type appears at multiple levels, the more specific level wins.
+
+Examples:
+
+- route-level `accessControl` overrides spec-level `accessControl`
+- subroute-level `cors` overrides route-level `cors`
+
+### Ingress and Mergeable Ingress
+
+For Ingress:
+
+- policies apply to the whole Ingress
+- with mergeable Ingress, minion policies override master policies of the same type
+
+## Detailed policy reference
 
 ### AccessControl
 
@@ -541,6 +791,11 @@ A VirtualServer that references an IngressMTLS policy must:
 - Enable [TLS termination]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualservertls" >}}).
 - Reference the policy in the VirtualServer [`spec`]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}). It is not allowed to reference an IngressMTLS policy in a [`route`](({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute" >}}) or in a VirtualServerRoute [`subroute`]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroutesubroute" >}}).
 
+A Kubernetes Ingress that references an IngressMTLS policy must:
+
+- Enable [TLS termination]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#auth-and-ssltls" >}}).
+- Reference the policy on the Ingress. For [mergeable Ingresses]({{< ref "/nic/configuration/ingress-resources/custom-annotations.md#custom-annotations-with-mergeable-ingress-resources" >}}), the policy must be on the master Ingress only; referencing an IngressMTLS policy on a minion Ingress is not allowed.
+
 If the conditions above are not met, NGINX will send the `500` status code to clients.
 
 You can pass the client certificate details, including the certificate, to the upstream servers. For example:
@@ -638,7 +893,7 @@ Please refer to the Kubernetes documentation on [volumes](https://kubernetes.io/
 
 #### IngressMTLS Merging Behavior
 
-A VirtualServer can reference only a single IngressMTLS policy. Every subsequent reference will be ignored. For example, here we reference two policies:
+A VirtualServer and an Ingress can reference only a single IngressMTLS policy. Every subsequent reference will be ignored. For example, here we reference two policies:
 
 ```yaml
 policies:
@@ -695,6 +950,72 @@ policies:
 ```
 
 In this example NGINX Ingress Controller will use the configuration from the first policy reference `egress-mtls-policy-one`, and ignores `egress-mtls-policy-two`.
+
+### ExternalAuth
+
+The ExternalAuth policy configures NGINX to authenticate client requests using an external authentication server. You can use this policy with services such as [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) or any custom authentication service that supports the `auth_request` pattern.
+
+When a client sends a request, NGINX makes an internal subrequest to the external authentication service. If the service returns a `2xx` response, the original request is forwarded to the upstream. If it returns `401` or `403`, access is denied. If `authSigninURI` is configured, unauthenticated clients are redirected to a sign-in page.
+
+For example, the following policy configures external authentication using an HTTP Basic Auth backend service:
+
+```yaml
+externalAuth:
+  authURI: "/auth"
+  authServiceName: "default/basic-auth-svc"
+```
+
+The following policy uses OAuth2 Proxy with a sign-in redirect:
+
+```yaml
+externalAuth:
+  authURI: "/oauth2/auth"
+  authSigninURI: "/oauth2/signin"
+  authServiceName: "default/oauth2-proxy-svc"
+  sslEnabled: true
+  sslVerify: true
+  sslVerifyDepth: 2
+  sniName: "external-auth-tls"
+  trustedCertSecret: "external-auth-ca-secret"
+```
+
+An example of an ExternalAuth policy for VirtualServer resources is available in our GitHub repository for [basic auth](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/external-auth) and [OAuth2 with basic auth](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/external-auth-oauth2). Examples for Ingress resources are also available for [basic auth](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/ingress-resources/external-auth) and [OAuth2 with basic auth using Mergeable Ingresses](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/ingress-resources/external-auth-mergeable).
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``authURI`` | The URI of the external authentication server. NGINX sends an internal subrequest to this URI to verify the client. Must start with ``/``. For example, ``/auth`` or ``/oauth2/auth``. | ``string`` | Yes |
+|``authServiceName`` | The name of the Kubernetes service for the external authentication server. Can include an optional namespace prefix in the format ``<namespace>/<service>``. For example, ``basic-auth-svc`` or ``auth-namespace/auth-service``. If no namespace is specified, the namespace of the Policy resource is used. | ``string`` | Yes |
+|``authServicePorts`` | The ports of the Kubernetes service to which authentication requests are sent. If not specified, the first port from the service definition is used. | ``[]int`` | No |
+|``authSigninURI`` | The URI to redirect unauthenticated clients to for sign-in. Used when the external authentication server requires redirection, such as with OAuth2 Proxy. Must start with ``/``. For example, ``/oauth2/signin``. | ``string`` | No |
+|``authSnippets`` | Custom NGINX configuration snippets to add to the external authentication location block. For example, you can add extra headers or parameters for the ``auth_request`` module. The content must be valid NGINX configuration. Requires the [``-enable-snippets``]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-snippets" >}}) command-line argument. | ``string`` | No |
+|``authSigninRedirectBasePath`` | The base path for the NGINX location block that handles sign-in redirect requests from the external authentication server. For example, OAuth2 Proxy expects ``/oauth2``. Defaults to ``/oauth2`` if not specified. | ``string`` | No |
+|``sslEnabled`` | Enables HTTPS when proxying requests to the external authentication server. The default is ``false``. | ``bool`` | No |
+|``sslVerify`` | Enables verification of the external authentication server's SSL certificate. The default is ``false``. | ``bool`` | No |
+|``sslVerifyDepth`` | Sets the verification depth in the external authentication server certificates chain. The default is ``1``. | ``int`` | No |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored under the key ``ca.crt``. | ``string`` | No |
+|``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<service-name>.<namespace>.svc`` derived from ``authServiceName``. | ``string`` | No |
+
+{{% /table %}}
+
+#### ExternalAuth Merging Behavior
+
+A VirtualServer, VirtualServerRoute, Ingress, or Mergeable Ingress can reference only one ExternalAuth policy per route. Every subsequent reference will be ignored. This means you cannot combine different types of external authentication on the same route. For example, you cannot apply both an OAuth2 policy and a basic auth policy to the same route.
+
+```yaml
+policies:
+- name: external-auth-policy-one
+- name: external-auth-policy-two
+```
+
+NGINX Ingress Controller will use the configuration from the first policy reference `external-auth-policy-one`, and ignores `external-auth-policy-two`. To use different authentication methods on different routes, apply each ExternalAuth policy to its own route.
+
+#### OAuth2 sign-in redirect location
+
+When you configure `authSigninURI`, NGINX Ingress Controller generates an internal location block to handle sign-in redirects (based on `authSigninRedirectBasePath`, which defaults to `/oauth2`). Because NGINX location blocks are defined at the server level, only one sign-in redirect location can exist per host. If multiple routes on the same VirtualServer, VirtualServerRoute, Ingress, or Mergeable Ingress host reference ExternalAuth policies with `authSigninURI`, NGINX Ingress Controller uses the sign-in redirect configuration from the first policy it processes. All routes that use `authSigninURI` share that single redirect location.
+
+This means all routes on the same host that require OAuth2 sign-in must use the same OAuth2 Proxy backend for the redirect flow. If you need different OAuth2 providers for different routes, use separate hosts.
 
 ### OIDC
 
