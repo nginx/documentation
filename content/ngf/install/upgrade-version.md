@@ -19,7 +19,7 @@ Upgrading from v2.0.x to v2.1 requires the NGINX Gateway Fabric control plane to
 
 CRDs **do not** need to be removed. The NGINX data plane deployment **is not** affected by this process, and traffic should still flow uninterrupted.
 
-{{< call-out "important" >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
+{{< call-out class="important" >}} NGINX Plus users need a JWT secret before upgrading from version 1.4.0 to 1.5.x.
 
 Follow the steps in [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) to create the Secret.
 
@@ -52,7 +52,7 @@ Run the following command to upgrade the CRDs:
 kubectl apply --server-side --force-conflicts -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/crds.yaml
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Ignore the following warning, as it is expected.
 
@@ -62,7 +62,7 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 `--force-conflicts` is used since the original CRDs may have been installed and owned by Helm, while the upgrade is handled by kubectl.
 
@@ -74,7 +74,7 @@ Warning: kubectl apply should be used on resource created by either kubectl crea
 
 {{% tab name="Helm" %}}
 
-{{< call-out "important" "Important" >}}If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`.{{< /call-out >}}
+{{< call-out class="important" title="Important" >}}If you are using NGINX Plus and have a different Secret name than the default `nplus-license` name, specify the Secret name by setting `--set nginx.usage.secretName=<secret-name>` when running `helm install` or `helm upgrade`.{{< /call-out >}}
 
 To upgrade the release with Helm, you can use the OCI registry, or download the chart and upgrade from the source.
 
@@ -130,7 +130,7 @@ This section provides step-by-step instructions for upgrading NGINX Gateway Fabr
 
 To upgrade NGINX Gateway Fabric from version 1.x to the new architecture in version 2.x, you must uninstall the existing NGINX Gateway Fabric CRDs and deployment, and perform a fresh installation. This will cause brief downtime during the upgrade process.
 
-{{< call-out "note" >}} You do not need to uninstall the Gateway API CRDs during the upgrade. These resources are compatible with the new NGINX Gateway Fabric version. {{< /call-out >}}
+{{< call-out class="note" >}} You do not need to uninstall the Gateway API CRDs during the upgrade. These resources are compatible with the new NGINX Gateway Fabric version. {{< /call-out >}}
 
 ### Uninstall NGINX Gateway Fabric v1.x
 
@@ -150,7 +150,7 @@ kubectl delete -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v
 
 ### Install NGINX Gateway Fabric 2.x
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 Before installing 2.x, we recommend following [Add certificates for secure authentication]({{< ref "/ngf/install/secure-certificates.md" >}}).
 
@@ -261,7 +261,7 @@ You can then follow [this localhost link](http://localhost:1313/nginx-gateway-fa
 
 ## Upgrade from NGINX Open Source to NGINX Plus
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 Ensure that you [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-jwt" >}}) before upgrading. These instructions only apply to Helm.
 
@@ -269,7 +269,7 @@ Ensure that you [Set up the JWT]({{< ref "/ngf/install/nginx-plus.md#set-up-the-
 
 To upgrade from NGINX Open Source to NGINX Plus, update the Helm command to include the necessary values for Plus:
 
-{{< call-out "note" >}} If applicable:
+{{< call-out class="note" >}} If applicable:
 
 - Replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image
 - Replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials

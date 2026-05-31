@@ -17,7 +17,7 @@ In F5 NGINX Instance Manager, role-based access control (RBAC) lets you assign p
 
 ## Before you begin
 
-{{<call-out "important" "First steps: Create users or user groups" >}}
+{{<call-out class="important" title="First steps: Create users or user groups" >}}
 Make sure you’ve already created users or user groups that can be assigned roles. If not, follow these guides:
 
 - To create users, follow the instructions in [Set up basic authentication]({{< ref "/nim/admin-guide/authentication/basic-auth/set-up-basic-authentication.md" >}}).

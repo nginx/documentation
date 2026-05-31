@@ -11,7 +11,7 @@ Make sure you’ve completed the following tasks:
 - You have one or more [F5 WAF for NGINX]({{< ref "/waf/" >}}) instances running.  
   For supported versions, see [Support for F5 WAF for NGINX]({{< ref "/nim/fundamentals/tech-specs.md#f5-waf" >}}).
 
-  {{< call-out "note" >}}
+  {{< call-out class="note" >}}
   If you plan to use configuration management and Security Monitoring, follow the steps in the [setup guide]({{< ref "/nim/security-monitoring/set-up-app-protect-instances.md" >}}) before continuing.
   {{< /call-out >}}
 

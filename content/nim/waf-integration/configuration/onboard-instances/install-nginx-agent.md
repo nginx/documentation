@@ -21,6 +21,6 @@ To onboard your F5 WAF for NGINX instances to F5 NGINX Instance Manager, install
 
    {{< include "agent/installation/install-agent-api.md" >}}
 
-{{< call-out "note" "Next steps" >}}
+{{< call-out class="note" title="Next steps" >}}
 - [Configure NGINX Agent]({{< ref "/nim/waf-integration/configuration/onboard-instances/configure-nginx-agent.md" >}})
 {{< /call-out >}}

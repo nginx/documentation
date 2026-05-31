@@ -35,7 +35,7 @@ To use NGINX Plus, you will need to download the JWT license file associated wit
 
 {{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
 
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+{{< call-out class="note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Platform-specific instructions
 
@@ -156,7 +156,7 @@ findDeps app-protect=<desired-version>
 
 ### Oracle Linux / RHEL / Rocky Linux 8
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 The steps are identical for these platforms due to their similar architecture.
 
@@ -331,7 +331,7 @@ And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ co
 app_protect_enable on;
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 You should only enable F5 WAF for NGINX on _proxy_pass_ and _grpc_pass_ locations.
 

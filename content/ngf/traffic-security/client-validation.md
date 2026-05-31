@@ -85,7 +85,7 @@ helm install \
 
 Create a CA issuer to generate our certificates.
 
-{{< call-out "warning" >}} This example uses a `selfSigned` Issuer, which should not be used in production environments. For production environments, use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
+{{< call-out class="warning" >}} This example uses a `selfSigned` Issuer, which should not be used in production environments. For production environments, use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}
 
 Next, we create the following resources:
 1. A self-signed issuer.
@@ -94,7 +94,7 @@ Next, we create the following resources:
 4. A CA certificate named `cafe-secret`. The HTTPS listeners on the Gateway reference this certificate and present it to the client during the TLS handshake. This is required for mutual TLS.
 
 
-{{< call-out "warning" >}} For the Gateway's certificate, replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
+{{< call-out class="warning" >}} For the Gateway's certificate, replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -489,7 +489,7 @@ To send requests to the Gateway, you must provide a valid certificate and key si
 Copy the following block into your terminal to create two Certificate resources.
 This will create two `Secret` resources with TLS certs and keys signed by the CAs created earlier in this example.
 
-{{< call-out "warning" >}} Replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
+{{< call-out class="warning" >}} Replace `cafe.example.com` with the correct hostname for your environment {{< /call-out >}}
 
 ```yaml
 kubectl apply -f - <<EOF

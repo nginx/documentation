@@ -12,7 +12,7 @@ f5-product: NAZURE
 
 F5 NGINXaaS for Azure (NGINXaaS) supports integrating Azure Diagnostic Settings to collect NGINX error and access logs.
 
-{{< call-out "caution"  >}}
+{{< call-out class="caution"  >}}
 Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now deprecated. This feature will be removed in an upcoming update. If you have issues accessing your NGINX logs using the deprecated method, please follow the steps in this guide to access your NGINX logs.
 {{< /call-out >}}
 
@@ -23,7 +23,7 @@ Enabling logs using the **NGINX Logs** blade on your NGINXaaS deployment is now 
 - A valid NGINX configuration with log directives enabled. NGINX logs can be configured using [error_log](#setting-up-error-logs) and [access_log](#setting-up-access-logs) directives.
 
 - A system-assigned managed identity.
-{{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the logging functionality described in this section. You will need to make sure that the managed identity has the appropriate role assignments to access other resources that it is attached to (for example, certificates stored in Azure Key Vault).
+{{< call-out class="note" >}}The system-assigned managed identity does not need any role assignments to enable the logging functionality described in this section. You will need to make sure that the managed identity has the appropriate role assignments to access other resources that it is attached to (for example, certificates stored in Azure Key Vault).
 {{< /call-out >}}
 
 - User must be an owner or user access administrator for the NGINX deployment resource.
@@ -42,7 +42,7 @@ terraform apply plan.cache
 
 As NGINXaaS logs are stored in your storage, you can define the retention policy most appropriate for your needs.
 
-{{< call-out "note" >}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
+{{< call-out class="note" >}}Due to limitations imposed by Azure, if the destination chosen is an Azure Storage account, the resource has to be in the same region as the NGINXaaS deployment resource.
 {{< /call-out >}}
 
 ### Analyzing NGINX logs in Azure Storage

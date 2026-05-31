@@ -16,7 +16,7 @@ With runtime state sharing, NGINXaaS instances can share some state data between
 - [Rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone)
 - [Key‑value store](https://nginx.org/en/docs/http/ngx_http_keyval_module.html#keyval_zone)
 
-{{< call-out "note" >}} It's not possible to add the `sync` parameter with a directive describing shared memory zones to an existing memory zone that was not configured to sync. It also cannot be removed from an existing memory zone configured to sync. To switch, remove the directive before reapplying it with the desired parameters.{{< /call-out >}}
+{{< call-out class="note" >}} It's not possible to add the `sync` parameter with a directive describing shared memory zones to an existing memory zone that was not configured to sync. It also cannot be removed from an existing memory zone configured to sync. To switch, remove the directive before reapplying it with the desired parameters.{{< /call-out >}}
 
 For information on enabling synchronization for rate limiting with NGINXaaS for Azure, please visit the [Rate Limiting]({{< ref "/nginxaas-azure/quickstart/rate-limiting.md" >}}) documentation.
 
@@ -37,7 +37,7 @@ stream {
 }
 ```
 
-{{< call-out "note" >}}To enhance security, set up security rules for both incoming and outgoing traffic in the virtual network linked to the NSG of the subnet hosting NGINXaaS for Azure deployment. These rules should limit TCP traffic to the `zone_sync_server` port.{{< /call-out >}}
+{{< call-out class="note" >}}To enhance security, set up security rules for both incoming and outgoing traffic in the virtual network linked to the NSG of the subnet hosting NGINXaaS for Azure deployment. These rules should limit TCP traffic to the `zone_sync_server` port.{{< /call-out >}}
 
 ## Enable the SSL/TLS protocol for connections to another cluster instance of the NGINXaaS for Azure deployment
 

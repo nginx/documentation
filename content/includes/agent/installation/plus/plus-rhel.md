@@ -51,7 +51,7 @@ f5-files:
    sudo yum install nginx-agent
    ```
 
-   {{<call-out "tip" "Tip: Install specific versions" "" >}}
+   {{<call-out class="tip" title="Tip: Install specific versions" >}}
    To install `nginx-agent` with a specific version (for example, 2.42.0):
 
    ```shell

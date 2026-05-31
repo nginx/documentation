@@ -85,7 +85,7 @@ Make sure you have:
        restart: always
    ```
 
-   {{< call-out "note" "VS Code tip" "" >}}  
+   {{< call-out class="note" title="VS Code tip" >}}  
    In VS Code, highlight lines 74–95 and press `Ctrl` + `/` to uncomment.  
    {{< /call-out >}}
 
@@ -100,7 +100,7 @@ Make sure you have:
 6. Select the instance and confirm it runs the latest versions of NGINX Plus and NGINX Agent.  
 7. The `$NAME-plus4` container joins the `$NAME-sync-group` and inherits the shared config.  
 
-   {{< call-out "note" "Tip" "" >}}  
+   {{< call-out class="note" title="Tip" >}}  
    Because new containers in a sync group automatically pick up the shared config, you get a consistent setup across versions. This makes upgrades safer and avoids manual copy-paste steps.  
    {{< /call-out >}}
 
@@ -123,7 +123,7 @@ When you recreate containers, old entries remain in NGINX One Console. Clean the
 
 ## Scenario B: Upgrade NGINX Plus on a VM with Config Sync Groups
 
-{{< call-out "note" "Note" >}}  
+{{< call-out class="note" title="Note" >}}  
 These steps cover RHEL, Amazon Linux, CentOS, Oracle Linux, AlmaLinux, Rocky Linux, Debian, and Ubuntu only.  
 {{</ call-out >}}
 

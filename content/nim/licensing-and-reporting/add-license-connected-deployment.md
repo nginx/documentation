@@ -11,7 +11,7 @@ f5-summary: >
   The license validates your subscription and enables automatic usage reporting to F5 over the internet.
 ---
 
-{{< call-out "note" "F5 NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
+{{< call-out class="note" title="F5 NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
 
 ## Overview
 

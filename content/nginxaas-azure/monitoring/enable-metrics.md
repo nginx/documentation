@@ -16,7 +16,7 @@ Refer to the [Azure monitor overview](https://docs.microsoft.com/en-us/azure/azu
 
 - A system assigned managed identity.
 
-{{< call-out "note" >}}The system-assigned managed identity does not need any role assignments to enable the metrics functionality described in this section.
+{{< call-out class="note" >}}The system-assigned managed identity does not need any role assignments to enable the metrics functionality described in this section.
 {{< /call-out >}}
 
 ## Collection
@@ -28,7 +28,7 @@ You can export Azure Monitor metrics to other destinations like Log Analytics wo
 
 To configure diagnostic settings for a service, see [Create diagnostic settings in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/create-diagnostic-settings). You can export metrics by selecting the `AllMetrics` category in diagnostic settings.
 
-{{< call-out "note" >}} Not all metrics are exportable via diagnostic settings, for a list of exportable metrics, see [NGINXaaS exportable metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/nginx-nginxplus-nginxdeployments-metrics).{{< /call-out >}}
+{{< call-out class="note" >}} Not all metrics are exportable via diagnostic settings, for a list of exportable metrics, see [NGINXaaS exportable metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/nginx-nginxplus-nginxdeployments-metrics).{{< /call-out >}}
 
 
 ## Cost and retention
@@ -39,11 +39,11 @@ Azure Monitor platform metrics are ingested and stored free of charge, with a st
 
 Once you have enabled monitoring, you can view the metrics using the Azure portal or the Azure Monitor API.
 
-{{< call-out "note" >}} NGINX Agent periodically gathers connection and request statistics using an internal HTTP request. An Azure service health probe checks for status using a TCP connection for each listen port in the NGINX configuration, incrementing the connection count for each port.
+{{< call-out class="note" >}} NGINX Agent periodically gathers connection and request statistics using an internal HTTP request. An Azure service health probe checks for status using a TCP connection for each listen port in the NGINX configuration, incrementing the connection count for each port.
 
 This contributes to minimal traffic and should not affect these metrics significantly, but you might see an unexpected number of connections and requests.{{< /call-out >}}
 
-{{< call-out "important" >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the underlying resources for your deployment are being exhausted.
+{{< call-out class="important" >}}If some of your deployment's metrics are intermittently missing in Azure monitor, it may indicate that the underlying resources for your deployment are being exhausted.
 
 Monitor the `nginxaas.capacity.percentage` metric to see the deployment's resource utilization. If it's nearing 100%, consider increasing the deployment's NCU capacity. See the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}}) documentation for more information.{{< /call-out >}}
 
@@ -56,13 +56,13 @@ Access the [Microsoft Azure portal](https://portal.azure.com)
 
 Refer to the [Azure Monitor metrics explorer](https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/metrics-getting-started) documentation from Microsoft to learn how you can create queries.
 
-{{< call-out "note" >}}Many of NGINX Plus's advanced statistics need to be enabled in the "nginx.conf" file before they will appear in the metrics explorer, for example "plus.http.request.bytes_*". Refer to [Gathering Data to Appear in Statistics](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#gathering-data-to-appear-in-statistics) to learn more.{{< /call-out >}}
+{{< call-out class="note" >}}Many of NGINX Plus's advanced statistics need to be enabled in the "nginx.conf" file before they will appear in the metrics explorer, for example "plus.http.request.bytes_*". Refer to [Gathering Data to Appear in Statistics](https://docs.nginx.com/nginx/admin-guide/monitoring/live-activity-monitoring/#gathering-data-to-appear-in-statistics) to learn more.{{< /call-out >}}
 
 ### Retrieve metrics through Azure Monitor API
 
 This section shows you how to effectively discover, gather and analyze NGINXaaS metrics through the Azure Monitor REST API.
 
-{{< call-out "note" >}}Refer to [Authenticate Azure Monitor requests](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/rest-api-walkthrough?tabs=portal#authenticate-azure-monitor-requests) for instructions on authenticating your API requests against the Azure Monitor API endpoint.{{< /call-out >}}
+{{< call-out class="note" >}}Refer to [Authenticate Azure Monitor requests](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/rest-api-walkthrough?tabs=portal#authenticate-azure-monitor-requests) for instructions on authenticating your API requests against the Azure Monitor API endpoint.{{< /call-out >}}
 
 
 1. **Retrieve metric definitions:** Metrics definitions give you insights into the various metrics available for NGINXaaS within a namespace and what they represent. The following `curl` example shows how to retrieve all metrics definitions within the `nginx connections statistics` namespace for your NGINXaaS deployment:
@@ -138,4 +138,4 @@ This section shows you how to effectively discover, gather and analyze NGINXaaS 
    }
    ```
 
-{{< call-out "note" >}} Refer to the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a listing of available namespaces and metrics.{{< /call-out >}}
+{{< call-out class="note" >}} Refer to the [Metrics Catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}) for a listing of available namespaces and metrics.{{< /call-out >}}

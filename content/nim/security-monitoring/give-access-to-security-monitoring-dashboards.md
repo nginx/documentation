@@ -17,7 +17,7 @@ Security Monitoring tracks activity on F5 WAF for NGINX instances. The dashboard
 
 This guide explains how to create a role to give users access to Security Monitoring and assign it to users or groups.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 This guide follows the principle of least privilege, so users only get access to Security Monitoring. You can create roles with different permissions if needed.
 {{< /call-out >}}
 

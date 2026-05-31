@@ -28,7 +28,7 @@ osm install --mesh-name osm-nginx --osm-namespace osm-system
 
 ## Mark the F5 NGINX Ingress controller namespace for sidecar injection
 
-{{< call-out "warning" >}} 
+{{< call-out class="warning" >}} 
 
 Depending on how you install NGINX Ingress controller, you might need to create the `namespace`. 
 

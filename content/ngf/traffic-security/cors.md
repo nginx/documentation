@@ -182,7 +182,7 @@ Events:              <none>
 
 ## Verify CORS pre-flight check
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Your clients should be able to resolve the domain name "cafe.example.com" to the public IP of the NGINX Service. 
 

@@ -24,7 +24,7 @@ f5-files:
     systemctl reload nginx
     ```
 
-{{<call-out "note" "If you’re using self-signed certificates" >}}
+{{<call-out class="note" title="If you’re using self-signed certificates" >}}
 If you’re using self-signed certificates with NGINX Instance Manager,  
 see [Configure SSL verification for self-signed certificates]({{< ref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}) for additional steps.
 {{</call-out>}}

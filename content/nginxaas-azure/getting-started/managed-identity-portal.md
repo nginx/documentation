@@ -33,7 +33,7 @@ Managed identities are used for the following integrations:
 3. Select the appropriate **subscription** and **user assigned managed identity**, then select **Add**.
 
 <br>
-   {{< call-out "note" >}}NGINXaaS supports adding one user assigned managed identity in addition to the required system assigned managed identity. Adding more than one user assigned managed identity is not supported.{{< /call-out >}}
+   {{< call-out class="note" >}}NGINXaaS supports adding one user assigned managed identity in addition to the required system assigned managed identity. Adding more than one user assigned managed identity is not supported.{{< /call-out >}}
 
 4. The added user assigned managed identity will show up in the main table.
 
@@ -43,7 +43,7 @@ Managed identities are used for the following integrations:
 
 2. Confirm the operation by selecting **Yes** on the confirmation prompt.
 
-{{< call-out "note" >}}Removing a user-assigned managed identity from an NGINX deployment will only cause issues if that specific user-assigned identity was being used to fetch certificates from Azure Key Vault. In such cases, updates to the deployment will fail until the configuration is updated to not use those certificates.{{< /call-out >}}
+{{< call-out class="note" >}}Removing a user-assigned managed identity from an NGINX deployment will only cause issues if that specific user-assigned identity was being used to fetch certificates from Azure Key Vault. In such cases, updates to the deployment will fail until the configuration is updated to not use those certificates.{{< /call-out >}}
 
 
 ## System assigned managed identity
@@ -58,11 +58,11 @@ The system-assigned managed identity is required for all NGINXaaS deployments. W
 
 3. The system assigned managed identity will be shown as enabled with Status **On**.
 
-{{< call-out "note" >}}The system-assigned managed identity cannot be disabled or removed. Attempting to toggle the status to "Off" will result in an error.{{< /call-out >}}
+{{< call-out class="note" >}}The system-assigned managed identity cannot be disabled or removed. Attempting to toggle the status to "Off" will result in an error.{{< /call-out >}}
 
 ### Add a system-assigned managed identity
 
-{{< call-out "note" >}}This section applies only to legacy deployments created before system-assigned managed identity became mandatory. New deployments already have this identity enabled.{{< /call-out >}}
+{{< call-out class="note" >}}This section applies only to legacy deployments created before system-assigned managed identity became mandatory. New deployments already have this identity enabled.{{< /call-out >}}
 
 To add a system-assigned managed identity to an existing deployment:
 
@@ -85,7 +85,7 @@ To provide the role assignments necessary for the deployment:
 3. On the **Add role assignment (Preview)** panel, select the appropriate **Scope** and **Role**. Then select **Save**.
 
 ## Legacy deployments without system assigned managed identity
-{{< call-out "note" >}}**Legacy Deployments**: Deployments created before system-assigned managed identity became mandatory will continue to operate normally and can still be updated (including deployment properties and NGINX configurations). However, logging and monitoring features will not work. You can add a system-assigned managed identity to these deployments by navigating to the Identity page and enabling it under the System Assigned tab.{{< /call-out >}}
+{{< call-out class="note" >}}**Legacy Deployments**: Deployments created before system-assigned managed identity became mandatory will continue to operate normally and can still be updated (including deployment properties and NGINX configurations). However, logging and monitoring features will not work. You can add a system-assigned managed identity to these deployments by navigating to the Identity page and enabling it under the System Assigned tab.{{< /call-out >}}
 
 
 

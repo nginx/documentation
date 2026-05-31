@@ -143,7 +143,7 @@ Released _February 13th, 2026_.
 
 ## F5 WAF for NGINX 5.11.1
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The patch fix is also included in versions 5.9.1 and 5.10.1.
 

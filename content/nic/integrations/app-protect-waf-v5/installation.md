@@ -9,7 +9,7 @@ f5-docs: DOCS-1865
 
 This document explains how to build a F5 NGINX Ingress Controller image with F5 WAF for NGINX v5 from source code.
 
-{{<call-out "tip" "Pre-built image alternatives" >}} If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.{{</call-out>}}
+{{<call-out class="tip" title="Pre-built image alternatives" >}} If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.{{</call-out>}}
 
 ## Before you begin
 
@@ -37,6 +37,12 @@ Get your system ready for building and pushing the NGINX Ingress Controller imag
 
     ```shell
     docker pull private-registry.nginx.com/nap/waf-enforcer:<image-tag>
+    ```
+
+1. Pull the WAF IP Intelligence image (if you plan to use the WAF IP Intelligence module with your WAF v5 policies):
+
+    ```shell
+    docker pull private-registry.nginx.com/nap/waf-ip-intelligence:<image-tag>
     ```
 
 1. Clone the NGINX Ingress Controller repository:
@@ -76,7 +82,7 @@ Follow these steps to build the NGINX Controller Image with F5 WAF for NGINX v5.
 
    **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{< call-out "note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
+{{< call-out class="note" >}} In the event a patch of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command. {{< /call-out >}}
 
 ### Makefile targets {#makefile-targets}
 
@@ -89,14 +95,14 @@ Create Docker image for NGINX Ingress Controller (Alpine with NGINX Plus, F5 WAF
 | **ubi-image-nap-v5-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/) module. | OpenShift |
 | **ubi-image-nap-dos-v5-plus** | Builds a UBI-based image with NGINX Plus, [F5 WAF for NGINX v5](/nginx-app-protect-waf/v5/), and [F5 DoS for NGINX](/nginx-app-protect-dos/). | OpenShift |
 
-{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md#makefile-details" >}}) guide. {{< /call-out>}}
+{{< call-out class="note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md#makefile-details" >}}) guide. {{< /call-out>}}
 
 If you intend to use [external references](/nginx-app-protect-waf/v5/configuration-guide/configuration/#external-references) in F5 WAF for NGINX policies, you may want to provide a custom CA certificate to authenticate with the hosting server.
 
 To do so, place the `*.crt` file in the build folder and uncomment the lines following this comment:
 `#Uncomment the lines below if you want to install a custom CA certificate`
 
-{{< call-out "warning" >}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{< /call-out >}}
+{{< call-out class="warning" >}} External references are deprecated in NGINX Ingress Controller and will not be supported in future releases. {{< /call-out >}}
 
 ## Push the images to your private registry
 
@@ -147,7 +153,7 @@ Add volume mounts to the `containers` section:
 ...
 volumeMounts:
 - name: <volume_mount_name>
-    mountPath: /etc/app_protect/bundles
+  mountPath: /etc/app_protect/bundles
 ...
 ```
 
@@ -190,7 +196,7 @@ controller:
 ...
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 By default, `emptyDir` mounts are used.
 Bundles that are added to these kind of volume mounts will **NOT** persist across pod restarts.
 
@@ -286,7 +292,7 @@ You have two options for deploying NGINX Ingress Controller:
 
 ### Set up role-based access control (RBAC) {#set-up-rbac}
 
-{{< call-out "important" "Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}
+{{< call-out class="important" title="Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}
 
 1. Create a namespace and a service account:
 
@@ -452,7 +458,7 @@ Add `readOnlyRootFilesystem` to the `waf-enforcer` container and set value to `t
 ...
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 **StatefulSet Volume Configuration**: When using StatefulSet deployments, the `nginx-cache` volume is automatically provided via `volumeClaimTemplates` for persistent storage. F5 WAF for NGINX v5 volumes (like app-protect-config, app-protect-bundles) are still configured as regular volumes in the `volumes` section. Use `emptyDir` for temporary data or PersistentVolumeClaims if you need persistence for App Protect configurations across pod restarts.
 {{< /call-out >}}
 

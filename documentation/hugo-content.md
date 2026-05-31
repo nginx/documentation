@@ -92,7 +92,7 @@ To install <integation>, refer to the [integration instructions]({{< ref "/integ
 This is an example of a call-out shortcode:
 
 ```md
-{{< call-out "note" >}} Provide the text of the note here .{{< /call-out >}}
+{{< call-out class="note" >}} Provide the text of the note here .{{< /call-out >}}
 ```
 
 Here are some other shortcodes:
@@ -110,7 +110,7 @@ Here are some other shortcodes:
 The call out shortcode support multi-line blocks:
 
 ```md
-{{< call-out "caution" >}}
+{{< call-out class="caution" >}}
 You should probably never do this specific thing in a production environment.
 
 If you do, and things break, don't say we didn't warn you.
@@ -130,7 +130,7 @@ Supported types:
 An optional second parameter will add a title to the call-out: without it, it will fall back to the type.
 
 ```md
-{{< call-out "important" "This instruction only applies to v#.#.#" >}}
+{{< call-out class="important" title="This instruction only applies to v#.#.#" >}}
 These instructions are only intended for versions #.#.# onwards.
 
 Follow <these-instructions> if you're using an older version.

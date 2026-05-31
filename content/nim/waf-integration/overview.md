@@ -21,7 +21,7 @@ Use NGINX Instance Manager with F5 WAF for NGINX to inspect incoming traffic, de
 - Update attack signature, bot signature, and threat campaign packages
 - Compile WAF configurations into a binary bundle for deployment
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 **New in version 2.21.0:** NGINX Instance Manager now supports **bot signatures**.  
 This feature adds detection and mitigation for automated bot traffic in your WAF policies.  
 Although it works with older agents, we recommend upgrading the **NGINX Agent to v2.43.0** or later for best results.
@@ -61,7 +61,7 @@ location / {
 
 You can also configure NGINX Instance Manager to compile log profiles when you install a new version of the compiler. When publishing NGINX configs that include the [`app_protect_security_log`]({{< ref "/waf/logging/security-logs.md#app_protect_security_log" >}}) directive, NGINX Instance Manager pushes the compiled log profile to your WAF instances (when precompiled publication is turned on).
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 NGINX Instance Manager and Security Monitoring both use log profiles, but their configurations are different. If you're using configuration management in NGINX Instance Manager, you must reference the log profile with the `.tgz` file extension, not `.json`.
 {{< /call-out >}}
 

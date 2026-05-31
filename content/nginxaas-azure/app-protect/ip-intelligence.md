@@ -13,7 +13,7 @@ F5 WAF for NGINX includes an IP Intelligence feature that allows you to customiz
 
 IP Intelligence is available on NGINXaaS for Azure deployments with the **Standard v3** [plan]({{< ref "/nginxaas-azure/billing/overview.md/#standard-v3-plan" >}}).
 
-{{< call-out "note" >}} IP Intelligence does not require an additional license. F5's existing license with the BrightCloud threat intelligence provider covers all NGINXaaS deployments. The IP address database is automatically updated every 60 minutes. {{< /call-out >}}
+{{< call-out class="note" >}} IP Intelligence does not require an additional license. F5's existing license with the BrightCloud threat intelligence provider covers all NGINXaaS deployments. The IP address database is automatically updated every 60 minutes. {{< /call-out >}}
 
 ## Threat categories
 

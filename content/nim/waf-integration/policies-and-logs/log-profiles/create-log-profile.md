@@ -16,7 +16,7 @@ A log profile defines how security events are recorded and exported from your NG
 
 To upload a log profile, send a `POST` request to the Security Log Profiles API endpoint. The log profile must be encoded in `base64`; sending plain JSON causes the request to fail.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

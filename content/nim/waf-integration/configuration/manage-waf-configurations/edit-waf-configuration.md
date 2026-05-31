@@ -76,7 +76,7 @@ If you’re running **F5 WAF for NGINX Docker Compose**, note the following:
 
 {{%tab name="API"%}}
 
-{{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
+{{< call-out class="note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
 You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NGINX configuration.
 
@@ -89,7 +89,7 @@ You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NG
 
 {{</bootstrap-table>}}
 
-{{< call-out "important" "Important:" >}}Before deploying a configuration to an instance group, make sure all instances in the group run the same version of F5 WAF for NGINX. Otherwise, deployment may fail.{{< /call-out >}}
+{{< call-out class="important" title="Important:" >}}Before deploying a configuration to an instance group, make sure all instances in the group run the same version of F5 WAF for NGINX. Otherwise, deployment may fail.{{< /call-out >}}
 
 1. Send a `GET` request to list all instances. The response includes the unique identifier (UID) of the instance you want to update.
 

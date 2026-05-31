@@ -36,7 +36,7 @@ When using the Developer plan, each NGINXaaS deployment is billed at the rate sp
 
 The SKU for the Developer pricing plan is `developer_Monthly`.
 
-{{< call-out "note" >}}The costs for your plan will appear on the Azure Portal Cost Analysis page and the Azure Consumption APIs. There may be a 24h delay before usage is visible.{{< /call-out >}}
+{{< call-out class="note" >}}The costs for your plan will appear on the Azure Portal Cost Analysis page and the Azure Consumption APIs. There may be a 24h delay before usage is visible.{{< /call-out >}}
 
 ## NGINX Capacity Unit (NCU)
 
@@ -71,7 +71,7 @@ Each NCU provisioned (not consumed) is billed at the rate specified on the [Azur
 * Data processing cost: `2.5 GB * $0.005/GB = $0.125`
 * Total: `$0.75 + $0.80 + $0.125 = $1.675`
 
-{{< call-out "note" >}}Further guidance:
+{{< call-out class="note" >}}Further guidance:
 
 * For how many NCUs should you provision and how to scale to match workload, see the [Scaling Guidance]({{< ref "/nginxaas-azure/quickstart/scaling.md" >}})
 * To learn more about metrics related to NCUs, see the [NGINXaaS Statistics namespace]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md#nginxaas-statistics" >}})
@@ -82,7 +82,7 @@ Each NCU provisioned (not consumed) is billed at the rate specified on the [Azur
 
 The standard Azure [networking](https://azure.microsoft.com/en-us/pricing/details/virtual-network/) and [bandwidth](https://azure.microsoft.com/en-us/pricing/details/bandwidth/) charges apply to NGINX deployments.
 
-{{< call-out "note" >}}The management traffic for NGINX instances is billed as a `Virtual Network Peering - Intra-Region Egress` charge. This charge includes the data for shipping metrics and logs. The cost for shipping metrics data is approximately $0.03/month. If you enable NGINX logging the cost increases by roughly $0.005 per GB of logs NGINX generates. To estimate this, multiply the number of requests by the average log line size of the access_log format you have configured.
+{{< call-out class="note" >}}The management traffic for NGINX instances is billed as a `Virtual Network Peering - Intra-Region Egress` charge. This charge includes the data for shipping metrics and logs. The cost for shipping metrics data is approximately $0.03/month. If you enable NGINX logging the cost increases by roughly $0.005 per GB of logs NGINX generates. To estimate this, multiply the number of requests by the average log line size of the access_log format you have configured.
 {{< /call-out >}}
 
 ## Review billing data

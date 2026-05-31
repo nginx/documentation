@@ -22,7 +22,7 @@ Starting with version 2.20.0, NGINX Instance Manager supports **lightweight mode
 - Lightweight mode requires NGINX Agent v2.41.1 or later.
 
 
-{{< call-out "note" "Chart renamed with new versioning from NGINX Instance Manager 2.20.0" >}}
+{{< call-out class="note" title="Chart renamed with new versioning from NGINX Instance Manager 2.20.0" >}}
 Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-hybrid` to `nginx-stable/nim`. Chart versioning was also reset; `v2.0.0` is the first release under the new name. Be sure to update your chart references if you’re using version `2.20.0` or later.
 {{< /call-out >}}
 
@@ -54,7 +54,7 @@ You can use your NGINX JWT as a Docker configuration secret with Helm charts.
 
 Create a Docker registry secret on the cluster, using the JWT token as the username and `none` as the password. The Docker server is `private-registry.nginx.com`.
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 Make sure there are no extra characters or spaces when copying the JWT token. They can invalidate the token and cause 401 errors during authentication.
 {{< /call-out >}}
 
@@ -80,7 +80,7 @@ oc create secret docker-registry regcred \
   -n nim
 ```
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 You might see a warning that `--password` is insecure. In this case, it’s safe to ignore—none is used as a placeholder.
 
 As a best practice, you can delete the JWT token and clear your shell history after deployment if others have access to the system.
@@ -133,7 +133,7 @@ Set `nmsClickhouse.mode` to control ClickHouse deployment:
 | `external` | Connects to an external ClickHouse instance and requires `nim.externalClickhouse.address`. |
 | `disabled` | Disables ClickHouse and enables lightweight mode (no metrics).                             |
 
-{{< call-out "note" "See also" >}}
+{{< call-out class="note" title="See also" >}}
 See the [Helm chart configuration settings](
 https://docs.nginx.com/nginx-instance-manager/deploy/kubernetes/helm-config-settings/
 ) guide for a complete list of chart parameters.
@@ -182,7 +182,7 @@ The values required to pull images from the NGINX private registry are now autom
 
 Use the file with the `-f values.yaml` flag when installing the chart.
 
-{{< call-out "note" "OpenShift support" >}}
+{{< call-out class="note" title="OpenShift support" >}}
 OpenShift support is available in NGINX Instance Manager 2.19 and later. To enable it, add `openshift.enabled: true` to your `values.yaml` file. In NGINX Instance Manager 2.22 and later, NGINX Instance Manager supports the default Security Context Constraints (SCC) on OpenShift.
 For more details, see [Appendix: OpenShift security constraints](#appendix-openshift-security-constraints).
 {{< /call-out >}}
@@ -275,12 +275,12 @@ helm upgrade nim nginx-stable/nim \
 - Replace `<CHART_VERSION>` with the version you want to install (for example, `2.1.0`).
 
 
-{{< call-out "important" "Save the password!" >}}
+{{< call-out class="important" title="Save the password!" >}}
 Only the encrypted version of the admin password is stored in Kubernetes. If you lose it, it can’t be recovered or reset.
 Make sure to save the password in a secure place.
 {{< /call-out >}}
 
-{{< call-out "note" "Upgrading from earlier versions" >}}
+{{< call-out class="note" title="Upgrading from earlier versions" >}}
 If you’re upgrading from a deployment that used the legacy `nms` chart or release name, you’ll need to update the chart reference and adjust the release name as needed.
 The latest chart is now called `nginx-stable/nim`, and `nim` is the recommended release name.
 {{< /call-out >}}
@@ -406,7 +406,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 1. Replace `<PATH_TO_VALUES_FILE>` with the path to your `values.yaml` file.
 2. Replace `<YOUR_PASSWORD>` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
-   {{< call-out "important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
+   {{< call-out class="important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
 
 
 ```shell
@@ -442,9 +442,9 @@ To upgrade:
    - Replace `<PATH_TO_VALUES_FILE>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `<YOUR_PASSWORD>` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
-      {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
+      {{<call-out class="important" title="Save the password!" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
 
-{{< call-out "note" "Upgrading from 2.18.0 or earlier to 2.19.x" >}}
+{{< call-out class="note" title="Upgrading from 2.18.0 or earlier to 2.19.x" >}}
 If you're upgrading from version 2.18.0 or earlier to 2.19.x, note the following changes:
 
 - If you used the legacy `nms` chart or release name, update the chart reference and adjust the release name if needed.
@@ -464,7 +464,7 @@ The `values.yaml` file customizes the Helm chart installation without modifying 
     - In the `imagePullSecrets` section, add the credentials for your private Docker registry.
     - Change the version tag to the version of NGINX Instance Manager you would like to install. See "Install the chart" below for versions.
 
-    {{< call-out "note" >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{< /call-out>}}
+    {{< call-out class="note" >}} For details on creating a secret, see Kubernetes [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/). {{< /call-out>}}
 
     ```yaml
     nms-hybrid:
@@ -507,7 +507,7 @@ Run the `helm install` command to deploy NGINX Instance Manager:
 1. Replace `<path-to-your-values.yaml>` with the path to your `values.yaml` file.
 2. Replace `YourPassword123#` with a secure password (containing a mix of uppercase, lowercase letters, numbers, and special characters).
 
-   {{< call-out "important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
+   {{< call-out class="important" >}} Remember to save the password for future use. Only the encrypted password is stored, and there's no way to recover or reset it if lost. {{< /call-out >}}
 
 3. (Optional) Replace `<CHART_VERSION>` with the desired chart version. If omitted, the latest version will be installed.
 
@@ -544,7 +544,7 @@ To upgrade:
    - Replace `<PATH_TO_VALUES_FILE>` with the path to the `values.yaml` file you created]({{< ref "/nim/deploy/kubernetes/deploy-using-helm.md#configure-chart" >}}).
    - Replace `YourPassword123#` with a secure password that includes uppercase and lowercase letters, numbers, and special characters.
 
-      {{<call-out "important" "Save the password!" "" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
+      {{<call-out class="important" title="Save the password!" >}} Save this password for future use. Only the encrypted password is stored in Kubernetes, and you can’t recover or reset it later. {{</call-out>}}
 
 ---
 

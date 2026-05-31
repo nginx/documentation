@@ -7,7 +7,7 @@ f5-product: FABRIC
 f5-docs: DOCS-1834
 ---
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 This document is for trying out NGINX Gateway Fabric, and not intended for a production environment.
 
 For standard deployments, you should read the [Install NGINX Gateway Fabric]({{< ref "/ngf/install/" >}}) section.
@@ -50,7 +50,7 @@ nodes:
         protocol: TCP
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The _containerPort_ value is used to later configure a _NodePort_.
 {{< /call-out >}}
 
@@ -80,7 +80,7 @@ Thanks for using kind! 😊
 
 {{< /details >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If you have cloned [the NGINX Gateway Fabric repository](https://github.com/nginx/nginx-gateway-fabric/tree/main), you can also create a kind cluster from the root folder with the following _make_ command:
 
 ```shell
@@ -120,7 +120,7 @@ NGINX Service when it is provisioned:
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort --set-json 'nginx.service.nodePorts=[{"port":31437,"listenerPort":80}, {"port":30478,"listenerPort":8443}]'
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The port value should equal the _containerPort_ value from _cluster-config.yaml_ [when you created the kind cluster](#set-up-a-kind-cluster). The _listenerPort_ value will match the port that we expose in the Gateway listener.
 {{< /call-out >}}
 
@@ -141,7 +141,7 @@ TEST SUITE: None
 
 In the previous section, you deployed NGINX Gateway Fabric to a local cluster. This section shows you how to deploy a simple web application to test that NGINX Gateway Fabric works.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The YAML code in the following sections can be found in the [cafe-example folder](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/cafe-example) of the GitHub repository.
 {{< /call-out >}}
 

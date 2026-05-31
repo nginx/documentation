@@ -27,7 +27,7 @@ load_module modules/ngx_http_app_protect_module.so;
 app_protect_enforcer_address 127.0.0.1:50000;
 ```
 
-{{< call-out "note" >}} The app_protect_enforcer_address directive is a required directive for F5 WAF for NGINX to work and must match 127.0.0.1:50000{{< /call-out >}}
+{{< call-out class="note" >}} The app_protect_enforcer_address directive is a required directive for F5 WAF for NGINX to work and must match 127.0.0.1:50000{{< /call-out >}}
 
 
 3. Enable F5 WAF for NGINX with the `app_protect_enable` directives in the appropriate scope. The `app_protect_enable` directive may be set in the `http`, `server`, and `location` contexts.
@@ -123,7 +123,7 @@ In the policy editor:
 
 After your policy has been saved, you can then reference it in your NGINX configuration. For more information on policy configuration and syntax, refer to the F5 WAF for NGINX [configuration guide](https://docs.nginx.com/nginx-app-protect-waf/v5/configuration-guide/configuration/).
 
-{{< call-out "note" >}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{< /call-out >}}
+{{< call-out class="note" >}}The **name** field within the security policy must be unique among the policies referenced in your NGINX configuration.{{< /call-out >}}
 
 The **Custom Policies** tab shows the status of your custom policies (Compilation and Application Status). Custom policies are automatically compiled when created or modified. Policies that are applied to the NGINX configuration cannot be deleted until they are first removed from the configuration. 
 

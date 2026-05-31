@@ -20,7 +20,7 @@ f5-summary: >
 
 F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) and JSON schemas to create flexible and robust NGINX configuration templates. This allows users to efficiently customize and validate configurations without needing expert knowledge of NGINX syntax.
 
-{{<call-out "tip" "Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
+{{<call-out class="tip" title="Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
  Go templating in NGINX Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
 
 This guide covers the following resource files for creating templates:

@@ -9,7 +9,7 @@ f5-content-type: how-to
 f5-product: NGPLUS
 ---
 
-{{< call-out "note" >}} The `nginx-plus-module-modsecurity` package is no longer available in the NGINX Plus repository.{{< /call-out >}}
+{{< call-out class="note" >}} The `nginx-plus-module-modsecurity` package is no longer available in the NGINX Plus repository.{{< /call-out >}}
 
 NGINX ModSecurity WAF officially reached End-of-Sale status on April 1, 2022 ([NGINX Plus Release 29]({{< ref "/nginx/releases.md#r29" >}})), and End-of-Life status on March 31, 2024 ([NGINX Plus Release 32]({{< ref "/nginx/releases.md#r32" >}})).
 

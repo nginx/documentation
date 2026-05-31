@@ -56,7 +56,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric \
 
 {{%tab name="NGINX Plus"%}}
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. 
 
@@ -108,7 +108,7 @@ helm install ngf .  \
 
 {{%tab name="NGINX Plus"%}}
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. 
 

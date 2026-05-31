@@ -105,7 +105,7 @@ NGINXaaS for Azure supports a local syslog server running on port 5140. Syslogs 
 app_protect_security_log "/etc/app_protect/conf/log_all.json" syslog:server=localhost:5140;
 ```
 
-{{< call-out "note" >}} When using a NGINXaaS syslog destination, the syslog server destination needs to match localhost:5140. Configuring log directives to other syslog locations will result in an error in the NGINX config.
+{{< call-out class="note" >}} When using a NGINXaaS syslog destination, the syslog server destination needs to match localhost:5140. Configuring log directives to other syslog locations will result in an error in the NGINX config.
 {{< /call-out >}}
 
 2. File Logging
@@ -116,7 +116,7 @@ NGINXaaS for Azure supports logging to a file path. Any logs written under `/var
 app_protect_security_log "/etc/app_protect/conf/log_all.json" /var/log/app_protect/security.log;
 ```
 
-{{< call-out "note" >}}When using a file destination, the configured path for nginx security logs has to be within `/var/log/app_protect`. Configuring log directives to other file locations will result in an error in the NGINX config.
+{{< call-out class="note" >}}When using a file destination, the configured path for nginx security logs has to be within `/var/log/app_protect`. Configuring log directives to other file locations will result in an error in the NGINX config.
 {{< /call-out >}}
 
 
@@ -187,4 +187,4 @@ NGXSecurityLogs
 
 To add a visualization to a dashboard, select the **Pin to dashboard** icon in the top right of the log analytics workspace.
 
-{{< call-out "note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}
+{{< call-out class="note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}

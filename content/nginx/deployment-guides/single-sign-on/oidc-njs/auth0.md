@@ -11,13 +11,13 @@ f5-product: NGPLUS
 f5-content-type: how-to
 ---
 
-{{< call-out "note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
+{{< call-out class="note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
 
 See [Single Sign-On With Auth0]({{< ref "nginx/deployment-guides/single-sign-on/auth0.md" >}}) for details.{{< /call-out >}}
 
 You can use F5 NGINX Plus with [Auth0](https://auth0.com/) and OpenID Connect to enable single sign-on (SSO) for your proxied applications. By following the steps in this guide, you will learn how to set up SSO using OpenID Connect as the authentication mechanism, with Auth0 as the identity provider (IdP), and NGINX Plus as the relying party.
 
-{{< call-out "note" >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /call-out>}}
+{{< call-out class="note" >}}{{<include "nginx-plus/nginx-openid-repo-note">}}{{< /call-out>}}
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ To complete the steps in this guide, you need the following:
 
 Take the steps in this section to create a new application for NGINX Plus.
 
-{{< call-out "note" >}} This section contains images that reflect the state of the Auth0 web interface at the time of publication. The actual Auth0 GUI may differ from the examples shown here. Use this guide as a reference and adapt the instructions to suit the current Auth0 GUI as necessary.{{< /call-out >}}
+{{< call-out class="note" >}} This section contains images that reflect the state of the Auth0 web interface at the time of publication. The actual Auth0 GUI may differ from the examples shown here. Use this guide as a reference and adapt the instructions to suit the current Auth0 GUI as necessary.{{< /call-out >}}
 
 ### Create a new Auth0 Application {#create-auth0-app}
 
@@ -82,7 +82,7 @@ In this section, you'll set up a web application that follows the Auth0 [Authori
 
 ### Set up Authentication {#authn-setup}
 
-{{< call-out "note" >}}For the purposes of this guide, we will add a new Auth0 user database and user account to use for testing.
+{{< call-out class="note" >}}For the purposes of this guide, we will add a new Auth0 user database and user account to use for testing.
 
 You can set up authentication using any of the available [Auth0 identity providers](https://auth0.com/docs/authenticate/identity-providers). {{< /call-out >}}
 

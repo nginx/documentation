@@ -10,7 +10,7 @@ f5-summary: >
   This check confirms that NGINX Instance Manager can see the instances and that NGINX Agent is communicating correctly.
 ---
 
-{{< call-out "note" "Before you begin" >}}
+{{< call-out class="note" title="Before you begin" >}}
 - [Install NGINX Agent]({{< ref "/nim/waf-integration/configuration/onboard-instances/install-nginx-agent.md" >}})
 - [Configure NGINX Agent]({{< ref "/nim/waf-integration/configuration/onboard-instances/configure-nginx-agent.md" >}})
 {{< /call-out >}}
@@ -32,7 +32,7 @@ You can view your F5 WAF for NGINX instances in the NGINX Instance Manager web i
 
 {{%tab name="API"%}}
 
-{{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
+{{< call-out class="note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
 Use the REST API to check version and status details for F5 WAF for NGINX.
 

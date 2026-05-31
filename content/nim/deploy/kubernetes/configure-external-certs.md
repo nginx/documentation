@@ -48,7 +48,7 @@ When you don't set any `externalCerts` values, the chart generates a single Kube
 
 When you set one or more `externalCerts.<service>.enabled` values to `true`, the chart switches to per-service Secrets. The chart only generates Secrets for services where `enabled` is `false`. For services where `enabled` is `true`, you must create the Secret in the cluster before running `helm install` or `helm upgrade`.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 When any `externalCerts.*.enabled` value is `true`, the chart no longer creates the monolithic `nms-internal-certs` Secret. All workloads mount per-service Secrets instead.
 {{< /call-out >}}
 
@@ -74,7 +74,7 @@ The following table lists every Secret used by NGINX Instance Manager, its defau
 | apigw HTTPS | user-defined (for example, `nim-apigw-tls`) | `kubernetes.io/tls` | `tls.crt`, `tls.key` |
 {{< /bootstrap-table >}}
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The `integrations` Secret must also contain `dpm-client.pem`, `dpm-client.key`, `core-client.pem`, and `core-client.key`. The integrations service calls both `dpm` and `core` over mTLS.
 {{< /call-out >}}
 
@@ -139,7 +139,7 @@ For the complete list of Helm settings, see [Configurable Helm settings]({{< ref
 This procedure is recommended for production deployments.
 {{< /production >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The [Generate certificates](#generate-certificates) section is provided as an example workflow. If the required certificates are already available, you can skip directly to [Create Kubernetes Secrets](#create-kubernetes-secrets).
 {{< /call-out >}}
 
@@ -403,7 +403,7 @@ externalCerts:
   # dpm, ingestion, integrations, secmon, apigw — chart generates these
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 When `externalCerts.ca.enabled` is `true` and any service's `enabled` value is `false`, the chart signs the remaining service certificates with your CA private key. The CA Secret must contain both `ca.pem` and `ca.key`. Without `ca.key`, `helm upgrade` fails with an error.
 {{< /call-out >}}
 
@@ -433,7 +433,7 @@ apigw:
 - A brief interruption (typically less than 1 second) is expected during reload.
 - The watcher logs rotation events to stdout: `cert-reload: cert rotated (...), reloading NGINX...`
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Auto-reload applies only to the API Gateway's external HTTPS certificate (`apigw.tlsSecret`). Internal mTLS certificates reload when the respective service pods restart.
 {{< /call-out >}}
 
@@ -457,7 +457,7 @@ apigw:
   serverName: "nim.example.com nim-dr.example.com"
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The TLS certificate in `apigw.tlsSecret` must be valid for every domain listed in `apigw.serverName`. Use a SAN certificate or a wildcard certificate.
 {{< /call-out >}}
 

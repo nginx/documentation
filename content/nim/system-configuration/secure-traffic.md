@@ -19,9 +19,9 @@ This guide explains how to secure client connections to F5 NGINX Instance Manage
 
 With NGINX Plus R33, telemetry data must be reported to a usage reporting endpoint, such as NGINX Instance Manager. This data validates subscription entitlements and tracks usage metrics. This guide also covers how to use the [`ssl_verify`](#ssl_verify-and-usage-reporting-in-nginx-plus-r33) directive to secure telemetry reporting through certificate verification.
 
-{{< call-out "important" >}}Never expose your management server to the public internet. The settings in this guide reduce risk, but they can't replace keeping your server inaccessible to unauthorized users.{{< /call-out >}}
+{{< call-out class="important" >}}Never expose your management server to the public internet. The settings in this guide reduce risk, but they can't replace keeping your server inaccessible to unauthorized users.{{< /call-out >}}
 
-{{< call-out "tip" "See also:" >}}
+{{< call-out class="tip" title="See also:" >}}
 - To learn how to secure traffic for NGINX Agent, see [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/).
 - For details on NGINX Plus entitlement and usage reporting, see [About subscription licenses]({{< ref "solutions/about-subscription-licenses.md" >}}).{{< /call-out >}}
 
@@ -325,7 +325,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 	- If the CA is trusted by the operating system, you can omit the ca option.
 	- Update the server host to match the NGINX Instance Manager address.
 
-    {{< call-out "note" >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /call-out>}}
+    {{< call-out class="note" >}}For additional information about TLS configurations for the NGINX Agent, refer to the [NGINX Agent TLS Settings](https://docs.nginx.com/nginx-agent/configuration/encrypt-communication/) topic. {{< /call-out>}}
 
    {{< details summary="/etc/nginx-agent/nginx-agent.conf" >}}
 
@@ -457,7 +457,7 @@ To generate the necessary certificates, follow these steps. You can modify these
 
 ## Configure SSL verification for usage reporting with self-signed certificates {#configure-ssl-verify}
 
-{{<call-out "note" "Version requirements" "">}}
+{{<call-out class="note" title="Version requirements" >}}
 Usage reporting for NGINX Plus R33 or later in disconnected environments requires **NGINX Instance Manager version 2.18 or later**.
 {{</call-out>}}
 

@@ -7,7 +7,7 @@ f5-files:
 - content/nim/admin-guide/authentication/oidc/microsoft-entra-setup.md
 ---
 
-{{< call-out "important" "Group names must match with your IdP" >}}To ensure that NGINX Instance Manager and your IdP work together seamlessly, group names must exactly match between the two systems. If the group names don’t match, the OIDC integration will fail, preventing users from accessing NGINX Instance Manager. For example, if you have a group called "app-developers" in your IdP, you must create a user group called "app-developers" in NGINX Instance Manager. The group claim must also be part of the token your IdP generates. Refer to your IdP's documentation for guidance on adding group claims.{{</call-out>}}
+{{< call-out class="important" title="Group names must match with your IdP" >}}To ensure that NGINX Instance Manager and your IdP work together seamlessly, group names must exactly match between the two systems. If the group names don’t match, the OIDC integration will fail, preventing users from accessing NGINX Instance Manager. For example, if you have a group called "app-developers" in your IdP, you must create a user group called "app-developers" in NGINX Instance Manager. The group claim must also be part of the token your IdP generates. Refer to your IdP's documentation for guidance on adding group claims.{{</call-out>}}
 
 Here's how to create a user group and assign roles:
 
@@ -23,7 +23,7 @@ Here's how to create a user group and assign roles:
 
 1. Select one or more roles from the **Roles** list to assign to the group.
 
-   {{< call-out "important" >}}At least one user group must have the `admin` role assigned.{{< /call-out >}}
+   {{< call-out class="important" >}}At least one user group must have the `admin` role assigned.{{< /call-out >}}
 
 1. Select **Save** to create the group.
 

@@ -40,7 +40,7 @@ f5-files:
       uid                      nginx signing key <signing-key-3@nginx.com>
     ```
 
-    {{< call-out "important" >}}If the fingerprint is different, remove the file.{{< /call-out >}}
+    {{< call-out class="important" >}}If the fingerprint is different, remove the file.{{< /call-out >}}
 
 1. Add the nginx agent repository:
 
@@ -57,7 +57,7 @@ f5-files:
    sudo apt install nginx-agent
    ```
 
-   {{<call-out "tip" "Tip: Install specific versions" "" >}}
+   {{<call-out class="tip" title="Tip: Install specific versions" >}}
    To install `nginx-agent` with a specific version (for example, 2.42.0):
 
    Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Ubuntu codename (for example, jammy, noble).

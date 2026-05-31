@@ -99,7 +99,7 @@ Create the users that will be allowed to log in to NGINX Instance Manager.
 
 ## Configure NGINX Instance Manager to use Keycloak {#configure-nim}
 
-{{<call-out "important" "File naming convention" >}}
+{{<call-out class="important" title="File naming convention" >}}
 Some file names in this guide, such as `nms-http.conf` and directories like `/etc/nms/nginx/`, still use the `nms` naming convention. This is for backward compatibility and does not affect the functionality of NGINX Instance Manager.
 {{</call-out>}}
 
@@ -109,7 +109,7 @@ To configure NGINX Instance Manager to use Keycloak as the OIDC identity provide
 
 Set the Keycloak secret as an environment variable on the NGINX Instance Manager host.
 
-{{< call-out "important" "Security consideration" >}}When setting a client secret as an environment variable, ensure that the environment has strict access controls. Only authorized users or processes should be able to view or modify the environment variables. Consider encrypting the value and regularly rotating the client secret.{{</call-out>}}
+{{< call-out class="important" title="Security consideration" >}}When setting a client secret as an environment variable, ensure that the environment has strict access controls. Only authorized users or processes should be able to view or modify the environment variables. Consider encrypting the value and regularly rotating the client secret.{{</call-out>}}
 
 To copy the Keycloak secret:
 

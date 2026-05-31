@@ -118,7 +118,7 @@ az k8s-extension create \
 ##### Install the AKS Extension using the Azure portal
 
 You can also install the NLK controller AKS extension by navigating to [F5 NGINXaaS Loadbalancer for Kubernetes](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension) in the Azure Marketplace and following the installation steps.
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If you are creating a new AKS cluster as part of this installation, note that we will enable the [Azure CNI Node Subnet plugin](https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview). This causes Cluster IP addresses to be exposed within your VNET.
 {{< /call-out >}}
 
@@ -151,7 +151,7 @@ If you are creating a new AKS cluster as part of this installation, note that we
 - Select **Review + Create** to continue.
 - Azure will validate the extension settings. This page will provide a summary of the provided information. Select **Create**.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The NGINXaaS data plane API that NLK uses is mounted at `${dataplaneAPIEndpoint}nplus`. For example, if the data plane API endpoint is `https://mynginx-75b3bf22a555.eastus2.nginxaas.net/` then the value for `nlk.config.nginxHosts` should be `https://mynginx-75b3bf22a555.eastus2.nginxaas.net/nplus`.
 {{< /call-out >}}
 
@@ -197,7 +197,7 @@ Expose a Kubernetes `Service` to route traffic to your workload.  The `Service` 
   - If the upstream is in the `http` context and named `my-service` then the name is `http-my-service`
   - If the upstream is in the `stream` context and named `jet` then the port name is `stream-jet`
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 **NGINX Ingress Controller users**: with v5.0.0 and upwards, if you wish to route traffic from your NGINXaaS deployment to your NGINX Ingress Controller service, please make the following changes to your helm chart values:
 
 - Add `"nginx.com/nginxaas": "nginxaas"` to the NGINX Ingress Controller service annotations.
@@ -285,7 +285,7 @@ flowchart TB
    accDescr:A diagram showing NGINXaaS directing separate user GET requests for `/tea` and `/coffee` to respective Kubernetes-based services "TeaSvc" and "CoffeeSvc" that are running in separate Azure Kubernetes Clusters. An NLK controller in each cluster is independently updating the NGINXaaS with dynamic upstream configuration.
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 - Configuring multiple NLK controllers to update the same upstream isn't supported and will result in unpredictable behavior.
 {{< /call-out >}}
@@ -296,7 +296,7 @@ Multiple NLK controllers can be installed in the same AKS cluster to update sepa
 
 Each NLK needs a unique helm release name and needs a unique helm value for `nlk.config.serviceAnnotationMatch`. Each NLK will only watch services that have the matching annotation.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 - Consider using `helm` to install multiple NLK controllers on an AKS cluster. Installing multiple copies of the controller on the same AKS cluster is not supported via the [AKS Extension](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/f5-networks.f5-nginx-for-azure-aks-extension?tab=overview).
 {{< /call-out >}}

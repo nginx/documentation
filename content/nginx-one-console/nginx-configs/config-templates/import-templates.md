@@ -140,7 +140,7 @@ EOF
 
 #### 3. Create the archive
 
-{{< call-out "important" "Important" >}}
+{{< call-out class="important" title="Important" >}}
 Always create archives from within the template directory to ensure files are at the root level.
 {{< /call-out >}}
 
@@ -327,7 +327,7 @@ During import, the system will validate:
 - Schema validity (if provided)
 - Variable references match schema definitions
 
-{{< call-out "important" "Important" >}}
+{{< call-out class="important" title="Important" >}}
 The `allowed_in_contexts` parameter is required to import augment templates. The import process checks that this parameter is included, but it doesn’t confirm whether the contexts are valid for your template’s NGINX directives. Context validation happens during template submission. Ensure your specified contexts match where your NGINX directives are allowed to appear to avoid submission errors.
 {{< /call-out >}}
 
