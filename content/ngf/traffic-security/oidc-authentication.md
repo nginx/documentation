@@ -39,7 +39,10 @@ You can consolidate multiple keys in a single Secret or use separate Secrets for
 To follow this guide, you need the following:
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
-- [Install cert-manager](https://cert-manager.io/docs/installation/) in your cluster.
+
+### Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ### Generate certificates
 
