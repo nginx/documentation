@@ -57,6 +57,16 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - Support for OpenSSL 4.0.
 - Enhancements in the [ACME](https://nginx.org/en/docs/http/ngx_http_acme_module.html), [OpenTelemetry Distributed Tracing]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) and [Prometheus-njs]({{< ref "/nginx/admin-guide/dynamic-modules/prometheus-njs.md" >}}) modules.
 
+- Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: a heap memory buffer overflow might occur in a worker process while handling a specially crafted request by the module, potentially resulting in arbitrary code execution ([CVE-2026-42945](https://my.f5.com/manage/s/article/K000161019)).
+
+- Security fix in the [`ngx_http_scgi_module`](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) and [`ngx_http_uwsgi_module`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) modules: a heap memory buffer overread might occur in a worker process while handling a specially crafted response by these modules, allowing an attacker to cause a disclosure of worker process memory or segmentation fault in a worker process ([CVE-2026-42946](https://my.f5.com/manage/s/article/K000161027)).
+
+- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: a heap memory buffer overread might occur in a worker process while handling a specially sent response with decoding from UTF-8 via the [`charset_map`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset_map) directive, allowing an attacker to cause a limited disclosure of worker proccess memory or segmentation fault in a worker process ([CVE-2026-42934](https://my.f5.com/manage/s/article/K000161028)).
+
+- Security fix for HTTP/3: when using HTTP/3, processing of connection migration might cause new QUIC streams to receive a new client address before validation, allowing an attacker to cause address spoofing ([CVE-2026-40460](https://my.f5.com/manage/s/article/K000161068)).
+
+- Security fix in the [`ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) module: when the [`ssl_verify_client`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive is set to `on` or `optional,` and the [`ssl_ocsp`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) directive is set to `on` or the `leaf` parameters are configured with a resolver. With this configuration, an unauthenticated attacker can send requests along with conditions beyond its control that may cause a heap-use-after-free error in the NGINX worker process. This vulnerability may result in limited modification of data or the NGINX worker process restarting. ([CVE-2026-40701](https://my.f5.com/manage/s/article/K000161021)).
+
 {{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.0.0.1 LTS](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
 
 NGINX Plus PLS.37.0.0.1 LTS is supported on:
