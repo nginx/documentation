@@ -35,14 +35,14 @@ Make sure you have the following:
 
 - Use the following table to find the permissions you need:
 
-  {{<bootstrap-table "table table-bordered table-hover">}}
+  {{<table>}}
 
   | Module(s)                         | Feature(s)            | Access                     | Description                                                                                              |
   |-----------------------------------|-----------------------|----------------------------|----------------------------------------------------------------------------------------------------------|
   | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring | Analytics <hr> Security&nbsp;Monitoring | `READ` <hr> `READ`            | Gives read-only access to Security Monitoring dashboards. Users cannot access NGINX Instance Manager or Settings. |
   | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring <hr> Settings | Analytics <hr> Security&nbsp;Monitoring <hr> User Management | `READ` <hr> `READ` <hr> `CREATE`,&nbsp;`READ`,&nbsp;`UPDATE` | Users can view dashboards and manage accounts and roles.<br><br>{{< icon "lightbulb" >}} Best for "super-users" who manage dashboard access. Doesn't allow deleting accounts. |
 
-  {{</bootstrap-table>}}
+  {{</table >}}
 
 ---
 

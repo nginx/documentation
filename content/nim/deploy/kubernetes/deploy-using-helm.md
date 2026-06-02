@@ -33,7 +33,7 @@ Starting with version 2.20.0, the Helm chart was renamed from `nginx-stable/nms-
 
 To deploy NGINX Instance Manager using a Helm chart, you need:
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 | Requirements                                 | Notes                                                                                                                                                                                                                  |
 |----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Docker 20.10 or later (linux/amd64)          | [Docker documentation](https://docs.docker.com/get-docker/)                                                                                                                                                            |
@@ -44,7 +44,7 @@ To deploy NGINX Instance Manager using a Helm chart, you need:
 | `tar` 1.20 or later                          | The `tar` tool is usually installed by default. Check with `tar --version`.                                                                                                                                            |
 | `values.yaml` file with `nmsClickhouse.mode` | Optional. Defaults to `internal`. Set to `external` or `disabled` to use an external ClickHouse instance or enable lightweight mode. In `external` mode, set `nim.externalClickhouse.address` to your ClickHouse host. |
 | NGINX subscription JWT                       | Required to authenticate with `private-registry.nginx.com` to pull the image. Download your JWT from [MyF5](https://my.f5.com/manage/s/) under **My Products & Plans > Subscriptions**.                                |
-{{</ bootstrap-table >}}
+{{</table >}}
 
 ---
 

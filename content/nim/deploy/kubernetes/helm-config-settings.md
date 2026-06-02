@@ -21,7 +21,7 @@ In version 2.20.0, we renamed the Helm chart from `nms-hybrid` to `nim` when we 
 
 To update an existing release, run `helm upgrade` with the `-f <MY_VALUES_FILE>` flag, where `<MY_VALUES_FILE>` is the path to your values file.
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive table-sm" >}}
+{{<table>}}
 
 | Parameter                                   | Description                                                                                                                                                                                                                                                         | Default    |
 |:--------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------|
@@ -101,7 +101,7 @@ To update an existing release, run `helm upgrade` with the `-f <MY_VALUES_FILE>`
 | `nim.dpm.container.port.nats`               | Container NATS port.                                                                                                                                                                                                                                                      | `9100`     |
 | `nim.dpm.container.port.db`                 | Container database port.                                                                                                                                                                                                                                                  | `7890`     |
 | `nim.dpm.container.port.grpc`               | Container gRPC port.                                                                                                                                                                                                                                                      | `8036`     |
-{{</ bootstrap-table >}}
+{{</table >}}
 
 ## NGINX Instance Manager dqlite storage configuration
 

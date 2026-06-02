@@ -515,7 +515,7 @@ Prior to NGINX Plus [Release 25]({{< ref "nginx/releases.md#r25" >}}), the Swagg
 
 This table matches each OpenAPI YAML file version to the corresponding [NGINX Plus release]({{< ref "nginx/releases.md" >}}).
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |OpenAPI YAML File/API Version | NGINX Plus Version | Changes |
 | ---| --- | --- |
@@ -531,7 +531,7 @@ This table matches each OpenAPI YAML file version to the corresponding [NGINX Pl
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v2/nginx_api.yaml) for API version 2 | NGINX Plus Release [14]({{< ref "nginx/releases.md#r14" >}}) | The [`drain`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream_conf_server) parameter was added |
 |[{{<icon "download">}}OpenAPI v2](/nginx/admin-guide/yaml/v1/nginx_api.yaml) for API version 1 | NGINX Plus Release [13]({{< ref "nginx/releases.md#r13" >}})| The [`/stream/keyvals/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_) data were added |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 <span id="swagger_enable"></span>

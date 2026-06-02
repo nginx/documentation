@@ -37,7 +37,7 @@ Before you begin, make sure you have:
 
 The **Submissions** section displays the following columns:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Column | Description |
 |--------|-------------|
 | **Created On** | The date and time the submission was created. |
@@ -45,7 +45,7 @@ The **Submissions** section displays the following columns:
 | **Templates** | Tag list of all templates included in the submission (base and augments). Hover over a tag to see the template name, type, version used, and latest available version. |
 | **Targets** | A count badge showing the number of staged config targets the submission published to. Hover over the badge to see each target's object ID. |
 | **Last Modified** | The date and time the submission was last updated. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 You can sort the list by **Created On**, **Description**, and **Last Modified**. You can also search across all visible columns.
 

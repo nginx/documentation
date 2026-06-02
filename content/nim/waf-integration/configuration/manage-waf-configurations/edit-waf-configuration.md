@@ -80,14 +80,14 @@ If you’re running **F5 WAF for NGINX Docker Compose**, note the following:
 
 You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NGINX configuration.
 
-{{<bootstrap-table "table">}}
+{{<table>}}
 
 | Method | Endpoint |
 |--------|-----------|
 | GET | `/api/platform/v1/systems/{systemUID}/instances` |
 | POST | `/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 {{< call-out class="important" title="Important:" >}}Before deploying a configuration to an instance group, make sure all instances in the group run the same version of F5 WAF for NGINX. Otherwise, deployment may fail.{{< /call-out >}}
 

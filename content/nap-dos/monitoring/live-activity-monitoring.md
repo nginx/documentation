@@ -122,7 +122,7 @@ For example, "http://192.168.1.23/dashboard-dos.html" will show the Dashboard pa
 The **DoS** tab displays real-time statistics, settings, and traffic graphs for each Protected Object.<br>
 In multi-instance environments with an arbitrator, these statistics will be combined.
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | Metric name  | Values  | Description |
 |:--------------- |:------- |:-----------|
@@ -141,7 +141,7 @@ In multi-instance environments with an arbitrator, these statistics will be comb
 | Automation Tools Detection | [on\|off] | As defined by the `automation_tools_detection` object in the JSON policy file from the `app_protect_dos_policy_file` directive |
 | TLS Fingerprint| [on\|off] | As defined by the `tls_fingerprint` object in the JSON policy file from the `app_protect_dos_policy_file` directive |
 
-{{</bootstrap-table>}}
+{{</table >}}
 <br>
 
 ### Graph Representation
@@ -201,7 +201,7 @@ curl -s 'http://192.168.1.23/api/dos/1/protected_objects' | json_pp
 ### APIs overview
 
 #### Endpoints
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | Path  | Description |
 |:------ |:-----------|
@@ -209,7 +209,7 @@ curl -s 'http://192.168.1.23/api/dos/1/protected_objects' | json_pp
 | /protected_objects/  | Return statistics of all Protected Objects  |
 | /protected_objects/{protectedObjectName}  | Return statistics of a Protected Object  |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 An example response from the `/protected_objects` endpoint could be:
 
