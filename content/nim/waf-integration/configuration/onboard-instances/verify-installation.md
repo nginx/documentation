@@ -36,14 +36,14 @@ You can view your F5 WAF for NGINX instances in the NGINX Instance Manager web i
 
 Use the REST API to check version and status details for F5 WAF for NGINX.
 
-{{<bootstrap-table "table">}}
+{{<table>}}
 
 | Method | Endpoint                     |
 |--------|------------------------------|
 | GET    | `/api/platform/v1/instances` |
 | GET    | `/api/platform/v1/systems`   |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 - Send a `GET` request to `/api/platform/v1/systems` to check version information.
 

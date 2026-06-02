@@ -37,14 +37,14 @@ After verifying that F5 WAF for NGINX is active on your instances, you can onboa
 
 Use the **NGINX Instance Manager** REST API to onboard policies programmatically.
 
-{{<bootstrap-table "table">}}
+{{<table>}}
 
 | Method | Endpoint |
 |--------|-----------|
 | POST | `/api/platform/v1/security/policies` |
 | GET | `/api/platform/v1/security/policies` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 Example — upload and publish a policy:
 

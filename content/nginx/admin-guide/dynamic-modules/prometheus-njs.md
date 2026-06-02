@@ -39,7 +39,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 {{< call-out class="note" >}} The `state` metric values in [`/http/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) and [`/stream/upstreams/`](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_upstream) are converted using the following rule:
 
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |NGINX | Prometheus |
 | ---| --- |
@@ -50,7 +50,7 @@ The following NGINX Plus status metrics are exported to Prometheus:
 |"checking" | `5` |
 |"unhealthy" | `6` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 {{< /call-out >}}
 
 ## Installation {#install}
