@@ -63,3 +63,12 @@ You can unsubscribe from NGINXaaS for Google Cloud by visiting the [Google Cloud
 If you decide to re-subscribe to NGINXaaS for Google Cloud after canceling your subscription, all previously suspended deployments will remain deactivated. You will need to recreate your deployments from scratch.
 
 We recommend carefully reviewing your deployments and configurations before initiating the cancelation process to avoid any unintended data loss.
+
+## Free trial
+
+You can sign up for a free trial of NGINXaaS for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud).
+The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore NGINXaaS for Google Cloud and its features.
+
+During the trial, you will be billed for solution provider fees and credited for those same fees at the same time, up to USD 100. Additionally, you will still be billed for any applicable infrastructure usage charges during the trial period.
+
+At the end of the trial period, you will be charged under the Enterprise plan unless you stop or end the subscription. You may cancel the trial at any time by canceling your plan before the trial ends.
