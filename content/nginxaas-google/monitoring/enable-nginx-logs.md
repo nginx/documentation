@@ -49,7 +49,7 @@ Refer to the [Google's Logs Explorer](https://cloud.google.com/logging/docs/view
 NGINX access and error logs sent to Cloud Logging will have the log name `nginx-logs` which can be used to filter NGINX logs from the rest of your project logs. You can also filter based on log labels, for example,
 
 * `filename`
-* `nginxaas_organization_id`
+* `nginxaas_organization_object_id`
 * `nginxaas_deployment_location`
 * `nginxaas_deployment_name`
 * `nginxaas_deployment_object_id`
