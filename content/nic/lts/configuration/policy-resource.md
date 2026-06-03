@@ -204,12 +204,6 @@ The rate limit policy with condition is designed to be used in combination with 
 
 ### RateLimit.Condition.JWT
 
-{{< call-out "note" >}}
-
-This feature is only available with NGINX Plus.
-
-{{< /call-out >}}
-
 RateLimit.Condition.JWT defines a condition for a rate limit by JWT claim. For example, here we define a condition for a rate limit policy that only applies to requests with a JWT claim `user_details.level` with a value `premium`:
 
 ```yaml
@@ -384,12 +378,6 @@ In this example NGINX Ingress Controller LTS will use the configuration from the
 
 ### JWT Using Local Kubernetes Secret
 
-{{< call-out "note" >}}
-
-This feature is only available with NGINX Plus.
-
-{{< /call-out >}}
-
 The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens.
 
 The following example policy will reject all requests that do not include a valid JWT in the HTTP header `token`:
@@ -448,12 +436,6 @@ policies:
 In this example NGINX Ingress Controller LTS will use the configuration from the first policy reference `jwt-policy-one`, and ignores `jwt-policy-two`.
 
 ### JWT Using JWKS From Remote Location
-
-{{< call-out "note" >}}
-
-This feature is only available with NGINX Plus.
-
-{{< /call-out >}}
 
 The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens, allowing import of the keys (JWKS) for JWT policy by means of a URL (for a remote server or an identity provider) as a result they don't have to be copied and updated to the IC pod.
 
@@ -849,7 +831,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 |``allowedMethods`` | AllowedMethods defines which HTTP methods should be cached. Only "GET", "HEAD", and "POST" are supported by NGINX proxy_cache_methods directive. GET and HEAD are always cached by default even if not specified. Maximum of 3 items allowed. Examples: ["GET"], ["GET", "HEAD", "POST"]. Invalid methods: PUT, DELETE, PATCH, etc.  | ``[]string`` | No |
 |``levels`` | Levels defines the cache directory hierarchy levels for storing cached files. Must be in format "X:Y" or "X:Y:Z" where X, Y, Z are either 1 or 2. This controls the number of subdirectory levels and their name lengths. Examples: "1:2", "2:2", "1:2:2". Invalid: "3:1", "1:3", "1:2:3". | ``string`` | No |
 |``overrideUpstreamCache`` | OverrideUpstreamCache controls whether to override upstream cache headers (using proxy_ignore_headers directive). When true, NGINX will ignore cache-related headers from upstream servers like Cache-Control, Expires etc, Default: false. | ``bool`` | No |
-|``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. This feature is only available in NGINX Plus. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
+|``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
 |``cacheKey`` | CacheKey defines a key for caching (proxy_cache_key). By default, "$scheme$proxy_host$uri". Must not contain command execution patterns: $(, `, ;, &&, || | ``string`` | No |
 |``cacheUseStale`` | CacheUseStale determines in which cases a stale cached response can be used (proxy_cache_use_stale). Valid parameters: error, timeout, invalid_header, updating, http_500, http_502, http_503, http_504, http_403, http_404, http_429, off. | ``[]string`` | No |
 |``cacheRevalidate`` | CacheRevalidate enables revalidation of expired cache items using conditional requests (proxy_cache_revalidate). Uses "If-Modified-Since" and "If-None-Match" header fields. | ``bool`` | No |
