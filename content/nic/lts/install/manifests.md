@@ -190,6 +190,8 @@ Delete core custom resource definitions:
 kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
 ```
 
+{{%/tab%}}
+
 {{%tab name="Deleting CRDs after cloning the repo"%}}
 
 Delete core custom resource definitions:
