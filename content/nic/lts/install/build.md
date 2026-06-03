@@ -43,10 +43,10 @@ Get your system ready for building and pushing the NGINX Ingress Controller LTS 
     cd kubernetes-ingress
     ```
 
-    For instance if you want to clone version v{{< nic-version >}}, the commands to run would be:
+    For instance if you want to clone version `2026-lts-r1`, the commands to run would be:
 
     ```shell
-    git clone https://github.com/nginx/kubernetes-ingress.git --branch v{{< nic-version >}}
+    git clone https://github.com/nginx/kubernetes-ingress.git --branch 2026-lts-r1
     cd kubernetes-ingress
     ```
 
@@ -106,9 +106,6 @@ Key targets include:
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | _build_                       | Creates the NGINX Ingress Controller LTS binary with your local Go environment.                                                                                                                                  |
 | _debian-image-plus_           | Builds a Debian-based image with NGINX Plus.                                                                                                                                                                 |
-| _debian-image-nap-v5-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 WAF for NGINX v5](/nginx-app-protect/) module.                                                                                                     |
-| _debian-image-dos-plus_       | Builds a Debian-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module.                                                                                                 |
-| _debian-image-nap-dos-plus_   | Builds a Debian-based image with NGINX Plus, [F5 WAF for NGINX](/nginx-app-protect/) and [F5 DoS for NGINX](/nginx-app-protect-dos/) modules.                                                      |
 
 ### Additional useful targets {#other-makefile-targets}
 

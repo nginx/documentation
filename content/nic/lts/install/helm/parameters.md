@@ -135,27 +135,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.reportIngressStatus.annotations** | The annotations of the leader election configmap. | {} |
 | **controller.pod.annotations** | The annotations of the NGINX Ingress Controller LTS pod. | {} |
 | **controller.pod.extraLabels** | The additional extra labels of the NGINX Ingress Controller LTS pod. | {} |
-| **controller.appprotect.enable** | Enables the F5 WAF for NGINX module in the NGINX Ingress Controller LTS. | false |
-| **controller.appprotect.v5** | Enables F5 WAF for NGINX v5. | false |
-| **controller.appprotect.volumes** | Volumes for F5 WAF for NGINX v5. | [{"name": "app-protect-bd-config", "emptyDir": {}},{"name": "app-protect-config", "emptyDir": {}},{"name": "app-protect-bundles", "emptyDir": {}}] |
-| **controller.appprotect.enforcer.host** | Host that the F5 WAF for NGINX v5 Enforcer runs on. | "127.0.0.1" |
-| **controller.appprotect.enforcer.port** | Port that the F5 WAF for NGINX v5 Enforcer runs on. | 50000 |
-| **controller.appprotect.enforcer.image.repository** | The image repository of the F5 WAF for NGINX v5 Enforcer. | private-registry.nginx.com/nap/waf-enforcer |
-| **controller.appprotect.enforcer.image.tag** | The tag of the F5 WAF for NGINX v5 Enforcer. | "5.6.0" |
-| **controller.appprotect.enforcer.image.digest** | The digest of the F5 WAF for NGINX v5 Enforcer. Takes precedence over tag if set. | "" |
-| **controller.appprotect.enforcer.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Enforcer image. | IfNotPresent |
-| **controller.appprotect.enforcer.securityContext** | The security context for F5 WAF for NGINX v5 Enforcer container. | {} |
-| **controller.appprotect.configManager.image.repository** | The image repository of the F5 WAF for NGINX v5 Configuration Manager. | private-registry.nginx.com/nap/waf-config-mgr |
-| **controller.appprotect.configManager.image.tag** | The tag of the F5 WAF for NGINX v5 Configuration Manager. | "5.6.0" |
-| **controller.appprotect.configManager.image.digest** | The digest of the F5 WAF for NGINX v5 Configuration Manager. Takes precedence over tag if set. | "" |
-| **controller.appprotect.configManager.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Configuration Manager image. | IfNotPresent |
-| **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX v5 Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
-| **controller.appprotect.logLevel** | Sets the log level for F5 WAF for NGINX | N/A |
-| **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller LTS. | false |
-| **controller.appprotectdos.debug** | Enable debugging for App Protect DoS. | false |
-| **controller.appprotectdos.maxDaemons** | Max number of ADMD instances. | 1 |
-| **controller.appprotectdos.maxWorkers** | Max number of nginx processes to support. | Number of CPU cores in the machine |
-| **controller.appprotectdos.memory** | RAM memory size to consume in MB. | 50% of free RAM in the container or 80MB, the smaller |
 | **controller.readyStatus.enable** | Enables the readiness endpoint `"/nginx-ready"`. The endpoint returns a success code when NGINX has loaded all the config after the startup. This also configures a readiness probe for the NGINX Ingress Controller LTS pods that uses the readiness endpoint. | true |
 | **controller.readyStatus.port** | The HTTP port for the readiness endpoint. | 8081 |
 | **controller.readyStatus.initialDelaySeconds** | The number of seconds after the NGINX Ingress Controller LTS pod has started before readiness probes are initiated. | 0 |

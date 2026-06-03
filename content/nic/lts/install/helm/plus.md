@@ -221,8 +221,6 @@ If you do not use the custom resources that require those CRDs, add the paramete
 The following chart parameters should be set to `false`:
 
 - `controller.enableCustomResources`
-- `controller.appprotect.enable`
-- `controller.appprotectdos.enable`
 
 ## Next steps
 

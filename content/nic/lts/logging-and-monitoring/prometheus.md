@@ -59,8 +59,8 @@ If you're using *Kubernetes manifests* (Deployment, DaemonSet, or StatefulSet) t
 
 The Ingress Controller exports the following metrics:
 
-- NGINX/NGINX Plus metrics:
-  - Exported by NGINX/NGINX Plus. Refer to the [NGINX Prometheus Exporter developer docs](https://github.com/nginx/nginx-prometheus-exporter#exported-metrics) to find more information about the exported metrics.
+- NGINX Plus metrics:
+  - Exported by NGINX Plus. Refer to the [NGINX Prometheus Exporter developer docs](https://github.com/nginx/nginx-prometheus-exporter#exported-metrics) to find more information about the exported metrics.
   - There is a Grafana dashboard for NGINX Plus metrics located in the root repo folder.
   - Calculated by the Ingress Controller:
     - `controller_upstream_server_response_latency_ms_count`. Bucketed response times from when NGINX establishes a connection to an upstream server to when the last byte of the response body is received by NGINX. **Note**: The metric for the upstream isn't available until traffic is sent to the upstream. The metric isn't enabled by default. To enable the metric, set the `-enable-latency-metrics` command-line argument.

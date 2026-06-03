@@ -6,9 +6,7 @@ f5-content-type: how-to
 f5-product: INGRESS
 ---
 
-This page describes how to download an F5 NGINX Plus Ingress Controller image from the official F5 Docker registry.
-
-The F5 Registry images include versions with F5 WAF for NGINX and F5 DoS for NGINX.
+This page describes how to download an F5 NGINX Plus Ingress Controller LTS image from the official F5 Docker registry.
 
 ## Before you begin
 
@@ -43,32 +41,6 @@ Replace `<version-tag>` with the specific version you need, for example, `2026-l
   docker pull private-registry.nginx.com/nginx-ic/nginx-plus-ingress:<version-tag>
   ```
 
-- For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
-
-   ```shell
-   docker pull private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>
-   ```
-
-   ```shell
-   docker pull private-registry.nginx.com/nap/waf-config-mgr:<waf-version-tag>
-   ```
-
-   ```shell
-   docker pull private-registry.nginx.com/nap/waf-enforcer:<waf-version-tag>
-   ```
-
-- For NGINX Plus Ingress Controller with F5 DoS for NGINX, run:
-
-   ```shell
-   docker pull private-registry.nginx.com/nginx-ic-dos/nginx-plus-ingress:<version-tag>
-   ```
-
-- For NGINX Plus Ingress Controller with F5 WAF for NGINX and F5 DoS for NGINX, run:
-
-   ```shell
-   docker pull private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress:<version-tag>
-   ```
-
 You can use the Docker registry API to list the available image tags by running the following commands. Replace `<path-to-client.key>` with the location of your client key and `<path-to-client.cert>` with the location of your client certificate. 
 
 The `jq` command was used in these examples to make the JSON output easier to read.
@@ -80,32 +52,6 @@ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list
 ```json
 {
   "name": "nginx-ic/nginx-plus-ingress",
-  "tags": [
-    "2026-lts-r1"
-  ]
-}
-```
-
-```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-nap-v5/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
-```
-
-```json
-{
-  "name": "nginx-ic-nap-v5/nginx-plus-ingress",
-  "tags": [
-    "2026-lts-r1"
-  ]
-}
-```
-
-```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
-```
-
-```json
-{
-  "name": "nginx-ic-dos/nginx-plus-ingress",
   "tags": [
     "2026-lts-r1"
   ]
@@ -124,35 +70,11 @@ After pulling the image, tag it and upload it to your private registry.
 
 1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `2026-lts-r1`:
 
-   - For NGINX Plus Ingress Controller, run:
+   - For NGINX Plus Ingress Controller LTS, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
       docker push <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
-      ```
-
-   - For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
-
-      ```shell
-      docker tag private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
-      docker push <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
-      ```
-
-      ```shell
-      docker tag private-registry.nginx.com/nap/waf-config-mgr:<waf-version-tag> <my-docker-registry>/nap/waf-config-mgr:<waf-version-tag>
-      docker push <my-docker-registry>/nap/waf-config-mgr:<waf-version-tag>
-      ```
-
-      ```shell
-      docker tag private-registry.nginx.com/nap/waf-enforcer:<waf-version-tag> <my-docker-registry>/nap/waf-enforcer:<waf-version-tag>
-      docker push <my-docker-registry>/nap/waf-enforcer:<waf-version-tag>
-      ```
-
-   - For NGINX Controller with F5 DoS for NGINX, run:
-
-      ```shell
-      docker tag private-registry.nginx.com/nginx-ic-dos/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-dos/nginx-plus-ingress:<version-tag>
-      docker push <my-docker-registry>/nginx-ic-dos/nginx-plus-ingress:<version-tag>
       ```
 
 ## Troubleshooting
