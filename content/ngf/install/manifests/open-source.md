@@ -28,7 +28,6 @@ To complete this guide, you will need the following pre-requisites:
 
 - [A supported Kubernetes version]({{< ref "/ngf/overview/technical-specifications.md" >}})
 - A functional Kubernetes cluster
-- [cert-manager](https://cert-manager.io/docs/installation/)
 
 ## Install the Gateway API resources
 
@@ -39,6 +38,10 @@ You should also create the _nginx-gateway_ namespace, which is used by the Manif
 ```shell
 kubectl create namespace nginx-gateway
 ```
+
+## Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ## Add certificates for secure authentication
 

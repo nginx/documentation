@@ -31,7 +31,6 @@ NGINX Gateway Fabric supports two JWKS source types, set using the `source` fiel
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
-- [Install cert-manager](https://cert-manager.io/docs/installation/) in your cluster.
 
 ## Common setup
 
@@ -394,6 +393,10 @@ Request ID: c7eb0509303de1c160cb7e7d2ac1d99f
 ## Remote JWT authentication
 
 Use remote JWT authentication when your identity provider (IdP) exposes a JWKS endpoint. NGINX Plus fetches the JWKS from the URI at runtime using an internal subrequest, so keys are always up to date without requiring a Secret or NGINX reload.
+
+### Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ### Generate certificates
 
