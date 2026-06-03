@@ -8,7 +8,7 @@ f5-product: INGRESS
 
 This topic describes how to enable [Prometheus metrics](https://prometheus.io/) for F5 NGINX Ingress Controller LTS.
 
-The metrics exposed include NGINX Ingress Controller LTS data, as well as NGINX Open Source and NGINX Plus.
+The metrics exposed include NGINX Ingress Controller LTS data and NGINX Plus metrics.
 
 ## Enabling Metrics
 
