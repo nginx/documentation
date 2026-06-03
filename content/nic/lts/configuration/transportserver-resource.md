@@ -156,7 +156,7 @@ loadBalancingMethod: least_conn
 |``maxFails`` | Sets the [number](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails) of unsuccessful attempts to communicate with the server that should happen in the duration set by the failTimeout parameter to consider the server unavailable. The default ``1``. | ``int`` | No |
 |``maxConns`` | Sets the [number](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns) of maximum connections to the proxied server. Default value is zero, meaning there is no limit. The default is ``0``. | ``int`` | No |
 |``failTimeout`` | Sets the [time](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#fail_timeout) during which the specified number of unsuccessful attempts to communicate with the server should happen to consider the server unavailable and the period of time the server will be considered unavailable. The default is ``10s``. | ``string`` | No |
-|``healthCheck`` | The health check configuration for the Upstream. See the [health_check](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check) directive. Note: this feature is supported only in NGINX Plus. | [healthcheck](#upstreamhealthcheck) | No |
+|``healthCheck`` | The health check configuration for the Upstream. See the [health_check](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check) directive. | [healthcheck](#upstreamhealthcheck) | No |
 |``loadBalancingMethod`` | The method used to load balance the upstream servers. By default, connections are distributed between the servers using a weighted round-robin balancing method. See the [upstream](http://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) section for available methods and their details. | ``string`` | No |
 |``backup`` | The name of the backup service of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname). This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods. | ``string`` | No |
 |``backupPort`` | The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range ``1..65535``. | ``uint16`` | No |
@@ -179,8 +179,6 @@ healthCheck:
   passes: 5
   port: 8080
 ```
-
-{{< call-out "note" >}} This feature is only supported with NGINX Plus. {{< /call-out >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |

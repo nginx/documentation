@@ -422,7 +422,7 @@ tls:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``name`` | The name of the upstream. Must be a valid DNS label as defined in RFC 1035. For example, ``hello`` and ``upstream-123`` are valid. The name must be unique among all upstreams of the resource. | ``string`` | Yes |
-|``service`` | The name of a [service](https://kubernetes.io/docs/concepts/services-networking/service/). If the Service belongs to a different namespace than the VirtualServer or VirtualServerRoute, you need to include the namespace. For example, ``tea-namespace/tea``. If the service doesn't exist, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. For NGINX Plus only, services of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname) are also supported in the same namespace (check the [prerequisites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/externalname-services#prerequisites) ). | ``string`` | Yes |
+|``service`` | The name of a [service](https://kubernetes.io/docs/concepts/services-networking/service/). If the Service belongs to a different namespace than the VirtualServer or VirtualServerRoute, you need to include the namespace. For example, ``tea-namespace/tea``. If the service doesn't exist, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. Services of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname) are also supported in the same namespace (check the [prerequisites](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/ingress-resources/externalname-services#prerequisites) ). | ``string`` | Yes |
 |``subselector`` | Selects the pods within the service using label keys and values. By default, all pods of the service are selected. Note: the specified labels are expected to be present in the pods when they are created. If the pod labels are updated, NGINX Ingress Controller LTS will not see that change until the number of the pods is changed. | ``map[string]string`` | No |
 |``use-cluster-ip`` | Enables using the Cluster IP and port of the service instead of the default behavior of using the IP and port of the pods. When this field is enabled, the fields that configure NGINX behavior related to multiple upstream servers (like ``lb-method`` and ``next-upstream``) will have no effect, as NGINX Ingress Controller LTS will configure NGINX with only one upstream server that will match the service Cluster IP. | ``boolean`` | No |
 |``port`` | The port of the service. If the service doesn't define that port, NGINX will assume the service has zero endpoints and return a ``502`` response for requests for this upstream. The port must fall into the range ``1..65535``. | ``uint16`` | Yes |
@@ -440,14 +440,14 @@ tls:
 |``client-max-body-size`` | Sets the maximum allowed size of the client request body. See the [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) directive. The default is set in the ``client-max-body-size`` ConfigMap key. | ``string`` | No |
 |``client-body-buffer-size`` | Sets the value of the [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) directive. The default is set in the ``client-body-buffer-size`` ConfigMap key. | ``string`` | No |
 |``tls`` | The TLS configuration for the Upstream. | [tls](#upstreamtls) | No |
-|``healthCheck`` | The health check configuration for the Upstream. See the [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive. Note: this feature is supported only in NGINX Plus. | [healthcheck](#upstreamhealthcheck) | No |
+|``healthCheck`` | The health check configuration for the Upstream. See the [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive. | [healthcheck](#upstreamhealthcheck) | No |
 |``slow-start`` | The slow start allows an upstream server to gradually recover its weight from 0 to its nominal value after it has been recovered or became available or when the server becomes available after a period of time it was considered unavailable. By default, the slow start is disabled. See the [slow_start](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) parameter of the server directive. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods and will be ignored. | ``string`` | No |
-|``queue`` | Configures a queue for an upstream. A client request will be placed into the queue if an upstream server cannot be selected immediately while processing the request. By default, no queue is configured. Note: this feature is supported only in NGINX Plus. | [queue](#upstreamqueue) | No |
+|``queue`` | Configures a queue for an upstream. A client request will be placed into the queue if an upstream server cannot be selected immediately while processing the request. By default, no queue is configured. | [queue](#upstreamqueue) | No |
 |``buffering`` | Enables buffering of responses from the upstream server. See the [proxy_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) directive. The default is set in the ``proxy-buffering`` ConfigMap key. | ``boolean`` | No |
 |``buffers`` | Configures the buffers used for reading a response from the upstream server for a single connection. | [buffers](#upstreambuffers) | No |
 |``buffer-size`` | Sets the size of the buffer used for reading the first part of a response received from the upstream server. See the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directive. The default is set in the ``proxy-buffer-size`` ConfigMap key. | ``string`` | No |
 |``busy-buffers-size`` | Sets the size of the buffer used for reading a response from the upstream server when the response is larger than the ``buffer-size``. See the [proxy_busy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_busy_buffers_size) directive. The default is set in the ``proxy-busy-buffers-size`` ConfigMap key. | ``string`` | No |
-|``ntlm`` | Allows proxying requests with NTLM Authentication. See the [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive. In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers using the ``keepalive`` field. Note: this feature is supported only in NGINX Plus.| ``boolean`` | No |
+|``ntlm`` | Allows proxying requests with NTLM Authentication. See the [ntlm](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm) directive. In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers using the ``keepalive`` field. | ``boolean`` | No |
 |``type`` |The type of the upstream. Supported values are ``http`` and ``grpc``. The default is ``http``. For gRPC, it is necessary to enable HTTP/2 in the [ConfigMap]({{< ref "/nic/lts/configuration/global-configuration/configmap-resource.md#listeners" >}}) and configure TLS termination in the VirtualServer. | ``string`` | No |
 |``backup`` | The name of the backup service of type [ExternalName](https://kubernetes.io/docs/concepts/services-networking/service/#externalname). This will be used when the primary servers are unavailable. Note: The parameter cannot be used along with the ``random`` , ``hash`` or ``ip_hash`` load balancing methods. | ``string`` | No |
 |``backupPort`` | The port of the backup service. The backup port is required if the backup service name is provided. The port must fall into the range ``1..65535``. | ``uint16`` | No |
@@ -487,8 +487,6 @@ timeout: 60s
 
 See [`queue`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) directive for additional information.
 
-Note: This feature is supported only in NGINX Plus.
-
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``size`` | The size of the queue. | ``int`` | Yes |
@@ -525,7 +523,6 @@ healthCheck:
   keepalive-time: 60s
 ```
 
-{{< call-out "note" >}} This feature is supported only in NGINX Plus. {{< /call-out >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
@@ -571,7 +568,6 @@ sessionCookie:
 
 See the [`sticky`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html?#sticky) directive for additional information. The session cookie corresponds to the `sticky cookie` method.
 
-{{< call-out "note" >}} Session persistence via sticky cookie is available in both NGINX (since version 1.29.6) and NGINX Plus. {{< /call-out >}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
@@ -731,7 +727,7 @@ value: example.com
 |``name`` | The name of the header. | ``string`` | Yes |
 |``value`` | The value of the header. Supports NGINX variables*. Variables must be enclosed in curly brackets. For example: ``${scheme}``. | ``string`` | No |
 
-\* -- Supported NGINX variables: `$request_uri`, `$request_method`, `$request_body`, `$scheme`, `$http_`, `$args`, `$arg_`, `$cookie_`, `$host`, `$request_time`, `$request_length`, `$nginx_version`, `$pid`, `$connection`, `$remote_addr`, `$remote_port`, `$time_iso8601`, `$time_local`, `$server_addr`, `$server_port`, `$server_name`, `$server_protocol`, `$connections_active`, `$connections_reading`, `$connections_writing`, `$connections_waiting`, `$ssl_cipher`, `$ssl_ciphers`, `$ssl_client_cert`, `$ssl_client_escaped_cert`, `$ssl_client_fingerprint`, `$ssl_client_i_dn`, `$ssl_client_i_dn_legacy`, `$ssl_client_raw_cert`, `$ssl_client_s_dn`, `$ssl_client_s_dn_legacy`, `$ssl_client_serial`, `$ssl_client_v_end`, `$ssl_client_v_remain`, `$ssl_client_v_start`, `$ssl_client_verify`, `$ssl_curves`, `$ssl_early_data`, `$ssl_protocol`, `$ssl_server_name`, `$ssl_session_id`, `$ssl_session_reused`, `$jwt_claim_` (NGINX Plus only) and `$jwt_header_` (NGINX Plus only).
+\* -- Supported NGINX variables: `$request_uri`, `$request_method`, `$request_body`, `$scheme`, `$http_`, `$args`, `$arg_`, `$cookie_`, `$host`, `$request_time`, `$request_length`, `$nginx_version`, `$pid`, `$connection`, `$remote_addr`, `$remote_port`, `$time_iso8601`, `$time_local`, `$server_addr`, `$server_port`, `$server_name`, `$server_protocol`, `$connections_active`, `$connections_reading`, `$connections_writing`, `$connections_waiting`, `$ssl_cipher`, `$ssl_ciphers`, `$ssl_client_cert`, `$ssl_client_escaped_cert`, `$ssl_client_fingerprint`, `$ssl_client_i_dn`, `$ssl_client_i_dn_legacy`, `$ssl_client_raw_cert`, `$ssl_client_s_dn`, `$ssl_client_s_dn_legacy`, `$ssl_client_serial`, `$ssl_client_v_end`, `$ssl_client_v_remain`, `$ssl_client_v_start`, `$ssl_client_verify`, `$ssl_curves`, `$ssl_early_data`, `$ssl_protocol`, `$ssl_server_name`, `$ssl_session_id`, `$ssl_session_reused`, `$jwt_claim_`  and `$jwt_header_`.
 
 ### Action.Proxy.ResponseHeaders
 
@@ -764,7 +760,7 @@ always: true
 |``value`` | The value of the header. Supports NGINX variables*. Variables must be enclosed in curly brackets. For example: ``${scheme}``. | ``string`` | No |
 |``always`` | If set to true, add the header regardless of the response status code**. Default is false. See the [add_header](http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive for more information. | ``bool`` | No |
 
-\* -- Supported NGINX variables: `$request_uri`, `$request_method`, `$request_body`, `$scheme`, `$http_`, `$args`, `$arg_`, `$cookie_`, `$host`, `$request_time`, `$request_length`, `$nginx_version`, `$pid`, `$connection`, `$remote_addr`, `$remote_port`, `$time_iso8601`, `$time_local`, `$server_addr`, `$server_port`, `$server_name`, `$server_protocol`, `$connections_active`, `$connections_reading`, `$connections_writing`, `$connections_waiting`, `$ssl_cipher`, `$ssl_ciphers`, `$ssl_client_cert`, `$ssl_client_escaped_cert`, `$ssl_client_fingerprint`, `$ssl_client_i_dn`, `$ssl_client_i_dn_legacy`, `$ssl_client_raw_cert`, `$ssl_client_s_dn`, `$ssl_client_s_dn_legacy`, `$ssl_client_serial`, `$ssl_client_v_end`, `$ssl_client_v_remain`, `$ssl_client_v_start`, `$ssl_client_verify`, `$ssl_curves`, `$ssl_early_data`, `$ssl_protocol`, `$ssl_server_name`, `$ssl_session_id`, `$ssl_session_reused`, `$jwt_claim_` (NGINX Plus only) and `$jwt_header_` (NGINX Plus only).
+\* -- Supported NGINX variables: `$request_uri`, `$request_method`, `$request_body`, `$scheme`, `$http_`, `$args`, `$arg_`, `$cookie_`, `$host`, `$request_time`, `$request_length`, `$nginx_version`, `$pid`, `$connection`, `$remote_addr`, `$remote_port`, `$time_iso8601`, `$time_local`, `$server_addr`, `$server_port`, `$server_name`, `$server_protocol`, `$connections_active`, `$connections_reading`, `$connections_writing`, `$connections_waiting`, `$ssl_cipher`, `$ssl_ciphers`, `$ssl_client_cert`, `$ssl_client_escaped_cert`, `$ssl_client_fingerprint`, `$ssl_client_i_dn`, `$ssl_client_i_dn_legacy`, `$ssl_client_raw_cert`, `$ssl_client_s_dn`, `$ssl_client_s_dn_legacy`, `$ssl_client_serial`, `$ssl_client_v_end`, `$ssl_client_v_remain`, `$ssl_client_v_start`, `$ssl_client_verify`, `$ssl_curves`, `$ssl_early_data`, `$ssl_protocol`, `$ssl_server_name`, `$ssl_session_id`, `$ssl_session_reused`, `$jwt_claim_` and `$jwt_header_`.
 
 {{< call-out "note" >}} If `always` is false, the response header is added only if the response status code is any of `200`, `201`, `204`, `206`, `301`, `302`, `303`, `304`, `307` or `308`. {{< /call-out >}}
 
