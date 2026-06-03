@@ -21,7 +21,6 @@ Choose one of the following methods to get the NGINX Ingress Controller LTS imag
 - **NGINX Plus Ingress Controller**: You have two options for this, both requiring an NGINX Ingress Controller LTS subscription.
 - - [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download.md" >}}) topic.
 - - [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}})
-- **Build your own image**: To build your own image, follow the [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}}) topic.
 
 ### Clone the repository
 
@@ -31,10 +30,10 @@ Clone the NGINX Ingress Controller LTS repository using the command shown below,
 git clone https://github.com/nginx/kubernetes-ingress.git --branch <version_number>
 ```
 
-For example, if you want to use version {{< nic-version >}}, the command would be:
+For example, if you want to use version {{< nic-lts-version >}}, the command would be:
 
 ```shell
-git clone https://github.com/nginx/kubernetes-ingress.git --branch v{{< nic-version >}}
+git clone https://github.com/nginx/kubernetes-ingress.git --branch v{{< nic-lts-version >}}
 ```
 
 This guide assumes you are using the latest release.
@@ -187,7 +186,7 @@ Connect to ports 80 and 443 using the IP address of any node in the cluster wher
 Delete core custom resource definitions:
 
 ```shell
-kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
+kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-lts-version >}}/deploy/crds.yaml
 ```
 
 {{%/tab%}}

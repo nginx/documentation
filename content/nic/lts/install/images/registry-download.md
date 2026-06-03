@@ -17,7 +17,6 @@ To follow these steps, you will need the following pre-requisites:
 You can also get the NGINX Ingress Controller LTS image using the following alternate methods:
 
 - [Add an NGINX Ingress Controller LTS image to your cluster]({{< ref "/nic/lts/install/images/add-image-to-cluster.md" >}})
-- [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}})
 
 ### Download your subscription credential files
 
@@ -38,7 +37,7 @@ Replace `<version-tag>` with the specific version you need, for example, `2026-l
 - For NGINX Plus Ingress Controller, run:
 
   ```shell
-  docker pull private-registry.nginx.com/nginx-ic/nginx-plus-ingress:<version-tag>
+  docker pull private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:<version-tag>
   ```
 
 You can use the Docker registry API to list the available image tags by running the following commands. Replace `<path-to-client.key>` with the location of your client key and `<path-to-client.cert>` with the location of your client certificate. 
@@ -46,12 +45,12 @@ You can use the Docker registry API to list the available image tags by running 
 The `jq` command was used in these examples to make the JSON output easier to read.
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
 
 ```json
 {
-  "name": "nginx-ic/nginx-plus-ingress",
+  "name": "nginx-ic/lts/nginx-plus-ingress",
   "tags": [
     "2026-lts-r1"
   ]

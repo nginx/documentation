@@ -17,7 +17,6 @@ To follow these steps, you will need the following pre-requisite:
 You can also get the NGINX Ingress Controller LTS image using the following alternate methods:
 
 - [Download NGINX Ingress Controller LTS from the F5 Registry]({{< ref "/nic/lts/install/images/registry-download.md" >}})
-- [Build NGINX Ingress Controller LTS]({{< ref "/nic/lts/install/build.md" >}})
 
 ## Helm deployments
 
@@ -28,18 +27,18 @@ If you are using Helm for deployment, there are two main methods: using a _chart
 The following command installs NGINX Ingress Controller LTS with a Helm chart, passing required arguments using the `set` parameter.
 
 ```shell
-helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress --version {{< nic-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag=2026-lts-r1 --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
+helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress-lts --version {{< nic-lts-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress --set controller.image.tag=2026-lts-r1 --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
 ```
 
 You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
 
 ```shell
-curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
 ```
 
 ```json
 {
-"name": "nginx-ic/nginx-plus-ingress",
+"name": "nginx-iclts/nginx-plus-ingress",
 "tags": [
     "2026-lts-r1"
 ]
@@ -73,7 +72,7 @@ nginxplus: true
 ## ...
 image:
 ## The image repository for the desired NGINX Ingress Controller LTS image
-repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
+repository: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress
 
 ## The version tag
 tag: 2026-lts-r1
@@ -116,7 +115,7 @@ spec:
     seccompProfile:
       type: RuntimeDefault
   containers:
-  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:2026-lts-r1
+  - image: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:2026-lts-r1
     imagePullPolicy: IfNotPresent
     name: nginx-plus-ingress
 ```
