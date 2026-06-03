@@ -1,0 +1,14 @@
+Release 5.5.0 focuses on key enhancements for security, performance, flexibility, and migration from `ingress-nginx` to F5 NGINX Ingress Controller.
+
+This release adds new capabilities and additional security features, expands support for Kubernetes `Ingress` resources, and introduces more annotations to make migrations from `ingress-nginx` easier, including support for External Authentication.
+
+Major highlights include:
+
+  * External Authentication support: External Authentiation is now supported for both `Ingress` and `VirtualServer` resources. Based on analysis of the `ingress-nginx` project, ExternalAuth is one of the most common `ingress-nginx` use cases and has been a frequent request from users migrating to F5 NGINX Ingress Controller.
+  * WAF IP Intelligence support: WAF IP Intelligence can now automatically block or limit access from IP addresses with poor reputations, using real-time threat intelligence for categories such as botnets, Windows exploits, and web attacks.
+  * mTLS support for `Ingress`: Mutual TLS for ingress and egress traffic is now supported on the `Ingress` resource.
+  * Additional annotation support: This release adds support for more annotations, including `add-header`, `add_header_inherit`, `proxy-redirect-from`, and `proxy-redirect-to`.
+  * Improved startup performance at scale: NIC startup time has been significantly improved for environments with hundreds or thousands of configured resources. In a large-scale test environment with 100 regular Ingresses, 250 master Ingresses, 1,000 minion Ingresses, and 100 VirtualServers, startup time went from minutes to seconds.
+  * Expanded `VirtualServerRoute` path matching: `VirtualServerRoute` now supports multiple regular expression paths, making routing configurations more flexible.
+  * WAF `Policy` support for `Ingress`: F5 WAF `Policy` resources no longer requires VirtualServer and can now be associated directly with `Ingress` resources, enabling customers to use advanced WAF capabilities while continuing to use standard Kubernetes `Ingress`.
+  * Optional `Host` support: `Host` is now optional through an opt-in approach. This enables IP-based routing for environments that do not use DNS, such as test environments and labs, while preserving host-based routing as the standard Kubernetes routing model.

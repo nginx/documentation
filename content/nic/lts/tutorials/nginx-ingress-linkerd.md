@@ -6,7 +6,7 @@ f5-content-type: how-to
 f5-product: INGRESS
 ---
 
-This document explains how to integrate NGINX Ingress Controller LTS with Linkerd using Linkerd's sidecar proxy. Linkerd works with both NGINX Ingress Controller LTS open source and NGINX Ingress Controller LTS using NGINX Plus.
+This document explains how to integrate NGINX Ingress Controller LTS with Linkerd using Linkerd's sidecar proxy.
 
 ## Before you Begin
 

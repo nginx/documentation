@@ -12,6 +12,7 @@ This page describes how to troubleshoot common issues with NGINX Ingress Control
 ## Common issues
 
 {{% table %}}
+
 | Problem Area | Symptom | Troubleshooting Method | Common Cause |
 |-----|-----|-----|-----|
 | Startup | NGINX Ingress Controller fails to start. | Check the logs. | Misconfigured RBAC, a missing default server TLS Secret.|
@@ -19,7 +20,7 @@ This page describes how to troubleshoot common issues with NGINX Ingress Control
 | VirtualServer and VirtualServerRoute resources | The configuration is not applied. | Check the events of the VirtualServer and VirtualServerRoutes, check the logs, check the generated config. | VirtualServer or VirtualServerRoute is invalid. |
 | Policy resource | The configuration is not applied. | Check the events of the Policy resource as well as the events of the VirtualServers that reference that policy, check the logs, check the generated config. | Policy is invalid. |
 | ConfigMap keys | The configuration is not applied. | Check the events of the ConfigMap, check the logs, check the generated config.  | Invalid values of ConfigMap keys. |
-| NGINX | NGINX responds with unexpected responses. | Check the logs, check the generated config, check the live activity dashboard (NGINX Plus only), run NGINX in the debug mode. | Unhealthy backend pods, a misconfigured backend service. |
+| NGINX | NGINX responds with unexpected responses. | Check the logs, check the generated config, check the live activity dashboard, run NGINX in the debug mode. | Unhealthy backend pods, a misconfigured backend service. |
 {{% /table %}}
 
 ## Troubleshooting Methods

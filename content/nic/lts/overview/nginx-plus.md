@@ -9,7 +9,7 @@ f5-content-type: reference
 
 This document explains how F5 NGINX Plus can extend the functionality of F5 NGINX Ingress Controller LTS.
 
-NGINX Ingress Controller LTS works with [NGINX](https://nginx.org/) as well as [NGINX Plus](https://www.nginx.com/products/nginx/), a commercial closed source version of NGINX which has additional features and support from NGINX Inc. NGINX Ingress Controller LTS can leverage functionality from NGINX Plus to extend its base capabilities.
+NGINX Ingress Controller LTS works with [NGINX Plus](https://www.nginx.com/products/nginx/), a commercial closed source version of NGINX which has additional features and support from NGINX Inc. NGINX Ingress Controller LTS can leverage functionality from NGINX Plus to extend its base capabilities.
 
 ---
 
