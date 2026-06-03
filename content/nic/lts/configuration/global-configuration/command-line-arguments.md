@@ -224,7 +224,7 @@ Default is 60000.
 
 ### -nginx-status
 
-Enable the NGINX stub_status, or the NGINX Plus API.
+Enable the NGINX Plus API.
 
 Default `true`.
 
@@ -232,7 +232,7 @@ Default `true`.
 
 ### -nginx-status-allow-cidrs `<string>`
 
-Add IP/CIDR blocks to the allow list for NGINX stub_status or the NGINX Plus API.
+Add IP/CIDR blocks to the allow list for the NGINX Plus API.
 
 Separate multiple IP/CIDR by commas. (default `127.0.0.1,::1`)
 
@@ -240,7 +240,7 @@ Separate multiple IP/CIDR by commas. (default `127.0.0.1,::1`)
 
 ### -nginx-status-port `<int>`
 
-Set the port where the NGINX stub_status or the NGINX Plus API is exposed.
+Set the port where the NGINX Plus API is exposed.
 
 Format: `[1024 - 65535]` (default `8080`)
 
