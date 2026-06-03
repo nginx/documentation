@@ -45,10 +45,6 @@ Change the active directory.
 cd kubernetes-ingress
 ```
 
-### App Protect DoS
-
-To use App Protect DoS, install the App Protect DoS Arbitrator using the provided manifests in the same namespace as the NGINX Ingress Controller LTS. If you install multiple NGINX Ingress Controller LTSs in the same namespace, they will need to share the same Arbitrator because there can only be one Arbitrator in a single namespace.
-
 ## Set up role-based access control (RBAC) {#configure-rbac}
 
 {{< include "/nic/rbac/set-up-rbac.md" >}}
@@ -56,70 +52,6 @@ To use App Protect DoS, install the App Protect DoS Arbitrator using the provide
 ## Create common resources {#create-common-resources}
 
 {{< include "/nic/installation/create-common-resources.md" >}}
-
-## Create core custom resources {#create-custom-resources}
-
-{{< include "/nic/installation/create-custom-resources.md" >}}
-
-### Create optional custom resources
-
-There are optional CRDs that are necessary if you want to use F5 WAF for NGINX or F5 DoS for NGINX.
-
-_F5 WAF for NGINX_:
-
-- `APPolicy`
-- `APLogConf`
-- `APUserSig`
-
-_F5 DoS for NGINX_:
-
-- `APDosPolicy`
-- `APDosLogConf`
-- `DosProtectedResource`
-
-{{<tabs name="install-nap-crds">}}
-
-{{%tab name="Install CRDs from single YAML"%}}
-
-_F5 WAF for NGINX_:
-
-{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
-```
-
-_F5 DoS for NGINX_:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-dos.yaml
-```
-
-{{%/tab%}}
-
-{{%tab name="Install CRDs after cloning the repo"%}}
-
-_F5 WAF for NGINX_:
-
-{{< call-out "note" >}} This step can be skipped if you are using F5 WAF for NGINX module with policy bundles. {{< /call-out >}}
-
-```shell
-kubectl apply -f config/crd/bases/appprotect.f5.com_aplogconfs.yaml
-kubectl apply -f config/crd/bases/appprotect.f5.com_appolicies.yaml
-kubectl apply -f config/crd/bases/appprotect.f5.com_apusersigs.yaml
-```
-
-_F5 DoS for NGINX_:
-
-```shell
-kubectl apply -f config/crd/bases/appprotectdos.f5.com_apdoslogconfs.yaml
-kubectl apply -f config/crd/bases/appprotectdos.f5.com_apdospolicy.yaml
-kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yaml
-```
-
-{{%/tab%}}
-
-{{</tabs>}}
 
 ## Deploy NGINX Ingress Controller LTS {#deploy-ingress-controller}
 
@@ -258,19 +190,7 @@ Delete core custom resource definitions:
 kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
 ```
 
-Delete custom resource definitions for the F5 WAF for NGINX module:
-
-```shell
-kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-waf.yaml
-```
-
-Delete custom resource definitions for the F5 DoS for NGINX module:
-
-```shell
-kubectl delete -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds-nap-dos.yaml
-```
-
-{{% /tab %}}
+{{%/tab%}}
 
 {{%tab name="Deleting CRDs after cloning the repo"%}}
 
@@ -278,18 +198,6 @@ Delete core custom resource definitions:
 
 ```shell
 kubectl delete -f config/crd/bases/crds.yaml
-```
-
-Delete custom resource definitions for the F5 WAF for NGINX module:
-
-```shell
-kubectl delete -f config/crd/bases/crds-nap-waf.yaml
-```
-
-Delete custom resource definitions for the F5 DoS for NGINX module:
-
-```shell
-kubectl delete -f config/crd/bases/crds-nap-dos.yaml
 ```
 
 {{%/tab%}}

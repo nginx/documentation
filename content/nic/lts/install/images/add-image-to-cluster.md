@@ -46,31 +46,6 @@ curl https://private-registry.nginx.com/v2/nginx-ic/nginx-plus-ingress/tags/list
 }
 ```
 
-```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-nap-v5/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
-```
-
-```json
-{
-"name": "nginx-ic-nap-v5/nginx-plus-ingress",
-"tags": [
-    "2026-lts-r1"
-]
-}
-```
-
-```shell
-curl https://private-registry.nginx.com/v2/nginx-ic-dos/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
-```
-
-```json
-{
-"name": "nginx-ic-dos/nginx-plus-ingress",
-"tags": [
-    "2026-lts-r1"
-]
-}
-```
 
 The `jq` command was used in these examples to make the JSON output easier to read.
 
