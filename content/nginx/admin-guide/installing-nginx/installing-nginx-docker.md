@@ -51,13 +51,13 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 ### Tags for operating systems
 
-{{<bootstrap-table "table table-bordered">}}
+{{<table>}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
 |--------------------------------------------|--------------|-----------------------------------------------|
 | Alpine (x86_64, aarch64)                   | `alpine`     | `r36-alpine`, `r36-alpine-3.20`               |
 | Debian (x86_64, aarch64)                   | `debian`     | `r36-debian`, `r36-debian-bookworm`           |
 | Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r36-ubi`, `r36-ubi-9`,  `r36-ubi-9-20251201` |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### Tags for NGINX Plus versions
 

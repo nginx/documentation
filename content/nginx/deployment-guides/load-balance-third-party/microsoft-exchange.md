@@ -190,7 +190,7 @@ Repeat these commands on each CAS in your deployment:
 If there is a firewall between the NGINX Plus server and other applications in your Exchange deployment, configure it to pass through traffic on the ports specified in the table. The columns represent the three types of applications that communicate with the NGINX Plus server – email clients, the NGINX Plus live activity monitoring dashboard on your administrative network, and CASs – and the **x** indicates that the port must be open.
 
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |**Port** | **Protocol** | **Email clients** | **Admin network** | **CASs** |
 | ---| ---| ---| ---| --- |
@@ -200,7 +200,7 @@ If there is a firewall between the NGINX Plus server and other applications in 
 |993 | IMAPS | x | x |  |
 |8080 | HTTP (NGINX Plus dashboard) | x |  |  |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 <span id="tls-certificate"></span>
@@ -807,7 +807,7 @@ This section describes the configuration for enhanced load balancing of Exchange
 Exchange CASs interact with various applications used by clients on different types of devices. The clients access virtual directories and URIs specific to their application. To improve the performance of applications and of NGINX Plus, configure a separate `location` block for each application to enable the features listed in the table.
 
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |**Application** | **Virtual Directory or URI** | **Enhanced Features** |
 | ---| ---| --- |
@@ -817,7 +817,7 @@ Exchange CASs interact with various applications used by clients on different ty
 |OWA | **/owa** | Health checks |
 |RPC Over HTTP | **/rpc/rpcproxy.dll** | Unbuffered upload and download; session persistence |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 <span id="url-control"></span>

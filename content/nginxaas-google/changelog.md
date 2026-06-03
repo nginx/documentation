@@ -12,6 +12,13 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-google/known-issues.md" >}}) page.
 
+## June 1, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google now supports free trials**
+
+You can now sign up for a free trial of NGINXaaS for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud). The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore NGINXaaS for Google Cloud and its features.
+
+See the [Free trial]({{< ref "/nginxaas-google/billing/overview.md#free-trial" >}}) documentation for more information.
 
 ## May 15, 2026
 
