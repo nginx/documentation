@@ -5,7 +5,7 @@ f5-files:
 - content/nim/deploy/kubernetes/deploy-using-helm.md
 ---
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
@@ -30,4 +30,4 @@ f5-files:
 | 1.10.0                       | nginx-stable/nms           | 2.13.1           |
 | 1.9.0                        | nginx-stable/nms           | 2.13.0           |
 
-{{</bootstrap-table>}}
+{{</table >}}

@@ -6,7 +6,7 @@ f5-files:
 - content/nim/system-configuration/configure-clickhouse.md
 ---
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Configuration                 | Default                            | Notes |
 |------------------------------|------------------------------------|-------|
@@ -21,4 +21,4 @@ f5-files:
 | clickhouse.tls.cert_path     |                                    | Path to the client TLS certificate file in PEM format. Required for client authentication. |
 | clickhouse.tls.ca_path       | /etc/ssl/certs/ca-certificates.crt | Path to the system Certificate Authority used to verify the server certificate. The default path works for Ubuntu and Debian. Use a CA bundle appropriate to your system. See [TLS configuration](#tls) for details. |
 
-{{</bootstrap-table>}}
+{{</table >}}
