@@ -6,9 +6,7 @@ f5-content-type: how-to
 f5-product: INGRESS
 ---
 
-This document outlines how to integrate F5 NGINX Ingress Controller LTS with Open Service Mesh (OSM)
-
-Open Service Mesh will work with both versions of [F5 NGINX Ingress Controller LTS](https://github.com/nginx/kubernetes-ingress): the free as well as the NGINX Plus versions.
+This document outlines how to integrate F5 NGINX Ingress Controller LTS with Open Service Mesh (OSM).
 
 # Integrating NGINX Ingress Controller LTS with Open Service Mesh
 
