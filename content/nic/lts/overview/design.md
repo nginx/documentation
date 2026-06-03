@@ -144,7 +144,6 @@ The desired state is based on the following built-in Kubernetes resources and Cu
 
 NGINX Ingress Controller LTS can watch additional Custom Resources, which are less common and not enabled by default:
 
-- [F5 WAF for NGINX resources]({{< ref "/nic/lts/integrations/app-protect-dos/configuration" >}}) (APPolicies, APLogConfs, APUserSigs)
 - IngressLink resource (only one resource)
 
 ## NGINX Ingress Controller LTS process components
