@@ -184,8 +184,20 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 | *oidc-pkce-timeout* | Sets the timeout for PKCE (Proof Key for Code Exchange) in OIDC. | `90s` |
 | *oidc-id-tokens-timeout* | Sets the timeout for ID tokens in OIDC. | `1h` |
 | *oidc-access-tokens-timeout* | Sets the timeout for access tokens in OIDC. | `1h` |
-| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `24h` |
-| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `24h` |
+| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `8h` |
+| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `8h` |
+
+### OIDC (OpenID Connect) ZoneSizes
+
+For more information on zonesizes, see [here](https://github.com/nginxinc/nginx-openid-connect?tab=readme-ov-file#configuring-the-key-value-store)
+
+| ConfigMap Key | Description | Default |
+| ------------- | ------------| ------- |
+| *oidc-pkce-zone-size* | Sets the zonesize for PKCE (Proof Key for Code Exchange) in OIDC. | `128K` |
+| *oidc-id-tokens-zone-size* | Sets the zonesize for ID tokens in OIDC. | `1M` |
+| *oidc-access-tokens-zone-size* | Sets the zonesize for access tokens in OIDC. | `1M` |
+| *oidc-refresh-tokens-zone-size* | Sets the zonesize for refresh tokens in OIDC. | `1M` |
+| *oidc-sids-zone-size* | Sets the zonesize for session IDs in OIDC. | `1M` |
 
 ### Snippets and custom templates
 
