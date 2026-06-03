@@ -15,7 +15,7 @@ An NGINX configuration can be applied to the deployment using the Azure portal i
 
 As part of applying your NGINX configuration, the service validates the configuration for syntax and compatibility with F5 NGINXaaS for Azure (NGINXaaS). The use of certain directives and parameters is not allowed to ensure the NGINX configuration’s compatibility with IaaS deployment model in Azure. Validation errors are reported in the editor for you to correct. For more information, check the [NGINX Configuration Validation]({{< ref "/nginxaas-azure/getting-started/nginx-configuration.md#nginx-configuration-validation" >}}) section.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers, refer to the server name in the server block within the HTTP context. To learn more, and see examples, follow the instructions in the [NGINX configuration validtion]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-configuration-validation" >}}) section.{{< /call-out >}}
 
 ## Prerequisites
@@ -30,7 +30,7 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
 
 1. Select **NGINX configuration** in the left menu and you will see the default configuration that NGINXaaS provides.
 
-   {{< call-out "note" >}}If you don't see the default configuration, it's likely the deployment was created through a client tool other than the portal (For example, Terraform), or the "Apply default NGINX configuration" was unchecked during the deployment creation process in the portal. You can still proceed with the steps below to provide your own NGINX configuration for the deployment.{{< /call-out >}}
+   {{< call-out class="note" >}}If you don't see the default configuration, it's likely the deployment was created through a client tool other than the portal (For example, Terraform), or the "Apply default NGINX configuration" was unchecked during the deployment creation process in the portal. You can still proceed with the steps below to provide your own NGINX configuration for the deployment.{{< /call-out >}}
 
 1. Select {{<icon "plus">}}**New File** to add a file path, then **Confirm**.
 
@@ -42,7 +42,7 @@ NGINXaaS supports Layer 7 HTTP loadbalancing. To configure .com and .net servers
    | Protected File | Indicates that the file may contain sensitive data such as passwords or represent an ssl/tls certificate.<ul><li>To protect a file, enable the **Protected** {{<icon "toggle-right">}} toggle button.</li><li>You cannot access the file contents of a protected file saved to the NGINX configuration, but you can view its metadata, such as the SHA-256 hash of the file contents.</li><li>You can provide new contents for an existing protected file using the <u>**Overwrite**</u> link or resubmit it without having to provide the file contents again.</li><li>To modify the file path of a protected file or convert it to a regular file, delete the original file and create a new one.</li><li>A protected file is designated with a {{<icon "lock">}} icon on the portal.</li></ul> |
    {{< /table >}}
 
-   {{< call-out "note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
+   {{< call-out class="note" >}}If specifying an absolute file path, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 
 1. Provide your NGINX configuration in the configuration file.
 
@@ -94,7 +94,7 @@ $ tar -tzf nginx.tar.gz
 ./servers/server2.conf
 ```
 
-{{< call-out "important" >}}Use the `-C` option with `tar` to change into the configuration directory before archiving. This strips the top-level directory from the archive paths and prevents path duplication errors during upload.{{< /call-out >}}
+{{< call-out class="important" >}}Use the `-C` option with `tar` to change into the configuration directory before archiving. This strips the top-level directory from the archive paths and prevents path duplication errors during upload.{{< /call-out >}}
 
 `nginx.tar.gz` can be uploaded using the following portal workflow.
 
@@ -119,7 +119,7 @@ http {
 
 1. Specify the root file.
 
-   {{< call-out "warning" >}}Uploading a new file will replace all existing NGINX configuration files in your deployment.  You must acknowledge this step before you proceed to upload.{{< /call-out >}}
+   {{< call-out class="warning" >}}Uploading a new file will replace all existing NGINX configuration files in your deployment.  You must acknowledge this step before you proceed to upload.{{< /call-out >}}
 
 1. Select **Upload**.
 
@@ -151,9 +151,9 @@ http {
 
 1. Confirm your action to delete the configuration file.
 
-   {{< call-out "note" >}}Only non-root configuration files can be deleted.{{< /call-out >}}
+   {{< call-out class="note" >}}Only non-root configuration files can be deleted.{{< /call-out >}}
 
-{{< call-out "tip" >}}
+{{< call-out class="tip" >}}
 
 See the [NGINX connfiguration overview]({{< ref "overview.md" >}}) topic
 to learn more about:

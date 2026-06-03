@@ -37,7 +37,7 @@ Config Sync Groups support configuration inheritance and persistance. If you've 
 
 On the other hand, if you remove all instances from a Config Sync Group, the original configuration persists. In other words, the group retains the configuration from that first instance (or the original configuration). Any new instance that you add later still inherits that configuration.
 
-{{< call-out "tip" >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
+{{< call-out class="tip" >}}You can use _unmanaged_ certificates. Your actions can affect the [Config Sync Group status](#config-sync-group-status). For future instances on the data plane, if it:
 
 - Has unmanaged certificates in the same file paths as defined by the NGINX configuration as the Config Sync Group, that instance will be [**In Sync**](#config-sync-group-status).
 - Will be [**Out of Sync**](#config-sync-group-status) if the instance:
@@ -198,7 +198,7 @@ When adding a new NGINX instance that is not yet registered with NGINX One, you 
 
 {{</tabs>}}
 
-{{<call-out "note" "About data plane keys" "fas fa-key" >}}
+{{<call-out class="note" title="About data plane keys" icon="key" >}}
 
 Data plane keys are required for registering NGINX instances with the NGINX One Console. These keys serve as secure tokens, ensuring that only authorized instances can connect and communicate with NGINX One.
 
@@ -318,14 +318,14 @@ Publishing the group configuration ensures that all instances within the Config 
 
 The **Config Sync Status** column on the **Config Sync Groups** page provides insight into the synchronization state of your NGINX instances within each group.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Status**            | **Description**                                                                                                                                      |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **In Sync**           | All instances within the Config Sync Group have configurations that match the group configuration. No action is required.                            |
 | **Out of Sync** | At least one instance in the group has a configuration that differs from the group's configuration. You may need to review and resolve discrepancies to ensure consistency. |
 | **Sync&nbsp;in&nbsp;Progress**  | An instance is currently being synchronized with the group's configuration. This status appears when an instance is moved to a new group or when a configuration is being applied. |
 | **Unknown**           | The synchronization status of the instances in this group cannot be determined. This could be due to connectivity issues, instances being offline, or other factors. Investigating the cause of this status is recommended. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 Monitor the **Config Sync Status** column. It can help you ensure that your configurations are consistently applied across all instances in a group.
 

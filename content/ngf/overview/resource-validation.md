@@ -33,7 +33,7 @@ kubectl apply -f coffee-route.yaml
 The HTTPRoute "coffee" is invalid: spec.hostnames[0]: Invalid value: "cafe.!@#$%example.com": spec.hostnames[0] in body should match '^(\*\.)?[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$'
 ```
 
-{{< call-out "note" >}}While unlikely, bypassing this validation step is possible if the Gateway API CRDs are modified to remove the validation. If this happens, Step 4 will reject any invalid values (from NGINX perspective).{{< /call-out >}}
+{{< call-out class="note" >}}While unlikely, bypassing this validation step is possible if the Gateway API CRDs are modified to remove the validation. If this happens, Step 4 will reject any invalid values (from NGINX perspective).{{< /call-out >}}
 
 ### Step 2 - CEL validation by Kubernetes API Server
 
@@ -84,7 +84,7 @@ Status:
       Section Name:  http
 ```
 
-{{< call-out "note" >}} This validation step always runs and cannot be bypassed. {{< /call-out >}}
+{{< call-out class="note" >}} This validation step always runs and cannot be bypassed. {{< /call-out >}}
 
 ### Confirm validation
 
@@ -109,7 +109,7 @@ Status:
       Section Name:  http
 ```
 
-{{< call-out "note" >}} Make sure the reported observed generation is the same as the resource generation. {{< /call-out >}}
+{{< call-out class="note" >}} Make sure the reported observed generation is the same as the resource generation. {{< /call-out >}}
 
 ## NGINX Gateway Fabric Resource validation
 
@@ -125,7 +125,7 @@ kubectl apply -f nginx-gateway-config.yaml
 The NginxGateway "nginx-gateway-config" is invalid: spec.logging.level: Unsupported value: "some-level": supported values: "info", "debug", "error"
 ```
 
-{{< call-out "note" >}}While unlikely, bypassing this validation step is possible if the NGINX Gateway Fabric CRDs are modified to remove the validation. If this happens, Step 2 will report an error in the resource's status.{{< /call-out >}}
+{{< call-out class="note" >}}While unlikely, bypassing this validation step is possible if the NGINX Gateway Fabric CRDs are modified to remove the validation. If this happens, Step 2 will report an error in the resource's status.{{< /call-out >}}
 
 ### Step 2 - Validation by NGINX Gateway Fabric
 

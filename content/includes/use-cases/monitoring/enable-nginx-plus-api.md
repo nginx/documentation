@@ -11,7 +11,7 @@ To collect comprehensive metrics for NGINX Plus, including bytes streamed, infor
 
 {{< include "nginx-one-console/config-snippets/enable-nplus-api-dashboard.md" >}}
 
-{{< call-out "note" "Security tip" >}}
+{{< call-out class="note" title="Security tip" >}}
 - By default, all clients can call the API.  
 - To limit who can access the API, uncomment the `allow` and `deny` lines under `api write=on` and replace the example CIDR with your trusted network.  
 - To restrict write methods (`POST`, `PATCH`, `DELETE`), uncomment and configure the `limit_except GET` block and set up [HTTP basic authentication](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html).  

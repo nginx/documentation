@@ -30,7 +30,7 @@ You can use the NGINX One Console to add a file to a specific instance. To do so
 1. Select the instance to manage.
 1. Select the **Configuration** tab.
 
-   {{< call-out "tip" >}}
+   {{< call-out class="tip" >}}
 
    {{< include "/nginx-one-console/add-file/edit-config-tip.md" >}}
 
@@ -49,7 +49,7 @@ Enter the name of the desired configuration file, such as `abc.conf` and select 
 
 {{< include "/nginx-one-console/add-file/new-ssl-bundle.md" >}}
 
-  {{< call-out "tip" >}}
+  {{< call-out class="tip" >}}
 
   Make sure to specify the path to your certificate in your NGINX configuration,
   with the `ssl_certificate` and `ssl_certificate_key` directives.

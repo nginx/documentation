@@ -17,7 +17,7 @@ F5 NGINX Instance Manager provides a centralized way to create, edit, and deploy
 
 You can also compile security policies and associated components—such as attack signatures, bot signatures, and threat campaigns—into a single policy bundle. Precompiling these bundles improves performance by avoiding separate compilation during deployment.
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 The following capabilities are available only through the NGINX Instance Manager REST API:
 
 - Create, read, update, and delete security log profiles

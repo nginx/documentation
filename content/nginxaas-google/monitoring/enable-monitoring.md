@@ -439,7 +439,7 @@ To import the dashboard:
 7. Replace the default JSON with the dashboard configuration you copied.
 8. Select **Apply Changes**.
 
-{{< call-out "note" >}}The dashboard includes an **nginxaas_deployment_name** filter. Use this filter to view metrics for a specific NGINXaaS deployment or select multiple deployments to compare their performance.{{< /call-out >}}
+{{< call-out class="note" >}}The dashboard includes an **nginxaas_deployment_name** filter. Use this filter to view metrics for a specific NGINXaaS deployment or select multiple deployments to compare their performance.{{< /call-out >}}
 
 ## Disable exporting NGINXaaS metrics to a Google Cloud project
 

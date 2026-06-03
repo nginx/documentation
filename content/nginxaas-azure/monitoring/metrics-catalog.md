@@ -50,7 +50,7 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 
 {{< /table >}}
 
-{{< call-out "warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
+{{< call-out class="warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
 
 ### NGINX connections statistics
 

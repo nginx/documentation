@@ -27,7 +27,16 @@ Encrypt your certificates, keys, and PEM files using one of these standards:
 
 ## Add SSL/TLS certificates
 
-Add a certificate to your NGINXaaS deployment using your preferred client tool:
+NGINXaaS supports two ways to manage your certificates and keys securely:
 
-- [Add certificates from Secret Manager]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}})
-- [Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})
+**NGINXaaS console** — Manage certificates alongside the NGINX configurations that reference them. See [Add certificates using the NGINXaaS Console]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
+
+**Google Secret Manager** — Fetch secrets directly from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview), keeping credentials within Google Cloud. See [Add certificates from Secret Manager]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}).
+
+## Certificate rotation
+
+NGINXaaS supports automatic and manual rotation for Secret Manager certificates:
+
+**Automatic rotation** — Let NGINXaaS pick up new certificate versions automatically with no configuration changes needed. See [Rotate a Secret Manager certificate (automatic)]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-automatic" >}}).
+
+**Manual rotation** — When you need to update certificates immediately, use **Reapply Configuration** in the console to refetch secrets right away. See [Rotate a Secret Manager certificate (manual)]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-manual" >}}).

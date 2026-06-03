@@ -85,7 +85,7 @@ NIM_LICENSE_MODE_OF_OPERATION=connected
 
 Replace `<IMAGE_NAME>` with the tag used in the build step, and `<BASE64_ENCODED_LICENSE_FILE>` with your base64-encoded NGINX Instance Manager license. Set `NIM_LICENSE_MODE_OF_OPERATION` to `connected` or `disconnected` depending on your environment (see [License modes](#license-modes) below).
 
-{{< call-out "note" >}} Change `NIM_USERNAME` and `NIM_PASSWORD` to values appropriate for your environment before deploying to production. {{< /call-out >}}
+{{< call-out class="note" >}} Change `NIM_USERNAME` and `NIM_PASSWORD` to values appropriate for your environment before deploying to production. {{< /call-out >}}
 
 ---
 

@@ -13,7 +13,7 @@ This guide explains how to write NGINX configuration templates for NGINX One Con
 
 ## General terms
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Term        | Definition |
 |-------------|-------------|
 | **Template** | A reusable NGINX configuration file written using Go template syntax that can accept variables for customization. Templates can be either base templates (complete configurations) or augment templates (modular additions). Templates must use the `.tmpl` file extension and are imported into NGINX One Console for use in submissions. |
@@ -25,7 +25,7 @@ This guide explains how to write NGINX configuration templates for NGINX One Con
 | **Schema** | A JSON Schema Draft 7 file (YAML or JSON format) that defines template variables, their types, descriptions, and validation rules. Required for templates that use variables. Schema properties become available as template variables via dot notation. |
 | **Template Submission** | The process of composing base and augment templates with values to render and deploy a complete NGINX configuration. Submissions are persistent objects that can be retrieved, updated, and deleted. A submission targets one or more existing staged configs, Config Sync Groups, or instances, and automatically re-publishes when updated. |
 | **Template Variable** | A placeholder in a template (e.g., `{{ .backend_url }}`) that gets replaced with user-provided values during rendering. All variables must be defined in the template's schema and provided during submission if marked as required. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Template types
 
@@ -164,7 +164,7 @@ NGINX One templates use Go's built-in template engine. For complete Go template 
 
 Template syntax is validated during [Import]({{< ref "import-templates.md" >}}). NGINX directive syntax is validated when configurations are rendered during [Submission]({{< ref "submit-templates.md" >}}) preview.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 When any unsupported template syntax is used, you will see a validation error during the import operation
 {{< /call-out >}}
 
@@ -198,7 +198,7 @@ Templates that use variables must include schema files for validation and UI gen
 - Use required array to specify variables that must be provided during submission
 - Variables not in the required array are optional; if not provided, they render as empty strings
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 All variables used in your template must be explicitly provided during submission if they are in the `required` array. Optional variables (not in `required`) will render as empty strings if not provided - ensure your template handles this appropriately using Go template conditionals if needed.
 {{< /call-out >}}
 
@@ -257,7 +257,7 @@ server {
 
 During [Submission]({{< ref "submit-templates.md" >}}), users provide values for these variables, which are then inserted into the template during rendering.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 - Every variable used in your template must be defined in the schema
 - All variables used in templates must be provided during submission
 {{< /call-out >}}

@@ -21,6 +21,6 @@ To use the tool:
 
 - You will then be able to use the connectivity tool through the browser.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The connectivity test tool will not accept loopback or multicast IP addresses.
 {{< /call-out >}}

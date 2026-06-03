@@ -87,7 +87,7 @@ http{
 }
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 **Health Checks Recommendation**: It is strongly recommended to add active health checks for your upstreams when using NGINXaaS load balancing for VMSS. This will prevent traffic from being routed to an unready VMSS instance and ensure better reliability during scaling operations.
 {{< /call-out >}}
 
@@ -276,7 +276,7 @@ az role assignment list \
   --output table
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 **Permission Propagation**: After creating the role assignment, it may take a few minutes for the permissions to take effect across Azure services.
 {{< /call-out >}}
 

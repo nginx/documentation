@@ -16,3 +16,11 @@ Learn how to deliver, manage, and protect your applications using F5 NGINXaaS.
     Managed NGINX service for your Google Cloud application stack.
   {{</card >}}
 {{</card-section>}}
+
+### Get help
+
+{{<card-section showAsCards="true" >}}
+  {{<card title="Get help" titleUrl="/nginxaas/get-help/" icon="wallet">}}
+    Get in touch with the NGINX support team for assistance
+  {{</card>}}
+{{</card-section>}}

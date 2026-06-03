@@ -28,7 +28,7 @@ If you do not require extra guidance to understand the installation process or h
 
 You will require your NGINX Plus license JWT to follow these steps: if you do not have it, the steps are explained in the [Download your JSON web token](#download-your-json-web-token) section.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 These commands should be run in the same directory as your **license.jwt** file.
 
@@ -61,7 +61,7 @@ helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 The `edge` version **is not intended for production use**. It is intended for testing and development purposes only.
 
@@ -87,7 +87,7 @@ helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress \
 
 ## Create license and registry secrets
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The commands in the rest of this document should be run in the same directory as your **license.jwt** file.
 

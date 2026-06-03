@@ -232,7 +232,7 @@ Add an include for the Kubernetes terminology
 Copilot knows the correct syntax:
 
 ```markdown
-{{< call-out "note" >}} Important information {{< /call-out >}}
+{{< call-out class="note" >}} Important information {{< /call-out >}}
 {{< nic-version >}}
 {{< include "nic/kubernetes-terminology.md" >}}
 ```

@@ -25,7 +25,7 @@ The following steps describe how to use the NGINX Instance Manager API to create
 
 ## Create a new security policy
 
-{{< call-out "tip" >}} You can skip this step if you intend to use an existing security policy. {{< /call-out >}}
+{{< call-out class="tip" >}} You can skip this step if you intend to use an existing security policy. {{< /call-out >}}
 
 Create a [new security policy]({{< ref "/nim/waf-integration/policies-and-logs/policies/create-policy.md" >}}) using the API: this will require the use of a tool such as [`curl`](https://curl.se/) or [Postman](https://www.postman.com/)
 
@@ -42,7 +42,7 @@ Create the file `simple-policy.json` with the contents below:
 }
 ```
 
-{{< call-out "warning" >}} The `content` value must be base64 encoded or you will encounter an error. {{< /call-out >}}
+{{< call-out class="warning" >}} The `content` value must be base64 encoded or you will encounter an error. {{< /call-out >}}
 
 Upload the policy JSON files with the API, which is the same method to create the bundle later.
 
@@ -76,7 +76,7 @@ You should receive an API response similar to the following output, indicating t
 }
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 Take note of the *uid* field: `"uid": "6af9f261-658b-4be1-b07a-cebd83e917a1"`
 It is one of two unique IDs we will use to download the bundle: it will be referenced as *policy-UID*.
@@ -179,7 +179,7 @@ curl --location 'https://127.0.0.1/api/platform/v1/security/policies/bundles' \
 }
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 Take note of the *uid* field: `"uid": "de08b324-99d8-4155-b2eb-fe687b21034e"`
 

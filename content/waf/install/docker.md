@@ -37,7 +37,7 @@ To download the necessary files for deploying F5 WAF for NGINX, follow these ste
    - **Private Key**
    - **JSON Web Token (JWT)** (required for NGINX Plus but not necessary for NGINX Open Source users)
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The provided Dockerfile for NGINX Plus automatically handles placing the JWT license file in `/etc/nginx/` during image build. If you use a custom Dockerfile, you must ensure the JWT license is copied to this location.
 {{< /call-out >}}
 
@@ -175,7 +175,7 @@ This example uses NGINX Open Source as a base: it requires NGINX to be installed
 
 {{< /details >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 If you are not using using `custom_log_format.json` or the IP intelligence feature,  you should remove any references to them from your Dockerfile.
 
@@ -349,7 +349,7 @@ A RHEL-based system would use the following command instead:
 podman build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key --secret id=license-jwt,src=license.jwt -t <your-image-name> .
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The `--no-cache` option is used to ensure the image is built from scratch, installing the latest versions of NGINX Plus and F5 WAF for NGINX.
 
@@ -393,7 +393,7 @@ And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ co
 app_protect_enable on;
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 You should only enable F5 WAF for NGINX on _proxy_pass_ and _grpc_pass_ locations.
 
@@ -719,7 +719,7 @@ sudo apt-get install app-protect-module-plus
 
 #### Oracle Linux / RHEL / Rocky Linux 8
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 The steps are identical for these platforms due to their similar architecture.
 
@@ -1037,7 +1037,7 @@ Copy or move your subscription files into a new folder.
 
 In the same folder as the subscription files, create a _Dockerfile_ based on your [desired operating system]({{< ref "/waf/fundamentals/technical-specifications.md#supported-operating-systems" >}}) image using an example from the following sections.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 If you are not using using `custom_log_format.json` or the IP intelligence feature,  you should remove any references to them from your Dockerfile.
 

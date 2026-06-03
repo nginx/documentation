@@ -47,6 +47,6 @@ Static analysis will only include information about specific issues with the NGI
 
 In the future, the **Analyzer** page will also include *dynamic analysis*, effectively linking the observed NGINX behavior to its configuration — for example, when it makes sense to increase or decrease certain parameters like [proxy_buffers](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers), etc.
 
-{{< call-out "note" >}} Config analysis is *on* by default. If you don't want your NGINX configuration to be checked, unset the corresponding setting in either Global, or Local (per-system) settings. See [**Settings**]({{< ref "/amplify/user-interface/account-settings" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} Config analysis is *on* by default. If you don't want your NGINX configuration to be checked, unset the corresponding setting in either Global, or Local (per-system) settings. See [**Settings**]({{< ref "/amplify/user-interface/account-settings" >}}). {{< /call-out >}}
 
 {{< img src="amplify/amplify-analyzer-settings.png" alt="Analyzer Settings" >}}

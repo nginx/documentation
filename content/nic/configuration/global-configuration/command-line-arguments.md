@@ -32,6 +32,8 @@ Secret with a TLS certificate and key for TLS termination of the default server.
 
 Format: `<namespace>/<name>`
 
+When `-allow-empty-ingress-host` is enabled, this secret also provides TLS for Ingress resources without a `host`.
+
 <a name="cmdoption-wildcard-tls-secret"></a>
 
 ### -wildcard-tls-secret `<string>`
@@ -97,7 +99,7 @@ Requires [-enable-custom-resources](#cmdoption-enable-custom-resources).
 
 ### -enable-config-safety
 
-{{< call-out "caution" >}}This is an experimental feature. Behavior and configuration may change in future releases. When this feature is turned on, users can experience delayed pod startup times as resources are validated prior to being written. Delays are directly proportional to the number and complexity of resources.  {{< /call-out >}}
+{{< call-out class="caution" >}}This is an experimental feature. Behavior and configuration may change in future releases. When this feature is turned on, users can experience delayed pod startup times as resources are validated prior to being written. Delays are directly proportional to the number and complexity of resources.  {{< /call-out >}}
 
 The `-enable-config-safety` flag enhances the stability and reliability of the NGINX Ingress Controller. When turned on, this feature ensures the validation of new configurations before reloading nginx. If a configuration is deemed invalid, the new config for the associated resource is rejected and the old working config is restored. By Default it is set to `false`. 
 
@@ -162,6 +164,16 @@ Default `nginx`.
 ### -ingress-template-path `<string>`
 
 Path to the ingress NGINX configuration template for an ingress resource. Default for NGINX is `nginx.ingress.tmpl`; default for NGINX Plus is `nginx-plus.ingress.tmpl`.
+
+### -allow-empty-ingress-host {#cmdoption-allow-empty-ingress-host}
+
+Allows Ingress resources to omit the `host` field.
+
+Default `false`.
+
+If multiple Ingress resources without a `host` conflict, NGINX Ingress Controller resolves the collision using the [winner selection algorithm]({{< ref "/nic/configuration/host-and-listener-collisions.md" >}}). To use multiple Ingress resources without a `host` across namespaces without conflict, use [mergeable Ingress]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
+
+To configure TLS, use the command-line argument [`-default-server-tls-secret`](#cmdoption-default-server-tls-secret). To configure listener ports, use the command-line arguments [`-default-http-listener-port`](#cmdoption-default-http-listener-port) or [`-default-https-listener-port`](#cmdoption-default-https-listener-port).
 
 <a name="cmdoption-leader-election-lock-name"></a>
 
@@ -250,7 +262,7 @@ Format: `[1024 - 65535]` (default `8080`)
 
 ### -proxy `<string>`
 
-{{< call-out "warning" >}} This argument is intended for testing purposes only. {{< /call-out >}}
+{{< call-out class="warning" >}} This argument is intended for testing purposes only. {{< /call-out >}}
 
 Use a proxy server to connect to Kubernetes API started with `kubectl proxy`.
 
@@ -467,7 +479,7 @@ Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmd
 
 <a name="cmdoption-app-protect-dos-memory"></a>
 
-### -app-protect-dos-memory
+### -app-protect-dos-memory 
 
 RAM memory size to consume in MB
 
@@ -476,6 +488,14 @@ Default `50% of free RAM in the container or 80MB, the smaller`.
 Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmdoption-enable-app-protect-dos).
 
 - If the argument is set, but `nginx-plus` and `enable-app-protect-dos` are set to false, NGINX Ingress Controller will fail to start.
+
+<a name="cmdoption-app-protect-ip-intelligence"></a>
+
+### -enable-app-protect-ip-intelligence
+
+Enables App Protect IP Intelligence. Defaults to `false`. *Only applies to WAF single-container deployments*.
+
+Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
 
 <a name="cmdoption-ready-status"></a>
 
@@ -507,6 +527,8 @@ Sets the port for the HTTP `default_server` listener.
 
 Default `80`.
 
+When [-allow-empty-ingress-host](#cmdoption-allow-empty-ingress-host) is enabled, also configures the HTTP listener port for Ingress resources without a `host`.
+
 <a name="cmdoption-default-http-listener-port"></a>
 
 ### -default-https-listener-port
@@ -514,6 +536,8 @@ Default `80`.
 Sets the port for the HTTPS `default_server` listener.
 
 Default `443`.
+
+When [-allow-empty-ingress-host](#cmdoption-allow-empty-ingress-host) is enabled, also configures the HTTPS listener port for Ingress resources without a `host`.
 
 <a name="cmdoption-default-https-listener-port"></a>
 

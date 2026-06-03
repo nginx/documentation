@@ -33,7 +33,7 @@ By sharing telemetry, you help improve NGINX Instance Manager and its support.
 
 The table below shows the captured telemetry data points, the trigger conditions, and their respective purposes. Additional data points may be added in the future.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | <div style="width:250px">Data Point</div>            | Triggering Event                            | Purpose |
 |--------------------------|------------------------------------|-------|
@@ -43,7 +43,7 @@ The table below shows the captured telemetry data points, the trigger conditions
 | Adding Data Plane(s)      | When NGINX Agent registers with NGINX Instance Manager for the first time. No data about the data plane is sent, just that an NGINX Agent registered with the platform. | To understand the frequency and quantity of data planes being added to NGINX Instance Manager. This information helps inform our scale and performance targets and helps F5 Support diagnose issues. |
 | Product Usage | Data is sent daily or when Send Usage is selected from the Licenses page in the web interface or initiated using the API. (Requires a [JWT license]({{< ref "/nim/licensing-and-reporting/add-license-connected-deployment.md#jwt-license" >}}).) | To track and report commercial usage in accordance with entitlement and Flexible Consumption Program (FCP) requirements. |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### Enable or disable telemetry
 
@@ -82,4 +82,4 @@ If administrators miss the initial opt-out:
 1. Select the **User** icon in the top-right corner.
 2. Select **"Collect interaction data (all users)"** to clear the setting.
 
-{{< call-out "note" >}}The admin's decision to enable or disable web analytics applies to all users.{{< /call-out >}}
+{{< call-out class="note" >}}The admin's decision to enable or disable web analytics applies to all users.{{< /call-out >}}

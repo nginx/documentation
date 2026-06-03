@@ -33,7 +33,7 @@ After removing the release, pull the chart sources:
 helm pull oci://ghcr.io/nginx/charts/nginx-ingress --untar --version {{< nic-helm-version >}}
 ```
 
-{{< call-out "warning" >}} 
+{{< call-out class="warning" >}} 
 
 The next command will delete all corresponding custom resources in your cluster across all namespaces. 
 
@@ -66,7 +66,7 @@ customresourcedefinition.apiextensions.k8s.io "virtualservers.k8s.nginx.org" del
 
 {{< /details >}}
 
-{{< call-out "caution" "Shared resource versions">}}
+{{< call-out class="caution" title="Shared resource versions">}}
 
 If you run multiple NGINX Ingress Controller releases in your cluster with custom resources enabled, every release will share a single version of the CRDs.
 

@@ -22,7 +22,7 @@ To complete this guide, you will need:
 
 For a list of available images and their registries, see [Supported container images]({{< ref "/ngf/overview/technical-specifications.md#supported-container-images" >}}).
 
-{{< call-out "important" >}} If you’d like to use NGINX Plus or NGINX Plus with F5 WAF for NGINX, some additional setup is also required: {{< /call-out >}}
+{{< call-out class="important" >}} If you’d like to use NGINX Plus or NGINX Plus with F5 WAF for NGINX, some additional setup is also required: {{< /call-out >}}
 
 {{< details summary="NGINX Plus JWT setup" >}}
 
@@ -40,7 +40,7 @@ For a list of available images and their registries, see [Supported container im
 
 {{< include "/ngf/installation/nginx-plus/nginx-plus-secret.md" >}}
 
-{{< call-out "note" >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /call-out >}}
+{{< call-out class="note" >}} For more information on why this is needed and additional configuration options, including how to report to NGINX Instance Manager instead, see the [NGINX Plus Image and JWT Requirement]({{< ref "/ngf/install/nginx-plus.md" >}}) document. {{< /call-out >}}
 
 {{< /details >}}
 
@@ -69,7 +69,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namesp
 
 {{%tab name="NGINX Plus"%}}
 
-{{< call-out "note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
+{{< call-out class="note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
 
 To install the latest stable release of NGINX Gateway Fabric in the **nginx-gateway** namespace, run the following command:
 
@@ -81,7 +81,7 @@ helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric  --set nginx.im
 
 {{%tab name="NGINX Plus with WAF"%}}
 
-{{< call-out "note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
+{{< call-out class="note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
 
 To install the latest stable release of NGINX Gateway Fabric with F5 WAF for NGINX enabled globally across all Gateways, run the following command:
 
@@ -123,7 +123,7 @@ helm install ngf . --create-namespace -n nginx-gateway
 
 {{%tab name="NGINX Plus"%}}
 
-{{< call-out "note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
+{{< call-out class="note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry for your NGINX Plus image, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
 
 To install the chart into the **nginx-gateway** namespace, run the following command:
 
@@ -135,7 +135,7 @@ helm install ngf . --set nginx.image.repository=private-registry.nginx.com/nginx
 
 {{%tab name="NGINX Plus with WAF"%}}
 
-{{< call-out "note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
+{{< call-out class="note" >}} If applicable, replace the F5 Container registry `private-registry.nginx.com` with your internal registry, and replace `nginx-plus-registry-secret` with your Secret name containing the registry credentials. If your NGINX Plus JWT Secret has a different name than the default `nplus-license`, then define that name using the `nginx.usage.secretName` flag. {{< /call-out >}}
 
 To install the chart into the **nginx-gateway** namespace with F5 WAF for NGINX enabled globally across all Gateways, run the following command:
 
@@ -176,7 +176,7 @@ experimental features of Gateway API which are supported by NGINX Gateway Fabric
 helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginxGateway.gwAPIExperimentalFeatures.enable=true
 ```
 
-{{< call-out "note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
+{{< call-out class="note" >}} Requires the Gateway APIs installed from the experimental channel. {{< /call-out >}}
 
 #### Watch subset of namespaces
 

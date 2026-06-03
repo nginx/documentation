@@ -22,7 +22,7 @@ These features revolve around a _Policy Controller_ which uses the Kubernetes op
 
 It handles policy distribution at scale by removing manual steps and providing a declarative configuration model with Custom Resource Definitions (CRDs) for policies, logging profiles and signatures.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 These enhancements are  only available for Helm-based deployments.
 
@@ -46,19 +46,19 @@ F5 WAF for NGINX uses built-in default security policy and logging profile after
 
 ## Download your subscription credentials 
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 To access private-registry.nginx.com, you will need to download the JWT license file even when using NGINX Open Source as a base image. 
 {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 If you are deploying with Helm, you will also need the JWT license for the `dockerConfigJson`.
 {{< /call-out >}}
 
 {{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
 
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+{{< call-out class="note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 When using the provided values.yaml for Helm, setting the `appprotect.config.nginxJWT` value ensures that your JWT license is automatically copied to `/etc/nginx/license.jwt` inside the NGINX container. No additional manual copying of the file is needed when deploying with the provided YAML configuration.
 {{< /call-out >}}
 
@@ -77,7 +77,7 @@ They will be used to download and apply necessary resources.
 
 ## Configure Docker for the F5 Container Registry
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 You may be able to skip this step on an existing Kubernetes deployment, where guidance was already given to configure Docker.
 {{< /call-out >}}
 
@@ -124,7 +124,7 @@ Apply the `pv-hostpath.yaml` file to create the new persistent volume for policy
 kubectl apply -f pv-hostpath.yaml
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The volume name defaults to `<release-name>-bundles-pv`, but can be customized using the `appprotect.storage.pv.name` setting in your `values.yaml` file.
 
@@ -956,7 +956,7 @@ spec:
     revision: "2025.06.24" # The precise threat-signatures revision to be used
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 The APSignatures `metadata.name` argument _must_ be `signatures`.
 
 Only one APSignatures instance can exist.
@@ -970,7 +970,7 @@ kubectl apply -f signatures.yaml
 
 Downloading security updates may take several minutes, and the version of security updates available at the time of compilation is always used to compile policies.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 You must re-apply your policy when changing signature revisions.
 
 This ensures the existing policy will be recompiled with the new signatures.
@@ -991,7 +991,7 @@ helm registry login private-registry.nginx.com
 helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-release-version> --untar
 ```
    
-{{< call-out "warning">}}
+{{< call-out class="warning">}}
 Helm charts come with a default `values.yaml` file: this should be ignored in favour of the customized file during set-up.
 {{< /call-out >}}
 
@@ -1044,7 +1044,7 @@ kubectl delete ns <namespace>
 
 <!-- ## Disconnected or air-gapped environments
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 In this type of environment, you should not create the _APSignatures_ resource.
 
@@ -1243,7 +1243,7 @@ The Policy Controller resolves the change with the following steps:
 1. **Status Updates**: Custom Resource status reflects the new compilation state
 1. **Bundle Replacement**: New policy bundle replaces the previous version
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 You do not need to reapply the APPolicy resource when updating the JSON file.
 
@@ -1316,7 +1316,7 @@ The Policy Controller resolves the change with the following steps:
 1. **Deployment**: If validation passes, the new bundle is deployed
 1. **Status updates**: Custom Resource status reflects the new validation and deployment state
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 You do not need to reapply the APPolicy resource when replacing the file.
 

@@ -14,7 +14,7 @@ After you publish security updates, you can check their deployment status using 
 
 These endpoints help you verify whether security policies, log profiles, and other configurations were successfully deployed to instances or instance groups.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

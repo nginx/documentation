@@ -50,7 +50,7 @@ The policy is represented in a JSON file which you can edit to add, modify and r
 
 The way the policy is integrated into the NGINX configuration is through referencing the JSON file (Using the full path) in the `nginx.conf` file.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 F5 WAF for NGINX provides a [JSON Schema](https://json-schema.org/) which can be used to validate a JSON policy file for format compliance.
 
@@ -147,7 +147,7 @@ F5 WAF for NGINX offers prebuilt bundles for security policies:
 - _app_protect_default_policy_
 - _app_protect_strict_policy_
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 You cannot mix these prebuilt bundles with custom policy bundles within the same `nginx.conf` file.
 
@@ -171,7 +171,7 @@ Example:
 
 #### Updating default policy bundles
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 This section assumes that you have built a [compiler image]({{< ref "/waf/configure/compiler.md" >}}) named `waf-compiler-1.0.0:custom`.
 
@@ -226,7 +226,7 @@ In addition the strict policy also **blocks** the following:
 - Requests with the `VIOL_EVASION` violation (evasion techniques).
 - Requests with violations that restrict options in the request and response: HTTP method, response status code and disallowed file types.
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 Other violations, specifically attack signatures and metacharacters, which are more prone to false positives, still have only Alarm turned on, without blocking, contributing to the Violation Rating as in the Default policy.
 
@@ -353,7 +353,7 @@ To set different states for sub-violations within the violation, enable the viol
 
 A violation may have its own section that provides additional configuration granularity for a specific violation/sub-violation.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The attack signature violation `VIOL_ATTACK_SIGNATURE` cannot be configured.
 

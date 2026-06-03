@@ -18,8 +18,8 @@ The following table lists the software versions NGINX Gateway Fabric supports. O
 
 | NGINX Gateway Fabric | Gateway API | Kubernetes | NGINX OSS | NGINX Plus | NGINX Agent | F5 WAF for NGINX |
 |----------------------|-------------|------------|-----------|------------|-------------|------------------|
-| Edge                 | 1.5.1       | 1.31+      | 1.31.1    | R37.0      | v3.10.1     | 5.13.1           |
-| 2.6.2                | 1.5.1       | 1.31+      | 1.31.1    | R37.0      | v3.10.1     | 5.13.1           |
+| Edge                 | 1.5.1       | 1.31+      | 1.31.1    | R37.0      | v3.10.3     | 5.13.1           |
+| 2.6.3                | 1.5.1       | 1.31+      | 1.31.1    | R37.0      | v3.10.3     | 5.13.1           |
 | 2.5.1                | 1.5.1       | 1.31+      | 1.29.7    | R36        | v3.8.0      | ---              |
 | 2.4.2                | 1.4.1       | 1.25+      | 1.29.5    | R36        | v3.7.1      | ---              |
 | 2.3.0                | 1.4.1       | 1.25+      | 1.29.3    | R36        | v3.6.0      | ---              |
@@ -38,7 +38,7 @@ The following table lists the OpenShift versions and Operator versions compatibl
 
 | NGINX Gateway Fabric | Operator | Preferred Gateway API | Compatible Gateway API | OCP with Preferred GWAPI | Supported OCP Versions |
 |----------------------|----------|-----------------------|------------------------|--------------------------|------------------------|
-| 2.6.0                | v1.4.x   | v1.5.x                | v1.2.1-v1.5.x          | ---                      | 4.19 - 4.21            |
+| 2.6.x                | v1.4.x   | v1.5.x                | v1.2.1-v1.5.x          | ---                      | 4.19 - 4.21            |
 | 2.5.x                | v1.3.x   | v1.5.x                | v1.2.1-v1.5.x          | ---                      | 4.19 - 4.21            |
 | 2.4.x                | v1.2.x   | v1.4.x                | v1.2.1-v1.4.x          | 4.20 & 4.21              | 4.19 - 4.21            |
 | 2.2.x                | v1.0.x   | v1.3.0                | v1.2.1                 | ---                      | 4.19                   |
@@ -60,10 +60,10 @@ The control plane image contains the NGINX Gateway Fabric binary.
 
 ### Data plane images with NGINX
 
-| Name            | Base image                 | Image                                                              | Architectures |
-|-----------------|----------------------------|--------------------------------------------------------------------|----------------|
-| Default image   | `nginx:alpine-otel`        | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}`     | amd64<br>arm64 |
-| UBI-based image | `redhat/ubi9-minimal`      | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
+| Name            | Base image            | Image                                                              | Architectures |
+|-----------------|-----------------------|--------------------------------------------------------------------|----------------|
+| Default image   | `alpine:3.23`         | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}`     | amd64<br>arm64 |
+| UBI-based image | `redhat/ubi9-minimal` | `ghcr.io/nginx/nginx-gateway-fabric/nginx:{{< version-ngf >}}-ubi` | amd64<br>arm64 |
  
 ### Data plane images with NGINX Plus
 

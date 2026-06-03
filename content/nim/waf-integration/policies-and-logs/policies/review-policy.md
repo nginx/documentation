@@ -33,8 +33,8 @@ From **WAF > Policies**, you can manage your existing policies. On the **Securit
 - **Download Bundle** – Download the compiled `.tgz` security bundle for reuse or offline deployment.
 - **Delete** – Permanently remove the security policy from NGINX Instance Manager.
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 If you use **Save As** to create a new policy, include the `app_protect_cookie_seed` [directive]({{< ref "/waf/policies/directives.md" >}}).
 {{< /call-out >}}
 
-{{< call-out "note" "See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
+{{< call-out class="note" title="See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}

@@ -8,7 +8,7 @@ f5-files:
 
 If the diagnostic setting destination details included a storage account, logs show up in the storage container "insights-logs-nginxlogs" with the following format: `resourceID=/<NGINXaaS-resourceID>/y=<YYYY>/m=<MM>/d=<DD>/h=<HH>/PT1H.json`
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Attribute**               | **Description** |
 |-----------------------------|-----------------|
 | `<NGINXaaS-resourceID>`     | The resourceID of the NGINXaaS deployment in upper case.|
@@ -16,9 +16,9 @@ If the diagnostic setting destination details included a storage account, logs s
 | `<MM>`                      | The two-digit month when the log batch was generated.|
 | `<DD>`                      | The two-digit day when the log batch was generated.|
 | `<HH>`                      | The two-digit hour value that indicates the starting hour for the log batch, in 24 hour UTC format|
-{{</bootstrap-table>}}
+{{</table >}}
 
-{{< call-out "note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Azure Storage container.{{< /call-out >}}
+{{< call-out class="note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Azure Storage container.{{< /call-out >}}
 
 Each log event in the "PT1H.json" file is written in a new line delimited JSON text format. The properties that show up in each log line are described in the [Top Level Common Schema](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs-schema#top-level-common-schema) documentation.
 

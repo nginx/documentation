@@ -24,7 +24,7 @@ NGINX maintains the official NGINX Plus repository, which also provides packaged
 For module‑specific installation and usage instructions, select the corresponding package name in the table.
 
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 | Name                            | Description                       | Package name     |
 |---------------------------------|-----------------------------------|--------------------|
 | [ACME](https://github.com/nginx/nginx-acme) | Automatic certificate management ([ACMEv2](https://www.rfc-editor.org/rfc/rfc8555.html)) protocol support. | [`nginx-plus-module-acme`]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) |
@@ -47,7 +47,7 @@ For module‑specific installation and usage instructions, select the correspond
 | [Set-Misc](https://github.com/openresty/set-misc-nginx-module) | Adds `set_*` directives for scripting (extend NGINX [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module). | [`nginx-plus-module-set-misc`]({{< ref "/nginx/admin-guide/dynamic-modules/set-misc.md" >}}) |
 | [SPNEGO for Kerberos](https://github.com/stnoonan/spnego-http-auth-nginx-module) | Adds support for [GSS‑API based](https://www.rfc-editor.org/rfc/rfc2743) SPNEGO/Kerberos authentication. | [`nginx-plus-module-auth-spnego`]({{< ref "/nginx/admin-guide/dynamic-modules/spnego.md" >}}) |
 | [XSLT](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) | Applies XSLT transformations to XML responses. | [`nginx-plus-module-xslt`]({{< ref "/nginx/admin-guide/dynamic-modules/xslt.md" >}}) |
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ### Community dynamic modules 
 Besides the modules provided in the official repository, a wide range of third-party modules is available through community-driven projects such as [Awesome NGINX GitHub project](https://github.com/agile6v/awesome-nginx#third-party-modules). Many of these modules can be [compiled as dynamic modules]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_modules_oss" >}}) and used with your NGINX Plus or NGINX Open Source deployments.

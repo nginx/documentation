@@ -17,7 +17,7 @@ JWT authentication secures applications and APIs by validating JSON Web Tokens i
 
 By following these instructions, you will create two sample application endpoints: one with JWT authentication and one without, so you can see how each behaves.
 
-{{< call-out "note" >}} JWT authentication requires NGINX Plus. {{< /call-out >}}
+{{< call-out class="note" >}} JWT authentication requires NGINX Plus. {{< /call-out >}}
 
 ## Overview
 
@@ -186,7 +186,7 @@ For testing purposes, the following example shows a simple JWKS with a single RS
 }
 ```
 
-{{< call-out "note" >}} This example JWKS is for demonstration only. In production, use keys from your identity provider or key management system. {{< /call-out >}}
+{{< call-out class="note" >}} This example JWKS is for demonstration only. In production, use keys from your identity provider or key management system. {{< /call-out >}}
 
 ### Create a JWKS Secret and AuthenticationFilter
 
@@ -315,7 +315,7 @@ Events:              <none>
 
 ### Verify file-based JWT authentication
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Your clients should be able to resolve "cafe.example.com" to the public IP of the NGINX Service.
 
@@ -567,7 +567,7 @@ EOF
 - **realm**: (Optional) Sets the authentication realm shown in the `WWW-Authenticate` header when authentication fails.
 - **keyCache**: (Optional) Controls how long NGINX Plus caches the JWKS keys in memory. Supported values use standard time units such as 10s, 1m, or 1h. Caching avoids reloading the JWKS from the Secret for every request, improving performance. If not specified, the keys remain cached indefinitely and are only refreshed when NGINX is reloaded.
 
-{{< call-out "note" >}} The CA Secret must be in the same namespace as the AuthenticationFilter. {{< /call-out >}}
+{{< call-out class="note" >}} The CA Secret must be in the same namespace as the AuthenticationFilter. {{< /call-out >}}
 
 Verify the AuthenticationFilter is accepted with `kubectl describe`:
 
@@ -683,7 +683,7 @@ export JWT_TOKEN=$(curl -s -k -X POST https://localhost:8443/realms/nginx-gatewa
 
 ### Verify remote JWT authentication
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Your clients should be able to resolve "cafe.example.com" to the public IP of the NGINX Service.
 

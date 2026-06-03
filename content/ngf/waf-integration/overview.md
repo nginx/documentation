@@ -9,7 +9,7 @@ f5-description: Architecture, setup, and concepts for F5 WAF for NGINX integrati
 
 F5 NGINX Gateway Fabric integrates with F5 WAF for NGINX to provide enterprise-grade web application firewall protection. WAF policies are compiled externally and deployed to the data plane via the `WAFPolicy` custom resource.
 
-{{< call-out "note" >}} F5 WAF for NGINX requires NGINX Plus and a separate F5 WAF for NGINX subscription. Contact your F5 sales representative for licensing details. {{< /call-out >}}
+{{< call-out class="note" >}} F5 WAF for NGINX requires NGINX Plus and a separate F5 WAF for NGINX subscription. Contact your F5 sales representative for licensing details. {{< /call-out >}}
 
 ---
 
@@ -53,7 +53,7 @@ To enable WAF at install time use the **NGINX Plus with WAF** tab in the [Helm i
 
 To disable WAF for a specific Gateway, create a per-Gateway `NginxProxy` with `waf.enable: false` and reference it from that Gateway.
 
-{{< call-out "note" >}} For additional WAF-related NginxProxy settings — including `disableCookieSeed`, `bundleFailOpen`, and custom WAF container images — see [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} For additional WAF-related NginxProxy settings — including `disableCookieSeed`, `bundleFailOpen`, and custom WAF container images — see [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}). {{< /call-out >}}
 
 ### Enable WAF per Gateway
 
@@ -135,7 +135,7 @@ Gateway-level WAFPolicy → HTTPRoute (inherited automatically)
 Route-level WAFPolicy   → Overrides Gateway-level for that route only
 ```
 
-{{< call-out "tip" >}} GRPCRoutes are protected in the same way as HTTPRoutes. To target a GRPCRoute, set `kind: GRPCRoute` in the `targetRefs` field. Built-in gRPC log profiles (`log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`) are available for gRPC-specific security logging. {{< /call-out >}}
+{{< call-out class="tip" >}} GRPCRoutes are protected in the same way as HTTPRoutes. To target a GRPCRoute, set `kind: GRPCRoute` in the `targetRefs` field. Built-in gRPC log profiles (`log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`) are available for gRPC-specific security logging. {{< /call-out >}}
 
 ---
 

@@ -14,7 +14,7 @@ In this guide, we'll show you how to use API requests to update NGINX Configurat
 
 Before you begin, make sure you can properly authenticate your API requests with either an API Token or API Certificate, following the instructions in the [Authentication]({{<ref "/nginx-one-console/api/authentication.md" >}}) guide. To ensure you have registered or created your NGINX Instance, Config Sync Group, or Staged Config in the F5 NGINX One Console, follow the instructions in the [Manage your NGINX instances]({{<ref "/nginx-one-console/nginx-configs/" >}}) guide.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The workflows for managing NGINX Configs for Instances, Config Sync Groups, and Staged Configs in the F5 NGINX One Console are quite similar. This guide focuses on the steps for updating NGINX Configs for Instances. If you're working with Config Sync Groups, you'll follow a similar process but will need to update the API endpoints appropriately.
 {{< /call-out>}}
 
@@ -34,7 +34,7 @@ Use the following `curl` command to retrieve the current NGINX configuration for
    - `<instance-object-id>`: The object_id of the NGINX Instance you want to retrieve the NGINX configuration for.
    - `<token-value>`: Your API Token.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 To update the NGINX configuration for a Config Sync Group or Staged Config, replace `instances` with `config-sync-groups` or `staged-configs` and use the object_id of the Config Sync Group or Staged Config in the URL.
 {{< /call-out>}}
 

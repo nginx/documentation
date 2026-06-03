@@ -51,10 +51,30 @@ Replace `<version-tag>` with the specific version you need, for example, `{{< ni
    docker pull private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag>
    ```
 
+- For NGINX Plus Ingress Controller with F5 WAF for NGINX and NGINX Agent 3 (required for NGINX One Console, available starting with NGINX Ingress Controller 5.5.0), run:
+
+   ```shell
+   docker pull private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag>-agent
+   ```
+
 - For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
 
    ```shell
    docker pull private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>
+   ```
+
+   ```shell
+   docker pull private-registry.nginx.com/nap/waf-config-mgr:<waf-version-tag>
+   ```
+
+   ```shell
+   docker pull private-registry.nginx.com/nap/waf-enforcer:<waf-version-tag>
+   ```
+
+- For NGINX Plus Ingress Controller with F5 WAF for NGINX v5 and NGINX Agent 3 (required for NGINX One Console, available starting with NGINX Ingress Controller 5.5.0), run:
+
+   ```shell
+   docker pull private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>-agent
    ```
 
    ```shell
@@ -106,8 +126,33 @@ curl https://private-registry.nginx.com/v2/nginx-ic-nap/nginx-plus-ingress/tags/
   "name": "nginx-ic-nap/nginx-plus-ingress",
   "tags": [
     "{{< nic-version >}}-alpine-fips",
+    "{{< nic-version >}}-alpine-fips-agent",
     "{{< nic-version >}}-ubi",
-    "{{< nic-version >}}"
+    "{{< nic-version >}}-ubi-agent",
+    "{{< nic-version >}}-ubi8",
+    "{{< nic-version >}}-ubi8-agent",
+    "{{< nic-version >}}",
+    "{{< nic-version >}}-agent"
+  ]
+}
+```
+
+```shell
+curl https://private-registry.nginx.com/v2/nginx-ic-nap-v5/nginx-plus-ingress/tags/list --key <path-to-client.key> --cert <path-to-client.cert>
+```
+
+```json
+{
+  "name": "nginx-ic-nap-v5/nginx-plus-ingress",
+  "tags": [
+    "{{< nic-version >}}-alpine-fips",
+    "{{< nic-version >}}-alpine-fips-agent",
+    "{{< nic-version >}}-ubi",
+    "{{< nic-version >}}-ubi-agent",
+    "{{< nic-version >}}-ubi8",
+    "{{< nic-version >}}-ubi8-agent",
+    "{{< nic-version >}}",
+    "{{< nic-version >}}-agent"
   ]
 }
 ```
@@ -145,18 +190,25 @@ After pulling the image, tag it and upload it to your private registry.
       docker push <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
       ```
 
-   - For NGINX Controller with F5 WAF for NGINX, run:
+   - For NGINX Plus Ingress Controller with F5 WAF for NGINX, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
       docker push <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
       ```
 
-      - For NGINX Controller with F5 WAF for NGINX v5, run:
+   - For NGINX Plus Ingress Controller with F5 WAF for NGINX and NGINX Agent 3, run:
 
       ```shell
-      docker tag private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
-      docker push <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>
+      docker tag private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:<version-tag>-agent <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>-agent
+      docker push <my-docker-registry>/nginx-ic-nap/nginx-plus-ingress:<version-tag>-agent
+      ```
+
+   - For NGINX Plus Ingress Controller with F5 WAF for NGINX v5, run:
+
+      ```shell
+      docker tag private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>
+      docker push <my-docker-registry>/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>
       ```
 
       ```shell
@@ -169,7 +221,24 @@ After pulling the image, tag it and upload it to your private registry.
       docker push <my-docker-registry>/nap/waf-enforcer:<waf-version-tag>
       ```
 
-   - For NGINX Controller with F5 DoS for NGINX, run:
+   - For NGINX Plus Ingress Controller with F5 WAF for NGINX v5 and NGINX Agent 3, run:
+
+      ```shell
+      docker tag private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>-agent <my-docker-registry>/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>-agent
+      docker push <my-docker-registry>/nginx-ic-nap-v5/nginx-plus-ingress:<version-tag>-agent
+      ```
+
+      ```shell
+      docker tag private-registry.nginx.com/nap/waf-config-mgr:<waf-version-tag> <my-docker-registry>/nap/waf-config-mgr:<waf-version-tag>
+      docker push <my-docker-registry>/nap/waf-config-mgr:<waf-version-tag>
+      ```
+
+      ```shell
+      docker tag private-registry.nginx.com/nap/waf-enforcer:<waf-version-tag> <my-docker-registry>/nap/waf-enforcer:<waf-version-tag>
+      docker push <my-docker-registry>/nap/waf-enforcer:<waf-version-tag>
+      ```
+
+   - For NGINX Plus Ingress Controller with F5 DoS for NGINX, run:
 
       ```shell
       docker tag private-registry.nginx.com/nginx-ic-dos/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic-dos/nginx-plus-ingress:<version-tag>

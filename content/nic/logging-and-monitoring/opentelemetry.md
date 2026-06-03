@@ -88,7 +88,7 @@ nginx.org/location-snippets: |
 
 ## Customize OpenTelemetry
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 You cannot modify the additional directives in the _otel_exporter_ block using snippets.
 

@@ -20,7 +20,7 @@ f5-summary: >
 
 F5 NGINX Instance Manager uses [Go templating](https://pkg.go.dev/text/template) and JSON schemas to create flexible and robust NGINX configuration templates. This allows users to efficiently customize and validate configurations without needing expert knowledge of NGINX syntax.
 
-{{<call-out "tip" "Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
+{{<call-out class="tip" title="Enhanced templating with Sprig">}}<i class="fas fa-code-branch"></i>
  Go templating in NGINX Instance Manager includes support for the [Sprig function library](https://masterminds.github.io/sprig/), offering a wide range of additional functions that can be used in templates for advanced operations like string manipulation, data conversion, mathematics, and more. {{</call-out>}}
 
 This guide covers the following resource files for creating templates:
@@ -31,7 +31,7 @@ This guide covers the following resource files for creating templates:
 
 If you're creating templates from scratch, the following table lists the acceptable template and schama filenames to use:
 
-{{<bootstrap-table "table table-responsive table-striped table-bordered">}}
+{{<table>}}
 | Config File            | Applicable&nbsp;Type(s) | Schema File(s)                                       | Purpose                                                                                                              |
 |------------------------|--------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | **base.tmpl**            | base               | **main.json**<br>**http.json**<br>**http-server.json**<br>**http-upstream.json**<br>**location.json**<br>**stream.json**<br>**stream-server.json**<br>**stream-upstream.json**                                         | <p>Required for templates designated as base. The schema files are optional for templates that don't require user inputs.</p><p>The template file should include all directives needed to create a complete NGINX configuration, such as **main**, **http**, and **stream**. Also, it should have specific Go templating language commands to insert dynamic configuration details into the right sections or directive blocks.</p><p>Example for **main** directive block:<br>`{{ $input.ExecTemplateAugments "main" }}`</p>
@@ -44,7 +44,7 @@ If you're creating templates from scratch, the following table lists the accepta
 | **stream-server.tmpl**   | augment            | **stream-server.json**                    | Contains configuration and schema inputs for the [stream server directive](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server) block. The schema file is optional for templates that don't require user inputs. |
 | **stream&#8209;upstream.tmpl** | augment            | **stream&#8209;upstream.json**                  | Contains configuration and schema inputs for the [stream upstream directive](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream) block. The schema file is optional for templates that don't require user inputs. |
 | **README.md**            | base, augment      | n/a                                               | Provides documentation, usage instructions, and an overview of the template.                                        |
-{{</bootstrap-table>}}
+{{</table >}}
 
 <br>
 

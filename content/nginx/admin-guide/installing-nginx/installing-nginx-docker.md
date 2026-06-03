@@ -51,19 +51,19 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 ### Tags for operating systems
 
-{{<bootstrap-table "table table-bordered">}}
+{{<table>}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
 |--------------------------------------------|--------------|-----------------------------------------------|
 | Alpine (x86_64, aarch64)                   | `alpine`     | `r36-alpine`, `r36-alpine-3.20`               |
 | Debian (x86_64, aarch64)                   | `debian`     | `r36-debian`, `r36-debian-bookworm`           |
 | Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r36-ubi`, `r36-ubi-9`,  `r36-ubi-9-20251201` |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### Tags for NGINX Plus versions
 
 The NGINX Plus registry contains images for the two most recent versions of NGINX Plus. The basic operating system tag returns the latest version of NGINX Plus built for the latest version of this operating system.
 
-{{<call-out "tip" "Example:" "fas fa-terminal" >}}
+{{<call-out class="tip" title="Example:" icon="terminal" >}}
 `nginx-plus-r36-ubi-9`, `nginx-plus-r36-alpine-3.22`.
 {{</call-out>}}
 
@@ -173,7 +173,7 @@ docker push <my-docker-registry>/nginx-plus/base:<version-tag>
 
 ### Run the NGINX Plus container
 
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+{{< call-out class="note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), the JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 To start the Docker container with NGINX Plus, you will need to pass your JWT license file named `license.jwt` as the `NGINX_LICENSE_JWT` environment variable. If the license file needs to be located in a non-default directory, specify its full path using the `NGINX_LICENSE_PATH` variable (default path: `/etc/nginx/license.jwt`).
 
@@ -213,7 +213,7 @@ where:
 
 <br>
 
-{{<call-out "" "Example:" "" >}}
+{{<call-out class="" title="Example:" >}}
 To start the Docker Container with NGINX Plus and NGINX Agent on Debian or Ubuntu:
 
 ```sh

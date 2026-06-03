@@ -38,7 +38,7 @@ Before you begin, make sure you have the following:
   - For **lightweight mode** (no ClickHouse, no metrics):
     {{<icon "download">}} {{<link "/scripts/docker-compose/docker-compose-lightweight.yaml" "Download the lightweight docker-compose.yaml file">}}
 
-{{< call-out "note" >}} If you're not sure which one to use, start with lightweight mode. You can always switch later by changing the Compose file and setting `ENABLE_METRICS: "true"`.{{< /call-out >}}
+{{< call-out class="note" >}} If you're not sure which one to use, start with lightweight mode. You can always switch later by changing the Compose file and setting `ENABLE_METRICS: "true"`.{{< /call-out >}}
 
 ---
 
@@ -55,7 +55,7 @@ Standard mode requires a minimum of 4 CPU cores and 4 GB of memory. This setup i
 
 Lightweight mode removes ClickHouse, which lowers memory and CPU usage. While there’s no official minimum, users with basic instance management needs may see success with fewer resources. Test in your environment before committing to a smaller footprint.
 
-{{< call-out "note" >}} If you're not sure which mode to use, start with lightweight mode. It's easier to set up, and you can switch to standard mode later by reintroducing ClickHouse. {{< /call-out >}}
+{{< call-out class="note" >}} If you're not sure which mode to use, start with lightweight mode. It's easier to set up, and you can switch to standard mode later by reintroducing ClickHouse. {{< /call-out >}}
 
 ## Before you start
 

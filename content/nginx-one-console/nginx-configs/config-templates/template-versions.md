@@ -40,14 +40,14 @@ Before you begin, make sure you have:
 
 The **Versions** tab displays the following columns:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Column | Description |
 |--------|-------------|
 | **Version** | The sequential version number. Version 1 is the initial version created at import. Each subsequent content change increments this number. |
 | **Modified** | The date and time the version was last modified. |
 | **Description** | The description associated with the template version, if the author provided one. |
 | **Submissions** | The total number of template submissions that reference this specific version. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 You can sort the list by **Version**, **Modified**, or **Description**. You can also search across all visible columns.
 

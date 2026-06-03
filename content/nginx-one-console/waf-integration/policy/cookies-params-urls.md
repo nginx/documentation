@@ -118,7 +118,7 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
 1. Set Security Options:
    - Choose whether to enable attack signatures
    
-   {{< call-out "important" >}}
+   {{< call-out class="important" >}}
 
    Attack Signatures are only applicable when the Value Type is `User Input` or `Array` **and** the Data Type is either `Alphanumeric` or `Binary`
 
@@ -147,7 +147,7 @@ Each URL configuration includes:
   - **Disallow**: Blocks access to the URL entirely
 - `Attack Signatures`: Indicates whether attack signatures and threat campaigns are enabled, disabled, or not applicable
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 **⚠️ Important:** Attack Signatures are automatically shown as "Not Applicable" when Enforcement Type is set to `Disallow` since the URL is explicitly blocked and signature checking is unnecessary.
 
@@ -187,7 +187,7 @@ See the [Supported Violations]({{< ref "/waf/policies/violations.md#supported-vi
    - Choose whether to allow or disallow the URL
    - If `Allow URL` is selected, you can optionally enable attack signatures
 
-   {{< call-out "important" >}}
+   {{< call-out class="important" >}}
 
    **⚠️ Important:** Attack signatures cannot be enabled for disallowed URLs.
 

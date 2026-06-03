@@ -25,7 +25,7 @@ Ensure you have:
 - Permissions to modify `/etc/nms/nms.conf`
 - Proxy authentication credentials, if required
 
-{{<call-out "note" "Important considerations:" "">}}
+{{<call-out class="note" title="Important considerations:" >}}
 #### Proxy SSL verification
 
 - `proxy_ssl_verify` applies **only when** `proxy_protocol` is set to `https`.
@@ -53,7 +53,7 @@ On OpenShift, pods run as non-root users, which prevents the use of `update-ca-c
 
 The following table describes the available proxy configuration parameters in `/etc/nms/nms.conf`:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Parameter              | Description |
 |------------------------|-------------|
 | `proxy_enable`        | Defines whether NGINX Instance Manager routes outbound traffic through a forward proxy. <br> **Supported values:** `true` (routes certain outbound requests through the proxy) or `false` (sends data directly to servers). |
@@ -64,7 +64,7 @@ The following table describes the available proxy configuration parameters in `/
 | `proxy_username`      | Username for authentication with the proxy (if `proxy_auth_required: true`). |
 | `proxy_password`      | Password for authentication with the proxy (if `proxy_auth_required: true`). |
 | `proxy_ssl_verify`    | Controls SSL certificate verification when `proxy_protocol` is `https`. <br> **Default value:** `true`. <br> **Supported values:** `true` (only trusted proxies allowed) or `false` (allows untrusted/self-signed certificates). |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ---
 
@@ -190,7 +190,7 @@ If you’re deploying NGINX Instance Manager with Docker Compose, update the `do
 
 If your proxy uses HTTPS and `proxy_ssl_verify` is set to `true`, NGINX Instance Manager expects the proxy’s CA certificate to be trusted. If the proxy certificate is self-signed or issued by an untrusted Certificate Authority (CA), you must manually add it to the system’s trusted store.
 
-{{< call-out "note" >}}For Kubernetes deployments, perform these steps inside the **integrations pod**.{{< /call-out >}}
+{{< call-out class="note" >}}For Kubernetes deployments, perform these steps inside the **integrations pod**.{{< /call-out >}}
 
 1. Copy the proxy CA certificate into the system’s trusted certificate directory. The path varies by distribution:
    - **Debian/Ubuntu**: `/usr/local/share/ca-certificates/`
@@ -238,7 +238,7 @@ If proxy traffic is not working as expected, review the [troubleshooting section
 
 ## Troubleshoot common issues
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Issue** | **Log Message** | **Possible Cause** | **Resolution** |
 |-----------|---------------|---------------------|--------------|
 | **Authentication failed** | N/A | Incorrect proxy credentials. | Double-check `proxy_username` and `proxy_password`. |
@@ -246,4 +246,4 @@ If proxy traffic is not working as expected, review the [troubleshooting section
 | **Proxy initialization failure** | `unable to add proxy support,` <br> `err - <err>` | The proxy settings are misconfigured, or the proxy service is unavailable. | - Ensure that the proxy service is running and accessible. <br> - Verify that `proxy_enable` is set to `true` and all required parameters are correctly configured. |
 | **Proxy not reachable** | N/A | Incorrect proxy IP or port. | Verify `proxy_host` and `proxy_port` in `/etc/nms/nms.conf`. |
 | **TLS certificate verification error** | `proxyconnect tcp: tls:` <br> `failed to verify certificate:` <br> `x509: certificate signed by unknown authority` | SSL verification is enabled (default), but the proxy certificate is untrusted. | - Add the proxy’s CA certificate to the system’s trusted CA store. <br> - If necessary, disable SSL verification by setting proxy SSL verify to false (not recommended). |
-{{</bootstrap-table>}}
+{{</table >}}

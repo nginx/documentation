@@ -160,12 +160,12 @@ Use the [Submit templates for previewing NGINX configuration]({{< ref "/nginx-on
 
 The `preview_only` query parameter controls the mode:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | `preview_only` | Behavior | Response |
 |---|---|---|
 | `false` (default) | Renders the configuration, creates a persistent submission, and publishes to the target(s). | `202 Accepted` with submission `object_id` and target results. |
 | `true` | Renders the configuration for inspection **without** creating a submission or publishing. | `200 OK` with the rendered NGINX configuration. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Request structure
 
@@ -173,7 +173,7 @@ The following sections describe what you need for the request.
 
 ### Configuration path (`conf_path`)
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 This path determines where augment configurations are rendered:
 
@@ -406,7 +406,7 @@ Here's an example of what you need to include with the API request:
 
 If the rendered configuration has NGINX syntax errors, you can use this information to debug and correct your submission request.
 
-{{< call-out "caution" >}}
+{{< call-out class="caution" >}}
 Parse errors indicate the rendered configuration has NGINX syntax issues, often due to missing include files or incomplete template logic. See [Template Limitations]({{< ref "author-templates.md#template-limitations" >}}).
 {{< /call-out >}}
 

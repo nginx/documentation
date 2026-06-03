@@ -8,7 +8,7 @@ f5-files:
 
 If the diagnostic setting destination details included a Logs Analytics workspace, logs show up in the table "NGXOperationLogs" with the following non-standard attributes:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Attribute**               | **Description** |
 |-----------------------------|-----------------|
 | **Location**                  | The location of the NGINXaaS resource.|
@@ -18,7 +18,7 @@ If the diagnostic setting destination details included a Logs Analytics workspac
 | **Facility**                 | The syslog facility with which NGINX logs were generated if syslog-based log configuration is used. |
 | **Severity**                | The syslog severity with which NGINX logs were generated if syslog-based log configuration is used. |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 Using a [KQL](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/), a custom query can be run to view the logs:
 
@@ -31,4 +31,4 @@ For more information on the standard attributes that appear in Logs Analytics,se
 
 For more information on using [KQL](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/) see [Queries in Log Analytics](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/queries?tabs=groupby).
 
-{{< call-out "note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}
+{{< call-out class="note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}

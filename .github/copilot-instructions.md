@@ -200,12 +200,24 @@ hugo new content ngf/concepts/routing.md -k concept
 Front matter structure:
 
 ```yaml
-title: "Page title"           # Sentence case, present imperative
+title: "Page title"           # Sentence case; how-to/tutorial: verb phrase; concept: noun phrase
+description: "One sentence summarizing the page, under 160 characters."
 weight: 100                   # Controls sort order, increments of 100
-toc: false                    # Enable for large documents
-f5-content-type: how-to       # how-to | concept | tutorial | reference
-f5-product: INGRESS           # INGRESS, FABRIC, NIMNGR, F5WAFN, etc.
+toc: false                    # Enable for large documents (tech-specs, tutorial)
+f5-product: INGRESS           # Use a code from the Product codes table below
+f5-content-type: howto        # howto | concept | reference | tech-specs | tutorial
+f5-docs: DOCS-000             # Jira ticket ID for the doc request
+f5-keywords: "keyword1, keyword2, keyword3"
+f5-summary: >
+  Sentence 1: what the page covers.
+  Sentence 2: why it matters to the reader.
+  Sentence 3 (optional): scope or constraints.
+f5-audience: any              # developer | operator | admin | architect | any
 ```
+
+When adding or updating `f5-product` in front matter, always use a code from
+the **Product codes** table at the end of this file. Do not invent codes or
+use product names directly.
 
 ## Hugo shortcodes and includes
 

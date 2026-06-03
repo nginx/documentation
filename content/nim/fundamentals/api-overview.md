@@ -40,7 +40,7 @@ You can use tools such as `curl` or [Postman](https://www.postman.com) to intera
 
 You can find the NGINX Instance Manager API URLs in the following format: `https://<NIM_FQDN>/api/platform/<API_VERSION>`.
 
-{{< call-out "note" >}}When making API calls by using `curl`, Postman, or any other tool, include your [authentication](#authentication) information with each call. Also include a `-k` to bypass TLS/SSL verification.{{< /call-out >}}
+{{< call-out class="note" >}}When making API calls by using `curl`, Postman, or any other tool, include your [authentication](#authentication) information with each call. Also include a `-k` to bypass TLS/SSL verification.{{< /call-out >}}
 
 Alternatively, in the API Reference docs, you can also use the "Try it Out" function. Since you're already logged into the NGINX Instance Manager platform, the "Try it Out" function automatically includes authentication credentials.
 
@@ -67,7 +67,7 @@ To use the NGINX Instance Manager API, you need to use one of the following auth
 
 If your organization is using OIDC, you will be prompted to log in with your Identity Provider the first time you attempt to reach an API. After authenticating, you can request a JWT to use in subsequent API calls.
 
-{{< call-out "note" >}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team.{{< /call-out >}}
+{{< call-out class="note" >}}The means of requesting a token varies according to the Identity Provider; if you're not sure which provider your organization uses, check with your system administrator or technical support team.{{< /call-out >}}
 
 Once you have a JWT, set it up as a "Bearer" <access token> using the "Authorization" request header field, as shown in the example below.
 
@@ -86,7 +86,7 @@ NGINX Instance Manager uses standard HTTP response codes to indicate whether an 
 - Requests that refer to resources that do not exist or are in use by other resources.
 
 **HTTP Status Codes**
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 
 | Response Code | Meaning                                                          |
 |---------------|------------------------------------------------------------------|
@@ -99,7 +99,7 @@ NGINX Instance Manager uses standard HTTP response codes to indicate whether an 
 | 404           | Not found: The requested resource does not exist.                |
 | 409           | Conflict: The requested resource already exists or is referenced by another resource. |
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ## Encoding
 
@@ -113,7 +113,7 @@ Top-level NGINX Instance Manager API endpoints support fetching information abou
 
 ### Parameters
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 
 | Name       | Format   | Type  | Description                                                                                                                  | Default value |
 |------------|----------|-------|------------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -121,7 +121,7 @@ Top-level NGINX Instance Manager API endpoints support fetching information abou
 | pageToken| string   | query | A transactional token used for pagination. The token ensures consistent query results across requests.                        | N/A           |
 |  pageSize | integer  | query | The number of items returned per page. The maximum value is 100. If `pageSize=0`, pagination is disabled, and all results are returned. | `100`         |
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ## Versioning
 

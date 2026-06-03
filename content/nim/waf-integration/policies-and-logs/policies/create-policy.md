@@ -12,7 +12,7 @@ f5-summary: >
 
 You can create and manage security policies in F5 NGINX Instance Manager to control F5 WAF for NGINX behavior. When you create a policy, the interface provides guided options and presets aligned with F5 WAF for NGINX. If you’re familiar with WAF configuration, you can also customize your policy directly in JSON.
 
-{{< call-out "note" "See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
+{{< call-out class="note" title="See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
 
 ---
 

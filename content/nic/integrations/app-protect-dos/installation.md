@@ -9,7 +9,7 @@ f5-docs: DOCS-583
 
 This document explains how to build an image for F5 NGINX Ingress Controller with F5 DoS for NGINX from source code.
 
-{{<call-out "tip" "Pre-built image alternatives" >}}If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.{{</call-out>}}
+{{<call-out class="tip" title="Pre-built image alternatives" >}}If you'd rather not build your own NGINX Ingress Controller image, see the [pre-built image options](#pre-built-images) at the end of this guide.{{</call-out>}}
 
 ## Before you start
 
@@ -69,7 +69,7 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
 
      **What to expect**: The image is built and tagged with a version number, which is derived from the `VERSION` variable in the [_Makefile_]({{< ref "/nic/install/build.md#makefile-details" >}}). This version number is used for tracking and deployment purposes.
 
-{{< call-out "note" >}}In the event a patch version of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command.{{< /call-out >}}
+{{< call-out class="note" >}}In the event a patch version of NGINX Plus is released, make sure to rebuild your image to get the latest version. If your system is caching the Docker layers and not updating the packages, add `DOCKER_BUILD_OPTIONS="--pull --no-cache"` to the make command.{{< /call-out >}}
 
 ### Makefile targets
 
@@ -80,7 +80,7 @@ Follow these steps to build the NGINX Controller Image with F5 DoS for NGINX.
 | **ubi-image-dos-plus**    | Builds a UBI-based image with NGINX Plus and the [F5 DoS for NGINX](/nginx-app-protect-dos/) module. | OpenShift |
 | **ubi-image-nap-dos-plus** | Builds a UBI-based image with NGINX Plus, [F5 DoS for NGINX](/nginx-app-protect-dos/), and [F5 WAF for NGINX](/nginx-app-protect/). | OpenShift |
 
-{{< call-out "note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md#makefile-details" >}}) topic. {{< /call-out>}}
+{{< call-out class="note" >}} For the complete list of _Makefile_ targets and customizable variables, see the [Build NGINX Ingress Controller]({{< ref "/nic/install/build.md#makefile-details" >}}) topic. {{< /call-out>}}
 
 ## Push the image to your private registry
 
@@ -158,7 +158,7 @@ kubectl apply -f config/crd/bases/appprotectdos.f5.com_dosprotectedresources.yam
 
 ## Install the App Protect DoS Arbitrator
 
-{{< call-out "note" >}} If you install multiple NGINX Ingress Controllers in the same namespace, they will need to share the same Arbitrator because there can only be one Arbitrator in a single namespace. {{< /call-out >}}
+{{< call-out class="note" >}} If you install multiple NGINX Ingress Controllers in the same namespace, they will need to share the same Arbitrator because there can only be one Arbitrator in a single namespace. {{< /call-out >}}
 
 ### Helm Chart
 

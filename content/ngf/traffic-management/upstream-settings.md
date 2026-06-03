@@ -186,7 +186,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
+{{< call-out class="note" >}}In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.{{< /call-out >}}
 
 Create HTTPRoutes for the `coffee` and `tea` applications:
 
@@ -268,7 +268,7 @@ Server name: tea-76c7c85bbd-cf8nz
 
 You can use `UpstreamSettingsPolicy` to configure the load balancing method for the `coffee` and `tea` applications. In this example, the `coffee` service uses the `random two least_time=header` method, and the `tea` service uses the `hash consistent` method with `$upstream_addr` as the hash key. 
 
-{{< call-out "note" >}} You need to specify an NGINX [variable](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables) as `hashMethodKey` when using load balancing methods `hash` and `hash consistent` .{{< /call-out >}}
+{{< call-out class="note" >}} You need to specify an NGINX [variable](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables) as `hashMethodKey` when using load balancing methods `hash` and `hash consistent` .{{< /call-out >}}
 
 Create the following `UpstreamSettingsPolicy` resources:
 
@@ -355,7 +355,7 @@ upstream default_tea_80 {
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, and `random two least_conn`.
 NGINX Plus supports all of the methods available in NGINX Open Source, and adds the following methods: `random two least_time=header`, `random two least_time=last_byte`, `least_time header`, `least_time last_byte`, `least_time header inflight`, and `least_time last_byte inflight`.
 {{< /call-out >}}

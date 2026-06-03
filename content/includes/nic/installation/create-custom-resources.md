@@ -36,7 +36,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{%tab name="Install CRDs after cloning the repo"%}}
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/install/upgrade.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
 

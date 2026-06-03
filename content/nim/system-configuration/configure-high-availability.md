@@ -97,7 +97,7 @@ check_nms_services=(
 )
 ```
 
-{{<call-out "important" "Update nms.conf on both nodes when changing mode of operation" "fa-solid fa-triangle-exclamation" >}}If you switch between connected and disconnected modes, you must update **/etc/nms/nms.conf** on both the primary and secondary nodes if `nms-integrations` is included in `check_nms_services`. NGINX Instance Manager runs in connected mode by default. For instructions on changing the mode, see the [installation guide for disconnected environments]({{< ref "nim/disconnected/offline-install-guide.md#set-mode-disconnected" >}}).{{</call-out>}}
+{{<call-out class="important" title="Update nms.conf on both nodes when changing mode of operation" icon="triangle-alert" >}}If you switch between connected and disconnected modes, you must update **/etc/nms/nms.conf** on both the primary and secondary nodes if `nms-integrations` is included in `check_nms_services`. NGINX Instance Manager runs in connected mode by default. For instructions on changing the mode, see the [installation guide for disconnected environments]({{< ref "nim/disconnected/offline-install-guide.md#set-mode-disconnected" >}}).{{</call-out>}}
 
 
 ### Configure keepalived

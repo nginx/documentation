@@ -34,7 +34,7 @@ The script does not collect or create:
 - Lua scripts
 - Core dumps
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 It is highly recommended that you review the script and the created resources and verify that they conform with your organization's data sharing policies.
 {{< /call-out >}}
 
@@ -93,7 +93,7 @@ To create NGINX Diagnostic Package:
 
 The following table lists the arguments you can use to customize the data that needs to be collected based on your NGINX deployment.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Short | Long                     | Description                                                           | Example                  | Default          |
 | ----- | ------------------------ | ----------------------------------------------------------------------| -------------------------| -----------------|
@@ -110,5 +110,5 @@ The following table lists the arguments you can use to customize the data that n
 | `-ea` | `--exclude_api_stats`    | Excludes NGINX Plus API stats from the support package.               | `--exclude_api_stats`    | N/A              |
 | `-pi` | `--profile_interval`     | Profiling interval in seconds.                                        | `-pi 20`                 | 15               |
 
-{{</bootstrap-table>}}
+{{</table >}}
 

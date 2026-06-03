@@ -4,7 +4,7 @@ f5-files:
 - content/solutions/about-subscription-licenses/getting-started.md
 ---
 
-{{<call-out "note" "Before you begin">}}
+{{<call-out class="note" title="Before you begin">}}
 Before you deploy with a Config Sync Group, you need to create one in the NGINX One Console.  
 If you haven’t created a group yet, see [Manage Config Sync Groups]({{< ref "/nginx-one-console/nginx-configs/config-sync-groups/manage-config-sync-groups.md" >}}) for instructions.
 {{</call-out>}} 
