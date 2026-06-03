@@ -70,11 +70,11 @@ After pulling the image, tag it and upload it to your private registry.
 
 1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `2026-lts-r1`:
 
-   - For NGINX Plus Ingress Controller LTS, run:
+   - For NGINX Ingress Controller LTS, run:
 
       ```shell
-      docker tag private-registry.nginx.com/nginx-ic/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
-      docker push <my-docker-registry>/nginx-ic/nginx-plus-ingress:<version-tag>
+      docker tag private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:<version-tag> <my-docker-registry>/nginx-ic/lts/nginx-plus-ingress:<version-tag>
+      docker push <my-docker-registry>/nginx-ic/lts/nginx-plus-ingress:<version-tag>
       ```
 
 ## Troubleshooting
