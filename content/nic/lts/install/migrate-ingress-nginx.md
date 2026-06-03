@@ -422,7 +422,7 @@ egressMTLS:
 
 #### Session persistence
 
-You can use [Policy]({{< ref "/nic/lts/configuration/policy-resource" >}}) resources or annotations for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller. Session persistence via sticky cookie is available in both NGINX (since version 1.29.6) and NGINX Plus.
+You can use [Policy]({{< ref "/nic/lts/configuration/policy-resource" >}}) resources or annotations for session persistence, which have corresponding annotations for the community Ingress-NGINX Controller.
 
 Ingress-NGINX Controller:
 

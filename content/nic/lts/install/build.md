@@ -86,7 +86,7 @@ Once you've successfully built the NGINX Plus Ingress Controller image, the next
 
 ### For NGINX Plus
 
-Upload the NGINX Plus image. Like with the NGINX image, if you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
+Upload the NGINX Plus image. If you're using a custom tag, add `TAG=your-tag` to the end of the command. Replace `<my-docker-registry>` with your private registry's path.
 
 ```shell
 make push PREFIX=<my-docker-registry>/nginx-plus-ingress

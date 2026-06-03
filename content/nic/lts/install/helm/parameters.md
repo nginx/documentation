@@ -99,9 +99,9 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.enableSnippets** | Enable custom NGINX configuration snippets in Ingress, VirtualServer, VirtualServerRoute and TransportServer resources. | false |
 | **controller.healthStatus** | Add a location "/nginx-health" to the default server. The location responds with the 200 status code for any request. Useful for external health-checking of the NGINX Ingress Controller LTS. | false |
 | **controller.healthStatusURI** | Sets the URI of health status location in the default server. Requires `controller.healthStatus`. | "/nginx-health" |
-| **controller.nginxStatus.enable** | Enable the NGINX stub_status, or the NGINX Plus API. | true |
-| **controller.nginxStatus.port** | Set the port where the NGINX stub_status or the NGINX Plus API is exposed. | 8080 |
-| **controller.nginxStatus.allowCidrs** | Add IP/CIDR blocks to the allow list for NGINX stub_status or the NGINX Plus API. Separate multiple IP/CIDR by commas. | 127.0.0.1,::1 |
+| **controller.nginxStatus.enable** | Enable the NGINX Plus status API. | true |
+| **controller.nginxStatus.port** | Set the port where the NGINX Plus API is exposed. | 8080 |
+| **controller.nginxStatus.allowCidrs** | Add IP/CIDR blocks to the allow list for the NGINX Plus API. Separate multiple IP/CIDR by commas. | 127.0.0.1,::1 |
 | **controller.priorityClassName** | The PriorityClass of NGINX Ingress Controller LTS pods. | None |
 | **controller.service.create** | Creates a service to expose NGINX Ingress Controller LTS pods. | true |
 | **controller.service.type** | The type of service to create for NGINX Ingress Controller LTS. | LoadBalancer |
