@@ -42,7 +42,7 @@ IC_HTTPS_PORT=<port number>
 
 Create the file _webapp.yaml_ with the following contents:
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/custom-resources/access-control/webapp.yaml" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/custom-resources/access-control/webapp.yaml" >}}
 
 Apply it using `kubectl`:
 
@@ -56,7 +56,7 @@ kubectl apply -f webapp.yaml
 
 Create a file named _access-control-policy-deny.yaml_. The highlighted _deny_ field will be used by the example application, and should be changed to the subnet of your machine.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/custom-resources/access-control/access-control-policy-deny.yaml" "hl_lines=7-8" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/custom-resources/access-control/access-control-policy-deny.yaml" "hl_lines=7-8" >}}
 
 Apply the policy:
 
@@ -70,7 +70,7 @@ kubectl apply -f access-control-policy-deny.yaml
 
 Create a file named _virtual-server.yaml_ for the VirtualServer resource. The _policies_ field references the access control Policy created in the previous section.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/custom-resources/access-control/virtual-server.yaml" "hl_lines=7-8" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/custom-resources/access-control/virtual-server.yaml" "hl_lines=7-8" >}}
 
 Apply the policy:
 
@@ -105,7 +105,7 @@ The *403* response is expected, successfully blocking your machine.
 
 Update the Policy with the file _access-control-policy-allow.yaml_, setting the _allow_ field to the subnet of your machine.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/custom-resources/access-control/access-control-policy-allow.yaml" "hl_lines=7-8" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/custom-resources/access-control/access-control-policy-allow.yaml" "hl_lines=7-8" >}}
 
 Apply the Policy:
 
@@ -140,7 +140,7 @@ You can also apply access control policies to standard Kubernetes Ingress resour
 
 Create the file _cafe.yaml_ with the following contents:
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/ingress-resources/access-control/cafe.yaml" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/ingress-resources/access-control/cafe.yaml" >}}
 
 Apply it using `kubectl`:
 
@@ -152,7 +152,7 @@ kubectl apply -f cafe.yaml
 
 Create the file _nginx-config.yaml_ to configure NGINX to trust the `X-Real-IP` header. This ensures the access control policy uses the client IP provided in that header.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/ingress-resources/access-control/nginx-config.yaml" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/ingress-resources/access-control/nginx-config.yaml" >}}
 
 Apply the ConfigMap:
 
@@ -164,7 +164,7 @@ kubectl apply -f nginx-config.yaml
 
 Create a file named _access-control-policy-allow.yaml_. The highlighted _allow_ field permits traffic from the `10.0.0.0/8` CIDR range and blocks all other addresses.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/ingress-resources/access-control/access-control-policy-allow.yaml" "hl_lines=7-8" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/ingress-resources/access-control/access-control-policy-allow.yaml" "hl_lines=7-8" >}}
 
 Apply the policy:
 
@@ -176,7 +176,7 @@ kubectl apply -f access-control-policy-allow.yaml
 
 Create a file named _cafe-ingress.yaml_ for the Ingress resource. The highlighted `nginx.org/policies` annotation references the access control Policy created in the previous step.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/ingress-resources/access-control/cafe-ingress.yaml" "hl_lines=5-6" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/ingress-resources/access-control/cafe-ingress.yaml" "hl_lines=5-6" >}}
 
 Apply the Ingress:
 
@@ -221,7 +221,7 @@ kubectl apply -f cafe-ingress.yaml
 
 Update the Policy with the file _access-control-policy-deny.yaml_, which denies traffic from the `10.0.0.0/8` CIDR range and allows all other addresses.
 
-{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/main/examples/ingress-resources/access-control/access-control-policy-deny.yaml" "hl_lines=7-8" >}}
+{{< ghcode "https://raw.githubusercontent.com/nginx/kubernetes-ingress/refs/heads/release-2026-lts/examples/ingress-resources/access-control/access-control-policy-deny.yaml" "hl_lines=7-8" >}}
 
 Apply the updated Policy:
 

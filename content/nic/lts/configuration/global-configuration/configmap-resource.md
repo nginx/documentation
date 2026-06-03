@@ -208,18 +208,6 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 |*otel-exporter-header-name* | The name of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-value` required. | N/A | *"X-custom-header"* |
 |*otel-exporter-header-value* | The value of a custom HTTP header to add to telemetry export request. `otel-exporter-endpoint` and `otel-exporter-header-name` required. | N/A | *"custom-value"* |
 |*otel-service-name* | Sets the `service.name` attribute of the OTel resource. `otel-exporter-endpoint` required. | N/A | *"nginx-ingress-controller:nginx"* |
-| *otel-trace-in-http* | Enables [OpenTelemetry](https://opentelemetry.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Set this to *"false"* to enable OpenTelemetry for individual routes with snippets. `otel-exporter-endpoint` required. | *"false"* | *"true"* |
-|*opentracing* | Removed in v5.0.0.  Enables [OpenTracing](https://opentracing.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Note: requires the Ingress Controller image with OpenTracing module and a tracer. | *False* |  |
-|*opentracing-tracer* | Removed in v5.0.0.  Sets the path to the vendor tracer binary plugin. | N/A |  |
-|*opentracing-tracer-config* | Removed in v5.0.0.  Sets the tracer configuration in JSON format. | N/A |  |
-|*app-protect-compressed-requests-action* | Sets the *app_protect_compressed_requests_action* [global directive](/nginx-app-protect/configuration/#global-directives). | *drop* |  |
-|*app-protect-cookie-seed* | Sets the *app_protect_cookie_seed* [global directive](/nginx-app-protect/configuration/#global-directives). | Random automatically generated string |  |
-|*app-protect-failure-mode-action* | Sets the *app_protect_failure_mode_action* [global directive](/nginx-app-protect/configuration/#global-directives). | *pass* |  |
-|*app-protect-cpu-thresholds* | Sets the *app_protect_cpu_thresholds* [global directive](/nginx-app-protect/configuration/#global-directives). | *high=100 low=100* |  |
-|*app-protect-physical-memory-util-thresholds* | Sets the *app_protect_physical_memory_util_thresholds* [global directive](/nginx-app-protect/configuration/#global-directives). | *high=100 low=100* |  |
-|`app-protect-reconnect-period-seconds` | Sets the `app_protect_reconnect_period_seconds` [global directive](/nginx-app-protect/configuration/#global-directives). | `5` |  |
-|*app-protect-dos-log-format* | Sets the custom [log format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) for Dos Access log traffic. For convenience, it is possible to define the log format across multiple lines (each line separated by *\n*). In that case, the Ingress Controller will replace every *\n* character with a space character. All *'* characters must be escaped. | `, vs_name_al=$app_protect_dos_vs_name, ip=$remote_addr, tls_fp=$app_protect_dos_tls_fp, outcome=$app_protect_dos_outcome, reason=$app_protect_dos_outcome_reason, policy_name=$app_protect_dos_policy_name, dos_version=$app_protect_dos_version, ip_tls=$remote_addr:$app_protect_dos_tls_fp,` | |
-|*app-protect-dos-log-format-escaping* | Sets the characters escaping for the variables of the stream log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
-|*app-protect-dos-arb-fqdn* | Sets the *app-protect-dos-arb-fqdn* [directive](/nginx-app-protect-dos/directives-and-policy/learn-about-directives-and-policy/#arbitrator-fqdn-directive-app_protect_dos_arb_fqdn). | *svc-appprotect-dos-arb* |  |
+|*otel-trace-in-http* | Enables [OpenTelemetry](https://opentelemetry.io) globally (for all Ingress, VirtualServer and VirtualServerRoute resources). Set this to *"false"* to enable OpenTelemetry for individual routes with snippets. `otel-exporter-endpoint` required. | *"false"* | *"true"* |
 
 {{< /table >}}

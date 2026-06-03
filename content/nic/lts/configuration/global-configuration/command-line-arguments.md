@@ -397,82 +397,6 @@ Requires [-spire-agent-address](#cmdoption-spire-agent-address).
 Enable collection of latency metrics for upstreams.
 Requires [-enable-prometheus-metrics](#cmdoption-enable-prometheus-metrics).
 
-<a name="cmdoption-enable-app-protect"></a>
-
-### -enable-app-protect
-
-Enables support for App Protect.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus).
-
-- If the argument is set, but `nginx-plus` is set to false, NGINX Ingress Controller LTS will fail to start.
-
-<a name="cmdoption-app-protect-log-level"></a>
-
-### -app-protect-log-level `<string>`
-
-Sets log level for App Protect. Allowed values: fatal, error, warn, info, debug, trace.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
-
-- If the argument is set, but `nginx-plus` and `enable-app-protect` are set to false, NGINX Ingress Controller LTS will fail to start.
-
-<a name="cmdoption-enable-app-protect-dos"></a>
-
-### -enable-app-protect-dos
-
-Enables support for App Protect DoS.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus).
-
-- If the argument is set, but `nginx-plus` is set to false, NGINX Ingress Controller LTS will fail to start.
-
-<a name="cmdoption-app-protect-dos-debug"></a>
-
-### -app-protect-dos-debug
-
-Enable debugging for App Protect DoS.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmdoption-enable-app-protect-dos).
-
-- If the argument is set, but `nginx-plus` and `enable-app-protect-dos` are set to false, NGINX Ingress Controller LTS will fail to start.
-
-<a name="cmdoption-app-protect-dos-max-daemons"></a>
-
-### -app-protect-dos-max-daemons
-
-Max number of ADMD instances.
-
-Default `1`.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmdoption-enable-app-protect-dos).
-
-- If the argument is set, but `nginx-plus` and `enable-app-protect-dos` are set to false, NGINX Ingress Controller LTS will fail to start.
-
-<a name="cmdoption-app-protect-dos-max-workers"></a>
-
-### -app-protect-dos-max-workers
-
-Max number of nginx processes to support.
-
-Default `Number of CPU cores in the machine`.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmdoption-enable-app-protect-dos).
-
-- If the argument is set, but `nginx-plus` and `enable-app-protect-dos` are set to false, NGINX Ingress Controller LTS will fail to start.
-
-<a name="cmdoption-app-protect-dos-memory"></a>
-
-### -app-protect-dos-memory
-
-RAM memory size to consume in MB
-
-Default `50% of free RAM in the container or 80MB, the smaller`.
-
-Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmdoption-enable-app-protect-dos).
-
-- If the argument is set, but `nginx-plus` and `enable-app-protect-dos` are set to false, NGINX Ingress Controller LTS will fail to start.
-
 <a name="cmdoption-ready-status"></a>
 
 ### -ready-status
@@ -554,17 +478,3 @@ Enable gathering and reporting of software telemetry.
 The default value is `true`.
 
 <a name="cmdoption-enable-telemetry-reporting"></a>
-
-### -agent
-
-Enable NGINX Agent which can used with `-enable-app-protect` to send events to Security Monitoring.
-
-The default value is `false`.
-
-<a name="cmdoption-agent"></a>
-
-### -agent-instance-group
-
-Specify the instance group name to use for the NGINX Ingress Controller LTS deployment when using `-agent`.
-
-<a name="cmdoption-agent-instance-group"></a>

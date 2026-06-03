@@ -43,7 +43,6 @@ spec:
 |``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
 |``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md" >}}) | [WAF](#waf) | Yes | No |
 |``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | Yes | No |
 |``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | Yes | Yes |
 
@@ -941,69 +940,6 @@ If CORS is currently configured in deployments using `snippets` or `responseHead
 #### CORS Merging Behavior
 
 A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However, only one can be applied: every subsequent reference will be ignored.
-
-### WAF
-
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
-
-The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
-
-For example, the following policy will enable the referenced APPolicy. You can configure multiple APLogConfs with log destinations:
-
-```yaml
-waf:
-  enable: true
-  apPolicy: "default/dataguard-alarm"
-  securityLogs:
-  - enable: true
-    apLogConf: "default/logconf"
-    logDest: "syslog:server=syslog-svc.default:514"
-  - enable: true
-    apLogConf: "default/logconf"
-    logDest: "syslog:server=syslog-svc-secondary.default:514"
-```
-
-{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
-
-{{% table %}}
-
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
-|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
-|``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
-|``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecurityLogs) | No |
-
-{{% /table %}}
-
-#### WAF.SecurityLogs
-
-{{% table %}}
-
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``enable`` | Enables security log. | ``bool`` | No |
-|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
-
-{{% /table %}}
-
-#### WAF Merging Behavior
-
-A VirtualServer/VirtualServerRoute can reference multiple WAF policies. However, only one can be applied. Every subsequent reference will be ignored. For example, here we reference two policies:
-
-```yaml
-policies:
-- name: waf-policy-one
-- name: waf-policy-two
-```
-
-In this example NGINX Ingress Controller LTS will use the configuration from the first policy reference `waf-policy-one`, and ignores `waf-policy-two`.
 
 ## Using Policy
 
