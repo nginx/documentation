@@ -43,7 +43,6 @@ spec:
 |``ingressMTLS`` | The IngressMTLS policy configures client certificate verification. | [ingressMTLS](#ingressmtls) | Yes | No |
 |``egressMTLS`` | The EgressMTLS policy configures upstreams authentication and certificate verification. | [egressMTLS](#egressmtls) | Yes | No |
 |``oidc`` | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | [OIDC](#oidc) | Yes | No |
-|``waf`` | The WAF policy configures WAF and log configuration policies for [NGINX AppProtect]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md" >}}) | [WAF](#waf) | Yes | No |
 |``cache`` | The cache policy configures proxy caching for serving cached content. | [cache](#cache) | Yes | No |
 |``cors`` | The CORS policy configures Cross-Origin Resource Sharing headers. | [cors](#cors) | Yes | Yes |
 
@@ -204,12 +203,6 @@ If conditions are used, a request doesn't match any, and a `default` has been de
 The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
 
 ### RateLimit.Condition.JWT
-
-{{< call-out "note" >}}
-
-This feature is only available with NGINX Plus.
-
-{{< /call-out >}}
 
 RateLimit.Condition.JWT defines a condition for a rate limit by JWT claim. For example, here we define a condition for a rate limit policy that only applies to requests with a JWT claim `user_details.level` with a value `premium`:
 
@@ -385,12 +378,6 @@ In this example NGINX Ingress Controller LTS will use the configuration from the
 
 ### JWT Using Local Kubernetes Secret
 
-{{< call-out "note" >}}
-
-This feature is only available with NGINX Plus.
-
-{{< /call-out >}}
-
 The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens.
 
 The following example policy will reject all requests that do not include a valid JWT in the HTTP header `token`:
@@ -449,12 +436,6 @@ policies:
 In this example NGINX Ingress Controller LTS will use the configuration from the first policy reference `jwt-policy-one`, and ignores `jwt-policy-two`.
 
 ### JWT Using JWKS From Remote Location
-
-{{< call-out "note" >}}
-
-This feature is only available with NGINX Plus.
-
-{{< /call-out >}}
 
 The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens, allowing import of the keys (JWKS) for JWT policy by means of a URL (for a remote server or an identity provider) as a result they don't have to be copied and updated to the IC pod.
 
@@ -850,7 +831,7 @@ The feature is implemented using the NGINX [ngx_http_proxy_module](https://nginx
 |``allowedMethods`` | AllowedMethods defines which HTTP methods should be cached. Only "GET", "HEAD", and "POST" are supported by NGINX proxy_cache_methods directive. GET and HEAD are always cached by default even if not specified. Maximum of 3 items allowed. Examples: ["GET"], ["GET", "HEAD", "POST"]. Invalid methods: PUT, DELETE, PATCH, etc.  | ``[]string`` | No |
 |``levels`` | Levels defines the cache directory hierarchy levels for storing cached files. Must be in format "X:Y" or "X:Y:Z" where X, Y, Z are either 1 or 2. This controls the number of subdirectory levels and their name lengths. Examples: "1:2", "2:2", "1:2:2". Invalid: "3:1", "1:3", "1:2:3". | ``string`` | No |
 |``overrideUpstreamCache`` | OverrideUpstreamCache controls whether to override upstream cache headers (using proxy_ignore_headers directive). When true, NGINX will ignore cache-related headers from upstream servers like Cache-Control, Expires etc, Default: false. | ``bool`` | No |
-|``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. This feature is only available in NGINX Plus. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
+|``cachePurgeAllow`` | CachePurgeAllow defines IP addresses or CIDR blocks allowed to purge cache. Examples: ["192.168.1.100", "10.0.0.0/8", "::1"]. | ``[]string`` | No |
 |``cacheKey`` | CacheKey defines a key for caching (proxy_cache_key). By default, "$scheme$proxy_host$uri". Must not contain command execution patterns: $(, `, ;, &&, || | ``string`` | No |
 |``cacheUseStale`` | CacheUseStale determines in which cases a stale cached response can be used (proxy_cache_use_stale). Valid parameters: error, timeout, invalid_header, updating, http_500, http_502, http_503, http_504, http_403, http_404, http_429, off. | ``[]string`` | No |
 |``cacheRevalidate`` | CacheRevalidate enables revalidation of expired cache items using conditional requests (proxy_cache_revalidate). Uses "If-Modified-Since" and "If-None-Match" header fields. | ``bool`` | No |
@@ -941,69 +922,6 @@ If CORS is currently configured in deployments using `snippets` or `responseHead
 #### CORS Merging Behavior
 
 A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However, only one can be applied: every subsequent reference will be ignored.
-
-### WAF
-
-{{< call-out "note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
-
-The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
-
-For example, the following policy will enable the referenced APPolicy. You can configure multiple APLogConfs with log destinations:
-
-```yaml
-waf:
-  enable: true
-  apPolicy: "default/dataguard-alarm"
-  securityLogs:
-  - enable: true
-    apLogConf: "default/logconf"
-    logDest: "syslog:server=syslog-svc.default:514"
-  - enable: true
-    apLogConf: "default/logconf"
-    logDest: "syslog:server=syslog-svc-secondary.default:514"
-```
-
-{{< call-out "note" >}} The field `waf.securityLog` is deprecated and will be removed in future releases. It will be ignored if `waf.securityLogs` is populated. {{< /call-out >}}
-
-{{% table %}}
-
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
-|``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
-|``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
-|``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``securityLog.logDest`` | **Deprecated:** The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
-|``securityLogs`` | Config for security log destinations. | [waf.securityLogs](#wafsecurityLogs) | No |
-
-{{% /table %}}
-
-#### WAF.SecurityLogs
-
-{{% table %}}
-
-|Field | Description | Type | Required |
-| ---| ---| ---| --- |
-|``enable`` | Enables security log. | ``bool`` | No |
-|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/lts/integrations/app-protect-waf-v5/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
-|``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
-
-{{% /table %}}
-
-#### WAF Merging Behavior
-
-A VirtualServer/VirtualServerRoute can reference multiple WAF policies. However, only one can be applied. Every subsequent reference will be ignored. For example, here we reference two policies:
-
-```yaml
-policies:
-- name: waf-policy-one
-- name: waf-policy-two
-```
-
-In this example NGINX Ingress Controller LTS will use the configuration from the first policy reference `waf-policy-one`, and ignores `waf-policy-two`.
 
 ## Using Policy
 
