@@ -9,7 +9,7 @@ f5-product: INGRESS
 f5-content-type: how-to
 ---
 
-This document explains how to change the default ports that NGINX Ingress Controller is configured to use, as well as how to add additional `listen` settings. For more information, please read the [NGINX Listen documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
+This document explains how to change the default ports that NGINX Ingress Controller LTS is configured to use, as well as how to add additional `listen` settings. For more information, please read the [NGINX Listen documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
 
 ## Changing Default Ports
 
@@ -18,12 +18,10 @@ By default, NGINX Ingress Controller listens on ports 80 and 443. These ports ca
 If you are using NGINX Ingress Controller CRDs (VirtualServer):
 
 - `nginx-plus-virtualserver.tmpl` for NGINX Plus
-- `nginx-virtualserver.tmpl` if using NGINX OSS
 
 If you are using `Ingress` resource you will need to modify:
 
 - `nginx-plus-ingress.tmpl` if using NGINX Plus
-- `nginx-ingress.tmpl` if using NGINX OSS
 
 In this example, we will use the `nginx-virtualserver.tmpl` template to change the port from 80 to 85.
 You can find the [nginx-virtualserver template files in our repository](https://github.com/nginx/kubernetes-ingress/tree/main/internal/configs/version2).
