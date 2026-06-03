@@ -133,7 +133,7 @@ In multi-instance environments with an arbitrator, these statistics will be comb
 | Mitigations/s  | - | Number of mitigated requests per second  |
 | Requests  | - | Total number of incoming requests  |
 | Mitigations  | - | Total number of mitigated requests  |
-| Learning  | [ready\|ba only\|not ready] | Whether F5 DoS for NGINX collected enough data to protect the Protected Object  |
+| Learning  | [ready\|ba only\|not ready] | Whether F5 DoS for NGINX collected enough data to protect the Protected Object. Note: `ba only` means that request thresholds were learned, but full request sampling is not complete. In this status, F5 DoS for NGINX will only detect bad actors (by IP or IP+TLS fingerprint) and will not utilize mitigation signatures.  |
 | Protocol  | [http1\|http2\|grpc] | As defined by the `protocol` argument of the `app_protect_dos_monitor` directive  |
 | Mitigation Mode  | [standard\|conservative\|none]  | As defined by the `mitigation_mode` object in the JSON policy file from the `app_protect_dos_policy_file` directive  |
 | Signatures  | [on\|off] | As defined by the `signatures` object in the JSON policy file from the `app_protect_dos_policy_file` directive. Values - on/off  |
