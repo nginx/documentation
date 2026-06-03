@@ -18,10 +18,12 @@ By default, NGINX Ingress Controller listens on ports 80 and 443. These ports ca
 If you are using NGINX Ingress Controller CRDs (VirtualServer):
 
 - `nginx-plus-virtualserver.tmpl` for NGINX Plus
+- `nginx-virtualserver.tmpl` if using NGINX OSS
 
 If you are using `Ingress` resource you will need to modify:
 
 - `nginx-plus-ingress.tmpl` if using NGINX Plus
+- `nginx-ingress.tmpl` if using NGINX OSS
 
 In this example, we will use the `nginx-virtualserver.tmpl` template to change the port from 80 to 85.
 You can find the [nginx-virtualserver template files in our repository](https://github.com/nginx/kubernetes-ingress/tree/main/internal/configs/version2).
@@ -157,3 +159,4 @@ server {
     set $resource_name "cafe";
     set $resource_namespace "default";
 ```
+ 
