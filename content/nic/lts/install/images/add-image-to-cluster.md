@@ -38,7 +38,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/
 
 ```json
 {
-"name": "nginx-iclts/nginx-plus-ingress",
+"name": "nginx-ic/lts/nginx-plus-ingress",
 "tags": [
     "2026-lts-r1"
 ]
