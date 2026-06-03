@@ -1,6 +1,6 @@
 ---
 title: Changelog
-url: /nginx-ingress-controller/changelog
+url: /nginx-ingress-controller/lts/changelog
 weight: 10200
 f5-landing-page: true
 f5-content-type: reference
