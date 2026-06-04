@@ -141,7 +141,7 @@ controller:
       env: prod-weset
   nginxplus: plus
   image:
-    repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
+    repository: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress
     tag: 2026-lts-r1
   # NGINX Configmap
   config:

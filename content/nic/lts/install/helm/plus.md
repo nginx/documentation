@@ -55,7 +55,7 @@ Use Helm to install NGINX Ingress Controller LTS with NGINX Plus:
 helm install <my-release> oci://ghcr.io/nginx/charts/nginx-ingress-lts \
   --version {{< nic-lts-helm-version >}} \
   --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress \
-  --set controller.image.tag=2026-lts-r1 \
+  --set controller.image.tag={{< nic-lts-version >}} \
   --set controller.nginxplus=true \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.mgmt.licenseTokenSecretName=nplus-license
