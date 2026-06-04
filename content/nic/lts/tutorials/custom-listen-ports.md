@@ -82,7 +82,7 @@ spec:
     spec:
       serviceAccountName: nginx-ingress
       containers:
-      - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:2026-lts-r1
+      - image: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:{{< nic-lts-version >}} 
         imagePullPolicy: IfNotPresent
         name: nginx-ingress
         ports:

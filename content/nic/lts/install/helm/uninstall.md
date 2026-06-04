@@ -30,7 +30,7 @@ The command removes all the Kubernetes components associated with the release, t
 After removing the release, pull the chart sources:
 
 ```shell
-helm pull oci://ghcr.io/nginx/charts/nginx-ingress --untar --version {{< nic-helm-version >}}
+helm pull oci://ghcr.io/nginx/charts/nginx-ingress --untar --version {{< nic-lts-helm-version >}}
 ```
 
 {{< call-out "warning" >}} 

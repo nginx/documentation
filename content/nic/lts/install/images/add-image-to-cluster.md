@@ -27,7 +27,7 @@ If you are using Helm for deployment, there are two main methods: using a _chart
 The following command installs NGINX Ingress Controller LTS with a Helm chart, passing required arguments using the `set` parameter.
 
 ```shell
-helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress-lts --version {{< nic-lts-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress --set controller.image.tag=2026-lts-r1 --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
+helm install my-release -n nginx-ingress oci://ghcr.io/nginx/charts/nginx-ingress-lts --version {{< nic-lts-helm-version >}} --set controller.image.repository=private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress --set controller.image.tag={{< nic-lts-version >}} --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
 ```
 
 You can also use the certificate and key from the MyF5 portal and the Docker registry API to list the available image tags for the repositories, for example:
@@ -75,7 +75,7 @@ image:
 repository: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress
 
 ## The version tag
-tag: 2026-lts-r1
+tag: {{< nic-lts-version >}} 
 
 serviceAccount:
     ## The annotations of the service account of the Ingress Controller pods.

@@ -32,6 +32,6 @@ NGINX Ingress Controller LTS image include NGINX Plus LTS R37.0
 
 | Name | Base image | <div style="width:200px">Additional modules</div> | F5 Container Registry Image | Architectures | Based on CR |
 | ---| ---| --- | --- | --- | --- |
-|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>Agent (NGINX Agent 3) | ``private-registry.nginx.com/lts/nginx-ic/nginx-plus-ingress:2026-lts-r1`` | arm64<br>amd64 | 5.4.x |
+|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>Agent (NGINX Agent 3) | ``private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:{{< nic-lts-version >}} `` | arm64<br>amd64 | 5.4.x |
 
 {{< /table >}}
