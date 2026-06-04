@@ -27,4 +27,4 @@ This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
 ## 2026-lts-r1
 
-Based on NIC v5.4.3. See changelog.
+Based on NIC v5.4.3. See [Changelog]({{<ref "/nic/changelog/#543">}}).
