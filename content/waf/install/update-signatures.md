@@ -33,3 +33,14 @@ They will be named something in the following list:
 - `app-protect-threat-campaigns`
 
 You can update these packages independently of the core F5 WAF for NGINX packages, ensuring you always have the latest signatures.
+
+## Apply the updated signatures
+
+Updated signatures don't take effect until you reload NGINX. Until you reload, F5 WAF for NGINX keeps running the previous signatures.
+
+A reload is enough. You don't need to restart NGINX.
+
+To apply the updated signatures, run one of the following commands:
+
+- On all platforms: `nginx -s reload`
+- On systemd-based platforms (Amazon Linux, Debian, Oracle Linux, RHEL, Rocky Linux, Ubuntu): `sudo systemctl reload nginx`
