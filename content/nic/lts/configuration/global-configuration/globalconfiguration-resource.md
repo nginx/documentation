@@ -172,4 +172,4 @@ The events section includes a Warning event with the AddedOrUpdatedWithError rea
 
 ## Using IPV4 and IPV6 Addresses with GlobalConfiguration
 
-You can customize the IPv4 and IPv6 Address listeners in the global configuration and apply them to your VirtualServer resources. See the corresponding example [here](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/custom-ip-listeners/virtualserver/)
+You can customize the IPv4 and IPv6 Address listeners in the global configuration and apply them to your VirtualServer resources. See the corresponding example [here](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-lts-version >}}/examples/custom-resources/custom-ip-listeners/virtualserver/)

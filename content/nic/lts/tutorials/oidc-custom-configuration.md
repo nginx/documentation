@@ -29,7 +29,7 @@ Run the below command to generate a ConfigMap with the contents of the `oidc.tmp
 **NOTE** The ConfigMap must be deployed in the same `namespace` as the F5 NGINX Ingress Controller LTS.
 
 ```console
-kubectl create configmap oidc-config-map --from-literal=oidc.tmpl="$(curl -k https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/internal/configs/version2/oidc.tmpl)"
+kubectl create configmap oidc-config-map --from-literal=oidc.tmpl="$(curl -k https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-lts-version >}}/internal/configs/version2/oidc.tmpl)"
 ```
 
 Use the `kubectl describe` command to confirm the contents of the ConfigMap are correct.

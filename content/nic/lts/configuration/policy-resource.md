@@ -10,7 +10,7 @@ The Policy resource allows you to configure features like access control and rat
 
 The resource is implemented as a [Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-This document is the reference documentation for the Policy resource. An example of a Policy for access control is available in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/access-control).
+This document is the reference documentation for the Policy resource. An example of a Policy for access control is available in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-lts-version >}}/examples/custom-resources/access-control).
 
 ## Before you begin
 
@@ -200,7 +200,7 @@ Conditions (`jwt` or `variables`) are optional, but each policy can only have on
 If conditions are used, a request doesn't match any, and a `default` has been defined, the `default` policy applies. Otherwise, if no `default` is set, the request isn't rate limited.
 {{< /call-out >}}
 
-The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
+The rate limit policy with condition is designed to be used in combination with one or more rate limit policies. For example, multiple rate limit policies with [RateLimit.Condition.JWT](#ratelimitconditionjwt) can be used to apply different tiers of rate limit based on the value of a JWT claim. For a practical example of tiered rate limiting by the value of a JWT claim, see the example in our [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-lts-version >}}/examples/custom-resources/rate-limit-tiered-jwt-claim/README.md).
 
 ### RateLimit.Condition.JWT
 
@@ -713,7 +713,7 @@ The feature is implemented using the [reference implementation](https://github.c
 #### Prerequisites
 
 In order to use OIDC, you need to enable [zone synchronization]({{< ref "/nginx/admin-guide/high-availability/zone_sync.md" >}}). If you don't set up zone synchronization, NGINX Plus will fail to reload.
-You also need to configure a resolver, which NGINX Plus will use to resolve the IDP authorization endpoint. You can find an example configuration [in our GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/examples/custom-resources/oidc#step-7---configure-nginx-plus-zone-synchronization-and-resolver).
+You also need to configure a resolver, which NGINX Plus will use to resolve the IDP authorization endpoint. You can find an example configuration [in our GitHub repository](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-lts-version >}}/examples/custom-resources/oidc#step-7---configure-nginx-plus-zone-synchronization-and-resolver).
 
 {{< call-out "warning" >}}
 
