@@ -75,7 +75,7 @@ image:
 repository: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress
 
 ## The version tag
-tag: 2026-lts-r1
+tag: {{< nic-lts-version >}} 
 
 serviceAccount:
     ## The annotations of the service account of the Ingress Controller pods.

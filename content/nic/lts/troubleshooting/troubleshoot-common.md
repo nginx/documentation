@@ -142,7 +142,7 @@ controller:
   nginxplus: plus
   image:
     repository: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress
-    tag: 2026-lts-r1
+    tag: {{< nic-lts-version >}} 
   # NGINX Configmap
   config:
     entries:
