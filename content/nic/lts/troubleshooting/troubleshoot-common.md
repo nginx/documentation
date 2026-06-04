@@ -4,23 +4,21 @@ toc: true
 weight: 200
 f5-content-type: how-to
 f5-product: INGRESS
-f5-docs: DOCS-1459
 ---
 
-This page describes how to troubleshoot common issues with NGINX Ingress Controller. Instruction for specific resources is available in the [Troubleshooting]({{< ref "/nic/troubleshooting/" >}}) section.
+This page describes how to troubleshoot common issues with NGINX Ingress Controller LTS. Instruction for specific resources is available in the [Troubleshooting]({{< ref "/nic/lts/troubleshooting/" >}}) section.
 
 ## Common issues
 
 {{% table %}}
-
 | Problem Area | Symptom | Troubleshooting Method | Common Cause |
 |-----|-----|-----|-----|
-| Startup | NGINX Ingress Controller fails to start. | Check the logs. | Misconfigured RBAC, a missing default server TLS Secret.|
+| Startup | NGINX Ingress Controller LTS fails to start. | Check the logs. | Misconfigured RBAC, a missing default server TLS Secret.|
 | Ingress resource and annotations | The configuration is not applied | Check the events of the Ingress resource, check the logs, check the generated config. | Invalid values of annotations. |
 | VirtualServer and VirtualServerRoute resources | The configuration is not applied. | Check the events of the VirtualServer and VirtualServerRoutes, check the logs, check the generated config. | VirtualServer or VirtualServerRoute is invalid. |
 | Policy resource | The configuration is not applied. | Check the events of the Policy resource as well as the events of the VirtualServers that reference that policy, check the logs, check the generated config. | Policy is invalid. |
 | ConfigMap keys | The configuration is not applied. | Check the events of the ConfigMap, check the logs, check the generated config.  | Invalid values of ConfigMap keys. |
-| NGINX | NGINX responds with unexpected responses. | Check the logs, check the generated config, check the live activity dashboard (NGINX Plus only), run NGINX in the debug mode. | Unhealthy backend pods, a misconfigured backend service. |
+| NGINX | NGINX responds with unexpected responses. | Check the logs, check the generated config, check the live activity dashboard, run NGINX in the debug mode. | Unhealthy backend pods, a misconfigured backend service. |
 {{% /table %}}
 
 ## Troubleshooting Methods
@@ -29,12 +27,12 @@ This section explains how to gather additional information for troubleshooting.
 
 The commands examples make the following assumptions:
 
-- That NGINX Ingress Controller is deployed in the namespace `nginx-ingress`.
-- `<nginx-ingress-pod>` is the name of one of the NGINX Ingress Controller pods.
+- That NGINX Ingress Controller LTS is deployed in the namespace `nginx-ingress`.
+- `<nginx-ingress-pod>` is the name of one of the NGINX Ingress Controller LTS pods.
 
-### Check NGINX Ingress Controller logs
+### Check NGINX Ingress Controller LTS logs
 
-To check NGINX Ingress Controller logs, which include both information from NGINX Ingress Controller and NGINX's access and error logs, run the following command:
+To check NGINX Ingress Controller LTS logs, which include both information from NGINX Ingress Controller LTS and NGINX's access and error logs, run the following command:
 
 ```shell
 kubectl logs <nginx-ingress-pod> -n nginx-ingress
@@ -42,9 +40,9 @@ kubectl logs <nginx-ingress-pod> -n nginx-ingress
 
 ### Check the generated configuration files
 
-For each Ingress/VirtualServer resource, NGINX Ingress Controller generates a corresponding NGINX configuration file in the `/etc/nginx/conf.d folder`.
+For each Ingress/VirtualServer resource, NGINX Ingress Controller LTS generates a corresponding NGINX configuration file in the `/etc/nginx/conf.d folder`.
 
- Additionally, NGINX Ingress Controller generates the main configuration file `/etc/nginx/nginx.conf`, which includes all the configurations files from `/etc/nginx/conf.d`. The configuration for a VirtualServerRoute resource is located in the configuration file of the VirtualServer that references the resource.
+ Additionally, NGINX Ingress Controller LTS generates the main configuration file `/etc/nginx/nginx.conf`, which includes all the configurations files from `/etc/nginx/conf.d`. The configuration for a VirtualServerRoute resource is located in the configuration file of the VirtualServer that references the resource.
 
 You can view the content of the main configuration file by running:
 
@@ -64,15 +62,15 @@ However, this command will fail if any of the configuration files is not valid.
 
 ### Check the Live Activity Monitoring Dashboard
 
-The live activity monitoring dashboard shows the real-time information about NGINX Plus and the applications it is load balancing, which is helpful for troubleshooting. To access the dashboard, read the [Status Page]({{< ref "/nic/logging-and-monitoring/status-page.md" >}}) topic.
+The live activity monitoring dashboard shows the real-time information about NGINX Plus and the applications it is load balancing, which is helpful for troubleshooting. To access the dashboard, read the [Status Page]({{< ref "/nic/lts/logging-and-monitoring/status-page.md" >}}) topic.
 
-### Enable debugging for NGINX Ingress Controller
+### Enable debugging for NGINX Ingress Controller LTS
 
-For additional NGINX Ingress Controller debugging, you can enable debug settings to get more verbose logging.
+For additional NGINX Ingress Controller LTS debugging, you can enable debug settings to get more verbose logging.
 
-Increasing the debug log levels for NGINX Ingress Controller will also apply to NGINX itself.
+Increasing the debug log levels for NGINX Ingress Controller LTS will also apply to NGINX itself.
 
-There are two places to configure more verbose logging for NGINX Ingress Controller:
+There are two places to configure more verbose logging for NGINX Ingress Controller LTS:
 
 1. Command line arguments
 1. Configmap settings
@@ -81,7 +79,7 @@ There are two places to configure more verbose logging for NGINX Ingress Control
 
 When using `manifest` for deployment, use the command line argument `-nginx-debug` in your deployment, daemonset, or statefulset.
 
-You can add the `-log-level` parameter to increase the verbosity of the NGINX Ingress Controller process.
+You can add the `-log-level` parameter to increase the verbosity of the NGINX Ingress Controller LTS process.
 
 Here is a small snippet of setting these command line arguments in the `args` section of a deployment:
 
@@ -94,7 +92,7 @@ args:
 ```
 
 **ConfigMap settings**
-You can configure `error-log-level` in NGINX Ingress Controller `configMap`:
+You can configure `error-log-level` in NGINX Ingress Controller LTS `configMap`:
 
 ```yaml
 kind: ConfigMap
@@ -143,8 +141,8 @@ controller:
       env: prod-weset
   nginxplus: plus
   image:
-    repository: nginx/nginx-ingress
-    tag: {{< nic-version >}}
+    repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
+    tag: 2026-lts-r1
   # NGINX Configmap
   config:
     entries:
@@ -157,11 +155,11 @@ controller:
 
 Enable the `nginx-debug` CLI argument and change the `error-log-level` to `debug` to capture more output for debugging.
 
-{{< call-out class="note" >}} It is recommended to only enable `nginx-debug` CLI and the `error-log-level` when debugging. {{< /call-out >}}
+{{< call-out "note" >}} It is recommended to only enable `nginx-debug` CLI and the `error-log-level` when debugging. {{< /call-out >}}
 
-#### Example debug NGINX Ingress Controller Output
+#### Example debug NGINX Ingress Controller LTS Output
 
-These logs show some of the additional entries when debugging is enabled for NGINX Ingress Controller.
+These logs show some of the additional entries when debugging is enabled for NGINX Ingress Controller LTS.
 
 ```shell
 I1026 15:39:03.269092       1 manager.go:301] Reloading nginx with configVersion: 1
