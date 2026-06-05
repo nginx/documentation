@@ -356,8 +356,7 @@ upstream default_tea_80 {
 ```
 
 {{< call-out "note" >}}
-NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, and `random two least_conn`.
-NGINX Plus supports all of the methods available in NGINX Open Source, and adds the following methods: `random two least_time=header`, `random two least_time=last_byte`, `least_time header`, `least_time last_byte`, `least_time header inflight`, and `least_time last_byte inflight`.
+NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, `random two least_conn`, `random two least_time=header`, `random two least_time=last_byte`, `least_time header`, `least_time last_byte`, `least_time header inflight`, and `least_time last_byte inflight`.
 {{< /call-out >}}
 
 ## Configure upstream zone size
@@ -421,7 +420,7 @@ You should see the `zone` directive in the `coffee` and `tea` upstreams both spe
 
 ```text
 upstream default_coffee_80 {
-    random two least_conn;
+    least_time header;
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
@@ -429,7 +428,7 @@ upstream default_coffee_80 {
 }
 
 upstream default_tea_80 {
-    random two least_conn;
+    least_time header;
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
@@ -498,7 +497,7 @@ You should see that the `coffee` upstream has the `keepalive` directive set to 3
 
 ```text
 upstream default_coffee_80 {
-    random two least_conn;
+    least_time header;
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
@@ -558,7 +557,7 @@ kubectl exec -it deployments/gateway-nginx -- nginx -T
 
 ```text
 upstream default_tea_80 {
-    random two least_conn;
+    least_time header;
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
