@@ -10,11 +10,11 @@ f5-keywords: NGINX Gateway Fabric, HTTP/2, upstream HTTP/2, appProtocol, kuberne
 f5-summary: This guide shows you how to configure NGINX Gateway Fabric to proxy requests to upstream services over HTTP/2 by setting appProtocol to kubernetes.io/h2c on a Kubernetes Service port. Using HTTP/2 for upstream connections enables multiplexing and reduces latency for services that support it. This guide is for operators and developers who have NGINX Gateway Fabric installed and are familiar with Kubernetes Services and the Gateway API.
 ---
 
-Learn how to configure NGINX Gateway Fabric to use HTTP/2 when proxying requests to upstream services using the Service `appProtocol`.
+Learn how to configure NGINX Gateway Fabric to use HTTP/2 when proxying requests to upstream services using the Service port's `appProtocol` field.
 
 ## Overview
 
-The `appProtocol` field on a Kubernetes Service provides a way to specify an application protocol for each Service port. Implementations of a controller such as NGINX Gateway Fabric use this field to offer richer behavior for protocols that are understood. For more information, view the official [Kubernetes Service Documentation](https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol).
+The `appProtocol` field on a Kubernetes Service port provides a way to specify an application protocol. Implementations of a controller such as NGINX Gateway Fabric use this field to offer richer behavior for protocols that are understood. For more information, view the official [Kubernetes Service Documentation](https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol).
 
 When a Kubernetes Service port has `appProtocol` set to `kubernetes.io/h2c`, NGINX Gateway Fabric configures the corresponding NGINX location to use HTTP/2 for upstream connections by setting the [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive to `2` in the NGINX configuration.
 
@@ -185,7 +185,7 @@ In addition to the `kubernetes.io/h2c` `appProtocol`, NGINX Gateway Fabric recog
 
 These `appProtocols` reference WebSocket over cleartext and WebSocket over TLS respectively and are supported natively by our default NGINX configuration. `kubernetes.io/ws` is only supported on HTTPRoutes and `kubernetes.io/wss` is only supported on TLSRoutes or on HTTPRoutes with an associated BackendTLSPolicy.
 
-If an `appProtocol` on a Service is referenced by an unsupported Route type, that backendRef will be considered invalid and status will be written to the Route.
+If an `appProtocol` on a Service port is referenced by an unsupported Route type, that backendRef will be considered invalid and status will be written to the Route.
 
 NGINX Gateway Fabric is conformant to the information in [GEP-1911](https://gateway-api.sigs.k8s.io/geps/gep-1911/), which should be referenced for more detailed information.
 
