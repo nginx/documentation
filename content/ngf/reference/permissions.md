@@ -67,7 +67,7 @@ NGINX containers managed by the control plane. No RBAC permissions needed since 
 
 {{< call-out "note" >}}
 
-Kubernetes isn’t normally safe for hostile multi-tenant environments and NGINX is designed to treat upstreams as trusted. If you need a dataplane that doesn't treat all upstreams as trusted, you may want to explore alternative solutions.
+Kubernetes is generally not recommended for hostile multi-tenant environments and NGINX is designed to treat upstreams as trusted. If you need a dataplane that doesn't treat upstreams as trusted, you may want to explore alternative solutions.
 
 {{< /call-out >}}
 
