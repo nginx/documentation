@@ -420,7 +420,7 @@ You should see the `zone` directive in the `coffee` and `tea` upstreams both spe
 
 ```text
 upstream default_coffee_80 {
-    least_time header;
+    random two least_time header;
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
@@ -428,7 +428,7 @@ upstream default_coffee_80 {
 }
 
 upstream default_tea_80 {
-    least_time header;
+    random two least_time header;
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
@@ -497,7 +497,7 @@ You should see that the `coffee` upstream has the `keepalive` directive set to 3
 
 ```text
 upstream default_coffee_80 {
-    least_time header;
+    random two least_time header;
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
@@ -557,7 +557,7 @@ kubectl exec -it deployments/gateway-nginx -- nginx -T
 
 ```text
 upstream default_tea_80 {
-    least_time header;
+    random two least_time header;
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
