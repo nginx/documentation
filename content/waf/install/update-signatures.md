@@ -36,7 +36,7 @@ You can update these packages independently of the core F5 WAF for NGINX package
 
 ## Apply the updated signatures
 
-Updated signatures don't take effect until you reload NGINX. Until you reload, F5 WAF for NGINX keeps running the previous signatures.
+Updated signatures take effect after you reload NGINX. Until then, F5 WAF for NGINX keeps running the previous signatures.
 
 A reload is enough. You don't need to restart NGINX.
 

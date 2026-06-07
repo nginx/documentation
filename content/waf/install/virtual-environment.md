@@ -430,7 +430,7 @@ server {
 Once you have updated your configuration files, reload NGINX to apply the changes:
 
 - On all platforms: `nginx -s reload`
-- On systemd-based platforms (Amazon Linux, Debian, Oracle Linux, RHEL, Rocky Linux, Ubuntu): `sudo systemctl reload nginx`
+- On systemd-based platforms (Amazon Linux, Debian, Oracle Linux, RHEL, Rocky Linux, Ubuntu), you can reload NGINX with: `sudo systemctl reload nginx` instead
 
 ## Post-installation checks
 
