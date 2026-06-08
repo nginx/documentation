@@ -42,7 +42,6 @@ Updated signatures take effect after you reload NGINX. Until then, F5 WAF for NG
 
 A reload is enough. You don't need to restart NGINX.
 
-To apply the updated signatures, run either of the following commands:
+To apply the updated signatures, run the following command:
 
-- On all platforms, including systemd-based platforms: `nginx -s reload`
-- On systemd-based platforms (Amazon Linux, Debian, Oracle Linux, RHEL, Rocky Linux, Ubuntu), you can instead use: `sudo systemctl reload nginx`
+- `nginx -s reload`
