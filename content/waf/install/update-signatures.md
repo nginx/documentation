@@ -8,7 +8,7 @@ f5-product: F5WAFN
 
 This topic describes how to update F5 WAF for NGINX signatures in a [virtual machine or bare-metal environment]({{< ref "/waf/install/virtual-environment.md" >}}).
 
-For other deployment methods, you should read [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}).
+For deployments that use compiled policy bundles, including compiler-image workflows, read [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}). In those deployments, update the security packages in the compiler image, recompile the policy bundles, then apply the updated bundle to the running deployment.
 
 Signatures are divided into three groups:
 
@@ -36,11 +36,13 @@ You can update these packages independently of the core F5 WAF for NGINX package
 
 ## Apply the updated signatures
 
+This section applies to virtual machine and bare-metal installations where the signature packages are updated on the same host that runs F5 WAF for NGINX.
+
 Updated signatures take effect after you reload NGINX. Until then, F5 WAF for NGINX keeps running the previous signatures.
 
 A reload is enough. You don't need to restart NGINX.
 
-To apply the updated signatures, run one of the following commands:
+To apply the updated signatures, run either of the following commands:
 
-- On all platforms: `nginx -s reload`
-- On systemd-based platforms (Amazon Linux, Debian, Oracle Linux, RHEL, Rocky Linux, Ubuntu): `sudo systemctl reload nginx`
+- On all platforms, including systemd-based platforms: `nginx -s reload`
+- On systemd-based platforms (Amazon Linux, Debian, Oracle Linux, RHEL, Rocky Linux, Ubuntu), you can instead use: `sudo systemctl reload nginx`

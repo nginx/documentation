@@ -120,6 +120,26 @@ Never upload your F5 WAF for NGINX images to a public container registry such as
 
 {{< /call-out >}}
 
+## Update security packages in the compiler image
+
+To use newer attack signatures, bot signatures, or threat campaigns with the compiler workflow, rebuild your compiler image with the updated security packages, then recompile your policy bundles.
+
+Updating the compiler image alone does not update a running F5 WAF for NGINX deployment. The Enforcer continues to use the signatures contained in the currently deployed policy bundle until you deploy a newly compiled bundle and apply the updated configuration.
+
+To apply updated signatures from a compiler image:
+
+1. Rebuild the compiler image with the updated security packages:
+    - `app-protect-attack-signatures`
+    - `app-protect-bot-signatures`
+    - `app-protect-threat-campaigns`
+2. Recompile all policy bundles with the rebuilt compiler image.
+3. Replace or mount the updated bundle in your F5 WAF for NGINX deployment.
+4. Apply the updated configuration:
+    - If only the F5 WAF for NGINX configuration changed, and `nginx.conf` and its included files did not change, use [apreload]({{< ref "/waf/configure/apreload.md" >}}).
+    - If `nginx.conf`, any included NGINX file, or any App Protect directive in `nginx.conf` changed, reload NGINX.
+
+A full NGINX restart is not required.
+
 ## Using the compiler
 
 This section uses `version-tag` as a placeholder in its examples, following the previous section. Ensure that all input files are accessible to UID 101.
