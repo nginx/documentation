@@ -65,7 +65,7 @@ http {
 ## Choose a load balancing method {#method}
 
 NGINX Open Source supports four load balancing methods: Round Robin, Least Connections, IP Hash, and Generic Hash.
-NGINX and NGINX Plus supports six load balancing methods: the four above, Least Time, and Random.
+NGINX Plus supports six load balancing methods: the four above, Least Time, and Random.
 
 > **Note:** When configuring any method other than Round Robin, put the corresponding directive ([`hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash), [`ip_hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash), [`least_conn`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn), [`least_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time), or [`random`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random)) above the list of `server` directives in the [`upstream {}`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block.
 
@@ -121,7 +121,7 @@ NGINX and NGINX Plus supports six load balancing methods: the four above, Least 
 
     The optional [consistent](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash) parameter to the `hash` directive enables [ketama](http://www.last.fm/user/RJ/journal/2007/04/10/rz_libketama_-_a_consistent_hashing_algo_for_memcache_clients) consistent‑hash load balancing. Requests are evenly distributed across all upstream servers based on the user‑defined hashed key value. If an upstream server is added to or removed from an upstream group, only a few keys are remapped, which minimizes cache misses. This is useful for load balancing cache servers or other applications that accumulate state.
 
-5. [Least Time](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) – For each request, NGINX selects the server with the lowest average latency and the lowest number of active connections. The lowest average latency is calculated based the [parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) included with the `least_time` directive. This parameter can be one of the following:
+5. [Least Time](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) (NGINX Plus only) – For each request, NGINX Plus selects the server with the lowest average latency and the lowest number of active connections. The lowest average latency is calculated based the [parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) included with the `least_time` directive. This parameter can be one of the following:
 
     - `header` – Time to receive the first byte from the server
     - `last_byte` – Time to receive the full response from the server
@@ -139,8 +139,8 @@ NGINX and NGINX Plus supports six load balancing methods: the four above, Least 
 If the `two` parameter is specified, NGINX first randomly selects two servers, then chooses between these servers using one of the following specified methods:
 
     - `least_conn` – The least number of active connections
-    - `least_time=header` – The least average time to receive the response header
-    - `least_time=last_byte` – The least average time to receive the full response
+    - `least_time=header` (NGINX Plus) – The least average time to receive the response header from the server ([`$upstream_header_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time))
+    - `least_time=last_byte` (NGINX Plus) – The least average time to receive the full response from the server ([`$upstream_response_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time))
 
     ```nginx
     upstream backend {
