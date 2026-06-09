@@ -1,34 +1,27 @@
 ---
-f5-docs: DOCS-1449
 doctypes:
 - concept
-title: Customizing NGINX Ingress Controller Ports
+title: Customizing NGINX Ingress Controller LTS Ports
 toc: true
 weight: 1800
 f5-product: INGRESS
 f5-content-type: how-to
 ---
 
-This document explains how to change the default ports that NGINX Ingress Controller is configured to use, as well as how to add additional `listen` settings. For more information, please read the [NGINX Listen documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
+This document explains how to change the default ports that NGINX Ingress Controller LTS is configured to use, as well as how to add additional `listen` settings. For more information, please read the [NGINX Listen documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
 
 ## Changing Default Ports
 
-By default, NGINX Ingress Controller listens on ports 80 and 443. These ports can be changed easily, but modifying the `listen` ports for your NGINX Ingress resources will require the editing of `.tmpl` files.
+By default, NGINX Ingress Controller LTS listens on ports 80 and 443. These ports can be changed easily, but modifying the `listen` ports for your NGINX Ingress resources will require the editing of `.tmpl` files.
 
-If you are using NGINX Ingress Controller CRDs (VirtualServer):
+If you are using NGINX Ingress Controller LTS CRDs (VirtualServer), modify `nginx-plus-virtualserver.tmpl`.
 
-- `nginx-plus-virtualserver.tmpl` for NGINX Plus
-- `nginx-virtualserver.tmpl` if using NGINX OSS
+If you are using `Ingress` resource, modify `nginx-plus-ingress.tmpl`.
 
-If you are using `Ingress` resource you will need to modify:
+In this example, we will use the `nginx-plus-virtualserver.tmpl` template to change the port from 80 to 85.
+You can find the [nginx-plus-virtualserver template files in our repository](https://github.com/nginx/kubernetes-ingress/tree/main/internal/configs/version2).
 
-- `nginx-plus-ingress.tmpl` if using NGINX Plus
-- `nginx-ingress.tmpl` if using NGINX OSS
-
-In this example, we will use the `nginx-virtualserver.tmpl` template to change the port from 80 to 85.
-You can find the [nginx-virtualserver template files in our repository](https://github.com/nginx/kubernetes-ingress/tree/main/internal/configs/version2).
-
-We start by modifying `nginx-virtualserver.tmpl` to change the port setting:
+We start by modifying `nginx-plus-virtualserver.tmpl` to change the port setting:
 
 ```nginx
 server {
@@ -58,14 +51,14 @@ server {
 
 Modify the file you need (per the example above). In the example, we modified `nginx-plus-virtualserver.tmpl`:
 
-## Rebuild the NGINX Ingress Controller image
+## Rebuild the NGINX Ingress Controller LTS image
 
-You must rebuild the NGINX Ingress Controller image for the new port settings to take effect.
+You must rebuild the NGINX Ingress Controller LTS image for the new port settings to take effect.
 Once the image is built and pushed, make sure you update your deployment to point to the new image and deploy.
 Once deployed, create a new `VirtualServer` resource and run `nginx -T` to confirm if the port change has taken effect.
 
 Ensure that your `Deployment` and your `Service` match up to the new port you configured in the templates.
-Below is an example of  `Deployment` and `Service` matching to the new port that NGINX Ingress Controller now listens on.
+Below is an example of  `Deployment` and `Service` matching to the new port that NGINX Ingress Controller LTS now listens on.
 
 ```yaml
 apiVersion: apps/v1
@@ -89,7 +82,7 @@ spec:
     spec:
       serviceAccountName: nginx-ingress
       containers:
-      - image: nginx/nginx-ingress:{{< nic-version >}}
+      - image: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:{{< nic-lts-version >}} 
         imagePullPolicy: IfNotPresent
         name: nginx-ingress
         ports:
@@ -135,9 +128,9 @@ spec:
     app: nginx-ingress
 ```
 
-Since NGINX Ingress Controller is now listening on ports 85 and 8443, you must modify the `targetPort` in the NGINX Ingress Controller service to match the change in the deployment to ensure traffic will be sent to the proper port.
+Since NGINX Ingress Controller LTS is now listening on ports 85 and 8443, you must modify the `targetPort` in the NGINX Ingress Controller LTS service to match the change in the deployment to ensure traffic will be sent to the proper port.
 
-The parameter to change above is `targetPort`. Since we have changed NGINX Ingress Controller to listen on port 85, we need to match that in the service: requests will be sent to NGINX Ingress Controller on port 85 instead of the default value, port 80.
+The parameter to change above is `targetPort`. Since we have changed NGINX Ingress Controller LTS to listen on port 85, we need to match that in the service: requests will be sent to NGINX Ingress Controller LTS on port 85 instead of the default value, port 80.
 
 If you view the `NGINX` configuration .conf file using `nginx -T`, you should see the port you defined in the .template file is now set on the `listen` line.
 
@@ -159,4 +152,3 @@ server {
     set $resource_name "cafe";
     set $resource_namespace "default";
 ```
- 
