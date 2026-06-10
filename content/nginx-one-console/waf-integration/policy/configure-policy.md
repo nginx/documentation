@@ -48,6 +48,6 @@ From NGINX One Console, you can review the policies that you've saved, along wit
 
 With the **Edit** option, you can customize this policy. It opens the JSON file in a local editor. When you select **Save Policy**, it saves the latest version of what you've configured. You'll see your new policy under the name you used.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 You can add an optional **version comment** (up to 150 characters) to describe what changed in that version. Each saved version is also assigned a sequential name: `v1`, `v2`, `v3`, and so on.
 {{< /call-out >}}
