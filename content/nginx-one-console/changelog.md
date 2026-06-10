@@ -9,6 +9,12 @@ f5-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## June 15, 2026
+
+### F5 WAF for NGINX: Updated policy version names
+
+The names of policy versions will no longer use the version's created date as a name, and will now be numbered sequentially (v1, v2, v3, etc). Policy versions may also be given an optional version comment for later reference. Existing policy versions have been migrated to use the new naming scheme in place of the previous one.
+
 ## April 7, 2026
 
 ### Observability: F5 WAF for NGINX security dashboard
