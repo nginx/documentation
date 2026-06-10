@@ -15520,9 +15520,6 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/NapPolicyVersionComment"
-              },
-              {
-                "minLength": 1
               }
             ]
           }
