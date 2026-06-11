@@ -146,6 +146,7 @@ spec:
     backendRefs:
     - name: coffee
       port: 80
+EOF
 ```
 
 Verify the HTTPRoute is _Accepted_ and there are no errors with `kubectl describe`:
