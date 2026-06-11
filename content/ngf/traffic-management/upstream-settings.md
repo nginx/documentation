@@ -341,7 +341,7 @@ You should see the `random two least_time=header` directive on the `coffee` upst
 
 ```text
 upstream default_coffee_80 {
-    random two least_time=header;
+    random two least_conn;
     zone default_coffee_80 1m;
     state /var/lib/nginx/state/default_coffee_80.conf;
     keepAlive 16;
@@ -356,8 +356,8 @@ upstream default_tea_80 {
 ```
 
 {{< call-out "note" >}}
-NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, and `random two least_conn`.
-NGINX Plus supports all of the methods available in NGINX Open Source, and adds the following methods: `random two least_time=header`, `random two least_time=last_byte`, `least_time header`, `least_time last_byte`, `least_time header inflight`, and `least_time last_byte inflight`.
+NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, `random two least_conn`, `least_time header`, `least_time last_byte`, `least_time header inflight`, and `least_time last_byte inflight`.
+NGINX Plus supports all of the methods available in NGINX Open Source, and adds the following methods: `random two least_time=header` and `random two least_time=last_byte`.
 {{< /call-out >}}
 
 ## Configure upstream zone size
