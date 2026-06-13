@@ -9,6 +9,20 @@ f5-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## June 12, 2026
+
+### Config Explorer
+
+You can now explore any NGINX configuration as an interactive node graph using Config Explorer. Config Explorer is available for Staged Configurations, Instances, and Config Sync Groups.
+
+Key capabilities:
+
+- **Visual node graph**: Browse your entire NGINX configuration hierarchy — including upstreams, servers, and locations — as a navigable graph.
+- **Properties panel**: Select any node to view its properties, source file reference, and inline NGINX documentation.
+- **Search**: Use the search bar to find specific directives across the entire configuration in real time.
+
+See [Explore configurations with Config Explorer]({{< ref "/nginx-one-console/nginx-configs/explore-configurations.md" >}}) for more information.
+
 ## April 7, 2026
 
 ### Observability: F5 WAF for NGINX security dashboard
