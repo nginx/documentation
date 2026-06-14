@@ -1,2 +1,4 @@
+github.com/gethugothemes/hugo-modules/llms-txt v0.0.0-20260608095753-5099ef2d063a h1:Ro0lC9rdp8O9t32gioLH4SsZtcJHTJ6QnAzHsGjZPMU=
+github.com/gethugothemes/hugo-modules/llms-txt v0.0.0-20260608095753-5099ef2d063a/go.mod h1:NbshvI0tQlvBA7ZZrP8kik0M6g3b0Gr0ftEP3NV+9os=
 github.com/nginxinc/nginx-hugo-theme/v2 v2.0.9 h1:tVGPI3h82J5ApmHiCSyT4T/1YvlsWnGCsbA72hltcAs=
 github.com/nginxinc/nginx-hugo-theme/v2 v2.0.9/go.mod h1:TAmEMc0T/RKTQ0pI4LROWoUmyLXstrRmM2jE2ErdxWY=
