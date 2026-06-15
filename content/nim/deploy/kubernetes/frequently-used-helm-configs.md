@@ -54,7 +54,7 @@ For full instructions, see [Use external TLS certificates]({{< ref "/nim/deploy/
 
 You can review and adjust the deployment's default resource and storage settings by editing the `values.yaml` file in the Helm package you downloaded. Adjust the values to meet your data needs.
 
-Persistent volumes are enabled by default for the ClickHouse database server and the `core` and `dpm` services. To disable persistent storage for a configuration, set `<service>.persistence.enabled` to `false`.
+Persistent volumes are on by default for the ClickHouse database server and the `core` and `dpm` services. To turn off persistent storage, set `<service>.persistence.enabled` to `false`.
 
 ---
 
