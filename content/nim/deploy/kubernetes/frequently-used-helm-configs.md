@@ -25,14 +25,14 @@ Refer to the [configurable Helm settings]({{< ref "/nim/deploy/kubernetes/helm-c
 
 NGINX Instance Manager requires a [ClickHouse](https://clickhouse.com) database server for storing metrics data. ClickHouse is an open-source, column-based, high-performance analytics database that allows real-time queries on large amounts of data.
 
-By default, the Helm chart installs ClickHouse, which is enabled in the `values.yaml` file by setting `nms-hybrid.nmsClickhouse.enabled` to `true`.
+By default, the Helm chart installs ClickHouse, which is enabled in the `values.yaml` file by setting `nmsClickhouse.mode` to `internal`.
 
 To use your own ClickHouse installation, follow these steps:
 
-1. Set `nms-hybrid.nmsClickhouse.enabled` to `false`.
-2. Add values for `nms-hybrid.externalClickhouse.address`, `.user`, and `.password` that match your ClickHouse installation.
+1. Set `nmsClickhouse.mode` to `external`.
+2. Add values for `externalClickhouse.address`, `.user`, and `.password` that match your ClickHouse installation.
 
-   {{< call-out class="note" >}}The `nms-hybrid.externalClickhouse` field is required when `nms-hybrid.nmsClickhouse` is disabled.{{< /call-out >}}
+   {{< call-out class="note" >}}The `externalClickhouse` field is required when `nmsClickhouse.mode` is disabled.{{< /call-out >}}
 
 ---
 
@@ -54,7 +54,7 @@ For full instructions, see [Use external TLS certificates]({{< ref "/nim/deploy/
 
 You can review and adjust the deployment's default resource and storage settings by editing the `values.yaml` file in the Helm package you downloaded. Adjust the values to meet your data needs.
 
-Persistent volumes are enabled by default for the ClickHouse database server and the `nms-hybrid.core` and `nms-hybrid.dpm` services. To disable persistent storage for a configuration, set `nms-hybrid.persistence.enabled` to `false`.
+Persistent volumes are enabled by default for the ClickHouse database server and the `core` and `dpm` services. To disable persistent storage for a configuration, set `<service>.persistence.enabled` to `false`.
 
 ---
 
@@ -183,13 +183,12 @@ To use NGINX Plus for the API Gateway, follow these steps:
 
    ```yaml
    # values.yaml
-   nms-hybrid:
-       imagePullSecrets:
-           - name: regcred
-       apigw:
-           image:
-               repository: <MY_DOCKER_REGISTRY>/nms-apigw-plus
-               tag: <VERSION>
+   imagePullSecrets:
+       - name: regcred
+   apigw:
+       image:
+           repository: <MY_DOCKER_REGISTRY>/nms-apigw-plus
+           tag: <VERSION>
    ```
 
 This configuration specifies the name of the secret that should be used for pulling images (`regcred`) and configures the `apigw` image to be pulled from your private Docker registry.
