@@ -28,6 +28,16 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 {{< call-out class="note" title="Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
+### NGINX Plus  PLS.37.0.2.1 LTS {#pls.37.0.2}
+_June 17, 2026_<br/>
+
+NGINX Plus PLS.37.0.2.1 LTS is a security release.
+
+- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: when content is served or proxied through a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) block with both `source_charset utf-8;` and a [`charset`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset) directive (for example, `charset koi8-r;`) configured, remote, unauthenticated attackers can send requests (in conjunction with conditions beyond their control) to cause a heap buffer over-read in the NGINX worker process, leading to limited disclosure of memory or a restart. (CVE-2026-48142).
+
+- Security fix in the [`ngx_http_proxy_v2_module`](https://nginx.org/en/docs/http/ngx_http_proxy_v2_module.html) and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR. (CVE-2026-42055).
+
+
 ### NGINX Plus  PLS.37.0.1.1 LTS {#pls.37.0.1}
 _May 22, 2026_<br/>
 
@@ -241,6 +251,15 @@ _May 22, 2026_
 This is a security release for NGINX Plus R36.
 
 - Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
+
+NGINX Plus R36 P6<br/>
+_June 17, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: when content is served or proxied through a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) block with both `source_charset utf-8;` and a [`charset`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset) directive (for example, `charset koi8-r;`) configured, remote, unauthenticated attackers can send requests (in conjunction with conditions beyond their control) to cause a heap buffer over-read in the NGINX worker process, leading to limited disclosure of memory or a restart. (CVE-2026-48142).
+
+- Security fix in the [`ngx_http_proxy_v2_module`](https://nginx.org/en/docs/http/ngx_http_proxy_v2_module.html) and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR. (CVE-2026-42055).
 
 
 ### NGINX Plus Release 35 (R35) {#r35}
@@ -638,6 +657,15 @@ _May 22, 2026_
 This is a security release for NGINX Plus R32.
 
 - Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
+
+NGINX Plus R32 P8<br/>
+_June 17, 2026_
+
+This is a security release for NGINX Plus R32.
+
+- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: when content is served or proxied through a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) block with both `source_charset utf-8;` and a [`charset`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset) directive (for example, `charset koi8-r;`) configured, remote, unauthenticated attackers can send requests (in conjunction with conditions beyond their control) to cause a heap buffer over-read in the NGINX worker process, leading to limited disclosure of memory or a restart. (CVE-2026-48142).
+
+- Security fix in the [`ngx_http_proxy_v2_module`](https://nginx.org/en/docs/http/ngx_http_proxy_v2_module.html) and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR. (CVE-2026-42055).
 
 
 ## End-of-life (EoL) releases
