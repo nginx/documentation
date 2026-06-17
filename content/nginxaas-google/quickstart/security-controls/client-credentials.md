@@ -195,5 +195,8 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Supported resources | Deployments, Configs, Certificates |
 | Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token` |
 
-## References
+## What's next
 
+[Manage your NGINXaaS deployments]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md" >}})
+
+[Manage your NGINX configurations]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md" >}})
