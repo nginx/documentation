@@ -498,6 +498,20 @@ This is a security release for NGINX Plus R33.
 - - Security: SMTP Authentication process memory over-read. This vulnerability in the NGINX `ngx_mail_smtp_module` may allow an unauthenticated attacker to trigger buffer over-read, resulting in worker process memory disclosure to the authentication server ([CVE-2025-53859](https://www.cve.org/CVERecord?id=CVE-2025-53859)).
 
 
+## End-of-life (EoL) releases
+
+End-of-Life (EoL) releases are no longer receive security updates or technical support. Using EoL releases can pose security and compatibility risks. We strongly recommend running the latest version of NGINX Plus [LTS](#lts) or [CR](#cr) to ensure you have the latest features, security updates, and critical patches.
+
+
+{{<table>}}
+| NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
+|--------------------|--------------|-----------------------------|-------------------------|--------------------------|
+| [R32](#r32)        | May 29, 2024 | Nov 19, 2024                | Apr 1, 2025             | May 28, 2026             |
+| [R31](#r31)        | Dec 19, 2023 | May 29, 2024                | Nov 18, 2024            | Dec 18, 2025             |
+| [R30](#r30)        | Aug 15, 2023 | Dec 19, 2023                | May 28, 2024            | Aug 14, 2025             |
+| [R29](#r29)        | May 2, 2023  | Aug 15, 2023                | Dec 18, 2023            | May 1, 2025              |
+{{</table >}}
+
 ### NGINX Plus Release 32 (R32) {#r32}
 _May 29, 2024_<br/>
 _Based on NGINX Open Source 1.25.5_
@@ -657,30 +671,6 @@ _May 22, 2026_
 This is a security release for NGINX Plus R32.
 
 - Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
-
-NGINX Plus R32 P8<br/>
-_June 17, 2026_
-
-This is a security release for NGINX Plus R32.
-
-- Security fix in the [`ngx_http_charset_module`](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module: when content is served or proxied through a [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) block with both `source_charset utf-8;` and a [`charset`](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset) directive (for example, `charset koi8-r;`) configured, remote, unauthenticated attackers can send requests (in conjunction with conditions beyond their control) to cause a heap buffer over-read in the NGINX worker process, leading to limited disclosure of memory or a restart [(CVE-2026-48142)](https://my.f5.com/manage/s/article/K000161585).
-
-- Security fix in the [`ngx_http_proxy_v2_module`](https://nginx.org/en/docs/http/ngx_http_proxy_v2_module.html) and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR [(CVE-2026-42055)](https://my.f5.com/manage/s/article/K000161584).
-
-
-## End-of-life (EoL) releases
-
-End-of-Life (EoL) releases are no longer receive security updates or technical support. Using EoL releases can pose security and compatibility risks. We strongly recommend running the latest version of NGINX Plus [LTS](#lts) or [CR](#cr) to ensure you have the latest features, security updates, and critical patches.
-
-
-{{<table>}}
-| NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
-|--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R32](#r32)        | May 29, 2024 | Nov 19, 2024                | Apr 1, 2025             | May 28, 2026             |
-| [R31](#r31)        | Dec 19, 2023 | May 29, 2024                | Nov 18, 2024            | Dec 18, 2025             |
-| [R30](#r30)        | Aug 15, 2023 | Dec 19, 2023                | May 28, 2024            | Aug 14, 2025             |
-| [R29](#r29)        | May 2, 2023  | Aug 15, 2023                | Dec 18, 2023            | May 1, 2025              |
-{{</table >}}
 
 
 ### NGINX Plus Release 31 (R31) {#r31}
