@@ -1,5 +1,5 @@
 ---
-title: "Programmatic Authentication With Client Credentials"
+title: "Programmatic authentication with client credentials"
 description: "Learn how to set up OAuth2 client credentials for programmatic access to the NGINXaaS API."
 weight: 100
 toc: true
@@ -7,25 +7,28 @@ url: /nginxaas/google/quickstart/security-controls/client-credentials/
 f5-product: NGOOGL
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
+f5-summary: >
+    Use this guide to create OAuth2 client credentials in the NGINXaaS Console and exchange
+    them for an access token that authenticates requests to the NGINXaaS API.
+    Client credentials enable access for automation toolchains such as CI/CD pipelines,
+    allowing you to manage Deployments, Configurations, and Certificates APIs.
+    Credentials are scoped to a single organization.
+f5-audience: operator
 ---
 
 ## Overview
 
-This guide explains how to create and use client credentials to manage some NGINXaaS for Google Cloud APIs programmatically. This allows machine users such as Terraform, CI/CD pipelines, or other automation tools to authenticate and interact with the NGINXaaS API securely.
+This guide explains how to create and use client credentials for automating access to NGINXaaS APIs. Client credentials enable automation tools such as CI/CD pipelines to manage your deployments, configurations, and certificates without requiring user login.
 
-Client credentials are scoped to an organization and enable programmatic access to manage Deployments, Configurations, and Certificates APIs.
+To authenticate, you exchange your client credentials (client ID and secret) for a short-lived access token from the NGINXaaS token endpoint. This access token is then used in the Authorization header of your API requests. Access tokens have limited validity, after which you'll need to request a new one using the same credentials.
 
-## Key features
+Client credentials are scoped to an organization and expire after a set period (up to 1 year, 6 months recommended).
 
-- **Secure programmatic access**: Enables programmatic access for machine clients with tokens minted using client credentials
-- **Configurable Expiration controls**: Configurable expiration with recommended best practices
-- **Limited scope**: Client credentials can only manage Deployments, Configs, and Certificates
+## Before you begin
 
-## Prerequisites
+- You must be logged in to the [NGINXaaS Console](https://console.nginxaas.net/).
 
-- You must be logged into NGINXaaS Console [https://console.nginxaas.net/](https://console.nginxaas.net/)
-
-## Creating client credentials
+## Create client credentials
 
 Follow these steps to create a new client credential through the NGINXaaS console:
 
@@ -40,7 +43,7 @@ Follow these steps to create a new client credential through the NGINXaaS consol
 The client secret appears only once. Save it immediately in a secure location, such as a password manager or secrets vault. If you lose the secret, you must delete this credential and create a new one.
 {{< /call-out >}}
 
-Your client credentials can access the following APIs programmatically:
+Your client credentials can access the following APIs:
 
 - Certificates API
 - Configs API
@@ -50,13 +53,13 @@ Your client credentials can access the following APIs programmatically:
 
 Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the NGINX Support team.
 
-## Retrieving client information
+## Retrieve client information
 
 Follow these steps to view your client credentials:
 
 1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
 2. Select **Settings** > **Client Credentials** from the left navigation menu.
-3. The **Client Credentials** page displays all available client credentials for your organization. The table shows the following metadata for each credential:
+3. You can see all the available client credentials for your organization in the **Client Credentials** page. The table shows the following metadata for each credential:
    - Client Name
    - Client ID
    - Token Endpoint
@@ -97,16 +100,16 @@ Expired credentials are not automatically removed. You must manually delete cred
 
 Use the client credentials to obtain an access token from the token endpoint.
 
-**Endpoint**: `POST https://us.api.nginxaas.net/api/v1/marketplace/auth/token`
+**Endpoint**: `POST https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token`
 
 **Example using cURL**:
 
 ```bash
-curl -X POST "https://us.api.nginxaas.net/api/v1/marketplace/auth/token" \
+curl -X POST "https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token" \
   -H "Content-Type: application/json" \
   -d '{
-    "client_id": "client_abc123",
-    "client_secret": "superSecret",
+    "client_id": "<CLIENT_ID>",
+    "client_secret": "<CLIENT_SECRET>",
     "grant_type": "client_credentials"
   }'
 ```
@@ -115,7 +118,7 @@ curl -X POST "https://us.api.nginxaas.net/api/v1/marketplace/auth/token" \
 
 ```json
 {
-  "access_token": "<access_token>",
+  "access_token": "<ACCESS_TOKEN>",
   "token_type": "Bearer",
   "expires_in": 3600
 }
@@ -128,8 +131,8 @@ Include the access token in the Authorization header when making API requests.
 **Example**:
 
 ```bash
-curl -X GET "https://us.api.nginxaas.net/api/v1/deployments" \
-  -H "Authorization: Bearer <access_token>"
+curl -X GET "https://<GEO>.api.nginxaas.net/api/v1/deployments" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ### Access token validity
@@ -140,12 +143,12 @@ curl -X GET "https://us.api.nginxaas.net/api/v1/deployments" \
 
 ## Security best practices
 
-- **Use separate credentials for different environments**: Create distinct clients for various scopes to keep things logically separate
+- **Use separate credentials for different environments**: Create distinct clients for various scopes to keep environments logically separate
 - **Store secrets securely**: Never commit client secrets to version control
 - **Delete unused credentials**: Remove clients that are no longer needed
 - **Follow the recommended expiration**: Unless you have a specific reason, use the recommended 6-month expiration
 
-## Error handling
+## Troubleshooting
 
 ### Invalid or expired credentials
 
@@ -190,4 +193,7 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Client limit per organization | 10 clients (contact NGINX Support to increase) |
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
-| Token endpoint | `https://{region}.api.nginxaas.net/api/v1/marketplace/auth/token` |
+| Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token` |
+
+## References
+
