@@ -35,6 +35,8 @@ This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
 ### {{% icon arrow-up %}} Dependencies
 
+- Update NGINX Plus to 37.0.2.1 LTS
+
 ## 2026-lts-r1
 
 4 Jun 2026
