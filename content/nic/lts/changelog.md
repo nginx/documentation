@@ -27,4 +27,16 @@ This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
 ## 2026-lts-r1
 
+18 Jun 2026
+
+### {{% icon bug %}} Fixes
+
+- [10162](https://github.com/nginx/kubernetes-ingress/pull/10162) Update oidc njs code
+
+### {{% icon arrow-up %}} Dependencies
+
+## 2026-lts-r1
+
+4 Jun 2026
+
 Based on NIC v5.4.3. See [Changelog]({{<ref "/nic/changelog/#543">}}).
