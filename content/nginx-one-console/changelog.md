@@ -10,6 +10,18 @@ nollms: true
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## TBD: Release `XC Release 2026-8-0`
+
+### RBAC: New custom roles for WebAssembly access and Template Submissions
+
+Three new API groups are now available for custom roles in NGINX One Console:
+
+- `f5xc-nginx-one-custom-wasm-read` — grants read access to WebAssembly (WASM) files.
+- `f5xc-nginx-one-custom-templates-submissions-owner` — grants full lifecycle access (create, read, update, delete) for Template Submissions.
+- `f5xc-nginx-one-custom-templates-submissions-contributor` — grants read and update access for existing Template Submissions, without create or delete permissions.
+
+For more information, see [Custom roles and API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}}).
+
 ## July 16, 2026
 
 ### Observability: Zone Filter
