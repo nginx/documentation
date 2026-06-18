@@ -45,3 +45,6 @@ The following table lists the available API groups that you can use to construct
 | f5xc-nginx-one-custom-ai-assistant                  | Write           | Interact with the F5 AI Assistant.                                                                                     |
 | f5xc-nginx-one-custom-staged-config-manage         | Write           | View, create, update, and delete Staged Configs.                                                                          |
 | f5xc-nginx-one-custom-staged-config-read           | Read            | View Staged Configs.                                                                                                      |
+| f5xc-nginx-one-custom-wasm-read                    | Read            | View WebAssembly (WASM) files for NGINX One.                                                                              |
+| f5xc-nginx-one-custom-templates-submissions-owner  | Write           | View, create, update, and delete Template Submissions.                                                                    |
+| f5xc-nginx-one-custom-templates-submissions-contributor | Write       | View and update existing Template Submissions.                                                                            |
