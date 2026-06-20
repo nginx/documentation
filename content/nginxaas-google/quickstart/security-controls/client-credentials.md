@@ -32,15 +32,16 @@ Client credentials are scoped to an organization and expire after a set period (
 
 Follow these steps to create a new client credential through the NGINXaaS console:
 
-1. Log in to [NGINXaaS Console](https://console.nginxaas.net/) using your Google credentials.
-2. Select **Settings** > **Client Credentials** from the left navigation menu.
-3. Select **+ Add Client** to create a new credential.
-4. Enter a unique name for your client in the text field that appears.
-5. Choose an expiration date (maximum 1 year from today; 6 months is recommended). This setting is immutable after creation.
-6. Select **Create**. A popup window displays your client secret.
+1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
+1. Select **Settings** > **Client Credentials** from the left navigation menu.
+1. Select **+ Add Client** to create a new credential.
+1. Enter a unique name for your client in the text field that appears.
+1. Choose an expiration date (maximum 1 year from today; 6 months is recommended). This setting is immutable after creation.
+1. Select **Create**. 
+1. A popup window displays your client secret.
 
 {{< call-out class="warning" title="Important: Store Your Client Secret Securely" >}}
-The client secret appears only once. Save it immediately in a secure location, such as a password manager or secrets vault. If you lose the secret, you must delete this credential and create a new one.
+The client secret appears only once. Save it immediately in a secure location, such as a password manager or secrets vault.
 {{< /call-out >}}
 
 Your client credentials can access the following APIs:
@@ -51,11 +52,11 @@ Your client credentials can access the following APIs:
 
 ### Client limits
 
-Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the NGINX Support team.
+Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the (NGINX Support team)({{< ref "/nginxaas-google/get-help/support.md" >}}).
 
 ## Retrieve client information
 
-Follow these steps to view your client credentials:
+Follow these steps to view information about your clients:
 
 1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
 2. Select **Settings** > **Client Credentials** from the left navigation menu.
@@ -85,10 +86,7 @@ Follow these steps to delete a client credential:
 5. Select **Delete** from the menu.
 
 After deletion:
-
-- The client can no longer request new access tokens using this credential
 - Existing access tokens continue to work until they expire (1 hour from issuance)
-- The client ID and secret become permanently invalid
 
 {{< call-out class="note" >}}
 Expired credentials are not automatically removed. You must manually delete credentials that are past their expiration date.
@@ -143,10 +141,9 @@ curl -X GET "https://<GEO>.api.nginxaas.net/api/v1/deployments" \
 
 ## Security best practices
 
-- **Use separate credentials for different environments**: Create distinct clients for various scopes to keep environments logically separate
-- **Store secrets securely**: Never commit client secrets to version control
+- **Store secrets securely**: Store client credentials in a secure place
 - **Delete unused credentials**: Remove clients that are no longer needed
-- **Follow the recommended expiration**: Unless you have a specific reason, use the recommended 6-month expiration
+- **Follow the recommended expiration**: Avoid using clients with a very long expiration, a good default to begin with is 6 months
 
 ## Troubleshooting
 
@@ -190,7 +187,7 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Client secret visibility | Only shown once during creation |
 | Default expiration | 6 months (recommended) |
 | Maximum expiration | 1 year |
-| Client limit per organization | 10 clients (contact NGINX Support to increase) |
+| Client limit per organization | 10 clients [contact NGINX Support to increase]({{< ref "/nginxaas-google/get-help/support.md" >}}) |
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
 | Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token` |
