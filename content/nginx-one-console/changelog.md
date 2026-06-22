@@ -13,7 +13,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### F5 WAF for NGINX: Added additional built-in log profiles
 
-Nine additional built-in WAF log profiles and two default security policies are now available out of the box, covering common logging formats (default, gRPC, ArcSight, Splunk) and policy strictness levels.
+Nine additional built-in WAF log profiles are now available out of the box, covering common logging formats (default, gRPC, ArcSight, Splunk).
 
 ## June 15, 2026
 
