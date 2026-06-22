@@ -94,6 +94,8 @@ Expired credentials are not automatically removed. You must manually delete cred
 
 ## Using client credentials for authentication
 
+Learn how to obtain and use access tokens from your client credentials to authenticate API requests.
+
 ### Exchange credentials for an access token
 
 Use the client credentials to obtain an access token from the token endpoint.
@@ -146,6 +148,8 @@ curl -X GET "https://<GEO>.api.nginxaas.net/api/v1/deployments" \
 - **Follow the recommended expiration**: Avoid using clients with a very long expiration, a good default to begin with is 6 months
 
 ## Troubleshooting
+
+Common issues when authenticating with client credentials and how to resolve them.
 
 ### Invalid or expired credentials
 
