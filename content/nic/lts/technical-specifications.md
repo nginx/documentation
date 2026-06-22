@@ -10,7 +10,7 @@ This page describes technical specifications for F5 NGINX Ingress Controller LTS
 
 ## Supported NGINX Ingress Controller LTS versions
 
-NGINX Ingress Controller LTS is a feature-frozen release supported for 36 months from the date of release. Security patches and critical bug fixes are delivered as patch revisions throughout the support period.
+NGINX Ingress Controller LTS is a feature-frozen release supported for 36 months from the date of release. Security patches and stability bug fixes are delivered as patch revisions throughout the support period.
 
 We test NGINX Ingress Controller LTS on a range of Kubernetes platforms for each release, and list them in the [Changelog]({{< ref "/nic/lts/changelog" >}}).
 
