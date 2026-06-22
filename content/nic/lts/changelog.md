@@ -11,7 +11,7 @@ f5-product: INGRESS
 
 Since June 4, 2026, NGINX Ingress Controller follows a new release model: Long-Term Support (LTS) and Continuous Releases (CR).
 
-**NGINX Ingress Controller Long-Term Support (LTS) Releases** are published once a year and focus on stability and security. Each LTS version is supported for up to three years and receives only security and bug fixes during this time. New features are delivered through Continuous Releases (CRs) within the LTS release period.
+**NGINX Ingress Controller Long-Term Support (LTS) Releases** are published once a year and focus on stability and security. Each LTS version is supported for up to three years and receives only security and stability bug fixes during this time. New features are delivered through Continuous Releases (CRs) within the LTS release period.
 
 **NGINX Ingress Controller Continuous Releases (CR)** are published multiple times during the life of the latest LTS release and include the newest features and performance improvements
 
