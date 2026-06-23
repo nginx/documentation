@@ -18,7 +18,7 @@ f5-audience: operator
 
 ## Overview
 
-This guide explains how to create and use client credentials for automating access to NGINXaaS APIs. Client credentials enable automation tools such as CI/CD pipelines to manage your deployments, configurations, and certificates without requiring user login.
+This guide explains how to create and use client credentials for automating access to NGINXaaS APIs. Client credentials enable automation tools such as CI/CD pipelines to manage certain NGINXaaS resources without requiring user login.
 
 To authenticate, you exchange your client credentials (client ID and secret) for a short-lived access token from the NGINXaaS token endpoint. This access token is then used in the Authorization header of your API requests. Access tokens have limited validity, after which you'll need to request a new one using the same credentials.
 
@@ -46,9 +46,9 @@ The client secret appears only once. Save it immediately in a secure location, s
 
 Your client credentials can access the following APIs:
 
-- Certificates API
-- Configs API
-- Deployments API
+- [Certificates API]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})
+- [Configs API]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md" >}})
+- [Deployments API]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md" >}})
 
 ### Client limits
 
@@ -100,12 +100,12 @@ Learn how to obtain and use access tokens from your client credentials to authen
 
 Use the client credentials to obtain an access token from the token endpoint.
 
-**Endpoint**: `POST https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token`
+**Endpoint**: `POST https://<GEO>.api.nginxaas.net/api/v1/auth/token`
 
 **Example using cURL**:
 
 ```bash
-curl -X POST "https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token" \
+curl -X POST "https://<GEO>.api.nginxaas.net/api/v1/auth/token" \
   -H "Content-Type: application/json" \
   -d '{
     "client_id": "<CLIENT_ID>",
@@ -173,7 +173,7 @@ If you attempt to authenticate with invalid or expired credentials, you will rec
 Client credentials can only access the Certificates, Configs, and Deployments APIs. Attempting to access any other API with client credentials returns a `403 Forbidden` response. In this case:
 
 - Verify you are using the correct API endpoint
-- Ensure the API is one of the supported resources (Deployments, Configs, or Certificates)
+- Ensure the API is one of the supported resources
 
 **Example error response**:
 
@@ -194,7 +194,7 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Client limit per organization | 10 clients [contact NGINX Support to increase]({{< ref "/nginxaas-google/get-help/support.md" >}}) |
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
-| Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/marketplace/auth/token` |
+| Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/auth/token` |
 
 ## What's next
 
