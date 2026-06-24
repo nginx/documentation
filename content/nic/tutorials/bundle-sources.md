@@ -397,9 +397,22 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 - A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
+## Host compiled bundles on an HTTPS server
+
+The `url` field must point directly to the compiled `.tgz` bundle file — for example, `https://bundles.example.com/waf/my-policy.tgz`. NGINX Ingress Controller downloads the file at this URL and does not follow redirects (3xx responses are treated as errors for SSRF protection).
+
+You can host bundles on any HTTPS-capable server:
+
+- **In-cluster bundle server** — Deploy an NGINX-based server inside your cluster that serves compiled bundles over HTTPS. For an example deployment, see the [bundle server manifest](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5-bundle-source/bundle-server.yaml) in the NGINX Ingress Controller repository.
+- **Object storage** — Use S3, GCS, Azure Blob Storage, or another object store with HTTPS access.
+- **Artifact registry** — Serve bundles from a CI/CD artifact repository or container registry with download URLs.
+- **Static file server** — Any HTTPS server (NGINX, Apache, Caddy) that can serve `.tgz` files.
+
+After compiling your policy with the [F5 WAF compiler]({{< ref "/waf/configure/compiler.md" >}}), upload the `.tgz` file to your server and note the full URL.
+
 ## Create a TLS Secret (optional)
 
-Skip this step if your HTTPS server uses a publicly trusted certificate and no authentication.
+Skip this step if your HTTPS server uses a publicly trusted certificate.
 
 If your server uses a self-signed or internal CA certificate, create an Opaque Secret containing the CA cert:
 
@@ -415,9 +428,11 @@ data:
 EOF
 ```
 
+For client mTLS authentication, include the client certificate and key in the Secret as well.
+
 ## Create a WAF Policy
 
-Create a Policy resource using `apBundleSource` with `type: HTTPS`:
+Create a Policy resource using `apBundleSource` with `type: HTTPS`. The `url` must be the full path to the `.tgz` bundle file:
 
 ```yaml
 kubectl apply -f - <<EOF
