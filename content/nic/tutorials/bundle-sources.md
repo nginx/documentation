@@ -1,6 +1,6 @@
 ---
 title: Fetch WAF bundles from remote sources
-weight: 250
+weight: 1800
 toc: true
 f5-content-type: how-to
 f5-product: INGRESS
