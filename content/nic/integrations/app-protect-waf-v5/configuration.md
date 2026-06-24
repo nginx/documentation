@@ -29,7 +29,7 @@ F5 WAF for NGINX bundles for VirtualServer custom resources are defined by creat
 
 Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/app_protect/bundles`.
 
-{{< call-out class="tip" >}} Instead of manually placing bundles on a mounted volume, you can configure NGINX Ingress Controller to fetch bundles from a remote source automatically. See [Fetch WAF bundles from remote sources]({{< ref "/nic/tutorials/bundle-sources.md" >}}) for details on NGINX One Console, NGINX Instance Manager, and HTTPS source types. {{< /call-out >}}
+{{< call-out class="tip" >}} Instead of manually placing bundles on a mounted volume, you can configure NGINX Ingress Controller to fetch bundles from a remote source automatically. See [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/tutorials/bundle-sources.md" >}}) for details on NGINX One Console, NGINX Instance Manager, and HTTPS source types. {{< /call-out >}}
 
 {{< call-out class="note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles. Log bundles must also be copied to a volume mounted to `/etc/app_protect/bundles`. {{< /call-out >}}
 

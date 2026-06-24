@@ -1,25 +1,18 @@
 ---
-title: Fetch WAF bundles from remote sources
-weight: 1800
+title: Connect F5 WAF for NGINX to NGINX One Console, NGINX Instance Manager, or HTTPS bundle sources
 toc: true
+weight: 1800
 f5-content-type: how-to
 f5-product: INGRESS
-f5-description: Configure NGINX Ingress Controller to fetch pre-compiled WAF bundles from NGINX One Console, NGINX Instance Manager, or an HTTPS server, and verify that WAF protection is active.
 ---
 
-NGINX Ingress Controller can fetch pre-compiled WAF bundles directly from a remote source instead of requiring bundles to be manually placed on disk. This eliminates the need to compile, download, and `kubectl cp` bundles to each pod.
+This document explains how to configure NGINX Ingress Controller to fetch pre-compiled F5 WAF for NGINX policy bundles from a remote source, instead of manually placing bundles on disk.
 
-Three source types are supported:
+You can fetch bundles from:
 
-{{% table %}}
-
-| Source type | Description | Authentication |
-| ---| ---| --- |
-| **NGINX One Console** | A policy compiled and managed through [NGINX One Console]({{< ref "/nginx-one-console/" >}}) | Bearer token via `nginx.com/waf-bundle` Secret |
-| **NGINX Instance Manager** | A policy compiled and managed through [NGINX Instance Manager]({{< ref "/nim/" >}}) | Basic auth or bearer token via `nginx.com/waf-bundle` Secret |
-| **HTTPS** | A compiled `.tgz` bundle hosted on any HTTPS server | Client mTLS, or `insecureSkipVerify` |
-
-{{% /table %}}
+- **NGINX One Console** — for policies compiled and managed through NGINX One Console
+- **NGINX Instance Manager** — for policies compiled and managed through NGINX Instance Manager
+- **HTTPS** — for compiled `.tgz` bundles hosted on any HTTPS server
 
 {{< call-out class="note" >}} Bundle sources require F5 WAF for NGINX v5 and work with VirtualServer custom resources only. The deprecated `securityLog` (singular) field does not support bundle sources — use `securityLogs` instead. {{< /call-out >}}
 
@@ -34,8 +27,6 @@ Three source types are supported:
 - A VirtualServer resource to attach the WAF policy to.
 
 {{< call-out class="important" >}} NGINX Ingress Controller does not trigger compilation. Compilation happens when a policy is published in NGINX One Console. Ensure the policy has been published and a compiled bundle is available before continuing. {{< /call-out >}}
-
----
 
 ## Create a credentials Secret
 
@@ -52,8 +43,6 @@ data:
   token: <BASE64_ENCODED_TOKEN>
 EOF
 ```
-
----
 
 ## Create a WAF Policy
 
@@ -82,8 +71,6 @@ Replace `<tenant>` with your NGINX One Console tenant hostname and `policyName` 
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
----
-
 ## Apply the policy to a VirtualServer
 
 Reference the WAF Policy in your VirtualServer:
@@ -108,8 +95,6 @@ spec:
       pass: webapp
 EOF
 ```
-
----
 
 ## Verify the bundle was fetched
 
@@ -143,8 +128,6 @@ EOF
 
 If the VirtualServer returns HTTP 500, the bundle has not been fetched yet. Check the Policy events and status for errors.
 
----
-
 ## Confirm polling is working
 
 When `enablePolling: true` is set, NGINX Ingress Controller periodically checks whether a new bundle is available. For NGINX One Console, it uses a compile status hash — the full bundle is only downloaded when a new compilation is detected.
@@ -166,8 +149,6 @@ kubectl patch policy waf-policy --type merge -p '{
 ```
 
 `pollInterval` must be at least `1m`. It defaults to `5m` if not set.
-
----
 
 ## Add a security log bundle source (optional)
 
@@ -220,8 +201,6 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 {{< call-out class="important" >}} NGINX Ingress Controller does not trigger compilation. Compile the policy using the NGINX Instance Manager UI or `POST /api/platform/v1/security/policies/bundles` and verify compilation succeeded before continuing. {{< /call-out >}}
 
----
-
 ## Create a credentials Secret
 
 NGINX Instance Manager requires a Secret of type `nginx.com/waf-bundle`. Create it with either basic auth credentials or a bearer token:
@@ -263,8 +242,6 @@ EOF
 
 {{% /tabs %}}
 
----
-
 ## Create a WAF Policy
 
 Create a Policy resource using `apBundleSource` with `type: NIM`:
@@ -292,8 +269,6 @@ Replace `url` with your NGINX Instance Manager base URL and `policyName` with th
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
----
-
 ## Apply the policy to a VirtualServer
 
 Reference the WAF Policy in your VirtualServer:
@@ -318,8 +293,6 @@ spec:
       pass: webapp
 EOF
 ```
-
----
 
 ## Verify the bundle was fetched
 
@@ -353,8 +326,6 @@ EOF
 
 If the VirtualServer returns HTTP 500, the bundle has not been fetched yet. Check the Policy events and status for errors.
 
----
-
 ## Confirm polling is working
 
 When `enablePolling: true` is set, NGINX Ingress Controller periodically checks whether a new bundle is available. For NGINX Instance Manager, it uses a metadata hash comparison — the full bundle is only downloaded when the hash has changed.
@@ -376,8 +347,6 @@ kubectl patch policy waf-policy --type merge -p '{
 ```
 
 `pollInterval` must be at least `1m`. It defaults to `5m` if not set.
-
----
 
 ## Add a security log bundle source (optional)
 
@@ -428,8 +397,6 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 - A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
----
-
 ## Create a TLS Secret (optional)
 
 Skip this step if your HTTPS server uses a publicly trusted certificate and no authentication.
@@ -447,8 +414,6 @@ data:
   ca.crt: <BASE64_ENCODED_CA_CERT>
 EOF
 ```
-
----
 
 ## Create a WAF Policy
 
@@ -475,8 +440,6 @@ Replace `url` with the full URL of your compiled bundle. Remove `trustedCertSecr
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
----
-
 ## Apply the policy to a VirtualServer
 
 Reference the WAF Policy in your VirtualServer:
@@ -501,8 +464,6 @@ spec:
       pass: webapp
 EOF
 ```
-
----
 
 ## Verify the bundle was fetched
 
@@ -536,8 +497,6 @@ EOF
 
 If the VirtualServer returns HTTP 500, the bundle has not been fetched yet. Check the Policy events and status for errors.
 
----
-
 ## Enable polling (optional)
 
 Polling lets NGINX Ingress Controller detect and deploy updated bundles without modifying the Policy resource. For HTTPS sources, NGINX Ingress Controller uses `ETag` and `If-Modified-Since` headers — a `304 Not Modified` response skips the download entirely.
@@ -551,8 +510,6 @@ kubectl patch policy waf-policy --type merge -p '{
 ```
 
 `pollInterval` must be at least `1m`. It defaults to `5m` if not set.
-
----
 
 ## Verify bundle integrity (optional)
 
@@ -577,8 +534,6 @@ Set `verifyChecksum: true` to have NGINX Ingress Controller fetch a companion `<
 NGINX Ingress Controller appends `.sha256` to the bundle URL automatically.
 
 {{< call-out class="note" >}} `verifyChecksum` is only supported for HTTPS sources. NGINX Instance Manager and NGINX One Console sources use native integrity checks. {{< /call-out >}}
-
----
 
 ## Add a security log bundle source (optional)
 

@@ -1319,7 +1319,7 @@ waf:
 
 #### WAF.BundleSource
 
-The `bundleSource` object configures how NGINX Ingress Controller fetches a pre-compiled WAF bundle from a remote source. It is used by both `apBundleSource` and `apLogBundleSource`. For details and examples, see [Fetch WAF bundles from remote sources]({{< ref "/nic/tutorials/bundle-sources.md" >}}).
+The `bundleSource` object configures how NGINX Ingress Controller fetches a pre-compiled WAF bundle from a remote source. It is used by both `apBundleSource` and `apLogBundleSource`. For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/tutorials/bundle-sources.md" >}}).
 
 {{% table %}}
 
