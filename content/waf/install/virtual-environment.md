@@ -427,10 +427,9 @@ server {
 
 {{< /tabs >}}
 
-Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
+Once you have updated your configuration files, reload NGINX with the following command:
 
 - `nginx -s reload`
-- `sudo systemctl reload nginx`
 
 ## Post-installation checks
 

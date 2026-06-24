@@ -159,3 +159,4 @@ server {
     set $resource_name "cafe";
     set $resource_namespace "default";
 ```
+ 

@@ -12,6 +12,7 @@ This page describes how to troubleshoot common issues with NGINX Ingress Control
 ## Common issues
 
 {{% table %}}
+
 | Problem Area | Symptom | Troubleshooting Method | Common Cause |
 |-----|-----|-----|-----|
 | Startup | NGINX Ingress Controller fails to start. | Check the logs. | Misconfigured RBAC, a missing default server TLS Secret.|

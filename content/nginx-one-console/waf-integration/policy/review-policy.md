@@ -22,7 +22,7 @@ From NGINX One Console, select **WAF** > **Policies**. Select the name of the po
   - Policy Details: Descriptions, status, enforcement type, latest version, and last deployed time.
   - Deployments: List of instances and Config Sync Groups where the F5 WAF for NGINX policy is deployed.
 - Policy JSON: The policy, in JSON format. With the **Edit** button, you can modify this policy.
-- Versions: Policy versions that you've written. You can apply an older policy to your deployments.
+- Versions: Policy versions that you've written, labeled sequentially (`v1`, `v2`, `v3`, and so on). Each version shows its name, creation date, enforcement mode, and optional version comment. Select a version to view its details or update its comment. You can also apply an older policy version to your deployments.
 
 ## Modify existing policies
 

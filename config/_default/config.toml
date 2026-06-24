@@ -158,3 +158,26 @@ enableGitInfo = true
 sectionPagesMenu = "docs"
 
 ignoreFiles = [ "\\.sh$", "\\.DS_Store$", "\\.git.*$", "\\.txt$", "\\/config\\/.*", "README\\.*"]
+
+[outputFormats.llms]
+  baseName       = "llms"
+  mediaType      = "text/plain"
+  isPlainText    = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  baseName       = "llms-full"
+  mediaType      = "text/plain"
+  isPlainText    = true
+  notAlternative = true
+
+[outputFormats.md]
+  baseName       = "index"
+  mediaType      = "text/markdown"
+  isPlainText    = true
+  notAlternative = true
+
+[outputs]
+  home    = ["HTML", "RSS", "llms", "llmsfull"]
+  section = ["HTML", "md"]
+  page    = ["HTML", "md"]
