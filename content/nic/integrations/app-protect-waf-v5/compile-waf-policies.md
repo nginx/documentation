@@ -15,6 +15,8 @@ F5 WAF for NGINX uses policies to configure which security features are set. Whe
 
 By using NGINX Instance Manager to compile WAF policies, the policy bundle can also be used immediately by NGINX Ingress Controller without reloading.
 
+{{< call-out class="tip" >}} NGINX Ingress Controller can fetch compiled bundles directly from NGINX Instance Manager or NGINX One Console without the manual download and upload steps described on this page. See [Fetch WAF bundles from remote sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for details on automated bundle fetching with optional polling for updates. {{< /call-out >}}
+
 The following steps describe how to use the NGINX Instance Manager API to create a new security policy, compile a bundle, then add it to NGINX Ingress Controller.
 
 ## Before you begin

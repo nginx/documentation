@@ -1293,7 +1293,8 @@ waf:
 | ---| ---| ---| --- |
 |``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
 |``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
+|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy`` and ``apBundleSource``. | ``string`` | No |
+|``apBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. | [waf.bundleSource](#wafbundlesource) | No |
 |``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
@@ -1310,8 +1311,29 @@ waf:
 | ---| ---| ---| --- |
 |``enable`` | Enables security log. | ``bool`` | No |
 |``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. | ``string`` | No |
+|``apLogBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.bundleSource](#wafbundlesource) | No |
 |``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
+
+{{% /table %}}
+
+#### WAF.BundleSource
+
+The `bundleSource` object configures how NGINX Ingress Controller fetches a pre-compiled WAF bundle from a remote source. It is used by both `apBundleSource` and `apLogBundleSource`. For details and examples, see [Fetch WAF bundles from remote sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}).
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``type`` | The source type: ``HTTPS``, ``NIM`` (NGINX Instance Manager), or ``N1C`` (NGINX One Console). | ``string`` | Yes |
+|``url`` | The URL of the bundle (HTTPS) or the base URL of the management plane (NIM/N1C). | ``string`` | Yes |
+|``policyName`` | The name of the compiled policy or log profile in NIM or N1C. Required for NIM and N1C source types. | ``string`` | No |
+|``secret`` | The name of a Secret containing authentication credentials. Must be of type ``nginx.com/waf-bundle`` for NIM and N1C sources. | ``string`` | No |
+|``trustedCertSecret`` | The name of a Secret containing a trusted CA certificate (``ca.crt`` key) for TLS verification. | ``string`` | No |
+|``insecureSkipVerify`` | Disables TLS certificate verification. For testing only. | ``bool`` | No |
+|``verifyChecksum`` | Fetches a companion ``.sha256`` file and verifies the bundle's SHA-256 digest. HTTPS sources only. | ``bool`` | No |
+|``enablePolling`` | Enables background polling for bundle updates. Must be explicitly set to ``true`` or ``false``. | ``bool`` | Yes |
+|``pollInterval`` | The interval between poll cycles. Minimum ``1m``, default ``5m``. Only used when ``enablePolling`` is ``true``. | ``string`` | No |
 
 {{% /table %}}
 
