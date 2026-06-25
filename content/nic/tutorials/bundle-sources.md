@@ -32,19 +32,9 @@ You can fetch bundles from:
 
 ## Create a credentials Secret
 
-NGINX One Console uses APIToken authentication. Create a Secret of type `nginx.com/waf-bundle` with a bearer token:
+NGINX One Console uses APIToken authentication. Create a Secret of type `nginx.com/waf-bundle` with a `token` key containing your API token.
 
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: n1c-credentials
-type: nginx.com/waf-bundle
-data:
-  token: <BASE64_ENCODED_TOKEN>
-EOF
-```
+See the [example Secret manifests](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5-bundle-source) in the NGINX Ingress Controller repository for the required format.
 
 ## Create a WAF Policy
 
@@ -208,44 +198,9 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ## Create a credentials Secret
 
-NGINX Instance Manager requires a Secret of type `nginx.com/waf-bundle`. Create it with either basic auth credentials or a bearer token:
+NGINX Instance Manager requires a Secret of type `nginx.com/waf-bundle`. The Secret must contain either a `token` key (bearer auth) or `username` + `password` keys (basic auth).
 
-{{<tabs name="nim-secret">}}
-
-{{%tab name="Basic auth"%}}
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: nim-credentials
-type: nginx.com/waf-bundle
-stringData:
-  username: "<NIM_USERNAME>"
-  password: "<NIM_PASSWORD>"
-EOF
-```
-
-{{% /tab %}}
-
-{{%tab name="Bearer token"%}}
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: nim-credentials
-type: nginx.com/waf-bundle
-data:
-  token: <BASE64_ENCODED_TOKEN>
-EOF
-```
-
-{{% /tab %}}
-
-{{% /tabs %}}
+See the [example Secret manifests](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5-bundle-source) in the NGINX Ingress Controller repository for the required format.
 
 ## Create a WAF Policy
 
@@ -419,34 +374,10 @@ After compiling your policy with the [F5 WAF compiler]({{< ref "/waf/configure/c
 
 Skip this step if your HTTPS server uses a publicly trusted certificate.
 
-If your server uses a self-signed or internal CA certificate, create a Secret of type `nginx.org/ca` containing the CA cert:
+- **Custom CA certificate** — If your server uses a self-signed or internal CA, create a Secret of type `nginx.org/ca` with a `ca.crt` key, and reference it in `trustedCertSecret`.
+- **Client mTLS** — Create a `kubernetes.io/tls` Secret with `tls.crt` and `tls.key`, and reference it in `secret`.
 
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: bundle-ca-cert
-type: nginx.org/ca
-data:
-  ca.crt: <BASE64_ENCODED_CA_CERT>
-EOF
-```
-
-For client mTLS authentication, create a separate `kubernetes.io/tls` Secret with the client certificate and key, and reference it in the `secret` field:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: bundle-client-cert
-type: kubernetes.io/tls
-data:
-  tls.crt: <BASE64_ENCODED_CLIENT_CERT>
-  tls.key: <BASE64_ENCODED_CLIENT_KEY>
-EOF
-```
+See the [example Secret manifests](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5-bundle-source) in the NGINX Ingress Controller repository for the required format.
 
 ## Create a WAF Policy
 
