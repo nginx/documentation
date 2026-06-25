@@ -44,6 +44,10 @@ View the F5 WAF for NGINX ["General Configuration"]({{< ref "/waf/policies/confi
 
 NGINX One Console includes a Policy JSON section which displays your policy in JSON format. What you configure here is written to your instance of F5 WAF for NGINX. 
 
+From NGINX One Console, you can review the policies that you've saved, along with their versions. Select **WAF** > **Policies**. Select the policy that you want to review or modify.
+
 With the **Edit** option, you can customize this policy. It opens the JSON file in a local editor. When you select **Save Policy**, it saves the latest version of what you've configured. You'll see your new policy under the name you used.
 
-From NGINX One Console, you can review the policies that you've saved, along with their versions. Select **WAF** > **Policies**. Select the policy that you want to review or modify.
+{{< call-out class="note" >}}
+You can add an optional **version comment** (up to 150 characters) to describe what changed in that version. Each saved version is also assigned a sequential name: `v1`, `v2`, `v3`, and so on.
+{{< /call-out >}}

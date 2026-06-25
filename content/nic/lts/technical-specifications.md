@@ -10,7 +10,7 @@ This page describes technical specifications for F5 NGINX Ingress Controller LTS
 
 ## Supported NGINX Ingress Controller LTS versions
 
-NGINX Ingress Controller LTS is a feature-frozen release supported for 36 months from the date of release. Security patches and critical bug fixes are delivered as patch revisions throughout the support period.
+NGINX Ingress Controller LTS is a feature-frozen release supported for 36 months from the date of release. Security patches and stability bug fixes are delivered as patch revisions throughout the support period.
 
 We test NGINX Ingress Controller LTS on a range of Kubernetes platforms for each release, and list them in the [Changelog]({{< ref "/nic/lts/changelog" >}}).
 
@@ -32,6 +32,6 @@ NGINX Ingress Controller LTS image include NGINX Plus LTS R37.0
 
 | Name | Base image | <div style="width:200px">Additional modules</div> | F5 Container Registry Image | Architectures | Based on CR |
 | ---| ---| --- | --- | --- | --- |
-|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>Agent (NGINX Agent 3) | ``private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:{{< nic-lts-version >}} `` | arm64<br>amd64 | 5.4.x |
+|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>Agent (NGINX Agent 3) | ``private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:{{< nic-lts-version >}} `` | arm64<br>amd64 | 5.4.3 |
 
 {{< /table >}}
