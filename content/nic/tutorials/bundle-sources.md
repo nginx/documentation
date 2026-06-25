@@ -16,13 +16,15 @@ You can fetch bundles from:
 
 {{< call-out class="note" >}} Bundle sources require F5 WAF for NGINX v5 and work with VirtualServer custom resources only. The deprecated `securityLog` (singular) field does not support bundle sources — use `securityLogs` instead. {{< /call-out >}}
 
+{{< call-out class="note" >}} There are complete NGINX Ingress Controller with F5 WAF for NGINX bundle source [example resources on GitHub](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/app-protect-waf-v5-bundle-source). {{< /call-out >}}
+
 {{<tabs name="bundle-source-setup">}}
 
 {{%tab name="NGINX One Console"%}}
 
 ## Before you begin
 
-- A working NGINX Ingress Controller deployment with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}).
+- NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
 - An [NGINX One Console]({{< ref "/nginx-one-console/" >}}) account with a published WAF policy. See [Manage policies]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
@@ -61,13 +63,14 @@ spec:
       type: N1C
       url: "https://<tenant>.console.ves.volterra.io"
       policyName: "my-blocking-policy"
+      policyNamespace: "default"
       secret: "n1c-credentials"
       enablePolling: true
       pollInterval: "5m"
 EOF
 ```
 
-Replace `<tenant>` with your NGINX One Console tenant hostname and `policyName` with the name of your published policy.
+Replace `<tenant>` with your NGINX One Console tenant hostname, `policyName` with the name of your published policy, and `policyNamespace` with the NGINX One Console namespace where the policy resides.
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
@@ -167,6 +170,7 @@ spec:
       type: N1C
       url: "https://<tenant>.console.ves.volterra.io"
       policyName: "my-blocking-policy"
+      policyNamespace: "default"
       secret: "n1c-credentials"
       enablePolling: true
       pollInterval: "5m"
@@ -176,6 +180,7 @@ spec:
         type: N1C
         url: "https://<tenant>.console.ves.volterra.io"
         policyName: "secops_dashboard"
+        policyNamespace: "default"
         secret: "n1c-credentials"
         enablePolling: true
         pollInterval: "5m"
@@ -195,7 +200,7 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ## Before you begin
 
-- A working NGINX Ingress Controller deployment with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}).
+- NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
 - A working [NGINX Instance Manager]({{< ref "/nim/" >}}) instance with a compiled policy bundle. See [Create a security policy bundle]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
@@ -393,8 +398,8 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ## Before you begin
 
-- A working NGINX Ingress Controller deployment with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}).
-- A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}).
+- NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
+- A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Compile F5 WAF for NGINX policies]({{< ref "/nic/integrations/app-protect-waf-v5/compile-waf-policies.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
 ## Host compiled bundles on an HTTPS server
@@ -414,7 +419,7 @@ After compiling your policy with the [F5 WAF compiler]({{< ref "/waf/configure/c
 
 Skip this step if your HTTPS server uses a publicly trusted certificate.
 
-If your server uses a self-signed or internal CA certificate, create an Opaque Secret containing the CA cert:
+If your server uses a self-signed or internal CA certificate, create a Secret of type `nginx.org/ca` containing the CA cert:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -422,13 +427,26 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: bundle-ca-cert
-type: Opaque
+type: nginx.org/ca
 data:
   ca.crt: <BASE64_ENCODED_CA_CERT>
 EOF
 ```
 
-For client mTLS authentication, include the client certificate and key in the Secret as well.
+For client mTLS authentication, create a separate `kubernetes.io/tls` Secret with the client certificate and key, and reference it in the `secret` field:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bundle-client-cert
+type: kubernetes.io/tls
+data:
+  tls.crt: <BASE64_ENCODED_CLIENT_CERT>
+  tls.key: <BASE64_ENCODED_CLIENT_KEY>
+EOF
+```
 
 ## Create a WAF Policy
 

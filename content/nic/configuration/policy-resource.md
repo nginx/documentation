@@ -1325,15 +1325,18 @@ The `bundleSource` object configures how NGINX Ingress Controller fetches a pre-
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``type`` | The source type: ``HTTPS``, ``NIM`` (NGINX Instance Manager), or ``N1C`` (NGINX One Console). | ``string`` | Yes |
-|``url`` | The URL of the bundle (HTTPS) or the base URL of the management plane (NIM/N1C). | ``string`` | Yes |
-|``enablePolling`` | Enables background polling for bundle updates. Must be explicitly set to ``true`` or ``false``. | ``bool`` | Yes |
-|``pollInterval`` | The interval between poll cycles. Minimum ``1m``, default ``5m``. Only used when ``enablePolling`` is ``true``. | ``string`` | No |
-|``policyName`` | The name of the compiled policy or log profile in NIM or N1C. Required for NIM and N1C source types. | ``string`` | No |
-|``secret`` | The name of a Secret containing authentication credentials. Must be of type ``nginx.com/waf-bundle`` for NIM and N1C sources. | ``string`` | No |
-|``trustedCertSecret`` | The name of a Secret containing a trusted CA certificate (``ca.crt`` key) for TLS verification. | ``string`` | No |
-|``insecureSkipVerify`` | Disables TLS certificate verification. For testing only. | ``bool`` | No |
+|``type`` | The source type: ``HTTPS``, ``NIM`` (NGINX Instance Manager), or ``N1C`` (NGINX One Console). Defaults to ``HTTPS`` if not set. Recommended to set explicitly. | ``string`` | No |
+|``url`` | The full bundle URL for HTTPS, or the API base URL for NIM/N1C. Must use ``https://``. | ``string`` | Yes |
+|``enablePolling`` | Enables background polling for bundle updates. Must be explicitly set to ``true`` or ``false``. When ``false``, the bundle is fetched once on policy creation or update. | ``bool`` | Yes |
+|``pollInterval`` | The interval between poll cycles. Minimum ``1m``, default ``5m``. Ignored when ``enablePolling`` is ``false``. | ``duration`` | No |
+|``policyName`` | The policy name on the management plane. Required for NIM and N1C; forbidden for HTTPS. | ``string`` | No |
+|``policyNamespace`` | The namespace or tenant on the management plane. Required for N1C only. | ``string`` | No |
+|``secret`` | The name of a Secret in the same namespace as the Policy. For HTTPS: ``kubernetes.io/tls`` (``tls.crt`` + ``tls.key`` for client mTLS; optional ``ca.crt`` for server CA). For NIM: ``nginx.com/waf-bundle`` with ``token`` (bearer) or ``username`` + ``password`` (basic auth). For N1C: ``nginx.com/waf-bundle`` with ``token``. | ``string`` | No |
+|``trustedCertSecret`` | The name of a Secret of type ``nginx.org/ca`` containing a custom CA certificate (``ca.crt`` key) for verifying the remote endpoint TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
+|``insecureSkipVerify`` | Disables TLS certificate verification. Not recommended for production. | ``bool`` | No |
 |``verifyChecksum`` | Fetches a companion ``.sha256`` file and verifies the bundle's SHA-256 digest. HTTPS sources only. | ``bool`` | No |
+|``timeout`` | Per-request HTTP timeout. Default ``60s``. | ``duration`` | No |
+|``retryAttempts`` | Number of retry attempts on transient failure. Range ``1``–``10``. | ``int`` | No |
 
 {{% /table %}}
 
