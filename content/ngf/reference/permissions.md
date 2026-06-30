@@ -65,12 +65,6 @@ NGINX containers managed by the control plane. No RBAC permissions needed since 
 - **EmptyDir**: Read-write (required for NGINX operation)
 - **Secret/ConfigMap/Projected**: Read-only
 
-{{< call-out "note" >}}
-
-Kubernetes is generally not recommended for hostile multi-tenant environments and NGINX is designed to treat upstreams as trusted. If you need a dataplane that doesn't treat upstreams as trusted, you may want to explore alternative solutions.
-
-{{< /call-out >}}
-
 ## Certificate Generator
 
 Kubernetes Job that creates initial TLS certificates.
