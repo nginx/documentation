@@ -187,7 +187,8 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo mv nginx-repo.crt /etc/ssl/nginx/
    sudo mv nginx-repo.key /etc/ssl/nginx/
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
-   sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
+   sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+   sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
