@@ -84,7 +84,7 @@ service/coffee       ClusterIP   10.96.30.58   <none>        80/TCP    10s
 
 ## Create the Gateway API resources
 
-Create the **cafe** Gateway:
+Create a Gateway:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -140,7 +140,7 @@ metadata:
   name: coffee
 spec:
   parentRefs:
-  - name: cafe
+  - name: gateway
   hostnames:
   - "cafe.example.com"
   rules:
