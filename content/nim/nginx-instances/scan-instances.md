@@ -11,8 +11,6 @@ f5-summary: >
   The scan process uses NGINX Agent on target instances to register them with NGINX Instance Manager automatically.
 ---
 
-{{< shortversions "2.0.0" "latest" "nimvers" >}}
-
 ## Prerequisites {#prerequisites}
 
 1. [Install F5 NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}).
