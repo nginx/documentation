@@ -1369,8 +1369,19 @@ The feature is implemented using the NGINX `add_header` directive and the [ngx_h
 |``maxAge`` | Sets the duration in seconds that the browser should cache and enforce the HSTS policy. | ``int`` | Yes | -- |
 |``includeSubDomains`` | Extends the HSTS policy to all subdomains of the host. | ``bool`` | No | `false` |
 |``behindProxy`` | Configures NGINX to set the HSTS header based on the `X-Forwarded-Proto` request header rather than the `$https` variable. Enable this when the Ingress Controller is deployed behind a proxy or load balancer that terminates TLS upstream. | ``bool`` | No | `false` |
+|``preload`` | Indicates that the domain should be included in browsers' [HSTS preload lists](https://hstspreload.org/). Requires ``includeSubDomains`` to be enabled and ``maxAge`` to be at least 31536000 (one year). | ``bool`` | No | `false` |
 
 {{% /table %}}
+
+{{< call-out class="important" >}}
+
+HSTS instructs browsers to enforce HTTPS for the duration of `maxAge`. Simply deleting the policy does not clear the browser's cached directive — users may be unable to access the application over HTTP until the cached policy expires.
+
+To safely remove HSTS, first set `maxAge` to `0` and apply the updated policy. This instructs browsers to immediately expire the cached directive. Once applied, remove the policy reference from the VirtualServer and delete the policy resource.
+
+See the MDN documentation on [HSTS expiration](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security#expiration) for more details.
+
+{{< /call-out >}}
 
 #### HSTS Merging Behavior
 
