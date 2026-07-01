@@ -23,6 +23,9 @@ The table below categorizes some potential problems with NGINX Ingress Controlle
 |Start | The configuration is not applied. | Check if a policy bundle is compiled using version of the compiler running in NGINX Ingress Controller. | Policy bundle is invalid. |
 |Start | The configuration is not applied. | Check if bundle is present in a volume. | Policy bundle is not present in the mounted volume. |
 |APLogConf, Policy or Ingress Resource. | The configuration is not applied. | Check the events of the APLogConf, Policy and Ingress Resource, check the logs, replace the policy bundle. | Policy bundle is invalid. |
+|[Bundle source]({{< ref "/nic/tutorials/bundle-sources.md" >}}). | Bundle not fetched, Warning event on Policy. | Check Policy events and status. Verify the bundle source URL and credentials are correct. | Invalid URL, authentication failure, or bundle not yet compiled on the management plane. |
+|[Bundle source]({{< ref "/nic/tutorials/bundle-sources.md" >}}). | VirtualServer or Ingress returns HTTP 500. | Check Policy status for bundle source errors. | Bundle source is unreachable or the bundle is not yet available. |
+|[Bundle source]({{< ref "/nic/tutorials/bundle-sources.md" >}}). | Policy not updating after bundle recompilation. | Verify ``enablePolling`` is ``true`` and ``pollInterval`` is at least ``1m``. | Polling is not enabled, or the poll interval is below the minimum. |
 
 {{< /table >}}
 
