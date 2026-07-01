@@ -27,10 +27,11 @@ procedures/        admonitions, cross-references, directional-references,
                    ui-element-names
 punctuation/       colons, dates-and-times, ellipses, em-dash, oxford-comma,
                    possessives, quotation-marks
+security/          sensitive-information
 terminology/       acronyms, click-vs-select, configure-vs-set-up,
                    enable-disable, ensure-vs-make-sure, f5-product-names,
-                   latin-abbreviations, login-vs-log-in, sensitive-information,
-                   ui-terms, update-vs-upgrade, word-list
+                   latin-abbreviations, login-vs-log-in, ui-terms,
+                   update-vs-upgrade, word-list
 voice-and-tone/    active-voice, anthropomorphism, contractions,
                    global-audience, hedging, inclusive-language, modern-voice,
                    reading-level, second-person, sentence-length, we-and-our
