@@ -14,6 +14,12 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## July 1, 2026
+
+- {{% icon-feature %}} **User-assigned managed identities are now supported on the data plane**
+
+  NGINXaaS for Azure now supports using either a system-assigned or user-assigned managed identity for data plane access to Azure resources through IMDS token retrieval. For setup instructions, see [NGINXaaS Managed Identity on dataplane]({{< ref "/nginxaas-azure/quickstart/dataplane-mi.md" >}}).
+
 ## May 1, 2026
 
 - {{% icon-feature %}} **CVE-2026-31431 Copy Fail Fix**
