@@ -1294,7 +1294,7 @@ waf:
 |``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
 |``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
 |``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy`` and ``apBundleSource``. | ``string`` | No |
-|``apBundleSource`` | [Remote source]({{< ref "/nic/tutorials/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. | [waf.bundleSource](#wafbundlesource) | No |
+|``apBundleSource`` | [Remote source]({{< ref "/nic/tutorials/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
@@ -1312,31 +1312,37 @@ waf:
 |``enable`` | Enables security log. | ``bool`` | No |
 |``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. | ``string`` | No |
-|``apLogBundleSource`` | [Remote source]({{< ref "/nic/tutorials/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.bundleSource](#wafbundlesource) | No |
+|``apLogBundleSource`` | [Remote source]({{< ref "/nic/tutorials/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 
 {{% /table %}}
 
-#### WAF.BundleSource
+#### WAF.ApBundleSource
 
-The `bundleSource` object configures how NGINX Ingress Controller fetches a pre-compiled WAF bundle from a remote source. It is used by both `apBundleSource` and `apLogBundleSource`. For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/tutorials/bundle-sources.md" >}}).
+The `apBundleSource` object configures how NGINX Ingress Controller fetches a pre-compiled WAF bundle from a remote source. The same fields are also used by `waf.securityLogs[].apLogBundleSource`. Three source types are supported:
+
+- **N1C (NGINX One Console)** — fetch policies compiled and managed through NGINX One Console. See [policy docs]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}).
+- **NIM (NGINX Instance Manager)** — fetch policies compiled and managed through NGINX Instance Manager. See [bundle docs]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
+- **HTTPS** — fetch compiled `.tgz` bundles from any HTTPS server or endpoint.
+
+For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/tutorials/bundle-sources.md" >}}).
 
 {{% table %}}
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``type`` | The source type: ``HTTPS``, ``NIM`` (NGINX Instance Manager), or ``N1C`` (NGINX One Console). Defaults to ``HTTPS`` if not set. Recommended to set explicitly. | ``string`` | No |
-|``url`` | The full bundle URL for HTTPS, or the API base URL for NIM/N1C. Must use ``https://``. | ``string`` | Yes |
-|``enablePolling`` | Enables background polling for bundle updates. Must be explicitly set to ``true`` or ``false``. When ``false``, the bundle is fetched once on policy creation or update. | ``bool`` | Yes |
-|``pollInterval`` | The interval between poll cycles. Minimum ``1m``, default ``5m``. Ignored when ``enablePolling`` is ``false``. | ``duration`` | No |
-|``policyName`` | The policy name on the management plane. Required for NIM and N1C; forbidden for HTTPS. | ``string`` | No |
-|``policyNamespace`` | The namespace or tenant on the management plane. Required for N1C only. | ``string`` | No |
-|``secret`` | The name of a Secret in the same namespace as the Policy. For HTTPS: ``kubernetes.io/tls`` (``tls.crt`` + ``tls.key`` for client mTLS; optional ``ca.crt`` for server CA). For NIM: ``nginx.com/waf-bundle`` with ``token`` (bearer) or ``username`` + ``password`` (basic auth). For N1C: ``nginx.com/waf-bundle`` with ``token``. | ``string`` | No |
-|``trustedCertSecret`` | The name of a Secret of type ``nginx.org/ca`` containing a custom CA certificate (``ca.crt`` key) for verifying the remote endpoint TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
+|``type`` | Source backend: ``N1C`` (NGINX One Console), ``NIM`` (NGINX Instance Manager), or ``HTTPS``. Defaults to ``HTTPS``. | ``string`` | No |
+|``url`` | Tenant URL for ``N1C``/``NIM``, or full ``.tgz`` bundle URL for ``HTTPS``. Must use ``https://``. | ``string`` | Yes |
+|``policyName`` | Management-plane policy name for ``N1C``/``NIM``. For ``apLogBundleSource``, set this to the log profile name. Ignored for ``HTTPS``. | ``string`` | No |
+|``policyNamespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
+|``enablePolling`` | Must be explicitly set. When ``true``, NIC re-fetches the bundle at ``pollInterval``. When ``false``, the bundle is fetched once at policy creation or update. | ``bool`` | Yes |
+|``pollInterval`` | How often to re-fetch when ``enablePolling`` is ``true``. Minimum ``1m``, default ``5m``. | ``string`` | No |
+|``secret`` | Secret in the same namespace as the Policy. For ``N1C``/``NIM``, use ``nginx.com/waf-bundle`` (token or username/password). For ``HTTPS``, use ``kubernetes.io/tls`` for client mTLS (``tls.crt`` and ``tls.key``). | ``string`` | No |
+|``trustedCertSecret`` | Name of an ``nginx.org/ca`` Secret containing a custom CA certificate (``ca.crt``) for verifying the server TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
 |``insecureSkipVerify`` | Disables TLS certificate verification. Not recommended for production. | ``bool`` | No |
-|``verifyChecksum`` | Fetches a companion ``.sha256`` file and verifies the bundle's SHA-256 digest. HTTPS sources only. | ``bool`` | No |
-|``timeout`` | Per-request HTTP timeout. Default ``60s``. | ``duration`` | No |
-|``retryAttempts`` | Number of retry attempts on transient failure. Range ``1``–``10``. | ``int`` | No |
+|``verifyChecksum`` | Enables SHA-256 verification of the downloaded bundle. HTTPS only. | ``bool`` | No |
+|``timeout`` | Time limit for a single bundle fetch request. Default ``60s``. | ``string`` | No |
+|``retryAttempts`` | Number of additional fetch attempts after a temporary fetch error (eg. timeout or HTTP 5xx). Valid range is ``1``–``10``. | ``int`` | No |
 
 {{% /table %}}
 
