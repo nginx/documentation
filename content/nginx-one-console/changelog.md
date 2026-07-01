@@ -9,6 +9,12 @@ f5-docs: DOCS-1394
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## June 23, 2026
+
+### F5 WAF for NGINX: Added additional built-in log profiles
+
+Nine additional built-in WAF log profiles are now available, covering common logging formats: default, gRPC, ArcSight, and Splunk.
+
 ## June 15, 2026
 
 ### F5 WAF for NGINX: Updated policy version names
