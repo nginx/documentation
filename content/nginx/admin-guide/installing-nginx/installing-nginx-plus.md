@@ -46,9 +46,9 @@ By default, NGINX Plus repositories are configured to receive Continuous Release
 
 Available repository configuration options:
 
-- **Default**: receive Continuous Releases within the current LTS release, automatically upgrade to each new LTS when it is released annually and then receive its CRs. Follow the steps for your operating system in this guide.
-- **Pin to current LTS only**: receive only security updates for this LTS, no CRs, no automatic update to next LTS; supported up to three years. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
-- **Pin to LTS track**: automatically upgrade to the newest LTS when it is released annually, no CRs. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
+- **Default**: receive Continuous Releases within the current LTS release, upgrade to each new LTS when it is released annually and then receive its CRs. Follow the steps for your operating system in this guide.
+- **Pin to current LTS only**: receive only security updates for this LTS, no CRs, no upgrade to next LTS; supported up to three years. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
+- **Pin to LTS track**: upgrade to the newest LTS when it is released annually, no CRs. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}).
 
 ## Prerequisites {#prereq}
 
