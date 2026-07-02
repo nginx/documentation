@@ -207,7 +207,7 @@ description: "One sentence summarizing the page, under 160 characters."
 weight: 100                   # Controls sort order, increments of 100
 toc: false                    # Enable for large documents (tech-specs, tutorial)
 f5-product: F5 NGINX Ingress Controller           # Use a name from the Product Names list below
-f5-content-type: howto        # howto | concept | reference | tech-specs | tutorial
+f5-content-type: how-to       # how-to | concept | reference | tech-specs | tutorial | getting-started | installation-guide | release-notes
 f5-docs: DOCS-000             # Jira ticket ID for the doc request
 f5-keywords: "keyword1, keyword2, keyword3"
 f5-summary: >
