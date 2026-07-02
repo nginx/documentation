@@ -249,7 +249,7 @@ bash install-nim-bundle.sh -r
    sudo yum update -y nms-instance-manager --allowerasing
    ```
 
-1. To upgrade to the latest version of Clickhouse, run the following command:
+1. ( Optional) To upgrade to the latest version of Clickhouse, run the following command:
 
    ```shell
    sudo yum update -y clickhouse-server clickhouse-client
