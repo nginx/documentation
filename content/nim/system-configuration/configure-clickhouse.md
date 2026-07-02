@@ -15,7 +15,7 @@ f5-summary: >
 
 ## Overview
 
-F5 NGINX Instance Manager uses ClickHouse to store metrics, Security events, alerts Only. All the remaining resources such as configs, certs, secrets, templates and everything related are store in dqlite memory.
+F5 NGINX Instance Manager uses ClickHouse to store metrics, Security events, alerts Only. All the remaining resources such as configs, certs, secrets, templates and everything related are stored in dqlite memory.
 If your setup differs from the default configuration — for example, if you use a custom address, enable TLS, set a password, or turn off metrics — you need to update the `/etc/nms/nms.conf` file.
 
 This guide explains how to update those settings so that NGINX Instance Manager can connect to ClickHouse correctly.
