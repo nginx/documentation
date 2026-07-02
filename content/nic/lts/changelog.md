@@ -4,7 +4,7 @@ url: /nginx-ingress-controller/lts/changelog
 weight: 10200
 f5-landing-page: true
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 ## New release model {#intro}

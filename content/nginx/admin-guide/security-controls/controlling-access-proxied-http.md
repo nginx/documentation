@@ -6,7 +6,7 @@ title: Limiting Access to Proxied HTTP Resources
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This article explains how to set the maximum number of requests for a connection, or the maximum rate of downloading content from the server.

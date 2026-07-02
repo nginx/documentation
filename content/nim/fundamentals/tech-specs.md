@@ -4,7 +4,7 @@ title: Technical Specifications
 toc: true
 weight: 20
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Technical specifications for F5 NGINX Instance Manager, including supported operating systems, Kubernetes distributions, NGINX versions, browsers, and hardware requirements."
 f5-summary: >
   Check the technical specifications for F5 NGINX Instance Manager before you install it.

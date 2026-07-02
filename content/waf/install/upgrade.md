@@ -3,7 +3,7 @@ title: "Upgrade F5 WAF for NGINX"
 weight: 700
 toc: false
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This document describes how to upgrade F5 WAF for NGINX.

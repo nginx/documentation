@@ -4,7 +4,7 @@ weight: 100
 toc: true
 noindex: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-000
 description: "Manually install or upgrade F5 NGINX Instance Manager in a disconnected environment by downloading packages on a connected host and transferring them offline."
 f5-summary: >

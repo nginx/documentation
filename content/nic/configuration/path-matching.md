@@ -3,7 +3,7 @@ title: Path matching
 toc: true
 weight: 750
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-keywords: nginx, nginx ingress controller, nic, ingress controller, path matching, regex, prefix, longest prefix, case sensitive, case insensitive, virtualserver, virtual server, virtualserverroute, virtual server route, kubernetes, crd, path, location, location block
 f5-summary: This page describes the path matching algorithm used by NGINX. This is useful when configuring VirtualServers and VirtualServerRoutes in NGINX Ingress Controller. Since version 5.5.0, NIC supports all five types of paths. Those are prefix, longest prefix, case sensitive regex, case insensitive regex, and exact match. Before 5.5.0 the longest prefix match was not available via NIC.
 f5-audience: developer, operator, admin

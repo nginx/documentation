@@ -4,7 +4,7 @@ title: Configurable Helm settings
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Reference for all configurable Helm chart parameters and their default values for the F5 NGINX Instance Manager Kubernetes deployment."
 f5-summary: >
   Look up all configurable Helm chart parameters and their defaults for deploying F5 NGINX Instance Manager on Kubernetes.

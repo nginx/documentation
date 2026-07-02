@@ -3,7 +3,7 @@ title: "Support"
 weight: 700
 toc: false
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 F5 WAF for NGINX adheres to the support policy detailed in the following MyF5 knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).

@@ -4,7 +4,7 @@ weight: 1000
 toc: true
 url: /nginxaas/azure/monitoring/migrate-to-platform-metrics/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

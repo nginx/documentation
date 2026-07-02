@@ -4,7 +4,7 @@ description: Keep your Security Monitoring dashboards accurate by updating the a
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Update the Security Monitoring attack signature database in F5 NGINX Instance Manager to keep dashboard data accurate.
   The signature database provides names, risk levels, and accuracy details for detected violations; updating it ensures the Security Monitoring dashboards reflect the latest signature metadata.

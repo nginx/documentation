@@ -3,7 +3,7 @@ title: Create a license Secret
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document explains how to create and use a license secret for F5 NGINX Ingress Controller LTS.

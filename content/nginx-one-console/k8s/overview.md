@@ -9,7 +9,7 @@ toc: false
 f5-content-type: concept
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 You can now include Kubernetes systems through the [control plane](https://www.f5.com/glossary/control-plane). In related documentation, you can learn how to:

@@ -206,7 +206,7 @@ title: "Page title"           # Sentence case; how-to/tutorial: verb phrase; con
 description: "One sentence summarizing the page, under 160 characters."
 weight: 100                   # Controls sort order, increments of 100
 toc: false                    # Enable for large documents (tech-specs, tutorial)
-f5-product: INGRESS           # Use a code from the Product codes table below
+f5-product: F5 NGINX Ingress Controller           # Use a name from the Product Names list below
 f5-content-type: howto        # howto | concept | reference | tech-specs | tutorial
 f5-docs: DOCS-000             # Jira ticket ID for the doc request
 f5-keywords: "keyword1, keyword2, keyword3"
@@ -217,9 +217,8 @@ f5-summary: >
 f5-audience: any              # developer | operator | admin | architect | any
 ```
 
-When adding or updating `f5-product` in front matter, always use a code from
-the **Product codes** table at the end of this file. Do not invent codes or
-use product names directly.
+When adding or updating `f5-product` in front matter, always use a name from
+the **Product names** list at the end of this file. Do not invent codes or other names.
 
 ## Hugo shortcodes and includes
 
@@ -340,20 +339,19 @@ Permalinks for products are defined in `config/_default/config.toml`.
 - Landing pages use the `landing-page` archetype
 - Static assets mirror content structure: `static/<product>/images/`
 
-## Product codes
+## Product names
 
-| Code | Product |
-|------|---------|
-| NAGENT | NGINX Agent |
-| FABRIC | NGINX Gateway Fabric |
-| INGRESS | NGINX Ingress Controller |
-| NIMNGR | NGINX Instance Manager |
-| F5WAFN | F5 WAF for NGINX |
-| F5DOSN | F5 DoS Protection for NGINX |
-| NAZURE | NGINXaaS for Azure |
-| NGOOGL | NGINXaaS for Google Cloud |
-| NONECO | NGINX One Console |
-| NGPLUS | NGINX Plus |
+- F5 NGINX Agent
+- F5 NGINX Gateway Fabric
+- F5 NGINX Ingress Controller
+- F5 NGINX Instance Manager
+- F5 WAF for NGINX
+- F5 DoS for NGINX
+- F5 NGINXaaS
+- F5 NGINXaaS for Azure
+- F5 NGINXaaS for Google Cloud
+- F5 NGINX One Console
+- F5 NGINX Plus
 
 ## Common pitfalls
 

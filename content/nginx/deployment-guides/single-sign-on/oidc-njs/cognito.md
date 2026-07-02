@@ -6,7 +6,7 @@ f5-content-type: how-to
 title: Single Sign-On with Amazon Cognito and njs
 toc: false
 weight: 100
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 {{< call-out class="note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).

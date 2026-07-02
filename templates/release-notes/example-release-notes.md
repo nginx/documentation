@@ -1,7 +1,7 @@
 ---
 f5-content-type: release-notes
 f5-docs: DOCS-005
-f5-product: KITCHEN
+f5-product: F5 Kitchen
 title: "Nbeamex Coffee release notes"
 description: "New features, behavior changes, and resolved issues for Nbeamex Coffee 2.16.0."
 weight: 100

@@ -1,5 +1,5 @@
 ---
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-files:
 - content/waf/fundamentals/technical-specifications.md
 - content/waf/policies/configuration.md

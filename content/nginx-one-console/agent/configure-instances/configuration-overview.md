@@ -4,7 +4,7 @@ toc: true
 weight: 300
 f5-content-type: how-to
 f5-docs: DOCS-1879
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.

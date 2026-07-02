@@ -3,7 +3,7 @@ title: "Cookie enforcement"
 weight: 700
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the cookie enforcement feature for F5 WAF for NGINX.

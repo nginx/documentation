@@ -6,7 +6,7 @@ title: Dynamic Denylisting of IP Addresses
 toc: true
 weight: 1100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This section describes how to create a denylist or allowlist of specific client IP addresses, which denies or allows them access to your site, and how to dynamically maintain the list of addresses.

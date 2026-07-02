@@ -3,7 +3,7 @@ title: Enable Service Insight
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1180
 ---
 

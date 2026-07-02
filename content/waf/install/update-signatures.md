@@ -3,7 +3,7 @@ title: "Update F5 WAF for NGINX signatures"
 weight: 600
 toc: false
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes how to update F5 WAF for NGINX signatures in a [virtual machine or bare-metal environment]({{< ref "/waf/install/virtual-environment.md" >}}).

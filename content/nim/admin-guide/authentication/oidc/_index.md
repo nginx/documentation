@@ -2,7 +2,7 @@
 title: OIDC
 weight: 5000
 url: /nginx-instance-manager/admin-guide/authentication/oidc/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Set up OpenID Connect (OIDC) authentication for F5 NGINX Instance Manager using Microsoft Entra, Keycloak, or the client credentials flow."
 f5-summary: >

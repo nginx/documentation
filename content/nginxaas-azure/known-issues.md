@@ -4,7 +4,7 @@ weight: 1000
 toc: true
 f5-content-type: reference
 f5-docs: "DOCS-871"
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 url: /nginxaas/azure/known-issues/
 
 ---

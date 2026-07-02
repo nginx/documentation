@@ -3,7 +3,7 @@ title: "Filetypes"
 weight: 1125
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes the filetype feature of F5 WAF for NGINX.

@@ -3,7 +3,7 @@ title: "Upgrade NGINX Ingress Controller"
 weight: 900
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document describes how to upgrade F5 NGINX Ingress Controller when a new version releases.

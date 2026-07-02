@@ -4,7 +4,7 @@ title: Create a support package
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Use the support package script to collect system and service information about your F5 NGINX Instance Manager installation for troubleshooting."
 f5-summary: >
   Generate a support package from your F5 NGINX Instance Manager installation to share with F5 support for troubleshooting.

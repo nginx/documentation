@@ -5,7 +5,7 @@ description: Install F5 NGINX Plus with step-by-step instructions for
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-414
 ---
 

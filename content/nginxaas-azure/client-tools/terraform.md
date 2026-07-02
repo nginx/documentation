@@ -5,7 +5,7 @@ description: Learn how to use the Terraform to manage NGINXaaS for Azure.
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1472
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 url: /nginxaas/azure/client-tools/terraform/
 ---
 
