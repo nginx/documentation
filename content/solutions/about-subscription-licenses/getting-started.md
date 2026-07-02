@@ -3,7 +3,7 @@ title: Getting started
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: SOLUTI
+f5-product: Solutions
 f5-resource: https://lucid.app/lucidchart/0abcb9d3-b36e-40af-b56a-e74771b384d5/edit?invitationId=inv_8ccda3dc-2306-468c-9cb6-b4684be1360f&page=0_0#
 f5-docs: DOCS-1780
 ---

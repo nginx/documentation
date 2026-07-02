@@ -3,7 +3,7 @@ title: "Technical specifications"
 weight: 200
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page outlines the technical specifications for F5 WAF for NGINX, which includes the minimum requirements and supported platforms.

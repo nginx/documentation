@@ -6,7 +6,7 @@ title: Image-Filter
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 The Image-Filter dynamic module enables you to crop, resize, rotate, and apply various transformations to GIF, JPEG, and PNG images.
 

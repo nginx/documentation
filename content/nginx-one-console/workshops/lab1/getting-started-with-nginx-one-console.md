@@ -3,7 +3,7 @@ title: "Lab 1: Get started with NGINX One Console"
 weight: 100
 toc: true
 f5-content-type: tutorial
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 ## Introduction

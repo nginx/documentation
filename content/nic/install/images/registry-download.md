@@ -3,7 +3,7 @@ title: Download NGINX Ingress Controller from the F5 Registry
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-605
 ---
 

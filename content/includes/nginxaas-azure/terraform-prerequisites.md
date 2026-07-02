@@ -1,5 +1,5 @@
 ---
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/getting-started/create-deployment/deploy-terraform.md
 - content/nginxaas-azure/getting-started/nginx-configuration/nginx-configurations-terraform.md

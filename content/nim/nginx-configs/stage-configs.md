@@ -4,7 +4,7 @@ title: Stage NGINX configs
 toc: true
 weight: 1
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Pre-configure and stage NGINX configuration files in F5 NGINX Instance Manager before deploying them to your NGINX instances."
 f5-summary: >
   Stage NGINX configuration files in F5 NGINX Instance Manager before pushing them to your instances.

@@ -1,7 +1,7 @@
 ---
 f5-content-type: concept
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: secops_dashboard log profile
 description: "An immutable, pre-compiled F5 WAF for NGINX log profile that captures the security telemetry the security dashboard needs."
 weight: 200

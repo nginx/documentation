@@ -4,7 +4,7 @@ doctypes:
 title: Customizing NGINX Ingress Controller LTS Ports
 toc: true
 weight: 1800
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---
 

@@ -4,7 +4,7 @@ url: /nginxaas/azure/quickstart/security-controls/oidc/
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 f5-docs: DOCS-1646
 ---
 

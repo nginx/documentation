@@ -7,7 +7,7 @@ title: Phusion Passenger Open Source
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The Passenger Open Source dynamic module from Phusion enables deployment and administration of applications written in Node.js, Python, and Ruby.

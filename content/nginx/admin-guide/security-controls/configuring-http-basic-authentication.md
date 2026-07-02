@@ -6,7 +6,7 @@ title: Restricting Access with HTTP Basic Authentication
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="intro"></span>

@@ -3,7 +3,7 @@ title: Configure F5 WAF for NGINX with NGINX Ingress Controller
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1866
 ---
 

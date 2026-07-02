@@ -4,7 +4,7 @@ description: Update an existing F5 WAF for NGINX security log profile or create 
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Update an existing F5 WAF for NGINX security log profile in F5 NGINX Instance Manager by overwriting it or creating a new revision using the REST API.
   This guide covers both methods and when to use each.

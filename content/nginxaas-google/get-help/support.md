@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/get-help/support
 f5-content-type: how-to
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 ---
 
 ## Contact F5 support

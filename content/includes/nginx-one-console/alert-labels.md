@@ -1,5 +1,5 @@
 ---
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-files:
 - content/glossary/_index.md
 - content/nginx-one-console/glossary.md

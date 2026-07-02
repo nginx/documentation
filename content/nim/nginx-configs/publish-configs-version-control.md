@@ -3,7 +3,7 @@ f5-docs: DOCS-1348
 title: Publish NGINX configs with version control
 toc: true
 weight: 3
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: how-to
 description: "Publish NGINX configurations stored in a Git repository to your NGINX instances using F5 NGINX Instance Manager for GitOps-style config management."
 f5-summary: >

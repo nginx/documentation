@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: concept
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Extend the F5 Global Default base template with augment templates to customize NGINX configurations for specific instances or instance groups.
   Augment templates let administrators and developers add settings beyond the base template without modifying it directly.

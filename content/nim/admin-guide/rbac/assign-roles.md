@@ -4,7 +4,7 @@ title: Assign roles to users or user groups
 toc: true
 weight: 210
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Assign RBAC roles to individual users or user groups in F5 NGINX Instance Manager to grant access based on job function."
 f5-summary: >
   Assign roles to users or user groups in F5 NGINX Instance Manager to control their access to resources.

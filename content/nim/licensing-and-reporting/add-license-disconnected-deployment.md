@@ -4,7 +4,7 @@ description: "Download a JWT license from MyF5 and apply it to F5 NGINX Instance
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1657
 f5-summary: >
   Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a disconnected (offline) environment to unlock all features.

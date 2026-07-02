@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-989
 url: /nginxaas/azure/quickstart/scaling/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports automatic scaling of your deployment to adapt to application traffic demands allowing you to control costs.

@@ -3,7 +3,7 @@ title: "XFF trusted headers"
 weight: 2200
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 XFF trusted headers are disabled by default.

@@ -4,7 +4,7 @@ weight: 300
 toc: true
 url: /nginxaas/google/billing/usage-dashboard/
 f5-content-type: concept
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 ---
 
 # Usage dashboard

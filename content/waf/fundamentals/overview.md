@@ -3,7 +3,7 @@ title: "Overview"
 weight: 100
 toc: false
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 [F5 WAF for NGINX](https://www.f5.com/products/nginx/nginx-app-protect) (formerly NGINX App Protect WAF) is an advanced, lightweight and high-performance web application firewall (WAF) for applications and APIs.

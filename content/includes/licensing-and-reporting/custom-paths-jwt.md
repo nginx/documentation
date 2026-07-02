@@ -1,6 +1,6 @@
 ---
 f5-product:
-- NGPLUS
+- F5 NGINX Plus
 - SOLUTI
 f5-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md

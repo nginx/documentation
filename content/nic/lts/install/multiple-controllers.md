@@ -3,7 +3,7 @@ title: Run multiple NGINX Ingress Controller LTSs
 toc: true
 weight: 800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document describes how to run multiple F5 NGINX Ingress Controller LTS instances.

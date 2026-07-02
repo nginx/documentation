@@ -3,7 +3,7 @@ title: "Data guard"
 weight: 800
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes the data guard feature of F5 WAF for NGINX.

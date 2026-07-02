@@ -1,5 +1,5 @@
 ---
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-azure-cli.md
 - content/nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal.md

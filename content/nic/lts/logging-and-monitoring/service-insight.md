@@ -3,7 +3,7 @@ title: Enable Service Insight
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 The F5 NGINX Ingress Controller LTS exposes an endpoint which provides host statistics for services exposed using the VirtualServer (VS) and TransportServer (TS) resources.

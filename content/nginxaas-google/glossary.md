@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/glossary/
 f5-content-type: reference
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 ---
 
 This document provides definitions for terms and acronyms commonly used in F5 NGINXaaS for Google Cloud (NGINXaaS) documentation.

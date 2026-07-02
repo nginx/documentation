@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 Deploy the NGINX Gateway Fabric CRDs using `kubectl apply`:
