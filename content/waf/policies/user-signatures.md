@@ -8,7 +8,7 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 f5-content-type: reference
 # Intended for internal catalogue and search, case sensitive:
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-docs: DOCS-1596
 ---
 

@@ -1,5 +1,5 @@
 ---
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/changelog/_index.md
 - content/nic/install/waf-helm.md

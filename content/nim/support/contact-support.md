@@ -4,7 +4,7 @@ title: Where to go for support
 toc: true
 weight: 300
 f5-content-type: concept
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Find the right support channel for F5 NGINX Instance Manager, including links to the knowledge base, community, and F5 support."
 f5-summary: >
   Find the right channel for getting help with F5 NGINX Instance Manager.

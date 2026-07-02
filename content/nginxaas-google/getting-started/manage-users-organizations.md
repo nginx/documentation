@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/getting-started/manage-users-organizations/
 f5-content-type: how-to
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 ---
 
 ## Overview

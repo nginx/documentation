@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 {{< call-out class="note" >}} These steps use a self-signed issuer, which should not be used in production environments. For production environments, you should use a real [CA issuer](https://cert-manager.io/docs/configuration/ca/). {{< /call-out >}}

@@ -111,7 +111,7 @@ AI assistants and human readers parse documentation differently from search engi
 
 **f5-docs**: The tracking ID for this document. Use `DOCS-000` until a real ID is assigned.
 
-**f5-product**: The product code. Check an existing document for the same product if you are unsure which code to use.
+**f5-product**: The product name. Check an existing document for the same product if you are unsure which name to use.
 
 **title**: Use a noun phrase that names the concept directly. Do not use "Understanding X" or "About X" — these add words without adding meaning.
 

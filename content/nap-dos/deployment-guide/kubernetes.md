@@ -5,7 +5,7 @@ keywords: "F5 DoS for NGINX, Kubernetes, install, container, Docker, manifest"
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 f5-summary: >
   Install F5 DoS for NGINX on Kubernetes using manifests and have a working deployment that protects your applications against behavioral DoS attacks.
   F5 DoS for NGINX runs as a sidecar container alongside NGINX Plus, using real-time traffic analysis to detect and block denial-of-service attacks.

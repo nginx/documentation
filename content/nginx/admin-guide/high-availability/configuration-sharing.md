@@ -6,7 +6,7 @@ title: Synchronizing NGINX Configuration in a Cluster
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="overview"></span>

@@ -4,7 +4,7 @@ url: /nginx-agent/changelog
 weight: 1200
 toc: true
 f5-docs: "DOCS-1093"
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-content-type: reference
 ---
 

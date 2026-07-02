@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-875
 url: /nginxaas/azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-portal/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

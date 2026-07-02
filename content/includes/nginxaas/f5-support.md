@@ -1,5 +1,5 @@
 ---
-f5-product: NGXAAS
+f5-product: NGINXaaS
 f5-files:
 - content/nginxaas/get-help/support.md
 - content/nginxaas-google/get-help/support.md

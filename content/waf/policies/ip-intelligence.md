@@ -3,7 +3,7 @@ title: "IP intelligence"
 weight: 1600
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 F5 WAF for NGINX has an IP intelligence feature which allows you to customize enforcement based on the source IP address of a request. This allows you to limit access from specific IP addresses.

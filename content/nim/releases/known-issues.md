@@ -4,7 +4,7 @@ type: reference
 title: Known issues
 toc: true
 weight: 2
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: reference
 description: "Known issues and possible workarounds for F5 NGINX Instance Manager, with issue IDs and conditions under which they occur."
 f5-summary: >

@@ -3,7 +3,7 @@ title: NGINX Ingress Controller and Istio Service Mesh
 toc: true
 weight: 1800
 f5-content-type: concept
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-889
 ---
 

@@ -5,7 +5,7 @@ toc: true
 weight: 150
 f5-docs: DOCS-NIM-ROOTLESS
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Deploy F5 NGINX Instance Manager in a secure, rootless Docker Compose environment where all
   processes run as a non-root user. Change NGINX Instance Manager configuration at runtime using environment

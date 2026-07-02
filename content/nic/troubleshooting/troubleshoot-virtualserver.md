@@ -3,7 +3,7 @@ f5-docs: DOCS-1461
 title: Troubleshooting VirtualServer resources
 toc: true
 weight: 600
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---
 

@@ -4,7 +4,7 @@ linkTitle: NGINX Open Source
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This page describes how to use Helm to install F5 NGINX Ingress Controller with NGINX Open Source. 

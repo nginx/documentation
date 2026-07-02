@@ -3,7 +3,7 @@ title: Product telemetry
 toc: true
 weight: 500
 f5-docs: DOCS-1857
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-content-type: reference
 ---
 

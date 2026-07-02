@@ -1,7 +1,7 @@
 ---
 f5-product:
-- NONECO
-- FABRIC
+- F5 NGINX One Console
+- F5 NGINX Gateway Fabric
 f5-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---

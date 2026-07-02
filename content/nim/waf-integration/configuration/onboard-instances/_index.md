@@ -3,7 +3,7 @@ title: Onboard instances
 f5-docs: 
 weight: 400
 url: /nginx-instance-manager/waf-integration/configuration/onboard-instances/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Onboard F5 WAF for NGINX instances to F5 NGINX Instance Manager by installing and configuring NGINX Agent on each instance."
 f5-summary: >

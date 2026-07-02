@@ -1,5 +1,5 @@
 ---
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/deploy/vm-bare-metal/install-nim-manual.md
 ---

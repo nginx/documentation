@@ -4,7 +4,7 @@ weight: 350
 toc: true
 url: /nginxaas/azure/app-protect/ip-intelligence/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview
