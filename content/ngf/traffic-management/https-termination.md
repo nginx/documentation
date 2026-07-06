@@ -3,7 +3,7 @@ title: Configure HTTPS termination
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1421
 f5-summary: >
    NGINX Gateway Fabric terminates HTTPS at the Gateway using a TLS certificate stored in a Kubernetes Secret that the HTTPS listener references through `certificateRefs`.

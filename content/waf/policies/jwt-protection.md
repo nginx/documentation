@@ -3,7 +3,7 @@ title: JWT protection
 weight: 1700
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 JSON Web Tokens (JWTs) are a compact and self-contained way to represent information between two parties in JSON format, commonly used for authentication and authorization.

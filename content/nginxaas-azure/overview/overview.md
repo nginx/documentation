@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-879
 url: /nginxaas/azure/overview/overview/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## What Is F5 NGINXaaS for Azure?

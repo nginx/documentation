@@ -7,7 +7,7 @@ title: Live Activity Monitoring
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="live-activity-monitoring"></span>

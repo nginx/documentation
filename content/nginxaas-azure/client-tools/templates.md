@@ -6,7 +6,7 @@ description: Learn how to use Azure Resource Manager (ARM) JSON and Bicep templa
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1097
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 url: /nginxaas/azure/client-tools/templates/
 ---
 

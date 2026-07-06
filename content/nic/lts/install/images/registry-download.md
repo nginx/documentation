@@ -3,7 +3,7 @@ title: Download NGINX Ingress Controller LTS from the F5 Registry
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This page describes how to download an F5 NGINX Plus Ingress Controller LTS image from the official F5 Docker registry.

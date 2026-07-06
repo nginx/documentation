@@ -253,7 +253,7 @@ title: "TLS termination"
 weight: 400
 toc: false
 f5-content-type: concept
-f5-product: FABRIC
+f5-product: F5 NGINX Gateway Fabric
 ---
 ```
 

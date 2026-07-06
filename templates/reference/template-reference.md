@@ -1,7 +1,7 @@
 ---
 f5-content-type: reference
 f5-docs: DOCS-000
-f5-product: {PRODUCT_CODE}
+f5-product: {PRODUCT_NAME}
 title: {Noun phrase identifying the component or set of entries}
 description: "{One-sentence summary of what this article covers, under 160 characters.}"
 weight: 100

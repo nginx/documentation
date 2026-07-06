@@ -4,7 +4,7 @@ title: Configuration examples
 toc: true
 weight: 400
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 Our [GitHub repo](https://github.com/nginx/kubernetes-ingress) includes a number of configuration examples:

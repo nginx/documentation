@@ -1,7 +1,7 @@
 ---
 f5-content-type: tech-specs
 f5-docs: DOCS-000
-f5-product: {PRODUCT_CODE}
+f5-product: {PRODUCT_NAME}
 title: {Product or component name} technical specifications
 description: "{One-sentence summary of what component or system this page covers, under 160 characters.}"
 weight: 100

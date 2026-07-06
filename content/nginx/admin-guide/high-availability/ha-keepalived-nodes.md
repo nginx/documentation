@@ -7,7 +7,7 @@ title: Configuring Active-Active High Availability and Additional Passive Nodes 
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="intro"></span>

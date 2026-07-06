@@ -1,5 +1,5 @@
 ---
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 f5-files:
 - content/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md
 ---

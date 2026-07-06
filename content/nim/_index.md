@@ -5,7 +5,7 @@ url: /nginx-instance-manager/
 f5-landing-page: true
 cascade:
   logo: "NGINX-Instance-Manager-product-icon.svg"
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 f5-summary: >
   Use F5 NGINX Instance Manager to track, configure, and manage NGINX Open Source and NGINX Plus instances from a single dashboard.

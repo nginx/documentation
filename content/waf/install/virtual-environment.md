@@ -7,7 +7,7 @@ f5-banner:
     start-date: 2025-08-30
     md: /_banners/waf-virtual-restriction.md
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment.

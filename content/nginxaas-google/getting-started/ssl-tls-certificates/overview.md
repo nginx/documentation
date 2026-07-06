@@ -4,7 +4,7 @@ weight: 50
 toc: true
 url: /nginxaas/google/getting-started/ssl-tls-certificates/overview/
 f5-content-type: reference
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 ---
 
 

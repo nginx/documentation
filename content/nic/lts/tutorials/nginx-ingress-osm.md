@@ -3,7 +3,7 @@ title: NGINX Ingress Controller LTS and Open Service Mesh
 toc: true
 weight: 1800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document outlines how to integrate F5 NGINX Ingress Controller LTS with Open Service Mesh (OSM).

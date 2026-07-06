@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 title: Deploy log profiles
 description: "Deploy an F5 WAF for NGINX security log profile to NGINX instances or instance groups in F5 NGINX Instance Manager."
 weight: 300

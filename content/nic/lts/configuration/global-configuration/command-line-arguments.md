@@ -3,7 +3,7 @@ title: Command-line arguments
 toc: true
 weight: 100
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 F5 NGINX Ingress Controller LTS supports several command-line arguments, which are set based on installation method:

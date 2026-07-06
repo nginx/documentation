@@ -5,7 +5,7 @@ title: Logs Overview
 toc: true
 weight: 130
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 There are 4 types of logs corresponding to App Protect DoS:

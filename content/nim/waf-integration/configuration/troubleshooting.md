@@ -4,7 +4,7 @@ description: Resolve common issues with F5 WAF for NGINX and F5 NGINX Instance M
 toc: true
 weight: 1000
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Diagnose and fix common problems with F5 WAF for NGINX and F5 NGINX Instance Manager.
   This guide covers the most likely causes of WAF integration issues, including installation conflicts, configuration errors, and connectivity problems.
