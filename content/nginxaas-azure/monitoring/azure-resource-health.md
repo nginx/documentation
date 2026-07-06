@@ -4,7 +4,7 @@ weight: 50
 toc: false
 url: /nginxaas-azure/monitoring/azure-resource-health/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

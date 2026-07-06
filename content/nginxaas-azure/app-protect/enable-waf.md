@@ -4,7 +4,7 @@ weight: 200
 toc: true
 url: /nginxaas-azure/app-protect/enable-waf/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

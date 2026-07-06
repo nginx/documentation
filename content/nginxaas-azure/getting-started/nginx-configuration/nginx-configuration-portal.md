@@ -4,7 +4,7 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-873
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 url: /nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal/
 ---
 

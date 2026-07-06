@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-882
 url: /nginxaas-azure/get-help/support
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Contact NGINX support

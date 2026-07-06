@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-1369
 url: /nginxaas-azure/monitoring/enable-logging/logging-using-portal/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

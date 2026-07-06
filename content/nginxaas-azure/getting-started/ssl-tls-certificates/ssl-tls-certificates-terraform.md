@@ -4,7 +4,7 @@ weight: 300
 toc: true
 url: /nginxaas-azure/getting-started/ssl-tls-certificates/ssl-tls-certificates-terraform/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview
