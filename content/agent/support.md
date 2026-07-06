@@ -3,7 +3,7 @@ title: Support
 weight: 800
 toc: false
 f5-content-type: reference
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-docs: DOCS-1883
 ---
 

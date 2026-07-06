@@ -1,6 +1,6 @@
 ---
 f5-content-type: how-to
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Submit templates
 toc: true
 weight: 200

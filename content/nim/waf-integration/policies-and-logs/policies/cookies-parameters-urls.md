@@ -4,7 +4,7 @@ description: Configure cookie, parameter, and URL protections in your F5 WAF for
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Configure cookie, parameter, and URL protections in your F5 WAF for NGINX policies using F5 NGINX Instance Manager.
   These settings let you define how the WAF handles specific cookies, query parameters, and URL paths in incoming requests.

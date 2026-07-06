@@ -3,7 +3,7 @@ title: View the NGINX status page
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document explains how to get access to the dashboard in NGINX Plus. 

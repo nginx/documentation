@@ -2,7 +2,7 @@
 title: Authentication
 weight: 100
 url: /nginx-instance-manager/admin-guide/authentication/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Configure authentication for F5 NGINX Instance Manager using basic auth with NGINX or OpenID Connect (OIDC) with an external identity provider."
 f5-summary: >

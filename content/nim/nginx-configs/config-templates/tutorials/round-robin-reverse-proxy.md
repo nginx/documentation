@@ -6,7 +6,7 @@ weight: 100
 toc: true
 f5-docs: DOCS-1655
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Set up a round-robin reverse proxy using base and augment templates in F5 NGINX Instance Manager and have a working load-balanced NGINX configuration.
   This tutorial walks through creating the base template, adding an augment template for upstream configuration, and deploying the result to NGINX instances.

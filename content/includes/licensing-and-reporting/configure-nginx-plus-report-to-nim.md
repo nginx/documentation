@@ -1,6 +1,6 @@
 ---
 f5-product:
-- NIMNGR
+- F5 NGINX Instance Manager
 - SOLUTI
 f5-files:
 - content/nim/licensing-and-reporting/report-usage-connected-deployment.md

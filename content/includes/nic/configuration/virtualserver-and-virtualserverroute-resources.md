@@ -3,7 +3,7 @@ title: VirtualServer and VirtualServerRoute resources
 toc: true
 weight: 700
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-599
 ---
 

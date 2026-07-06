@@ -6,7 +6,7 @@ title: Releases
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 {{< call-out class="note" title="Important" >}} Since May 13, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: [Long-Term Support Releases (LTS)](#lts) and [Continuous Releases (CR)](#cr). {{< /call-out >}}

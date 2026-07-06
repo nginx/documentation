@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-990
 url: /nginxaas/azure/security-controls/auth-basic/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 You can restrict access to resources by implementing username/password authentication using the "HTTP Basic Authentication" protocol.

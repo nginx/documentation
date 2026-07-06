@@ -3,7 +3,7 @@ title: "Add an NGINX instance"
 weight: 100
 toc: false
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager by installing NGINX Agent for centralized management."
 f5-summary: >
   Add NGINX Open Source and NGINX Plus instances to F5 NGINX Instance Manager by installing NGINX Agent on each instance.

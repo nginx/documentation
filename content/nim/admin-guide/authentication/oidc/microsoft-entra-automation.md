@@ -4,7 +4,7 @@ title: Automate OIDC with Microsoft Entra
 toc: true
 weight: 300
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Automate OIDC authentication for F5 NGINX Instance Manager using the Microsoft Entra client credentials flow for non-interactive, machine-to-machine access."
 f5-summary: >
   Secure F5 NGINX Instance Manager with OIDC using the client credentials flow and Microsoft Entra as the identity provider.

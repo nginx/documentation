@@ -6,7 +6,7 @@ f5-landing-page: true
 cascade:
   logo: F5-NGINXaaS-icon.svg
 f5-content-type: landing-page
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 ---
 
 ## About

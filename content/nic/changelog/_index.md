@@ -4,7 +4,7 @@ url: /nginx-ingress-controller/changelog
 weight: 10200
 f5-landing-page: true
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-616
 ---
 

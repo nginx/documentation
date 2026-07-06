@@ -3,7 +3,7 @@ title: "Terminology"
 weight: 300
 toc: false
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page defines terminology used when describing functionality of F5 WAF for NGINX.

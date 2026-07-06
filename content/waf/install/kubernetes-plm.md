@@ -7,7 +7,7 @@ f5-banner:
     start-date: 2025-08-30
     md: /_banners/waf-early-availability.md
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 There are two new features available for Kubernetes through early access:

@@ -4,7 +4,7 @@ toc: true
 weight: 250
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 NGINX Agent can be configured to connect to NGINX One using an explicit forward

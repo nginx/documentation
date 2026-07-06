@@ -1,5 +1,5 @@
 ---
-f5-product: MISCEL
+f5-product: Miscellaneous
 f5-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
 - content/nic/install/images/registry-download.md

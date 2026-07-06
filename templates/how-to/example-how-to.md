@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-001
-f5-product: KITCHEN
+f5-product: F5 Kitchen
 title: Prepare pour-over coffee
 description: "Configure a pour-over coffee setup and brew a single cup using freshly ground beans."
 weight: 100

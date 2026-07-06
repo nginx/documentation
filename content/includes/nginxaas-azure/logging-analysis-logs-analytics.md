@@ -1,5 +1,5 @@
 ---
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md
