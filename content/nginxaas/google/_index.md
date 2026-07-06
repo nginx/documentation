@@ -6,7 +6,7 @@ cascade:
   logo: F5-NGINXaaS-icon.svg
   contentVars:
     product: NGINXaaS for Google Cloud
-f5-product: NGINXaaS for Google
+f5-product: NGINXaaS for Google Cloud
 weight: 500
 ---
 

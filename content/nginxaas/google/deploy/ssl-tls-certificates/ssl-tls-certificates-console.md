@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google
+f5-product: NGINXaaS for Google Cloud
 ---
 
 You can manage SSL/TLS certificates for F5 NGINXaaS for Google Cloud (NGINXaaS) using the NGINXaaS console.

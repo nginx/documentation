@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google
+f5-product: NGINXaaS for Google Cloud
 ---
 
 You can apply an NGINX configuration to your F5 NGINXaaS for Google Cloud (NGINXaaS) deployment using the NGINXaaS Console.

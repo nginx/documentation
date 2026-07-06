@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google
+f5-product: NGINXaaS for Google Cloud
 ---
 
 ## Overview

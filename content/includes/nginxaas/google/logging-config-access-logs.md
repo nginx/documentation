@@ -1,5 +1,5 @@
 ---
-f5-product: NGINXaaS for Google
+f5-product: NGINXaaS for Google Cloud
 f5-files:
 - content/nginxaas/google/monitoring/enable-nginx-logs.md
 ---

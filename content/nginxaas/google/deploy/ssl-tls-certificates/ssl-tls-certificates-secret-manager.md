@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google
+f5-product: NGINXaaS for Google Cloud
 ---
 
 F5 NGINXaaS for Google Cloud (NGINXaaS) can fetch secrets directly from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview) to use as certificates and keys in your NGINX configuration, ensuring your credentials remain securely within Google Cloud.
