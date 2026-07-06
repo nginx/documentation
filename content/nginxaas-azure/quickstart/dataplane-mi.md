@@ -2,9 +2,9 @@
 title: NGINXaaS Managed Identity on dataplane
 weight: 700
 toc: true
-url: /nginxaas/azure/quickstart/dataplane-mi/
+url: /nginxaas-azure/quickstart/dataplane-mi/
 f5-content-type: how-to
-f5-product: NGINXaaS for Azure
+f5-product: NAZURE
 f5-description: NGINXaaS for Azure deployments can use a system-assigned or user-assigned Managed Identity to authenticate against Azure resources by fetching OAuth2 tokens from IMDS via an njs script.
 f5-summary: >
    NGINXaaS for Azure supports using a system-assigned or user-assigned Managed Identity to access other Azure resources by querying the Instance Metadata Service (IMDS) to fetch OAuth2 access tokens.

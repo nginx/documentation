@@ -4,8 +4,8 @@ weight: 1000
 toc: true
 f5-content-type: reference
 f5-docs: "DOCS-871"
-f5-product: NGINXaaS for Azure
-url: /nginxaas/azure/known-issues/
+f5-product: NAZURE
+url: /nginxaas-azure/known-issues/
 
 ---
 
@@ -27,7 +27,7 @@ $ terraform apply
 │ Code: "NginxSaaSError"
 │ Message: "{\"Content\":\"{\\\"error\\\":{\\\"code\\\":\\\"CapacityOutOfRange\\\",\\\"message\\\":\\\"The deployment's capacity must
 │ be between 10 and 500 inclusive for marketplace plan standard. For more information about setting capacity see
-│ https://docs.nginx.com/nginxaas/azure/quickstart/scaling/.\\\"}}\\n\",\"StatusCode\":400}"
+│ https://docs.nginx.com/nginxaas-azure/quickstart/scaling/.\\\"}}\\n\",\"StatusCode\":400}"
 ```
 
 The error message describes how to fix the vailidation problem. In the Azure portal, you'll be able to see your NGINXaaS, but it will have a "Failed" status. Future **terraform apply** will fail with **Error: A resource with the ID "..." already exists**.

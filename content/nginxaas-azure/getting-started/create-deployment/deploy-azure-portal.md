@@ -1,10 +1,10 @@
 ---
 title: Deploy using the Azure portal
-url: /nginxaas/azure/getting-started/create-deployment/deploy-azure-portal/
+url: /nginxaas-azure/getting-started/create-deployment/deploy-azure-portal/
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGINXaaS for Azure
+f5-product: NAZURE
 f5-docs: DOCS-878
 f5-review-priority: high
 ---
@@ -101,7 +101,7 @@ You can start the NGINXaaS deployment process by visiting the [Create NGINXaaS](
 
 1. After the deployment finishes, select the NGINX deployment from the list (with "Type: NGINXaaS") to view information about the deployed resource, including the deployment IP address.
 
-   {{< img src="nginxaas-azure/deployment-complete.png" alt="Resource Deployment Completed page showing the available deployments and the new NGINXaaS type deployment in the Deployment details section." >}}
+   {{< img src="nginxaas-azure/getting-started/ment-complete.png" alt="Resource Deployment Completed page showing the available deployments and the new NGINXaaS type deployment in the Deployment details section." >}}
 
 
 ## Test your deployment

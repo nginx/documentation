@@ -4,8 +4,8 @@ weight: 100
 toc: true
 f5-content-type: reference
 f5-docs: "DOCS-870"
-f5-product: NGINXaaS for Azure
-url: /nginxaas/azure/changelog/
+f5-product: NAZURE
+url: /nginxaas-azure/changelog/
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.
