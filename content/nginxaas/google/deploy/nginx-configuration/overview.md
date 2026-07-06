@@ -4,7 +4,7 @@ weight: 50
 toc: true
 url: /nginxaas/google/deploy/nginx-configuration/overview/
 f5-content-type: reference
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google
 ---
 
 This document provides details about using NGINX configuration files with your

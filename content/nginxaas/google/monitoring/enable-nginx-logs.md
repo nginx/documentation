@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-nginx-logs/
 f5-content-type: how-to
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google
 ---
 
 F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs, and F5 WAF for NGINX security logs.

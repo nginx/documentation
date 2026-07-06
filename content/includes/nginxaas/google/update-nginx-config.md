@@ -1,5 +1,5 @@
 ---
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google
 f5-files:
 - content/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md
 - content/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md

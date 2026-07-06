@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/known-issues/
 f5-content-type: reference
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google
 ---
 
 List of known issues in the latest release of F5 NGINXaaS for Google Cloud (NGINXaaS).
