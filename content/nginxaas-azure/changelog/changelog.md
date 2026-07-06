@@ -14,6 +14,11 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## July 2, 2026
+
+  NGINX Plus 37.0 (PLS.37.0) introduced [updated defaults](https://docs.nginx.com/nginx/releases/#r37.0) that affected some users. Deployments on the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have been reverted to NGINX Plus Release 36 (R36) while we work with affected users to resolve concerns.
+  In the meantime, you can test NGINX Plus 37.0 on the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) to check compatibility.
+
 ## July 1, 2026
 
 - {{% icon-feature %}} **User-assigned managed identities are now supported on the data plane**
