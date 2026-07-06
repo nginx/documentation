@@ -30,10 +30,10 @@
 
 - productGroup: NGINX as a Service
   products:
-    - title: "NGINXaaS for Azure"
-      url: "nginxaas-azure/"
     - title: "NGINXaaS for Google Cloud"
       url: "nginxaas/google/"
+    - title: "NGINXaaS for Azure"
+      url: "nginxaas-azure/"
 
 - productGroup: Glossary
   products:
