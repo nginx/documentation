@@ -3,10 +3,12 @@ title: Connect F5 WAF for NGINX to NGINX One Console, NGINX Instance Manager, or
 toc: true
 weight: 1800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
-This document explains how to configure NGINX Ingress Controller to fetch pre-compiled F5 WAF for NGINX policy bundles from a remote source for VirtualServer resources, instead of manually copying bundles on to the cluster.
+## Overview
+
+This guide explains how to configure NGINX Ingress Controller to fetch pre-compiled F5 WAF for NGINX policy bundles from a remote source for VirtualServer resources, instead of manually copying bundles on to the cluster.
 
 This guide focuses on source-specific configuration details and validation steps. 
 
@@ -54,7 +56,7 @@ spec:
     enable: true
     apBundleSource:
       type: N1C
-      url: "https://<tenant>.console.ves.volterra.io"
+      url: "https://<TENANT>.console.ves.volterra.io"
       policyName: "my-blocking-policy"
       policyNamespace: "default"
       secret: "n1c-credentials"
@@ -538,7 +540,7 @@ Verify log events are arriving at your syslog destination:
 kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 ```
 
-## Failure handling and recovery
+## Troubleshooting
 
 ### Initial fetch failure
 
