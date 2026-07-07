@@ -260,8 +260,6 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events/7cb91de6-
 
 ## View Metrics in the User Interface
 
-{{< shortversions "2.3.0" "latest" "nimvers" >}}
-
 The **Metrics Summary** page includes a highlights section of the most important metrics reported in the last minute, plus a summary of the key system, network, HTTP request, and connection metrics at a glance.
 
 To view the metrics summary for an NGINX instance, take the following steps:

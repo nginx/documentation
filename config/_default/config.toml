@@ -55,99 +55,7 @@ enableGitInfo = true
     "taxonomyTerm"
   ]
   taxonomiesExcludedFromSitemap = ["tags", "categories", "doctypes"]
-  unitversion= "1.34.1"
-  unitversionv= "v1.34.1"
   #logo = ""
-
-  # Version lists; used by the versions shortcode
-  nimvers = [ # list of NIM versions for the versions shortcode
-    "0.9",
-    "1.0",
-    "2.0.0",
-    "2.0.1",
-    "2.1.0",
-    "2.2.0",
-    "2.3.0",
-    "2.4.0",
-    "2.5.0",
-    "2.6.0",
-    "2.7.0",
-    "2.8.0",
-    "2.9.0"
-  ]
-  acmvers = [ # list of ACM versions for the shortcode
-    "1.0.0",
-    "1.1.0",
-    "1.1.1",
-    "1.2.0",
-    "1.3.0",
-    "1.3.1",
-    "1.4.0",
-    "1.4.1",
-    "1.5.0"
-  ]
-
-  secvers = [ # list of Security Monitoring versions for the shortcode
-    "1.0.0",
-    "1.1.0",
-    "1.2.0",
-    "1.3.0",
-    "1.4.0",
-    "1.5.0",
-    "1.6.0",
-    "1.7.0"
-  ]
-
-  ctrlvers = [ # list of controller versions for the versions shortcode
-    "3.0",
-    "3.1",
-    "3.2",
-    "3.3",
-    "3.3",
-    "3.4",
-    "3.5",
-    "3.6",
-    "3.7",
-    "3.8",
-    "3.9",
-    "3.10",
-    "3.12",
-    "3.13",
-    "3.14",
-    "3.15",
-    "3.16.1",
-    "3.17",
-    "3.18",
-    "3.18.1",
-    "3.18.2",
-    "3.18.3"
-  ]
-
-  apimvers = [ # list of Cv3 APIM versions for the versions shortcode
-    "3.18",
-    "3.18.1",
-    "3.19",
-    "3.19.1",
-    "3.19.2",
-    "3.19.3",
-    "3.19.4",
-    "3.19.5"
-  ]
-
-  adcvers = [ # list of Cv3 ADC versions for the versions shortcode
-    "3.20",
-    "3.20.1",
-    "3.21",
-    "3.22",
-    "3.22.1",
-    "3.22.2",
-    "3.22.3",
-    "3.22.4",
-    "3.22.5",
-    "3.22.6",
-    "3.22.7",
-    "3.22.8"
-  ]
   github_repo = "https://github.com/nginx/documentation/"
   [params.rich_meta]
     thumbnail = "/images/nginx-documentation-500x300.png"
@@ -158,3 +66,26 @@ enableGitInfo = true
 sectionPagesMenu = "docs"
 
 ignoreFiles = [ "\\.sh$", "\\.DS_Store$", "\\.git.*$", "\\.txt$", "\\/config\\/.*", "README\\.*"]
+
+[outputFormats.llms]
+  baseName       = "llms"
+  mediaType      = "text/plain"
+  isPlainText    = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  baseName       = "llms-full"
+  mediaType      = "text/plain"
+  isPlainText    = true
+  notAlternative = true
+
+[outputFormats.md]
+  baseName       = "index"
+  mediaType      = "text/markdown"
+  isPlainText    = true
+  notAlternative = true
+
+[outputs]
+  home    = ["HTML", "RSS", "llms", "llmsfull"]
+  section = ["HTML", "md"]
+  page    = ["HTML", "md"]
