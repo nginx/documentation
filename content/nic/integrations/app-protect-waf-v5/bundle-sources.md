@@ -1,5 +1,16 @@
 ---
-title: Connect F5 WAF for NGINX to NGINX One Console, NGINX Instance Manager, or HTTPS bundle sources
+title: Configure remote F5 WAF for NGINX bundle sources
+description: "Configure NGINX Ingress Controller to fetch F5 WAF for NGINX policy bundles from NGINX One Console, NGINX Instance Manager, or an HTTPS server."
+f5-keywords: "F5 WAF for NGINX, WAF policy bundle, apBundleSource, apLogBundleSource, NGINX One Console, NGINX Instance Manager, HTTPS bundle source, waf-bundle Secret, NGINX Ingress Controller, VirtualServer, Policy resource, bundle polling"
+f5-summary: >
+  Use this guide to configure NGINX Ingress Controller to automatically fetch compiled F5 WAF for NGINX
+  policy bundles from NGINX One Console, NGINX Instance Manager, or any HTTPS server, instead of
+  manually copying bundle files onto the cluster.
+  Remote bundle sources let WAF protection stay current through polling, so security teams can publish
+  policy changes without redeploying Kubernetes resources.
+  This guide covers source-specific setup, verification, and polling for VirtualServer resources; it
+  does not cover compiling WAF policies or NGINX One Console/NGINX Instance Manager setup themselves.
+f5-audience: operator
 toc: true
 weight: 1800
 f5-content-type: how-to
@@ -22,7 +33,7 @@ Complete end-to-end NGINX Ingress Controller with F5 WAF for NGINX bundle source
 
 ## NGINX One Console
 
-### Before you begin
+### Step 1: Before you begin
 
 - NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
 - An [NGINX One Console]({{< ref "/nginx-one-console/" >}}) account with a published WAF policy. See [Manage policies]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}).
@@ -30,7 +41,7 @@ Complete end-to-end NGINX Ingress Controller with F5 WAF for NGINX bundle source
 
 {{< call-out class="important" >}} NGINX Ingress Controller does not trigger compilation. Compilation happens when a policy is published in NGINX One Console. Ensure the policy has been published and a compiled bundle is available before continuing. {{< /call-out >}}
 
-### Create a credentials Secret
+### Step 2: Create a credentials Secret
 
 Create a Secret of type `nginx.com/waf-bundle` in the same namespace as the Policy. The Secret must contain a `token` key with your NGINX One Console API token:
 
@@ -42,7 +53,7 @@ kubectl create secret generic n1c-credentials \
   --from-literal=token=<YOUR_API_TOKEN>
 ```
 
-### Create a WAF Policy
+### Step 3: Create a WAF Policy
 
 Create a Policy resource using `apBundleSource` with `type: N1C`:
 
@@ -70,7 +81,7 @@ Replace `<tenant>` with your NGINX One Console tenant hostname, `policyName` wit
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
-### Apply the policy to a VirtualServer
+### Step 4: Apply the policy to a VirtualServer
 
 After `waf-policy` is created, apply a VirtualServer that references it in `spec.policies`.
 
@@ -95,7 +106,7 @@ spec:
 
 For complete HTTPS setup manifests, see the [bundle server files](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/shared-examples/waf-bundle-server).
 
-### Verify the bundle was fetched
+### Step 5: Verify the bundle was fetched
 
 1. Check the Policy events for a successful fetch:
 
@@ -127,7 +138,7 @@ For complete HTTPS setup manifests, see the [bundle server files](https://github
 
 If the VirtualServer returns HTTP 500, the bundle has not been fetched yet. Check the Policy events and status for errors.
 
-### Confirm polling is working
+### Step 6: Confirm polling is working
 
 When `enablePolling: true` is set, NGINX Ingress Controller periodically checks whether a new bundle is available. For NGINX One Console, it uses a compile status hash — the full bundle is only downloaded when a new compilation is detected.
 
@@ -149,7 +160,7 @@ kubectl patch policy waf-policy --type merge -p '{
 
 `pollInterval` must be at least `1m`. It defaults to `5m` if not set.
 
-### Add a security log bundle source (optional)
+### Step 7: Add a security log bundle source (optional)
 
 Security log profile bundles can also be fetched from NGINX One Console using `apLogBundleSource` in `securityLogs[]`.
 
@@ -178,7 +189,7 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ## NGINX Instance Manager
 
-### Before you begin
+### Step 1: Before you begin
 
 - NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
 - A working [NGINX Instance Manager]({{< ref "/nim/" >}}) instance with a compiled policy bundle. See [Create a security policy bundle]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
@@ -186,7 +197,7 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 {{< call-out class="important" >}} NGINX Ingress Controller does not trigger compilation. Compile the policy in NGINX Instance Manager and verify compilation succeeded before continuing. {{< /call-out >}}
 
-### Create a credentials Secret
+### Step 2: Create a credentials Secret
 
 Create a Secret of type `nginx.com/waf-bundle` in the same namespace as the Policy. Use a `token` key for bearer auth, or `username` and `password` keys for basic auth:
 
@@ -217,7 +228,7 @@ kubectl create secret generic nim-credentials \
 
 {{% /tabs %}}
 
-### Create a WAF Policy
+### Step 3: Create a WAF Policy
 
 Create a Policy resource using `apBundleSource` with `type: NIM`:
 
@@ -242,7 +253,7 @@ Replace `url` with your NGINX Instance Manager base URL and `policyName` with th
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
-### Apply the policy to a VirtualServer
+### Step 4: Apply the policy to a VirtualServer
 
 After `waf-policy` is created, apply a VirtualServer that references it in `spec.policies`.
 
@@ -267,7 +278,7 @@ spec:
 
 For complete end-to-end manifests, see the [waf-management-plane examples](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/waf-management-plane).
 
-### Verify the bundle was fetched
+### Step 5: Verify the bundle was fetched
 
 1. Check the Policy events for a successful fetch:
 
@@ -299,7 +310,7 @@ For complete end-to-end manifests, see the [waf-management-plane examples](https
 
 If the VirtualServer returns HTTP 500, the bundle has not been fetched yet. Check the Policy events and status for errors.
 
-### Confirm polling is working
+### Step 6: Confirm polling is working
 
 When `enablePolling: true` is set, NGINX Ingress Controller periodically checks whether a new bundle is available. For NGINX Instance Manager, it uses a metadata hash comparison — the full bundle is only downloaded when the hash has changed.
 
@@ -321,7 +332,7 @@ kubectl patch policy waf-policy --type merge -p '{
 
 `pollInterval` must be at least `1m`. It defaults to `5m` if not set.
 
-### Add a security log bundle source (optional)
+### Step 7: Add a security log bundle source (optional)
 
 Security log profile bundles can also be fetched from NGINX Instance Manager using `apLogBundleSource` in `securityLogs[]`.
 
@@ -349,13 +360,13 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ## HTTPS
 
-### Before you begin
+### Step 1: Before you begin
 
 - NGINX Ingress Controller deployed with [F5 WAF for NGINX v5]({{< ref "/nic/integrations/app-protect-waf-v5/installation.md" >}}). You can also [install with Helm]({{< ref "/nic/install/waf-helm.md" >}}).
 - A compiled `.tgz` policy bundle hosted on an HTTPS server. To compile a policy bundle, see [Compile F5 WAF for NGINX policies]({{< ref "/nic/integrations/app-protect-waf-v5/compile-waf-policies.md" >}}).
 - A VirtualServer resource to attach the WAF policy to.
 
-### Host compiled bundles on an HTTPS server
+### Step 2: Host compiled bundles on an HTTPS server
 
 The `url` field must point directly to the compiled `.tgz` bundle file — for example, `https://bundles.example.com/waf/my-policy.tgz`. NGINX Ingress Controller downloads the file at this URL and does not follow redirects (3xx responses are treated as errors for SSRF protection).
 
@@ -390,7 +401,7 @@ For an example deployment, see the [bundle server files](https://github.com/ngin
 
 After compiling your policy with the [F5 WAF compiler]({{< ref "/waf/configure/compiler.md" >}}), upload the `.tgz` file to your server and note the full URL.
 
-### Create a TLS Secret (optional)
+### Step 3: Create a TLS Secret (optional)
 
 Skip this step if your HTTPS server uses a publicly trusted certificate.
 
@@ -410,7 +421,7 @@ Skip this step if your HTTPS server uses a publicly trusted certificate.
     --key=</path/to/tls.key>
   ```
 
-### Create a WAF Policy
+### Step 4: Create a WAF Policy
 
 Create a Policy resource using `apBundleSource` with `type: HTTPS`. The `url` must be the full path to the `.tgz` bundle file:
 
@@ -433,7 +444,7 @@ Replace `url` with the full URL of your compiled bundle. Remove `trustedCertSecr
 
 {{< call-out class="caution" >}} To skip TLS verification for testing, add `insecureSkipVerify: true` to the bundle source. Do not use this in production. {{< /call-out >}}
 
-### Apply the policy to a VirtualServer
+### Step 5: Apply the policy to a VirtualServer
 
 After `waf-policy` is created, apply a VirtualServer that references it in `spec.policies`.
 
@@ -458,7 +469,7 @@ spec:
 
 For complete end-to-end manifests, see the [waf-management-plane examples](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-version >}}/examples/custom-resources/waf-management-plane).
 
-### Verify the bundle was fetched
+### Step 6: Verify the bundle was fetched
 
 1. Check the Policy events for a successful fetch:
 
@@ -490,7 +501,7 @@ For complete end-to-end manifests, see the [waf-management-plane examples](https
 
 If the VirtualServer returns HTTP 500, the bundle has not been fetched yet. Check the Policy events and status for errors.
 
-### Enable polling (optional)
+### Step 7: Enable polling (optional)
 
 Polling lets NGINX Ingress Controller detect and deploy updated bundles without modifying the Policy resource. For HTTPS sources, NGINX Ingress Controller uses `ETag` and `If-Modified-Since` headers — a `304 Not Modified` response skips the download entirely.
 
@@ -504,7 +515,7 @@ kubectl patch policy waf-policy --type merge -p '{
 
 `pollInterval` must be at least `1m`. It defaults to `5m` if not set.
 
-### Skip unchanged bundles with checksum verification (optional)
+### Step 8: Skip unchanged bundles with checksum verification (optional)
 
 Set `verifyChecksum: true` to have NGINX Ingress Controller reject a downloaded bundle if its SHA-256 hash does not match the expected value. This protects against tampered or corrupted bundles during both the initial fetch and recurring polls.
 
@@ -516,7 +527,7 @@ kubectl patch policy waf-policy --type merge -p '{
 
 {{< call-out class="note" >}} For NGINX Instance Manager and NGINX One Console sources, change detection uses native metadata hashes rather than downloading the bundle, making `verifyChecksum` less useful for those source types. {{< /call-out >}}
 
-### Add a security log bundle source (optional)
+### Step 9: Add a security log bundle source (optional)
 
 Security log profile bundles can also be fetched from a remote source using `apLogBundleSource` in `securityLogs[]`.
 
