@@ -46,9 +46,9 @@ The client secret appears only once. Save it immediately in a secure location, s
 
 Your client credentials can access the following APIs:
 
-- [Certificates API]({{< ref "/nginxaas-google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console.md" >}})
-- [Configs API]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md" >}})
-- [Deployments API]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md" >}})
+- [Certificates API]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
+- [Configs API]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md" >}})
+- [Deployments API]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
 
 ### Client limits
 
@@ -59,15 +59,15 @@ Organizations are limited to a maximum of 10 client credentials. To request an i
 Follow these steps to view information about your clients:
 
 1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
-2. Select **Settings** > **Client Credentials** from the left navigation menu.
-3. You can see all the available client credentials for your organization in the **Client Credentials** page. The table shows the following metadata for each credential:
+1. Select **Settings** > **Client Credentials** from the left navigation menu.
+1. You can see all the available client credentials for your organization in the **Client Credentials** page. The table shows the following metadata for each credential:
    - Client Name
    - Client ID
    - Token Endpoint
    - Date Created
    - Expires On
 
-4. Check the expiration status indicator next to **Expires On**:
+1. Check the expiration status indicator next to **Expires On**:
    - **Green dot**: Credential is active and valid
    - **Red dot**: Credential has expired
 
@@ -80,10 +80,10 @@ Client secrets are not displayed after creation. If you need to use credentials 
 Follow these steps to delete a client credential:
 
 1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
-2. Select **Settings** > **Client Credentials** from the left navigation menu.
-3. Locate the credential to delete in the table.
-4. Select the three vertical dots icon (⋮) at the end of the row.
-5. Select **Delete** from the menu.
+1. Select **Settings** > **Client Credentials** from the left navigation menu.
+1. Locate the credential to delete in the table.
+1. Select the three vertical dots icon (⋮) at the end of the row.
+1. Select **Delete** from the menu.
 
 After deletion:
 - Existing access tokens continue to work until they expire (1 hour from issuance)
@@ -198,6 +198,8 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 
 ## What's next
 
-[Manage your NGINXaaS deployments]({{< ref "/nginxaas-google/getting-started/create-deployment/deploy-console.md" >}})
+[Manage your NGINXaaS certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
 
-[Manage your NGINX configurations]({{< ref "/nginxaas-google/getting-started/nginx-configuration/nginx-configuration-console.md" >}})
+[Manage your NGINX configurations]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md" >}})
+
+[Manage your NGINXaaS deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
