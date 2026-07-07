@@ -17,10 +17,10 @@ and reliable bringing advanced traffic services enabled with the commercial vers
 ### Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
-  {{<card title="Prerequisites" titleUrl="/nginxaas/google/getting-started/prerequisites/" icon="power">}}
+  {{<card title="Prerequisites" titleUrl="/nginxaas/google/deploy/prerequisites/" icon="power">}}
     Follow these steps to prepare for your NGINXaaS deployment
   {{</card>}}
-  {{<card title="Create a deployment" titleUrl="/nginxaas/google/getting-started/create-deployment/deploy-console/" icon="cloud-upload">}}
+  {{<card title="Create a deployment" titleUrl="/nginxaas/google/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
     Step-by-step instructions to deploy NGINXaaS using the NGINXaaS Console
   {{</card>}}
   {{<card title="Add certificates" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
