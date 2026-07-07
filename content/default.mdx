@@ -1,0 +1,174 @@
+---
+title: AI Powered Risk Scoring
+type: content
+slug: ai-powered-risk-scoring
+f5_updated_published_date: f5_updated_published_date
+f5_original_published_date: 2026-05-28
+f5_title: f5_title
+f5_kb_id: f5_kb_id
+printableuri: printableuri
+clickableuri: clickableuri
+f5_document_type: f5_document_type
+xc_product:
+  - WAAP
+xc_feature: 
+  - WAF
+  - Service Policy
+  - Sensitive Data
+xc_content_descriptor:
+  - Concepts
+xc_area:
+  - App
+  - WAF
+  - Firewall
+xc_env: xc_env
+xc_protected: xc_protected
+xc_featured_tip: xc_featured_tip
+xc_document_url: /web-app-and-api-protection/how-to/app-security/ai-powered-risk-scoring
+xc_new_nav: xc_new_nav
+xc_classic_nav: xc_classic_nav
+xc_beta: xc_beta
+breadcrumb: breadcrumb
+primary_nav_is_hidden: primary_nav_is_hidden
+primary_nav_short_name: primary_nav_short_name
+keywords:
+  - Risk Scoring
+  - AI
+  - WAF
+description: AI powered risk scoring
+---
+
+## Objective
+AI-powered Risk Scoring enhances traditional WAF protection by combining signature-based detection with machine learning (ML) analysis to evaluate the overall risk of incoming requests.
+Instead of relying solely on individual signature matches, the system correlates multiple attack signals and classifies requests into one of the following risk levels:
+- High
+- Medium
+- Low
+This enables organizations to make more confident blocking decisions while reducing operational complexity and minimizing false positives.
+## Why AI-powered Risk Scoring Matters
+Traditional WAF deployments often require significant manual tuning before organizations feel confident enabling blocking mode. As applications evolve and attack patterns become more sophisticated, maintaining an effective balance between protection and usability becomes increasingly difficult.
+AI-powered Risk Scoring addresses this challenge by introducing layered analysis and ML-assisted classification into the WAF evaluation process.
+### Key benefits
+- Faster transition to blocking mode
+- Reduced manual tuning and exception management
+- Improved attack detection coverage
+- Lower false positive rates
+- More consistent protection across applications and APIs
+## How Risk Scoring Works
+Risk Scoring evaluates requests using multiple detection layers instead of relying on a single signature match.
+The evaluation process includes:
+1. Signature-based analysis
+2. Attack indicators and correlation
+3. ML-based classification
+4. Final risk assessment
+The system assigns a final risk level based on the combined confidence of these signals.
+## Detection Signals Used
+Risk Scoring incorporates several categories of security signals, including:
+- High-confidence WAF signatures
+- Curated signature combinations
+- Injection attack indicators
+- Multiple correlated signature matches
+- Predictable resource exploitation indicators
+This multi-layered approach improves detection efficacy while helping reduce unnecessary blocking.
+## Machine Learning-Based Classification
+A Neural Network acts as a secondary classifier during risk evaluation.
+When suspicious request fragments trigger supported attack signatures, the ML model evaluates whether the detected content is likely malicious or benign.
+The model is invoked only when at least one enabled signature is triggered from supported categories such as:
+- SQL Injection (SQLi)
+- Cross-Site Scripting (XSS)
+- Command Execution
+- Path Traversal
+- LDAP Injection
+- XPath Injection
+- Server-Side Code Injection
+If signatures are disabled or excluded, they are not used to invoke the model.
+
+## Neural Network Output
+The Neural Network returns a binary classification result:
+| Output | Meaning |
+|---|---|
+| 1 | Malicious request |
+| 0 | Benign or false positive |
+Based on this result, the request risk level is adjusted appropriately.
+## Risk-Based Decision Flow
+Risk Scoring combines static rules and ML evaluation to determine the final request classification.
+Examples of signals that may increase risk include:
+- High-risk signature matches
+- High-accuracy signatures
+- Multiple attack indicators
+- Known exploitation patterns
+- Injection attack behavior
+The ML model further refines this assessment to improve accuracy and reduce false positives.
+## Configuration Workflow
+AI-powered Risk Scoring is designed to work alongside existing WAF configuration settings.
+During configuration, administrators may need to evaluate combinations of:
+- Signature accuracy settings
+- AI enhancement options
+- Risk-level enforcement policies
+- Custom versus predefined configurations
+Because these settings interact with one another, organizations should validate configurations based on their security objectives and application behavior.
+## Recommended Configuration Approach
+Rather than tuning individual settings in isolation, F5 recommends configuring Risk Scoring based on desired outcomes.
+| Configuration Approach | Signature Accuracy | Risk Enforcement |
+|---|---|---|
+| Conservative Protection | High, Medium | High Risk Enforcement |
+| Balanced Protection | High, Medium | High, Medium Risk Enforcement |
+| Aggressive Threat Detection | High, Medium, Low | High, Medium Risk Enforcement |
+### Conservative Protection
+Recommended for environments prioritizing low false positives.
+Typical characteristics:
+- High-risk evaluation
+- Medium-to-high signature accuracy thresholds
+- Gradual rollout into blocking mode
+### Balanced Protection
+Recommended for most production environments.
+Typical characteristics:
+- AI enhancement enabled
+- Medium-to-high signature accuracy thresholds
+- Medium-to-high risk evaluation
+- Balanced detection and usability
+### Aggressive Threat Detection
+Recommended for high-security environments with elevated threat exposure.
+Typical characteristics:
+- Expanded AI-assisted evaluation
+- Medium-to-high risk evaluation
+- Medium-to-high-to-low signature accuracy thresholds
+- Broader attack detection coverage
+Organizations should carefully monitor false positives when using more aggressive configurations.
+## Operational Benefits
+AI-powered Risk Scoring helps reduce several operational challenges commonly associated with WAF deployments.
+### Reduced Security Risk
+By correlating multiple attack signals and ML-based analysis, the system improves detection of sophisticated or previously unseen attacks.
+### Reduced Business Risk
+Layered analysis helps reduce accidental blocking of legitimate traffic, minimizing disruption to end users.
+### Reduced Operational Overhead
+Security teams spend less time managing exceptions and manual tuning, enabling faster and more scalable deployments.
+## Performance Impact
+AI-powered Risk Scoring operates inline with F5 Distributed Cloud WAF and is designed to inspect traffic in real time without introducing noticeable latency in testing environments.
+## Shared Model Architecture
+The ML model is shared across customers to improve scalability and detection accuracy using aggregated security insights.
+However:
+- Customer traffic is not exposed to other customers
+- Full request bodies are not used for training
+- Customer-identifiable information is not retained
+- Training focuses only on suspicious request fragments associated with attack signatures
+## Privacy and Data Handling
+The model analyzes only the portions of HTTP requests associated with suspicious activity.
+Training data is derived from curated production security events and focuses specifically on attack-related request fragments rather than complete requests or session-level data.
+This approach helps improve model efficacy while minimizing privacy concerns.
+## Customer Control and Adoption
+Customers maintain control over adoption of AI-based capabilities.
+Customers can:
+- Opt in to AI-powered features
+- Opt out after adoption
+- Continue using existing non-AI-based functionality
+Organizations are not required to adopt AI-based versions of existing features.
+## Availability and Trial Information
+AI-powered Risk Scoring reached General Availability (GA) as part of the 2025.10.0 release.
+Existing customers can trial the feature for six months through September 30, 2026.
+## Best Practices
+To achieve the best results with AI-powered Risk Scoring:
+- Start with monitoring before enabling blocking
+- Test with non-production environments
+- Review risk outcomes regularly during rollout
+- Validate policies using representative application traffic

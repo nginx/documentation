@@ -46,9 +46,9 @@ To create username-password pairs, use a password file creation utility, for exa
 
     ```shell
     $ cat /etc/apache2/.htpasswd
-    user1:$apr1$/woC1jnP$KAh0SsVn5qeSMjTtn0E9Q0
-    user2:$apr1$QdR8fNLT$vbCEEzDj7LyqCMyNpSoBh/
-    user3:$apr1$Mr5A0e.U$0j39Hp5FfxRkneklXaMrr/
+    user1:<YOUR_PASSWORD>
+    user2:<YOUR_PASSWORD>
+    user3:<YOUR_PASSWORD>
     ```
 
 <span id="config"></span>
