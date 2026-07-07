@@ -23,7 +23,7 @@ and reliable bringing advanced traffic services enabled with the commercial vers
   {{<card title="Create a deployment" titleUrl="/nginxaas/google/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
     Step-by-step instructions to deploy NGINXaaS using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Add certificates" titleUrl="/nginxaas/google/getting-started/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
+  {{<card title="Add certificates" titleUrl="/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
   {{</card>}}
 {{</card-section>}}
