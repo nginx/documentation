@@ -7,7 +7,7 @@ toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1095
 f5-product: NGINXaaS for Azure
-url: /nginxaas/azure/client-tools/sdk/
+url: /nginxaas-azure/client-tools/sdk/
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using the multi-language SDK. This document outlines common workflows using the Python SDK. You can find example code to manage NGINXaaS deployments and related objects in the NGINXaaS GitHub repository, [NGINXaaS Snippets](https://github.com/nginxinc/nginxaas-for-azure-snippets/tree/main/sdk/python/).

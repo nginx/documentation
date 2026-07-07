@@ -2,7 +2,7 @@
 title: "2022"
 weight: 300
 toc: true
-url: /nginxaas/azure/changelog/archive/changelog-2022/
+url: /nginxaas-azure/changelog/archive/changelog-2022/
 f5-content-type: reference
 f5-product: NGINXaaS for Azure
 ---

@@ -2,7 +2,7 @@
 title: Hosting static content in Azure Blob Storage
 weight: 210
 toc: true
-url: /nginxaas/azure/quickstart/hosting-static-content-blob-storage/
+url: /nginxaas-azure/quickstart/hosting-static-content-blob-storage/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

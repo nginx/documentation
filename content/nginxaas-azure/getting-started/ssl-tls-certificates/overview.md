@@ -1,6 +1,6 @@
 ---
 title: Overview
-url: /nginxaas/azure/getting-started/ssl-tls-certificates/overview/
+url: /nginxaas-azure/getting-started/ssl-tls-certificates/overview/
 toc: true
 weight: 50
 f5-content-type: how-to

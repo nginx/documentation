@@ -2,7 +2,7 @@
 title: NGINXaaS Load Balancer for VMSS
 weight: 280
 toc: true
-url: /nginxaas/azure/loadbalancer-vmss/
+url: /nginxaas-azure/loadbalancer-vmss/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

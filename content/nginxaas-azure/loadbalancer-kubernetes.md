@@ -2,7 +2,7 @@
 title: NGINXaaS Load Balancer for Kubernetes
 weight: 275
 toc: true
-url: /nginxaas/azure/loadbalancer-kubernetes/
+url: /nginxaas-azure/loadbalancer-kubernetes/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---
