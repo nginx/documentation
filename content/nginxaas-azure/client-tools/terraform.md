@@ -6,7 +6,7 @@ toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1472
 f5-product: NGINXaaS for Azure
-url: /nginxaas/azure/client-tools/terraform/
+url: /nginxaas-azure/client-tools/terraform/
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using Terraform. This document outlines common Terraform workflows for NGINXaaS.

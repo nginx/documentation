@@ -3,7 +3,7 @@ title: Runtime State Sharing
 weight: 100
 toc: true
 f5-docs: DOCS-1499
-url: /nginxaas/azure/quickstart/runtime-state-sharing/
+url: /nginxaas-azure/quickstart/runtime-state-sharing/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

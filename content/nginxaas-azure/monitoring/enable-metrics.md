@@ -3,7 +3,7 @@ title: Enable metrics
 weight: 200
 toc: true
 f5-docs: DOCS-876
-url: /nginxaas/azure/monitoring/enable-metrics/
+url: /nginxaas-azure/monitoring/enable-metrics/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

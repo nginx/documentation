@@ -3,7 +3,7 @@ title: Enable NGINX logs using Azure Portal
 weight: 100
 toc: true
 f5-docs: DOCS-1369
-url: /nginxaas/azure/monitoring/enable-logging/logging-using-portal/
+url: /nginxaas-azure/monitoring/enable-logging/logging-using-portal/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

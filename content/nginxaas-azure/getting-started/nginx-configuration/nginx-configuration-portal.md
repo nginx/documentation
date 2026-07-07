@@ -5,7 +5,7 @@ toc: true
 f5-content-type: how-to
 f5-docs: DOCS-873
 f5-product: NGINXaaS for Azure
-url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-portal/
+url: /nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal/
 ---
 
 An NGINX configuration can be applied to the deployment using the Azure portal in two different ways:

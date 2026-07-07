@@ -1,5 +1,5 @@
 ---
 title: Overview
 weight: 100
-url: /nginxaas/azure/overview/
+url: /nginxaas-azure/overview/
 ---

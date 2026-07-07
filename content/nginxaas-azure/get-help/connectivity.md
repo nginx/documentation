@@ -2,7 +2,7 @@
 title: Connectivity test tool
 weight: 200
 toc: true
-url: /nginxaas/azure/get-help/connectivity
+url: /nginxaas-azure/get-help/connectivity
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---
