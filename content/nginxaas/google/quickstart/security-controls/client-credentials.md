@@ -52,7 +52,7 @@ Your client credentials can access the following APIs:
 
 ### Client limits
 
-Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the (NGINX Support team)({{< ref "/nginxaas-google/get-help/support.md" >}}).
+Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the (NGINX Support team)({{< ref "/nginxaas/support.md" >}}).
 
 ## Retrieve client information
 
@@ -191,7 +191,7 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Client secret visibility | Only shown once during creation |
 | Default expiration | 6 months (recommended) |
 | Maximum expiration | 1 year |
-| Client limit per organization | 10 clients [contact NGINX Support to increase]({{< ref "/nginxaas-google/get-help/support.md" >}}) |
+| Client limit per organization | 10 clients [contact NGINX Support to increase]({{< ref "/nginxaas/support.md" >}}) |
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
 | Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/auth/token` |
