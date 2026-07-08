@@ -8,5 +8,7 @@ f5-content-type: landing-page
 f5-summary: >
   Review release notes and known issues for F5 NGINX Instance Manager.
   This section covers features, bug fixes, and open issues in the current and previous releases.
+cascade:
+  nollms: true
 ---
 
