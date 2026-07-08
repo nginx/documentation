@@ -5,6 +5,7 @@ weight: 10200
 f5-landing-page: true
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
+nollms: true
 ---
 
 ## New release model {#intro}

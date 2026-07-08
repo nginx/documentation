@@ -6,6 +6,7 @@ toc: true
 f5-docs: "DOCS-1093"
 f5-product: NGINX Agent
 f5-content-type: reference
+nollms: true
 ---
 
 <!-- this dummy doc is used to create a list page entry that redirects users to the NGINX Agent repository changelog. The redirect is configured in azure-redirects-base -->
