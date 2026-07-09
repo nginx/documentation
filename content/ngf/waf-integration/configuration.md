@@ -36,8 +36,8 @@ Each log entry must specify a log source. For the `HTTP`, `NIM`, and `N1C` polic
 
 For the `PLM` policy type, use `logRef` instead of `logSource`:
 
-| Field          | Description                                          |
-|----------------|------------------------------------------------------|
+| Field          | Description                                                 |
+|----------------|-------------------------------------------------------------|
 | `apLogConfRef` | Reference to an `APLogConf` custom resource compiled by PLM |
 
 **Built-in log profiles:** `log_default`, `log_all`, `log_blocked`, `log_illegal`, `log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`
