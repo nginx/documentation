@@ -2,7 +2,7 @@
 title: "2023"
 weight: 200
 toc: true
-url: /nginxaas/azure/changelog/archive/changelog-2023/
+url: /nginxaas-azure/changelog/archive/changelog-2023/
 f5-content-type: reference
 f5-product: NGINXaaS for Azure
 ---

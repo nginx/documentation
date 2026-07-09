@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting guide
 toc: false
-url: /nginxaas/azure/get-help/troubleshooting
+url: /nginxaas-azure/get-help/troubleshooting
 weight: 300
 f5-content-type: redirect
 f5-product: NGINXaaS for Azure

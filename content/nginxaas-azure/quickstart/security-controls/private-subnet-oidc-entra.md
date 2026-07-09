@@ -1,6 +1,6 @@
 ---
 title: OIDC with Microsoft Entra ID in Private Subnets
-url: /nginxaas/azure/quickstart/security-controls/private-subnet-oidc-entra/
+url: /nginxaas-azure/quickstart/security-controls/private-subnet-oidc-entra/
 toc: true
 weight: 350
 f5-content-type: how-to

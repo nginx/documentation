@@ -2,7 +2,7 @@
 title: Service status
 weight: 710
 toc: true
-url: /nginxaas/azure/service-status/
+url: /nginxaas-azure/service-status/
 f5-content-type: reference
 f5-product: NGINXaaS for Azure
 ---

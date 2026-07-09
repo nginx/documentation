@@ -2,7 +2,7 @@
 title: Change from developer/basic plan to standard plan
 weight: 200
 toc: false
-url: /nginxaas/azure/change-plan/basic-to-standard/
+url: /nginxaas-azure/change-plan/basic-to-standard/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

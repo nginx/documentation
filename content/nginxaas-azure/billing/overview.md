@@ -3,7 +3,7 @@ title: Billing overview
 weight: 100
 toc: true
 f5-docs: DOCS-885
-url: /nginxaas/azure/billing/overview/
+url: /nginxaas-azure/billing/overview/
 f5-content-type: concept
 f5-product: NGINXaaS for Azure
 ---

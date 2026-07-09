@@ -2,7 +2,7 @@
 title: "Module Changelog"
 weight: 300
 toc: true
-url: /nginxaas/azure/module-changelog/
+url: /nginxaas-azure/module-changelog/
 f5-content-type: reference
 f5-product: NGINXaaS for Azure
 ---

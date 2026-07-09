@@ -3,7 +3,7 @@ title: Enable content caching
 weight: 200
 toc: true
 f5-docs: DOCS-897
-url: /nginxaas/azure/quickstart/basic-caching/
+url: /nginxaas-azure/quickstart/basic-caching/
 f5-content-type: how-to
 f5-product: NGINXaaS for Azure
 ---

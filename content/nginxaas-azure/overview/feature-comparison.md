@@ -4,7 +4,7 @@ weight: 300
 description: Compare NGINXaaS for Azure with other NGINX offerings.
 toc: false
 f5-docs: DOCS-1473
-url: /nginxaas/azure/overview/feature-comparison/
+url: /nginxaas-azure/overview/feature-comparison/
 f5-content-type: concept
 f5-product: NGINXaaS for Azure
 ---

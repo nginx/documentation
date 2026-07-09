@@ -6,6 +6,8 @@ f5-landing-page: true
 f5-content-type: reference
 f5-product: NGINX Ingress Controller
 f5-docs: DOCS-616
+cascade:
+  nollms: true
 ---
 
 This changelog lists all of the information for F5 NGINX Ingress Controller releases in 2026.

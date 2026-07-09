@@ -56,7 +56,8 @@ jobs:
           - nginx-app-protect-dos
           - waf
           - nginx-ingress-controller
-          - nginxaas/azure
+          - nginxaas-azure
+          - nginxaas
           - nginx-amplify
           - nginx-controller
           - nginx-waf
