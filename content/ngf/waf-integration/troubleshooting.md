@@ -33,14 +33,14 @@ Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. 
 
 ### Programmed
 
-| Status  | Reason               | Meaning                                                                          |
-|---------|----------------------|----------------------------------------------------------------------------------|
-| `True`  | `Programmed`         | Bundle fetched and deployed to the data plane                                    |
-| `True`  | `BundleUpdated`      | A poll cycle detected a changed bundle and deployed it                           |
-| `True`  | `StaleBundleWarning` | A poll cycle failed; previously deployed bundle remains active                   |
+| Status  | Reason               | Meaning                                                                                          |
+|---------|----------------------|--------------------------------------------------------------------------------------------------|
+| `True`  | `Programmed`         | Bundle fetched and deployed to the data plane                                                    |
+| `True`  | `BundleUpdated`      | A poll cycle detected a changed bundle and deployed it                                           |
+| `True`  | `StaleBundleWarning` | A poll cycle failed; previously deployed bundle remains active                                   |
 | `False` | `FetchError`         | Bundle could not be fetched (network error, HTTP error, S3 error for PLM, auth failure, timeout) |
-| `False` | `IntegrityError`     | Bundle checksum verification failed                                              |
-| `False` | `Pending`            | Bundle has never been fetched; configuration withheld or WAF omitted (fail-open) |
+| `False` | `IntegrityError`     | Bundle checksum verification failed                                                              |
+| `False` | `Pending`            | Bundle has never been fetched; configuration withheld or WAF omitted (fail-open)                 |
 
 ---
 
