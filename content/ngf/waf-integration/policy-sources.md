@@ -238,6 +238,40 @@ For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle 
 2. Create a `WAFPolicy` with `type: PLM` that references the `APPolicy` by name and namespace.
 3. NGINX Gateway Fabric watches the referenced resources and deploys the bundle once it is `ready`. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
 
+
+### Create namespaces
+
+```yaml
+kubectl create namespace security
+kubectl create namespace applications
+```
+
+### Cross-namespace references
+
+When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, create a `ReferenceGrant` in the target namespace to permit the reference. The following grant allows `WAFPolicy` resources in the `applications` namespace to reference `APPolicy` and `APLogConf` resources in the `security` namespace:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: ReferenceGrant
+metadata:
+  name: allow-wafpolicy-refs
+  namespace: security
+spec:
+  from:
+  - group: gateway.nginx.org
+    kind: WAFPolicy
+    namespace: applications
+  to:
+  - group: appprotect.f5.com
+    kind: APPolicy
+  - group: appprotect.f5.com
+    kind: APLogConf
+EOF
+```
+
+Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}).
+
 ### Create the APPolicy and APLogConf resources
 
 The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles the policy, uploads the bundle to in-cluster storage, and writes `status.bundle` (with `state: ready`, `location`, and `sha256`). The following example blocks all attack signatures:
@@ -360,32 +394,6 @@ EOF
 ```
 
 This example reuses the `attack-signatures` policy for the route-level override. In practice, create a separate `APPolicy` (and, if needed, `APLogConf`) with the stricter posture you want for this route, then reference it here. This policy overrides the gateway-level policy for the `customers` route only. Any other routes attached to the gateway continue to use the gateway-level policy.
-
-### Cross-namespace references
-
-When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, create a `ReferenceGrant` in the target namespace to permit the reference. The following grant allows `WAFPolicy` resources in the `applications` namespace to reference `APPolicy` and `APLogConf` resources in the `security` namespace:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1
-kind: ReferenceGrant
-metadata:
-  name: allow-wafpolicy-refs
-  namespace: security
-spec:
-  from:
-  - group: gateway.nginx.org
-    kind: WAFPolicy
-    namespace: applications
-  to:
-  - group: appprotect.f5.com
-    kind: APPolicy
-  - group: appprotect.f5.com
-    kind: APLogConf
-EOF
-```
-
-Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}).
 
 ---
 
