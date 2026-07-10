@@ -51,7 +51,7 @@ Supported policy types are:
 | [`jwt`](#jwt-using-local-kubernetes-secret) | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | Yes | No |
 | [`oidc`](#oidc) | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | No |
 | [`cache`](#cache) | The cache policy configures proxy caching for serving cached content. | Yes | No |
-| [`hsts`](#hsts) | The HSTS policy configures [HTTP Strict Transport Security](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) for ensuring secure connections to the server. | Yes | No |
+| [`hsts`](#hsts) | The HSTS policy configures [HTTP Strict Transport Security](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) to help ensure secure connections to the server. | Yes | No |
 
 {{% /table %}}
 
@@ -1362,9 +1362,9 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 ### HSTS
 
-The HSTS policy configures [HTTP Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security), instructing browsers to enforce HTTPS connections to the host for a specified duration.
+The HSTS policy sets up [HTTP Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security). It instructs browsers to enforce HTTPS connections to the host for a specified duration.
 
-For example, the following policy configures a 30-day HSTS duration and extends the policy to all subdomains of the host:
+For example, the following policy sets an HSTS duration of 30 days and extends the policy to all host subdomains:
 
 ```yaml
 hsts:
@@ -1372,7 +1372,7 @@ hsts:
   includeSubDomains: true
 ```
 
-When deployed behind a proxy or load balancer that terminates TLS upstream of the Ingress Controller, enable `behindProxy`. In this mode, NGINX uses the `X-Forwarded-Proto` request header to determine whether the connection is HTTPS, rather than checking the `$https` variable directly:
+When deployed behind a proxy or load balancer that terminates TLS upstream of the Ingress Controller, set `behindProxy` to `true`. In this mode, NGINX uses the `X-Forwarded-Proto` request header to determine whether the connection is HTTPS, rather than checking the `$https` variable directly:
 
 ```yaml
 hsts:
@@ -1382,14 +1382,14 @@ hsts:
 
 A VirtualServer that references an HSTS policy must:
 
-- Enable [TLS termination]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualservertls" >}}), or `behindProxy` if TLS is terminated upstream.
-- Reference the policy in the VirtualServer [spec]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}). It is not allowed to reference an HSTS policy in a [route]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute" >}}) or in a VirtualServerRoute [subroute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroutesubroute" >}}).
+- Use [TLS termination]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualservertls" >}}), or set `behindProxy` to `true` if TLS is terminated upstream.
+- Reference the policy in the VirtualServer [spec]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}). You can't reference an HSTS policy in a [route]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute" >}}) or in a VirtualServerRoute [subroute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroutesubroute" >}}).
 
-If the conditions above are not met, NGINX will send the `500` status code to clients.
+If these conditions are not met, NGINX sends status code `500` to clients.
 
 {{< call-out class="note" >}}
 
-The feature is implemented using the NGINX `add_header` directive and the [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) `$https` variable.
+This feature uses the NGINX `add_header` directive and the [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) `$https` variable.
 
 {{< /call-out >}}
 
@@ -1397,16 +1397,16 @@ The feature is implemented using the NGINX `add_header` directive and the [ngx_h
 
 |Field | Description | Type | Required | Default |
 | ---| ---| ---| --- | --- |
-|``maxAge`` | Sets the duration in seconds that the browser should cache and enforce the HSTS policy. | ``int`` | Yes | -- |
-|``includeSubDomains`` | Extends the HSTS policy to all subdomains of the host. | ``bool`` | No | `false` |
-|``behindProxy`` | Configures NGINX to set the HSTS header based on the `X-Forwarded-Proto` request header rather than the `$https` variable. Enable this when the Ingress Controller is deployed behind a proxy or load balancer that terminates TLS upstream. | ``bool`` | No | `false` |
-|``preload`` | Indicates that the domain should be included in browsers' [HSTS preload lists](https://hstspreload.org/). Requires ``includeSubDomains`` to be enabled and ``maxAge`` to be at least 31536000 (one year). | ``bool`` | No | `false` |
+|`maxAge` | Sets the duration in seconds that the browser should cache and enforce the HSTS policy. | `int` | Yes | -- |
+|`includeSubDomains` | Extends the HSTS policy to all subdomains of the host. | `bool` | No | `false` |
+|`behindProxy` | Sets the HSTS header based on the `X-Forwarded-Proto` request header rather than the `$https` variable. Set this to `true` when the Ingress Controller is deployed behind a proxy or load balancer that terminates TLS upstream. | `bool` | No | `false` |
+|`preload` | Adds the domain to browsers' [HSTS preload lists](https://hstspreload.org/). Requires `includeSubDomains` to be set to `true` and `maxAge` to be at least 31536000 (one year). | `bool` | No | `false` |
 
 {{% /table %}}
 
 {{< call-out class="important" >}}
 
-HSTS instructs browsers to enforce HTTPS for the duration of `maxAge`. Simply deleting the policy does not clear the browser's cached directive — users may be unable to access the application over HTTP until the cached policy expires.
+HSTS instructs browsers to enforce HTTPS for the duration of `maxAge`. Simply deleting the policy does not clear the browser's cached directive, and users may be unable to access the application over HTTP until the cached policy expires.
 
 To safely remove HSTS, first set `maxAge` to `0` and apply the updated policy. This instructs browsers to immediately expire the cached directive. Once applied, remove the policy reference from the VirtualServer and delete the policy resource.
 
@@ -1424,7 +1424,7 @@ policies:
 - name: hsts-policy-two
 ```
 
-In this example NGINX Ingress Controller will use the configuration from the first policy reference `hsts-policy-one`, and ignores `hsts-policy-two`.
+In this example, NGINX Ingress Controller uses the configuration from the first policy reference, `hsts-policy-one`, and ignores `hsts-policy-two`.
 
 ## Using Policy
 
