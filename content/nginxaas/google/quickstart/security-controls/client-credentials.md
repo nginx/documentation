@@ -44,15 +44,15 @@ Follow these steps to create a new client credential through the NGINXaaS consol
 The client secret appears only once. Save it immediately in a secure location, such as a password manager or secrets vault.
 {{< /call-out >}}
 
-Your client credentials can access the following APIs:
+Your client credentials can access the following resources:
 
-- [Certificates API]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
-- [Configs API]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md" >}})
-- [Deployments API]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
+- [Certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
+- [Configs]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md" >}})
+- [Deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
 
 ### Client limits
 
-Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the (NGINX Support team)({{< ref "/nginxaas/support.md" >}}).
+Organizations are limited to a maximum of 10 client credentials. To request an increase to this limit, contact the [NGINX Support]({{< ref "/nginxaas/support.md" >}}).
 
 ## Retrieve client information
 
@@ -95,6 +95,10 @@ Expired credentials are not automatically removed. You must manually delete cred
 ## Use client credentials for authentication
 
 Learn how to obtain and use access tokens from your client credentials to authenticate API requests.
+
+{{< call-out class="note" >}}
+Client credential access to these resources isn’t officially supported yet.
+{{< /call-out >}}
 
 ### Exchange credentials for an access token
 
@@ -191,7 +195,7 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Client secret visibility | Only shown once during creation |
 | Default expiration | 6 months (recommended) |
 | Maximum expiration | 1 year |
-| Client limit per organization | 10 clients [contact NGINX Support to increase]({{< ref "/nginxaas/support.md" >}}) |
+| Client limit per organization | 10 clients contact [NGINX Support]({{< ref "/nginxaas/support.md" >}}) to increase |
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
 | Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/auth/token` |
