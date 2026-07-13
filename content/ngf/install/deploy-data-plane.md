@@ -31,6 +31,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: cafe
+  namespace: nginx-gateway
 spec:
   gatewayClassName: nginx
   listeners:
@@ -43,7 +44,7 @@ EOF
 To check that the Gateway has deployed correctly, use `kubectl describe` to check its status:
 
 ```shell
-kubectl describe gateway
+kubectl describe gateway -n nginx-gateway
 ```
 
 You should see these conditions:
@@ -79,7 +80,7 @@ Conditions:
 Using `kubectl get` you can see the NGINX Deployment:
 
 ```shell
-kubectl get deployments
+kubectl get deployments -n nginx-gateway
 ```
 ```text
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
@@ -89,7 +90,7 @@ cafe-nginx   1/1     1            1           3m18s
 You can also see the Service fronting it:
 
 ```shell
-kubectl get services
+kubectl get services -n nginx-gateway
 ```
 ```text
 NAME         TYPE            CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
@@ -173,7 +174,7 @@ type: NodePort
 After saving the changes, use `kubectl get` on the service, and you should see the service type has changed to `NodePort`.
 
 ```shell
-kubectl get service cafe-nginx
+kubectl get service cafe-nginx -n nginx-gateway
 ```
 ```text
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
@@ -199,11 +200,11 @@ infrastructure:
 After saving the changes, check the Service and NGINX deployment with `kubectl describe`.
 
 ```shell
-kubectl describe deployment cafe
+kubectl describe deployment cafe-nginx -n nginx-gateway
 ```
 ```text
 Name:                   cafe-nginx
-Namespace:              default
+Namespace:              nginx-gateway
 CreationTimestamp:      Mon, 05 May 2025 16:49:33 -0700
 ...
 Pod Template:
@@ -219,11 +220,11 @@ Pod Template:
 ```
 
 ```shell
-kubectl describe service cafe-nginx
+kubectl describe service cafe-nginx -n nginx-gateway
 ```
 ```text
 Name:                     cafe-nginx
-Namespace:                default
+Namespace:                nginx-gateway
 Labels:                   app.kubernetes.io/instance=ngf
                           app.kubernetes.io/managed-by=ngf-nginx
                           app.kubernetes.io/name=cafe-nginx
