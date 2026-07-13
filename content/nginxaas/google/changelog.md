@@ -6,6 +6,7 @@ f5-docs: DOCS-000
 url: /nginxaas/google/changelog/
 f5-content-type: reference
 f5-product: NGINXaaS for Google Cloud
+nollms: true
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Google Cloud.
