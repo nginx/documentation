@@ -22,7 +22,7 @@ and reliable bringing advanced traffic services enabled with the commercial vers
 
 NGINXaaS handles the NGINX Plus license management automatically.
 
-{{<card-section showAsCards="true" isFeaturedSection="true">}}
+{{<card-section showAsCards="true" isFeaturedSection="false">}}
   {{<card title="Prerequisites" titleUrl="/nginxaas/aws/deploy/prerequisites/" icon="power">}}
     Follow these steps to prepare for your NGINXaaS deployment
   {{</card>}}
@@ -31,6 +31,9 @@ NGINXaaS handles the NGINX Plus license management automatically.
   {{</card>}}
   {{<card title="Add certificates" titleUrl="/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
+  {{</card>}}
+  {{<card title="Get help" titleUrl="/nginxaas/support/" icon="message-circle-question-mark">}}
+    Contact F5 support for assistance with NGINXaaS for AWS
   {{</card>}}
 {{</card-section>}}
 
