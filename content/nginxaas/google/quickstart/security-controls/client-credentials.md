@@ -96,6 +96,10 @@ Expired credentials are not automatically removed. You must manually delete cred
 
 Learn how to obtain and use access tokens from your client credentials to authenticate API requests.
 
+{{< call-out class="note" >}}
+Please note that access to these APIs using client credentials isn't officially supported yet.
+{{< /call-out >}}
+
 ### Exchange credentials for an access token
 
 Use the client credentials to obtain an access token from the token endpoint.
