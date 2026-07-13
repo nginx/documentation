@@ -72,10 +72,10 @@ Follow these steps to view information about your clients:
    - **Red dot**: Credential has expired
 
 {{< call-out class="note" >}}
-Client secrets are not displayed after creation. If you need to use credentials again, you must have saved the secret when you initially created the client.
+You can only view the client secret once, when they're created. If you need to use credentials again, you must have saved the secret when you initially created the client.
 {{< /call-out >}}
 
-## Deleting client credentials
+## Delete client credentials
 
 Follow these steps to delete a client credential:
 
@@ -86,13 +86,13 @@ Follow these steps to delete a client credential:
 1. Select **Delete** from the menu.
 
 After deletion:
-- Existing access tokens continue to work until they expire (1 hour from issuance)
+- Existing access tokens continue to work for 1 full hour after they're issued.
 
 {{< call-out class="note" >}}
 Expired credentials are not automatically removed. You must manually delete credentials that are past their expiration date.
 {{< /call-out >}}
 
-## Using client credentials for authentication
+## Use client credentials for authentication
 
 Learn how to obtain and use access tokens from your client credentials to authenticate API requests.
 
