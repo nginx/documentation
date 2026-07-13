@@ -47,7 +47,7 @@ The key capabilities of NGINXaaS for AWS are:
 
 ## NGINXaaS for AWS architecture
 
-NGINXaaS for AWS runs in dedicated infrastructure managed by F5, with connectivity into your Amazon VPC established through [AWS PrivateLink](https://aws.amazon.com/privatelink/). Admins manage the deployment using the NGINXaaS Console, API, or Terraform. Inside your VPC, NGINXaaS reaches your application servers through an interface VPC endpoint, and integrates with Amazon CloudWatch, AWS Secrets Manager, and other AWS services using an IAM role assumed via OIDC federation. Client traffic flows in either through a managed public endpoint or through a customer-owned Network Load Balancer, depending on the [Service Frontend](#service-frontend) you choose.
+NGINXaaS for AWS runs in dedicated infrastructure managed by F5, with connectivity into your Amazon VPC established through [AWS PrivateLink](https://aws.amazon.com/privatelink/). Admins manage the deployment using the NGINXaaS Console or API. Inside your VPC, NGINXaaS reaches your application servers through an interface VPC endpoint, and integrates with Amazon CloudWatch, AWS Secrets Manager, and other AWS services using an IAM role assumed via OIDC federation. Client traffic flows in either through a managed public endpoint or through a customer-owned Network Load Balancer, depending on the [Service Frontend](#service-frontend) you choose.
 
 - The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
 - NGINXaaS automatically adapts to application traffic demands through autoscaling
