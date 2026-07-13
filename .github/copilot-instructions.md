@@ -14,27 +14,29 @@ submodule at:
 When you need to apply or check a style rule, read the relevant topic file
 from that repo. Topics are organized into subdirectories by category:
 
-accessibility/     alt-text, color, link-text
-error-messages/    error-message-strings, published-error-messages,
-                   writing-error-messages
-formatting/        bold, capitalization, code-blocks, doc-titles, headings,
-                   hyphens, images, italics, lists, numbers, placeholders,
-                   tables
-grammar/           articles, gerunds, if-vs-whether, may-can-might,
-                   noun-clusters, parallel-structure, tense, that-vs-which
-procedures/        admonitions, cross-references, directional-references,
-                   prerequisites, step-formatting, step-numbers-in-headings,
-                   ui-element-names
-punctuation/       colons, dates-and-times, ellipses, em-dash, oxford-comma,
-                   possessives, quotation-marks
-security/          sensitive-information
-terminology/       acronyms, click-vs-select, configure-vs-set-up,
-                   enable-disable, ensure-vs-make-sure, f5-product-names,
-                   latin-abbreviations, login-vs-log-in, ui-terms,
-                   update-vs-upgrade, word-list
-voice-and-tone/    active-voice, anthropomorphism, contractions,
-                   global-audience, hedging, inclusive-language, modern-voice,
-                   reading-level, second-person, sentence-length, we-and-our
+accessibility/         alt-text, color, link-text
+agent-instructions/    README, f5-tech-writer-agent
+error-messages/        error-message-strings, published-error-messages,
+                       writing-error-messages
+formatting/            bold, capitalization, code-blocks, doc-titles, headings,
+                       hyphens, images, italics, lists, numbers, placeholders,
+                       tables
+grammar/               articles, gerunds, if-vs-whether, may-can-might,
+                       noun-clusters, parallel-structure, tense, that-vs-which
+procedures/            admonitions, cross-references, directional-references,
+                       prerequisites, step-formatting, step-numbers-in-headings,
+                       ui-element-names
+punctuation/           colons, dates-and-times, ellipses, em-dash, oxford-comma,
+                       possessives, quotation-marks
+security/              sensitive-information
+terminology/           acronyms, click-vs-select, configure-vs-set-up,
+                       enable-disable, ensure-vs-make-sure, f5-product-names,
+                       latin-abbreviations, login-vs-log-in, ui-terms,
+                       update-vs-upgrade, word-list
+voice-and-tone/        active-voice, anthropomorphism, contractions,
+                       global-audience, hedging, inclusive-language,
+                       modern-voice, reading-level, second-person,
+                       sentence-length, we-and-our
 
 Each topic is a single .md file named after the slug (for example,
 active-voice.md). Read the file for the topic you need -- do not guess
@@ -142,7 +144,7 @@ as files in the style guide repo. Never invent a topic name. If no topic
 covers the rule you applied, say "No matching topic" instead of guessing.
 
 Valid topics:
-acronyms, active-voice, admonitions, alt-text, anthropomorphism, articles, bold, capitalization, click-vs-select, code-blocks, colons, color, configure-vs-set-up, contractions, cross-references, dates-and-times, directional-references, doc-titles, ellipses, em-dash, enable-disable, ensure-vs-make-sure, error-message-strings, f5-product-names, gerunds, global-audience, headings, hedging, hyphens, if-vs-whether, images, inclusive-language, italics, latin-abbreviations, link-text, lists, login-vs-log-in, may-can-might, modern-voice, noun-clusters, numbers, oxford-comma, parallel-structure, placeholders, possessives, prerequisites, published-error-messages, quotation-marks, reading-level, second-person, sensitive-information, sentence-length, step-formatting, step-numbers-in-headings, tables, tense, that-vs-which, ui-element-names, ui-terms, update-vs-upgrade, we-and-our, word-list, writing-error-messages
+README, acronyms, active-voice, admonitions, alt-text, anthropomorphism, articles, bold, capitalization, click-vs-select, code-blocks, colons, color, configure-vs-set-up, contractions, cross-references, dates-and-times, directional-references, doc-titles, ellipses, em-dash, enable-disable, ensure-vs-make-sure, error-message-strings, f5-product-names, f5-tech-writer-agent, gerunds, global-audience, headings, hedging, hyphens, if-vs-whether, images, inclusive-language, italics, latin-abbreviations, link-text, lists, login-vs-log-in, may-can-might, modern-voice, noun-clusters, numbers, oxford-comma, parallel-structure, placeholders, possessives, prerequisites, published-error-messages, quotation-marks, reading-level, second-person, sensitive-information, sentence-length, step-formatting, step-numbers-in-headings, tables, tense, that-vs-which, ui-element-names, ui-terms, update-vs-upgrade, we-and-our, word-list, writing-error-messages
 
 ## Technical accuracy
 
