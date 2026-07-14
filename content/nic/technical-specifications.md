@@ -59,16 +59,16 @@ NGINX Plus images are available through the F5 Container registry `private-regis
 |Debian-based image with F5 WAF for NGINX v5 | ``debian:13-slim`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with F5 WAF for NGINX v5 and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |
 |Debian-based image with F5 DoS for NGINX | ``debian:13-slim`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
-|Debian-based image with F5 WAF for NGINX and DoS | ``debian:13-slim`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
-|Debian-based image with F5 WAF for NGINX, DoS and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |
+|Debian-based image with F5 WAF for NGINX and F5 DoS for NGINX | ``debian:13-slim`` | F5 WAF for NGINX and F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
+|Debian-based image with F5 WAF for NGINX, F5 DoS for NGINX and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX and F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |
 |Ubi-based image | ``redhat/ubi10-minimal`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-ubi` | arm64<br>amd64 |
 |Ubi-based image with F5 WAF for NGINX | ``redhat/ubi10-minimal`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
 |Ubi-based image with F5 WAF for NGINX and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
 |Ubi-based image with F5 WAF for NGINX v5 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
 |Ubi-based image with F5 WAF for NGINX v5 and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
 |Ubi-based image with F5 DoS for NGINX | ``redhat/ubi10-minimal`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
-|Ubi-based image with F5 WAF for NGINX and DoS | ``redhat/ubi10-minimal`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
-|Ubi-based image with F5 WAF for NGINX, DoS and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
+|Ubi-based image with F5 WAF for NGINX and F5 DoS for NGINX | ``redhat/ubi10-minimal`` | F5 WAF for NGINX and F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Ubi-based image with F5 WAF for NGINX, F5 DoS for NGINX and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX and F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
 
 {{< /table >}}
 
