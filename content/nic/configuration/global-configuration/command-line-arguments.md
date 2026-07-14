@@ -388,24 +388,6 @@ A Secret with a TLS certificate and key for TLS termination of the Service Insig
 
 Format: `<namespace>/<name>`
 
-<a name="cmdoption-spire-agent-address"></a>
-
-### -spire-agent-address `<string>`
-
-Specifies the address of a running Spire agent. **For use with NGINX Service Mesh only**.
-
-- If the argument is set, but NGINX Ingress Controller is unable to connect to the Spire Agent, NGINX Ingress Controller will fail to start.
-
-<a name="cmdoption-enable-internal-routes"></a>
-
-### -enable-internal-routes
-
-Enable support for internal routes with NGINX Service Mesh. **For use with NGINX Service Mesh only**.
-
-Requires [-spire-agent-address](#cmdoption-spire-agent-address).
-
-- If the argument is set, but `spire-agent-address` is not provided, NGINX Ingress Controller will fail to start.
-
 <a name="cmdoption-enable-latency-metrics"></a>
 
 ### -enable-latency-metrics
