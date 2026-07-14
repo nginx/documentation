@@ -4416,7 +4416,7 @@
           "WAF Log Profiles"
         ],
         "summary": "List WAF log profiles",
-        "description": "Returns a list of WAF log profiles.",
+        "description": "Returns a list of WAF log profiles.\n\nBuilt-in log profiles are excluded by default. To include them, filter by `source` with value `built_in`. Built-in profiles are pre-installed in the WAF engine and do not need to be compiled or deployed.\n",
         "operationId": "listWafLogProfiles",
         "parameters": [
           {
@@ -10309,7 +10309,7 @@
           }
         },
         "example": {
-          "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+          "public_certs": "UkVEQUNURUQ="
         }
       },
       "CertificateRequest": {
@@ -10332,7 +10332,7 @@
         "example": {
           "name": "example-ca-bundle",
           "content": {
-            "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
+            "public_certs": "UkVEQUNURUQ=",
             "private_key": ""
           }
         }
@@ -10616,7 +10616,7 @@
           }
         },
         "example": {
-          "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFM295ZHVlT0FOSkhodkwzeXZKZFRwaG9ldjVHTzdnbytCeVlPTy9sNTR1NU8yUHhNZVgrQWpBYjZBeG1xCmxpdkl1aHc9Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0t"
+          "private_key": "UkVEQUNURUQ="
         }
       },
       "CertificateUpdateRequest": {
@@ -10636,7 +10636,7 @@
         "example": {
           "name": "example-cert-object",
           "content": {
-            "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+            "public_certs": "UkVEQUNURUQ="
           }
         }
       },
@@ -13637,6 +13637,18 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "TemplateSubmissionObjectID": {
+        "description": "A globally unique identifier for a template submission.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^tmplsm_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        },
+        "example": "tmplsm_frBobKIAQ_21grAwV83VYz"
+      },
       "StagedConfigCertificateSummary": {
         "type": "object",
         "description": "Provides a summary of the current status of certificates used in NGINX configurations. It includes the total number of certificates, as well as the counts of expired certificates, those nearing expiration, valid certificates, certificates that are not found, and those that are not ready for use.",
@@ -13701,6 +13713,10 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the NGINX configuration object was last modified for the instance."
+          },
+          "template_submission_id": {
+            "description": "A globally unique identifier for the template submission associated with this staged config, if applicable.",
+            "$ref": "#/components/schemas/TemplateSubmissionObjectID"
           },
           "cert_summary": {
             "$ref": "#/components/schemas/StagedConfigCertificateSummary"
@@ -15590,6 +15606,7 @@
           "name": "test-log-profiles",
           "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
           "is_f5_default": false,
+          "source": "user_defined",
           "config": "eyJsb2dfc3RyZWFtIjogIntmb3JtYXQgY29tYmluZWQgZXg=",
           "deployments": [
             {
@@ -15635,6 +15652,7 @@
           "name": "test-log-profiles",
           "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
           "is_f5_default": false,
+          "source": "user_defined",
           "deployments": [
             {
               "nap_release": "5.10.0",
@@ -15656,6 +15674,7 @@
           "object_id",
           "hash",
           "is_f5_default",
+          "source",
           "modified_at",
           "created_at"
         ],
@@ -15672,7 +15691,18 @@
             "description": "The hash value of the NGINX App Protect log profile configs."
           },
           "is_f5_default": {
-            "$ref": "#/components/schemas/IsF5Default"
+            "type": "boolean",
+            "deprecated": true,
+            "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false).\nDeprecated: Use the `source` field instead. This field will be removed after December 2026.\n"
+          },
+          "source": {
+            "type": "string",
+            "description": "Classifies the origin of the log profile.\n- `user_defined` — created by a user; can be compiled, deployed, modified, and deleted.\n- `f5_default` — provided by F5; can be compiled and deployed but not modified or deleted.\n- `built_in` — pre-installed in the WAF engine; can be referenced directly in NGINX configuration by name. Cannot be compiled, deployed, modified, or deleted. Excluded from list results unless explicitly filtered with `source=built_in`.\n",
+            "enum": [
+              "user_defined",
+              "f5_default",
+              "built_in"
+            ]
           },
           "description": {
             "description": "Optional field to describe the NGINX App Protect log profile.",
@@ -16305,21 +16335,19 @@
       },
       "FilterNameNapLogProfile": {
         "type": "string",
-        "description": "Keywords for NGINX App Protect log profile filters.\n",
+        "description": "Keywords for NGINX App Protect log profile filters.\nWhen filtering on `source`, the following `filter_values` are supported: `user_defined`, `f5_default`, `built_in`.\nBuilt-in log profiles are excluded from all results unless `source=built_in` is explicitly specified.\n",
         "enum": [
           "name",
           "object_id",
-          "deployment_status"
+          "deployment_status",
+          "source"
         ],
         "x-enum-varnames": [
           "filter_name_nap_log_profile_name",
           "filter_name_nap_log_profile_object_id",
-          "filter_name_nap_log_profile_deployment_status"
+          "filter_name_nap_log_profile_deployment_status",
+          "filter_name_nap_log_profile_source"
         ]
-      },
-      "IsF5Default": {
-        "type": "boolean",
-        "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false)."
       },
       "FilterNameNapLogProfileDeployment": {
         "type": "string",
@@ -17413,18 +17441,6 @@
           "error": "\"upstream\" directive is not allowed here in /etc/nginx/nginx.conf:1"
         }
       },
-      "TemplateSubmissionObjectID": {
-        "description": "A globally unique identifier for a template submission.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^tmplsm_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        },
-        "example": "tmplsm_frBobKIAQ_21grAwV83VYz"
-      },
       "TemplateSubmissionListResponse": {
         "description": "List of template submissions.",
         "allOf": [
@@ -17704,6 +17720,10 @@
           "filter_name_templates_state",
           "filter_name_templates_is_f5_default"
         ]
+      },
+      "IsF5Default": {
+        "type": "boolean",
+        "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false)."
       },
       "FilterNameSubmissions": {
         "type": "string",
