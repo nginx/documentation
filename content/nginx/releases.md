@@ -29,6 +29,20 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 {{< call-out class="note" title="Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
+### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
+_July 15, 2026_<br/>
+
+NGINX Plus PLS.37.0.3.1 LTS is a security release.
+
+- Security fix in the [`ngx_http_ssi_module module`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) module: when [`ssi`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#ssi) and [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) with disabled buffering (`off`) directives are configured, an unauthenticated attacker with man-in-the-middle (MITM) ability to control responses from an upstream server may be able to cause a heap buffer over-read in the NGINX worker process, leading to limited modification of memory or a restart ([CVE-2026-56434](https://my.f5.com/manage/s/article/K000162098)).
+
+- Security fix: when the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive with regex matching is configured and the map variable is included in a string expression following the captures affected by this map. Alternatively, the same result could be achieved by using a non-cacheable variable in a string expression under certain conditions. An unauthenticated attacker along with conditions beyond their control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42533](https://my.f5.com/manage/s/article/K000162097)).
+
+- Security fix in the [`ngx_http_slice_module module`](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module: when the [`slice`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive and unnamed regex captures are configured or when a background cache update happens, unauthenticated attackers can send requests that with conditions beyond the attacker's control cause uninitialized memory access in the NGINX worker process, leading to limited disclosure of memory or a restart ([CVE-2026-60005](https://my.f5.com/manage/s/article/K000162100)).
+
+- Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
+
+
 ### NGINX Plus  PLS.37.0.2.1 LTS {#pls.37.0.2}
 _June 17, 2026_<br/>
 
@@ -263,6 +277,19 @@ This is a security release for NGINX Plus R36.
 - Security fix in the `ngx_http_proxy_v2_module` and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42055](https://my.f5.com/manage/s/article/K000161584)).
 
 - The [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers) directive that sets the maximum allowed number of header lines in requests.
+
+NGINX Plus R36 P7<br/>
+_July 15, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security fix in the [`ngx_http_ssi_module module`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) module: when [`ssi`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#ssi) and [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) with disabled buffering (`off`) directives are configured, an unauthenticated attacker with man-in-the-middle (MITM) ability to control responses from an upstream server may be able to cause a heap buffer over-read in the NGINX worker process, leading to limited modification of memory or a restart ([CVE-2026-56434](https://my.f5.com/manage/s/article/K000162098)).
+
+- Security fix: when the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive with regex matching is configured and the map variable is included in a string expression following the captures affected by this map. Alternatively, the same result could be achieved by using a non-cacheable variable in a string expression under certain conditions. An unauthenticated attacker along with conditions beyond their control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42533](https://my.f5.com/manage/s/article/K000162097)).
+
+- Security fix in the [`ngx_http_slice_module module`](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module: when the [`slice`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive and unnamed regex captures are configured or when a background cache update happens, unauthenticated attackers can send requests that with conditions beyond the attacker's control cause uninitialized memory access in the NGINX worker process, leading to limited disclosure of memory or a restart ([CVE-2026-60005](https://my.f5.com/manage/s/article/K000162100)).
+
+- Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
 
 
 ### NGINX Plus Release 35 (R35) {#r35}
