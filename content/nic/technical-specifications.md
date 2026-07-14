@@ -33,7 +33,7 @@ _All images include NGINX 1.31.2._
 | ---| --- | --- | --- |
 |Alpine-based image | ``nginx:1.31.2-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
 |Debian-based image | ``nginx:1.31.2``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
-|Ubi-based image | ``redhat/ubi9-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
+|Ubi-based image | ``redhat/ubi10-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
 
 ### Images with NGINX Plus
 
@@ -47,30 +47,28 @@ NGINX Plus images are available through the F5 Container registry `private-regis
 
 | Name | Base image | <div style="width:200px">Additional modules</div> | F5 Container Registry Image | Architectures |
 | ---| ---| --- | --- | --- |
-|Alpine-based image | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry  | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine` | arm64<br>amd64 |
-|Alpine-based image with FIPS inside | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | arm64<br>amd64 |
-|Alpine-based image with F5 WAF for NGINX & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
+|Alpine-based image | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine` | arm64<br>amd64 |
+|Alpine-based image with FIPS inside | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | arm64<br>amd64 |
+|Alpine-based image with F5 WAF for NGINX & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
 |Alpine-based image with F5 WAF for NGINX & FIPS inside and NGINX Agent 3 | ``alpine:3.22`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips-agent` | amd64 |
-|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
+|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
 |Alpine-based image with F5 WAF for NGINX v5 & FIPS inside and NGINX Agent 3 | ``alpine:3.22`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips-agent` | amd64 |
-|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}` | arm64<br>amd64 |
-|Debian-based image with F5 WAF for NGINX | ``debian:13-slim`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
+|Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}` | arm64<br>amd64 |
+|Debian-based image with F5 WAF for NGINX | ``debian:13-slim`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with F5 WAF for NGINX and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |
-|Debian-based image with F5 WAF for NGINX v5 | ``debian:13-slim`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
+|Debian-based image with F5 WAF for NGINX v5 | ``debian:13-slim`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with F5 WAF for NGINX v5 and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |
-|Debian-based image with F5 DoS for NGINX | ``debian:13-slim`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
-|Debian-based image with F5 WAF for NGINX and DoS | ``debian:13-slim`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
-|Ubi-based image | ``redhat/ubi9-minimal`` | NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-ubi` | arm64<br>amd64 |
-|Ubi-based image with F5 WAF for NGINX | ``redhat/ubi9`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
-|Ubi-based image with F5 WAF for NGINX and NGINX Agent 3 | ``redhat/ubi9`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
-|Ubi8-based image with F5 WAF for NGINX | ``redhat/ubi8`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi8` | amd64 |
-|Ubi8-based image with F5 WAF for NGINX and NGINX Agent 3 | ``redhat/ubi8`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi8-agent` | amd64 |
-|Ubi-based image with F5 WAF for NGINX v5 | ``redhat/ubi9`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
-|Ubi-based image with F5 WAF for NGINX v5 and NGINX Agent 3 | ``redhat/ubi9`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
-|Ubi8-based image with F5 WAF for NGINX v5 | ``redhat/ubi8`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi8` | amd64 |
-|Ubi8-based image with F5 WAF for NGINX v5 and NGINX Agent 3 | ``redhat/ubi8`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi8-agent` | amd64 |
-|Ubi-based image with F5 DoS for NGINX | ``redhat/ubi8`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
-|Ubi-based image with F5 WAF for NGINX and DoS | ``redhat/ubi8`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Debian-based image with F5 DoS for NGINX | ``debian:13-slim`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
+|Debian-based image with F5 WAF for NGINX and DoS | ``debian:13-slim`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
+|Debian-based image with F5 WAF for NGINX, DoS and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |
+|Ubi-based image | ``redhat/ubi10-minimal`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-ubi` | arm64<br>amd64 |
+|Ubi-based image with F5 WAF for NGINX | ``redhat/ubi10-minimal`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Ubi-based image with F5 WAF for NGINX and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
+|Ubi-based image with F5 WAF for NGINX v5 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Ubi-based image with F5 WAF for NGINX v5 and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
+|Ubi-based image with F5 DoS for NGINX | ``redhat/ubi10-minimal`` | F5 DoS for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Ubi-based image with F5 WAF for NGINX and DoS | ``redhat/ubi10-minimal`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi` | amd64 |
+|Ubi-based image with F5 WAF for NGINX, DoS and NGINX Agent 3 | ``redhat/ubi10-minimal`` | F5 WAF for NGINX and DoS<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap-dos/nginx-plus-ingress:{{< nic-version >}}-ubi-agent` | amd64 |
 
 {{< /table >}}
 
