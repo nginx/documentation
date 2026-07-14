@@ -176,7 +176,6 @@ location /coffee {
 ## Important Notes
 
 - `kubernetes.io/h2c` is supported on HTTPRoutes and GRPCRoutes. It isn't supported on TLSRoutes.
-- For NGINX to set `proxy_http_version 2` for a location, all valid backend references in the routing rule must have `appProtocol: kubernetes.io/h2c` set on their Service ports. If any valid backend doesn't use `kubernetes.io/h2c`, NGINX falls back to the default HTTP/1.1.
 - When NGINX Gateway Fabric detects `kubernetes.io/h2c`, it also omits the `proxy_set_header Upgrade` and `proxy_set_header Connection` directives from the location block, because those headers are HTTP/1.1-specific and aren't used in HTTP/2 connections.
 
 ### Other supported appProtocols
@@ -188,6 +187,10 @@ These `appProtocols` reference WebSocket over cleartext and WebSocket over TLS r
 If an `appProtocol` on a Service port is referenced by an unsupported Route type, that backendRef will be considered invalid and status will be written to the Route.
 
 NGINX Gateway Fabric is conformant to the information in [GEP-1911](https://gateway-api.sigs.k8s.io/geps/gep-1911/), which should be referenced for more detailed information.
+
+## Troubleshooting
+
+- For NGINX to set `proxy_http_version 2` for a location, all valid backend references in the routing rule must have `appProtocol: kubernetes.io/h2c` set on their Service ports. If any valid backend doesn't use `kubernetes.io/h2c`, NGINX falls back to the default HTTP/1.1.
 
 ## See also
 
