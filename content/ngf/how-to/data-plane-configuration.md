@@ -390,6 +390,8 @@ By default, NGINX Gateway Fabric resolves each backend Service to its individual
 
 Setting `useClusterIP` to `true` in the `NginxProxy` resource configures NGINX to route to the Service's ClusterIP and port instead of the individual Pod IPs. The upstream then contains a single server (the Service VIP), and NGINX no longer needs to reload when the backend Pods churn. This is also useful for service mesh compatibility and for controllers or operators that require traffic to traverse the Service VIP.
 
+{{< call-out "note" >}} Because the upstream contains only the Service VIP as a single server, you lose NGINX's load balancing across the backend Pods. Traffic is instead load balanced by the Kubernetes Service (kube-proxy), so NGINX load balancing settings such as those in an `UpstreamSettingsPolicy` no longer apply to that Service. {{< /call-out >}}
+
 The following command creates an `NginxProxy` resource that enables `useClusterIP`:
 
 ```yaml
