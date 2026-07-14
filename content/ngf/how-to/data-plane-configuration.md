@@ -406,10 +406,10 @@ EOF
 ```
 
 `useClusterIP` applies only when the target Service has a ClusterIP. The following cases fall back to the default Pod IP resolution:
-
-- Headless Services (`ClusterIP: None`).
+- Headless Services (ClusterIP: None).
 - ExternalName Services.
-- Layer 4 (TCPRoute/UDPRoute) stream upstreams, which are not affected by this setting.
+
+Layer 4 (TCPRoute/UDPRoute) stream upstreams are unaffected by this setting, since it does not apply to L4 traffic.
 
 If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy` fields, it can be set on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details, and the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full list of options.
 
