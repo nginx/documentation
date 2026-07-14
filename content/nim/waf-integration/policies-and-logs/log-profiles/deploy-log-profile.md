@@ -47,7 +47,6 @@ Before you begin, make sure you have:
 6. In the drop-down menu that appears, select the instance or instance group to deploy to.
 
 7. Choose how to deploy the log profile:
-
    - **Add a new log profile path**: Specify a new file path where the log profile bundle should be deployed.
    - **Update all log profiles**: Sync all log profiles on the target instance or instance group. This updates all existing log profiles by compiling their latest JSON contents into bundles and deploying them to all existing file paths.
 
@@ -63,10 +62,13 @@ You can also deploy a log profile directly when editing the NGINX configuration 
 
 1. Select the **Configuration** tab, then select **Edit Configuration**.
 
+   {{< call-out class="note" >}}
+   Note: you can also reference a F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles" >}}) by using its name, no deployment required.
+   {{< /call-out >}}
+
 1. Select **Apply security** and select which log profile to deploy.
 
 1. Copy the code snippet with the required directives and paste it into your NGINX configuration. The snippet includes:
-
    - `app_protect_security_log_enable on`
    - `app_protect_security_log` with the log profile bundle path and destination
 
@@ -77,7 +79,7 @@ You can also deploy a log profile directly when editing the NGINX configuration 
    app_protect_security_log /etc/nginx/log-profile-bundle.tgz syslog:server=localhost:514;
    ```
 
-8. Select **Save**, then select **Publish**.
+1. Select **Save**, then select **Publish**.
 
 ---
 
@@ -86,7 +88,6 @@ You can also deploy a log profile directly when editing the NGINX configuration 
 After deployment, verify that the log profile is active on the target instances or instance groups.
 
 1. Confirm that the NGINX configuration includes the required directives:
-
    - `app_protect_security_log_enable on`
    - `app_protect_security_log` with the correct log profile bundle path and destination
 
