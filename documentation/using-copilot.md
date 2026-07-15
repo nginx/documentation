@@ -1,6 +1,6 @@
 # Using GitHub Copilot for NGINX documentation
 
-This guide explains how to use GitHub Copilot to draft and review documentation for NGINX products. Copilot automatically reads [.github/copilot-instructions.md](.github/copilot-instructions.md), which in turn directs it to the F5 Technical Writing Style Guide for style guidelines, brand standards, and Hugo conventions.
+This guide explains how to use GitHub Copilot to draft and review documentation for NGINX products. Copilot automatically reads [.github/copilot-instructions.md](/.github/copilot-instructions.md), which in turn directs it to the F5 Technical Writing Style Guide for style guidelines, brand standards, and Hugo conventions.
 
 ## Prerequisites
 
