@@ -15693,7 +15693,7 @@
           "is_f5_default": {
             "type": "boolean",
             "deprecated": true,
-            "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false).\nDeprecated: Use the `source` field instead. This field will be removed after December 2026.\n"
+            "description": "Indicates whether the object is an F5 default object (`true`) or a user-defined object (`false`).\nDeprecated: Use the `source` field instead. This field will be removed after December 2026.\n"
           },
           "source": {
             "type": "string",
