@@ -40,11 +40,10 @@ curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/
 {
 "name": "nginx-ic/lts/nginx-plus-ingress",
 "tags": [
-    "2026-lts-r1"
+    "{{< nic-lts-version >}}"
 ]
 }
 ```
-
 
 The `jq` command was used in these examples to make the JSON output easier to read.
 
@@ -115,7 +114,7 @@ spec:
     seccompProfile:
       type: RuntimeDefault
   containers:
-  - image: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:2026-lts-r1
+  - image: private-registry.nginx.com/nginx-ic/lts/nginx-plus-ingress:{{< nic-lts-version >}}
     imagePullPolicy: IfNotPresent
     name: nginx-plus-ingress
 ```
