@@ -26,6 +26,8 @@ Since June 4, 2026, NGINX Ingress Controller follows a new release model: Long-T
 
 This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
+## 2026-lts-r3
+
 ## 2026-lts-r2
 
 18 Jun 2026

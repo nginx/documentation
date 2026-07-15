@@ -32,7 +32,7 @@ Identify which image you need using the [Technical specifications]({{< ref "/nic
 
 Next, pull the image from `private-registry.nginx.com`. 
 
-Replace `<version-tag>` with the specific version you need, for example, `2026-lts-r1`.
+Replace `<version-tag>` with the specific version you need, for example, `2026-lts-r3`.
 
 - For NGINX Plus Ingress Controller, run:
 
@@ -52,7 +52,7 @@ curl https://private-registry.nginx.com/v2/nginx-ic/lts/nginx-plus-ingress/tags/
 {
   "name": "nginx-ic/lts/nginx-plus-ingress",
   "tags": [
-    "2026-lts-r1"
+    "2026-lts-r3"
   ]
 }
 ```
@@ -67,7 +67,7 @@ After pulling the image, tag it and upload it to your private registry.
    docker login <my-docker-registry>
    ```
 
-1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `2026-lts-r1`:
+1. Tag and push the image. Replace `<my-docker-registry>` with your registry's path and `<version-tag>` with the version you're using, for example `2026-lts-r3`:
 
    - For NGINX Ingress Controller LTS, run:
 

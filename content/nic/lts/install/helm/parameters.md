@@ -51,7 +51,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.directiveAutoAdjust** | Automatically adjusts NGINX buffer directives to prevent configuration errors. | false |
 | **controller.image.digest** | The image digest of NGINX Ingress Controller LTS. | None |
 | **controller.image.repository** | The image repository of NGINX Ingress Controller LTS. | private-registry.nginx.com/nginx-ic/nginx-plus-ingress |
-| **controller.image.tag** | The tag of the NGINX Ingress Controller LTS image. | 2026-lts-r1 |
+| **controller.image.tag** | The tag of the NGINX Ingress Controller LTS image. | 2026-lts-r3 |
 | **controller.image.pullPolicy** | The pull policy for the NGINX Ingress Controller LTS image. | IfNotPresent |
 | **controller.lifecycle** | The lifecycle of the NGINX Ingress Controller LTS pods. | {} |
 | **controller.customConfigMap** | The name of the custom ConfigMap used by the NGINX Ingress Controller LTS. If set, then the default config is ignored. | "" |

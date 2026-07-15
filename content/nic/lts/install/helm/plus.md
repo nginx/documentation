@@ -137,7 +137,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller LTS 2026-lts-r1 has been installed.
+NGINX Ingress Controller LTS 2026-lts-r3 has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
@@ -186,7 +186,7 @@ REVISION: 1
 DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
-NGINX Ingress Controller LTS 2026-lts-r1 has been installed.
+NGINX Ingress Controller LTS 2026-lts-r3 has been installed.
 
 For release notes for this version please see: https://docs.nginx.com/nginx-ingress-controller/releases/
 
