@@ -11,6 +11,6 @@ NGINX Ingress Controller supports the following versions of [NGINX Plus]({{< ref
 
 | NIC LTS version | Kubernetes versions tested  | NIC Helm Chart version | NGINX Plus version | End of Technical Support |
 | --- | --- | --- | --- | --- |
-| {{< nic-lts-version >}} | 1.29 - 1.36 |  {{< nic-lts-helm-version >}} | R37.0.2.1 | June 4, 2029 |
+| {{< nic-lts-version >}} | 1.29 - 1.36 |  {{< nic-lts-helm-version >}} | R37.0.3.1 | June 4, 2029 |
 
 {{< /table >}}
