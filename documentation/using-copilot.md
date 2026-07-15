@@ -283,7 +283,7 @@ Add an include for the Kubernetes terminology
 
 The correct syntax is:
 
-```
+```markdown
 {{< call-out class="note" >}} Important information {{< /call-out >}}
 {{< nic-version >}}
 {{< include "nic/kubernetes-terminology.md" >}}
@@ -299,7 +299,7 @@ Add proper front matter for a concept document about TLS termination in NGF
 
 Result:
 
-```
+```yaml
 ---
 title: "TLS termination"
 weight: 400
