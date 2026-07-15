@@ -26,6 +26,24 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.5.3
+
+15 Jul 2026
+
+### {{% icon arrow-up %}} Dependencies
+- Bump NGINX Plus to 37.0.3.1
+- [10467](https://github.com/nginx/kubernetes-ingress/pull/10467) Bump NGINX OSS to 1.31.3
+
+### {{% icon download %}} Update
+
+- For NGINX, use the 5.5.3 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.5.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.5.3 images from the F5 Container registry or build your own image from the 5.5.3 source code.
+- For Helm, use version 2.6.3 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.29 - 1.36.
+
 ## 5.5.2
 
 15 Jul 2026
