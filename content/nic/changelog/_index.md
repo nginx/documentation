@@ -26,6 +26,47 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.5.3
+
+15 Jul 2026
+
+### {{% icon arrow-up %}} Dependencies
+- Bump NGINX Plus to 37.0.3.1
+- [10467](https://github.com/nginx/kubernetes-ingress/pull/10467) Bump NGINX OSS to 1.31.3
+
+### {{% icon download %}} Update
+
+- For NGINX, use the 5.5.3 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.5.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.5.3 images from the F5 Container registry or build your own image from the 5.5.3 source code.
+- For Helm, use version 2.6.3 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.29 - 1.36.
+
+## 5.5.2
+
+15 Jul 2026
+
+### {{% icon bug %}} Fixes
+
+- [10323](https://github.com/nginx/kubernetes-ingress/pull/10323) Fix external auth attachment to multiple ingresses
+
+### {{% icon arrow-up %}} Dependencies
+
+- [10221](https://github.com/nginx/kubernetes-ingress/pull/10221), [10237](https://github.com/nginx/kubernetes-ingress/pull/10237), [10292](https://github.com/nginx/kubernetes-ingress/pull/10292), [10305](https://github.com/nginx/kubernetes-ingress/pull/10305), [10291](https://github.com/nginx/kubernetes-ingress/pull/10291), [10313](https://github.com/nginx/kubernetes-ingress/pull/10313), [10331](https://github.com/nginx/kubernetes-ingress/pull/10331), [10344](https://github.com/nginx/kubernetes-ingress/pull/10344), [10364](https://github.com/nginx/kubernetes-ingress/pull/10364), [10389](https://github.com/nginx/kubernetes-ingress/pull/10389), [10379](https://github.com/nginx/kubernetes-ingress/pull/10379), [10381](https://github.com/nginx/kubernetes-ingress/pull/10381), [10403](https://github.com/nginx/kubernetes-ingress/pull/10403), [10363](https://github.com/nginx/kubernetes-ingress/pull/10363), [10428](https://github.com/nginx/kubernetes-ingress/pull/10428) & [10414](https://github.com/nginx/kubernetes-ingress/pull/10414) Bump Go dependencies
+- [10276](https://github.com/nginx/kubernetes-ingress/pull/10276), [10245](https://github.com/nginx/kubernetes-ingress/pull/10245), [10223](https://github.com/nginx/kubernetes-ingress/pull/10223), [10343](https://github.com/nginx/kubernetes-ingress/pull/10343), [10257](https://github.com/nginx/kubernetes-ingress/pull/10257), [10278](https://github.com/nginx/kubernetes-ingress/pull/10278), [10329](https://github.com/nginx/kubernetes-ingress/pull/10329), [10273](https://github.com/nginx/kubernetes-ingress/pull/10273), [10303](https://github.com/nginx/kubernetes-ingress/pull/10303), [10304](https://github.com/nginx/kubernetes-ingress/pull/10304), [10330](https://github.com/nginx/kubernetes-ingress/pull/10330), [10380](https://github.com/nginx/kubernetes-ingress/pull/10380) & [10427](https://github.com/nginx/kubernetes-ingress/pull/10427) Bump Docker dependencies
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.5.2 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.5.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.5.2 images from the F5 Container registry or build your own image using the 5.5.2 source code.
+- For Helm, use version 2.6.2 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.29 - 1.36.
+
 ## 5.5.1
 
 18 Jun 2026
