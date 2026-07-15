@@ -1,6 +1,6 @@
 # Using GitHub Copilot for NGINX documentation
 
-This guide explains how to use GitHub Copilot to draft and review documentation for NGINX products. Copilot automatically reads [.github/copilot-instructions.md](/.github/copilot-instructions.md) and applies the project's style guidelines, brand standards, and Hugo conventions.
+This guide explains how to use GitHub Copilot to draft and review documentation for NGINX products. Copilot automatically reads [.github/copilot-instructions.md](.github/copilot-instructions.md), which in turn directs it to the F5 Technical Writing Style Guide for style guidelines, brand standards, and Hugo conventions.
 
 ## Prerequisites
 
@@ -10,16 +10,66 @@ This guide explains how to use GitHub Copilot to draft and review documentation 
 
 ## How Copilot uses copilot-instructions.md
 
-The `.github/copilot-instructions.md` file is automatically loaded as context for all Copilot interactions in this workspace. This means Copilot "knows" about:
+GitHub automatically loads `.github/copilot-instructions.md` as context for every Copilot interaction in this workspace. That file directs Copilot to `.style-guide/agent-instructions/f5-tech-writer-agent.md`, a file in the `.style-guide` git submodule, and tells it to treat that file as primary guidance for the repo.
+
+`copilot-instructions.md` itself covers NGINX-specific context directly:
 
 - F5 NGINX product naming conventions
-- Markdown formatting standards
-- Hugo shortcode syntax
+- Hugo shortcode syntax and include rules
 - Git commit message format
-- Voice and tone guidelines
-- Forbidden terms and preferred replacements
+- Front matter structure and product names
 
-You don't need to paste these guidelines into every chat prompt—Copilot already has them.
+Voice and tone guidelines, forbidden terms, and other core style rules live in the linked style guide file.
+
+### Confirm the style guide loaded
+
+At the start of a session, confirm Copilot has read the style guide file:
+
+```
+@workspace Summarize the instructions in .style-guide/agent-instructions/f5-tech-writer-agent.md
+```
+
+If needed, point Copilot there explicitly:
+
+```
+@workspace Read .style-guide/agent-instructions/f5-tech-writer-agent.md in full, then continue
+```
+
+## Using the F5 Tech Writer Agent workflows
+
+The agent instructions define three response modes. Ask for one by name, or describe what you want in plain language — Copilot maps your request to the matching mode.
+
+### Review
+
+Ask Copilot to review a file. It reads the file, identifies style issues, and cites the specific style guide topic slug each issue violates (for example, `active-voice` or `sentence-length`) alongside a suggested fix. It closes with a reading level assessment: the main factors driving complexity, and specific ways to simplify.
+
+```
+@workspace Review content/ngf/overview/gateway-architecture.md
+```
+
+### Copy edit
+
+Ask Copilot to copy edit a file, and it edits the file in place. Afterward, it lists every change it made, citing the topic slug for each, and adds a short note on how the changes affect reading level and what could still be simplified.
+
+```
+@workspace Copy edit content/ngf/overview/gateway-architecture.md
+```
+
+### Draft from notes
+
+Give Copilot raw notes and ask it to draft a document. It identifies the closest content type — concept, getting-started, how-to, installation-guide, reference, release-notes, tech-specs, or tutorial — pulls the matching template, and follows that template's section structure in order. Every section from the template appears as its own H2 heading in the output. If something needed to fill the template is missing, Copilot asks before drafting.
+
+```
+@workspace Draft a how-to guide from these notes: [paste notes]
+```
+
+### Reading agent citations
+
+When the agent cites a style rule, it uses the topic slug — the filename without `.md`, for example `active-voice`, not "Active voice." If a citation doesn't correspond to a real file in `.style-guide/`, flag it. The agent's instructions require it to say "No matching topic" rather than invent one.
+
+### What the agent always checks
+
+Regardless of which mode you use, the agent prioritizes sentence length, active voice, reading level, and global audience above other style rules, and always checks `word-list.md`, `ui-terms.md`, and `click-vs-select.md` for required term replacements. It flags technical accuracy issues separately and asks you to verify them with a subject matter expert rather than correcting them itself.
 
 ## Drafting new content
 
@@ -31,11 +81,12 @@ Use Copilot Chat to generate new pages following project conventions:
 @workspace Create a new concept document for NGINX Gateway Fabric about rate limiting
 ```
 
-Copilot will:
-- Use the correct archetype structure
-- Include proper front matter (title, weight, f5-content-type, f5-product)
-- Follow brand naming guidelines
-- Use Hugo shortcodes correctly
+The output includes:
+
+- The correct archetype structure
+- Proper front matter (title, weight, f5-content-type, f5-product)
+- Brand naming guidelines applied
+- Hugo shortcodes used correctly
 
 ### Generate content sections
 
@@ -49,7 +100,7 @@ Write a background section explaining how this feature works
 Add a use case section for API rate limiting
 ```
 
-Copilot generates content following the style guide automatically.
+The generated content follows the style guide.
 
 ### Expand on existing content
 
@@ -88,7 +139,7 @@ In Copilot Chat, review entire files:
 Select passive voice text:
 
 ```
-allows users to configure multiple backends
+You can configure multiple backends
 ```
 
 Open Inline Chat (`Cmd+I`):
@@ -194,7 +245,7 @@ Before submitting a pull request:
 
 Copilot checks:
 
-- Reading level (8th-9th grade)
+- Reading level (8th–9th grade)
 - Product naming compliance
 - Active voice usage
 - Forbidden terms
@@ -210,9 +261,10 @@ When content appears in multiple places:
 @workspace Should this content be an include file? If yes, suggest the path and show me how to use it
 ```
 
-Copilot considers:
-- Whether content appears 2+ times
-- If it's context-agnostic
+Copilot checks:
+
+- Whether content appears in two or more places
+- Whether it's context-agnostic
 - Proper include path structure
 
 ## Using Copilot with Hugo
@@ -229,9 +281,9 @@ Insert a version shortcode for NGINX Ingress Controller
 Add an include for the Kubernetes terminology
 ```
 
-Copilot knows the correct syntax:
+The correct syntax is:
 
-```markdown
+```
 {{< call-out class="note" >}} Important information {{< /call-out >}}
 {{< nic-version >}}
 {{< include "nic/kubernetes-terminology.md" >}}
@@ -247,7 +299,7 @@ Add proper front matter for a concept document about TLS termination in NGF
 
 Result:
 
-```yaml
+```
 ---
 title: "TLS termination"
 weight: 400
@@ -302,7 +354,7 @@ Fix one category at a time:
 
 ### Use workspace context
 
-Copilot has access to the entire repository:
+Copilot can search the entire repository:
 
 ```
 @workspace What other documents explain rate limiting? Use those as style examples
@@ -330,12 +382,14 @@ Copilot has access to the entire repository:
 ### When to use Copilot vs manual editing
 
 **Use Copilot for:**
+
 - Style and formatting fixes
 - Rewriting for consistency
 - Generating boilerplate content
 - Finding pattern violations
 
 **Manual editing for:**
+
 - Technical accuracy verification
 - Complex conceptual explanations
 - Product strategy decisions
@@ -349,16 +403,16 @@ Copilot has access to the entire repository:
 2. Ask Copilot to review against standards
 3. Run `make lint-markdown` locally
 4. Fix any remaining issues
-5. Commit with [Conventional Commits format](/documentation/git-conventions.md)
+5. Commit with [Conventional Commits format](git-conventions.md)
 
 ### Pull request workflow
 
-1. Create feature branch with [proper naming](/documentation/git-conventions.md#branch-management)
+1. Create feature branch with [proper naming](git-conventions.md#branch-management)
 2. Draft content using Copilot
 3. Review with Copilot: `@workspace Check against copilot-instructions.md`
 4. Run local linting: `make lint-markdown`
 5. Preview locally: `make watch`
-6. Submit PR with [proper commit message](/documentation/git-conventions.md#commit-messages)
+6. Submit PR with [proper commit message](git-conventions.md#commit-messages)
 7. CI checks run automatically (see `.github/workflows/docs-lint.yml`)
 
 ### Working with reviewers
@@ -382,6 +436,7 @@ Use Copilot to address review feedback:
 ### Quick fixes
 
 Select problematic text and use quick prompts:
+
 - `/fix` - General improvements
 - `active voice` - Convert from passive
 - `simplify` - Reduce complexity
@@ -390,6 +445,7 @@ Select problematic text and use quick prompts:
 ### Save common prompts
 
 Create a personal list of frequent prompts:
+
 - "Review against Quality Checklist"
 - "Fix all style violations"
 - "Add front matter for concept doc"
@@ -398,6 +454,7 @@ Create a personal list of frequent prompts:
 ### Use Copilot Edits mode
 
 For larger rewrites, use Copilot Edits:
+
 1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
 2. Select "Copilot: Open Copilot Edits"
 3. Add files to edit
@@ -408,9 +465,9 @@ For larger rewrites, use Copilot Edits:
 
 - [GitHub Copilot documentation](https://docs.github.com/en/copilot)
 - [Style guide](https://github.com/F5Docs/style-guide)
-- [Hugo content management](/documentation/hugo-content.md)
-- [Git conventions](/documentation/git-conventions.md)
-- [copilot-instructions.md](/.github/copilot-instructions.md)
+- [Hugo content management](hugo-content.md)
+- [Git conventions](git-conventions.md)
+- [copilot-instructions.md](../.github/copilot-instructions.md)
 
 ## Getting help
 
