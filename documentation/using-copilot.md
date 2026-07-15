@@ -10,7 +10,7 @@ This guide explains how to use GitHub Copilot to draft and review documentation 
 
 ## How Copilot uses copilot-instructions.md
 
-GitHub automatically loads `.github/copilot-instructions.md` as context for every Copilot interaction in this workspace. That file directs Copilot to `.style-guide/agent-instructions/f5-tech-writer-agent.md`, a file in the `.style-guide` git submodule, and tells it to treat that file as primary guidance for the repo.
+GitHub automatically loads `/.github/copilot-instructions.md` as context for every Copilot interaction in this workspace. That file directs Copilot to `/.style-guide/agent-instructions/f5-tech-writer-agent.md`, a file in the `/.style-guide` git submodule, and tells it to treat that file as primary guidance for the repo.
 
 `copilot-instructions.md` itself covers NGINX-specific context directly:
 
