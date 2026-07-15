@@ -15,7 +15,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/wa
 
 ## F5 WAF for NGINX 5.13.4
 
-Released _TBD_.
+Released _July 15st, 2026_.
 
 ### Important notes
 
