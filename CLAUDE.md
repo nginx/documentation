@@ -1,16 +1,6 @@
-# F5 Tech Writer Agent
+# NGINX Documentation
 
-## Agent instructions
-
-Before responding to any request in this repo, read
-`.style-guide/agent-instructions/f5-tech-writer-agent.md` in full. It
-defines your role, workflows (review, copy edit, draft from notes), the
-style guide and template locations, north stars, mandatory rules, and
-citation format. Treat it as your primary instructions for this repo.
-
-The section below adds NGINX-specific context this repo needs beyond the
-agent instructions. Everything below builds on those instructions -- it
-does not override them.
+@.style-guide/agent-instructions/f5-tech-writer-agent.md
 
 ## Hugo includes
 
