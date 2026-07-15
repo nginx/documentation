@@ -63,7 +63,7 @@ You can also deploy a log profile directly when editing the NGINX configuration 
 1. Select the **Configuration** tab, then select **Edit Configuration**.
 
    {{< call-out class="note" >}}
-   Note: you can also reference a F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles" >}}) by using its name, no deployment required.
+  You can also reference an F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles" >}}) by name. You don't need to deploy it first.
    {{< /call-out >}}
 
 1. Select **Apply security** and select which log profile to deploy.

@@ -14,11 +14,11 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### F5 WAF for NGINX: Built-In Log Profile Support
 
-You can now use F5 WAF for NGINX built-in log profiles as starting points while creating new log profiles. The configuration editor also now supports auto-complete for built-in log profile names, making them easier for you to reference within a config.
+You can now use built-in F5 WAF for NGINX log profiles as starting points when you create new log profiles. The configuration editor now supports autocomplete for built-in log profile names, making it easier to reference them in a configuration.
 
 ### F5 WAF for NGINX: Log Profile Copy Support
 
-You can now make a copy of log profiles via the log profile list row actions so that you can easily extend existing log profiles without overwriting their existing content.
+You can now copy log profiles from the log profile list. Use row actions to create a copy and extend an existing log profile without overwriting its content.
 
 ## June 15, 2026
 

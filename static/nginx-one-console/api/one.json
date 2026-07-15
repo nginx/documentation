@@ -15697,7 +15697,7 @@
           },
           "source": {
             "type": "string",
-            "description": "Classifies the origin of the log profile.\n- `user_defined` — created by a user; can be compiled, deployed, modified, and deleted.\n- `f5_default` — provided by F5; can be compiled and deployed but not modified or deleted.\n- `built_in` — pre-installed in the WAF engine; can be referenced directly in NGINX configuration by name. Cannot be compiled, deployed, modified, or deleted. Excluded from list results unless explicitly filtered with `source=built_in`.\n",
+            "description": "Classifies the source of the log profile.\n- `user_defined` — Created by a user. You can compile, deploy, modify, or delete these profiles.\n- `f5_default` — Provided by F5. You can compile and deploy these profiles, but you can't modify or delete them.\n- `built_in` — Included in the WAF engine. You can reference these profiles by name in the NGINX configuration. You can't compile, deploy, modify, or delete them. These profiles are excluded from list results unless you filter for `source=built_in`.\n",
             "enum": [
               "user_defined",
               "f5_default",
@@ -17723,7 +17723,7 @@
       },
       "IsF5Default": {
         "type": "boolean",
-        "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false)."
+        "description": "Indicates whether the object is an F5 default object (`true`) or a user-defined object (`false`)."
       },
       "FilterNameSubmissions": {
         "type": "string",

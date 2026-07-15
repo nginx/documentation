@@ -28,7 +28,7 @@ For detailed information about security logging capabilities and available log a
 
 From NGINX One Console, select **WAF** > **Log Profiles**. In the screen that appears, select **Add Log Profile**. This action opens a screen where you can:
 
-- In **Start From**, choose a F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles" >}}) to use as a starting point
+- In **Start From**, select an F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles" >}}) as a starting point.
 - In **General Settings**, name and describe the log profile
 - Configure the filter settings to determine which requests are logged
 - Set the content format and options for how log messages are structured
