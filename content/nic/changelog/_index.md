@@ -32,6 +32,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon arrow-up %}} Dependencies
 
+- [10471](https://github.com/nginx/kubernetes-ingress/pull/10471) Update F5 WAF for NGINX to 5.13.4
 - [10440](https://github.com/nginx/kubernetes-ingress/pull/10440) Bump Go dependencies
 - [10426](https://github.com/nginx/kubernetes-ingress/pull/10426), [10450](https://github.com/nginx/kubernetes-ingress/pull/10450), [10449](https://github.com/nginx/kubernetes-ingress/pull/10449), [10451](https://github.com/nginx/kubernetes-ingress/pull/10451) & [10448](https://github.com/nginx/kubernetes-ingress/pull/10448) Bump Docker dependencies
 
