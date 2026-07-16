@@ -12,6 +12,10 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ## July 16, 2026
 
+### Observability: Zone Filter
+
+You can now filter NGINX instance traffic metrics by configured status zones using the provided dropdown menu on the instance details or metrics screens.
+
 ### F5 WAF for NGINX: Built-In Log Profile Support
 
 You can now use built-in F5 WAF for NGINX log profiles as starting points when you create new log profiles. The configuration editor now supports autocomplete for built-in log profile names, making it easier to reference them in a configuration.
