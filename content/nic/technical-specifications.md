@@ -37,7 +37,7 @@ _All images include NGINX 1.31.3._
 
 ### Images with NGINX Plus
 
-NGINX Plus images include NGINX Plus R37.0.3.1.0.3.1.
+NGINX Plus images include NGINX Plus R37.0.3.1.
 
 #### F5 Container registry
 
