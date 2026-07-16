@@ -22,7 +22,7 @@ If you already know F5 WAF for NGINX, you can go beyond the options available in
 
 From NGINX One Console, select **WAF > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
-- Optionally, select an F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles>}} as a starting point.
+- Optionally, select an F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/log-overview.md#default-logging-profile-bundles" >}} as a starting point.
 - In General Settings, name and describe the policy.
   - You can also set one of the following enforcement modes:
     - Transparent
