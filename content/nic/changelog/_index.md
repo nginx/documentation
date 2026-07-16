@@ -26,6 +26,25 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.5.4
+
+16 Jul 2026
+
+### {{% icon arrow-up %}} Dependencies
+
+- [10440](https://github.com/nginx/kubernetes-ingress/pull/10440) Bump Go dependencies
+- [10426](https://github.com/nginx/kubernetes-ingress/pull/10426), [10450](https://github.com/nginx/kubernetes-ingress/pull/10450), [10449](https://github.com/nginx/kubernetes-ingress/pull/10449), [10451](https://github.com/nginx/kubernetes-ingress/pull/10451) & [10448](https://github.com/nginx/kubernetes-ingress/pull/10448) Bump Docker dependencies
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.5.4 images from our [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.5.4), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.5.4 images from the F5 Container registry or build your own image using the 5.5.4 source code.
+- For Helm, use version 2.6.4 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We will provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.28 - 1.35.
+
 ## 5.5.3
 
 15 Jul 2026
