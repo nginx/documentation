@@ -97,7 +97,7 @@ To enable active health checks:
    ```nginx
    http {
        upstream backend {
-           zone backend 2048k;
+           zone backend 64k;
            server backend1.example.com;
            server backend2.example.com;
            server backend3.example.com;
@@ -216,7 +216,7 @@ Mandatory health checks can be marked as persistent, so that the previous state 
 
 ```nginx
 upstream my_upstream {
-    zone   my_upstream 2048k;
+    zone   my_upstream 64k;
     server backend1.example.com slow_start=30s;
 }
 

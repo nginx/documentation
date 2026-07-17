@@ -72,7 +72,8 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - [NGINX control REST API]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md#control-api" >}}) that provides an HTTP interface for controlling an NGINX Plus instance in addition to signal-based control.
 - JSON-formatted error logs: the [`json`](https://nginx.org/en/docs/ngx_core_module.html#error_log_json) parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
 - Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag) directive.
-- Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream). As these metrics require additional memory, ensure that [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are at least `2048k`.
+- Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream). 
+{{< call-out class="note" title="Important" >}} As storing data for the new metrics uses more shared memory, ensure that [shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) have sufficient capacity; you may need to increase the size of existing zones.{{< /call-out >}}
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
 - Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
 - Multipath TCP support: the [`multipath`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.

@@ -65,7 +65,7 @@ Prior to using the dynamic configuration feature, make sure that you have the fo
     http {
         # ...
         upstream appservers {
-            zone appservers 2048k;
+            zone appservers 64k;
 
             server appserv1.example.com      weight=5;
             server appserv2.example.com:8080 fail_timeout=5s;
@@ -100,7 +100,7 @@ http {
     # ...
     # Configuration of the server group
     upstream appservers {
-        zone appservers 2048k;
+        zone appservers 64k;
 
         server appserv1.example.com      weight=5;
         server appserv2.example.com:8080 fail_timeout=5s;
@@ -195,7 +195,7 @@ To make the changes persist across configuration reloads, move the list of upstr
 http {
     # ...
     upstream appservers {
-        zone appservers 2048k;
+        zone appservers 64k;
         state /var/lib/nginx/state/appservers.conf;
 
         # All servers are defined in the state file
