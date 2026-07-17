@@ -21,7 +21,7 @@ Dynamic modules are shared object files (`.so`) that can be loaded at runtime us
 
 NGINX maintains the official NGINX Plus repository, which also provides packaged binaries for both [NGINX‑authored]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) and [NGINX‑certified community]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-certified-community-dynamic-modules" >}}) dynamic modules. 
 
-For support details refer to the [guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md/#install_modules" >}})
+For detailed support information, please refer to the [guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md/#install_modules" >}}).
 
 For module‑specific installation and usage instructions, select the corresponding package name in the table.
 
@@ -57,7 +57,7 @@ Besides the modules provided in the official repository, a wide range of third-p
 ### NGINX Certified Partner dynamic modules
  In addition to the modules authored by NGINX and community third‑party developers, NGINX Certified Partner Modules are available for purchase from commercial third parties. Certified Modules are distributed and supported by their authors. 
 
-For support details refer to the [guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md/#install_modules" >}})
+For detailed support information, please refer to the [guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md/#install_modules" >}}).
 
 NGINX Certified Partner modules can be found on the [F5 Dynamic Modules page](https://www.f5.com/go/product/nginx-modules?filter=module-author%3Anginx-certified-partner).
 
