@@ -139,55 +139,45 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
-### RHEL 8
+### RHEL 8, 9, and 10
 
-{{< tabs name="rhel8-instructions" >}}
+{{< call-out class="important" >}}
+The steps are identical for RHEL 8, 9, and 10. In the Dockerfile, set the `UBI_VERSION` argument to your operating system major version: `8`, `9`, or `10`.
+{{< /call-out >}}
+
+{{< tabs name="rhel-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
-{{< include "/waf/dockerfiles/rhel8-oss.md" >}}
+{{< include "/waf/dockerfiles/rhel-oss.md" >}}
 
 {{% /tab %}}
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel8-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel-plus.md" >}}
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-### RHEL 9
+### Rocky Linux 8, 9, and 10
 
-{{< tabs name="rhel9-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-{{< include "/waf/dockerfiles/rhel9-oss.md" >}}
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rhel9-plus.md" >}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-### Rocky Linux 9
+{{< call-out class="important" >}}
+The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile, set the `ROCKY_VERSION` argument to your operating system major version: `8`, `9`, or `10`.
+{{< /call-out >}}
 
 {{< tabs name="rocky-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
-{{< include "/waf/dockerfiles/rocky9-oss.md" >}}
+{{< include "/waf/dockerfiles/rocky-oss.md" >}}
 
 {{% /tab %}}
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rocky9-plus.md" >}}
+{{< include "/waf/dockerfiles/nginx-plus-without-jwt-mount/rocky-plus.md" >}}
 
 {{% /tab %}}
 

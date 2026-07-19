@@ -271,55 +271,49 @@ If you are not using using `custom_log_format.json` or the IP intelligence featu
 
 {{< /tabs >}}
 
-#### RHEL 8
+#### RHEL 8, 9, and 10
 
-{{< tabs name="rhel8-instructions" >}}
+{{< call-out class="important" >}}
+
+The steps are identical for RHEL 8, 9, and 10. In the Dockerfile below, set the `UBI_VERSION` argument to your operating system major version: `8`, `9`, or `10`.
+
+{{< /call-out >}}
+
+{{< tabs name="rhel-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
-{{< include "/waf/dockerfiles/rhel8-oss.md" >}}
+{{< include "/waf/dockerfiles/rhel-oss.md" >}}
 
 {{% /tab %}}
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rhel8-plus.md" >}}
+{{< include "/waf/dockerfiles/rhel-plus.md" >}}
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-#### RHEL 9
+#### Rocky Linux 8, 9, and 10
 
-{{< tabs name="rhel9-instructions" >}}
+{{< call-out class="important" >}}
 
-{{% tab name="NGINX Open Source" %}}
+The steps are identical for Rocky Linux 8, 9, and 10. In the Dockerfile below, set the `ROCKY_VERSION` argument to your operating system major version: `8`, `9`, or `10`.
 
-{{< include "/waf/dockerfiles/rhel9-oss.md" >}}
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-{{< include "/waf/dockerfiles/rhel9-plus.md" >}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-#### Rocky Linux 9
+{{< /call-out >}}
 
 {{< tabs name="rocky-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
-{{< include "/waf/dockerfiles/rocky9-oss.md" >}}
+{{< include "/waf/dockerfiles/rocky-oss.md" >}}
 
 {{% /tab %}}
 
 {{% tab name="NGINX Plus" %}}
 
-{{< include "/waf/dockerfiles/rocky9-plus.md" >}}
+{{< include "/waf/dockerfiles/rocky-plus.md" >}}
 
 {{% /tab %}}
 
@@ -717,15 +711,15 @@ sudo apt-get install app-protect-module-plus
 
 {{< /tabs >}}
 
-#### Oracle Linux / RHEL / Rocky Linux 8
+#### Oracle Linux / RHEL / Rocky Linux
 
 {{< call-out class="important" >}}
 
-The steps are identical for these platforms due to their similar architecture.
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the following commands, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
 
 {{< /call-out >}}
 
-{{< tabs name="oracle-hybrid-instructions" >}}
+{{< tabs name="rhel-hybrid-instructions" >}}
 
 {{% tab name="NGINX Open Source" %}}
 
@@ -736,7 +730,7 @@ Create a file for the F5 WAF for NGINX repository:
 ```shell
 [app-protect-x-oss]
 name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/7/$basearch/
+baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/<version>/$basearch/
 sslclientcert=/etc/ssl/nginx/nginx-repo.crt
 sslclientkey=/etc/ssl/nginx/nginx-repo.key
 gpgcheck=0
@@ -746,7 +740,7 @@ enabled=1
 Install the F5 WAF for NGINX package and its dependencies:
 
 ```shell
-sudo yum install app-protect-module-oss
+sudo dnf install app-protect-module-oss
 ```
 
 {{% /tab %}}
@@ -760,7 +754,7 @@ Create a file for the F5 WAF for NGINX repository:
 ```shell
 [app-protect-x-plus]
 name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/8/$basearch/
+baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/<version>/$basearch/
 sslclientcert=/etc/ssl/nginx/nginx-repo.crt
 sslclientkey=/etc/ssl/nginx/nginx-repo.key
 gpgcheck=0
@@ -815,114 +809,6 @@ Update the repository, then install the F5 WAF for NGINX package and its depende
 ```shell
 sudo apt-get update
 sudo apt-get install app-protect-module-plus
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-#### RHEL / Rocky Linux 9
-
-{{< tabs name="rhel-hybrid-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-Create a file for the F5 WAF for NGINX repository:
-
-`/etc/yum.repos.d/app-protect-x-oss.repo`
-
-```shell
-[app-protect-x-oss]
-name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/9/$basearch/
-sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-sslclientkey=/etc/ssl/nginx/nginx-repo.key
-gpgcheck=0
-enabled=1
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect-module-oss
-```
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-Create a file for the F5 WAF for NGINX repository:
-
-`/etc/yum.repos.d/app-protect-x-plus.repo`
-
-```shell
-[app-protect-x-plus]
-name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/9/$basearch/
-sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-sslclientkey=/etc/ssl/nginx/nginx-repo.key
-gpgcheck=0
-enabled=1
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect-module-plus
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-#### RHEL 10
-
-{{< tabs name="rhel10-hybrid-instructions" >}}
-
-{{% tab name="NGINX Open Source" %}}
-
-Create a file for the F5 WAF for NGINX repository:
-
-`/etc/yum.repos.d/app-protect-x-oss.repo`
-
-```shell
-[app-protect-x-oss]
-name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-oss/centos/10/$basearch/
-sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-sslclientkey=/etc/ssl/nginx/nginx-repo.key
-gpgcheck=0
-enabled=1
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect-module-oss
-```
-
-{{% /tab %}}
-
-{{% tab name="NGINX Plus" %}}
-
-Create a file for the F5 WAF for NGINX repository:
-
-`/etc/yum.repos.d/app-protect-x-plus.repo`
-
-```shell
-[app-protect-x-plus]
-name=nginx-app-protect repo
-baseurl=https://pkgs.nginx.com/app-protect-x-plus/centos/10/$basearch/
-sslclientcert=/etc/ssl/nginx/nginx-repo.crt
-sslclientkey=/etc/ssl/nginx/nginx-repo.key
-gpgcheck=0
-enabled=1
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect-module-plus
 ```
 
 {{% /tab %}}
@@ -1136,9 +1022,9 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: buster/bullseye/bookworm
+# Where OS_CODENAME can be: bullseye/bookworm/trixie
 # syntax=docker/dockerfile:1
-# For Debian 11 / 12:
+# For Debian 11 / 12 / 13:
 FROM debian:${OS_CODENAME}
 
 # Install prerequisite packages:
@@ -1292,25 +1178,24 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Rocky Linux 9:
-FROM rockylinux:9
+# For RHEL ubi9:
+FROM registry.access.redhat.com/ubi9/ubi
 
 # Install prerequisite packages:
-RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+RUN dnf -y install wget ca-certificates
 
 # Add NGINX Plus repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
 
 # Add NGINX App-protect & dependencies repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
-RUN dnf config-manager --set-enabled crb \
-    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     && dnf clean all
 
 # Install F5 WAF for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    dnf install -y app-protect \
+    dnf install --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms -y app-protect \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
@@ -1319,13 +1204,58 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
     dnf install -y app-protect-ip-intelligence
 
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
 # Forward request logs to Docker log collector:
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
+#### RHEL 10
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For RHEL ubi10:
+FROM registry.access.redhat.com/ubi10/ubi
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install --enablerepo=codeready-builder-for-rhel-10-x86_64-rpms -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
 # Securely copy the JWT license:
 RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
     cp license.jwt /etc/nginx/license.jwt
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy configuration files:
 COPY nginx.conf custom_log_format.json /etc/nginx/
@@ -1380,13 +1310,59 @@ COPY entrypoint.sh /root/
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
+#### Rocky Linux 10
+
+```dockerfile
+# syntax=docker/dockerfile:1
+# For Rocky Linux 10:
+FROM rockylinux/rockylinux:10
+
+# Install prerequisite packages:
+RUN dnf -y install wget ca-certificates 'dnf-command(config-manager)'
+
+# Add NGINX Plus repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-10.repo
+
+# Add NGINX App-protect & dependencies repo to Yum:
+RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
+RUN dnf config-manager --set-enabled crb \
+    && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
+    && dnf clean all
+
+# Install F5 WAF for NGINX:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+# Only use if you want to install and use the IP intelligence feature:
+RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
+    --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
+    dnf install -y app-protect-ip-intelligence
+
+# Securely copy the JWT license:
+RUN --mount=type=secret,id=license-jwt,dst=license.jwt \
+    cp license.jwt /etc/nginx/license.jwt
+
+# Forward request logs to Docker log collector:
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Copy configuration files:
+COPY nginx.conf custom_log_format.json /etc/nginx/
+COPY entrypoint.sh /root/
+
+CMD ["sh", "/root/entrypoint.sh"]
+```
+
 #### Ubuntu
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: focal/jammy/noble
+# Where OS_CODENAME can be: jammy/noble/resolute
 # syntax=docker/dockerfile:1
-# For Ubuntu 20.04 / 22.04 / 24.04:
+# For Ubuntu 22.04 / 24.04 / 26.04:
 FROM ubuntu:${OS_CODENAME}
 
 # Install prerequisite packages:

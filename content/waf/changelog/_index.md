@@ -13,6 +13,44 @@ This changelog lists all of the information for F5 WAF for NGINX releases in 202
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.14
+
+Released _TBD_.
+
+### New features
+
+- Added support for Rocky Linux 10
+- Added support for Ubuntu 26.04 (Resolute Raccoon)
+- Upgraded the Go compiler to 1.26.5
+
+### Resolved issues
+
+- 14828 - Added `SECURITY_WAF_VIOLATION_TRANSPARENT` to the `$app_protect_outcome_reason` access log variable for parity with the security log
+- 14924 - Fixed an out-of-memory condition when logging to a file on a memory-backed (tmpfs) mount
+- 14990 - Fixed defunct (zombie) `cp` processes and race conditions during NGINX configuration reload
+- Security hardening across the BD core and parsers
+
+### Packages
+
+{{< table >}}
+
+| Distribution name              | NGINX Open Source (5.14)                                                | NGINX Plus (5.14)                                                    | NGINX Plus (5.14)                                         |
+| ------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- |
+| Alpine 3.22                    | _app-protect-module-oss-1.31.3+5.TBD.0-r1.apk_                         | _app-protect-module-plus-37.0.5.TBD.0-r1.apk_                       | _app-protect-37.0.5.TBD.0-r1.apk_                        |
+| Amazon Linux 2023              | _app-protect-module-oss-1.31.3+5.TBD.0-1.amzn2023.ngx.x86_64.rpm_     | _app-protect-module-plus-37.0+5.TBD.0-1.amzn2023.ngx.x86_64.rpm_   | _app-protect-37.0+5.TBD.0-1.amzn2023.ngx.x86_64.rpm_    |
+| Debian 11                      | _app-protect-module-oss_1.31.3+5.TBD.0-1\~bullseye_amd64.deb_          | _app-protect-module-plus_37.0+5.TBD.0-1\~bullseye_amd64.deb_        | _app-protect_37.0+5.TBD.0-1\~bullseye_amd64.deb_         |
+| Debian 12                      | _app-protect-module-oss_1.31.3+5.TBD.0-1\~bookworm_amd64.deb_          | _app-protect-module-plus_37.0+5.TBD.0-1\~bookworm_amd64.deb_        | _app-protect_37.0+5.TBD.0-1\~bookworm_amd64.deb_         |
+| Debian 13                      | _app-protect-module-oss_1.31.3+5.TBD.0-1\~trixie_amd64.deb_            | _app-protect-module-plus_37.0+5.TBD.0-1\~trixie_amd64.deb_          | _app-protect_37.0+5.TBD.0-1\~trixie_amd64.deb_           |
+| Ubuntu 22.04                   | _app-protect-module-oss_1.31.3+5.TBD.0-1\~jammy_amd64.deb_             | _app-protect-module-plus_37.0+5.TBD.0-1\~jammy_amd64.deb_           | _app-protect_37.0+5.TBD.0-1\~jammy_amd64.deb_            |
+| Ubuntu 24.04                   | _app-protect-module-oss_1.31.3+5.TBD.0-1\~noble_amd64.deb_             | _app-protect-module-plus_37.0+5.TBD.0-1\~noble_amd64.deb_           | _app-protect_37.0+5.TBD.0-1\~noble_amd64.deb_            |
+| Ubuntu 26.04                   | _app-protect-module-oss_1.31.3+5.TBD.0-1\~resolute_amd64.deb_          | _app-protect-module-plus_37.0+5.TBD.0-1\~resolute_amd64.deb_        | _app-protect_37.0+5.TBD.0-1\~resolute_amd64.deb_         |
+| Oracle Linux 8                 | _app-protect-module-oss-1.31.3+5.TBD.0-1.el8.ngx.x86_64.rpm_           | _app-protect-module-plus-37.0+5.TBD.0-1.el8.ngx.x86_64.rpm_         | _app-protect-37.0+5.TBD.0-1.el8.ngx.x86_64.rpm_          |
+| RHEL 8 and Rocky Linux 8       | _app-protect-module-oss-1.31.3+5.TBD.0-1.el8.ngx.x86_64.rpm_           | _app-protect-module-plus-37.0+5.TBD.0-1.el8.ngx.x86_64.rpm_         | _app-protect-37.0+5.TBD.0-1.el8.ngx.x86_64.rpm_          |
+| RHEL 9 and Rocky Linux 9       | _app-protect-module-oss-1.31.3+5.TBD.0-1.el9.ngx.x86_64.rpm_           | _app-protect-module-plus-37.0+5.TBD.0-1.el9.ngx.x86_64.rpm_         | _app-protect-37.0+5.TBD.0-1.el9.ngx.x86_64.rpm_          |
+| RHEL 10 and Rocky Linux 10     | _app-protect-module-oss-1.31.3+5.TBD.0-1.el10.ngx.x86_64.rpm_          | _app-protect-module-plus-37.0+5.TBD.0-1.el10.ngx.x86_64.rpm_        | _app-protect-37.0+5.TBD.0-1.el10.ngx.x86_64.rpm_         |
+
+{{< /table >}}
+
 ## F5 WAF for NGINX 5.13.4
 
 Released _July 15st, 2026_.
@@ -101,7 +139,7 @@ Released _May 14th, 2026_.
 | Oracle Linux 8           | _app-protect-module-oss-1.29.8+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      |
 | RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.8+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      |
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.8+5.635.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.635.0-1.el9.ngx.x86_64.rpm_      | _app-protect-37.0+5.635.0-1.el9.ngx.x86_64.rpm_      |
-| RHEL 10                  | _app-protect-module-oss-1.29.8+5.635.0-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-37.0+5.635.0-1.el10.ngx.x86_64.rpm_     | _app-protect-37.0+5.635.0-1.el10.ngx.x86_64.rpm_     |
+| RHEL 10 and Rocky Linux 10 | _app-protect-module-oss-1.29.8+5.635.0-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-37.0+5.635.0-1.el10.ngx.x86_64.rpm_     | _app-protect-37.0+5.635.0-1.el10.ngx.x86_64.rpm_     |
 
 {{< /table >}}
 
@@ -117,7 +155,6 @@ Released _March 31th, 2026_.
 
 - 14052 - Upgrade Go compiler to 1.26.1
 - 14036 - Fix a cookie parser issue
-
 
 ### Packages
 

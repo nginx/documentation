@@ -7,7 +7,7 @@ f5-files:
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_CODENAME's are: bullseye/bookworm
+# Supported OS_CODENAME's are: bullseye/bookworm/trixie
 ARG OS_CODENAME=bookworm
 
 # Base image

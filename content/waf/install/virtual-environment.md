@@ -154,18 +154,18 @@ findDeps app-protect=<desired-version>
 
 {{< /details >}}
 
-### Oracle Linux / RHEL / Rocky Linux 8
+### Oracle Linux / RHEL / Rocky Linux
 
 {{< call-out class="important" >}}
 
-The steps are identical for these platforms due to their similar architecture.
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
 
 {{< /call-out >}}
 
 Add the F5 WAF for NGINX repository:
 
 ```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<version>.repo
 ```
 
 Add F5 WAF for NGINX dependencies:
@@ -180,67 +180,10 @@ Enable F5 WAF for NGINX dependencies:
 sudo dnf config-manager --set-enabled crb
 ```
 
-Enable the _ol8_codeready_builder_ repository:
+On Oracle Linux 8, also enable the `ol8_codeready_builder` repository:
 
 ```shell
 sudo dnf config-manager --set-enabled ol8_codeready_builder
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect
-```
-
-{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
-
-If you need to install a specific version of F5 WAF for NGINX, you can use `--showduplicates list` to list available versions, then append it to the package name:
-
-```shell
-sudo dnf --showduplicates list app-protect
-sudo dnf install app-protect-=<desired-version>
-```
-
-{{< /details >}}
-
-### RHEL / Rocky Linux 9
-
-Add the F5 WAF for NGINX repository:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
-```
-
-Add F5 WAF for NGINX dependencies:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-```
-
-Enable F5 WAF for NGINX dependencies:
-
-```shell
-sudo dnf config-manager --set-enabled crb
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect
-```
-
-### RHEL 10
-
-Add the F5 WAF for NGINX repository:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
-```
-
-Add F5 WAF for NGINX dependencies:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 ```
 
 Install the F5 WAF for NGINX package and its dependencies:
