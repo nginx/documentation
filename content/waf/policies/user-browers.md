@@ -100,11 +100,11 @@ In this first example, the policy is configured to:
         "browser-definitions": [
             {
                 "name": "FunkyBrowserV3",
-                "matchString": "FunkyBrowser/1.3.1",
+                "matchString": "FunkyBrowser/1.3.1"
             },
             {
                 "name": "SmartBrowser4",
-                "matchRegex": "smartbrowser/([\\d.]+)",
+                "matchRegex": "smartbrowser/([\d.]+)"
             }
         ],
         "bot-defense": {
@@ -166,11 +166,11 @@ In this second example, the policy is configured to:
         "browser-definitions": [
             {
                 "name": "FunkyBrowserV3",
-                "matchString": "FunkyBrowser/1.3.1",
+                "matchString": "FunkyBrowser/1.3.1"
             },
             {
                 "name": "SmartBrowser4",
-                "matchRegex": "smartbrowser/([\\d.]+)",
+                "matchRegex": "smartbrowser/([\\d.]+)"
             }
         ],
         "bot-defense": {

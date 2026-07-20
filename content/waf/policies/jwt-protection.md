@@ -214,7 +214,7 @@ See the example below for JWT claims:
         "inventory-manager",
         "price-editor"
     ],
-    "sub": "joe@doe.com"
+    "sub": "joe@doe.com",
     "address": {
         "country": "US",
         "state": "NY",
