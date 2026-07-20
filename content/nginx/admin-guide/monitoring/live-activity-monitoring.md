@@ -98,7 +98,7 @@ In order to collect data from virtual servers, upstream server groups, or cache 
         # ...
         }
     ```
-{{< call-out class="note" title="Important" >}} Make sure the shared memory zone has sufficient capacity. Note, that whenever [new metrics are added to the API](#yaml-version), you may need to review and increase the sizes of existing shared memory zones. {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} Make sure the shared memory zone has sufficient capacity. When [new metrics are added to the API](#yaml-version), you may need to review and increase the sizes of existing shared memory zones. {{< /call-out >}}
 
 - When finished, save and exit configuration file.
 - Test the configuration and reload NGINX Plus:
