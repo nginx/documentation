@@ -567,6 +567,84 @@ upstream default_tea_80 {
 
 ---
 
+## Route upstream traffic to the Service ClusterIP
+
+By default, NGINX Gateway Fabric resolves each backend Service to its individual Pod IPs and uses those as the upstream servers. Setting `useClusterIP` to `true` in an `UpstreamSettingsPolicy` configures NGINX to route to the Service's ClusterIP and port instead, so the upstream contains a single server (the Service VIP). This is useful for service mesh compatibility and for controllers or operators that require traffic to traverse the Service VIP.
+
+You can also enable this globally for all Services through the `useClusterIP` field of the `NginxProxy` resource. When both are configured for the same Service, the `UpstreamSettingsPolicy` value takes precedence. See [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) for the global setting.
+
+{{< call-out "note" >}} Because the upstream contains only the Service VIP as a single server, you lose NGINX's load balancing across the backend Pods. Traffic is instead load balanced by the Kubernetes Service (kube-proxy), so the load balancing and keepalive settings of an `UpstreamSettingsPolicy` no longer apply to that Service. `useClusterIP` applies only when the target Service has a ClusterIP; headless (`ClusterIP: None`) and ExternalName Services fall back to the default Pod IP resolution. {{< /call-out >}}
+
+To route to the ClusterIP of the `coffee` service, create the following `UpstreamSettingsPolicy`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: coffee-cluster-ip
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: coffee
+  useClusterIP: true
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org coffee-cluster-ip
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2025-01-07T20:06:55Z
+      Message:               Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
+Find the ClusterIP of the `coffee` service:
+
+```shell
+kubectl get service coffee
+```
+
+Next, verify that the `coffee` upstream targets that ClusterIP by inspecting the NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+You should see a single `server` in the `coffee` upstream set to the Service ClusterIP and port (`10.244.0.14` is the ClusterIP in this example):
+
+```text
+upstream default_coffee_80 {
+    random two least_conn;
+    zone default_coffee_80 512k;
+
+    server 10.244.0.14:80;
+    keepAlive 16;
+}
+```
+
+---
+
 ## Further reading
 
 - [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
