@@ -1050,7 +1050,7 @@ In this type of environment, you should not create the _APSignatures_ resource.
 
 {{< /call-out >}}
 
-If you have followed the steps for [disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md">}}) or cannot use the NGINX repository, you have two alternative ways to to manage policies:
+If you have followed the steps for [disconnected or air-gapped environments]({{< ref "/waf/install/disconnected-environment.md">}}) or cannot use the NGINX repository, you have two alternative ways to manage policies:
 
 **Manual bundle management**
 
