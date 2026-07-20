@@ -69,6 +69,13 @@ We provide technical support for NGINX Ingress Controller on any Kubernetes plat
 
 15 Jul 2026
 
+- Security fix: in the VirtualServer CRD the `Action.Return.Headers` field had improper validation. A carefully crafted value was rendered in the template as-is, leading to injection attacks [CVE-2026-55723](https://my.f5.com/manage/s/article/K000161837)
+- Security fix: `nginx.com/jwt-login-url` annotation had improper validation and sanitization. A carefully crafted value was rendered in the template as-is, leading to injection attacks [CVE-2026-55723](https://my.f5.com/manage/s/article/K000161837)
+- Security fix: `logDest` field on `WAF` policy, and the `appprotect.f5.com/app-protect-security-log-destination` Ingress annotation had improper validation. A carefully crafted value was rendered in the template as-is, leading to injection attacks. [CVE-2026-55723](https://my.f5.com/manage/s/article/K000161837)
+- Security fix: In the `DosProtectedResource` CRD the `.spec.apDosMonitor.uri` field had improver validation. A carefully crafted value was rendered in the template as-is, leading to injection attacks. [CVE-2026-55723](https://my.f5.com/manage/s/article/K000161837)
+- Security fix: an Ingress with a resource backend with the `acme.cert-manager.io/http01-solver: "true"` label would cause NGINX Ingress Controller to go into a crash loop due to insufficient code path validation [CVE-2026-52865](https://my.f5.com/manage/s/article/K000161837)
+- Security fix: an empty `tls` block in the TransportServer CRD caused NGINX Ingress Controller to enter a crash loop due to insufficient code path validation. [CVE-2026-52865](https://my.f5.com/manage/s/article/K000161837)
+
 ### {{% icon bug %}} Fixes
 
 - [10323](https://github.com/nginx/kubernetes-ingress/pull/10323) Fix external auth attachment to multiple ingresses
