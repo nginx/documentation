@@ -342,7 +342,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TCPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| TCPRoute | Supported          | Supported              | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 ### UDPRoute
@@ -351,7 +351,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| UDPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| UDPRoute | Supported          | Supported              | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 ### BackendTLSPolicy
