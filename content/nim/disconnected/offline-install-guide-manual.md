@@ -61,15 +61,18 @@ To download external dependencies:
 
     Supported Linux distributions:
 
-    - `ubuntu20.04`
     - `ubuntu22.04`
+    - `ubuntu24.04`
     - `debian11`
     - `debian12`
-    - `oracle7`
+    - `debian13`
     - `oracle8`
     - `rhel8`
     - `rhel9`
-    - `amzn2`
+    - `rhel10`
+    - `rocky8`
+    - `rocky9`
+    - `rocky10`
 
     **For example**, to download external dependencies for Ubuntu 20.04:
 
