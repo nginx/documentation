@@ -5,14 +5,14 @@ on:
     paths:
       - 'static/nginxaas-azure/js/cost-calculator_v2.js'
       - 'content/nginxaas-azure/billing/usage-and-cost-estimator.md'
-      - 'static/nginxaas-google/js/cost-calculator_gc.js'
-      - 'content/nginxaas-google/billing/usage-and-cost-estimator.md'
+      - 'static/nginxaas/google/js/cost-calculator_gc.js'
+      - 'content/nginxaas/google/billing/usage-and-cost-estimator.md'
   pull_request:
     paths:
       - 'static/nginxaas-azure/js/cost-calculator_v2.js'
       - 'content/nginxaas-azure/billing/usage-and-cost-estimator.md'
-      - 'static/nginxaas-google/js/cost-calculator_gc.js'
-      - 'content/nginxaas-google/billing/usage-and-cost-estimator.md'
+      - 'static/nginxaas/google/js/cost-calculator_gc.js'
+      - 'content/nginxaas/google/billing/usage-and-cost-estimator.md'
 permissions:
   contents: read
 jobs:
