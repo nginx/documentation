@@ -34,7 +34,7 @@ To enable sending logs to your desired Google Cloud project, you must specify th
 
 1. On the left menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
-1. Enter the project you want metrics to be send to under **Log Project ID**.
+1. Enter the project you want metrics to be sent to under **Log Project ID**.
 1. Select **Update**.
 
 ## View NGINX logs in Google Cloud Logging
