@@ -218,8 +218,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 |**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
 |**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
 |**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. Requires NGINX Agent 2.x.| "" |
-| **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
-| **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the NGINX Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
 | **prometheus.create** | Expose NGINX or NGINX Plus metrics in the Prometheus format. | true |
 | **prometheus.port** | Configures the port to scrape the metrics. | 9113 |
 | **prometheus.scheme** | Configures the HTTP scheme to use for connections to the Prometheus endpoint. | http |
