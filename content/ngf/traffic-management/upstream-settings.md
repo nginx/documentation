@@ -344,14 +344,12 @@ upstream default_coffee_80 {
     random two least_conn;
     zone default_coffee_80 1m;
     state /var/lib/nginx/state/default_coffee_80.conf;
-    keepAlive 16;
 }
 
 upstream default_tea_80 {
     hash $upstream_addr consistent;
     zone default_tea_80 1m;
     state /var/lib/nginx/state/default_tea_80.conf;
-    keepAlive 16;
 }
 ```
 
@@ -425,7 +423,6 @@ upstream default_coffee_80 {
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
-    keepAlive 16;
 }
 
 upstream default_tea_80 {
@@ -433,13 +430,10 @@ upstream default_tea_80 {
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
-    keepAlive 16;
 }
 ```
 
 ## Enable keepalive connections
-
-By default, the `keepAlive` directive is enabled with a value of 16. You can override this value or disable `keepAlive` entirely by configuring an `UpstreamSettingsPolicy`. To disable keepalive, set the connections field to 0.
 
 The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 32:
 
@@ -460,6 +454,8 @@ EOF
 ```
 
 This `UpstreamSettingsPolicy` targets the `coffee` service in the `targetRefs` field. It sets the number of keepalive connections to 32, which activates the cache for connections to the service's pods and sets the maximum number of idle connections to 32.
+
+If `keepAlive.connections` is omitted, the NGINX default value for the `keepalive` directive is used. To disable keepalive, set `keepAlive.connections` to 0.
 
 Verify that the `UpstreamSettingsPolicy` is Accepted:
 
@@ -506,7 +502,7 @@ upstream default_coffee_80 {
 }
 ```
 
-To disable `keepAlive` directive lets create an `UpstreamSettingsPolicy` targeting the `tea` service with value 0:
+To disable the `keepalive` directive, lets create an `UpstreamSettingsPolicy` targeting the `tea` service with value 0:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -562,6 +558,7 @@ upstream default_tea_80 {
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
+    keepalive 0;
 }
 ```
 
