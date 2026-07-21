@@ -12,4 +12,4 @@ List of known issues in the latest release of F5 NGINXaaS for Google Cloud (NGIN
 
 _There are currently no known issues._
 
-{{< call-out class="note" >}} You may also want to be familiar with the documented [NGINXaaS limitations]({{< ref "nginxaas/google/overview.md#limitations" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} You may also want to be familiar with the documented [NGINXaaS limitations]({{< ref "nginxaas/google/overview.md#current-limitations" >}}). {{< /call-out >}}

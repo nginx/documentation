@@ -12,7 +12,7 @@ f5-product: NGINXaaS for Google Cloud
 
 F5 NGINXaaS for Google Cloud is a SaaS offering that is tightly integrated
 into Google Cloud and its ecosystem of services, making applications fast, efficient,
-and reliable bringing advanced traffic services enabled with the commercial version of NGINX, without any of the operational toil.
+and reliable. It brings advanced traffic management capabilities from the commercial version of NGINX, without any of the operational toil.
 
 [NGINX Plus](https://www.nginx.com/products/nginx/) powers NGINXaaS for Google Cloud, which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution.
 
@@ -52,11 +52,11 @@ The key capabilities of NGINXaaS for Google Cloud are:
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 
-### Service Frontend
+### Service frontend
 
 The service frontend of an NGINXaaS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
 
-#### Managed Public Endpoint
+#### Managed public endpoint
 
 A managed public endpoint frontend allows client access over the internet through a public DNS name created by NGINXaaS in its network.
 
@@ -79,7 +79,7 @@ Access control list (ACL) rules control traffic to a managed public endpoint dep
     - If you don’t specify a port range, traffic is allowed from any port
     - Required when you specify a protocol
 
-#### Private Endpoint
+#### Private endpoint
 
 A private endpoint frontend allows client access through your network by using Google’s [Private Service Connect (PSC)](https://cloud.google.com/vpc/docs/private-service-connect). To set up connectivity, create either a [PSC endpoint](https://docs.cloud.google.com/vpc/docs/private-service-connect#endpoints) for internal traffic or a [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) for external traffic. This approach brings the NGINXaaS deployment into your client network through an NGINXaaS-created service attachment, so application clients can connect directly into your network. For step-by-step instructions, see [Set up connectivity]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
 
@@ -99,7 +99,7 @@ NGINXaaS uses Google [Private Service Connect](https://cloud.google.com/vpc/docs
 
 A [PSC interface](https://cloud.google.com/vpc/docs/private-service-connect#interfaces) brings the deployment into your application network and supports secure connectivity to your applications. By using your own networking resources, you control traffic flow and can apply your preferred security controls.
 
-To connect the NGINXaaS PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see {{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}.
+To connect the NGINXaaS PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
 
 #### Connection draining
 
@@ -110,19 +110,19 @@ During scaling, some connections older than 60 seconds might be reset. The servi
 An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
 You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on traffic demand and makes sure it never drops below the reserved minimum.
 
-### Geographical Controllers
+### Geographical controllers
 
-NGINXaaS for Google has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. NGINXaaS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
+NGINXaaS for Google Cloud has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. NGINXaaS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
 
 ### Supported regions
 
 {{< include "/nginxaas/google/supported-regions.md" >}}
 
-## Current Limitations
+## Current limitations
 
 We are committed to enhancing NGINXaaS for Google Cloud and welcome your feedback to help shape the future of our service. If there are features you'd like to see prioritized, we encourage you to submit a [support ticket]({{< ref "/nginxaas/google/support.md" >}}) to share your suggestions.
 
-Here are the current constraints you should be aware of when while using NGINXaaS for Google Cloud:
+Here are the current constraints you should be aware of while using NGINXaaS for Google Cloud:
 
 - NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
 - We only support authentication via Google acting as an identity provider.

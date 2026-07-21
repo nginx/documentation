@@ -27,7 +27,7 @@ To enable sending metrics to your desired Google Cloud project, you must specify
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
-1. Enter the project you want metrics to be send to under **Metric Project ID**.
+1. Enter the project you want metrics to be sent to under **Metric Project ID**.
 1. Select **Update**.
 
 ## View NGINXaaS metrics in Google Cloud Monitoring
