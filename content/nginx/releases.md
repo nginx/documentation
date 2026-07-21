@@ -29,6 +29,16 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 
 {{< call-out class="note" title="Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
 
+### NGINX Plus  PLS.37.0.4.1 LTS {#pls.37.0.4}
+_July 22, 2026_<br/>
+
+NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
+
+- Health checks: if the `Host` header value evaluates to an empty string, it now defaults to `$hostname`, allowing health checks to pass. The bug appeared in `PLS.37.0.1.1`.
+
+- Compatibility: added a compatibility patch for third-party dynamic modules, for example, `set-misc`, `lua`.
+
+
 ### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
 _July 15, 2026_<br/>
 
@@ -291,6 +301,13 @@ This is a security release for NGINX Plus R36.
 - Security fix in the [`ngx_http_slice_module`](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module: when the [`slice`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive and unnamed regex captures are configured or when a background cache update happens, unauthenticated attackers can send requests that with conditions beyond the attacker's control cause uninitialized memory access in the NGINX worker process, leading to limited disclosure of memory or a restart ([CVE-2026-60005](https://my.f5.com/manage/s/article/K000162100)).
 
 - Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
+
+NGINX Plus R36 P8<br/>
+_July 12, 2026_
+
+This is an improvement release for NGINX Plus R36.
+
+- The `keepalive` directive now accepts the `0` value, making upgrade to PLS.37 smoother, where  HTTP 1.1 and keepalive to upstreams are enabled by default. See [this blog post](https://blog.nginx.org/blog/keep-alive-to-upstreams-is-now-default-in-nginx-1-29-7) for details.
 
 
 ### NGINX Plus Release 35 (R35) {#r35}
