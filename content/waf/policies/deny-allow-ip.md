@@ -16,7 +16,7 @@ We recommend you use the [IP address lists]({{< ref "/waf/policies/ip-address-li
 
 {{< /call-out>}}
 
-This feature allows you to define IP addresses or ranges for which the traffic will always be allowed, denied or never logged , overriding other configuration settings.
+This feature allows you to define IP addresses or ranges for which the traffic will always be allowed, denied or never logged, overriding other configuration settings.
 
 1. **Always Allowed** (`"blockRequests": "never"`) - Requests from this IP range will be passed even if they have blocking violations.
 2. **Always Denied** (`"blockRequests": "always"`) - Requests from this IP range will be always blocked even if they have no other blocking violations. The `VIOL_BLACKLISTED_IP` violation will be triggered in this case and its block flag must be set to `true` in order for the request to be actually blocked.

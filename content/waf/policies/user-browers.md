@@ -21,7 +21,7 @@ User-defined browsers can be configured in the `browser-definitions` section of 
 
 These are the properties that can be configured for each user-defined browser:
 
-- `name`: Must be unique to both pre-defined browsers and user-defined browers
+- `name`: Must be unique to both pre-defined browsers and user-defined browsers
 - `matchString`: A string that should be present in the `User-Agent` header to trigger enforcement.
 - `matchRegex`: A regex pattern that should be matched in the `User-Agent` header to trigger enforcement.
 - `description`: A description of the custom browser agent element.
@@ -79,7 +79,7 @@ If the received request has no bot signatures, then the following enforcement se
 1. If both predefined and user-defined browser is detected, then the user-defined one takes precedence and its action is executed according to point 1.
 1. If more than one user-defined browser is detected, then the most severe action of the detected browsers is taken.
 
-User-defined browser control is part of the `bot-defense` configuration in the policy, and can can take place only if `isEnabled` flag under `bot-defense` section is set to `true` (Enabled in the default policy).
+User-defined browser control is part of the `bot-defense` configuration in the policy, and can take place only if `isEnabled` flag under `bot-defense` section is set to `true` (Enabled in the default policy).
 
 ## Configuration examples
 
@@ -100,11 +100,11 @@ In this first example, the policy is configured to:
         "browser-definitions": [
             {
                 "name": "FunkyBrowserV3",
-                "matchString": "FunkyBrowser/1.3.1",
+                "matchString": "FunkyBrowser/1.3.1"
             },
             {
                 "name": "SmartBrowser4",
-                "matchRegex": "smartbrowser/([\\d.]+)",
+                "matchRegex": "smartbrowser/([\d.]+)"
             }
         ],
         "bot-defense": {
@@ -166,11 +166,11 @@ In this second example, the policy is configured to:
         "browser-definitions": [
             {
                 "name": "FunkyBrowserV3",
-                "matchString": "FunkyBrowser/1.3.1",
+                "matchString": "FunkyBrowser/1.3.1"
             },
             {
                 "name": "SmartBrowser4",
-                "matchRegex": "smartbrowser/([\\d.]+)",
+                "matchRegex": "smartbrowser/([\\d.]+)"
             }
         ],
         "bot-defense": {
