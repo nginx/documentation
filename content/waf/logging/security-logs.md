@@ -266,6 +266,7 @@ The table below lists attributes that are generated in the security logs. When u
 | client_application_version | The identified version of the client application, when classification is available. | default |
 | geo_location | The resolved client geolocation country code for the request, when available. | user-defined only |
 | session_id | The session identifier associated with the request, when session context is established. | user-defined only |
+| enforcement_action | The action taken for the request. It can have values like `block`, `rejected-by-proxy` or `none` | user-defined only |
 
 ## Blocking Observability
 
