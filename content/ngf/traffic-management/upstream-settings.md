@@ -639,7 +639,7 @@ upstream default_coffee_80 {
     zone default_coffee_80 512k;
 
     server 10.244.0.14:80;
-    keepAlive 16;
+    keepalive 16;
 }
 ```
 
