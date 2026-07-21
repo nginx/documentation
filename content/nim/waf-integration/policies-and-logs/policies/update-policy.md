@@ -4,7 +4,7 @@ description: Update an existing F5 WAF for NGINX policy using the F5 NGINX Insta
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Update an existing F5 WAF for NGINX security policy in F5 NGINX Instance Manager using the web interface or REST API.
   This guide covers editing the policy JSON and saving the updated version so you can deploy it to your instances.

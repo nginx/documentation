@@ -4,7 +4,7 @@ title: Install with Ansible
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Install F5 NGINX Instance Manager using the open-source Ansible role for repeatable, automated deployments."
 f5-summary: >
   Install F5 NGINX Instance Manager using the provided open-source Ansible role.

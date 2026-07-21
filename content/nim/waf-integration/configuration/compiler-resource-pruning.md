@@ -4,7 +4,7 @@ description: Automatically remove unused compiled security resources in F5 NGINX
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Configure F5 NGINX Instance Manager to automatically remove unused compiled security resources to keep the system clean.
   Resource pruning removes compiled bundles such as policies, log profiles, and signature packages that are no longer referenced by any active deployment.

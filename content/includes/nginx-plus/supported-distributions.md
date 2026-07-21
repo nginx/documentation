@@ -1,10 +1,10 @@
 ---
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-files:
 - content/nginx/technical-specs.md
 ---
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Distribution                 | Supported on [PLS.37.0]({{< ref "nginx/releases.md#r37.0" >}})                     | Supported on [R36]({{< ref "nginx/releases.md#r36" >}}) |
 |------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
 | AlmaLinux                    | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10 (x86_64, aarch64)    | 8.1+ (x86_64, aarch64) <br> 9 (x86_64, aarch64) <br> 10 (x86_64, aarch64)      |
@@ -18,4 +18,4 @@ f5-files:
 | Rocky Linux                  | 8.1+ (x86_64, aarch64) <br> 9.7+ (x86_64, aarch64) <br> 10.1+ (x86_64, aarch64) | 8 (x86_64, aarch64) <br> 9 (x86_64, aarch64) <br> 10.0+ (x86_64, aarch64)  |
 | SUSE Linux Enterprise Server | 15 SP7+ (x86_64) <br>  16 (x86_64, aarch64)                                     | 15 SP6+ (x86_64) <br>  16 (x86_64) |
 | Ubuntu                       | 22.04 (x86_64, aarch64) <br> 24.04 (x86_64, aarch64) <br> 26.04 (x86_64, aarch64) | 22.04 (x86_64, aarch64) <br> 24.04 (x86_64, aarch64) |
-{{</bootstrap-table>}}
+{{</table >}}

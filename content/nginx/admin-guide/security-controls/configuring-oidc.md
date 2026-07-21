@@ -5,7 +5,7 @@ type:
 title: Single Sign-On with OpenID Connect and Identity Providers
 toc: true
 weight: 550
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-1690
 f5-content-type: how-to
 ---
@@ -49,7 +49,7 @@ For the target client application, OIDC authentication can be enabled with great
 
  NGINX Plus has tested support with the following Identity Providers:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | IdP Provider    | Resource                              |
 |-----------------|-------------------------------------------------------------------------------------------------------------|
 | Amazon Cognito  | [Deployment Guide for Amazon Cognito]({{< ref "nginx/deployment-guides/single-sign-on/cognito.md" >}}) |
@@ -60,7 +60,7 @@ For the target client application, OIDC authentication can be enabled with great
 | OneLogin        | [Deployment Guide for OneLogin]({{< ref "nginx/deployment-guides/single-sign-on/onelogin.md" >}}) |
 | Okta            | [Deployment Guide for Okta]({{< ref "nginx/deployment-guides/single-sign-on/okta.md" >}}) |
 | Ping Identity   | [Deployment Guide for Ping Identity]({{< ref "nginx/deployment-guides/single-sign-on/ping-identity.md" >}}) |
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 ## Prerequisites {#prerequisites}
@@ -359,7 +359,7 @@ Upon successful sign-in, the IdP redirects you back to NGINX Plus, and you will 
 ## Glossary {#glossary}
 
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Term                    | Description                                        |
 |-------------------------|----------------------------------------------------|
 | Identity Provider (IdP) | A service that authenticates users and verifies their identity for client applications. |
@@ -369,7 +369,7 @@ Upon successful sign-in, the IdP redirects you back to NGINX Plus, and you will 
 | ID Token                | Specific to OIDC, the primary use of the token in JWT format is to provide information about the authentication operation's outcome. |
 | Access Token            | Defined in OAuth2, this (optional) short lifetime token provides access to specific user resources as defined in the scope values in the request to the authorization server (can be a JSON token as well). |
 | Refresh Token           | Coming from OAuth2 specs, the token is usually long-lived and may be used to obtain new access tokens. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 ## See Also {#see-also}

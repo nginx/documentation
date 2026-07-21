@@ -4,7 +4,7 @@ title: Use Vault for storing secrets
 toc: true
 weight: 200
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Configure F5 NGINX Instance Manager to store secrets in an existing HashiCorp Vault installation instead of the default on-disk encrypted store."
 f5-summary: >
   Configure F5 NGINX Instance Manager to store secrets in HashiCorp Vault.

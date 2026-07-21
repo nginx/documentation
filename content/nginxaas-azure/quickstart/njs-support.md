@@ -3,9 +3,9 @@ title: Use the njs Scripting language
 weight: 400
 toc: true
 f5-docs: DOCS-874
-url: /nginxaas/azure/quickstart/njs-support/
+url: /nginxaas-azure/quickstart/njs-support/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports the open-source [njs module](https://nginx.org/en/docs/http/ngx_http_js_module.html), allowing the extension of NGINX functionality with a subset of the Javascript language.

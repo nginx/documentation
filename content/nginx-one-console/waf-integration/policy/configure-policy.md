@@ -9,7 +9,7 @@ toc: false
 f5-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 This document describes how to configure a F5 WAF for NGINX security policy in the F5 NGINX One Console. 
@@ -22,6 +22,7 @@ If you already know F5 WAF for NGINX, you can go beyond the options available in
 
 From NGINX One Console, select **WAF > Policies**. In the screen that appears, select **Add Policy**. That action opens a screen where you can:
 
+- Optionally, select an F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}} as a starting point.
 - In General Settings, name and describe the policy.
   - You can also set one of the following enforcement modes:
     - Transparent
@@ -44,6 +45,10 @@ View the F5 WAF for NGINX ["General Configuration"]({{< ref "/waf/policies/confi
 
 NGINX One Console includes a Policy JSON section which displays your policy in JSON format. What you configure here is written to your instance of F5 WAF for NGINX. 
 
+From NGINX One Console, you can review the policies that you've saved, along with their versions. Select **WAF** > **Policies**. Select the policy that you want to review or modify.
+
 With the **Edit** option, you can customize this policy. It opens the JSON file in a local editor. When you select **Save Policy**, it saves the latest version of what you've configured. You'll see your new policy under the name you used.
 
-From NGINX One Console, you can review the policies that you've saved, along with their versions. Select **WAF** > **Policies**. Select the policy that you want to review or modify.
+{{< call-out class="note" >}}
+You can add an optional **version comment** (up to 150 characters) to describe what changed in that version. Each saved version is also assigned a sequential name: `v1`, `v2`, `v3`, and so on.
+{{< /call-out >}}

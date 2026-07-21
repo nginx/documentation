@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Use this reference to understand how JSON schemas define the dynamic web form inputs for NGINX config templates in F5 NGINX Instance Manager.
   JSON schemas validate user input when creating NGINX configurations from templates, providing a structured and guided configuration experience.

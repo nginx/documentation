@@ -6,7 +6,7 @@ title: UDP Health Checks
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 NGINX Plus can continually test your upstream servers that handle UDP network traffic (DNS, RADIUS, syslog), avoid the servers that have failed, and gracefully add the recovered servers into the load‑balanced group.
@@ -239,7 +239,7 @@ This is the raw DNS query of `healthcheck.example.com`, represented as one line 
 ```
 where:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | HEX              | Description            |
 |------------------|------------------------|
 | \x00\x01         | Transaction ID: 0x0001 |
@@ -254,7 +254,7 @@ where:
 | \x00             | end of name            |
 | \x00\x01         | Type: A                |
 | \x00\x01         | Class: IN              |
-{{</bootstrap-table>}}
+{{</table >}}
 
 #### Configure the match block for DNS lookup
 

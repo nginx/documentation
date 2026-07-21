@@ -6,7 +6,7 @@ title: NGINX Diagnostic Package
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="intro"></span>
@@ -93,7 +93,7 @@ To create NGINX Diagnostic Package:
 
 The following table lists the arguments you can use to customize the data that needs to be collected based on your NGINX deployment.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Short | Long                     | Description                                                           | Example                  | Default          |
 | ----- | ------------------------ | ----------------------------------------------------------------------| -------------------------| -----------------|
@@ -110,5 +110,5 @@ The following table lists the arguments you can use to customize the data that n
 | `-ea` | `--exclude_api_stats`    | Excludes NGINX Plus API stats from the support package.               | `--exclude_api_stats`    | N/A              |
 | `-pi` | `--profile_interval`     | Profiling interval in seconds.                                        | `-pi 20`                 | 15               |
 
-{{</bootstrap-table>}}
+{{</table >}}
 

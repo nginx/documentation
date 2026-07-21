@@ -3,7 +3,7 @@ title: "Set security policies through the API"
 weight: 800
 toc: true
 f5-content-type: reference
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 You can use F5 NGINX One Console API to manage security policies. With our API, you can:

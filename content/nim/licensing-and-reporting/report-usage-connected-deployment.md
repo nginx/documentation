@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Configure NGINX Plus to report usage data to F5 NGINX Instance Manager, which then forwards the report automatically to F5 in a connected environment.
   This setup is used when NGINX Plus instances don't have direct internet access but NGINX Instance Manager does.

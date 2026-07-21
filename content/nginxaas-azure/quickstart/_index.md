@@ -1,5 +1,5 @@
 ---
 title: Quickstart guides
 weight: 600
-url: /nginxaas/azure/quickstart/
+url: /nginxaas-azure/quickstart/
 ---

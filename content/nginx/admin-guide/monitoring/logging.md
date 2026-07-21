@@ -6,34 +6,83 @@ title: Configuring Logging
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
-This article describes how to log errors and requests in NGINX Open Source and NGINX Plus.
-
-<span id="error_log"></span>
-## Set Up the Error Log
-
-NGINX writes an error log that records encountered issues of different severity levels. The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up the log location and severity level. The log location can be a particular file, `stderr`, or `syslog`. By default, the error log is located at **logs/error.log**, but the absolute path depends on the operating system and installation. The error severity level follows the `syslog` classification system. The log includes messages from all severity levels above the specified level.
+Logging is essential for troubleshooting and understanding how traffic flows through your infrastructure. This article explains how to configure error and access logs in NGINX and NGINX Plus, customize access log formats, reduce noise with conditional logging, and forward logs to syslog for centralized collection.
 
 
-The configuration below changes the minimal severity level of error messages to log from `error` to `warn`:
+## Set up the error log {#error_log}
+
+NGINX writes an error log that records issues of different severity levels. The [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive sets up the log location and severity level. The log location can be a particular file, `stderr`, or `syslog`.
+
+### Default path
+
+By default, the error log is located at **logs/error.log**, but the absolute path depends on the operating system and installation method. You can find the path to error log by running `nginx -V` command and extracting the value of `--error-log-path=`:
+
+```shell
+nginx -V 2>&1|sed -n 's/.*--error-log-path=\([^ ]*\).*/\1/p'
+```
+The output depends on the operating system.
+
+- For RHEL-based, Debian, Ubuntu:
+
+```shell
+/var/log/nginx/error.log
+```
+- For FreeBSD:
+```shell
+/usr/local/var/log/nginx/error.log
+```
+
+- For docker images, it is sent to container logs (stderr) via symlinks `/var/log/nginx/error.log -> /dev/stderr`.
+
+### Severity level
+
+The error severity level follows the `syslog` classification system. The log includes messages from all severity levels above the specified level.
+
+The following example changes the minimal severity level of error messages to log from `error` to `warn`:
 
 ```nginx
 error_log logs/error.log warn;
 ```
 
-In this case, messages above the `warn` level are logged. That includes `warn`, `error` `crit`, `alert`, and `emerg` levels.
+With this setting, messages above the `warn` level are logged. That includes `warn`, `error`, `crit`, `alert`, and `emerg` levels.
 
-The default setting of the error log works globally. To override it, place the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive in the `main` (top-level) configuration context. Settings in the `main` context are always inherited by other configuration levels (`http`, `server`, `location`). The `error_log` directive can be also specified at the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream), `server` and [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) levels. Settings at lower levels override the settings inherited from the higher levels. Each error message is written only once to the error log closest to the level where the error has occurred. However, if several `error_log` directives are specified on the same level, the message is written to all specified logs.
+For debug logging, see [Debugging NGINX]({{< ref "debugging.md" >}}).
 
-> **Note:** The ability to specify multiple `error_log` directives on the same configuration level was added in NGINX Open Source  version [1.5.2](https://nginx.org/en/CHANGES).
+### Error log formats
+
+The `error_log` directive writes error messages in the standard NGINX text error-log format. In NGINX Plus, error log also supports structured JSON output via a [`json`](https://nginx.org/en/docs/ngx_core_module.html#error_log_json) parameter:
+
+```nginx
+error_log /var/log/nginx/error.json error json;
+```
+
+Example of JSON-formatted error entry:
+
+```json
+{
+  "level": "error",
+  "timestamp": "2026-05-04T10:30:15.042+00:00",
+  "pid": 12345,  "tid": 12345,  "cnum": 3,
+  "msg": "connect() failed",
+  "client": "192.168.1.10",  "server": "example.com",
+  "request": "GET /api HTTP/1.1",
+  "upstream": "http://127.0.0.1:8080/api",
+  "errno": 111,
+  "errtext": "Connection refused"
+}
+```
+
+### Error log inheritance
+
+The default setting of the error log works globally. To override it, place the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive in the `main` (top-level) configuration context. Settings in the `main` context are always inherited by other configuration levels (`http`, `server`, `location`). The `error_log` directive can also be specified on the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [`stream`](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#stream), `server` and [`location`](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) levels. Settings at lower levels override the settings inherited from the higher levels. Each error message is written only once to the error log closest to the level where the error has occurred. However, if several `error_log` directives are specified on the same level, the message is written to all specified logs.
 
 
-<span id="access_log"></span>
-## Set Up the Access Log
+## Set up the access log {#access_log}
 
-NGINX records client requests in the access log right after the request is processed. The [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive specifies the location of the log and its format. By default, the access log is located at **logs/access.log**. The format of logged messages is the predefined **combined** format. To change the format of logged messages, use the [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) directive. The log format is defined using variables.
+NGINX records client requests in the access log right after the request is processed. The [`access_log`](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive specifies the location of the log and its format. By default, the access log is located at **logs/access.log**. The format of logged messages is the predefined **combined** format. To change the format of logged messages, use the [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) directive. The log format is defined using variables.
 
 The following example extends the predefined **combined** format by specifying the `gzip ratio` keyword. This enables gzip compression of the response in a virtual server.
 
@@ -87,8 +136,7 @@ To enable caching of log file descriptors, use the [open_log_file_cache](https:/
 Similar to the `error_log` directive, the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive defined on a particular configuration level overrides the settings from the previous levels. When processing of a request is completed, the message is written to the log that is configured on the current level, or inherited from the previous levels. If one level has multiple access log definitions, the message is written to all of them.
 
 
-<span id="conditional"></span>
-## Enabling Conditional Logging
+## Enabling conditional logging {#conditional}
 
 Conditional logging allows excluding trivial or unimportant log entries from the access log. In NGINX, conditional logging is enabled by the `if` parameter to the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive.
 
@@ -104,8 +152,7 @@ access_log /path/to/access.log combined if=$loggable;
 ```
 
 
-<span id="tls_sample"></span>
-## Usecase: Sampling TLS Parameters
+## Usecase: sampling TLS parameters {#tls_sample}
 
 Many clients use TLS versions older than TLS 1.3. Though many ciphers are declared insecure, older implementations still use them; ECC certificates offer greater performance than RSA, but not all clients can accept ECC. Many TLS attacks rely on a “man in the middle” who intercepts the cipher negotiation handshake and forces the client and server to select a less secure cipher. Therefore, it’s important to configure F5 NGINX Plus to not support weak or legacy ciphers, but doing so may exclude legacy clients.
 
@@ -181,8 +228,7 @@ In this example, each client is identified by its unique combination of IP addre
    For more information about sampling requests with NGINX conditional logging see the [blog post](https://www.nginx.com/blog/sampling-requests-with-nginx-conditional-logging/#var_request_id).
 
 
-<span id="syslog"></span>
-## Logging to Syslog
+## Logging to syslog {#syslog}
 
 The `syslog` utility is a standard for computer message logging and allows collecting log messages from different devices on a single syslog server. In NGINX, logging to syslog is configured with the `syslog:` prefix in [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) and [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directives.
 
@@ -202,9 +248,14 @@ The `tag=` parameter applies a custom tag to syslog messages (`nginx` in our exa
 The `severity=` parameter sets the severity level of syslog messages for access log. Possible values in order of increasing severity are: `debug`, `info`, `notice`, `warn`, `error` (default), `crit`, `alert`, and `emerg`. Messages are logged at the specified level and all more severe levels. In our example, the severity level `error` also enables `crit`, `alert`, and `emerg` levels to be logged.
 
 
-<span id="monitoring"></span>
-## Live Activity Monitoring
+## Live activity monitoring {#monitoring}
 
 NGINX Plus provides a real-time live activity monitoring interface that shows key load and performance metrics of your [HTTP]({{< ref "nginx/admin-guide/load-balancer/http-load-balancer.md" >}}) and [TCP]({{< ref "nginx/admin-guide/load-balancer/tcp-udp-load-balancer.md" >}}) upstream servers. See the [Live Activity Monitoring]({{< ref "live-activity-monitoring.md" >}}) article for more information.
 
-To learn more about NGINX Plus, please visit the [Products](https://www.nginx.com/products/) page.
+
+## Compatibility note {#compat}
+
+- Support for multiple `error_log` directives at the same configuration level was introduced in NGINX Open Source [1.5.2](https://nginx.org/en/CHANGES).
+
+- Support for JSON-formatted error logs was introduced in NGINX Plus [PLS.37.0.0.1 LTS]({{< ref "/nginx/releases.md#r37.0" >}}).
+

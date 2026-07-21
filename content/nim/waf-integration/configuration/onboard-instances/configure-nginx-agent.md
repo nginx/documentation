@@ -4,7 +4,7 @@ description: Update the NGINX Agent configuration to enable F5 WAF for NGINX.
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Update the NGINX Agent configuration on your F5 WAF for NGINX instances to enable WAF reporting to F5 NGINX Instance Manager.
   This step is required after installing NGINX Agent; it tells the agent to send WAF data to the NGINX Instance Manager control plane.

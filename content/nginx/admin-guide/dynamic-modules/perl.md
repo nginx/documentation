@@ -7,7 +7,7 @@ title: Perl
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The Perl dynamic module allows implementing location and variable handlers in Perl and insert Perl calls into Server Side Includes (SSI).

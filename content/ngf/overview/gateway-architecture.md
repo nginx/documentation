@@ -3,7 +3,7 @@ title: Gateway architecture
 weight: 100
 toc: true
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1413
 ---
 
@@ -152,7 +152,7 @@ graph LR
 
 The figure shows:
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
+{{<table>}}
 
 | **Category**           | **Description**                                                                                                                                       |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -167,7 +167,7 @@ The figure shows:
 | **Public Endpoint**     | A shared entry point (TCP Load Balancer or NodePort) that exposes the NGINX Data Plane externally to forward client traffic into the cluster.                   |
 | **Kubernetes API**      | Acts as the central hub for resource management:<br>- Fetches Gateway API resources for Gateway A and Gateway B.<br>- Facilitates NGINX configuration updates via the NGINX Gateway Fabric Control Plane Pod. |
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 
 _Color Coding_ :
@@ -227,7 +227,7 @@ graph LR
 
 The following table describes the connections, preceeded by their types in parentheses. For brevity, the suffix "process" has been omitted from the process descriptions.
 
-{{< bootstrap-table "table table-bordered table-striped table-responsive" >}}
+{{<table>}}
 
 | #  | Component/Protocol      | Description                                                                                                  |
 | ---| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -240,7 +240,7 @@ The following table describes the connections, preceeded by their types in paren
 | 7  | HTTP/HTTPS              | _Client → NGINX Worker_: Clients send incoming application traffic (e.g., HTTP/HTTPS requests) to the NGINX Worker process within the NGINX Data Plane Pod. These requests are typically routed through a shared Public Endpoint (e.g., LoadBalancer or NodePort) before reaching the NGINX Data Plane. |
 | 8  | HTTP/HTTPS              | _NGINX Worker → Backend Application_: The NGINX Worker process forwards client traffic to the appropriate backend application services (e.g., Pods) as defined in the routing rules and configuration received from the Control Plane Pod. |
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ---
 

@@ -4,7 +4,7 @@ title: Create a support package
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Use the support package script to collect system and service information about your F5 NGINX Instance Manager installation for troubleshooting."
 f5-summary: >
   Generate a support package from your F5 NGINX Instance Manager installation to share with F5 support for troubleshooting.
@@ -53,7 +53,7 @@ To create a support package:
 
 The following table lists the arguments you can use with the support package script.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Short | Long                   | Description                                                         | Example                | Default             |
 | ----- | ---------------------- | ------------------------------------------------------------------- | ---------------------- | ------------------- |
@@ -66,7 +66,7 @@ The following table lists the arguments you can use with the support package scr
 | `-xd` | `--exclude_databases`  | Excludes database data from the support package.                    | `--exclude_databases`  | N/A                 |
 | `-xt`| `--exclude_timeseries` | Excludes timeseries data from the support package.                  | `--exclude_timeseries` | N/A                 |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Package Contents
 
@@ -92,7 +92,7 @@ cat nms.log | grep 'COR'
 
 The following table shows the `nms` processes and pattern to `grep` on:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Process name  | Pattern |
 | ------------- | ------- |
@@ -100,7 +100,7 @@ The following table shows the `nms` processes and pattern to `grep` on:
 | nms-dpm       | 'DPM'   |
 | nms-ingestion | 'ING'   |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### service-information
 

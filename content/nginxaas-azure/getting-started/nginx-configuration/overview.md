@@ -2,9 +2,9 @@
 title: Overview
 weight: 50
 toc: true
-url: /nginxaas/azure/getting-started/nginx-configuration/overview/
+url: /nginxaas-azure/getting-started/nginx-configuration/overview/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 This document provides details about using NGINX configuration files with your

@@ -2,7 +2,7 @@
 title: Manage NGINX configs
 url: /nginx-instance-manager/nginx-configs/
 weight: 70
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Stage, publish, and version-control NGINX configurations across your fleet using F5 NGINX Instance Manager, with template support for standardized deployments."
 f5-summary: >

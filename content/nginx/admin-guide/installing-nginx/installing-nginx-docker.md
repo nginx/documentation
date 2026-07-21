@@ -5,7 +5,7 @@ title: Deploying NGINX and NGINX Plus with Docker
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 [F5 NGINX Plus](https://www.nginx.com/products/nginx/), the high‑performance application delivery platform, load balancer, and web server, is available as the Docker container.
@@ -26,7 +26,7 @@ f5-product: NGPLUS
 <span id="nginx_plus_official_images"></span>
 ## Use official NGINX Plus Docker images
 
-Since NGINX Plus NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
+Since NGINX Plus [Release 31]({{< ref "nginx/releases.md#r31" >}}) you can get an NGINX Plus image from the official NGINX Plus Docker registry and upload it to your private registry.
 
 The NGINX Plus Docker registry is available at `https://private-registry.nginx.com/v2/`.
 
@@ -51,13 +51,13 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 ### Tags for operating systems
 
-{{<bootstrap-table "table table-bordered">}}
+{{<table>}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
 |--------------------------------------------|--------------|-----------------------------------------------|
 | Alpine (x86_64, aarch64)                   | `alpine`     | `r36-alpine`, `r36-alpine-3.20`               |
 | Debian (x86_64, aarch64)                   | `debian`     | `r36-debian`, `r36-debian-bookworm`           |
 | Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r36-ubi`, `r36-ubi-9`,  `r36-ubi-9-20251201` |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### Tags for NGINX Plus versions
 

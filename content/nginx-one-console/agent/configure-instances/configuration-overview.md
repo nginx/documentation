@@ -4,7 +4,7 @@ toc: true
 weight: 300
 f5-content-type: how-to
 f5-docs: DOCS-1879
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 This page describes how to configure F5 NGINX Agent using configuration files, CLI (Command line interface) flags, and environment variables.
@@ -53,7 +53,7 @@ sudo docker run \
 
 ### NGINX Agent configuration options
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 | **Environment Variable**                         | **Command-Line Option**                             | **Description**                                                                                              | **Default Value**                                      |
 |--------------------------------------------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
 | NGINX_AGENT_LOG_LEVEL                          | --log-level                                      | The desired verbosity level for logging messages from nginx-agent. Available options: panic, fatal, error, info, and debug.       | info                                                |
@@ -84,4 +84,4 @@ sudo docker run \
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_CERT     | --collector-extensions-health-tls-cert          | TLS Certificate file path for communication with OTel health server.                                         | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_KEY      | --collector-extensions-health-tls-key           | File path for TLS key used when connecting with OTel health server.                                           | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_PROCESSORS_BATCH_SEND_BATCH_TIMEOUT    | --collector-processors-batch-send-batch-timeout                                               | Maximum time duration for sending batch data metrics regardless of size.                                      | 200ms
-{{< /bootstrap-table >}}
+{{</table >}}

@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 {{< call-out class="note" >}} 

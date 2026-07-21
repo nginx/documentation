@@ -3,7 +3,7 @@ title: "Build and use the compiler tool"
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This document describes how to use the F5 WAF for NGINX compiler, a tool for converting security policies and logging profiles from JSON to a bundle file that F5 WAF can process and apply.
@@ -91,7 +91,7 @@ USER nginx
 
 {{< call-out class="note" >}}
 
-You can can upgrade or downgrade one of the Signatures by specifying a specific version, such as _app-protect-attack-signatures-2020.04.30_.
+You can upgrade or downgrade one of the Signatures by specifying a specific version, such as _app-protect-attack-signatures-2020.04.30_.
 
 {{< /call-out >}}
 
@@ -119,6 +119,26 @@ sudo docker build --no-cache --platform linux/amd64 \
 Never upload your F5 WAF for NGINX images to a public container registry such as Docker Hub. Doing so violates your license agreement.
 
 {{< /call-out >}}
+
+## Update security packages in the compiler image
+
+To use newer attack signatures, bot signatures, or threat campaigns with the compiler workflow, rebuild your compiler image with the updated security packages, then recompile your policy bundles.
+
+Updating the compiler image alone does not update a running F5 WAF for NGINX deployment. The Enforcer continues to use the signatures contained in the currently deployed policy bundle until you deploy a newly compiled bundle and apply the updated configuration.
+
+To apply updated signatures from a compiler image:
+
+1. Rebuild the compiler image with the updated security packages:
+    - `app-protect-attack-signatures`
+    - `app-protect-bot-signatures`
+    - `app-protect-threat-campaigns`
+2. Recompile all policy bundles with the rebuilt compiler image.
+3. Replace or mount the updated bundle in your F5 WAF for NGINX deployment.
+4. Apply the updated configuration:
+    - If only the F5 WAF for NGINX configuration changed, and `nginx.conf` and its included files did not change, use [apreload]({{< ref "/waf/configure/apreload.md" >}}).
+    - If `nginx.conf`, any included NGINX file, or any App Protect directive in `nginx.conf` changed, reload NGINX.
+
+A full NGINX restart is not required.
 
 ## Using the compiler
 

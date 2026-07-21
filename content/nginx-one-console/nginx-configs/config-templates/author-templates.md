@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Author templates
 toc: true
 weight: 10
@@ -13,7 +13,7 @@ This guide explains how to write NGINX configuration templates for NGINX One Con
 
 ## General terms
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Term        | Definition |
 |-------------|-------------|
 | **Template** | A reusable NGINX configuration file written using Go template syntax that can accept variables for customization. Templates can be either base templates (complete configurations) or augment templates (modular additions). Templates must use the `.tmpl` file extension and are imported into NGINX One Console for use in submissions. |
@@ -25,7 +25,7 @@ This guide explains how to write NGINX configuration templates for NGINX One Con
 | **Schema** | A JSON Schema Draft 7 file (YAML or JSON format) that defines template variables, their types, descriptions, and validation rules. Required for templates that use variables. Schema properties become available as template variables via dot notation. |
 | **Template Submission** | The process of composing base and augment templates with values to render and deploy a complete NGINX configuration. Submissions are persistent objects that can be retrieved, updated, and deleted. A submission targets one or more existing staged configs, Config Sync Groups, or instances, and automatically re-publishes when updated. |
 | **Template Variable** | A placeholder in a template (e.g., `{{ .backend_url }}`) that gets replaced with user-provided values during rendering. All variables must be defined in the template's schema and provided during submission if marked as required. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Template types
 

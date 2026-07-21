@@ -10,6 +10,7 @@ cascade:
     enabled: true
     type: deprecation
     md: _banners/eol-amplify.md
+    nollms: true
 ---
 
 ### Uninstall F5 NGINX Amplify Agent

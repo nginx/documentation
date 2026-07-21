@@ -3,7 +3,7 @@ title: "Deploy log profiles"
 weight: 660
 toc: false
 f5-content-type: how-to
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-summary: Deploy WAF log profiles in NGINX One Console to instances or Config Sync Groups via Actions > Deploy or through the config editor (Add File > Existing Log Profile), auto-compiling if needed, then verify deployment by confirming directives and checking security log output.
 ---
 

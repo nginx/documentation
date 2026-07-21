@@ -4,7 +4,7 @@ description: Resolve common issues with F5 WAF for NGINX and F5 NGINX Instance M
 toc: true
 weight: 1000
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Diagnose and fix common problems with F5 WAF for NGINX and F5 NGINX Instance Manager.
   This guide covers the most likely causes of WAF integration issues, including installation conflicts, configuration errors, and connectivity problems.
@@ -62,21 +62,21 @@ sudo /opt/nms-nap-compiler/app_protect-<version>/bin/apcompile -h
 **Example:**
 
 ```shell
-sudo /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile -h
+sudo /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile -h
 ```
 
 **Expected output:**
 
 ```text
 USAGE:
-    /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile <options>
+    /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile <options>
 
 Examples:
-    /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
-    /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
-    /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
-    /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile -b /path/to/policy_bundle.tgz --dump
-    /opt/nms-nap-compiler/app_protect-5.635.1/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile -p /path/to/policy.json -o mypolicy.tgz
+    /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile -p policyA.json -g myglobal.json -o /path/to/policyA_bundle.tgz
+    /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile -g myglobalsettings.json --global-state-outfile /path/to/myglobalstate.tgz
+    /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile -b /path/to/policy_bundle.tgz --dump
+    /opt/nms-nap-compiler/app_protect-5.635.4/bin/apcompile -l logprofA.json -o /path/to/logprofA_bundle.tgz
 ```
 
 ---

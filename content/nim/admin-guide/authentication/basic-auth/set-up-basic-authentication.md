@@ -4,7 +4,7 @@ description: Learn how to manage user access in F5 NGINX Instance Manager using 
 toc: true
 weight: 10
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-792
 f5-summary: >
   Set up basic authentication for F5 NGINX Instance Manager to control user access with usernames and passwords.

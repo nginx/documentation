@@ -8,7 +8,7 @@ toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 f5-content-type: tutorial
 # Intended for internal catalogue and search, case sensitive:
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 ## Overview

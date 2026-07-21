@@ -6,7 +6,7 @@ title: XSLT
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 With the XSLT dynamic module, you can modify XML code in response bodies using one or more XSLT stylesheets.

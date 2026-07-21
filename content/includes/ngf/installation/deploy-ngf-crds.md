@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-files:
 - content/nginx-one-console/k8s/add-ngf-manifests.md
 ---

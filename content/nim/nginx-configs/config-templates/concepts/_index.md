@@ -3,7 +3,7 @@ description: "Understand how NGINX config templates, augment templates, the F5 G
 title: Overview
 weight: 10
 url: /nginx-instance-manager/nginx-configs/config-templates/concepts
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 f5-summary: >
   Learn the building blocks of the NGINX config template system in F5 NGINX Instance Manager.

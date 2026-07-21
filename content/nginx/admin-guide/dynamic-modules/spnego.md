@@ -6,7 +6,7 @@ title: SPNEGO
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The SPNEGO Auth module adds [SPNEGO](https://tools.ietf.org/html/rfc4178) support to F5 NGINX Plus. Currently, only Kerberos authentication via GSSAPI is supported.

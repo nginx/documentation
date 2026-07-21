@@ -23,12 +23,12 @@
     - title: "F5 DoS for NGINX"
       url: "nginx-app-protect-dos"
 
-- productGroup: NGINX as a Service
+- productGroup: NGINXaaS
   products:
-    - title: "NGINXaaS for Azure"
-      url: "nginxaas/azure/"
     - title: "NGINXaaS for Google Cloud"
-      url: "nginxaas/google/"
+      url: "nginxaas/google/overview/"
+    - title: "NGINXaaS for Azure"
+      url: "nginxaas-azure/"
 
 - productGroup: Glossary
   products:

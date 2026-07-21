@@ -3,7 +3,7 @@ title: Configure OpenID Connect (OIDC) authentication
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description:  How to configure OpenID Connect authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
 f5-summary: >
    NGINX Gateway Fabric supports OIDC authentication via the AuthenticationFilter CRD, enabling delegation of user login to identity providers like Keycloak, Okta, or Auth0 using the Authorization Code Flow.
@@ -39,7 +39,10 @@ You can consolidate multiple keys in a single Secret or use separate Secrets for
 To follow this guide, you need the following:
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
-- [Install cert-manager](https://cert-manager.io/docs/installation/) in your cluster.
+
+### Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ### Generate certificates
 

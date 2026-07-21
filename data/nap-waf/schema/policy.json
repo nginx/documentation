@@ -4056,7 +4056,7 @@
                               "type" : "string"
                            },
                            "allowRenderingInFramesOnlyFrom" : {
-                              "description" : "Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, http://www.mywebsite.com. Do not enter a sub-URL, such as http://www.mywebsite.com/index.",
+                              "description" : "Specifies that the browser may load the frame or iframe from a specified domain. Type the protocol and domain in URL format for example, http://www.example.com. Do not enter a sub-URL, such as http://www.example.com/index.",
                               "type" : "string"
                            },
                            "attackSignaturesCheck" : {

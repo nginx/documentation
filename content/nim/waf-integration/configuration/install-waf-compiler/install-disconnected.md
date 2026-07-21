@@ -4,7 +4,7 @@ description: Install the WAF compiler on a system without internet access by gen
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Install the WAF compiler on an F5 NGINX Instance Manager host without internet access by generating the package on a connected system and transferring it offline.
   This approach is for environments where direct downloads from the NGINX repository are not possible.
@@ -60,11 +60,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.635.1
+   sudo apt-get download nms-nap-compiler-v5.635.4
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.635.1 \
+     nms-nap-compiler-v5.635.4 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -108,11 +108,11 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    mkdir -p compiler && cd compiler
    sudo apt-get update
 
-   sudo apt-get download nms-nap-compiler-v5.635.1
+   sudo apt-get download nms-nap-compiler-v5.635.4
    cd ../
    mkdir -p compiler/compiler.deps
    sudo apt-get install --download-only --reinstall --yes --print-uris \
-     nms-nap-compiler-v5.635.1 \
+     nms-nap-compiler-v5.635.4 \
      | grep ^\' \
      | cut -d\' -f2 \
      | xargs -n 1 wget -P ./compiler/compiler.deps
@@ -157,7 +157,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.635.1
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.635.4
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 
@@ -187,11 +187,12 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo mv nginx-repo.crt /etc/ssl/nginx/
    sudo mv nginx-repo.key /etc/ssl/nginx/
    sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nms.repo
-   sudo yum-config-manager --disable rhel-9-appstream-rhui-rpms
+   sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+   sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
    sudo yum update -y
    sudo mkdir -p nms-nap-compiler
 
-   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.635.1
+   sudo yumdownloader --resolve --destdir=nms-nap-compiler nms-nap-compiler-v5.635.4
    tar -czvf compiler.tar.gz nms-nap-compiler/
    ```
 

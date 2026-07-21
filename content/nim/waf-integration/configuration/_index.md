@@ -5,7 +5,7 @@ f5-docs:
 weight: 200
 f5-content-type: landing-page
 f5-landing-page: true
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 url: /nginx-instance-manager/waf-integration/configuration/
 f5-summary: >
   Set up F5 WAF for NGINX configuration management in F5 NGINX Instance Manager.

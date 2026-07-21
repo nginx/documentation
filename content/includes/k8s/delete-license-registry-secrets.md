@@ -1,5 +1,5 @@
 ---
-f5-product: MISCEL
+f5-product: Miscellaneous
 ---
 
 If your deployment used NGINX Plus, you should also remove the secrets created for your license and the F5 registry.

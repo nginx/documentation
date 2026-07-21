@@ -1,5 +1,5 @@
 ---
-f5-product: SOLUTI
+f5-product: Solutions
 f5-files:
 - content/solutions/about-subscription-licenses/getting-started.md
 ---

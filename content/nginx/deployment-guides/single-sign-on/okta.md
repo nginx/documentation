@@ -4,7 +4,7 @@ description: Enable OpenID Connect-based single sign-on (SSO) for applications p
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-1689
 ---
 

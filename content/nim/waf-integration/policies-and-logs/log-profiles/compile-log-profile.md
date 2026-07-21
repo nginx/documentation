@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 title: Compile log profiles (REST API)
 description: "Compile an F5 WAF for NGINX security log profile into a deployment bundle using the F5 NGINX Instance Manager REST API."
 weight: 300

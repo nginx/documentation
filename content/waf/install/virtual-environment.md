@@ -7,7 +7,7 @@ f5-banner:
     start-date: 2025-08-30
     md: /_banners/waf-virtual-restriction.md
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment.
@@ -427,10 +427,9 @@ server {
 
 {{< /tabs >}}
 
-Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
+Once you have updated your configuration files, reload NGINX with the following command:
 
 - `nginx -s reload`
-- `sudo systemctl reload nginx`
 
 ## Post-installation checks
 

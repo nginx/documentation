@@ -2,9 +2,9 @@
 title: GeoIP2
 weight: 700
 toc: true
-url: /nginxaas/azure/quickstart/geoip2/
+url: /nginxaas-azure/quickstart/geoip2/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

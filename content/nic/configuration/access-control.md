@@ -3,7 +3,7 @@ title: Deploy a Policy for access control
 weight: 900
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1858
 ---
 

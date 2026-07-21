@@ -1,10 +1,10 @@
 ---
 title: Enable F5 WAF for NGINX Logs
 weight: 300
-url: /nginxaas/azure/app-protect/enable-logging/
+url: /nginxaas-azure/app-protect/enable-logging/
 toc: true
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview
@@ -77,7 +77,7 @@ You can find more details on these directives in the [Security log](https://docs
 
 ### Log Configuration
 
-NGINXaaS for Azure ships with several pre-compiled log configuration bundles. More details on these logging bundles can be found in the [Security log](https://docs.nginx.com/nginx-app-protect-waf/v5/logging-overview/security-log/) documentation.
+NGINXaaS for Azure ships with several pre-compiled log configuration bundles. More details on these logging bundles can be found in the [Security log](https://docs.nginx.com/waf/logging/security-logs/) documentation.
 
 The following table shows the path to the log configuration file that needs to be used with the app_protect_security_log directive:
 

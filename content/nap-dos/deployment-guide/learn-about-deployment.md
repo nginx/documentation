@@ -5,7 +5,7 @@ title: Deployment
 toc: true
 weight: 90
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Overview

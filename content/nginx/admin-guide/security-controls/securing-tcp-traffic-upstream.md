@@ -6,7 +6,7 @@ title: Securing TCP Traffic to Upstream Servers
 toc: true
 weight: 1000
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This article explains how to secure TCP traffic between NGINX and an upstream TCP server or group of upstream TCP servers.

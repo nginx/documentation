@@ -1,5 +1,5 @@
 ---
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-files:
 - content/nim/waf-integration/configuration/install-waf-compiler/install-disconnected.md
 - content/nim/waf-integration/configuration/install-waf-compiler/install.md
@@ -7,6 +7,9 @@ f5-files:
 
 | F5 WAF for NGINX version  | WAF compiler version       |
 |---------------------------|----------------------------|
+| 5.13.4                    | nms-nap-compiler-v5.635.4  |
+| 5.13.3                    | nms-nap-compiler-v5.635.3  |
+| 5.13.2                    | nms-nap-compiler-v5.635.2  |
 | 5.13.1                    | nms-nap-compiler-v5.635.1  |
 | 5.13.0                    | nms-nap-compiler-v5.635.0  |
 | 5.12.1                    | nms-nap-compiler-v5.607.1  |

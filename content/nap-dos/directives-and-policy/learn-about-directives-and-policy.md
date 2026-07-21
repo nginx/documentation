@@ -4,7 +4,7 @@ toc: true
 weight: 120
 f5-docs: DOCS-667
 f5-content-type: reference
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Introduction
@@ -19,7 +19,7 @@ While only the first directive is mandatory for enabling F5 DoS for NGINX, it is
 ## Directives table
 Below is a summary of all F5 DoS for NGINX directives. Detailed descriptions of each directive can be found in the following sections.
 
- {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+ {{<table>}}
 
 | Directive syntax                                                                                          | Options  | Context  |  Description |  Mandatory | Default                                                                                                                             |
 |-----------------------------------------------------------------------------------------------------------|----------|----------|--------------|------------|-------------------------------------------------------------------------------------------------------------------------------------|
@@ -36,7 +36,7 @@ Below is a summary of all F5 DoS for NGINX directives. Detailed descriptions of 
 | [app_protect_dos_accelerated_mitigation](#api-directive-app_protect_dos_api)                              | [on\|off] [syn_drop=on\|off]| http | Enable/Disable L4 accelerated mitigation. Second argument is optional | No | off syn_drop=off                                                                                                                    |
 | [app_protect_dos_access_file](#access-file-directive-app_protect_dos_access_file)                             | [FILE-PATH]  | http, <br> server, <br> location | Define allowlist policy from a file	  | No  | None / disabled                                                                                                                               |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 ## Directives Info
@@ -51,7 +51,7 @@ The derived blocks/contexts also inherit the directive.
 
 In case of multiple directives in different contexts, the derived overwrites the base's directive.
 
- {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+ {{<table>}}
 
 | Config | Expected |
 |------- | -------- |
@@ -59,7 +59,7 @@ In case of multiple directives in different contexts, the derived overwrites the
 | Server block: directive is **on** <br> Location-1 block: directive is **off** <br> Location-2 block: none is written | VS1: the server block <br> VS2: location-2 block |
 | Http block: directive is **on** <br> Server block: directive is **off** <br> Location-1 block: directive is **on** <br> Location-2 block: none is written | VS1: location-1 block |
 
- {{</bootstrap-table>}}
+ {{</table >}}
 
  **Example:**
 
@@ -87,7 +87,7 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | Parameter name  | Values  | Default | Description                                                                                                                                                                                                                                        |
 |:--------------- |:------- |:--------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -97,9 +97,9 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 | automation_tools_detection | [on\|off] | on |Enable the usage of automation tools detection (via cookies and redirect) |
 | tls_fingerprint| [on\|off] | on | Enable source identification using TLS fingerprinting|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | Scenario  |  Result |
 |:--------- |:-------- |
@@ -107,7 +107,7 @@ If the configuration file doesn't exist or its attributes are invalid, default v
 | Directive is written  | Path from the directive is used  |
 | File not found / file syntax is invalid | Default values are used |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 **Example:**
 
@@ -324,13 +324,13 @@ While `/etc/app_protect_dos/log-default.json` is:
 
 This directive has 3 arguments.
 
-{{<bootstrap-table "table table-bordered table-striped table-sm">}}
+{{<table>}}
 
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
 | [on\|off] depending if this feature should be enabled or disabled. | URI Syntax is: `uri:___` | Port Syntax is: `port:____` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
    {{< call-out class="note" >}}
 Second and Third arguments are optional; if one or more is not written, the default will take place.
@@ -350,13 +350,13 @@ app_protect_dos_liveness on uri:/liveness port:8090;
 
 This directive has 3 arguments.
 
-{{<bootstrap-table "table table-bordered table-striped table-sm">}}
+{{<table>}}
 
 | First argument | Second argument | Third argument |
 | :-------------- | :--------------- | :-------------- |
 | [on\|off] depending if this feature should be enabled or disabled. | URI Syntax is: `uri:___` | Port Syntax is: `port:____` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
    {{< call-out class="note" >}}

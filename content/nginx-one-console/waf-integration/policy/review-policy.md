@@ -9,7 +9,7 @@ toc: false
 f5-content-type: how-to
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 Before you implement a policy on an NGINX instance or Config Sync Group, you may want to review it. F5 NGINX One Console creates a policy for your F5 WAF for NGINX system.
@@ -22,7 +22,7 @@ From NGINX One Console, select **WAF** > **Policies**. Select the name of the po
   - Policy Details: Descriptions, status, enforcement type, latest version, and last deployed time.
   - Deployments: List of instances and Config Sync Groups where the F5 WAF for NGINX policy is deployed.
 - Policy JSON: The policy, in JSON format. With the **Edit** button, you can modify this policy.
-- Versions: Policy versions that you've written. You can apply an older policy to your deployments.
+- Versions: Policy versions that you've written, labeled sequentially (`v1`, `v2`, `v3`, and so on). Each version shows its name, creation date, enforcement mode, and optional version comment. Select a version to view its details or update its comment. You can also apply an older policy version to your deployments.
 
 ## Modify existing policies
 

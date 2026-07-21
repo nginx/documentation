@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Prepare and submit usage reports from F5 NGINX Instance Manager to F5 in a disconnected (offline) environment using a bash script or REST API.
   Usage data is downloaded from NGINX Instance Manager and submitted to F5 from a system with internet access.

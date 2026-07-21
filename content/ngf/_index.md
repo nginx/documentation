@@ -20,7 +20,7 @@ f5-landing-page: true
 f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 ## About
@@ -59,13 +59,13 @@ For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gate
   {{<card title="Changelog" titleUrl="/nginx-gateway-fabric/changelog">}}
     Review the changes from the latest releases.
   {{</card>}}
-  {{<card title="Technical specifications" titleUrl="/nginx-gateway-fabric/reference/technical-specifications/">}}
+  {{<card title="Technical specifications" titleUrl="/nginx-gateway-fabric/overview/technical-specifications">}}
     Check which versions of NGINX Gateway Fabric match the API.
   {{</card>}}
-  {{<card title="Routing traffic to applications" titleUrl="/nginx-gateway-fabric/traffic-management/basic-routing/">}}
+  {{<card title="Routing traffic to applications" titleUrl="/nginx-gateway-fabric/traffic-management/basic-routing">}}
     Create simple rules for directing network traffic with HTTPRoute resources.
   {{</card>}}
-  {{<card title="Secure traffic using Let's Encrypt" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager/">}}
+  {{<card title="Secure traffic using Let's Encrypt" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager">}}
     Implement HTTPS with Let's Encrypt to secure client-server communication.
   {{</card>}}
 {{</card-section>}}

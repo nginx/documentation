@@ -1,7 +1,7 @@
 ---
 f5-content-type: concept
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Security monitoring overview
 description: "What the F5 WAF for NGINX security monitoring module is, the data pipeline behind it, and what you can do with the data."
 weight: 100

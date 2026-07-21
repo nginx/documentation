@@ -4,7 +4,7 @@ title: Create a support package from a Helm installation
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Use the Kubernetes support package script to collect system and service information for troubleshooting F5 NGINX Instance Manager deployed with Helm."
 f5-summary: >
   Generate a support package from an F5 NGINX Instance Manager Helm deployment to share with F5 support for troubleshooting.

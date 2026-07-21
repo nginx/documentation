@@ -4,7 +4,7 @@ linkTitle: NGINX Plus
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Plus.
@@ -28,7 +28,6 @@ To complete this guide, you will need the following pre-requisites:
 - An active NGINX Plus subscription (Purchased or trial)
 - [A supported Kubernetes version]({{< ref "/ngf/overview/technical-specifications.md" >}})
 - A functional Kubernetes cluster
-- [cert-manager](https://cert-manager.io/docs/installation/)
 
 ## Download your JSON web token
 
@@ -84,6 +83,10 @@ nplus-license                Opaque                           1      21s
 ## Install the Gateway API resources
 
 {{< include "/ngf/installation/manifests/api-resources.md" >}}
+
+## Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ## Add certificates for secure authentication
 

@@ -6,19 +6,21 @@ title: HTTP Load Balancing
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## Overview {#overview}
 
-Load balancing across multiple application instances is a commonly used technique for optimizing resource utilization, maximizing throughput, reducing latency, and ensuring fault‑tolerant configurations.
+[Load balancing](https://www.f5.com/glossary/load-balancer) across multiple application instances is a common technique for optimizing resource utilization, maximizing throughput, reducing latency, and improving fault‑tolerance.
 
-NGINX and NGINX Plus can be used in different deployment scenarios as a [very efficient HTTP load balancer](https://www.nginx.com/blog/nginx-load-balance-deployment-models/).
+NGINX and NGINX Plus provide Layer 7 (application layer) load balancing for HTTP and HTTPS traffic. You can choose from multiple load-balancing algorithms, ranging from basic Round Robin to more advanced methods such as Least Connections, Least Time, and hashing-based methods. NGINX Plus adds more capabilities such as slow-start, which gracefully reintroduces recovered servers, and session persistence (“sticky” sessions) which routes a client’s requests to the same upstream server.
+
+For Layer 4 or transport-layer load balancing, see [TCP and UDP Load Balancing]({{< ref "tcp-udp-load-balancer.md" >}}).
 
 
 ## Proxy HTTP traffic to a group of servers {#proxy_pass}
 
-Use NGINX Plus or NGINX Open Source to load balance across a group of servers. First, define the group of servers with the [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) directive. Place the directive in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context.
+Use NGINX or NGINX Plus to load balance across a group of servers. First, define the group of servers with the [`upstream`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) directive. Place the directive in the [`http`](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) context.
 
 Servers in the group are configured using the [`server`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive (not to be confused with the `server` block that defines a virtual server running on NGINX). For example, the following configuration defines a group named **backend** and consists of three server configurations. This may resolve to more than three actual servers:
 
@@ -64,8 +66,8 @@ http {
 
 ## Choose a load balancing method {#method}
 
-NGINX Open Source supports four load balancing methods: Round Robin, Least Connections, IP Hash, and Generic Hash.
-NGINX Plus supports six load balancing methods: the four above, Least Time, and Random.
+NGINX Open Source supports five load balancing methods: Round Robin, Least Connections, Least Time, IP Hash, and Generic Hash.
+NGINX Plus supports six load balancing methods: all of the above, plus Random.
 
 > **Note:** When configuring any method other than Round Robin, put the corresponding directive ([`hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash), [`ip_hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash), [`least_conn`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn), [`least_time`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time), or [`random`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random)) above the list of `server` directives in the [`upstream {}`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block.
 
@@ -121,7 +123,7 @@ NGINX Plus supports six load balancing methods: the four above, Least Time, and 
 
     The optional [consistent](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash) parameter to the `hash` directive enables [ketama](http://www.last.fm/user/RJ/journal/2007/04/10/rz_libketama_-_a_consistent_hashing_algo_for_memcache_clients) consistent‑hash load balancing. Requests are evenly distributed across all upstream servers based on the user‑defined hashed key value. If an upstream server is added to or removed from an upstream group, only a few keys are remapped, which minimizes cache misses. This is useful for load balancing cache servers or other applications that accumulate state.
 
-5. [Least Time](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) (NGINX Plus only) – For each request, NGINX Plus selects the server with the lowest average latency and the lowest number of active connections. The lowest average latency is calculated based the [parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) included with the `least_time` directive. This parameter can be one of the following:
+5. [Least Time](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) – For each request, NGINX selects the server with the lowest average latency and the lowest number of active connections. The lowest average latency is calculated based the [parameter](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time) included with the `least_time` directive. This parameter can be one of the following:
 
     - `header` – Time to receive the first byte from the server
     - `last_byte` – Time to receive the full response from the server
@@ -431,6 +433,10 @@ http {
 ```
 
 For more information about configuring Microsoft Exchange and NGINX Plus, see the [Load Balancing Microsoft Exchange Servers with NGINX Plus]({{< ref "/nginx/deployment-guides/load-balance-third-party/microsoft-exchange.md" >}}) deployment guide.
+
+## Compatibility note {#compat}
+
+- The [`least_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time) load-balancing method is supported in NGINX Plus since [Release 6]({{< ref "nginx/releases.md#r6" >}}) and in NGINX Open Source since 1.31.0.
 
 
 ## Dynamic configuration using the NGINX Plus API {#dynamic}

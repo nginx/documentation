@@ -1,6 +1,6 @@
 ---
 f5-content-type: how-to
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Submit templates
 toc: true
 weight: 200
@@ -160,12 +160,12 @@ Use the [Submit templates for previewing NGINX configuration]({{< ref "/nginx-on
 
 The `preview_only` query parameter controls the mode:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | `preview_only` | Behavior | Response |
 |---|---|---|
 | `false` (default) | Renders the configuration, creates a persistent submission, and publishes to the target(s). | `202 Accepted` with submission `object_id` and target results. |
 | `true` | Renders the configuration for inspection **without** creating a submission or publishing. | `200 OK` with the rendered NGINX configuration. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Request structure
 

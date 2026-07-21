@@ -3,9 +3,9 @@ title: Overview and prerequisites
 weight: 100
 toc: true
 f5-docs: DOCS-880
-url: /nginxaas/azure/getting-started/prerequisites/
+url: /nginxaas-azure/getting-started/prerequisites/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Before you begin

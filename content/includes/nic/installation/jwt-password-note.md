@@ -1,5 +1,5 @@
 ---
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/images/add-image-to-cluster.md
 - content/nic/install/license-secret.md

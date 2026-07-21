@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Use this reference to understand the structure and parameters of the F5 Global Default base template in F5 NGINX Instance Manager.
   The base template provides essential NGINX configuration elements and simplifies complex directives into user-friendly parameters.

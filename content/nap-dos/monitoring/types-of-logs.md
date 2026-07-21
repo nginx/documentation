@@ -5,7 +5,7 @@ title: Logs Overview
 toc: true
 weight: 130
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 There are 4 types of logs corresponding to App Protect DoS:
@@ -19,7 +19,7 @@ There are 4 types of logs corresponding to App Protect DoS:
 NGINX does not have audit logs in the sense of *"**who** did **what**"*. This can be done either from the orchestration system controlling NGINX (such as NGINX Controller) or by tracking the configuration files and the systemd invocations using Linux tools.
 {{< /call-out >}}
 
- {{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+ {{<table>}}
 
 |Type|Log Configuration| Configuration Contexts| File Destination| Syslog Destination |
 |----|-----------------|-----------------------|-----------------|--------------------|
@@ -28,7 +28,7 @@ NGINX does not have audit logs in the sense of *"**who** did **what**"*. This ca
 |Request |NGINX has two directives for the access log: <br> - **access_log** - to turn [on\|off] <br> - **log_format** - to specify the required information regarding each request <br><br> F5 DoS for NGINX has several variables that can be added to the log_format directive, such as $app_protect_dos_outcome. <br><br> For more information refer to [F5 DoS for NGINX Access Log]({{< ref "/nap-dos/monitoring/access-log.md" >}}) | `nginx.conf` - global| Yes, NGINX access log | Yes, NGINX access log |
 | Security  | F5 DoS for NGINX has two directives in `nginx.conf`: <br> - app_protect_dos_security_log_enable to turn logging [on\|off] <br> - app_protect_dos_security_log to set it's logging configuration and destination <br><br> For more information refer: <br> - **Configuration**: [App Protect DoS - Directives and Policy]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md">}}) <br> - **Usage**: [F5 DoS for NGINX - Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) | `nginx.conf`: http, server, location  | Yes, either stderr, or an absolute path to a local file are supported | Yes |
 
- {{</bootstrap-table>}}
+ {{</table >}}
 
 ## Security Log
  The security logs contain information about the status of the protected objects. It gives a general picture about each protected object in terms of traffic intensity, health of the backend server, learning and mitigations. For more information refer to [F5 DoS for NGINX Security Log]({{< ref "/nap-dos/monitoring/security-log.md" >}}) documentation.

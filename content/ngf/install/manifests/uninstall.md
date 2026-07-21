@@ -4,7 +4,7 @@ linkTitle: Uninstall
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 This page describes how to uninstall NGINX Gateway Fabric in a Manifest-based deployment, its custom resource definitions, and its Gateway API resources.

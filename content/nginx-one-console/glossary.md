@@ -3,7 +3,7 @@ title: Glossary
 toc: true
 weight: 1000
 f5-content-type: reference
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-docs: DOCS-1396
 ---
 

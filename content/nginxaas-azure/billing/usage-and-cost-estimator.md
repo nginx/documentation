@@ -3,9 +3,9 @@ title: Usage and cost estimator
 weight: 200
 toc: true
 f5-docs: DOCS-1474
-url: /nginxaas/azure/billing/usage-and-cost-estimator/
+url: /nginxaas-azure/billing/usage-and-cost-estimator/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 {{< raw-html >}}

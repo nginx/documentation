@@ -4,7 +4,7 @@ title: Publish NGINX configs
 toc: true
 weight: 2
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Edit and publish NGINX configuration files to your NGINX instances using the F5 NGINX Instance Manager web interface or REST API."
 f5-summary: >
   Edit and publish NGINX configuration files to your NGINX instances from F5 NGINX Instance Manager.

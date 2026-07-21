@@ -4,8 +4,8 @@ weight: 100
 toc: true
 f5-content-type: reference
 f5-docs: "DOCS-870"
-f5-product: NAZURE
-url: /nginxaas/azure/changelog/
+f5-product: NGINXaaS for Azure
+url: /nginxaas-azure/changelog/
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.
@@ -13,6 +13,17 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
+
+## July 2, 2026
+
+  NGINX Plus 37.0 (PLS.37.0) introduced [updated defaults](https://docs.nginx.com/nginx/releases/#r37.0) that affected some users. Deployments on the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have been reverted to NGINX Plus Release 36 (R36) while we work with affected users to resolve concerns.
+  In the meantime, you can test NGINX Plus 37.0 on the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) to check compatibility.
+
+## July 1, 2026
+
+- {{% icon-feature %}} **User-assigned managed identities are now supported on the data plane**
+
+  NGINXaaS for Azure now supports using either a system-assigned or user-assigned managed identity for data plane access to Azure resources through IMDS token retrieval. For setup instructions, see [NGINXaaS Managed Identity on dataplane]({{< ref "/nginxaas-azure/quickstart/dataplane-mi.md" >}}).
 
 ## May 1, 2026
 

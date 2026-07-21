@@ -6,7 +6,7 @@ title: Dynamic Modules
 toc: true
 weight: 10
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## Overview
@@ -19,12 +19,14 @@ Dynamic modules are shared object files (`.so`) that can be loaded at runtime us
 
 ### NGINX-authored and NGINX-certified dynamic modules
 
-NGINX maintains the official NGINX Plus repository, which also provides packaged binaries for both [NGINX‑authored]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) and [NGINX‑certified community]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-certified-community-dynamic-modules" >}}) dynamic modules. All modules in this repository are fully tested to ensure full compatibility with NGINX Plus.
+NGINX maintains the official NGINX Plus repository, which also provides packaged binaries for both [NGINX‑authored]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-authored-dynamic-modules" >}}) and [NGINX‑certified community]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#nginx-certified-community-dynamic-modules" >}}) dynamic modules. 
+
+For detailed support information, please refer to the [guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md/#install_modules" >}}).
 
 For module‑specific installation and usage instructions, select the corresponding package name in the table.
 
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 | Name                            | Description                       | Package name     |
 |---------------------------------|-----------------------------------|--------------------|
 | [ACME](https://github.com/nginx/nginx-acme) | Automatic certificate management ([ACMEv2](https://www.rfc-editor.org/rfc/rfc8555.html)) protocol support. | [`nginx-plus-module-acme`]({{< ref "/nginx/admin-guide/dynamic-modules/acme.md" >}}) |
@@ -47,13 +49,15 @@ For module‑specific installation and usage instructions, select the correspond
 | [Set-Misc](https://github.com/openresty/set-misc-nginx-module) | Adds `set_*` directives for scripting (extend NGINX [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module). | [`nginx-plus-module-set-misc`]({{< ref "/nginx/admin-guide/dynamic-modules/set-misc.md" >}}) |
 | [SPNEGO for Kerberos](https://github.com/stnoonan/spnego-http-auth-nginx-module) | Adds support for [GSS‑API based](https://www.rfc-editor.org/rfc/rfc2743) SPNEGO/Kerberos authentication. | [`nginx-plus-module-auth-spnego`]({{< ref "/nginx/admin-guide/dynamic-modules/spnego.md" >}}) |
 | [XSLT](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) | Applies XSLT transformations to XML responses. | [`nginx-plus-module-xslt`]({{< ref "/nginx/admin-guide/dynamic-modules/xslt.md" >}}) |
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ### Community dynamic modules 
 Besides the modules provided in the official repository, a wide range of third-party modules is available through community-driven projects such as [Awesome NGINX GitHub project](https://github.com/agile6v/awesome-nginx#third-party-modules). Many of these modules can be [compiled as dynamic modules]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md#install_modules_oss" >}}) and used with your NGINX Plus or NGINX Open Source deployments.
 
 ### NGINX Certified Partner dynamic modules
- In addition to the modules authored by NGINX and community third‑party developers, NGINX Certified Partner Modules are available for purchase from commercial third parties. Certified Modules are distributed and supported by their authors. NGINX has tested the modules extensively and [certifies](https://www.f5.com/go/partner/nginx-certified-module-program-documentation) that they do not interfere with standard NGINX Plus functionality.
+ In addition to the modules authored by NGINX and community third‑party developers, NGINX Certified Partner Modules are available for purchase from commercial third parties. Certified Modules are distributed and supported by their authors. 
+
+For detailed support information, please refer to the [guide]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md/#install_modules" >}}).
 
 NGINX Certified Partner modules can be found on the [F5 Dynamic Modules page](https://www.f5.com/go/product/nginx-modules?filter=module-author%3Anginx-certified-partner).
 

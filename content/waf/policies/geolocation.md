@@ -3,7 +3,7 @@ title: "Geolocation"
 weight: 1150
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the geolocation feature for F5 WAF for NGINX.

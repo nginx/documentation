@@ -3,7 +3,7 @@ title: "Overview: RBAC"
 weight: 1
 toc: true
 f5-content-type: concept
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-919
 description: "Understand the role-based access control (RBAC) model in F5 NGINX Instance Manager: roles, permissions, users, user groups, and resource groups."
 f5-summary: >

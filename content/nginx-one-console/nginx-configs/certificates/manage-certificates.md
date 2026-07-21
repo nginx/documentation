@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Manage certificates
 toc: true
 weight: 100
@@ -14,13 +14,13 @@ This guide explains how you can manage SSL/TLS certificates with the F5 NGINX On
 
 You may have separate sets of SSL/TLS certificates, as described in the following table:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Functionality     | Typical file names                                                 | Notes                                                                                  |
 |-------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------|
 | Website traffic   | /etc/nginx/ssl/example.com.crt <br> /etc/nginx/ssl/example.com.key | Typically purchased from a Certificate Authority (CA)                                 |
 | Repository access | /etc/ssl/nginx/nginx-repo.crt <br> /etc/ssl/nginx/nginx-repo.key   | Supports access to repositories to download and install NGINX packages                |
 | NGINX Licensing   | /etc/ssl/nginx/server.crt <br> /etc/ssl/nginx/server.key   | Supports access to repositories. Based on licenses downloaded from https://my.f5.com/ |
-{{</bootstrap-table>}}
+{{</table >}}
 
 Allowed directories depend on the [NGINX Agent]({{< ref "/nginx-one-console/getting-started/#install-nginx-agent" >}}). Look for the `/etc/nginx-agent/nginx-agent.conf` file.
 Find the `config_dirs` parameter in that file, as described in the NGINX Agent [Basic configuration](https://docs.nginx.com/nginx-agent/configuration/configuration-overview/#cli-flags--environment-variables).
@@ -111,7 +111,7 @@ Follow these steps to review existing certificates for your instances.
 
 On the left-hand pane, select **Certificates**. In the window that appears, you see:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Term        | Definition |
 |-------------|-------------|
 | **Total** | Total number of certificates available to NGINX One Console |
@@ -121,7 +121,7 @@ On the left-hand pane, select **Certificates**. In the window that appears, you 
 | **Not Ready** | Certificates with a start date in the future |
 | **Managed** | Managed by and stored in the NGINX One Console |
 | **Unmanaged** | Detected by, and not managed by NGINX One Console. To convert to managed, you may need to upload the certificate and key during the process. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 You can **Add Filter** to filter certificates by:
 

@@ -5,7 +5,7 @@ title: Access Log Request Mechanism
 toc: true
 weight: 160
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Access Logs
@@ -22,7 +22,7 @@ For example: `access_log /var/log/nginx/access.log log_dos`; (`log_dos` is prede
 ## App Protect Variables for Access Log
 These are the variables added to Access Log. They are a subset of the Security log attributes. The Security log names are prefixed with `$app_protect_dos`.
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Name| Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                              |Comment|
 |--- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------ |
@@ -33,7 +33,7 @@ These are the variables added to Access Log. They are a subset of the Security l
 |`$app_protect_dos_vs_name`| The name of the protected object                                                                                                                                                                                                                                                                                                                                                                                                                     ||
 |`$app_protect_dos_version`| The App Protect DoS version string: <br> major.minor.build format.                                                                                                                                                                                                                                                                                                                                                                                   |Does not include the F5 NGINX plus version (e.g. R21). The latter is available in `$version` variable.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
    {{< call-out class="note" >}}
 Many of the other Security log attributes that are not included here have exact or similar parallels among the NGINX variables also available for access log. For example, `$request` is parallel to the `request` security log attribute. See the full list of [NGINX variables](https://nginx.org/en/docs/http/ngx_http_log_module.html).

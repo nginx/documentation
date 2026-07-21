@@ -4,7 +4,7 @@ title: Deploy NGINX Plus in a container (data plane)
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Build and run an NGINX Plus container that connects to F5 NGINX Instance Manager using NGINX Agent for centralized data plane management."
 f5-summary: >
   Build an NGINX Plus container image and connect it to F5 NGINX Instance Manager using NGINX Agent.
@@ -59,13 +59,13 @@ The images can be targeted for a particular operating system and NGINX Plus rele
 
 ### Tags for operating systems
 
-{{<bootstrap-table "table table-bordered">}}
+{{<table>}}
 | Operating system                           | Basic OS tag | Tag examples                                  |
 |--------------------------------------------|--------------|-----------------------------------------------|
 | Alpine (x86_64, aarch64)                   | `alpine`     | `r32-alpine`, `r32-alpine-3.20`               |
 | Debian (x86_64, aarch64)                   | `debian`     | `r32-debian`, `r32-debian-bookworm`           |
 | Red Hat Enterprise Linux (x86_64, aarch64) | `ubi`        | `r32-ubi`, `r32-ubi-9`,  `r32-ubi-9-20240624` |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### Tags for NGINX Plus versions
 

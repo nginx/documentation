@@ -4,7 +4,7 @@ title: Configure SELinux
 toc: true
 weight: 250
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Apply the optional SELinux policy module for F5 NGINX Instance Manager to run it on systems with SELinux in Enforcing mode."
 f5-summary: >
   Apply the optional SELinux policy module to run F5 NGINX Instance Manager on systems with SELinux in Enforcing mode.

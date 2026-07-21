@@ -3,7 +3,7 @@ import { handleConsentPopup, waitFor } from "../util";
 
 test.describe("Testing for N4A calculator page", () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto("/nginxaas/azure/billing/usage-and-cost-estimator/");
+		await page.goto("/nginxaas-azure/billing/usage-and-cost-estimator/");
 		await page.waitForLoadState("load");
 		await waitFor(async () => await handleConsentPopup(page));
 	});

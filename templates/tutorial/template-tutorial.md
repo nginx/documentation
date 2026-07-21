@@ -1,7 +1,7 @@
 ---
 f5-content-type: tutorial
 f5-docs: DOCS-000
-f5-product: {PRODUCT_CODE}
+f5-product: {PRODUCT_NAME}
 title: {Verb phrase describing what the reader will learn to do}
 description: "{One-sentence summary of what skill the reader will gain, under 160 characters.}"
 weight: 100

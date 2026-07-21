@@ -4,7 +4,7 @@ title: NGINX Instance Manager dashboard
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "A tour of the F5 NGINX Instance Manager dashboard, explaining each panel and how to use it to monitor your NGINX fleet."
 f5-summary: >
   Understand what information the F5 NGINX Instance Manager dashboard displays and how to use it.

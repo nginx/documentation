@@ -4,12 +4,56 @@ url: /waf/changelog/
 weight: 600
 f5-landing-page: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
+cascade:
+  nollms: true
 ---
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2026.
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
+
+## F5 WAF for NGINX 5.13.4
+
+Released _July 15st, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 15048 - Upgrade NGINX OSS to 1.31.3
+- 15033 - Upgrade Go compiler to 1.26.5
+- 15036 - Improved local security log handling on memory-backed mounts
+- 15035 - Fixed NGINX reload race conditions during configuration reload
+
+## F5 WAF for NGINX 5.13.3
+
+Released _July 1st, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 14800 - Fixed an issue in response handling after configuration reload
+- 14870 - Fixed an issue in request parsing for specific malformed input scenarios
+- 14878 - Fixed a cookie parsing issue
+
+## F5 WAF for NGINX 5.13.2
+
+Released _June 18th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- Upgrade NGINX OSS to 1.31.2
+- Upgrade Go compiler to 1.26.4
 
 ## F5 WAF for NGINX 5.13.1
 
@@ -194,4 +238,3 @@ Released _January 13th, 2026_.
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.575.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.575.0-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.575.0-1.el9.ngx.x86_64.rpm_      |
 
 {{< /table >}}
-

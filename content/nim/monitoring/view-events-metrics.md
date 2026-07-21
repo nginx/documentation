@@ -4,7 +4,7 @@ description: Learn how to view events and metrics in F5 NGINX Instance Manager.
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-847
 f5-summary: >
   View events and metrics data for your NGINX instances in F5 NGINX Instance Manager using the web interface or the REST API.
@@ -259,8 +259,6 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events/7cb91de6-
 {{< /details >}}
 
 ## View Metrics in the User Interface
-
-{{< shortversions "2.3.0" "latest" "nimvers" >}}
 
 The **Metrics Summary** page includes a highlights section of the most important metrics reported in the last minute, plus a summary of the key system, network, HTTP request, and connection metrics at a glance.
 

@@ -3,7 +3,7 @@ title: Use a third-party forward proxy
 weight: 2
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Configure F5 NGINX Instance Manager to route outbound traffic through a third-party forward proxy for license verification, telemetry, and updates."
 f5-summary: >
   Configure F5 NGINX Instance Manager to use a third-party forward proxy for outbound internet access.
@@ -53,7 +53,7 @@ On OpenShift, pods run as non-root users, which prevents the use of `update-ca-c
 
 The following table describes the available proxy configuration parameters in `/etc/nms/nms.conf`:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Parameter              | Description |
 |------------------------|-------------|
 | `proxy_enable`        | Defines whether NGINX Instance Manager routes outbound traffic through a forward proxy. <br> **Supported values:** `true` (routes certain outbound requests through the proxy) or `false` (sends data directly to servers). |
@@ -64,7 +64,7 @@ The following table describes the available proxy configuration parameters in `/
 | `proxy_username`      | Username for authentication with the proxy (if `proxy_auth_required: true`). |
 | `proxy_password`      | Password for authentication with the proxy (if `proxy_auth_required: true`). |
 | `proxy_ssl_verify`    | Controls SSL certificate verification when `proxy_protocol` is `https`. <br> **Default value:** `true`. <br> **Supported values:** `true` (only trusted proxies allowed) or `false` (allows untrusted/self-signed certificates). |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ---
 
@@ -238,7 +238,7 @@ If proxy traffic is not working as expected, review the [troubleshooting section
 
 ## Troubleshoot common issues
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Issue** | **Log Message** | **Possible Cause** | **Resolution** |
 |-----------|---------------|---------------------|--------------|
 | **Authentication failed** | N/A | Incorrect proxy credentials. | Double-check `proxy_username` and `proxy_password`. |
@@ -246,4 +246,4 @@ If proxy traffic is not working as expected, review the [troubleshooting section
 | **Proxy initialization failure** | `unable to add proxy support,` <br> `err - <err>` | The proxy settings are misconfigured, or the proxy service is unavailable. | - Ensure that the proxy service is running and accessible. <br> - Verify that `proxy_enable` is set to `true` and all required parameters are correctly configured. |
 | **Proxy not reachable** | N/A | Incorrect proxy IP or port. | Verify `proxy_host` and `proxy_port` in `/etc/nms/nms.conf`. |
 | **TLS certificate verification error** | `proxyconnect tcp: tls:` <br> `failed to verify certificate:` <br> `x509: certificate signed by unknown authority` | SSL verification is enabled (default), but the proxy certificate is untrusted. | - Add the proxy’s CA certificate to the system’s trusted CA store. <br> - If necessary, disable SSL verification by setting proxy SSL verify to false (not recommended). |
-{{</bootstrap-table>}}
+{{</table >}}

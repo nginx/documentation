@@ -4,7 +4,7 @@ title: Technical Specifications
 toc: true
 weight: 20
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Technical specifications for F5 NGINX Instance Manager, including supported operating systems, Kubernetes distributions, NGINX versions, browsers, and hardware requirements."
 f5-summary: >
   Check the technical specifications for F5 NGINX Instance Manager before you install it.
@@ -61,13 +61,13 @@ This section outlines the recommendations for NGINX Instance Manager deployments
 
 We recommend using SSDs to enhance storage performance.
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
 |--------------------------------|--------|----------|-----------|---------|
 | 10                             | 2 vCPU | 4 GB RAM | 1 GbE NIC | 100 GB  |
 | 100                            | 2 vCPU | 4 GB RAM | 1 GbE NIC | 1 TB    |
 | 1000                           | 4 vCPU | 8 GB RAM | 1 GbE NIC | 3 TB    |
-{{</ bootstrap-table >}}
+{{</table >}}
 
 These values represent the minimum resources needed for deployments that fall under standard configurations.
 
@@ -75,12 +75,12 @@ These values represent the minimum resources needed for deployments that fall un
 
 For environments requiring more resources, **large configurations** are suitable. These configurations can support up to **300 upstream servers** and are designed for enterprise environments or applications handling high traffic and complex configurations, without F5 WAF for NGINX.
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
 |--------------------------------|--------|----------|-----------|---------|
 | 50                             | 4 vCPU | 8 GB RAM | 1 GbE NIC | 1 TB    |
 | 250                            | 4 vCPU | 8 GB RAM | 1 GbE NIC | 2 TB    |
-{{</ bootstrap-table >}}
+{{</table >}}
 
 ### NGINX configuration deployments with F5 WAF for NGINX {#system-sizing-app-protect}
 
@@ -102,11 +102,11 @@ For details on how to configure this setup, see [Prepare your environment for re
 
 When used only for licensing and usage reporting, NGINX Instance Manager has minimal system requirements. We recommend using [Lightweight mode](#lightweight-mode) in this case to avoid the ClickHouse dependency, especially if you don’t plan to use other features.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Number of Data Plane Instances | CPU    | Memory   | Network   | Storage |
 |--------------------------------|--------|----------|-----------|---------|
 | n/a                            | 2 vCPU | 4 GB RAM | 1 GbE NIC | 20 GB   |
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ### Sizing benchmarks for storage
 
@@ -120,7 +120,7 @@ The following benchmarks focus on **disk storage** requirements for NGINX Instan
 
 The table below provides storage estimates for **NGINX Plus** based on configuration size, number of instances, and a 14-day data retention period. Larger configurations and longer retention periods will require proportionally more storage.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Config Size            | Instances | Retention (days) | Estimated Disk Usage (NGINX Plus) |
 |------------------------|-----------|------------------|-----------------------------------|
@@ -137,7 +137,7 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 |                        | 100       | 14               | 850 GiB                           |
 |                        | 250       | 14               | 2 TiB                             |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 {{< call-out class="note" title="Note" >}}MiB (mebibyte), GiB (gibibyte), and TiB (tebibyte) are units of data storage. MiB equals 1,024^2 (2^20) bytes, GiB equals 1,024^3 (2^30) bytes, and TiB equals 1,024^4 (2^40) bytes. These are often used in computing to represent binary data storage capacities, as opposed to MB (megabyte), GB (gigabyte), and TB (terabyte), which use decimal units.{{< /call-out >}}
 
@@ -147,7 +147,7 @@ The table below provides storage estimates for **NGINX Plus** based on configura
 
 The table below shows the estimated storage requirements for **NGINX OSS**, based on the number of instances and a 14-day retention period.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Config Size            | Instances | Retention (days) | Estimated Disk Usage (NGINX OSS) |
 |------------------------|-----------|------------------|----------------------------------|
@@ -156,7 +156,7 @@ The table below shows the estimated storage requirements for **NGINX OSS**, base
 |                        | 100       | 14               | 1.75 GiB                         |
 |                        | 250       | 14               | 4 GiB                            |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Directory Requirements for NGINX Instance Manager
 
@@ -173,7 +173,7 @@ These recommendations apply if you are using NGINX Agent to connect NGINX instan
 If you're concerned solely on usage reporting, you do not need NGINX Agent. Required resources needed are significantly reduced. For usage reporting-only deployments, NIM receives and stores usage data sent directly from the instances.
 {{< /call-out >}}
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Directory path         | Content                                   | Recommendation                                                                                                                         |
 |------------------------|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | /usr/bin               | Stores NIM binaries                       | 500MB                                                                                                                                  |
@@ -185,7 +185,7 @@ If you're concerned solely on usage reporting, you do not need NGINX Agent. Requ
 | /var/log/nms           | Stores logs for NIM with rotation enabled | recommended 50MiB per week if archived once a month                                                                                    |
 | /etc/nms/              | Stores NIM configuration files            | 50MiB                                                                                                                                  |
 | /etc/nginx             | Stores NGINX configuration files          | typical size is 10MiB-50MiB                                                                                                            |
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## ClickHouse tuning {#clickhouse-tuning}
 

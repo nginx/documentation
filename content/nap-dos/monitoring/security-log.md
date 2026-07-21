@@ -5,7 +5,7 @@ title: Security Log
 toc: true
 weight: 140
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Overview
@@ -18,7 +18,7 @@ There are several types of logs, each contains different information and publish
 
 The following table lists all the possible fields in the logs and their meaning.
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | Field  |  Type  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                        |
 |----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,7 +62,7 @@ The following table lists all the possible fields in the logs and their meaning.
 |  `new_bad_actors_detected` <br> `bad_actors` |  integer  | the number of newly detected bad actors <br> the number of bad actors                                                                                                                                                                                                                                                                                                                                          |
 |  `signature` <br> `signature_id` <br>`signature_efficiency` <br> `signature_accuracy`| string <br> integer <br> float <br> float  | signature string `http.request.method eq GET and http.uri_parameters eq 6` <br> unique signature ID per unit_host <br> estimated efficiency upon signature detection: percentage of bad traffic covered by the signature <br> estimated accuracy upon signature detection: percentage of learned good traffic NOT covered by the signature                                                                     |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ## Events
 
@@ -411,7 +411,7 @@ The file is in JSON format.
 <br>
 ### Filter <br>
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | Element  |  Description | Type/Values| Default |
 |----------|--------------| ---------- | -----------|
@@ -419,7 +419,7 @@ The file is in JSON format.
 |bad-actors| This filter element refers to [Bad actor detection/expiration](#2-bad-actor-detectionexpiration), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` |
 |attack-signatures| This filter element refers to [Attack Signatures](#3-attack-signatures), every 10 seconds.| **Enumerated values:** <br> - **all** <br> - **none** <br> - **top N**|  `top 10` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 Example:

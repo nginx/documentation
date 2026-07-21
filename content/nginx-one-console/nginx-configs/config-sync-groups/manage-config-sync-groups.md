@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Manage Config Sync Groups
 toc: true
 weight: 300
@@ -318,14 +318,14 @@ Publishing the group configuration ensures that all instances within the Config 
 
 The **Config Sync Status** column on the **Config Sync Groups** page provides insight into the synchronization state of your NGINX instances within each group.
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Status**            | **Description**                                                                                                                                      |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **In Sync**           | All instances within the Config Sync Group have configurations that match the group configuration. No action is required.                            |
 | **Out of Sync** | At least one instance in the group has a configuration that differs from the group's configuration. You may need to review and resolve discrepancies to ensure consistency. |
 | **Sync&nbsp;in&nbsp;Progress**  | An instance is currently being synchronized with the group's configuration. This status appears when an instance is moved to a new group or when a configuration is being applied. |
 | **Unknown**           | The synchronization status of the instances in this group cannot be determined. This could be due to connectivity issues, instances being offline, or other factors. Investigating the cause of this status is recommended. |
-{{</bootstrap-table>}}
+{{</table >}}
 
 Monitor the **Config Sync Status** column. It can help you ensure that your configurations are consistently applied across all instances in a group.
 

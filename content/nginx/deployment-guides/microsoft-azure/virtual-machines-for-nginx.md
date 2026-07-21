@@ -3,7 +3,7 @@ title: Create Microsoft Azure virtual machines for NGINX Open Source and F5 NGIN
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-458
 ---
 
@@ -234,3 +234,8 @@ The **Create a VM** page is identical to the one from [Create a Microsoft Azure 
 For example, the **Image** field now shows the image name instead of an operating system. 
 
 You can continue finishing the VM creation process as normal from here, re-using the image whenever necessary.
+
+## Revision History
+
+- Version 2 (December 2025) – Revised version
+- Version 1 (September 2020) – Initial version (NGINX Plus Release 22)

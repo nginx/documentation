@@ -6,7 +6,7 @@ f5-content-type: how-to
 title: Single Sign-On with Okta and njs
 toc: false
 weight: 100
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 {{< call-out class="note" >}} This guide applies to NGINX Plus [Release 15]({{< ref "nginx/releases.md#r15" >}}) and later, based on the [`nginx-openid-connect`](https://github.com/nginxinc/nginx-openid-connect) GitHub repo. Starting with NGINX Plus [Release 34]({{< ref "nginx/releases.md#r34" >}}), use the simpler solution with the [native OpenID connect module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
@@ -63,7 +63,7 @@ This section describes the Okta Workforce Identity SSO product. You will need ad
 
 On the **New Web App Integration** page in the Okta web interface, fill in the following information, then select **Save**.
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 
 | Field | Desciption | Example Value |
 |-------------|---------|----------|
@@ -72,7 +72,7 @@ On the **New Web App Integration** page in the Okta web interface, fill in the f
 | **Sign-out redirect URIs** | The URI to redirect users to after logging out.<br />This is an optional field with a default value of `http://localhost:8080`. | We removed the default value in our example. |
 | **Controlled access** | Controls who can access the application. | "Allow everyone in your organization to access" <br />**You should select the appropriate value for your use case.**|
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 {{< img alt="Okta Create OpenID Connect Integration" src="/img/sso/okta/Okta-Create-OpenID-Connect-Integration.png" >}}
 

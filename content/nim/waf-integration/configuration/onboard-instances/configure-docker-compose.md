@@ -4,7 +4,7 @@ description: Update your Docker Compose file to run F5 WAF for NGINX.
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Update your Docker Compose file to run F5 WAF for NGINX as part of your containerized NGINX deployment.
   After adding the WAF configuration to the Compose file, NGINX Agent connects the instance to F5 NGINX Instance Manager for centralized policy management.

@@ -2,7 +2,7 @@
 title: Secure with F5 WAF for NGINX
 weight: 90
 url: /nginx-instance-manager/waf-integration/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Manage F5 WAF for NGINX security configurations, policies, log profiles, and attack signatures from F5 NGINX Instance Manager."
 f5-summary: >

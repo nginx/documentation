@@ -6,22 +6,20 @@ title: TCP and UDP Load Balancing
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## Introduction {#intro}
 
-[Load balancing](https://www.f5.com/glossary/load-balancer) refers to efficiently distributing network traffic across multiple backend servers.
+[Load balancing](https://www.f5.com/glossary/load-balancer) is a traffic management technique that efficiently distributes network traffic across multiple backend servers.
 
-In F5 NGINX Plus [R5]({{< ref "nginx/releases.md#r5" >}}) and later, NGINX Plus can proxy and load balance Transmission Control Protocol) (TCP) traffic. TCP is the protocol for many popular applications and services, such as LDAP, MySQL, and RTMP.
+NGINX Plus and NGINX Open Source provide Layer 4 (transport layer) proxying and load balancing for both Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) traffic. TCP is a connection-oriented protocol used by services such as LDAP, MySQL, and RTMP. UDP is commonly used by non-transactional, latency-sensitive services such as DNS, syslog, and RADIUS.
 
-In NGINX Plus [R9]({{< ref "nginx/releases.md#r9" >}}) and later, NGINX Plus can proxy and load balance UDP traffic. UDP (User Datagram Protocol) is the protocol for many popular non-transactional applications, such as DNS, syslog, and RADIUS.
-
-To load balance HTTP traffic, refer to the [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}) article.
+For Layer 7, or application-layer HTTP load balancing, see [HTTP Load Balancing]({{< ref "http-load-balancer.md" >}}).
 
 ## Prerequisites
 
-- Latest NGINX Plus (no extra build steps required) or latest [NGINX Open Source](https://nginx.org/en/download.html) built with the `--with-stream` configuration flag
+- NGINX Plus (no extra build steps required) or [NGINX Open Source](https://nginx.org/en/download.html) (either built with the [`--with-stream`](https://nginx.org/en/docs/configure.html) configuration flag or loaded as a dynamic module).
 - An application, database, or service that communicates over TCP or UDP
 - Upstream servers, each running the same instance of the application, database, or service
 
@@ -166,7 +164,7 @@ To configure load balancing:
 
    - [Least Connections](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_conn) – NGINX selects the server with the smaller number of current active connections.
 
-   - [Least Time](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time) (NGINX Plus only) – NGINX Plus selects the server with the lowest average latency and the least number of active connections. The method used to calculate lowest average latency depends on which of the following parameters is included on the `least_time` directive:
+   - [Least Time](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time) – NGINX selects the server with the lowest average latency and the least number of active connections. The method used to calculate lowest average latency depends on which of the following parameters is included on the `least_time` directive:
 
      - `connect`    – Time to connect to the upstream server
      - `first_byte` – Time to receive the first byte of data
@@ -463,6 +461,12 @@ The three [`server`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module
 - The second server listens on port 53 and proxies all UDP datagrams (the `udp` parameter to the `listen` directive) to an upstream group called **dns_servers**. If the `udp` parameter is not specified, the socket listens for TCP connections.
 
 - The third virtual server listens on port 12346 and proxies TCP connections to **backend4.example.com**, which can resolve to several IP addresses that are load balanced with the Round Robin method.
+
+## Compatibility note {#compat}
+
+- [TCP proxying](https://nginx.org/en/docs/stream/ngx_stream_core_module.html) and [load balancing](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html) are supported in NGINX Plus since [Release 5]({{< ref "nginx/releases.md#r5" >}}) and in NGINX Open Source since 1.9.0.
+- [UDP proxying](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#udp) and load balancing are supported in NGINX Plus since [Release 9]({{< ref "nginx/releases.md#r9" >}}) and in NGINX Open Source since 1.9.13.
+- The [`least_time`](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#least_time) load-balancing method is supported in NGINX Plus since [Release 6]({{< ref "nginx/releases.md#r6" >}}) and in NGINX Open Source since 1.31.0.
 
 ## See also
 

@@ -3,7 +3,7 @@ title: "Kubernetes"
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes how to install F5 WAF for NGINX using Kubernetes.
@@ -63,7 +63,7 @@ This example uses NGINX Open Source as a base: it requires NGINX to be installed
 
 {{< call-out class="note" >}}
 
-If you are not using using `custom_log_format.json` or the IP intelligence feature,  you should remove any references to them from your Dockerfile.
+If you are not using using `custom_log_format.json` or the IP intelligence feature, you should remove any references to them from your Dockerfile.
 
 {{< /call-out >}}
 

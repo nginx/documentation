@@ -1,5 +1,5 @@
 ---
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-files:
 - content/glossary/_index.md
 - content/waf/fundamentals/terminology.md

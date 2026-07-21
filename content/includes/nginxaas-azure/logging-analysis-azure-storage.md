@@ -1,5 +1,5 @@
 ---
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 f5-files:
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-cli.md
 - content/nginxaas-azure/monitoring/enable-logging/logging-using-portal.md
@@ -8,7 +8,7 @@ f5-files:
 
 If the diagnostic setting destination details included a storage account, logs show up in the storage container "insights-logs-nginxlogs" with the following format: `resourceID=/<NGINXaaS-resourceID>/y=<YYYY>/m=<MM>/d=<DD>/h=<HH>/PT1H.json`
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | **Attribute**               | **Description** |
 |-----------------------------|-----------------|
 | `<NGINXaaS-resourceID>`     | The resourceID of the NGINXaaS deployment in upper case.|
@@ -16,7 +16,7 @@ If the diagnostic setting destination details included a storage account, logs s
 | `<MM>`                      | The two-digit month when the log batch was generated.|
 | `<DD>`                      | The two-digit day when the log batch was generated.|
 | `<HH>`                      | The two-digit hour value that indicates the starting hour for the log batch, in 24 hour UTC format|
-{{</bootstrap-table>}}
+{{</table >}}
 
 {{< call-out class="note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Azure Storage container.{{< /call-out >}}
 

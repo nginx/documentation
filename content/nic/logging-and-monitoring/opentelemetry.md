@@ -3,7 +3,7 @@ title: "Enable OpenTelemetry"
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This topic describes how to enable [OpenTelemetry](https://opentelemetry.io/) for F5 NGINX Ingress Controller using the [native NGINX module](https://nginx.org/en/docs/ngx_otel_module.html).

@@ -1,5 +1,5 @@
 ---
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-files:
 - content/nginx-one-console/nginx-configs/staged-configs/add-staged-config.md
 - content/nginx-one-console/nginx-configs/staged-configs/edit-staged-config.md

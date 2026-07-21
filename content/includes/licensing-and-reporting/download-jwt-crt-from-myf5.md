@@ -1,5 +1,5 @@
 ---
-f5-product: MISCEL
+f5-product: Miscellaneous
 f5-files:
 - content/nap-dos/deployment-guide/learn-about-deployment.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md

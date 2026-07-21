@@ -5,7 +5,7 @@ title: Operation Log
 toc: true
 weight: 180
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Overview
@@ -14,13 +14,13 @@ The operation logs consists of system operational and health events. The events 
 
 ## Events
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 |Configuration Error |error |There were errors in the [directives]({{< ref "/nap-dos/directives-and-policy/learn-about-directives-and-policy.md" >}}) in the `nginx.conf` file. <br> Configuration error event is produced when one of F5 DoS for NGINX directives is supplied with an incorrect data. An additional information will be added to the message, describing what was incorrect. NGINX will run with default values for this directive. <br> Please note that if the directive supplied with an incorrect number of arguments then NGINX will issue an error and NGINX will not run. It is a generic NGINX behavior.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ```json
 {
@@ -30,13 +30,13 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 |Configuration Load Failure |error |There was an error in one of the configuration files: file not found, failed to parse.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ```json
 {
@@ -46,13 +46,13 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 |Configuration Load Success | notice |The `APP_PROTECT_DOS` configuration process ended successfully: all policies, log configuration and global settings were loaded to F5 DoS for NGINX and all traffic will be handled by this configuration. The `error_message` contains warnings. This event is also generated on the initial configuration (when NGINX Plus starts).|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ```json
 {
@@ -62,13 +62,13 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 |Shared Memory Failure |error |A worker attempted to connect to shared memory but the operation failed. One time error (per worker) - upon switch from `init` or `operational` mode to `failure`. The `mode` should be `failure`.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 ```json
@@ -80,13 +80,13 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 |Shared Memory Connected |notice |A worker successfully connected to shared memory. <br>One time message (per worker) - upon switch from init or failure mode to `operational`. <br>The `mode` attribute should be `operational`, unless there is an ongoing problem.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ```json
 {
@@ -97,13 +97,13 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 | eBPF Failure | error | A worker attempted to connect to eBPF maps but the operation failed. One time error (per worker) - upon switch from `init` or `operational` mode to `failure`. The mode should be `failure`.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 ```json
@@ -115,13 +115,13 @@ The operation logs consists of system operational and health events. The events 
 }
 ```
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Event Type|Level|Meaning|
 |--------- |-----|------ |
 | eBPF Connected | notice | A worker successfully connected to eBPF maps. <br>One time message (per worker) - upon switch from `init` or `failure` mode to `operational`. <br>The `mode` attribute should be `operational`, unless there is an ongoing problem. |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ```json
 {

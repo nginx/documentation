@@ -1,7 +1,7 @@
 ---
 f5-content-type: reference
 f5-docs: DOCS-004
-f5-product: KITCHEN
+f5-product: F5 Kitchen
 title: Drip coffee maker — settings and indicators
 description: "Reference for all user-configurable settings and indicator light states on a standard drip coffee maker."
 weight: 100

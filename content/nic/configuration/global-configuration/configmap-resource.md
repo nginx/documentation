@@ -3,7 +3,7 @@ title: ConfigMap resources
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-586
 ---
 
@@ -127,10 +127,10 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*redirect-to-https* | Sets a redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `http-redirect-code` key. | *False* |
 |*ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `http-redirect-code` key. | *True* |
 |*http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* |
-|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. | *False* |
-|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. | *2592000* (1 month) |
-|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. | *False* | 
-|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. | *False* |
+|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. Not applicable to VS/VSR. | *False* |
+|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. Not applicable to VS/VSR | *2592000* (1 month) |
+|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. Not applicable to VS/VSR | *False* | 
+|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. Not applicable to VS/VSR. | *False* |
 |*ssl-protocols* | Sets the value of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive. | *TLSv1 TLSv1.1 TLSv1.2* | 
 |*ssl-prefer-server-ciphers* | Enables or disables the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) directive. | *False* |
 |*ssl-ciphers* | Sets the value of the [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive. | *HIGH:!aNULL:!MD5* |
@@ -184,8 +184,20 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 | *oidc-pkce-timeout* | Sets the timeout for PKCE (Proof Key for Code Exchange) in OIDC. | `90s` |
 | *oidc-id-tokens-timeout* | Sets the timeout for ID tokens in OIDC. | `1h` |
 | *oidc-access-tokens-timeout* | Sets the timeout for access tokens in OIDC. | `1h` |
-| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `24h` |
-| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `24h` |
+| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `8h` |
+| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `8h` |
+
+### OIDC (OpenID Connect) ZoneSizes
+
+For more information on zonesizes, see [here](https://github.com/nginxinc/nginx-openid-connect?tab=readme-ov-file#configuring-the-key-value-store)
+
+| ConfigMap Key | Description | Default |
+| ------------- | ------------| ------- |
+| *oidc-pkce-zone-size* | Sets the zonesize for PKCE (Proof Key for Code Exchange) in OIDC. | `128K` |
+| *oidc-id-tokens-zone-size* | Sets the zonesize for ID tokens in OIDC. | `1M` |
+| *oidc-access-tokens-zone-size* | Sets the zonesize for access tokens in OIDC. | `1M` |
+| *oidc-refresh-tokens-zone-size* | Sets the zonesize for refresh tokens in OIDC. | `1M` |
+| *oidc-sids-zone-size* | Sets the zonesize for session IDs in OIDC. | `1M` |
 
 ### Snippets and custom templates
 

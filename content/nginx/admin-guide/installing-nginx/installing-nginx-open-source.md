@@ -4,7 +4,7 @@ description: Install NGINX Open Source either as a prebuilt package or from sour
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-410
 ---
 

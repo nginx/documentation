@@ -3,7 +3,7 @@ title: "Configure log profiles"
 weight: 650
 toc: true
 f5-content-type: how-to
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-summary: Configure F5 WAF for NGINX security log profiles in NGINX One Console, controlling request filtering (all/illegal/blocked), log format (default/Splunk/ArcSight/custom), size limits, and deployment to NGINX instances via compiled .tgz bundles.
 ---
 
@@ -28,6 +28,7 @@ For detailed information about security logging capabilities and available log a
 
 From NGINX One Console, select **WAF** > **Log Profiles**. In the screen that appears, select **Add Log Profile**. This action opens a screen where you can:
 
+- In **Start From**, select an F5 WAF for NGINX [default logging profile]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}) as a starting point.
 - In **General Settings**, name and describe the log profile
 - Configure the filter settings to determine which requests are logged
 - Set the content format and options for how log messages are structured

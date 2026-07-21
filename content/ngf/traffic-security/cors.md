@@ -3,7 +3,7 @@ title: Configure Cross-Origin Request Sharing (CORS)
 weight: 700
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 
@@ -146,6 +146,7 @@ spec:
     backendRefs:
     - name: coffee
       port: 80
+EOF
 ```
 
 Verify the HTTPRoute is _Accepted_ and there are no errors with `kubectl describe`:

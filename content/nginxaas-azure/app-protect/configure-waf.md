@@ -2,9 +2,9 @@
 title: Configure F5 WAF for NGINX
 weight: 300
 toc: true
-url: /nginxaas/azure/app-protect/configure-waf/
+url: /nginxaas-azure/app-protect/configure-waf/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

@@ -5,7 +5,7 @@ title: NGINX Plus FIPS Compliance
 toc: true
 weight: 600
 f5-content-type: concept
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## What is FIPS

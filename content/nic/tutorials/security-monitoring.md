@@ -3,7 +3,7 @@ title: Connect F5 WAF for NGINX to NGINX Security Monitoring
 toc: true
 weight: 1800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1856
 ---
 
@@ -133,9 +133,7 @@ This guide assumes that you have an NGINX One Console account with access to cre
 
 - Use an image variant with the `-agent` suffix, available starting with NGINX Ingress Controller 5.5.0 (for example, `debian-plus-nap-agent` for F5 WAF for NGINX v4, or `debian-plus-nap-v5-agent` for v5). Images without the `-agent` suffix include NGINX Agent 2 and are not compatible with NGINX One Console. See the [Technical specifications]({{< ref "/nic/technical-specifications.md#images-with-nginx-plus" >}}) for the full list of available image variants.
 
-
 ## Deploy NGINX Ingress Controller with NGINX Agent
-
 
 ### Use Helm
 

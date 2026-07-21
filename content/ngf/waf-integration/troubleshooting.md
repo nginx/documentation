@@ -3,7 +3,7 @@ title: Troubleshoot WAFPolicy status
 weight: 500
 toc: true
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: Status condition reference and common issues for WAFPolicy in NGINX Gateway Fabric.
 ---
 

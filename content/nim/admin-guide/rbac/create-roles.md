@@ -4,7 +4,7 @@ title: Create and manage roles
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Create custom RBAC roles in F5 NGINX Instance Manager to grant users and groups precisely the permissions they need."
 f5-summary: >
   Create and manage custom roles in F5 NGINX Instance Manager to control what users and groups can do.

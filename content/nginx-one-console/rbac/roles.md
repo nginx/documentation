@@ -4,7 +4,7 @@ weight: 500
 toc: true
 f5-content-type: reference
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 ## Default roles

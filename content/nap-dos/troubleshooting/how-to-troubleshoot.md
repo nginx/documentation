@@ -5,7 +5,7 @@ title: Troubleshooting Guide
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Overview
@@ -16,7 +16,7 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 
 ### Configuration
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Problem|Solution|
 |-------|--------|
@@ -31,7 +31,7 @@ This Troubleshooting Guide is intended to provide guidance to customers in the d
 | NGINX struggles handling a high rate of incoming connections | Linux machine should be tuned for optimal performance. <br> Refer to [Tuning NGINX for Performance](https://www.nginx.com/blog/tuning-nginx/) |
 | Error in `adminstall` process, such as `Failed to allocate` | Insufficient memory to allocate all the required resources. <br> Increase the `--memory` size or decrease the number of nginx workers (`--max_workers`) if not all of them are going to be in use. <br> Use the `--help` flag for more info. |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 ### ELK issues
 

@@ -4,7 +4,7 @@ toc: false
 weight: 200
 f5-content-type: reference
 f5-docs: DOCS-1871
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 NGINX Agent is designed to operate efficiently on any system that meets the standard

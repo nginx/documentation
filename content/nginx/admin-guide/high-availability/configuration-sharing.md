@@ -6,7 +6,7 @@ title: Synchronizing NGINX Configuration in a Cluster
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 <span id="overview"></span>
@@ -155,7 +155,7 @@ EXCLUDE="default.conf"
 Use a space or newline character to separate the items in each list:
 
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Parameter                | Description                                                                          |
 | ------------------------ | -------------------------------------------------------------------------------------|
@@ -163,11 +163,11 @@ Use a space or newline character to separate the items in each list:
 | `CONFPATHS`              | List of files and directories to distribute from the primary to the peers.           |
 | `EXCLUDE`                | (Optional) List of configuration files on the primary not to distribute to the peers.|
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 #### Advanced Parameters
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 | Parameter                | Description                                                                            | Default                 |
 | ------------------------ | ---------------------------------------------------------------------------------------|-------------------------|
@@ -179,7 +179,7 @@ Use a space or newline character to separate the items in each list:
 | `RSYNC`                  | Location of the `rsync` binary                                                         | **/usr/bin/rsync**      |
 | `SSH`                    | Location of the `ssh` binary                                                           | **/usr/bin/ssh**        |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 <span id="in_detail4"></span>
 ### Testing the Configuration

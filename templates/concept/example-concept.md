@@ -1,7 +1,7 @@
 ---
 f5-content-type: concept
 f5-docs: DOCS-004
-f5-product: KITCHEN
+f5-product: F5 Kitchen
 title: Coffee extraction
 description: "Coffee extraction is the process by which hot water dissolves flavor compounds from ground coffee, determining the taste of the final cup."
 weight: 100

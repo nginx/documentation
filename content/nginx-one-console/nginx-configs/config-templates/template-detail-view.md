@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: View template details
 description: "View metadata, submissions and version history for a config template on the Template Detail page in NGINX One Console."
 toc: true
@@ -38,7 +38,7 @@ The **Details** tab contains a metadata summary card for the template and a [Sub
 
 The metadata summary card displays the following fields:
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Field | Description |
 |-------|-------------|
 | **Created** | The date and time the template was created. |
@@ -49,7 +49,7 @@ The metadata summary card displays the following fields:
 | **Latest Version** | The version number of the most recent template version. |
 | **Description** | The human-readable description of the template, if the author provided one. |
 | **Latest Object ID** | The unique identifier for the latest template version (`tmplv_...`). Use the copy button to copy this value for version-level API operations, such as providing the `object_id` when [submitting templates]({{< ref "submit-templates.md" >}}). |
-{{</bootstrap-table>}}
+{{</table >}}
 
 {{< call-out "tip" >}}
 Both **Object ID** and **Latest Object ID** are copyable directly from the UI.

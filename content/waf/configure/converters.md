@@ -3,7 +3,7 @@ title: "Build and use the converter tools"
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This document describes the tools F5 WAF for NGINX has to convert existing resources or configuration files from a BIG-IP environment for use with F5 WAF for NGINX.
@@ -187,7 +187,7 @@ docker run -it --rm \
 
 The User Defined Signatures converter tool is used to convert a User Defined Signatures file from XML to JSON format.
 
-It is a script located on on the path `/opt/app_protect/bin/convert-signatures`.
+It is a script located on the path `/opt/app_protect/bin/convert-signatures`.
 
 The tool accepts an optional tag argument: otherwise, the default tag value _user-defined-signatures_ is assigned with the exported JSON file.
 

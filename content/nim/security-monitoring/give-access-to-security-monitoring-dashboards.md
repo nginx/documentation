@@ -3,7 +3,7 @@ title: Add user access to Security Monitoring dashboards
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1026
 description: "Grant users access to Security Monitoring dashboards in F5 NGINX Instance Manager using role-based access control."
 f5-summary: >
@@ -35,14 +35,14 @@ Make sure you have the following:
 
 - Use the following table to find the permissions you need:
 
-  {{<bootstrap-table "table table-bordered table-hover">}}
+  {{<table>}}
 
   | Module(s)                         | Feature(s)            | Access                     | Description                                                                                              |
   |-----------------------------------|-----------------------|----------------------------|----------------------------------------------------------------------------------------------------------|
   | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring | Analytics <hr> Security&nbsp;Monitoring | `READ` <hr> `READ`            | Gives read-only access to Security Monitoring dashboards. Users cannot access NGINX Instance Manager or Settings. |
   | Instance&nbsp;Manager <hr> Security&nbsp;Monitoring <hr> Settings | Analytics <hr> Security&nbsp;Monitoring <hr> User Management | `READ` <hr> `READ` <hr> `CREATE`,&nbsp;`READ`,&nbsp;`UPDATE` | Users can view dashboards and manage accounts and roles.<br><br>{{< icon "lightbulb" >}} Best for "super-users" who manage dashboard access. Doesn't allow deleting accounts. |
 
-  {{</bootstrap-table>}}
+  {{</table >}}
 
 ---
 

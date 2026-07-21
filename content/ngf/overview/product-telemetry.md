@@ -2,7 +2,7 @@
 title: Product telemetry
 weight: 600
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1836
 ---
 

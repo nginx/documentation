@@ -2,9 +2,9 @@
 title: Upload using the Azure CLI
 weight: 200
 toc: true
-url: /nginxaas/azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/
+url: /nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-azure-cli/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

@@ -4,7 +4,7 @@ description: Verify that F5 WAF for NGINX instances are connected and reporting 
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Verify that F5 WAF for NGINX instances are connected and reporting to F5 NGINX Instance Manager after installing and configuring NGINX Agent.
   This check confirms that NGINX Instance Manager can see the instances and that NGINX Agent is communicating correctly.
@@ -36,14 +36,14 @@ You can view your F5 WAF for NGINX instances in the NGINX Instance Manager web i
 
 Use the REST API to check version and status details for F5 WAF for NGINX.
 
-{{<bootstrap-table "table">}}
+{{<table>}}
 
 | Method | Endpoint                     |
 |--------|------------------------------|
 | GET    | `/api/platform/v1/instances` |
 | GET    | `/api/platform/v1/systems`   |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 - Send a `GET` request to `/api/platform/v1/systems` to check version information.
 

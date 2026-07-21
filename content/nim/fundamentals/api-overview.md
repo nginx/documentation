@@ -5,7 +5,7 @@ title: 'Overview: NGINX Instance Manager REST API'
 toc: true
 weight: 400
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Use this reference to understand the authentication methods, HTTP response codes, and verbs used by the F5 NGINX Instance Manager REST API.
   The REST API lets you manage instances, configurations, and platform settings programmatically.
@@ -86,7 +86,7 @@ NGINX Instance Manager uses standard HTTP response codes to indicate whether an 
 - Requests that refer to resources that do not exist or are in use by other resources.
 
 **HTTP Status Codes**
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 
 | Response Code | Meaning                                                          |
 |---------------|------------------------------------------------------------------|
@@ -99,7 +99,7 @@ NGINX Instance Manager uses standard HTTP response codes to indicate whether an 
 | 404           | Not found: The requested resource does not exist.                |
 | 409           | Conflict: The requested resource already exists or is referenced by another resource. |
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ## Encoding
 
@@ -113,7 +113,7 @@ Top-level NGINX Instance Manager API endpoints support fetching information abou
 
 ### Parameters
 
-{{< bootstrap-table "table table-striped table-bordered" >}}
+{{<table>}}
 
 | Name       | Format   | Type  | Description                                                                                                                  | Default value |
 |------------|----------|-------|------------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -121,7 +121,7 @@ Top-level NGINX Instance Manager API endpoints support fetching information abou
 | pageToken| string   | query | A transactional token used for pagination. The token ensures consistent query results across requests.                        | N/A           |
 |  pageSize | integer  | query | The number of items returned per page. The maximum value is 100. If `pageSize=0`, pagination is disabled, and all results are returned. | `100`         |
 
-{{< /bootstrap-table >}}
+{{</table >}}
 
 ## Versioning
 

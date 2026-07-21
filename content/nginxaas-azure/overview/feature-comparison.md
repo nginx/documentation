@@ -4,9 +4,9 @@ weight: 300
 description: Compare NGINXaaS for Azure with other NGINX offerings.
 toc: false
 f5-docs: DOCS-1473
-url: /nginxaas/azure/overview/feature-comparison/
+url: /nginxaas-azure/overview/feature-comparison/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 NGINXaaS for Azure delivers the core capabilities of NGINX as a managed service, integrated with Microsoft Azure. It provides most of the features of NGINX Open Source and many from NGINX Plus, but some capabilities are not included.

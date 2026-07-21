@@ -4,7 +4,7 @@ description: Add default or custom WAF policies to your NGINX instances.
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Add an F5 WAF for NGINX configuration to your NGINX instances from F5 NGINX Instance Manager.
   You can apply a built-in default security policy or reference a custom policy bundle as the starting point for your WAF configuration.
