@@ -633,7 +633,7 @@ kubectl exec -it deployments/gateway-nginx -- nginx -T
 
 You should see a single `server` in the `coffee` upstream set to the Service ClusterIP and port (`10.244.0.14` is the ClusterIP in this example):
 
-```text
+```nginx
 upstream default_coffee_80 {
     random two least_conn;
     zone default_coffee_80 512k;
