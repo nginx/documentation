@@ -73,7 +73,7 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - JSON-formatted error logs: the [`json`](https://nginx.org/en/docs/ngx_core_module.html#error_log_json) parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
 - Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag) directive.
 - Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream). 
-{{< call-out class="note" title="Important" >}} This change adds about 1k of shared memory for each upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly (`number of peers × 1k`) and round up to add a buffer. {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} This change adds about 1k of shared memory for each upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly 1k per upstream server, and round up to keep some extra space. {{< /call-out >}}
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
 - Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
 - Multipath TCP support: the [`multipath`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
