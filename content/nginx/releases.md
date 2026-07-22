@@ -34,9 +34,9 @@ _July 22, 2026_<br/>
 
 NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
 
-- Health checks: if the `Host` header value evaluates to an empty string, it now defaults to `$hostname`, allowing health checks to pass. The bug appeared in `PLS.37.0.1.1`.
+- If the `Host` header field value set by [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) evaluates to an empty string, the value of [`$proxy_host`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_host) is used instead. This prevents sending upstream requests without a `Host` (HTTP/1.1) or `:authority` (HTTP/2/3) header, and also allows [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) to pass in some configurations. The bug appeared in [NGINX Plus PLS.37.0.0.1 LTS](#pls.37.0.0).
 
-- Compatibility: added a compatibility patch for third-party dynamic modules, for example, `set-misc`, `lua`.
+- Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/).
 
 
 ### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
@@ -71,7 +71,7 @@ NGINX Plus PLS.37.0.1.1 LTS is a security release.
 - Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
 
 
-### NGINX Plus  PLS.37.0.0.1 LTS {#r37.0}
+### NGINX Plus  PLS.37.0.0.1 LTS {#pls.37.0.0}
 _May 13, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
 
@@ -303,11 +303,13 @@ This is a security release for NGINX Plus R36.
 - Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
 
 NGINX Plus R36 P8<br/>
-_July 12, 2026_
+_July 22, 2026_
 
 This is an improvement release for NGINX Plus R36.
 
-- The `keepalive` directive now accepts the `0` value, making upgrade to PLS.37 smoother, where  HTTP 1.1 and keepalive to upstreams are enabled by default. See [this blog post](https://blog.nginx.org/blog/keep-alive-to-upstreams-is-now-default-in-nginx-1-29-7) for details.
+- Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/).
+
+- The [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive now accepts the `0` value, making upgrade to NGINX Plus PLS.37 LTS smoother, where HTTP 1.1 and keepalive to upstreams are enabled by default. See [this blog post](https://blog.nginx.org/blog/keep-alive-to-upstreams-is-now-default-in-nginx-1-29-7) for details.
 
 
 ### NGINX Plus Release 35 (R35) {#r35}
