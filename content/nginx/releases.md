@@ -34,7 +34,7 @@ _July 22, 2026_<br/>
 
 NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
 
-- If the `Host` header field value set by [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) evaluates to an empty string, the value of [`$proxy_host`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_host) is used instead. This prevents sending upstream requests without a `Host` (HTTP/1.1) or `:authority` (HTTP/2) header, and also allows [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) to pass in some configurations. The bug appeared in [NGINX Plus PLS.37.0.0.1 LTS](#pls.37.0.0).
+- If the `Host` header field value set by [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) evaluates to an empty string, the value of [`$proxy_host`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_host) is used instead. This prevents sending upstream requests without a `Host` (HTTP/1.1) or `:authority` (HTTP/2) header, and also allows [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) to pass in some configurations. The bug appeared in [NGINX Plus PLS.37.0.0.1 LTS](#r37.0).
 
 - Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/). The bug appeared in [NGINX Plus PLS.37.0.3.1 LTS](#pls.37.0.3).
 
@@ -81,7 +81,7 @@ NGINX Plus PLS.37.0.1.1 LTS is a security release.
 - Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
 
 
-### NGINX Plus  PLS.37.0.0.1 LTS {#pls.37.0.0}
+### NGINX Plus  PLS.37.0.0.1 LTS {#r37.0}
 _May 13, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
 
