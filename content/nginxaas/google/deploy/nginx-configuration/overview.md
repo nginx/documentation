@@ -50,6 +50,7 @@ The following directives are not supported because of specific limitations. If y
 | debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
 | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
 | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
+| ssl_ech_file     | NGINXaaS does not use the [OpenSSL ECH feature branch](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file). |
 {{< /table >}}
 
 You may find a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
@@ -171,6 +172,7 @@ NGINXaaS does not yet support F5 WAF for NGINX custom security policies or loggi
 [enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report)\
 [env](https://nginx.org/en/docs/ngx_core_module.html#env)\
 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log)\
+[error_log_tag](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag)\
 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)\
 [etag](https://nginx.org/en/docs/http/ngx_http_core_module.html#etag)\
 [events](https://nginx.org/en/docs/ngx_core_module.html#events)\
@@ -412,6 +414,7 @@ NGINXaaS does not yet support F5 WAF for NGINX custom security policies or loggi
 [match (ngx_http_upstream_hc_module)](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match)\
 [match (ngx_stream_upstream_hc_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match)\
 [max_errors](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#max_errors)\
+[max_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers)\
 [max_ranges](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_ranges)\
 [memcached_buffer_size](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_buffer_size)\
 [memcached_connect_timeout](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_connect_timeout)\
