@@ -38,6 +38,14 @@ NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
 
 - Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/).
 
+{{< call-out class="note" title="Upgrade Notes" >}} Before upgrading from NGINX Plus R36, you may need to review your existing configuration and prepare it for upgrade if necessary:
+
+- Increase upstream shared memory zones: the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space.
+
+- Disable upstream keepalive if unsupported: NGINX Plus PLS.37 LTS enables upstream keepalive by default. If your backend does not support connection reuse, explicitly disable it with `keepalive 0;` in your upstream configuration before upgrading. See [K000161464](https://my.f5.com/s/article/K000161464#ai-recommendations-55) for details.
+
+- Default HTTP version change: if your upstreams rely on HTTP/1.0 for upstream communication, explicitly set `proxy_http_version 1.0;` or ensure the `Host` header is configured when using the HTTP 1.1 protocol. Without this, upstream health checks may fail. {{< /call-out >}}
+
 
 ### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
 _July 15, 2026_<br/>
