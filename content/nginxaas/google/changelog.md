@@ -13,6 +13,18 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS f
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
 
+## July 23, 2026
+
+- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus 37.0 Continuous Releases (CR).**
+
+NGINXaaS for Google Cloud deployments have been automatically upgraded to NGINX Plus 37.0 (PLS.37.0). Please review the [NGINX Plus Release 37.0]({{< ref "/nginx/releases/" >}}) Release Notes carefully. Please note that HTTP/1.1 is now the default protocol for upstreams, and keepalive is enabled by default for HTTP/1.1 upstreams. Additionally, due to the new upstream histogram metric, zone memory requirements have increased by 25%.
+
+NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. NGINXaaS does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview/#disallowed-configuration-directives" >}}).
+
+For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview/#configuration-directives-list" >}}).
+
+NGINXaaS also upgraded F5 WAF for NGINX to version 5.13.4. For more information, see the [F5 WAF for NGINX Release Notes]({{< ref "/waf/changelog/#f5-waf-for-nginx-5134" >}}).
+
 ## June 1, 2026
 
 - {{% icon-feature %}} **NGINXaaS for Google now supports free trials**
@@ -45,11 +57,11 @@ See the [Service Frontend]({{< ref "/nginxaas/google/overview.md#service-fronten
 
   NGINXaaS for Google is now available in the following additional regions per geography:
 
-   {{< table "table" >}}
-   |NGINXaaS Geography | Google Cloud Regions |
-   |-----------|---------|
-   | APAC  | asia-south1, asia-south2 |
-   {{< /table >}}
+  {{< table "table" >}}
+  |NGINXaaS Geography | Google Cloud Regions |
+  |-----------|---------|
+  | APAC | asia-south1, asia-south2 |
+  {{< /table >}}
 
 See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
 
@@ -67,13 +79,13 @@ For instructions on getting started, see our documentation to [add certificates 
 
   NGINXaaS for Google is now available in the following regions in APAC:
 
-   {{< table "table" >}}
+  {{< table "table" >}}
 
-   | NGINXaaS Geography | Google Cloud Regions |
-   |-----------|---------|
-   | APAC  | asia-southeast1 |
+  | NGINXaaS Geography | Google Cloud Regions |
+  | ------------------ | -------------------- |
+  | APAC               | asia-southeast1      |
 
-   {{< /table >}}
+  {{< /table >}}
 
 See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
 
@@ -89,13 +101,13 @@ The previously required configuration is no longer necessary for your deployment
 
   NGINXaaS for Google is now available in the following additional regions per geography:
 
-   {{< table "table" >}}
+  {{< table "table" >}}
 
-   | NGINXaaS Geography | Google Cloud Regions |
-   |-----------|---------|
-   | EU  | europe-west3, europe-central2 |
+  | NGINXaaS Geography | Google Cloud Regions          |
+  | ------------------ | ----------------------------- |
+  | EU                 | europe-west3, europe-central2 |
 
-   {{< /table >}}
+  {{< /table >}}
 
 See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
 
@@ -105,13 +117,13 @@ See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regi
 
   NGINXaaS for Google is now available in the following additional regions per geography:
 
-   {{< table "table" >}}
+  {{< table "table" >}}
 
-   | NGINXaaS Geography | Google Cloud Regions |
-   |-----------|---------|
-   | EU  | europe-west4, europe-north1 |
+  | NGINXaaS Geography | Google Cloud Regions        |
+  | ------------------ | --------------------------- |
+  | EU                 | europe-west4, europe-north1 |
 
-   {{< /table >}}
+  {{< /table >}}
 
 See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
 
@@ -121,13 +133,13 @@ See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regi
 
   NGINXaaS for Google is now available in the following additional regions per geography:
 
-   {{< table "table" >}}
+  {{< table "table" >}}
 
-   | NGINXaaS Geography | Google Cloud Regions |
-   |-----------|---------|
-   | US  | us-east4, us-west2, us-west3, us-west4 |
+  | NGINXaaS Geography | Google Cloud Regions                   |
+  | ------------------ | -------------------------------------- |
+  | US                 | us-east4, us-west2, us-west3, us-west4 |
 
-   {{< /table >}}
+  {{< /table >}}
 
 See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
 
@@ -146,10 +158,9 @@ This announcement marks a significant step in application delivery modernization
 To learn more, refer to the following resources:
 
 - **Product Information:**
-
-    - [F5 NGINXaaS for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
-    - [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}})
-    - [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}})
+  - [F5 NGINXaaS for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
+  - [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}})
+  - [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}})
 
 - **Blogs:** [F5 NGINXaaS for Google Cloud: Delivering resilient, scalable applications](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
 - **Webinars:** [Why F5 NGINXaaS for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
@@ -160,7 +171,6 @@ To learn more, refer to the following resources:
 
 - {{% icon-feature %}} **NGINXaaS for Google Cloud Early Access**
 
-   NGINXaaS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.
-
-   - To learn more about NGINXaaS for Google Cloud, see the [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}}) topic.
-   - To deploy NGINXaaS, see the [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) guide.
+  NGINXaaS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.
+  - To learn more about NGINXaaS for Google Cloud, see the [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}}) topic.
+  - To deploy NGINXaaS, see the [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) guide.
