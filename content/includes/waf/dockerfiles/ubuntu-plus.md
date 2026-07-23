@@ -8,7 +8,7 @@ f5-files:
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported OS_CODENAME's are: focal/jammy
+# Supported OS_CODENAME's are: jammy/noble/resolute
 ARG OS_CODENAME=jammy
 
 # Base image
