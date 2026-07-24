@@ -21,15 +21,15 @@ F5 NGINXaaS for AWS supports integrating with AWS services to collect NGINX erro
 
 ## Setting up error logs
 
-{{< include "/nginxaas/aws/logging-config-error-logs.md" >}}
+{{< include "/nginxaas/logging-config-error-logs.md" >}}
 
 ## Setting up access logs
 
-{{< include "/nginxaas/aws/logging-config-access-logs.md" >}}
+{{< include "/nginxaas/logging-config-access-logs.md" >}}
 
 ## Setting up F5 WAF for NGINX security logs
 
-{{< include "/nginxaas/aws/logging-config-security-logs.md" >}}
+{{< include "/nginxaas/logging-config-security-logs.md" >}}
 
 ## Export NGINX logs to a CloudWatch log group
 

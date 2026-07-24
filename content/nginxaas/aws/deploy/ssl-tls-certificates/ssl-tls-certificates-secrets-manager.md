@@ -1,9 +1,9 @@
 ---
-title: Add certificates from Secret Manager
+title: Add certificates from AWS Secrets Manager
 weight: 75
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager/
+url: /nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager/
 f5-content-type: how-to
 f5-product: NGINXaaS for AWS
 ---

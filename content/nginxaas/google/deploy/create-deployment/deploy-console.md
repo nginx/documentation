@@ -47,7 +47,7 @@ Once you have completed the subscription process and created a network attachmen
 
 ## Create or import an NGINX configuration
 
-{{< include "/nginxaas/google/create-or-import-nginx-config.md" >}}
+{{< include "/nginxaas/create-or-import-nginx-config.md" >}}
 
 ## Create a new deployment
 
@@ -308,4 +308,4 @@ The deployment is privately deployed in your subnet. If you want to route traffi
 
 ## What's next
 
-[Manage your NGINXaaS users]({{< ref "/nginxaas/google/deploy/manage-users-organizations.md" >}})
+[Manage certificates in Google Secret Manager]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}})

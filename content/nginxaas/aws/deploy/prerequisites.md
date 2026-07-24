@@ -24,8 +24,6 @@ If it's your first time using NGINXaaS for AWS, you need to find the offering in
 1. Log in with your AWS account.
 1. Select **Subscribe** to subscribe to the NGINXaaS for AWS offering.
 1. Currently the **Enterprise** plan is the only plan supported. This option is selected automatically.
-   - You can use the [usage and cost estimator]({{< ref "/nginxaas/aws/billing/usage-and-cost-estimator/" >}}) to calculate the cost of your deployment
-   based on your expected usage.
 1. Select the AWS account you want to use for this deployment.
 1. Agree to the terms of service and privacy policy.
 1. Select **Subscribe** and a message will confirm that your subscription request has been sent to F5, Inc.

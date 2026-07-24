@@ -5,7 +5,7 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/
 f5-content-type: concept
-f5-product: NGXAAS
+f5-product: F5 NGINXaaS
 contentVars:
   product: NGINXaaS
 ---
@@ -25,10 +25,17 @@ The key capabilities of ${product} are:
 - Simplifies NGINX deployments with fewer moving parts (edge routing is built into the service).
 - Supports migration of existing NGINX configurations to the cloud with minimal effort.
 - Integrates with your cloud provider's ecosystem.
+- ${product} keeps your SSL private keys and other secrets secure and easy to manage.
 - Adopts a consumption-based pricing model to align infrastructure costs to actual usage.
 - ${product} is used to create, update, and delete NGINX configurations, certificates, and deployments.
 - ${product} automatically adapts to application traffic demands through autoscaling.
 - Each ${product} deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments.
-- ${product} can route traffic to upstreams even if the upstream servers are located in different geographies.
+- Makes collecting and reviewing access logs and NGINX metrics painless and accessible.
 - ${product} supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. ${product} also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
+
+## Availability
+
+${product} is available for use with multiple public cloud providers. See specific documentation for more details:
+- [NGINXaaS for AWS]({{< ref "/nginxaas/aws/overview.md" >}})
+- [NGINXaaS for Google Cloud]({{< ref "/nginxaas/google/overview.md" >}})

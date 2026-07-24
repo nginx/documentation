@@ -52,7 +52,7 @@ Once you have completed the subscription process and created a VPC endpoint serv
 
 ## Create or import an NGINX configuration
 
-{{< include "/nginxaas/aws/create-or-import-nginx-config.md" >}}
+{{< include "/nginxaas/create-or-import-nginx-config.md" >}}
 
 ## Create a new deployment
 
@@ -332,4 +332,4 @@ The deployment is privately deployed in your subnet. If you want to route traffi
 
 ## What's next
 
-[Manage your NGINXaaS users]({{< ref "/nginxaas/aws/deploy/manage-users-organizations.md" >}})
+[Manage certificates in AWS Secrets Manager]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md" >}})

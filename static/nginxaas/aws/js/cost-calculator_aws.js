@@ -1,19 +1,22 @@
-// /nginxaas-aws/js/cost-calculator_aws.js
+// /nginxaas/aws/js/cost-calculator_aws.js
 (() => {
   // ---- Region to tier mapping ----
   const regionsTiers = {
-    "us-east-1":      { label: "US East 1",        tier: "Tier 1" },
-    "us-east-2":      { label: "US East 2",        tier: "Tier 1" },
-    "us-west-1":      { label: "US West 1",        tier: "Tier 1" },
-    "us-west-2":      { label: "US West 2",        tier: "Tier 1" },
-    "eu-west-1":      { label: "EU West 1",        tier: "Tier 1" },
-    "eu-north-1":     { label: "EU North 1",       tier: "Tier 1" },
-    "ap-south-1":     { label: "AP South 1",       tier: "Tier 1" },
-    "ap-southeast-1": { label: "AP Southeast 1",   tier: "Tier 1" },
-    "eu-west-2":      { label: "EU West 2",        tier: "Tier 2" },
-    "eu-west-3":      { label: "EU West 3",        tier: "Tier 2" },
-    "ap-southeast-2": { label: "AP Southeast 2",   tier: "Tier 2" },
-    "eu-central-1":   { label: "EU Central 1",     tier: "Tier 3" },
+    "us-east-1":      { label: "US East 1 (N. Virginia)",    tier: "Tier 1" },
+    "us-east-2":      { label: "US East 2 (Ohio)",           tier: "Tier 1" },
+    "us-west-1":      { label: "US West 1 (N. California)",  tier: "Tier 1" },
+    "us-west-2":      { label: "US West 2 (Oregon)",         tier: "Tier 1" },
+    "eu-central-1":   { label: "EU Central 1 (Frankfurt)",   tier: "Tier 3" },
+    "eu-north-1":     { label: "EU North 1 (Stockholm)",     tier: "Tier 1" },
+    "eu-west-1":      { label: "EU West 1 (Ireland)",        tier: "Tier 1" },
+    "eu-west-2":      { label: "EU West 2 (London)",         tier: "Tier 2" },
+    "eu-west-3":      { label: "EU West 3 (Paris)",          tier: "Tier 2" },
+    "ap-northeast-1": { label: "AP Northeast 1 (Tokyo)",     tier: "Tier 1" },
+    "ap-northeast-2": { label: "AP Northeast 2 (Seoul)",     tier: "Tier 1" },
+    "ap-south-1":     { label: "AP South 1 (Mumbai)",        tier: "Tier 1" },
+    "ap-south-2":     { label: "AP South 2 (Hyderabad)",     tier: "Tier 1" },
+    "ap-southeast-1": { label: "AP Southeast 1 (Singapore)", tier: "Tier 1" },
+    "ap-southeast-4": { label: "AP Southeast 4 (Melbourne)", tier: "Tier 1" },
   };
 
   // ---- Tier pricing ----
