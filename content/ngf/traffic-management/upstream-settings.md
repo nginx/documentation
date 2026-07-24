@@ -435,6 +435,8 @@ upstream default_tea_80 {
 
 ## Enable keepalive connections
 
+By default, the `keepalive` directive is omitted, which results in the default NGINX `keepalive` value being used. You can override this value or disable `keepAlive` entirely by configuring an UpstreamSettingsPolicy. To disable keepalive, set the connections field to 0.
+
 The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 32:
 
 ```yaml
@@ -455,7 +457,6 @@ EOF
 
 This `UpstreamSettingsPolicy` targets the `coffee` service in the `targetRefs` field. It sets the number of keepalive connections to 32, which activates the cache for connections to the service's pods and sets the maximum number of idle connections to 32.
 
-If `keepAlive.connections` is omitted, the NGINX default value for the `keepalive` directive is used. To disable keepalive, set `keepAlive.connections` to 0.
 
 Verify that the `UpstreamSettingsPolicy` is Accepted:
 
