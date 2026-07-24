@@ -4,10 +4,10 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: FABRIC
-f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
+f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, an HTTP server, or Policy Lifecycle Management (PLM).
 ---
 
-NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
+NGINX Gateway Fabric supports four policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, and Policy Lifecycle Management (PLM). For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
 
 Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) — either per Gateway or globally via Helm values.
 
@@ -213,6 +213,187 @@ Use this option when you compile WAF policies using the F5 WAF compiler CLI or a
 For a complete walkthrough including policy compilation and a bundle server deployment, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
 
 For production environments, you would typically host compiled bundles on an HTTPS server with authentication. See [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for details on adding credentials, custom CA certificates, and checksum verification to your `policySource`.
+
+---
+
+## Policy Lifecycle Management (PLM)
+
+Use this option when you manage WAF policies as Kubernetes resources with Policy Lifecycle Management (PLM). With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources; the PLM controller compiles them automatically and stores the resulting bundles in in-cluster storage. NGINX Gateway Fabric fetches those bundles and deploys them to the data plane.
+
+Unlike the other source types, PLM is Kubernetes-native and event-driven:
+
+- Policies and log profiles are referenced with `policyRef.apPolicyRef` and `logRef.apLogConfRef` instead of `policySource` and `logSource`.
+- Updates are detected through a Kubernetes watch, so [polling]({{< ref "/ngf/waf-integration/configuration.md#configure-automatic-policy-updates-polling" >}}) does not apply.
+- No per-`WAFPolicy` credentials Secret is needed. Access to PLM storage is configured once, cluster-wide, at install time.
+
+For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}).
+
+**Before you begin:**
+
+- The PLM system must be installed in the cluster, and PLM storage access must be configured on NGINX Gateway Fabric. See [Configure PLM storage access]({{< ref "/ngf/waf-integration/configuration.md#configure-plm-storage-access" >}}).
+
+**Workflow:**
+
+1. Create your `APPolicy` (and optionally `APLogConf`) resources. The PLM controller compiles them and sets `status.bundle.state` to `ready` when the bundle is available.
+2. Create a `WAFPolicy` with `type: PLM` that references the `APPolicy` by name and namespace.
+3. NGINX Gateway Fabric watches the referenced resources and deploys the bundle once it is `ready`. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
+
+
+### Create namespaces
+
+```yaml
+kubectl create namespace security
+kubectl create namespace applications
+```
+
+### Cross-namespace references
+
+When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, create a `ReferenceGrant` in the target namespace to permit the reference. The following grant allows `WAFPolicy` resources in the `applications` namespace to reference `APPolicy` and `APLogConf` resources in the `security` namespace:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: ReferenceGrant
+metadata:
+  name: allow-wafpolicy-refs
+  namespace: security
+spec:
+  from:
+  - group: gateway.nginx.org
+    kind: WAFPolicy
+    namespace: applications
+  to:
+  - group: appprotect.f5.com
+    kind: APPolicy
+  - group: appprotect.f5.com
+    kind: APLogConf
+EOF
+```
+
+Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}).
+
+### Create the APPolicy and APLogConf resources
+
+The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles the policy, uploads the bundle to in-cluster storage, and writes `status.bundle` (with `state: ready`, `location`, and `sha256`). The following example blocks all attack signatures:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: attack-signatures
+  namespace: security
+spec:
+  policy:
+    name: attack-signatures-blocking
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    applicationLanguage: utf-8
+    enforcementMode: blocking
+    signature-sets:
+    - name: All Signatures
+      block: true
+      alarm: true
+    cookies:
+    - name: "*"
+      attackSignaturesCheck: true
+      enforcementType: enforce
+      maskValueInLogs: false
+EOF
+```
+
+The `APLogConf` resource defines a security logging profile, which PLM compiles and stores in the same way. The following example logs illegal requests:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: appprotect.f5.com/v1
+kind: APLogConf
+metadata:
+  name: log-illegal
+  namespace: security
+spec:
+  filter:
+    request_type: illegal
+  content:
+    format: default
+    max_request_size: any
+    max_message_size: 15k
+EOF
+```
+
+Wait until both resources report `status.bundle.state: ready` before referencing them from a `WAFPolicy`.
+
+{{< call-out "note" >}} These examples are a starting point. For the full `APPolicy` and `APLogConf` specifications and additional configuration options, see the [F5 WAF PLM documentation]({{< ref "/waf/" >}}). <!-- TODO: confirm PLM docs link --> {{< /call-out >}}
+
+### Create a gateway-level WAFPolicy
+
+The following `WAFPolicy` targets the Gateway and protects all attached routes. It references the `APPolicy` for the security policy and the `APLogConf` for security logging:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: WAFPolicy
+metadata:
+  name: gateway-base-protection
+  namespace: applications
+spec:
+  type: PLM
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: gateway
+  policyRef:
+    apPolicyRef:
+      name: attack-signatures
+      namespace: security
+  securityLogs:
+  - destination:
+      type: syslog
+      syslog:
+        server: syslog-svc.default.svc.cluster.local:514
+    logRef:
+      apLogConfRef:
+        name: log-illegal
+        namespace: security
+EOF
+```
+
+Replace `attack-signatures` and `log-illegal` with the names of your `APPolicy` and `APLogConf` resources.
+
+{{< call-out "note" >}} When the `APPolicy` or `APLogConf` is in a different namespace from the `WAFPolicy`, you must create a `ReferenceGrant` in the target namespace. See [Cross-namespace references](#cross-namespace-references). {{< /call-out >}}
+
+### Apply a route-level override (optional)
+
+To apply a different policy to a specific route, create a route-level `WAFPolicy`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: WAFPolicy
+metadata:
+  name: route-protection
+  namespace: applications
+spec:
+  type: PLM
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: customers
+  policyRef:
+    apPolicyRef:
+      name: attack-signatures
+      namespace: security
+  securityLogs:
+  - destination:
+      type: stderr
+    logRef:
+      apLogConfRef:
+        name: log-illegal
+        namespace: security
+EOF
+```
+
+This example reuses the `attack-signatures` policy for the route-level override. In practice, create a separate `APPolicy` (and, if needed, `APLogConf`) with the stricter posture you want for this route, then reference it here. This policy overrides the gateway-level policy for the `customers` route only. Any other routes attached to the gateway continue to use the gateway-level policy.
 
 ---
 

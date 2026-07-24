@@ -25,21 +25,22 @@ Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. 
 
 ### ResolvedRefs
 
-| Status  | Reason         | Meaning                                                       |
-|---------|----------------|---------------------------------------------------------------|
-| `True`  | `ResolvedRefs` | All referenced Secrets resolved successfully                  |
-| `False` | `InvalidRef`   | A referenced Secret was not found or is missing expected keys |
+| Status  | Reason            | Meaning                                                                                     |
+|---------|-------------------|---------------------------------------------------------------------------------------------|
+| `True`  | `ResolvedRefs`    | All referenced Secrets, `APPolicy`, and `APLogConf` resources resolved successfully         |
+| `False` | `InvalidRef`      | A referenced Secret was not found or is missing keys; or (PLM) a referenced `APPolicy`/`APLogConf` does not exist or its `status.bundle.state` is not `ready` |
+| `False` | `RefNotPermitted` | (PLM) A cross-namespace `APPolicy` or `APLogConf` reference is not allowed by a `ReferenceGrant` |
 
 ### Programmed
 
-| Status  | Reason               | Meaning                                                                          |
-|---------|----------------------|----------------------------------------------------------------------------------|
-| `True`  | `Programmed`         | Bundle fetched and deployed to the data plane                                    |
-| `True`  | `BundleUpdated`      | A poll cycle detected a changed bundle and deployed it                           |
-| `True`  | `StaleBundleWarning` | A poll cycle failed; previously deployed bundle remains active                   |
-| `False` | `FetchError`         | Bundle could not be fetched (network error, HTTP error, auth failure, timeout)   |
-| `False` | `IntegrityError`     | Bundle checksum verification failed                                              |
-| `False` | `Pending`            | Bundle has never been fetched; configuration withheld or WAF omitted (fail-open) |
+| Status  | Reason               | Meaning                                                                                          |
+|---------|----------------------|--------------------------------------------------------------------------------------------------|
+| `True`  | `Programmed`         | Bundle fetched and deployed to the data plane                                                    |
+| `True`  | `BundleUpdated`      | A poll cycle detected a changed bundle and deployed it                                           |
+| `True`  | `StaleBundleWarning` | A poll cycle failed; previously deployed bundle remains active                                   |
+| `False` | `FetchError`         | Bundle could not be fetched (network error, HTTP error, S3 error for PLM, auth failure, timeout) |
+| `False` | `IntegrityError`     | Bundle checksum verification failed                                                              |
+| `False` | `Pending`            | Bundle has never been fetched; configuration withheld or WAF omitted (fail-open)                 |
 
 ---
 
@@ -52,6 +53,32 @@ The credentials Secret is either missing, contains the wrong keys, or the creden
 ### `FetchError` with HTTP 404 on NGINX Instance Manager or NGINX One Console
 
 The referenced policy was not found or has not been compiled yet. For NGINX Instance Manager, verify that compilation succeeded in the NGINX Instance Manager console before creating the `WAFPolicy`. For NGINX One Console, NGINX Gateway Fabric triggers compilation if no bundle exists, and a 404 after initial setup may indicate the policy was deleted in NGINX One Console.
+
+### `InvalidRef` on a PLM policy: `APPolicy` not ready
+
+For `type: PLM`, NGINX Gateway Fabric only fetches a bundle once the referenced `APPolicy` (or `APLogConf`) reports `status.bundle.state: ready`. While PLM is still compiling, the `ResolvedRefs` condition is `False` with reason `InvalidRef`:
+
+```text
+- Type:    ResolvedRefs
+  Status:  False
+  Reason:  InvalidRef
+  Message: APLogConf namespace/name bundle is not ready (state: processing)
+```
+
+Verify the `APPolicy` exists and that PLM has finished compiling it: `kubectl get appolicy -n <namespace>`. If the state is `invalid`, check the PLM compilation errors in the resource's `status`.
+
+### `RefNotPermitted` on a PLM policy: missing `ReferenceGrant`
+
+When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, a `ReferenceGrant` must exist in the target namespace:
+
+```text
+- Type:    ResolvedRefs
+  Status:  False
+  Reason:  RefNotPermitted
+  Message: cross-namespace reference to APLogConf namespace/name not permitted by ReferenceGrant
+```
+
+Create a `ReferenceGrant` in the target namespace that allows `WAFPolicy` resources from the source namespace to reference the `APPolicy`/`APLogConf` Kinds. See [Cross-namespace references]({{< ref "/ngf/waf-integration/policy-sources.md#cross-namespace-references" >}}).
 
 ### `Pending`
 

@@ -25,14 +25,20 @@ The `securityLogs` field on a `WAFPolicy` supports multiple log destinations. Ea
 
 ### Log source types
 
-Each log entry must specify a `logSource` using one of:
+Each log entry must specify a log source. For the `HTTP`, `NIM`, and `N1C` policy types, use `logSource` with one of:
 
-| Field            | Description                          |
-|------------------|--------------------------------------|
-| `defaultProfile` | A built-in WAF log profile name      |
-| `httpSource`     | URL to a compiled log profile bundle |
-| `nimSource`      | NGINX Instance Manager log profile configuration        |
-| `n1cSource`      | NGINX One Console log profile configuration        |
+| Field            | Description                                      |
+|------------------|--------------------------------------------------|
+| `defaultProfile` | A built-in WAF log profile name                  |
+| `httpSource`     | URL to a compiled log profile bundle             |
+| `nimSource`      | NGINX Instance Manager log profile configuration |
+| `n1cSource`      | NGINX One Console log profile configuration      |
+
+For the `PLM` policy type, use `logRef` instead of `logSource`:
+
+| Field          | Description                                                 |
+|----------------|-------------------------------------------------------------|
+| `apLogConfRef` | Reference to an `APLogConf` custom resource compiled by PLM |
 
 **Built-in log profiles:** `log_default`, `log_all`, `log_blocked`, `log_illegal`, `log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`
 
@@ -70,6 +76,8 @@ securityLogs:
 
 Polling enables NGINX Gateway Fabric to detect and deploy updated policy bundles without modifying the `WAFPolicy` resource. This is useful when the same URL or policy name always resolves to the latest compiled bundle — for example, in a CI/CD workflow that overwrites the bundle file in place.
 
+{{< call-out "note" >}} Polling applies only to the `HTTP`, `NIM`, and `N1C` policy types. The `PLM` type is event-driven: NGINX Gateway Fabric watches the referenced `APPolicy` and `APLogConf` resources and re-fetches automatically when their compiled bundles change, so no polling configuration is needed. {{< /call-out >}}
+
 Enable polling on a `policySource` or `logSource`:
 
 ```yaml
@@ -93,6 +101,61 @@ policySource:
 **When not to enable polling:** If you pin a specific version — `policyUID` for NGINX Instance Manager, `policyVersionID` for NGINX One Console, or a version-specific URL for HTTP — the source always returns the same bundle. Every poll will detect "unchanged" and trigger no action. In that case, disable polling to avoid unnecessary network requests.
 
 **On poll failure:** If a poll attempt fails, the existing deployed bundle remains active. WAF protection is not interrupted. The error is recorded in the `WAFPolicy` status with reason `StaleBundleWarning`.
+
+---
+
+## Configure PLM storage access
+
+When you use the `PLM` policy type, NGINX Gateway Fabric fetches compiled bundles from PLM's in-cluster storage. Access to that storage is configured once, cluster-wide, at install time — it is not set per `WAFPolicy`. This configuration applies to all `WAFPolicy` resources that use `type: PLM`.
+
+{{< call-out "note" >}} This section covers only the NGINX Gateway Fabric side of PLM configuration. Installing the PLM system and authoring `APPolicy`/`APLogConf` resources are covered in the [F5 WAF PLM documentation]({{< ref "/waf/" >}}). <!-- TODO: confirm PLM docs link --> {{< /call-out >}}
+
+### Helm values
+
+Set the PLM storage values under `nginxGateway.plmStorage`:
+
+```yaml
+# values.yaml
+nginxGateway:
+  plmStorage:
+    url: "https://plm-storage-service.plm-system.svc.cluster.local"
+    credentialsSecretName: "plm-storage-credentials"  # contains the seaweedfs_admin_secret field
+    tls:
+      caSecretName: "plm-ca-secret"             # Secret with ca.crt for server verification
+      clientSSLSecretName: "plm-client-secret"  # Secret with tls.crt/tls.key for mutual TLS
+      insecureSkipVerify: false                 # use only for testing
+```
+
+The equivalent control plane CLI flags for manifest installs are:
+
+| Flag                               | Description                                                            | Required when PLM is used |
+|------------------------------------|------------------------------------------------------------------------|---------------------------|
+| `--plm-storage-url`                | PLM storage service URL (HTTP or HTTPS)                                | Yes                       |
+| `--plm-storage-credentials-secret` | Secret containing the S3 secret access key (`seaweedfs_admin_secret`)  | No                        |
+| `--plm-storage-ca-secret`          | Secret containing the CA certificate (`ca.crt`)                        | No                        |
+| `--plm-storage-client-ssl-secret`  | Secret containing the client certificate and key (`tls.crt`/`tls.key`) | No                        |
+| `--plm-storage-skip-verify`        | Skip TLS certificate verification (testing only)                       | No                        |
+
+Secret names may include a namespace prefix (`namespace/name`). If no namespace is given, the NGINX Gateway Fabric control plane namespace is assumed.
+
+### Credentials Secret
+
+The credentials Secret is created automatically by the PLM installation. It contains the S3 secret access key in the `seaweedfs_admin_secret` field; the access key ID is `admin` by default:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: plm-storage-credentials
+  namespace: nginx-gateway
+type: Opaque
+data:
+  seaweedfs_admin_secret: <BASE64_ENCODED_SECRET_ACCESS_KEY>
+```
+
+NGINX Gateway Fabric watches the PLM credentials and TLS Secrets and rebuilds its storage client when they change, so credentials can be rotated without restarting the pod.
+
+{{< call-out "caution" >}} For production, always use HTTPS with TLS verification by providing `caSecretName`. Enable mutual TLS with `clientSSLSecretName` for high-security environments. Never set `insecureSkipVerify: true` (or `--plm-storage-skip-verify=true`) in production. {{< /call-out >}}
 
 ---
 
@@ -191,6 +254,10 @@ policySource:
 The `expectedChecksum` must be a 64-character hexadecimal SHA-256 digest.
 
 {{< call-out "note" >}} `verifyChecksum` and `expectedChecksum` are mutually exclusive. You can use one or the other on the same policy source, but not both. {{< /call-out >}}
+
+### PLM source
+
+For the `PLM` policy type, integrity verification is automatic and requires no configuration. NGINX Gateway Fabric verifies the downloaded bundle against `status.bundle.sha256` from the referenced `APPolicy` or `APLogConf` resource. A mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
 
 ---
 
