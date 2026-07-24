@@ -1,5 +1,5 @@
 ---
-f5-product: NGXAAS
+f5-product: F5 NGINXaaS
 f5-files:
 - content/nginxaas/nginx-configuration/nginx-configuration-console.md
 - content/nginxaas/aws/deploy/nginx-configuration/nginx-configuration-console.md
