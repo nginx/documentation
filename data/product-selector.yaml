@@ -29,6 +29,8 @@
       url: "nginxaas/google/overview/"
     - title: "NGINXaaS for Azure"
       url: "nginxaas-azure/"
+    - title: "NGINXaaS"
+      url: "nginxaas"
 
 - productGroup: Glossary
   products:
