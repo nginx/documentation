@@ -119,6 +119,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
 |*add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive in the `http` context. Use the format *Header-Name: value[:always]* and separate entries with commas. Example: `X-Frame-Options: DENY` or  `X-Frame-Options: DENY: always`.  | N/A |
 |*add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are *on*, *off*, and *merge*. | N/A |
+|*use-forwarded-headers* | Allow for users to define a way to disables the default X-forwarded headers set by NIC. Applied globally | *true* |
 
 ### Auth and SSL/TLS
 
