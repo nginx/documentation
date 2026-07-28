@@ -8,30 +8,68 @@ f5-content-type: how-to
 f5-product: NGINXaaS for AWS
 ---
 
-{{< call-out class="important" title="Placeholder content" >}}
-This page contains placeholder documentation for **NGINXaaS for AWS**. Workflows, screenshots, pricing, and UI text described here are illustrative only and do not represent a shipping product.
-{{< /call-out >}}
-
 F5 NGINXaaS for AWS can fetch secrets directly from [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) to use as certificates and keys in your NGINX configuration, ensuring your credentials remain securely within AWS.
 
 ## Prerequisites
 
-If you haven't already done so, complete the following prerequisites:
+If you haven't already done so, [create an NGINXaaS deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md" >}}) with an IAM role. See [Identity and access management]({{< ref "/nginxaas/aws/deploy/access-management.md" >}}) for more information.
 
-- [Create an NGINXaaS deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md" >}}).
-- Configure IAM Role Federation (OIDC). See [our documentation on setting up IAM Role Federation]({{< ref "/nginxaas/aws/deploy/access-management.md#configure-iam-role-federation" >}}) for exact steps.
-  - [Grant access to fetch a secret from AWS Secrets Manager]({{< ref "/nginxaas/aws/deploy/access-management.md#grant-access-to-fetch-a-secret-from-aws-secrets-manager" >}}) by attaching a policy granting `secretsmanager:GetSecretValue` on the secret to the IAM role.
+### IAM role permissions policy
+
+To allow NGINXaaS for AWS access to your AWS Secrets Manager secrets, you must attach a permissions policy to your IAM role. The policy must allow the `secretsmanager:GetSecretValue` action. For example, the following policy allows access to the specified secret.
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": "secretsmanager:GetSecretValue",
+			"Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:secretName-AbCdEf"
+		}
+	]
+}
+```
+
+See [AWS Secrets Manager identity-based policies](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_iam-policies.html#auth-and-access_examples_identity_read) for more examples.
+
+NGINXaaS for AWS also supports attribute-based access control (ABAC) by restricting access based on tag attributes. For example, the following policy allows only the specified NGINXaaS deployment to access the secret. 
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": "secretsmanager:GetSecretValue",
+			"Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:secretName-AbCdEf",
+			"Condition": {
+				"StringEquals": {
+					"aws:PrincipalTag/NGINXaaS:DeploymentName": "test-deployment"
+				}
+			}
+		}
+	]
+}
+```
+
+The session tags passed in the request to fetch the secret will appear in `AssumeRole` [events in CloudTrail](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs). The following tags are supported:
+
+- `NGINXaaS:OrganizationID`
+- `NGINXaaS:DeploymentID`
+- `NGINXaaS:DeploymentName`
+
 
 ## Add an SSL/TLS certificate to AWS Secrets Manager
 
 To add an SSL/TLS certificate and key as a secret to AWS Secrets Manager,
 
-- Ensure your certificate and key file(s) are in one of our [accepted formats]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/overview.md#supported-certificate-types-and-formats" >}}).
-- Follow AWS's [instructions to create a secret in AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html) and store your certificate and key file(s) as the secret value.
+1. Make sure your certificate and key file(s) are in one of the [accepted formats]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/overview.md#supported-certificate-types-and-formats" >}}).
+1. Follow AWS's [instructions to create a secret in AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html) and set your certificate and private key file contents as the `plaintext` secret value.
 
-{{< call-out class="note" >}}
+{{< call-out class="note" title="Note" >}}
 
-There are many ways to manage your SSL/TLS certificates and keys. For example, one option is to include the PEM certificate data in the same secret as your private key because NGINX's `ssl_certificate` directive supports a single file containing multiple certificates and a key. See NGINX's [Configuring HTTPS servers](https://nginx.org/en/docs/http/configuring_https_servers.html) guide for more details.
+There are many ways to manage your SSL/TLS certificates and keys. For example, you can include the PEM certificate data in the same secret as your private key. The `ssl_certificate` directive supports a single file containing multiple certificates and a key. See NGINX's [Configuring HTTPS servers](https://nginx.org/en/docs/http/configuring_https_servers.html) guide for more details.
 
 {{< /call-out >}}
 
@@ -39,42 +77,51 @@ There are many ways to manage your SSL/TLS certificates and keys. For example, o
 
 To add your AWS Secrets Manager certificate and key to an NGINX configuration in the NGINXaaS console,
 
-- Select **Configurations** in the left menu.
-- Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
-- Select {{< icon "plus">}} **Add File**.
-- Select **AWS Secrets Manager** as the type of file you want to add.
-- Provide the required information:
+1. Select **Configurations** in the left menu.
+2. Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
+3. Select {{< icon "plus">}} **Add File**.
+4. Select **Cloud Provider Secret** as the type of file you want to add.
+5. Select  **AWS Secrets Manager** as the **Cloud Secret Manager**.
+6. Provide the required information:
     {{< table >}}
 
    | Field                       | Description                  | Note |
    |---------------------------- | ---------------------------- | ---- |
-   | Secret ARN       | The Amazon Resource Name (ARN) of the secret in AWS Secrets Manager | The ARN must match the format `arn:aws:secretsmanager:$REGION:$ACCOUNT_ID:secret:$SECRET_NAME`, optionally followed by a version stage such as `AWSCURRENT` or `AWSPENDING`. If you don't specify a version stage, NGINXaaS for AWS fetches the version labeled `AWSCURRENT`. |
-   | File Path               | The secret will be written to this file path so it can be used with NGINX directives such as ssl_certificate or ssl_certificate_key in your NGINX configuration. | The path must be unique within the configuration. |
+   | Secret ARN              | The Amazon Resource Name (ARN) of the secret in AWS Secrets Manager | The ARN must match the format `arn:<PARTITION>:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:<SECRET_NAME>-<6_RANDOM_CHARACTERS>`. |
+   | Version Stage           | The staging label of the secret version. | Version stage is optional and cannot be specified at the same time as Version ID. If you don't specify a version stage or a version ID, NGINXaaS for AWS fetches the version labeled `AWSCURRENT`. See AWS's [documentation on secret versions](https://docs.aws.amazon.com/secretsmanager/latest/userguide/whats-in-a-secret.html#term_version) for more information. |
+   | Version ID              | The unique identifier of the secret version. | Version ID is optional and cannot be specified at the same time as version stage. If you don't specify a version stage or a version ID, NGINXaaS for AWS fetches the version labeled `AWSCURRENT`. |
+   | File Path               | NGINXaaS writes the secret to this file path, so it can be used with NGINX directives such as `ssl_certificate` or `ssl_certificate_key` in your NGINX configuration. | The path must be unique within the configuration. |
 
     {{< /table >}}
 
 {{< call-out "tip" "Enable automatic rotation with AWSCURRENT" >}}
-If you reference the `AWSCURRENT` version stage (the default when no stage is specified), NGINXaaS for AWS automatically picks up any new secret version AWS Secrets Manager promotes to `AWSCURRENT` without a configuration change. NGINXaaS for AWS applies new versions within four hours. See [Rotate an AWS Secrets Manager certificate (automatic)](#rotate-an-aws-secrets-manager-certificate-automatic) for details.
+If you set the **Version Stage** to `AWSCURRENT` or leave **Version Stage** and **Version ID** unspecified, NGINXaaS for AWS automatically picks up any new secret version AWS Secrets Manager promotes to `AWSCURRENT` without a configuration change. NGINXaaS for AWS applies new versions within four hours. See [Rotate an AWS Secrets Manager certificate (automatic)](#rotate-an-aws-secrets-manager-certificate-automatic) for details.
 {{< /call-out >}}
 
-- Update the NGINX configuration to reference the certificate you just added by the path value.
-- Select **Add**, **Next**, and then **Save** to save your changes.
+7. Update the NGINX configuration to reference the certificate you just added by the path value.
+8. Select **Add**, **Next**, and then **Save** to save your changes.
 
 ## Update your NGINXaaS deployment's NGINX configuration
 
-Before updating your NGINXaaS deployment to use your new NGINX configuration, ensure your deployment already has an [IAM OIDC identity provider and IAM role set up]({{< ref "/nginxaas/aws/deploy/access-management.md#configure-iam-role-federation" >}}) with the `secretsmanager:GetSecretValue` permission granted, so it can fetch certificates. Then, in the NGINXaaS console:
+Before updating your NGINXaaS deployment to use your new NGINX configuration, make sure your deployment already has an [IAM role set up]({{< ref "/nginxaas/aws/deploy/access-management.md" >}}) with the `secretsmanager:GetSecretValue` permission granted, so it can fetch certificates. Then, in the NGINXaaS console:
 
-- Select **Deployments**.
-- Select the deployment you want to edit.
-- In the **Configuration Info** panel, select **Edit**.
-- Select the configuration and configuration version created in the last section.
-- Select **Update Configuration**.
+1. Select **Deployments**.
+1. Select the deployment you want to edit.
+1. In the **Configuration Info** panel, select **Edit**.
+1. Select the configuration and configuration version created in the last section.
+1. Select **Update Configuration**.
+
+{{< call-out class="note" title="Note" >}}
+
+Configurations with AWS Secrets Manager secrets can only be added to AWS deployments.
+
+{{< /call-out >}}
 
 ## Rotate an AWS Secrets Manager certificate (automatic)
 
-If you reference the `AWSCURRENT` version stage for your secret, NGINXaaS for AWS fetches whichever version currently carries that staging label. When you [rotate the secret in AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html) — whether through a configured rotation function or by manually promoting a new version — and AWS Secrets Manager moves the `AWSCURRENT` label to the new version, NGINXaaS for AWS automatically picks up that version within four hours.
+If you set the **Version Stage** to `AWSCURRENT` or leave **Version Stage** and **Version ID** unspecified, NGINXaaS for AWS fetches the latest secret version. When you [update the value of a secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_update-secret-value.html) or [configure an AWS Lambda function to rotate the secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_lambda.html), AWS Secrets Manager moves the `AWSCURRENT` label to the new secret version. NGINXaaS for AWS automatically picks up that new version within four hours.
 
-If you reference a specific version stage other than `AWSCURRENT` (for example, a custom staging label), NGINXaaS for AWS fetches the secret version that stage points to. When you [move that staging label to a different version in AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version), NGINXaaS for AWS automatically picks up that version within four hours.
+If you set the **Version Stage** to a staging label other than `AWSCURRENT`, NGINXaaS for AWS fetches the secret version the staging label points to. When you [move a staging label to point to a different secret in AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_UpdateSecretVersionStage.html), NGINXaaS for AWS automatically picks up that secret within four hours.
 
 No configuration changes are required in either case. To confirm your deployment is using an updated certificate, check the **Certificates** list for the new serial number or inspect the certificate at your deployment's endpoint.
 
@@ -83,7 +130,7 @@ No configuration changes are required in either case. To confirm your deployment
 To immediately refetch secrets without editing your NGINX configuration, use **Reapply Configuration**. This is useful in the following scenarios:
 
 - **New secret version**: You've uploaded a new certificate and want NGINXaaS for AWS to use it right away.
-- **IAM Role Federation or permissions fix**: You've updated an IAM OIDC identity provider or granted AWS Secrets Manager permissions and want NGINXaaS for AWS to retry immediately.
+- **Updated IAM role or permissions**: You've updated your IAM role trust policy or permissions policy and want NGINXaaS for AWS to retry immediately.
 
 To reapply your configuration:
 
@@ -115,8 +162,9 @@ NGINXaaS for AWS generates an event each time it fetches or fails to fetch a sec
 {{< table >}}
 | Message | Likely cause | Remediation |
 |---|---|---|
-| `Failed to fetch secret ... AccessDeniedException: User: arn:aws:sts::$ACCOUNT_ID:assumed-role/$ROLE_NAME/... is not authorized to perform: secretsmanager:GetSecretValue on resource: $SECRET_ARN` | The IAM role assumed through IAM Role Federation doesn't have the required permission on the secret. | Verify the IAM role has a policy granting `secretsmanager:GetSecretValue` on the secret ARN. |
-| `Failed to fetch secret ... ResourceNotFoundException: Secrets Manager can't find the specified secret` or `...can't find the specified secret version` | The secret ARN doesn't exist, or the referenced version stage doesn't point to an existing version. | Confirm the secret ARN is correct and that the specified version stage (for example, `AWSCURRENT`) is assigned to an existing version. |
+| `operation error Secrets Manager: GetSecretValue, get identity: get credentials: failed to refresh cached credentials, operation error STS: AssumeRole...` | The IAM role's trust policy is not configured correctly. | Verify the IAM role trust policy allows `sts:AssumeRole` and `sts:TagSession` on the NGINXaaS principal. |
+| `AccessDeniedException... no identity-based policy allows the secretsmanager:GetSecretValue action` | The IAM role's permissions policy is not configured correctly. | Verify the IAM role has a permissions policy allowing `secretsmanager:GetSecretValue` on the secret ARN and any tag attribute conditions are met. |
+| `ResourceNotFoundException: Secrets Manager can't find the specified secret...` | The secret ARN doesn't exist, or the referenced version stage or version ID doesn't point to an existing version. | Confirm the secret ARN is correct and that the specified version stage or version ID is assigned to an existing version. |
 {{< /table >}}
 
 ## What's next

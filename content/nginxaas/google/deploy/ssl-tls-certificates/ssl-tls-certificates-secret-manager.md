@@ -16,19 +16,19 @@ If you haven't already done so, complete the following prerequisites:
 
 - Enable the [Secret Manager API](https://docs.cloud.google.com/secret-manager/docs/configuring-secret-manager#enable-the-secret-manager-api).
 - [Create an NGINXaaS deployment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}}).
-- Configure Workload Identity Federation (WIF). See [our documentation on setting up WIF]({{< ref "/nginxaas/google/deploy/access-management.md#configure-wif" >}}) for exact steps.
+- Configure Workload Identity Federation (WIF). See [the documentation on setting up WIF]({{< ref "/nginxaas/google/deploy/access-management.md#configure-wif" >}}) for exact steps.
   - [Grant access to the WIF principal]({{< ref "/nginxaas/google/deploy/access-management.md#grant-access-to-the-wif-principal-with-your-desired-roles" >}}) with the **Secret Manager Secret Accessor** role.
 
 ## Add an SSL/TLS certificate to Secret Manager
 
 To add an SSL/TLS certificate and key as a secret to Secret Manager, 
 
-- Ensure your certificate and key file(s) are in one of our [accepted formats]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md#supported-certificate-types-and-formats" >}}).
-- Follow Google's [instructions to upload your certificate and key file(s) to Secret Manager](https://docs.cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#console_1).
+1. Make sure your certificate and key file(s) are in one of the [accepted formats]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md#supported-certificate-types-and-formats" >}}).
+1. Follow Google's [instructions to upload your certificate and key file(s) to Secret Manager](https://docs.cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#console_1).
 
-{{< call-out class="note" >}}
+{{< call-out class="note" title="Note" >}}
 
-There are many ways to manage your SSL/TLS certificates and keys. For example, one option is to include the PEM certificate data in the same secret as your private key because NGINX's `ssl_certificate` directive supports a single file containing multiple certificates and a key. See NGINX's [Configuring HTTPS servers](https://nginx.org/en/docs/http/configuring_https_servers.html) guide for more details.
+There are many ways to manage your SSL/TLS certificates and keys. For example, you can include the PEM certificate data in the same secret as your private key. The ssl_certificate directive supports a single file containing multiple certificates and a key. See NGINX's [Configuring HTTPS servers](https://nginx.org/en/docs/http/configuring_https_servers.html) guide for more details.
 
 {{< /call-out >}}
 
@@ -36,17 +36,18 @@ There are many ways to manage your SSL/TLS certificates and keys. For example, o
 
 To add your Secret Manager certificate and key to an NGINX configuration in the NGINXaaS console,
 
-- Select **Configurations** in the left menu.
-- Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
-- Select {{< icon "plus">}} **Add File**.
-- Select **Google Secret Manager** as the type of file you want to add.
-- Provide the required information:
+1. Select **Configurations** in the left menu.
+2. Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
+3. Select {{< icon "plus">}} **Add File**.
+4. Select **Cloud Provider Secret** as the type of file you want to add.
+5. Select **Google Secret Manager** as the **Cloud Secret Manager**.
+6. Provide the required information:
     {{< table >}}
 
    | Field                       | Description                  | Note |
    |---------------------------- | ---------------------------- | ---- |
    | Google Secret ID       | The resource name of the secret in Secret Manager | The resource name must match the format `projects/$PROJECT_ID/secrets/$SECRET_ID/versions/$VERSION`, where `$VERSION` can be a specific version ID (for example, `3`), a custom alias, or the special version ID `latest`. |
-   | File Path               | The secret will be written to this file path so it can be used with NGINX directives such as ssl_certificate or ssl_certificate_key in your NGINX configuration. | The path must be unique within the configuration. |
+   | File Path               | The secret will be written to this file path, so it can be used with NGINX directives such as `ssl_certificate` or `ssl_certificate_key` in your NGINX configuration. | The path must be unique within the configuration. |
 
     {{< /table >}}
 
@@ -54,18 +55,24 @@ To add your Secret Manager certificate and key to an NGINX configuration in the 
 If you set `$VERSION` to `latest`, NGINXaaS automatically picks up any new secret version you add to Secret Manager without a configuration change. NGINXaaS applies new versions within four hours. See [Rotate a Secret Manager certificate (automatic)](#rotate-a-secret-manager-certificate-automatic) for details.
 {{< /call-out >}}
 
-- Update the NGINX configuration to reference the certificate you just added by the path value.
-- Select **Add**, **Next**, and then **Save** to save your changes.
+7. Update the NGINX configuration to reference the certificate you just added by the path value.
+8. Select **Add**, **Next**, and then **Save** to save your changes.
 
 ## Update your NGINXaaS deployment's NGINX configuration
 
-Before updating your NGINXaaS deployment to use your new NGINX configuration, ensure your deployment already has a [workload identity pool provider set up]({{< ref "/nginxaas/google/deploy/access-management.md#configure-wif" >}}) with the **Secret Manager Secret Accessor** role granted, so it can fetch certificates. Then, in the NGINXaaS console:
+Before updating your NGINXaaS deployment to use your new NGINX configuration, make sure your deployment already has a [workload identity pool provider set up]({{< ref "/nginxaas/google/deploy/access-management.md#configure-wif" >}}) with the **Secret Manager Secret Accessor** role granted, so it can fetch certificates. Then, in the NGINXaaS console:
 
-- Select **Deployments**.
-- Select the deployment you want to edit.
-- In the **Configuration Info** panel, select **Edit**.
-- Select the configuration and configuration version created in the last section.
-- Select **Update Configuration**.
+1. Select **Deployments**.
+1. Select the deployment you want to edit.
+1. In the **Configuration Info** panel, select **Edit**.
+1. Select the configuration and configuration version created in the last section.
+1. Select **Update Configuration**.
+
+{{< call-out class="note" title="Note" >}}
+
+Configurations with Google Secret Manager secrets can only be added to Google deployments.
+
+{{< /call-out >}}
 
 ## Rotate a Secret Manager certificate (automatic)
 
