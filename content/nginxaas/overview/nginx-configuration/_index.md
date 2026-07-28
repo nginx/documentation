@@ -1,5 +1,5 @@
 ---
 title: NGINX configurations
 weight: 500
-url: /nginxaas/nginx-configuration/
+url: /nginxaas/overview/nginx-configuration/
 ---

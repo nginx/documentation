@@ -6,5 +6,5 @@ f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
 f5-product: NGINXaaS for AWS
-contentSource: nginxaas/nginx-configuration/nginx-configuration-console.md
+contentSource: nginxaas/overview/nginx-configuration/nginx-configuration-console.md
 ---

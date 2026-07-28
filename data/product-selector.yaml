@@ -25,6 +25,8 @@
 
 - productGroup: NGINXaaS
   products:
+    - title: "NGINXaaS for AWS"
+      url: "nginxaas/aws/overview/"
     - title: "NGINXaaS for Google Cloud"
       url: "nginxaas/google/overview/"
     - title: "NGINXaaS for Azure"

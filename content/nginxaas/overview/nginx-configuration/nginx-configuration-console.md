@@ -3,7 +3,7 @@ title: Manage configs using the NGINXaaS Console
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/nginx-configuration/nginx-configuration-console/
+url: /nginxaas/overview/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
 f5-product: F5 NGINXaaS
 contentVars:

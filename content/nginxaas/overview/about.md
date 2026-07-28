@@ -1,13 +1,11 @@
 ---
-title: Overview
+title: About
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/overview/
+url: /nginxaas/overview/about/
 f5-content-type: concept
 f5-product: F5 NGINXaaS
-contentVars:
-  product: NGINXaaS
 ---
 
 ## What is F5 ${product}?

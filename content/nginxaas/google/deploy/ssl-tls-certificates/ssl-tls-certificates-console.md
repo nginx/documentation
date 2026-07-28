@@ -6,5 +6,9 @@ f5-docs: DOCS-000
 url: /nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: NGINXaaS for Google Cloud
-contentSource: nginxaas/ssl-tls-certificates/ssl-tls-certificates-console.md
+contentSource: nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
+
+## What's next
+
+[Upload an NGINX Configuration]({{< ref "/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md" >}})

@@ -6,7 +6,7 @@ f5-docs: DOCS-000
 url: /nginxaas/google/deploy/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
 f5-product: NGINXaaS for Google Cloud
-contentSource: nginxaas/nginx-configuration/nginx-configuration-console.md
+contentSource: nginxaas/overview/nginx-configuration/nginx-configuration-console.md
 ---
 
 ## What's next

@@ -3,7 +3,7 @@ title: Manage users and organizations
 weight: 300
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/manage-users-organizations/
+url: /nginxaas/overview/manage-users-organizations/
 f5-content-type: how-to
 f5-product: F5 NGINXaaS
 ---
@@ -68,4 +68,4 @@ To delete a user in an NGINXaaS Organization:
 1. Select **Delete** in the menu. The deleted user will no longer appear in the **Users** page.
 
 ## What's next
-[Add an NGINX configuration using the NGINXaaS Console]({{< ref "/nginxaas/nginx-configuration/nginx-configuration-console.md" >}})
+[Add an NGINX configuration using the NGINXaaS Console]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}})
