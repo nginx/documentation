@@ -7,7 +7,7 @@ f5-product: NGINX Gateway Fabric
 f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
 ---
 
-NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
+NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}).
 
 Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) — either per Gateway or globally via Helm values.
 
@@ -210,7 +210,7 @@ Replace `<tenant>` with your NGINX One Console tenant hostname. The `namespace` 
 
 Use this option when you compile WAF policies using the F5 WAF compiler CLI or a CI/CD pipeline and host the resulting bundle on an HTTP/HTTPS server. For details on using the compiler, see [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}).
 
-For a complete walkthrough including policy compilation and a bundle server deployment, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
+For a complete walkthrough including policy compilation and a bundle server deployment, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}).
 
 For production environments, you would typically host compiled bundles on an HTTPS server with authentication. See [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for details on adding credentials, custom CA certificates, and checksum verification to your `policySource`.
 
