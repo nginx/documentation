@@ -437,7 +437,7 @@ upstream default_tea_80 {
 
 By default, the `keepalive` directive is omitted, which results in the default NGINX `keepalive` value being used. You can override this value or disable `keepAlive` entirely by configuring an UpstreamSettingsPolicy. To disable keepalive, set the connections field to 0.
 
-The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 32:
+The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 24:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -451,11 +451,11 @@ spec:
     kind: Service
     name: coffee
   keepAlive:
-    connections: 32
+    connections: 24
 EOF
 ```
 
-This `UpstreamSettingsPolicy` targets the `coffee` service in the `targetRefs` field. It sets the number of keepalive connections to 32, which activates the cache for connections to the service's pods and sets the maximum number of idle connections to 32.
+This `UpstreamSettingsPolicy` targets the `coffee` service in the `targetRefs` field. It sets the number of keepalive connections to 24, which activates the cache for connections to the service's pods and sets the maximum number of idle connections to 24.
 
 
 Verify that the `UpstreamSettingsPolicy` is Accepted:
@@ -491,7 +491,7 @@ Next, verify that the policy has been applied to the `coffee` upstreams, by insp
 kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
-You should see that the `coffee` upstream has the `keepalive` directive set to 32:
+You should see that the `coffee` upstream has the `keepalive` directive set to 24:
 
 ```text
 upstream default_coffee_80 {
@@ -499,7 +499,7 @@ upstream default_coffee_80 {
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
-    keepalive 32;
+    keepalive 24;
 }
 ```
 
