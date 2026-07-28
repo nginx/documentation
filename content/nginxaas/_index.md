@@ -16,7 +16,7 @@ and reliable, and bringing advanced traffic services enabled with the commercial
 ### Featured content
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
-  {{<card title="Manage NGINX configuration" titleUrl="/nginxaas/nginx-configuration/nginx-configuration-console/" icon="file-sliders">}}
+  {{<card title="Manage NGINX configuration" titleUrl="/nginxaas/overview/nginx-configuration/nginx-configuration-console/" icon="file-sliders">}}
     Follow these steps to create an NGINX configuration for your NGINXaaS deployment
   {{</card>}}
   {{<card title="Create a deployment in Google Cloud" titleUrl="/nginxaas/google/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}

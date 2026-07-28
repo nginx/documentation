@@ -6,5 +6,5 @@ f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: NGINXaaS for AWS
-contentSource: nginxaas/ssl-tls-certificates/ssl-tls-certificates-console.md
+contentSource: nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---

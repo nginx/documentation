@@ -2,7 +2,7 @@
 title: Overview
 weight: 50
 toc: true
-url: /nginxaas/nginx-configuration/overview/
+url: /nginxaas/overview/nginx-configuration/overview/
 f5-content-type: reference
 f5-product: F5 NGINXaaS
 contentVars:
@@ -16,7 +16,7 @@ F5 ${product} deployment, restrictions, and available directives.
 
 You can upload NGINX configurations to your ${product} deployment using the NGINXaaS console:
 
-- [Upload using the console]({{< ref "/nginxaas/nginx-configuration/nginx-configuration-console.md" >}})
+- [Upload using the console]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}})
 
 The topics below explain NGINX configuration restrictions and which directives are supported, unsupported, or cannot be overridden.
 

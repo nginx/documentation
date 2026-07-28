@@ -3,7 +3,7 @@ title: Glossary
 weight: 900
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/glossary/
+url: /nginxaas/overview/glossary/
 f5-content-type: reference
 f5-product: F5 NGINXaaS
 contentVars:

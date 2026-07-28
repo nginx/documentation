@@ -3,7 +3,7 @@ title: Add certificates using the NGINXaaS Console
 weight: 100
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/ssl-tls-certificates/ssl-tls-certificates-console/
+url: /nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
 f5-product: F5 NGINXaaS
 contentVars:
@@ -66,4 +66,4 @@ To use a certificate in an NGINX configuration, follow these steps:
 
 ## What's next
 
-[Upload an NGINX Configuration]({{< ref "/nginxaas/nginx-configuration/nginx-configuration-console.md" >}})
+[Upload an NGINX Configuration]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}})
