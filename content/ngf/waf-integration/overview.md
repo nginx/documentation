@@ -141,7 +141,7 @@ Route-level WAFPolicy   → Overrides Gateway-level for that route only
 
 ## See also
 
-- [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}})
+- [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}})
 - [Configure policy sources (NGINX Instance Manager, NGINX One Console, and HTTP)]({{< ref "/ngf/waf-integration/policy-sources.md" >}})
 - [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}})
 - [WAFPolicy and NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}})
