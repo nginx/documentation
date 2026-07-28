@@ -308,4 +308,5 @@ The deployment is privately deployed in your subnet. If you want to route traffi
 
 ## What's next
 
-[Manage certificates in Google Secret Manager]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}})
+- [Monitor your deployment]({{< ref "/nginxaas/google/monitoring/enable-monitoring.md" >}})
+- [Manage certificates in Google Secret Manager]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}})
