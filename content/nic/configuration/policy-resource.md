@@ -1335,8 +1335,8 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 | ---| ---| ---| --- |
 |``type`` | Source backend: ``N1C`` (NGINX One Console), ``NIM`` (NGINX Instance Manager), or ``HTTPS``. Defaults to ``HTTPS``. | ``string`` | No |
 |``url`` | Tenant URL for ``N1C``/``NIM``, or full ``.tgz`` bundle URL for ``HTTPS``. Must use ``https://``. | ``string`` | Yes |
-|``Name`` | Management-plane policy name for ``N1C``/``NIM``. For ``apLogBundleSource``, set this to the log profile name. Ignored for ``HTTPS``. | ``string`` | No |
-|``Namespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
+|``name`` | Management-plane policy name for ``N1C``/``NIM``. For ``apLogBundleSource``, set this to the log profile name. Ignored for ``HTTPS``. | ``string`` | No |
+|``namespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
 |``enablePolling`` | Must be explicitly set. When ``true``, NIC re-fetches the bundle at ``pollInterval``. When ``false``, the bundle is fetched once at policy creation or update. | ``bool`` | Yes |
 |``pollInterval`` | How often to re-fetch when ``enablePolling`` is ``true``. Minimum ``1m``, default ``5m``. | ``string`` | No |
 |``secret`` | Secret in the same namespace as the Policy. For ``N1C``/``NIM``, use ``nginx.com/waf-bundle`` (token or username/password). For ``HTTPS``, use ``kubernetes.io/tls`` for client mTLS (``tls.crt`` and ``tls.key``). | ``string`` | No |
@@ -1379,25 +1379,27 @@ spec:
   waf:
     enable: true
     apBundleSource:
-      type: NIM
-      url: "https://<nim_host>"
+      type: N1C
+      url: "https://<tenant>.console.ves.volterra.io"
       name: "<policy_name>"
-      secret: "nim-credentials"
+      namespace: "default"
+      secret: "n1c-credentials"
       enablePolling: true
       pollInterval: "5m"
     securityLogs:
     - enable: true
       apLogBundleSource:
-        type: NIM
-        url: "https://<nim_host>"
-        name: "<log_profile_name>"
-        secret: "nim-credentials"
+        type: N1C
+        url: "https://<tenant>.console.ves.volterra.io"
+        name: "secops_dashboard"
+        namespace: "default"
+        secret: "n1c-credentials"
         enablePolling: true
         pollInterval: "5m"
       logDest: "stderr"
 ```
 
-HTTPS:
+HTTPS
 ```yaml
 spec:
   waf:
