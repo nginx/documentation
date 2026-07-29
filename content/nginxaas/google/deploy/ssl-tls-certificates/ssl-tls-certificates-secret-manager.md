@@ -47,7 +47,7 @@ To add your Secret Manager certificate and key to an NGINX configuration in the 
    | Field                       | Description                  | Note |
    |---------------------------- | ---------------------------- | ---- |
    | Google Secret ID       | The resource name of the secret in Secret Manager | The resource name must match the format `projects/$PROJECT_ID/secrets/$SECRET_ID/versions/$VERSION`, where `$VERSION` can be a specific version ID (for example, `3`), a custom alias, or the special version ID `latest`. |
-   | File Path               | The secret will be written to this file path, so it can be used with NGINX directives such as `ssl_certificate` or `ssl_certificate_key` in your NGINX configuration. | The path must be unique within the configuration. |
+   | File Path               | The secret will be written to this file path, so it can be used with NGINX directives such as `ssl_certificate` or `ssl_certificate_key` in your NGINX configuration. | The path must be unique within the configuration. See the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to. |
 
     {{< /table >}}
 

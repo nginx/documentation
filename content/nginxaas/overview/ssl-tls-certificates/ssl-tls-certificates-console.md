@@ -45,7 +45,7 @@ To use a certificate in an NGINX configuration, follow these steps:
    | Field                       | Description                  | Note |
    |---------------------------- | ---------------------------- | ---- |
    | Certificate File Path       | This path can match one or more ssl_certificate directive file arguments in your NGINX configuration. | The certificate path must be unique within the same deployment. |
-   | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. |
+   | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. See the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas/overview/nginx-configuration/overview.md#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to. |
 
     {{< /table >}}
 - Update the NGINX configuration to reference the certificate you just added by the path value.

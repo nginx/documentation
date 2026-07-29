@@ -90,7 +90,7 @@ To add your AWS Secrets Manager certificate and key to an NGINX configuration in
    | Secret ARN              | The Amazon Resource Name (ARN) of the secret in AWS Secrets Manager | The ARN must match the format `arn:<PARTITION>:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:<SECRET_NAME>-<6_RANDOM_CHARACTERS>`. |
    | Version Stage           | The staging label of the secret version. | Version stage is optional and cannot be specified at the same time as Version ID. If you don't specify a version stage or a version ID, NGINXaaS for AWS fetches the version labeled `AWSCURRENT`. See AWS's [documentation on secret versions](https://docs.aws.amazon.com/secretsmanager/latest/userguide/whats-in-a-secret.html#term_version) for more information. |
    | Version ID              | The unique identifier of the secret version. | Version ID is optional and cannot be specified at the same time as version stage. If you don't specify a version stage or a version ID, NGINXaaS for AWS fetches the version labeled `AWSCURRENT`. |
-   | File Path               | NGINXaaS writes the secret to this file path, so it can be used with NGINX directives such as `ssl_certificate` or `ssl_certificate_key` in your NGINX configuration. | The path must be unique within the configuration. |
+   | File Path               | NGINXaaS writes the secret to this file path, so it can be used with NGINX directives such as `ssl_certificate` or `ssl_certificate_key` in your NGINX configuration. | The path must be unique within the configuration. See the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas/aws/deploy/nginx-configuration/overview.md#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to. |
 
     {{< /table >}}
 
