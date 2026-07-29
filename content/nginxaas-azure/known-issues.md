@@ -11,6 +11,50 @@ url: /nginxaas-azure/known-issues/
 
 List of known issues in the latest releases of F5 NGINXaaS for Azure.
 
+### NGINX Plus 37.0 behavior impact
+
+The release of NGINX Plus [37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) introduces the following behavioral changes that may affect upstream applications:
+- HTTP/1.1 is now the default protocol for connecting to proxy or upstream servers.
+- Keepalive connections between NGINX and upstream servers are enabled by default.
+- Upstream shared memory zone requires an additional 1KB of memory per upstream server.
+
+To preserve existing behavior, make the following configuration changes to your NGINX Plus [R36-P8]({{< ref "/nginx/releases/#r36" >}}) configuration before NGINXaaS is upgraded to NGINX Plus 37.0.4 on the stable upgrade channel (August 17, 2026):
+
+- Explicitly set HTTP/1.0 as the default protocol for communicating with upstream or proxy servers:
+  ```shell
+  http {
+     proxy_http_version 1.0;
+     ...
+  }
+  ```
+
+- For all upstream or proxy servers that explicitly use the HTTP/1.1 protocol, use the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive to ensure the connection is closed after completing the request-response cycle:
+  ```shell
+  location  /example {
+     proxy_set_header Connection "close";
+     proxy_http_version 1.1;
+     ...
+  }
+  ```
+
+- Set the [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive to zero for all HTTP/1.1 upstream blocks where it has not been explicitly defined:
+  ```shell
+  upstream backend {
+     ...
+     keepalive 0;
+  }
+  ```
+
+- Increase the upstream block shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) size by approximately 1KB per upstream server, rounding up to leave some headroom:
+  ```shell
+  upstream backend {
+     ...
+     zone backend 64k; # Example only. New size depends on previous settings.
+  }
+  ```
+
+For further information on the new behavior of NGINX Plus 37.0, see **NGINX Plus PLS.37.0.4.1 LTS** [Upgrade Notes]({{< ref "/nginx/releases/#pls.37.0.4" >}}).
+
 ### {{% icon-bug %}} Terraform fails to apply due to validation errors, but creates "Failed" resources in Azure (ID-4424)
 
 Some validation errors are caught later in the creation process, and can leave behind "Failed" resources in Azure. An example initial failure might look like:
