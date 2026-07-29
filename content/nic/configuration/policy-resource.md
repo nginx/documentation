@@ -1348,7 +1348,7 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 
 {{% /table %}}
 
-For example, see below snippets:
+For example, see the snippets below:
 
 NIM
 ```yaml
