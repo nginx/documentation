@@ -42,7 +42,7 @@ NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
 
 - Ensure you are upgrading from the latest version of NGINX Plus R36 - currently NGINX Plus R36 P8, released on July 22, 2026.
 
-- Increase [upstream shared memory zones]((https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)): the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your upstream shared memory zones are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. This may increase the required shared memory zone size by 25–30%.
+- Increase [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone): the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your upstream shared memory zones are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. This may increase the required shared memory zone size by 25–30%.
 
 - Disable [upstream keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) if unsupported: NGINX Plus PLS.37 LTS enables upstream keepalive by default. If your backend does not support connection reuse, explicitly disable it with `keepalive 0;` in your upstream configuration before upgrading. See [K000161464](https://my.f5.com/s/article/K000161464#ai-recommendations-55) for details.
 
