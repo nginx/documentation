@@ -8,15 +8,11 @@ f5-content-type: concept
 f5-product: NGINXaaS for AWS
 ---
 
-{{< call-out class="important" title="Placeholder content" >}}
-This page contains placeholder documentation for **NGINXaaS for AWS**. Workflows, screenshots, pricing, and UI text described here are illustrative only and do not represent a shipping product.
-{{< /call-out >}}
-
 ## What is NGINXaaS for AWS?
 
 F5 NGINXaaS for AWS is a SaaS offering that is tightly integrated
 into AWS and its ecosystem of services, making applications fast, efficient,
-and reliable bringing advanced traffic services enabled with the commercial version of NGINX, without any of the operational toil.
+and reliable. It brings advanced traffic management capabilities from the commercial version of NGINX, without any of the operational toil.
 
 [NGINX Plus](https://www.nginx.com/products/nginx/) powers NGINXaaS for AWS, which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution.
 
@@ -50,20 +46,19 @@ The key capabilities of NGINXaaS for AWS are:
 
 ## NGINXaaS for AWS architecture
 
-NGINXaaS for AWS runs in dedicated infrastructure managed by F5, with connectivity into your Amazon VPC established through [AWS PrivateLink](https://aws.amazon.com/privatelink/). Admins manage the deployment using the NGINXaaS Console or API. Inside your VPC, NGINXaaS reaches your application servers through an interface VPC endpoint, and integrates with Amazon CloudWatch, AWS Secrets Manager, and other AWS services using an IAM role assumed via OIDC federation. Client traffic flows in either through a managed public endpoint or through a customer-owned Network Load Balancer, depending on the [Service Frontend](#service-frontend) you choose.
+{{< img src="nginxaas/aws/nginxaas-aws-cloud-architecture.svg" alt="Architecture diagram showing how NGINXaaS integrates with AWS. At the top, inside the AWS IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside NGINXaaS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with AWS services such as AWS Secrets Manager, Amazon CloudWatch, and other AWS services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
 - The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
 - NGINXaaS automatically adapts to application traffic demands through autoscaling
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
-- NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas/aws/known-issues.md" >}}) for any networking restrictions.
 - NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 
-### Service Frontend
+### Service frontend
 
 The service frontend of an NGINXaaS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
 
-#### Managed Public Endpoint
+#### Managed public endpoint
 
 A managed public endpoint frontend allows client access over the internet through a public DNS name created by NGINXaaS in its network.
 
@@ -86,7 +81,7 @@ Access control list (ACL) rules control traffic to a managed public endpoint dep
     - If you don’t specify a port range, traffic is allowed from any port
     - Required when you specify a protocol
 
-#### Private Endpoint
+#### Private endpoint
 
 A private endpoint frontend allows client access through your network by using [AWS PrivateLink](https://aws.amazon.com/privatelink/). To set up connectivity, create either an [interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) for internal traffic or a [Network Load Balancer fronting that endpoint](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-register-targets.html) for external traffic. This approach brings the NGINXaaS deployment into your client network through an NGINXaaS-owned VPC endpoint service, so application clients can connect directly into your network. For step-by-step instructions, see [Set up connectivity]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
 
@@ -98,15 +93,20 @@ A private endpoint frontend allows client access through your network by using [
 
 **Access control**
 
-A VPC endpoint service allow list restricts which AWS account IDs can connect to the deployment. If you don’t specify any account IDs in the allow list, traffic from all accounts is allowed (or, if you disable [acceptance required](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html), any principal that requests a connection is auto-accepted).
+A VPC endpoint service allow list restricts which AWS account IDs or VPC endpoint IDs can connect to the deployment. If you don't specify any entries in the allow list, traffic from all accounts is allowed (or, if you disable [acceptance required](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html), any principal that requests a connection is auto-accepted).
 
 ### Upstream network
 
-NGINXaaS uses [AWS PrivateLink](https://aws.amazon.com/privatelink/) to connect securely to your applications.
+NGINXaaS uses [AWS VPC Peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) to connect privately to your upstream applications.
 
-To bring the deployment into your application network, you create a [VPC endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html) backed by a Network Load Balancer that targets your upstream application servers, and share it with the NGINXaaS AWS account. NGINXaaS then connects to your applications through an interface VPC endpoint in its own VPC. By using your own Network Load Balancer and target group, you control traffic flow and can apply your preferred security controls.
+A VPC peering connection brings the deployment into your application network and supports secure, private connectivity to your upstream services. By managing your own VPC routing and security group rules, you control traffic flow and can apply your preferred security controls.
 
-To connect NGINXaaS to your upstream VPC endpoint service, you must share the service with the NGINXaaS AWS account and provide its service name when creating your deployment. For steps, see {{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md#create-a-vpc-endpoint-service" >}}.
+To connect NGINXaaS to your upstream VPC, you must [create a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) from your AWS account targeting the NGINXaaS deployment's AWS Account ID and VPC ID, then add the peering connection ID to your deployment.
+
+{{< call-out class="caution" title="CIDR overlap" >}}
+The upstream VPC CIDR must not overlap with the NGINXaaS deployment
+VPC CIDR. If CIDRs overlap, VPC peering will fail.
+{{< /call-out >}}
 
 #### Connection draining
 
@@ -117,7 +117,7 @@ During scaling, some connections older than 60 seconds might be reset. The servi
 An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
 You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on traffic demand and makes sure it never drops below the reserved minimum.
 
-### Geographical Controllers
+### Geographical controllers
 
 NGINXaaS for AWS has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. NGINXaaS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
 
@@ -125,15 +125,16 @@ NGINXaaS for AWS has a global presence, with management requests served by regio
 
 {{< include "/nginxaas/aws/supported-regions.md" >}}
 
-## Current Limitations
+## Current limitations
 
 We are committed to enhancing NGINXaaS for AWS and welcome your feedback to help shape the future of our service. If there are features you'd like to see prioritized, we encourage you to submit a [support ticket]({{< ref "/nginxaas/aws/support.md" >}}) to share your suggestions.
 
-Here are the current constraints you should be aware of when while using NGINXaaS for AWS:
+Here are the current constraints you should be aware of while using NGINXaaS for AWS:
 
 - NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas/aws/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
 - We only support authentication via AWS IAM Identity Center acting as an identity provider.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
+- Ingress and upstream connections must remain within the same AWS region. Cross-region connections are not supported.
 
 ## What's next
 
