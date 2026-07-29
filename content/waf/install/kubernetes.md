@@ -454,7 +454,7 @@ spec:
             - name: app-protect-config
               mountPath: /opt/app_protect/config
         - name: waf-enforcer
-          image: private-registry.nginx.com/nap/waf-enforcer:<version-tag>
+          image: private-registry.nginx.com/nap/waf-enforcer:{{< version-waf-enforcer >}}
           imagePullPolicy: IfNotPresent
           env:
             - name: ENFORCER_PORT
@@ -463,7 +463,7 @@ spec:
             - name: app-protect-bd-config
               mountPath: /opt/app_protect/bd_config
         - name: waf-config-mgr
-          image: private-registry.nginx.com/nap/waf-config-mgr:<version-tag>
+          image: private-registry.nginx.com/nap/waf-config-mgr:{{< version-waf-config-mgr >}}
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
