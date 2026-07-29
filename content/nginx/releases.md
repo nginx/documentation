@@ -42,11 +42,11 @@ NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
 
 - Ensure you are upgrading from the latest version of NGINX Plus R36 - currently NGINX Plus R36 P8, released on July 22, 2026.
 
-- Increase upstream shared memory zones: the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space.
+- Increase [upstream shared memory zones]((https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone)): the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your upstream shared memory zones are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. This may increase the required shared memory zone size by 25–30%.
 
-- Disable upstream keepalive if unsupported: NGINX Plus PLS.37 LTS enables upstream keepalive by default. If your backend does not support connection reuse, explicitly disable it with `keepalive 0;` in your upstream configuration before upgrading. See [K000161464](https://my.f5.com/s/article/K000161464#ai-recommendations-55) for details.
+- Disable [upstream keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) if unsupported: NGINX Plus PLS.37 LTS enables upstream keepalive by default. If your backend does not support connection reuse, explicitly disable it with `keepalive 0;` in your upstream configuration before upgrading. See [K000161464](https://my.f5.com/s/article/K000161464#ai-recommendations-55) for details.
 
-- Default HTTP version change: if your upstreams rely on HTTP/1.0 for upstream communication, explicitly set `proxy_http_version 1.0;`. Ensure the `Host` header is configured when using the HTTP 1.1 protocol; without this, upstream health checks may fail. {{< /call-out >}}
+- Change the [HTTP version for upstreams](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) from the new default HTTP/1.1 to HTTP/1.0 when needed: if your upstreams rely on HTTP/1.0 for upstream communication, explicitly set `proxy_http_version 1.0;`. Ensure the `Host` header is configured when using the HTTP 1.1 protocol; without this, upstream health checks may fail. {{< /call-out >}}
 
 
 ### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
