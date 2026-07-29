@@ -21,27 +21,39 @@ The release of NGINX Plus [37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) intr
 To preserve existing behavior, make the following configuration changes to your NGINX Plus [R36-P8]({{< ref "/nginx/releases/#r36" >}}) configuration before NGINXaaS is upgraded to NGINX Plus 37.0.4 (August 17, 2026) on the stable upgrade channel:
 
 - Explicitly set the HTTP version to 1.0 when communicating with upstream or proxy servers:
-```shell
-http {
-   proxy_http_version 1.0;
-   proxy_set_header Connection "close";
-   ...
-}
-```
+  ```shell
+   http {
+      proxy_http_version 1.0;
+      proxy_set_header Connection "close";
+      ...
+   }
+   ```
+   {{< call-out class="warning" >}} The [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive is only inherited from the previous configuration level if and only if there are no **proxy_set_header** directives defined at the current level.  If you are explicitly using the HTTP/1.1 protocol and have used this directive at either the **server** or **location** block level, you should specify the Connection header at that level instead.  
+   For example:
+   ```shell
+   location  /mypath {
+      proxy_set_header Host $host;
+      proxy_set_header Connection "close";
+      proxy_http_version 1.1;
+      ...
+   }
+   ```
+   {{< /call-out >}}
+
 - Set the [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive to zero for all HTTP/1.1 upstream blocks where it has not been explicitly defined:
-```shell
-upstream backend {
-   ...
-   keepalive 0;
-}
-```
+   ```shell
+   upstream backend {
+      ...
+      keepalive 0;
+   }
+   ```
 - Increase the upstream block shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) size by approximately 1KB per upstream server, rounding up to leave some headroom:
-```shell
-upstream backend {
-   ...
-   zone backend 64k; # Example only. New size depends on previous settings.
-}
-```
+   ```shell
+   upstream backend {
+      ...
+      zone backend 64k; # Example only. New size depends on previous settings.
+   }
+   ```
 For further information on the new behavior of NGINX Plus 37.0, see **NGINX Plus PLS.37.0.4.1 LTS** [Upgrade Notes]({{< ref "/nginx/releases/#pls.37.0.4" >}}).
 
 ### {{% icon-bug %}} Terraform fails to apply due to validation errors, but creates "Failed" resources in Azure (ID-4424)
