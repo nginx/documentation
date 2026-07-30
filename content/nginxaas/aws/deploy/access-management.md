@@ -8,133 +8,330 @@ f5-content-type: how-to
 f5-product: NGINXaaS for AWS
 ---
 
-{{< call-out class="important" title="Placeholder content" >}}
-This page contains placeholder documentation for **NGINXaaS for AWS**. Workflows, screenshots, pricing, and UI text described here are illustrative only and do not represent a shipping product.
-{{< /call-out >}}
+F5 NGINXaaS for AWS uses AWS Identity and Access Management (IAM) roles to integrate with AWS services. An NGINXaaS deployment configured with an AWS IAM role has access to the following capabilities:
 
-F5 NGINXaaS for AWS uses IAM Role Federation (OIDC) to integrate with AWS services. For example, with IAM Role Federation configured, your NGINXaaS deployment can perform the following integrations:
+- Export logs to CloudWatch Logs
+- Export metrics to CloudWatch Logs using EMF
+- Fetch secrets from AWS Secrets Manager to use in your NGINX Configuration
 
- - export logs to Amazon CloudWatch Logs
- - export metrics to Amazon CloudWatch
- - fetch secrets from AWS Secrets Manager
-
-To learn more, see [AWS's documentation on IAM roles for OpenID Connect (OIDC) federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html).
+NGINXaaS acts as a third party accessing your AWS account. To prevent the [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html), NGINXaaS uses an external ID when assuming your provided IAM role. To learn more about this pattern, see [AWS documentation on third-party access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html). The external ID is always your NGINXaaS Organization ID.
 
 ## Prerequisites
 
-- In the AWS account you're configuring IAM Role Federation in, you need the following permissions to create an IAM OIDC identity provider, IAM role, and policy bindings:
-    - [iam:CreateOpenIDConnectProvider](https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateOpenIDConnectProvider.html)
-    - [iam:CreateRole](https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html) and [iam:PutRolePolicy](https://docs.aws.amazon.com/IAM/latest/APIReference/API_PutRolePolicy.html)
-- An NGINXaaS deployment. See [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/" >}}) for a step-by-step guide.
+- An AWS account with permissions to create IAM roles and policies
+- Your NGINXaaS organization ID, available in the **Organization Info** section of the **Organization Details** page (**Settings** > **Organization Details** on the navigation menu)
 
-## Configure IAM Role Federation
+## IAM role options
 
-### Create an IAM OIDC identity provider
+You have flexibility in how to structure IAM roles for your NGINXaaS deployments. Choose an architecture based on your security requirements and operational needs.
 
-1. Create an IAM OIDC identity provider. See [AWS's documentation on creating an OIDC identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) for a step-by-step guide. Set up the provider settings as follows:
-    - `Provider URL` must be `https://oidc.nginxaas.net`.
-    - `Audience` must contain the full canonical identifier of your NGINXaaS deployment, for example, `nginxaas:aws:<account-id>:deployment/<deployment-id>`. If `Audience` is empty, the canonical identifier of the deployment will be included by default.
-1. Create an IAM role that trusts the identity provider. See [AWS's documentation on creating a role for OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html) for a step-by-step guide.
-    - Add the following **trust policy condition**: `StringEquals` on `oidc.nginxaas.net:sub` equal to `$NGINXAAS_DEPLOYMENT_SUBJECT_ID`, where `$NGINXAAS_DEPLOYMENT_SUBJECT_ID` is the unique OIDC subject identifier of your NGINXaaS deployment. This ID can be found in the `NGINXaaS OIDC Subject Identifier` field under the **Cloud Info** section in the **Details** tab of your deployment.
+### Option 1: Single role for all deployments with shared policies
 
-### Grant access to the IAM role with your desired permissions
+One IAM role is shared by all deployments, with access policies that apply to all deployments.
 
-Depending on your use case, you will need to attach certain permission policies to the IAM role you created. See [AWS's documentation on adding IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) for more information.
+**Pros:**
 
-{{< details summary="Grant access to export logs to a CloudWatch Logs log group">}}
+- Simple to set up and maintain
+- Fewer roles to manage in your AWS account
+- Easier onboarding for new deployments
 
-To grant access to export logs to a log group, `$LOG_GROUP_ARN`, in the [AWS Management Console](https://console.aws.amazon.com/),
+**Cons:**
 
-1. Go to the **IAM** console and select the role you created for NGINXaaS for AWS.
-1. Select **Add permissions** > **Create inline policy**.
-1. Add a statement granting `logs:CreateLogStream` and `logs:PutLogEvents` on `$LOG_GROUP_ARN`.
-1. Name and save the policy.
+- Cannot differentiate permissions between deployments
+- All deployments have access to the same resources
+- Less granular security boundaries
 
-Alternatively, to use the AWS CLI, you can run the following `aws` command:
+**Best for:** Development environments, proof-of-concept deployments, or when all deployments require identical permissions.
 
-```bash
-aws iam put-role-policy \
-    --role-name "$NGINXAAS_ROLE_NAME" \
-    --policy-name nginxaas-log-writer \
-    --policy-document '{
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Action": ["logs:CreateLogStream", "logs:PutLogEvents"],
-        "Resource": "'"$LOG_GROUP_ARN"'"
-      }]
-    }'
+### Option 2: Single role for all deployments with per-deployment policies
+
+One IAM role is shared by all deployments, but access policies are restricted to specific deployments using the deployment ID in conditions.
+
+**Pros:**
+
+- Fewer roles to manage in your AWS account
+- Each deployment can have tailored permissions
+- Policies can restrict access per deployment using [session tags]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md#iam-role-permissions-policy" >}}) or principal conditions
+
+**Cons:**
+
+- More complex policy conditions
+- All deployments must use the same role ARN
+- Policy updates affect all deployments
+
+**Best for:** Multi-environment setups where you want per-deployment resource access control without managing multiple roles.
+
+### Option 3: One role per deployment
+
+Each deployment has its own dedicated IAM role with tailored access policies.
+
+**Pros:**
+
+- Maximum granularity and security isolation
+- Each deployment can have tailored permissions
+- Clear 1:1 mapping between role and deployment simplifies auditing and access revocation
+
+**Cons:**
+
+- More roles to manage in your AWS account
+- More setup and maintenance overhead
+- Policy duplication if deployments have similar needs
+
+**Best for:** Production environments, strict security requirements, or when deployments require significantly different permissions.
+
+## Key concepts
+
+### External ID
+
+NGINXaaS provides your organization with a unique **External ID** (your organization ID). This ID is used by the NGINXaaS dataplane to assume your IAM role. The External ID prevents unauthorized access by binding the trust relationship to your specific organization.
+
+## How it works
+
+NGINXaaS periodically calls the AWS [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API to obtain temporary credentials for your IAM role. These credentials are valid for the duration of the assume role session (minimum 15 minutes) and are renewed before they expire.
+
+Be aware of the following propagation delays when making changes:
+
+- **Updating a role's trust policy** — Because credentials are cached for the assume role session duration, trust policy changes can take up to 15 minutes to take effect.
+- **Updating a role's permissions policy** — Permissions policy changes take effect almost immediately.
+
+## Configure IAM roles
+
+### Step 1: Create a trust policy
+
+Create a JSON file named `trust-policy.json` with the following content. Replace `$ORG_ID` with your organization ID, `$DEPLOYMENT_AWS_ACCOUNT_ID` with the NGINXaaS AWS Account ID from the **Deployment Data** section of the **Details** tab, and `$DEPLOYMENT_ID` with your deployment ID (Option 3 only):
+
+{{< details summary="Trust policy for Option 1 or 2 (shared role)">}}
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowNGINXaaSDeploymentToAssumeRole",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": ["254908360701", "207423186715", "785021966578", "775935274660", "275859940910"]
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "sts:ExternalId": "$ORG_ID"
+                }
+            }
+        },
+        {
+            "Sid": "AllowTagging",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": ["254908360701", "207423186715", "785021966578", "775935274660", "275859940910"]
+            },
+            "Action": "sts:TagSession"
+        }
+    ]
+}
 ```
 
 {{< /details >}}
 
-{{< details summary="Grant access to export metrics to a CloudWatch namespace">}}
+{{< details summary="Trust policy for Option 3 (per-deployment role)">}}
 
-To grant access to publish metrics to Amazon CloudWatch, in the [AWS Management Console](https://console.aws.amazon.com/), perform the following steps.
+For per-deployment roles, restrict the **Principal** to the specific IAM role ARN that NGINXaaS uses for your deployment:
 
-1. Go to the **IAM** console and select the role you created for NGINXaaS for AWS.
-1. Select **Add permissions** > **Create inline policy**.
-1. Add a statement granting `cloudwatch:PutMetricData`, optionally scoped with a `cloudwatch:namespace` condition to the `NGINXaaS` namespace.
-1. Name and save the policy.
-
-Alternatively, to use the AWS CLI, you can run the following `aws` command:
-
-```bash
-aws iam put-role-policy \
-    --role-name "$NGINXAAS_ROLE_NAME" \
-    --policy-name nginxaas-metric-writer \
-    --policy-document '{
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Action": "cloudwatch:PutMetricData",
-        "Resource": "*",
-        "Condition": {"StringEquals": {"cloudwatch:namespace": "NGINXaaS"}}
-      }]
-    }'
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowNGINXaaSDeploymentToAssumeRole",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::$DEPLOYMENT_AWS_ACCOUNT_ID:role/$DEPLOYMENT_ID"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "sts:ExternalId": "$ORG_ID"
+                }
+            }
+        },
+        {
+            "Sid": "AllowTagging",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::$DEPLOYMENT_AWS_ACCOUNT_ID:role/$DEPLOYMENT_ID"
+            },
+            "Action": "sts:TagSession"
+        }
+    ]
+}
 ```
 
 {{< /details >}}
 
-{{< details summary="Grant access to fetch a secret from AWS Secrets Manager">}}
+### Step 2: Create the IAM role
 
-To grant access to fetch a secret, `$SECRET_ARN`, in the [AWS Management Console](https://console.aws.amazon.com/),
+To create the IAM role, follow [Creating a role with a custom trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-custom.html) in the AWS documentation, using the trust policy JSON from Step 1. Record the role **ARN** for use in your NGINXaaS deployment configuration.
 
-1. Go to the **IAM** console and select the role you created for NGINXaaS for AWS.
-1. Select **Add permissions** > **Create inline policy**.
-1. Add a statement granting `secretsmanager:GetSecretValue` on `$SECRET_ARN`.
-1. Name and save the policy.
-
-Alternatively, to use the AWS CLI, you can run the following `aws` command:
+Alternatively, to use the AWS CLI, replace `$ROLE_NAME` with a descriptive name (for example, `NGINXaaS-CloudWatch-Role`):
 
 ```bash
-aws iam put-role-policy \
-    --role-name "$NGINXAAS_ROLE_NAME" \
-    --policy-name nginxaas-secret-accessor \
-    --policy-document '{
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Action": "secretsmanager:GetSecretValue",
-        "Resource": "'"$SECRET_ARN"'"
-      }]
-    }'
+aws iam create-role --role-name $ROLE_NAME \
+    --assume-role-policy-document file://trust-policy.json
 ```
 
-If you would like to fetch more than one secret, you will need to grant access on each secret ARN, or use a wildcard resource pattern that matches your secrets.
+**Example output:**
+
+```json
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "NGINXaaS-CloudWatch-Role",
+        "RoleId": "AIDA...",
+        "Arn": "arn:aws:iam::123456789012:role/NGINXaaS-CloudWatch-Role",
+        "CreateDate": "2024-01-15T10:30:00+00:00",
+        "AssumeRolePolicyDocument": {
+            ...
+        }
+    }
+}
+```
+
+Record the role ARN for use in your NGINXaaS deployment configuration.
+
+### Step 3: Add inline policies to your role
+
+Add inline policies to your role to grant the permissions your deployment requires. The following sections provide example policies for common use cases.
+
+{{< details summary="Policy for CloudWatch Logs">}}
+
+For a full guide on monitoring and logging with NGINXaaS, see [Enable monitoring]({{< ref "/nginxaas/aws/monitoring/enable-monitoring.md" >}}) and [Enable NGINX logs]({{< ref "/nginxaas/aws/monitoring/enable-nginx-logs.md" >}}).
+
+To add this policy in the AWS Management Console, follow [Adding inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the AWS documentation. Use the JSON below and name the policy `nginxaas-cloudwatch-logs`.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:nginxaas/*"
+        }
+    ]
+}
+```
+
+Alternatively, to use the AWS CLI:
+
+```bash
+aws iam put-role-policy --role-name $ROLE_NAME \
+    --policy-name nginxaas-cloudwatch-logs \
+    --policy-document '{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:nginxaas/*"
+        }
+    ]
+}'
+```
 
 {{< /details >}}
 
-### Update your NGINXaaS deployment with the ARN of your IAM role
+{{< details summary="Policy for Secrets Manager">}}
 
-In the NGINXaaS Console,
+Replace `$SECRET_ARN` with the ARN of your secret. For a full guide on using AWS Secrets Manager with NGINXaaS, see [Add certificates from AWS Secrets Manager]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md" >}}).
+
+To add this policy in the AWS Management Console, follow [Adding inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) in the AWS documentation. Use the JSON below and name the policy `nginxaas-secrets-manager`.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "$SECRET_ARN"
+        }
+    ]
+}
+```
+
+Alternatively, to use the AWS CLI:
+
+```bash
+aws iam put-role-policy --role-name $ROLE_NAME \
+    --policy-name nginxaas-secrets-manager \
+    --policy-document '{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "$SECRET_ARN"
+        }
+    ]
+}'
+```
+
+{{< /details >}}
+
+### Step 4: Add the role ARN to your NGINXaaS deployment
+
+In the NGINXaaS Console:
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
-1. Enter your role ARN, for example, `arn:aws:iam::<account-id>:role/<role-name>`, under **IAM Role ARN**.
-1. Select **Update**.
+1. Enter your role ARN, for example, `arn:aws:iam::123456789012:role/NGINXaaS-CloudWatch-Role`, in the **Role ARN** field under the **Identity** section.
+1. Select **Save Changes**.
+
+## Monitor role assumption events
+
+NGINXaaS for AWS generates an event when it fails to assume your IAM role. Use these events to diagnose trust policy or permission issues.
+
+### Event types
+
+{{< table >}}
+
+| Event type | Description |
+|---|---|
+| AWS role assumption failed | NGINXaaS couldn't assume the IAM role configured for your deployment. The event message includes the error details. |
+
+{{< /table >}}
+
+### View events in the console
+
+- Select **Overview** in the left menu, then select **Events**. To narrow results to a specific deployment, filter by its object ID using the controls at the top of the page.
+- For a summary of recent events for a specific deployment, select **Deployments**, select the deployment, and look for the **Recent Events** card. Select **See Events Details** to go to the full Events page pre-filtered for that deployment.
+
+### Common failure messages and remediation
+
+{{< table >}}
+
+| Message | Likely cause | Remediation |
+|---|---|---|
+| `The AWS IAM Role hasn't been set up correctly.` | The role ARN does not exist in the customer account, the trust policy's `sts:ExternalId` condition does not match the NGINXaaS organization ID, or (Option 3 only) the Principal in the trust policy does not match the deployment's IAM role ARN. AWS returns the same error for all cases. | Confirm the role ARN in your deployment's **Identity** section refers to an existing IAM role. If the role exists, verify the `sts:ExternalId` condition matches your NGINXaaS organization ID. For Option 3, also verify the trust policy Principal matches the deployment's IAM role ARN (`arn:aws:iam::$DEPLOYMENT_AWS_ACCOUNT_ID:role/$DEPLOYMENT_ID`). |
+
+{{< /table >}}
 
 ## What's next
 
 - [Monitor your deployment]({{< ref "/nginxaas/aws/monitoring/enable-monitoring.md" >}})
 - [Enable NGINX Logs]({{< ref "/nginxaas/aws/monitoring/enable-nginx-logs.md" >}})
+- [Add certificates from AWS Secrets Manager]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md" >}})
+- [AWS IAM User Guide](https://docs.aws.amazon.com/iam/)
+- [AWS IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
