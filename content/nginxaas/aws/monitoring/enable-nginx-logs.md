@@ -12,7 +12,7 @@ f5-product: NGINXaaS for AWS
 This page contains placeholder documentation for **NGINXaaS for AWS**. Workflows, screenshots, pricing, and UI text described here are illustrative only and do not represent a shipping product.
 {{< /call-out >}}
 
-F5 NGINXaaS for AWS supports integrating with AWS services to collect NGINX error and access logs, and F5 WAF for NGINX security logs.
+F5 NGINXaaS for AWS supports integrating with AWS services to collect NGINX error and access logs.
 
 ## Prerequisites
 
@@ -26,10 +26,6 @@ F5 NGINXaaS for AWS supports integrating with AWS services to collect NGINX erro
 ## Setting up access logs
 
 {{< include "/nginxaas/logging-config-access-logs.md" >}}
-
-## Setting up F5 WAF for NGINX security logs
-
-{{< include "/nginxaas/logging-config-security-logs.md" >}}
 
 ## Export NGINX logs to a CloudWatch log group
 
