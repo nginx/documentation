@@ -20,6 +20,17 @@ Before you start, ensure you understand the following concepts:
    - This can be used to restrict access to Google identities within your Google Cloud Organization or Google Workspace, or other known, trusted Workspaces. For example, your Google Cloud Organization may have users created under the `example.com` domain. By setting the Authorized Domains in your NGINXaaS Organization to only allow `example.com`, users attempting to log in with the same email associated with `alternative.net` Google Workspace would not be authenticated.
    - By default, an NGINXaaS Organization has an empty authorized domains list, which accepts matching users from any Google Workspace.
 
+## Create an organization
+
+An NGINXaaS Organization holds your team's NGINX configurations, certificates, and users.
+
+- **Logging in for the first time**: Access the [NGINXaaS Console](https://console.nginxaas.net/) and log in with your identity provider. If you are not already a member of an existing organization, you will be prompted to create a new organization. Enter the **Organization Name** and select **Submit**.
+- **When already logged in**: In the [NGINXaaS Console](https://console.nginxaas.net/), select your profile icon in the top right corner and choose **Switch Organization**. Select **Add Organization**, enter the **Organization Name**, and choose **Create and Select** to create and switch to the new organization.
+
+{{< call-out class="note" >}}
+You can create NGINX configurations and upload SSL/TLS certificates within an organization without a cloud subscription. If you want to create an NGINXaaS deployment, please subscribe to your preferred cloud provider(s) in the cloud marketplace.
+{{< /call-out >}}
+
 ## Add or edit a user
 
 An existing NGINXaaS Organization user can add additional users following these steps:
@@ -35,7 +46,6 @@ The new user will appear in the list of users on the **Users** page. The next ti
 ## Modify organization settings
 
 As an authenticated user, you may modify the authorized domains and name of an NGINXaaS Organization.
-
 
 ### Modify Authorized Domains
 
@@ -55,7 +65,7 @@ As an authenticated user, you may modify the authorized domains and name of an N
 
 ## Switch organizations
 
-To switch to a different NGINXaaS Organization, select the profile symbol in the top right corner and choose **Switch Organization**. This opens a page showing the list of all the NGINXaaS Organizations that your user identity is linked to; select the organization you want to switch to.
+To switch to a different NGINXaaS Organization (or to create a new organization), select the profile symbol in the top right corner and choose **Switch Organization**. This opens a page showing the list of all NGINXaaS Organizations linked to your user identity. Select the organization you want to switch to, or select **Add Organization** to set up a new one.
 
 ## Delete a user
 
@@ -68,4 +78,5 @@ To delete a user in an NGINXaaS Organization:
 1. Select **Delete** in the menu. The deleted user will no longer appear in the **Users** page.
 
 ## What's next
+
 [Add an NGINX configuration using the NGINXaaS Console]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}})
