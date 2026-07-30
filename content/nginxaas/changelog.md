@@ -3,15 +3,27 @@ title: "Changelog"
 weight: 1000
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/google/changelog/
+url: /nginxaas/changelog/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 NGINXaaS
 nollms: true
 ---
 
-Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Google Cloud.
+Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
+
+## July 31, 2026
+
+- {{% icon-feature %}} **NGINXaaS for AWS is now available (Early Access)**
+
+You can now use F5 NGINXaaS to integrate with your applications in AWS. This is a major new release allowing you to work in multi-cloud setups or simplify your current AWS presence with a fully-managed, secure NGINX offering.
+
+See the documentation for [NGINXaaS for AWS]({{< ref "/nginxaas/aws/overview.md" >}}) for more info.
+
+
+**Note:** This feature is currently in Early Access. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
+
 
 ## June 1, 2026
 
