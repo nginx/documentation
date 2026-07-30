@@ -28,6 +28,17 @@ Before you start, ensure you understand the following concepts:
       - For example, all team members seeking to gain access to your NGINXaaS Organization have an Entra identity within a particular Azure tenant. You can add the Azure tenant ID to the list of Microsoft Authorized Tenants. This will restrict anyone with an Entra identity outside that Azure tenant from accessing your NGINXaaS Organization.
       - By default, users of all Azure tenants will be allowed to match with the new user entries you add to your organization.
 
+## Create an organization
+
+An NGINXaaS Organization holds your team's NGINX configurations, certificates, and users.
+
+- **Logging in for the first time**: Access the [NGINXaaS Console](https://console.nginxaas.net/) and log in with your identity provider. If you are not already a member of an existing organization, you will be prompted to create a new organization. Enter the **Organization Name** and select **Submit**.
+- **When already logged in**: In the [NGINXaaS Console](https://console.nginxaas.net/), select your profile icon in the top right corner and choose **Switch Organization**. Select **Add Organization**, enter the **Organization Name**, and choose **Create and Select** to create and switch to the new organization.
+
+{{< call-out class="note" >}}
+You can create NGINX configurations and upload SSL/TLS certificates within an organization without a cloud subscription. If you want to create an NGINXaaS deployment, please subscribe to your preferred cloud provider(s) in the cloud marketplace.
+{{< /call-out >}}
+
 ## Add or edit a user
 
 An existing NGINXaaS Organization user can add additional users following these steps:
@@ -61,7 +72,7 @@ The new user will appear in the list of users on the **Users** page. The next ti
 
 ## Switch organizations
 
-To switch to a different NGINXaaS Organization, select the profile symbol in the top right corner and choose **Switch Organization**. This opens a page showing the list of all the NGINXaaS Organizations that your user identity is linked to; select the organization you want to switch to.
+To switch to a different NGINXaaS Organization (or to create a new organization), select the profile symbol in the top right corner and choose **Switch Organization**. This opens a page showing the list of all NGINXaaS Organizations linked to your user identity. Select the organization you want to switch to, or select **Add Organization** to set up a new one.
 
 ## Delete a user
 
