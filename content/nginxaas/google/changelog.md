@@ -17,7 +17,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 - {{% icon-feature %}} **NGINXaaS is now running NGINX Plus 37.0 Continuous Releases (CR).**
 
-NGINXaaS for Google Cloud deployments have been automatically upgraded to NGINX Plus 37.0 (PLS.37.0). Please review the [NGINX Plus Release 37.0]({{< ref "/nginx/releases/" >}}) Release Notes carefully.
+NGINXaaS for Google Cloud deployments have been automatically upgraded to NGINX Plus 37.0 (PLS.37.0). Please review the [NGINX Plus Release 37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) Release Notes carefully for details about NGINX Plus behavioral changes.
 
 Please note the following changes:
 
