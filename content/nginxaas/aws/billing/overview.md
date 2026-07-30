@@ -12,4 +12,4 @@ f5-product: NGINXaaS for AWS
 **NGINXaaS for AWS** is currently in **Early Access**. Please contact us for information about billing.
 {{< /call-out >}}
 
-F5 NGINXaaS for AWS is purchased and billed through the AWS Marketplace. Please contact us if you are interested in participating in our Early Access period.
+F5 NGINXaaS for AWS is purchased and billed through the AWS Marketplace. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.

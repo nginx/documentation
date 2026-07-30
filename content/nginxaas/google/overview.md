@@ -125,7 +125,6 @@ We are committed to enhancing NGINXaaS for Google Cloud and welcome your feedbac
 Here are the current constraints you should be aware of while using NGINXaaS for Google Cloud:
 
 - NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
-- We only support authentication via Google acting as an identity provider.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
 - NGINXaaS deployments on Google Cloud do not support IPv6 traffic.
 - NGINXaaS deployments on Google Cloud only support UDP traffic when using **Managed Public Endpoint** frontend service.

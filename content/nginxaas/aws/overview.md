@@ -8,6 +8,10 @@ f5-content-type: concept
 f5-product: NGINXaaS for AWS
 ---
 
+{{< call-out class="important" title="Early Access" >}}
+**NGINXaaS for AWS** is currently in **Early Access**. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
+{{< /call-out >}}
+
 ## What is NGINXaaS for AWS?
 
 F5 NGINXaaS for AWS is a SaaS offering that is tightly integrated
@@ -139,6 +143,7 @@ We are committed to enhancing NGINXaaS for AWS and welcome your feedback to help
 
 Here are the current constraints you should be aware of while using NGINXaaS for AWS:
 
+- F5 WAF is currently not supported for NGINXaaS on AWS, but this feature is expected to be available soon - stay tuned.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
 - PrivateLink and upstream VPC peering connections must remain within the same AWS region as your deployment. Cross-region connections are not currently supported.
 - NGINXaaS deployments on AWS can only support up to 50 unique listen ports.
