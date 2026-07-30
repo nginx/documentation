@@ -37,7 +37,7 @@ NGINXaaS handles the NGINX Plus license management automatically.
 
 The key capabilities of NGINXaaS for AWS are:
 
-- Simplifies onboarding by providing a fully managed, ready-to-use NGINX service, eliminating the need for infrastructure setup, manual upgrades, or operational overhead.
+- Simplifies onboarding and use of NGINX by providing a fully managed, ready-to-use service, eliminating the need for infrastructure setup or manual upgrades.
 - Lowers operational overhead in running and optimizing NGINX.
 - Simplifies NGINX deployments with fewer moving parts (edge routing is built into the service).
 - Supports migration of existing NGINX configurations to the cloud with minimal effort.
@@ -51,8 +51,16 @@ The key capabilities of NGINXaaS for AWS are:
 - The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
 - NGINXaaS automatically adapts to application traffic demands through autoscaling
 - Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
-- NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
-- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
+- NGINXaaS acts as a load balancer, API gateway, and reverse proxy, enabling you to keep your application workloads secure within your AWS account while serving traffic reliably and efficiently
+- NGINXaaS for AWS supports the following capabilities:
+    - HTTP, HTTP/2, HTTP/3, and gRPC traffic
+    - Layer 4 and Layer 7 load balancing with [configurable balancing methods](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#method)
+    - IPv4 and IPv6 traffic
+    - UDP, TCP, and QUIC protocols
+    - Private or public internet client ingress
+    - [Request tracing](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus)
+    - HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects
+- NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details
 
 ### Service frontend
 
@@ -66,24 +74,24 @@ A managed public endpoint frontend allows client access over the internet throug
 
 - Serving public web applications to end users over the internet
 - Proxying traffic from clients outside AWS
-- Testing NGINXaaS configurations before you set up a [Private Endpoint]({{< ref "/nginxaas/aws/overview.md#private-endpoint" >}}) frontend
+- Testing NGINXaaS configurations before you set up a [Private endpoint]({{< ref "/nginxaas/aws/overview.md#private-endpoint" >}}) frontend
 
 **Access control**
 
 Access control list (ACL) rules control traffic to a managed public endpoint deployment. If you don’t provide ACL rules, no traffic is allowed. An ACL rule includes the following settings:
 
 - **Source prefixes**: A list of CIDR blocks to allow traffic from
-    - Use `0.0.0.0/0` to allow traffic from all source IP addresses
+    - Use `0.0.0.0/0`, `::0/0` to allow traffic from all source IP addresses
 - **Protocol**: The network protocol to allow
     - Valid values are **TCP** and **UDP**
-    - Required when you specify a port range
+    - Required when you specify a port or port range
 - **Port range**: A single port or port range to allow traffic from
     - If you don’t specify a port range, traffic is allowed from any port
     - Required when you specify a protocol
 
 #### Private endpoint
 
-A private endpoint frontend allows client access through your network by using [AWS PrivateLink](https://aws.amazon.com/privatelink/). To set up connectivity, create either an [interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) for internal traffic or a [Network Load Balancer fronting that endpoint](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-register-targets.html) for external traffic. This approach brings the NGINXaaS deployment into your client network through an NGINXaaS-owned VPC endpoint service, so application clients can connect directly into your network. For step-by-step instructions, see [Set up connectivity]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
+A private endpoint frontend allows client access through your network by using [AWS PrivateLink](https://aws.amazon.com/privatelink/). To set up connectivity, create an [interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) in your own VPC that connects to the VPC endpoint service provisioned for your NGINXaaS deployment. This approach enables any applications or clients in your VPC to connect directly to the NGINXaaS deployment via private networking. For step-by-step instructions, see [Set up connectivity]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
 
 **This frontend type is suitable for:**
 
@@ -93,7 +101,7 @@ A private endpoint frontend allows client access through your network by using [
 
 **Access control**
 
-A VPC endpoint service allow list restricts which AWS account IDs or VPC endpoint IDs can connect to the deployment. If you don't specify any entries in the allow list, traffic from all accounts is allowed (or, if you disable [acceptance required](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html), any principal that requests a connection is auto-accepted).
+A PrivateLink connection allow list restricts which AWS account IDs or VPC endpoint IDs can connect to the deployment. If you don't specify any entries in the allow list, no PrivateLink connections will be accepted. The allow list can be modified at any time to add or remove access permission for any AWS accounts or VPC endpoints.
 
 ### Upstream network
 
@@ -104,8 +112,8 @@ A VPC peering connection brings the deployment into your application network and
 To connect NGINXaaS to your upstream VPC, you must [create a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) from your AWS account targeting the NGINXaaS deployment's AWS Account ID and VPC ID, then add the peering connection ID to your deployment.
 
 {{< call-out class="caution" title="CIDR overlap" >}}
-The upstream VPC CIDR must not overlap with the NGINXaaS deployment
-VPC CIDR. If CIDRs overlap, VPC peering will fail.
+Upstream VPC CIDRs must not overlap with the NGINXaaS deployment
+VPC CIDRs, or the CIDRs of other peered upstream VPCs. If CIDRs overlap, VPC peering will fail.
 {{< /call-out >}}
 
 #### Connection draining
@@ -131,10 +139,10 @@ We are committed to enhancing NGINXaaS for AWS and welcome your feedback to help
 
 Here are the current constraints you should be aware of while using NGINXaaS for AWS:
 
-- NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas/aws/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
-- We only support authentication via AWS IAM Identity Center acting as an identity provider.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
-- Ingress and upstream connections must remain within the same AWS region. Cross-region connections are not supported.
+- PrivateLink and upstream VPC peering connections must remain within the same AWS region as your deployment. Cross-region connections are not currently supported.
+- NGINXaaS deployments on AWS can only support up to 50 unique listen ports.
+- While NGINXaaS deployments on AWS can be configured for UDP and QUIC traffic, it requires that the deployment is listening for that traffic on IPv6. Note: this does not require the incoming client traffic, or upstream traffic to be IPv6.
 
 ## What's next
 
