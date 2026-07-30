@@ -28,11 +28,21 @@ Before you start, ensure you understand the following concepts:
       - For example, all team members seeking to gain access to your NGINXaaS Organization have an Entra identity within a particular Azure tenant. You can add the Azure tenant ID to the list of Microsoft Authorized Tenants. This will restrict anyone with an Entra identity outside that Azure tenant from accessing your NGINXaaS Organization.
       - By default, users of all Azure tenants will be allowed to match with the new user entries you add to your organization.
 
+## Access the NGINXaaS Console
+
+You can access the NGINXaaS Console directly to manage your organizations, configurations, and certificates:
+
+- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
+- Log in with your preferred identity provider.
+- Select or create an NGINXaaS Organization. If logging in for the first time, you will be prompted to create an organization.
+
+Once logged in, you can create and manage [NGINX configurations]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
+
+If you want to create an NGINXaaS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/nginxaas/aws/deploy/prerequisites.md#subscribe-to-the-nginxaas-for-aws-offering" >}}) or [Google Cloud]({{< ref "/nginxaas/google/deploy/prerequisites.md#subscribe-to-the-nginxaas-for-google-cloud-offering" >}})).
+
 ## Create an organization
 
-An NGINXaaS Organization holds your team's NGINX configurations, certificates, and users.
-
-- **Logging in for the first time**: Access the [NGINXaaS Console](https://console.nginxaas.net/) and log in with your identity provider. If you are not already a member of an existing organization, you will be prompted to create a new organization. Enter the **Organization Name** and select **Submit**.
+- **Logging in for the first time**: If you are not already a member of an existing organization, you will be prompted to create a new organization. Enter an optional **Organization Name** and select **Submit**.
 - **When already logged in**: In the [NGINXaaS Console](https://console.nginxaas.net/), select your profile icon in the top right corner and choose **Switch Organization**. Select **Add Organization**, enter the **Organization Name**, and choose **Create and Select** to create and switch to the new organization.
 
 {{< call-out class="note" >}}

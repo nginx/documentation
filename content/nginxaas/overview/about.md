@@ -32,18 +32,6 @@ The key capabilities of ${product} are:
 - ${product} supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
 - Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. ${product} also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 
-## Access the NGINXaaS Console
-
-You can access the NGINXaaS Console directly to manage your organizations, configurations, and certificates:
-
-- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
-- Log in with your preferred identity provider.
-- Select or create an NGINXaaS Organization. If logging in for the first time, you will be prompted to create an organization.
-
-Once logged in, you can create and manage [NGINX configurations]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
-
-If you want to create an NGINXaaS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/nginxaas/aws/overview.md" >}}) or [Google Cloud]({{< ref "/nginxaas/google/overview.md" >}})).
-
 ## Availability
 
 ${product} is available for use with multiple public cloud providers. See specific documentation for more details:
