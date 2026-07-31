@@ -30,11 +30,7 @@ Before you start, ensure you understand the following concepts:
 
 ## Access the NGINXaaS Console
 
-You can access the NGINXaaS Console directly to manage your organizations, configurations, and certificates:
-
-- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
-- Log in with your preferred identity provider.
-- Select or create an NGINXaaS Organization. If logging in for the first time, you will be prompted to create an organization.
+{{< include "/nginxaas/access-console.md" >}}
 
 Once logged in, you can create and manage [NGINX configurations]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
 
@@ -43,9 +39,11 @@ If you want to create an NGINXaaS deployment, subscribe to your preferred cloud 
 ## Create an organization
 
 - **Logging in for the first time**: If you are not already a member of an existing organization, you will be prompted to create a new organization. Enter an optional **Organization Name** and select **Submit**.
-- **When already logged in**: In the [NGINXaaS Console](https://console.nginxaas.net/), select your profile icon in the top right corner and choose **Switch Organization**. Select **Add Organization**, enter the **Organization Name**, and choose **Create and Select** to create and switch to the new organization.
+- **When already logged in**: In the [NGINXaaS Console](https://console.nginxaas.net/), select your profile icon in the top right corner and choose **Switch Organization**. Select **Add Organization**, enter an **Organization Name**, and choose **Create and Select** to create and switch to the new organization.
 
 {{< call-out class="note" >}}
+Choose a clear, recognizable name for your organization. Avoid leaving the name empty or using generic titles, as a distinct organization name helps team members easily identify and switch to the correct organization when collaborating.
+
 You can create NGINX configurations and upload SSL/TLS certificates within an organization without a cloud subscription. If you want to create an NGINXaaS deployment, please subscribe to your preferred cloud provider(s) in the cloud marketplace.
 {{< /call-out >}}
 
@@ -53,8 +51,6 @@ You can create NGINX configurations and upload SSL/TLS certificates within an or
 
 An existing NGINXaaS Organization user can add additional users following these steps:
 
-1. Access the [NGINXaaS Console](https://console.nginxaas.net/).
-1. Log in to the console with your identity provider.
 1. Navigate to the **Users** page on the left menu, then select **Add User**.
 1. Enter the **Email** address for the user to be added.
 1. Select **Create User** to save the changes.
