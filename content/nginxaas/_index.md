@@ -29,7 +29,7 @@ and reliable, and bringing advanced traffic services enabled with the commercial
 
 ### Get started with NGINXaaS
 
-To begin, subscribe to F5 NGINXaaS using your cloud provider marketplace.
+Access the [NGINXaaS Console](https://console.nginxaas.net/) directly to manage organizations, NGINX configurations, and certificates. To create and manage deployments, subscribe to F5 NGINXaaS using your preferred cloud provider marketplace.
 
 {{<card-section showAsCards="true">}}
   {{<card title="NGINXaaS for AWS" titleUrl="/nginxaas/aws/deploy/prerequisites/" icon="zap">}}
