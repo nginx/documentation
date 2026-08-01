@@ -1,9 +1,14 @@
 ---
-title: Product telemetry
+title: Product telemetry collection
 weight: 600
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1836
+f5-summary: >
+  NGINX Gateway Fabric can collect product telemetry to improve the product.
+  This page explains what is collected, why, and how collection works so you can make informed operational choices.
+f5-description: "Learn why, what, and how NGINX Gateway Fabric collects product telemetry."
+f5-keywords: "NGINX Gateway Fabric, telemetry, product telemetry, privacy, metrics collection"
 ---
 
 Learn why, what and how NGINX Gateway Fabric collects telemetry.

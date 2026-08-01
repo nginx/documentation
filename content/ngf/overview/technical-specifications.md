@@ -6,6 +6,11 @@ weight: 300
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1842
+f5-summary: >
+  See supported Kubernetes, Gateway API, NGINX, and related component versions for NGINX Gateway Fabric.
+  Use the matrix when planning upgrades or new deployments.
+f5-description: "Review technical specifications and supported versions for NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, technical specifications, versions, Kubernetes, Gateway API, compatibility matrix"
 ---
 
 This page describes the technical specifications for NGINX Gateway Fabric.

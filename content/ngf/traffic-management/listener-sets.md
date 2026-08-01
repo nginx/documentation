@@ -1,16 +1,15 @@
 ---
-title: ListenerSet API
+title: Configure additional Gateway listeners with ListenerSet
 toc: true
 weight: 1500
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
 f5-keywords: "NGINX Gateway Fabric, Gateway API, ListenerSet, ListenerSets, Kubernetes, Gateways"
-f5-description: How to use the `ListenerSet` API to specify additional listeners for a Gateway.
+f5-description: "Use the ListenerSet API to specify additional listeners for a Gateway without modifying the Gateway resource."
 f5-summary: >
-    NGINX Gateway Fabric supports the ListenerSet Gateway API resource, which allows users to specify additional listeners for a Gateway.
-    This reinforces Gateway API defined roles and personas by allowing application developers to configure their attachment points on a 
-    Gateway without modifying the Gateway directly.
+  NGINX Gateway Fabric supports the ListenerSet Gateway API resource, which allows users to specify additional listeners for a Gateway.
+  This reinforces Gateway API roles by letting application developers configure attachment points without modifying a shared Gateway, and helps scale beyond the 64-listener limit of a single Gateway.
 ---
 
 Learn how to use the `ListenerSet` API to specify additional listeners for a Gateway

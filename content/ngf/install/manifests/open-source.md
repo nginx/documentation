@@ -6,6 +6,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1429
+f5-summary: >
+  Apply Kubernetes manifests to install NGINX Gateway Fabric with the NGINX Open Source data plane.
+  Use this when you prefer declarative YAML over Helm.
+f5-description: "Install NGINX Gateway Fabric with NGINX Open Source using Kubernetes manifests."
+f5-keywords: "NGINX Gateway Fabric, manifests, NGINX Open Source, install, YAML"
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Open Source.

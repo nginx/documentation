@@ -5,6 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1422
+f5-summary: >
+  Deploy multiple applications and HTTPRoutes that match on path, method, header, and query conditions.
+  Use advanced matching when simple host and path routing is not enough.
+f5-description: "Route applications with HTTP matching conditions such as paths, methods, headers, and query parameters."
+f5-keywords: "NGINX Gateway Fabric, HTTPRoute, matching, path, header, method, query parameter, routing"
 ---
 
 Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters

@@ -4,10 +4,10 @@ weight: 600
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
-f5-description: How to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
+f5-keywords: "NGINX Gateway Fabric, JWT, JSON Web Token, AuthenticationFilter, JWKS, NGINX Plus, API auth"
+f5-description: "Configure JWT authentication in NGINX Gateway Fabric with the AuthenticationFilter CRD."
 f5-summary: >
-  NGINX Gateway Fabric supports JWT authentication via the AuthenticationFilter CRD, validating JSON Web Tokens in incoming requests using JSON Web Key Sets (JWKS).
-  Two JWKS source types are supported: File, where the JWKS is stored in a Kubernetes Secret, and Remote, where NGINX Plus fetches the JWKS from an HTTPS endpoint at runtime.
+  NGINX Gateway Fabric supports JWT authentication via the AuthenticationFilter CRD, validating tokens using JWKS from a Secret or remote HTTPS endpoint.
   JWT authentication requires NGINX Plus and is not supported with open-source NGINX.
 ---
 

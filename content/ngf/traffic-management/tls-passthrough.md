@@ -5,10 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1850
+f5-description: "Forward end-to-end TLS traffic through NGINX Gateway Fabric using TLSRoute passthrough."
+f5-keywords: "NGINX Gateway Fabric, TLSRoute, TLS passthrough, SNI, passthrough, end-to-end TLS"
 f5-summary: >
-   NGINX Gateway Fabric can route encrypted TLS traffic straight to a backend without decrypting it, using a TLSRoute resource and SNI-based routing.
-   The backend terminates TLS itself with its own certificate, issued in this guide by cert-manager. The Gateway only reads the SNI to pick the right backend.
-   Use TLS passthrough when the backend needs to handle its own TLS, keep its private key off the Gateway, or serve a non-HTTP protocol over TLS.
+  Use TLSRoutes so NGINX Gateway Fabric passes encrypted TLS traffic to backends based on SNI without terminating TLS at the gateway.
+  Choose passthrough when backends must complete the TLS handshake themselves.
 ---
 
 Learn how to use TLSRoutes to forward TLS traffic through NGINX Gateway Fabric.

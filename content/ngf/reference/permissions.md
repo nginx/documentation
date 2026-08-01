@@ -1,10 +1,15 @@
 ---
-title: Permissions
+title: Component permissions and security context
 description: NGINX Gateway Fabric permissions required by components.
 weight: 300
 toc: true
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
+f5-summary: >
+  NGINX Gateway Fabric uses a split-plane architecture with control plane, data plane, and certificate generator components.
+  This reference lists permissions and security settings for each component.
+f5-description: "Review RBAC permissions and security contexts required by NGINX Gateway Fabric components."
+f5-keywords: "NGINX Gateway Fabric, permissions, RBAC, security context, control plane, data plane, certificate generator"
 ---
 
 ## Overview

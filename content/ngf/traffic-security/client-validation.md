@@ -5,13 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-000
+f5-description: "Configure mutual TLS so NGINX Gateway Fabric validates client certificates on HTTPS listeners."
 f5-summary: >
-    Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabric using the Gateway's
-    Listener HTTPS and Frontend TLS settings. The Listener HTTPS settings configure the certificate presented
-    by the Gateway to clients, while Frontend TLS validates incoming client certificates against referenced
-    CA certificates. Frontend TLS provides a required default validation configuration applied to all HTTPS
-    listeners, which can be overridden for a specific port using the perPort configuration.
-f5-keywords: ngf, nginx-gateway-fabric, kubernetes, cert-manager, tls, mtls, secure
+  Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabric using Listener HTTPS and Frontend TLS settings.
+  Frontend TLS validates incoming client certificates against referenced CA certificates, with default and per-port validation modes.
+f5-keywords: "NGINX Gateway Fabric, NGF, mtls, cert-manager, TLS, client certificate, FrontendTLS, secure"
 ---
 
 Learn how to configure mutual TLS (mTLS) between clients and NGINX Gateway Fabric to validate both the client and Gateway.

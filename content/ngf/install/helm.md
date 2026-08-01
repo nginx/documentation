@@ -5,6 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1430
+f5-summary: >
+  Deploy NGINX Gateway Fabric with the official Helm chart, including upgrade and uninstall steps.
+  Helm is a primary installation path for Kubernetes clusters.
+f5-description: "Install, upgrade, and uninstall NGINX Gateway Fabric in Kubernetes using Helm."
+f5-keywords: "NGINX Gateway Fabric, Helm, install, upgrade, uninstall, chart, Kubernetes"
 ---
 
 ## Overview

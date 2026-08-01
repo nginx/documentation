@@ -1,10 +1,15 @@
 ---
-title: Support
+title: Support for NGINX Gateway Fabric
 weight: 800
 toc: true
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1411
+f5-summary: >
+  NGINX Gateway Fabric follows the F5 support policy documented in the linked knowledge base article.
+  Use this page to find how to get help for production and community deployments.
+f5-description: "Learn about support options and policies for NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, support, F5 support policy, community, help"
 ---
 
 F5 NGINX Gateway Fabric adheres to the support policy detailed in the following knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).

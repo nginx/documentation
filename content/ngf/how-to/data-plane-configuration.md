@@ -5,6 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1838
+f5-summary: >
+  Change global data plane settings that apply across NGINX instances managed by NGINX Gateway Fabric.
+  Use this when you need product-wide NGINX configuration beyond per-route policies.
+f5-description: "Dynamically update global NGINX data plane configuration for NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, data plane, NginxProxy, global configuration, NGINX settings"
 ---
 
 Learn how to dynamically update the NGINX Gateway Fabric global data plane configuration.

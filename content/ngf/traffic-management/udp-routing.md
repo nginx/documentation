@@ -1,10 +1,15 @@
 ---
-title: UDPRoute
+title: Route UDP traffic with UDPRoute
 weight: 1300
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
+f5-summary: >
+  Expose UDP applications by attaching a UDPRoute to a Gateway listener that defines the external UDP port.
+  UDPRoute is a Gateway API experimental-channel resource and requires experimental features enabled in NGINX Gateway Fabric.
+f5-description: "Configure a UDPRoute to forward UDP packets from a Gateway listener to backend services."
+f5-keywords: "NGINX Gateway Fabric, UDPRoute, UDP, Gateway API, experimental, stream, backend"
 ---
 
 Learn how to configure a UDPRoute to handle a UDP connection between NGINX Gateway Fabric and the backend applications. 

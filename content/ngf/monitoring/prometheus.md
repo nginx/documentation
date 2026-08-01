@@ -5,6 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1418
+f5-summary: >
+  Install and configure Prometheus and Grafana to scrape and visualize NGINX Gateway Fabric metrics.
+  This guide also lists which metrics are available for alerting and dashboards.
+f5-description: "Monitor NGINX Gateway Fabric with Prometheus and Grafana, including available metrics."
+f5-keywords: "NGINX Gateway Fabric, Prometheus, Grafana, metrics, scrape, monitoring"
 ---
 
 This document describes how to monitor NGINX Gateway Fabric using Prometheus and Grafana. It explains installation and configuration, as well as what metrics are available.

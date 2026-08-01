@@ -1,10 +1,15 @@
 ---
-title: Session Persistence
+title: Configure session persistence for backend pods
 weight: 1100
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs:
+f5-summary: >
+  Keep multi-request client sessions on the same backend Pod using ip_hash (NGINX OSS) or cookie-based session persistence (NGINX Plus).
+  Configure persistence via UpstreamSettingsPolicy or sessionPersistence fields on HTTPRoute and GRPCRoute resources.
+f5-description: "Configure session persistence so related client requests reach the same backend pod."
+f5-keywords: "NGINX Gateway Fabric, session persistence, sticky cookie, ip_hash, UpstreamSettingsPolicy, NGINX Plus"
 ---
 
 Learn how to configure session persistence using NGINX Gateway Fabric.

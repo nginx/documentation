@@ -4,6 +4,11 @@ weight: 700
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
+f5-summary: >
+  Allow or restrict browser cross-origin requests to your APIs using the HTTPCORSFilter.
+  Use this guide when web clients on other origins need controlled access to your services.
+f5-description: "Configure Cross-Origin Resource Sharing (CORS) with HTTPCORSFilter in NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, CORS, HTTPCORSFilter, cross-origin, browser, HTTPRoute"
 ---
 
 

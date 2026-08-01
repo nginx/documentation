@@ -5,6 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1851
+f5-summary: >
+  Manage TLS certificates that secure communication between the NGINX Gateway Fabric control plane and data plane pods.
+  By default a cert-generator job creates self-signed certificates at install time.
+f5-description: "Add or replace certificates used to secure control plane to data plane authentication."
+f5-keywords: "NGINX Gateway Fabric, certificates, TLS, cert-generator, control plane, data plane"
 ---
 
 By default, NGINX Gateway Fabric installs self-signed certificates to secure the connection between the NGINX Gateway Fabric control plane and the NGINX data plane pods. These certificates are created by a `cert-generator` job when NGINX Gateway Fabric is first installed.

@@ -4,10 +4,11 @@ weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
-f5-description: Quick start guide for protecting traffic with F5 WAF for NGINX in NGINX Gateway Fabric.
+f5-keywords: "NGINX Gateway Fabric, F5 WAF for NGINX, get started, WAFPolicy, policy compile, attack blocking"
+f5-description: "Deploy a sample app, compile a WAF policy, and verify attack blocking with NGINX Gateway Fabric."
 f5-summary: >
-  Deploy a sample application, compile a WAF policy, and apply it to a Gateway using NGINX Gateway Fabric.
-  This walkthrough uses the HTTP source type to demonstrate the full flow from policy compilation to attack blocking.
+  Walk through protecting traffic with F5 WAF for NGINX: deploy a sample application, compile a policy, apply it to a Gateway, and verify attacks are blocked.
+  This quick start uses the HTTP policy source type.
 ---
 
 This guide walks through the complete flow of protecting traffic with F5 WAF for NGINX: deploy a sample application, compile a WAF policy, apply it to a Gateway, and verify that attacks are blocked.

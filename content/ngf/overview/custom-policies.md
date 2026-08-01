@@ -1,10 +1,15 @@
 ---
-title: Custom policies
+title: Custom policies for NGINX data plane features
 weight: 700
 toc: true
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1835
+f5-summary: >
+  Custom policies let you configure NGINX features that are not available in the Gateway API itself.
+  Learn how policy attachments work and when to use first-class NGINX Gateway Fabric CRDs.
+f5-description: "Understand custom policies that expose NGINX data plane features beyond the Gateway API."
+f5-keywords: "NGINX Gateway Fabric, custom policies, PolicyAttachment, CRD, extensions"
 ---
 
 This topic explains the custom policies for NGINX Gateway Fabric CRDs (Custom Resource Definitions), which allow users to configure NGINX data plane features that are unavailable in the Gateway API.

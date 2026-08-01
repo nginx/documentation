@@ -21,6 +21,12 @@ f5-content-type: landing-page
 # Intended for internal catalogue and search, case sensitive:
 # Agent, N4Azure, NIC, NIM, NGF, NAP-DOS, NAP-WAF, NGINX One, NGINX+, Solutions, Unit
 f5-product: NGINX Gateway Fabric
+f5-summary: >
+  NGINX Gateway Fabric is a Kubernetes Gateway API implementation that uses NGINX as the data plane.
+  Use it to configure HTTP, gRPC, TCP, and UDP load balancing, reverse proxying, and API gateway features for applications on Kubernetes.
+  This landing page links to get started, install, traffic management, security, monitoring, and reference documentation.
+f5-description: "Implement the Kubernetes Gateway API with NGINX Gateway Fabric using NGINX as the data plane."
+f5-keywords: "NGINX Gateway Fabric, NGF, Gateway API, Kubernetes, load balancer, reverse proxy, API gateway"
 ---
 
 ## About

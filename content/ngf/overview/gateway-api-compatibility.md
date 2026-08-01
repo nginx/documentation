@@ -5,6 +5,11 @@ toc: true
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1412
+f5-summary: >
+  Review Gateway API compatibility for NGINX Gateway Fabric, including supported resources and support levels.
+  Use this page to confirm whether a Gateway API feature is available before you design your configuration.
+f5-description: "See which Gateway API resources and features NGINX Gateway Fabric supports."
+f5-keywords: "NGINX Gateway Fabric, Gateway API, compatibility, supported resources, conformance"
 ---
 
 This page describes which Gateway API resources NGINX Gateway Fabric supports and to which level.

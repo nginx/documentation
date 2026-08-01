@@ -5,6 +5,11 @@ weight: 500
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
+f5-summary: >
+  Remove NGINX Gateway Fabric installed via manifests, including custom resource definitions and Gateway API resources as needed.
+  Follow this page for a clean teardown of YAML-based installs.
+f5-description: "Uninstall a manifests-based NGINX Gateway Fabric deployment and related resources."
+f5-keywords: "NGINX Gateway Fabric, uninstall, manifests, CRDs, Gateway API, cleanup"
 ---
 
 This page describes how to uninstall NGINX Gateway Fabric in a Manifest-based deployment, its custom resource definitions, and its Gateway API resources.

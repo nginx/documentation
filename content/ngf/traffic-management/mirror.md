@@ -5,6 +5,11 @@ weight: 700
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1847
+f5-summary: >
+  Send a copy of request traffic to a mirror backend for testing or analysis without affecting primary responses.
+  Use request mirroring when validating new versions or inspecting production-like traffic.
+f5-description: "Mirror HTTP or gRPC traffic to additional backends with NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, request mirroring, traffic mirror, HTTPRoute, GRPCRoute, shadow traffic"
 ---
 
 Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.

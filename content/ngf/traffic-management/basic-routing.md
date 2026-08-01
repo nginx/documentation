@@ -5,6 +5,11 @@ toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1426
+f5-summary: >
+  Expose applications by attaching HTTPRoutes to a Gateway so external traffic reaches backend Services.
+  This is the foundational routing guide for NGINX Gateway Fabric.
+f5-description: "Route external traffic to Kubernetes applications using NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, routing, HTTPRoute, Gateway, applications, external traffic"
 ---
 
 Learn how to route external traffic to your Kubernetes applications using NGINX Gateway Fabric.

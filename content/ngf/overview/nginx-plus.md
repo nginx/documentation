@@ -4,6 +4,11 @@ weight: 300
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1837
+f5-summary: >
+  NGINX Gateway Fabric can run NGINX Open Source or NGINX Plus as its data plane.
+  NGINX Plus adds commercial features beyond the open source option.
+f5-description: "Learn advanced capabilities available when NGINX Gateway Fabric uses NGINX Plus as the data plane."
+f5-keywords: "NGINX Gateway Fabric, NGINX Plus, advanced features, commercial, data plane"
 ---
 
 NGINX Gateway Fabric can use NGINX Open Source or NGINX Plus as its data plane. [NGINX Plus](https://www.f5.com/products/nginx/nginx-plus) is the closed source, commercial version of NGINX. Using NGINX Plus as the data plane offers additional benefits compared to the open source version.

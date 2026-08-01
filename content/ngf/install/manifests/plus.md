@@ -5,6 +5,11 @@ weight: 200
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
+f5-summary: >
+  Apply Kubernetes manifests to install NGINX Gateway Fabric with the NGINX Plus data plane.
+  Use this when you need Plus features and prefer manifests to Helm.
+f5-description: "Install NGINX Gateway Fabric with NGINX Plus using Kubernetes manifests."
+f5-keywords: "NGINX Gateway Fabric, manifests, NGINX Plus, install, YAML"
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Plus.

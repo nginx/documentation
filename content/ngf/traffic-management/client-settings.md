@@ -1,10 +1,15 @@
 ---
-title: Client Settings Policy API
+title: Configure client settings with ClientSettingsPolicy
 toc: true
 weight: 900
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1846
+f5-summary: >
+  The ClientSettingsPolicy API configures connection behavior between clients and NGINX.
+  Apply the policy to a Gateway, HTTPRoute, or GRPCRoute to set client body size, timeouts, and keepalive directives.
+f5-description: "Use ClientSettingsPolicy to configure client-to-NGINX connection behavior such as body size and keepalive."
+f5-keywords: "NGINX Gateway Fabric, ClientSettingsPolicy, client_max_body_size, keepalive, client timeout, PolicyAttachment"
 ---
 
 Learn how to use the `ClientSettingsPolicy` API.

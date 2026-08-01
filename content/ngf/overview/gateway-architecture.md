@@ -5,6 +5,11 @@ toc: true
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1413
+f5-summary: >
+  Understand how the NGINX Gateway Fabric control plane and NGINX data plane work together as a Gateway API implementation.
+  This overview covers design principles and component roles.
+f5-description: "Learn the architecture and design principles of NGINX Gateway Fabric."
+f5-keywords: "NGINX Gateway Fabric, architecture, control plane, data plane, design principles, NGINX Agent"
 ---
 
 Learn about the architecture and design principles of NGINX Gateway Fabric: a Kubernetes Gateway API implementation which uses NGINX as the data plane. 
