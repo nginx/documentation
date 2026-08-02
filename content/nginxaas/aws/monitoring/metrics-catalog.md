@@ -8,11 +8,9 @@ f5-content-type: reference
 f5-product: NGINXaaS for AWS
 ---
 
-{{< call-out class="important" title="Placeholder content" >}}
-This page contains placeholder documentation for **NGINXaaS for AWS**. Workflows, screenshots, pricing, and UI text described here are illustrative only and do not represent a shipping product.
-{{< /call-out >}}
-
 F5 NGINXaaS for AWS provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for AWS.
+
+NGINXaaS exports these metrics to Amazon CloudWatch using the [Embedded Metric Format (EMF)](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html). CloudWatch extracts them into metrics under the `NGINXaaS` namespace. See [Enable monitoring]({{< ref "/nginxaas/aws/monitoring/enable-monitoring.md" >}}) to configure metric export.
 
 ## Available metrics
 
@@ -29,8 +27,7 @@ F5 NGINXaaS for AWS provides a rich set of metrics that you can use to monitor t
 
 ## Metrics
 
-The following metrics are reported by NGINXaaS for AWS in Amazon CloudWatch.
-The metrics are categorized by the CloudWatch namespace. The labels allow you to filter or split your queries in Amazon CloudWatch providing you with a granular view over the metrics reported.
+The following metrics are reported by NGINXaaS for AWS in Amazon CloudWatch under the `NGINXaaS` namespace. The labels allow you to filter or split your queries in Amazon CloudWatch providing you with a granular view over the metrics reported.
 
 ### NGINX config statistics
 
