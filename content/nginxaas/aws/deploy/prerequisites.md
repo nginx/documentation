@@ -1,7 +1,7 @@
 ---
 title: Prerequisites
 weight: 100
-toc: true
+toc: false
 f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/prerequisites/
 f5-content-type: how-to
