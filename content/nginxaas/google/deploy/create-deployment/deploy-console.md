@@ -41,9 +41,12 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 
 Once you have completed the subscription process and created a network attachment, you can access the NGINXaaS Console.
 
-- Visit [https://console.nginxaas.net/](https://console.nginxaas.net/) to access the NGINXaaS Console.
-- Log in to the console with your Google credentials.
-- Select the appropriate Geography to work in, based on the region your network attachment was created in.
+{{< include "/nginxaas/access-console.md" >}}
+
+{{< call-out class="caution" >}}
+Select the Geography that supports the region where you created your network attachment.
+See [NGINXaaS for Google Cloud supported regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}).
+{{< /call-out >}}
 
 ## Create or import an NGINX configuration
 
@@ -88,7 +91,7 @@ In the NGINXaaS Console,
 
 ## Set up connectivity (Private Endpoint only)
 
-If you selected **Private Endpoint** as the service frontend type, complete the following steps to allow client access. If you selected **Managed Public Endpoint**, skip this section.**
+If you selected **Private Endpoint** as the service frontend type, complete the following steps to allow client access. If you selected **Managed Public Endpoint**, skip this section.
 
 ### Internal traffic
 
