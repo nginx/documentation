@@ -8,8 +8,8 @@ f5-files:
 ```dockerfile
 # syntax=docker/dockerfile:1
 
-# Supported UBI_VERSION's are 7/8/9
-ARG UBI_VERSION=8
+# Supported UBI_VERSION's are 8/9/10
+ARG UBI_VERSION=9
 
 # Base Image
 FROM registry.access.redhat.com/ubi${UBI_VERSION}/ubi
@@ -20,11 +20,7 @@ ARG UBI_VERSION
 # Install NGINX OSS and F5 WAF for NGINX v5 module
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
-    PKG_MANAGER=dnf; \
-    if [ "${UBI_VERSION}" = "7" ]; then \
-        PKG_MANAGER=yum; \
-    fi \
-    && $PKG_MANAGER -y install wget ca-certificates yum-utils \
+    dnf -y install wget ca-certificates yum-utils \
     && wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo \
     && echo "[nginx-mainline]" > /etc/yum.repos.d/nginx.repo \
     && echo "name=nginx mainline repo" >> /etc/yum.repos.d/nginx.repo \
@@ -40,10 +36,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && echo "sslclientkey=/etc/ssl/nginx/nginx-repo.key" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
     && echo "gpgcheck=0" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
     && echo "enabled=1" >> /etc/yum.repos.d/app-protect-${UBI_VERSION}-x-oss.repo \
-    && $PKG_MANAGER clean all \
-    && $PKG_MANAGER install -y app-protect-module-oss \
-    && $PKG_MANAGER clean all \
-    && rm -rf /var/cache/$PKG_MANAGER \
+    && dnf clean all \
+    && dnf install -y app-protect-module-oss \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
