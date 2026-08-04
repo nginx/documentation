@@ -23,7 +23,7 @@ NGINX supports the following certificate formats:
 
 You can upload these certificates as text, as files, or as secrets from [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
 
-Encrypt your certificates, keys, and PEM files using one of these standards:
+Encrypt your certificates, keys, and PEM files using one of these algorithms:
 
 - RSA
 - ECC/ECDSA
