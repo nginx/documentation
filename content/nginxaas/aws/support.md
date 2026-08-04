@@ -5,6 +5,6 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/support/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: NGINXaaS for AWS
 contentSource: nginxaas/support/
 ---

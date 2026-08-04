@@ -12,4 +12,4 @@ List of known issues in the latest release of F5 NGINXaaS for AWS.
 
 _There are currently no known issues._
 
-{{< call-out class="note" >}} You may also want to be familiar with the documented [NGINXaaS for AWS limitations]({{< ref "nginxaas/aws/overview.md#limitations" >}}). {{< /call-out >}}
+{{< call-out class="note" >}} You may also want to be familiar with the documented [NGINXaaS for AWS limitations]({{< ref "/nginxaas/aws/overview.md#current-limitations" >}}). {{< /call-out >}}
