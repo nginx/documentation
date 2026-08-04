@@ -32,7 +32,7 @@ NGINXaaS handles the NGINX Plus license management automatically.
   {{<card title="Add certificates" titleUrl="/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
     Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Get help" titleUrl="/nginxaas/aws/support/" icon="message-circle-question-mark">}}
+  {{<card title="Get help" titleUrl="/nginxaas/support/" icon="message-circle-question-mark">}}
     Contact F5 support for assistance with NGINXaaS for AWS
   {{</card>}}
 {{</card-section>}}
