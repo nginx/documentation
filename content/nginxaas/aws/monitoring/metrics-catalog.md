@@ -22,9 +22,7 @@ NGINXaaS exports these metrics to Amazon CloudWatch using the [Embedded Metric F
 
 The following metrics are reported by NGINXaaS for AWS in Amazon CloudWatch under the `NGINXaaS` namespace. The labels allow you to filter or split your queries in Amazon CloudWatch providing you with a granular view over the metrics reported.
 
-
 {{< include "/nginxaas/metrics-catalog.md" >}}
-
 
 ## References
 

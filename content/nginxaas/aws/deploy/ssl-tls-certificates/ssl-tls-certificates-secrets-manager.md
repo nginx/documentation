@@ -65,7 +65,6 @@ The session tags passed in the request to fetch the secret will appear in `Assum
 - `NGINXaaS:DeploymentID`
 - `NGINXaaS:DeploymentName`
 
-
 ## Add an SSL/TLS certificate to AWS Secrets Manager
 
 To add an SSL/TLS certificate and key as a secret to AWS Secrets Manager,

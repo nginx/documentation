@@ -14,9 +14,9 @@ f5-summary: >
 f5-audience: operator
 ---
 
-Before you can deploy F5 NGINXaaS for AWS, you must subscribe to the AWS marketplace offering.
+Before you can deploy F5 NGINXaaS for AWS, you must subscribe to the AWS Marketplace offering.
 
-## Early Access to the F5 NGINXaaS for AWS marketplace offering
+## Early Access to the F5 NGINXaaS for AWS Marketplace offering
 
 F5 NGINXaaS for AWS is currently in Early Access. Contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
 
