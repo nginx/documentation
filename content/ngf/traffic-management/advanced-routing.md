@@ -12,7 +12,7 @@ f5-description: "Route applications with HTTP matching conditions such as paths,
 f5-keywords: "NGINX Gateway Fabric, HTTPRoute, matching, path, header, method, query parameter, routing"
 ---
 
-Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters
+Learn how to deploy multiple applications and HTTPRoutes with request conditions such as paths, methods, headers, and query parameters.
 
 ## Overview
 
