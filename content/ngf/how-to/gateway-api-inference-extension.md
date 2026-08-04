@@ -12,14 +12,14 @@ f5-description: "Use the Gateway API Inference Extension with NGINX Gateway Fabr
 f5-keywords: "NGINX Gateway Fabric, Gateway API Inference Extension, InferencePool, AI, generative AI, model routing, Endpoint Picker"
 ---
 
-Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension to optimize traffic routing to self-hosting Generative AI Models on Kubernetes. 
+Learn how to use NGINX Gateway Fabric with the Gateway API Inference Extension to optimize traffic routing to self-hosted generative AI models on Kubernetes.
 
 ## Overview
 
-The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted Generative AI Models on Kubernetes. 
-The project's goal is to improve and standardize routing to inference workloads across the ecosystem. 
+The [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) is an official Kubernetes project that aims to provide optimized load-balancing for self-hosted generative AI models on Kubernetes.
+The project's goal is to improve and standardize routing to inference workloads across the ecosystem.
 
-Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more. 
+Coupled with the provided Endpoint Picker Service, NGINX Gateway Fabric becomes an [Inference Gateway](https://gateway-api-inference-extension.sigs.k8s.io/#concepts-and-definitions), with additional AI specific traffic management features such as model-aware routing, serving priority for models, model rollouts, and more.
 
 ## Set up
 
@@ -171,7 +171,7 @@ kubectl describe httproute llm-route
 
 ## Try it out
 
-Send traffic to the Gateway: 
+Send traffic to the Gateway:
 
 ```shell
 curl -i $GW_IP:$GW_PORT/v1/completions -H 'Content-Type: application/json' -d '{
@@ -229,4 +229,3 @@ Remove the Gateway API CRDs:
 - [Gateway API Inference Extension API Overview](https://gateway-api-inference-extension.sigs.k8s.io/concepts/api-overview/): for an API overview.
 - [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/): for additional use cases and guides.
 - [llm-d](https://github.com/llm-d/llm-d): for information on the llm-d project.
-
