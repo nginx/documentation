@@ -18,7 +18,7 @@ NGINXaaS for AWS enforces additional restrictions on NGINX configurations to sup
 
 ## Listen address restrictions
 
-For general listen address and port restrictions that apply to all NGINXaaS deployments, see [Listener restrictions]({{< ref "/nginxaas/overview/nginx-configuration/overview.md#listener-restrictions" >}}).
+For general listen address and port restrictions that apply to all NGINXaaS deployments, see [Listener restrictions]({{< ref "/nginxaas/overview/nginx-configuration/configuration-rules.md#listener-restrictions" >}}).
 
 ## IPv6 requirement for UDP and QUIC
 

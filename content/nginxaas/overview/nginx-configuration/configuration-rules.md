@@ -1,21 +1,22 @@
 ---
-title: Overview
+title: NGINX configuration rules and limits
 weight: 50
 toc: true
-url: /nginxaas/google/deploy/nginx-configuration/overview/
+url: /nginxaas/overview/nginx-configuration/configuration-rules/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
-contentSource: nginxaas/overview/nginx-configuration/overview.md
+f5-product: F5 NGINXaaS
+contentVars:
+  product: NGINXaaS
 ---
 
 This document provides details about using NGINX configuration files with your
-F5 NGINXaaS for Google Cloud deployment, restrictions, and available directives.
+F5 ${product} deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
-You can upload NGINX configurations to your NGINXaaS for Google Cloud deployment using the Google Cloud console:
+You can upload NGINX configurations to your ${product} deployment using the NGINXaaS console:
 
-- [Upload using the console]({{< ref "/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md" >}})
+- [Upload using the console]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}})
 
 The topics below explain NGINX configuration restrictions and which directives are supported, unsupported, or cannot be overridden.
 
@@ -38,7 +39,7 @@ There are limits to where files, including NGINX configuration files, certificat
 
 For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.
 
-If you need access to additional directories, please [contact us]({{< ref "/nginxaas/google/support.md" >}}).
+If you need access to additional directories, please [contact us]({{< ref "/nginxaas/support.md" >}}).
 
 ## Disallowed configuration directives
 
@@ -48,10 +49,9 @@ The following directives are not supported because of specific limitations. If y
 | Disallowed Directive | Reason |
 |------------------ | ----------------- |
 | ssl_engine        | No hardware SSL accelerator is available. |
-| debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
+| debug_points      | NGINXaaS does not provide access to NGINX processes for debugging. |
 | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
 | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
-| ssl_ech_file     | NGINXaaS does not use the [OpenSSL ECH feature branch](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file). |
 {{< /table >}}
 
 You may find a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
@@ -77,6 +77,15 @@ For connection and request rate limiting, consider using these NGINX modules:
 - [limit_conn](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn)
 - [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req)
 - [upstream queue](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue)
+
+## Listener restrictions
+
+NGINXaaS reserves the following listen ports for internal use.
+- `49151`
+- `49152`
+
+NGINXaaS does not support specific hostnames or IP addresses (other than localhost / loopback addresses) to be used as a `listen` address.
+You must use an unspecified address to listen on all IPs (such as `0.0.0.0`, `[::0]` or `*`) or a local address for use-cases where you do not want the listener exposed via the service endpoint (such as `127.0.0.1` or `localhost`).
 
 ## Configuration directives list
 
@@ -173,7 +182,6 @@ NGINXaaS does not yet support F5 WAF for NGINX custom security policies or loggi
 [enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report)\
 [env](https://nginx.org/en/docs/ngx_core_module.html#env)\
 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log)\
-[error_log_tag](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag)\
 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)\
 [etag](https://nginx.org/en/docs/http/ngx_http_core_module.html#etag)\
 [events](https://nginx.org/en/docs/ngx_core_module.html#events)\
@@ -415,7 +423,6 @@ NGINXaaS does not yet support F5 WAF for NGINX custom security policies or loggi
 [match (ngx_http_upstream_hc_module)](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match)\
 [match (ngx_stream_upstream_hc_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match)\
 [max_errors](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#max_errors)\
-[max_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers)\
 [max_ranges](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_ranges)\
 [memcached_buffer_size](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_buffer_size)\
 [memcached_connect_timeout](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_connect_timeout)\

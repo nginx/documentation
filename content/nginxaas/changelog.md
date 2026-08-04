@@ -36,9 +36,9 @@ Please note the following changes:
 - Keepalive connections between NGINX and upstream servers are enabled by default.
 - Upstream shared memory zone requires an additional 1KB of memory per upstream server.
 
-NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. NGINXaaS does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview/#disallowed-configuration-directives" >}}).
+NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. NGINXaaS does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#disallowed-configuration-directives" >}}).
 
-For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview/#configuration-directives-list" >}}).
+For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#configuration-directives-list" >}}).
 
 NGINXaaS also upgraded F5 WAF for NGINX to version 5.13.4. For more information, see the [F5 WAF for NGINX Release Notes]({{< ref "/waf/changelog/#f5-waf-for-nginx-5134" >}}).
 
