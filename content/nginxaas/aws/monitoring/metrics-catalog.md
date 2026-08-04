@@ -1,60 +1,53 @@
 ---
 title: Metrics catalog
+description: "Reference catalog of Amazon CloudWatch metrics exported by F5 NGINXaaS for AWS deployments."
 weight: 400
-toc: false
+toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/monitoring/metrics-catalog/
 f5-content-type: reference
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, metrics catalog, CloudWatch, connections, requests, SSL, cache, memory, upstream, stream"
+f5-summary: >
+  Reference catalog of metrics exported by F5 NGINXaaS for AWS to Amazon CloudWatch under the NGINXaaS namespace.
+  Use this guide to look up metric names, labels, data types, and roll-up scopes for NGINX config, connections, requests, SSL, cache, memory, upstream, and stream statistics.
+f5-audience: operator
 ---
+
+## Overview
 
 F5 NGINXaaS for AWS provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for AWS.
 
 NGINXaaS exports these metrics to Amazon CloudWatch using the [Embedded Metric Format (EMF)](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html). CloudWatch extracts them into metrics under the `NGINXaaS` namespace. See [Enable monitoring]({{< ref "/nginxaas/aws/monitoring/enable-monitoring.md" >}}) to configure metric export.
 
-## Available metrics
-
-- [Available metrics](#available-metrics)
-- [Metrics](#metrics)
-  - [NGINX config statistics](#nginx-config-statistics)
-  - [NGINX connections statistics](#nginx-connections-statistics)
-  - [NGINX requests and response statistics](#nginx-requests-and-response-statistics)
-  - [NGINX SSL statistics](#nginx-ssl-statistics)
-  - [NGINX cache statistics](#nginx-cache-statistics)
-  - [NGINX memory statistics](#nginx-memory-statistics)
-  - [NGINX upstream statistics](#nginx-upstream-statistics)
-  - [NGINX stream statistics](#nginx-stream-statistics)
-
-## Metrics
-
 The following metrics are reported by NGINXaaS for AWS in Amazon CloudWatch under the `NGINXaaS` namespace. The labels allow you to filter or split your queries in Amazon CloudWatch providing you with a granular view over the metrics reported.
 
-### NGINX config statistics
+## NGINX config statistics
 
 All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 
-| **Metric**            | **Labels** | **Type** | **Description**                                                                                                                                                                                                                                                                                                           | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 | --------------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
 | nginx.config.reloads  | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location | count    | The total number of NGINX configuration reloads since NGINX was last started.                                                                                                                                                                                                                                           | deployment      |
 
 {{< /table >}}
 
-### NGINX connections statistics
+## NGINX connections statistics
 
 All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |------------------------------|----------------|----------|---------------------------------------------------------------------------------------------------------------|-----------------|
 | nginx.http.connections      | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_connections_outcome | count    | The total number of client connections since NGINX was last started, categorized by outcome (accepted, active, dropped, idle). | deployment      |
 | nginx.http.connection.count | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_connections_outcome | gauge    | The current number of client connections, categorized by outcome (accepted, active, dropped, idle).          | deployment      |
 
 {{< /table >}}
 
-### NGINX requests and response statistics
+## NGINX requests and response statistics
 
 To collect these metrics, configure the `status_zone` directive in your NGINX configuration. Add a `status_zone` directive to your `server` or `location` blocks to enable zone-specific request and response tracking.
 
@@ -73,7 +66,7 @@ server {
 
 {{< table >}}
 
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
 | nginx.http.request.count               | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name, nginx_zone_type | gauge | The total number of client requests received since the last collection interval.                                            | zone    |
 | nginx.http.requests                    | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name, nginx_zone_type | count | The total number of client requests received since NGINX was last started or reloaded.                                     | zone          |
@@ -88,7 +81,7 @@ server {
 
 {{< /table >}}
 
-### NGINX SSL statistics
+## NGINX SSL statistics
 
 NGINX automatically collects these metrics when you configure SSL/TLS in your NGINX deployment. To collect SSL metrics, configure SSL certificates and enable HTTPS listeners in your NGINX configuration.
 
@@ -104,14 +97,14 @@ server {
 
 {{< table >}}
 
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
 | nginx.ssl.handshakes                  | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_ssl_status, nginx_ssl_handshake_reason | count | The total number of SSL handshakes (successful and failed).                                                              | deployment    |
 | nginx.ssl.certificate.verify_failures | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_ssl_verify_failure_reason | count | The total number of SSL certificate verification failures, categorized by reason.                                         | deployment    |
 
 {{< /table >}}
 
-### NGINX cache statistics
+## NGINX cache statistics
 
 To collect cache metrics, configure caching in your NGINX configuration using the `proxy_cache_path` and `proxy_cache` directives.
 
@@ -132,7 +125,7 @@ http {
 
 {{< table >}}
 
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
 | nginx.cache.bytes_read                | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_cache_outcome, nginx_cache_name | count | The total number of bytes read from the cache or proxied server.                                                         | cache         |
 | nginx.cache.responses                 | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_cache_outcome, nginx_cache_name | count | The total number of responses read from the cache or proxied server.                                                     | cache         |
@@ -141,13 +134,13 @@ http {
 
 {{< /table >}}
 
-### NGINX memory statistics
+## NGINX memory statistics
 
 These metrics track shared memory zone usage. NGINX automatically collects memory statistics when you configure zones using the `status_zone` directive or other directives that create shared memory zones.
 
 {{< table >}}
 
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
 | nginx.slab.page.free                  | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name | gauge | The current number of free memory pages in the shared memory zone.                                                       | zone          |
 | nginx.slab.page.limit                 | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name | gauge | The total number of memory pages (free and used) in the shared memory zone.                                              | zone          |
@@ -159,7 +152,7 @@ These metrics track shared memory zone usage. NGINX automatically collects memor
 
 {{< /table >}}
 
-### NGINX upstream statistics
+## NGINX upstream statistics
 
 To collect upstream metrics, define `upstream` blocks in your NGINX configuration and reference them in your proxy configuration. Add `zone` directives to track upstream statistics.
 
@@ -182,7 +175,7 @@ server {
 
 {{< table >}}
 
-| **Metric**              | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |-----------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
 | nginx.http.upstream.keepalive.count | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name, nginx_upstream_name | gauge | The current number of idle keepalive connections per HTTP upstream.                                                         | upstream      |
 | nginx.http.upstream.peer.io | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_io_direction, nginx_zone_name, nginx_upstream_name, nginx_peer_address, nginx_peer_name | count | The total number of bytes transferred per HTTP upstream peer.                                                               | peer          |
@@ -203,7 +196,7 @@ server {
 
 {{< /table >}}
 
-### NGINX stream statistics
+## NGINX stream statistics
 
 To collect stream metrics, configure the `stream` context in your NGINX configuration and add `status_zone` directives to your stream servers.
 
@@ -226,7 +219,7 @@ stream {
 
 {{< table >}}
 
-| **Metric**                   | **Labels** | **Type** | **Description**                                                                                               | **Roll-up per** |
+| Metric | Labels | Type | Description | Roll-up per |
 |----------------------------------------|-----------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------|---------------|
 | nginx.stream.io | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_io_direction, nginx_zone_name | count | The total number of Stream bytes transferred (receive/transmit).                                                          | zone          |
 | nginx.stream.connection.accepted | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name | count | The total number of connections accepted from clients.                                                                    | zone          |
@@ -247,3 +240,13 @@ stream {
 | nginx.stream.upstream.zombie.count | nginxaas_organization_object_id, nginxaas_namespace, nginxaas_deployment_object_id, nginxaas_deployment_name, nginxaas_deployment_location, nginx_zone_name, nginx_upstream_name | gauge | The current number of peers removed from the group but still processing active client connections.                       | upstream      |
 
 {{< /table >}}
+
+---
+
+## References
+
+For more information, see:
+
+- [Enable monitoring]({{< ref "/nginxaas/aws/monitoring/enable-monitoring.md" >}})
+- [Enable NGINX logs]({{< ref "/nginxaas/aws/monitoring/enable-nginx-logs.md" >}})
+- [Identity and access management]({{< ref "/nginxaas/aws/deploy/access-management.md" >}})
