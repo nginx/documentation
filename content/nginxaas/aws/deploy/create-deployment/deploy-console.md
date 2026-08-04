@@ -1,11 +1,17 @@
 ---
 title: Deploy using the NGINXaaS Console
+description: "Create, configure, and connect an F5 NGINXaaS for AWS deployment using the NGINXaaS Console."
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, create deployment, NGINXaaS Console, NCU, service frontend, PrivateLink, VPC peering"
+f5-summary: >
+  Learn how to create an F5 NGINXaaS for AWS deployment using the NGINXaaS Console.
+  This guide covers configuring the deployment, setting up service frontend connectivity, and testing the deployment once it's ready.
+f5-audience: operator
 ---
 
 ## Overview

@@ -1,11 +1,17 @@
 ---
 title: "NGINX config restrictions"
+description: "Reference for NGINX configuration restrictions specific to F5 NGINXaaS for AWS deployments."
 weight: 150
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/nginx-configuration/nginx-config-restrictions/
 f5-content-type: reference
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, NGINX configuration, listen restrictions, proxy_protocol, IPv6, UDP, QUIC, listen ports"
+f5-summary: >
+  This reference documents NGINX configuration restrictions that apply specifically to F5 NGINXaaS for AWS deployments, beyond the general NGINXaaS restrictions.
+  Use it to look up listener, protocol, and port limits before you upload a configuration.
+f5-audience: operator
 ---
 
 NGINXaaS for AWS enforces additional restrictions on NGINX configurations to support its managed network interfaces. These restrictions are validated when you upload a configuration; configurations that violate any restriction are rejected before they are applied.
@@ -26,7 +32,7 @@ Configuring the NGINX deployment to listen on IPv6 does not restrict or otherwis
 
 ## proxy_protocol consistency
 
-All `listen` directives for a given port — across every server block in the configuration — must have a consistent `proxy_protocol` setting. Enabling `proxy_protocol` on some listeners for a port while leaving it disabled on others is not supported.
+All `listen` directives for a given port (across every server block in the configuration) must have a consistent `proxy_protocol` setting. Enabling `proxy_protocol` on some listeners for a port while leaving it disabled on others is not supported.
 
 ## IPv4 and IPv6 across server blocks
 
