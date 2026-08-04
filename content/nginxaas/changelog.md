@@ -3,15 +3,26 @@ title: "Changelog"
 weight: 1000
 toc: true
 f5-docs: DOCS-000
-url: /nginxaas/google/changelog/
+url: /nginxaas/changelog/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 NGINXaaS
 nollms: true
 ---
 
-Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Google Cloud.
+Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
+
+## July 31, 2026
+
+- {{% icon-feature %}} **NGINXaaS for AWS is now available (Early Access)**
+
+You can now use F5 NGINXaaS to integrate with your applications in AWS. This is a major new release allowing you to work in multi-cloud setups or simplify your current AWS presence with a fully-managed, secure NGINX offering.
+
+See the documentation for [NGINXaaS for AWS]({{< ref "/nginxaas/aws/overview.md" >}}) for more info.
+
+
+**Note:** This feature is currently in Early Access. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
 
 ## July 30, 2026
 
@@ -25,9 +36,9 @@ Please note the following changes:
 - Keepalive connections between NGINX and upstream servers are enabled by default.
 - Upstream shared memory zone requires an additional 1KB of memory per upstream server.
 
-NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. NGINXaaS does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview/#disallowed-configuration-directives" >}}).
+NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. NGINXaaS does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#disallowed-configuration-directives" >}}).
 
-For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview/#configuration-directives-list" >}}).
+For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#configuration-directives-list" >}}).
 
 NGINXaaS also upgraded F5 WAF for NGINX to version 5.13.4. For more information, see the [F5 WAF for NGINX Release Notes]({{< ref "/waf/changelog/#f5-waf-for-nginx-5134" >}}).
 

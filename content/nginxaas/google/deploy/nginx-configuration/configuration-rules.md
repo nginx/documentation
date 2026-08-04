@@ -1,10 +1,11 @@
 ---
-title: Overview
+title: NGINX configuration rules and limits
 weight: 50
 toc: true
-url: /nginxaas/google/deploy/nginx-configuration/overview/
+url: /nginxaas/google/deploy/nginx-configuration/configuration-rules/
 f5-content-type: reference
 f5-product: NGINXaaS for Google Cloud
+contentSource: nginxaas/overview/nginx-configuration/configuration-rules.md
 ---
 
 This document provides details about using NGINX configuration files with your
