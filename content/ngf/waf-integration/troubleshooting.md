@@ -78,3 +78,39 @@ The route does not show a `gateway.nginx.org/WAFPolicyAffected` condition. Verif
 ### WAF sidecars not starting
 
 Verify that the `waf-enforcer` and `waf-config-mgr` container images are accessible from your cluster, and that any required `imagePullSecrets` are configured in the `NginxProxy` Kubernetes spec.
+
+### Duplicate policy name error
+
+If two `WAFPolicy` resources in the same Gateway reference different compiled bundles that were compiled under the **same policy name**, the WAF engine rejects the configuration with an error like:
+
+```text
+"error_message": "Duplicate policy name found: <PolicyName>"
+```
+
+This occurs because the WAF engine uses the logical policy name embedded inside the compiled bundle — not the Kubernetes resource name or bundle filename — to identify policies. When the same logical name appears more than once in a single NGINX configuration, the configuration test fails and the update is rolled back.
+
+**How to identify the problem:**
+
+Check the NGINX Gateway Fabric controller logs for a configuration error containing `Duplicate policy name found`:
+
+```shell
+kubectl logs -n nginx-gateway deploy/nginx-gateway -c nginx-gateway | grep "Duplicate policy name"
+```
+
+**Resolution:**
+
+Each `WAFPolicy` attached to a Gateway must reference a compiled bundle with a unique logical policy name. This is the `name` field set inside the policy definition JSON at compile time, not the `WAFPolicy` resource name or the bundle filename.
+
+To resolve the conflict, choose one of the following approaches:
+
+- **Recompile with a distinct name**: Update the policy definition to use a unique `name` field for each policy, then recompile and republish the bundle.
+- **Pin a single version per Gateway**: If the intent is to apply the same policy everywhere, use a single gateway-level `WAFPolicy` instead of multiple route-level policies referencing different versions of the same named policy.
+- **Check for overlapping WAFPolicies**: Run `kubectl get wafpolicies -A` and confirm that no two policies targeting the same Gateway reference bundles compiled from definitions with the same logical policy name.
+
+---
+
+## See also
+
+- [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}})
+- [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}})
+- [WAFPolicy and NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}})
