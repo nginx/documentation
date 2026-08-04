@@ -1,7 +1,6 @@
 ---
 f5-docs: DOCS-000
 f5-files:
-- content/nginxaas/aws/deploy/create-deployment/deploy-console.md
 - content/nginxaas/aws/overview.md
 f5-product: NGINXaaS for AWS
 ---

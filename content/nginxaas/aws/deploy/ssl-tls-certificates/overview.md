@@ -1,10 +1,16 @@
 ---
 title: Overview
+description: "Reference for supported SSL/TLS certificate types and how to add them to an F5 NGINXaaS for AWS deployment."
 weight: 50
 toc: true
 url: /nginxaas/aws/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, SSL, TLS, certificates, AWS Secrets Manager, certificate rotation, PEM"
+f5-summary: >
+  This reference covers the SSL/TLS certificate types and formats F5 NGINXaaS for AWS supports, and the two ways to manage them: the NGINXaaS Console and AWS Secrets Manager.
+  Use it to choose a certificate management approach and understand automatic and manual rotation options.
+f5-audience: operator
 ---
 
 Use F5 NGINXaaS for AWS to secure traffic by adding SSL/TLS certificates to a deployment.

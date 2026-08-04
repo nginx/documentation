@@ -1,15 +1,21 @@
 ---
 title: Overview and architecture
+description: "Overview of F5 NGINXaaS for AWS architecture, capabilities, and how it integrates with your AWS environment."
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/overview/
 f5-content-type: concept
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, architecture, service frontend, private endpoint, managed public endpoint, upstream network, NGINX Capacity Unit, NCU, geographical controller"
+f5-summary: >
+  F5 NGINXaaS for AWS is a fully managed, AWS-native SaaS load balancer and application delivery service powered by commercial NGINX Plus.
+  This overview covers its architecture, service frontend types, upstream connectivity, and capacity model, so you understand how it fits into your AWS environment before you deploy.
+f5-audience: any
 ---
 
 {{< call-out class="important" title="Early Access" >}}
-**NGINXaaS for AWS** is currently in **Early Access**. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
+**NGINXaaS for AWS** is currently in **Early Access**. Contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
 {{< /call-out >}}
 
 ## What is NGINXaaS for AWS?

@@ -1,11 +1,17 @@
 ---
 title: Add certificates from AWS Secrets Manager
+description: "Fetch SSL/TLS certificates for F5 NGINXaaS for AWS directly from AWS Secrets Manager."
 weight: 75
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager/
 f5-content-type: how-to
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, AWS Secrets Manager, SSL, TLS, certificates, IAM, automatic rotation, ABAC"
+f5-summary: >
+  Learn how to fetch SSL/TLS certificates and keys for F5 NGINXaaS for AWS directly from AWS Secrets Manager, keeping credentials within AWS.
+  This guide covers IAM permissions, adding secrets to an NGINX configuration, and automatic and manual certificate rotation.
+f5-audience: operator
 ---
 
 F5 NGINXaaS for AWS can fetch secrets directly from [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) to use as certificates and keys in your NGINX configuration, ensuring your credentials remain securely within AWS.

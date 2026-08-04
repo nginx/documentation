@@ -24,8 +24,8 @@ When you enable log export, NGINXaaS writes NGINX logs to a CloudWatch Logs log 
 
 - Configure a **Role ARN** in the **Identity** section of your deployment. NGINXaaS uses this IAM role to export logs to CloudWatch. See [Identity and access management]({{< ref "/nginxaas/aws/deploy/access-management.md" >}}) for how to create the role and attach the [Policy for CloudWatch Logs]({{< ref "/nginxaas/aws/deploy/access-management.md#step-3-add-inline-policies-to-your-role" >}}).
 - Grant the IAM role the permissions required to export logs:
-  - `logs:CreateLogStream` and `logs:PutLogEvents` — required for NGINXaaS to write logs to the log group.
-  - `logs:CreateLogGroup` — required only if you want NGINXaaS to create the log group for you. If you pre-create the log group yourself, you can omit this permission.
+  - `logs:CreateLogStream` and `logs:PutLogEvents`: required for NGINXaaS to write logs to the log group.
+  - `logs:CreateLogGroup`: required only if you want NGINXaaS to create the log group for you. If you pre-create the log group yourself, you can omit this permission.
 
   See [AWS's documentation on controlling access to CloudWatch Logs with IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/auth-and-access-control-cwl.html) for more information.
 - To view logs in the CloudWatch console, your own AWS identity needs read access such as `logs:GetLogEvents` and `logs:FilterLogEvents`. This is separate from the deployment's IAM role.

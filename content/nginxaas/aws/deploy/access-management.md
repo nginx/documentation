@@ -1,11 +1,17 @@
 ---
 title: Identity and access management
+description: "Configure AWS IAM roles so F5 NGINXaaS for AWS can access CloudWatch and Secrets Manager on your behalf."
 weight: 600
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/access-management/
 f5-content-type: how-to
 f5-product: NGINXaaS for AWS
+f5-keywords: "NGINXaaS for AWS, IAM, identity and access management, IAM role, trust policy, external ID, AssumeRole, CloudWatch, Secrets Manager"
+f5-summary: >
+  F5 NGINXaaS for AWS uses AWS IAM roles to export logs and metrics to CloudWatch and to fetch secrets from AWS Secrets Manager.
+  This guide covers IAM role architecture options, how to configure trust and permissions policies, and how to troubleshoot role assumption failures.
+f5-audience: operator
 ---
 
 F5 NGINXaaS for AWS uses AWS Identity and Access Management (IAM) roles to integrate with AWS services. An NGINXaaS deployment configured with an AWS IAM role has access to the following capabilities:
@@ -91,8 +97,8 @@ NGINXaaS periodically calls the AWS [AssumeRole](https://docs.aws.amazon.com/STS
 
 Be aware of the following propagation delays when making changes:
 
-- **Updating a role's trust policy** — Because credentials are cached for the assume role session duration, trust policy changes can take up to 15 minutes to take effect.
-- **Updating a role's permissions policy** — Permissions policy changes take effect almost immediately.
+- **Updating a role's trust policy**: Because credentials are cached for the assume role session duration, trust policy changes can take up to 15 minutes to take effect.
+- **Updating a role's permissions policy**: Permissions policy changes take effect almost immediately.
 
 ## Configure IAM roles
 
