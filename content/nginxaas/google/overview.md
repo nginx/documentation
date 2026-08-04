@@ -101,10 +101,6 @@ A [PSC interface](https://cloud.google.com/vpc/docs/private-service-connect#inte
 
 To connect the NGINXaaS PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
 
-#### Connection draining
-
-During scaling, some connections older than 60 seconds might be reset. The service automatically handles reconnects, so you don't need to wait before reconnecting.
-
 ### NGINX Capacity Unit (NCU)
 
 An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.

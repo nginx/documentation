@@ -120,10 +120,6 @@ Upstream VPC CIDRs must not overlap with the NGINXaaS deployment
 VPC CIDRs, or the CIDRs of other peered upstream VPCs. If CIDRs overlap, VPC peering will fail.
 {{< /call-out >}}
 
-#### Connection draining
-
-During scaling, some connections older than 60 seconds might be reset. The service automatically handles reconnects, so you don't need to wait before reconnecting.
-
 ### NGINX Capacity Unit (NCU)
 
 An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
