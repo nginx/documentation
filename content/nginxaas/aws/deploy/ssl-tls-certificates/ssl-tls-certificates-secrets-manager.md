@@ -145,12 +145,10 @@ NGINXaaS for AWS generates an event each time it fetches or fails to fetch a sec
 ### Event types
 
 {{< table >}}
-
 | Event type | Description |
 |---|---|
 | Successful Secret Fetch from AWS | The secret was fetched from AWS Secrets Manager and applied to NGINX. |
 | Failed Secret Fetch from AWS | NGINXaaS for AWS couldn't fetch the secret. The event message includes the error details. |
-
 {{< /table >}}
 
 ### View events in the console
@@ -161,13 +159,11 @@ NGINXaaS for AWS generates an event each time it fetches or fails to fetch a sec
 ### Common failure messages and remediation
 
 {{< table >}}
-
 | Message | Likely cause | Remediation |
 |---|---|---|
 | `operation error Secrets Manager: GetSecretValue, get identity: get credentials: failed to refresh cached credentials, operation error STS: AssumeRole...` | The IAM role's trust policy is not configured correctly. | Verify the IAM role trust policy allows `sts:AssumeRole` and `sts:TagSession` on the NGINXaaS principal. |
 | `AccessDeniedException... no identity-based policy allows the secretsmanager:GetSecretValue action` | The IAM role's permissions policy is not configured correctly. | Verify the IAM role has a permissions policy allowing `secretsmanager:GetSecretValue` on the secret ARN and any tag attribute conditions are met. |
 | `ResourceNotFoundException: Secrets Manager can't find the specified secret...` | The secret ARN doesn't exist, or the referenced version stage or version ID doesn't point to an existing version. | Confirm the secret ARN is correct and that the specified version stage or version ID is assigned to an existing version. |
-
 {{< /table >}}
 
 ## What's next
