@@ -638,7 +638,7 @@ Use this when the certificate and private key must stay inside the cluster. Note
 
 ## Troubleshooting
 
-These entries cover problems specific to a multi-cluster setup. For problems common to both guides, such as no `IngressLink` being created or an AS3 declaration being rejected, see [Troubleshooting]({{< ref "/ngf/external-loadbalancers/gateway-link/quickstart.md#troubleshooting" >}}).
+{{< include "ngf/gateway-link/troubleshooting.md" >}}
 
 ### The control plane restarts continuously in the second cluster
 
@@ -718,22 +718,6 @@ kubectl get svc gateway-nginx -o jsonpath='{range .spec.ports[*]}{.name} {.port}
 kubectl rollout restart deploy/gateway-nginx -n default
 ```
 
-### A pool is empty
-
-A virtual server exists, but one of its pools contains no members. Requests succeed but only ever reach one cluster. The Gateway in the affected cluster does not expose the port the virtual server is built for.
-
-- Compare the data plane Service ports in each cluster:
-
-```shell
-kubectl get svc gateway-nginx -o jsonpath='{.spec.ports}' | python3 -m json.tool
-```
-
-A missing port means the Gateway in that cluster has no listener on that port. For an HTTPS listener, a missing or invalid `certificateRefs` Secret also leaves the listener unprogrammed. Check the Gateway status as well:
-
-```shell
-kubectl describe gateways.gateway.networking.k8s.io gateway
-```
-
 ### Requests fail with a connection reset
 
 A request through BIG-IP fails with `Recv failure: Connection reset by peer`. NGINX Gateway Fabric enables HTTP/2 by default. BIG-IP SSL profiles do not negotiate HTTP/2 unless configured to, so BIG-IP sends HTTP/1.1 into a connection NGINX set up for HTTP/2.
@@ -783,5 +767,3 @@ The BIG-IP objects created by hand are not managed by F5 Container Ingress Servi
 - [BIG-IP Virtual Edition on Microsoft Azure](https://clouddocs.f5.com/cloud/public/v1/azure_index.html)
 - [BIG-IP Virtual Edition on Google Cloud Platform](https://clouddocs.f5.com/cloud/public/v1/google_index.html)
 - [F5 Container Ingress Services multi-cluster guide](https://clouddocs.f5.com/containers/latest/userguide/multicluster/): multi-cluster deployment topologies.
-
-

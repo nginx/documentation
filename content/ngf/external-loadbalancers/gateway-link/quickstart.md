@@ -517,74 +517,7 @@ The access log records the address of the machine you sent the request from.
 
 ## Troubleshooting
 
-### No IngressLink is created
-
-- Confirm the `--external-load-balancer` flag is set on the control plane deployment. Helm ignores values a chart does not define, so a chart without external load balancer support renders a deployment without the flag.
-- Check the control plane logs:
-
-```shell
-kubectl logs -n nginx-gateway deploy/ngf-nginx-gateway-fabric | grep -i ingresslink
-```
-
-### No address is allocated
-
-- Confirm F5 Container Ingress Services was deployed with `args.ipam=true`.
-- Check the F5 IPAM Controller logs for the requested label:
-
-```shell
-kubectl logs -n kube-system -l app=f5-ipam-controller --tail=20
-```
-
-A label that does not match a configured pool is reported directly:
-
-```text
-[PROV] IPAM LABEL: gatewaylink Not Found
-[PROV] Unsupported IPAM LABEL: gatewaylink
-```
-
-Set `ipamLabel` on the `ExternalLoadBalancer` to a pool name from the `args.ip_range` map used when installing the F5 IPAM Controller. A successful allocation is logged instead:
-
-```text
-[CORE] Allocated IP: 192.0.2.100 for Request: IPAMLabel: production
-```
-
-### NGINX logs show an internal address as the client
-
-NGINX applies the PROXY protocol header only when the peer address is trusted, and kube-proxy forwards the connection, so the peer is the node's Pod-network address.
-
-- Set `trustedAddresses` on the `NginxProxy` resource to the Pod network CIDR:
-
-```shell
-kubectl get nodes -o jsonpath='{.items[*].spec.podCIDRs}'
-```
-
-Confirm the value reached the data plane:
-
-```shell
-kubectl exec <NGINX_POD_NAME> -c nginx -- grep set_real_ip_from /etc/nginx/conf.d/http.conf
-```
-
-If the trusted address is already correct, confirm the iRule is attached to the virtual server:
-
-```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' "https://<BIGIP_ADDRESS>/mgmt/tm/ltm/virtual/~k8s~Shared~<VIRTUAL_SERVER_NAME>" \
-  | python3 -m json.tool | grep -A5 rules
-```
-
-An empty `rules` list means the iRule is not attached, so no PROXY protocol header is sent at all.
-
-### The AS3 declaration is rejected
-
-- Read the BIG-IP response in the F5 Container Ingress Services logs. The response usually names the problem:
-
-```shell
-kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep -E "AS3\]\[POST\]|response:"
-```
-
-### A pool is empty
-
-- Confirm the `NginxProxy` Service type matches the F5 Container Ingress Services `pool_member_type`. Use `NodePort` with `nodeport`, or `ClusterIP` with `cluster`.
-- With `cluster`, confirm BIG-IP has a route to the Pod network.
+{{< include "ngf/gateway-link/troubleshooting.md" >}}
 
 ## Remove the configuration
 
