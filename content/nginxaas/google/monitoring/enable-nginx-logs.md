@@ -18,15 +18,15 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 
 ## Setting up error logs
 
-{{< include "/nginxaas/google/logging-config-error-logs.md" >}}
+{{< include "/nginxaas/logging-config-error-logs.md" >}}
 
 ## Setting up access logs
 
-{{< include "/nginxaas/google/logging-config-access-logs.md" >}}
+{{< include "/nginxaas/logging-config-access-logs.md" >}}
 
 ## Setting up F5 WAF for NGINX security logs
 
-{{< include "/nginxaas/google/logging-config-security-logs.md" >}}
+{{< include "/nginxaas/logging-config-security-logs.md" >}}
 
 ## Export NGINX logs to a Google Cloud Project
 

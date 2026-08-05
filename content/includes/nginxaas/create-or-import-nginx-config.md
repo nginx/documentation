@@ -1,6 +1,9 @@
 ---
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 NGINXaaS
 f5-files:
+- content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
+- content/nginxaas/aws/deploy/create-deployment/deploy-console.md
+- content/nginxaas/aws/deploy/nginx-configuration/nginx-configuration-console.md
 - content/nginxaas/google/deploy/create-deployment/deploy-console.md
 - content/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md
 ---
@@ -13,15 +16,17 @@ In the NGINXaaS Console,
 
    - Select **New configuration** to create a new config.
       - Provide a name for your configuration and an optional description.
-      - Change the configuration path if needed.
       - Select to start with the "F5 NGINXaaS Default" (a basic NGINX setup) or an empty configuration file.
       - Select **Next**.
    - Select **Copy existing configuration** to use one of the existing configuration files in your account as template.
       - Provide a name for your configuration and an optional description.
-      - Change the configuration path if needed.
       - Use the **Choose configuration to copy** list to select the configuration file you want to copy.
       - Use the **Choose configuration version to copy** list to select the version of the configuration file you want to copy.
       - Select **Next**.
 
-1. Modify the configuration file as needed and select **Save**.
-   - You can import certificates using the **Add file** option.
+1. Modify the configuration file as needed.
+   - Select **Add File** to stage new content such as certificates, configuration files, or upload non-configuration files.
+   - Select **File Actions** to rename, move, delete, or copy files as you build out the overall configuration filesystem.
+   - Warnings, errors, and recommendations appear in the editor as you modify your configuration content.
+   - You can hover over an NGINX configuration directive to view helpful descriptions and usage details.
+1. Select **Save**.
