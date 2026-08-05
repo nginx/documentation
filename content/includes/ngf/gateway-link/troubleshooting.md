@@ -110,13 +110,13 @@ kubectl get nodes -o jsonpath='{.items[*].spec.podCIDRs}'
 Confirm the value reached the data plane:
 
 ```shell
-kubectl exec <NGINX_POD_NAME> -c nginx -- grep set_real_ip_from /etc/nginx/conf.d/http.conf
+kubectl exec $NGINX_POD_NAME -c nginx -- grep set_real_ip_from /etc/nginx/conf.d/http.conf
 ```
 
 If the trusted address is already correct, confirm the iRule is attached to the virtual server:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' "https://<BIGIP_ADDRESS>/mgmt/tm/ltm/virtual/~k8s~Shared~<VIRTUAL_SERVER_NAME>" \
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/virtual/~k8s~Shared~$VIRTUAL_SERVER_NAME" \
   | python3 -m json.tool | grep -A5 rules
 ```
 
@@ -129,10 +129,12 @@ A field set on the `ExternalLoadBalancer` never appears on BIG-IP, while the `Ex
 - Check each stage in order to find where the field stops:
 
 ```shell
-kubectl get crd ingresslinks.cis.f5.com -o yaml | grep -A5 <FIELD_NAME>
+export FIELD_NAME="ipamLabel"   # the field that has no effect
+
+kubectl get crd ingresslinks.cis.f5.com -o yaml | grep -A5 "$FIELD_NAME"
 kubectl logs -n nginx-gateway deploy/ngf-nginx-gateway-fabric | grep "unknown field"
 kubectl get ingresslink gateway-nginx -o jsonpath='{.spec}' | python3 -m json.tool
-kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep -i <FIELD_NAME>
+kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep -i "$FIELD_NAME"
 ```
 
 An `unknown field` message in the NGINX Gateway Fabric log means the installed custom resource definition is older than the NGINX Gateway Fabric release. Install a matching custom resource definition version.

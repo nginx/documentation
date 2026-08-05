@@ -31,11 +31,22 @@ You need:
 
 This guide installs the AS3 extension, F5 Container Ingress Services, and NGINX Gateway Fabric.
 
-Replace these placeholders wherever they appear in this guide:
+The shell commands in this guide read the following environment variables, so set them once in the shell you work from and the commands can be copied as they appear:
 
-- `<BIGIP_ADDRESS>` is the BIG-IP management address including the port, for example `192.0.2.10:8443`.
-- `<BIGIP_USERNAME>` and `<BIGIP_PASSWORD>` are your BIG-IP credentials.
-- `<VIRTUAL_SERVER_ADDRESS>` is a free IPv4 address on the BIG-IP subnet, used as the virtual server address.
+```shell
+export BIGIP_ADDRESS="192.0.2.10:8443"
+export BIGIP_USERNAME="admin"
+export BIGIP_PASSWORD="<your-password>"
+export VIRTUAL_SERVER_ADDRESS="192.0.2.100"
+```
+
+- `BIGIP_ADDRESS` is the BIG-IP management address, including the port.
+- `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.
+- `VIRTUAL_SERVER_ADDRESS` is a free IPv4 address on the BIG-IP subnet, which BIG-IP listens on.
+
+`NGINX_POD_NAME` is set later, and is the name of an NGINX Pod in the cluster you are reading logs from.
+
+Every manifest in this guide is applied through a heredoc, so these variables are expanded there too.
 
 ### Why two clusters are required
 
@@ -81,7 +92,7 @@ The iRule runs on every HTTP response BIG-IP sends back to a client and adds an 
 To create the iRule run the following command:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' -X POST "https://<BIGIP_ADDRESS>/mgmt/tm/ltm/rule" \
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" -X POST "https://$BIGIP_ADDRESS/mgmt/tm/ltm/rule" \
   -H "Content-Type: application/json" -d '{
     "name": "gatewaylink_irule",
     "apiAnonymous": "when HTTP_RESPONSE { HTTP::header insert \"X-GatewayLink\" \"true\" }"
@@ -239,12 +250,12 @@ helm repo update
 
 helm install f5-cis f5-stable/f5-bigip-ctlr -n kube-system \
   --set bigip_secret.create=true \
-  --set bigip_secret.username="<BIGIP_USERNAME>" \
-  --set bigip_secret.password="<BIGIP_PASSWORD>" \
+  --set bigip_secret.username="$BIGIP_USERNAME" \
+  --set bigip_secret.password="$BIGIP_PASSWORD" \
   --set rbac.create=true \
   --set serviceAccount.create=true \
   --set namespace=kube-system \
-  --set args.bigip_url="<BIGIP_ADDRESS>" \
+  --set args.bigip_url="$BIGIP_ADDRESS" \
   --set args.bigip_partition=k8s \
   --set args.pool_member_type=nodeport \
   --set args.custom_resource_mode=true \
@@ -275,7 +286,7 @@ kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep -E "authn/login|m
 The log shows a successful login and the configured multi-cluster mode:
 
 ```text
-[DEBUG] [BIGIP] postConfig request: POST https://<BIGIP_ADDRESS>/mgmt/shared/authn/login 200 OK
+[DEBUG] [BIGIP] postConfig request: POST https://192.0.2.10:8443/mgmt/shared/authn/login 200 OK
 [DEBUG] Multi-cluster-mode: standalone, local cluster name: local
 ```
 
@@ -513,7 +524,7 @@ spec:
       kind: Gateway
       name: gateway
   gatewayLink:
-    virtualServerAddress: "<VIRTUAL_SERVER_ADDRESS>"
+    virtualServerAddress: "$VIRTUAL_SERVER_ADDRESS"
     partition: k8s
     host: cafe.example.com
     tls:
@@ -583,7 +594,7 @@ Status:
 Send a request through BIG-IP:
 
 ```shell
-curl -kv --resolve cafe.example.com:443:<VIRTUAL_SERVER_ADDRESS> https://cafe.example.com/coffee
+curl -kv --resolve cafe.example.com:443:$VIRTUAL_SERVER_ADDRESS https://cafe.example.com/coffee
 ```
 
 The request returns `200 OK`, with the `X-GatewayLink` header added by the iRule and a response body from the backend application:
@@ -603,7 +614,7 @@ Confirm traffic is distributed across both clusters. The example application ret
 
 ```shell
 for i in $(seq 1 20); do
-  curl -sk --resolve cafe.example.com:443:<VIRTUAL_SERVER_ADDRESS> https://cafe.example.com/coffee | grep "Server name"
+  curl -sk --resolve cafe.example.com:443:$VIRTUAL_SERVER_ADDRESS https://cafe.example.com/coffee | grep "Server name"
 done | sort | uniq -c
 ```
 
@@ -621,7 +632,8 @@ Match those names against the Pods in each cluster to see which cluster served w
 Confirm BIG-IP is terminating client TLS. BIG-IP decrypts the client connection and opens a separate connection to NGINX, so NGINX logs the BIG-IP request rather than the client one:
 
 ```shell
-kubectl logs <NGINX_POD_NAME> -c nginx | grep coffee | tail -1
+export NGINX_POD_NAME=$(kubectl get pods -l app.kubernetes.io/name=gateway-nginx -o jsonpath='{.items[0].metadata.name}')
+kubectl logs $NGINX_POD_NAME -c nginx | grep coffee | tail -1
 ```
 
 The log records the BIG-IP self-IP address as the client, and the request arriving over HTTP/1.1:
@@ -725,7 +737,7 @@ A request through BIG-IP fails with `Recv failure: Connection reset by peer`. NG
 - Set `disableHTTP2: true` on the `NginxProxy` resource, or use a BIG-IP SSL profile with HTTP/2 enabled. Confirm the setting reached the data plane rather than trusting the resource:
 
 ```shell
-kubectl exec <NGINX_POD_NAME> -c nginx -- grep "listen 443" /etc/nginx/conf.d/http.conf
+kubectl exec $NGINX_POD_NAME -c nginx -- grep "listen 443" /etc/nginx/conf.d/http.conf
 ```
 
 The absence of an `http2` token on the `listen` line means HTTP/2 is off.
@@ -741,7 +753,7 @@ kubectl delete externalloadbalancer gateway-elb
 Confirm the virtual servers are gone:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' "https://<BIGIP_ADDRESS>/mgmt/tm/ltm/virtual" | python3 -m json.tool | grep fullPath
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/virtual" | python3 -m json.tool | grep fullPath
 ```
 
 The output contains no virtual servers in the `k8s` partition.

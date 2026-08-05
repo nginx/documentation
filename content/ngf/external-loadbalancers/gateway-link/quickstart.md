@@ -42,13 +42,27 @@ You need:
 
 This guide installs the AS3 extension, the F5 IPAM Controller, F5 Container Ingress Services, and NGINX Gateway Fabric.
 
-Replace these placeholders wherever they appear in this guide:
+The shell commands in this guide read the following environment variables, so set them once in the shell you work from and the commands can be copied as they appear:
 
-- `<BIGIP_ADDRESS>` is the BIG-IP management address including the port, for example `192.0.2.10:8443`.
-- `<BIGIP_USERNAME>` and `<BIGIP_PASSWORD>` are your BIG-IP credentials.
-- `<ALLOCATED_ADDRESS>` is the virtual server address allocated by the F5 IPAM Controller.
-- `<IPAM_ADDRESS_RANGE>` is a free address range on the BIG-IP subnet, for example `192.0.2.100-192.0.2.110`.
-- `<POD_NETWORK_CIDR>` is the cluster Pod network CIDR, for example `10.42.0.0/24`.
+```shell
+export BIGIP_ADDRESS="192.0.2.10:8443"
+export BIGIP_USERNAME="admin"
+export BIGIP_PASSWORD="<your-password>"
+export IPAM_ADDRESS_RANGE="192.0.2.100-192.0.2.110"
+```
+
+- `BIGIP_ADDRESS` is the BIG-IP management address, including the port.
+- `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.
+- `IPAM_ADDRESS_RANGE` is a free address range on the BIG-IP subnet, which the F5 IPAM Controller allocates from. You choose this range in [Install the F5 IPAM Controller](#install-the-f5-ipam-controller).
+
+Two more variables are set later, once their values exist:
+
+- `ALLOCATED_ADDRESS` is the virtual server address the F5 IPAM Controller allocates, read from the `IngressLink` status in [Verify the configuration](#verify-the-configuration).
+- `NGINX_POD_NAME` is the name of an NGINX Pod, used when reading its logs.
+
+One more variable is set in [Create the Gateway](#create-the-gateway):
+
+- `POD_NETWORK_CIDR` is the cluster Pod network CIDR, for example `10.42.0.0/24`. It is read from the cluster rather than chosen.
 
 ## Prepare BIG-IP
 
@@ -77,7 +91,7 @@ The iRule runs on the `SERVER_CONNECTED` event, which fires when BIG-IP opens a 
 To create the iRule:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' -X POST "https://<BIGIP_ADDRESS>/mgmt/tm/ltm/rule" \
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" -X POST "https://$BIGIP_ADDRESS/mgmt/tm/ltm/rule" \
   -H "Content-Type: application/json" -d '{
     "name": "Proxy_Protocol_iRule",
     "apiAnonymous": "when SERVER_CONNECTED {\n  TCP::respond \"PROXY TCP[IP::version] [IP::client_addr] [clientside {IP::local_addr}] [TCP::client_port] [clientside {TCP::local_port}]\\r\\n\"\n}"
@@ -147,7 +161,7 @@ Choose the address range the F5 IPAM Controller allocates from.
 The range must be addresses on the same subnet as the BIG-IP self-IP, and not in use by anything else. To Find the subnet, run the following command:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' "https://<BIGIP_ADDRESS>/mgmt/tm/net/self" \
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/net/self" \
   | python3 -c 'import sys,json;[print(x["name"],x["address"]) for x in json.load(sys.stdin)["items"]]'
 ```
 
@@ -157,7 +171,7 @@ The output reports each self-IP with its prefix length:
 self_1nic 192.0.2.10/24
 ```
 
-A self-IP of `192.0.2.10/24` means the virtual server address must fall within `192.0.2.1` to `192.0.2.254`. Using this range `<IPAM_ADDRESS_RANGE>` in the rest of this guide.
+A self-IP of `192.0.2.10/24` means the allocated address must fall within `192.0.2.1` to `192.0.2.254`. Set `IPAM_ADDRESS_RANGE` to a free range inside that subnet.
 
 Add the F5 IPAM Controller Helm repository:
 
@@ -178,7 +192,7 @@ helm install f5-ipam-controller f5-ipam-stable/f5-ipam-controller \
   --set args.log_level=DEBUG \
   --set pvc.create=true \
   --set pvc.storage=100Mi \
-  --set-string 'args.ip_range=\{"production":"<IPAM_ADDRESS_RANGE>"\}' \
+  --set-string 'args.ip_range=\{"production":"'"$IPAM_ADDRESS_RANGE"'"\}' \
   --wait
 ```
 
@@ -209,12 +223,12 @@ helm repo update
 
 helm install f5-cis f5-stable/f5-bigip-ctlr -n kube-system \
   --set bigip_secret.create=true \
-  --set bigip_secret.username="<BIGIP_USERNAME>" \
-  --set bigip_secret.password="<BIGIP_PASSWORD>" \
+  --set bigip_secret.username="$BIGIP_USERNAME" \
+  --set bigip_secret.password="$BIGIP_PASSWORD" \
   --set rbac.create=true \
   --set serviceAccount.create=true \
   --set namespace=kube-system \
-  --set args.bigip_url="<BIGIP_ADDRESS>" \
+  --set args.bigip_url="$BIGIP_ADDRESS" \
   --set args.bigip_partition=k8s \
   --set args.pool_member_type=nodeport \
   --set args.custom_resource_mode=true \
@@ -241,8 +255,8 @@ kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep "authn/login"
 A successful login is logged as a `200` response.
 
 ```text
-2026/08/05 14:27:22 [DEBUG] [2026-08-05 14:27:22,539 urllib3.connectionpool DEBUG] https://<BIGIP_ADDRESS> "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
-2026/08/05 14:27:23 [DEBUG] [2026-08-05 14:27:23,896 urllib3.connectionpool DEBUG] https://<BIGIP_ADDRESS> "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
+2026/08/05 14:27:22 [DEBUG] [2026-08-05 14:27:22,539 urllib3.connectionpool DEBUG] https://192.0.2.10:8443 "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
+2026/08/05 14:27:23 [DEBUG] [2026-08-05 14:27:23,896 urllib3.connectionpool DEBUG] https://192.0.2.10:8443 "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
 ```
 
 No output at all means Container Ingress Services never attempted a login, so check the logs and the BIG-IP address.
@@ -267,6 +281,12 @@ kubectl get nodes -o jsonpath='{.items[*].spec.podCIDRs}'
 ["10.42.0.0/24","2001:cafe:42::/64"]
 ```
 
+Store the IPv4 CIDR, which is the first entry:
+
+```shell
+export POD_NETWORK_CIDR=$(kubectl get nodes -o jsonpath='{.items[0].spec.podCIDRs[0]}')
+```
+
 Create an `NginxProxy` resource named `gatewaylink-proxy`:
 
 ```yaml
@@ -280,7 +300,7 @@ spec:
     mode: ProxyProtocol
     trustedAddresses:
       - type: CIDR
-        value: <POD_NETWORK_CIDR>
+        value: $POD_NETWORK_CIDR
   kubernetes:
     service:
       type: NodePort
@@ -489,12 +509,18 @@ Status:
 Events:          <none>
 ```
 
-F5 Container Ingress Services writes this status after posting the AS3 declaration. A status of `OK` means BIG-IP accepted the declaration, and `vsAddress` is the address the F5 IPAM Controller allocated. Use that address as `<ALLOCATED_ADDRESS>` in the remaining steps.
+F5 Container Ingress Services writes this status after posting the AS3 declaration. A status of `OK` means BIG-IP accepted the declaration, and `vsAddress` is the address the F5 IPAM Controller allocated.
+
+Store that address for the remaining commands:
+
+```shell
+export ALLOCATED_ADDRESS=$(kubectl get ingresslink gateway-nginx -o jsonpath='{.status.vsAddress}')
+```
 
 Send a request through BIG-IP:
 
 ```shell
-curl -H "Host: cafe.example.com" http://<ALLOCATED_ADDRESS>/coffee
+curl -H "Host: cafe.example.com" http://$ALLOCATED_ADDRESS/coffee
 ```
 
 The request returns `200 OK` with a response body from the backend application.
@@ -510,7 +536,8 @@ Request ID: a2ae0944885fdf99bb5f86038aeae84f
 Confirm NGINX sees the original client address:
 
 ```shell
-kubectl logs <NGINX_POD_NAME> -c nginx | grep coffee
+export NGINX_POD_NAME=$(kubectl get pods -l app.kubernetes.io/name=gateway-nginx -o jsonpath='{.items[0].metadata.name}')
+kubectl logs $NGINX_POD_NAME -c nginx | grep coffee
 ```
 
 The access log records the address of the machine you sent the request from.
@@ -530,7 +557,7 @@ kubectl delete externalloadbalancer gateway-elb
 Confirm the virtual servers are gone:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' "https://<BIGIP_ADDRESS>/mgmt/tm/ltm/virtual" | python3 -m json.tool | grep fullPath
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/virtual" | python3 -m json.tool | grep fullPath
 ```
 
 ## References

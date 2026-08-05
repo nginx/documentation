@@ -5,7 +5,7 @@ f5-product: FABRIC
 Create a partition named `k8s` for F5 Container Ingress Services to own:
 
 ```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' -X POST "https://<BIGIP_ADDRESS>/mgmt/tm/auth/partition" \
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" -X POST "https://$BIGIP_ADDRESS/mgmt/tm/auth/partition" \
   -H "Content-Type: application/json" -d '{"name":"k8s"}'
 ```
 
