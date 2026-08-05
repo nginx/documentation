@@ -25,11 +25,11 @@ See [How configuration reaches BIG-IP]({{< ref "/ngf/external-loadbalancers/gate
 
 You need:
 
-- Two Kubernetes clusters. BIG-IP TLS termination requires the second one. See [Why two clusters are required](#why-two-clusters-are-required).
+- Two Kubernetes clusters.
 - An F5 BIG-IP system running version {{< ngf-version-bigip >}} or later, and an account on it with administrator privileges.
 - Network access from the first cluster to the BIG-IP system, and from BIG-IP to the nodes of both clusters.
 
-This guide installs the AS3 extension, F5 Container Ingress Services, and NGINX Gateway Fabric.
+This guide installs the AS3 extension, F5 Container Ingress Services, NGINX Gateway Fabric, and cert-manager. cert-manager issues the certificate the Gateway presents on its HTTPS listener, and is installed in both clusters.
 
 The shell commands in this guide read the following environment variables, so set them once in the shell you work from and the commands can be copied as they appear:
 
@@ -45,16 +45,6 @@ export VIRTUAL_SERVER_ADDRESS="192.0.2.100"
 - `VIRTUAL_SERVER_ADDRESS` is a free IPv4 address on the BIG-IP subnet, which BIG-IP listens on.
 
 `NGINX_POD_NAME` is set later, and is the name of an NGINX Pod in the cluster you are reading logs from.
-
-Every manifest in this guide is applied through a heredoc, so these variables are expanded there too.
-
-### Why two clusters are required
-
-BIG-IP terminates TLS, matches on hostname, and runs HTTP-event iRules on a Layer 7 virtual server, which F5 Container Ingress Services builds when it runs in multi-cluster mode. Multi-cluster mode requires at least one external cluster, so a second cluster is part of this setup.
-
-The second cluster runs NGINX Gateway Fabric and serves traffic as an additional pool. It does not run F5 Container Ingress Services.
-
-To use BIG-IP as the external load balancer for a Gateway in a single cluster, see [Use F5 BIG-IP as an external load balancer]({{< ref "/ngf/external-loadbalancers/gateway-link/quickstart.md" >}}).
 
 ## Prepare BIG-IP
 
@@ -157,7 +147,7 @@ Generate a kubeconfig from the service account. The `server` address must be the
 ```shell
 TOKEN=$(kubectl create token bigip-ctlr -n kube-system --duration=8760h)
 CA=$(kubectl get cm kube-root-ca.crt -n kube-system -o jsonpath='{.data.ca\.crt}' | base64 -w0)
-APISERVER=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}')
+APISERVER=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}' | awk '{print $1}')
 
 cat > remote-kubeconfig.yaml <<EOF
 apiVersion: v1
@@ -342,11 +332,15 @@ This `NginxProxy` configures the Gateway that references it with the settings BI
 - `service.type` sets the type of the Gateway's Service, and must match the F5 Container Ingress Services `pool_member_type`.
 - `service.externalTrafficPolicy: Local` preserves the client source address, and means only nodes running an NGINX Pod advertise the endpoint, so BIG-IP health checks reach a node that answers.
 
-Issue the listener certificate. cert-manager creates the `nginx-tls` Secret containing `tls.crt` and `tls.key`, which the Gateway presents on its HTTPS listener. Install cert-manager and a local certificate authority in both clusters.
+#### Issue the listener certificate
+
+The Gateway presents a certificate on its HTTPS listener, read from a Secret named `nginx-tls`. This guide uses cert-manager and a local certificate authority to issue it, so install both in each cluster.
 
 {{< include "ngf/deploy-cert-manager.md" >}}
 
 {{< include "ngf/cert-manager-local-ca.md" >}}
+
+Create the `nginx-tls` Secret by requesting a certificate from the local certificate authority:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -755,18 +749,6 @@ Confirm the virtual servers are gone:
 ```shell
 curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/virtual" | python3 -m json.tool | grep fullPath
 ```
-
-The output contains no virtual servers in the `k8s` partition.
-
-Delete the Gateway resources.
-
-(Optional) Uninstall F5 Container Ingress Services when decommissioning the integration entirely:
-
-```shell
-helm uninstall f5-cis -n kube-system
-```
-
-The BIG-IP objects created by hand are not managed by F5 Container Ingress Services. The partition, SSL profiles, monitors, and iRules remain until you remove them.
 
 ## References
 
