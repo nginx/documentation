@@ -33,6 +33,7 @@ jobs:
               'content/ngf/support.md': ('Support for NGINX Gateway Fabric', 'Support'),
               'content/ngf/traffic-management/client-settings.md': ('Configure client settings with ClientSettingsPolicy', 'Client Settings Policy API'),
               'content/ngf/traffic-management/listener-sets.md': ('Configure additional Gateway listeners with ListenerSet', 'ListenerSet API'),
+              'content/ngf/traffic-management/proxy-settings.md': ('Configure proxy settings with ProxySettingsPolicy', 'Proxy Settings Policy API'),
               'content/ngf/traffic-management/rate-limit.md': ('Configure rate limiting with RateLimitPolicy', 'Rate Limit Policy API'),
               'content/ngf/traffic-management/session-persistence.md': ('Configure session persistence for backend pods', 'Session Persistence'),
               'content/ngf/traffic-management/snippets.md': ('Insert custom NGINX configuration with Snippets', 'Snippets'),
@@ -55,9 +56,7 @@ jobs:
       - name: Verify title scope
         shell: bash
         run: |
-          git remote add upstream https://github.com/nginx/documentation.git
-          git fetch --depth=1 upstream main
-          if git diff upstream/main -- content/ngf | grep -E '^[+-]title:'; then
+          if git diff 4b9870d70946663623480e0f95d44919697b79c6 -- content/ngf | grep -E '^[+-]title:'; then
             echo 'title changes remain'
             exit 1
           fi
