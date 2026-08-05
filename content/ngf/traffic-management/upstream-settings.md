@@ -1,5 +1,5 @@
 ---
-title: Configure upstream connections with UpstreamSettingsPolicy
+title: Upstream Settings Policy API
 weight: 1000
 toc: true
 f5-content-type: how-to

@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot NGINX Gateway Fabric
+title: Troubleshooting
 toc: true
 weight: 600
 f5-content-type: how-to

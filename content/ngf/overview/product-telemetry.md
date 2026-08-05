@@ -1,5 +1,5 @@
 ---
-title: Product telemetry collection
+title: Product telemetry
 weight: 600
 f5-content-type: reference
 f5-product: NGINX Gateway Fabric

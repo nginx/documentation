@@ -1,5 +1,5 @@
 ---
-title: Route UDP traffic with UDPRoute
+title: UDPRoute
 weight: 1300
 toc: true
 f5-content-type: how-to

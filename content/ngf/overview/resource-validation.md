@@ -1,5 +1,5 @@
 ---
-title: Resource validation for Gateway API objects
+title: Resource validation
 weight: 500
 toc: true
 f5-content-type: reference

@@ -1,5 +1,5 @@
 ---
-title: Configure Gateway API Inference Extension routing
+title: Gateway API Inference Extension
 weight: 800
 toc: true
 f5-content-type: how-to

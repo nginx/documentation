@@ -1,5 +1,5 @@
 ---
-title: Component permissions and security context
+title: Permissions
 description: NGINX Gateway Fabric permissions required by components.
 weight: 300
 toc: true

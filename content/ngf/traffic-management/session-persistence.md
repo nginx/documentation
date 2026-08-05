@@ -1,5 +1,5 @@
 ---
-title: Configure session persistence for backend pods
+title: Session Persistence
 weight: 1100
 toc: true
 f5-content-type: how-to

@@ -1,5 +1,5 @@
 ---
-title: NGINX Gateway Fabric changelog
+title: Changelog
 toc: true
 weight: 900
 f5-content-type: reference

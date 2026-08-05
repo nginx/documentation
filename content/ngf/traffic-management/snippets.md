@@ -1,5 +1,5 @@
 ---
-title: Insert custom NGINX configuration with Snippets
+title: Snippets
 weight: 800
 toc: true
 f5-content-type: how-to

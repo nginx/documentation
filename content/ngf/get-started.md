@@ -1,5 +1,5 @@
 ---
-title: Get started with NGINX Gateway Fabric
+title: Get started
 weight: 200
 toc: true
 f5-content-type: how-to

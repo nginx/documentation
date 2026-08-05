@@ -1,5 +1,5 @@
 ---
-title: Support for NGINX Gateway Fabric
+title: Support
 weight: 800
 toc: true
 f5-content-type: reference

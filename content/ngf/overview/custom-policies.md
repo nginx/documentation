@@ -1,5 +1,5 @@
 ---
-title: Custom policies for NGINX data plane features
+title: Custom policies
 weight: 700
 toc: true
 f5-content-type: reference

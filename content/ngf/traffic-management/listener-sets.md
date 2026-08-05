@@ -1,5 +1,5 @@
 ---
-title: Configure additional Gateway listeners with ListenerSet
+title: ListenerSet API
 toc: true
 weight: 1500
 f5-content-type: how-to

@@ -1,5 +1,5 @@
 ---
-title: Configure client settings with ClientSettingsPolicy
+title: Client Settings Policy API
 toc: true
 weight: 900
 f5-content-type: how-to
