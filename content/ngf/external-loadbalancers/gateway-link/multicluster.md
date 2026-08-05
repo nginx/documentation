@@ -25,9 +25,11 @@ See [How configuration reaches BIG-IP]({{< ref "/ngf/external-loadbalancers/gate
 
 You need:
 
-- Two Kubernetes clusters.
+- Two Kubernetes clusters, referred to in this guide as cluster A and cluster B.
 - An F5 BIG-IP system running version {{< ngf-version-bigip >}} or later, and an account on it with administrator privileges.
-- Network access from the first cluster to the BIG-IP system, and from BIG-IP to the nodes of both clusters.
+- Network access from cluster A to the BIG-IP system, and from BIG-IP to the nodes of both clusters.
+
+Both clusters run NGINX Gateway Fabric and serve traffic. Cluster A also runs F5 Container Ingress Services, which owns the BIG-IP configuration and reaches cluster B over a kubeconfig, so every step that touches BIG-IP is run against cluster A.
 
 This guide installs the AS3 extension, F5 Container Ingress Services, NGINX Gateway Fabric, and cert-manager. cert-manager issues the certificate the Gateway presents on its HTTPS listener, and is installed in both clusters.
 
@@ -98,11 +100,11 @@ This guide uses two health monitors that ship with BIG-IP, so there is nothing t
 
 BIG-IP marks a pool member offline when its monitor fails and stops sending traffic to it, so each virtual server is checked in a way that suits the traffic it carries.
 
-## Connect the first cluster to the second
+## Connect cluster A to cluster B
 
-F5 Container Ingress Services runs in the first cluster and reaches the second over a kubeconfig. Build that kubeconfig, because Container Ingress Services needs it at install time.
+F5 Container Ingress Services runs in cluster A and reaches cluster B over a kubeconfig. Build that kubeconfig, because Container Ingress Services needs it at install time.
 
-On the **second** cluster, grant F5 Container Ingress Services read access:
+On **cluster B**, grant F5 Container Ingress Services read access:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -142,7 +144,7 @@ subjects:
 EOF
 ```
 
-Generate a kubeconfig from the service account. The `server` address must be the second cluster's API server as reached from the first cluster, so take it from the node rather than from the local kubeconfig, which records `https://127.0.0.1:6443`:
+Generate a kubeconfig from the service account. The `server` address must be the cluster B API server as reached from cluster A, so take it from the node rather than from the local kubeconfig, which records `https://127.0.0.1:6443`:
 
 ```shell
 TOKEN=$(kubectl create token bigip-ctlr -n kube-system --duration=8760h)
@@ -176,20 +178,20 @@ Verify the kubeconfig works:
 KUBECONFIG=remote-kubeconfig.yaml kubectl get nodes
 ```
 
-The command lists the nodes of the second cluster:
+The command lists the nodes of cluster B:
 
 ```text
 NAME    STATUS   ROLES                  AGE   VERSION
 vm2     Ready    control-plane,master   14d   v1.31.5+k3s1
 ```
 
-## Configure the first cluster
+## Configure cluster A
 
-Run these steps against the **first** cluster. Only this cluster runs F5 Container Ingress Services and owns the BIG-IP configuration.
+Run these steps against **cluster A**. Only this cluster runs F5 Container Ingress Services and owns the BIG-IP configuration.
 
-### Generate secret to connect to second cluster
+### Generate secret to connect to cluster B
 
-Copy the `remote-kubeconfig.yaml` file you generated on the second cluster over to the first cluster, then create a Secret from it. Create the Secret before installing F5 Container Ingress Services, because it reads the kubeconfig at startup.
+Copy the `remote-kubeconfig.yaml` file you generated on cluster B over to cluster A, then create a Secret from it. Create the Secret before installing F5 Container Ingress Services, because it reads the kubeconfig at startup.
 
 ```shell
 kubectl create secret generic remote-kubeconfig -n kube-system \
@@ -230,7 +232,7 @@ data:
 EOF
 ```
 
-F5 Container Ingress Services reads its multi-cluster configuration from this ConfigMap. The `f5nr: "true"` label is required. The `clusterName` value is how you refer to the second cluster in the `ExternalLoadBalancer` resource later.
+F5 Container Ingress Services reads its multi-cluster configuration from this ConfigMap. The `f5nr: "true"` label is required. The `clusterName` value is how you refer to cluster B in the `ExternalLoadBalancer` resource later.
 
 Deploy F5 Container Ingress Services:
 
@@ -263,7 +265,7 @@ These fields must be set according to your own setup:
 - `args.custom_resource_mode=true` is required. Without it, F5 Container Ingress Services never watches `IngressLink` resources.
 - `args.multi-cluster-mode=standalone` is required for a Layer 7 virtual server and TLS termination.
 - `args.local-cluster-name` is required whenever multi-cluster mode is set, and must match `multiCluster.localClusterName` in the `ExternalLoadBalancer`.
-- `args.extended-spec-configmap` points to the ConfigMap created earlier, in `<NAMESPACE>/<NAME>` form. F5 Container Ingress Services reads the list of external clusters and their kubeconfig Secrets from it, so without this value it has no way to reach the second cluster.
+- `args.extended-spec-configmap` points to the ConfigMap created earlier, in `<NAMESPACE>/<NAME>` form. F5 Container Ingress Services reads the list of external clusters and their kubeconfig Secrets from it, so without this value it has no way to reach cluster B.
 - `args.pool_member_type` must match the type of the Gateway's Service. Use `nodeport` with `NodePort`, or `cluster` with `ClusterIP`.
 - `args.log-as3-response=true` logs the BIG-IP response to each declaration, which is useful for troubleshooting.
 
@@ -286,7 +288,7 @@ Apply the following resources to **both** clusters. Use the same Gateway name an
 
 ### Install the custom resource definitions
 
-Install the F5 Container Ingress Services custom resource definitions in **both** clusters, including the second one, which does not run F5 Container Ingress Services:
+Install the F5 Container Ingress Services custom resource definitions in **both** clusters, including cluster B, which does not run F5 Container Ingress Services:
 
 {{< include "ngf/gateway-link/install-cis-crds.md" >}}
 
@@ -504,7 +506,7 @@ httproute.gateway.networking.k8s.io/coffee   ["cafe.example.com"]    32s
 
 ## Create the ExternalLoadBalancer
 
-On the **first** cluster only, create an `ExternalLoadBalancer` resource named `gateway-elb`:
+On **cluster A** only, create an `ExternalLoadBalancer` resource named `gateway-elb`:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -646,7 +648,7 @@ Use this when the certificate and private key must stay inside the cluster. Note
 
 {{< include "ngf/gateway-link/troubleshooting.md" >}}
 
-### The control plane restarts continuously in the second cluster
+### The control plane restarts continuously in cluster B
 
 The NGINX Gateway Fabric Pod reports `CrashLoopBackOff`, and its logs end with a cache sync failure:
 
@@ -671,7 +673,7 @@ kubectl delete pod -n nginx-gateway -l app.kubernetes.io/name=nginx-gateway-fabr
 
 ### The remote cluster has no pool
 
-Only `_local` pools exist on BIG-IP, and traffic never reaches the second cluster. F5 Container Ingress Services could not load the second cluster's kubeconfig, so it has no endpoints to pool. Start with its log, which names the cause directly:
+Only `_local` pools exist on BIG-IP, and traffic never reaches cluster B. F5 Container Ingress Services could not load the cluster B kubeconfig, so it has no endpoints to pool. Start with its log, which names the cause directly:
 
 ```shell
 kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep -i "MultiCluster"
@@ -689,16 +691,16 @@ error occurred while fetching Secret: remote-kubeconfig for the cluster: remote,
 the server has asked for the client to provide credentials
 ```
 
-Regenerate the kubeconfig on the second cluster and recreate the Secret.
+Regenerate the kubeconfig on cluster B and recreate the Secret.
 
-- Confirm the Secret holding the second cluster's kubeconfig parses. A kubeconfig with broken indentation is stored without complaint and fails only when F5 Container Ingress Services loads it:
+- Confirm the Secret holding the cluster B kubeconfig parses. A kubeconfig with broken indentation is stored without complaint and fails only when F5 Container Ingress Services loads it:
 
 ```shell
 kubectl get secret remote-kubeconfig -n kube-system -o jsonpath='{.data.kubeconfig}' | base64 -d > /tmp/check.yaml
 KUBECONFIG=/tmp/check.yaml kubectl get nodes
 ```
 
-The command lists the second cluster's nodes. An error such as `mapping values are not allowed in this context` means the file is malformed, so regenerate it and recreate the Secret.
+The command lists the cluster B nodes. An error such as `mapping values are not allowed in this context` means the file is malformed, so regenerate it and recreate the Secret.
 
 - Confirm the `clusterName` in the extended spec ConfigMap matches the `clusterName` under `remoteClusters` in the `ExternalLoadBalancer`.
 - Restart F5 Container Ingress Services after replacing the Secret, because it reads the kubeconfig at startup:
@@ -711,13 +713,13 @@ kubectl rollout restart deploy/f5-cis-f5-bigip-ctlr -n kube-system
 
 The `_remote` pool exists but its member reports `offline`, so all traffic goes to the local cluster.
 
-- Confirm the second cluster's data plane Service exposes the same ports as the first. A missing HTTPS listener leaves nothing listening on the 443 NodePort:
+- Confirm the cluster B data plane Service exposes the same ports as cluster A. A missing HTTPS listener leaves nothing listening on the 443 NodePort:
 
 ```shell
 kubectl get svc gateway-nginx -o jsonpath='{range .spec.ports[*]}{.name} {.port}:{.nodePort}{"\n"}{end}'
 ```
 
-- Confirm the `nginx-tls` Secret exists in the second cluster. Without it the HTTPS listener is not programmed and NGINX never listens on 443.
+- Confirm the `nginx-tls` Secret exists in cluster B. Without it the HTTPS listener is not programmed and NGINX never listens on 443.
 - Restart the data plane after creating a certificate. NGINX does not load a certificate created after the Pod started, and the Gateway reports every condition as healthy while the listener is missing from the configuration:
 
 ```shell
