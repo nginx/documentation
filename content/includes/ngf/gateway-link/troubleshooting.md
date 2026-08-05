@@ -99,28 +99,32 @@ kubectl describe gateways.gateway.networking.k8s.io gateway
 
 ### NGINX logs show an internal address as the client
 
-NGINX applies the PROXY protocol header only when the peer address is trusted, and kube-proxy forwards the connection, so the peer is the node's Pod-network address.
+The access log records a Pod network address, such as the `cni0` interface address, instead of the address of the machine that sent the request.
 
-- Set `trustedAddresses` on the `NginxProxy` resource to the Pod network CIDR:
+The client address travels inside the PROXY protocol header, not in the connection itself. BIG-IP opens a separate connection to the node, and kube-proxy forwards it to the Pod, so the address NGINX sees on the connection is always internal. NGINX reads the real client address from the header, but only when both the connection address and the address inside the header are trusted. An internal address in the log therefore means either the header never arrived, or one of those two addresses was not trusted.
+
+- Confirm the iRule is attached to the virtual server. Creating the iRule on BIG-IP does not attach it to anything, so list every virtual server with the iRules attached to it:
 
 ```shell
-kubectl get nodes -o jsonpath='{.items[*].spec.podCIDRs}'
+curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/virtual" \
+  | python3 -c 'import sys,json
+for v in json.load(sys.stdin)["items"]:
+    print(v["fullPath"], "->", v.get("rules", "no rules"))'
 ```
 
-Confirm the value reached the data plane:
+A virtual server reporting `no rules` sends no PROXY protocol header at all. Confirm the `ExternalLoadBalancer` names the iRule by its full path, because a bare name does not resolve:
+
+```shell
+kubectl get externalloadbalancer gateway-elb -o jsonpath='{.spec.gatewayLink.iRules}'
+```
+
+- Confirm `trustedAddresses` covers both addresses. NGINX checks this list against the address it sees on the connection, which is internal, and against the client address carried inside the header. A list that satisfies only one of the two causes the header to be discarded:
 
 ```shell
 kubectl exec $NGINX_POD_NAME -c nginx -- grep set_real_ip_from /etc/nginx/conf.d/http.conf
 ```
 
-If the trusted address is already correct, confirm the iRule is attached to the virtual server:
-
-```shell
-curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/virtual/~k8s~Shared~$VIRTUAL_SERVER_NAME" \
-  | python3 -m json.tool | grep -A5 rules
-```
-
-An empty `rules` list means the iRule is not attached, so no PROXY protocol header is sent at all.
+A narrow CIDR is the usual cause, because the client address is often outside it. Widen `trustedAddresses` on the `NginxProxy` resource to the subnet of the IP address which the BIG-IP system uses to send traffic to NGINX, or to `0.0.0.0/0`.
 
 ### A configured field has no effect
 
