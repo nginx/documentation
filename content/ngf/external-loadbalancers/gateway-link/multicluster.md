@@ -19,14 +19,14 @@ In this guide, you configure an `ExternalLoadBalancer` resource that puts BIG-IP
 
 The intended use case is a single hostname and certificate served by backends in more than one cluster, such as an active-active deployment or a migration between clusters. Clients see one address, and traffic moves between clusters without a DNS change.
 
-See [How configuration reaches BIG-IP]({{< ref "/ngf/external-loadbalancers/gatewayLink/quickstart.md#how-configuration-reaches-big-ip" >}}).
+See [How configuration reaches BIG-IP]({{< ref "/ngf/external-loadbalancers/gateway-link/quickstart.md#how-configuration-reaches-big-ip" >}}).
 
 ## Before you begin
 
 You need:
 
 - Two Kubernetes clusters. BIG-IP TLS termination requires the second one. See [Why two clusters are required](#why-two-clusters-are-required).
-- An F5 BIG-IP system running version {{< version-bigip >}} or later, and an account on it with administrator privileges.
+- An F5 BIG-IP system running version {{< ngf-version-bigip >}} or later, and an account on it with administrator privileges.
 - Network access from the first cluster to the BIG-IP system, and from BIG-IP to the nodes of both clusters.
 
 This guide installs the AS3 extension, F5 Container Ingress Services, and NGINX Gateway Fabric.
@@ -43,7 +43,7 @@ BIG-IP terminates TLS, matches on hostname, and runs HTTP-event iRules on a Laye
 
 The second cluster runs NGINX Gateway Fabric and serves traffic as an additional pool. It does not run F5 Container Ingress Services.
 
-To use BIG-IP as the external load balancer for a Gateway in a single cluster, see [Use F5 BIG-IP as an external load balancer]({{< ref "/ngf/external-loadbalancers/gatewayLink/quickstart.md" >}}).
+To use BIG-IP as the external load balancer for a Gateway in a single cluster, see [Use F5 BIG-IP as an external load balancer]({{< ref "/ngf/external-loadbalancers/gateway-link/quickstart.md" >}}).
 
 ## Prepare BIG-IP
 
@@ -51,18 +51,11 @@ In this section you install the AS3 extension and create the BIG-IP objects this
 
 ### AS3 extension
 
-F5 Container Ingress Services configures BIG-IP by posting AS3 declarations, so AS3 must be installed before anything else. Follow [Install the AS3 extension on BIG-IP]({{< ref "/ngf/external-loadbalancers/gatewayLink/install-as3.md" >}}), then return here.
+F5 Container Ingress Services configures BIG-IP by posting AS3 declarations, so AS3 must be installed before anything else. Follow [Downloading and installing the BIG-IP AS3 package](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/userguide/installation.html) in the F5 documentation, then return here.
 
 ### Partition
 
-Create a partition named `k8s` for F5 Container Ingress Services to own:
-
-```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' -X POST "https://<BIGIP_ADDRESS>/mgmt/tm/auth/partition" \
-  -H "Content-Type: application/json" -d '{"name":"k8s"}'
-```
-
-F5 Container Ingress Services manages the full contents of its partition. The partition cannot be `Common`, because Container Ingress Services must not modify shared configuration.
+{{< include "ngf/gateway-link/create-partition.md" >}}
 
 ### SSL Profiles
 
@@ -214,9 +207,7 @@ error occurred while fetching Secret: remote-kubeconfig for the cluster: remote,
 
 Install the F5 Container Ingress Services custom resource definitions:
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v{{< version-cis >}}/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml
-```
+{{< include "ngf/gateway-link/install-cis-crds.md" >}}
 
 Create a ConfigMap named `extended-spec-config`:
 
@@ -272,7 +263,7 @@ These fields must be set according to your own setup:
 - `args.multi-cluster-mode=standalone` is required for a Layer 7 virtual server and TLS termination.
 - `args.local-cluster-name` is required whenever multi-cluster mode is set, and must match `multiCluster.localClusterName` in the `ExternalLoadBalancer`.
 - `args.extended-spec-configmap` points to the ConfigMap created earlier, in `<NAMESPACE>/<NAME>` form. F5 Container Ingress Services reads the list of external clusters and their kubeconfig Secrets from it, so without this value it has no way to reach the second cluster.
-- `args.pool_member_type` must match the `NginxProxy` Service type. Use `nodeport` with `NodePort`, or `cluster` with `ClusterIP`.
+- `args.pool_member_type` must match the type of the Gateway's Service. Use `nodeport` with `NodePort`, or `cluster` with `ClusterIP`.
 - `args.log-as3-response=true` logs the BIG-IP response to each declaration, which is useful for troubleshooting.
 
 Confirm F5 Container Ingress Services reached BIG-IP and accepted the mode:
@@ -296,9 +287,7 @@ Apply the following resources to **both** clusters. Use the same Gateway name an
 
 Install the F5 Container Ingress Services custom resource definitions in **both** clusters, including the second one, which does not run F5 Container Ingress Services:
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v{{< version-cis >}}/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml
-```
+{{< include "ngf/gateway-link/install-cis-crds.md" >}}
 
 With external load balancer support enabled, NGINX Gateway Fabric watches `IngressLink` resources on startup in every cluster it runs in. A cluster without the custom resource definition leaves the control plane unable to start, and its Pod restarts continuously:
 
@@ -309,9 +298,7 @@ failed to start control loop: failed to wait for provisioner-IngressLink caches 
 
 ### Install NGINX Gateway Fabric
 
-[Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with external load balancer support enabled.
-
-Using Helm, set the `nginxGateway.externalLoadBalancer.enable=true` value. Using Kubernetes manifests, add the `--external-load-balancer` flag to the `nginx-gateway` container arguments.
+{{< include "ngf/gateway-link/install-ngf.md" >}}
 
 ### Create a Gateway
 
@@ -341,7 +328,7 @@ This `NginxProxy` configures the Gateway that references it with the settings BI
 
 - `readinessProbe.expose` puts the readiness port on the data plane Service. F5 Container Ingress Services builds its health monitor against the Service port named `health`.
 - `readinessProbe.path` sets the readiness path to `/nginx-ready`, which is the path the generated health monitor requests. NGINX Gateway Fabric serves its readiness endpoint at `/readyz` by default.
-- `service.type` must match the F5 Container Ingress Services `pool_member_type`.
+- `service.type` sets the type of the Gateway's Service, and must match the F5 Container Ingress Services `pool_member_type`.
 - `service.externalTrafficPolicy: Local` preserves the client source address, and means only nodes running an NGINX Pod advertise the endpoint, so BIG-IP health checks reach a node that answers.
 
 Issue the listener certificate. cert-manager creates the `nginx-tls` Secret containing `tls.crt` and `tls.key`, which the Gateway presents on its HTTPS listener. Install cert-manager and a local certificate authority in both clusters.
@@ -651,7 +638,7 @@ Use this when the certificate and private key must stay inside the cluster. Note
 
 ## Troubleshooting
 
-These entries cover problems specific to a multi-cluster setup. For problems common to both guides, such as no `IngressLink` being created or an AS3 declaration being rejected, see [Troubleshooting]({{< ref "/ngf/external-loadbalancers/gatewayLink/quickstart.md#troubleshooting" >}}).
+These entries cover problems specific to a multi-cluster setup. For problems common to both guides, such as no `IngressLink` being created or an AS3 declaration being rejected, see [Troubleshooting]({{< ref "/ngf/external-loadbalancers/gateway-link/quickstart.md#troubleshooting" >}}).
 
 ### The control plane restarts continuously in the second cluster
 
@@ -667,7 +654,7 @@ The F5 Container Ingress Services custom resource definitions are missing from t
 - Install the custom resource definitions in the affected cluster:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v{{< version-cis >}}/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml
+kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v{{< ngf-version-cis >}}/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml
 ```
 
 - Delete the Pod so it restarts immediately rather than waiting out its backoff:

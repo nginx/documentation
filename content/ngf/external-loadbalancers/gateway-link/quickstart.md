@@ -15,7 +15,7 @@ This guide describes how to use an F5 BIG-IP system as the external load balance
 
 ## Overview
 
-GatewayLink integrates NGINX Gateway Fabric with F5 BIG-IP Container Ingress Services to configure an F5 BIG-IP system as the external load balancer for a Gateway. You describe the desired BIG-IP configuration through the `ExternalLoadBalance`r` custom resource.
+GatewayLink integrates NGINX Gateway Fabric with F5 BIG-IP Container Ingress Services to configure an F5 BIG-IP system as the external load balancer for a Gateway. You describe the desired BIG-IP configuration through the `ExternalLoadBalancer` custom resource.
 
 In this guide, the F5 IPAM Controller allocates the address that BIG-IP listens on, and an iRule preserves the original client address by forwarding it to NGINX using the PROXY protocol.
 
@@ -37,7 +37,7 @@ flowchart LR
 You need:
 
 - A Kubernetes cluster.
-- An F5 BIG-IP system running version {{< version-bigip >}} or later, and an account on it with administrator privileges.
+- An F5 BIG-IP system running version {{< ngf-version-bigip >}} or later, and an account on it with administrator privileges.
 - Network access from the cluster to the BIG-IP system, and from BIG-IP to the cluster node addresses.
 
 This guide installs the AS3 extension, the F5 IPAM Controller, F5 Container Ingress Services, and NGINX Gateway Fabric.
@@ -48,7 +48,7 @@ Replace these placeholders wherever they appear in this guide:
 - `<BIGIP_USERNAME>` and `<BIGIP_PASSWORD>` are your BIG-IP credentials.
 - `<ALLOCATED_ADDRESS>` is the virtual server address allocated by the F5 IPAM Controller.
 - `<IPAM_ADDRESS_RANGE>` is a free address range on the BIG-IP subnet, for example `192.0.2.100-192.0.2.110`.
-- `<POD_NETWORK_CIDR>` is the cluster Pod network CIDR, for example `<POD_NETWORK_CIDR>`.
+- `<POD_NETWORK_CIDR>` is the cluster Pod network CIDR, for example `10.42.0.0/24`.
 
 ## Prepare BIG-IP
 
@@ -56,28 +56,11 @@ In this section you install the AS3 extension and create the two BIG-IP objects 
 
 ### AS3 extension
 
-F5 Container Ingress Services configures BIG-IP by posting AS3 declarations, so AS3 must be installed before anything else. Follow [Install the AS3 extension on BIG-IP]({{< ref "/ngf/external-loadbalancers/gatewayLink/install-as3.md" >}}), then return here.
+F5 Container Ingress Services configures BIG-IP by posting AS3 declarations, so AS3 must be installed before anything else. Follow [Downloading and installing the BIG-IP AS3 package](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/userguide/installation.html) in the F5 documentation, then return here.
 
 ### Partition
 
-Create a partition named `k8s` for F5 Container Ingress Services to own:
-
-```shell
-curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' -X POST "https://<BIGIP_ADDRESS>/mgmt/tm/auth/partition" \
-  -H "Content-Type: application/json" -d '{"name":"k8s"}'
-```
-
-The response describes the new partition:
-
-```json
-{
-    "name": "k8s",
-    "fullPath": "k8s",
-    "defaultRouteDomain": 0
-}
-```
-
-F5 Container Ingress Services manages the full contents of its partition. The partition cannot be `Common`, because Container Ingress Services must not modify shared configuration.
+{{< include "ngf/gateway-link/create-partition.md" >}}
 
 ### TCP iRule
 
@@ -188,7 +171,7 @@ Install the F5 IPAM Controller with an address range:
 ```shell
 helm install f5-ipam-controller f5-ipam-stable/f5-ipam-controller \
   --namespace kube-system \
-  --set image.version={{< version-fic >}} \
+  --set image.version={{< ngf-version-fic >}} \
   --set namespace=kube-system \
   --set rbac.create=true \
   --set serviceAccount.create=true \
@@ -216,9 +199,7 @@ f5-ipam-controller-79448b4b8f-qmws7   1/1     Running   0          20s
 
 Install the F5 Container Ingress Services custom resource definitions:
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/F5Networks/k8s-bigip-ctlr/v{{< version-cis >}}/docs/config_examples/customResourceDefinitions/customresourcedefinitions.yml
-```
+{{< include "ngf/gateway-link/install-cis-crds.md" >}}
 
 Deploy F5 Container Ingress Services:
 
@@ -247,7 +228,7 @@ These fields must be set according to your own setup:
 
 - `args.bigip_url` must include the port. F5 Container Ingress Services assumes 443, so omitting a non-default port causes connection failures.
 - `args.custom_resource_mode=true` is required. Without it, F5 Container Ingress Services never watches `IngressLink` resources.
-- `args.pool_member_type` must match the `NginxProxy` Service type. Use `nodeport` with `NodePort`, or `cluster` with `ClusterIP`.
+- `args.pool_member_type` must match the type of the Gateway's Service. Use `nodeport` with `NodePort`, or `cluster` with `ClusterIP`.
 - `args.ipam=true` is required for the F5 IPAM Controller to allocate the virtual server address.
 - `args.log-as3-response=true` logs the BIG-IP response to each declaration, which is useful for troubleshooting.
 
@@ -268,18 +249,23 @@ No output at all means Container Ingress Services never attempted a login, so ch
 
 ## Install NGINX Gateway Fabric
 
-### Enable external load balancer support
-
-
-[Install]({{< ref "/ngf/install/" >}}) Install NGINX Gateway Fabric with External LoadBalancers feature enabled.
-
-Using Helm, set the `nginxGateway.externalLoadBalancer.enable=true` value. Using Kubernetes manifests, add the `--external-load-balancer` flag to the `nginx-gateway` container arguments.
+{{< include "ngf/gateway-link/install-ngf.md" >}}
 
 ## Setup
 
 In this section you create a Gateway, a **coffee** application with an HTTPRoute, and an `ExternalLoadBalancer` custom resource that puts BIG-IP in front of the Gateway, then send a request through BIG-IP to confirm traffic reaches the application.
 
 ### Create the Gateway
+
+Find the Pod network CIDR:
+
+```shell
+kubectl get nodes -o jsonpath='{.items[*].spec.podCIDRs}'
+```
+
+```text
+["10.42.0.0/24","2001:cafe:42::/64"]
+```
 
 Create an `NginxProxy` resource named `gatewaylink-proxy`:
 
@@ -311,19 +297,9 @@ EOF
 This `NginxProxy` configures the Gateway that references it with the settings BIG-IP depends on:
 
 - `rewriteClientIP.mode: ProxyProtocol` reads the client address from the PROXY protocol header the iRule adds.
-- `service.type` must match the F5 Container Ingress Services `pool_member_type`.
+- `service.type` sets the type of the Gateway's Service, and must match the F5 Container Ingress Services `pool_member_type`.
 - `readinessProbe.expose` puts the readiness port on the Service, and `readinessProbe.path` sets the path the generated health monitor requests. NGINX Gateway Fabric serves its readiness endpoint at `/readyz` by default, while the monitor generated by F5 Container Ingress Services requests `/nginx-ready`, so setting the path here makes the two agree.
 - `rewriteClientIP.trustedAddresses` lists the sources NGINX accepts that header from. Set it to the cluster Pod network CIDR. NGINX applies the header only when the peer address is trusted, and with `pool_member_type=nodeport` kube-proxy forwards the connection, so NGINX sees the node's Pod network address as the peer rather than the BIG-IP address.
-
-Find the Pod network CIDR:
-
-```shell
-kubectl get nodes -o jsonpath='{.items[*].spec.podCIDRs}'
-```
-
-```text
-["<POD_NETWORK_CIDR>","2001:cafe:42::/64"]
-```
 
 Create a Gateway named `gateway` with an HTTP listener:
 
@@ -626,7 +602,7 @@ curl -sku '<BIGIP_USERNAME>:<BIGIP_PASSWORD>' "https://<BIGIP_ADDRESS>/mgmt/tm/l
 
 ## References
 
-- [Distribute traffic across clusters with F5 BIG-IP]({{< ref "/ngf/external-loadbalancers/gatewayLink/multicluster.md" >}}): terminate TLS at BIG-IP and spread traffic across two clusters, with health monitors and iRules.
+- [Distribute traffic across clusters with F5 BIG-IP]({{< ref "/ngf/external-loadbalancers/gateway-link/multicluster.md" >}}): terminate TLS at BIG-IP and spread traffic across two clusters, with health monitors and iRules.
 - [F5 IngressLink documentation](https://clouddocs.f5.com/containers/latest/userguide/ingresslink/): the F5 Container Ingress Services resource that NGINX Gateway Fabric generates.
 - [F5 Application Services 3 Extension reference](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/refguide/schema-reference.html): the declaration format F5 Container Ingress Services posts to BIG-IP.
 - [NGINX Gateway Fabric](https://github.com/nginx/nginx-gateway-fabric): the NGINX Gateway Fabric source, including the `ExternalLoadBalancer` custom resource definitions.
