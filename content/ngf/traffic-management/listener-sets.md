@@ -1,5 +1,5 @@
 ---
-title: ListenerSet API
+title: Configure ListenerSet
 toc: true
 weight: 1500
 f5-content-type: how-to

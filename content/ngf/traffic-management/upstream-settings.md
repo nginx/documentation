@@ -1,5 +1,5 @@
 ---
-title: Upstream Settings Policy API
+title: Configure UpstreamSettingsPolicy
 weight: 1000
 toc: true
 f5-content-type: how-to

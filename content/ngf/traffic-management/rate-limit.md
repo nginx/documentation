@@ -1,5 +1,5 @@
 ---
-title: Rate Limit Policy API
+title: Configure RateLimitPolicy
 toc: true
 weight: 1500
 f5-content-type: how-to

@@ -1,5 +1,5 @@
 ---
-title: Snippets
+title: Configure Snippets
 weight: 800
 toc: true
 f5-content-type: how-to

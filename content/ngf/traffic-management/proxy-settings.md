@@ -1,5 +1,5 @@
 ---
-title: Proxy Settings Policy API
+title: Configure ProxySettingsPolicy
 toc: true
 weight: 1400
 f5-content-type: how-to
