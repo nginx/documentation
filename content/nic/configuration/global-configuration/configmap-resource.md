@@ -113,13 +113,21 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 
 ### Header manipulation
 
+{{< call-out class="caution"  >}}
+ `disable-forwarded-headers` removes the hardcoded X-Forwarded-* headers directives allowing users to manually manage forwarded headers using add-header. This setting is available only when `--enable-snippets` is enabled, due to the security implications of manually managing forwarded headers.
+
+Only enable disable-forwarded-headers if:
+You fully trust all upstream proxies in your request path, and
+You have validated that your infrastructure sanitizes or overwrites these headers before they reach NGINX (e.g., via an external load balancer), or you want to explicitly set these values yourself.
+{{< /call-out >}}
+
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
 |*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |
 |*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
 |*add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive in the `http` context. Use the format *Header-Name: value[:always]* and separate entries with commas. Example: `X-Frame-Options: DENY` or  `X-Frame-Options: DENY: always`.  | N/A |
 |*add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are *on*, *off*, and *merge*. | N/A |
-|*disable-forwarded-headers* | Allows disabling default `X-Forwarded-*` headers set by the Ingress Controller. Applies globally. | *false* |
+|*disable-forwarded-headers* | Disables automatic injection of standard `X-Forwarded-*` headers (`X-Forwarded-For`, `X-Forwarded-Host`, `X-Forwarded-Port`, and `X-Forwarded-Proto`), allowing custom header management. Requires `-enable-snippets` CLI flag to be enabled.| *false* |
 
 ### Auth and SSL/TLS
 
