@@ -4,7 +4,7 @@ description: "Learn how to set up OAuth2 client credentials for programmatic acc
 weight: 100
 toc: true
 url: /nginxaas/google/quickstart/security-controls/client-credentials/
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
 f5-summary: >
