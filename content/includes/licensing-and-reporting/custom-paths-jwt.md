@@ -1,7 +1,7 @@
 ---
 f5-product:
 - F5 NGINX Plus
-- SOLUTI
+- Solutions
 f5-files:
 - content/nginx/admin-guide/installing-nginx/installing-nginx-plus.md
 - content/solutions/about-subscription-licenses/getting-started.md
