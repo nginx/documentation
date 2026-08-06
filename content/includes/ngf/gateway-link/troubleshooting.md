@@ -1,5 +1,8 @@
 ---
 f5-product: NGINX Gateway Fabric
+f5-files:
+- content/ngf/external-loadbalancers/gateway-link/quickstart.md
+- content/ngf/external-loadbalancers/gateway-link/multicluster.md
 ---
 
 ### No IngressLink is created
