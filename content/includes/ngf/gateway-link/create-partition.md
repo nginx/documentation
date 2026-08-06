@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 Create a partition named `k8s` for F5 Container Ingress Services to own:

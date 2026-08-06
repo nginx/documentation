@@ -4,8 +4,7 @@ description: Configure an ExternalLoadBalancer so F5 BIG-IP acts as the external
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
-f5-docs: DOCS-0000
+f5-product: NGINX Gateway Fabric
 f5-audience: operator
 f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, GatewayLink, IPAM, PROXY protocol, rewriteClientIP, iRule
 f5-summary: Use an ExternalLoadBalancer custom resource to place an F5 BIG-IP virtual server in front of an NGINX Gateway Fabric Gateway in a single cluster. The F5 IPAM Controller allocates the virtual server address, and an iRule adds a PROXY protocol header so NGINX sees the original client address.
@@ -39,19 +38,20 @@ You need:
 - A Kubernetes cluster.
 - An F5 BIG-IP system running version {{< ngf-version-bigip >}} or later, and an account on it with administrator privileges.
 - Network access from the cluster to the BIG-IP system, and from BIG-IP to the cluster node addresses.
+- Python 3.14 or later.
 
 This guide installs the AS3 extension, the F5 IPAM Controller, F5 Container Ingress Services, and NGINX Gateway Fabric.
 
 The shell commands in this guide read the following environment variables, so set them once in the shell you work from and the commands can be copied as they appear:
 
 ```shell
-export BIGIP_ADDRESS="192.0.2.10:8443"
+export BIGIP_ADDRESS="192.0.2.10:443"
 export BIGIP_USERNAME="admin"
 export BIGIP_PASSWORD="<your-password>"
 export IPAM_ADDRESS_RANGE="192.0.2.100-192.0.2.110"
 ```
 
-- `BIGIP_ADDRESS` is the BIG-IP management address, including the port.
+- `BIGIP_ADDRESS` is the BIG-IP management address, including the port. BIG-IP listens on 443 by default.
 - `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.
 - `IPAM_ADDRESS_RANGE` is a free address range on the BIG-IP subnet, which the F5 IPAM Controller allocates from. You choose this range in [Install the F5 IPAM Controller](#install-the-f5-ipam-controller).
 
@@ -251,8 +251,8 @@ kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep "authn/login"
 A successful login is logged as a `200` response.
 
 ```text
-2026/08/05 14:27:22 [DEBUG] [2026-08-05 14:27:22,539 urllib3.connectionpool DEBUG] https://192.0.2.10:8443 "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
-2026/08/05 14:27:23 [DEBUG] [2026-08-05 14:27:23,896 urllib3.connectionpool DEBUG] https://192.0.2.10:8443 "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
+2026/08/05 14:27:22 [DEBUG] [2026-08-05 14:27:22,539 urllib3.connectionpool DEBUG] https://192.0.2.10:443 "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
+2026/08/05 14:27:23 [DEBUG] [2026-08-05 14:27:23,896 urllib3.connectionpool DEBUG] https://192.0.2.10:443 "POST /mgmt/shared/authn/login HTTP/1.1" 200 722
 ```
 
 No output at all means Container Ingress Services never attempted a login, so check the logs and the BIG-IP address.

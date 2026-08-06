@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with external load balancer support enabled.

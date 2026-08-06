@@ -4,8 +4,7 @@ description: Configure an ExternalLoadBalancer so F5 BIG-IP acts as the external
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
-f5-docs: DOCS-0000
+f5-product: NGINX Gateway Fabric
 f5-audience: operator
 f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, GatewayLink, TLS termination, iRule, health monitor, multi-cluster
 f5-summary: Use an ExternalLoadBalancer resource to make F5 BIG-IP the external load balancer for NGINX Gateway Fabric Gateways in two clusters. BIG-IP terminates client TLS, re-encrypts toward NGINX, runs health monitors and iRules, and distributes traffic between the clusters.
@@ -28,6 +27,7 @@ You need:
 - Two Kubernetes clusters, referred to in this guide as cluster A and cluster B.
 - An F5 BIG-IP system running version {{< ngf-version-bigip >}} or later, and an account on it with administrator privileges.
 - Network access from cluster A to the BIG-IP system, and from BIG-IP to the nodes of both clusters.
+- Python 3.14 or later.
 
 Both clusters run NGINX Gateway Fabric and serve traffic. Cluster A also runs F5 Container Ingress Services, which owns the BIG-IP configuration and reaches cluster B over a kubeconfig, so every step that touches BIG-IP is run against cluster A.
 
@@ -36,13 +36,13 @@ This guide installs the AS3 extension, F5 Container Ingress Services, NGINX Gate
 The shell commands in this guide read the following environment variables, so set them once in the shell you work from and the commands can be copied as they appear:
 
 ```shell
-export BIGIP_ADDRESS="192.0.2.10:8443"
+export BIGIP_ADDRESS="192.0.2.10:443"
 export BIGIP_USERNAME="admin"
 export BIGIP_PASSWORD="<your-password>"
 export VIRTUAL_SERVER_ADDRESS="192.0.2.100"
 ```
 
-- `BIGIP_ADDRESS` is the BIG-IP management address, including the port.
+- `BIGIP_ADDRESS` is the BIG-IP management address, including the port. BIG-IP listens on 443 by default.
 - `BIGIP_USERNAME` and `BIGIP_PASSWORD` are your BIG-IP credentials.
 - `VIRTUAL_SERVER_ADDRESS` is a free IPv4 address on the BIG-IP subnet, which BIG-IP listens on.
 
@@ -278,11 +278,11 @@ kubectl logs -n kube-system deploy/f5-cis-f5-bigip-ctlr | grep -E "authn/login|m
 The log shows a successful login and the configured multi-cluster mode:
 
 ```text
-[DEBUG] [BIGIP] postConfig request: POST https://192.0.2.10:8443/mgmt/shared/authn/login 200 OK
+[DEBUG] [BIGIP] postConfig request: POST https://192.0.2.10:443/mgmt/shared/authn/login 200 OK
 [DEBUG] Multi-cluster-mode: standalone, local cluster name: local
 ```
 
-## Setup for both clusters
+## Set up for both clusters
 
 Apply the following resources to **both** clusters. Use the same Gateway name and the same listeners in each, so the data plane Services carry matching labels and expose the same ports. F5 Container Ingress Services builds one virtual server per Service port and pools every cluster behind that virtual server.
 
