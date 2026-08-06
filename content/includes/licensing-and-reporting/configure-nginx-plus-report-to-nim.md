@@ -1,7 +1,6 @@
 ---
 f5-product:
 - F5 NGINX Instance Manager
-- Solutions
 f5-files:
 - content/nim/licensing-and-reporting/report-usage-connected-deployment.md
 - content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md
