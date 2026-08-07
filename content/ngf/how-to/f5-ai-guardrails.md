@@ -106,7 +106,7 @@ kubectl describe gateways.gateway.networking.k8s.io inference-gateway
 Status:
   Addresses:
     Type:   IPAddress
-    Value:  10.96.36.219
+    Value:  192.0.2.0
   Conditions:
     Message:               The Gateway is accepted
     Reason:                Accepted
