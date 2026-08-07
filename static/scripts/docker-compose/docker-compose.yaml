@@ -80,6 +80,8 @@ services:
       # PROXY_PASSWORD: ""
       # Configure this setting to set the proxy connection verification (is the proxy trusted by the host)
       PROXY_SSL_VERIFY: true
+      # export the LD_LIBRARY_PATH to include the App Protect library path. This is required for NIM to compile older version of NAP compiler .
+      LD_LIBRARY_PATH: "/lib/x86_64-linux-gnu:/opt/app_protect/lib"
   clickhouse:
     image: clickhouse/clickhouse-server:23-alpine
     hostname: clickhouse
