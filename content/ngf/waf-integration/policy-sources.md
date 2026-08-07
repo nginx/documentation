@@ -15,7 +15,7 @@ Before configuring a policy source, ensure that WAF is [enabled on the NginxProx
 
 ---
 
-## NGINX Instance Manager (NGINX Instance Manager)
+## NGINX Instance Manager
 
 Use this option when you manage WAF policies through NGINX Instance Manager. For details on creating and compiling policies in NGINX Instance Manager, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}) and [Create a security policy bundle]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
 
@@ -222,21 +222,21 @@ Use this option when you manage WAF policies as Kubernetes resources with Policy
 
 Unlike the other source types, PLM is Kubernetes-native and event-driven:
 
-- Policies and log profiles are referenced with `policyRef.apPolicyRef` and `logRef.apLogConfRef` instead of `policySource` and `logSource`.
-- Updates are detected through a Kubernetes watch, so [polling]({{< ref "/ngf/waf-integration/configuration.md#configure-automatic-policy-updates-polling" >}}) does not apply.
-- No per-`WAFPolicy` credentials Secret is needed. Access to PLM storage is configured once, cluster-wide, at install time.
+- Reference policies and log profiles with `policyRef.apPolicyRef` and `logRef.apLogConfRef` instead of `policySource` and `logSource`.
+- Updates are detected through a Kubernetes watch, so [polling]({{< ref "/ngf/waf-integration/configuration.md#configure-automatic-policy-updates-polling" >}}) doesn't apply.
+- No per-`WAFPolicy` credentials Secret is needed. PLM storage access is set up once, cluster-wide, at install time.
 
 For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}).
 
 **Before you begin:**
 
-- The PLM system must be installed in the cluster, and PLM storage access must be configured on NGINX Gateway Fabric. See [Configure PLM storage access]({{< ref "/ngf/waf-integration/configuration.md#configure-plm-storage-access" >}}).
+- The PLM system must be installed in the cluster, and PLM storage access must be set up on NGINX Gateway Fabric. See [Configure PLM storage access]({{< ref "/ngf/waf-integration/configuration.md#configure-plm-storage-access" >}}).
 
 **Workflow:**
 
 1. Create your `APPolicy` (and optionally `APLogConf`) resources. The PLM controller compiles them and sets `status.bundle.state` to `ready` when the bundle is available.
 2. Create a `WAFPolicy` with `type: PLM` that references the `APPolicy` by name and namespace.
-3. NGINX Gateway Fabric watches the referenced resources and deploys the bundle once it is `ready`. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
+3. NGINX Gateway Fabric watches the referenced resources and deploys the bundle when it's `ready`. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
 
 
 ### Create namespaces
@@ -270,7 +270,7 @@ spec:
 EOF
 ```
 
-Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}).
+Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details.
 
 ### Create the APPolicy and APLogConf resources
 
@@ -323,7 +323,7 @@ EOF
 
 Wait until both resources report `status.bundle.state: ready` before referencing them from a `WAFPolicy`.
 
-{{< call-out "note" >}} These examples are a starting point. For the full `APPolicy` and `APLogConf` specifications and additional configuration options, see the [F5 WAF PLM documentation]({{< ref "/waf/" >}}). <!-- TODO: confirm PLM docs link --> {{< /call-out >}}
+{{< call-out "note" >}} These examples are a starting point. For the full `APPolicy` and `APLogConf` specifications, see the [F5 WAF PLM documentation]({{< ref "/waf/" >}}). <!-- TODO: confirm PLM docs link --> {{< /call-out >}}
 
 ### Create a gateway-level WAFPolicy
 
@@ -393,7 +393,7 @@ spec:
 EOF
 ```
 
-This example reuses the `attack-signatures` policy for the route-level override. In practice, create a separate `APPolicy` (and, if needed, `APLogConf`) with the stricter posture you want for this route, then reference it here. This policy overrides the gateway-level policy for the `customers` route only. Any other routes attached to the gateway continue to use the gateway-level policy.
+This example reuses the `attack-signatures` policy for the route-level override. In practice, create a separate `APPolicy` (and, if needed, `APLogConf`) with the stricter posture you want for this route, then reference it here. This policy overrides the gateway-level policy for the `customers` route only. Other routes attached to the gateway continue to use the gateway-level policy.
 
 ---
 

@@ -48,15 +48,15 @@ Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. 
 
 ### `FetchError` with HTTP 403
 
-The credentials Secret is either missing, contains the wrong keys, or the credentials are invalid. Verify the Secret exists in the same namespace as the `WAFPolicy` and that the keys match the authentication method (`username`/`password` for Basic Auth, `token` for Bearer/APIToken).
+The credentials Secret is missing, contains the wrong keys, or the credentials are invalid. Verify the Secret exists in the same namespace as the `WAFPolicy`. Confirm the keys match the authentication method (`username`/`password` for Basic Auth, `token` for Bearer/APIToken).
 
 ### `FetchError` with HTTP 404 on NGINX Instance Manager or NGINX One Console
 
-The referenced policy was not found or has not been compiled yet. For NGINX Instance Manager, verify that compilation succeeded in the NGINX Instance Manager console before creating the `WAFPolicy`. For NGINX One Console, NGINX Gateway Fabric triggers compilation if no bundle exists, and a 404 after initial setup may indicate the policy was deleted in NGINX One Console.
+The referenced policy wasn't found or hasn't been compiled yet. For NGINX Instance Manager, verify that compilation succeeded in the NGINX Instance Manager console before creating the `WAFPolicy`. For NGINX One Console, NGINX Gateway Fabric triggers compilation if no bundle exists. A 404 after initial setup may mean the policy was deleted in NGINX One Console.
 
 ### `InvalidRef` on a PLM policy: `APPolicy` not ready
 
-For `type: PLM`, NGINX Gateway Fabric only fetches a bundle once the referenced `APPolicy` (or `APLogConf`) reports `status.bundle.state: ready`. While PLM is still compiling, the `ResolvedRefs` condition is `False` with reason `InvalidRef`:
+For `type: PLM`, NGINX Gateway Fabric only fetches a bundle after the referenced `APPolicy` (or `APLogConf`) reports `status.bundle.state: ready`. While PLM is still compiling, the `ResolvedRefs` condition is `False` with reason `InvalidRef`:
 
 ```text
 - Type:    ResolvedRefs
@@ -69,7 +69,7 @@ Verify the `APPolicy` exists and that PLM has finished compiling it: `kubectl ge
 
 ### `RefNotPermitted` on a PLM policy: missing `ReferenceGrant`
 
-When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, a `ReferenceGrant` must exist in the target namespace:
+When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, a `ReferenceGrant` must exist in the target namespace to allow the reference:
 
 ```text
 - Type:    ResolvedRefs
@@ -78,11 +78,11 @@ When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namesp
   Message: cross-namespace reference to APLogConf namespace/name not permitted by ReferenceGrant
 ```
 
-Create a `ReferenceGrant` in the target namespace that allows `WAFPolicy` resources from the source namespace to reference the `APPolicy`/`APLogConf` Kinds. See [Cross-namespace references]({{< ref "/ngf/waf-integration/policy-sources.md#cross-namespace-references" >}}).
+Create a `ReferenceGrant` in the target namespace that allows `WAFPolicy` resources from the source namespace to reference the `APPolicy`/`APLogConf` kinds. See [Cross-namespace references]({{< ref "/ngf/waf-integration/policy-sources.md#cross-namespace-references" >}}).
 
 ### `Pending`
 
-The bundle has never been successfully fetched. If `bundleFailOpen` is `false` (the default), the NGINX configuration push is withheld for this Gateway. If `bundleFailOpen` is `true`, traffic flows without WAF protection.
+The bundle has never been successfully fetched. If `bundleFailOpen` is `false` (the default), NGINX Gateway Fabric withholds the configuration push for this Gateway. If `bundleFailOpen` is `true`, traffic flows without WAF protection.
 
 Check the `Programmed` condition message for the last fetch error. Common causes include network connectivity issues, incorrect URLs, or authentication failures. Verify the policy source URL and credentials Secret.
 
