@@ -36,9 +36,9 @@ Each log entry must specify a log source. For the `HTTP`, `NIM`, and `N1C` polic
 
 For the `PLM` policy type, use `logRef` instead of `logSource`:
 
-| Field          | Description                                                 |
-|----------------|-------------------------------------------------------------|
-| `apLogConfRef` | Reference to an `APLogConf` custom resource compiled by PLM |
+| Field          | Description                                                                                |
+|----------------|--------------------------------------------------------------------------------------------|
+| `apLogConfRef` | Reference to an `APLogConf` custom resource compiled by the Policy Lifecycle Manager (PLM) |
 
 **Built-in log profiles:** `log_default`, `log_all`, `log_blocked`, `log_illegal`, `log_grpc_all`, `log_grpc_blocked`, `log_grpc_illegal`
 
@@ -76,7 +76,7 @@ securityLogs:
 
 Polling enables NGINX Gateway Fabric to detect and deploy updated policy bundles without modifying the `WAFPolicy` resource. This is useful when the same URL or policy name always resolves to the latest compiled bundle — for example, in a CI/CD workflow that overwrites the bundle file in place.
 
-{{< call-out "note" >}} Polling applies only to the `HTTP`, `NIM`, and `N1C` policy types. The `PLM` type is event-driven: NGINX Gateway Fabric watches the referenced `APPolicy` and `APLogConf` resources and re-fetches automatically when their compiled bundles change, so no polling configuration is needed. {{< /call-out >}}
+{{< call-out "note" >}} Polling applies only to the `HTTP`, `NIM`, and `N1C` policy types. The `PLM` type is event-driven. NGINX Gateway Fabric watches the referenced `APPolicy` and `APLogConf` resources and re-fetches automatically when their compiled bundles change. No polling configuration is needed. {{< /call-out >}}
 
 Enable polling on a `policySource` or `logSource`:
 
