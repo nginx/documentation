@@ -106,9 +106,9 @@ policySource:
 
 ## Configure PLM storage access
 
-When you use the `PLM` policy type, NGINX Gateway Fabric fetches compiled bundles from PLM's in-cluster storage. Access to that storage is configured once, cluster-wide, at install time — it is not set per `WAFPolicy`. This configuration applies to all `WAFPolicy` resources that use `type: PLM`.
+When you use the `PLM` policy type, NGINX Gateway Fabric fetches compiled bundles from PLM's in-cluster storage. Storage access is configured once, cluster-wide, at install time — not per `WAFPolicy`. This configuration applies to all `WAFPolicy` resources that use `type: PLM`.
 
-{{< call-out "note" >}} This section covers only the NGINX Gateway Fabric side of PLM configuration. Installing the PLM system and authoring `APPolicy`/`APLogConf` resources are covered in the [F5 WAF PLM documentation]({{< ref "/waf/" >}}). <!-- TODO: confirm PLM docs link --> {{< /call-out >}}
+{{< call-out "note" >}} This section covers the NGINX Gateway Fabric side of PLM configuration only. For installing the PLM system and authoring `APPolicy`/`APLogConf` resources, see the [F5 WAF PLM documentation]({{< ref "/waf/" >}}). <!-- TODO: confirm PLM docs link --> {{< /call-out >}}
 
 ### Helm values
 
@@ -136,11 +136,11 @@ The equivalent control plane CLI flags for manifest installs are:
 | `--plm-storage-client-ssl-secret`  | Secret containing the client certificate and key (`tls.crt`/`tls.key`) | No                        |
 | `--plm-storage-skip-verify`        | Skip TLS certificate verification (testing only)                       | No                        |
 
-Secret names may include a namespace prefix (`namespace/name`). If no namespace is given, the NGINX Gateway Fabric control plane namespace is assumed.
+Secret names may include a namespace prefix (`namespace/name`). If you don't include a namespace, the NGINX Gateway Fabric control plane namespace is used.
 
 ### Credentials Secret
 
-The credentials Secret is created automatically by the PLM installation. It contains the S3 secret access key in the `seaweedfs_admin_secret` field; the access key ID is `admin` by default:
+The PLM installation creates the credentials Secret automatically. It contains the S3 secret access key in the `seaweedfs_admin_secret` field; the access key ID is `admin` by default:
 
 ```yaml
 apiVersion: v1
@@ -153,15 +153,15 @@ data:
   seaweedfs_admin_secret: <BASE64_ENCODED_SECRET_ACCESS_KEY>
 ```
 
-NGINX Gateway Fabric watches the PLM credentials and TLS Secrets and rebuilds its storage client when they change, so credentials can be rotated without restarting the pod.
+NGINX Gateway Fabric watches the PLM credentials and TLS Secrets and rebuilds its storage client when they change. You can rotate credentials without restarting the pod.
 
-{{< call-out "caution" >}} For production, always use HTTPS with TLS verification by providing `caSecretName`. Enable mutual TLS with `clientSSLSecretName` for high-security environments. Never set `insecureSkipVerify: true` (or `--plm-storage-skip-verify=true`) in production. {{< /call-out >}}
+{{< call-out "caution" >}} For production, always use HTTPS with TLS verification by providing `caSecretName`. Add `clientSSLSecretName` for mutual TLS in high-security environments. Never set `insecureSkipVerify: true` (or `--plm-storage-skip-verify=true`) in production. {{< /call-out >}}
 
 ---
 
 ## Configure the WAF cookie seed
 
-When WAF is enabled, NGINX Gateway Fabric automatically sets the `app_protect_cookie_seed` NGINX directive to a stable value derived from the Gateway's UID. This ensures that WAF session cookies issued by one NGINX replica can be validated by any other replica in the same deployment. Without this, each replica generates its own random seed at startup, which causes cross-replica cookie validation failures.
+When WAF is enabled, NGINX Gateway Fabric sets the `app_protect_cookie_seed` NGINX directive to a stable value derived from the Gateway's UID. This lets any NGINX replica validate WAF session cookies issued by any other replica in the same deployment. Without this, each replica generates its own random seed at startup, causing cross-replica cookie validation failures.
 
 If you have pre-compiled the cookie seed into your WAF policy bundles using the [compiler global settings]({{< ref "/waf/configure/compiler.md" >}}), disable the automatic cookie seed in the NginxProxy CRD to avoid conflicting with the compiled-in value:
 
@@ -253,11 +253,11 @@ policySource:
 
 The `expectedChecksum` must be a 64-character hexadecimal SHA-256 digest.
 
-{{< call-out "note" >}} `verifyChecksum` and `expectedChecksum` are mutually exclusive. You can use one or the other on the same policy source, but not both. {{< /call-out >}}
+{{< call-out "note" >}} `verifyChecksum` and `expectedChecksum` are mutually exclusive. Use one or the other on the same policy source, but not both. {{< /call-out >}}
 
 ### PLM source
 
-For the `PLM` policy type, integrity verification is automatic and requires no configuration. NGINX Gateway Fabric verifies the downloaded bundle against `status.bundle.sha256` from the referenced `APPolicy` or `APLogConf` resource. A mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
+For the `PLM` policy type, integrity verification is automatic — no configuration needed. NGINX Gateway Fabric verifies the downloaded bundle against `status.bundle.sha256` from the referenced `APPolicy` or `APLogConf` resource. A mismatch prevents the bundle from being deployed and sets `Programmed=False` with reason `IntegrityError`.
 
 ---
 
