@@ -37,9 +37,7 @@ kubectl apply -f <POLICY_MANIFEST>.yaml
 The Policy Controller must be able to reach the artifact registry host over HTTPS. If the registry uses a private certificate authority, configure the Policy Controller to trust that CA. <!-- TODO: SME to confirm and document the Helm value or config mechanism for trusting a private CA on the bundle server. -->
 {{< /call-out >}}
 
-#### Confirm the policy is ready
-
-The Policy Controller processes the bundle and updates the `APPolicy` status. Check the `bundle.state` field:
+**Confirm the policy is ready.** The Policy Controller processes the bundle and updates the `APPolicy` status. Check the `bundle.state` field:
 
 ```shell
 kubectl get appolicy <POLICY_NAME> \
@@ -66,9 +64,7 @@ isCompiled: false
 | `ready` | The bundle is stored and ready to use. `bundle.location` is populated. |
 | `invalid` | The bundle could not be imported. Check the status for error detail. |
 
-#### Update a precompiled bundle
-
-The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `APPolicy` resource to reference the new bundle URL (or bump its revision annotation) and re-apply it:
+**Update a precompiled bundle.** The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `APPolicy` resource to reference the new bundle URL (or bump its revision annotation) and re-apply it:
 
 ```shell
 kubectl apply -f <UPDATED_POLICY_MANIFEST>.yaml
