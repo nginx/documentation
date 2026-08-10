@@ -4,24 +4,24 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
-f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
+f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, an HTTP server, or Policy Lifecycle Management.
 ---
 
 NGINX Gateway Fabric supports four policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, and Policy Lifecycle Management (PLM). For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}). For a walkthrough using PLM, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
 
-Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) — either per Gateway or globally via Helm values.
+Before configuring a policy source, make sure WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}), either per Gateway or globally through Helm values.
 
 {{< call-out class="tip" >}} By default, NGINX Gateway Fabric retries transient fetch failures up to 3 times with exponential backoff, and each fetch attempt times out after 30 seconds. You can tune these using the `retryAttempts` and `timeout` fields on `policySource` or `logSource`. {{< /call-out >}}
 
 ---
 
-## NGINX Instance Manager (NGINX Instance Manager)
+## NGINX Instance Manager
 
 Use this option when you manage WAF policies through NGINX Instance Manager. For details on creating and compiling policies in NGINX Instance Manager, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}) and [Create a security policy bundle]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
 
 **Workflow:**
 
-1. Author and compile a policy in NGINX Instance Manager using the NGINX Instance Manager console or API. Verify that compilation succeeded before proceeding — NGINX Gateway Fabric cannot detect compilation failures in NGINX Instance Manager.
+1. Author and compile a policy in NGINX Instance Manager using the NGINX Instance Manager console or API. Verify that compilation succeeded before proceeding. NGINX Gateway Fabric can't detect compilation failures in NGINX Instance Manager.
 2. Create a Secret with your NGINX Instance Manager credentials.
 3. Create a `WAFPolicy` referencing the compiled policy by name.
 
@@ -98,7 +98,7 @@ Replace `https://nim.example.com` with your NGINX Instance Manager base URL, and
 
 ### Apply a route-level override (optional)
 
-To apply a different policy to a specific route — for example, a data-guard policy — create a route-level `WAFPolicy`:
+To apply a different policy to a specific route (for example, a data-guard policy), create a route-level `WAFPolicy`:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -139,7 +139,7 @@ Use this option when you manage WAF policies through F5 NGINX One Console. For d
 
 **Workflow:**
 
-1. Author and compile a policy in the NGINX One Console console or API. If no compiled bundle for a given policy exists yet, NGINX Gateway Fabric triggers compilation via the NGINX One Console API when it first reconciles the WAFPolicy and waits for it to complete.
+1. Author and compile a policy in the NGINX One Console console or API. If no compiled bundle for a given policy exists yet, NGINX Gateway Fabric triggers compilation through the NGINX One Console API when it first reconciles the WAFPolicy and waits for it to complete.
 2. Create a Secret with your NGINX One Console API token.
 3. Create a `WAFPolicy` referencing the compiled policy.
 
@@ -220,7 +220,7 @@ For production environments, you would typically host compiled bundles on an HTT
 
 Use this option when you manage WAF policies as Kubernetes resources with Policy Lifecycle Management (PLM). With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources instead of `policySource`/`logSource`; the PLM controller compiles them automatically and stores the resulting bundles in in-cluster storage. NGINX Gateway Fabric fetches those bundles and deploys them to the data plane. Because PLM is event-driven, no per-`WAFPolicy` credentials Secret or polling configuration is needed.
 
-For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}). For a complete walkthrough — including PLM storage setup, defining `APPolicy`/`APLogConf` resources, and applying a `WAFPolicy` — see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
+For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}). For a complete walkthrough (including PLM storage setup, defining `APPolicy`/`APLogConf` resources, and applying a `WAFPolicy`), see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
 
 ---
 
@@ -228,19 +228,19 @@ For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle 
 
 When using NGINX Instance Manager or NGINX One Console as your policy source, be aware that neither management console currently displays WAF policy deployments to NGINX Gateway Fabric, nor does it show which compiled bundle versions NGINX Gateway Fabric has fetched.
 
-This is by design: NGINX Gateway Fabric pulls compiled bundles from the management plane using a pull model and deploys them directly in Kubernetes using native Kubernetes manifests, rather than through the NGINX Instance Manager or NGINX One Console console. This workflow ensures that policies can be created, compiled, and made available to NGINX Gateway Fabric via API without requiring console-managed deployment flows.
+This is by design: NGINX Gateway Fabric pulls compiled bundles from the management plane using a pull model and deploys them directly in Kubernetes using native Kubernetes manifests, rather than through the NGINX Instance Manager or NGINX One Console console. This workflow means policies can be created, compiled, and made available to NGINX Gateway Fabric through an API without requiring console-managed deployment flows.
 
 Policy association visibility for NGINX Instance Manager and NGINX One Console will be added in a future release. In the meantime, use `kubectl describe wafpolicy <name>` to check deployment status.
 
 ### Connect NGINX Gateway Fabric to F5 NGINX One Console
 
-Ensure that NGINX Gateway Fabric is configured to connect to NGINX One Console. Follow the guidance at [Connect NGINX Gateway Fabric with Helm]({{< ref "/nginx-one-console/k8s/add-ngf-helm.md" >}}) or [Connect NGINX Gateway Fabric with Manifests]({{< ref "/nginx-one-console/k8s/add-ngf-manifests.md" >}}) before continuing.
+Make sure NGINX Gateway Fabric is configured to connect to NGINX One Console. Follow the guidance at [Connect NGINX Gateway Fabric with Helm]({{< ref "/nginx-one-console/k8s/add-ngf-helm.md" >}}) or [Connect NGINX Gateway Fabric with Manifests]({{< ref "/nginx-one-console/k8s/add-ngf-manifests.md" >}}) before continuing.
 
 ### Export security logs to F5 NGINX One Console
 
 Although the NGINX One Console console does not display which policies are deployed to NGINX Gateway Fabric data planes, you can export WAF security events to the NGINX One Console security dashboard. This gives your security operations team visibility into blocked attacks, violations, and traffic patterns directly in the console.
 
-To enable this, configure a `securityLogs` entry that sends events to the NGINX Agent's built-in OpenTelemetry collector, which forwards them to NGINX One Console. Use a log profile compiled for the NGINX One Console security dashboard:
+To set this up, configure a `securityLogs` entry that sends events to the NGINX Agent's built-in OpenTelemetry collector, which forwards them to NGINX One Console. Use a log profile compiled for the NGINX One Console security dashboard:
 
 ```yaml
 kubectl apply -f - <<EOF
