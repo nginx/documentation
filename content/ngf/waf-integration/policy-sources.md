@@ -7,7 +7,7 @@ f5-product: NGINX Gateway Fabric
 f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
 ---
 
-NGINX Gateway Fabric supports three policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}).
+NGINX Gateway Fabric supports four policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, and Policy Lifecycle Management (PLM). For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}). For a walkthrough using PLM, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
 
 Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) — either per Gateway or globally via Helm values.
 
@@ -216,6 +216,14 @@ For production environments, you would typically host compiled bundles on an HTT
 
 ---
 
+## Policy Lifecycle Management (PLM)
+
+Use this option when you manage WAF policies as Kubernetes resources with Policy Lifecycle Management (PLM). With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources instead of `policySource`/`logSource`; the PLM controller compiles them automatically and stores the resulting bundles in in-cluster storage. NGINX Gateway Fabric fetches those bundles and deploys them to the data plane. Because PLM is event-driven, no per-`WAFPolicy` credentials Secret or polling configuration is needed.
+
+For a comparison of PLM with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}). For a complete walkthrough — including PLM storage setup, defining `APPolicy`/`APLogConf` resources, and applying a `WAFPolicy` — see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
+
+---
+
 ## Management console visibility
 
 When using NGINX Instance Manager or NGINX One Console as your policy source, be aware that neither management console currently displays WAF policy deployments to NGINX Gateway Fabric, nor does it show which compiled bundle versions NGINX Gateway Fabric has fetched.
@@ -279,6 +287,8 @@ The `localhost:1514` syslog destination points to the NGINX Agent's OpenTelemetr
 ## See also
 
 - [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}})
+- [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}})
+- [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}})
 - [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}})
 - [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}})
 - [WAFPolicy and NginxProxy API reference]({{< ref "/ngf/reference/api.md" >}})
