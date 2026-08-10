@@ -1,11 +1,11 @@
 ---
 title: Secure LLM traffic with F5 AI Guardrails
+description: Deploy F5 AI Guardrails with NGINX Gateway Fabric using PayloadProcessor to inspect and block LLM traffic
 weight: 900
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: F5 NGINX Gateway Fabric
 f5-keywords: NGINX Gateway Fabric, F5 AI Guardrails, AI Guardrails, PayloadProcessor, LLM, large language model, Gateway API, Kubernetes, content policy, PII, ai-guardrails module, guardrails
-f5-description: How to deploy F5 AI Guardrails with NGINX Gateway Fabric using the PayloadProcessor policy to inspect and block LLM request and response payloads.
 f5-summary: >
   Deploy a large language model (LLM) behind NGINX Gateway Fabric, attach a PayloadProcessor policy
   that routes request and response payloads through an external Guardrails API, and verify that
@@ -16,10 +16,10 @@ Learn how to use NGINX Gateway Fabric with F5 AI Guardrails to inspect large lan
 
 ## Overview
 
-F5 AI Guardrails has the ability to inspect LLM traffic on two independent paths:
+F5 AI Guardrails can inspect LLM traffic on two independent paths:
 
-- **Request path** — the client's *input* is inspected before it reaches the LLM. A block returns `403` with `error.type: invalid_request_error`.
-- **Response path** — the model's *output* is inspected before it reaches the client. A block returns `403` with `error.type: api_error`.
+- **Prompts** — the client's *input* is inspected before it reaches the LLM. A block returns `403` with `error.type: invalid_request_error`.
+- **Responses** — the model's *output* is inspected before it reaches the client. A block returns `403` with `error.type: api_error`.
 
 This behavior is provided by the `PayloadProcessor` policy, an [inherited policy]({{< ref "/ngf/overview/custom-policies.md" >}}) that can target an HTTPRoute or a Gateway, which configures NGINX traffic to F5 AI Guardrails to process.
 
@@ -204,10 +204,10 @@ spec:
 EOF
 ```
 
-For an in-cluster backend, your Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to.
+For an in-cluster backend, your AI Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to.
 
 {{< call-out "important" >}}
-When using an `ExternalName` Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Configure `dnsResolver` on an [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
+When using an `ExternalName` AI Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Configure `dnsResolver` on an [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2
@@ -310,7 +310,7 @@ Content-Type: application/json
 {"error":{"type":"api_error","code":"content_policy_violation", ...}}
 ```
 
-For more example curl requests, view the [`examples/guardrails`](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/guardrails) `README.md` in the Nginx Gateway Fabric repository.
+For more example curl requests, view the [`examples/guardrails`](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/guardrails) `README.md` in the NGINX Gateway Fabric repository.
 
 ## Troubleshooting
 
