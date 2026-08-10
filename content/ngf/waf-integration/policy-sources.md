@@ -240,7 +240,7 @@ Make sure NGINX Gateway Fabric is configured to connect to NGINX One Console. Fo
 
 Although the NGINX One Console console does not display which policies are deployed to NGINX Gateway Fabric data planes, you can export WAF security events to the NGINX One Console security dashboard. This gives your security operations team visibility into blocked attacks, violations, and traffic patterns directly in the console.
 
-To set this up, configure a `securityLogs` entry that sends events to the NGINX Agent's built-in OpenTelemetry collector, which forwards them to NGINX One Console. Use a log profile compiled for the NGINX One Console security dashboard:
+To set this up, configure a `securityLogs` entry that sends events to the built-in OpenTelemetry collector in NGINX Agent, which forwards them to NGINX One Console. Use a log profile compiled for the NGINX One Console security dashboard:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -278,7 +278,7 @@ spec:
 EOF
 ```
 
-The `localhost:1514` syslog destination points to the NGINX Agent's OpenTelemetry collector receiver, which runs as a sidecar in the NGINX Pod. The agent forwards the security events to the NGINX One Console console, where they appear in the security monitoring dashboard.
+The `localhost:1514` syslog destination points to the OpenTelemetry collector receiver in NGINX Agent, which runs as a sidecar in the NGINX Pod. The agent forwards the security events to the NGINX One Console console, where they appear in the security monitoring dashboard.
 
 {{< call-out class="note" >}} The `profileName: "secops_dashboard"` log profile must exist in your NGINX One Console namespace. This profile is required for events to appear correctly in the NGINX One Console security dashboard. {{< /call-out >}}
 

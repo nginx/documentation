@@ -335,7 +335,7 @@ kubectl get appolicy <POLICY_NAME> \
 
 #### Update a Git-referenced policy
 
-The Policy Controller doesn't poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
+The Policy Controller does not poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
 
 {{% /tab %}}
 
@@ -397,13 +397,13 @@ spec:
 EOF
 ```
 
-This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch. No change to the `WAFPolicy` is required.
+This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
 
 ---
 
 ## Configure HTTPRoutes
 
-Create two HTTPRoutes (`customers` and `orders`) attached to the Gateway. Because the `WAFPolicy` targets the Gateway, both routes inherit WAF protection automatically:
+Create two HTTPRoutes — `customers` and `orders` — attached to the Gateway. Because the `WAFPolicy` targets the Gateway, both routes inherit WAF protection automatically:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -516,7 +516,7 @@ kubectl describe gateways.gateway.networking.k8s.io gateway
 ```text
 Addresses:
   Type:   IPAddress
-  Value:  192.0.2.1
+  Value:  10.96.20.187
 ```
 
 Save the public IP address and port of the Gateway into shell variables:
@@ -542,7 +542,7 @@ Credit Card: 4111-1111-1111-1111
 SSN: 123-45-6789
 ```
 
-The sensitive data passes through because the gateway-level `attack-signatures` policy only inspects inbound requests for attack patterns. It doesn't mask outbound response data.
+The sensitive data passes through because the gateway-level `attack-signatures` policy only inspects inbound requests for attack patterns — it doesn't mask outbound response data.
 
 **Verify attacks are blocked.** Send a request with a cross-site scripting (XSS) payload:
 
@@ -558,7 +558,7 @@ The WAF detects the attack signature and rejects the request:
 ...
 ```
 
-**Verify the `orders` route is also protected.** Because the policy targets the Gateway, all attached routes inherit protection:
+**Verify the `orders` route is also protected.** Since the policy targets the Gateway, all attached routes inherit protection:
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_PORT/orders?x=</script>"
