@@ -9,7 +9,9 @@ The Policy Lifecycle Manager (PLM) backend runs as a Kubernetes operator. It wat
 
 F5 WAF for NGINX is installed using a separate Helm chart from your NGINX data plane. The steps in this section install only the F5 WAF for NGINX PLM components and do not affect your existing NGINX installation.
 
-**Install the CRDs.** Install the four custom resource definitions (CRDs) that the Policy Controller manages:
+### Install the CRDs
+
+Install the four custom resource definitions (CRDs) that the Policy Controller manages:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/main/manifests/1-deploy-crds.yaml
@@ -30,7 +32,9 @@ apsignatures.appprotect.f5.com
 apusersigs.appprotect.f5.com
 ```
 
-**Create the registry pull secret.** Create a namespace for the PLM components, then create the registry pull secret using the credentials from the previous section.
+### Create the registry pull secret
+
+Create a namespace for the PLM components, then create the registry pull secret using the credentials from the previous section.
 
 Replace `<NAMESPACE>` with your chosen namespace name, and `<JWT>` with your F5 WAF for NGINX JWT.
 
@@ -47,7 +51,9 @@ kubectl create secret docker-registry regcred \
   --dry-run=client --output yaml | kubectl apply -f -
 ```
 
-**Install the Policy Controller.** Create a values file for the Helm installation. Replace `<NAMESPACE>`, `<CHART_VERSION>`, `<IMAGE_TAG>`, `<BASE64_NGINX_REPO_CRT>`, and `<BASE64_NGINX_REPO_KEY>` with your values. `<CHART_VERSION>` is the Helm chart version (for example, `5.14.0`). `<IMAGE_TAG>` is the container image tag, which typically matches the chart version.
+### Install the Policy Controller
+
+Create a values file for the Helm installation. Replace `<NAMESPACE>`, `<CHART_VERSION>`, `<IMAGE_TAG>`, `<BASE64_NGINX_REPO_CRT>`, and `<BASE64_NGINX_REPO_KEY>` with your values. `<CHART_VERSION>` is the Helm chart version (for example, `5.14.0`). `<IMAGE_TAG>` is the container image tag, which typically matches the chart version.
 
 `<BASE64_NGINX_REPO_CRT>` and `<BASE64_NGINX_REPO_KEY>` are the base64-encoded contents of your `nginx-repo.crt` and `nginx-repo.key` files. To encode them, run:
 
@@ -94,7 +100,9 @@ helm upgrade --install <RELEASE_NAME> nginx-stable/f5-waf-policy-controller \
 
 Replace `<RELEASE_NAME>` with a name for the Helm release (for example, `plm`).
 
-**Verify the deployment.** Wait for all PLM components to become ready. The Policy Controller's init container waits for both the compiler service and the SeaweedFS S3 endpoint to be available before it starts, so the controller pod will show `Init:0/1` until SeaweedFS is ready.
+### Verify the deployment
+
+Wait for all PLM components to become ready. The Policy Controller's init container waits for both the compiler service and the SeaweedFS S3 endpoint to be available before it starts, so the controller pod will show `Init:0/1` until SeaweedFS is ready.
 
 Wait for the SeaweedFS storage backend:
 
