@@ -479,6 +479,36 @@ Enables App Protect IP Intelligence. Defaults to `false`. *Only applies to WAF s
 
 Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
 
+<a name="cmdoption-plm-storage-url"></a>
+
+### -plm-storage-url
+
+SeaweedFS S3 endpoint for NIC to fetch policy and logconf bundle from. Leave empty to disable PLM support.
+
+<a name="cmdoption-plm-storage-credentials-secret"></a>
+
+### -plm-storage-credentials-secret
+
+Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret, namespace/name format.
+
+<a name="cmdoption-plm-storage-ca-secret"></a>
+
+### -plm-storage-ca-secret
+
+Optional Secret containing ca.crt for SeaweedFS TLS verification, namespace/name format.
+
+<a name="cmdoption-plm-storage-client-ssl-secret"></a>
+
+### -plm-storage-client-ssl-secret
+
+Optional Secret containing tls.crt and tls.key for SeaweedFS mTLS, namespace/name format.
+
+<a name="cmdoption-plm-storage-insecure-skip-verify"></a>
+
+### -plm-storage-insecure-skip-verify
+
+Disable SeaweedFS TLS verification. For development and testing only.
+
 <a name="cmdoption-ready-status"></a>
 
 ### -ready-status
