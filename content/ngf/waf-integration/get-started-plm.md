@@ -35,19 +35,10 @@ NGINX Gateway Fabric fetches compiled bundles from in-cluster PLM storage. You s
 Create a `values.yaml` file that enables WAF and sets the PLM storage connection details under `nginxGateway.plmStorage`:
 
 ```yaml
-# values.yaml
-nginx:
-  image:
-    repository: private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf
-  plus: true
-  config:
-    waf:
-      enable: true
-  imagePullSecret: nginx-plus-registry-secret
 nginxGateway:
   plmStorage:
-    url: "https://plm-storage-service.plm-system.svc.cluster.local"
-    credentialsSecretName: "plm-storage-credentials"  # contains the seaweedfs_admin_secret field
+    url: "https://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local"
+    credentialsSecretName: "plm-system/plm-f5-waf-seaweedfs-auth"  # contains the seaweedfs_admin_secret field
     tls:
       caSecretName: "plm-ca-secret"  # Secret with ca.crt for verifying the storage service
       clientSSLSecretName: "plm-client-secret"  # Secret with tls.crt/tls.key for mutual TLS
