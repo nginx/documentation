@@ -19,18 +19,18 @@ apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
   name: <POLICY_NAME>
-  namespace: <NAMESPACE>
+  namespace: plm-system
 spec:
   policy:
     $ref: "https://<ARTIFACT_REGISTRY_HOST>/<PATH/TO/POLICY_BUNDLE>.tgz"
 ```
 
-Replace `<POLICY_NAME>`, `<NAMESPACE>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/POLICY_BUNDLE>` with your values.
+Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/POLICY_BUNDLE>` with your values.
 
 Apply the resource:
 
 ```shell
-kubectl apply -f <POLICY_MANIFEST>.yaml
+kubectl apply -f <POLICY_MANIFEST_FILE>.yaml
 ```
 
 {{< call-out class="note" title="Note" >}}
@@ -43,7 +43,7 @@ The Policy Controller processes the bundle and updates the `APPolicy` status. Ch
 
 ```shell
 kubectl get appolicy <POLICY_NAME> \
-  --namespace <NAMESPACE> \
+  --namespace plm-system \
   --output jsonpath='State:      {.status.bundle.state}{"\n"}Bundle:     {.status.bundle.location}{"\n"}isCompiled: {.status.processing.isCompiled}{"\n"}'
 ```
 
@@ -51,7 +51,7 @@ When the bundle is ready, the output looks like this:
 
 ```text
 State:      ready
-Bundle:     s3://<namespace>/bundles/<policy-name>_imported_<hash>.tgz
+Bundle:     s3://plm-system/bundles/<POLICY_NAME>_imported_<HASH>.tgz
 isCompiled: false
 ```
 
@@ -71,5 +71,5 @@ isCompiled: false
 The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `APPolicy` resource to reference the new bundle URL (or bump its revision annotation) and re-apply it:
 
 ```shell
-kubectl apply -f <UPDATED_POLICY_MANIFEST>.yaml
+kubectl apply -f <UPDATED_POLICY_MANIFEST_FILE>.yaml
 ```
