@@ -43,7 +43,7 @@ WAF is enabled by setting `waf.enable: true` on an `NginxProxy` resource. This i
 You can enable WAF at two levels:
 
 - **All Gateways** -- Set WAF on the GatewayClass-level `NginxProxy` so that every Gateway managed by this NGINX Gateway Fabric instance gets WAF sidecars by default. A per-Gateway `NginxProxy` can override this (for example, to disable WAF on a specific Gateway).
-- **Per Gateway** -- Create an `NginxProxy` and reference it from a Gateway's `spec.infrastructure.parametersRef`. Only that Gateway gets WAF sidecars.
+- **Per Gateway** -- Create an `NginxProxy` and reference it from the `spec.infrastructure.parametersRef` field on a Gateway. Only that Gateway gets WAF sidecars.
 
 For details on how GatewayClass and Gateway-level NginxProxy settings are merged, see [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}).
 
@@ -100,11 +100,11 @@ For the full list of available images, see [Supported container images]({{< ref 
 
 ### Bundles
 
-A WAF bundle is a compiled policy package produced by the [F5 WAF for NGINX compiler]({{< ref "/waf/configure/compiler.md" >}}). It contains the security policy, optional logging profile, [attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}), [threat campaign]({{< ref "/waf/policies/threat-campaigns.md" >}}) data, [bot signatures]({{< ref "/waf/policies/bot-signatures.md" >}}), and related metadata in a format that the WAF engine can load and enforce at runtime. Pre-compiling policies into bundles results in faster, more reliable WAF startup: policies are resolved and validated at build time rather than on the running data plane.
+A WAF bundle is a compiled policy package produced by the [F5 WAF for NGINX compiler]({{< ref "/waf/configure/compiler.md" >}}). It contains the security policy, optional logging profile, [attack signatures]({{< ref "/waf/policies/attack-signatures.md" >}}), [threat campaign]({{< ref "/waf/policies/threat-campaigns.md" >}}) data, [bot signatures]({{< ref "/waf/policies/bot-signatures.md" >}}), and related metadata. The format lets the WAF engine load and enforce the policy at runtime. Pre-compiling policies into bundles results in faster, more reliable WAF startup: policies are resolved and validated at build time rather than on the running data plane.
 
 ### Compilation
 
-WAF policies must be compiled before they can be applied. Compilation takes a JSON policy definition (and optionally [global settings]({{< ref "/waf/configure/compiler.md" >}}) such as a cookie seed and [user-defined signatures]({{< ref "/waf/policies/user-signatures.md" >}})) and produces a `.tgz` bundle. NGINX Gateway Fabric doesn't compile policies. Its role begins at fetching a compiled bundle and deploying it to the data plane.
+WAF policies must be compiled before they can be applied. Compilation takes a JSON policy definition (and optionally [global settings]({{< ref "/waf/configure/compiler.md" >}}) such as a cookie seed and [user-defined signatures]({{< ref "/waf/policies/user-signatures.md" >}})) and produces a `.tgz` bundle. NGINX Gateway Fabric doesn't compile policies. Its role begins with fetching a compiled bundle and deploying it to the data plane.
 
 ### Source types
 
@@ -149,7 +149,7 @@ Changes to an `APPolicy` or `APLogConf` spec trigger recompilation and an automa
 
 When a `WAFPolicy` references an `APPolicy` or `APLogConf` in a different namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/api-types/referencegrant/) in the target namespace to permit the reference.
 
-{{< call-out "note" >}} PLM requires the PLM system to be installed in the cluster and PLM storage access to be set up on NGINX Gateway Fabric at install time. For a complete walkthrough, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}). {{< /call-out >}}
+{{< call-out "note" >}} PLM requires the PLM system to be installed in the cluster and PLM storage to be configured on NGINX Gateway Fabric at install time. For a complete walkthrough, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}). {{< /call-out >}}
 
 ---
 
