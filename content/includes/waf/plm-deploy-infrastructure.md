@@ -34,17 +34,15 @@ apusersigs.appprotect.f5.com
 
 ### Create the registry pull secret
 
-Create a namespace for the PLM components, then create the registry pull secret using the credentials from the previous section.
-
-Replace `<NAMESPACE>` with your chosen namespace name, and `<JWT>` with your F5 WAF for NGINX JWT.
+Create a namespace for the PLM components, then create the registry pull secret using the credentials from the previous section. Replace `<JWT>` with your F5 WAF for NGINX JWT.
 
 <!-- TODO (TECHDOCS-5342 / Prerequisites): The Story 3 AC lists four credentials: JWT, certificate, key, and registry token. Confirm with SME what the registry token is and whether it's passed separately in the Helm install or covered by the JWT above. -->
 
 ```shell
-kubectl create namespace <NAMESPACE>
+kubectl create namespace plm-system
 
 kubectl create secret docker-registry regcred \
-  --namespace <NAMESPACE> \
+  --namespace plm-system \
   --docker-server=private-registry.nginx.com \
   --docker-username=<JWT> \
   --docker-password=none \
@@ -53,9 +51,7 @@ kubectl create secret docker-registry regcred \
 
 ### Install the Policy Controller
 
-Create a values file for the Helm installation. Replace `<NAMESPACE>`, `<CHART_VERSION>`, `<IMAGE_TAG>`, `<BASE64_NGINX_REPO_CRT>`, and `<BASE64_NGINX_REPO_KEY>` with your values. `<CHART_VERSION>` is the Helm chart version (for example, `5.14.0`). `<IMAGE_TAG>` is the container image tag, which typically matches the chart version.
-
-`<BASE64_NGINX_REPO_CRT>` and `<BASE64_NGINX_REPO_KEY>` are the base64-encoded contents of your `nginx-repo.crt` and `nginx-repo.key` files. To encode them, run:
+Create a values file for the Helm installation. Replace `<BASE64_NGINX_REPO_CRT>` and `<BASE64_NGINX_REPO_KEY>` with the base64-encoded contents of your `nginx-repo.crt` and `nginx-repo.key` files. To encode them, run:
 
 ```shell
 base64 --wrap=0 < nginx-repo.crt
@@ -72,17 +68,17 @@ securityUpdatesRepo:
   key: "<BASE64_NGINX_REPO_KEY>"
 policyController:
   image:
-    tag: "<IMAGE_TAG>"
+    tag: "{{< version-waf-policy-controller >}}"
 compiler:
   image:
-    tag: "<IMAGE_TAG>"
+    tag: "{{< version-waf-policy-controller >}}"
 seaweedfsOperatorConfig:
   seaweedfs:
     image:
-      tag: "<IMAGE_TAG>"
+      tag: "{{< version-waf-policy-controller >}}"
 seaweedfs-operator:
   image:
-    tag: "<IMAGE_TAG>"
+    tag: "{{< version-waf-policy-controller >}}"
     pullSecrets: regcred
 ```
 
@@ -92,13 +88,11 @@ Add the NGINX Helm repository and install the chart:
 helm repo add nginx-stable https://helm.nginx.com/stable
 helm repo update nginx-stable
 
-helm upgrade --install <RELEASE_NAME> nginx-stable/f5-waf-policy-controller \
-  --version <CHART_VERSION> \
-  --namespace <NAMESPACE> \
+helm upgrade --install plm nginx-stable/f5-waf-policy-controller \
+  --version {{< version-waf-policy-controller >}} \
+  --namespace plm-system \
   --values /tmp/plm-values.yaml
 ```
-
-Replace `<RELEASE_NAME>` with a name for the Helm release (for example, `plm`).
 
 ### Verify the deployment
 
@@ -107,41 +101,41 @@ Wait for all PLM components to become ready. The Policy Controller's init contai
 Wait for the SeaweedFS storage backend:
 
 ```shell
-kubectl rollout status deployment/<RELEASE_NAME>-seaweedfs-operator \
-  --namespace <NAMESPACE> --timeout=120s
+kubectl rollout status deployment/plm-seaweedfs-operator \
+  --namespace plm-system --timeout=120s
 
 kubectl wait pods \
   --selector app.kubernetes.io/name=seaweedfs \
   --for=condition=Ready \
-  --namespace <NAMESPACE> \
+  --namespace plm-system \
   --timeout=180s
 ```
 
 Wait for the Policy Controller:
 
 ```shell
-kubectl rollout status deployment/<RELEASE_NAME>-f5-waf-policy-controller \
-  --namespace <NAMESPACE> --timeout=180s
+kubectl rollout status deployment/plm-f5-waf-policy-controller \
+  --namespace plm-system --timeout=180s
 ```
 
 Confirm all eight pods are running:
 
 ```shell
-kubectl get pods --namespace <NAMESPACE>
+kubectl get pods --namespace plm-system
 ```
 
 Expected output:
 
 ```text
 NAME                                               READY   STATUS    RESTARTS
-<release>-f5-waf-compiler-service-xxxxx            1/1     Running   0
-<release>-f5-waf-policy-controller-xxxxx           1/1     Running   0
-<release>-seaweedfs-operator-xxxxx                 1/1     Running   0
-<release>-f5-waf-seaweed-master-0                  1/1     Running   0
-<release>-f5-waf-seaweed-filer-0                   1/1     Running   0
-<release>-f5-waf-seaweed-volume-0                  1/1     Running   0
-<release>-f5-waf-seaweed-volume-1                  1/1     Running   0
-<release>-f5-waf-seaweed-volume-2                  1/1     Running   0
+plm-f5-waf-compiler-service-xxxxx                  1/1     Running   0
+plm-f5-waf-policy-controller-xxxxx                 1/1     Running   0
+plm-seaweedfs-operator-xxxxx                       1/1     Running   0
+plm-f5-waf-seaweed-master-0                        1/1     Running   0
+plm-f5-waf-seaweed-filer-0                         1/1     Running   0
+plm-f5-waf-seaweed-volume-0                        1/1     Running   0
+plm-f5-waf-seaweed-volume-1                        1/1     Running   0
+plm-f5-waf-seaweed-volume-2                        1/1     Running   0
 ```
 
 Confirm the four CRDs are present:
@@ -149,3 +143,5 @@ Confirm the four CRDs are present:
 ```shell
 kubectl get crd | grep appprotect.f5.com
 ```
+
+All eight pods running and all four CRDs present confirms the PLM backend is ready.
