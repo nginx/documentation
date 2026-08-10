@@ -24,6 +24,17 @@ PLM is one of four WAF policy source types. With PLM, you define your security p
 - Have a valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and isn't included with the NGINX Plus license.
 - Have your private registry credentials Secret for `private-registry.nginx.com` available. You'll reference this Secret when you install NGINX Gateway Fabric.
 
+This tutorial uses the following example values. You can use different values — if you do, replace them consistently throughout.
+
+| Example value | What it represents |
+|---|---|
+| `plm-system` | Namespace for the PLM backend components |
+| `plm` | Helm release name for the PLM installation |
+| `{{< version-waf-policy-controller >}}` | F5 WAF for NGINX Policy Controller chart and image version |
+| `security` | Namespace for `APPolicy` and `APLogConf` resources |
+| `default` | Namespace for the Gateway and `WAFPolicy` |
+| `cafe.example.com` | Example hostname for HTTPRoutes |
+
 ## Deploy PLM infrastructure
 
 {{< include "waf/plm-deploy-infrastructure.md" >}}
