@@ -2,6 +2,7 @@
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/ngf/waf-integration/get-started-plm.md
+- content/nic/waf-integration/get-started-plm.md
 ---
 
 The precompiled-bundle method lets you reference a `.tgz` policy bundle stored in an artifact registry (for example, Artifactory or Nexus). The Policy Controller imports the bundle and stores it in the SeaweedFS object store without recompiling it.
