@@ -4,7 +4,7 @@ description: "Learn how to set up OAuth2 client credentials for programmatic acc
 weight: 100
 toc: true
 url: /nginxaas/google/quickstart/security-controls/client-credentials/
-f5-product: NGOOGL
+f5-product: NGINXaaS for Google Cloud
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
 f5-summary: >
@@ -47,7 +47,7 @@ The client secret appears only once. Save it immediately in a secure location, s
 Your client credentials can access the following resources:
 
 - [Certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
-- [Configs]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md" >}})
+- [Configs]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules.md" >}})
 - [Deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
 
 ### Client limits
@@ -204,6 +204,6 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 
 [Manage your NGINXaaS certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
 
-[Manage your NGINX configurations]({{< ref "/nginxaas/google/deploy/nginx-configuration/overview.md" >}})
+[Manage your NGINX configurations]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules.md" >}})
 
 [Manage your NGINXaaS deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
