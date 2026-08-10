@@ -2,11 +2,12 @@
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/ngf/waf-integration/get-started-plm.md
+- content/nic/waf-integration/get-started-plm.md
 ---
 
 The Policy Lifecycle Manager (PLM) backend runs as a Kubernetes operator. It watches WAF custom resources and compiles WAF policies into bundles. The Policy Controller delegates compilation to a separate compiler service over gRPC. The resulting bundles are stored in an embedded SeaweedFS S3-compatible object store.
 
-F5 WAF for NGINX and NGINX Gateway Fabric are installed using separate Helm charts. The steps in this section install only the F5 WAF for NGINX PLM components and do not affect your existing NGINX Gateway Fabric installation.
+F5 WAF for NGINX is installed using a separate Helm chart from your NGINX data plane. The steps in this section install only the F5 WAF for NGINX PLM components and do not affect your existing NGINX installation.
 
 ### Install the CRDs
 
