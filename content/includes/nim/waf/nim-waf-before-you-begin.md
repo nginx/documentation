@@ -20,3 +20,10 @@ Make sure you’ve completed the following tasks:
   The latest version of NGINX Instance Manager is recommended to ensure full compatibility and access to the newest features.
 
   If you have a subscription for F5 WAF for NGINX, you can find your license in the subscription details section of [MyF5](https://my.f5.com).
+
+- If you're installing WAF compiler 5.690.0 or later, verify that the `/opt/app_protect` directory does not already exist before installation. After installation, confirm that `/opt/app_protect` is a symbolic link that points to the latest WAF compiler directory.
+
+```shell
+$ ls -l /opt/app_protect
+lrwxrwxrwx 1 root root 41 Aug  6 06:18 /opt/app_protect -> /opt/nms-nap-compiler/app_protect-5.690.0
+```
