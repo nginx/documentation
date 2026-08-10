@@ -19,12 +19,12 @@ This guide walks through the complete flow of protecting traffic with F5 WAF for
 PLM is one of four WAF policy source types. With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources instead of compiling and hosting bundles yourself. For a comparison with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}).
 
 ```mermaid
-flowchart LR
-    A([1. Deploy PLM\ninfrastructure]) --> B([2. Connect NGF\nto PLM storage])
-    B --> C([3. Define WAF policy\nAPPolicy / APLogConf])
-    C -->|PLM compiles\nto bundle| D([4. Attach WAFPolicy\nto Gateway])
-    D --> E([5. Configure\nHTTPRoutes])
-    E --> F([6. Validate &\ntest])
+graph LR
+    A["1. Deploy PLM<br/>infrastructure"] --> B["2. Connect NGF<br/>to PLM storage"]
+    B --> C["3. Define WAF policy<br/>APPolicy / APLogConf"]
+    C -->|"PLM compiles<br/>to bundle"| D["4. Attach WAFPolicy<br/>to Gateway"]
+    D --> E["5. Configure<br/>HTTPRoutes"]
+    E --> F["6. Validate &<br/>test"]
 ```
 
 ## Before you begin
