@@ -14,11 +14,15 @@ f5-summary: >
 f5-audience: operator
 ---
 
-<!-- TODO: Write introduction. Cover: what PLM is (Policy Lifecycle Manager), the operator pattern, how it fits into the NGF + F5 WAF for NGINX workflow, and what the reader will have at the end of this tutorial. See TECHDOCS-5338. -->
+This guide walks through the complete flow of protecting traffic with F5 WAF for NGINX using Policy Lifecycle Management (PLM): connect NGINX Gateway Fabric to PLM storage, define a WAF policy as Kubernetes custom resources, apply it to a Gateway, and verify that attacks are blocked.
+
+PLM is one of four WAF policy source types. With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources instead of compiling and hosting bundles yourself. For a comparison with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}).
 
 ## Before you begin
 
-<!-- TODO: Write prerequisites section (Story 2 / TECHDOCS-5342). Must cover: installed NGF, F5 WAF for NGINX credentials (JWT, nginx-repo.crt, nginx-repo.key, registry token), kubectl + Helm access. -->
+- Have `kubectl` access to a Kubernetes cluster.
+- Have a valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and isn't included with the NGINX Plus license.
+- Have your private registry credentials Secret for `private-registry.nginx.com` available. You'll reference this Secret when you install NGINX Gateway Fabric.
 
 ## Deploy PLM infrastructure
 
@@ -26,89 +30,238 @@ f5-audience: operator
 
 ## Configure NGF to connect to PLM storage
 
-<!-- TODO: Write this section (Story 4). Covers connecting NGINX Gateway Fabric to the SeaweedFS S3 endpoint so it can pull compiled bundles. -->
+NGINX Gateway Fabric fetches compiled bundles from PLM's in-cluster storage. You set up storage access once, cluster-wide, at install time — it applies to every `WAFPolicy` that uses `type: PLM`.
 
-## Enable WAF in the NginxProxy resource
+Create a `values.yaml` file that enables WAF and sets the PLM storage connection details under `nginxGateway.plmStorage`:
 
-<!-- TODO: Write this section (Story 5). Covers turning on WAF in the NginxProxy resource. Confirm with SME whether this folds into Story 2 (Deploy PLM infrastructure). -->
+```yaml
+# values.yaml
+nginx:
+  image:
+    repository: private-registry.nginx.com/nginx-gateway-fabric/nginx-plus-f5waf
+  plus: true
+  config:
+    waf:
+      enable: true
+  imagePullSecret: nginx-plus-registry-secret
+nginxGateway:
+  plmStorage:
+    url: "https://plm-storage-service.plm-system.svc.cluster.local"
+    credentialsSecretName: "plm-storage-credentials"  # contains the seaweedfs_admin_secret field
+    tls:
+      caSecretName: "plm-ca-secret"  # Secret with ca.crt for verifying the storage service
+      clientSSLSecretName: "plm-client-secret"  # Secret with tls.crt/tls.key for mutual TLS
+      insecureSkipVerify: false                 # use only for testing
+```
+
+{{< call-out "caution" >}} Always use HTTPS with TLS verification (`caSecretName`) in production. Add `clientSSLSecretName` for mutual TLS in high-security environments, and never set `insecureSkipVerify: true`. {{< /call-out >}}
+
+{{< call-out "note" >}} `credentialsSecretName` and `caSecretName` must reference Secrets in the NGINX Gateway Fabric control plane namespace, unless you prefix them with `<namespace>/`. {{< /call-out >}}
+
+Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`.
+
+The PLM installation creates the credentials Secret automatically, containing the S3 secret access key in the `seaweedfs_admin_secret` field (access key ID `admin` by default):
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: plm-storage-credentials
+  namespace: nginx-gateway
+type: Opaque
+data:
+  seaweedfs_admin_secret: <BASE64_ENCODED_SECRET_ACCESS_KEY>
+```
+
+NGINX Gateway Fabric watches the PLM credentials and TLS Secrets and rebuilds its storage client when they change, so you can rotate credentials without restarting the pod.
+
+---
+
+## Deploy the sample application
+
+Deploy the `customers` and `orders` sample applications. The `customers` app returns a response containing fake sensitive data (credit card number and SSN), which you'll use later to demonstrate data guard masking:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customers
+  template:
+    metadata:
+      labels:
+        app: customers
+    spec:
+      containers:
+      - name: customers
+        image: hashicorp/http-echo:latest
+        args:
+        - "-listen=:8080"
+        - "-text=Customer List:\n\nName: John Doe\nCredit Card: 4111-1111-1111-1111\nSSN: 123-45-6789\n"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customers
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: customers
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+      - name: orders
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: orders
+EOF
+```
 
 ## Configure security logging (optional)
 
-<!-- TODO (TECHDOCS-5346 / Story 6): Write this section. Covers APLogConf authoring and referencing it from securityLogs. This section is referenced from "Define the WAF policy" above and must be present for that cross-link to resolve. -->
+PLM security logging profiles are defined as `APLogConf` custom resources. Create a namespace to hold your security resources, then define a log profile that logs illegal requests:
+
+```shell
+kubectl create namespace security
+```
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: appprotect.f5.com/v1
+kind: APLogConf
+metadata:
+  name: log-illegal
+  namespace: security
+spec:
+  filter:
+    request_type: illegal
+  content:
+    format: default
+    max_request_size: any
+    max_message_size: 15k
+EOF
+```
+
+PLM compiles the log profile automatically. Wait for `status.bundle.state` to report `ready` before referencing it:
+
+```shell
+kubectl wait --for=jsonpath='{.status.bundle.state}'=ready aplogconf/log-illegal -n security --timeout=60s
+```
+
+If you skip this section, omit the `securityLogs` field in the `WAFPolicy` resource in the next steps.
+
+---
 
 ## Define the WAF policy
 
-The `APPolicy` custom resource defines what F5 WAF for NGINX enforces. The `APLogConf` custom resource defines what it logs — see [Configure security logging](#configure-security-logging-optional) for details. The Policy Controller watches both resources and compiles them into bundles stored in the SeaweedFS object store.
+The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles it, and writes `status.bundle` with `state: ready` when the bundle is available.
 
-This section covers three ways to define a WAF policy. Choose the method that fits your workflow:
+Use the **Inline** tab for this guide's primary workflow. The other tabs provide alternate policy-source methods.
 
-| Method | When to use |
-|--------|-------------|
-| [Inline](#inline-method) | You want to define the policy directly in the Kubernetes resource. Good for getting started or for simple policies. |
-| [Git reference](#git-reference-method) | Your policy JSON lives in a Git repository and you want the Policy Controller to fetch and compile it. |
-| [Precompiled bundle](#precompiled-bundle-method) | Your security team publishes compiled bundles to an artifact registry. The Policy Controller imports the bundle without recompiling. |
+{{<tabs name="plm-policy-definition-methods">}}
 
-### Inline method
+{{%tab name="Inline"%}}
 
-The inline method embeds the full policy definition in the `APPolicy` resource. The Policy Controller converts and compiles it.
-
-Create an `APPolicy` resource with the policy embedded under `spec.policy`:
+Create an `APPolicy` resource with an inline policy that blocks all attack signatures:
 
 ```yaml
+kubectl apply -f - <<EOF
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
-  name: <POLICY_NAME>
-  namespace: <NAMESPACE>
+  name: attack-signatures
+  namespace: security
 spec:
   policy:
-    name: <POLICY_NAME>
+    name: attack-signatures-blocking
     template:
       name: POLICY_TEMPLATE_NGINX_BASE
     applicationLanguage: utf-8
     enforcementMode: blocking
+    signature-sets:
+    - name: All Signatures
+      block: true
+      alarm: true
+    cookies:
+    - name: "*"
+      attackSignaturesCheck: true
+      enforcementType: enforce
+      maskValueInLogs: false
+EOF
 ```
 
-Replace `<POLICY_NAME>` and `<NAMESPACE>` with your values. Extend `spec.policy` with the policy fields you want to enforce.
-
-Apply the resource:
+Wait for the bundle to become ready:
 
 ```shell
-kubectl apply -f <POLICY_MANIFEST>.yaml
+kubectl wait --for=jsonpath='{.status.bundle.state}'=ready appolicy/attack-signatures -n security --timeout=60s
 ```
 
-#### Confirm the policy is ready
+Because the `APPolicy` and `APLogConf` live in the `security` namespace but the `WAFPolicy` you create next targets a Gateway in the `default` namespace, create a `ReferenceGrant` in the `security` namespace to permit the cross-namespace reference:
 
-Check the `bundle.state` field to confirm the Policy Controller compiled the policy:
-
-```shell
-kubectl get appolicy <POLICY_NAME> \
-  --namespace <NAMESPACE> \
-  --output jsonpath='State:    {.status.bundle.state}{"\n"}Bundle:   {.status.bundle.location}{"\n"}Compiler: {.status.bundle.compilerVersion}{"\n"}'
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: ReferenceGrant
+metadata:
+  name: allow-wafpolicy-refs
+  namespace: security
+spec:
+  from:
+  - group: gateway.nginx.org
+    kind: WAFPolicy
+    namespace: default
+  to:
+  - group: appprotect.f5.com
+    kind: APPolicy
+  - group: appprotect.f5.com
+    kind: APLogConf
+EOF
 ```
 
-When compilation succeeds, the output looks like this:
+{{< call-out "note" >}} Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
 
-```text
-State:    ready
-Bundle:   s3://<namespace>/bundles/<policy-name><timestamp>.tgz
-Compiler: <compiler-version>
-```
+{{% /tab %}}
 
-`bundle.state` can be one of:
+{{%tab name="Git reference"%}}
 
-| State | Meaning |
-|-------|---------|
-| `pending` | The Policy Controller has not yet processed the resource. |
-| `processing` | The Policy Controller is compiling the policy. |
-| `ready` | Compilation succeeded. `bundle.location` is populated. |
-| `invalid` | Compilation failed. Check the status for error detail. |
-
-To update an inline policy, edit the `APPolicy` resource and re-apply it. The Policy Controller recompiles the policy when the resource spec changes.
-
-### Git reference method
-
-The Git reference method lets you store your policy JSON in a Git repository. The Policy Controller fetches the file and compiles it.
+Store your policy JSON in a Git repository and reference it from `APPolicy`.
 
 #### Public repository
 
@@ -172,28 +325,334 @@ spec:
 
 #### Confirm the policy is ready
 
-Check `bundle.state` as described in [Confirm the policy is ready](#confirm-the-policy-is-ready).
+Check `bundle.state`:
+
+```shell
+kubectl get appolicy <POLICY_NAME> \
+  --namespace <NAMESPACE> \
+  --output jsonpath='State:    {.status.bundle.state}{"\n"}Bundle:   {.status.bundle.location}{"\n"}Compiler: {.status.bundle.compilerVersion}{"\n"}'
+```
 
 #### Update a Git-referenced policy
 
 The Policy Controller does not poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
 
-### Precompiled bundle method
+{{% /tab %}}
+
+{{%tab name="Precompiled bundle"%}}
 
 {{< include "waf/plm-define-policy-bundle-method.md" >}}
 
+{{% /tab %}}
+
+{{</tabs>}}
+
 ## Deploy the Gateway and attach WAFPolicy
 
-<!-- TODO: Write this section (Story 8). Covers creating the Gateway resource and attaching a WAFPolicy. Note: WAFPolicy apiVersion is gateway.nginx.org/v1alpha1. Note: bundleFailOpen: false (default) withholds the entire NGINX config push until the bundle is available. -->
+Create a Gateway. WAF is already enabled globally, so NGINX Gateway Fabric automatically deploys the WAF sidecar containers alongside the NGINX Pod:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "*.example.com"
+EOF
+```
+
+Create a `WAFPolicy` with `type: PLM` that references the `APPolicy` and `APLogConf` by name and namespace, and targets the Gateway:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: WAFPolicy
+metadata:
+  name: gateway-base-protection
+spec:
+  type: PLM
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: gateway
+  policyRef:
+    apPolicyRef:
+      name: attack-signatures
+      namespace: security
+  securityLogs:
+  - destination:
+      type: syslog
+      syslog:
+        server: syslog-svc.default.svc.cluster.local:514
+    logRef:
+      apLogConfRef:
+        name: log-illegal
+        namespace: security
+EOF
+```
+
+This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
+
+---
 
 ## Configure HTTPRoutes
 
-<!-- TODO: Write this section (Story 9). Covers creating HTTPRoute resources. HTTPRoutes inherit WAF protection automatically from a Gateway-level WAFPolicy. -->
+Create two HTTPRoutes — `customers` and `orders` — attached to the Gateway. Because the `WAFPolicy` targets the Gateway, both routes inherit WAF protection automatically:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: customers
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /customers
+    backendRefs:
+    - name: customers
+      port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: orders
+spec:
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  hostnames:
+  - "cafe.example.com"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /orders
+    backendRefs:
+    - name: orders
+      port: 80
+EOF
+```
+
+---
 
 ## Validate policy compilation and application
 
-<!-- TODO: Write this section (Story 10). Covers confirming bundle.state = ready and that the compiled policy is applied to the data plane. -->
+Confirm the `APPolicy` and `APLogConf` bundles compiled successfully:
+
+```shell
+kubectl get appolicy attack-signatures -n security -o jsonpath='{.status.bundle.state}{"\n"}'
+kubectl get aplogconf log-illegal -n security -o jsonpath='{.status.bundle.state}{"\n"}'
+```
+
+Both commands should print `ready`.
+
+Verify the `WAFPolicy` has been accepted and programmed:
+
+```shell
+kubectl describe wafpolicy gateway-base-protection
+```
+
+Look for three conditions in the output:
+
+```text
+Status:
+  Conditions:
+    Message:               The Policy is accepted
+    Observed Generation:   1
+    Reason:                Accepted
+    Status:                True
+    Type:                  Accepted
+    Message:               All references are resolved
+    Observed Generation:   1
+    Reason:                ResolvedRefs
+    Status:                True
+    Type:                  ResolvedRefs
+    Message:               Policy is programmed in the data plane
+    Observed Generation:   1
+    Reason:                Programmed
+    Status:                True
+    Type:                  Programmed
+```
+
+If any condition is `False`, the message field describes the problem. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for guidance.
+
+Verify that the NGINX Pod has all three containers running:
+
+```shell
+kubectl get pods -l app.kubernetes.io/name=gateway-nginx
+```
+
+Each NGINX Pod should show `3/3` in the `READY` column, indicating the main NGINX container, `waf-enforcer`, and `waf-config-mgr` are all running:
+
+```text
+NAME                             READY   STATUS    RESTARTS   AGE
+gateway-nginx-7f9b8d6c4d-xxxxx  3/3     Running   0          2m
+```
+
+---
 
 ## Test deployment and policy enforcement
 
-<!-- TODO: Write this section (Story 11). Covers sending test traffic to verify WAF enforcement. -->
+Confirm the Gateway was assigned an IP address and reports `Programmed=True`:
+
+```shell
+kubectl describe gateways.gateway.networking.k8s.io gateway
+```
+
+```text
+Addresses:
+  Type:   IPAddress
+  Value:  10.96.20.187
+```
+
+Save the public IP address and port of the Gateway into shell variables:
+
+```text
+GW_IP=XXX.YYY.ZZZ.III
+GW_PORT=<port number>
+```
+
+**Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
+
+{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
+```
+
+```text
+Customer List:
+
+Name: John Doe
+Credit Card: 4111-1111-1111-1111
+SSN: 123-45-6789
+```
+
+The sensitive data passes through because the gateway-level `attack-signatures` policy only inspects inbound requests for attack patterns — it doesn't mask outbound response data.
+
+**Verify attacks are blocked.** Send a request with a cross-site scripting (XSS) payload:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_PORT/customers?x=</script>"
+```
+
+The WAF detects the attack signature and rejects the request:
+
+```text
+<html>
+<head><title>Request Rejected</title></head>
+...
+```
+
+**Verify the `orders` route is also protected.** Since the policy targets the Gateway, all attached routes inherit protection:
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_PORT/orders?x=</script>"
+```
+
+```text
+<html>
+<head><title>Request Rejected</title></head>
+...
+```
+
+{{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
+
+---
+
+## Apply a route-level override (optional)
+
+In the previous step, you saw that the `customers` route returns sensitive data (credit card numbers and SSNs) in the response body. The gateway-level policy blocks inbound attacks, but doesn't inspect outbound responses.
+
+To protect sensitive data in responses, define a **data guard** `APPolicy` and apply it as a route-level override on the `customers` route:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: dataguard-blocking
+  namespace: security
+spec:
+  policy:
+    name: dataguard-blocking
+    template:
+      name: POLICY_TEMPLATE_NGINX_BASE
+    applicationLanguage: utf-8
+    enforcementMode: blocking
+    data-guard:
+      enabled: true
+      creditCardNumbers: true
+      usSocialSecurityNumbers: true
+EOF
+```
+
+Wait for the bundle to become ready, then create the route-level `WAFPolicy`:
+
+```shell
+kubectl wait --for=jsonpath='{.status.bundle.state}'=ready appolicy/dataguard-blocking -n security --timeout=60s
+```
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: WAFPolicy
+metadata:
+  name: customers-strict-protection
+spec:
+  type: PLM
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: customers
+  policyRef:
+    apPolicyRef:
+      name: dataguard-blocking
+      namespace: security
+EOF
+```
+
+This policy overrides the gateway-level policy for the `customers` route only. Other routes attached to the Gateway continue to use the gateway-level policy.
+
+Wait for the policy to be `Programmed`, then send the same request to the `customers` route:
+
+```shell
+kubectl wait --for=jsonpath='{.status.ancestors[0].conditions[?(@.type=="Programmed")].status}'=True wafpolicy/customers-strict-protection --timeout=60s
+```
+
+```shell
+curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
+```
+
+The credit card number and SSN are now masked in the response:
+
+```text
+Customer List:
+
+Name: John Doe
+Credit Card: ***************1111
+SSN: *******6789
+```
+
+---
+
+## Next steps
+
+- [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}}) for architecture and policy lifecycle concepts.
+- [Configure policy sources]({{< ref "/ngf/waf-integration/policy-sources.md" >}}) for the other policy source types.
+- [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for TLS, authentication, fail-open behavior, and WAF container settings.
+- [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) if a condition is `False`.
