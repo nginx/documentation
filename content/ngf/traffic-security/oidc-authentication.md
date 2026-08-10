@@ -344,7 +344,7 @@ kubectl describe gateways.gateway.networking.k8s.io gateway
 ```text
 Addresses:
   Type:   IPAddress
-  Value:  10.96.20.187
+  Value:  192.0.2.1
 ```
 
 Save the IP and port into shell variables:
