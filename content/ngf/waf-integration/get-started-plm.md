@@ -14,18 +14,15 @@ f5-summary: >
 f5-audience: operator
 ---
 
-This guide walks through the complete flow of protecting traffic with F5 WAF for NGINX using Policy Lifecycle Management (PLM): connect NGINX Gateway Fabric to PLM storage, define a WAF policy as Kubernetes custom resources, apply it to a Gateway, and verify that attacks are blocked.
+This tutorial walks through the complete flow of protecting traffic with F5 WAF for NGINX using Policy Lifecycle Management (PLM). By the end, you will have:
+
+- Deployed the PLM infrastructure (Policy Controller and SeaweedFS storage)
+- Connected NGINX Gateway Fabric to PLM storage
+- Defined a WAF policy using `APPolicy` and `APLogConf` custom resources
+- Attached a `WAFPolicy` to a Gateway and configured HTTPRoutes
+- Validated policy compilation and verified that attacks are blocked
 
 PLM is one of four WAF policy source types. With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources instead of compiling and hosting bundles yourself. For a comparison with the other source types, see [PLM (Policy Lifecycle Management)]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}).
-
-```mermaid
-graph LR
-    A["1. Deploy PLM<br/>infrastructure"] --> B["2. Connect NGF<br/>to PLM storage"]
-    B --> C["3. Define WAF policy<br/>APPolicy / APLogConf"]
-    C -->|"PLM compiles<br/>to bundle"| D["4. Attach WAFPolicy<br/>to Gateway"]
-    D --> E["5. Configure<br/>HTTPRoutes"]
-    E --> F["6. Validate &<br/>test"]
-```
 
 ## Before you begin
 
