@@ -325,7 +325,7 @@ The `PayloadProcessor` is marked `Accepted=False` when its references cannot be 
 
 ## Further reading
 
-- [F5 AI Guardrails Documentation](https://docs.aisecurity.f5.com/)
+- [Scan streaming in AI Security](https://docs.aisecurity.f5.com/api-docs/scan-request-streaming.html)
 - [Installation]({{< ref "/ngf/install/" >}}): install NGINX Gateway Fabric with the `PayloadProcessor` policy enabled.
 - [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn how inherited policies attach to Gateway API resources.
 - [`examples/guardrails`](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/guardrails): for more information on the example used in this guide.
