@@ -81,10 +81,6 @@ nginxGateway:
     credentialsSecretName: "plm-system/plm-f5-waf-seaweedfs-auth"  # contains the seaweedfs_admin_secret field
 ```
 
-For an HTTP endpoint, do not include a `tls` section.
-
-{{< call-out "note" >}} `credentialsSecretName` must reference a Secret in the NGINX Gateway Fabric control plane namespace, unless you prefix it with `<NAMESPACE>/`. {{< /call-out >}}
-
 {{% /tab %}}
 
 {{</tabs>}}
