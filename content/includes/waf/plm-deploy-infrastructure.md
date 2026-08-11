@@ -94,6 +94,12 @@ helm upgrade --install plm nginx-stable/f5-waf-policy-controller \
   --values /tmp/plm-values.yaml
 ```
 
+To see all available configuration options for the PLM chart, run:
+
+```shell
+helm show values nginx-stable/f5-waf-policy-controller --version {{< version-waf-policy-controller >}}
+```
+
 ### Verify the deployment
 
 Wait for all PLM components to become ready. The Policy Controller's init container waits for both the compiler service and the SeaweedFS S3 endpoint to be available before it starts, so the controller pod will show `Init:0/1` until SeaweedFS is ready.

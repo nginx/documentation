@@ -85,7 +85,7 @@ nginxGateway:
 
 {{</tabs>}}
 
-Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`. For all available `plmStorage` options, see the [NGINX Gateway Fabric Helm chart reference]({{< ref "/ngf/reference/helm.md" >}}).
+Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`.
 
 The PLM installation creates the credentials Secret automatically, containing the S3 secret access key in the `seaweedfs_admin_secret` field (access key ID `admin` by default):
 
