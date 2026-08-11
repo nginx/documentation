@@ -49,7 +49,11 @@ This tutorial uses the following example values. You can use different values â€
 
 NGINX Gateway Fabric fetches compiled bundles from in-cluster PLM storage. You set up storage access once, cluster-wide, at install time. It applies to every `WAFPolicy` that uses `type: PLM`.
 
-Create a `values.yaml` file that enables WAF and sets the PLM storage connection details under `nginxGateway.plmStorage`:
+Create a `values.yaml` file that enables WAF and sets the PLM storage connection details under `nginxGateway.plmStorage`.
+
+{{<tabs name="plm-storage-endpoint-method">}}
+
+{{%tab name="HTTPS (secure)"%}}
 
 ```yaml
 nginxGateway:
@@ -65,6 +69,25 @@ nginxGateway:
 {{< call-out "caution" >}} Always use HTTPS with TLS verification (`caSecretName`) in production. Add `clientSSLSecretName` for mutual TLS in high-security environments, and never set `insecureSkipVerify: true`. {{< /call-out >}}
 
 {{< call-out "note" >}} `credentialsSecretName` and `caSecretName` must reference Secrets in the NGINX Gateway Fabric control plane namespace, unless you prefix them with `<NAMESPACE>/`. {{< /call-out >}}
+
+{{% /tab %}}
+
+{{%tab name="HTTP"%}}
+
+```yaml
+nginxGateway:
+  plmStorage:
+    url: "http://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local:8333"
+    credentialsSecretName: "plm-system/plm-f5-waf-seaweedfs-auth"  # contains the seaweedfs_admin_secret field
+```
+
+For an HTTP endpoint, do not include a `tls` section.
+
+{{< call-out "note" >}} `credentialsSecretName` must reference a Secret in the NGINX Gateway Fabric control plane namespace, unless you prefix it with `<NAMESPACE>/`. {{< /call-out >}}
+
+{{% /tab %}}
+
+{{</tabs>}}
 
 Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`.
 
