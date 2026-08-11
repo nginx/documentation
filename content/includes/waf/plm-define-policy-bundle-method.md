@@ -5,6 +5,8 @@ f5-files:
 - content/nic/waf-integration/get-started-plm.md
 ---
 
+<!-- Maintainer note: This include assumes the APPolicy CRD is already installed. In the NGF and NIC tutorials, CRD installation happens in the "Deploy PLM infrastructure" section. If you reuse this include elsewhere, add a prerequisite note in the parent document confirming CRDs are present before this section. -->
+
 The precompiled-bundle method lets you reference a `.tgz` policy bundle stored in an artifact registry (for example, Artifactory or Nexus). The Policy Controller imports the bundle and stores it in the SeaweedFS object store without recompiling it.
 
 Use this method when:
@@ -62,8 +64,17 @@ isCompiled: false
 
 #### Update a precompiled bundle
 
-The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `APPolicy` resource to reference the new bundle URL (or bump its revision annotation) and re-apply it:
+The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource (or bump its revision annotation) and re-apply it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
 
 ```shell
-kubectl apply -f <UPDATED_POLICY_MANIFEST_FILE>.yaml
+kubectl apply -f - <<EOF
+apiVersion: appprotect.f5.com/v1
+kind: APPolicy
+metadata:
+  name: <POLICY_NAME>
+  namespace: plm-system
+spec:
+  policy:
+    $ref: "https://<ARTIFACT_REGISTRY_HOST>/<PATH/TO/UPDATED_POLICY_BUNDLE>.tgz"
+EOF
 ```
