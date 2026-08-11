@@ -73,10 +73,15 @@ Deploy the LLM Deployment and Service:
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/examples/guardrails/llm.yaml
 ```
 
-Confirm the Pod is `Running`:
+Confirm the Pod is `Ready`:
 
 ```shell
-kubectl get pods -l app=vllm-qwen3-32b
+kubectl get deployment vllm-qwen3-32b
+```
+
+```text
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+vllm-qwen3-32b   1/1     1            1           6m13s
 ```
 
 ## Create a Gateway
@@ -155,6 +160,23 @@ Confirm that the HTTPRoute status conditions include `Accepted=True` and `Resolv
 
 ```shell
 kubectl describe httproute llm-route
+```
+
+```text
+Conditions:
+      Last Transition Time:  2026-08-11T17:29:19Z
+      Message:               The Route is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-08-11T17:29:19Z
+      Message:               All references are resolved
+      Observed Generation:   1
+      Reason:                ResolvedRefs
+      Status:                True
+      Type:                  ResolvedRefs
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
 ```
 
 ## Create the authentication token Secret
@@ -259,10 +281,27 @@ EOF
 Confirm the policy was accepted:
 
 ```shell
-kubectl get payloadprocessor llm-guardrails -o yaml
+kubectl describe payloadprocessor llm-guardrails
 ```
 
 The status conditions should report `Accepted=True`. A rejected policy reports `Accepted=False`; see [Troubleshooting](#troubleshooting) for common causes.
+
+```text
+Conditions:
+      Last Transition Time:  2026-08-11T17:32:52Z
+      Message:               The Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-08-11T17:32:52Z
+      Message:               Policy is programmed in the data plane
+      Observed Generation:   1
+      Reason:                Programmed
+      Status:                True
+      Type:                  Programmed
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+```
 
 ## Send traffic
 
@@ -280,6 +319,20 @@ curl -i --resolve <GUARDRAILS_API_HOSTNAME>:$GW_PORT:$GW_IP http://<GUARDRAILS_A
   -d '{"model":"meta-llama/Llama-3.1-8B-Instruct","stream":false,"max_tokens":128,"prompt":"What is NGINX?"}'
 ```
 
+```text
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Aug 2026 17:39:19 GMT
+Content-Type: application/json
+Content-Length: 607
+Connection: keep-alive
+X-Inference-Pod: vllm-qwen3-32b-58cfff7c9-5zlm2
+X-Inference-Port: 8000
+
+{"id":"cmpl-f657bc1b-c50c-5a5c-9408-45bd22a150a1","created":1786469959,"model":"meta-llama/Llama-3.1-8B-Instruct","usage":{"prompt_tokens":4,"completion_tokens":62,"total_tokens":66},"object":"text_completion","kv_transfer_params":null,"choices":[{"index":0,"finish_reason":"stop","text":"NGINX (pronounced \"engine-x\") is an open-source, high-performance web server. It functions primarily as an HTTP web server, reverse proxy, load balancer, and HTTP cache.Designed to handle thousands of concurrent connections with minimal memory usage, NGINX is an essential component of modern web infrastructure."}]
+```
+
+
 If the request payload contains content that your Guardrails backend is configured to block, the request never reaches the LLM and returns `HTTP 403`:
 
 ```shell
@@ -290,9 +343,13 @@ curl -i --resolve <GUARDRAILS_API_HOSTNAME>:$GW_PORT:$GW_IP http://<GUARDRAILS_A
 
 ```text
 HTTP/1.1 403 Forbidden
+Server: nginx
+Date: Tue, 11 Aug 2026 17:39:50 GMT
+Content-Length: 139
+Connection: keep-alive
 Content-Type: application/json
 
-{"error":{"type":"invalid_request_error","code":"content_policy_violation", ...}}
+{"error":{"code":"content_policy_violation","message":"Request blocked by guardrails policy.","param":null,"type":"invalid_request_error"}
 ```
 
 If the model's *output* contains content that your Guardrails backend blocks, the response is withheld from the client and returns `HTTP 403` with `error.type: api_error`:
@@ -305,9 +362,15 @@ curl -i --resolve <GUARDRAILS_API_HOSTNAME>:$GW_PORT:$GW_IP http://<GUARDRAILS_A
 
 ```text
 HTTP/1.1 403 Forbidden
+Server: nginx
+Date: Tue, 11 Aug 2026 17:40:36 GMT
 Content-Type: application/json
+Content-Length: 128
+Connection: keep-alive
+X-Inference-Pod: vllm-qwen3-32b-58cfff7c9-5zlm2
+X-Inference-Port: 8000
 
-{"error":{"type":"api_error","code":"content_policy_violation", ...}}
+{"error":{"code":"content_policy_violation","message":"Response blocked by guardrails policy.","param":null,"type":"api_error"}}
 ```
 
 For more example curl requests, view the [`examples/guardrails`](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/guardrails) `README.md` in the NGINX Gateway Fabric repository.
