@@ -27,28 +27,6 @@ This behavior is provided by the `PayloadProcessor` policy, an [inherited policy
 
 You need an F5 AI Guardrails API endpoint to inspect payloads. This can be an F5 hosted service or a service running inside your cluster.
 
-To enable the `PayloadProcessor` policy, [install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with these modifications:
-
-- Using Helm: set the `nginxGateway.payloadProcessor.enable=true` Helm value.
-- Using Kubernetes manifests: set the `--payload-processor` flag in the nginx-gateway container argument, and update the ClusterRole RBAC to add `payloadprocessors`:
-
-```yaml
-- apiGroups:
-    - gateway.nginx.org
-    resources:
-    - payloadprocessors
-    verbs:
-    - get
-    - list
-    - watch
-- apiGroups:
-    - gateway.nginx.org
-    resources:
-    - payloadprocessors/status
-    verbs:
-    - update
-```
-
 ## Deploy an LLM backend
 
 If you have an existing in-cluster LLM which can be queried you can skip this section.
@@ -82,6 +60,97 @@ kubectl get deployment vllm-qwen3-32b
 ```text
 NAME             READY   UP-TO-DATE   AVAILABLE   AGE
 vllm-qwen3-32b   1/1     1            1           6m13s
+```
+
+## Create the authentication token Secret
+
+Create the Secret with your Guardrails API token under the `token` key. The Secret must live in the same namespace as the `PayloadProcessor`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: guardrails-token
+type: Opaque
+stringData:
+  token: "<YOUR_API_TOKEN>"
+EOF
+```
+
+## Configure the Guardrails backend Service
+
+The Guardrails backend can live outside or inside the cluster. NGINX Gateway Fabric picks the URL scheme from the referenced Service's type:
+
+| Backend location | Service type | Resolved URL |
+| ---------------- | ------------ | ------------ |
+| External | `ExternalName` | `https://<externalName>:<backendRef.port>` |
+| In-cluster | `ClusterIP` (or any non-`ExternalName`) | `http://<name>.<namespace>.svc.cluster.local:<backendRef.port>` |
+
+{{< call-out "note" >}}
+The `cluster.local` suffix in the in-cluster URL is the cluster's DNS domain. If your cluster uses a different domain, configure it with the `--cluster-domain` flag or `clusterDomain` Helm value when deploying NGINX Gateway Fabric (default: `cluster.local`).
+{{< /call-out >}}
+
+For an external backend, create an `ExternalName` Service pointing at your hosted Guardrails API:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: guardrails-api
+spec:
+  type: ExternalName
+  externalName: <GUARDRAILS_API_HOSTNAME>
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+EOF
+```
+
+For an in-cluster backend, your AI Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to.
+
+{{< call-out "important" >}}
+When using an `ExternalName` AI Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Either edit the NginxProxy which gets created when you deploy NGINX Gateway Fabric, or configure `dnsResolver` on an new [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
+
+```yaml
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: guardrails-nginx-config
+spec:
+  dnsResolver:
+    addresses:
+    - type: IPAddress
+      value: "10.96.0.10"   # in-cluster kube-dns/CoreDNS ClusterIP (cluster-dependent)
+```
+
+Find your cluster's DNS ClusterIP with `kubectl -n kube-system get svc kube-dns` (or `coredns`). Without a resolver, NGINX fails to load the configuration with `no resolver defined to resolve <host>`.
+{{< /call-out >}}
+
+## Deploy NGINX Gateway Fabric
+
+[Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with the `PayloadProcessor` policy enabled:
+
+- Using Helm: set the `nginxGateway.payloadProcessor.enable=true` Helm value.
+- Using Kubernetes manifests: set the `--payload-processor` flag in the nginx-gateway container argument, and update the ClusterRole RBAC to add `payloadprocessors`:
+
+```yaml
+- apiGroups:
+    - gateway.nginx.org
+    resources:
+    - payloadprocessors
+    verbs:
+    - get
+    - list
+    - watch
+- apiGroups:
+    - gateway.nginx.org
+    resources:
+    - payloadprocessors/status
+    verbs:
+    - update
 ```
 
 ## Create a Gateway
@@ -178,73 +247,6 @@ Conditions:
       Type:                  ResolvedRefs
     Controller Name:         gateway.nginx.org/nginx-gateway-controller
 ```
-
-## Create the authentication token Secret
-
-Create the Secret with your Guardrails API token under the `token` key. The Secret must live in the same namespace as the `PayloadProcessor`:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: guardrails-token
-type: Opaque
-stringData:
-  token: "<YOUR_API_TOKEN>"
-EOF
-```
-
-## Configure the Guardrails backend Service
-
-The Guardrails backend can live outside or inside the cluster. NGINX Gateway Fabric picks the URL scheme from the referenced Service's type:
-
-| Backend location | Service type | Resolved URL |
-| ---------------- | ------------ | ------------ |
-| External | `ExternalName` | `https://<externalName>:<backendRef.port>` |
-| In-cluster | `ClusterIP` (or any non-`ExternalName`) | `http://<name>.<namespace>.svc.cluster.local:<backendRef.port>` |
-
-{{< call-out "note" >}}
-The `cluster.local` suffix in the in-cluster URL is the cluster's DNS domain. If your cluster uses a different domain, configure it with the `--cluster-domain` flag on the NGINX Gateway Fabric controller (default: `cluster.local`).
-{{< /call-out >}}
-
-For an external backend, create an `ExternalName` Service pointing at your hosted Guardrails API:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Service
-metadata:
-  name: guardrails-api
-spec:
-  type: ExternalName
-  externalName: <GUARDRAILS_API_HOSTNAME>
-  ports:
-  - name: https
-    port: 443
-    protocol: TCP
-EOF
-```
-
-For an in-cluster backend, your AI Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to.
-
-{{< call-out "important" >}}
-When using an `ExternalName` AI Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Configure `dnsResolver` on an [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
-
-```yaml
-apiVersion: gateway.nginx.org/v1alpha2
-kind: NginxProxy
-metadata:
-  name: guardrails-nginx-config
-spec:
-  dnsResolver:
-    addresses:
-    - type: IPAddress
-      value: "10.96.0.10"   # in-cluster kube-dns/CoreDNS ClusterIP (cluster-dependent)
-```
-
-Find your cluster's DNS ClusterIP with `kubectl -n kube-system get svc kube-dns` (or `coredns`). Without a resolver, NGINX fails to load the configuration with `no resolver defined to resolve <host>`.
-{{< /call-out >}}
 
 ## Attach the PayloadProcessor policy
 
