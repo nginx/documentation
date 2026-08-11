@@ -85,7 +85,7 @@ nginxGateway:
 
 {{</tabs>}}
 
-Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`.
+Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`. For all available `plmStorage` options, see the [NGINX Gateway Fabric Helm chart reference]({{< ref "/ngf/reference/helm.md" >}}).
 
 The PLM installation creates the credentials Secret automatically, containing the S3 secret access key in the `seaweedfs_admin_secret` field (access key ID `admin` by default):
 
@@ -292,9 +292,10 @@ Store your policy JSON in a Git repository and reference it from `APPolicy`.
 
 #### Public repository
 
-Create an `APPolicy` resource that references the policy file by path:
+Create an `APPolicy` resource that references the policy file by path. Replace `<POLICY_NAME>`, `<NAMESPACE>`, `<PATH/TO/POLICY.JSON>`, `<ORG>`, `<REPO>`, and `<TAG_OR_COMMIT>` with your values:
 
-```yaml
+```shell
+kubectl apply -f - <<EOF
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
@@ -307,19 +308,22 @@ spec:
       repositoryDetails:
         repository: https://github.com/<ORG>/<REPO>.git
         ref: "<TAG_OR_COMMIT>"
+EOF
 ```
-
-Replace `<POLICY_NAME>`, `<NAMESPACE>`, `<PATH/TO/POLICY.JSON>`, `<ORG>`, `<REPO>`, and `<TAG_OR_COMMIT>` with your values.
 
 {{< call-out class="note" title="Note" >}}
 Pin `ref` to a tag or commit SHA rather than a branch name in production environments.
 {{< /call-out >}}
 
-Apply the resource:
+Check that the bundle compiled successfully:
 
 ```shell
-kubectl apply -f <POLICY_MANIFEST>.yaml
+kubectl get appolicy <POLICY_NAME> \
+  --namespace <NAMESPACE> \
+  --output jsonpath='State:    {.status.bundle.state}{"\n"}Bundle:   {.status.bundle.location}{"\n"}Compiler: {.status.bundle.compilerVersion}{"\n"}'
 ```
+
+The output should show `State: ready`.
 
 #### Private repository
 
@@ -333,7 +337,8 @@ kubectl create secret generic git-token-secret \
 
 Then reference the secret in the `APPolicy` resource:
 
-```yaml
+```shell
+kubectl apply -f - <<EOF
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
@@ -348,16 +353,7 @@ spec:
         ref: "<TAG_OR_COMMIT>"
       authentication:
         token: git-token-secret
-```
-
-#### Confirm the policy is ready
-
-Check `bundle.state`:
-
-```shell
-kubectl get appolicy <POLICY_NAME> \
-  --namespace <NAMESPACE> \
-  --output jsonpath='State:    {.status.bundle.state}{"\n"}Bundle:   {.status.bundle.location}{"\n"}Compiler: {.status.bundle.compilerVersion}{"\n"}'
+EOF
 ```
 
 #### Update a Git-referenced policy
