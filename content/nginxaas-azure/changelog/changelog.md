@@ -14,6 +14,25 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
 
+## August 17, 2026
+
+- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus 37.0.4 in the Stable Upgrade Channel**
+
+  NGINXaaS for Azure deployments using the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have now been automatically upgraded to [NGINX Plus 37.0.4]({{< ref "/nginx/releases.md#pls.37.0.4" >}}). This upgrade also includes the following new directives:
+  - [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag)
+  - [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers)
+  - [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file)
+
+  Upstream response time histogram metrics are now available in Azure Monitor. For more information, see the [Metrics catalog]({{< ref "/nginxaas-azure/monitoring/metrics-catalog.md" >}}). For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview.md#configuration-directives-list" >}}).
+
+  If your deployment is affected by the R37 behavior changes, see the [NGINX Plus 37.0 behavior impact]({{< ref "/nginxaas-azure/known-issues.md#nginx-plus-370-behavior-impact" >}}) section of the **Known issues** page.
+
+  {{< call-out class="important" >}}
+
+  The [ACME protocol support](https://nginx.org/en/docs/http/ngx_http_acme_module.html) feature is not currently supported in NGINXaaS due to active-active deployments.
+
+  {{< /call-out >}}
+
 ## July 29, 2026
   NGINX Plus 37.0.4 is now available on the **Preview** [upgrade channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels" >}}) and will be promoted to the **Stable** upgrade channel starting the week of August 17, 2026.
 
@@ -37,13 +56,13 @@ To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/
 - {{% icon-feature %}} **CVE-2026-31431 Copy Fail Fix**
 
   A Linux kernel local privilege escalation vulnerability known as "Copy Fail" has been mitigated and the fix was rolled out to all healthy deployments.
-  
+
 ## April 29, 2026
 
 - {{% icon-feature %}} **IP Intelligence is now available on Standard V3 plans**
 
   NGINXaaS for Azure now supports IP Intelligence for F5 WAF for NGINX on **Standard V3** deployments. Use IP Intelligence to block or log requests from IP addresses associated with known threat categories, such as botnets, scanners, and phishing proxies. No extra license is required—the threat database updates automatically every 60 minutes. For more information, see [IP Intelligence]({{< ref "/nginxaas-azure/app-protect/ip-intelligence.md" >}}).
-  
+
 ## April 10, 2026
 
 - {{% icon-resolved %}} **Azure Resource Health alerts fully functional**

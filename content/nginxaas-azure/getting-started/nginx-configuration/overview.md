@@ -172,6 +172,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report)\
 [env](https://nginx.org/en/docs/ngx_core_module.html#env)\
 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log)\
+[error_log_tag](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag)\
 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)\
 [etag](https://nginx.org/en/docs/http/ngx_http_core_module.html#etag)\
 [events](https://nginx.org/en/docs/ngx_core_module.html#events)\
@@ -422,6 +423,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [match (ngx_http_upstream_hc_module)](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match)\
 [match (ngx_stream_upstream_hc_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match)\
 [max_errors](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#max_errors)\
+[max_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers)\
 [max_ranges](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_ranges)\
 [memcached_allow_upstream](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_allow_upstream)\
 [memcached_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_bind_dynamic)\
@@ -757,6 +759,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_ecdh_curve (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ecdh_curve)\
 [ssl_ecdh_curve (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_ecdh_curve)\
 [ssl_ecdh_curve (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_ecdh_curve)\
+[ssl_ech_file](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file)\
 [ssl_handshake_timeout](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_handshake_timeout)\
 [ssl_name](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_name)\
 [ssl_object_cache_inheritable](https://nginx.org/en/docs/ngx_core_module.html#ssl_object_cache_inheritable)\
