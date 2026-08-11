@@ -21,7 +21,7 @@ F5 AI Guardrails can inspect LLM traffic on two independent paths:
 - **Prompts** — the client's *input* is inspected before it reaches the LLM. A block returns `403` with `error.type: invalid_request_error`.
 - **Responses** — the model's *output* is inspected before it reaches the client. A block returns `403` with `error.type: api_error`.
 
-This behavior is provided by the `PayloadProcessor` policy, an [inherited policy]({{< ref "/ngf/overview/custom-policies.md" >}}) that can target an HTTPRoute or a Gateway, which configures NGINX traffic to F5 AI Guardrails to process.
+This behavior is provided by the `PayloadProcessor` policy, an [inherited policy]({{< ref "/ngf/overview/custom-policies.md" >}}) that can target an HTTPRoute or a Gateway, which offloads NGINX traffic to F5 AI Guardrails to inspect.
 
 ## Before you begin
 
@@ -42,7 +42,7 @@ kubectl create configmap inference-sim-dataset \
 ```
 
 {{< call-out "note" >}}
-The dataset file alongside more details of the setup can be found in the [`examples/guardrails`](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/guardrails) directory of the NGINX Gateway Fabric repository.
+The dataset file, alongside more details of the setup, can be found in the [`examples/guardrails`](https://github.com/nginx/nginx-gateway-fabric/tree/v{{< version-ngf >}}/examples/guardrails) directory of the NGINX Gateway Fabric repository.
 {{< /call-out >}}
 
 Deploy the LLM Deployment and Service:
@@ -112,7 +112,7 @@ EOF
 For an in-cluster backend, your AI Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to.
 
 {{< call-out "important" >}}
-When using an `ExternalName` AI Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Either edit the NginxProxy which gets created when you deploy NGINX Gateway Fabric, or configure `dnsResolver` on an new [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
+When using an `ExternalName` AI Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Either edit the NginxProxy which gets created when you deploy NGINX Gateway Fabric, or configure `dnsResolver` on a new [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
 
 ```yaml
 apiVersion: gateway.nginx.org/v1alpha2
