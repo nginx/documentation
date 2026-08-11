@@ -140,11 +140,11 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.pod.extraLabels** | The additional extra labels of the NGINX Ingress Controller pod. | {} |
 | **controller.appprotect.enable** | Enables the F5 WAF for NGINX module in the NGINX Ingress Controller. | false |
 | **controller.appprotect.v5** | Enables F5 WAF for NGINX v5. | false |
-| **controller.appprotect.plmStorage.url** | SeaweedFS S3 endpoint for NIC to fetch policy and logconf bundle from. Leave empty to disable PLM support. Requires `controller.appprotect.v5` to be `true` | "" |
-| **controller.appprotect.plmStorage.credentialsSecret** | Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret, `namespace/name` format.. | "" |
+| **controller.appprotect.plmStorage.url** | SeaweedFS S3 endpoint for NGINX Ingress Controller to fetch policy and logconf bundle from. Leave empty to disable PLM support. Requires `controller.appprotect.v5` to be `true` | "" |
+| **controller.appprotect.plmStorage.credentialsSecret** | Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret, `namespace/name` format. | "" |
 | **controller.appprotect.plmStorage.caSecret** | Optional Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret, `namespace/name format`. | "" |
 | **controller.appprotect.plmStorage.clientSSLSecret** | Optional Secret containing tls.crt and tls.key for SeaweedFS mTLS, `namespace/name` format. | "" |
-| **controller.appprotect.plmStorage.insecureSkipVerify** | Disable SeaweedFS TLS verification. For development and testing only. | false |
+| **controller.appprotect.plmStorage.insecureSkipVerify** | Disables SeaweedFS TLS verification. For development and testing only. | false |
 | **controller.appprotect.volumes** | Volumes for F5 WAF for NGINX v5. | [{"name": "app-protect-bd-config", "emptyDir": {}},{"name": "app-protect-config", "emptyDir": {}},{"name": "app-protect-bundles", "emptyDir": {}}] |
 | **controller.appprotect.enforcer.host** | Host that the F5 WAF for NGINX v5 Enforcer runs on. | "127.0.0.1" |
 | **controller.appprotect.enforcer.port** | Port that the F5 WAF for NGINX v5 Enforcer runs on. | 50000 |
