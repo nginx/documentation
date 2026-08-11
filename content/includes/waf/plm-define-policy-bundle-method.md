@@ -12,9 +12,10 @@ Use this method when:
 - Your security team compiles and publishes bundles through an external pipeline.
 - You want to decouple policy compilation from cluster operations.
 
-Create an `APPolicy` resource that references your bundle:
+Create an `APPolicy` resource that references your bundle. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/POLICY_BUNDLE>` with your values:
 
-```yaml
+```shell
+kubectl apply -f - <<EOF
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
@@ -23,14 +24,7 @@ metadata:
 spec:
   policy:
     $ref: "https://<ARTIFACT_REGISTRY_HOST>/<PATH/TO/POLICY_BUNDLE>.tgz"
-```
-
-Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/POLICY_BUNDLE>` with your values.
-
-Apply the resource:
-
-```shell
-kubectl apply -f <POLICY_MANIFEST_FILE>.yaml
+EOF
 ```
 
 {{< call-out class="note" title="Note" >}}
