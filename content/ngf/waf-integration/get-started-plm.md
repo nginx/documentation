@@ -83,8 +83,6 @@ data:
 
 NGINX Gateway Fabric watches the PLM credentials and TLS Secrets and rebuilds its storage client when they change, so you can rotate credentials without restarting the pod.
 
----
-
 ## Deploy the sample application
 
 Deploy the `customers` and `orders` sample applications. The `customers` app returns a response containing fake sensitive data (credit card number and SSN), which you'll use later to demonstrate data guard masking:
@@ -164,6 +162,8 @@ EOF
 
 ## Configure security logging (optional)
 
+This section is typically owned by your security team. If that's not you, share it with them before continuing.
+
 PLM security logging profiles are defined as `APLogConf` custom resources. Create a namespace to hold your security resources, then define a log profile that logs illegal requests:
 
 ```shell
@@ -195,9 +195,9 @@ kubectl wait --for=jsonpath='{.status.bundle.state}'=ready aplogconf/log-illegal
 
 If you skip this section, omit the `securityLogs` field in the `WAFPolicy` resource in the next steps.
 
----
-
 ## Define the WAF policy
+
+This section is typically owned by your security team. They define the policy in the `security` namespace, separate from the Gateway namespace, so that security resources are managed independently from routing configuration. If that's not you, share this section with them — you'll need the `APPolicy` name and namespace before continuing to the next section.
 
 The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles it, and writes `status.bundle` with `state: ready` when the bundle is available.
 
@@ -263,7 +263,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
+{{< call-out "note" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
 
 {{% /tab %}}
 
@@ -407,8 +407,6 @@ EOF
 
 This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
 
----
-
 ## Configure HTTPRoutes
 
 Create two HTTPRoutes — `customers` and `orders` — attached to the Gateway. Because the `WAFPolicy` targets the Gateway, both routes inherit WAF protection automatically:
@@ -454,8 +452,6 @@ spec:
       port: 80
 EOF
 ```
-
----
 
 ## Validate policy compilation and application
 
@@ -510,8 +506,6 @@ Each NGINX Pod should show `3/3` in the `READY` column, indicating the main NGIN
 NAME                             READY   STATUS    RESTARTS   AGE
 gateway-nginx-7f9b8d6c4d-xxxxx  3/3     Running   0          2m
 ```
-
----
 
 ## Test deployment and policy enforcement
 
@@ -580,11 +574,11 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 
 {{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
 
----
-
 ## Apply a route-level override (optional)
 
 In the previous step, you saw that the `customers` route returns sensitive data (credit card numbers and SSNs) in the response body. The gateway-level policy blocks inbound attacks, but doesn't inspect outbound responses.
+
+This pattern is a good example of a SecOps and app team collaboration: the security team defines a stricter policy for a specific service, and the platform engineer or app developer attaches it as a route-level override. The override applies only to the `customers` route — other routes continue using the gateway-level policy.
 
 To protect sensitive data in responses, define a **data guard** `APPolicy` and apply it as a route-level override on the `customers` route:
 
@@ -655,8 +649,6 @@ Name: John Doe
 Credit Card: ***************1111
 SSN: *******6789
 ```
-
----
 
 ## Next steps
 
