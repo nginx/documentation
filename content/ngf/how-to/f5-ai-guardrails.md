@@ -91,7 +91,11 @@ The Guardrails backend can live outside or inside the cluster. NGINX Gateway Fab
 The `cluster.local` suffix in the in-cluster URL is the cluster's DNS domain. If your cluster uses a different domain, configure it with the `--cluster-domain` flag or `clusterDomain` Helm value when deploying NGINX Gateway Fabric (default: `cluster.local`).
 {{< /call-out >}}
 
-For an external backend, create an `ExternalName` Service pointing at your hosted Guardrails API:
+{{<tabs name="guardrails-backend-location">}}
+
+{{%tab name="External"%}}
+
+To configure a Guardrails backend Service which is external, create an `ExternalName` Service pointing at your hosted Guardrails API:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -108,8 +112,31 @@ spec:
     protocol: TCP
 EOF
 ```
+{{% /tab %}}
 
-For an in-cluster backend, your AI Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to.
+{{%tab name="In-cluster"%}}
+
+For an in-cluster backend, your AI Guardrail backend pods will most likely have an existing Service which you can point the PayloadProcessor backendRef to, otherwise create a Service configured to expose your guardrail backends:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: guardrails-api
+spec:
+  ports:
+  - name: http
+    port: 443
+    protocol: TCP
+  selector:
+    guardrails-backend-key: guardrails-backend-value
+EOF
+```
+
+{{% /tab %}}
+
+{{</tabs>}}
 
 {{< call-out "important" >}}
 When using an `ExternalName` AI Guardrails backend, you **must** configure a DNS `resolver` so NGINX can resolve the external hostname at request time. Either edit the NginxProxy which gets created when you deploy NGINX Gateway Fabric, or configure `dnsResolver` on a new [NginxProxy]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) resource and attach it to the Gateway via `spec.infrastructure.parametersRef`:
