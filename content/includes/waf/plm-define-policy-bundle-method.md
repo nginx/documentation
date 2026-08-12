@@ -64,7 +64,7 @@ isCompiled: false
 
 #### Update a precompiled bundle
 
-The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource (or bump its revision annotation) and re-apply it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
+The Policy Controller does not poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource (or bump its revision annotation) and reapply it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
 
 ```shell
 kubectl apply -f - <<EOF
