@@ -199,7 +199,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.enableSSLDynamicReload** | Enable lazy loading for SSL Certificates. | true |
 | **controller.telemetryReporting.enable** | Enable telemetry reporting. | true |
 | **controller.enableWeightChangesDynamicReload** | Enable weight changes without reloading the NGINX configuration. May require increasing `map_hash_bucket_size`, `map_hash_max_size`, `variable_hash_bucket_size`, and `variable_hash_max_size` in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) if there are many two-way splits. Requires `controller.nginxplus` | false |
-| **controller.networkPolicy.enable** | Create a NetworkPolicy that targets the controller pods.  If `enable` is set to `true` and both ingress and egress are empty, the resulting NetworkPolicy denies all ingress by default. | false |
+| **controller.networkPolicy.enabled** | Create a NetworkPolicy that targets the controller pods.  If `enabled` is set to `true` and both ingress and egress are empty, the resulting NetworkPolicy denies all ingress by default. | false |
 | **controller.networkPolicy.ingress** | Configure ingress rules. When non-empty, the Ingress policy type is added automatically. | [] |
 | **controller.networkPolicy.egress** | Configure egress rules. When non-empty, the Egress policy type is added automatically. | [] |
 |**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
