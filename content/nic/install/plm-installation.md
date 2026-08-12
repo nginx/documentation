@@ -11,7 +11,7 @@ f5-description: >
 f5-audience: operator
 ---
 
-This tutorial installs F5 NGINX Ingress Controller (NIC) with F5 WAF for NGINX
+This guide installs F5 NGINX Ingress Controller (NIC) with F5 WAF for NGINX
 using Policy Lifecycle Management (PLM). PLM defines WAF policies as
 Kubernetes custom resources, compiles them automatically, and stores the
 compiled bundles in an in-cluster S3-compatible object store. NIC fetches the
