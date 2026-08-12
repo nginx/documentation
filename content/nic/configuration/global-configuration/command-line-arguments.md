@@ -489,7 +489,7 @@ SeaweedFS S3 endpoint for NGINX Ingress Controller to fetch policy and logconf b
 
 ### -plm-storage-credentials-secret
 
-Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret.
+A Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret.
 
 Format: `<namespace>/<name>`
 
@@ -497,7 +497,7 @@ Format: `<namespace>/<name>`
 
 ### -plm-storage-ca-secret
 
-Optional Secret containing ca.crt for SeaweedFS TLS verification.
+An optional Secret containing ca.crt for SeaweedFS TLS verification.
 
 Format: `<namespace>/<name>`
 
@@ -505,7 +505,7 @@ Format: `<namespace>/<name>`
 
 ### -plm-storage-client-ssl-secret
 
-Optional Secret containing tls.crt and tls.key for SeaweedFS mTLS.
+An optional Secret containing tls.crt and tls.key for SeaweedFS mTLS.
 
 Format: `<namespace>/<name>`
 
