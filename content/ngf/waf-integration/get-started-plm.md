@@ -14,7 +14,7 @@ f5-summary: >
 f5-audience: operator
 ---
 
-This tutorial walks through the complete flow of protecting traffic with F5 WAF for NGINX using Policy Lifecycle Management (PLM). By the end, you will have:
+Use this tutorial to set up end-to-end traffic protection with F5 WAF for NGINX using Policy Lifecycle Management (PLM). By the end, you'll have:
 
 - Deployed the PLM infrastructure (Policy Controller and SeaweedFS storage)
 - Connected NGINX Gateway Fabric to PLM storage
@@ -26,9 +26,11 @@ PLM is one of four WAF policy source types. With PLM, you define your security p
 
 ## Before you begin
 
-- Have `kubectl` access to a Kubernetes cluster.
-- Have a valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and isn't included with the NGINX Plus license.
-- Have your private registry credentials Secret for `private-registry.nginx.com` available. You'll reference this Secret when you install NGINX Gateway Fabric.
+Before you start, make sure you have:
+
+- `kubectl` access to a Kubernetes cluster.
+- A valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and isn't included with the NGINX Plus license.
+- Your private registry credentials Secret for `private-registry.nginx.com`. You'll reference this Secret when you install NGINX Gateway Fabric.
 
 This tutorial uses the following example values. You can use different values — if you do, replace them consistently throughout.
 
@@ -45,9 +47,9 @@ This tutorial uses the following example values. You can use different values �
 
 {{< include "waf/plm-deploy-infrastructure.md" >}}
 
-## Configure NGF to connect to PLM storage
+## Connect NGINX Gateway Fabric to PLM storage
 
-NGINX Gateway Fabric fetches compiled bundles from in-cluster PLM storage. You set up storage access once, cluster-wide, at install time. It applies to every `WAFPolicy` that uses `type: PLM`.
+NGINX Gateway Fabric fetches compiled bundles from in-cluster PLM storage. You set up storage access once, cluster-wide, at install time. This configuration applies to every `WAFPolicy` that uses `type: PLM`.
 
 Create a `values.yaml` file that enables WAF and sets the PLM storage connection details under `nginxGateway.plmStorage`.
 
@@ -66,9 +68,9 @@ nginxGateway:
       insecureSkipVerify: false                 # use only for testing
 ```
 
-{{< call-out "caution" >}} Always use HTTPS with TLS verification (`caSecretName`) in production. Add `clientSSLSecretName` for mutual TLS in high-security environments, and never set `insecureSkipVerify: true`. {{< /call-out >}}
+{{< call-out class="caution" title="Caution" >}} Always use HTTPS with TLS verification (`caSecretName`) in production. Add `clientSSLSecretName` for mutual TLS in high-security environments, and never set `insecureSkipVerify: true`. {{< /call-out >}}
 
-{{< call-out "note" >}} `credentialsSecretName` and `caSecretName` must reference Secrets in the NGINX Gateway Fabric control plane namespace, unless you prefix them with `<NAMESPACE>/`. {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} `credentialsSecretName` and `caSecretName` must reference Secrets in the NGINX Gateway Fabric control plane namespace, unless you prefix them with `<NAMESPACE>/`. {{< /call-out >}}
 
 {{% /tab %}}
 
@@ -100,7 +102,7 @@ data:
   seaweedfs_admin_secret: <BASE64_ENCODED_SECRET_ACCESS_KEY>
 ```
 
-NGINX Gateway Fabric watches the PLM credentials and TLS Secrets and rebuilds its storage client when they change, so you can rotate credentials without restarting the pod.
+NGINX Gateway Fabric reloads the PLM credentials and TLS Secrets when they change, so you can rotate credentials without restarting the pod.
 
 ## Deploy the sample application
 
@@ -282,7 +284,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
 
 {{% /tab %}}
 
@@ -311,9 +313,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" title="Note" >}}
-Pin `ref` to a tag or commit SHA rather than a branch name in production environments.
-{{< /call-out >}}
+{{< call-out class="note" title="Note" >}} Pin `ref` to a tag or commit SHA rather than a branch name in production environments. {{< /call-out >}}
 
 Check that the bundle compiled successfully:
 
@@ -358,7 +358,7 @@ EOF
 
 #### Update a Git-referenced policy
 
-The Policy Controller does not poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
+The Policy Controller doesn't poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
 
 {{% /tab %}}
 
@@ -420,7 +420,7 @@ spec:
 EOF
 ```
 
-This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch — no change to the `WAFPolicy` is required.
+This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch. You don't need to update the `WAFPolicy`.
 
 ## Configure HTTPRoutes
 
@@ -524,7 +524,7 @@ gateway-nginx-7f9b8d6c4d-xxxxx  3/3     Running   0          2m
 
 ## Test deployment and policy enforcement
 
-Confirm the Gateway was assigned an IP address and reports `Programmed=True`:
+Confirm the Gateway has an IP address assigned and reports `Programmed=True`:
 
 ```shell
 kubectl describe gateways.gateway.networking.k8s.io gateway
@@ -536,16 +536,17 @@ Addresses:
   Value:  192.0.2.1
 ```
 
-Save the public IP address and port of the Gateway into shell variables:
+
+Save the public IP address and port of the Gateway to shell variables:
 
 ```text
-GW_IP=XXX.YYY.ZZZ.III
+GW_IP=192.0.2.1
 GW_PORT=<port number>
 ```
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
-{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} If you have a DNS record for `cafe.example.com`, you can send the request directly to that hostname without `--resolve`. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
@@ -587,7 +588,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
 
 ## Apply a route-level override (optional)
 
