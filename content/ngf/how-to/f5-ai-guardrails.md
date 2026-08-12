@@ -21,11 +21,13 @@ F5 AI Guardrails can inspect LLM traffic on two independent paths:
 - **Prompts** — the client's *input* is inspected before it reaches the LLM. A block returns `403` with `error.type: invalid_request_error`.
 - **Responses** — the model's *output* is inspected before it reaches the client. A block returns `403` with `error.type: api_error`.
 
-This behavior is provided by the `PayloadProcessor` policy, an [inherited policy]({{< ref "/ngf/overview/custom-policies.md" >}}) that can target an HTTPRoute or a Gateway, which offloads NGINX traffic to F5 AI Guardrails to inspect.
+You can set up prompts and responses as described in [Prompts and scans in AI Security](https://docs.aisecurity.f5.com/api-docs/prompts-scans.html), through the F5 AI Guardrails dashboard.
+
+To connect NGINX Gateway Fabric with your configured F5 AI Guardrails, use the `PayloadProcessor` policy, an [inherited policy]({{< ref "/ngf/overview/custom-policies.md" >}}) that can target an HTTPRoute or a Gateway. The `PayloadProcessor` configures NGINX to offload traffic to F5 AI Guardrails to inspect.
 
 ## Before you begin
 
-You need an F5 AI Guardrails API endpoint to inspect payloads. This can be an F5 hosted service or a service running inside your cluster.
+You need an F5 AI Guardrails API endpoint to inspect payloads. This can be an F5 hosted service or a service running inside your cluster. View the official [F5 AI Guardrails](https://docs.aisecurity.f5.com/) docs to learn more.
 
 ## Deploy an LLM backend
 
