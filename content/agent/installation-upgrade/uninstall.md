@@ -4,7 +4,7 @@ weight: 700
 toc: true
 f5-docs: DOCS-1230
 f5-content-type: how-to
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 ## Overview

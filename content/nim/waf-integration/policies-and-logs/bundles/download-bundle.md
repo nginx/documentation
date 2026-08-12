@@ -4,7 +4,7 @@ description: Download a compiled F5 WAF for NGINX security bundle from F5 NGINX 
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Download a compiled F5 WAF for NGINX security bundle from F5 NGINX Instance Manager as a .tgz file.
   Downloaded bundles can be reused for offline deployments or transferred to other NGINX Instance Manager environments.

@@ -1,7 +1,7 @@
 ---
 f5-content-type: getting-started
 f5-docs: DOCS-000
-f5-product: {PRODUCT_CODE}
+f5-product: {PRODUCT_NAME}
 title: Get started with {product or feature name}
 description: "{One-sentence summary of what the reader will accomplish, under 160 characters.}"
 weight: 100

@@ -5,8 +5,8 @@ description: Upgrade F5 NGINX Plus with step-by-step instructions for
 toc: true
 weight: 150
 nd-content-type: how-to
-nd-product: NGPLUS
-nd-docs: DOCS-000
+f5-product: F5 NGINX Plus
+f5-docs: DOCS-000
 ---
 
 This article explains how to upgrade existing NGINX Plus installation and dynamic modules.

@@ -2,9 +2,9 @@
 title: Disable F5 WAF for NGINX
 weight: 400
 toc: true
-url: /nginxaas/azure/app-protect/disable-waf/
+url: /nginxaas-azure/app-protect/disable-waf/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

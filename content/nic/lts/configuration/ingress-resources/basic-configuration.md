@@ -3,7 +3,7 @@ title: Basic configuration
 weight: 100
 toc: true
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document shows a basic Ingress resource definition for F5 NGINX Ingress Controller LTS. It load balances requests for two services as part of a single application.

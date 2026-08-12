@@ -5,7 +5,7 @@ title: Organize instances with tags
 toc: true
 weight: 650
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create tags and apply them to NGINX instances in F5 NGINX Instance Manager to organize and filter your instance fleet.
   Tags let you label and group NGINX instances so you can quickly identify and act on subsets of your deployment.

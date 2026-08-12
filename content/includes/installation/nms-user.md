@@ -1,7 +1,7 @@
 ---
 f5-product:
-- NIMNGR
-- NONECO
+- F5 NGINX Instance Manager
+- F5 NGINX One Console
 f5-files:
 - content/nim/disconnected/offline-install-guide-manual.md
 - content/nim/disconnected/offline-install-guide.md

@@ -3,7 +3,7 @@ title: Security recommendations
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 F5 NGINX Ingress Controller LTS follows Kubernetes best practices: this page outlines configuration specific to NGINX Ingress Controller LTS you may require, including links to examples in the [GitHub repository](https://github.com/nginx/kubernetes-ingress/tree/v{{< nic-lts-version >}}/examples).

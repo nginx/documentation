@@ -11,5 +11,5 @@ title: NGINX Plus REST API reference
 toc: false
 weight: null
 f5-api-reference: "./nginx/admin-guide/yaml/v9/nginx_api.yaml"
-f5-product: NONECO
+f5-product: NGINX One Console
 ---

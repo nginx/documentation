@@ -2,9 +2,9 @@
 title: "2024"
 weight: 100
 toc: true
-url: /nginxaas/azure/changelog/archive/changelog-2024/
+url: /nginxaas-azure/changelog/archive/changelog-2024/
 f5-content-type: reference
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2024.
@@ -77,7 +77,7 @@ To see a list of currently active issues, visit the [Known issues]({{< ref "/ngi
 
 - {{< icon-warning >}} **Standard plan retirement**<a name="standard-plan-retirement"></a>
 
-NGINXaaS for Azure now supports the [Standard V2](https://docs.nginx.com/nginxaas/azure/billing/overview) plan. We encourage you to use the Standard V2 plan for all new NGINXaaS deployments from now on to take advantage of additional features like F5 WAF for NGINX and a higher number of listen ports. The Standard V2 plan follows a similar pricing model as the Standard plan.
+NGINXaaS for Azure now supports the [Standard V2](https://docs.nginx.com/nginxaas-azure/billing/overview) plan. We encourage you to use the Standard V2 plan for all new NGINXaaS deployments from now on to take advantage of additional features like F5 WAF for NGINX and a higher number of listen ports. The Standard V2 plan follows a similar pricing model as the Standard plan.
 
 {{< call-out class="important" >}}The Standard plan will be deprecated and will not be available for new deployments starting November 1, 2024.{{< /call-out >}}
 

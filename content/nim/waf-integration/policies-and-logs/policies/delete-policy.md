@@ -4,7 +4,7 @@ description: Remove an existing F5 WAF for NGINX security policy using the F5 NG
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Remove an existing F5 WAF for NGINX security policy from F5 NGINX Instance Manager using the web interface or REST API.
   Deleting a policy permanently removes it and its version history from NGINX Instance Manager.

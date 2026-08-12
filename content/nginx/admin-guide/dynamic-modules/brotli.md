@@ -5,7 +5,7 @@ title: Brotli
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 ## Overview

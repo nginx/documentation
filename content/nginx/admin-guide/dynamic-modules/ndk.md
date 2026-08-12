@@ -5,7 +5,7 @@ title: NGINX Developer Kit
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The NGINX Developer Kit (NDK) module makes it easier for module developers to develop NGINX modules.

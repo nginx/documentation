@@ -3,7 +3,7 @@ title: "Attack signatures"
 weight: 500
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 Attack signatures are rules or patterns that identify attack sequences or classes of attacks on a web application and its components. You can apply attack signatures to both requests and responses.

@@ -6,7 +6,7 @@ title: Control NGINX Processes at Runtime
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This section describes the processes that NGINX starts at run time and how to control them.

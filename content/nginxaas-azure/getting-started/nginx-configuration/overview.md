@@ -2,9 +2,9 @@
 title: Overview
 weight: 50
 toc: true
-url: /nginxaas/azure/getting-started/nginx-configuration/overview/
+url: /nginxaas-azure/getting-started/nginx-configuration/overview/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 This document provides details about using NGINX configuration files with your
@@ -26,7 +26,7 @@ NGINX configurations stored in GitHub can be applied to existing NGINXaaS for Az
 
 ## NGINX filesystem restrictions
 
-NGINXaaS for Azure places restrictions on the instance’s filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
+There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principle of least privilege, and ensure the smooth operation of the system.
 
  {{< table >}}
 
@@ -41,7 +41,9 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 
 {{< /table >}}
 
-Attempts to access other directories will be denied and result in a `5xx` error.
+For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.
+
+Accessing files outside of the listed directories is unsupported. Such access may or may not function and is subject to change without notice.
 
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.

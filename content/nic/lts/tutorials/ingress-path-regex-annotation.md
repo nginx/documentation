@@ -3,7 +3,7 @@ title: Ingresses Path Matching Using Path-Regex Annotation
 toc: true
 weight: 1800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document describes how to customize Ingress and Mergeable Ingress types with path-regex annotations.

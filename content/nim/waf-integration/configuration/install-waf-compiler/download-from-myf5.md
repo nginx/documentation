@@ -4,7 +4,7 @@ description: Download and install the WAF compiler manually from MyF5 when your 
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Download and install the WAF compiler manually from MyF5 when the F5 NGINX Instance Manager host can't reach the public NGINX repository.
   This guide covers downloading the correct compiler version for your F5 WAF for NGINX release and installing it on the NGINX Instance Manager host.

@@ -4,7 +4,7 @@ title: Deploy using Helm
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Deploy F5 NGINX Instance Manager on Kubernetes using the official Helm chart in standard or lightweight mode."
 f5-summary: >
   Deploy F5 NGINX Instance Manager on Kubernetes using Helm and have a running control plane cluster.

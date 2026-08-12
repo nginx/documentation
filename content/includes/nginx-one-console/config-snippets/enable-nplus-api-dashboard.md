@@ -1,5 +1,5 @@
 ---
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-files:
 - content/includes/use-cases/monitoring/enable-nginx-plus-api-with-config-sync-group.md
 - content/includes/use-cases/monitoring/enable-nginx-plus-api.md

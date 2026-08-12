@@ -1,5 +1,5 @@
 ---
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1028
 f5-files:
 - content/nim/admin-guide/authentication/oidc/getting-started.md

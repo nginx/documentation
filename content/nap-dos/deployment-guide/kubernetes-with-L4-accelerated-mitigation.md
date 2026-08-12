@@ -5,7 +5,7 @@ keywords: "F5 DoS for NGINX, Kubernetes, L4, eBPF, accelerated mitigation, insta
 weight: 110
 toc: true
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 f5-summary: >
   Install F5 DoS for NGINX on Kubernetes with L4 accelerated mitigation using manifests, ending with a deployment that offloads DoS blocking to the Linux kernel.
   The eBPF Manager sidecar intercepts Layer 4 DoS traffic in the kernel, reducing CPU load on the NGINX container compared to a standard deployment.

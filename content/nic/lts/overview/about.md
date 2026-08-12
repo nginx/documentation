@@ -2,7 +2,7 @@
 title: About
 weight: 100
 f5-content-type: reference
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document describes the F5 NGINX Ingress Controller LTS, an Ingress Controller implementation for NGINX Plus.
