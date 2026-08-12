@@ -30,7 +30,7 @@ EOF
 ```
 
 {{< call-out class="note" title="Note" >}}
-The Policy Controller must be able to reach the artifact registry host over HTTPS. If the registry uses a private certificate authority, configure the Policy Controller to trust that CA. <!-- TODO: SME to confirm and document the Helm value or config mechanism for trusting a private CA on the bundle server. -->
+The Policy Controller must be able to reach the artifact registry host over HTTPS. If the registry uses a private certificate authority, configure the Policy Controller to trust that CA.
 {{< /call-out >}}
 
 #### Confirm the policy is ready
