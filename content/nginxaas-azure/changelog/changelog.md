@@ -10,9 +10,16 @@ url: /nginxaas-azure/changelog/
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.
 
-To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
+To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues" >}}) page.
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
+
+## July 29, 2026
+  NGINX Plus 37.0.4 is now available on the **Preview** [upgrade channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels" >}}) and will be promoted to the **Stable** upgrade channel starting the week of August 17, 2026.
+
+  NGINX Plus 37.0 introduced [several changes](https://docs.nginx.com/nginx/releases/#pls.37.0.4) including new default settings that can affect the behavior of your deployment and it is imperative that you take one of the following steps before your deployment is upgraded:
+- Test your configuration on the Preview channel to confirm the new changes do not adversely affect the operation of your applications.
+- Preserve your R36 behavior by following the recommendations in the [NGINX Plus 37.0 behavior impact]({{< ref "/nginxaas-azure/known-issues/#nginx-plus-370-behavior-impact" >}}) section of the **Known issues** page.
 
 ## July 2, 2026
 

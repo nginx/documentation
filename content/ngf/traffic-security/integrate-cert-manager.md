@@ -144,6 +144,7 @@ cafe-secret   kubernetes.io/tls   2      20s
 ```
 
 ---
+- Multiple `certificateRefs` apply to the listener's `hostname` and are not automatically selected based on the hostnames of attached HTTPRoute resources. Use separate HTTPS listeners for different domains that require different certificates.
 
 ### Deploy our application and HTTPRoute
 

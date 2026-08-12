@@ -101,10 +101,6 @@ A [PSC interface](https://cloud.google.com/vpc/docs/private-service-connect#inte
 
 To connect the NGINXaaS PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
 
-#### Connection draining
-
-During scaling, some connections older than 60 seconds might be reset. The service automatically handles reconnects, so you don't need to wait before reconnecting.
-
 ### NGINX Capacity Unit (NCU)
 
 An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
@@ -125,8 +121,9 @@ We are committed to enhancing NGINXaaS for Google Cloud and welcome your feedbac
 Here are the current constraints you should be aware of while using NGINXaaS for Google Cloud:
 
 - NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
-- We only support authentication via Google acting as an identity provider.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
+- NGINXaaS deployments on Google Cloud do not support IPv6 traffic.
+- NGINXaaS deployments on Google Cloud only support UDP traffic when using **Managed Public Endpoint** frontend service.
 
 ## What's next
 
