@@ -17,7 +17,7 @@ Install the four custom resource definitions (CRDs) that the Policy Controller m
 kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/main/manifests/1-deploy-crds.yaml
 ```
 
-Confirm all four CRDs are present:
+Confirm the CRDs are present:
 
 ```shell
 kubectl get crd | grep appprotect.f5.com
@@ -124,13 +124,13 @@ kubectl rollout status deployment/plm-f5-waf-policy-controller \
   --namespace plm-system --timeout=180s
 ```
 
-Confirm all eight pods are running:
+Confirm all pods are running:
 
 ```shell
 kubectl get pods --namespace plm-system
 ```
 
-Expected output:
+Example output:
 
 ```text
 NAME                                               READY   STATUS    RESTARTS
@@ -144,7 +144,7 @@ plm-f5-waf-seaweed-volume-1                        1/1     Running   0
 plm-f5-waf-seaweed-volume-2                        1/1     Running   0
 ```
 
-Confirm the four CRDs are present:
+Confirm the CRDs are present:
 
 ```shell
 kubectl get crd | grep appprotect.f5.com
