@@ -7,7 +7,7 @@ title: Cookie-Flag
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 {{< call-out class="note" >}} The `nginx-plus-module-cookie-flag` package is no longer available in the NGINX Plus repository.{{< /call-out >}}

@@ -3,7 +3,7 @@ title: Connect NGINX Gateway Fabric with Manifests
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 This document explains how to connect F5 NGINX Gateway Fabric to F5 NGINX One Console with Manifests.

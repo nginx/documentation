@@ -3,7 +3,7 @@ title: Get started with OIDC
 toc: true
 weight: 1
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1267
 description: "Configure OpenID Connect (OIDC) authentication for F5 NGINX Instance Manager using any OIDC-compliant identity provider to enable Single Sign-On."
 f5-summary: >

@@ -3,7 +3,7 @@ title: NGINX Ingress Controller LTS and Linkerd
 toc: true
 weight: 1800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document explains how to integrate NGINX Ingress Controller LTS with Linkerd using Linkerd's sidecar proxy.

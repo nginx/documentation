@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: concept
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Understand how NGINX config templates work in F5 NGINX Instance Manager before creating or deploying them.
   Templates use Go templating and JSON schemas to create a standardized configuration abstraction that simplifies and enforces consistent NGINX deployments.

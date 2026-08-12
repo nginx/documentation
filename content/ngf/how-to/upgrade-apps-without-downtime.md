@@ -3,7 +3,7 @@ title: Upgrade applications without downtime
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1841
 ---
 

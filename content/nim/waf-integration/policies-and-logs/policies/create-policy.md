@@ -4,7 +4,7 @@ description: Create and customize F5 WAF for NGINX security policies in F5 NGINX
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create a new F5 WAF for NGINX security policy in F5 NGINX Instance Manager using the web interface or REST API.
   Policies control WAF behavior; you can start from a preset or write custom JSON to define exactly what traffic to inspect and block.

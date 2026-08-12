@@ -3,7 +3,7 @@ description: "Step-by-step guides for managing NGINX configurations with templat
 title: How To
 weight: 20
 url: /nginx-instance-manager/nginx-configs/config-templates/how-to/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 f5-summary: >
   Apply NGINX config templates to manage configurations in F5 NGINX Instance Manager.

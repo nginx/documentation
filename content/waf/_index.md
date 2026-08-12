@@ -10,7 +10,7 @@ f5-banner:
 f5-subtitle: A lightweight, high-performance web application firewall for protecting APIs and applications
 f5-landing-page: true
 f5-content-type: landing-page
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 ## About

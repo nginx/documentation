@@ -4,7 +4,7 @@ title: Install NGINX Instance Manager using a script
 toc: true
 weight: 10
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Install or upgrade F5 NGINX Instance Manager on a virtual machine or bare metal system using the automated installation script.
   The script installs NGINX Instance Manager and its dependencies in online mode with minimal manual steps.

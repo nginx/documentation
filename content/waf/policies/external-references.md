@@ -3,7 +3,7 @@ title: "External references"
 weight: 200
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the external references feature for F5 WAF for NGINX.

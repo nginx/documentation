@@ -4,7 +4,7 @@ toc: true
 weight: 400
 f5-content-type: how-to
 f5-docs: DOCS-1881
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 This page describes how the F5 NGINX Agent process interacts with the NGINX user on a system, and how to add users to the NGINX Agent group.

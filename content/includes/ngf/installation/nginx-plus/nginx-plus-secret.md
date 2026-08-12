@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-files:
 - content/ngf/install/helm.md
 - content/ngf/install/manifests.md

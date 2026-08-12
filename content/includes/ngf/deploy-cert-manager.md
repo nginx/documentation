@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 Install cert-manager onto the cluster using Helm with Gateway API features enabled.

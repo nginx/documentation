@@ -3,7 +3,7 @@ title: "Evasion techniques"
 weight: 1100
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the evasion techniques feature for F5 WAF for NGINX.

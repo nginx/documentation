@@ -4,7 +4,7 @@ title: Back up and restore
 toc: true
 weight: 900
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Back up and restore F5 NGINX Instance Manager configuration files, secrets, and databases using the included scripts."
 f5-summary: >
   Back up and restore F5 NGINX Instance Manager data using the included scripts.

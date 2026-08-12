@@ -6,7 +6,7 @@ title: Serve Static Content
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This section describes how to configure NGINX and F5 NGINX Plus to serve static content, how to define which paths are searched to find requested files, how to set up index files, and how to tune NGINX and NGINX Plus, as well as the kernel, for optimal performance.

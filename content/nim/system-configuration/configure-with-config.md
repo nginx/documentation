@@ -5,7 +5,7 @@ title: Configure settings with nms.conf
 toc: true
 weight: 1
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Configure F5 NGINX Instance Manager settings by editing the /etc/nms/nms.conf file on the Instance Manager host.
   The nms.conf file controls service ports, database connections, TLS settings, and other platform-level options.
