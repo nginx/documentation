@@ -505,7 +505,7 @@ Format: `<namespace>/<name>`
 
 ### -plm-storage-client-ssl-secret
 
-An optional Secret containing tls.crt and tls.key for SeaweedFS mTLS.
+An optional Secret containing **tls.crt** and **tls.key** for SeaweedFS mTLS.
 
 Format: `<namespace>/<name>`
 
