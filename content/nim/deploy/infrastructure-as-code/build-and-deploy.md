@@ -4,7 +4,7 @@ title: Build and deploy images
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Build and deploy F5 NGINX Instance Manager images on AWS, Azure, or Google Cloud using the provided Packer and Terraform configurations."
 f5-summary: >
   Build F5 NGINX Instance Manager images and deploy them to a cloud provider using the provided infrastructure-as-code configurations.
@@ -22,7 +22,7 @@ The deployment process has two stages:
 - Generate an image using Packer.
 - Deploy the image using Terraform.
 
-{{< call-out "tip" "Open-Source Project on GitHub" >}}
+{{< call-out class="tip" title="Open-Source Project on GitHub" >}}
 The steps in this guide refer to the [NGINX Instance Manager Infrastructure as Code (IAC)](https://github.com/nginxinc/nginx-management-suite-iac) project on GitHub.
 {{< /call-out >}}
 

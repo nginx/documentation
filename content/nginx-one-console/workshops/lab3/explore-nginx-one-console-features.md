@@ -3,7 +3,7 @@ title: "Lab 3: Explore NGINX One Console features"
 weight: 300
 toc: true
 f5-content-type: tutorial
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 ## Introduction
@@ -174,7 +174,7 @@ Try it on:
     alt="AI Assistant panel showing a highlighted $upstream_response_time snippet alongside the assistant's response with Purpose and Guidance headings." >}}
 </span>
 
-{{< call-out "note" "Pro tip:" >}}You can learn about NGINX directives and variables without leaving the Console.{{< /call-out >}}
+{{< call-out class="note" title="Pro tip:" >}}You can learn about NGINX directives and variables without leaving the Console.{{< /call-out >}}
 
 ---
 

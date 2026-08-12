@@ -3,9 +3,9 @@ title: Restricting access with HTTP basic authentication
 weight: 100
 toc: true
 f5-docs: DOCS-990
-url: /nginxaas/azure/security-controls/auth-basic/
+url: /nginxaas-azure/security-controls/auth-basic/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 You can restrict access to resources by implementing username/password authentication using the "HTTP Basic Authentication" protocol.
@@ -31,7 +31,7 @@ location /protected {
 
 Submit the NGINX configuration to apply it. You should be prompted to log in when you access the protected location or server.
 
-{{< call-out "note" >}}The NGINX worker processes will open the password file. You must place the password file in a [directory the worker processes are allowed to read]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-filesystem-restrictions" >}}) or else all authenticated requests will fail.{{< /call-out >}}
+{{< call-out class="note" >}}The NGINX worker processes will open the password file. You must place the password file in a [directory the worker processes are allowed to read]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md#nginx-filesystem-restrictions" >}}) or else all authenticated requests will fail.{{< /call-out >}}
 
 - `/opt`
 - `/srv`

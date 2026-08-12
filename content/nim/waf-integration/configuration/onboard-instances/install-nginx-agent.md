@@ -4,7 +4,7 @@ description: Install NGINX Agent on each F5 WAF for NGINX instance to connect it
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Install NGINX Agent on each F5 WAF for NGINX instance to connect it to F5 NGINX Instance Manager.
   NGINX Agent enables the instance to receive security policy deployments and send event data to the NGINX Instance Manager control plane.
@@ -21,6 +21,6 @@ To onboard your F5 WAF for NGINX instances to F5 NGINX Instance Manager, install
 
    {{< include "agent/installation/install-agent-api.md" >}}
 
-{{< call-out "note" "Next steps" >}}
+{{< call-out class="note" title="Next steps" >}}
 - [Configure NGINX Agent]({{< ref "/nim/waf-integration/configuration/onboard-instances/configure-nginx-agent.md" >}})
 {{< /call-out >}}

@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: concept
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Extend the F5 Global Default base template with augment templates to customize NGINX configurations for specific instances or instance groups.
   Augment templates let administrators and developers add settings beyond the base template without modifying it directly.
@@ -29,7 +29,7 @@ Augment templates add specific features or modify existing configurations genera
 
 ## How to use augment templates
 
-{{<call-out "tip" "Deploying config templates">}}<i class="far fa-file-code" aria-hidden="true"></i>
+{{<call-out class="tip" title="Deploying config templates">}}<i class="far fa-file-code" aria-hidden="true"></i>
  For instructions on setting up and deploying config templates, including augment templates, see [Manage NGINX Configs with Templates]({{< ref "/nim/nginx-configs/config-templates/how-to/manage-nginx-configs-with-templates.md" >}}).{{</call-out>}}
 
 1. **Identify needs**: Determine the additional functionalities or configuration segments needed beyond the base template. This could include specific NGINX modules, security enhancements, or custom routing requirements.

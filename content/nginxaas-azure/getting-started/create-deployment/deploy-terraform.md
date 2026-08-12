@@ -2,9 +2,9 @@
 title: Deploy using Terraform
 weight: 300
 toc: true
-url: /nginxaas/azure/getting-started/create-deployment/deploy-terraform/
+url: /nginxaas-azure/getting-started/create-deployment/deploy-terraform/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ F5 NGINXaaS for Azure (NGINXaaS) deployments can be managed using Terraform. Thi
 
 {{< include "/nginxaas-azure/terraform-prerequisites.md" >}}
 
-{{< call-out "important" >}}**System-Assigned Managed Identity Required**: Ensure your Terraform configuration includes the required system-assigned managed identity by setting `identity.type = "SystemAssigned"` or `"SystemAssigned, UserAssigned"` for each deployment.{{< /call-out >}}
+{{< call-out class="important" >}}**System-Assigned Managed Identity Required**: Ensure your Terraform configuration includes the required system-assigned managed identity by setting `identity.type = "SystemAssigned"` or `"SystemAssigned, UserAssigned"` for each deployment.{{< /call-out >}}
 
 ## Create a deployment
 

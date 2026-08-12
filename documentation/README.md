@@ -24,7 +24,7 @@ If you're interested in contributing to the [NGINX documentation website](https:
 ## Writing guidance
 
 - [Information architecture heuristics](/documentation/ia-heuristics.md)
-- [Writing style guide](/documentation/style-guide.md)
+- [Writing style guide](https://github.com/F5Docs/style-guide)
 
 ## Copilot assistance
 

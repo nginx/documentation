@@ -255,6 +255,7 @@ if [[ "$NIM_VER" == "2.18" ]] || [[ "$NIM_VER" == "2.19" ]]; then
     prepare_usage_command="curl --insecure --location 'https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=prepare' \
           --header 'accept: application/json' \
           --header 'authorization: Basic $AUTH_HEADER'
+          --header 'referer: https://$NIM_IP/ui/settings/license'"
     report_save_path="${output_file:-/tmp/response.zip}"
 
     download_usage_command="curl --insecure --location 'https://$NIM_IP/api/platform/v1/report/download?format=zip&reportType=telemetry&telemetryAction=download' \

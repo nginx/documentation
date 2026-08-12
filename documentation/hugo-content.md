@@ -6,7 +6,7 @@ You will need [git](https://git-scm.com/) to interact with the repository and fi
 
 Our workflow is to develop content locally, then [submit a pull request](/documentation/git-conventions.md) once we've done our initial draft and editing passes.
 
-For guidance around how to write content, please check [the style guide](/documentation/style-guide.md).
+For guidance around how to write content, please check [the style guide](https://github.com/F5Docs/style-guide).
 
 ## Setup
 
@@ -92,7 +92,7 @@ To install <integation>, refer to the [integration instructions]({{< ref "/integ
 This is an example of a call-out shortcode:
 
 ```md
-{{< call-out "note" >}} Provide the text of the note here .{{< /call-out >}}
+{{< call-out class="note" >}} Provide the text of the note here .{{< /call-out >}}
 ```
 
 Here are some other shortcodes:
@@ -110,7 +110,7 @@ Here are some other shortcodes:
 The call out shortcode support multi-line blocks:
 
 ```md
-{{< call-out "caution" >}}
+{{< call-out class="caution" >}}
 You should probably never do this specific thing in a production environment.
 
 If you do, and things break, don't say we didn't warn you.
@@ -130,7 +130,7 @@ Supported types:
 An optional second parameter will add a title to the call-out: without it, it will fall back to the type.
 
 ```md
-{{< call-out "important" "This instruction only applies to v#.#.#" >}}
+{{< call-out class="important" title="This instruction only applies to v#.#.#" >}}
 These instructions are only intended for versions #.#.# onwards.
 
 Follow <these-instructions> if you're using an older version.
@@ -154,7 +154,7 @@ An example of this can be seen in [/content/ngf/get-started.md](https://github.c
 #### Add images to documentation pages
 
 > [!IMPORTANT]
-> We have strict guidelines for using images. Review them in our [style guide](/documentation/style-guide.md#guidelines-for-screenshots).
+> We have strict guidelines for using images. Review them in our [style guide](https://github.com/F5Docs/style-guide/blob/main/formatting/images.md).
 
 Use the `img` shortcode to add images to documentation pages. It has the same parameters as the Hugo [figure shortcode](https://gohugo.io/content-management/shortcodes/#figure).
 

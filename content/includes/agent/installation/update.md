@@ -1,11 +1,11 @@
 ---
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-files:
 - content/agent/installation-upgrade/upgrade.md
 - content/nginx-one-console/agent/install-upgrade/update.md
 ---
 
-{{< call-out "note" >}} If you are using a version **older than NGINX Agent v2.31.0**, you must stop NGINX Agent before updating:
+{{< call-out class="note" >}} If you are using a version **older than NGINX Agent v2.31.0**, you must stop NGINX Agent before updating:
 
    - `sudo systemctl stop nginx-agent`
 

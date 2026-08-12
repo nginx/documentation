@@ -1,10 +1,10 @@
 ---
 title: Enable F5 WAF for NGINX Logs
 weight: 300
-url: /nginxaas/azure/app-protect/enable-logging/
+url: /nginxaas-azure/app-protect/enable-logging/
 toc: true
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview
@@ -77,7 +77,7 @@ You can find more details on these directives in the [Security log](https://docs
 
 ### Log Configuration
 
-NGINXaaS for Azure ships with several pre-compiled log configuration bundles. More details on these logging bundles can be found in the [Security log](https://docs.nginx.com/nginx-app-protect-waf/v5/logging-overview/security-log/) documentation.
+NGINXaaS for Azure ships with several pre-compiled log configuration bundles. More details on these logging bundles can be found in the [Security log](https://docs.nginx.com/waf/logging/security-logs/) documentation.
 
 The following table shows the path to the log configuration file that needs to be used with the app_protect_security_log directive:
 
@@ -105,7 +105,7 @@ NGINXaaS for Azure supports a local syslog server running on port 5140. Syslogs 
 app_protect_security_log "/etc/app_protect/conf/log_all.json" syslog:server=localhost:5140;
 ```
 
-{{< call-out "note" >}} When using a NGINXaaS syslog destination, the syslog server destination needs to match localhost:5140. Configuring log directives to other syslog locations will result in an error in the NGINX config.
+{{< call-out class="note" >}} When using a NGINXaaS syslog destination, the syslog server destination needs to match localhost:5140. Configuring log directives to other syslog locations will result in an error in the NGINX config.
 {{< /call-out >}}
 
 2. File Logging
@@ -116,7 +116,7 @@ NGINXaaS for Azure supports logging to a file path. Any logs written under `/var
 app_protect_security_log "/etc/app_protect/conf/log_all.json" /var/log/app_protect/security.log;
 ```
 
-{{< call-out "note" >}}When using a file destination, the configured path for nginx security logs has to be within `/var/log/app_protect`. Configuring log directives to other file locations will result in an error in the NGINX config.
+{{< call-out class="note" >}}When using a file destination, the configured path for nginx security logs has to be within `/var/log/app_protect`. Configuring log directives to other file locations will result in an error in the NGINX config.
 {{< /call-out >}}
 
 
@@ -187,4 +187,4 @@ NGXSecurityLogs
 
 To add a visualization to a dashboard, select the **Pin to dashboard** icon in the top right of the log analytics workspace.
 
-{{< call-out "note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}
+{{< call-out class="note" >}}It can take up to 90 minutes after adding diagnostic settings for logs to appear in the provided Logs Analytics Workspace.{{< /call-out >}}

@@ -1,10 +1,10 @@
 ---
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md
 ---
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 | Variable | Category | Description |
 |----------|----------|-------------|
 | **ENABLE_METRICS** | General | Enables or disables metrics collection and storage. Set to `false` to run in lightweight mode without ClickHouse. Defaults to `true`. |
@@ -23,6 +23,6 @@ f5-files:
 | **PROXY_USERNAME** | Forward Proxy | (Required if `PROXY_AUTH_REQUIRED=true`) The username for proxy authentication. |
 | **PROXY_PASSWORD** | Forward Proxy | (Required if `PROXY_AUTH_REQUIRED=true`) The password for proxy authentication. |
 | **PROXY_SSL_VERIFY** | Forward Proxy | Enables or disables SSL verification when `PROXY_PROTOCOL=https`. Default is `true`, meaning the proxy must have a valid certificate issued by a trusted Certificate Authority (CA). Set to `false` to allow self-signed or untrusted certificates (not recommended). |
-{{</bootstrap-table>}}
+{{</table >}}
 
 

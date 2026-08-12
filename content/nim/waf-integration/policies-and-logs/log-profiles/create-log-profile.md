@@ -4,7 +4,7 @@ description: Create and upload a new F5 WAF for NGINX security log profile to F5
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create and upload a new F5 WAF for NGINX security log profile to F5 NGINX Instance Manager using the REST API.
   Log profiles define how security events are recorded and exported from your NGINX instances.
@@ -16,7 +16,7 @@ A log profile defines how security events are recorded and exported from your NG
 
 To upload a log profile, send a `POST` request to the Security Log Profiles API endpoint. The log profile must be encoded in `base64`; sending plain JSON causes the request to fail.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

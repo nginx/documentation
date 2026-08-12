@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Configure RBAC for NGINX config templates and submissions in F5 NGINX Instance Manager to control who can create, update, and submit templates.
   RBAC for templates lets administrators define precise access controls, ensuring users can only perform the template actions their role permits.

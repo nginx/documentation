@@ -27,7 +27,7 @@ To make sure includes are effective and easy to maintain, follow these guideline
 - **Avoid nesting includes**: If there’s another way to achieve the same outcome, avoid nesting includes. While possible, it complicates reviews and maintenance. A flat structure is simple.
 - **Don't include headings**: Do not include headings in include files. These headings won't appear in a document's table of contents and may break the linear flow of the surrounding content. Add headings directly to the document instead.
 - **Don't start documents with includes**: The opening of most documents is the introduction which explains its purpose. Includes are reused text, so starting multiple documents with identical content could look odd, especially in search results.
-- **Do not add the F5 prefix to product names in includes**: The brand name is required only on [the first mention in a document](/documentation/style-guide.md#f5-brand-trademarks-and-product-names).
+- **Do not add the F5 prefix to product names in includes**: The brand name is required only on [the first mention in a document](https://github.com/F5Docs/style-guide/blob/main/terminology/f5-product-names.md).
 
 ## Understanding include file usage
 

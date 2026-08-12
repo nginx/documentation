@@ -1,5 +1,5 @@
 ---
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-files:
 - content/nginx-one-console/getting-started.md
 - content/nginx-one-console/nginx-configs/metrics/review-metrics.md
@@ -14,7 +14,7 @@ Navigating the dashboard:
 {{< img src="nginx-one-console/images/nginx-one-dashboard.png">}}
 </span>
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 **NGINX One Console dashboard metrics**
 | Metric | Description | Details |
 |---|---|---|
@@ -30,7 +30,7 @@ Navigating the dashboard:
 | <i class="fas fa-exclamation-triangle"></i> **Unsuccessful response codes** | Look for instances with a high number of HTTP server errors and investigate their error codes. | |
 | <i class="fas fa-tachometer-alt"></i> **Top network usage** | Review the network usage and bandwidth consumption of your instances. | |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 

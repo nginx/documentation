@@ -4,7 +4,7 @@ description: Learn how to view events and metrics in F5 NGINX Instance Manager.
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-847
 f5-summary: >
   View events and metrics data for your NGINX instances in F5 NGINX Instance Manager using the web interface or the REST API.
@@ -15,7 +15,7 @@ f5-summary: >
 
 F5 NGINX Instance Manager provides events and metrics data for your instances. You can access this information in the user interface, or by using the REST API.
 
-{{< call-out "note" >}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Instance Manager REST API.{{< /call-out >}}
+{{< call-out class="note" >}}This topic provides examples for using the REST API to view, sort, and filter Events data that can be applied across the NGINX Instance Manager REST API.{{< /call-out >}}
 
 ## View Events in the User Interface
 
@@ -260,8 +260,6 @@ curl -X GET --url "https://<NIM_FQDN>/api/platform/v1/analytics/events/7cb91de6-
 
 ## View Metrics in the User Interface
 
-{{< shortversions "2.3.0" "latest" "nimvers" >}}
-
 The **Metrics Summary** page includes a highlights section of the most important metrics reported in the last minute, plus a summary of the key system, network, HTTP request, and connection metrics at a glance.
 
 To view the metrics summary for an NGINX instance, take the following steps:
@@ -272,7 +270,7 @@ To view the metrics summary for an NGINX instance, take the following steps:
 1. Select the **Metrics Summary** tab.
 1. To view detailed metrics as graphs, select the **Metrics** tab.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 Select a time range to change the period for the metrics display. The metrics data refreshes every 30 seconds.
 {{< /call-out >}}
 

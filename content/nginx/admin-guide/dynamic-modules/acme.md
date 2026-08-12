@@ -4,7 +4,7 @@ title: ACME
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The ACME protocol automates SSL/TLS certificate lifecycle management by enabling direct communication between clients and certificate authorities for issuance, installation, revocation, and replacement of SSL certificates. 
@@ -29,7 +29,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
     Expected output of the command:
 
     ```shell
-    nginx version: nginx/1.29.3 (nginx-plus-r36)
+    nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
     ```
 
 3.  Ensure you have the **nginx-repo.crt** and **nginx-repo.key** files from [MyF5 Customer Portal](https://account.f5.com/myf5) in the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository.

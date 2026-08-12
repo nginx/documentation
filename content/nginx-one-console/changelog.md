@@ -3,11 +3,46 @@ title: Changelog
 toc: true
 weight: 99999
 f5-content-type: reference
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-docs: DOCS-1394
+nollms: true
 ---
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
+
+## July 16, 2026
+
+### Observability: Zone Filter
+
+You can now filter NGINX instance traffic metrics by configured status zones using the provided dropdown menu on the instance details or metrics screens.
+
+### F5 WAF for NGINX: Built-In Log Profile Support
+
+You can now use built-in F5 WAF for NGINX log profiles as starting points when you create new log profiles. The configuration editor now supports autocomplete for built-in log profile names, making it easier to reference them in a configuration.
+
+### F5 WAF for NGINX: Log Profile Copy Support
+
+You can now copy log profiles from the log profile list. Use row actions to create a copy and extend an existing log profile without overwriting its content.
+
+## June 15, 2026
+
+### F5 WAF for NGINX: Updated policy version names
+
+Policy versions are now numbered sequentially (v1, v2, v3, etc.) instead of using the creation date as the version name. You can also add an optional comment to each version for reference. Existing policy versions now use the new naming scheme.
+
+## June 12, 2026
+
+### Config Explorer
+
+You can now explore any NGINX configuration as an interactive node graph using Config Explorer. Config Explorer is available for Staged Configurations, Instances, and Config Sync Groups.
+
+Key capabilities:
+
+- **Visual node graph**: Browse your entire NGINX configuration hierarchy — including upstreams, servers, and locations — as a navigable graph.
+- **Properties panel**: Select any node to view its properties, source file reference, and inline NGINX documentation.
+- **Search**: Use the search bar to find specific directives across the entire configuration in real time.
+
+See [Explore configurations with Config Explorer]({{< ref "/nginx-one-console/nginx-configs/explore-configurations.md" >}}) for more information.
 
 ## April 7, 2026
 

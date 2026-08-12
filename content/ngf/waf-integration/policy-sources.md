@@ -3,7 +3,7 @@ title: Configure policy sources
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
 ---
 
@@ -11,7 +11,7 @@ NGINX Gateway Fabric supports three policy source types for fetching compiled WA
 
 Before configuring a policy source, ensure that WAF is [enabled on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) — either per Gateway or globally via Helm values.
 
-{{< call-out "tip" >}} By default, NGINX Gateway Fabric retries transient fetch failures up to 3 times with exponential backoff, and each fetch attempt times out after 30 seconds. You can tune these using the `retryAttempts` and `timeout` fields on `policySource` or `logSource`. {{< /call-out >}}
+{{< call-out class="tip" >}} By default, NGINX Gateway Fabric retries transient fetch failures up to 3 times with exponential backoff, and each fetch attempt times out after 30 seconds. You can tune these using the `retryAttempts` and `timeout` fields on `policySource` or `logSource`. {{< /call-out >}}
 
 ---
 
@@ -92,9 +92,9 @@ EOF
 
 Replace `https://nim.example.com` with your NGINX Instance Manager base URL, and `ngfBlocking` with your compiled policy name.
 
-{{< call-out "tip" >}} To skip TLS certificate verification when fetching bundles (for testing only - not recommended for production), uncomment 'insecureSkipVerify: true'. {{< /call-out >}}
+{{< call-out class="tip" >}} To skip TLS certificate verification when fetching bundles (for testing only - not recommended for production), uncomment 'insecureSkipVerify: true'. {{< /call-out >}}
 
-{{< call-out "tip" >}} To pin a specific policy version, use `policyUID` instead of `policyName`. Find the UID in the NGINX Instance Manager console or API. A pinned UID always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. {{< /call-out >}}
+{{< call-out class="tip" >}} To pin a specific policy version, use `policyUID` instead of `policyName`. Find the UID in the NGINX Instance Manager console or API. A pinned UID always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. {{< /call-out >}}
 
 ### Apply a route-level override (optional)
 
@@ -202,7 +202,7 @@ EOF
 
 Replace `<tenant>` with your NGINX One Console tenant hostname. The `namespace` field refers to the NGINX One Console namespace where the policy resides.
 
-{{< call-out "tip" >}} To pin a specific policy version, set `policyVersionID`. A pinned version always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. If you use only `policyName` or `policyObjectID` without a version pin, the latest compiled bundle is fetched on each reconciliation or poll cycle. {{< /call-out >}}
+{{< call-out class="tip" >}} To pin a specific policy version, set `policyVersionID`. A pinned version always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. If you use only `policyName` or `policyObjectID` without a version pin, the latest compiled bundle is fetched on each reconciliation or poll cycle. {{< /call-out >}}
 
 ---
 
@@ -223,6 +223,10 @@ When using NGINX Instance Manager or NGINX One Console as your policy source, be
 This is by design: NGINX Gateway Fabric pulls compiled bundles from the management plane using a pull model and deploys them directly in Kubernetes using native Kubernetes manifests, rather than through the NGINX Instance Manager or NGINX One Console console. This workflow ensures that policies can be created, compiled, and made available to NGINX Gateway Fabric via API without requiring console-managed deployment flows.
 
 Policy association visibility for NGINX Instance Manager and NGINX One Console will be added in a future release. In the meantime, use `kubectl describe wafpolicy <name>` to check deployment status.
+
+### Connect NGINX Gateway Fabric to F5 NGINX One Console
+
+Ensure that NGINX Gateway Fabric is configured to connect to NGINX One Console. Follow the guidance at [Connect NGINX Gateway Fabric with Helm]({{< ref "/nginx-one-console/k8s/add-ngf-helm.md" >}}) or [Connect NGINX Gateway Fabric with Manifests]({{< ref "/nginx-one-console/k8s/add-ngf-manifests.md" >}}) before continuing.
 
 ### Export security logs to F5 NGINX One Console
 
@@ -268,7 +272,7 @@ EOF
 
 The `localhost:1514` syslog destination points to the NGINX Agent's OpenTelemetry collector receiver, which runs as a sidecar in the NGINX Pod. The agent forwards the security events to the NGINX One Console console, where they appear in the security monitoring dashboard.
 
-{{< call-out "note" >}} The `profileName: "secops_dashboard"` log profile must exist in your NGINX One Console namespace. This profile is required for events to appear correctly in the NGINX One Console security dashboard. {{< /call-out >}}
+{{< call-out class="note" >}} The `profileName: "secops_dashboard"` log profile must exist in your NGINX One Console namespace. This profile is required for events to appear correctly in the NGINX One Console security dashboard. {{< /call-out >}}
 
 ---
 

@@ -2,7 +2,7 @@
 title: Migrate to new plans
 weight: 100
 toc: true
-url: /nginxaas/azure/billing/change-plan/migrate-between-plans/
+url: /nginxaas-azure/billing/change-plan/migrate-between-plans/
 type:
 - how-to
 ---
@@ -19,7 +19,7 @@ The following in-place migrations are supported:
 - **Standard → Standard V3**: Upgrade from the legacy Standard plan to the modern Standard V3 plan
 - **Standard V2 → Standard V3**: Upgrade from Standard V2 to Standard V3 to access the latest features.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 If you have a Standard or Standard V2 plan deployment, we encourage you to migrate to the Standard V3 plan as soon as possible. If you have a Basic plan deployment, we encourage you to migrate to the Developer plan as soon as possible. Legacy plans will stop receiving automatic updates that address critical security issues.
 {{< /call-out >}}
 

@@ -4,7 +4,7 @@ description: Update an existing F5 WAF for NGINX security log profile or create 
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Update an existing F5 WAF for NGINX security log profile in F5 NGINX Instance Manager by overwriting it or creating a new revision using the REST API.
   This guide covers both methods and when to use each.
@@ -16,7 +16,7 @@ To update a log profile, use one of the following methods:
 - `POST` with the `isNewRevision=true` parameter to create a new revision.
 - `PUT` with the log profile UID to overwrite the existing version.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

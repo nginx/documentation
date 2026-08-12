@@ -3,7 +3,7 @@ title: Create Microsoft Azure virtual machines for NGINX Open Source and F5 NGIN
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-458
 ---
 
@@ -75,7 +75,7 @@ Select  _Create new_ below the **Public IP** field, then select the **Standard R
 
 In the **Name** field, accept the default created by Azure, _ngx-plus-1-ip_, and confirm it by selecting **Ok**.
 
-{{< call-out "note" "Active-Active HA requirements" >}}
+{{< call-out class="note" title="Active-Active HA requirements" >}}
 
 If you are creating VMs to use with [Active-Active HA for NGINX Plus]({{< ref "/nginx/deployment-guides/microsoft-azure/high-availability-standard-load-balancer.md" >}}), the two VMs must have public IP addresses with SKU type **Standard** instead of the default **Basic**.
 
@@ -143,7 +143,7 @@ After you’ve successfully connected to your Azure VM, you can install NGINX Op
 
 ## Install NGINX Open Source or NGINX Plus with Ansible
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For Chef and Puppet, see the following articles on the NGINX blog:
 
@@ -171,7 +171,7 @@ Once Ansible is installed, you can use `ansible-galaxy` to install the official 
 ansible-galaxy install nginxinc.nginx
 ```
 
-{{< call-out "note" "NGINX Plus" >}}
+{{< call-out class="note" title="NGINX Plus" >}}
 
 If you are using NGINX Plus, at this stage you should copy the **nginx-repo.key** and **nginx-repo.crt** files from [MyF5](https://my.f5.com/manage/s/) to **~/.ssh/ngx-certs/**.
 
@@ -234,3 +234,8 @@ The **Create a VM** page is identical to the one from [Create a Microsoft Azure 
 For example, the **Image** field now shows the image name instead of an operating system. 
 
 You can continue finishing the VM creation process as normal from here, re-using the image whenever necessary.
+
+## Revision History
+
+- Version 2 (December 2025) – Revised version
+- Version 1 (September 2020) – Initial version (NGINX Plus Release 22)

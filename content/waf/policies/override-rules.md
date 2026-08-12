@@ -3,7 +3,7 @@ title: Override rules
 weight: 1800
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-docs: DOCS-000
 ---
 
@@ -122,7 +122,7 @@ These five rules demonstrate how the override rules feature allows for customiza
 
 For more details about the **Geolocation** feature, view the [Geolocation]({{< ref "/waf/policies/geolocation.md" >}}) topic.
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 By default, the actionType field is configured to "extend-policy".
 

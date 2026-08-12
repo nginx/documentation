@@ -4,7 +4,7 @@ linkTitle: NGINX Open Source
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This page describes how to use Helm to install F5 NGINX Ingress Controller with NGINX Open Source. 
@@ -21,7 +21,7 @@ By following these instructions, you will finish with a functional NGINX Ingress
 
 Throughout this page, you will see placeholder values indicated with angular brackets, such as **\<my-release\>**. Replace them accordingly for your installation.
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 The `edge` version **is not intended for production use**. It is intended for testing and development purposes only.
 

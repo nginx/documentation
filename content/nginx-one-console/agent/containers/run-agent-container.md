@@ -4,7 +4,7 @@ weight: 100
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1872
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ This guide serves as a step-by-step guide to run NGINX Agent in a container. It 
 
 Before you begin this guide ensure:
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 This guide uses Docker but NGINX Agent also works with other container applications.
 {{< /call-out >}}
 

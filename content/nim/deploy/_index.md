@@ -8,7 +8,7 @@ cascade:
     enabled: true
     type: deprecation
     md: _banners/upgrade-r33.md
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 f5-summary: >
   Deploy F5 NGINX Instance Manager in a connected environment using Docker Compose, Helm for Kubernetes, an installation script for VMs, or Ansible.

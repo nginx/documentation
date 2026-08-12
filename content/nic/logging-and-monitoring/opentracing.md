@@ -3,7 +3,7 @@ title: Enable OpenTracing (Removed in v5.0.0)
 toc: true
 weight: 700
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-618
 ---
 
@@ -11,7 +11,7 @@ This topic describes how to OpenTracing with F5 NGINX Ingress Controller.
 
 NGINX Ingress Controller supports [OpenTracing](https://opentracing.io/) with the third-party module [opentracing-contrib/nginx-opentracing](https://github.com/opentracing-contrib/nginx-opentracing).
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 OpenTracing support has been removed from v5.0.0 of NGINX Ingress Controller.
 
@@ -117,4 +117,4 @@ nginx.org/location-snippets: |
    opentracing_propagate_context;
 ```
 
-{{< call-out "note" >}}The `opentracing_propagate_context` and `opentracing_grpc_propagate_context` directives can be used in `http`, `server` or `location` contexts according to the [module documentation](https://github.com/opentracing-contrib/nginx-opentracing/blob/master/doc/Reference.md#opentracing_propagate_context). However, because of the way the module works and how NGINX Ingress Controller generates the NGINX configuration, it is only possible to use the directive in the `location` context.{{< /call-out >}}
+{{< call-out class="note" >}}The `opentracing_propagate_context` and `opentracing_grpc_propagate_context` directives can be used in `http`, `server` or `location` contexts according to the [module documentation](https://github.com/opentracing-contrib/nginx-opentracing/blob/master/doc/Reference.md#opentracing_propagate_context). However, because of the way the module works and how NGINX Ingress Controller generates the NGINX configuration, it is only possible to use the directive in the `location` context.{{< /call-out >}}

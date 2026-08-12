@@ -3,9 +3,9 @@ title: Enable rate limiting
 weight: 300
 toc: true
 f5-docs: DOCS-899
-url: /nginxaas/azure/quickstart/rate-limiting/
+url: /nginxaas-azure/quickstart/rate-limiting/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports rate limiting using the [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) module to limit the processing rate of requests. For more information on rate limiting with NGINX, see [NGINX Limiting Access to Proxied HTTP Resources](https://docs.nginx.com/nginx/admin-guide/security-controls/controlling-access-proxied-http/) and [Rate Limiting with NGINX and NGINX Plus](https://www.nginx.com/blog/rate-limiting-nginx/).
@@ -28,4 +28,4 @@ http {
 }
 ```
 
-{{< call-out "note" >}}As a prerequisite to using the `sync` parameter with `limit_req_zone` directive for rate limiting, enable [Runtime State Sharing with NGINXaaS for Azure]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}).{{< /call-out >}}
+{{< call-out class="note" >}}As a prerequisite to using the `sync` parameter with `limit_req_zone` directive for rate limiting, enable [Runtime State Sharing with NGINXaaS for Azure]({{< ref "/nginxaas-azure/quickstart/runtime-state-sharing.md" >}}).{{< /call-out >}}

@@ -4,7 +4,7 @@ title: Configure SELinux
 toc: true
 weight: 250
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Apply the optional SELinux policy module for F5 NGINX Instance Manager to run it on systems with SELinux in Enforcing mode."
 f5-summary: >
   Apply the optional SELinux policy module to run F5 NGINX Instance Manager on systems with SELinux in Enforcing mode.
@@ -19,7 +19,7 @@ You can use the optional SELinux policy module included in the package to secure
 
 The scope of the SELinux policy allows NGINX Instance Manager to perform all operations needed to support the default configuration. This includes inter-process communication on the default Unix sockets and TCP as an alternative. Other changes may require manual adjustments to the default policy for the application to work.
 
-{{< call-out "important" >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /call-out >}}
+{{< call-out class="important" >}}The SELinux policy module is optional. It is not loaded automatically during installation, even on SELinux-enabled systems. You must manually load the policy module using the steps below.{{< /call-out >}}
 
 ---
 
@@ -31,7 +31,7 @@ Take these preparatory steps before configuring SELinux:
 2. Install the tools `load_policy`, `semodule`, and `restorecon`.
 3. [Install NGINX Instance Manager]({{< ref "/nim/deploy/_index.md" >}}) with SELinux module files in place.
 
-{{< call-out "important" >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /call-out >}}
+{{< call-out class="important" >}}SELinux can use `permissive` mode, where policy violations are logged instead of enforced. Verify which mode your configuration uses.{{< /call-out >}}
 
 ---
 

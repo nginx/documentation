@@ -3,9 +3,9 @@ title: Use the njs Scripting language
 weight: 400
 toc: true
 f5-docs: DOCS-874
-url: /nginxaas/azure/quickstart/njs-support/
+url: /nginxaas-azure/quickstart/njs-support/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports the open-source [njs module](https://nginx.org/en/docs/http/ngx_http_js_module.html), allowing the extension of NGINX functionality with a subset of the Javascript language.
@@ -14,7 +14,7 @@ F5 NGINXaaS for Azure (NGINXaaS) supports the open-source [njs module](https://n
 
 Create an njs script file by uploading a gzipped tar file or create the script file in the editor. See [NGINX Configuration]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/nginx-configuration-portal.md" >}}) for a step-by-step guide.
 
-{{< call-out "note" >}}If specifying an absolute file path as your njs script's `File path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
+{{< call-out class="note" >}}If specifying an absolute file path as your njs script's `File path`, see the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to.{{< /call-out >}}
 
 Switch between the language options to see syntax highlighting for NGINX configs or JavaScript.
 

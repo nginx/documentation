@@ -6,7 +6,7 @@ weight: 100
 toc: true
 f5-docs: DOCS-1655
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Set up a round-robin reverse proxy using base and augment templates in F5 NGINX Instance Manager and have a working load-balanced NGINX configuration.
   This tutorial walks through creating the base template, adding an augment template for upstream configuration, and deploying the result to NGINX instances.
@@ -80,7 +80,7 @@ Your base template should now include the following files:
 
 This snippet defines the structure of the final NGINX configuration file. It uses [Go's text/template](https://pkg.go.dev/text/template) module to dynamically add input into the NGINX configuration. You can identify where augment templates will be inserted by looking for lines like:
 
-{{<call-out "tip" "Augment template injection point" "fas fa-code-branch" >}}
+{{<call-out class="tip" title="Augment template injection point" icon="git-branch" >}}
 ``` go
 {{ $input.ExecTemplateAugments "main" }}
 ```

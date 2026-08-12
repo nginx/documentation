@@ -3,9 +3,9 @@ title: Overview and architecture
 weight: 100
 toc: true
 f5-docs: DOCS-879
-url: /nginxaas/azure/overview/overview/
+url: /nginxaas-azure/overview/overview/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## What Is F5 NGINXaaS for Azure?
@@ -70,7 +70,7 @@ With the Standard V3 Plan, NGINXaaS uses the following redundancy features to ke
 - We use [Azure Availability  Zones](https://learn.microsoft.com/en-us/azure/availability-zones/az-overview)
   to protect your deployment from local failures within an Azure region. We balance NGINX instances across the possible availability zones in [supported regions](https://learn.microsoft.com/en-us/azure/availability-zones/az-overview#azure-regions-with-availability-zones)
 
-{{< call-out "note" >}} If you are creating a public IP for your deployment, be sure to make them [zone redundant](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone) to get the best uptime. {{< /call-out >}}
+{{< call-out class="note" >}} If you are creating a public IP for your deployment, be sure to make them [zone redundant](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses#availability-zone) to get the best uptime. {{< /call-out >}}
 
 ### Data plane traffic
 

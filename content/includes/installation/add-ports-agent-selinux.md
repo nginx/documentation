@@ -1,7 +1,7 @@
 ---
 f5-product:
-- NIMNGR
-- NONECO
+- F5 NGINX Instance Manager
+- F5 NGINX One Console
 f5-files:
 - content/nginx-one-console/agent/configure-instances/configure-selinux.md
 - content/nim/system-configuration/configure-selinux.md
@@ -15,4 +15,4 @@ To allow external ports outside the HTTPD context, run:
 sudo setsebool -P httpd_can_network_connect 1
 ```
 
-{{< call-out "note" >}}For more information, see [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).{{< /call-out>}}
+{{< call-out class="note" >}}For more information, see [Using NGINX and NGINX Plus with SELinux](https://www.nginx.com/blog/using-nginx-plus-with-selinux/).{{< /call-out>}}

@@ -1,10 +1,10 @@
 ---
 title: Set up OIDC authentication
-url: /nginxaas/azure/quickstart/security-controls/oidc/
+url: /nginxaas-azure/quickstart/security-controls/oidc/
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 f5-docs: DOCS-1646
 ---
 
@@ -76,7 +76,7 @@ With your IdP configured, you can enable OIDC on NGINXaaS for Azure.
     - `<client_secret>` is your client secret from Entra ID
     - `<nginxaas_deployment_fqdn>` is your NGINXaaS deployment FQDN
 
-    {{< call-out "note" >}} The `state=/opt/oidc_sessions.json` parameter enables persistence of OIDC session data across NGINX restarts. The state file path must be placed in a directory accessible to the NGINX worker processes, following [NGINX Filesystem Restrictions]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
+    {{< call-out class="note" >}} The `state=/opt/oidc_sessions.json` parameter enables persistence of OIDC session data across NGINX restarts. The state file path must be placed in a directory accessible to the NGINX worker processes, following [NGINX Filesystem Restrictions]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
 
 1. Configure your server block with OIDC protection. The following example uses localhost as the upstream server:
 

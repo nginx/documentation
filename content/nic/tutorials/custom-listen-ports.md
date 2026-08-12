@@ -5,7 +5,7 @@ doctypes:
 title: Customizing NGINX Ingress Controller Ports
 toc: true
 weight: 1800
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---
 
@@ -159,3 +159,4 @@ server {
     set $resource_name "cafe";
     set $resource_namespace "default";
 ```
+ 

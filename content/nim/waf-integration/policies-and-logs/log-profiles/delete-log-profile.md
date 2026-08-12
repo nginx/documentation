@@ -4,7 +4,7 @@ description: Remove an existing F5 WAF for NGINX security log profile from F5 NG
 toc: true
 weight: 800
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Remove an existing F5 WAF for NGINX security log profile from F5 NGINX Instance Manager using the REST API.
   Deleting a log profile permanently removes it and its version history from NGINX Instance Manager.
@@ -14,7 +14,7 @@ Deleting a log profile permanently removes it from the system.
 
 To delete a security log profile, send a `DELETE` request to the Security Log Profiles API using the profile’s UID.
 
-{{< call-out "note" "Access the REST API" >}}
+{{< call-out class="note" title="Access the REST API" >}}
 {{< include "nim/how-to-access-nim-api.md" >}}
 {{< /call-out >}}
 

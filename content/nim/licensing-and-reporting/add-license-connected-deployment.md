@@ -5,13 +5,13 @@ description: "Download a JWT license from MyF5 and apply it to F5 NGINX Instance
 toc: true
 weight: 10
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Download a JWT license from MyF5 and apply it to F5 NGINX Instance Manager in a connected environment to unlock all features.
   The license validates your subscription and enables automatic usage reporting to F5 over the internet.
 ---
 
-{{< call-out "note" "F5 NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
+{{< call-out class="note" title="F5 NGINX Instance Manager 2.22 and later" >}}Starting with version 2.22, NGINX Instance Manager no longer requires a JWT license. All features are available immediately after installation. If you're running version 2.21 or earlier, follow the steps on this page.{{< /call-out >}}
 
 ## Overview
 

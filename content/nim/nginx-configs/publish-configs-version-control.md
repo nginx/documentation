@@ -3,7 +3,7 @@ f5-docs: DOCS-1348
 title: Publish NGINX configs with version control
 toc: true
 weight: 3
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: how-to
 description: "Publish NGINX configurations stored in a Git repository to your NGINX instances using F5 NGINX Instance Manager for GitOps-style config management."
 f5-summary: >
@@ -144,4 +144,4 @@ publish_config_to_instance "$@"
 
 To publish configuration changes, modify the configuration files (`nginx.conf`) and push your changes upstream to trigger the pipeline. The process is the same whether you are pushing changes to individual instances or to instance groups. You can modify the script and pipeline rules based on whether you're targeting instances or instance groups.
 
-{{< call-out "note" >}}You can find a sample template to modify as required in our [public repository](https://github.com/nginxinc/git-automation/).{{< /call-out >}}
+{{< call-out class="note" >}}You can find a sample template to modify as required in our [public repository](https://github.com/nginxinc/git-automation/).{{< /call-out >}}

@@ -1,5 +1,5 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 Create a self-signed `ClusterIssuer`, a CA `Certificate`, and a CA-backed `ClusterIssuer`. cert-manager uses the resulting `local-ca-issuer` to sign certificates in any namespace:

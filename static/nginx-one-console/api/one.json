@@ -90,7 +90,7 @@
     },
     {
       "name": "Templates",
-      "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\n\n* Import, list, and retrieve NGINX configuration templates.\n* Generate and preview full NGINX configurations by composing templates, before saving it as a staged config.\n",
+      "description": "* Manage NGINX configuration templates — import, create, copy, list, retrieve, update, delete templates and their versions.\n* Generate a standalone NGINX configuration snippet for an individual augment template.\n* Compose a base template with augment templates to preview or render a full NGINX configuration, optionally saving it as a staged config.\n* Manage template submissions — create, list, retrieve, update (full or per-template), and delete submissions that record applied template inputs for NGINX configuration generation.\n",
       "x-displayName": "Templates"
     },
     {
@@ -4416,7 +4416,7 @@
           "WAF Log Profiles"
         ],
         "summary": "List WAF log profiles",
-        "description": "Returns a list of WAF log profiles.",
+        "description": "Returns a list of WAF log profiles.\n\nBuilt-in log profiles are excluded by default. To include them, filter by `source` with value `built_in`. Built-in profiles are pre-installed in the WAF engine and do not need to be compiled or deployed.\n",
         "operationId": "listWafLogProfiles",
         "parameters": [
           {
@@ -4743,7 +4743,6 @@
     },
     "/app-protect/log-profiles/{nap_log_profile_object_id}/compile": {
       "get": {
-        "x-feature-flag": "log-profile-deployment",
         "tags": [
           "WAF Log Profiles"
         ],
@@ -4820,7 +4819,6 @@
     },
     "/app-protect/log-profiles/{nap_log_profile_object_id}/deployments": {
       "get": {
-        "x-feature-flag": "log-profile-deployment",
         "tags": [
           "WAF Log Profiles"
         ],
@@ -5665,6 +5663,87 @@
             }
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "NGINX App Protect"
+        ],
+        "x-feature-flag": "waf-policy-version-rename",
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX App Protect Policy Version",
+        "summary": "Update WAF policy version comment",
+        "description": "Updates the version comment of an existing WAF policy version.\nAll other policy version fields are immutable.\n",
+        "operationId": "updateWafPolicyVersionComment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/NapPolicyParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/NapPolicyVersionParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicyVersionUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the WAF policy version comment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NapPolicyVersionDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body is invalid. Verify the JSON payload for correctness.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The NGINX App Protect policy version with the specified nap_policy_version_object_id and nap_policy_object_id was not found. Check that the object IDs provided are correct and correspond to existing resources.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occurred on the server. Please try the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/app-protect/signature-sets": {
@@ -5929,6 +6008,47 @@
             "$ref": "#/components/responses/InternalServerErr"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Create a new Template\n",
+        "description": "Creates a new Template.\n\nUpon successful validation, the template will be created and made available for use.\n\nRefer to the [Template Authoring Guide](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/) for best practices on writing Go-based NGINX templates.\n",
+        "operationId": "createTemplate",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateCreationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the template.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
       }
     },
     "/templates/{templateObjectID}": {
@@ -6015,13 +6135,579 @@
             "$ref": "#/components/responses/InternalServerErr"
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Updates metadata for an existing template.",
+        "description": "Partially updates the specified metadata of an existing template. Only fields provided in the request body will be updated; omitted fields will retain their existing values.\n",
+        "operationId": "patchTemplateMetadata",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateMetadataPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully patched the template metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Update all metadata of an existing template.",
+        "description": "Updates all the metadata of an existing template.\n",
+        "operationId": "updateTemplateMetadata",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateMetadataUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the template metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
       }
     },
-    "/templates/{templateObjectID}/copy": {},
-    "/templates/{templateObjectID}/submissions": {},
-    "/templates/{templateObjectID}/versions": {},
-    "/templates/{templateObjectID}/versions/{templateVersionObjectID}": {},
-    "/templates/{templateVersionObjectID}/config": {},
+    "/templates/{templateObjectID}/copy": {
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Copy a Template",
+        "description": "Creates a new template by copying the latest version of an existing template.\nThe new template starts at version 1 in draft state.\nFiles, type, and context configuration are copied from the source template.\n",
+        "operationId": "copyTemplate",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateCopyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully copied the template.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/{templateObjectID}/submissions": {
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "List Template Submissions for Template",
+        "description": "Retrieves a list of template submissions scoped to a specific template (any version).\n",
+        "operationId": "listTemplateSubmissionsForTemplate",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameSubmissions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldSubmissions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned list of template submissions for the specified template.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSubmissionListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "Template with the specified object_id was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/{templateObjectID}/submissions/{submissionObjectID}": {
+      "put": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Update a single template's values in a submission",
+        "description": "Partially updates an existing template submission by replacing the input values\nfor a single template identified by `templateObjectID`. All other templates in\nthe submission retain their existing values, and the full NGINX configuration is\nre-rendered using the merged values.\n\nPayloads and target objects are preserved from the existing submission and cannot\nbe changed through this endpoint.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `false` (default), the API re-renders, persists the updated values,\n    and re-publishes to the submission's existing targets.\n  - When `preview_only` is `true`, the API re-renders the NGINX configuration\n    with the new values for preview **without persisting** the changes.\n",
+        "operationId": "updateSingleTemplateSubmission",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionPreviewOnly"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSingleTemplateSubmissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returned only when `preview_only` is `true`.\nResponds with the re-rendered NGINX configuration using the updated input values.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreviewNginxConfig"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Returned when `preview_only` is `false`.\nThe updated submission has been accepted and re-published to existing targets.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "The submission cannot be completed due to one or more template validation errors. See the error details for more information.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/{templateObjectID}/versions": {
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "List template versions",
+        "description": "Lists all versions for a specific template.\n",
+        "operationId": "listTemplateVersions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameVersions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldTemplateVersions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned list of template versions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateVersionsListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Create a new template version",
+        "description": "Creates a new version for a template or updates an existing draft version, based on the provided content and the state of the latest version:\n\n- If the latest version is a **draft** and the content has changed, the draft is updated in place.\n- If the latest version is **final** and the content has changed, a new draft version is created.\n- If the content is unchanged (matches the latest version), no changes are made and the latest version is returned.\n\nThe response indicates whether a new version was created/updated (`201 Created`) or if the content was unchanged (`200 OK`).\n",
+        "operationId": "createTemplateVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateCreationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Content hash matches existing version. Returns the existing version.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDetailsResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Successfully created or updated the template version.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDetailsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/{templateObjectID}/versions/{templateVersionObjectID}": {
+      "delete": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Delete a template version",
+        "description": "Deletes a specific version of a template by its version ID, the following constraints apply:\n\n- The latest version cannot be deleted. If you wish to delete the latest version you can delete the entire template via a separate API which will remove all versions.\n",
+        "operationId": "deleteTemplateVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/TemplateVersionParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the template version."
+          },
+          "400": {
+            "description": "Cannot delete the latest version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "Cannot delete a template version that is associated with template submissions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Get a specific template version",
+        "description": "Retrieves a specific version of a template by its version ID.\n",
+        "operationId": "getTemplateVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/TemplateVersionParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned template version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateDetailsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/{templateVersionObjectID}/config": {
+      "post": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Generates an NGINX configuration for an augment template.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateVersionParamObjectID"
+          }
+        ],
+        "description": "Generates an NGINX configuration snippet for a single augment template using inputs validated against its template schema. \nThe snippet should be placed into an appropriate block in an existing NGINX configuration.\n\nAny `augment_includes` will be preserved as directives in the config output, for example: `augment_includes \"http\";`. \nThese directives can be used to determine available augment attachment points (and their labels) for powering dynamic, \ninteractive config construction experiences.\n",
+        "operationId": "getPartialConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemplateSnippetRenderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Responds with the rendered snippet of NGINX configuration.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSnippetRenderResponse"
+                },
+                "example": {
+                  "files": [
+                    {
+                      "contents": "CnNlcnZlciAzNS45NS40MS40Mjo4MDgxIGRvd247CnNlcnZlciAzNC4yMTAuMTYuMDo4MDgxOw==",
+                      "mtime": "0001-01-01T00:00:00Z",
+                      "name": "upstream.conf",
+                      "size": 55
+                    }
+                  ],
+                  "errors": []
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "description": "Template with the specified object_id was not found. Check that the object_id provided is correct and corresponds to an existing resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
     "/templates/import": {
       "post": {
         "tags": [
@@ -6079,6 +6765,58 @@
       }
     },
     "/templates/submissions": {
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "List Template Submissions",
+        "description": "Retrieves a list of template submissions.\n",
+        "operationId": "listTemplateSubmissions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Paginated"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/SortDirection"
+          },
+          {
+            "$ref": "#/components/parameters/SortNameSubmissions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFieldSubmissions"
+          },
+          {
+            "$ref": "#/components/parameters/FilterOperands"
+          },
+          {
+            "$ref": "#/components/parameters/FilterValues"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned list of template submissions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSubmissionListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Templates"
@@ -6154,6 +6892,143 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "description": "The submission cannot be completed due to one or more template validation errors. See the error details for more information.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/submissions/{submissionObjectID}": {
+      "delete": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "template submissions",
+        "summary": "Delete a Template Submission",
+        "description": "Deletes a template submission by its unique identifier.\nThis action is irreversible and will remove all inputs and payloads for the submission.\n",
+        "operationId": "deleteTemplateSubmission",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionParamObjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted the template submission."
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Templates"
+        ],
+        "summary": "Get a Template Submission",
+        "description": "Retrieves detailed information about a template submission by its unique identifier.\n",
+        "operationId": "getTemplateSubmission",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionParamObjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned the template submission details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSubmissionDetailResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "update",
+        "x-nginx-one-entity": "NGINX config templates",
+        "summary": "Update a Template Submission",
+        "description": "Performs a full update (replacement) of an existing template submission by\nreplacing all input values and payloads, then re-rendering the NGINX configuration.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `false` (default), the API re-renders, persists the updated values,\n    and re-publishes to the submission's existing targets.\n  - When `preview_only` is `true`, the API re-renders the NGINX configuration\n    with the new values for preview **without persisting** the changes.\n",
+        "operationId": "updateTemplateSubmission",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionParamObjectID"
+          },
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionPreviewOnly"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTemplateSubmissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returned only when `preview_only` is `true`.\nResponds with the re-rendered NGINX configuration using the updated input values.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreviewNginxConfig"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Returned when `preview_only` is `false`.\nThe updated submission has been accepted and re-published to existing targets.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "description": "The submission cannot be completed due to one or more template validation errors. See the error details for more information.\n",
@@ -8719,6 +9594,15 @@
         "description": "A globally unique identifier for the template.\n",
         "required": true
       },
+      "TemplateVersionParamObjectID": {
+        "name": "templateVersionObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/TemplateVersionObjectID"
+        },
+        "description": "A globally unique identifier for the template version.\n",
+        "required": true
+      },
       "SortNameTemplates": {
         "name": "sort_fields",
         "in": "query",
@@ -8738,6 +9622,42 @@
           }
         }
       },
+      "SortNameSubmissions": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort the list of template submissions by the specified fields.\nThe default sort order is descending (most recent first).\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "created_at",
+              "modified_at"
+            ],
+            "x-enum-varnames": [
+              "sort_name_submissions_created_at",
+              "sort_name_submissions_modified_at"
+            ]
+          }
+        }
+      },
+      "SortNameVersions": {
+        "name": "sort_fields",
+        "in": "query",
+        "description": "Sort the list of template versions by the specified fields.\nThe default sort order is descending (highest version first).\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "version"
+            ],
+            "x-enum-varnames": [
+              "sort_name_versions_version"
+            ]
+          }
+        }
+      },
       "TemplateSubmissionPreviewOnly": {
         "name": "preview_only",
         "in": "query",
@@ -8748,6 +9668,15 @@
         "description": "Optional flag to control how a template submission request is processed.\n  - When `true`, the request renders the full NGINX configuration for preview **without creating a template submission object** (this is currently the only supported mode).\n  - When `false` or omitted (the default), the request is intended to render the configuration **and create a submission object**, but this feature is **not supported yet** and will return an error.\nNote: Currently, only preview (stateless render) mode is supported. Submission creation is not yet implemented.\n",
         "required": false
       },
+      "TemplateSubmissionParamObjectID": {
+        "name": "submissionObjectID",
+        "in": "path",
+        "schema": {
+          "$ref": "#/components/schemas/TemplateSubmissionObjectID"
+        },
+        "description": "A globally unique identifier for the template submission.\n",
+        "required": true
+      },
       "FilterFieldTemplates": {
         "name": "filter_fields",
         "in": "query",
@@ -8756,6 +9685,28 @@
           "type": "array",
           "items": {
             "$ref": "#/components/schemas/FilterNameTemplates"
+          }
+        }
+      },
+      "FilterFieldSubmissions": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `object_id`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameSubmissions"
+          }
+        }
+      },
+      "FilterFieldTemplateVersions": {
+        "name": "filter_fields",
+        "in": "query",
+        "description": "An array of strings indicating which fields to filter by (for example, `object_id`). This parameter works in conjunction with `filter_values` and `filter_ops`.\n",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FilterNameTemplateVersions"
           }
         }
       },
@@ -9358,7 +10309,7 @@
           }
         },
         "example": {
-          "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+          "public_certs": "UkVEQUNURUQ="
         }
       },
       "CertificateRequest": {
@@ -9381,7 +10332,7 @@
         "example": {
           "name": "example-ca-bundle",
           "content": {
-            "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==",
+            "public_certs": "UkVEQUNURUQ=",
             "private_key": ""
           }
         }
@@ -9665,7 +10616,7 @@
           }
         },
         "example": {
-          "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFM295ZHVlT0FOSkhodkwzeXZKZFRwaG9ldjVHTzdnbytCeVlPTy9sNTR1NU8yUHhNZVgrQWpBYjZBeG1xCmxpdkl1aHc9Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0t"
+          "private_key": "UkVEQUNURUQ="
         }
       },
       "CertificateUpdateRequest": {
@@ -9685,7 +10636,7 @@
         "example": {
           "name": "example-cert-object",
           "content": {
-            "public_certs": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUUzb3lkdWVPQU5KSGh2TDN5dkpkVHBob2V2NUdPN2dvK0J5WU9PL2w1NHU1TzJQeE1lWCtBakFiNkF4bXEKbGl2SXVodz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+            "public_certs": "UkVEQUNURUQ="
           }
         }
       },
@@ -10778,6 +11729,12 @@
           }
         }
       },
+      "NapPolicyVersionName": {
+        "description": "Version name for a WAF policy version. Either a sequential name (e.g. v1, v2, v10)\nor a legacy timestamp string (e.g. \"2023-12-06 22:37:24\").\n",
+        "type": "string",
+        "pattern": "^(v\\d+|\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})$",
+        "example": "v1"
+      },
       "NapPolicyObjectID": {
         "description": "A globally unique identifier for the App Protect policy.",
         "type": "string",
@@ -10859,8 +11816,7 @@
             "description": "Name of the policy at the time of the deployment."
           },
           "version": {
-            "type": "string",
-            "description": "Version of the policy at the time of the deployment."
+            "$ref": "#/components/schemas/NapPolicyVersionName"
           },
           "policy_object_id": {
             "$ref": "#/components/schemas/NapPolicyObjectID"
@@ -10896,7 +11852,7 @@
         },
         "example": {
           "name": "default_policy",
-          "version": "2025.05.01",
+          "version": "v1",
           "policy_object_id": "pol_panEdeY-Sh2rWm365y7wsw",
           "policy_version_object_id": "pv_kem7SCosTTOL9mMlNyY2GQ",
           "publication_object_id": "pub_72pGHoGsSICL_THZrs964g",
@@ -12376,7 +13332,7 @@
         ],
         "example": {
           "name": "default_policy",
-          "version": "2025.05.01",
+          "version": "v1",
           "policy_object_id": "pol_panEdeY-Sh2rWm365y7wsw",
           "policy_version_object_id": "pv_kem7SCosTTOL9mMlNyY2GQ",
           "publication_object_id": "pub_72pGHoGsSICL_THZrs964g",
@@ -12681,6 +13637,18 @@
           "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
         }
       },
+      "TemplateSubmissionObjectID": {
+        "description": "A globally unique identifier for a template submission.",
+        "type": "string",
+        "format": "object_id",
+        "pattern": "^tmplsm_.*",
+        "x-go-type": "objects.ID",
+        "x-go-type-import": {
+          "name": "objects",
+          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
+        },
+        "example": "tmplsm_frBobKIAQ_21grAwV83VYz"
+      },
       "StagedConfigCertificateSummary": {
         "type": "object",
         "description": "Provides a summary of the current status of certificates used in NGINX configurations. It includes the total number of certificates, as well as the counts of expired certificates, those nearing expiration, valid certificates, certificates that are not found, and those that are not ready for use.",
@@ -12745,6 +13713,10 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the NGINX configuration object was last modified for the instance."
+          },
+          "template_submission_id": {
+            "description": "A globally unique identifier for the template submission associated with this staged config, if applicable.",
+            "$ref": "#/components/schemas/TemplateSubmissionObjectID"
           },
           "cert_summary": {
             "$ref": "#/components/schemas/StagedConfigCertificateSummary"
@@ -13702,68 +14674,6 @@
           "age_out_duration": 3
         }
       },
-      "HttpUsage": {
-        "type": "object",
-        "properties": {
-          "client": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UsageMetrics"
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "requests": {
-                    "type": "integer",
-                    "description": "Total requests handled by an NGINX Instance",
-                    "minimum": 0
-                  }
-                }
-              }
-            ]
-          },
-          "upstream": {
-            "$ref": "#/components/schemas/UsageMetrics"
-          }
-        }
-      },
-      "StreamUsage": {
-        "type": "object",
-        "properties": {
-          "client": {
-            "$ref": "#/components/schemas/UsageMetrics"
-          },
-          "upstream": {
-            "$ref": "#/components/schemas/UsageMetrics"
-          }
-        }
-      },
-      "UsageMetrics": {
-        "type": "object",
-        "properties": {
-          "received": {
-            "type": "integer",
-            "description": "Total bytes received by an NGINX Instance from clients/upstreams",
-            "minimum": 0
-          },
-          "sent": {
-            "type": "integer",
-            "description": "Total bytes sent by the NGINX Instance to clients/upstreams",
-            "minimum": 0
-          },
-          "connections": {
-            "type": "integer",
-            "description": "Total connections of the NGINX Instance with clients/upstreams",
-            "minimum": 0
-          }
-        }
-      },
-      "NginxUsageHttp": {
-        "$ref": "#/components/schemas/HttpUsage"
-      },
-      "NginxUsageStream": {
-        "$ref": "#/components/schemas/StreamUsage"
-      },
       "MetricStartTime": {
         "description": "The start time of your metrics query.\n\nUsage:\n* `start_time` is required if `end_time` is specified.\n* If `start_time` and `end_time` isn't provided, the API returns metrics from the current time to the month before the current time.\n* The `start_time` cannot be older than 120 days before the current time.\n\nYou can set the `start_time` in these ways:\n* In ISO 8601 format. For example, \"2019-08-07T09:57:36.088757764Z\".\n* As an offset from the current time. For the offset, use `+` or `-`, followed by a number and unit [`y` (years), `M` (months), `w` (weeks), `d` (days), `h` (hours), `m` (minutes), or `s` (seconds)]. \n* Example of an offset: \"now-3h\" (3 hours before now).\n",
         "type": "string",
@@ -13999,6 +14909,11 @@
       "BotSignatureVersionsListResponse": {
         "$ref": "#/components/schemas/VersionsList"
       },
+      "NapPolicyVersionComment": {
+        "description": "A user-provided comment describing what changed in this WAF policy version. \n**Note: This feature is under development and for future use.**\n",
+        "type": "string",
+        "maxLength": 150
+      },
       "NapPolicy": {
         "description": "The base64-encoded contents of the NGINX App Protect policy.",
         "type": "object",
@@ -14010,6 +14925,9 @@
             "type": "string",
             "format": "base64",
             "maxLength": 3145728
+          },
+          "version_comment": {
+            "$ref": "#/components/schemas/NapPolicyVersionComment"
           }
         }
       },
@@ -14083,17 +15001,18 @@
                       "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
                       "status": "deployed",
                       "enforcement_mode": "blocking",
-                      "policy_version": "2023-12-06 22:37:24",
+                      "policy_version": "v1",
                       "policy_version_object_id": "pv_-abc3F2TQGm18jnl7bpaGw",
                       "deployed_on": "2023-12-06T22:37:24.120114Z"
                     }
                   ],
                   "latest": {
                     "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
-                    "version": "2023-12-06 22:37:24",
+                    "version": "v1",
                     "created_at": "2023-12-06T22:37:24.120114Z",
                     "deployment_status": "deployed",
-                    "enforcement_mode": "blocking"
+                    "enforcement_mode": "blocking",
+                    "version_comment": "Initial policy configuration"
                   }
                 }
               ]
@@ -14300,8 +15219,7 @@
                 "$ref": "#/components/schemas/NapPolicyEnforcementMode"
               },
               "policy_version": {
-                "description": "The version associated with the NGINX App Protect policy.",
-                "type": "string"
+                "$ref": "#/components/schemas/NapPolicyVersionName"
               },
               "policy_version_object_id": {
                 "$ref": "#/components/schemas/NapPolicyVersionObjectID"
@@ -14317,7 +15235,7 @@
           "status": "deployed",
           "deployed_on": "2023-12-06T22:37:24.120114Z",
           "enforcement_mode": "blocking",
-          "policy_version": "2023-12-06 22:37:24",
+          "policy_version": "v1",
           "policy_version_object_id": "pv_-abc3F2TQGm18jnl7bpaGw"
         }
       },
@@ -14362,7 +15280,7 @@
           "associated_type": "instance",
           "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
           "status": "deployed",
-          "policy_version": "2023-12-06 22:37:24",
+          "policy_version": "v1",
           "policy_version_object_id": "pv_-abc3F2TQGm18jnl7bpaGw",
           "deployed_on": "2023-12-06T22:37:24.120114Z",
           "enforcement_mode": "blocking",
@@ -14399,7 +15317,7 @@
                   "associated_type": "instance",
                   "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
                   "status": "deployed",
-                  "policy_version": "2023-12-06 22:37:24",
+                  "policy_version": "v1",
                   "policy_version_object_id": "pv_-abc3F2TQGm18jnl7bpaGw",
                   "deployed_on": "2023-12-06T22:37:24.120114Z",
                   "enforcement_mode": "blocking",
@@ -14463,7 +15381,7 @@
             "$ref": "#/components/schemas/NapPolicyVersionObjectID"
           },
           "version": {
-            "$ref": "#/components/schemas/NapSignatureVersion"
+            "$ref": "#/components/schemas/NapPolicyVersionName"
           },
           "enforcement_mode": {
             "$ref": "#/components/schemas/NapPolicyEnforcementMode"
@@ -14472,6 +15390,9 @@
             "description": "The date and time when the NGINX App Protect policy version was created.",
             "type": "string",
             "format": "date-time"
+          },
+          "version_comment": {
+            "$ref": "#/components/schemas/NapPolicyVersionComment"
           }
         }
       },
@@ -14483,7 +15404,8 @@
           "object_id",
           "version",
           "enforcement_mode",
-          "created_at"
+          "created_at",
+          "bundles"
         ],
         "allOf": [
           {
@@ -14494,8 +15416,55 @@
           },
           {
             "$ref": "#/components/schemas/NapPolicyVersionDeployments"
+          },
+          {
+            "type": "object",
+            "required": [
+              "bundles"
+            ],
+            "properties": {
+              "bundles": {
+                "description": "Compiled NGINX App Protect policy version bundles for this specific policy version.\nLists compilation status of the policy version contents across different NAP release versions.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapCompileStatus"
+                }
+              }
+            }
           }
-        ]
+        ],
+        "example": {
+          "object_id": "pv_-abc3F2TQGm18jnl7bpaGw",
+          "version": "v1",
+          "enforcement_mode": "blocking",
+          "created_at": "2023-12-06T22:37:24.120114Z",
+          "version_comment": "Initial policy configuration",
+          "policy": "eyJwb2xpY3kiOiB7Im5hbWUiOiAiZGVmYXVsdCJ9fQ==",
+          "deployments": [
+            {
+              "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
+              "associated_name": "test-instance",
+              "associated_type": "instance",
+              "associated_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+              "status": "deployed",
+              "deployed_on": "2023-12-06T22:37:24.120114Z"
+            }
+          ],
+          "bundles": [
+            {
+              "nap_release": "5.10.0",
+              "status": "succeeded",
+              "created_at": "2023-12-06T22:37:24.120114Z",
+              "modified_at": "2023-12-06T22:38:01.264956Z"
+            },
+            {
+              "nap_release": "5.9.0",
+              "status": "succeeded",
+              "created_at": "2023-12-06T22:37:24.120114Z",
+              "modified_at": "2023-12-06T22:38:01.264956Z"
+            }
+          ]
+        }
       },
       "NapPolicyVersionObject": {
         "description": "Summary information about NGINX App Protect policy version.",
@@ -14544,16 +15513,36 @@
             "example": {
               "items": [
                 {
-                  "version": "2023-12-06 22:37:24",
+                  "version": "v1",
                   "object_id": "pv_-uvR3F2TQGm18jnl7bpaGw",
                   "created_at": "2023-12-06T22:37:24.120114Z",
                   "enforcement_mode": "blocking",
+                  "version_comment": "Initial policy configuration",
                   "latest": false
                 }
               ]
             }
           }
         ]
+      },
+      "NapPolicyVersionUpdate": {
+        "description": "Fields that can be updated on an existing WAF policy version.",
+        "type": "object",
+        "required": [
+          "version_comment"
+        ],
+        "properties": {
+          "version_comment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NapPolicyVersionComment"
+              }
+            ]
+          }
+        },
+        "example": {
+          "version_comment": "Updated rate limiting thresholds"
+        }
       },
       "NapLogProfileListResponse": {
         "allOf": [
@@ -14617,6 +15606,7 @@
           "name": "test-log-profiles",
           "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
           "is_f5_default": false,
+          "source": "user_defined",
           "config": "eyJsb2dfc3RyZWFtIjogIntmb3JtYXQgY29tYmluZWQgZXg=",
           "deployments": [
             {
@@ -14662,6 +15652,7 @@
           "name": "test-log-profiles",
           "object_id": "lp_XYxnZgVYQFKire4M1KcVVQ",
           "is_f5_default": false,
+          "source": "user_defined",
           "deployments": [
             {
               "nap_release": "5.10.0",
@@ -14683,6 +15674,7 @@
           "object_id",
           "hash",
           "is_f5_default",
+          "source",
           "modified_at",
           "created_at"
         ],
@@ -14699,7 +15691,18 @@
             "description": "The hash value of the NGINX App Protect log profile configs."
           },
           "is_f5_default": {
-            "$ref": "#/components/schemas/IsF5Default"
+            "type": "boolean",
+            "deprecated": true,
+            "description": "Indicates whether the object is an F5 default object (`true`) or a user-defined object (`false`).\nDeprecated: Use the `source` field instead. This field will be removed after December 2026.\n"
+          },
+          "source": {
+            "type": "string",
+            "description": "Classifies the source of the log profile.\n- `user_defined` — Created by a user. You can compile, deploy, modify, or delete these profiles.\n- `f5_default` — Provided by F5. You can compile and deploy these profiles, but you can't modify or delete them.\n- `built_in` — Included in the WAF engine. You can reference these profiles by name in the NGINX configuration. You can't compile, deploy, modify, or delete them. These profiles are excluded from list results unless you filter for `source=built_in`.\n",
+            "enum": [
+              "user_defined",
+              "f5_default",
+              "built_in"
+            ]
           },
           "description": {
             "description": "Optional field to describe the NGINX App Protect log profile.",
@@ -15332,21 +16335,19 @@
       },
       "FilterNameNapLogProfile": {
         "type": "string",
-        "description": "Keywords for NGINX App Protect log profile filters.\n",
+        "description": "Keywords for NGINX App Protect log profile filters.\nWhen filtering on `source`, the following `filter_values` are supported: `user_defined`, `f5_default`, `built_in`.\nBuilt-in log profiles are excluded from all results unless `source=built_in` is explicitly specified.\n",
         "enum": [
           "name",
           "object_id",
-          "deployment_status"
+          "deployment_status",
+          "source"
         ],
         "x-enum-varnames": [
           "filter_name_nap_log_profile_name",
           "filter_name_nap_log_profile_object_id",
-          "filter_name_nap_log_profile_deployment_status"
+          "filter_name_nap_log_profile_deployment_status",
+          "filter_name_nap_log_profile_source"
         ]
-      },
-      "IsF5Default": {
-        "type": "boolean",
-        "description": "Indicates whether this is an F5 default object (true) or a user-defined object (false)."
       },
       "FilterNameNapLogProfileDeployment": {
         "type": "string",
@@ -15427,10 +16428,10 @@
       },
       "TemplateName": {
         "type": "string",
-        "description": "The name of the template.\nMust be suitable for use as a file name and as an NGINX configuration include.\nOnly alphanumeric characters, underscores, dashes, and dots are allowed.\nNo spaces, slashes, or special characters.\n",
+        "description": "The name of the template.\nMust be suitable for use as a file name and as an NGINX configuration include.\nOnly alphanumeric characters, underscores (single not double), dashes, and dots are allowed.\nNo spaces, slashes, or special characters.\n",
         "minLength": 1,
         "maxLength": 255,
-        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]*$",
+        "pattern": "^[a-zA-Z0-9]([a-zA-Z0-9.\\-]|_[a-zA-Z0-9.\\-])*_?$",
         "example": "reverse-proxy"
       },
       "TemplateDescription": {
@@ -15438,6 +16439,70 @@
         "description": "A human-readable description of the template.",
         "maxLength": 2048,
         "example": "A base template for setting up a reverse proxy"
+      },
+      "TemplateMetadataUpdateRequest": {
+        "type": "object",
+        "description": "Request body for updating template metadata.\n",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/TemplateName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/TemplateDescription"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TemplateVersionState"
+          },
+          "directives_to_parse": {
+            "$ref": "#/components/schemas/DirectivesToParse"
+          }
+        },
+        "example": {
+          "name": "updated-template-name",
+          "description": "Updated description for the template",
+          "state": "final"
+        }
+      },
+      "TemplateMetadataPatchRequest": {
+        "type": "object",
+        "description": "Request body for partially updating template metadata. Only provided fields will be updated; omitted fields will retain their existing values.\n",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/TemplateName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/TemplateDescription"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TemplateVersionState"
+          },
+          "directives_to_parse": {
+            "$ref": "#/components/schemas/DirectivesToParse"
+          }
+        },
+        "example": {
+          "description": "Updated description only",
+          "state": "final"
+        }
+      },
+      "TemplateCopyRequest": {
+        "type": "object",
+        "description": "Request body for copying an existing template. If a field is omitted then \nthat field will use the existing value from the copied config template \nfor the newly generated one. All other properties (files, type, contexts) are\ninherited from the source template.\n",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/TemplateName"
+          },
+          "description": {
+            "$ref": "#/components/schemas/TemplateDescription"
+          }
+        },
+        "example": {
+          "name": "reverse-proxy-copy",
+          "description": "Copy of the reverse proxy template"
+        }
       },
       "TemplateObjectID": {
         "description": "A globally unique identifier for template.",
@@ -15503,11 +16568,10 @@
       },
       "TemplateImportRequest": {
         "type": "object",
-        "description": "A request to import a template into the system. This can be either a *base template* or an *augment template*,\nas determined by the `type` field in the request body.\n\nBase templates define the structure of an NGINX configuration and may include hook points\nfor augment templates using custom Go template functions.\n\nAugment templates are reusable configuration snippets that can be applied to specific NGINX contexts\nwithin a base template, such as `http`, `http/server`, `stream` or `stream/server`.\n\nNginx One supports custom Go template functions for advanced configuration generation.\nSee [Template Functions](https://yourdocs.com/templates/functions) for a complete list of supported functions.\n",
+        "description": "A request to import a template into the system. This can be either a *base template* or an *augment template*,\nas determined by the `type` field in the request body.\n\nBase templates define the structure of an NGINX configuration and may include hook points for augment templates\nusing the `augment_includes` custom Go template function. This function accepts two parameters:\n1. **context** (required, string): The target NGINX context path where augment content will be inserted (e.g. `\"http\"`, `\"http/server\"`, `\"stream/server\"`).\n2. **label** (optional, string): A target label (e.g. `\"primary\"`) used for deterministic placement of an augment template's content within the specified context during NGINX configuration generation.\n\nAugment templates are reusable configuration snippets that can be applied to specific NGINX contexts\nwithin a base template, such as `http`, `http/server`, `stream` or `stream/server`. These can also make use of\nhook points to other augment templates.\n\nNginx One supports custom Go template functions for advanced configuration generation.\nSee [Making Templates Extensible](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/author-templates/#making-templates-extensible) for a complete list of supported functions.\n\n**Manifest support:** If the archive contains a `manifest.yaml` (or `manifest.yml`) at its root, the `type`\nand `allowed_in_contexts` values will be derived from the manifest, overriding any form field values provided\nin the request. The manifest must list all files it references; if any are missing from the archive, the\nrequest will be rejected with a 400 error.\n\nInclude files in the archive may use relative paths (e.g. `conf.d/foo.conf`) to preserve directory\nstructure in the rendered NGINX configuration output.\n",
         "required": [
           "name",
-          "file",
-          "type"
+          "file"
         ],
         "properties": {
           "name": {
@@ -15515,12 +16579,13 @@
           },
           "file": {
             "type": "string",
-            "description": "A .tar.gz archive containing a template and any necessary supporting files for generating an NGINX configuration.\n\nThe archive must include the following at its root:\n- A template file (e.g., reverse_proxy_base.tmpl) written in valid Go template syntax for NGINX.\n- If the template uses input variables, a schema file is also required. This file defines and validates the expected input data.\n- The schema file could be a JSON schema or YAML (e.g., schema.json, schema.yaml).\n\nFile structure:\n├── reverse_proxy_base.tmpl          # Required Go template file\n├── schema.json or schema.yaml       # Required only if input variables are used\n",
+            "description": "A .tar.gz archive containing a template and any necessary supporting files for generating an NGINX configuration.\n\nThe archive must include the following at its root:\n- A template file (e.g., reverse_proxy_base.tmpl) written in valid Go template syntax for NGINX.\n- If the template uses input variables, a schema file is also required. This file defines and validates the expected input data.\n- The schema file could be a JSON schema or YAML (e.g., schema.json, schema.yaml).\n- Optionally, a `manifest.yaml` file that declares metadata (type, allowed contexts) and the list of files.\n\nInclude files may be placed in subdirectories to preserve directory structure in the\nrendered output (e.g. `conf.d/upstream.conf`).\n\nFile structure:\n├── manifest.yaml                    # Optional: provides type, allowed_in_contexts, file listing\n├── reverse_proxy_base.tmpl          # Required Go template file\n├── schema.json or schema.yaml       # Required only if input variables are used\n├── conf.d/                          # Optional subdirectories for include files\n│   └── upstream.conf\n",
             "format": "binary",
             "maxLength": 1000000,
             "example": "template.tar.gz"
           },
           "type": {
+            "description": "The type of template (`base` or `augment`). Required when the archive does not contain a `manifest.yaml`; \noptional when the archive contains a `manifest.yaml` that specifies the type, in which case the manifest \nvalue takes precedence.\n",
             "$ref": "#/components/schemas/TemplateType"
           },
           "description": {
@@ -15528,10 +16593,13 @@
           },
           "allowed_in_contexts": {
             "type": "array",
-            "description": "Required when type is `augment`. Specifies the full hierarchical context path(s) within the NGINX configuration where the augment template output can be placed.\n",
+            "description": "Required when type is `augment`. Specifies the full hierarchical context path(s) within the NGINX configuration where the augment template output can be placed.\nCan also be derived from the `manifest.yaml` if present in the archive.\n",
             "items": {
               "$ref": "#/components/schemas/TemplateContextPath"
             }
+          },
+          "directives_to_parse": {
+            "$ref": "#/components/schemas/DirectivesToParse"
           }
         }
       },
@@ -15630,11 +16698,58 @@
                   "allowed_in_contexts": [
                     "http/server/location"
                   ],
+                  "directives_to_parse": [
+                    "limit_req"
+                  ],
                   "augment_includes": [],
                   "created_at": "2026-09-01T12:00:00Z",
                   "modified_at": "2026-09-15T14:30:00Z"
                 }
               ]
+            }
+          }
+        ]
+      },
+      "TemplateVersionsListResponse": {
+        "description": "List of all versions for a specific template.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          },
+          {
+            "description": "List of config template versions.",
+            "type": "object",
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "items": {
+                "description": "An array of template versions.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TemplateVersionSummary"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TemplateVersionSummary": {
+        "description": "A summary of a template object including all its metadata, allowed contexts, augment includes and submissions count.\n",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TemplateSummary"
+          },
+          {
+            "type": "object",
+            "required": [
+              "submissions_count"
+            ],
+            "properties": {
+              "submissions_count": {
+                "type": "integer",
+                "description": "The total number of template submissions associated with the template version."
+              }
             }
           }
         ]
@@ -15711,12 +16826,19 @@
           "description": {
             "$ref": "#/components/schemas/TemplateDescription"
           },
+          "is_f5_default": {
+            "$ref": "#/components/schemas/IsF5Default",
+            "readOnly": true
+          },
           "allowed_in_contexts": {
             "type": "array",
             "description": "Specifies the full hierarchical context path(s) within the NGINX configuration where this template output can be placed.\n\nFor base templates, this list is empty. Instead, refer to `augment_includes` to see where augment output can be injected within the base template.\n",
             "items": {
               "$ref": "#/components/schemas/TemplateContextPath"
             }
+          },
+          "directives_to_parse": {
+            "$ref": "#/components/schemas/DirectivesToParse"
           },
           "augment_includes": {
             "type": "array",
@@ -15725,6 +16847,17 @@
               "$ref": "#/components/schemas/TemplateContextPath"
             }
           }
+        }
+      },
+      "DirectivesToParse": {
+        "type": "array",
+        "description": "Applicable when type is `augment`. Specifies explicit directive(s) used in the augment template that can be parsed within the allowed in context(s).\n\nUsed for input value extraction when generating configuration snippets.\n",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "pattern": "^[a-zA-Z]([a-zA-Z0-9_])*$",
+          "example": "listen"
         }
       },
       "TemplateSummary": {
@@ -15746,6 +16879,7 @@
           "name": "reverse-proxy",
           "description": "A base template for setting up a reverse proxy",
           "type": "base",
+          "is_f5_default": false,
           "allowed_in_contexts": [],
           "augment_includes": [
             "http",
@@ -15772,10 +16906,10 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of a file inside a template archive (.tar.gz). File names must not be absolute paths or contain directory traversal components. For safety, leading slashes or \"..\" are not allowed.\n",
+            "description": "The name of a file inside a template. Must be a relative path without absolute prefixes or directory traversal components (\"..\"). File names must not contain subdirectory components unless the file type is `include`, which may use relative paths to preserve directory structure in the rendered NGINX configuration output (e.g. `conf.d/upstream.conf`).\n",
             "minLength": 1,
             "maxLength": 255,
-            "pattern": "^[a-zA-Z0-9_.\\-\\/]+$",
+            "pattern": "^[a-zA-Z0-9_.\\-][a-zA-Z0-9_.\\-\\/]*$",
             "example": "gzip-http.tmpl"
           },
           "contents": {
@@ -15785,14 +16919,16 @@
           },
           "file_type": {
             "type": "string",
-            "description": "The contents type of the file.\n* template: The file contains a Go template.\n* schema: The file contains a JSON or YAML schema for validating input data for the template. Optional if the template does not require input variables.\n",
+            "description": "The contents type of the file.\n* template: The file contains a Go template.\n* schema: The file contains a JSON or YAML schema for validating input data for the template. Optional if the template does not require input variables.\n* include: A static file used as a reference for an `include` directive by the template (e.g., additional configuration snippets, documentation, etc.).\n",
             "enum": [
               "template",
-              "schema"
+              "schema",
+              "include"
             ],
             "x-enum-varnames": [
               "template_file_type_template",
-              "template_file_type_schema"
+              "template_file_type_schema",
+              "template_file_type_include"
             ]
           },
           "file_format": {
@@ -15837,7 +16973,7 @@
         }
       },
       "TemplateCreationRequest": {
-        "description": "A request payload used to create a new template, including its metadata and associated file contents.",
+        "description": "A request to create a template in the system. This can be either a *base template* or an *augment template*,\nas determined by the `type` field in the request body.\n\nBase templates define the structure of an NGINX configuration and may include hook points for augment templates\nusing the `augment_includes` custom Go template function. This function accepts two parameters:\n1. **context** (required, string): The target NGINX context path where augment content will be inserted (e.g. `\"http\"`, `\"http/server\"`, `\"stream/server\"`).\n2. **label** (optional, string): A target label (e.g. `\"primary\"`) used for deterministic placement of an augment template's content within the specified context during NGINX configuration generation.\n\nAugment templates are reusable configuration snippets that can be applied to specific NGINX contexts\nwithin a base template, such as `http`, `http/server`, `stream` or `stream/server`. These can also make use of\nhook points to other augment templates.\n\nNginx One supports custom Go template functions for advanced configuration generation.\nSee [Making Templates Extensible](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/author-templates/#making-templates-extensible) for a complete list of supported functions.\n",
         "type": "object",
         "allOf": [
           {
@@ -15889,7 +17025,7 @@
         }
       },
       "TemplateDetailsResponse": {
-        "description": "Full detailed response about an existing template object including summary and file contents.",
+        "description": "Full detailed response about an existing template object including summary, file contents and submissions count.",
         "type": "object",
         "allOf": [
           {
@@ -15901,7 +17037,8 @@
           {
             "type": "object",
             "required": [
-              "items"
+              "items",
+              "submissions_count"
             ],
             "properties": {
               "items": {
@@ -15910,6 +17047,10 @@
                 "items": {
                   "$ref": "#/components/schemas/TemplateFileData"
                 }
+              },
+              "submissions_count": {
+                "type": "integer",
+                "description": "The total number of template submissions associated with the template version."
               }
             }
           }
@@ -15922,8 +17063,10 @@
           "version": 1,
           "latest_version": 1,
           "state": "final",
+          "submissions_count": 0,
           "name": "reverse-proxy",
           "type": "base",
+          "is_f5_default": false,
           "allowed_in_contexts": [],
           "augment_includes": [
             "http"
@@ -15955,9 +17098,35 @@
         "description": "Key-value pairs for template rendering.",
         "additionalProperties": true
       },
+      "TemplateSnippetRenderRequest": {
+        "type": "object",
+        "description": "Defines a request to render a snippet of NGINX configuration for a specific template as standalone, without the need for a base template.\n\n### Validations and Constraints:\n- The template must specify its `target_context`.\n- Input values for each template are passed independently via the `values` \n  object, and validated against each template's Schema.\n\n### Processing:\n- The system validates that the template is compatible with the specified target context.\n- The final composed configuration is validated to ensure correctness and prevent conflicts or misconfigurations.\n\n### External Template Documentation:\nFor more information on template functions and best practices, refer to:\n  - [Making Templates Extensible](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/author-templates/#making-templates-extensible)\n  - [Authoring Templates](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/author-templates)\n",
+        "required": [
+          "values",
+          "target_context"
+        ],
+        "properties": {
+          "values": {
+            "$ref": "#/components/schemas/TemplateValuesRequest"
+          },
+          "target_context": {
+            "$ref": "#/components/schemas/TemplateContextPath"
+          }
+        },
+        "example": {
+          "target_context": "http/upstream",
+          "values": {
+            "upstream_servers": [
+              "10.0.0.1:8080",
+              "10.0.0.2:8080"
+            ],
+            "server_name": "example.com"
+          }
+        }
+      },
       "TemplateSubmissionRequest": {
         "type": "object",
-        "description": "Defines a request to render an NGINX configuration by combining a single base template \nwith zero or more augment templates.\n\n### Validations and Constraints:\n- All templates referenced by Object ID must be available in the system before submission.\n- Only one base template can be submitted.\n- The base template must explicitly use custom Go function `augment_includes (\"<context_path>\", .)` to apply `augments`.\n- Its not required to include all augments in the request that base template supports.\n- The order of augments in the list determines the order in which they are rendered and applied.\n- Each augment must specify its `target_context`, indicating where it should be applied in \n  the base template.\n- Input values for each template are passed independently via the `values` \n  object, and validated against each template’s Schema.\n- The `payloads` for auxiliary files only accepts types of `managed_certificate` and `managed_key`.\n\n### Processing:\n- The `base_template` defines the starting point of the NGINX configuration rendering.\n- `conf_path` determines where the rendered configuration from base and augments should be placed within the NGINX directory structure.\n- Each `augment` template is applied in the order provided, inserted at the appropriate target context\n  using the `augment_includes (\"<context_path>\", .)` function declared in the base template.\n- The system validates that each augment is compatible with the specified target context.\n- The final composed configuration is validated to ensure correctness and prevent conflicts or misconfigurations.\n\n### External Template Documentation:\nFor more information on template functions and best practices, refer to:\n  - [Template Function Reference](https://yourdocs.com/templates/functions)\n  - [Template Authoring Guide](https://yourdocs.com/templates/guide)\n",
+        "description": "Defines a request to render an NGINX configuration by combining a single base template \nwith zero or more augment templates.\n\n### Validations and Constraints:\n- All templates referenced by Object ID must be available in the system before submission.\n- Only one base template can be submitted.\n- The base template must explicitly use custom Go function `augment_includes (\"<context_path>\", .)` to apply `augments`.\n- Its not required to include all augments in the request that base template supports.\n- The order of augments in the list determines the order in which they are rendered and applied.\n- Each augment must specify its `target_context`, indicating where it should be applied in \n  the base template.\n- Input values for each template are passed independently via the `values` \n  object, and validated against each template’s Schema.\n- The `payloads` for auxiliary files only accepts types of `managed_certificate` and `managed_key`.\n\n### Processing:\n- The `base_template` defines the starting point of the NGINX configuration rendering.\n- `conf_path` determines where the rendered configuration from base and augments should be placed within the NGINX directory structure.\n- Each `augment` template is applied in the order provided, inserted at the appropriate target context\n  using the `augment_includes (\"<context_path>\", .)` function declared in the base template.\n- The system validates that each augment is compatible with the specified target context.\n- The final composed configuration is validated to ensure correctness and prevent conflicts or misconfigurations.\n\n### External Template Documentation:\nFor more information on template functions and best practices, refer to:\n  - [Making Templates Extensible](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/author-templates/#making-templates-extensible)\n  - [Authoring Templates](https://docs.nginx.com/nginx-one-console/nginx-configs/config-templates/author-templates)\n",
         "required": [
           "conf_path",
           "base_template",
@@ -16055,6 +17224,41 @@
           ]
         }
       },
+      "UpdateTemplateSubmissionRequest": {
+        "type": "object",
+        "description": "Defines a request to update the input values and payloads of an existing template submission.\nThe `conf_path` is preserved from the original submission and cannot be changed.\n",
+        "required": [
+          "base_template",
+          "augments"
+        ],
+        "properties": {
+          "base_template": {
+            "$ref": "#/components/schemas/BaseTemplateSubmissionRequest"
+          },
+          "augments": {
+            "type": "array",
+            "description": "Ordered list of augment templates to apply to the base template.\nAugments are rendered in the order provided.\n",
+            "items": {
+              "$ref": "#/components/schemas/AugmentTemplateSubmissionRequest"
+            }
+          },
+          "payloads": {
+            "$ref": "#/components/schemas/NginxConfigPayloads"
+          }
+        }
+      },
+      "UpdateSingleTemplateSubmissionRequest": {
+        "type": "object",
+        "description": "Request body to update input values for a single template within an existing submission.\nOnly `values` for the matched template are replaced; all other templates retain their stored values.\nPayloads, target objects, and `conf_path` are preserved from the existing submission.\n",
+        "required": [
+          "values"
+        ],
+        "properties": {
+          "values": {
+            "$ref": "#/components/schemas/TemplateValuesRequest"
+          }
+        }
+      },
       "BaseTemplateSubmissionRequest": {
         "type": "object",
         "required": [
@@ -16096,6 +17300,13 @@
           "target_context": {
             "$ref": "#/components/schemas/TemplateContextPath"
           },
+          "target_label": {
+            "type": "string",
+            "description": "Optional label that identifies a specific section in the base template hierarchy (e.g., \"primary\").\n\nIf provided, the value must match the label parameter used by the base template’s `augment_includes` functions; otherwise, the augment will not be applied.\n\nThe label is used to construct the augment output file name, so only alphanumeric characters, underscores, dots, and dashes are allowed. No spaces, slashes, or other path separators.\n",
+            "minLength": 1,
+            "maxLength": 25,
+            "pattern": "^[a-zA-Z0-9_.-]+$"
+          },
           "child_augments": {
             "type": "array",
             "description": "Ordered list of nested augment templates to apply as children of this template.\n",
@@ -16132,6 +17343,29 @@
         "properties": {
           "config": {
             "$ref": "#/components/schemas/NginxConfigObject"
+          },
+          "errors": {
+            "type": "array",
+            "description": "List of NGINX config parse errors encountered during rendering.",
+            "items": {
+              "$ref": "#/components/schemas/NginxConfigParseError"
+            }
+          }
+        }
+      },
+      "TemplateSnippetRenderResponse": {
+        "type": "object",
+        "description": "The rendered snippet of NGINX configuration, along with any errors encountered during rendering.\n",
+        "required": [
+          "files"
+        ],
+        "properties": {
+          "files": {
+            "type": "array",
+            "description": "The list of files in the directory.",
+            "items": {
+              "$ref": "#/components/schemas/FileData"
+            }
           },
           "errors": {
             "type": "array",
@@ -16206,18 +17440,6 @@
           "line": 1,
           "error": "\"upstream\" directive is not allowed here in /etc/nginx/nginx.conf:1"
         }
-      },
-      "TemplateSubmissionObjectID": {
-        "description": "A globally unique identifier for a template submission.",
-        "type": "string",
-        "format": "object_id",
-        "pattern": "^tmplsm_.*",
-        "x-go-type": "objects.ID",
-        "x-go-type-import": {
-          "name": "objects",
-          "path": "gitlab.com/f5/nginx/one/saas/control-plane/pkg/collections/objects"
-        },
-        "example": "tmplsm_frBobKIAQ_21grAwV83VYz"
       },
       "TemplateSubmissionListResponse": {
         "description": "List of template submissions.",
@@ -16348,6 +17570,10 @@
           "type": {
             "$ref": "#/components/schemas/TemplateType"
           },
+          "is_f5_default": {
+            "$ref": "#/components/schemas/IsF5Default",
+            "readOnly": true
+          },
           "state": {
             "$ref": "#/components/schemas/TemplateVersionState"
           },
@@ -16407,6 +17633,74 @@
           "modified_at": "2023-09-15T14:30:00Z"
         }
       },
+      "TemplateSubmissionDetailResponse": {
+        "description": "Details of a template submission, including all templates and input values.",
+        "type": "object",
+        "required": [
+          "object_id",
+          "target_object_ids",
+          "created_at",
+          "modified_at",
+          "templates"
+        ],
+        "properties": {
+          "object_id": {
+            "$ref": "#/components/schemas/TemplateSubmissionObjectID"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the submission."
+          },
+          "target_object_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectID"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp of the submission."
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last modification timestamp of the submission."
+          },
+          "templates": {
+            "type": "array",
+            "description": "The templates and input values associated with this submission (base + augments).",
+            "items": {
+              "$ref": "#/components/schemas/TemplateSubmissionDetailTemplate"
+            }
+          }
+        }
+      },
+      "TemplateSubmissionDetailTemplate": {
+        "description": "A template entry within a submission, including the specific version and input values used.\n",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TemplateSubmissionTemplateSummary"
+          },
+          {
+            "type": "object",
+            "required": [
+              "values"
+            ],
+            "properties": {
+              "values": {
+                "$ref": "#/components/schemas/TemplateValuesRequest"
+              },
+              "target_context": {
+                "$ref": "#/components/schemas/TemplateContextPath"
+              },
+              "target_label": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
       "FilterNameTemplates": {
         "type": "string",
         "description": "Keywords for config templates filters.\n",
@@ -16414,13 +17708,31 @@
           "name",
           "type",
           "object_id",
-          "allowed_in_contexts"
+          "allowed_in_contexts",
+          "state",
+          "is_f5_default"
         ],
         "x-enum-varnames": [
           "filter_name_templates_name",
           "filter_name_templates_type",
           "filter_name_templates_object_id",
-          "filter_name_templates_allowed_in_contexts"
+          "filter_name_templates_allowed_in_contexts",
+          "filter_name_templates_state",
+          "filter_name_templates_is_f5_default"
+        ]
+      },
+      "IsF5Default": {
+        "type": "boolean",
+        "description": "Indicates whether the object is an F5 default object (`true`) or a user-defined object (`false`)."
+      },
+      "FilterNameSubmissions": {
+        "type": "string",
+        "description": "Keywords for config template submissions filters.\n",
+        "enum": [
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_submissions_object_id"
         ]
       },
       "StagedConfigSubmission": {
@@ -16452,6 +17764,16 @@
             "example": "staged config does not exist"
           }
         }
+      },
+      "FilterNameTemplateVersions": {
+        "type": "string",
+        "description": "Keywords for config template versions filters.\n",
+        "enum": [
+          "object_id"
+        ],
+        "x-enum-varnames": [
+          "filter_name_template_versions_object_id"
+        ]
       },
       "EventRequestOutcome": {
         "type": "string",
@@ -18553,6 +19875,68 @@
           "product_type_ngf"
         ],
         "example": "PRODUCT_TYPE_NIC"
+      },
+      "HttpUsage": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UsageMetrics"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "requests": {
+                    "type": "integer",
+                    "description": "Total requests handled by an NGINX Instance",
+                    "minimum": 0
+                  }
+                }
+              }
+            ]
+          },
+          "upstream": {
+            "$ref": "#/components/schemas/UsageMetrics"
+          }
+        }
+      },
+      "StreamUsage": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "$ref": "#/components/schemas/UsageMetrics"
+          },
+          "upstream": {
+            "$ref": "#/components/schemas/UsageMetrics"
+          }
+        }
+      },
+      "UsageMetrics": {
+        "type": "object",
+        "properties": {
+          "received": {
+            "type": "integer",
+            "description": "Total bytes received by an NGINX Instance from clients/upstreams",
+            "minimum": 0
+          },
+          "sent": {
+            "type": "integer",
+            "description": "Total bytes sent by the NGINX Instance to clients/upstreams",
+            "minimum": 0
+          },
+          "connections": {
+            "type": "integer",
+            "description": "Total connections of the NGINX Instance with clients/upstreams",
+            "minimum": 0
+          }
+        }
+      },
+      "NginxUsageHttp": {
+        "$ref": "#/components/schemas/HttpUsage"
+      },
+      "NginxUsageStream": {
+        "$ref": "#/components/schemas/StreamUsage"
       }
     },
     "examples": {

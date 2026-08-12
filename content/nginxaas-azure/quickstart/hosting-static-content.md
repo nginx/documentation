@@ -3,9 +3,9 @@ title: Hosting static content locally
 weight: 200
 toc: true
 f5-docs: DOCS-1344
-url: /nginxaas/azure/quickstart/hosting-static-content/
+url: /nginxaas-azure/quickstart/hosting-static-content/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports hosting static content locally on the deployment, which allows users to serve static websites directly from their deployment.
@@ -42,7 +42,7 @@ test-static-files $ tree .
 2 directories, 2 files
 ```
 
-{{< call-out "note" >}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
+{{< call-out class="note" >}}`index.html` is placed under the `srv` directory. When using `tar` to upload static content, the static content has to be placed under one of the allowed paths listed in the [NGINX Filesystem Restrictions table]({{< ref "/nginxaas-azure/getting-started/nginx-configuration/overview/#nginx-filesystem-restrictions" >}}).{{< /call-out >}}
 
 3. Create the tarball.
 

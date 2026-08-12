@@ -3,7 +3,7 @@ f5-docs: DOCS-1457
 title: Troubleshooting Policy resources
 toc: true
 weight: 300
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-content-type: how-to
 ---
 

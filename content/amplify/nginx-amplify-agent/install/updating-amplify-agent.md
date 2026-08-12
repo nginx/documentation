@@ -7,7 +7,7 @@ f5-docs: DOCS-970
 f5-product: AMPLIF
 ---
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 It is *highly* recommended that you periodically check for updates and install the latest stable version of F5 NGINX Amplify Agent.
 {{< /call-out >}}
 

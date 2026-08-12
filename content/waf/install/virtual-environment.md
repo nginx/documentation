@@ -7,7 +7,7 @@ f5-banner:
     start-date: 2025-08-30
     md: /_banners/waf-virtual-restriction.md
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes how to install F5 WAF for NGINX in a virtual machine or bare metal environment.
@@ -35,7 +35,7 @@ To use NGINX Plus, you will need to download the JWT license file associated wit
 
 {{< include "licensing-and-reporting/download-jwt-ssl-key-from-myf5.md" >}}
 
-{{< call-out "note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
+{{< call-out class="note" >}} Starting from [NGINX Plus Release 33]({{< ref "nginx/releases.md#r33" >}}), a JWT file is required for each NGINX Plus instance. For more information, see [About Subscription Licenses]({{< ref "/solutions/about-subscription-licenses.md">}}). {{< /call-out >}}
 
 ## Platform-specific instructions
 
@@ -154,18 +154,18 @@ findDeps app-protect=<desired-version>
 
 {{< /details >}}
 
-### Oracle Linux / RHEL / Rocky Linux 8
+### Oracle Linux / RHEL / Rocky Linux
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
-The steps are identical for these platforms due to their similar architecture.
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
 
 {{< /call-out >}}
 
 Add the F5 WAF for NGINX repository:
 
 ```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<version>.repo
 ```
 
 Add F5 WAF for NGINX dependencies:
@@ -180,67 +180,10 @@ Enable F5 WAF for NGINX dependencies:
 sudo dnf config-manager --set-enabled crb
 ```
 
-Enable the _ol8_codeready_builder_ repository:
+On Oracle Linux 8, also enable the `ol8_codeready_builder` repository:
 
 ```shell
 sudo dnf config-manager --set-enabled ol8_codeready_builder
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect
-```
-
-{{< details summary="Installing a specific version of F5 WAF for NGINX" >}}
-
-If you need to install a specific version of F5 WAF for NGINX, you can use `--showduplicates list` to list available versions, then append it to the package name:
-
-```shell
-sudo dnf --showduplicates list app-protect
-sudo dnf install app-protect-=<desired-version>
-```
-
-{{< /details >}}
-
-### RHEL / Rocky Linux 9
-
-Add the F5 WAF for NGINX repository:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
-```
-
-Add F5 WAF for NGINX dependencies:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-```
-
-Enable F5 WAF for NGINX dependencies:
-
-```shell
-sudo dnf config-manager --set-enabled crb
-```
-
-Install the F5 WAF for NGINX package and its dependencies:
-
-```shell
-sudo dnf install app-protect
-```
-
-### RHEL 10
-
-Add the F5 WAF for NGINX repository:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
-```
-
-Add F5 WAF for NGINX dependencies:
-
-```shell
-sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
 ```
 
 Install the F5 WAF for NGINX package and its dependencies:
@@ -331,7 +274,7 @@ And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ co
 app_protect_enable on;
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 You should only enable F5 WAF for NGINX on _proxy_pass_ and _grpc_pass_ locations.
 
@@ -427,10 +370,9 @@ server {
 
 {{< /tabs >}}
 
-Once you have updated your configuration files, you can reload NGINX to apply the changes. You have two options depending on your environment:
+Once you have updated your configuration files, reload NGINX with the following command:
 
 - `nginx -s reload`
-- `sudo systemctl reload nginx`
 
 ## Post-installation checks
 

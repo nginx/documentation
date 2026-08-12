@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create NGINX config templates in F5 NGINX Instance Manager and deploy them to your NGINX instances to standardize configurations.
   Templates predefine and enforce consistent NGINX settings, reducing manual configuration work and the risk of configuration drift.
@@ -75,7 +75,7 @@ To import an existing template from a `.tar.gz` archive file:
 8. If an error message appears indicating the archive is unsigned, and you recognize and trust the source of the file, select the checkbox **Allow Signature Bypass**.
 9. Select **Import** to finish importing the templates.
 
-{{< call-out "warning" >}}<i class="fa fa-exclamation-triangle" aria-hidden="true" aria-label="Warning"></i> Make sure you validate the source of the archive before bypassing the signature requirement to maintain the security of your system.{{< /call-out >}}
+{{< call-out class="warning" >}}<i class="fa fa-exclamation-triangle" aria-hidden="true" aria-label="Warning"></i> Make sure you validate the source of the archive before bypassing the signature requirement to maintain the security of your system.{{< /call-out >}}
 
 ### Create a Config Template from Scratch
 
@@ -114,7 +114,7 @@ To add resource files to a template:
 6. The selected files will now appear in the template's directory structure on the left side of the editor. Select a file to edit its contents in the editing pane.
 8. Make your changes and select **Save** to update the template with your configurations.
 
-{{<call-out "tip" "See Also" >}}<i class="fa-regular fa-lightbulb" aria-hidden="true" aria-label="Tip"></i>
+{{<call-out class="tip" title="See Also" >}}<i class="fa-regular fa-lightbulb" aria-hidden="true" aria-label="Tip"></i>
 You can find more information about template types, template resource files, and JSON schema features in the [Additional Resources](#additional-resources) section.{{</call-out>}}
 
 ---
@@ -145,7 +145,7 @@ To preview, generate, and submit a config from a template:
 
 ## Editing a Template Submission
 
-{{<call-out "important" "Existing configs will be overwritten" >}}
+{{<call-out class="important" title="Existing configs will be overwritten" >}}
 When you edit a template submission, it is important to note that the current NGINX configuration, alongside all previous submissions and inputs for your target, will be replaced. This ensures that your NGINX instances always run the most up-to-date configurations derived from the latest inputs.
 {{</call-out>}}
 

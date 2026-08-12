@@ -1,13 +1,13 @@
 ---
 f5-docs: DOCS-1468
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
 - content/nic/integrations/app-protect-waf/installation.md
 ---
 
-{{<call-out "important" "Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}
+{{<call-out class="important" title="Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}
 
 1. Create a namespace and a service account:
 

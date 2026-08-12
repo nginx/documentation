@@ -3,9 +3,9 @@ title: Metrics catalog
 weight: 400
 toc: false
 f5-docs: DOCS-877
-url: /nginxaas/azure/monitoring/metrics-catalog/
+url: /nginxaas-azure/monitoring/metrics-catalog/
 f5-content-type: concept
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) provides a rich set of metrics that you can use to monitor the health and performance of your NGINXaaS deployment. This document provides a catalog of the metrics that are available for monitoring NGINXaaS for Azure in Azure Monitor.
@@ -50,7 +50,7 @@ The metrics are categorized by the namespace used in Azure Monitor. The dimensio
 
 {{< /table >}}
 
-{{< call-out "warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
+{{< call-out class="warning" >}}The `ncu.consumed` metric is now deprecated and is on the path to retirement. Please change any alerting on this metric to use the new Capacity Percentage metric.{{< /call-out >}}
 
 ### NGINX connections statistics
 

@@ -1,12 +1,12 @@
 ---
-f5-product: MISCEL
+f5-product: Miscellaneous
 f5-files:
 - content/nginx-one-console/connect-instances/connect-nginx-plus-container-images-to-nginx-one.md
 - content/nginx/admin-guide/installing-nginx/installing-nginx-docker.md
 - content/nim/fundamentals/api-overview.md
 ---
 
-{{<call-out "important" "Protect sensitive data" "fas fa-shield-alt" >}}
+{{<call-out class="important" title="Protect sensitive data" icon="shield" >}}
 To protect your system and data, follow these security practices:
 
 1. **JWTs:** Treat JSON Web Tokens (JWTs) as sensitive data. Store them securely and delete them after use to prevent unauthorized access.

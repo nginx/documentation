@@ -4,7 +4,7 @@ description: Create a precompiled security bundle that packages your F5 WAF for 
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create a precompiled F5 WAF for NGINX security policy bundle in F5 NGINX Instance Manager that packages your policies, signatures, and threat campaigns into a single deployable file.
   Bundles simplify deployment by letting you push a complete, ready-to-run configuration to multiple instances at once.
@@ -16,7 +16,7 @@ A security policy bundle includes your policies, attack signatures, bot signatur
 
 Precompiling with NGINX Instance Manager reduces processing overhead on WAF instances and ensures consistent, reusable configurations.
 
-{{< call-out "note" "See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
+{{< call-out class="note" title="See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
 
 {{<tabs name="create-bundles">}}
 

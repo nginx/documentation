@@ -1,8 +1,8 @@
 ---
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 You can view the [Milestone Roadmap](https://github.com/orgs/nginx/projects/10/views/5) in the NGINX Gateway Fabric GitHub project to see what API resources will be supported in upcoming releases.
 

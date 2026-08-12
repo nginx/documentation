@@ -4,7 +4,7 @@ linkTitle: NGINX Plus
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Plus.
@@ -13,7 +13,7 @@ It explains how to install the Gateway API resources and add certificates for se
 
 By following these instructions, you will finish with a functional NGINX Gateway Fabric instance for your Kubernetes cluster.
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 To learn which Gateway API resources NGINX Gateway Fabric currently supports, view the [Gateway API Compatibility]({{< ref "/ngf/overview/gateway-api-compatibility.md" >}}) topic. 
 
@@ -28,7 +28,6 @@ To complete this guide, you will need the following pre-requisites:
 - An active NGINX Plus subscription (Purchased or trial)
 - [A supported Kubernetes version]({{< ref "/ngf/overview/technical-specifications.md" >}})
 - A functional Kubernetes cluster
-- [cert-manager](https://cert-manager.io/docs/installation/)
 
 ## Download your JSON web token
 
@@ -42,7 +41,7 @@ First, create the _nginx-gateway_ namespace, which is used by the Manifest files
 kubectl create namespace nginx-gateway
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The commands in the rest of this document should be run in the same directory as your **license.jwt** file.
 
@@ -85,6 +84,10 @@ nplus-license                Opaque                           1      21s
 
 {{< include "/ngf/installation/manifests/api-resources.md" >}}
 
+## Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
+
 ## Add certificates for secure authentication
 
 {{< include "/ngf/installation/manifests/secure-certificates.md" >}}
@@ -99,7 +102,7 @@ By default, NGINX Gateway Fabric is installed in the **nginx-gateway** namespace
 
 If you want to deploy it in another namespace, you must modify the Manifest files.
 
-{{< call-out "note" >}} By default, NGINX Gateway Fabric watches all namespaces. To limit the namespaces that it watches, add `--watch-namespaces=x,y,z` to the Deployment arguments, specifying the names of your namespaces. {{< /call-out >}}
+{{< call-out class="note" >}} By default, NGINX Gateway Fabric watches all namespaces. To limit the namespaces that it watches, add `--watch-namespaces=x,y,z` to the Deployment arguments, specifying the names of your namespaces. {{< /call-out >}}
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/v{{< version-ngf >}}/deploy/nginx-plus/deploy.yaml

@@ -1,5 +1,5 @@
 ---
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 f5-files:
 - content/waf/install/docker.md
 - content/waf/install/kubernetes.md
@@ -23,7 +23,7 @@ And finally, F5 WAF for NGINX can enabled on a _http_, _server_ or _location_ co
 app_protect_enable on;
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 You should only enable F5 WAF for NGINX on _proxy_pass_ and _grpc_pass_ locations.
 

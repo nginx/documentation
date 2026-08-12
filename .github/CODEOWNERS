@@ -20,14 +20,16 @@
 .github/*                   @nginx/docs-engineering
 
 # NGINX Agent
-content/nginx/nms/agent/*   @nginx/nginx-agent 
+content/nginx/nms/agent/*   @nginx/nginx-agent
+content/includes/agent/*    @nginx/nginx-agent
 
 # F5 DoS for NGINX
 content/nap-dos/*           @nginx/dos-docs-approvers
+content/includes/dos/*      @nginx/dos-docs-approvers
 
 # F5 WAF for NGINX
 content/waf/*               @nginx/nap-dev
-content/includes/waf/*      @nginx/nap-dev
+content/includes/waf/*      @nginx/nap-dev @nginx/nim-docs-approvers
 
 # NGINXaaS for Azure 
 content/nginxaas-azure/*          @nginx/nginxaas-docs-approvers
@@ -46,12 +48,14 @@ content/nic/*                   @nginx/kic
 content/includes/nic/*          @nginx/kic
 
 # NGINX Instance Manager
-content/nms/nim/*           @nginx/nim-docs-approvers
 content/nim/*               @nginx/nim-docs-approvers
+content/includes/nim/*      @nginx/nim-docs-approvers
 
 # NGINX Plus
 content/nginx/*             @nginx/plus-docs-approvers
+content/includes/nginx/*    @nginx/plus-docs-approvers
 
 # NGINX One
 content/nginx-one-console/*         @nginx/one-docs-approvers
+content/includes/nginx-one-console/* @nginx/one-docs-approvers
 

@@ -4,9 +4,9 @@ description: Understand the basic elements in an NGINX or F5 NGINX Plus configur
 f5-docs: DOCS-378
 title: Create NGINX Plus and NGINX Configuration Files
 toc: true
-weight: 200
+weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 NGINX and NGINX Plus use a text‑based configuration file, by default named **nginx.conf**.

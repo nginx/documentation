@@ -3,9 +3,9 @@ title: Enable content caching
 weight: 200
 toc: true
 f5-docs: DOCS-897
-url: /nginxaas/azure/quickstart/basic-caching/
+url: /nginxaas-azure/quickstart/basic-caching/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) supports caching using the [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) module, improving performance by allowing content to be served from cache without having to contact upstream servers. For more information on caching with NGINX, see [NGINX Content Caching](https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching/).

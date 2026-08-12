@@ -1,5 +1,5 @@
 ---
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-files:
 - content/agent/installation-upgrade/installation-oss.md
 - content/nginx-one-console/agent/install-upgrade/install-from-oss-repo.md
@@ -59,7 +59,7 @@ package's authenticity. Fetch the key:
    sudo zypper install nginx-agent
    ```
 
-   {{<call-out "tip" "Tip: Install specific versions" "" >}}
+   {{<call-out class="tip" title="Tip: Install specific versions" >}}
    To install `nginx-agent` with a specific version (for example, 2.42.0):
 
    ```shell

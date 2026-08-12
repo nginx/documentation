@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Add service-specific locations
 toc: true
 weight: 400
@@ -11,7 +11,7 @@ weight: 400
 
 This guide shows how to extend a working submission from the [Submit Templates Guide]({{< ref "submit-templates.md" >}}) by adding server augments for new services with dedicated location augments.
 
-{{< call-out "note" "Note" >}}Because you can’t retrieve previous submissions, you must include the full request with any updates.{{< /call-out >}}
+{{< call-out class="note" title="Note" >}}Submissions are persistent objects. Use the [Get a submission]({{< ref "submit-templates.md#get-a-submission" >}}) operation to retrieve the stored values from a previous submission before building an update.{{< /call-out >}}
 
 ## Import template
 
@@ -68,7 +68,7 @@ When [Importing]({{< ref "import-templates.md#ready-to-import" >}}) this templat
 
 Create a location augment template to add location blocks within each server.
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 If you already have a "health-check" location augment from earlier steps, you can add it to the new servers.
 {{< /call-out >}}
 

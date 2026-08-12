@@ -5,7 +5,7 @@ title: Deployment
 toc: true
 weight: 90
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Overview
@@ -43,7 +43,7 @@ The F5 DoS for NGINX package has the following dependencies:
 
 See the NGINX Plus full list of prerequisites for more details. F5 DoS for NGINX can be installed as a module to an existing NGINX Plus installation or as a complete NGINX Plus with App Protect DoS installation in a clean environment or to a system with F5 WAF for NGINX.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 - gRPC, HTTP/2 and WebSocket protection require active monitoring of the protected service. The directive `app_protect_dos_monitor` is mandatory for the attack to be detected.
 - Monitor directive `app_protect_dos_monitor` with proxy_protocol parameter can not be configured on Ubuntu 18.04. As a result, gRPC and HTTP/2 DoS protection for proxy_protocol configuration is not supported.
@@ -100,7 +100,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf -y install epel-release
     ```
 
-8. Add the NGINX Plus and F5 DoS for NGINX repository:
+8. Add NGINX Plus and NGINX App Protect DoS repository:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-8.repo
@@ -119,7 +119,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf install app-protect-dos-ebpf-manager
     ```
 
-    {{< call-out "note" >}}
+    {{< call-out class="note" >}}
    L4 accelerated mitigation feature (RHEL 8.6+):
    - `app-protect-dos-ebpf-manager` run with root privileges.
     {{< /call-out >}}
@@ -144,7 +144,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
-    {{< call-out "note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
 
 1. {{< include "nginx-plus/install/check-nginx-binary-version.md" >}}
 
@@ -248,7 +248,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting/how-to-troubleshoot.md" >}}).
 
-    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) article for details.{{< /call-out >}}
+    {{< call-out class="note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux) article for details.{{< /call-out >}}
 
 16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
@@ -314,7 +314,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf -y install epel-release
     ```
 
-7. Add the NGINX Plus and F5 DoS for NGINX repositories:
+7. Add the NGINX Plus and NGINX App Protect DoS repositories:
 
     ```shell
     sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/plus-9.repo
@@ -333,7 +333,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf install app-protect-dos-ebpf-manager
     ```
 
-    {{< call-out "note" >}}
+    {{< call-out class="note" >}}
    L4 accelerated mitigation feature (RHEL 9):
    - `app-protect-dos-ebpf-manager` run with root privileges.
     {{< /call-out >}}
@@ -358,7 +358,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
-    {{< call-out "note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
 
 10. Check the NGINX binary version to ensure that you have NGINX Plus installed correctly:
 
@@ -465,7 +465,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     If you encounter any issues, refer to the [Troubleshooting Guide]({{< ref "/nap-dos/troubleshooting/how-to-troubleshoot.md" >}}).
 
-    {{< call-out "note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/) article for details.{{< /call-out >}}
+    {{< call-out class="note" >}}Additional SELinux configuration may be required to allow NGINX Plus to listen on specific network ports, connect to upstreams, and send syslog entries to remote systems. Refer to the practices outlined in the [Using NGINX and NGINX Plus with SELinux](https://www.f5.com/company/blog/nginx/using-nginx-plus-with-selinux/) article for details.{{< /call-out >}}
 
 16. To enable the NGINX/App-Protect-DoS service to start at boot, run the command:
 
@@ -524,7 +524,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install apt-transport-https lsb-release ca-certificates wget gnupg2 ubuntu-keyring
     ```
 
-    {{< call-out "note" >}}In case the apt installation or database update fails due to release info change, run the below command before you install.{{< /call-out >}}
+    {{< call-out class="note" >}}In case the apt installation or database update fails due to release info change, run the below command before you install.{{< /call-out >}}
 
     ```shell
     sudo apt-get update --allow-releaseinfo-change
@@ -571,7 +571,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos-ebpf-manager
     ```
 
-   {{< call-out "note" >}}
+   {{< call-out class="note" >}}
    L4 accelerated mitigation feature (Debian 11 /  Debian 12 /  Ubuntu 22.04 / Ubuntu 24.04):
    - `app-protect-dos-ebpf-manager` run with root privileges.
    {{< /call-out >}}
@@ -723,7 +723,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo sudo apk add app-protect-dos-ebpf-manager
     ```
 
-   {{< call-out "note" >}}
+   {{< call-out class="note" >}}
    L4 accelerated mitigation feature:
    - `app-protect-dos-ebpf-manager` run with root privileges.
    {{< /call-out >}}
@@ -837,7 +837,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo dnf install app-protect-dos-ebpf-manager
     ```
 
-    {{< call-out "note" >}}
+    {{< call-out class="note" >}}
    L4 accelerated mitigation feature:
    - `app-protect-dos-ebpf-manager` run with root privileges.
     {{< /call-out >}}
@@ -862,7 +862,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo systemctl start nginx
     ```
 
-    {{< call-out "note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
+    {{< call-out class="note" >}} Make sure to restore configuration from `/etc/nginx-plus-backup` back to `/etc/nginx-plus`.{{< /call-out >}}
 
 9. Confirm the NGINX binary version to make sure that you have NGINX Plus installed correctly:
 
@@ -1019,7 +1019,7 @@ You need root permissions to execute the following steps.
     }
     ```
 
-   {{< call-out "important" >}}
+   {{< call-out class="important" >}}
    Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
    {{< /call-out >}}
 
@@ -1119,7 +1119,7 @@ You need root permissions to execute the following steps.
            docker run --name my-app-protect-dos -p 80:80 -d app-protect-dos
            ```
 
-   {{< call-out "note" >}}
+   {{< call-out class="note" >}}
    L4 accelerated mitigation feature:
    - `app-protect-dos-ebpf-manager` need to run with root privileges.
    {{< /call-out >}}
@@ -1373,7 +1373,7 @@ STOPSIGNAL SIGQUIT
 CMD ["sh", "/root/entrypoint.sh"]
 ```
 
-## Docker Deployment with F5 WAF for NGINX
+## Docker Deployment with NGINX App Protect
 
 ### Docker Deployment Instructions
 
@@ -1492,7 +1492,7 @@ You need root permissions to execute the following steps.
     }
     ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 Make sure to replace upstream and proxy pass directives in this example with relevant application backend settings.
 {{< /call-out >}}
 
@@ -1667,7 +1667,7 @@ RUN apt-get update && \
     wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null && \
     wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg > /dev/null
 
-# Add NGINX Plus, F5 WAF for NGINX, and F5 DoS for NGINX repositories:
+# Add NGINX Plus, NGINX App Protect and F5 DoS for NGINX repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/debian `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \
@@ -1712,7 +1712,7 @@ RUN apt-get update && \
     wget -qO - https://cs.nginx.com/static/keys/nginx_signing.key | gpg --dearmor | tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null && \
     wget -qO - https://cs.nginx.com/static/keys/app-protect-security-updates.key | gpg --dearmor | tee /usr/share/keyrings/app-protect-security-updates.gpg > /dev/null
 
-# Add NGINX Plus, F5 WAF for NGINX, and F5 DoS for NGINX repositories:
+# Add NGINX Plus, NGINX App Protect and F5 DoS for NGINX repository:
 RUN printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-plus.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect-dos.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect/ubuntu `lsb_release -cs` nginx-plus\n" | tee /etc/apt/sources.list.d/nginx-app-protect.list \

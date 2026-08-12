@@ -2,9 +2,9 @@
 title: Hosting static content in Azure Blob Storage
 weight: 210
 toc: true
-url: /nginxaas/azure/quickstart/hosting-static-content-blob-storage/
+url: /nginxaas-azure/quickstart/hosting-static-content-blob-storage/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 F5 NGINXaaS for Azure (NGINXaaS) can serve static content stored in Azure Blob Storage using private endpoints, ensuring maximum security by keeping your storage account completely inaccessible from the public Internet. This approach also eliminates the configuration payload size limitations of local hosting.
@@ -75,7 +75,7 @@ Upload your static files to a container in your storage account. In this example
 1. Select **Generate SAS and connection string**.
 1. Copy the **SAS token** (the part starting with `?sv=`).
 
-{{< call-out "important" >}}Store the SAS token securely and regenerate it regularly according to your security policies. Grant only the minimum permissions required for your use case.{{< /call-out >}}
+{{< call-out class="important" >}}Store the SAS token securely and regenerate it regularly according to your security policies. Grant only the minimum permissions required for your use case.{{< /call-out >}}
 
 ## Configure NGINXaaS
 
@@ -111,7 +111,7 @@ http {
 }
 ```
 
-{{< call-out "important" >}}Replace the following placeholders:
+{{< call-out class="important" >}}Replace the following placeholders:
 - `your-storage-account` with your actual storage account name
 - `YOUR_SAS_SIGNATURE_HERE` with your actual SAS token signature
 - Update the SAS token parameters according to your generated token{{< /call-out >}}

@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1500
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-files:
 - content/nim/nginx-configs/config-templates/concepts/augment-templates.md
 - content/nim/nginx-configs/config-templates/concepts/config-templates.md
@@ -13,4 +13,4 @@ f5-files:
 
 <br>
 
-<i class="fa-solid fa-download"></i> [Download example config templates for NGINX Instance Manager from GitHub](https://github.com/f5devcentral/n1_nim_template_examples)
+{{% icon download %}} [Download example config templates for NGINX Instance Manager from GitHub](https://github.com/f5devcentral/n1_nim_template_examples)

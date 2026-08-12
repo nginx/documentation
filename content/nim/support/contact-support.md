@@ -4,7 +4,7 @@ title: Where to go for support
 toc: true
 weight: 300
 f5-content-type: concept
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Find the right support channel for F5 NGINX Instance Manager, including links to the knowledge base, community, and F5 support."
 f5-summary: >
   Find the right channel for getting help with F5 NGINX Instance Manager.
@@ -15,7 +15,7 @@ f5-summary: >
 
 F5 NGINX Instance Manager follows the support policy detailed in the knowledge base article: [K000140156](https://my.f5.com/manage/s/article/K000140156).
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 Support licenses for NGINX Instance Manager **do not include** support for the NGINX instances being managed.
 
 Community support is available for NGINX Open Source instances on the [NGINX mailing list](http://mailman.nginx.org/mailman/listinfo). If you need support for NGINX Plus or [prebuilt NGINX Open Source packages](https://nginx.org/en/linux_packages.html), you must [purchase an NGINX license](https://www.nginx.com/purchase-nginx/).
@@ -90,7 +90,7 @@ tar -f /tmp/nginx-manager-log.tar.gz \
 gzip -9 /tmp/nginx-manager-log.tar.gz
 ```
 
-{{< call-out "note" >}}Files shared with F5 are protected under the [F5 Support and Maintenance Privacy Statement](https://www.f5.com/company/policies/support-and-maintenance-privacy-statement).{{< /call-out >}}
+{{< call-out class="note" >}}Files shared with F5 are protected under the [F5 Support and Maintenance Privacy Statement](https://www.f5.com/company/policies/support-and-maintenance-privacy-statement).{{< /call-out >}}
 
 ---
 

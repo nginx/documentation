@@ -3,7 +3,7 @@ title: NGINX Ingress Controller and Open Service Mesh
 toc: true
 weight: 1800
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1181
 ---
 
@@ -28,7 +28,7 @@ osm install --mesh-name osm-nginx --osm-namespace osm-system
 
 ## Mark the F5 NGINX Ingress controller namespace for sidecar injection
 
-{{< call-out "warning" >}} 
+{{< call-out class="warning" >}} 
 
 Depending on how you install NGINX Ingress controller, you might need to create the `namespace`. 
 

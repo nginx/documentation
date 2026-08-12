@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Import templates
 toc: true
 weight: 100
@@ -37,13 +37,14 @@ Each template archive must contain:
 
 - **Exactly one `.tmpl` file** (required) - contains your NGINX configuration template
 - **One `schema.yaml` or `schema.json` file** (optional) - required only if your template uses variables. For more information, see [Schema Definitions]({{< ref "author-templates.md#schema-definitions" >}})
-- **No other files** - additional files will be ignored or cause import failure
+- **Static include files** (optional) - additional files referenced by NGINX `include` directives within the template. Any file extension is valid (`.conf`, `.types`, etc.). See [Static include files]({{< ref "author-templates.md#static-include-files" >}}) for details.
 
 ```text
 <archive-name>.tar.gz
 │
 ├── <template-file>.tmpl
-└── <schema-file>.yaml
+├── <schema-file>.yaml        # optional
+└── <static-file>.conf        # optional, one or more include files
 ```
 
 ### Naming conventions
@@ -139,7 +140,7 @@ EOF
 
 #### 3. Create the archive
 
-{{< call-out "important" "Important" >}}
+{{< call-out class="important" title="Important" >}}
 Always create archives from within the template directory to ensure files are at the root level.
 {{< /call-out >}}
 
@@ -170,6 +171,7 @@ ls -la /tmp/verify-archive/
 ``` text
 reverse-proxy.tmpl
 schema.yaml
+mime.types              # only if template references include files
 ```
 
 ### Complete example workflow
@@ -268,7 +270,7 @@ ls -la *.tar.gz
 
 ### Tips
 
-1. **Do not create nested directories in archives**
+   1. **Do not create nested directories in archives**
    ```bash
    # Avoid - nested directory structure is not supported
    tar -czf template.tar.gz template-dir/
@@ -282,8 +284,8 @@ ls -la *.tar.gz
    # Avoid - hidden files, backups or other file extensions will be ignored
    tar -czf template.tar.gz *~ .* *.bak *.tmpl schema.yaml
    
-   # Correct - only include required files
-   tar -czf template.tar.gz *.tmpl schema.yaml
+   # Correct - only include required files and any desired static content files
+   tar -czf template.tar.gz *.tmpl schema.yaml *.conf *.types
    ```
 
 3. **Include a schema for templates with variables**
@@ -293,6 +295,11 @@ ls -la *.tar.gz
 4. **Do not include multiple template files in one archive**
     - Each archive must contain exactly one `.tmpl` file
     - Create separate archives for related templates
+
+5. **Include files referenced by `include` directives**
+    - If your template uses a standard NGINX `include` directive to reference a static file (for example, `include mime.types;`), that file must be present in the archive.
+    - Include files are placed at the root of the archive alongside the `.tmpl` and schema files.
+    - Any file extension is valid (`.conf`, `.types`, etc.).
 
 ### Ready to import
 
@@ -320,7 +327,7 @@ During import, the system will validate:
 - Schema validity (if provided)
 - Variable references match schema definitions
 
-{{< call-out "important" "Important" >}}
+{{< call-out class="important" title="Important" >}}
 The `allowed_in_contexts` parameter is required to import augment templates. The import process checks that this parameter is included, but it doesn’t confirm whether the contexts are valid for your template’s NGINX directives. Context validation happens during template submission. Ensure your specified contexts match where your NGINX directives are allowed to appear to avoid submission errors.
 {{< /call-out >}}
 

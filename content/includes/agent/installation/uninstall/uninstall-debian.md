@@ -1,5 +1,5 @@
 ---
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-files:
 - content/agent/installation-upgrade/uninstall.md
 - content/nginx-one-console/agent/install-upgrade/uninstall.md
@@ -19,4 +19,4 @@ Complete the following steps on each host where you've installed NGINX Agent:
    sudo apt-get remove nginx-agent
    ```
 
-   {{< call-out "note" >}} The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`. {{< /call-out >}}
+   {{< call-out class="note" >}} The `apt-get remove <package>` command will remove the package from your system, while keeping the associated configuration files for possible future use. If you want to completely remove the package and all of its configuration files, you should use `apt-get purge <package>`. {{< /call-out >}}

@@ -3,7 +3,7 @@ title: The design of NGINX Ingress Controller
 toc: true
 weight: 200
 f5-content-type: concept
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-609
 ---
 
@@ -24,7 +24,7 @@ This figure depicts an example of NGINX Ingress Controller exposing two web appl
 
 {{<img src="/nic/ic-high-level.png" alt="">}}
 
-{{< call-out "note" >}} For simplicity, necessary Kubernetes resources like Deployments and Services aren't shown, which Admin and the users also need to create.{{< /call-out >}}
+{{< call-out class="note" >}} For simplicity, necessary Kubernetes resources like Deployments and Services aren't shown, which Admin and the users also need to create.{{< /call-out >}}
 
 The figure shows:
 

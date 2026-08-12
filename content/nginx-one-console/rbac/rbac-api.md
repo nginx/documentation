@@ -4,7 +4,7 @@ weight: 500
 toc: true
 f5-content-type: reference
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 ---
 
 Beyond the [Default roles]({{< ref "/nginx-one-console/rbac/roles.md" >}}) for NGINX One Console access, you can create [custom roles](https://docs.cloud.f5.com/docs-v2/administration/how-tos/user-mgmt/roles#custom-roles) with more precisely defined access permissions.
@@ -17,7 +17,7 @@ For this use-case, we include a list of API groups that you can use to specify p
 
 The following table lists the available API groups that you can use to construct a Role. These are narrowly scoped API groups that align with all the features and functionality within the NGINX One Console. These groups can help you create custom roles tailored to your specific needs.
 
-{{< call-out "note" >}}If you create custom roles using these API groups, users may not have access to all capabilities of the browser web portal.{{< /call-out >}}
+{{< call-out class="note" >}}If you create custom roles using these API groups, users may not have access to all capabilities of the browser web portal.{{< /call-out >}}
 
 | API Group Name                          | Level of Access | Description                                                                                                                   |
 |-----------------------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|

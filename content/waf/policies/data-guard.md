@@ -3,7 +3,7 @@ title: "Data guard"
 weight: 800
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This page describes the data guard feature of F5 WAF for NGINX.
@@ -44,7 +44,7 @@ The following example enables _blocking mode_:
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In _blocking mode_, data masking has no effect.
 

@@ -1,7 +1,6 @@
 ---
 f5-product:
-- NIMNGR
-- SOLUTI
+- F5 NGINX Instance Manager
 f5-files:
 - content/nim/licensing-and-reporting/report-usage-connected-deployment.md
 - content/nim/licensing-and-reporting/report-usage-disconnected-deployment.md
@@ -24,7 +23,7 @@ f5-files:
     systemctl reload nginx
     ```
 
-{{<call-out "note" "If you’re using self-signed certificates" >}}
+{{<call-out class="note" title="If you’re using self-signed certificates" >}}
 If you’re using self-signed certificates with NGINX Instance Manager,  
 see [Configure SSL verification for self-signed certificates]({{< ref "nim/system-configuration/secure-traffic.md#configure-ssl-verify" >}}) for additional steps.
 {{</call-out>}}

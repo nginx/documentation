@@ -4,7 +4,7 @@ description: Manually download and upload F5 WAF for NGINX security packages to 
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Manually download and upload F5 WAF for NGINX security packages to F5 NGINX Instance Manager when automatic updates are not enabled.
   This guide covers downloading attack signature, bot signature, and threat campaign packages and uploading them through the NGINX Instance Manager REST API.
@@ -166,7 +166,7 @@ curl -X POST 'https://<NIM_FQDN>/api/platform/v1/security/threat-campaigns' \
   --form 'filename=@"/threat-campaigns.tgz"'
 ```
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The bundle you upload must match both the operating system and version of your NGINX Instance Manager host.  
 Create the `.tgz` file using the package built for the same OS and version to ensure compatibility.
 {{< /call-out >}}

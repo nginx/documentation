@@ -6,7 +6,7 @@ title: Load Balancing Oracle E-Business Suite with NGINX Plus
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This deployment guide explains how to use F5 NGINX Plus to load balance traffic across a pool of <span style="white-space: nowrap;">Oracle E-Business Suite (EBS) 12</span> servers. It provides complete instructions for configuring NGINX Plus as required.
@@ -92,7 +92,7 @@ For improved security, the NGINX Plus load balancer might be located in a DMZ. 
 Review the network configuration requirements in the table and make appropriate changes to your firewalls before proceeding with the configuration.
 
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |**Purpose** | **Port** | **Source** | **Destination** |
 | ---| ---| ---| --- |
@@ -103,7 +103,7 @@ Review the network configuration requirements in the table and make appropriate 
 |Access to backend application | 8000* | NGINX Plus | Backend application servers |
 |Access to load‑balanced application from application servers | 443 | Backend application servers | NGINX Plus load balancer |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 **\*** Replace port 8000 with the actual application port as appropriate.
@@ -251,7 +251,7 @@ Use the AutoConfig Context Editor to set the configuration values in the applica
 Here are examples of appropriate values:
 
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 |Load Balancer Entry Point | store.company.com |
 |Application Server 1 | apps-tier1.company.com |
@@ -261,7 +261,7 @@ Here are examples of appropriate values:
 |Application Tier Web Port | 8000 |
 |Active Web Port | 443 |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 <span id="nginx-plus-configure"></span>
@@ -981,7 +981,7 @@ http {
 This configuration is for two Web Entry Points with the following settings:
 
 
-{{<bootstrap-table "table table-bordered table-striped table-responsive table-sm">}}
+{{<table>}}
 
 | | **Web Entry Point 1** | **Web Entry Point 2** |
 | ---| ---| --- |
@@ -993,7 +993,7 @@ This configuration is for two Web Entry Points with the following settings:
 |EBS servers | 172.31.11.210 & 172.31.0.146 | 172.31.11.211 & 172.31.0.147 |
 |Backup (DR) EBS servers | 172.33.111.210 & 172.33.100.146 | 172.33.111.211 & 172.33.100.147 |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
 
 ```nginx

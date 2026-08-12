@@ -1,8 +1,8 @@
 ---
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-files:
 - content/nginx/_index.md
 - content/nginxaas-azure/overview/feature-comparison.md
 ---
 
-{{< call-out "note" >}}For a detailed comparison between NGINX Plus and NGINX Open Source, refer to [Differences between NGINX Open Source and NGINX Plus](https://www.f5.com/products/get-f5/nginx-open-source-vs-nginx-one-differences-in-features) on the F5 website.{{</ call-out >}}
+{{< call-out class="note" >}}For a detailed comparison between NGINX Plus and NGINX Open Source, refer to [Differences between NGINX Open Source and NGINX Plus](https://www.f5.com/products/get-f5/nginx-open-source-vs-nginx-one-differences-in-features) on the F5 website.{{</ call-out >}}

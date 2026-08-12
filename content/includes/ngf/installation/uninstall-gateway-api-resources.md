@@ -1,12 +1,12 @@
 ---
 f5-docs: DOCS-1436
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-files:
 - content/ngf/how-to/gateway-api-inference-extension.md
 - content/ngf/install/helm.md
 ---
 
-{{< call-out "warning" >}} This step will remove all corresponding custom resources in your entire cluster, across every namespace. 
+{{< call-out class="warning" >}} This step will remove all corresponding custom resources in your entire cluster, across every namespace. 
 
 Ensure you don't have any custom resources you need to keep, and confirm that there are no other Gateway API implementations active in your cluster. {{< /call-out >}}
 

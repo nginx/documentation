@@ -4,7 +4,7 @@ description: Apply F5 WAF for NGINX directives in your NGINX configuration files
 toc: true
 weight: 200
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Edit your NGINX configuration files to apply the required F5 WAF for NGINX directives after you've added a WAF configuration to your instances.
   Adding the correct directives enables protection and ensures the configuration references the right policy and log profile bundles.
@@ -76,20 +76,20 @@ If you’re running **F5 WAF for NGINX Docker Compose**, note the following:
 
 {{%tab name="API"%}}
 
-{{< call-out "note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
+{{< call-out class="note" >}}{{< include "nim/how-to-access-nim-api.md" >}}{{< /call-out>}}
 
 You can use the **NGINX Instance Manager** REST API to deploy your F5 WAF for NGINX configuration.
 
-{{<bootstrap-table "table">}}
+{{<table>}}
 
 | Method | Endpoint |
 |--------|-----------|
 | GET | `/api/platform/v1/systems/{systemUID}/instances` |
 | POST | `/api/platform/v1/security/{systemUID}/instances/{nginxUID}/config` |
 
-{{</bootstrap-table>}}
+{{</table >}}
 
-{{< call-out "important" "Important:" >}}Before deploying a configuration to an instance group, make sure all instances in the group run the same version of F5 WAF for NGINX. Otherwise, deployment may fail.{{< /call-out >}}
+{{< call-out class="important" title="Important:" >}}Before deploying a configuration to an instance group, make sure all instances in the group run the same version of F5 WAF for NGINX. Otherwise, deployment may fail.{{< /call-out >}}
 
 1. Send a `GET` request to list all instances. The response includes the unique identifier (UID) of the instance you want to update.
 

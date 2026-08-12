@@ -3,7 +3,7 @@ title: "Brute force attack preventions"
 weight: 600
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the brute force attack prevention feature of F5 WAF for NGINX.
@@ -54,7 +54,7 @@ The configuration of a login-pages includes the URL itself, the username and pas
         ]
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For more information, see the [login-pages section]({{< ref "/waf/policies/parameter-reference.md#policy/login-pages" >}}) of the parameter reference.
 
@@ -172,7 +172,7 @@ This example includes both configuration for all pages and configuration for ind
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 For more information, see the [brute-force-attack-preventions section]({{< ref "/waf/policies/parameter-reference.md#policy/brute-force-attack-preventions" >}}) of the parameter reference.
 

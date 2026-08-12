@@ -3,7 +3,7 @@ title: Get started with F5 WAF for NGINX
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: Quick start guide for protecting traffic with F5 WAF for NGINX in NGINX Gateway Fabric.
 f5-summary: >
   Deploy a sample application, compile a WAF policy, and apply it to a Gateway using NGINX Gateway Fabric.
@@ -18,7 +18,7 @@ For an overview of WAF concepts and architecture, see [F5 WAF for NGINX overview
 
 ## Before you begin
 
-- [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
+- [Install]({{< ref "/ngf/install/helm.md" >}}) NGINX Gateway Fabric using the **NGINX Plus with WAF** tab. This sets the WAF-enabled NGINX Plus image and enables WAF globally.
 - Have a valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and is not included with the NGINX Plus license.
 - Have NGINX Gateway Fabric configured with an `imagePullSecret` for the NGINX private container registry (`private-registry.nginx.com`), either through Helm values or deployment manifests. When a Gateway is deployed, NGINX Gateway Fabric automatically creates the registry secret in the Gateway's namespace with the naming convention `<gateway-name>-nginx-<image-pull-secret-name>. The bundle server Deployment in this guide references the same secret for pulling the F5 WAF compiler image, be sure to update the secret name to match your environment.
 
@@ -103,31 +103,18 @@ EOF
 
 ---
 
-## Create the Gateway with WAF enabled
+## Create the Gateway
 
-Create an `NginxProxy` with `waf.enable: true` and a Gateway that references it. This instructs NGINX Gateway Fabric to deploy the WAF sidecar containers alongside the NGINX Pod for this Gateway:
+Create a Gateway. Because you installed using the **NGINX Plus with WAF** tab, WAF is already enabled globally — NGINX Gateway Fabric automatically deploys the WAF sidecar containers alongside the NGINX Pod:
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.nginx.org/v1alpha2
-kind: NginxProxy
-metadata:
-  name: waf-enabled-proxy
-spec:
-  waf:
-    enable: true
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: gateway
 spec:
   gatewayClassName: nginx
-  infrastructure:
-    parametersRef:
-      name: waf-enabled-proxy
-      group: gateway.nginx.org
-      kind: NginxProxy
   listeners:
   - name: http
     port: 80
@@ -136,7 +123,7 @@ spec:
 EOF
 ```
 
-{{< call-out "tip" >}} This creates a per-Gateway NginxProxy. You can also enable WAF for all Gateways at once using the GatewayClass-level NginxProxy or Helm values. See [Enable WAF on the NginxProxy]({{< ref "/ngf/waf-integration/overview.md#enable-waf-on-the-nginxproxy" >}}) for details, including custom WAF container images and additional settings. {{< /call-out >}}
+{{< call-out class="note" >}} If you installed with the standard NGINX Plus image and need to enable WAF on a specific Gateway, see [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
 
 ---
 
@@ -317,7 +304,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} The compiler image tag must match the F5 WAF for NGINX version supported by your NGINX Gateway Fabric release. See the [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) for the supported version. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
+{{< call-out class="note" >}} The compiler image tag must match the F5 WAF for NGINX version supported by your NGINX Gateway Fabric release. See the [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}) for the supported version. The `imagePullSecrets` name must match the secret configured for accessing the NGINX private container registry. See [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}) for full compiler usage details. {{< /call-out >}}
 
 Wait for the init containers to compile the policies and the bundle server to start:
 
@@ -354,7 +341,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}} If you deployed the resources in a different namespace, replace `default` in the bundle server URL with your namespace: `http://bundle-server.<namespace>.svc.cluster.local/attack-signatures-blocking.tgz`. {{< /call-out >}}
+{{< call-out class="note" >}} If you deployed the resources in a different namespace, replace `default` in the bundle server URL with your namespace: `http://bundle-server.<namespace>.svc.cluster.local/attack-signatures-blocking.tgz`. {{< /call-out >}}
 
 ---
 
@@ -438,7 +425,7 @@ GW_PORT=<port number>
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
-{{< call-out "note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
+{{< call-out class="note" >}} If you have a DNS record allocated for `cafe.example.com`, you can send the request directly to that hostname, without needing to resolve. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
@@ -480,7 +467,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out "note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
+{{< call-out class="note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log (stderr in this example) for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
 
 ---
 

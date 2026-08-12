@@ -6,7 +6,7 @@ description: Platforms supported by F5 NGINX Plus and dynamically loaded modules
 toc: true
 weight: 400
 f5-content-type: reference
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-473
 ---
 
@@ -21,20 +21,17 @@ NGINX Plus is available only as a binary; it is not distributed as source code. 
 [Dynamic modules]({{< ref "/nginx/admin-guide/dynamic-modules/dynamic-modules.md#nginx-authored-and-nginx-certified-dynamic-modules" >}}) are supported on the [same distributions as NGINX Plus](#supported-distributions), unless noted otherwise in the table below.
 
 {{< table >}}
+|                        | [F5 WAF for NGINX]({{< ref "/waf/changelog.md#packages" >}}) | [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
+|------------------------|----------------------|--------|---------|---------------|-------------|---------------|
+| **RHEL-based***        | See [Packages]({{< ref "/waf/changelog/_index.md#packages" >}}) | ❌     | ✓    | ✓     | ✓    | ✓   |
+| **Alpine Linux**       | See [Packages]({{< ref "/waf/changelog/_index.md#packages" >}}) | ✓      | ✓    | ❌    | ❌   | ✓   |
+| **Amazon Linux 2**     | ❌                                                              | ✓      | ❌   | ❌    | ✓    | ❌  |
+| **Amazon Linux 2023**  | See [Packages]({{< ref "/waf/changelog/_index.md#packages" >}}) | ❌     | ✓    | ❌    | ✓     | ✓  |
+| **Debian**, **Ubuntu** | See [Packages]({{< ref "/waf/changelog/_index.md#packages" >}}) | ✓      | ✓    | ✓     | ✓     | ✓  |
+| **FreeBSD**            | ❌                                                              | ❌     | ✓    | ❌    | ❌   | ✓   |
+| **SLES**               | ❌                                                              | 15 only| ✓    | ✓     | ✓    | ✓   |
 
-| Distribution | [F5 WAF for NGINX]({{< ref "/waf/changelog.md#packages" >}}) | [GeoIP]({{< ref "/nginx/admin-guide/dynamic-modules/geoip.md" >}}) | [GeoIP2]({{< ref "/nginx/admin-guide/dynamic-modules/geoip2.md" >}}) | [HA-Keepalived]({{< ref "/nginx/admin-guide/high-availability/ha-keepalived-nodes.md#configuring-keepalived-for-an-additional-passive-node" >}}) | [NGINX sync]({{< ref "/nginx/admin-guide/high-availability/configuration-sharing.md#installing-nginx-sync-on-the-primary-machine" >}}) | [OpenTelemetry]({{< ref "/nginx/admin-guide/dynamic-modules/opentelemetry.md" >}}) |
-|--------------|------------|-------|---------|---------------|------------|---------------|
-| **AlmaLinux** | ❌ | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **Alpine Linux 3.20, 3.21, 3.22** | 3.22 x86_64 only | ✓ | ✓ | ❌ | ❌ | ✓ |
-| **Amazon Linux 2** | ❌ | ✓ | ❌ | ❌ | ✓ | ❌ |
-| **Amazon Linux 2023** | ✓ (x86_64 only) | ❌ | ✓ | ❌ | ✓ | ✓ |
-| **Debian 11 & 12** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **FreeBSD** | ❌ | ❌ | ✓ | ❌ | ❌ | ✓ |
-| **Oracle Linux 8** | ✓ (x86_64 only) |  ❌ | ✓ | ✓ | ✓ | ✓ |
-| **RHEL 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **Rocky Linux 8 & 9** | ✓ (x86_64 only) | ❌ | ✓ | ✓ | ✓ | ✓ |
-| **SLES** | ❌ | 15 only | ✓ | ✓ | ✓ | ✓ |
-| **Ubuntu 22.04 & 24.04** | ✓ (x86_64 only) | ✓ | ✓ | ✓ | ✓ | ✓ |
+*RHEL-based operating systems include Red Hat Enterprise Linux, AlmaLinux, Oracle Linux, Rocky Linux.
 
 {{< /table >}}
 
@@ -57,7 +54,7 @@ TLSv1.3 is supported starting from NGINX Plus R17 and is enabled by default in N
 
 TLSv1.2 and TLSv1.3 are the default SSL protocols starting from NGINX Plus R34 (if supported by the OpenSSL library). If OpenSSL 1.0.0 or older is used, the default SSL protocols are TLSv1 and TLSv1.1.
 
-{{< call-out "note" "Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} NGINX Plus is built on the latest minor release of each supported operating system platform. In many cases, the latest revisions of these operating systems are adapting their platforms to support OpenSSL 3.5 (for example, RHEL 9.7 and 10.1). In these situations, NGINX Plus requires that OpenSSL 3.5.0 or later is installed for proper operation. {{< /call-out >}}
 
 ## Supported Deployment Environments
 

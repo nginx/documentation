@@ -3,7 +3,7 @@ title: Rate Limit Policy API
 toc: true
 weight: 1500
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-0000
 ---
 
@@ -95,7 +95,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 
@@ -280,7 +280,7 @@ EOF
 
 This will let the `RateLimitPolicy` affect both the coffee HTTPRoute and the grpc-route GRPCRoute.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 RateLimitPolicy does not allow mixing Gateway kind with HTTPRoute or GRPCRoute kinds in targetRefs.
 

@@ -1,5 +1,5 @@
 ---
-f5-product: NONECO
+f5-product: NGINX One Console
 f5-files:
 - content/glossary/_index.md
 - content/nginx-one-console/glossary.md
@@ -9,7 +9,7 @@ You can configure a variety of NGINX alerts in the F5 Distributed Cloud. If you 
 
 Go to **Notifications > Alerts**. Select the gear icon and select **Alert Name > Active Alerts**. You may see one or more of the following alerts in the **Audit Logs & Alerts** Console. 
 
-{{<bootstrap-table "table table-striped table-bordered">}}
+{{<table>}}
 
 ### Alert Labels
 
@@ -26,4 +26,4 @@ Go to **Notifications > Alerts**. Select the gear icon and select **Alert Name >
 | NewNGINX                      | A new NGINX instance has connected to NGINX One                   | Minor           | Review the instance details in the NGINX One Console. Confirm availability, CVEs, and recommendations to ensure the instance is operational. |
 | NGINXCertificateExpired  | A certificate on an NGINX instance or Config Sync Group has expired  | Critical | Get a new certificate from your certificate authority, then update the TLS/SSL certificate in the NGINX One Console. |
 | NGINXCertificateExpiring | A certificate on an NGINX instance or Config Sync Group will expire soon | Major    | Renew the certificate through your certificate authority, then update the TLS/SSL certificate in the NGINX One Console. |
-{{</bootstrap-table>}}
+{{</table >}}

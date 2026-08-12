@@ -3,7 +3,7 @@ title: Configure JSON Web Token (JWT) authentication
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: How to configure JSON Web Token (JWT) authentication in NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD).
 f5-summary: >
   NGINX Gateway Fabric supports JWT authentication via the AuthenticationFilter CRD, validating JSON Web Tokens in incoming requests using JSON Web Key Sets (JWKS).
@@ -17,7 +17,7 @@ JWT authentication secures applications and APIs by validating JSON Web Tokens i
 
 By following these instructions, you will create two sample application endpoints: one with JWT authentication and one without, so you can see how each behaves.
 
-{{< call-out "note" >}} JWT authentication requires NGINX Plus. {{< /call-out >}}
+{{< call-out class="note" >}} JWT authentication requires NGINX Plus. {{< /call-out >}}
 
 ## Overview
 
@@ -31,7 +31,6 @@ NGINX Gateway Fabric supports two JWKS source types, set using the `source` fiel
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
-- [Install cert-manager](https://cert-manager.io/docs/installation/) in your cluster.
 
 ## Common setup
 
@@ -186,7 +185,7 @@ For testing purposes, the following example shows a simple JWKS with a single RS
 }
 ```
 
-{{< call-out "note" >}} This example JWKS is for demonstration only. In production, use keys from your identity provider or key management system. {{< /call-out >}}
+{{< call-out class="note" >}} This example JWKS is for demonstration only. In production, use keys from your identity provider or key management system. {{< /call-out >}}
 
 ### Create a JWKS Secret and AuthenticationFilter
 
@@ -315,7 +314,7 @@ Events:              <none>
 
 ### Verify file-based JWT authentication
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Your clients should be able to resolve "cafe.example.com" to the public IP of the NGINX Service.
 
@@ -394,6 +393,10 @@ Request ID: c7eb0509303de1c160cb7e7d2ac1d99f
 ## Remote JWT authentication
 
 Use remote JWT authentication when your identity provider (IdP) exposes a JWKS endpoint. NGINX Plus fetches the JWKS from the URI at runtime using an internal subrequest, so keys are always up to date without requiring a Secret or NGINX reload.
+
+### Install cert-manager
+
+{{< include "ngf/deploy-cert-manager.md" >}}
 
 ### Generate certificates
 
@@ -567,7 +570,7 @@ EOF
 - **realm**: (Optional) Sets the authentication realm shown in the `WWW-Authenticate` header when authentication fails.
 - **keyCache**: (Optional) Controls how long NGINX Plus caches the JWKS keys in memory. Supported values use standard time units such as 10s, 1m, or 1h. Caching avoids reloading the JWKS from the Secret for every request, improving performance. If not specified, the keys remain cached indefinitely and are only refreshed when NGINX is reloaded.
 
-{{< call-out "note" >}} The CA Secret must be in the same namespace as the AuthenticationFilter. {{< /call-out >}}
+{{< call-out class="note" >}} The CA Secret must be in the same namespace as the AuthenticationFilter. {{< /call-out >}}
 
 Verify the AuthenticationFilter is accepted with `kubectl describe`:
 
@@ -683,7 +686,7 @@ export JWT_TOKEN=$(curl -s -k -X POST https://localhost:8443/realms/nginx-gatewa
 
 ### Verify remote JWT authentication
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Your clients should be able to resolve "cafe.example.com" to the public IP of the NGINX Service.
 

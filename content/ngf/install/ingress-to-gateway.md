@@ -3,7 +3,7 @@ title: Migrate from NGINX Ingress Controller to NGINX Gateway Fabric
 weight: 800
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 This document describes how to migrate from F5 NGINX Ingress Controller to NGINX Gateway Fabric.
@@ -25,7 +25,7 @@ Migrating to Gateway API with NGINX Gateway Fabric helps future-proof your Kuber
 
 The ingress2gateway tool is a [Kubernetes SIG project](https://github.com/kubernetes-sigs) for converting Ingress resources to Gateway API resources. It supports multiple Ingress providers, including NGINX Ingress Controller.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 The ingress2gateway tool is a conversion utility that translates Ingress resources to Gateway API equivalents. It is not a complete end-to-end migration solution. 
 
 You will need to manually review the converted resources, test functionality, and make additional configuration changes as needed for your specific environment.

@@ -5,7 +5,7 @@ title: Set-Misc
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 The Set-Misc dynamic module extends the NGINX core [Rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) by implementing numerous additional `set_*` directives. 
@@ -78,7 +78,7 @@ After installation you will need to enable and configure the module in F5 NGINX 
    }
    ```
 
-   {{< call-out "note" >}} The directives must be in this order. {{< /call-out >}}
+   {{< call-out class="note" >}} The directives must be in this order. {{< /call-out >}}
 
 2. Perform additional configuration as required by the [module](https://github.com/openresty/set-misc-nginx-module).
 

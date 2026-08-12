@@ -3,7 +3,7 @@ title: ConfigMap resources
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-586
 ---
 
@@ -77,7 +77,7 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*set-real-ip-from* | Sets the value of the [set_real_ip_from](https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from) directive. | N/A |  |
 |*real-ip-header* | Sets the value of the [real_ip_header](https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header) directive. | *X-Real-IP* |  |
 |*real-ip-recursive* | Enables or disables the [real_ip_recursive](https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive) directive. | *False* |  |
-|*default-server-return* | Configures the [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)  directive in the default server, which handles a client request if none of the hosts of Ingress or VirtualServer resources match. The default value configures NGINX to return a 404 error page. You can configure a fixed response or a redirect. For example, *default-server-return: 302 https://nginx.org* will redirect a client to *https://nginx.org*. | *404* |  |
+|*default-server-return* | Configures the [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)  directive in the default server, which handles a client request if none of the hosts of Ingress or VirtualServer resources match. The default value configures NGINX to return a 404 error page. You can configure a fixed response or a redirect. For example, *default-server-return: 302 https://nginx.org* will redirect a client to *https://nginx.org*. When [-allow-empty-ingress-host](https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/#cmdoption-allow-empty-ingress-host) is enabled and an empty-host Ingress is active, this directive applies to requests that do not match any Ingress path, unless the Ingress defines a `/` path or `spec.defaultBackend`. | *404* |  |
 |*server-tokens* | Enables or disables the [server_tokens](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens) directive. Additionally, with the NGINX Plus, you can specify a custom string value, including the empty string value, which disables the emission of the “Server” field. | *True* |  |
 |*worker-processes* | Sets the value of the [worker_processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) directive. | *auto* |  |
 |*worker-rlimit-nofile* | Sets the value of the [worker_rlimit_nofile](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile) directive. | N/A |  |
@@ -111,12 +111,14 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*stream-log-format* | Sets the custom [log format](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#log_format) for TCP, UDP, and TLS Passthrough traffic. For convenience, it is possible to define the log format across multiple lines (each line separated by *\n*). In that case, the Ingress Controller will replace every *\n* character with a space character. All *'* characters must be escaped. | See the [template file](https://github.com/nginx/kubernetes-ingress/blob/v{{< nic-version >}}/internal/configs/version1/nginx.tmpl). |  |
 |*stream-log-format-escaping* | Sets the characters escaping for the variables of the stream log format. Supported values: *json* (JSON escaping), *default* (the default escaping) *none* (disables escaping). | *default* |  |
 
-### Request URI/Header manipulation
+### Header manipulation
 
 |ConfigMap Key | Description | Default |
 | ---| ---| ---|
 |*proxy-hide-headers* | Sets the value of one or more  [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) directives. Example: *"nginx.org/proxy-hide-headers": "header-a,header-b"* | N/A |
 |*proxy-pass-headers* | Sets the value of one or more   [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directives. Example: *"nginx.org/proxy-pass-headers": "header-a,header-b"* | N/A |
+|*add-header* | Adds one or more response headers with the [add_header](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header) directive in the `http` context. Use the format *Header-Name: value[:always]* and separate entries with commas. Example: `X-Frame-Options: DENY` or  `X-Frame-Options: DENY: always`.  | N/A |
+|*add-header-inherit* | Controls how [add_header_inherit](https://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header_inherit) applies inherited response headers. Allowed values are *on*, *off*, and *merge*. | N/A |
 
 ### Auth and SSL/TLS
 
@@ -125,10 +127,10 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
 |*redirect-to-https* | Sets a redirect rule based on the value of the *http_x_forwarded_proto* header on the server block to force incoming traffic to be over HTTPS. Useful when terminating SSL in a load balancer in front of the Ingress Controller — see [115](https://github.com/nginx/kubernetes-ingress/issues/115). The redirect code can be configured with the `http-redirect-code` key. | *False* |
 |*ssl-redirect* | Sets a redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS when TLS is configured. The redirect code can be configured with the `http-redirect-code` key. | *True* |
 |*http-redirect-code* | Sets the HTTP redirect code for HTTPS redirects. Supported codes: 301, 302, 307, 308. | *301* |
-|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. | *False* |
-|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. | *2592000* (1 month) |
-|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. | *False* | 
-|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. | *False* |
+|*hsts* | Enables [HTTP Strict Transport Security (HSTS)](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) : the HSTS header is added to the responses from backends. The *preload* directive is included in the header. Not applicable to VS/VSR. | *False* |
+|*hsts-max-age* | Sets the value of the *max-age* directive of the HSTS header. Not applicable to VS/VSR | *2592000* (1 month) |
+|*hsts-include-subdomains* | Adds the *includeSubDomains* directive to the HSTS header. Not applicable to VS/VSR | *False* | 
+|*hsts-behind-proxy* | Enables HSTS based on the value of the *http_x_forwarded_proto* request header. Should only be used when TLS termination is configured in a load balancer (proxy) in front of the Ingress Controller. Note: to control redirection from HTTP to HTTPS configure the *nginx.org/redirect-to-https* annotation. Not applicable to VS/VSR. | *False* |
 |*ssl-protocols* | Sets the value of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive. | *TLSv1 TLSv1.1 TLSv1.2* | 
 |*ssl-prefer-server-ciphers* | Enables or disables the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) directive. | *False* |
 |*ssl-ciphers* | Sets the value of the [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) directive. | *HIGH:!aNULL:!MD5* |
@@ -159,7 +161,7 @@ Zone synchronization with TLS for NGINX Ingress Controller is not yet available 
 
 You will also need to manually add the headless service, such as in [this example](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml).
 
-{{< call-out "caution"  >}}
+{{< call-out class="caution"  >}}
 If you previously installed OIDC or used the `zone_sync` directive with `stream-snippets` in [v4.0.1](https://github.com/nginx/kubernetes-ingress/tree/v4.0.1) or earlier, and you plan to enable the `zone-sync` ConfigMap key, the `zone_sync` directive should be removed from `stream-snippets`.
 
 If you encounter the error `error [emerg] 13#13: "zone_sync" directive is duplicate in /etc/nginx/nginx.conf:164` it is likely due to `zone_sync` being enabled in both `stream-snippets` and the ConfigMap. Once upgraded, remove the [old headless service](https://github.com/nginx/kubernetes-ingress/blob/v4.0.1/examples/custom-resources/oidc/nginx-ingress-headless.yaml) deployed for OIDC.
@@ -182,8 +184,20 @@ For more information on timeouts, see [here](https://github.com/nginxinc/nginx-o
 | *oidc-pkce-timeout* | Sets the timeout for PKCE (Proof Key for Code Exchange) in OIDC. | `90s` |
 | *oidc-id-tokens-timeout* | Sets the timeout for ID tokens in OIDC. | `1h` |
 | *oidc-access-tokens-timeout* | Sets the timeout for access tokens in OIDC. | `1h` |
-| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `24h` |
-| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `24h` |
+| *oidc-refresh-tokens-timeout* | Sets the timeout for refresh tokens in OIDC. | `8h` |
+| *oidc-sids-timeout* | Sets the timeout for session IDs in OIDC. | `8h` |
+
+### OIDC (OpenID Connect) ZoneSizes
+
+For more information on zonesizes, see [here](https://github.com/nginxinc/nginx-openid-connect?tab=readme-ov-file#configuring-the-key-value-store)
+
+| ConfigMap Key | Description | Default |
+| ------------- | ------------| ------- |
+| *oidc-pkce-zone-size* | Sets the zonesize for PKCE (Proof Key for Code Exchange) in OIDC. | `128K` |
+| *oidc-id-tokens-zone-size* | Sets the zonesize for ID tokens in OIDC. | `1M` |
+| *oidc-access-tokens-zone-size* | Sets the zonesize for access tokens in OIDC. | `1M` |
+| *oidc-refresh-tokens-zone-size* | Sets the zonesize for refresh tokens in OIDC. | `1M` |
+| *oidc-sids-zone-size* | Sets the zonesize for session IDs in OIDC. | `1M` |
 
 ### Snippets and custom templates
 

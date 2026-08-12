@@ -5,7 +5,7 @@ title: Organize instances with tags
 toc: true
 weight: 650
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Create tags and apply them to NGINX instances in F5 NGINX Instance Manager to organize and filter your instance fleet.
   Tags let you label and group NGINX instances so you can quickly identify and act on subsets of your deployment.
@@ -32,7 +32,7 @@ To add tags to the configuration file, take the following steps:
 
 1. Edit the `/var/lib/nginx-agent/agent-dynamic.conf` file and add the tags in a list under the key `tags:` <!-- get new nginx-agent.conf example -->
 
-    {{< call-out "note" >}}If you're running NGINX Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
+    {{< call-out class="note" >}}If you're running NGINX Instance Manager 2.10.1 or earlier or NGINX Agent 2.25.1 or earlier, the `agent-dynamic.conf` file is located in `/etc/nginx-agent/`.{{< /call-out >}}
 
 2. Restart the NGINX Agent service:
 

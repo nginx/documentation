@@ -4,21 +4,19 @@ description: Follow the steps in this guide to scan for and discover NGINX insta
 toc: true
 weight: 110
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-828
 f5-summary: >
   Scan your network to discover NGINX instances and add them to F5 NGINX Instance Manager for centralized management.
   The scan process uses NGINX Agent on target instances to register them with NGINX Instance Manager automatically.
 ---
 
-{{< shortversions "2.0.0" "latest" "nimvers" >}}
-
 ## Prerequisites {#prerequisites}
 
 1. [Install F5 NGINX Instance Manager]({{< ref "/nim/deploy/vm-bare-metal/_index.md" >}}).
 2. Start and enable NGINX Instance Manager.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 To update the CVE list manually or offline, refer to the [Offline Installation]({{<ref "/nim/disconnected/offline-install-guide.md#cve-check">}}) guide.
 {{< /call-out >}}
 
@@ -40,7 +38,7 @@ If no host discovery options are provided, NGINX Instance Manager sends an ICMP 
 2. In the left menu, select **Scan**.
 3. Enter subnets and masks that correspond to your network.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 To scan a single address, use the netmask of `/32` after the IP. This is the equivalent of scanning a single subnet. If you enter the wrong subnet, the scan may take longer than expected before erroring.
 
 There's a CVE that's not reported for NGINX that involves [unfiltered logging](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-4487). This CVE won't be fixed, has a severity of "None," and is excluded from our scans' CVE list.

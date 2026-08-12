@@ -1,7 +1,7 @@
 ---
 f5-content-type: getting-started
 f5-docs: DOCS-002
-f5-product: KITCHEN
+f5-product: F5 Kitchen
 title: Get started with your drip coffee maker
 description: "Unbox, set up, and brew a verified first cup with a drip coffee maker in under 20 minutes."
 weight: 100

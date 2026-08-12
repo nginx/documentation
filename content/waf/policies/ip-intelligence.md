@@ -3,7 +3,7 @@ title: "IP intelligence"
 weight: 1600
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 F5 WAF for NGINX has an IP intelligence feature which allows you to customize enforcement based on the source IP address of a request. This allows you to limit access from specific IP addresses.
@@ -39,7 +39,7 @@ After saving the changes, restart the client to apply the new settings:
 
 ### Install virtual machine packages
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 This section **only** applies to virtual machines/bare metal installations.
 
@@ -57,7 +57,7 @@ Review the [virtual machine installation instructions]({{< ref "/waf/install/vir
 | Oracle Linux / RHEL / Rocky Linux 8 | _app-protect-ip-intelligence_ |
 | Ubuntu                              | _app-protect-ip-intelligence_ |
 | RHEL / Rocky Linux 9                | _app-protect-ip-intelligence_ |
-| RHEL 10                             | _app-protect-ip-intelligence_ |
+| RHEL / Rocky Linux 10               | _app-protect-ip-intelligence_ |
 
 After installing the package, run the client:
 
@@ -75,7 +75,7 @@ Once complete, you can now [Configure policies for IP intelligence](#configure-p
 
 ### Modify Docker Compose file
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 
 This section **only** applies to installations using Docker.
 

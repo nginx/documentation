@@ -4,13 +4,144 @@ url: /waf/changelog/
 weight: 600
 f5-landing-page: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
+cascade:
+  nollms: true
 ---
 
 This changelog lists all of the information for F5 WAF for NGINX releases in 2026.
 
 For older releases, check the changelogs for previous years: [2025]({{< ref "/waf/changelog/2025.md" >}}), [2024]({{< ref "/waf/changelog/2024.md" >}}), [2023]({{< ref "/waf/changelog/2023.md" >}}).
 
+## F5 WAF for NGINX 5.14
+
+Released _July 31st, 2026_.
+
+### New features
+
+- Added support for Rocky Linux 10
+- Added support for Ubuntu 26.04 (Resolute Raccoon)
+- Upgraded the Go compiler to 1.26.5
+
+### Resolved issues
+
+- 14828 - Added `SECURITY_WAF_VIOLATION_TRANSPARENT` to the `$app_protect_outcome_reason` access log variable for parity with the security log
+- 14924 - Fixed an out-of-memory condition when logging to a file on a memory-backed (tmpfs) mount
+- 14990 - Fixed defunct (zombie) `cp` processes and race conditions during NGINX configuration reload
+- Security hardening across the BD core and parsers
+
+### Packages
+
+{{< table >}}
+
+| Distribution name              | NGINX Open Source (5.14)                                                | NGINX Plus (5.14)                                                    | NGINX Plus (5.14)                                         |
+| ------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------- |
+| Alpine 3.22                    | _app-protect-module-oss-1.31.3+5.690.0-r1.apk_                         | _app-protect-module-plus-37.0.5.690.0-r1.apk_                       | _app-protect-37.0.5.690.0-r1.apk_                        |
+| Amazon Linux 2023              | _app-protect-module-oss-1.31.3+5.690.0-1.amzn2023.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.690.0-1.amzn2023.ngx.x86_64.rpm_    | _app-protect-37.0+5.690.0-1.amzn2023.ngx.x86_64.rpm_     |
+| Debian 11                      | _app-protect-module-oss_1.31.3+5.690.0-1\~bullseye_amd64.deb_          | _app-protect-module-plus_37.0+5.690.0-1\~bullseye_amd64.deb_        | _app-protect_37.0+5.690.0-1\~bullseye_amd64.deb_         |
+| Debian 12                      | _app-protect-module-oss_1.31.3+5.690.0-1\~bookworm_amd64.deb_          | _app-protect-module-plus_37.0+5.690.0-1\~bookworm_amd64.deb_        | _app-protect_37.0+5.690.0-1\~bookworm_amd64.deb_         |
+| Debian 13                      | _app-protect-module-oss_1.31.3+5.690.0-1\~trixie_amd64.deb_            | _app-protect-module-plus_37.0+5.690.0-1\~trixie_amd64.deb_          | _app-protect_37.0+5.690.0-1\~trixie_amd64.deb_           |
+| Ubuntu 22.04                   | _app-protect-module-oss_1.31.3+5.690.0-1\~jammy_amd64.deb_             | _app-protect-module-plus_37.0+5.690.0-1\~jammy_amd64.deb_           | _app-protect_37.0+5.690.0-1\~jammy_amd64.deb_            |
+| Ubuntu 24.04                   | _app-protect-module-oss_1.31.3+5.690.0-1\~noble_amd64.deb_             | _app-protect-module-plus_37.0+5.690.0-1\~noble_amd64.deb_           | _app-protect_37.0+5.690.0-1\~noble_amd64.deb_            |
+| Ubuntu 26.04                   | _app-protect-module-oss_1.31.3+5.690.0-1\~resolute_amd64.deb_          | _app-protect-module-plus_37.0+5.690.0-1\~resolute_amd64.deb_        | _app-protect_37.0+5.690.0-1\~resolute_amd64.deb_         |
+| Oracle Linux 8                 | _app-protect-module-oss-1.31.3+5.690.0-1.el8.ngx.x86_64.rpm_           | _app-protect-module-plus-37.0+5.690.0-1.el8.ngx.x86_64.rpm_         | _app-protect-37.0+5.690.0-1.el8.ngx.x86_64.rpm_          |
+| RHEL 8 and Rocky Linux 8       | _app-protect-module-oss-1.31.3+5.690.0-1.el8.ngx.x86_64.rpm_           | _app-protect-module-plus-37.0+5.690.0-1.el8.ngx.x86_64.rpm_         | _app-protect-37.0+5.690.0-1.el8.ngx.x86_64.rpm_          |
+| RHEL 9 and Rocky Linux 9       | _app-protect-module-oss-1.31.3+5.690.0-1.el9.ngx.x86_64.rpm_           | _app-protect-module-plus-37.0+5.690.0-1.el9.ngx.x86_64.rpm_         | _app-protect-37.0+5.690.0-1.el9.ngx.x86_64.rpm_          |
+| RHEL 10 and Rocky Linux 10     | _app-protect-module-oss-1.31.3+5.690.0-1.el10.ngx.x86_64.rpm_          | _app-protect-module-plus-37.0+5.690.0-1.el10.ngx.x86_64.rpm_        | _app-protect-37.0+5.690.0-1.el10.ngx.x86_64.rpm_         |
+
+{{< /table >}}
+
+## F5 WAF for NGINX 5.13.4
+
+Released _July 15st, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 15048 - Upgrade NGINX OSS to 1.31.3
+- 15033 - Upgrade Go compiler to 1.26.5
+- 15036 - Improved local security log handling on memory-backed mounts
+- 15035 - Fixed NGINX reload race conditions during configuration reload
+
+## F5 WAF for NGINX 5.13.3
+
+Released _July 1st, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 14800 - Fixed an issue in response handling after configuration reload
+- 14870 - Fixed an issue in request parsing for specific malformed input scenarios
+- 14878 - Fixed a cookie parsing issue
+
+## F5 WAF for NGINX 5.13.2
+
+Released _June 18th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- Upgrade NGINX OSS to 1.31.2
+- Upgrade Go compiler to 1.26.4
+
+## F5 WAF for NGINX 5.13.1
+
+Released _May 21th, 2026_.
+
+### Important notes
+
+- This is a patch release, not a full feature release
+
+### Resolved issues
+
+- 14197 - Upgrade Go compiler to 1.26.3
+- 14546 - Fixed an issue and improved traffic handling with rule override
+
+## F5 WAF for NGINX 5.13
+
+Released _May 14th, 2026_.
+
+### New features
+
+- Added support for Debian 13
+- Added support for NGINX Plus R37.0
+
+### Resolved issues
+
+- 14197 - Upgrade Go compiler to 1.26.2
+- 14043 - Wrong value in total memory used under bd-socket-plugin
+- 14078 - Remove Mojolicious test files from the product
+- 14147 - Fix recompilation race condition 
+- 14002 - The bd_cfg_manifest consumed with a corrupted record length header
+
+### Packages
+
+{{< table >}}
+
+| Distribution name        | NGINX Open Source (5.13)                                          |  NGINX Plus (5.13)                                               | NGINX Plus (5.13)                                    |
+| ------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |
+| Alpine 3.22              | _app-protect-module-oss-1.29.8.5.635.0-r1.apk_                    | _app-protect-module-plus-37.0.5.635.0-r1.apk_                    | _app-protect-37.0.5.635.0-r1.apk_                    |
+| Amazon Linux 2023        | _app-protect-module-oss-1.29.8+5.635.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-module-plus-37.0+5.635.0-1.amzn2023.ngx.x86_64.rpm_ | _app-protect-37.0+5.635.0-1.amzn2023.ngx.x86_64.rpm_ |
+| Debian 11                | _app-protect-module-oss_1.29.8+5.635.0-1\~bullseye_amd64.deb_     | _app-protect-module-plus_37.0+5.635.0-1\~bullseye_amd64.deb_     | _app-protect_37.0+5.635.0-1\~bullseye_amd64.deb_     |
+| Debian 12                | _app-protect-module-oss_1.29.8+5.635.0-1\~bookworm_amd64.deb_     | _app-protect-module-plus_37.0+5.635.0-1\~bookworm_amd64.deb_     | _app-protect_37.0+5.635.0-1\~bookworm_amd64.deb_     |
+| Debian 13                | _app-protect-module-oss_1.29.8+5.635.0-1\~trixie_amd64.deb_       | _app-protect-module-plus_37.0+5.635.0-1\~trixie_amd64.deb_       | _app-protect_37.0+5.635.0-1\~trixie_amd64.deb_       |
+| Ubuntu 22.04             | _app-protect-module-oss_1.29.8+5.635.0-1\~jammy_amd64.deb_        | _app-protect-module-plus_37.0+5.635.0-1\~jammy_amd64.deb_        | _app-protect_37.0+5.635.0-1\~jammy_amd64.deb_        |
+| Ubuntu 24.04             | _app-protect-module-oss_1.29.8+5.635.0-1\~noble_amd64.deb_        | _app-protect-module-plus_37.0+5.635.0-1\~noble_amd64.deb_        | _app-protect_37.0+5.635.0-1\~noble_amd64.deb_        |
+| Oracle Linux 8           | _app-protect-module-oss-1.29.8+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      |
+| RHEL 8 and Rocky Linux 8 | _app-protect-module-oss-1.29.8+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      | _app-protect-37.0+5.635.0-1.el8.ngx.x86_64.rpm_      |
+| RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.8+5.635.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-37.0+5.635.0-1.el9.ngx.x86_64.rpm_      | _app-protect-37.0+5.635.0-1.el9.ngx.x86_64.rpm_      |
+| RHEL 10 and Rocky Linux 10 | _app-protect-module-oss-1.29.8+5.635.0-1.el10.ngx.x86_64.rpm_     | _app-protect-module-plus-37.0+5.635.0-1.el10.ngx.x86_64.rpm_     | _app-protect-37.0+5.635.0-1.el10.ngx.x86_64.rpm_     |
+
+{{< /table >}}
 
 ## F5 WAF for NGINX 5.12.1
 
@@ -24,7 +155,6 @@ Released _March 31th, 2026_.
 
 - 14052 - Upgrade Go compiler to 1.26.1
 - 14036 - Fix a cookie parser issue
-
 
 ### Packages
 
@@ -94,7 +224,7 @@ Released _February 13th, 2026_.
 
 ## F5 WAF for NGINX 5.11.1
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The patch fix is also included in versions 5.9.1 and 5.10.1.
 
@@ -145,4 +275,3 @@ Released _January 13th, 2026_.
 | RHEL 9 and Rocky Linux 9 | _app-protect-module-oss-1.29.3+5.575.0-1.el9.ngx.x86_64.rpm_      | _app-protect-module-plus-36+5.575.0-1.el9.ngx.x86_64.rpm_      | _app-protect-36+5.575.0-1.el9.ngx.x86_64.rpm_      |
 
 {{< /table >}}
-

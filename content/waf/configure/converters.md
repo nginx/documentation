@@ -3,12 +3,12 @@ title: "Build and use the converter tools"
 weight: 300
 toc: true
 f5-content-type: how-to
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This document describes the tools F5 WAF for NGINX has to convert existing resources or configuration files from a BIG-IP environment for use with F5 WAF for NGINX.
 
-{{< call-out "important" >}}
+{{< call-out class="important" >}}
 
 These tools are available in the [compiler image]({{< ref "/waf/configure/compiler.md" >}}), and do not require a full deployment of F5 WAF for NGINX.
 
@@ -56,7 +56,7 @@ cp <path-to-your-xml-policy-file> tmp/convert/
 
 Run the compiler Docker image with the temporary folder as a mounted volume, and execute the policy converter script:
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 
@@ -132,7 +132,7 @@ docker run -it --rm \
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
 
@@ -187,7 +187,7 @@ docker run -it --rm \
 
 The User Defined Signatures converter tool is used to convert a User Defined Signatures file from XML to JSON format.
 
-It is a script located on on the path `/opt/app_protect/bin/convert-signatures`.
+It is a script located on the path `/opt/app_protect/bin/convert-signatures`.
 
 The tool accepts an optional tag argument: otherwise, the default tag value _user-defined-signatures_ is assigned with the exported JSON file.
 
@@ -221,7 +221,7 @@ Optionally, using --help will issue this help message.
 
 This is an example of how to convert a single XML file (With the default tag):
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 Replace `waf-compiler-\<version-tag\>:custom` with your compiler image.
 
@@ -355,7 +355,7 @@ An example _signatures.json_ file:
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
 
@@ -509,7 +509,7 @@ An example _signature-report.json_ file:
 }
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 The [jq](https://jqlang.github.io/jq/) command was used to format the example output.
 

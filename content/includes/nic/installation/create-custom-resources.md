@@ -1,6 +1,6 @@
 ---
 f5-docs: DOCS-1463
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-files:
 - content/nic/install/manifests.md
 - content/nic/integrations/app-protect-dos/installation.md
@@ -36,7 +36,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 {{%tab name="Install CRDs after cloning the repo"%}}
 
-{{< call-out "note" >}} 
+{{< call-out class="note" >}} 
 
 Read the steps outlined in [Upgrade from 3.x to 4.x]({{< ref "/nic/install/upgrade.md#upgrade-from-3x-to-4x" >}}) before running the CRD upgrade and perform the steps if applicable.
 

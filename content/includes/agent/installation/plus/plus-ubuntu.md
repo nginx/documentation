@@ -1,5 +1,5 @@
 ---
-f5-product: NAGENT
+f5-product: NGINX Agent
 f5-files:
 - content/agent/installation-upgrade/installation-plus.md
 - content/nginx-one-console/agent/install-upgrade/install-from-plus-repo.md
@@ -54,7 +54,7 @@ f5-files:
    sudo apt install nginx-agent
    ```
 
-   {{<call-out "tip" "Tip: Install specific versions" "" >}}
+   {{<call-out class="tip" title="Tip: Install specific versions" >}}
    To install `nginx-agent` with a specific version (for example, 2.42.0):
 
    Update your package index and install a specific version of the nginx-agent. Replace <VERSION_CODENAME> with your current Ubuntu codename (for example, jammy, noble).

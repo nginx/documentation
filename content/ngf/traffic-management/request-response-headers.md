@@ -3,7 +3,7 @@ title: Modify HTTP request and response headers
 weight: 500
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1849
 ---
 
@@ -77,7 +77,7 @@ GW_IP=XXX.YYY.ZZZ.III
 GW_PORT=<port number>
 ```
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 
 In a production environment, you should have a DNS record for the external IP address that is exposed, and it should refer to the hostname that the gateway will forward for.
 

@@ -1,7 +1,7 @@
 ---
 f5-content-type: how-to
 f5-docs: DOCS-000
-f5-product: NONECO
+f5-product: NGINX One Console
 title: Find a security event by Support ID
 description: "Look up an F5 WAF for NGINX security event in NGINX One Console using its Support ID."
 weight: 500
@@ -37,7 +37,7 @@ Before you begin, ensure you have:
 2. Paste the Support ID into the **Enter a Support ID** field.
 3. The page displays the **Security Event** detail panel for the matching event, including the request, source, and raw request data.
 
-   {{< call-out "note" >}}Security events are retained for 90 days. Events older than 90 days are no longer available.{{< /call-out >}}
+   {{< call-out class="note" >}}Security events are retained for 90 days. Events older than 90 days are no longer available.{{< /call-out >}}
 
 ### Troubleshooting
 

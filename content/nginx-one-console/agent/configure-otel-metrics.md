@@ -4,7 +4,7 @@ weight: 500
 toc: true
 f5-content-type: how-to
 f5-docs: DOCS-1882
-f5-product: NAGENT
+f5-product: NGINX Agent
 ---
 
 ## Overview
@@ -18,7 +18,7 @@ With this feature, you can collect:
      
 For users requiring deeper integration with third-party observability tools, the NGINX Agent supports exporting additional metrics through the embedded OpenTelemetry collector. Tools such as Prometheus, Splunk, and other OpenTelemetry-compatible platforms can be configured to ingest these metrics, as detailed in the rest of this document. 
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 The OpenTelemetry exporter is enabled by default. Once a valid connection to the management plane is established, the NGINX Agent will automatically begin exporting metrics to the NGINX One Console.
 {{< /call-out >}} 
 
@@ -95,7 +95,7 @@ Use the following command to run the NGINX Agent docker container. Replace the p
 
 #### Example usage
 
-{{< call-out "important" >}} NGINX Agent uses `/default` for naming its default processors, exporters and pipelines using the same naming in your own config might cause issues with sending metrics to your management plane {{< /call-out >}}
+{{< call-out class="important" >}} NGINX Agent uses `/default` for naming its default processors, exporters and pipelines using the same naming in your own config might cause issues with sending metrics to your management plane {{< /call-out >}}
 
 #### Add Prometheus Exporter Configuration
 
@@ -118,13 +118,11 @@ service:
         - prometheus
 ```
 
-
-
 #### Third-party OTel Collector
 
 ```yaml
 exporters:
-  otlp/local-collector:
+  otlp_grpc/local-collector:
     endpoint: "my-local-collector.com:443"
 
 service:
@@ -135,7 +133,7 @@ service:
       processors:
         - resource/default
       exporters:
-        - otlp/local-collector
+        - otlp_grpc/local-collector
 ```
 
 #### Add Debug Exporter
@@ -157,8 +155,6 @@ service:
       exporters:
         - debug
 ```
-
-
 
 ### Troubleshooting
 

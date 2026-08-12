@@ -4,7 +4,7 @@ title: Back up and restore
 toc: true
 weight: 900
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Back up and restore F5 NGINX Instance Manager configuration files, secrets, and databases using the included scripts."
 f5-summary: >
   Back up and restore F5 NGINX Instance Manager data using the included scripts.
@@ -149,7 +149,7 @@ To back up NGINX Instance Manager deployed in a Kubernetes cluster:
     ./k8s-backup.sh
     ```
 
-    {{< call-out "note" >}}The backup script does not require `sudo` permissions or the `utility` pod.{{< /call-out >}}
+    {{< call-out class="note" >}}The backup script does not require `sudo` permissions or the `utility` pod.{{< /call-out >}}
 
 4. The script will prompt you for the NGINX Instance Manager namespace. It will create a backup archive called `k8s-backup-<timestamp>.tar.gz`.
 
@@ -179,11 +179,11 @@ To restore NGINX Instance Manager to the same Kubernetes cluster:
 
     If the Kubernetes configuration is different, update the path accordingly.
 
-    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
+    {{< call-out class="note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will use the provided backup archive.
 
-    {{< call-out "note" >}}The script uses the `utility` pod to restore databases and core secrets. It stops service pods during the restoration and restarts them afterward.{{< /call-out >}}
+    {{< call-out class="note" >}}The script uses the `utility` pod to restore databases and core secrets. It stops service pods during the restoration and restarts them afterward.{{< /call-out >}}
 
 ### Data-only restoration to a different Kubernetes Cluster
 
@@ -211,7 +211,7 @@ To restore NGINX Instance Manager to a different Kubernetes cluster:
 
     If the Kubernetes configuration differs, update the path accordingly.
 
-    {{< call-out "note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
+    {{< call-out class="note" >}}The restore script requires [root access]({{< ref "/nim/admin-guide/backup-and-recovery.md#root-access" >}}).{{< /call-out >}}
 
 5. After specifying the NGINX Instance Manager namespace, the script will restore the databases and core secrets.
 

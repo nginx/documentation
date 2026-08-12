@@ -3,7 +3,7 @@ title: Troubleshooting
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1419
 ---
 
@@ -79,7 +79,7 @@ kubectl exec -it -n <nginx-deployment-namespace> <nginx-deployment-name> -- /bin
 
 Logs from the NGINX Gateway Fabric control plane and data plane can contain information that isn't available to status or events. These can include errors in processing or passing traffic.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 You can see logs for a crashed or killed container by adding the `-p` flag to the `kubectl logs` commands below.
 {{< /call-out >}}
 
@@ -268,7 +268,7 @@ Handling connection for 8080
 </body>
 ```
 
-{{< call-out "warning" >}}
+{{< call-out class="warning" >}}
 The configuration may change in future releases. This configuration is valid for version 1.3.
 {{< /call-out >}}
 
@@ -279,7 +279,7 @@ Metrics can be useful to identify performance bottlenecks and pinpoint areas of 
 #### Access the NGINX Plus Dashboard
 
 If you have NGINX Gateway Fabric installed with NGINX Plus, you can access the NGINX Plus dashboard at `http://localhost:8080/dashboard.html`.
-Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< ref "dashboard.md" >}})
+Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< relref "monitoring/dashboard.md" >}})
 
 ### Common errors
 

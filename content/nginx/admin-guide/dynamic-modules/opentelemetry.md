@@ -6,7 +6,7 @@ title: OpenTelemetry
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 [OpenTelemetry](https://opentelemetry.io/) (OTel) is an observability framework for monitoring, tracing, troubleshooting, and optimizing applications. OTel enables the collection of telemetry data from a deployed application stack.
@@ -32,7 +32,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
 
 1.  Check the [Technical Specifications]({{< ref "/nginx/technical-specs.md" >}}) page to verify that the module is supported by your operating system.
 
-    {{< call-out "note" >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /call-out >}}
+    {{< call-out class="note" >}} The OpenTelemetry module cannot be installed on Amazon Linux 2 LTS and SLES 15 SP5+. {{< /call-out >}}
 
 2.  Make sure you have the latest version of NGINX Plus. In Terminal, run the command:
 
@@ -43,7 +43,7 @@ The installation process closely follows the [NGINX Plus installation procedure]
     Expected output of the command:
 
     ```shell
-    nginx version: nginx/1.29.3 (nginx-plus-r36)
+    nginx version: nginx/1.29.8 (nginx-plus-r37.0.0)
     ```
 
 3.  Ensure you have the **nginx-repo.crt** and **nginx-repo.key** files from [MyF5 Customer Portal](https://account.f5.com/myf5) in the **/etc/ssl/nginx/** directory. These files are required for accessing the NGINX Plus repository.

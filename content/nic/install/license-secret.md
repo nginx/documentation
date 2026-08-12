@@ -3,7 +3,7 @@ title: Create a license Secret
 toc: true
 weight: 300
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-1860
 ---
 
@@ -17,7 +17,7 @@ This requirement is part of F5’s broader licensing program and aligns with ind
 
 The JWT is required for validating your subscription and reporting telemetry data. For environments connected to the internet, telemetry is automatically sent to F5’s licensing endpoint.  In offline environments, telemetry is routed through [NGINX Instance Manager]({{< ref "/nim/" >}}). By default usage is reported every hour and also whenever NGINX is reloaded.
 
-{{< call-out "note" >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{< /call-out >}}
+{{< call-out class="note" >}} Read the [subscription licenses topic]({{< ref "/solutions/about-subscription-licenses.md#for-internet-connected-environments" >}}) for a list of IPs associated with F5's licensing endpoint (`product.connect.nginx.com`). {{< /call-out >}}
 
 ## Set up your NGINX Plus license
 

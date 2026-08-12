@@ -10,7 +10,7 @@ f5-personas:
 - secops
 - support
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Use this reference to understand how JSON schemas define the dynamic web form inputs for NGINX config templates in F5 NGINX Instance Manager.
   JSON schemas validate user input when creating NGINX configurations from templates, providing a structured and guided configuration experience.
@@ -41,7 +41,7 @@ In NGINX Instance Manager, we support a specific set of common features from the
 
 - **Examples**: Examples show what valid data looks like so anyone filling out the form knows what to enter. You should give at least one example so users understand the schema's purpose and requirements. More information can be found at [Generic Keywords](https://json-schema.org/understanding-json-schema/reference/generic.html).
 
-{{< call-out "tip" "Writing effective JSON schema titles and descriptions" >}}<i class="fa-regular fa-pen-to-square"></i> The **title** and **description** fields are a key part of the user experience for templates. We recommend making sure that your title and description fields are predictably formatted and provide clear, concise guidance to the user.{{</call-out>}}
+{{< call-out class="tip" title="Writing effective JSON schema titles and descriptions" >}}<i class="fa-regular fa-pen-to-square"></i> The **title** and **description** fields are a key part of the user experience for templates. We recommend making sure that your title and description fields are predictably formatted and provide clear, concise guidance to the user.{{</call-out>}}
 
 <br>
 

@@ -4,7 +4,7 @@ description: Review and manage stored F5 WAF for NGINX policies and their versio
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Review stored F5 WAF for NGINX policies and their version history in F5 NGINX Instance Manager before deploying them.
   You can inspect any version of a policy and roll back to an earlier version if a deployment causes issues.
@@ -33,8 +33,8 @@ From **WAF > Policies**, you can manage your existing policies. On the **Securit
 - **Download Bundle** – Download the compiled `.tgz` security bundle for reuse or offline deployment.
 - **Delete** – Permanently remove the security policy from NGINX Instance Manager.
 
-{{< call-out "note" "Note" >}}
+{{< call-out class="note" title="Note" >}}
 If you use **Save As** to create a new policy, include the `app_protect_cookie_seed` [directive]({{< ref "/waf/policies/directives.md" >}}).
 {{< /call-out >}}
 
-{{< call-out "note" "See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}
+{{< call-out class="note" title="See also" >}}For a full overview of how NGINX Instance Manager handles WAF policy management, compilation, and deployment, see [How WAF policy management works]({{< ref "/nim/waf-integration/overview.md" >}}).{{< /call-out >}}

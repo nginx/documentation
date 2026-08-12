@@ -1,12 +1,12 @@
 ---
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1301
 f5-files:
 - content/nim/admin-guide/rbac/assign-roles.md
 - content/nim/security-monitoring/give-access-to-security-monitoring-dashboards.md
 ---
 
-{{< call-out "important" "User groups require an OIDC identity provider" >}}User groups require an external identity provider set up for OpenID Connect (OIDC) authentication, as described in [Getting started with OIDC]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). You can't assign roles directly to users from an external identity provider in NGINX Instance Manager. Instead, they inherit roles based on their group membership.{{< /call-out >}}
+{{< call-out class="important" title="User groups require an OIDC identity provider" >}}User groups require an external identity provider set up for OpenID Connect (OIDC) authentication, as described in [Getting started with OIDC]({{< ref "/nim/admin-guide/authentication/oidc/getting-started.md" >}}). You can't assign roles directly to users from an external identity provider in NGINX Instance Manager. Instead, they inherit roles based on their group membership.{{< /call-out >}}
 
 To assign roles to a user group, follow these steps:
 

@@ -4,7 +4,7 @@ title: NGINX Instance Manager dashboard
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "A tour of the F5 NGINX Instance Manager dashboard, explaining each panel and how to use it to monitor your NGINX fleet."
 f5-summary: >
   Understand what information the F5 NGINX Instance Manager dashboard displays and how to use it.
@@ -62,7 +62,7 @@ Select **See more** to open a detailed view where you can see a list of all inst
 
 Use the menu in the top-right corner to change the time range for disk utilization data. Select any hostname in the list to view a full set of metrics specific to that instance.
 
-{{< call-out "note" >}}The value in the **Current Value** column reflects the disk usage of the root partition on the instance. An <i class="fa-solid fa-triangle-exclamation"></i> alert appears next to the hostname if the available space on the root partition drops below 20%.{{< /call-out >}}
+{{< call-out class="note" >}}The value in the **Current Value** column reflects the disk usage of the root partition on the instance. An {{% icon triangle-alert %}} alert appears next to the hostname if the available space on the root partition drops below 20%.{{< /call-out >}}
 
 ## Network Utilization
 

@@ -3,12 +3,12 @@ title: "GraphQL protection"
 weight: 1190
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the GraphQL protection feature for F5 WAF for NGINX.
 
-{{< call-out "note" >}}
+{{< call-out class="note" >}}
 GraphQL is supported by F5 WAF for NGINX version 4.2 on.
 {{< /call-out >}}
 
