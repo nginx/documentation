@@ -139,6 +139,15 @@ Confirm the CRDs are present:
 kubectl get crd | grep appprotect.f5.com
 ```
 
+Expected output:
+
+```text
+aplogconfs.appprotect.f5.com
+appolicies.appprotect.f5.com
+apsignatures.appprotect.f5.com
+apusersigs.appprotect.f5.com
+```
+
 All eight pods running and all four CRDs present confirms the PLM backend is ready.
 
 ### Update the CRDs
