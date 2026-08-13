@@ -9,29 +9,6 @@ The Policy Lifecycle Manager (PLM) backend runs as a Kubernetes operator. It wat
 
 F5 WAF for NGINX is installed using a separate Helm chart from your NGINX data plane. The steps in this section install only the F5 WAF for NGINX PLM components and do not affect your existing NGINX installation.
 
-### Install the CRDs
-
-Install the four custom resource definitions (CRDs) that the Policy Controller manages:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/main/manifests/1-deploy-crds.yaml
-```
-
-Confirm the CRDs are present:
-
-```shell
-kubectl get crd | grep appprotect.f5.com
-```
-
-Expected output:
-
-```text
-appolicies.appprotect.f5.com
-aplogconfs.appprotect.f5.com
-apsignatures.appprotect.f5.com
-apusersigs.appprotect.f5.com
-```
-
 ### Create the registry pull secret
 
 Create a namespace for the PLM components, then create the registry pull secret using the credentials from the previous section. Replace `<JWT>` with your F5 WAF for NGINX JWT.
@@ -151,3 +128,11 @@ kubectl get crd | grep appprotect.f5.com
 ```
 
 All eight pods running and all four CRDs present confirms the PLM backend is ready.
+
+### Update the CRDs
+
+Skip this step on a fresh install — Helm installs the CRDs automatically. When upgrading PLM, apply the CRDs manually before running `helm upgrade`:
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/{{< version-waf-policy-controller >}}/manifests/1-deploy-crds.yaml
+```
