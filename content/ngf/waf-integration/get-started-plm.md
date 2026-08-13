@@ -30,6 +30,10 @@ Before you start, make sure you have:
 
 - `kubectl` access to a Kubernetes cluster.
 - A valid F5 WAF for NGINX subscription. F5 WAF for NGINX is a separate add-on to NGINX Plus and isn't included with the NGINX Plus license.
+- Your F5 WAF for NGINX JWT from MyF5. To get it:
+
+  {{< include "/ngf/installation/nginx-plus/download-jwt.md" >}}
+
 - Your private registry credentials Secret for `private-registry.nginx.com`. You'll reference this Secret when you install NGINX Gateway Fabric.
 
 This tutorial uses the following example values. You can use different values — if you do, replace them consistently throughout.
