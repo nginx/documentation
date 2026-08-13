@@ -40,7 +40,11 @@ Create a namespace for the PLM components, store your JWT in a Kubernetes Secret
 
 ### Install the Policy Controller
 
-Create a values file for the Helm installation. Replace `<BASE64_NGINX_REPO_CRT>` and `<BASE64_NGINX_REPO_KEY>` with the base64-encoded contents of your `nginx-repo.crt` and `nginx-repo.key` files. To encode them, run:
+Create a values file for the Helm installation.
+
+The `securityUpdatesRepo.cert` and `securityUpdatesRepo.key` fields are optional. They are only required if your signature repository needs certificate-based authentication. The Policy Controller starts successfully with these fields left empty.
+
+If your signature repository requires them, replace `<BASE64_NGINX_REPO_CRT>` and `<BASE64_NGINX_REPO_KEY>` with the base64-encoded contents of your `nginx-repo.crt` and `nginx-repo.key` files. To encode them, run:
 
 ```shell
 base64 --wrap=0 < nginx-repo.crt
@@ -53,8 +57,8 @@ Create `/tmp/plm-values.yaml`:
 imagePullSecrets:
   - name: regcred
 securityUpdatesRepo:
-  cert: "<BASE64_NGINX_REPO_CRT>"
-  key: "<BASE64_NGINX_REPO_KEY>"
+  cert: "<BASE64_NGINX_REPO_CRT>"  # optional: only needed for authenticated signature repository access
+  key: "<BASE64_NGINX_REPO_KEY>"   # optional: only needed for authenticated signature repository access
 policyController:
   image:
     tag: "{{< version-waf-policy-controller >}}"
