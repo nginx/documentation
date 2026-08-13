@@ -68,4 +68,4 @@ To use a certificate in an NGINX configuration, follow these steps:
 
 You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [NGINXaaS Console configuration editor]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
 
-{{< call-out class="warning" title="Warning" >}}Storing certificates and private keys in aux files is not recommended for sensitive data. Use this method only when the other certificate management approaches are not suitable.{{< /call-out >}}
+{{< call-out class="warning" title="Warning" >}}Storing certificates, private keys, or any sensitive data in aux files is not recommended for security reasons. Use this method only when the other certificate management approaches are not suitable.{{< /call-out >}}
