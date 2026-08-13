@@ -483,13 +483,13 @@ Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdopti
 
 ### -plm-storage-url
 
-SeaweedFS S3 endpoint for NGINX Ingress Controller to fetch policy and logconf bundle from. Leave empty to disable PLM support.
+SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and logconf bundle. Leave empty to turn off PLM support.
 
 <a name="cmdoption-plm-storage-credentials-secret"></a>
 
 ### -plm-storage-credentials-secret
 
-A Secret containing the SeaweedFS admin secret under seaweedfs_admin_secret.
+A Secret containing the SeaweedFS admin secret in the `seaweedfs_admin_secret` key.
 
 Format: `<namespace>/<name>`
 
@@ -497,7 +497,7 @@ Format: `<namespace>/<name>`
 
 ### -plm-storage-ca-secret
 
-An optional Secret containing ca.crt for SeaweedFS TLS verification.
+An optional Secret containing `ca.crt` for SeaweedFS TLS verification.
 
 Format: `<namespace>/<name>`
 
@@ -505,7 +505,7 @@ Format: `<namespace>/<name>`
 
 ### -plm-storage-client-ssl-secret
 
-An optional Secret containing **tls.crt** and **tls.key** for SeaweedFS mTLS.
+An optional Secret containing `tls.crt` and `tls.key` for SeaweedFS mTLS.
 
 Format: `<namespace>/<name>`
 
@@ -513,7 +513,7 @@ Format: `<namespace>/<name>`
 
 ### -plm-storage-insecure-skip-verify
 
-Disables SeaweedFS TLS verification. For development and testing only.
+Turns off SeaweedFS TLS verification. For development and testing only.
 
 <a name="cmdoption-ready-status"></a>
 
