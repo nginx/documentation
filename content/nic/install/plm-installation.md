@@ -11,45 +11,39 @@ f5-description: >
 f5-audience: operator
 ---
 
-This guide installs F5 NGINX Ingress Controller (NIC) with F5 WAF for NGINX
-using Policy Lifecycle Management (PLM). PLM defines WAF policies as
-Kubernetes custom resources, compiles them automatically, and stores the
-compiled bundles in an in-cluster S3-compatible object store. NIC fetches the
-bundles from PLM storage and enforces the policies at request time.
+Use this guide to install F5 NGINX Ingress Controller with F5 WAF for NGINX using Policy Lifecycle Management (PLM). PLM defines WAF policies as Kubernetes custom resources, compiles them automatically, and stores the compiled bundles in an in-cluster S3-compatible object store. NGINX Ingress Controller then fetches the bundles from PLM storage and enforces the policies at request time.
 
-By the end of this tutorial you will have:
+By the end of this tutorial, you'll have:
 
-- A running PLM backend and a NIC deployment configured for PLM storage.
+- A running PLM backend and NGINX Ingress Controller deployment configured for PLM storage.
 - An `APPolicy` and an `APLogConf` resource compiled by PLM.
 - A `k8s.nginx.org/v1` Policy that references the compiled resources.
-- The Policy attached to either a VirtualServer or an Ingress, with traffic
-  flowing normally and attack payloads blocked.
+- The Policy attached to a VirtualServer or an Ingress, with traffic flowing normally and attack payloads blocked.
 
 ## Before you begin
 
-- You have `kubectl` access to a Kubernetes cluster.
-- You have Helm.
-- You have credentials for `private-registry.nginx.com`.
+Before you start, make sure you have:
 
-This tutorial uses the following example values. If you use different values,
-substitute them consistently throughout.
+- `kubectl` access to a Kubernetes cluster.
+- Helm installed.
+- Credentials for `private-registry.nginx.com`.
+
+This tutorial uses the following example values. If you use different values, replace them consistently throughout.
 
 | Example value | What it represents |
 |---|---|
 | `plm-system` | Namespace for the PLM backend |
 | `plm` | Helm release name for PLM |
-| `nginx-ingress` | Namespace for NIC |
-| `nic` | Helm release name for NIC |
+| `nginx-ingress` | Namespace for NGINX Ingress Controller |
+| `nic` | Helm release name for NGINX Ingress Controller |
 | `security` | Namespace for `APPolicy` and `APLogConf` resources |
-| `default` | Namespace for the NIC Policy, sample application, and routing resource |
+| `default` | Namespace for the Policy, sample application, and routing resource |
 | `webapp.example.com` | Example hostname for VirtualServer routing |
 | `cafe.example.com` | Example hostname for Ingress routing |
 
 ## Deploy PLM infrastructure
 
-Install the PLM backend before you install NIC. It provisions the App
-Protect v1 CRDs, the Policy Controller, the compiler service, and the
-SeaweedFS storage backend in the `plm-system` namespace.
+Install the PLM backend before installing NGINX Ingress Controller. The PLM backend provisions the App Protect v1 CRDs, the Policy Controller, the compiler service, and the SeaweedFS storage backend in the `plm-system` namespace.
 
 {{< include "waf/plm-deploy-infrastructure.md" >}}
 
@@ -70,16 +64,12 @@ apusersigs.appprotect.f5.com
 
 ## Look up the PLM storage endpoint and credentials
 
-NIC connects to PLM's SeaweedFS filer over S3 to fetch compiled bundles.
-Before you install NIC, collect four values that the PLM install produced:
+NGINX Ingress Controller connects to PLM's SeaweedFS filer over S3 to fetch compiled bundles. Before you install the controller, collect these four values from the PLM installation:
 
 1. **PLM storage URL**: the SeaweedFS filer endpoint (HTTPS or HTTP).
-2. **Credentials Secret**: the S3 credentials Secret. The access key ID is
-   `admin` by default; the secret access key is stored in the
-   `seaweedfs_admin_secret` field.
+2. **Credentials Secret**: the S3 credentials Secret. The access key ID is `admin` by default. The secret access key is in the `seaweedfs_admin_secret` field.
 3. **CA Secret** (HTTPS only): verifies the SeaweedFS filer certificate.
-4. **Client TLS Secret** (mutual TLS only): presented by NIC when it
-   connects to the filer.
+4. **Client TLS Secret** (mutual TLS only): presented by NGINX Ingress Controller when it connects to the filer.
 
 List the Services PLM created and identify the filer:
 
@@ -94,8 +84,7 @@ NAME                       TYPE        CLUSTER-IP   PORT(S)
 plm-f5-waf-seaweed-filer   ClusterIP   10.0.0.10    8333/TCP,9333/TCP,...
 ```
 
-Assemble the URL from the service name, namespace, and port. Use `9333`
-for HTTPS and `8333` for HTTP:
+Assemble the URL from the service name, namespace, and port. Use `9333` for HTTPS and `8333` for HTTP:
 
 - HTTPS (mTLS): `https://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local:9333`
 - HTTP: `http://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local:8333`
@@ -106,30 +95,23 @@ List the Secrets PLM created:
 kubectl get secret --namespace plm-system
 ```
 
-The default PLM install creates three Secrets that NIC references:
+The default PLM install creates three Secrets that NGINX Ingress Controller references:
 
 - `plm-f5-waf-seaweedfs-auth`: SeaweedFS credentials.
 - `plm-f5-waf-seaweedfs-ca-cert`: CA certificate for the HTTPS filer.
 - `plm-f5-waf-seaweedfs-client-cert`: client TLS certificate for mTLS.
 
-Record the Secret references in `<namespace>/<name>` form. You'll pass all
-four values to NIC as `--set controller.appprotect.plmStorage.*` flags
+Record the Secret references in `<namespace>/<name>` form. You'll pass all four values to NGINX Ingress Controller using `--set controller.appprotect.plmStorage.*` flags.
 
-## Install NIC with PLM storage
+## Install NGINX Ingress Controller with PLM storage
 
-Because PLM owns the `appprotect.f5.com/v1` CRDs, install NIC with
-`--skip-crds`. You apply NIC's own CRDs from the bundled manifest first.
-
-Apply the NIC CRDs. The `deploy/crds.yaml` bundle contains every CRD NIC
-needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`,
-`GlobalConfiguration`, `DNSEndpoint`) and deliberately excludes the App
-Protect CRDs, which PLM owns.
+Because PLM owns the `appprotect.f5.com/v1` CRDs, you must apply the controller's own CRDs before running `helm install`. The `deploy/crds.yaml` bundle contains every CRD the controller needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`, `GlobalConfiguration`, `DNSEndpoint`). The bundle deliberately excludes the App Protect CRDs, which PLM owns.
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
 ```
 
-Create a namespace and image pull Secret for NIC:
+Create a namespace and image pull Secret for NGINX Ingress Controller:
 
 ```shell
 kubectl create namespace nginx-ingress
@@ -147,8 +129,7 @@ helm repo add nginx-stable https://helm.nginx.com/stable
 helm repo update nginx-stable
 ```
 
-Install NIC with PLM storage enabled. This example uses HTTPS PLM storage with mutual TLS. 
-For HTTP storage, set `controller.appprotect.plmStorage.url` and `controller.appprotect.plmStorage.credentialsSecret` only.
+Install NGINX Ingress Controller with PLM storage turned on. This example uses HTTPS with mutual TLS. For HTTP storage, set only `controller.appprotect.plmStorage.url` and `controller.appprotect.plmStorage.credentialsSecret`.
 
 ```shell
 helm install nic nginx-stable/nginx-ingress \
@@ -167,8 +148,7 @@ helm install nic nginx-stable/nginx-ingress \
   --set controller.serviceAccount.imagePullSecretName=regcred
 ```
 
-Wait for the NIC Pod to become ready. Each Pod runs three containers:
-`nginx-ingress`, `waf-enforcer`, and `waf-config-mgr`.
+Wait for the controller pod to become ready. Each pod runs three containers: `nginx-ingress`, `waf-enforcer`, and `waf-config-mgr`.
 
 ```shell
 kubectl wait --for=condition=Ready pods \
@@ -186,8 +166,7 @@ NAME                             READY   STATUS    RESTARTS   AGE
 nic-nginx-ingress-controller-xxxxx  3/3     Running   0          2m
 ```
 
-Save the public IP address and HTTP port of the NIC LoadBalancer service into
-shell variables:
+Save the public IP address and HTTP port of the NGINX Ingress Controller LoadBalancer service to shell variables:
 
 ```shell
 IC_IP=<public IP address>
@@ -196,16 +175,13 @@ IC_HTTP_PORT=<port number>
 
 ## Define the WAF policy
 
-Create the `security` namespace to hold the `APPolicy` and `APLogConf`
-resources:
+Create the `security` namespace to hold the `APPolicy` and `APLogConf` resources:
 
 ```shell
 kubectl create namespace security
 ```
 
-Save the following as `waf-resources.yaml`. It defines an `APPolicy` that
-blocks attack signatures and masks credit card numbers and social security
-numbers in responses, plus an `APLogConf` for security logging.
+Save the following as `waf-resources.yaml`. The file defines an `APPolicy` that blocks attack signatures and masks credit card numbers and social security numbers in responses. It also defines an `APLogConf` for security logging.
 
 ```yaml
 apiVersion: appprotect.f5.com/v1
@@ -268,11 +244,9 @@ kubectl get appolicy dataguard-blocking --namespace security \
   --output jsonpath='State: {.status.bundle.state}{"\n"}Location: {.status.bundle.location}{"\n"}'
 ```
 
-## Create the NIC Policy
+## Create the Policy
 
-Save the following as `waf-policy.yaml`. The `apPolicy` and `apLogConf`
-fields accept `[<namespace>/]<name>`. When namespace is omitted, NIC
-defaults to the Policy's own namespace.
+Save the following as `waf-policy.yaml`. The `apPolicy` and `apLogConf` fields accept `[<namespace>/]<name>`. When you omit the namespace, NGINX Ingress Controller defaults to the Policy's own namespace.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -303,17 +277,17 @@ kubectl wait --for=jsonpath='{.status.state}'=Valid \
   policy/waf-policy --namespace default --timeout=180s
 ```
 
-If the Policy stays in `Warning` with a `BundleFetchFailed` reason, see
-[Troubleshooting](#troubleshooting).
+If the Policy stays in `Warning` with a `BundleFetchFailed` reason, see [Troubleshooting](#troubleshooting).
 
-Continue with Section 1 to attach the Policy to a VirtualServer, or Section 2
-to attach it to an Ingress. The Policy resource is the same for both.
+Choose how to attach the Policy:
+- [Attach to a VirtualServer](#attach-to-a-virtualserver)
+- [Attach to an Ingress](#attach-to-an-ingress)
 
-## Section 1: Attach to a VirtualServer
+The Policy resource is the same for both.
 
-Save the following as `webapp.yaml`. It contains the sample application
-Deployment, its Service, and a VirtualServer that references the
-`waf-policy` Policy.
+## Attach to a VirtualServer
+
+Save the following as `webapp.yaml`. The file defines the sample application Deployment, its Service, and a VirtualServer that references the `waf-policy` Policy.
 
 ```yaml
 apiVersion: apps/v1
@@ -405,12 +379,9 @@ The requested URL was rejected. Please consult with your administrator.
 </body></html>
 ```
 
-## Section 2: Attach to an Ingress
+## Attach to an Ingress
 
-Save the following as `cafe.yaml`. It contains the sample cafe application
-(`coffee` and `tea` Deployments and Services) and an Ingress. The
-`nginx.com/policies` annotation attaches the `waf-policy` Policy to every
-route on the Ingress.
+Save the following as `cafe.yaml`. The file defines the sample cafe application (`coffee` and `tea` Deployments and Services) and an Ingress. The `nginx.com/policies` annotation attaches the `waf-policy` Policy to every route on the Ingress.
 
 ```yaml
 apiVersion: apps/v1
@@ -530,17 +501,13 @@ curl --resolve cafe.example.com:$IC_HTTP_PORT:$IC_IP \
   "http://cafe.example.com:$IC_HTTP_PORT/coffee/</script>"
 ```
 
-The response is `Request Rejected` for the attack payload.
+The response body is `Request Rejected`.
 
-Under PLM, Ingress-only App Protect annotations
-(`appprotect.f5.com/app-protect-policy`,
-`appprotect.f5.com/app-protect-security-log`) are not supported. Use the
-`k8s.nginx.org/v1` Policy resource and the `nginx.com/policies` annotation,
-as shown above.
+Under PLM, the Ingress-only App Protect annotations (`appprotect.f5.com/app-protect-policy` and `appprotect.f5.com/app-protect-security-log`) aren't supported. Use the `k8s.nginx.org/v1` Policy resource and the `nginx.com/policies` annotation instead, as shown above.
 
 ## Verify bundles on disk
 
-Confirm the compiled bundles were fetched into the NIC Pod:
+Confirm the compiled bundles are present in the ingress controller pod:
 
 ```shell
 NIC_POD=$(kubectl get pods --namespace nginx-ingress \
@@ -565,18 +532,9 @@ Check the Policy status:
 kubectl describe policy waf-policy
 ```
 
-The status reports `State: Valid` and `Reason: AddedOrUpdated` when the
-bundles are fetched successfully.
+A `State: Valid` and `Reason: AddedOrUpdated` status confirms the bundles were fetched successfully.
 
 ## Troubleshooting
 
-- **Policy status is `Warning` with reason `BundleFetchFailed`.** Check the
-  `APPolicy` or `APLogConf` referenced by the Policy. Run
-  `kubectl describe appolicy <name> --namespace security` and confirm
-  `status.bundle.state` is `ready`. If PLM has not compiled the resource,
-  the Policy fetch cannot proceed.
-- **NIC reports the referenced namespace is not watched.** If
-  `controller.watchNamespace` is set, include the namespace holding the
-  `APPolicy` and `APLogConf` resources. If `controller.watchSecretNamespace`
-  is set, include the PLM namespace so NIC can observe storage Secret
-  rotation.
+- **Policy status is `Warning` with reason `BundleFetchFailed`.** Run `kubectl describe appolicy <name> --namespace security` and confirm `status.bundle.state` is `ready`. If PLM hasn't compiled the resource yet, the Policy fetch can't proceed.
+- **NGINX Ingress Controller reports the referenced namespace isn't watched.** If `controller.watchNamespace` is set, include the namespace that holds the `APPolicy` and `APLogConf` resources. If `controller.watchSecretNamespace` is set, include the PLM namespace so the controller can observe storage Secret rotation.
