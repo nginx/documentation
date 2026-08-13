@@ -63,3 +63,9 @@ To use a certificate in an NGINX configuration, follow these steps:
 - Confirm that you want to delete the certificate.
 
 {{< call-out class="warning" >}}Deleting a TLS/SSL certificate currently used by a NGINXaaS deployment will cause an error.{{< /call-out >}}
+
+## Add certificates via aux files
+
+You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [NGINXaaS Console configuration editor]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
+
+{{< call-out class="warning" title="Warning" >}}Storing certificates and private keys in aux files is not recommended for sensitive data. Use this method only when the other certificate management approaches are not suitable.{{< /call-out >}}
