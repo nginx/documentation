@@ -36,6 +36,14 @@ Before you start, make sure you have:
 
 - Your private registry credentials Secret for `private-registry.nginx.com`. You'll reference this Secret when you install NGINX Gateway Fabric.
 
+### PLM prerequisites
+
+The following requirements apply to the PLM backend you'll install in this tutorial:
+
+{{< include "waf/plm-prerequisites.md" >}}
+
+### Example values
+
 This tutorial uses the following example values. You can use different values — if you do, replace them consistently throughout.
 
 | Example value | What it represents |
@@ -91,7 +99,7 @@ nginxGateway:
 
 {{</tabs>}}
 
-Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab, and apply this `values.yaml` file in your install or upgrade command, specifying `--values values.yaml`.
+Install NGINX Gateway Fabric by following [the installation guide]({{< ref "/ngf/install/helm.md" >}}) and using the **NGINX Plus with WAF** tab. Apply this `values.yaml` file in your install or upgrade command by specifying `--values values.yaml`.
 
 The PLM installation creates the credentials Secret automatically, containing the S3 secret access key in the `seaweedfs_admin_secret` field (access key ID `admin` by default):
 
@@ -187,7 +195,7 @@ EOF
 
 ## Configure security logging (optional)
 
-This section is typically owned by your security team. If that's not you, share it with them before continuing.
+This section is typically owned by the security team. If you're not on the security team, share this section with them before continuing.
 
 PLM security logging profiles are defined as `APLogConf` custom resources. Create a namespace to hold your security resources, then define a log profile that logs illegal requests:
 
@@ -222,11 +230,11 @@ If you skip this section, omit the `securityLogs` field in the `WAFPolicy` resou
 
 ## Define the WAF policy
 
-This section is typically owned by your security team. They define the policy in the `security` namespace, separate from the Gateway namespace, so that security resources are managed independently from routing configuration. If that's not you, share this section with them — you'll need the `APPolicy` name and namespace before continuing to the next section.
+This section is typically owned by the security team. They define the policy in the `security` namespace, separate from the Gateway namespace, so security resources are managed independently from routing configuration. If you're not on the security team, share this section with them — you'll need the `APPolicy` name and namespace before continuing.
 
 The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles it, and writes `status.bundle` with `state: ready` when the bundle is available.
 
-Use the **Inline** tab for this guide's primary workflow. The other tabs provide alternate policy-source methods.
+Use the **Inline** tab for this tutorial's primary workflow. The other tabs cover alternate policy-source methods.
 
 {{<tabs name="plm-policy-definition-methods">}}
 
@@ -266,7 +274,7 @@ Wait for the bundle to become ready:
 kubectl wait --for=jsonpath='{.status.bundle.state}'=ready appolicy/attack-signatures -n security --timeout=60s
 ```
 
-Because the `APPolicy` and `APLogConf` live in the `security` namespace but the `WAFPolicy` you create next targets a Gateway in the `default` namespace, create a `ReferenceGrant` in the `security` namespace to permit the cross-namespace reference:
+The `APPolicy` and `APLogConf` are in the `security` namespace, but the `WAFPolicy` you create next targets a Gateway in the `default` namespace. To permit the cross-namespace reference, create a `ReferenceGrant` in the `security` namespace:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -327,7 +335,7 @@ kubectl get appolicy <POLICY_NAME> \
   --output jsonpath='State:    {.status.bundle.state}{"\n"}Bundle:   {.status.bundle.location}{"\n"}Compiler: {.status.bundle.compilerVersion}{"\n"}'
 ```
 
-The output should show `State: ready`.
+The output shows `State: ready` when compilation succeeds.
 
 #### Private repository
 
@@ -580,7 +588,7 @@ The WAF detects the attack signature and rejects the request:
 ...
 ```
 
-**Verify the `orders` route is also protected.** Since the policy targets the Gateway, all attached routes inherit protection:
+**Verify the `orders` route is also protected.** Because the policy targets the Gateway, all attached routes inherit protection:
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_PORT/orders?x=</script>"
@@ -596,9 +604,9 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 
 ## Apply a route-level override (optional)
 
-In the previous step, you saw that the `customers` route returns sensitive data (credit card numbers and SSNs) in the response body. The gateway-level policy blocks inbound attacks, but doesn't inspect outbound responses.
+The `customers` route returns sensitive data (credit card numbers and SSNs) in the response body. The gateway-level policy blocks inbound attacks but doesn't inspect outbound responses.
 
-This pattern is a good example of a SecOps and app team collaboration: the security team defines a stricter policy for a specific service, and the platform engineer or app developer attaches it as a route-level override. The override applies only to the `customers` route — other routes continue using the gateway-level policy.
+This is a common pattern for SecOps and app team collaboration: the security team defines a stricter policy for a specific service, and the platform engineer or app developer attaches it as a route-level override. The override applies only to the `customers` route — other routes continue using the gateway-level policy.
 
 To protect sensitive data in responses, define a **data guard** `APPolicy` and apply it as a route-level override on the `customers` route:
 
@@ -660,7 +668,7 @@ kubectl wait --for=jsonpath='{.status.ancestors[0].conditions[?(@.type=="Program
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
 ```
 
-The credit card number and SSN are now masked in the response:
+WAF now masks the credit card number and SSN in the response:
 
 ```text
 Customer List:
