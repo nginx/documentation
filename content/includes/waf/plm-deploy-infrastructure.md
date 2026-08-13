@@ -11,20 +11,32 @@ F5 WAF for NGINX is installed using a separate Helm chart from your NGINX data p
 
 ### Create the registry pull secret
 
-Create a namespace for the PLM components, then create the registry pull secret using the credentials from the previous section. Replace `<JWT>` with your F5 WAF for NGINX JWT.
+Create a namespace for the PLM components, store your JWT in a Kubernetes Secret, then create the registry pull secret for the private F5 container registry.
 
-<!-- TODO (TECHDOCS-5342 / Prerequisites): The Story 3 AC lists four credentials: JWT, certificate, key, and registry token. Confirm with SME what the registry token is and whether it's passed separately in the Helm install or covered by the JWT above. -->
+1. Create the namespace and store your JWT. The following commands assume your JWT file is named `license.jwt`:
 
-```shell
-kubectl create namespace plm-system
+   ```shell
+   kubectl create namespace plm-system
 
-kubectl create secret docker-registry regcred \
-  --namespace plm-system \
-  --docker-server=private-registry.nginx.com \
-  --docker-username=<JWT> \
-  --docker-password=none \
-  --dry-run=client --output yaml | kubectl apply -f -
-```
+   kubectl create secret generic jwt-reg-secret \
+     --namespace plm-system \
+     --from-file=license.jwt
+   ```
+
+2. Retrieve the JWT from the Secret and create the registry pull secret:
+
+   ```shell
+   JWT=$(kubectl get secret jwt-reg-secret \
+     --namespace plm-system \
+     -o jsonpath='{.data.license\.jwt}' | base64 -d)
+
+   kubectl create secret docker-registry regcred \
+     --namespace plm-system \
+     --docker-server=private-registry.nginx.com \
+     --docker-username="$JWT" \
+     --docker-password=none \
+     --dry-run=client --output yaml | kubectl apply -f -
+   ```
 
 ### Install the Policy Controller
 
