@@ -75,6 +75,56 @@ seaweedfs-operator:
     pullSecrets: regcred
 ```
 
+#### Enable TLS for PLM storage (optional)
+
+By default, communication between PLM components and the SeaweedFS object store uses unencrypted HTTP. To enable TLS, add a `certificates` block to `/tmp/plm-values.yaml`:
+
+```yaml
+seaweedfsOperatorConfig:
+  seaweedfs:
+    certificates:
+      enabled: true
+      caSecretName: plm-system-seaweedfs-ca-cert
+      masterSecretName: plm-system-seaweedfs-master-cert
+      volumeSecretName: plm-system-seaweedfs-volume-cert
+      filerSecretName: plm-system-seaweedfs-filer-cert
+      clientSecretName: plm-system-seaweedfs-client-cert
+```
+
+{{< call-out class="warning" title="Warning" >}}
+The PLM chart does not generate certificates. You must create all five Secrets listed above before running `helm upgrade --install`. If any Secret is missing, the SeaweedFS pods will fail to mount their certificates and will not start.
+{{< /call-out >}}
+
+Create the Secrets from your CA and certificate files before installing:
+
+```shell
+kubectl create secret generic plm-system-seaweedfs-ca-cert \
+  --namespace plm-system \
+  --from-file=ca.crt=<PATH_TO_CA_CERT>
+
+kubectl create secret tls plm-system-seaweedfs-master-cert \
+  --namespace plm-system \
+  --cert=<PATH_TO_MASTER_CERT> \
+  --key=<PATH_TO_MASTER_KEY>
+
+kubectl create secret tls plm-system-seaweedfs-volume-cert \
+  --namespace plm-system \
+  --cert=<PATH_TO_VOLUME_CERT> \
+  --key=<PATH_TO_VOLUME_KEY>
+
+kubectl create secret tls plm-system-seaweedfs-filer-cert \
+  --namespace plm-system \
+  --cert=<PATH_TO_FILER_CERT> \
+  --key=<PATH_TO_FILER_KEY>
+
+kubectl create secret tls plm-system-seaweedfs-client-cert \
+  --namespace plm-system \
+  --cert=<PATH_TO_CLIENT_CERT> \
+  --key=<PATH_TO_CLIENT_KEY>
+```
+
+Replace each `<PATH_TO_*>` placeholder with the path to the corresponding certificate and key file from your PKI. The CA must sign all component certificates. If you don't have an existing PKI, generate a CA and sign the five component certificates before proceeding.
+
 Add the NGINX Helm repository and install the chart:
 
 ```shell
