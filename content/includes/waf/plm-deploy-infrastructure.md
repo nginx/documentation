@@ -125,6 +125,8 @@ kubectl create secret tls plm-system-seaweedfs-client-cert \
 
 Replace each `<PATH_TO_*>` placeholder with the path to the corresponding certificate and key file from your PKI. The CA must sign all component certificates. If you don't have an existing PKI, generate a CA and sign the five component certificates before proceeding.
 
+#### Install the chart
+
 Add the NGINX Helm repository and install the chart:
 
 ```shell
@@ -217,7 +219,11 @@ All eight pods running and all four CRDs present confirms the PLM backend is rea
 
 ### Update the CRDs
 
-Skip this step on a fresh install — Helm installs the CRDs automatically. When upgrading PLM, apply the CRDs manually before running `helm upgrade`:
+{{< call-out class="note" title="Note" >}}
+Skip this step on a fresh install — Helm installs the CRDs automatically. Only follow these steps when upgrading an existing PLM installation.
+{{< /call-out >}}
+
+When upgrading PLM, apply the CRDs manually before running `helm upgrade`:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/{{< version-waf-policy-controller >}}/manifests/1-deploy-crds.yaml
