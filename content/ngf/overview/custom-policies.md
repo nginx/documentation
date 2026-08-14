@@ -23,6 +23,7 @@ The following table summarizes NGINX Gateway Fabric custom policies:
 | [SnippetsPolicy]({{< ref "/ngf/traffic-management/snippets.md" >}})                   | Inject custom NGINX configuration snippets                        | Direct          | Gateway                       | Yes                           | Yes       | v1alpha1    |
 | [UpstreamSettingsPolicy]({{< ref "/ngf/traffic-management/upstream-settings.md" >}})  | Configure upstream load balancing and connection behavior          | Direct          | Service                       | Yes                           | Yes       | v1alpha1    |
 | [WAFPolicy]({{< ref "/ngf/waf-integration/overview.md" >}})                           | Apply F5 WAF for NGINX protection (separate add-on to NGINX Plus) | Inherited       | Gateway, HTTPRoute, GRPCRoute | Yes                           | No        | v1alpha1    |
+| [PayloadProcessor]({{< ref "/ngf/how-to/f5-ai-guardrails.md" >}})                           | Secure LLM traffic with F5 AI Guardrails | Inherited       | Gateway, HTTPRoute | No                           | No        | v1alpha1    |
 
 {{< call-out "important" >}}
 If attaching a Policy to a Route, that Route must not share a hostname:port/path combination with any other Route that is not referenced by the same Policy. If it does, the Policy will be rejected. This is because the Policy would end up affecting other Routes that it is not attached to.
