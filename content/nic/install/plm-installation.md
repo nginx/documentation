@@ -101,11 +101,13 @@ The default PLM install creates three Secrets that NGINX Ingress Controller refe
 - `plm-f5-waf-seaweedfs-ca-cert`: CA certificate for the HTTPS filer.
 - `plm-f5-waf-seaweedfs-client-cert`: client TLS certificate for mTLS.
 
-Record the Secret references in `<namespace>/<name>` form. You'll pass all four values to NGINX Ingress Controller using `--set controller.appprotect.plmStorage.*` flags.
+Record the Secret references in `<NAMESPACE/NAME>` form. You'll pass all four values to NGINX Ingress Controller using `--set controller.appprotect.plmStorage.*` flags.
 
 ## Install NGINX Ingress Controller with PLM storage
 
 Because PLM owns the `appprotect.f5.com/v1` CRDs, you must apply the controller's own CRDs before running `helm install`. The `deploy/crds.yaml` bundle contains every CRD the controller needs (`VirtualServer`, `VirtualServerRoute`, `Policy`, `TransportServer`, `GlobalConfiguration`, `DNSEndpoint`). The bundle deliberately excludes the App Protect CRDs, which PLM owns.
+
+Download your NGINX Ingress Controller subscription’s JSON Web Token and rename it to `nginx-repo.jwt`.
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/deploy/crds.yaml
@@ -118,8 +120,13 @@ kubectl create namespace nginx-ingress
 kubectl create secret docker-registry regcred \
   --namespace nginx-ingress \
   --docker-server=private-registry.nginx.com \
-  --docker-username=<JWT> \
+  --docker-username=$(cat nginx-repo.jwt) \
   --docker-password=none
+
+kubectl create secret generic license-token \
+  --namespace nginx-ingress \
+  --from-file=license.jwt=nginx-repo.jwt \
+  --type=nginx.com/license
 ```
 
 Add the NGINX Helm repository:
@@ -246,7 +253,7 @@ kubectl get appolicy dataguard-blocking --namespace security \
 
 ## Create the Policy
 
-Save the following as `waf-policy.yaml`. The `apPolicy` and `apLogConf` fields accept `[<namespace>/]<name>`. When you omit the namespace, NGINX Ingress Controller defaults to the Policy's own namespace.
+Save the following as `waf-policy.yaml`. The `apPolicy` and `apLogConf` fields accept `[<NAMESPACE>/]<NAME>`. When you omit the namespace, NGINX Ingress Controller defaults to the Policy's own namespace.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
