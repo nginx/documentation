@@ -29,6 +29,7 @@ Supported policy types are:
 - `ingressMTLS`
 - `egressMTLS`
 - `oidc`
+- `oidcNative`
 - `cache`
 - `cors`
 - `waf`
@@ -50,6 +51,7 @@ Supported policy types are:
 | [`basicAuth`](#basicauth) | The basic auth policy configures NGINX to authenticate client requests using HTTP Basic authentication credentials. | Yes | No |
 | [`jwt`](#jwt-using-local-kubernetes-secret) | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | Yes | No |
 | [`oidc`](#oidc) | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | No |
+| [`oidcNative`](#oidcnative) | The OIDCNative policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | Yes, with `nginx.com/policies` |
 | [`cache`](#cache) | The cache policy configures proxy caching for serving cached content. | Yes | No |
 | [`hsts`](#hsts) | The HSTS policy configures [HTTP Strict Transport Security](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) to help ensure secure connections to the server. | Yes | No |
 
@@ -202,7 +204,7 @@ spec:
 
 Ingress policy support is narrower than `VirtualServer` support.
 
-If you need route-level control for features like JWT, OIDC, cache, or rate limiting, use `VirtualServer` and `VirtualServerRoute` instead.
+If you need route-level control for features like JWT, cache, or rate limiting, use `VirtualServer` and `VirtualServerRoute` instead.
 
 ### WAF on Ingress must use `nginx.com/policies`
 
@@ -1109,6 +1111,162 @@ policies:
 
 In this example NGINX Ingress Controller will use the configuration from the first policy reference `oidc-policy-one`, and ignores `oidc-policy-two`.
 
+### OIDCNative
+
+{{< call-out class="note" >}}
+
+This feature is only available with NGINX Plus and requires the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument.
+
+{{< /call-out >}}
+
+The OIDCNative policy configures NGINX Plus as a relying party for OpenID Connect authentication using the built-in `ngx_http_oidc_module`. Unlike the NJS-based [`oidc`](#oidc) policy, the native implementation handles the entire OIDC flow within the NGINX core, including token exchange, session management, and front-channel logout.
+
+For example, the following policy authenticates users against a Keycloak identity provider:
+
+```yaml
+spec:
+  oidcNative:
+    issuer: https://idp.example.com/realms/master
+    clientID: nginx-plus
+    clientSecret: oidc-secret
+    scope: openid profile email
+    logoutURI: /logout
+    postLogoutRedirectURI: /_logout
+```
+
+#### Prerequisites
+
+You need to configure a resolver so that NGINX Plus can resolve the identity provider's hostname for discovery and token exchange. Add the following to your ConfigMap:
+
+```yaml
+data:
+  resolver-addresses: "kube-dns.kube-system.svc.cluster.local"
+```
+
+When using the [zone synchronization]({{< ref "/nic/configuration/global-configuration/configmap-resource.md#zone-sync" >}}) feature, OIDC session data is synchronized across all replicas. The ConfigMap must be in its final state (with or without zone-sync enabled) before the OIDCNative policy and its referencing VirtualServer or Ingress are created. The native module's session zone is declared with sync only when zone-sync is enabled, and NGINX cannot change the sync flag of an existing shared memory zone across a reload.
+
+#### Differences from the NJS-based OIDC Policy
+
+{{% table %}}
+
+| Aspect | OIDC (NJS) | OIDCNative (native module) |
+| --- | --- | --- |
+| Implementation| NGINX JavaScript reference implementation | Built-in `ngx_http_oidc_module` |
+| Discovery | Manual endpoint configuration (`authEndpoint`, `tokenEndpoint`, `jwksURI`) | Automatic via OpenID Connect Discovery (`issuer` or `configURL`) |
+| Ingress Support | No | Yes, via `nginx.com/policies` annotation |
+| Front-channel logout | Via NJS handler | Via `frontChannelLogoutURI` directive |
+| PKCE | `pkceEnable` boolean | `pkce` enum (on/off), auto-detected from provider metadata by default |
+| Multiple providers per host | One per VirtualServer | Multiple (unique provider per policy+resource combination) |
+
+{{% /table %}}
+
+{{< call-out class="important" >}}
+
+`oidc` and `oidcNative` are mutually exclusive. A Policy resource must define only one of them. If both are set, NGINX Ingress Controller marks the Policy as Invalid.
+
+On a VirtualServer, applying both an `oidc` policy and an `oidcNative` policy to the same route results in a Warning status and a static 500 response for that route.
+
+{{< /call-out >}}
+
+{{% table %}}
+
+| Field | Description | Type | Required | Default |
+| --- | --- | --- | --- | --- |
+| `issuer` | The Issuer Identifier URL of the OpenID Provider. Must use the `https` scheme and exactly match the `issuer` claim in the provider's metadata. | `string` | Yes | -- |
+| `clientID` | The client ID provided by your OpenID Connect provider. | `string` | Yes | -- |
+| `clientSecret` | The name of the Kubernetes secret that stores the client secret. Must be of type `nginx.org/oidc` with the secret stored under the key `client-secret`. Not required when PKCE is enabled with a public client. | `string` | No | -- |
+| `configURL` | The URL of the OpenID Provider Configuration Information (discovery endpoint). If not set, defaults to `<issuer>/.well-known/openid-configuration`. | `string` | No | `<issuer>/.well-known/openid-configuration` |
+| `scope` | Space-separated list of OpenID Connect scopes. Must contain `openid`. Example: `"openid profile email"`. | `string` | No | `openid` |
+| `redirectURI` | Overrides the default redirect URI path used for the authorization callback. | `string` | No | `/oidc_callback` |
+| `cookieName` | Sets the name of the session cookie. | `string` | No | `NGX_OIDC_SESSION` |
+| `extraAuthArgs` | Additional query arguments appended to the authorization request URL. Example: `"display=page&prompt=login"`. | `string` | No | -- |
+| `pkce` | Explicitly enables or disables PKCE. By default, PKCE is automatically enabled based on OpenID Provider metadata. | `string (on/off)` | No | `auto` |
+| `logoutURI` | URI path for initiating session logout. When the user navigates to this path, the session is terminated and the user is redirected to the provider's logout endpoint. | `string` | No | -- |
+| `postLogoutRedirectURI` | Path where the user is redirected after logout. Must be a path on the same host. When set, NIC auto-generates an unauthenticated location at this path serving a plain-text confirmation response. | `string` | No | -- |
+| `frontChannelLogoutURI` | URI path for OIDC front-channel logout. When set, the identity provider calls this URI in a hidden iframe during global logout, allowing NGINX to terminate the local session. | `string` | No | -- |
+| `logoutTokenHint` | Adds the `id_token_hint` argument to the provider's logout endpoint when redirecting the user during logout. Required by some providers. | `bool` | No | `false` |
+| `sessionTimeout` | Duration after which the session expires unless refreshed. Example: `"8h"`, `"30m"`. | `string` | No | `8h` |
+| `userInfoEnable` | Enables downloading of the UserInfo data and makes UserInfo claims available via `$oidc_claim_<name>` variables. | `bool` | No | `false` |
+| `trustedCertSecret` | The name of the Kubernetes secret that stores the CA certificate for verifying the provider's TLS certificate. Must be of type `nginx.org/ca` with the certificate stored under key `ca.crt`. | `string` | No | -- |
+| `sslVerify` | Enables verification of the OpenID Provider's TLS certificate. Set to false to skip verification (dev/test only). | `bool` | No | `true` |
+| `sslName` | Overrides the TLS SNI name and Host header used when connecting to the OpenID Provider. Defaults to the hostname from issuer. | `string` | No | -- |
+| `sslVerifyDepth` | Verification depth in the OpenID Provider TLS certificate chain. | `int` | No | `1` |
+| `proxyBufferSize` | Buffer size used when proxying requests to the OpenID Provider. Applies to proxy_buffer_size and each buffer in proxy_buffers. | `string` | No | `32k` |
+
+{{% /table %}}
+
+#### OIDCNative On Ingress
+
+When using OIDCNative with Ingress resources, reference the policy through the `nginx.com/policies` annotation:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp
+  annotations:
+    nginx.com/policies: "oidc-native-policy"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - webapp.example.com
+      secretName: tls-secret
+  rules:
+    - host: webapp.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webapp-svc
+                port:
+                  number: 80
+```
+
+For mergeable Ingress, the policy can be applied at the master level (server-wide) or on individual minions (location-level):
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-master
+  annotations:
+    nginx.org/mergeable-ingress-type: "master"
+    nginx.com/policies: "oidc-native-policy"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - webapp.example.com
+      secretName: tls-secret
+  rules:
+    - host: webapp.example.com
+```
+
+{{< call-out class="important" >}}
+
+On Ingress, OIDCNative policies must be referenced through `nginx.com/policies`, not `nginx.org/policies`. This is the same annotation used for WAF policies.
+
+The NJS-based `oidc` policy is not supported on Ingress resources.
+
+{{< /call-out >}}
+
+#### OIDCNative Merging Behavior
+
+A VirtualServer, VirtualServerRoute, or Ingress can reference only a single OIDCNative policy per context. Every subsequent reference will be ignored. For example, here we reference two policies:
+
+```yaml
+policies:
+- name: oidc-policy-one
+- name: oidc-policy-two
+```
+
+In this example NGINX Ingress Controller will use the configuration from the first policy reference `oidc-policy-one`, and ignores `oidc-policy-two`.
+
+Multiple OIDCNative policies can coexist on the same host when applied to different routes (VirtualServer) or different mergeable Ingress minions. Each generates a unique `oidc_provider` block with its own session store.
+
 ### Cache
 
 The cache policy configures proxy caching, which improves performance by storing and serving cached responses to clients without having to proxy every request to upstream servers.
@@ -1351,6 +1509,7 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 For example, see the snippets below:
 
 NIM
+
 ```yaml
 spec:
   waf:
@@ -1375,6 +1534,7 @@ spec:
 ```
 
 N1C
+
 ```yaml
 spec:
   waf:
@@ -1401,6 +1561,7 @@ spec:
 ```
 
 HTTPS
+
 ```yaml
 spec:
   waf:
