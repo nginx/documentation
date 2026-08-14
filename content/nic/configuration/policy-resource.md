@@ -1247,7 +1247,7 @@ spec:
 
 {{< call-out class="important" >}}
 
-On Ingress, OIDCNative policies must be referenced through `nginx.com/policies`, not `nginx.org/policies`. This is the same annotation used for WAF policies.
+On Ingress, OIDCNative policies must be referenced through `nginx.com/policies`, not `nginx.org/policies`.
 
 The NJS-based `oidc` policy is not supported on Ingress resources.
 
