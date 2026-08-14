@@ -152,12 +152,23 @@ Wait for the SeaweedFS storage backend:
 ```shell
 kubectl rollout status deployment/plm-seaweedfs-operator \
   --namespace plm-system --timeout=120s
+```
 
-kubectl wait pods \
-  --selector app.kubernetes.io/name=seaweedfs \
-  --for=condition=Ready \
-  --namespace plm-system \
-  --timeout=180s
+The SeaweedFS operator creates the SeaweedFS pods after it reconciles the SeaweedFS custom resource, so there is a window where the operator deployment is ready but no SeaweedFS pods exist yet. Poll until the pods appear and are ready:
+
+```shell
+end=$((SECONDS + 300))
+until kubectl wait pods \
+    --selector app.kubernetes.io/name=seaweedfs \
+    --for=condition=Ready \
+    --namespace plm-system \
+    --timeout=10s 2>/dev/null; do
+  if [ $SECONDS -ge $end ]; then
+    echo "Timed out waiting for SeaweedFS pods"
+    exit 1
+  fi
+  sleep 5
+done
 ```
 
 Wait for the Policy Controller:
