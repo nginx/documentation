@@ -6,7 +6,8 @@ title: Releases
 toc: true
 weight: 300
 f5-content-type: reference
-f5-product: NGPLUS
+f5-product: NGINX Plus
+nollms: true
 ---
 
 {{< call-out class="note" title="Important" >}} Since May 13, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: [Long-Term Support Releases (LTS)](#lts) and [Continuous Releases (CR)](#cr). {{< /call-out >}}
@@ -27,6 +28,40 @@ CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0,
 ## Long-term support releases (LTS) {#lts}
 
 {{< call-out class="note" title="Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
+
+### NGINX Plus  PLS.37.0.4.1 LTS {#pls.37.0.4}
+_July 22, 2026_<br/>
+
+NGINX Plus PLS.37.0.4.1 LTS is a bugfix release.
+
+- If the `Host` header field value set by [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) evaluates to an empty string, the value of [`$proxy_host`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_host) is used instead. This prevents sending upstream requests without a `Host` (HTTP/1.1) or `:authority` (HTTP/2) header, and also allows [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) to pass in some configurations. The bug appeared in [NGINX Plus PLS.37.0.0.1 LTS](#r37.0).
+
+- Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/). The bug appeared in [NGINX Plus PLS.37.0.3.1 LTS](#pls.37.0.3).
+
+{{< call-out class="note" title="Upgrade Notes" >}} Before upgrading from NGINX Plus R36, you may need to review your existing configuration and prepare it for upgrade if necessary:
+
+- Ensure you are upgrading from the latest version of NGINX Plus R36 - currently NGINX Plus R36 P8, released on July 22, 2026.
+
+- Increase [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone): the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your upstream shared memory zones are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. This may increase the required shared memory zone size by 25–30%.
+
+- Disable [upstream keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) if unsupported: NGINX Plus PLS.37 LTS enables upstream keepalive by default. If your backend does not support connection reuse, explicitly disable it with `keepalive 0;` in your upstream configuration before upgrading. See [K000161464](https://my.f5.com/s/article/K000161464#ai-recommendations-55) for details.
+
+- Change the [HTTP version for upstreams](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) from the new default HTTP/1.1 to HTTP/1.0 when needed: if your upstreams rely on HTTP/1.0 for upstream communication, explicitly set `proxy_http_version 1.0;`. Ensure the `Host` header is configured when using the HTTP 1.1 protocol; without this, upstream health checks may fail. {{< /call-out >}}
+
+
+### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
+_July 15, 2026_<br/>
+
+NGINX Plus PLS.37.0.3.1 LTS is a security release.
+
+- Security fix in the [`ngx_http_ssi_module`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) module: when [`ssi`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#ssi) and [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) with disabled buffering (`off`) directives are configured, an unauthenticated attacker with man-in-the-middle (MITM) ability to control responses from an upstream server may be able to cause a heap buffer over-read in the NGINX worker process, leading to limited modification of memory or a restart ([CVE-2026-56434](https://my.f5.com/manage/s/article/K000162098)).
+
+- Security fix: when the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive with regex matching is configured and the map variable is included in a string expression following the captures affected by this map. Alternatively, the same result could be achieved by using a non-cacheable variable in a string expression under certain conditions. An unauthenticated attacker along with conditions beyond their control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42533](https://my.f5.com/manage/s/article/K000162097)).
+
+- Security fix in the [`ngx_http_slice_module`](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module: when the [`slice`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive and unnamed regex captures are configured or when a background cache update happens, unauthenticated attackers can send requests that with conditions beyond the attacker's control cause uninitialized memory access in the NGINX worker process, leading to limited disclosure of memory or a restart ([CVE-2026-60005](https://my.f5.com/manage/s/article/K000162100)).
+
+- Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
+
 
 ### NGINX Plus  PLS.37.0.2.1 LTS {#pls.37.0.2}
 _June 17, 2026_<br/>
@@ -57,7 +92,8 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - [NGINX control REST API]({{< ref "/nginx/admin-guide/basic-functionality/runtime-control.md#control-api" >}}) that provides an HTTP interface for controlling an NGINX Plus instance in addition to signal-based control.
 - JSON-formatted error logs: the [`json`](https://nginx.org/en/docs/ngx_core_module.html#error_log_json) parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
 - Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag) directive.
-- Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream).
+- Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream). 
+{{< call-out class="note" title="Important" >}} This change adds about 1KB of shared memory for each upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. {{< /call-out >}}
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
 - Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
 - Multipath TCP support: the [`multipath`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
@@ -262,6 +298,28 @@ This is a security release for NGINX Plus R36.
 - Security fix in the `ngx_http_proxy_v2_module` and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42055](https://my.f5.com/manage/s/article/K000161584)).
 
 - The [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers) directive that sets the maximum allowed number of header lines in requests.
+
+NGINX Plus R36 P7<br/>
+_July 15, 2026_
+
+This is a security release for NGINX Plus R36.
+
+- Security fix in the [`ngx_http_ssi_module`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) module: when [`ssi`](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#ssi) and [`proxy_pass`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) with disabled buffering (`off`) directives are configured, an unauthenticated attacker with man-in-the-middle (MITM) ability to control responses from an upstream server may be able to cause a heap buffer over-read in the NGINX worker process, leading to limited modification of memory or a restart ([CVE-2026-56434](https://my.f5.com/manage/s/article/K000162098)).
+
+- Security fix: when the [`map`](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) directive with regex matching is configured and the map variable is included in a string expression following the captures affected by this map. Alternatively, the same result could be achieved by using a non-cacheable variable in a string expression under certain conditions. An unauthenticated attacker along with conditions beyond their control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42533](https://my.f5.com/manage/s/article/K000162097)).
+
+- Security fix in the [`ngx_http_slice_module`](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module: when the [`slice`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive and unnamed regex captures are configured or when a background cache update happens, unauthenticated attackers can send requests that with conditions beyond the attacker's control cause uninitialized memory access in the NGINX worker process, leading to limited disclosure of memory or a restart ([CVE-2026-60005](https://my.f5.com/manage/s/article/K000162100)).
+
+- Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
+
+NGINX Plus R36 P8<br/>
+_July 22, 2026_
+
+This is an improvement release for NGINX Plus R36.
+
+- Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/). The bug appeared in NGINX Plus R36 P7.
+
+- The [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive now accepts the `0` value, making upgrade to NGINX Plus PLS.37 LTS smoother, where HTTP 1.1 and keepalive to upstreams are enabled by default. See [this blog post](https://blog.nginx.org/blog/keep-alive-to-upstreams-is-now-default-in-nginx-1-29-7) for details.
 
 
 ### NGINX Plus Release 35 (R35) {#r35}

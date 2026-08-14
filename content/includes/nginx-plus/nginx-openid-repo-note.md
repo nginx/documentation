@@ -1,5 +1,5 @@
 ---
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-files:
 - content/nginx/deployment-guides/single-sign-on/oidc-njs/active-directory-federation-services.md
 - content/nginx/deployment-guides/single-sign-on/oidc-njs/auth0.md

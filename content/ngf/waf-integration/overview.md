@@ -3,7 +3,7 @@ title: F5 WAF for NGINX overview
 weight: 100
 toc: true
 f5-content-type: reference
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: Architecture, setup, and concepts for F5 WAF for NGINX integration in NGINX Gateway Fabric.
 ---
 

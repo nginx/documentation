@@ -4,7 +4,7 @@ description: Deploy F5 NGINX Gateway Fabric on Red Hat OpenShift through Operato
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 ## Overview

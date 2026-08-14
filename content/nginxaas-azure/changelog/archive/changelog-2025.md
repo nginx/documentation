@@ -2,9 +2,9 @@
 title: "2025"
 weight: 99
 toc: true
-url: /nginxaas/azure/changelog/archive/changelog-2025/
+url: /nginxaas-azure/changelog/archive/changelog-2025/
 f5-content-type: reference
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 Learn about the updates, new features, and resolved bugs in F5 NGINXaaS for Azure during the year 2025.

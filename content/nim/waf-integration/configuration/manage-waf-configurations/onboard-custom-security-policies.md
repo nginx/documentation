@@ -4,7 +4,7 @@ description: Upload and prepare your own security policy bundles for use with F5
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Upload and prepare custom F5 WAF for NGINX security policies for use in F5 NGINX Instance Manager.
   Use this option when you need application-specific rules or want to integrate policies created outside NGINX Instance Manager.

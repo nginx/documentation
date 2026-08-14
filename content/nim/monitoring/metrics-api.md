@@ -6,7 +6,7 @@ title: Query the Metrics API
 toc: true
 weight: 200
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Query the F5 NGINX Instance Manager Metrics API to retrieve and filter system data from your NGINX instances.
   The Metrics API lets you fine-tune queries with parameters for time ranges, dimensions, and aggregations to monitor application performance.

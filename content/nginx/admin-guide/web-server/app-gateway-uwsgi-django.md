@@ -5,7 +5,7 @@ title: Using NGINX and NGINX Plus as an Application Gateway with uWSGI and Djang
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This article explains how to use NGINX or F5 NGINX Plus as an application gateway with uWSGI and Django.

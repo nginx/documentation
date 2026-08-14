@@ -4,7 +4,7 @@ title: Advanced configuration with Snippets
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 Snippets allow you to insert raw NGINX config into different contexts of the NGINX configurations that F5 NGINX Ingress Controller generates.

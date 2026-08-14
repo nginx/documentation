@@ -3,7 +3,7 @@ title: Troubleshooting
 weight: 500
 toc: true
 f5-content-type: reference
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-docs: DOCS-1226
 description: "Troubleshoot Security Monitoring issues in F5 NGINX Instance Manager when security violation events are not received or dashboards are not populated."
 f5-summary: >

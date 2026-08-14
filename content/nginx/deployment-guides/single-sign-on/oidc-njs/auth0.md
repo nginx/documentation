@@ -7,7 +7,7 @@ type:
 title: Single Sign-On With Auth0 and njs
 toc: false
 weight: 100
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-content-type: how-to
 ---
 

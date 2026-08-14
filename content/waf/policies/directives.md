@@ -3,7 +3,7 @@ title: "Directives"
 weight: 150
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 This topic describes the global NGINX directives and directives specific to F5 WAF for NGINX.

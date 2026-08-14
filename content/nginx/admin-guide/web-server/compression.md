@@ -6,7 +6,7 @@ title: Compression and Decompression
 toc: true
 weight: 400
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 
 This section describes how to configure compression or decompression of responses, as well as sending compressed files.
