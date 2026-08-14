@@ -42,11 +42,11 @@ server {
 }
 ```
 
-{{<call-out type="important" title="Important">}}
+{{<call-out class="important" type="important" title="Important">}}
 Make sure that the `server` and  `location` blocks are in the same configuration file, and not split across multiple files using `include` directives.
 {{</call-out>}}
 
-{{<call-out type="note" title="Configure NGINX Agent">}}
+{{<call-out class="note" type="note" title="Configure NGINX Agent">}}
 To enable NGINX Agent to call the NGINX Plus API, follow the steps below:
 - Add the following configuration to `/etc/nginx-agent/nginx-agent.conf`:
 ```
@@ -72,7 +72,7 @@ Found NGINX Plus API
 ```
 {{</call-out>}}
 
-{{<call-out type="note" title="Note">}}
+{{<call-out class="note" type="note" title="Note">}}
 Here is an example of how to generate self-signed certificates
 ```
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/certs/nginx-selfsigned.key -out /etc/nginx/certs/nginx-selfsigned.crt -subj "/CN=localhost" -addext "subjectAltName=IP:127.0.0.1"
