@@ -521,7 +521,7 @@ The API Key auth policy configures NGINX to authorize client requests based on t
 
 The feature is implemented using NGINX [ngx_http_auth_request_module](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
-Subrequests do not currently work when WAF (F5 WAF for NGINX) is enabled. As a result, the APIKey policy cannot be used together with WAF.
+Subrequests do not currently work when F5 WAF for NGINX is enabled. As a result, the APIKey policy cannot be used together with WAF.
 
 {{< /call-out >}}
 
@@ -725,7 +725,7 @@ jwt:
 
 This feature is implemented using the NGINX Plus directive [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) under [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
-Subrequests do not currently work when WAF (F5 WAF for NGINX) is enabled. Fetching JWKs from a remote URI using subrequests (`jwksURI`) is not supported when WAF is enabled.
+Subrequests do not currently work when F5 WAF for NGINX is enabled. Fetching JWKs from a remote URI using subrequests (`jwksURI`) is not supported when WAF is enabled.
 
 {{< /call-out >}}
 
@@ -961,7 +961,7 @@ The ExternalAuth policy configures NGINX to authenticate client requests using a
 
 {{< call-out class="note" >}}
 
-Subrequests do not currently work when WAF (F5 WAF for NGINX) is enabled. As a result, the ExternalAuth policy cannot be used together with WAF.
+Subrequests do not currently work when F5 WAF for NGINX is enabled. As a result, the ExternalAuth policy cannot be used together with WAF.
 
 {{< /call-out >}}
 
@@ -1037,7 +1037,7 @@ This feature is disabled by default. To enable it, set the [enable-oidc]({{< ref
 
 {{< call-out class="note" >}}
 
-Subrequests do not currently work when WAF (F5 WAF for NGINX) is enabled. As a result, the OIDC policy cannot be used together with WAF.
+Subrequests do not currently work when F5 WAF for NGINX is enabled. As a result, the OIDC policy cannot be used together with WAF.
 
 {{< /call-out >}}
 
