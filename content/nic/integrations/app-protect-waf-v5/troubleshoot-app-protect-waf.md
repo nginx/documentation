@@ -112,6 +112,10 @@ When you set NGINX Ingress Controller to use debug mode, the setting also applie
 
 When using NGINX Ingress Controller with the F5 WAF for NGINX module, the following issues have been reported. The occurrence of these issues is commonly related to a higher number of Ingress Resources with App Protect being enabled in a cluster.
 
+### Subrequests compatibility
+
+Features that rely on NGINX subrequests (such as `externalAuth`, `apiKey`, remote JWKS fetching in `jwt` policy, OIDC, or background cache updates) do not currently work when F5 WAF for NGINX is enabled.
+
 When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the F5 WAF for NGINX module enabled, usual reload times are around 150ms. If F5 WAF for NGINX module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
 
 ### NGINX configuration drift
