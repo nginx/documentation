@@ -1,0 +1,8 @@
+# documentation
+
+> Public source for docs.nginx.com
+
+## Pages
+
+- [Repository](https://github.com/nginx/documentation)
+- [Homepage/Docs](https://docs.nginx.com/)
