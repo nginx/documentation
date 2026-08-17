@@ -1129,7 +1129,7 @@ The cache policy configures proxy caching, which improves performance by storing
 
 {{< call-out class="note" >}}
 
-Subrequests do not currently work when WAF (F5 WAF for NGINX) is enabled. Features that rely on background subrequests, such as `cacheBackgroundUpdate`, will not work when WAF is enabled.
+Subrequests do not currently work when F5 WAF for NGINX is enabled. Features that rely on background subrequests, such as `cacheBackgroundUpdate`, will not work when WAF is enabled.
 
 {{< /call-out >}}
 
@@ -1292,7 +1292,7 @@ A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However
 
 {{< call-out class="note" >}}
 
-Features that rely on NGINX subrequests (such as `externalAuth`, `apiKey`, remote JWKS fetching in `jwt` policy, OIDC, or background cache updates) do not currently work when WAF is enabled.
+Features that rely on NGINX subrequests (such as `externalAuth`, `apiKey`, remote JWKS fetching in `jwt` policy, OIDC, or background cache updates) do not currently work when F5 WAF for NGINX is enabled.
 
 {{< /call-out >}}
 
