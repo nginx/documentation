@@ -1,5 +1,5 @@
 ---
 title: "External load balancers"
-weight: 700
+weight: 520
 url: /nginx-gateway-fabric/external-loadbalancers
 ---
