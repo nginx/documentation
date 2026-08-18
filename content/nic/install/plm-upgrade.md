@@ -9,7 +9,7 @@ f5-description: >
 f5-audience: operator
 ---
 
-Use this guide to upgrade an existing NGINX Ingress Controller + F5 WAF for NGINX deployment from in-pod App Protect policy compilation to Policy Lifecycle Management (PLM). PLM compiles `APPolicy` and `APLogConf` resources in a dedicated controller and stores the resulting bundles in an in-cluster S3-compatible object store. NGINX Ingress Controller then fetches the compiled bundles instead of compiling them in the data plane.
+Use this guide to upgrade an existing F5 NGINX Ingress Controller + F5 WAF for NGINX deployment from in-pod App Protect policy compilation to Policy Lifecycle Management (PLM). PLM compiles `APPolicy` and `APLogConf` resources in a dedicated controller and stores the resulting bundles in an in-cluster S3-compatible object store. NGINX Ingress Controller then fetches the compiled bundles instead of compiling them in the data plane.
 
 Under PLM, the fields you already write on the NGINX Ingress Controller `Policy` resource (`waf.apPolicy` and `waf.securityLogs[].apLogConf`) continue to work unchanged. You don't need to rewrite the `k8s.nginx.org/v1` Policy manifest for a VirtualServer or Ingress during the upgrade.
 
@@ -114,7 +114,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{<
 
 Follow this section if your existing NGINX Ingress Controller deployment routes traffic through `k8s.nginx.org/v1` VirtualServer resources that reference a Policy resource with `waf.apPolicy` and `waf.securityLogs[].apLogConf` fields.
 
-### 1. Upgrade NGINX Ingress Controller with PLM storage
+### Upgrade NGINX Ingress Controller with PLM storage
 
 Upgrade the NGINX Ingress Controller release. `--reuse-values` preserves your existing configuration. The `--set` flags overlay PLM storage on top. `--skip-crds` prevents Helm from touching CRDs, because you applied the NGINX Ingress Controller CRDs in the previous step and PLM owns the App Protect CRDs.
 
@@ -156,7 +156,7 @@ Expected output includes:
 Using appprotect.f5.com/v1 CRDs
 ```
 
-### 2. Verify Policy status
+### Verify Policy status
 
 Check each WAF Policy referenced by a VirtualServer:
 
@@ -174,7 +174,7 @@ default     waf-policy   Valid   AddedOrUpdated
 
 If a Policy remains in `Warning` with `BundlePending`, the referenced `APPolicy` or `APLogConf` isn't yet `ready` in PLM. Confirm that PLM has compiled the resource, then retry.
 
-### 3. Verify traffic
+### Verify traffic
 
 Send a normal request to the VirtualServer and confirm the application responds:
 
@@ -185,7 +185,7 @@ curl --resolve webapp.example.com:$IC_HTTP_PORT:$IC_IP \
 
 Then send a request that triggers the configured WAF violation and confirm the response is `Request Rejected`.
 
-### 4. Confirm bundles come from PLM storage
+### Confirm bundles come from PLM storage
 
 Check the bundle files in the ingress controller pod:
 
@@ -204,7 +204,7 @@ Files named `fetched_<namespace>_<policy-name>_policy.tgz` and `fetched_<namespa
 
 Follow this section if your existing NGINX Ingress Controller deployment routes traffic through Kubernetes Ingress resources. The procedure is the same as Section 1, with one additional Ingress-specific step.
 
-### 1. Audit Ingress annotations
+### Audit Ingress annotations
 
 Under PLM, NGINX Ingress Controller doesn't support the App Protect Ingress annotations:
 
@@ -214,15 +214,15 @@ Under PLM, NGINX Ingress Controller doesn't support the App Protect Ingress anno
 
 An Ingress that uses these annotations is accepted but produces a warning after the upgrade. WAF isn't applied to that route. Before you turn on PLM storage, migrate every such Ingress to a `k8s.nginx.org/v1` Policy resource.
 
-### 2. Upgrade NGINX Ingress Controller with PLM storage
+### Upgrade NGINX Ingress Controller with PLM storage
 
 Run the same `helm upgrade` command shown in [Section 1, step 1](#1-upgrade-nginx-ingress-controller-with-plm-storage).
 
-### 3. Verify Ingress traffic
+### Verify Ingress traffic
 
 For each Ingress, send a normal request and confirm the application responds. Then send a request that matches a WAF violation and confirm the response is `Request Rejected`.
 
-### 4. Confirm bundles come from PLM storage
+### Confirm bundles come from PLM storage
 
 Use the same procedure as [Section 1, step 4](#4-confirm-bundles-come-from-plm-storage).
 
