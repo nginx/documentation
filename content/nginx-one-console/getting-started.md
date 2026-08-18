@@ -163,16 +163,16 @@ The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Sou
 
 {{<tabs name="enable-nginx-metrics" >}}
 
-{{%tab name="without SSL"%}}
+{{<tab name="without SSL">}}
 {{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
 
-{{% /tab %}}
-{{%tab name="with SSL"%}}
+{{< /tab >}}
+{{<tab name="with SSL">}}
 
 {{< include "/use-cases/monitoring/enable-nginx-plus-api-with-ssl.md" >}}
 
-{{% /tab %}}
-{{% /tabs %}}
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Enable NGINX Open Source Metrics
 
