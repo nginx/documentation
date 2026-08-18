@@ -1312,7 +1312,7 @@ waf:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``enable`` | Enables security log. | ``bool`` | No |
-|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. `apLogConf` references an APPolicy CR by `[<NAMESPACE>/]<NAME>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APLogConf (`status.bundle.state == ready`). Only works with `apPolicy`. | ``string`` | No |
+|``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. `apLogConf` references an APLogconf CR by `[<NAMESPACE>/]<NAME>`. When you start the Ingress Controller with `-plm-storage-url`, PLM must have compiled the referenced APLogConf (`status.bundle.state == ready`). Only works with `apPolicy`. | ``string`` | No |
 |``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. | ``string`` | No |
 |``apLogBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
