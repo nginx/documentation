@@ -93,5 +93,5 @@ NGINX One Console uses the following label keys for specific purposes:
 {{<table>}}
 | **Label**      | **Description**                                                                                                                                            |
 |----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| display-name   | Sets a friendly name for the instance in NGINX One Console. See [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}) for details. |
+| display-name   | Sets a display name for the instance in NGINX One Console. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}). |
 {{</table >}}
