@@ -14,7 +14,7 @@ Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
 ### Instances: Custom display names
 
-You can now assign a friendly display name to an NGINX instance by setting the `display-name` NGINX Agent label. When set, the display name appears alongside the hostname throughout NGINX One Console, and you can filter and sort your instances by display name. For more information, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).
+You can now assign a display name to an NGINX instance by setting the `display-name` NGINX Agent label. When set, the display name appears alongside the hostname throughout NGINX One Console, and you can filter and sort your instances by display name. For more information, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).
 
 ## July 16, 2026
 
