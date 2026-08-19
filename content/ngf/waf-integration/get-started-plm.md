@@ -118,161 +118,17 @@ NGINX Gateway Fabric reloads the PLM credentials and TLS Secrets when they chang
 
 ## Deploy the sample application
 
-Deploy the `customers` and `orders` sample applications. The `customers` app returns a response containing fake sensitive data (credit card number and SSN), which you'll use later to demonstrate data guard masking:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: customers
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: customers
-  template:
-    metadata:
-      labels:
-        app: customers
-    spec:
-      containers:
-      - name: customers
-        image: hashicorp/http-echo:latest
-        args:
-        - "-listen=:8080"
-        - "-text=Customer List:\n\nName: John Doe\nCredit Card: 4111-1111-1111-1111\nSSN: 123-45-6789\n"
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: customers
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: customers
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: orders
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: orders
-  template:
-    metadata:
-      labels:
-        app: orders
-    spec:
-      containers:
-      - name: orders
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: orders
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: orders
-EOF
-```
+{{< include "waf/plm-sample-app.md" >}}
 
 ## Configure security logging (optional)
 
-This section is typically owned by the security team. If you're not on the security team, share this section with them before continuing.
-
-PLM security logging profiles are defined as `APLogConf` custom resources. Create a namespace to hold your security resources, then define a log profile that logs illegal requests:
-
-```shell
-kubectl create namespace security
-```
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: appprotect.f5.com/v1
-kind: APLogConf
-metadata:
-  name: log-illegal
-  namespace: security
-spec:
-  filter:
-    request_type: illegal
-  content:
-    format: default
-    max_request_size: any
-    max_message_size: 15k
-EOF
-```
-
-PLM compiles the log profile automatically. Wait for `status.bundle.state` to report `ready` before referencing it:
-
-```shell
-kubectl wait --for=jsonpath='{.status.bundle.state}'=ready aplogconf/log-illegal -n security --timeout=60s
-```
+{{< include "waf/plm-configure-logging.md" >}}
 
 If you skip this section, omit the `securityLogs` field in the `WAFPolicy` resource in the next steps.
 
 ## Define the WAF policy
 
-This section is typically owned by the security team. They define the policy in the `security` namespace, separate from the Gateway namespace, so security resources are managed independently from routing configuration. If you're not on the security team, share this section with them — you'll need the `APPolicy` name and namespace before continuing.
-
-The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles it, and writes `status.bundle` with `state: ready` when the bundle is available.
-
-Use the **Inline** tab for this tutorial's primary workflow. The other tabs cover alternate policy-source methods.
-
-{{<tabs name="plm-policy-definition-methods">}}
-
-{{%tab name="Inline"%}}
-
-Create an `APPolicy` resource with an inline policy that blocks all attack signatures:
-
-```yaml
-kubectl apply -f - <<EOF
-apiVersion: appprotect.f5.com/v1
-kind: APPolicy
-metadata:
-  name: attack-signatures
-  namespace: security
-spec:
-  policy:
-    name: attack-signatures-blocking
-    template:
-      name: POLICY_TEMPLATE_NGINX_BASE
-    applicationLanguage: utf-8
-    enforcementMode: blocking
-    signature-sets:
-    - name: All Signatures
-      block: true
-      alarm: true
-    cookies:
-    - name: "*"
-      attackSignaturesCheck: true
-      enforcementType: enforce
-      maskValueInLogs: false
-EOF
-```
-
-Wait for the bundle to become ready:
-
-```shell
-kubectl wait --for=jsonpath='{.status.bundle.state}'=ready appolicy/attack-signatures -n security --timeout=60s
-```
+{{< include "waf/plm-define-policy-inline-git.md" >}}
 
 The `APPolicy` and `APLogConf` are in the `security` namespace, but the `WAFPolicy` you create next targets a Gateway in the `default` namespace. To permit the cross-namespace reference, create a `ReferenceGrant` in the `security` namespace:
 
@@ -298,89 +154,9 @@ EOF
 
 {{< call-out class="note" title="Note" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
 
-{{% /tab %}}
-
-{{%tab name="Git reference"%}}
-
-Store your policy JSON in a Git repository and reference it from `APPolicy`.
-
-#### Public repository
-
-Create an `APPolicy` resource that references the policy file by path. Replace `<POLICY_NAME>`, `<NAMESPACE>`, `<PATH/TO/POLICY.JSON>`, `<ORG>`, `<REPO>`, and `<TAG_OR_COMMIT>` with your values:
-
-```shell
-kubectl apply -f - <<EOF
-apiVersion: appprotect.f5.com/v1
-kind: APPolicy
-metadata:
-  name: <POLICY_NAME>
-  namespace: <NAMESPACE>
-spec:
-  policy:
-    $ref: <PATH/TO/POLICY.JSON>
-    externalReferenceDetails:
-      repositoryDetails:
-        repository: https://github.com/<ORG>/<REPO>.git
-        ref: "<TAG_OR_COMMIT>"
-EOF
-```
-
-{{< call-out class="note" title="Note" >}} Pin `ref` to a tag or commit SHA rather than a branch name in production environments. {{< /call-out >}}
-
-Check that the bundle compiled successfully:
-
-```shell
-kubectl get appolicy <POLICY_NAME> \
-  --namespace <NAMESPACE> \
-  --output jsonpath='State:    {.status.bundle.state}{"\n"}Bundle:   {.status.bundle.location}{"\n"}Compiler: {.status.bundle.compilerVersion}{"\n"}'
-```
-
-The output shows `State: ready` when compilation succeeds.
-
-#### Private repository
-
-For private repositories, create a Kubernetes secret with your personal access token (PAT):
-
-```shell
-kubectl create secret generic git-token-secret \
-  --namespace <NAMESPACE> \
-  --from-literal=token=<GIT_PERSONAL_ACCESS_TOKEN>
-```
-
-Then reference the secret in the `APPolicy` resource:
-
-```shell
-kubectl apply -f - <<EOF
-apiVersion: appprotect.f5.com/v1
-kind: APPolicy
-metadata:
-  name: <POLICY_NAME>
-  namespace: <NAMESPACE>
-spec:
-  policy:
-    $ref: <PATH/TO/POLICY.JSON>
-    externalReferenceDetails:
-      repositoryDetails:
-        repository: https://github.com/<ORG>/<REPO>.git
-        ref: "<TAG_OR_COMMIT>"
-      authentication:
-        token: git-token-secret
-EOF
-```
-
-#### Update a Git-referenced policy
-
-The Policy Controller doesn't poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
-
-{{% /tab %}}
-
-{{%tab name="Precompiled bundle"%}}
+For the precompiled-bundle method, see the **Precompiled bundle** tab:
 
 {{< include "waf/plm-define-policy-bundle-method.md" >}}
-
-{{% /tab %}}
-
-{{</tabs>}}
 
 ## Deploy the Gateway and attach WAFPolicy
 
