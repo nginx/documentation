@@ -2,7 +2,7 @@
 title: Manage NGINX instances
 weight: 80
 url: /nginx-instance-manager/nginx-instances/
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-content-type: landing-page
 description: "Add, scan, tag, and group NGINX instances in F5 NGINX Instance Manager, and manage SSL certificates across your fleet."
 f5-summary: >

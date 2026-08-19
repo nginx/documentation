@@ -8,7 +8,7 @@ f5-landing-page: true
 cascade:
   logo: NGINX-Plus-product-icon.svg
 f5-content-type: landing-page
-f5-product: NGPLUS
+f5-product: NGINX Plus
 ---
 Request your [free 30‑day trial](https://www.nginx.com/free-trial-request) today.
 

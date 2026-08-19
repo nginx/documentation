@@ -5,7 +5,7 @@ title: Access Log Request Mechanism
 toc: true
 weight: 160
 f5-content-type: how-to
-f5-product: F5DOSN
+f5-product: F5 DOS for NGINX
 ---
 
 ## Access Logs

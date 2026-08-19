@@ -3,7 +3,7 @@ title: Configure TLS passthrough with TLSRoute
 weight: 600
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1850
 f5-summary: >
    NGINX Gateway Fabric can route encrypted TLS traffic straight to a backend without decrypting it, using a TLSRoute resource and SNI-based routing.

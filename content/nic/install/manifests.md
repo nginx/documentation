@@ -3,7 +3,7 @@ title: Install NGINX Ingress Controller with Manifests
 toc: true
 weight: 500
 f5-content-type: how-to
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 f5-docs: DOCS-603
 ---
 

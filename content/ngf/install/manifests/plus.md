@@ -4,7 +4,7 @@ linkTitle: NGINX Plus
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 This page describes how to use Manifests to install NGINX Gateway Fabric with NGINX Plus.

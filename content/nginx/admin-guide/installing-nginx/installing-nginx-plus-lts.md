@@ -5,8 +5,8 @@ description: Install F5 NGINX Plus LTS with step-by-step instructions for
 toc: true
 weight: 120
 nd-content-type: how-to
-nd-product: NGPLUS
-nd-docs: DOCS-000
+f5-product: F5 NGINX Plus
+f5-docs: DOCS-000
 ---
 
 Since May 13, 2026, NGINX Plus is published in two release types: Long-Term Support (LTS) and Continuous Release (CR).

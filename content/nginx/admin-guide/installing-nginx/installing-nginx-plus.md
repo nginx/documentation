@@ -5,7 +5,7 @@ description: Install F5 NGINX Plus with step-by-step instructions for
 toc: true
 weight: 100
 f5-content-type: how-to
-f5-product: NGPLUS
+f5-product: NGINX Plus
 f5-docs: DOCS-414
 ---
 
@@ -568,7 +568,7 @@ NGINX-authored dynamic modules are developed and officially maintained by the F5
 
 ### NGINX-certified community dynamic modules
 
-NGINX-certified community dynamic modules are popular third‑party modules tested and distributed by F5 NGINX, with installation and basic configuration support provided. They are also distributed as precompiled packages for various operating systems and can be installed [from the `nginx-plus` repository](#install-from-official-repository).
+NGINX-certified community dynamic modules are popular third‑party modules distributed by F5 NGINX, with installation and basic configuration support provided. They are also distributed as precompiled packages for various operating systems and can be installed [from the `nginx-plus` repository](#install-from-official-repository).
 
 {{< table >}}
 

@@ -3,7 +3,7 @@ title: "Bot signatures"
 weight: 550
 toc: true
 f5-content-type: reference
-f5-product: F5WAFN
+f5-product: F5 WAF for NGINX
 ---
 
 Bot signatures are a feature that protects applications by detecting signatures and clients that falsely claim to be browsers or search engines.

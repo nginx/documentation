@@ -1,7 +1,7 @@
 ---
 f5-content-type: installation-guide
 f5-docs: DOCS-000
-f5-product: {PRODUCT_CODE}
+f5-product: {PRODUCT_NAME}
 title: {Install + product or component name}
 description: "{One-sentence summary of what the reader installs and on what platform, under 160 characters.}"
 weight: 100

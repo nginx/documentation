@@ -11,5 +11,5 @@ title: API reference guide
 toc: false
 weight: null
 f5-api-reference: "./nginx-one-console/api/one.json"
-f5-product: NONECO
+f5-product: NGINX One Console
 ---

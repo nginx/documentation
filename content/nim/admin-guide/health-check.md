@@ -8,7 +8,7 @@ weight: 800
 toc: true
 # Types have a 1:1 relationship with Hugo archetypes, so you shouldn't need to change this
 f5-content-type: how-to
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 f5-summary: >
   Check the health of each F5 NGINX Instance Manager module individually or run a script that checks all modules at once.
   The health check confirms that each module is running and responding as expected.

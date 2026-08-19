@@ -3,7 +3,7 @@ title: Troubleshooting
 toc: true
 weight: 600
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1419
 ---
 
@@ -279,7 +279,7 @@ Metrics can be useful to identify performance bottlenecks and pinpoint areas of 
 #### Access the NGINX Plus Dashboard
 
 If you have NGINX Gateway Fabric installed with NGINX Plus, you can access the NGINX Plus dashboard at `http://localhost:8080/dashboard.html`.
-Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< ref "dashboard.md" >}})
+Verify that the port number (for example, `8080`) matches the port number you have port-forwarded to your NGINX Gateway Fabric Pod. For further details, see the [dashboard guide]({{< relref "monitoring/dashboard.md" >}})
 
 ### Common errors
 

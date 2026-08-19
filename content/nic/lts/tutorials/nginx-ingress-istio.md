@@ -3,7 +3,7 @@ title: NGINX Ingress Controller LTS and Istio Service Mesh
 toc: true
 weight: 1800
 f5-content-type: concept
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 NGINX Ingress Controller LTS can be used as the Ingress Controller for applications running inside an Istio service mesh. This allows you to continue using the advanced capabilities that NGINX IC provides on Istio-based environments without resorting to any workarounds.

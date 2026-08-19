@@ -3,7 +3,7 @@ title: Get started with F5 WAF for NGINX
 weight: 200
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-description: Quick start guide for protecting traffic with F5 WAF for NGINX in NGINX Gateway Fabric.
 f5-summary: >
   Deploy a sample application, compile a WAF policy, and apply it to a Gateway using NGINX Gateway Fabric.

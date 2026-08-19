@@ -3,7 +3,7 @@ title: Configure basic authentication
 weight: 400
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 ---
 
 

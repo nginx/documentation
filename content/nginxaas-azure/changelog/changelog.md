@@ -4,15 +4,33 @@ weight: 100
 toc: true
 f5-content-type: reference
 f5-docs: "DOCS-870"
-f5-product: NAZURE
-url: /nginxaas/azure/changelog/
+f5-product: NGINXaaS for Azure
+url: /nginxaas-azure/changelog/
 ---
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS for Azure.
 
-To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues.md" >}}) page.
+To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas-azure/known-issues" >}}) page.
 
 To review older entries, visit the [Changelog archive]({{< ref "/nginxaas-azure/changelog/archive" >}}) section.
+
+## July 29, 2026
+  NGINX Plus 37.0.4 is now available on the **Preview** [upgrade channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels" >}}) and will be promoted to the **Stable** upgrade channel starting the week of August 17, 2026.
+
+  NGINX Plus 37.0 introduced [several changes](https://docs.nginx.com/nginx/releases/#pls.37.0.4) including new default settings that can affect the behavior of your deployment and it is imperative that you take one of the following steps before your deployment is upgraded:
+- Test your configuration on the Preview channel to confirm the new changes do not adversely affect the operation of your applications.
+- Preserve your R36 behavior by following the recommendations in the [NGINX Plus 37.0 behavior impact]({{< ref "/nginxaas-azure/known-issues/#nginx-plus-370-behavior-impact" >}}) section of the **Known issues** page.
+
+## July 2, 2026
+
+  NGINX Plus 37.0 (PLS.37.0) introduced [updated defaults](https://docs.nginx.com/nginx/releases/#r37.0) that affected some users. Deployments on the **Stable** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) have been reverted to NGINX Plus Release 36 (R36) while we work with affected users to resolve concerns.
+  In the meantime, you can test NGINX Plus 37.0 on the **Preview** [Upgrade Channel]({{< ref "/nginxaas-azure/quickstart/upgrade-channels.md" >}}) to check compatibility.
+
+## July 1, 2026
+
+- {{% icon-feature %}} **User-assigned managed identities are now supported on the data plane**
+
+  NGINXaaS for Azure now supports using either a system-assigned or user-assigned managed identity for data plane access to Azure resources through IMDS token retrieval. For setup instructions, see [NGINXaaS Managed Identity on dataplane]({{< ref "/nginxaas-azure/quickstart/dataplane-mi.md" >}}).
 
 ## May 1, 2026
 

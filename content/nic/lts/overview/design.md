@@ -3,7 +3,7 @@ title: The design of NGINX Ingress Controller LTS
 toc: true
 weight: 200
 f5-content-type: concept
-f5-product: INGRESS
+f5-product: NGINX Ingress Controller
 ---
 
 This document explains how the F5 NGINX Ingress Controller LTS is designed.

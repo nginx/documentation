@@ -4,7 +4,7 @@ title: Manage SSL certificates
 toc: true
 weight: 650
 f5-content-type: tutorial
-f5-product: NIMNGR
+f5-product: NGINX Instance Manager
 description: "Add, update, and delete TLS certificates in F5 NGINX Instance Manager using the web interface or REST API."
 f5-summary: >
   Manage TLS certificates for your NGINX instances from F5 NGINX Instance Manager using the web interface or the REST API.

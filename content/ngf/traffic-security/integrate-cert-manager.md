@@ -3,7 +3,7 @@ title: Secure traffic using Let's Encrypt and cert-manager
 weight: 100
 toc: true
 f5-content-type: how-to
-f5-product: FABRIC
+f5-product: NGINX Gateway Fabric
 f5-docs: DOCS-1425
 f5-summary: >
    cert-manager automates issuance and renewal of TLS certificates from public Certificate Authorities such as Let's Encrypt by responding to ACME challenges on your behalf.
@@ -144,6 +144,7 @@ cafe-secret   kubernetes.io/tls   2      20s
 ```
 
 ---
+- Multiple `certificateRefs` apply to the listener's `hostname` and are not automatically selected based on the hostnames of attached HTTPRoute resources. Use separate HTTPS listeners for different domains that require different certificates.
 
 ### Deploy our application and HTTPRoute
 

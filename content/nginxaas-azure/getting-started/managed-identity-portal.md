@@ -3,9 +3,9 @@ title: Assign Managed Identities
 weight: 300
 toc: true
 f5-docs: DOCS-872
-url: /nginxaas/azure/getting-started/managed-identity-portal/
+url: /nginxaas-azure/getting-started/managed-identity-portal/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview

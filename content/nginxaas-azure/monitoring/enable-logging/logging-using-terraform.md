@@ -3,9 +3,9 @@ title: Enable NGINX logs using Terraform
 weight: 100
 toc: true
 f5-docs: DOCS-1369
-url: /nginxaas/azure/monitoring/enable-logging/logging-using-terraform/
+url: /nginxaas-azure/monitoring/enable-logging/logging-using-terraform/
 f5-content-type: how-to
-f5-product: NAZURE
+f5-product: NGINXaaS for Azure
 ---
 
 ## Overview
