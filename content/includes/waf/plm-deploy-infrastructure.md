@@ -99,30 +99,30 @@ Create the Secrets from your CA and certificate files before installing:
 ```shell
 kubectl create secret generic plm-system-seaweedfs-ca-cert \
   --namespace plm-system \
-  --from-file=ca.crt=<PATH_TO_CA_CERT>
+  --from-file=ca.crt=<PATH/TO/CA_CERT>
 
 kubectl create secret tls plm-system-seaweedfs-master-cert \
   --namespace plm-system \
-  --cert=<PATH_TO_MASTER_CERT> \
-  --key=<PATH_TO_MASTER_KEY>
+  --cert=<PATH/TO/MASTER_CERT> \
+  --key=<PATH/TO/MASTER_KEY>
 
 kubectl create secret tls plm-system-seaweedfs-volume-cert \
   --namespace plm-system \
-  --cert=<PATH_TO_VOLUME_CERT> \
-  --key=<PATH_TO_VOLUME_KEY>
+  --cert=<PATH/TO/VOLUME_CERT> \
+  --key=<PATH/TO/VOLUME_KEY>
 
 kubectl create secret tls plm-system-seaweedfs-filer-cert \
   --namespace plm-system \
-  --cert=<PATH_TO_FILER_CERT> \
-  --key=<PATH_TO_FILER_KEY>
+  --cert=<PATH/TO/FILER_CERT> \
+  --key=<PATH/TO/FILER_KEY>
 
 kubectl create secret tls plm-system-seaweedfs-client-cert \
   --namespace plm-system \
-  --cert=<PATH_TO_CLIENT_CERT> \
-  --key=<PATH_TO_CLIENT_KEY>
+  --cert=<PATH/TO/CLIENT_CERT> \
+  --key=<PATH/TO/CLIENT_KEY>
 ```
 
-Replace each `<PATH_TO_*>` placeholder with the path to the corresponding certificate and key file from your PKI. The CA must sign all component certificates. If you don't have an existing PKI, generate a CA and sign the five component certificates before proceeding.
+Replace each `<PATH/TO/*>` placeholder with the path to the corresponding certificate and key file from your PKI. The CA must sign all component certificates. If you don't have an existing PKI, generate a CA and sign the five component certificates before proceeding.
 
 #### Install the chart
 
