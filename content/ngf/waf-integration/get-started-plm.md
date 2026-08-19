@@ -128,7 +128,7 @@ If you skip this section, omit the `securityLogs` field in the `WAFPolicy` resou
 
 ## Define the WAF policy
 
-{{< include "waf/plm-define-policy-inline-git.md" >}}
+{{< include "waf/plm-define-policy-methods.md" >}}
 
 The `APPolicy` and `APLogConf` are in the `security` namespace, but the `WAFPolicy` you create next targets a Gateway in the `default` namespace. To permit the cross-namespace reference, create a `ReferenceGrant` in the `security` namespace:
 
@@ -153,10 +153,6 @@ EOF
 ```
 
 {{< call-out class="note" title="Note" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
-
-For the precompiled-bundle method, see the **Precompiled bundle** tab:
-
-{{< include "waf/plm-define-policy-bundle-method.md" >}}
 
 ## Deploy the Gateway and attach WAFPolicy
 
