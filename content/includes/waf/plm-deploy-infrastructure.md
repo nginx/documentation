@@ -228,23 +228,23 @@ When upgrading PLM, apply the CRDs manually before running `helm upgrade`:
 kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/{{< version-waf-policy-controller >}}/manifests/1-deploy-crds.yaml
 ```
 
-### Troubleshoot the PLM deployment
+### Troubleshoot the deployment
 
-The following are the most common failures during PLM installation, roughly in order of likelihood.
+These are the most common failures during PLM installation, roughly in order of likelihood.
 
-**Pods stuck in `ImagePullBackOff`**
+#### Pods stuck in `ImagePullBackOff`
 
-The JWT is wrong, expired, or was pasted with a line break. Confirm with:
+The JWT is wrong, expired, or contains a line break. Check the events log:
 
 ```shell
 kubectl get events --namespace plm-system --field-selector reason=Failed
 ```
 
-The registry username must be the entire JWT string. The password must be the literal string `none`.
+Use the full JWT string as the registry username. Use the literal string `none` as the password.
 
-**Policy Controller stuck in `Init:0/1`**
+#### Policy Controller stuck in `Init:0/1`
 
-This is expected during startup — the init container waits for both the compiler service and the S3 endpoint before starting. If it persists beyond a few minutes, check that the SeaweedFS pods are `Running`:
+The `Init:0/1` state is expected during startup. The init container waits for the compiler service and the S3 endpoint before it starts. If the pod stays in `Init:0/1` for more than a few minutes, check that the SeaweedFS pods are `Running`:
 
 ```shell
 kubectl get pods --namespace plm-system --selector app.kubernetes.io/name=seaweedfs
@@ -252,35 +252,35 @@ kubectl get pods --namespace plm-system --selector app.kubernetes.io/name=seawee
 
 The most common cause is PVCs stuck in `Pending` because the cluster has no default StorageClass.
 
-**SeaweedFS pods `Pending`**
+#### SeaweedFS pods `Pending`
 
-No default StorageClass, or insufficient node capacity. Inspect the PVCs and available storage classes:
+SeaweedFS pods stay `Pending` when the cluster has no default StorageClass or insufficient capacity. Check the PVCs and available storage classes:
 
 ```shell
 kubectl get pvc --namespace plm-system
 kubectl get storageclass
 ```
 
-**`APPolicy` shows `invalid` with `unexpected EOF` after enabling TLS**
+#### `APPolicy` shows `invalid` with `unexpected EOF` after enabling TLS
 
-Enabling TLS on an existing installation restarts the storage backend and can orphan objects written before TLS was enabled. Check the filer log for confirmation:
+Enabling TLS on an existing installation restarts the storage backend. Objects written before TLS was enabled can become orphaned. Check the filer log:
 
 ```shell
 kubectl logs --namespace plm-system plm-f5-waf-seaweed-filer-0 | grep "not found"
 ```
 
-A `volume N not found` message confirms orphaned objects. Remove the affected `APPolicy` resource and reapply it so the Policy Controller regenerates the bundle.
+If the output contains `volume N not found`, orphaned objects exist. Delete the affected `APPolicy` resource and reapply it. The Policy Controller regenerates the bundle.
 
-**Helm install fails on a ClusterRole**
+#### Helm install fails on a ClusterRole
 
-An error naming `seaweed-editor-role` or `seaweed-viewer-role` means another PLM installation already exists in the cluster. Only one PLM installation is supported per cluster. Remove the existing release before installing.
+If the error references `seaweed-editor-role` or `seaweed-viewer-role`, another PLM installation already exists in the cluster. Only one PLM installation is supported per cluster. Remove the existing release before installing.
 
-**Checking Policy Controller logs**
+#### Check the Policy Controller logs
 
-For any policy-related failure, the Policy Controller logs are the most useful diagnostic source:
+Use the Policy Controller logs to diagnose any policy-related failure:
 
 ```shell
 kubectl logs --namespace plm-system deploy/plm-f5-waf-policy-controller -c policy-controller
 ```
 
-{{< call-out class="note" title="Note" >}} The `-c policy-controller` flag is required because the pod runs more than one container. The containers are distroless, so `kubectl exec` is not available for interactive debugging. {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} The `-c policy-controller` flag is required because the pod has more than one container. The containers are distroless, so `kubectl exec` isn't available for interactive debugging. {{< /call-out >}}
