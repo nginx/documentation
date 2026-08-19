@@ -232,7 +232,7 @@ kubectl apply -f https://raw.githubusercontent.com/nginx/waf-policy-controller/{
 
 These are the most common failures during PLM installation, roughly in order of likelihood.
 
-#### Pods stuck in `ImagePullBackOff`
+{{< details summary="Pods stuck in `ImagePullBackOff`" >}}
 
 The JWT is wrong, expired, or contains a line break. Check the events log:
 
@@ -242,7 +242,9 @@ kubectl get events --namespace plm-system --field-selector reason=Failed
 
 Use the full JWT string as the registry username. Use the literal string `none` as the password.
 
-#### Policy Controller stuck in `Init:0/1`
+{{< /details >}}
+
+{{< details summary="Policy Controller stuck in `Init:0/1`" >}}
 
 The `Init:0/1` state is expected during startup. The init container waits for the compiler service and the S3 endpoint before it starts. If the pod stays in `Init:0/1` for more than a few minutes, check that the SeaweedFS pods are `Running`:
 
@@ -252,7 +254,9 @@ kubectl get pods --namespace plm-system --selector app.kubernetes.io/name=seawee
 
 The most common cause is PVCs stuck in `Pending` because the cluster has no default StorageClass.
 
-#### SeaweedFS pods `Pending`
+{{< /details >}}
+
+{{< details summary="SeaweedFS pods `Pending`" >}}
 
 SeaweedFS pods stay `Pending` when the cluster has no default StorageClass or insufficient capacity. Check the PVCs and available storage classes:
 
@@ -261,7 +265,9 @@ kubectl get pvc --namespace plm-system
 kubectl get storageclass
 ```
 
-#### `APPolicy` shows `invalid` with `unexpected EOF` after enabling TLS
+{{< /details >}}
+
+{{< details summary="`APPolicy` shows `invalid` with `unexpected EOF` after enabling TLS" >}}
 
 Enabling TLS on an existing installation restarts the storage backend. Objects written before TLS was enabled can become orphaned. Check the filer log:
 
@@ -271,9 +277,13 @@ kubectl logs --namespace plm-system plm-f5-waf-seaweed-filer-0 | grep "not found
 
 If the output contains `volume N not found`, orphaned objects exist. Delete the affected `APPolicy` resource and reapply it. The Policy Controller regenerates the bundle.
 
-#### Helm install fails on a ClusterRole
+{{< /details >}}
+
+{{< details summary="Helm install fails on a ClusterRole" >}}
 
 If the error references `seaweed-editor-role` or `seaweed-viewer-role`, another PLM installation already exists in the cluster. Only one PLM installation is supported per cluster. Remove the existing release before installing.
+
+{{< /details >}}
 
 #### Check the Policy Controller logs
 
