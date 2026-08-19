@@ -53,6 +53,10 @@ sudo systemctl restart nginx-agent
 Display names must be 256 characters or fewer. If a value exceeds this limit, the instance registers without a display name.
 {{< /call-out >}}
 
+{{< call-out class="note" >}}
+Display names cannot include Unicode characters like emoji or other multi-byte characters.
+{{< /call-out >}}
+
 ## Where the display name appears
 
 Once NGINX Agent reports the `display-name` label, NGINX One Console uses it in the following places:
