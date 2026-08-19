@@ -122,9 +122,9 @@ NGINX Gateway Fabric reloads the PLM credentials and TLS Secrets when they chang
 
 ## Configure security logging (optional)
 
-{{< include "waf/plm-configure-logging.md" >}}
+{{< call-out class="note" title="Note" >}} If you skip this section, omit the `securityLogs` field when you create the `WAFPolicy` in [Deploy the Gateway and attach WAFPolicy](#deploy-the-gateway-and-attach-wafpolicy). {{< /call-out >}}
 
-If you skip this section, omit the `securityLogs` field in the `WAFPolicy` resource in the next steps.
+{{< include "waf/plm-configure-logging.md" >}}
 
 ## Define the WAF policy
 
