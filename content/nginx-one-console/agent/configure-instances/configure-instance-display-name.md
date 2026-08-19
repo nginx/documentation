@@ -50,7 +50,7 @@ sudo systemctl restart nginx-agent
 ```
 
 {{< call-out class="note" >}}
-The display name can be up to 256 characters long. A value longer than this is rejected, and the instance keeps registering without a display name.
+Display names must be 256 characters or fewer. If a value exceeds this limit, the instance registers without a display name.
 {{< /call-out >}}
 
 ## Where the display name appears
