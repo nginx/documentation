@@ -2,7 +2,6 @@
 f5-product: F5 WAF for NGINX
 f5-files:
 - content/ngf/waf-integration/get-started-plm.md
-- content/nic/waf-integration/get-started-plm.md
 ---
 
 <!-- Maintainer note: This include assumes the APPolicy CRD is already installed. In the NGF and NIC tutorials, CRD installation happens in the "Deploy PLM infrastructure" section. If you reuse this include elsewhere, add a prerequisite note in the parent document confirming CRDs are present before this section. -->
