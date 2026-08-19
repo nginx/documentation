@@ -372,7 +372,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out class="note" title="Note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <nginx-pod-name> -c waf-enforcer`. {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <NGINX_POD_NAME> -c waf-enforcer`. {{< /call-out >}}
 
 ## Apply a route-level override (optional)
 
