@@ -24,3 +24,7 @@ curl https://agent.connect.nginx.com/nginx-agent/install | DATA_PLANE_KEY="<data
 ```
 
 Once the process is complete, you can configure that instance in your NGINX One Console.
+
+{{< call-out class="note" >}}
+You can give the instance a friendly name that's easier to recognize than its hostname by setting the `display-name` NGINX Agent label. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).
+{{< /call-out >}}
