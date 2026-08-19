@@ -4,6 +4,10 @@ description: Learn how to deliver, manage, and protect your applications using F
 url: /nginxaas/
 f5-landing-page: true
 f5-content-type: landing-page
+cascade:
+  f5-banner:
+    enabled: true
+    md: /_banners/nginxaas-aws-ea.md
 ---
 
 Learn how to deliver, manage, and protect your applications using F5 NGINXaaS.
