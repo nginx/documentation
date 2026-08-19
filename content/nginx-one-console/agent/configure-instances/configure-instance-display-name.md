@@ -9,7 +9,7 @@ f5-product: NGINX Agent
 
 ## Overview
 
-By default, NGINX One Console identifies each NGINX instance by its hostname. You can assign a friendlier, custom name to an instance by setting the reserved `display-name` NGINX Agent label. Once NGINX Agent reports the label, NGINX One Console shows the display name alongside the hostname, and you can use it to filter and sort your instances.
+By default, NGINX One Console identifies each NGINX instance by its hostname. To assign a display name to an instance, set the reserved `display-name` NGINX Agent label. After NGINX Agent reports the label, NGINX One Console shows the display name alongside the hostname. You can then use the display name to filter and sort instances.
 
 ## Before you begin
 
