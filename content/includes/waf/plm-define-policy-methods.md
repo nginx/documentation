@@ -59,7 +59,7 @@ Store your policy JSON in a Git repository and reference it from `APPolicy`.
 Create an `APPolicy` resource that references the policy file by path. Replace `<POLICY_NAME>`, `<NAMESPACE>`, `<PATH/TO/POLICY.JSON>`, `<ORG>`, `<REPO>`, and `<TAG_OR_COMMIT>` with your values:
 
 ```shell
-kubectl apply -f - <<EOF
+kubectl apply -f - <<'EOF'
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
@@ -100,7 +100,7 @@ kubectl create secret generic git-token-secret \
 Then reference the Secret in the `APPolicy` resource:
 
 ```shell
-kubectl apply -f - <<EOF
+kubectl apply -f - <<'EOF'
 apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
