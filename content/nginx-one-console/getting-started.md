@@ -151,7 +151,7 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 {{<call-out class="note" title="Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
 
-{{<call-out class="note" title="Note: Instance display names" >}} You can give the instance a friendly name that's easier to recognize than its hostname by setting the `display-name` NGINX Agent label. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).{{</call-out>}}
+{{<call-out class="note" title="Note: Instance display names" >}} To assign a display name that's easier to recognize than the hostname, set the `display-name` NGINX Agent label. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).{{</call-out>}}
 
 <br>
 
