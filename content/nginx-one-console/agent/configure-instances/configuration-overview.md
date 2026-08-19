@@ -88,7 +88,7 @@ sudo docker run \
 
 ## Reserved labels
 
-Some label keys have special meaning to NGINX One Console:
+NGINX One Console uses the following label keys for specific purposes:
 
 {{<table>}}
 | **Label**      | **Description**                                                                                                                                            |
