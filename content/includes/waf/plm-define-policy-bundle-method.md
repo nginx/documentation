@@ -29,10 +29,10 @@ EOF
 ```
 
 {{< call-out class="note" title="Note" >}}
-The Policy Controller must be able to reach the artifact registry host over HTTPS. If the registry uses a private certificate authority (CA), mount the CA certificate into the Policy Controller pod and set the `SSL_CERT_FILE` environment variable to point to it. Note that `SSL_CERT_FILE` replaces the system trust store entirely rather than appending to it — if SeaweedFS TLS is also enabled, both CAs must be combined into a single file.
+The Policy Controller must reach the artifact registry over HTTPS. If the registry uses a private certificate authority (CA), mount the CA certificate into the Policy Controller pod and set the `SSL_CERT_FILE` environment variable to its path. `SSL_CERT_FILE` replaces the system trust store entirely — it doesn't append to it. If SeaweedFS TLS is also enabled, combine both CAs into a single file and reference that file.
 {{< /call-out >}}
 
-If the `APPolicy` status shows `x509: certificate signed by unknown authority`, the Policy Controller does not trust the artifact registry CA. Check the status for the full error:
+If the `APPolicy` status shows `x509: certificate signed by unknown authority`, the Policy Controller doesn't trust the artifact registry CA. Check the status for the full error:
 
 ```shell
 kubectl describe appolicy <POLICY_NAME> --namespace plm-system
