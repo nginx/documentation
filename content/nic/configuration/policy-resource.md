@@ -1181,7 +1181,7 @@ On a VirtualServer, applying both an `oidc` policy and an `oidcNative` policy to
 | `cookieName` | Sets the name of the session cookie. | `string` | No | `NGX_OIDC_SESSION` |
 | `extraAuthArgs` | Additional query arguments appended to the authorization request URL. Example: `"display=page&prompt=login"`. | `string` | No | -- |
 | `pkce` | Explicitly enables or disables PKCE. By default, PKCE is automatically enabled based on OpenID Provider metadata. | `string (on/off)` | No | `auto` |
-| `logoutURI` | URI path for initiating session logout. When the user navigates to this path, the session is terminated and the user is redirected to the provider's logout endpoint. | `string` | No | -- |
+| `logoutURI` | URI path for initiating session logout. When the user navigates to this path, the session is terminated and the user is redirected to the provider's logout endpoint. | `string` | No | `/logout` |
 | `postLogoutRedirectURI` | Path where the user is redirected after logout. Must be a path on the same host. When set, NIC auto-generates an unauthenticated location at this path serving a plain-text confirmation response. | `string` | No | -- |
 | `frontChannelLogoutURI` | URI path for OIDC front-channel logout. When set, the identity provider calls this URI in a hidden iframe during global logout, allowing NGINX to terminate the local session. | `string` | No | -- |
 | `logoutTokenHint` | Adds the `id_token_hint` argument to the provider's logout endpoint when redirecting the user during logout. Required by some providers. | `bool` | No | `false` |
