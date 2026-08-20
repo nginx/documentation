@@ -83,44 +83,46 @@ seaweedfsOperatorConfig:
   seaweedfs:
     certificates:
       enabled: true
-      caSecretName: plm-system-seaweedfs-ca-cert
-      masterSecretName: plm-system-seaweedfs-master-cert
-      volumeSecretName: plm-system-seaweedfs-volume-cert
-      filerSecretName: plm-system-seaweedfs-filer-cert
-      clientSecretName: plm-system-seaweedfs-client-cert
 ```
 
-{{< call-out class="warning" title="Warning" >}}
-The PLM chart does not generate certificates. You must create all five Secrets listed above before running `helm upgrade --install`. If any Secret is missing, the SeaweedFS pods will fail to mount their certificates and will not start.
+{{< call-out class="warning" title="Create Secrets before installing" >}}
+The PLM chart does not generate certificates. You must create the five Secrets listed in the commands below before running `helm upgrade --install`. If any Secret is missing, the SeaweedFS pods will fail to mount their certificates and will not start.
 {{< /call-out >}}
 
-Create the Secrets from your CA and certificate files before installing:
+{{< call-out class="caution" title="Enabling TLS on an existing install" >}}
+If you're enabling TLS on an existing installation, the storage backend restarts and objects written before the switch can become orphaned. See the [APPolicy shows `invalid` with `unexpected EOF` after enabling TLS](#troubleshoot-the-deployment) entry in the troubleshooting section. A fresh installation with TLS enabled from the start doesn't have this issue.
+{{< /call-out >}}
+
+Create the Secrets from your CA and certificate files before installing. The chart expects Secret names in the form `<release>-f5-waf-seaweedfs-<component>` — for the `plm` release name used in this tutorial, those are:
 
 ```shell
-kubectl create secret generic plm-system-seaweedfs-ca-cert \
+kubectl create secret generic plm-f5-waf-seaweedfs-ca-cert \
   --namespace plm-system \
+  --from-file=tls.crt=<PATH/TO/CA_CERT> \
   --from-file=ca.crt=<PATH/TO/CA_CERT>
 
-kubectl create secret tls plm-system-seaweedfs-master-cert \
+kubectl create secret tls plm-f5-waf-seaweedfs-master-cert \
   --namespace plm-system \
   --cert=<PATH/TO/MASTER_CERT> \
   --key=<PATH/TO/MASTER_KEY>
 
-kubectl create secret tls plm-system-seaweedfs-volume-cert \
+kubectl create secret tls plm-f5-waf-seaweedfs-volume-cert \
   --namespace plm-system \
   --cert=<PATH/TO/VOLUME_CERT> \
   --key=<PATH/TO/VOLUME_KEY>
 
-kubectl create secret tls plm-system-seaweedfs-filer-cert \
+kubectl create secret tls plm-f5-waf-seaweedfs-filer-cert \
   --namespace plm-system \
   --cert=<PATH/TO/FILER_CERT> \
   --key=<PATH/TO/FILER_KEY>
 
-kubectl create secret tls plm-system-seaweedfs-client-cert \
+kubectl create secret tls plm-f5-waf-seaweedfs-client-cert \
   --namespace plm-system \
   --cert=<PATH/TO/CLIENT_CERT> \
   --key=<PATH/TO/CLIENT_KEY>
 ```
+
+The CA Secret requires both `tls.crt` and `ca.crt` keys, both pointing to the same CA certificate file. The PLM chart mounts the CA using `tls.crt` into the Policy Controller, compiler, and SeaweedFS pods. The data plane's S3 client reads `ca.crt` from the same Secret when verifying the storage endpoint. The four component Secrets use `kubectl create secret tls`, which produces `tls.crt` and `tls.key` — no `ca.crt` key is needed for them.
 
 Replace each `<PATH/TO/*>` placeholder with the path to the corresponding certificate and key file from your PKI. The CA must sign all component certificates. If you don't have an existing PKI, generate a CA and sign the five component certificates before proceeding.
 
@@ -218,7 +220,7 @@ All eight pods running and all four CRDs present confirms the PLM backend is rea
 
 ### Update the CRDs
 
-{{< call-out class="note" title="Note" >}}
+{{< call-out class="note" title="Fresh install: skip this step" >}}
 Skip this step on a fresh install — Helm installs the CRDs automatically. Only follow these steps when upgrading an existing PLM installation.
 {{< /call-out >}}
 
@@ -293,4 +295,4 @@ Use the Policy Controller logs to diagnose any policy-related failure:
 kubectl logs --namespace plm-system deploy/plm-f5-waf-policy-controller -c policy-controller
 ```
 
-{{< call-out class="note" title="Note" >}} The `-c policy-controller` flag is required because the pod has more than one container. The containers are distroless, so `kubectl exec` isn't available for interactive debugging. {{< /call-out >}}
+{{< call-out class="note" title="Specifying the container" >}} The `-c policy-controller` flag is required because the pod has more than one container. The containers are distroless, so `kubectl exec` isn't available for interactive debugging. {{< /call-out >}}
