@@ -4,7 +4,7 @@ f5-files:
 - content/ngf/waf-integration/get-started-plm.md
 ---
 
-<!-- Maintainer note: This include is product-agnostic. It covers all three APPolicy definition methods (inline, Git reference, precompiled bundle) in a tabbed UI. Content ends before any product-specific policy attachment resource (WAFPolicy for NGF, Policy for NIC). The ReferenceGrant required for cross-namespace WAFPolicy refs in NGF is not included here — add it in the parent tutorial after this include. -->
+<!-- Maintainer note: This include is product-agnostic. It covers all three APPolicy definition methods (inline, Git reference, precompiled bundle) in a tabbed UI. Content ends before any product-specific policy attachment resource (WAFPolicy for NGF, Policy for NIC). The ReferenceGrant required for cross-namespace WAFPolicy refs in NGF is not included here — add it in the parent tutorial after this include. The security namespace is created in plm-configure-logging.md, which runs before this include in the tutorial. -->
 
 This section is typically owned by the security team. They define the policy in the `security` namespace, separate from the Gateway namespace, so security resources are managed independently from routing configuration. If you're not on the security team, share this section with them — you'll need the `APPolicy` name and namespace before continuing.
 

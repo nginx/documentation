@@ -122,6 +122,10 @@ If you install NGINX Gateway Fabric using Kubernetes manifests instead of Helm, 
 
 {{< include "waf/plm-sample-app.md" >}}
 
+## Create the security namespace
+
+{{< include "waf/plm-create-security-namespace.md" >}}
+
 ## Configure security logging (optional)
 
 {{< call-out class="note" title="Note" >}} If you skip this section, omit the `securityLogs` field when you create the `WAFPolicy` in [Deploy the Gateway and attach WAFPolicy](#deploy-the-gateway-and-attach-wafpolicy). {{< /call-out >}}
@@ -321,7 +325,7 @@ Each NGINX Pod should show `3/3` in the `READY` column, indicating the main NGIN
 
 ```text
 NAME                             READY   STATUS    RESTARTS   AGE
-gateway-nginx-7f9b8d6c4d-xxxxx  3/3     Running   0          2m
+gateway-nginx-7f9b8d6c4d-xxxxx   3/3     Running   0          2m
 ```
 
 ## Test deployment and policy enforcement
