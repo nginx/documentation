@@ -120,7 +120,11 @@ EOF
 
 #### Update a Git-referenced policy
 
-The Policy Controller doesn't poll the Git repository for changes. To pick up changes to the referenced policy file, re-apply the `APPolicy` resource (or update its revision annotation) after you push changes to the repository.
+The Policy Controller doesn't poll the Git repository for changes. It fetches the policy file when the `APPolicy` spec changes.
+
+To pick up a new version of the policy, push your changes to the repository, then update `ref` in the `APPolicy` resource to the new tag or commit SHA and reapply it. Re-applying an unchanged `APPolicy` doesn't trigger a fetch, and neither does changing an annotation.
+
+If you need to re-fetch the same `ref` — for example, after force-updating a tag — delete the `APPolicy` resource and recreate it.
 
 {{% /tab %}}
 
@@ -141,7 +145,7 @@ apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
   name: <POLICY_NAME>
-  namespace: plm-system
+  namespace: security
 spec:
   policy:
     $ref: "https://<ARTIFACT_REGISTRY_HOST>/<PATH/TO/POLICY_BUNDLE>.tgz"
@@ -155,7 +159,7 @@ The Policy Controller must reach the artifact registry over HTTPS. If the regist
 If the `APPolicy` status shows `x509: certificate signed by unknown authority`, the Policy Controller doesn't trust the artifact registry CA. Check the status for the full error:
 
 ```shell
-kubectl describe appolicy <POLICY_NAME> --namespace plm-system
+kubectl describe appolicy <POLICY_NAME> --namespace security
 ```
 
 #### Confirm the policy is ready
@@ -164,7 +168,7 @@ The Policy Controller processes the bundle and updates the `APPolicy` status. Ch
 
 ```shell
 kubectl get appolicy <POLICY_NAME> \
-  --namespace plm-system \
+  --namespace security \
   --output jsonpath='State:      {.status.bundle.state}{"\n"}Bundle:     {.status.bundle.location}{"\n"}isCompiled: {.status.processing.isCompiled}{"\n"}'
 ```
 
@@ -189,7 +193,7 @@ isCompiled: false
 
 #### Update a precompiled bundle
 
-The Policy Controller doesn't poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource (or bump its revision annotation) and reapply it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
+The Policy Controller doesn't poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource and reapply it. Changing an annotation doesn't trigger a new download. If you need to re-fetch the same URL, delete the `APPolicy` resource and recreate it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
 
 ```shell
 kubectl apply -f - <<'EOF'
@@ -197,7 +201,7 @@ apiVersion: appprotect.f5.com/v1
 kind: APPolicy
 metadata:
   name: <POLICY_NAME>
-  namespace: plm-system
+  namespace: security
 spec:
   policy:
     $ref: "https://<ARTIFACT_REGISTRY_HOST>/<PATH/TO/UPDATED_POLICY_BUNDLE>.tgz"
