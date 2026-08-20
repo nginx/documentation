@@ -521,6 +521,8 @@ The API Key auth policy configures NGINX to authorize client requests based on t
 
 The feature is implemented using NGINX [ngx_http_auth_request_module](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
+Subrequests may not function as expected and may cause issues when the `APIKey` policy and a `WAF` policy are applied together on the same route.
+
 {{< /call-out >}}
 
 The policies' API keys are securely stored using SHA-256 hashing. When a client sends an API Key, it is hashed by NJS and then compared to the hashed API Key in the NGINX config.
@@ -722,6 +724,8 @@ jwt:
 {{< call-out class="note" >}}
 
 This feature is implemented using the NGINX Plus directive [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) under [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
+
+Subrequests may not function as expected and may cause issues when fetching JWKs from a remote URI (`jwksURI`) in a `JWT` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -955,6 +959,12 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 
 The ExternalAuth policy configures NGINX to authenticate client requests using an external authentication server. You can use this policy with services such as [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) or any custom authentication service that supports the `auth_request` pattern.
 
+{{< call-out class="note" >}}
+
+Subrequests may not function as expected and may cause issues when the `ExternalAuth` policy and a `WAF` policy are applied together on the same route.
+
+{{< /call-out >}}
+
 When a client sends a request, NGINX makes an internal subrequest to the external authentication service. If the service returns a `2xx` response, the original request is forwarded to the upstream. If it returns `401` or `403`, access is denied. If `authSigninURI` is configured, unauthenticated clients are redirected to a sign-in page.
 
 For example, the following policy configures external authentication using an HTTP Basic Auth backend service:
@@ -1022,6 +1032,12 @@ This means all routes on the same host that require OAuth2 sign-in must use the 
 {{< call-out class="tip" >}}
 
 This feature is disabled by default. To enable it, set the [enable-oidc]({{< ref "/nic/configuration/global-configuration/command-line-arguments.md#cmdoption-enable-oidc" >}}) command-line argument of NGINX Ingress Controller.
+
+{{< /call-out >}}
+
+{{< call-out class="note" >}}
+
+Subrequests may not function as expected and may cause issues when the `OIDC` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -1110,6 +1126,12 @@ In this example NGINX Ingress Controller will use the configuration from the fir
 ### Cache
 
 The cache policy configures proxy caching, which improves performance by storing and serving cached responses to clients without having to proxy every request to upstream servers.
+
+{{< call-out class="note" >}}
+
+Subrequests may not function as expected and may cause issues when `cacheBackgroundUpdate` in a `Cache` policy and a `WAF` policy are applied together on the same route.
+
+{{< /call-out >}}
 
 For example, the following policy creates a cache zone named "my-cache" with 10MB memory allocation and caches all GET response codes for 30 seconds:
 
@@ -1267,6 +1289,12 @@ A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However
 ### WAF
 
 {{< call-out class="note" >}} The feature is implemented using the NGINX Plus [F5 WAF for NGINX module]({{< ref "/waf/" >}}). {{< /call-out >}}
+
+{{< call-out class="note" >}}
+
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and a `WAF` policy may not function as expected and may cause issues when applied together on the same route.
+
+{{< /call-out >}}
 
 The WAF policy configures NGINX Plus to secure client requests using F5 WAF for NGINX policies.
 

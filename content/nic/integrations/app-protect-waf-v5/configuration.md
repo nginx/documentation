@@ -21,6 +21,12 @@ NGINX Ingress Controller has global configuration parameters that match those in
 
 F5 WAF for NGINX v5 can be enabled and configured for custom resources only(VirtualServer, VirtualServerRoute). You need to create a Policy Custom Resource referencing a policy bundle, then add it to the VirtualServer/VirtualServerRoute definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
 
+{{< call-out class="note" >}}
+
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
+
+{{< /call-out >}}
+
 ---
 
 ## F5 WAF for NGINX Bundles
