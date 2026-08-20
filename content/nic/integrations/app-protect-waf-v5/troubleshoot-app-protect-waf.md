@@ -114,7 +114,7 @@ When using NGINX Ingress Controller with the F5 WAF for NGINX module, the follow
 
 ### Subrequests compatibility
 
-Features that rely on NGINX subrequests (such as `externalAuth`, `apiKey`, remote JWKS fetching in `jwt` policy, OIDC, or background cache updates) do not currently work when F5 WAF for NGINX is enabled.
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
 
 When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the F5 WAF for NGINX module enabled, usual reload times are around 150ms. If F5 WAF for NGINX module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
 

@@ -23,7 +23,7 @@ F5 WAF for NGINX v5 can be enabled and configured for custom resources only(Virt
 
 {{< call-out class="note" >}}
 
-Features that rely on NGINX subrequests (such as `externalAuth`, `apiKey`, remote JWKS fetching in `jwt` policy, OIDC, or background cache updates) do not currently work when F5 WAF for NGINX is enabled.
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
 
 {{< /call-out >}}
 

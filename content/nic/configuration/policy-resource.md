@@ -521,7 +521,7 @@ The API Key auth policy configures NGINX to authorize client requests based on t
 
 The feature is implemented using NGINX [ngx_http_auth_request_module](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
-Subrequests do not currently work when F5 WAF for NGINX is enabled. As a result, the APIKey policy cannot be used together with WAF.
+Subrequests may not function as expected and may cause issues when the `APIKey` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -725,7 +725,7 @@ jwt:
 
 This feature is implemented using the NGINX Plus directive [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) under [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
-Subrequests do not currently work when F5 WAF for NGINX is enabled. Fetching JWKs from a remote URI using subrequests (`jwksURI`) is not supported when WAF is enabled.
+Subrequests may not function as expected and may cause issues when fetching JWKs from a remote URI (`jwksURI`) in a `JWT` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -961,7 +961,7 @@ The ExternalAuth policy configures NGINX to authenticate client requests using a
 
 {{< call-out class="note" >}}
 
-Subrequests do not currently work when F5 WAF for NGINX is enabled. As a result, the ExternalAuth policy cannot be used together with WAF.
+Subrequests may not function as expected and may cause issues when the `ExternalAuth` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -1037,7 +1037,7 @@ This feature is disabled by default. To enable it, set the [enable-oidc]({{< ref
 
 {{< call-out class="note" >}}
 
-Subrequests do not currently work when F5 WAF for NGINX is enabled. As a result, the OIDC policy cannot be used together with WAF.
+Subrequests may not function as expected and may cause issues when the `OIDC` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -1129,7 +1129,7 @@ The cache policy configures proxy caching, which improves performance by storing
 
 {{< call-out class="note" >}}
 
-Subrequests do not currently work when F5 WAF for NGINX is enabled. Features that rely on background subrequests, such as `cacheBackgroundUpdate`, will not work when WAF is enabled.
+Subrequests may not function as expected and may cause issues when `cacheBackgroundUpdate` in a `Cache` policy and a `WAF` policy are applied together on the same route.
 
 {{< /call-out >}}
 
@@ -1292,7 +1292,7 @@ A VirtualServer/VirtualServerRoute can reference multiple CORS policies. However
 
 {{< call-out class="note" >}}
 
-Features that rely on NGINX subrequests (such as `externalAuth`, `apiKey`, remote JWKS fetching in `jwt` policy, OIDC, or background cache updates) do not currently work when F5 WAF for NGINX is enabled.
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and a `WAF` policy may not function as expected and may cause issues when applied together on the same route.
 
 {{< /call-out >}}
 
