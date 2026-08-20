@@ -6,9 +6,9 @@ f5-files:
 
 <!-- Maintainer note: This include is product-agnostic. It covers all three APPolicy definition methods (inline, Git reference, precompiled bundle) in a tabbed UI. Content ends before any product-specific policy attachment resource (WAFPolicy for NGF, Policy for NIC). The ReferenceGrant required for cross-namespace WAFPolicy refs in NGF is not included here — add it in the parent tutorial after this include. The security namespace is created in plm-configure-logging.md, which runs before this include in the tutorial. -->
 
-This section is typically owned by the security team. They define the policy in the `security` namespace, separate from the Gateway namespace, so security resources are managed independently from routing configuration. If you're not on the security team, share this section with them — you'll need the `APPolicy` name and namespace before continuing.
+The security team usually owns this section. They define the policy in the `security` namespace, separate from the Gateway namespace, so they can manage security resources independently from routing configuration. If you're not on the security team, share this section with them. You'll need the `APPolicy` name and namespace before continuing.
 
-The `APPolicy` resource defines the security policy. The PLM controller watches it, compiles it, and writes `status.bundle` with `state: ready` when the bundle is available.
+The `APPolicy` resource defines the security policy. The PLM controller watches the resource, compiles the policy, and writes `status.bundle` with `state: ready` when the bundle is available.
 
 {{<tabs name="plm-policy-definition-methods">}}
 
@@ -52,7 +52,7 @@ kubectl wait --for=jsonpath='{.status.bundle.state}'=ready appolicy/attack-signa
 
 {{%tab name="Git reference"%}}
 
-Store your policy JSON in a Git repository and reference it from `APPolicy`.
+Store your policy JSON in a Git repository and reference the file from an `APPolicy` resource.
 
 #### Public repository
 
@@ -122,20 +122,20 @@ EOF
 
 The Policy Controller doesn't poll the Git repository for changes. It fetches the policy file when the `APPolicy` spec changes.
 
-To pick up a new version of the policy, push your changes to the repository, then update `ref` in the `APPolicy` resource to the new tag or commit SHA and reapply it. Re-applying an unchanged `APPolicy` doesn't trigger a fetch, and neither does changing an annotation.
+To pick up a new version of the policy, push your changes to the repository. Then update `ref` in the `APPolicy` resource to the new tag or commit SHA and reapply the resource. Reapplying an unchanged `APPolicy` doesn't trigger a fetch. Changing an annotation doesn't trigger a fetch either.
 
-If you need to re-fetch the same `ref` — for example, after force-updating a tag — delete the `APPolicy` resource and recreate it.
+If you need to re-fetch the same `ref` (for example, after force-updating a tag), delete the `APPolicy` resource and recreate it.
 
 {{% /tab %}}
 
 {{%tab name="Precompiled bundle"%}}
 
-The precompiled-bundle method lets you reference a `.tgz` policy bundle stored in an artifact registry (for example, Artifactory or Nexus). The Policy Controller imports the bundle and stores it in the SeaweedFS object store without recompiling it.
+The precompiled-bundle method lets you reference a `.tgz` policy bundle stored in an artifact registry (for example, Artifactory or Nexus). The Policy Controller imports the bundle and stores it in the SeaweedFS object store without recompiling the bundle.
 
 Use this method when:
 
 - Your security team compiles and publishes bundles through an external pipeline.
-- You want to decouple policy compilation from cluster operations.
+- You want to separate policy compilation from cluster operations.
 
 Create an `APPolicy` resource that references your bundle. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/POLICY_BUNDLE>` with your values:
 
@@ -153,7 +153,7 @@ EOF
 ```
 
 {{< call-out class="important" title="Configure CA trust for private registries" >}}
-The Policy Controller must reach the artifact registry over HTTPS. If the registry uses a private certificate authority (CA), mount the CA certificate into the Policy Controller pod and set the `SSL_CERT_FILE` environment variable to its path. `SSL_CERT_FILE` replaces the system trust store entirely — it doesn't append to it. If SeaweedFS TLS is also enabled, combine both CAs into a single file and reference that file.
+The Policy Controller must reach the artifact registry over HTTPS. If the registry uses a private certificate authority (CA), mount the CA certificate into the Policy Controller pod and set the `SSL_CERT_FILE` environment variable to its path. `SSL_CERT_FILE` replaces the system trust store entirely. It doesn't append to the system trust store. If SeaweedFS TLS is also turned on, combine both CAs into a single file and reference that file.
 {{< /call-out >}}
 
 If the `APPolicy` status shows `x509: certificate signed by unknown authority`, the Policy Controller doesn't trust the artifact registry CA. Check the status for the full error:
@@ -180,7 +180,7 @@ Bundle:     s3://plm-system/bundles/<POLICY_NAME>_imported_<HASH>.tgz
 isCompiled: false
 ```
 
-`isCompiled: false` confirms the bundle was imported as-is and not recompiled.
+`isCompiled: false` confirms the bundle was imported without recompilation.
 
 `bundle.state` can be one of:
 
@@ -188,12 +188,12 @@ isCompiled: false
 |-------|---------|
 | `pending` | The Policy Controller hasn't yet processed the resource. |
 | `processing` | The Policy Controller is importing or storing the bundle. |
-| `ready` | The bundle is stored and ready to use. `bundle.location` is populated. |
-| `invalid` | The bundle couldn't be imported. Check the status for error detail. |
+| `ready` | The bundle is stored and ready to use. The Policy Controller has populated `bundle.location`. |
+| `invalid` | The Policy Controller couldn't import the bundle. Check the status for error detail. |
 
 #### Update a precompiled bundle
 
-The Policy Controller doesn't poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource and reapply it. Changing an annotation doesn't trigger a new download. If you need to re-fetch the same URL, delete the `APPolicy` resource and recreate it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
+The Policy Controller doesn't poll the artifact registry for changes. To pick up a new version of a bundle, update the `$ref` URL in your `APPolicy` resource and reapply the resource. Changing an annotation doesn't trigger a new download. If you need to re-fetch the same URL, delete the `APPolicy` resource and recreate it. Replace `<POLICY_NAME>`, `<ARTIFACT_REGISTRY_HOST>`, and `<PATH/TO/UPDATED_POLICY_BUNDLE>` with your values:
 
 ```shell
 kubectl apply -f - <<'EOF'
