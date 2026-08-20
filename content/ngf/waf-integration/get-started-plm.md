@@ -80,9 +80,9 @@ nginxGateway:
       insecureSkipVerify: false                 # use only for testing
 ```
 
-{{< call-out class="caution" title="Caution" >}} Always use HTTPS with TLS verification (`caSecretName`) in production. Add `clientSSLSecretName` for mutual TLS in high-security environments, and never set `insecureSkipVerify: true`. {{< /call-out >}}
+{{< call-out class="caution" title="Use HTTPS in production" >}} Always use HTTPS with TLS verification (`caSecretName`) in production. Add `clientSSLSecretName` for mutual TLS in high-security environments, and never set `insecureSkipVerify: true`. {{< /call-out >}}
 
-{{< call-out class="note" title="Note" >}} `credentialsSecretName` and `caSecretName` must reference Secrets in the NGINX Gateway Fabric control plane namespace, unless you prefix them with `<NAMESPACE>/`. {{< /call-out >}}
+{{< call-out class="note" title="Secret namespace" >}} `credentialsSecretName` and `caSecretName` must reference Secrets in the NGINX Gateway Fabric control plane namespace, unless you prefix them with `<NAMESPACE>/`. {{< /call-out >}}
 
 {{% /tab %}}
 
@@ -128,7 +128,7 @@ If you install NGINX Gateway Fabric using Kubernetes manifests, use the equivale
 
 ## Configure security logging (optional)
 
-{{< call-out class="note" title="Note" >}} If you skip this section, omit the `securityLogs` field when you create the `WAFPolicy` in [Deploy the Gateway and attach WAFPolicy](#deploy-the-gateway-and-attach-wafpolicy). {{< /call-out >}}
+{{< call-out class="important" title="If you skip this section" >}} Omit the `securityLogs` field when you create the `WAFPolicy` in [Deploy the Gateway and attach WAFPolicy](#deploy-the-gateway-and-attach-wafpolicy). {{< /call-out >}}
 
 {{< include "waf/plm-configure-logging.md" >}}
 
@@ -158,7 +158,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" title="Note" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
+{{< call-out class="important" title="Security team action required" >}} The `ReferenceGrant` lives in the `security` namespace and must be created by whoever manages that namespace — typically your security team, not the platform engineer deploying the Gateway. Coordinate with them if you don't have access. Without a matching `ReferenceGrant`, the `WAFPolicy` is rejected with `ResolvedRefs=False` and reason `RefNotPermitted`. If you put the `APPolicy` and `APLogConf` in the same namespace as the `WAFPolicy`, you can skip the `ReferenceGrant`. See [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) for details. {{< /call-out >}}
 
 ## Deploy the Gateway and attach WAFPolicy
 
@@ -210,7 +210,7 @@ EOF
 
 This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch. You don't need to update the `WAFPolicy`.
 
-{{< call-out class="note" title="Note" >}} This guide enables WAF globally on the GatewayClass-level `NginxProxy`. To enable WAF on a specific Gateway only, create a per-Gateway `NginxProxy` and reference it from the Gateway's `infrastructure.parametersRef`. See [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
+{{< call-out class="note" title="Per-Gateway WAF enablement" >}} This guide enables WAF globally on the GatewayClass-level `NginxProxy`. To enable WAF on a specific Gateway only, create a per-Gateway `NginxProxy` and reference it from the Gateway's `infrastructure.parametersRef`. See [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
 
 ## Configure HTTPRoutes
 
@@ -258,7 +258,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" title="Note" >}} GRPCRoutes inherit WAF protection the same way HTTPRoutes do. {{< /call-out >}}
+{{< call-out class="note" title="GRPCRoute support" >}} GRPCRoutes inherit WAF protection the same way HTTPRoutes do. {{< /call-out >}}
 
 ## Validate policy compilation and application
 
@@ -353,7 +353,7 @@ GW_PORT=<port number>
 
 **Verify normal traffic flows.** Send a request to the `customers` route — the response contains the fake sensitive data from the `customers` backend:
 
-{{< call-out class="note" title="Note" >}} If you have a DNS record for `cafe.example.com`, you can send the request directly to that hostname without `--resolve`. {{< /call-out >}}
+{{< call-out class="tip" title="Using a DNS record" >}} If you have a DNS record for `cafe.example.com`, you can send the request directly to that hostname without `--resolve`. {{< /call-out >}}
 
 ```shell
 curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT/customers
@@ -395,7 +395,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 ...
 ```
 
-{{< call-out class="note" title="Note" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <NGINX_POD_NAME> -c waf-enforcer`. {{< /call-out >}}
+{{< call-out class="note" title="Checking blocked events" >}} The exact blocking response depends on your WAF policy configuration. Check the security log for a corresponding blocked event using `kubectl logs <NGINX_POD_NAME> -c waf-enforcer`. {{< /call-out >}}
 
 ## Apply a route-level override (optional)
 
@@ -403,7 +403,7 @@ The `customers` route returns sensitive data (credit card numbers and SSNs) in t
 
 This is a common pattern for SecOps and app team collaboration: the security team defines a stricter policy for a specific service, and the platform engineer or app developer attaches it as a route-level override. The override applies only to the `customers` route — other routes continue using the gateway-level policy.
 
-{{< call-out class="note" title="Note" >}} Only one `WAFPolicy` can target a given resource at a given level. If a second `WAFPolicy` targets the same Gateway or route, it is rejected with `Accepted=False` and reason `Conflicted`. See [Policy attachment]({{< ref "/ngf/waf-integration/overview.md#policy-attachment" >}}). {{< /call-out >}}
+{{< call-out class="important" title="One WAFPolicy per resource" >}} Only one `WAFPolicy` can target a given resource at a given level. If a second `WAFPolicy` targets the same Gateway or route, it is rejected with `Accepted=False` and reason `Conflicted`. See [Policy attachment]({{< ref "/ngf/waf-integration/overview.md#policy-attachment" >}}). {{< /call-out >}}
 
 To protect sensitive data in responses, define a **data guard** `APPolicy` and apply it as a route-level override on the `customers` route:
 

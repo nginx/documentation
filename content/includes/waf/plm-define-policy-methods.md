@@ -75,7 +75,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" title="Note" >}} Pin `ref` to a tag or commit SHA rather than a branch name in production environments. {{< /call-out >}}
+{{< call-out class="caution" title="Pin ref to a tag in production" >}} Pin `ref` to a tag or commit SHA rather than a branch name in production environments. {{< /call-out >}}
 
 Check that the bundle compiled successfully:
 
@@ -152,7 +152,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" title="Note" >}}
+{{< call-out class="important" title="Configure CA trust for private registries" >}}
 The Policy Controller must reach the artifact registry over HTTPS. If the registry uses a private certificate authority (CA), mount the CA certificate into the Policy Controller pod and set the `SSL_CERT_FILE` environment variable to its path. `SSL_CERT_FILE` replaces the system trust store entirely — it doesn't append to it. If SeaweedFS TLS is also enabled, combine both CAs into a single file and reference that file.
 {{< /call-out >}}
 
