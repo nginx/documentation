@@ -1,5 +1,5 @@
 ---
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 f5-files:
 - content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
 - content/nginxaas/aws/deploy/nginx-configuration/nginx-configuration-console.md
@@ -21,4 +21,4 @@ f5-files:
 1. Select **Next** when you have completed your changes.
 1. Review the changes using the "Inline" or "Side-by-side" views and select **Save**.
 
-You will see a notification confirming that the configuration was updated successfully, and a new config version will be available to apply to your NGINXaaS deployments.
+You will see a notification confirming that the configuration was updated successfully, and a new config version will be available to apply to your F5 Application Delivery Service deployments.

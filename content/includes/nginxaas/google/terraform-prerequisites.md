@@ -5,5 +5,4 @@ f5-files:
 - content/nginxaas/google/deploy/nginx-configuration/nginx-configurations-terraform.md
 ---
 
-- Confirm that you meet the [NGINXaaS Prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites.md" >}}).
-
+- Confirm that you meet the [F5 Application Delivery Service Prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites.md" >}}).

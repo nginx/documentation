@@ -1,18 +1,18 @@
 ---
-title: Add certificates using the NGINXaaS Console
+title: Add certificates using the F5 Application Delivery Service Console
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 contentVars:
-  product: NGINXaaS
+  product: F5 Application Delivery Service
 ---
 
-You can manage SSL/TLS certificates for F5 ${product} using the NGINXaaS console.
+You can manage SSL/TLS certificates for ${product} (ADS) using the F5 ADS console.
 
-## Add an SSL/TLS certificate to NGINXaaS
+## Add an SSL/TLS certificate to F5 Application Delivery Service
 
 - Select **Certificates** in the left menu.
 - Select {{< icon "plus">}} **Add Certificate**.
@@ -37,7 +37,7 @@ To use a certificate in an NGINX configuration, follow these steps:
 - Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
 - Select **Continue** to open the configuration editor.
 - In your configuration, select {{< icon "plus">}} **Add File** and either choose to use an existing certificate or add a new one.
-   - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps mentioned in [Add an SSL/TLS certificate to NGINXaaS](#add-an-ssltls-certificate-to-nginxaas).
+   - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps mentioned in [Add an SSL/TLS certificate to F5 Application Delivery Service](#add-an-ssltls-certificate-to-f5-application-delivery-service).
    - If you want to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and use the menu to choose a certificate from the list of certificates you have already added.
 - Provide the required path information:
     {{< table >}}
@@ -62,10 +62,10 @@ To use a certificate in an NGINX configuration, follow these steps:
 - Select **Delete**.
 - Confirm that you want to delete the certificate.
 
-{{< call-out class="warning" >}}Deleting a TLS/SSL certificate currently used by a NGINXaaS deployment will cause an error.{{< /call-out >}}
+{{< call-out class="warning" >}}Deleting a TLS/SSL certificate currently used by a F5 ADS deployment will cause an error.{{< /call-out >}}
 
 ## Add certificates via aux files
 
-You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [NGINXaaS Console configuration editor]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
+You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [F5 ADS Console configuration editor]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
 
 {{< call-out class="warning" title="Warning" >}}Storing certificates, private keys, or any sensitive data in aux files is not recommended for security reasons. Use this method only when the other certificate management approaches are not suitable.{{< /call-out >}}

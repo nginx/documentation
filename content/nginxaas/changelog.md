@@ -5,30 +5,29 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/changelog/
 f5-content-type: reference
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 nollms: true
 ---
 
-Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
+Learn about the latest updates, new features, and resolved bugs in F5 Application Delivery Service.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
 
 ## July 31, 2026
 
-- {{% icon-feature %}} **NGINXaaS for AWS is now available (Early Access)**
+- {{% icon-feature %}} **F5 Application Delivery Service for AWS is now available (Early Access)**
 
-You can now use F5 NGINXaaS to integrate with your applications in AWS. This is a major new release allowing you to work in multi-cloud setups or simplify your current AWS presence with a fully-managed, secure NGINX offering.
+You can now use F5 Application Delivery Service to integrate with your applications in AWS. This is a major new release allowing you to work in multi-cloud setups or simplify your current AWS presence with a fully-managed, secure NGINX offering.
 
-See the documentation for [NGINXaaS for AWS]({{< ref "/nginxaas/aws/overview.md" >}}) for more info.
+See the documentation for [F5 Application Delivery Service for AWS]({{< ref "/nginxaas/aws/overview.md" >}}) for more info.
 
-
-**Note:** This feature is currently in Early Access. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
+**Note:** This feature is currently in Early Access. Please contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=F5%20Application%20Delivery%20Service%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
 
 ## July 30, 2026
 
-- {{% icon-feature %}} **NGINXaaS is now running NGINX Plus 37.0 Continuous Releases (CR).**
+- {{% icon-feature %}} **F5 Application Delivery Service is now running NGINX Plus 37.0 Continuous Releases (CR).**
 
-NGINXaaS for Google Cloud deployments have been automatically upgraded to NGINX Plus 37.0 (PLS.37.0). Please review the [NGINX Plus Release 37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) Release Notes carefully for details about NGINX Plus behavioral changes.
+F5 Application Delivery Service for Google Cloud deployments have been automatically upgraded to NGINX Plus 37.0 (PLS.37.0). Please review the [NGINX Plus Release 37.0]({{< ref "/nginx/releases/#pls.37.0.4" >}}) Release Notes carefully for details about NGINX Plus behavioral changes.
 
 Please note the following changes:
 
@@ -36,33 +35,33 @@ Please note the following changes:
 - Keepalive connections between NGINX and upstream servers are enabled by default.
 - Upstream shared memory zone requires an additional 1KB of memory per upstream server.
 
-NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. NGINXaaS does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#disallowed-configuration-directives" >}}).
+NGINX Plus 37.0 (PLS.37.0) introduces new configuration directives and changes to existing directives. F5 Application Delivery Service does not support the `ssl_ech_file` directive. For more information, review the unsupported directives listed in [Disallowed configuration directives]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#disallowed-configuration-directives" >}}).
 
 For a complete list of allowed directives, see the [Configuration Directives List]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules/#configuration-directives-list" >}}).
 
-NGINXaaS also upgraded F5 WAF for NGINX to version 5.13.4. For more information, see the [F5 WAF for NGINX Release Notes]({{< ref "/waf/changelog/#f5-waf-for-nginx-5134" >}}).
+F5 Application Delivery Service also upgraded F5 WAF for NGINX to version 5.13.4. For more information, see the [F5 WAF for NGINX Release Notes]({{< ref "/waf/changelog/#f5-waf-for-nginx-5134" >}}).
 
 ## June 1, 2026
 
-- {{% icon-feature %}} **NGINXaaS for Google now supports free trials**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud now supports free trials**
 
-You can now sign up for a free trial of NGINXaaS for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud). The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore NGINXaaS for Google Cloud and its features.
+You can now sign up for a free trial of F5 Application Delivery Service for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud). The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore F5 Application Delivery Service for Google Cloud and its features.
 
 See the [Free trial]({{< ref "/nginxaas/google/billing/overview.md#free-trial" >}}) documentation for more information.
 
 ## May 15, 2026
 
-- {{% icon-feature %}} **NGINXaaS for Google now supports F5 WAF for NGINX (Preview)**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud now supports F5 WAF for NGINX (Preview)**
 
-You can now deploy NGINXaaS with [F5 WAF for NGINX]({{< ref "/waf" >}}); an advanced high-performance web application firewall (WAF) to provide protection from OWASP Top 10 web application security risks.
+You can now deploy F5 Application Delivery Service with [F5 WAF for NGINX]({{< ref "/waf" >}}); an advanced high-performance web application firewall (WAF) to provide protection from OWASP Top 10 web application security risks.
 
 **Note:** This feature is currently in Preview and free to use during the preview period. Custom security policies and custom logging profiles are not yet supported.
 
 ## April 16, 2026
 
-- {{% icon-feature %}} **NGINXaaS for Google now supports Managed Public Endpoint deployments (Preview)**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud now supports Managed Public Endpoint deployments (Preview)**
 
-You can now deploy NGINXaaS with an internet-facing managed public endpoint. Unlike private endpoint deployments, which require Private Service Connect (PSC) in your Google Cloud project, managed public endpoints provide a publicly resolvable, unique DNS name you can use to route traffic directly to your deployment over the internet.
+You can now deploy F5 Application Delivery Service with an internet-facing managed public endpoint. Unlike private endpoint deployments, which require Private Service Connect (PSC) in your Google Cloud project, managed public endpoints provide a publicly resolvable, unique DNS name you can use to route traffic directly to your deployment over the internet.
 
 **Note:** This feature is currently in preview; pricing may change.
 
@@ -70,41 +69,43 @@ See the [Service Frontend]({{< ref "/nginxaas/google/overview.md#service-fronten
 
 ## February 11, 2026
 
-- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud is now generally available in more regions**
 
-  NGINXaaS for Google is now available in the following additional regions per geography:
+  F5 Application Delivery Service for Google Cloud is now available in the following additional regions per geography:
 
   {{< table "table" >}}
-  |NGINXaaS Geography | Google Cloud Regions |
+
+  |F5 Application Delivery Service Geography | Google Cloud Regions |
   |-----------|---------|
   | APAC | asia-south1, asia-south2 |
+
   {{< /table >}}
 
-See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 Application Delivery Service for Google Cloud is available.
 
 ## February 10, 2026
 
-- {{% icon-feature %}} **NGINXaaS for Google supports fetching SSL/TLS certificates from Secret Manager**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud supports fetching SSL/TLS certificates from Secret Manager**
 
-Customers can now reference SSL/TLS certificates and keys from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview). NGINXaaS will securely fetch them for use in deployments, ensuring your secrets remain within Google Cloud.
+Customers can now reference SSL/TLS certificates and keys from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview). F5 Application Delivery Service will securely fetch them for use in deployments, ensuring your secrets remain within Google Cloud.
 
 For instructions on getting started, see our documentation to [add certificates from Secret Manager]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}).
 
 ## February 4, 2026
 
-- {{% icon-feature %}} **NGINXaaS for Google is now generally available in Asia Pacific (APAC)**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud is now generally available in Asia Pacific (APAC)**
 
-  NGINXaaS for Google is now available in the following regions in APAC:
+  F5 Application Delivery Service for Google Cloud is now available in the following regions in APAC:
 
   {{< table "table" >}}
 
-  | NGINXaaS Geography | Google Cloud Regions |
+  | F5 Application Delivery Service Geography | Google Cloud Regions |
   | ------------------ | -------------------- |
   | APAC               | asia-southeast1      |
 
   {{< /table >}}
 
-See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 Application Delivery Service for Google Cloud is available.
 
 ## January 15, 2026
 
@@ -114,59 +115,59 @@ The previously required configuration is no longer necessary for your deployment
 
 ## December 29, 2025
 
-- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud is now generally available in more regions**
 
-  NGINXaaS for Google is now available in the following additional regions per geography:
+  F5 Application Delivery Service for Google Cloud is now available in the following additional regions per geography:
 
   {{< table "table" >}}
 
-  | NGINXaaS Geography | Google Cloud Regions          |
+  | F5 Application Delivery Service Geography | Google Cloud Regions          |
   | ------------------ | ----------------------------- |
   | EU                 | europe-west3, europe-central2 |
 
   {{< /table >}}
 
-See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 Application Delivery Service for Google Cloud is available.
 
 ## December 15, 2025
 
-- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud is now generally available in more regions**
 
-  NGINXaaS for Google is now available in the following additional regions per geography:
+  F5 Application Delivery Service for Google Cloud is now available in the following additional regions per geography:
 
   {{< table "table" >}}
 
-  | NGINXaaS Geography | Google Cloud Regions        |
+  | F5 Application Delivery Service Geography | Google Cloud Regions        |
   | ------------------ | --------------------------- |
   | EU                 | europe-west4, europe-north1 |
 
   {{< /table >}}
 
-See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 Application Delivery Service for Google Cloud is available.
 
 ## December 10, 2025
 
-- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud is now generally available in more regions**
 
-  NGINXaaS for Google is now available in the following additional regions per geography:
+  F5 Application Delivery Service for Google Cloud is now available in the following additional regions per geography:
 
   {{< table "table" >}}
 
-  | NGINXaaS Geography | Google Cloud Regions                   |
+  | F5 Application Delivery Service Geography | Google Cloud Regions                   |
   | ------------------ | -------------------------------------- |
   | US                 | us-east4, us-west2, us-west3, us-west4 |
 
   {{< /table >}}
 
-See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where F5 Application Delivery Service for Google Cloud is available.
 
 ## October 13, 2025
 
-- {{% icon-feature %}} **NGINXaaS for Google Cloud is generally available**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud is generally available**
 
-We are pleased to announce the general availability of F5 NGINXaaS for Google Cloud.
+We are pleased to announce the general availability of F5 Application Delivery Service for Google Cloud.
 
-F5 NGINXaaS for Google Cloud is a fully managed load balancer and application delivery service that streamlines cloud-native application delivery without the operational complexity of managing infrastructure. This service simplifies the deployment of APIs, microservices, and web applications while enhancing performance, visibility, security, and scalability in Google Cloud.
+F5 Application Delivery Service for Google Cloud is a fully managed load balancer and application delivery service that streamlines cloud-native application delivery without the operational complexity of managing infrastructure. This service simplifies the deployment of APIs, microservices, and web applications while enhancing performance, visibility, security, and scalability in Google Cloud.
 
 Key features include adaptive load balancing, advanced connectivity patterns for deployment strategies like blue-green and canary, detailed visibility with over 200 real-time metrics, and strong security controls such as role-based access control and end-to-end encryption. The service also consolidates technology with unified L4/L7 load balancing combined with advanced security and programmability into a single platform for enhanced operational efficiency.
 
@@ -175,19 +176,19 @@ This announcement marks a significant step in application delivery modernization
 To learn more, refer to the following resources:
 
 - **Product Information:**
-  - [F5 NGINXaaS for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
+  - [F5 Application Delivery Service for Google Cloud](https://www.f5.com/products/nginx/f5-nginxaas-for-google-cloud)
   - [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}})
   - [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}})
 
-- **Blogs:** [F5 NGINXaaS for Google Cloud: Delivering resilient, scalable applications](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
-- **Webinars:** [Why F5 NGINXaaS for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
+- **Blogs:** [F5 Application Delivery Service for Google Cloud: Delivering resilient, scalable applications](https://f5.com/company/blog/delivering-resilient-scalable-applications.html)
+- **Webinars:** [Why F5 Application Delivery Service for Google Cloud is a game changer](https://events.actualtechmedia.com/on-demand/1603/why-f5-nginxaas-for-google-cloud-is-a-game-changer/)
 
-[Visit the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud) and start leveraging NGINXaaS for Google Cloud today!
+[Visit the Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud) and start leveraging F5 Application Delivery Service for Google Cloud today!
 
 ## September 18, 2025
 
-- {{% icon-feature %}} **NGINXaaS for Google Cloud Early Access**
+- {{% icon-feature %}} **F5 Application Delivery Service for Google Cloud Early Access**
 
-  NGINXaaS for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.
-  - To learn more about NGINXaaS for Google Cloud, see the [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}}) topic.
-  - To deploy NGINXaaS, see the [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) guide.
+  F5 Application Delivery Service for Google Cloud is now available in Early Access. This offering provides a fully managed, scalable, and secure solution for deploying and managing NGINX instances on Google Cloud.
+  - To learn more about F5 Application Delivery Service for Google Cloud, see the [Overview and architecture]({{< ref "/nginxaas/google/overview.md" >}}) topic.
+  - To deploy F5 Application Delivery Service, see the [Getting Started]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) guide.

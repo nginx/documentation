@@ -6,26 +6,26 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/monitoring/enable-nginx-logs/
 f5-content-type: how-to
-f5-product: NGINXaaS for AWS
-f5-keywords: "NGINXaaS for AWS, CloudWatch Logs, access logs, error logs, log export, CloudWatch Logs Insights"
+f5-product: F5 Application Delivery Service for AWS
+f5-keywords: "F5 Application Delivery Service for AWS, CloudWatch Logs, access logs, error logs, log export, CloudWatch Logs Insights"
 f5-summary: >
-  Learn how to collect and export NGINX access and error logs from F5 NGINXaaS for AWS deployments to Amazon CloudWatch Logs.
-  This guide details IAM permission setup, log export toggles in the NGINXaaS console, and querying log streams using CloudWatch Logs Insights.
+  Learn how to collect and export NGINX access and error logs from F5 Application Delivery Service for AWS deployments to Amazon CloudWatch Logs.
+  This guide details IAM permission setup, log export toggles in the F5 Application Delivery Service console, and querying log streams using CloudWatch Logs Insights.
 f5-audience: operator
 ---
 
 ## Overview
 
-F5 NGINXaaS for AWS integrates with Amazon CloudWatch Logs to collect NGINX error and access logs.
+F5 Application Delivery Service for AWS (ADS) integrates with Amazon CloudWatch Logs to collect NGINX error and access logs.
 
-When you enable log export, NGINXaaS writes NGINX logs to a CloudWatch Logs log group (the **Log Group**) in a log stream named `logs`.
+When you enable log export, F5 ADS writes NGINX logs to a CloudWatch Logs log group (the **Log Group**) in a log stream named `logs`.
 
 ## Before you begin
 
-- Configure a **Role ARN** in the **Identity** section of your deployment. NGINXaaS uses this IAM role to export logs to CloudWatch. See [Identity and access management]({{< ref "/nginxaas/aws/deploy/access-management.md" >}}) for how to create the role and attach the [Policy for CloudWatch Logs]({{< ref "/nginxaas/aws/deploy/access-management.md#step-3-add-inline-policies-to-your-role" >}}).
+- Configure a **Role ARN** in the **Identity** section of your deployment. F5 ADS uses this IAM role to export logs to CloudWatch. See [Identity and access management]({{< ref "/nginxaas/aws/deploy/access-management.md" >}}) for how to create the role and attach the [Policy for CloudWatch Logs]({{< ref "/nginxaas/aws/deploy/access-management.md#step-3-add-inline-policies-to-your-role" >}}).
 - Grant the IAM role the permissions required to export logs:
-  - `logs:CreateLogStream` and `logs:PutLogEvents`: required for NGINXaaS to write logs to the log group.
-  - `logs:CreateLogGroup`: required only if you want NGINXaaS to create the log group for you. If you pre-create the log group yourself, you can omit this permission.
+  - `logs:CreateLogStream` and `logs:PutLogEvents`: required for F5 ADS to write logs to the log group.
+  - `logs:CreateLogGroup`: required only if you want F5 ADS to create the log group for you. If you pre-create the log group yourself, you can omit this permission.
 
   See [AWS's documentation on controlling access to CloudWatch Logs with IAM](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/auth-and-access-control-cwl.html) for more information.
 - To view logs in the CloudWatch console, your own AWS identity needs read access such as `logs:GetLogEvents` and `logs:FilterLogEvents`. This is separate from the deployment's IAM role.
@@ -40,13 +40,13 @@ When you enable log export, NGINXaaS writes NGINX logs to a CloudWatch Logs log 
 
 ## Export NGINX logs to CloudWatch
 
-To enable exporting logs, turn on the **Export Logs to CloudWatch** toggle when creating or updating a deployment. To create a deployment, see [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/" >}}) for a step-by-step guide. To update an existing deployment, in the NGINXaaS console,
+To enable exporting logs, turn on the **Export Logs to CloudWatch** toggle when creating or updating a deployment. To create a deployment, see [our documentation on creating an F5 ADS deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/" >}}) for a step-by-step guide. To update an existing deployment, in the F5 ADS console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
 1. In the **Identity** section, make sure the **Role ARN** field is populated with an IAM role that has the [required permissions](#before-you-begin). Log export fails without it.
 1. In the **Observability** section, turn on the **Export Logs to CloudWatch** toggle.
-1. In the **Log Group Name** field, enter the name of the CloudWatch Logs log group you want to receive exported logs. If you leave this field at its default, NGINXaaS uses a log group named after the deployment object ID.
+1. In the **Log Group Name** field, enter the name of the CloudWatch Logs log group you want to receive exported logs. If you leave this field at its default, F5 ADS uses a log group named after the deployment object ID.
 1. Select **Update**.
 
 ## View NGINX logs in Amazon CloudWatch Logs
@@ -62,11 +62,11 @@ Refer to the [AWS's CloudWatch Logs Insights](https://docs.aws.amazon.com/Amazon
 Within the log group, NGINX access and error logs are written to a log stream named `logs`, which you can use to separate NGINX logs from the rest of your log group's streams. You can also filter based on the following fields using a CloudWatch Logs Insights `filter` or `stats` query, for example,
 
 * `filename`
-* `nginxaas_deployment_location`
-* `nginxaas_deployment_name`
-* `nginxaas_deployment_object_id`
-* `nginxaas_namespace`
-* `nginxaas_organization_object_id`
+* `deployment_location`
+* `deployment_name`
+* `deployment_object_id`
+* `namespace`
+* `organization_object_id`
 
 For example, to query for a deployment's /var/log/nginx/access.log entries:
 
@@ -84,7 +84,7 @@ The same procedure can be used to query via the newer **Log Analytics** feature 
 
 ## Disable NGINX log export to CloudWatch
 
-To stop exporting logs, update your NGINXaaS deployment to turn off the log export toggle. To update the deployment, in the NGINXaaS console,
+To stop exporting logs, update your F5 ADS deployment to turn off the log export toggle. To update the deployment, in the F5 ADS console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
@@ -93,13 +93,13 @@ To stop exporting logs, update your NGINXaaS deployment to turn off the log expo
 
 ## Troubleshooting
 
-If Amazon CloudWatch Logs is not showing any logs, check for **Failed Log Export to CloudWatch** events from your NGINXaaS deployment.
+If Amazon CloudWatch Logs is not showing any logs, check for **Failed Log Export to CloudWatch** events from your F5 ADS deployment.
 
-In the NGINXaaS console:
+In the F5 ADS console:
 
 1. On the navigation menu, select **Events**.
 1. Select **Add Filter**.
-1. Select **Affected Object** and the name of your NGINXaaS deployment.
+1. Select **Affected Object** and the name of your F5 ADS deployment.
 
 Events are deleted after 14 days.
 

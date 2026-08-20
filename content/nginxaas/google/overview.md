@@ -5,34 +5,34 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/overview/
 f5-content-type: concept
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
-## What is NGINXaaS for Google Cloud?
+## What is F5 Application Delivery Service for Google Cloud?
 
-F5 NGINXaaS for Google Cloud is a SaaS offering that is tightly integrated
+F5 Application Delivery Service for Google Cloud (ADS) is a SaaS offering that is tightly integrated
 into Google Cloud and its ecosystem of services, making applications fast, efficient,
 and reliable. It brings advanced traffic management capabilities from the commercial version of NGINX, without any of the operational toil.
 
-[NGINX Plus](https://www.nginx.com/products/nginx/) powers NGINXaaS for Google Cloud, which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution.
+[NGINX Plus](https://www.nginx.com/products/nginx/) powers F5 ADS, which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution.
 
-NGINXaaS handles the NGINX Plus license management automatically.
+F5 ADS handles the NGINX Plus license management automatically.
 
 {{<card-section showAsCards="true" isFeaturedSection="true">}}
   {{<card title="Prerequisites" titleUrl="/nginxaas/google/deploy/prerequisites/" icon="power">}}
-    Follow these steps to prepare for your NGINXaaS deployment
+    Follow these steps to prepare for your F5 ADS deployment
   {{</card>}}
   {{<card title="Create a deployment" titleUrl="/nginxaas/google/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
-    Step-by-step instructions to deploy NGINXaaS using the NGINXaaS Console
+    Step-by-step instructions to deploy F5 ADS using the F5 ADS Console
   {{</card>}}
   {{<card title="Add certificates" titleUrl="/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
-    Instructions to add SSL/TLS certificates to your NGINXaaS deployment using the NGINXaaS Console
+    Instructions to add SSL/TLS certificates to your F5 ADS deployment using the F5 ADS Console
   {{</card>}}
 {{</card-section>}}
 
 ## Capabilities
 
-The key capabilities of NGINXaaS for Google Cloud are:
+The key capabilities of F5 Application Delivery Service for Google Cloud are:
 
 - Simplifies onboarding by providing a fully managed, ready-to-use NGINX service, eliminating the need for infrastructure setup, manual upgrades, or operational overhead.
 - Lowers operational overhead in running and optimizing NGINX.
@@ -41,32 +41,32 @@ The key capabilities of NGINXaaS for Google Cloud are:
 - Integrates with the Google Cloud ecosystem.
 - Adopts a consumption-based pricing to align infrastructure costs to actual usage by billing transactions using Google.
 
-## NGINXaaS for Google Cloud architecture
+## F5 Application Delivery Service for Google Cloud architecture
 
-{{< img src="nginxaas/google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how NGINXaaS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside NGINXaaS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
+{{< img src="nginxaas/google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
-- The NGINXaaS Console is used to create, update, and delete NGINX configurations, certificates and NGINXaaS deployments
-- NGINXaaS automatically adapts to application traffic demands through autoscaling
-- Each NGINXaaS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
-- NGINXaaS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas/google/known-issues.md" >}}) for any networking restrictions.
-- NGINXaaS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
-- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. NGINXaaS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
+- The F5 ADS Console is used to create, update, and delete NGINX configurations, certificates and F5 ADS deployments
+- F5 ADS automatically adapts to application traffic demands through autoscaling
+- Each F5 ADS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
+- F5 ADS can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/nginxaas/google/known-issues.md" >}}) for any networking restrictions.
+- F5 ADS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
+- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. F5 ADS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 
 ### Service frontend
 
-The service frontend of an NGINXaaS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
+The service frontend of an F5 ADS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
 
 #### Managed public endpoint
 
-A managed public endpoint frontend allows client access over the internet through a public DNS name created by NGINXaaS in its network.
+A managed public endpoint frontend allows client access over the internet through a public DNS name created by F5 ADS in its network.
 
 **This frontend type is suitable for:**
 
 - Serving public web applications to end users over the internet
 - Proxying traffic from clients outside Google Cloud
-- Testing NGINXaaS configurations before you set up a [Private Endpoint]({{< ref "/nginxaas/google/overview.md#private-endpoint" >}}) frontend
+- Testing F5 ADS configurations before you set up a [Private Endpoint]({{< ref "/nginxaas/google/overview.md#private-endpoint" >}}) frontend
 
-**Access control**
+##### Access control
 
 Access control list (ACL) rules control traffic to a managed public endpoint deployment. If you don’t provide ACL rules, no traffic is allowed. An ACL rule includes the following settings:
 
@@ -81,25 +81,25 @@ Access control list (ACL) rules control traffic to a managed public endpoint dep
 
 #### Private endpoint
 
-A private endpoint frontend allows client access through your network by using Google’s [Private Service Connect (PSC)](https://cloud.google.com/vpc/docs/private-service-connect). To set up connectivity, create either a [PSC endpoint](https://docs.cloud.google.com/vpc/docs/private-service-connect#endpoints) for internal traffic or a [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) for external traffic. This approach brings the NGINXaaS deployment into your client network through an NGINXaaS-created service attachment, so application clients can connect directly into your network. For step-by-step instructions, see [Set up connectivity]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
+A private endpoint frontend allows client access through your network by using Google’s [Private Service Connect (PSC)](https://cloud.google.com/vpc/docs/private-service-connect). To set up connectivity, create either a [PSC endpoint](https://docs.cloud.google.com/vpc/docs/private-service-connect#endpoints) for internal traffic or a [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) for external traffic. This approach brings the F5 ADS deployment into your client network through a service attachment created by F5 ADS, so application clients can connect directly into your network. For step-by-step instructions, see [Set up connectivity]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
 
 **This frontend type is suitable for:**
 
-- Situations where you need greater control over traffic to the NGINXaaS deployment
+- Situations where you need greater control over traffic to the F5 ADS deployment
 - Environments where all clients exist within your Google Cloud network
 - Internal services that shouldn't be exposed to the internet
 
-**Access control**
+##### Access control
 
 A service attachment accept list restricts which Google project IDs can connect to the deployment. If you don’t specify any project IDs in the accept list, traffic from all projects is allowed.
 
 ### Upstream network
 
-NGINXaaS uses Google [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) (PSC) to connect securely to your applications.
+F5 ADS uses Google [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) (PSC) to connect securely to your applications.
 
 A [PSC interface](https://cloud.google.com/vpc/docs/private-service-connect#interfaces) brings the deployment into your application network and supports secure connectivity to your applications. By using your own networking resources, you control traffic flow and can apply your preferred security controls.
 
-To connect the NGINXaaS PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
+To connect the F5 ADS PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
 
 ### NGINX Capacity Unit (NCU)
 
@@ -108,7 +108,7 @@ You can reserve a minimum capacity for your deployment. The deployment automatic
 
 ### Geographical controllers
 
-NGINXaaS for Google Cloud has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. NGINXaaS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
+F5 ADS has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. F5 ADS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
 
 ### Supported regions
 
@@ -116,15 +116,15 @@ NGINXaaS for Google Cloud has a global presence, with management requests served
 
 ## Current limitations
 
-We are committed to enhancing NGINXaaS for Google Cloud and welcome your feedback to help shape the future of our service. If there are features you'd like to see prioritized, we encourage you to submit a [support ticket]({{< ref "/nginxaas/google/support.md" >}}) to share your suggestions.
+We are committed to enhancing F5 ADS and welcome your feedback to help shape the future of our service. If there are features you'd like to see prioritized, we encourage you to submit a [support ticket]({{< ref "/nginxaas/google/support.md" >}}) to share your suggestions.
 
-Here are the current constraints you should be aware of while using NGINXaaS for Google Cloud:
+Here are the current constraints you should be aware of while using F5 Application Delivery Service for Google Cloud:
 
-- NGINXaaS is [supported in a limited number of regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
+- F5 ADS is [supported in a limited number of regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
 - User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
-- NGINXaaS deployments on Google Cloud do not support IPv6 traffic.
-- NGINXaaS deployments on Google Cloud only support UDP traffic when using **Managed Public Endpoint** frontend service.
+- F5 ADS deployments on Google Cloud do not support IPv6 traffic.
+- F5 ADS deployments on Google Cloud only support UDP traffic when using **Managed Public Endpoint** frontend service.
 
 ## What's next
 
-To get started, check the [NGINXaaS for Google Cloud prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites.md" >}})
+To get started, check the [F5 Application Delivery Service for Google Cloud prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites.md" >}})

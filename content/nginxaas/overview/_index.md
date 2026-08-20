@@ -5,5 +5,5 @@ weight: 100
 url: /nginxaas/overview
 cascade:
   contentVars:
-    product: NGINXaaS
+    product: F5 Application Delivery Service
 ---
