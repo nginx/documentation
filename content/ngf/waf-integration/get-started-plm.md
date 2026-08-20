@@ -116,6 +116,8 @@ data:
 
 NGINX Gateway Fabric reloads the PLM credentials and TLS Secrets when they change, so you can rotate credentials without restarting the pod.
 
+If you install NGINX Gateway Fabric using Kubernetes manifests instead of Helm, see the `plm-storage-*` flags in the [command-line reference]({{< ref "/ngf/reference/cli-help.md" >}}) for the equivalent settings.
+
 ## Deploy the sample application
 
 {{< include "waf/plm-sample-app.md" >}}
@@ -194,9 +196,7 @@ spec:
       namespace: security
   securityLogs:
   - destination:
-      type: syslog
-      syslog:
-        server: syslog-svc.default.svc.cluster.local:514
+      type: stderr
     logRef:
       apLogConfRef:
         name: log-illegal
@@ -205,6 +205,8 @@ EOF
 ```
 
 This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch. You don't need to update the `WAFPolicy`.
+
+{{< call-out class="note" title="Note" >}} This guide enables WAF globally on the GatewayClass-level `NginxProxy`. To enable WAF on a specific Gateway instead, attach a per-Gateway `NginxProxy` through `infrastructure.parametersRef`. See [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
 
 ## Configure HTTPRoutes
 
@@ -252,6 +254,8 @@ spec:
 EOF
 ```
 
+{{< call-out class="note" title="Note" >}} GRPCRoutes inherit WAF protection the same way HTTPRoutes do. {{< /call-out >}}
+
 ## Validate policy compilation and application
 
 Confirm the `APPolicy` and `APLogConf` bundles compiled successfully:
@@ -261,7 +265,21 @@ kubectl get appolicy attack-signatures -n security -o jsonpath='{.status.bundle.
 kubectl get aplogconf log-illegal -n security -o jsonpath='{.status.bundle.state}{"\n"}'
 ```
 
-Both commands should print `ready`.
+Both commands should print `ready`. The `status.bundle.location` field on each resource confirms where the compiled bundle was stored in PLM storage.
+
+If a bundle doesn't reach `ready`:
+
+| State        | Meaning                                                              |
+|--------------|-----------------------------------------------------------------------|
+| `pending`    | The Policy Controller hasn't processed the resource yet               |
+| `processing` | The Policy Controller is compiling the policy                         |
+| `invalid`    | Compilation failed; check the status message and Policy Controller logs |
+
+Check the Policy Controller logs for compilation errors:
+
+```shell
+kubectl logs -n plm-system deploy/plm-f5-waf-policy-controller
+```
 
 Verify the `WAFPolicy` has been accepted and programmed:
 
@@ -379,6 +397,8 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP "http://cafe.example.com:$GW_POR
 The `customers` route returns sensitive data (credit card numbers and SSNs) in the response body. The gateway-level policy blocks inbound attacks but doesn't inspect outbound responses.
 
 This is a common pattern for SecOps and app team collaboration: the security team defines a stricter policy for a specific service, and the platform engineer or app developer attaches it as a route-level override. The override applies only to the `customers` route — other routes continue using the gateway-level policy.
+
+{{< call-out class="note" title="Note" >}} Only one `WAFPolicy` can target a given resource at a given level. Attaching a second gateway-level or route-level `WAFPolicy` to the same resource is rejected with `Accepted=False` and reason `Conflicted`. See [Policy attachment]({{< ref "/ngf/waf-integration/overview.md#policy-attachment" >}}). {{< /call-out >}}
 
 To protect sensitive data in responses, define a **data guard** `APPolicy` and apply it as a route-level override on the `customers` route:
 
