@@ -116,7 +116,7 @@ data:
 
 NGINX Gateway Fabric reloads the PLM credentials and TLS Secrets when they change, so you can rotate credentials without restarting the pod.
 
-If you install NGINX Gateway Fabric using Kubernetes manifests instead of Helm, see the `plm-storage-*` flags in the [command-line reference]({{< ref "/ngf/reference/cli-help.md" >}}) for the equivalent settings.
+If you install NGINX Gateway Fabric using Kubernetes manifests, use the equivalent `plm-storage-*` flags documented in the [command-line reference]({{< ref "/ngf/reference/cli-help.md" >}}).
 
 ## Deploy the sample application
 
@@ -210,7 +210,7 @@ EOF
 
 This `WAFPolicy` protects every route attached to the Gateway. Later changes to the `APPolicy` or `APLogConf` spec trigger recompilation and an automatic re-fetch. You don't need to update the `WAFPolicy`.
 
-{{< call-out class="note" title="Note" >}} This guide enables WAF globally on the GatewayClass-level `NginxProxy`. To enable WAF on a specific Gateway instead, attach a per-Gateway `NginxProxy` through `infrastructure.parametersRef`. See [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} This guide enables WAF globally on the GatewayClass-level `NginxProxy`. To enable WAF on a specific Gateway only, create a per-Gateway `NginxProxy` and reference it from the Gateway's `infrastructure.parametersRef`. See [Enable WAF per Gateway]({{< ref "/ngf/waf-integration/overview.md#enable-waf-per-gateway" >}}). {{< /call-out >}}
 
 ## Configure HTTPRoutes
 
@@ -269,20 +269,21 @@ kubectl get appolicy attack-signatures -n security -o jsonpath='{.status.bundle.
 kubectl get aplogconf log-illegal -n security -o jsonpath='{.status.bundle.state}{"\n"}'
 ```
 
-Both commands should print `ready`. The `status.bundle.location` field on each resource confirms where the compiled bundle was stored in PLM storage.
+Both commands should print `ready`. The `status.bundle.location` field on each resource confirms where the compiled bundle is stored in PLM storage.
 
-If a bundle doesn't reach `ready`:
+If a bundle doesn't reach `ready`, check the `bundle.state` value:
 
-| State        | Meaning                                                              |
-|--------------|-----------------------------------------------------------------------|
-| `pending`    | The Policy Controller hasn't processed the resource yet               |
-| `processing` | The Policy Controller is compiling the policy                         |
-| `invalid`    | Compilation failed; check the status message and Policy Controller logs |
+| State        | Meaning                                                                 |
+|--------------|-------------------------------------------------------------------------|
+| `pending`    | The Policy Controller hasn't processed the resource yet.                |
+| `processing` | The Policy Controller is compiling the policy.                          |
+| `ready`      | The bundle compiled successfully. `bundle.location` is populated.       |
+| `invalid`    | Compilation failed. Check the status message and Policy Controller logs. |
 
 Check the Policy Controller logs for compilation errors:
 
 ```shell
-kubectl logs -n plm-system deploy/plm-f5-waf-policy-controller
+kubectl logs -n plm-system deploy/plm-f5-waf-policy-controller -c policy-controller
 ```
 
 Verify the `WAFPolicy` has been accepted and programmed:
@@ -402,7 +403,7 @@ The `customers` route returns sensitive data (credit card numbers and SSNs) in t
 
 This is a common pattern for SecOps and app team collaboration: the security team defines a stricter policy for a specific service, and the platform engineer or app developer attaches it as a route-level override. The override applies only to the `customers` route — other routes continue using the gateway-level policy.
 
-{{< call-out class="note" title="Note" >}} Only one `WAFPolicy` can target a given resource at a given level. Attaching a second gateway-level or route-level `WAFPolicy` to the same resource is rejected with `Accepted=False` and reason `Conflicted`. See [Policy attachment]({{< ref "/ngf/waf-integration/overview.md#policy-attachment" >}}). {{< /call-out >}}
+{{< call-out class="note" title="Note" >}} Only one `WAFPolicy` can target a given resource at a given level. If a second `WAFPolicy` targets the same Gateway or route, it is rejected with `Accepted=False` and reason `Conflicted`. See [Policy attachment]({{< ref "/ngf/waf-integration/overview.md#policy-attachment" >}}). {{< /call-out >}}
 
 To protect sensitive data in responses, define a **data guard** `APPolicy` and apply it as a route-level override on the `customers` route:
 
