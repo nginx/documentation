@@ -134,7 +134,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
 
 
-{{<call-out class="warning" title="perl-JSON-XS package missing" >}}If you see error message `Can't locate JSON/XS.pm` in nms log while policy compilation then install `perl-JSON-XS` package manually.
+{{<call-out class="warning" title="Known Issue for nms-nap-compiler-v5.690.0" >}}If you see error message `Can't locate JSON/XS.pm` in nms log while policy compilation then install `perl-JSON-XS` package manually.
 
    ```shell
    sudo yum install perl-JSON-XS
