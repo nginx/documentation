@@ -1,5 +1,5 @@
 ---
-title: Get started with F5 WAF for NGINX
+title: Get started with F5 WAF for NGINX (HTTP)
 weight: 200
 toc: true
 f5-content-type: how-to
@@ -8,6 +8,8 @@ f5-description: Quick start guide for protecting traffic with F5 WAF for NGINX i
 f5-summary: >
   Deploy a sample application, compile a WAF policy, and apply it to a Gateway using NGINX Gateway Fabric.
   This walkthrough uses the HTTP source type to demonstrate the full flow from policy compilation to attack blocking.
+aliases:
+  - /nginx-gateway-fabric/waf-integration/get-started/
 ---
 
 This guide walks through the complete flow of protecting traffic with F5 WAF for NGINX: deploy a sample application, compile a WAF policy, apply it to a Gateway, and verify that attacks are blocked.
@@ -413,7 +415,7 @@ kubectl describe gateways.gateway.networking.k8s.io gateway
 ```text
 Addresses:
   Type:   IPAddress
-  Value:  10.96.20.187
+  Value:  192.0.2.1
 ```
 
 Save the public IP address and port(s) of the Gateway into shell variables:
@@ -528,6 +530,7 @@ SSN: *******6789
 
 ## Next steps
 
+- [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}) for a Kubernetes-native policy workflow using PLM.
 - [Configure policy sources (NIM and NGINX One Console)]({{< ref "/ngf/waf-integration/policy-sources.md" >}}) for managed policy workflows.
 - [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for polling, TLS, authentication, security logging, and fail-open behavior.
 - [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}}) if a condition is `False`.
