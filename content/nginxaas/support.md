@@ -16,11 +16,7 @@ To contact support about F5 ${product}:
 
 1. Go to the **Support** section and select **Create a Case**.
 
-1. Select **NGINX Products** as the product family.
-
-1. Select the **${product}** module.
-
-1. Fill out the **Subject** and **Description** sections, and include the following details about the specific issue:
+1. Fill out the **Subject** and **Description** sections, and include the following details about the specific issue, and then select **Next**:
 
     1. Identifying Information:
        - Deployment identifiers (Object ID and name)
@@ -32,11 +28,12 @@ To contact support about F5 ${product}:
        - Any error messages or request IDs displayed
        - The time when the issue occurred
 
-1. Fill out the fields in the **Additional information** section including: 
+1. Select **NGINX Products** as the product family and **NGINXaaS** as the product module, and then select **Next**.
 
-    - **Subscription ID**: select your F5 or NGINX subscription ID (use `No subscription available` if you don't have one)
-    - **Assign a priority**
-    - **Reason for contact**
+1. Enter the following required fields, at a minimum, and then select **Next**:
+   - **Reason for contact**
+   - **Subscription ID** (Select **No subscription available** or your F5 subscription ID if you have a private offer.)
+   - **Cloud Provider**
+   - **Assign a priority**
 
-1. Complete the **Contact details** section of your case and select **Submit**.
-
+1. Complete the fields in the **Contact Information** section for your case and then select **Submit**.
