@@ -174,16 +174,16 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 <instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
 ```
 
-AND</br>
+<b>AND</b></br>
 
 If you see any of the following error message in nms log </br>
 
-Debian/ubuntu based system:
+debian/ubuntu based system:
 ```text
 /usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
 ```
 
-OR</br>
+<b>OR</b></br>
 
 RHEL based system: 
 ```text
