@@ -170,14 +170,24 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 {{< /tabs >}}
 
 {{<call-out class="warning" title="Known Issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages 
-UI Error: `<instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1` 
+UI Error:
+```text
+<instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
+```
+
 If you see any of the following error message in nms log </br>
 
-Debian/ubuntu based system: `/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE` </br>
+Debian/ubuntu based system:
+```text
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+```
 
-RHEL based system: `Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm`
+RHEL based system:
+```text
+Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+```
 
-Wrokaround:
+<b>Workaround</b>: Execute below command
    ```shell
    sudo bash -c '
    cd /opt/nms-nap-compiler/app_protect-5.690.0/lib && \
