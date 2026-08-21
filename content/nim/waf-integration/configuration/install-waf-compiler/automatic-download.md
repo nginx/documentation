@@ -49,11 +49,12 @@ If you see a message like this, the certificate or key is likely invalid or expi
 error when creating the nginx repo retriever - NGINX repo certificates not found
 ```
 
-{{<call-out class="warning" title="Known Issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages 
-UI Error: 
+{{<call-out class="warning" title="Known Issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages in UI: 
 ```text
 <instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
 ```
+
+AND</br>
 
 If you see any of the following error message in nms log </br>
 
@@ -61,6 +62,8 @@ Debian/ubuntu based system:
 ```text
 /usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
 ```
+
+OR</br>
 
 RHEL based system: 
 ```text
