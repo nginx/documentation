@@ -140,6 +140,11 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.pod.extraLabels** | The additional extra labels of the NGINX Ingress Controller pod. | {} |
 | **controller.appprotect.enable** | Enables the F5 WAF for NGINX module in the NGINX Ingress Controller. | false |
 | **controller.appprotect.v5** | Enables F5 WAF for NGINX v5. | false |
+| **controller.appprotect.plmStorage.url** | SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and logconf bundle. Leave empty to turn off PLM support. Requires `controller.appprotect.v5` to be `true`. | "" |
+| **controller.appprotect.plmStorage.credentialsSecret** | Secret containing the SeaweedFS admin secret in the `seaweedfs_admin_secret` key. Format: `<NAMESPACE>/<NAME>`. | "" |
+| **controller.appprotect.plmStorage.caSecret** | Optional Secret containing the SeaweedFS admin secret under `seaweedfs_admin_secret`. Format: `<NAMESPACE>/<NAME>`. | "" |
+| **controller.appprotect.plmStorage.clientSSLSecret** | Optional Secret containing `tls.crt` and `tls.key` for SeaweedFS mTLS. Format: `<NAMESPACE>/<NAME>`. | "" |
+| **controller.appprotect.plmStorage.insecureSkipVerify** | Turns off SeaweedFS TLS verification. For development and testing only. | false |
 | **controller.appprotect.volumes** | Volumes for F5 WAF for NGINX v5. | [{"name": "app-protect-bd-config", "emptyDir": {}},{"name": "app-protect-config", "emptyDir": {}},{"name": "app-protect-bundles", "emptyDir": {}}] |
 | **controller.appprotect.enforcer.host** | Host that the F5 WAF for NGINX v5 Enforcer runs on. | "127.0.0.1" |
 | **controller.appprotect.enforcer.port** | Port that the F5 WAF for NGINX v5 Enforcer runs on. | 50000 |
