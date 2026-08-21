@@ -59,14 +59,6 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
    sudo apt-get install nms-nap-compiler-v5.690.0 -o Dpkg::Options::="--force-overwrite"
    ```
 
-1. On Debian 13, export the `LD_LIBRARY_PATH` environment variable:
-
-   ```shell
-   export LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/opt/app_protect/lib
-   ```
-
-   For other Ubuntu or Debian variants, set `LD_LIBRARY_PATH` only if the NGINX Instance Manager logs show symbol resolution error like: `/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.635.4/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1EN4absl7debian711string_viewERKNS0_7OptionsE`.
-
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
 
 {{% /tab %}}

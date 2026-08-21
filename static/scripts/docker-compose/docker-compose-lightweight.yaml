@@ -77,8 +77,6 @@ services:
       # Configure proxy SSL verification to trust the proxy server.
       PROXY_SSL_VERIFY: true
       ENABLE_METRICS: false
-      # export the LD_LIBRARY_PATH to include the App Protect library path. This is required for NIM to compile older version of NAP compiler .
-      LD_LIBRARY_PATH: "/lib/x86_64-linux-gnu:/opt/app_protect/lib"
 networks:
   external_network:
     driver: bridge
