@@ -33,6 +33,7 @@ Supported policy types are:
 - `cors`
 - `waf`
 - `externalAuth`
+- `hsts`
 
 {{% table %}}
 
@@ -50,6 +51,7 @@ Supported policy types are:
 | [`jwt`](#jwt-using-local-kubernetes-secret) | The JWT policy configures NGINX Plus to authenticate client requests using JSON Web Tokens. | Yes | No |
 | [`oidc`](#oidc) | The OIDC policy configures NGINX Plus as a relying party for OpenID Connect authentication. | Yes | No |
 | [`cache`](#cache) | The cache policy configures proxy caching for serving cached content. | Yes | No |
+| [`hsts`](#hsts) | The HSTS policy configures [HTTP Strict Transport Security](https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/) to help ensure secure connections to the server. | Yes | No |
 
 {{% /table %}}
 
@@ -1293,7 +1295,8 @@ waf:
 | ---| ---| ---| --- |
 |``enable`` | Enables F5 WAF for NGINX. | ``bool`` | Yes |
 |``apPolicy`` | The [F5 WAF for NGINX policy]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-policies" >}}) of the WAF. Accepts an optional namespace. Mutually exclusive with ``apBundle``. | ``string`` | No |
-|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy``. | ``string`` | No |
+|``apBundle`` | The [F5 WAF for NGINX policy bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}). Mutually exclusive with ``apPolicy`` and ``apBundleSource``. | ``string`` | No |
+|``apBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the WAF policy bundle. Mutually exclusive with ``apBundle`` and ``apPolicy``. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``securityLog.enable`` | **Deprecated:** Enables security log. | ``bool`` | No |
 |``securityLog.apLogConf`` | **Deprecated:** The [F5 WAF for NGINX log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
 |``securityLog.apLogBundle`` | **Deprecated:** The [F5 WAF for NGINX log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
@@ -1310,10 +1313,114 @@ waf:
 | ---| ---| ---| --- |
 |``enable`` | Enables security log. | ``bool`` | No |
 |``apLogConf`` | The [App Protect WAF log conf]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-logs" >}}) resource. Accepts an optional namespace. Only works with ``apPolicy``. | ``string`` | No |
-|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. | ``string`` | No |
+|``apLogBundle`` | The [App Protect WAF log bundle]({{< ref "/nic/integrations/app-protect-waf/configuration.md#waf-bundles" >}}) resource. Only works with ``apBundle``. Mutually exclusive with ``apLogBundleSource``. | ``string`` | No |
+|``apLogBundleSource`` | [Remote source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for fetching the log profile bundle. Mutually exclusive with ``apLogBundle``. | [waf.apBundleSource](#wafapbundlesource) | No |
 |``logDest`` | The log destination for the security log. Only accepted variables are ``syslog:server=<ip-address>; localhost; <fqdn>:<port>``, ``stderr``, ``<absolute path to file>``. | ``string`` | No |
 
 {{% /table %}}
+
+#### WAF.ApBundleSource
+
+The `apBundleSource` object configures how NGINX Ingress Controller fetches a pre-compiled WAF bundle from a remote source. The same fields are also used by `waf.securityLogs[].apLogBundleSource`. Three source types are supported:
+
+- **N1C (NGINX One Console)** — fetch policies compiled and managed through NGINX One Console. See [policy docs]({{< ref "/nginx-one-console/waf-integration/policy/_index.md" >}}).
+- **NIM (NGINX Instance Manager)** — fetch policies compiled and managed through NGINX Instance Manager. See [bundle docs]({{< ref "/nim/waf-integration/policies-and-logs/bundles/create-bundle.md" >}}).
+- **HTTPS** — fetch compiled `.tgz` bundles from any HTTPS server or endpoint.
+
+For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}).
+
+{{% table %}}
+
+|Field | Description | Type | Required |
+| ---| ---| ---| --- |
+|``type`` | Source backend: ``N1C`` (NGINX One Console), ``NIM`` (NGINX Instance Manager), or ``HTTPS``. Defaults to ``HTTPS``. | ``string`` | No |
+|``url`` | Tenant URL for ``N1C``/``NIM``, or full ``.tgz`` bundle URL for ``HTTPS``. Must use ``https://``. | ``string`` | Yes |
+|``name`` | Management-plane policy name for ``N1C``/``NIM``. For ``apLogBundleSource``, set this to the log profile name. Ignored for ``HTTPS``. | ``string`` | No |
+|``namespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
+|``enablePolling`` | Must be explicitly set. When ``true``, NIC re-fetches the bundle at ``pollInterval``. When ``false``, the bundle is fetched once at policy creation or update. | ``bool`` | Yes |
+|``pollInterval`` | How often to re-fetch when ``enablePolling`` is ``true``. Minimum ``1m``, default ``5m``. | ``string`` | No |
+|``secret`` | Secret in the same namespace as the Policy. For ``N1C``/``NIM``, use ``nginx.com/waf-bundle`` (token or username/password). For ``HTTPS``, use ``kubernetes.io/tls`` for client mTLS (``tls.crt`` and ``tls.key``). | ``string`` | No |
+|``trustedCertSecret`` | Name of an ``nginx.org/ca`` Secret containing a custom CA certificate (``ca.crt``) for verifying the server TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
+|``insecureSkipVerify`` | Disables TLS certificate verification. Not recommended for production. | ``bool`` | No |
+|``verifyChecksum`` | Enables SHA-256 verification of the downloaded bundle. HTTPS only. | ``bool`` | No |
+|``timeout`` | Time limit for a single bundle fetch request. Default ``60s``. | ``string`` | No |
+|``retryAttempts`` | Number of additional fetch attempts after a temporary fetch error (eg. timeout or HTTP 5xx). Valid range is ``1``–``10``. | ``int`` | No |
+
+{{% /table %}}
+
+For example, see the snippets below:
+
+NIM
+```yaml
+spec:
+  waf:
+    enable: true
+    apBundleSource:
+      type: NIM
+      url: "https://<nim_host>"
+      name: "<policy_name>"
+      secret: "nim-credentials"
+      enablePolling: true
+      pollInterval: "5m"
+    securityLogs:
+    - enable: true
+      apLogBundleSource:
+        type: NIM
+        url: "https://<nim_host>"
+        name: "<log_profile_name>"
+        secret: "nim-credentials"
+        enablePolling: true
+        pollInterval: "5m"
+      logDest: "stderr"
+```
+
+N1C
+```yaml
+spec:
+  waf:
+    enable: true
+    apBundleSource:
+      type: N1C
+      url: "https://<tenant>.console.ves.volterra.io"
+      name: "<policy_name>"
+      namespace: "default"
+      secret: "n1c-credentials"
+      enablePolling: true
+      pollInterval: "5m"
+    securityLogs:
+    - enable: true
+      apLogBundleSource:
+        type: N1C
+        url: "https://<tenant>.console.ves.volterra.io"
+        name: "secops_dashboard"
+        namespace: "default"
+        secret: "n1c-credentials"
+        enablePolling: true
+        pollInterval: "5m"
+      logDest: "stderr"
+```
+
+HTTPS
+```yaml
+spec:
+  waf:
+    enable: true
+    apBundleSource:
+      url: "https://bundle-server.default.svc.cluster.local/bundles/attack-signatures-blocking.tgz"
+      secret: "bundle-client-tls"
+      trustedCertSecret: "bundle-server-ca"
+      enablePolling: true
+      pollInterval: "5m"
+    securityLogs:
+    - enable: true
+      apLogBundleSource:
+        url: "https://bundle-server.default.svc.cluster.local/bundles/log-default.tgz"
+        secret: "bundle-client-tls"
+        trustedCertSecret: "bundle-server-ca"
+        enablePolling: true
+        pollInterval: "5m"
+      logDest: "stderr"
+```
 
 #### WAF Merging Behavior
 
@@ -1326,6 +1433,72 @@ policies:
 ```
 
 In this example NGINX Ingress Controller will use the configuration from the first policy reference `waf-policy-one`, and ignores `waf-policy-two`.
+
+### HSTS
+
+The HSTS policy sets up [HTTP Strict Transport Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security). It instructs browsers to enforce HTTPS connections to the host for a specified duration.
+
+For example, the following policy sets an HSTS duration of 30 days and extends the policy to all host subdomains:
+
+```yaml
+hsts:
+  maxAge: 2592000
+  includeSubDomains: true
+```
+
+When deployed behind a proxy or load balancer that terminates TLS upstream of the Ingress Controller, set `behindProxy` to `true`. In this mode, NGINX uses the `X-Forwarded-Proto` request header to determine whether the connection is HTTPS, rather than checking the `$https` variable directly:
+
+```yaml
+hsts:
+  maxAge: 2592000
+  behindProxy: true
+```
+
+A VirtualServer that references an HSTS policy must:
+
+- Use [TLS termination]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualservertls" >}}), or set `behindProxy` to `true` if TLS is terminated upstream.
+- Reference the policy in the VirtualServer [spec]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserver-specification" >}}). You can't reference an HSTS policy in a [route]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroute" >}}) or in a VirtualServerRoute [subroute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md#virtualserverroutesubroute" >}}).
+
+If these conditions are not met, NGINX sends status code `500` to clients.
+
+{{< call-out class="note" >}}
+
+This feature uses the NGINX `add_header` directive and the [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) `$https` variable.
+
+{{< /call-out >}}
+
+{{% table %}}
+
+|Field | Description | Type | Required | Default |
+| ---| ---| ---| --- | --- |
+|`maxAge` | Sets the duration in seconds that the browser should cache and enforce the HSTS policy. | `int` | Yes | -- |
+|`includeSubDomains` | Extends the HSTS policy to all subdomains of the host. | `bool` | No | `false` |
+|`behindProxy` | Sets the HSTS header based on the `X-Forwarded-Proto` request header rather than the `$https` variable. Set this to `true` when the Ingress Controller is deployed behind a proxy or load balancer that terminates TLS upstream. | `bool` | No | `false` |
+|`preload` | Adds the domain to browsers' [HSTS preload lists](https://hstspreload.org/). Requires `includeSubDomains` to be set to `true` and `maxAge` to be at least 31536000 (one year). | `bool` | No | `false` |
+
+{{% /table %}}
+
+{{< call-out class="important" >}}
+
+HSTS instructs browsers to enforce HTTPS for the duration of `maxAge`. Simply deleting the policy does not clear the browser's cached directive, and users may be unable to access the application over HTTP until the cached policy expires.
+
+To safely remove HSTS, first set `maxAge` to `0` and apply the updated policy. This instructs browsers to immediately expire the cached directive. Once applied, remove the policy reference from the VirtualServer and delete the policy resource.
+
+See the MDN documentation on [HSTS expiration](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security#expiration) for more details.
+
+{{< /call-out >}}
+
+#### HSTS Merging Behavior
+
+A VirtualServer can reference only a single HSTS policy. Every subsequent reference will be ignored. For example, here we reference two policies:
+
+```yaml
+policies:
+- name: hsts-policy-one
+- name: hsts-policy-two
+```
+
+In this example, NGINX Ingress Controller uses the configuration from the first policy reference, `hsts-policy-one`, and ignores `hsts-policy-two`.
 
 ## Using Policy
 

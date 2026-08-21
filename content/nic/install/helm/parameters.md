@@ -199,6 +199,9 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.enableSSLDynamicReload** | Enable lazy loading for SSL Certificates. | true |
 | **controller.telemetryReporting.enable** | Enable telemetry reporting. | true |
 | **controller.enableWeightChangesDynamicReload** | Enable weight changes without reloading the NGINX configuration. May require increasing `map_hash_bucket_size`, `map_hash_max_size`, `variable_hash_bucket_size`, and `variable_hash_max_size` in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) if there are many two-way splits. Requires `controller.nginxplus` | false |
+| **controller.networkPolicy.enabled** | Create a NetworkPolicy that targets the controller pods.  If `enabled` is set to `true` and both ingress and egress are empty, the resulting NetworkPolicy denies all ingress by default. | false |
+| **controller.networkPolicy.ingress** | Configure ingress rules. When non-empty, the Ingress policy type is added automatically. | [] |
+| **controller.networkPolicy.egress** | Configure egress rules. When non-empty, the Egress policy type is added automatically. | [] |
 |**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
 |**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
 |**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
@@ -218,8 +221,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 |**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
 |**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
 |**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. Requires NGINX Agent 2.x.| "" |
-| **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
-| **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the NGINX Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
 | **prometheus.create** | Expose NGINX or NGINX Plus metrics in the Prometheus format. | true |
 | **prometheus.port** | Configures the port to scrape the metrics. | 9113 |
 | **prometheus.scheme** | Configures the HTTP scheme to use for connections to the Prometheus endpoint. | http |
