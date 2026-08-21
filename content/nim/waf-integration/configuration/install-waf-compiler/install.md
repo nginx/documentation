@@ -111,6 +111,36 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 {{% /tab %}}
 
+{{% tab name="RHEL 10" %}}
+
+1. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
+
+   ```shell
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
+   ```
+
+1. Enable the CodeReady Builder repository:
+
+   ```shell
+   sudo subscription-manager repos --enable codeready-builder-for-rhel-10-x86_64-rpms
+   ```
+
+1. Install the WAF compiler:
+
+   ```shell
+   sudo yum install nms-nap-compiler-v5.690.0
+   ```
+
+1. {{< include "nim/waf/restart-nms-integrations.md" >}}
+
+Note: If you see error message `Can't locate JSON/XS.pm` in nms log while policy compilation then install `perl-JSON-XS` package manually.
+
+   ```shell
+   sudo yum install perl-JSON-XS
+   ```
+
+{{% /tab %}}
+
 {{% tab name="Oracle Linux 8.1" %}}
 
 1. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
