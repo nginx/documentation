@@ -1,5 +1,5 @@
 ---
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 f5-files:
 - content/nginxaas/aws/monitoring/enable-nginx-logs.md
 - content/nginxaas/google/monitoring/enable-nginx-logs.md
@@ -12,7 +12,7 @@ app_protect_security_log_enable on;
 app_protect_security_log log_default /var/log/app_protect/security.log;
 ```
 
-NGINXaaS does not support custom logging profiles and is limited to the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
+F5 Application Delivery Service does not support custom logging profiles and is limited to the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
 
 {{< call-out class="warning" >}}WAF logs should always be stored under the **/var/log/app_protect** directory. You may lose logging data if you choose any other log paths.
 {{< /call-out >}}

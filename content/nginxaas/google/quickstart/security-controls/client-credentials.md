@@ -1,15 +1,15 @@
 ---
 title: "Programmatic authentication with client credentials"
-description: "Learn how to set up OAuth2 client credentials for programmatic access to the NGINXaaS API."
+description: "Learn how to set up OAuth2 client credentials for programmatic access to the F5 Application Delivery Service API."
 weight: 100
 toc: true
 url: /nginxaas/google/quickstart/security-controls/client-credentials/
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
 f5-summary: >
-    Use this guide to create OAuth2 client credentials in the NGINXaaS Console and exchange
-    them for an access token that authenticates requests to the NGINXaaS API.
+    Use this guide to create OAuth2 client credentials in the F5 Application Delivery Service Console and exchange
+    them for an access token that authenticates requests to the F5 Application Delivery Service API.
     Client credentials enable access for automation toolchains such as CI/CD pipelines,
     allowing you to manage Deployments, Configurations, and Certificates APIs.
     Credentials are scoped to a single organization.
@@ -18,21 +18,21 @@ f5-audience: operator
 
 ## Overview
 
-This guide explains how to create and use client credentials for automating access to NGINXaaS APIs. Client credentials enable automation tools such as CI/CD pipelines to manage certain NGINXaaS resources without requiring user login.
+This guide explains how to create and use client credentials for automating access to F5 Application Delivery Service (ADS) APIs. Client credentials enable automation tools such as CI/CD pipelines to manage certain F5 ADS resources without requiring user login.
 
-To authenticate, you exchange your client credentials (client ID and secret) for a short-lived access token from the NGINXaaS token endpoint. This access token is then used in the Authorization header of your API requests. Access tokens have limited validity, after which you'll need to request a new one using the same credentials.
+To authenticate, you exchange your client credentials (client ID and secret) for a short-lived access token from the F5 ADS token endpoint. This access token is then used in the Authorization header of your API requests. Access tokens have limited validity, after which you'll need to request a new one using the same credentials.
 
 Client credentials are scoped to an organization and expire after a set period (up to 1 year, 6 months recommended).
 
 ## Before you begin
 
-- You must be logged in to the [NGINXaaS Console](https://console.nginxaas.net/).
+- You must be logged in to the [F5 ADS Console](https://console.nginxaas.net/).
 
 ## Create client credentials
 
-Follow these steps to create a new client credential through the NGINXaaS console:
+Follow these steps to create a new client credential through the F5 ADS console:
 
-1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
+1. Log in to [F5 ADS Console](https://console.nginxaas.net/).
 1. Select **Settings** > **Client Credentials** from the left navigation menu.
 1. Select **+ Add Client** to create a new credential.
 1. Enter a unique name for your client in the text field that appears.
@@ -58,7 +58,7 @@ Organizations are limited to a maximum of 10 client credentials. To request an i
 
 Follow these steps to view information about your clients:
 
-1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
+1. Log in to [F5 ADS Console](https://console.nginxaas.net/).
 1. Select **Settings** > **Client Credentials** from the left navigation menu.
 1. You can see all the available client credentials for your organization in the **Client Credentials** page. The table shows the following metadata for each credential:
    - Client Name
@@ -79,13 +79,14 @@ You can only view the client secret once, when they're created. If you need to u
 
 Follow these steps to delete a client credential:
 
-1. Log in to [NGINXaaS Console](https://console.nginxaas.net/).
+1. Log in to [F5 ADS Console](https://console.nginxaas.net/).
 1. Select **Settings** > **Client Credentials** from the left navigation menu.
 1. Locate the credential to delete in the table.
 1. Select the three vertical dots icon (⋮) at the end of the row.
 1. Select **Delete** from the menu.
 
 After deletion:
+
 - Existing access tokens continue to work for 1 full hour after they're issued.
 
 {{< call-out class="note" >}}
@@ -202,8 +203,8 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 
 ## What's next
 
-[Manage your NGINXaaS certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
+[Manage your F5 ADS certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
 
 [Manage your NGINX configurations]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules.md" >}})
 
-[Manage your NGINXaaS deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
+[Manage your F5 ADS deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})

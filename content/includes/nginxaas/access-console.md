@@ -1,5 +1,5 @@
 ---
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 f5-files:
 - content/nginxaas/overview/manage-users-organizations.md
 - content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
@@ -10,6 +10,6 @@ f5-files:
 
 ---
 
-- Open the [NGINXaaS Console](https://console.nginxaas.net/).
+- Open the [F5 Application Delivery Service Console](https://console.nginxaas.net/).
 - Log in with your preferred identity provider.
 - Select the Geography you want to work in.

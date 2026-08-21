@@ -1,18 +1,18 @@
 ---
-title: Manage configs using the NGINXaaS Console
+title: Manage configs using the F5 Application Delivery Service Console
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/nginx-configuration/nginx-configuration-console/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 contentVars:
-  product: NGINXaaS
+  product: F5 Application Delivery Service
 ---
 
-You can apply an NGINX configuration to your F5 ${product} deployment using the NGINXaaS Console.
+You can apply an NGINX configuration to your F5 ADS deployment using the F5 ADS Console.
 
-## Access the NGINXaaS Console
+## Access the F5 Application Delivery Service Console
 
 {{< include "/nginxaas/access-console.md" >}}
 

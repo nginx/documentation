@@ -4,17 +4,17 @@ weight: 50
 toc: true
 url: /nginxaas/overview/nginx-configuration/configuration-rules/
 f5-content-type: reference
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 contentVars:
-  product: NGINXaaS
+  product: F5 Application Delivery Service
 ---
 
 This document provides details about using NGINX configuration files with your
-F5 ${product} deployment, restrictions, and available directives.
+${product} (ADS) deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
-You can upload NGINX configurations to your ${product} deployment using the NGINXaaS console:
+You can upload NGINX configurations to your F5 ADS deployment using the F5 ADS console:
 
 - [Upload using the console]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}})
 
@@ -25,6 +25,7 @@ The topics below explain NGINX configuration restrictions and which directives a
 There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principle of least privilege, and ensure the smooth operation of the system.
 
 {{<table variant="narrow" theme="bordered">}}
+
   | Allowed Directory   |  User can upload files to | NGINX master process can read | NGINX master process can write | NGINX worker process can read | NGINX worker process can write |
   | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
   | /etc/nginx           | {{< icon "check" >}} | {{< icon "check" >}} |                      |                      |                      |
@@ -35,6 +36,7 @@ There are limits to where files, including NGINX configuration files, certificat
   | /var/cache/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
   | /var/spool/nginx     |                      | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} | {{< icon "check" >}} |
   | /var/www             | {{< icon "check" >}} | {{< icon "check" >}} |                      | {{< icon "check" >}} |                      |
+
 {{< /table >}}
 
 For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.
@@ -46,12 +48,14 @@ If you need access to additional directories, please [contact us]({{< ref "/ngin
 The following directives are not supported because of specific limitations. If you include any of these directives in your NGINX configuration, you'll get an error.
 
 {{< table >}}
+
 | Disallowed Directive | Reason |
 |------------------ | ----------------- |
 | ssl_engine        | No hardware SSL accelerator is available. |
-| debug_points      | NGINXaaS does not provide access to NGINX processes for debugging. |
+| debug_points      | F5 ADS does not provide access to NGINX processes for debugging. |
 | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
 | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
+
 {{< /table >}}
 
 You may find a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
@@ -61,37 +65,41 @@ You may find a few directives are not listed here as either allowed or disallowe
 The following directives cannot be overridden by the user provided configuration.
 
 {{< table >}}
+
 | Persistent Directive | Value | Reason |
 |------------------ | ----------------------- | -----------------|
 | `user` | `nginx` | The `nginx` user has the correct permissions for accessing certificates, policy files and other auxfiles. |
 | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
 | `worker_rlimit_nofile` | `524288` | Set for optimal performance of deployments. |
 | `worker_connections` | `150000` | Set for optimal performance of deployments. |
-| `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
-| `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
+| `pid` | `/run/nginx/nginx.pid` | Set to this value to allow F5 ADS to automatically manage the NGINX master process. |
+| `daemon` | `on` | Automatically set to `on` to allow F5 ADS to manage the NGINX master process. |
 | `master_process` | `on` | This directive is intended for NGINX developers. |
 | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
+
 {{< /table >}}
 
 For connection and request rate limiting, consider using these NGINX modules:
+
 - [limit_conn](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html#limit_conn)
 - [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req)
 - [upstream queue](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue)
 
 ## Listener restrictions
 
-NGINXaaS reserves the following listen ports for internal use.
+F5 ADS reserves the following listen ports for internal use.
+
 - `49151`
 - `49152`
 
-NGINXaaS does not support specific hostnames or IP addresses (other than localhost / loopback addresses) to be used as a `listen` address.
+F5 ADS does not support specific hostnames or IP addresses (other than localhost / loopback addresses) to be used as a `listen` address.
 You must use an unspecified address to listen on all IPs (such as `0.0.0.0`, `[::0]` or `*`) or a local address for use-cases where you do not want the listener exposed via the service endpoint (such as `127.0.0.1` or `localhost`).
 
 ## Configuration directives list
 
-NGINXaaS supports a limited set of NGINX directives. The directives with the "app_protect" prefix require [F5 WAF for NGINX]({{< ref "/waf" >}}) to be enabled for the deployment.
+F5 ADS supports a limited set of NGINX directives. The directives with the "app_protect" prefix require [F5 WAF for NGINX]({{< ref "/waf" >}}) to be enabled for the deployment.
 
-NGINXaaS does not yet support F5 WAF for NGINX custom security policies or logging profiles. Support is limited to the [prebuilt policies]({{< ref "/waf/policies/configuration.md#default-policy" >}}) and the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
+F5 ADS does not yet support F5 WAF for NGINX custom security policies or logging profiles. Support is limited to the [prebuilt policies]({{< ref "/waf/policies/configuration.md#default-policy" >}}) and the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
 
 {{< details summary="Alphabetical index of directives">}}
 

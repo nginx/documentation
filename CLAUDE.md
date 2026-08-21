@@ -214,9 +214,10 @@ Permalinks for products are defined in `config/_default/config.toml`.
 - F5 NGINX Instance Manager
 - F5 WAF for NGINX
 - F5 DoS for NGINX
-- F5 NGINXaaS
+- F5 Application Delivery Service
+- F5 Application Delivery Service for AWS
 - F5 NGINXaaS for Azure
-- F5 NGINXaaS for Google Cloud
+- F5 Application Delivery Service for Google Cloud
 - F5 NGINX One Console
 - F5 NGINX Plus
 

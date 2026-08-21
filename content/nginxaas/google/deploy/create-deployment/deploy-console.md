@@ -1,24 +1,24 @@
 ---
-title: Deploy using the NGINXaaS Console
+title: Deploy using the F5 Application Delivery Service Console
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
 ## Overview
 
-This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using [Google Cloud Console](https://console.cloud.google.com) and the NGINXaaS Console. The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
+This guide explains how to deploy F5 Application Delivery Service for Google Cloud (ADS) using [Google Cloud Console](https://console.cloud.google.com) and the F5 ADS Console. The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
 ## Before you begin
 
-Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offering in the Google Cloud Marketplace.
+Before you can deploy F5 ADS, follow the steps in the [Prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) topic to subscribe to the F5 Application Delivery Service for Google Cloud offering in the Google Cloud Marketplace.
 
 ### Create a network attachment
 
-NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your NGINXaaS deployment to your VPC network. The network attachment must be created in a region we support.
+F5 ADS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your F5 ADS deployment to your VPC network. The network attachment must be created in a region we support.
 
 {{< call-out class="caution" >}}
 {{< include "/nginxaas/google/supported-regions.md" >}}
@@ -26,26 +26,26 @@ NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about
 
 1. Access the [Google Cloud Console](https://console.cloud.google.com/).
 1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you select for the network attachment determines the region where your NGINXaaS deployment will be created. You do not manually select a region when creating an NGINXaaS deployment; it will automatically be created in the same region as the network attachment.
-1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide. To ensure secure and controlled access to your network attachments, we strongly recommend configuring the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This option helps maintain security by ensuring only trusted providers can connect to your service by letting you manually approve trusted connections. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
+   - The region you select for the network attachment determines the region where your F5 ADS deployment will be created. You do not manually select a region when creating an F5 ADS deployment; it will automatically be created in the same region as the network attachment.
+1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide. To ensure secure and controlled access to your network attachments, we strongly recommend configuring the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This option helps maintain security by ensuring only trusted providers can connect to your service by letting you manually approve trusted connections. To start, you can leave the list of accepted projects empty and add the F5 ADS deployment project after it is created.
 
    {{< call-out class="caution" >}}
    For development and testing purposes, or in scenarios where speed and simplicity are prioritized over security, you have the option to configure the **Connection Preference** to **Automatically accept connections for all projects**. Please note that this approach is inherently less secure and may expose your service to unintended or unauthorized access. We encourage you to exercise caution if using the less restrictive option and to avoid using it in production or sensitive environments.
    {{< /call-out >}}
 
-1. Make a note of the network attachment ID as it will be needed in the next steps to create your NGINXaaS deployment. You can find the network attachment ID in the Google Cloud Console by following the steps below:
+1. Make a note of the network attachment ID as it will be needed in the next steps to create your F5 ADS deployment. You can find the network attachment ID in the Google Cloud Console by following the steps below:
    1. Go to Network Attachments at the following link: https://console.cloud.google.com/net-services/psc/list/networkAttachments?project=my-google-project (replace `my-google-project` in the URL with your project name).
    1. Open the desired network attachment and copy the value from the `Network Attachment` field. **Example format:** `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
 
-## Access the NGINXaaS Console
+## Access the F5 ADS Console
 
-Once you have completed the subscription process and created a network attachment, you can access the NGINXaaS Console.
+Once you have completed the subscription process and created a network attachment, you can access the F5 ADS Console.
 
 {{< include "/nginxaas/access-console.md" >}}
 
 {{< call-out class="caution" >}}
 Select the Geography that supports the region where you created your network attachment.
-See [NGINXaaS for Google Cloud supported regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}).
+See [F5 ADS supported regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}).
 {{< /call-out >}}
 
 ## Create or import an NGINX configuration
@@ -54,7 +54,7 @@ See [NGINXaaS for Google Cloud supported regions]({{< ref "/nginxaas/google/over
 
 ## Create a new deployment
 
-Next, create a new NGINXaaS deployment using the NGINXaaS Console:
+Next, create a new F5 ADS deployment using the F5 ADS Console:
 
 1. On the left menu, select **Deployments**.
 1. Select {{< icon "plus" >}} **Add Deployment** to create a new deployment.
@@ -74,11 +74,11 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
 
-{{< call-out class="important" >}}If the **Connection preference** on the Network Attachment resource is set to **Accept connections from selected projects**, you will need to add the **NGINXaaS deployment project** to the list of **Accepted projects** for the deployment to provision successfully. The NGINXaaS deployment `Project ID` can be found under the `Cloud Info` section for your deployment. Failing to do so will leave the deployment in a `Pending` state, with details provided on the necessary actions required to proceed.{{< /call-out >}}
+{{< call-out class="important" >}}If the **Connection preference** on the Network Attachment resource is set to **Accept connections from selected projects**, you will need to add the **F5 ADS deployment project** to the list of **Accepted projects** for the deployment to provision successfully. The F5 ADS deployment `Project ID` can be found under the `Cloud Info` section for your deployment. Failing to do so will leave the deployment in a `Pending` state, with details provided on the necessary actions required to proceed.{{< /call-out >}}
 
 ## Configure your deployment
 
-In the NGINXaaS Console,
+In the F5 ADS Console,
 
 1. To open the details of your deployment, select its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
@@ -95,26 +95,25 @@ If you selected **Private Endpoint** as the service frontend type, complete the 
 
 ### Internal traffic
 
-To set up private connectivity to your NGINXaaS deployment, create a [Private Service Connect (PSC) endpoint](https://docs.cloud.google.com/vpc/docs/configure-private-service-connect-services) in the same VPC as your internal clients.
+To set up private connectivity to your F5 ADS deployment, create a [Private Service Connect (PSC) endpoint](https://docs.cloud.google.com/vpc/docs/configure-private-service-connect-services) in the same VPC as your internal clients.
 
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and select the project where you want to create networking resources for your F5 NGINXaaS deployment.
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and select the project where you want to create networking resources for your F5 ADS deployment.
 1. Create or reuse a [VPC network](https://cloud.google.com/vpc/docs/create-modify-vpc-networks).
 1. Create a PSC endpoint. See [Google's documentation on creating an endpoint](https://docs.cloud.google.com/vpc/docs/configure-private-service-connect-services#create-endpoint) for a step-by-step guide.
-    - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
-
+    - For **Target service**, enter your F5 ADS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
 
 ### External traffic
 
-To set up public connectivity for external clients, configure a [Private Service Connect (PSC) backend](https://cloud.google.com/vpc/docs/private-service-connect-backends) for your NGINXaaS deployment.
+To set up public connectivity for external clients, configure a [Private Service Connect (PSC) backend](https://cloud.google.com/vpc/docs/private-service-connect-backends) for your F5 ADS deployment.
 
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and select the project where you want to create networking resources for your F5 NGINXaaS deployment.
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and select the project where you want to create networking resources for your F5 ADS deployment.
 1. Create or reuse a [VPC network](https://cloud.google.com/vpc/docs/create-modify-vpc-networks).
 1. Create a proxy-only subnet in your consumer VPC. See [Google's documentation on creating a proxy-only subnet](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_1) for a step-by-step guide.
 1. Create a public IP address. See [Google's documentation on reserving a static address](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_3) for a step-by-step guide.
 1. Create a Private Service Connect Network Endpoint Group (PSC NEG). See [Google's documentation on creating a NEG](https://cloud.google.com/vpc/docs/access-apis-managed-services-private-service-connect-backends#console) for a step-by-step guide.
    - Set **Network endpoint group type** to **Private Service Connect NEG (Regional)**.
    - Set **Target** to **Published service**.
-   - For **Target service**, enter your NGINXaaS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
+   - For **Target service**, enter your F5 ADS deployment's Service Attachment, which is visible on the `Deployment Details` section for your deployment.
    - For **Producer port**, enter the port your NGINX server is listening on. If you're using the default NGINX config, enter port `80`.
    - For **Network** and **Subnetwork** select your consumer VPC network and subnet.
 1. Create a regional external proxy Network Load Balancer. See [Google's documentation on configuring the load balancer](https://cloud.google.com/load-balancing/docs/tcp/set-up-ext-reg-tcp-proxy-zonal#console_6) for a step-by-step guide.
@@ -123,7 +122,6 @@ To set up public connectivity for external clients, configure a [Private Service
    - In the **Frontend configuration** section,
       - For **IP address**, select the public IP address created earlier.
       - For **Port number**, enter the same port as your NEG's Producer port, for example, port `80`.
-
 
 Each listening port configured on NGINX requires its own PSC network endpoint group with a matching port. You can use the following helper script to automate these steps:
 
@@ -145,7 +143,7 @@ Each listening port configured on NGINX requires its own PSC network endpoint gr
    # Prerequisites:
    # - gcloud CLI installed and configured
    # - An existing projectID and a VPC network created in that project
-   # - A valid Service Attachment URI from F5 NGINXaaS
+   #    - A valid Service Attachment URI from F5 ADS
 
    # Function to display usage
    usage() {

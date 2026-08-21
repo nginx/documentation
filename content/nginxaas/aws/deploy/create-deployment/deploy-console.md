@@ -1,28 +1,28 @@
 ---
-title: Deploy using the NGINXaaS Console
-description: "Create, configure, and connect an F5 NGINXaaS for AWS deployment using the NGINXaaS Console."
+title: Deploy using the F5 Application Delivery Service Console
+description: "Create, configure, and connect an F5 Application Delivery Service for AWS deployment using the F5 Application Delivery Service Console."
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/aws/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for AWS
-f5-keywords: "NGINXaaS for AWS, create deployment, NGINXaaS Console, NCU, service frontend, PrivateLink, VPC peering"
+f5-product: F5 Application Delivery Service for AWS
+f5-keywords: "F5 Application Delivery Service for AWS, create deployment, F5 Application Delivery Service Console, NCU, service frontend, PrivateLink, VPC peering"
 f5-summary: >
-  Learn how to create an F5 NGINXaaS for AWS deployment using the NGINXaaS Console.
+  Learn how to create an F5 Application Delivery Service for AWS deployment using the F5 Application Delivery Service Console.
   This guide covers configuring the deployment, setting up service frontend connectivity, and testing the deployment once it's ready.
 f5-audience: operator
 ---
 
 ## Overview
 
-This guide explains how to deploy F5 NGINXaaS for AWS using the [AWS Management Console](https://console.aws.amazon.com) and the [NGINXaaS Console](https://console.nginxaas.net/). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
+This guide explains how to deploy F5 Application Delivery Service for AWS (F5 ADS) using the [AWS Management Console](https://console.aws.amazon.com) and the [F5 ADS Console](https://console.nginxaas.net/). The deployment process involves creating a new deployment, configuring the deployment, and testing the deployment.
 
 ## Before you begin
 
-Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas/aws/deploy/prerequisites/" >}}) topic to subscribe to the NGINXaaS for AWS offering in the AWS Marketplace.
+Before you can deploy F5 ADS, follow the steps in the [Prerequisites]({{< ref "/nginxaas/aws/deploy/prerequisites/" >}}) topic to subscribe to the F5 ADS for AWS offering in the AWS Marketplace.
 
-## Access the NGINXaaS Console
+## Access the F5 Application Delivery Service Console
 
 {{< include "/nginxaas/access-console.md" >}}
 
@@ -32,7 +32,7 @@ Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref 
 
 ## Create a new deployment
 
-Create a new NGINXaaS deployment using the NGINXaaS Console:
+Create a new F5 ADS deployment using the F5 ADS Console:
 
 1. On the left menu, select **Deployments**.
 1. Select {{< icon "plus" >}} **Add Deployment**, then select **AWS** to create a new AWS deployment.
@@ -41,13 +41,13 @@ Create a new NGINXaaS deployment using the NGINXaaS Console:
    - Add an optional description for your deployment.
    - Change the [**NCUs**]({{< ref "/nginxaas/aws/overview.md#nginx-capacity-unit-ncu" >}}) if needed.
       - The default value of `20` works for most common scenarios.
-   - Select the AWS **Region** where you want the NGINXaaS deployment to be created.
+   - Select the AWS **Region** where you want the F5 ADS deployment to be created.
    - Enter an **IPv4 CIDR Block** for the deployment's private network IP space.
-      - NGINXaaS only accepts block sizes between `/22` and `/18`.
+      - F5 ADS only accepts block sizes between `/22` and `/18`.
       - For more information on choosing a VPC CIDR block, refer to AWS's [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html) documentation.
 
    {{< call-out class="caution" >}}
-   NGINXaaS uses VPC peering for network connectivity to your upstream services. VPC peering requires all peered VPCs to have non-overlapping CIDR blocks so unique routing rules can be defined for each IP range.
+   F5 ADS uses VPC peering for network connectivity to your upstream services. VPC peering requires all peered VPCs to have non-overlapping CIDR blocks so unique routing rules can be defined for each IP range.
    When selecting an IPv4 CIDR block for your AWS deployment, make sure the range doesn't match or overlap with any VPCs you plan to peer to the deployment's network.
    {{< /call-out >}}
 
@@ -71,7 +71,7 @@ Your new deployment will appear in the list of deployments. The status of the de
 
 ## Edit your deployment
 
-In the NGINXaaS Console,
+In the F5 ADS Console,
 
 1. Open the details of your deployment by selecting its name from the list of deployments.
    - You can view the details of your deployment, including the status, region, VPC endpoint service, NGINX configuration, and more.
@@ -95,7 +95,7 @@ If you selected **Private Endpoint** as the service frontend type, complete the 
 To let clients in your AWS VPC connect directly to your deployment, create an interface VPC endpoint that targets your deployment's PrivateLink Endpoint Service Name:
 
 {{< call-out class="caution" >}}
-NGINXaaS doesn't currently support cross-region PrivateLink connections. You can only create an interface VPC endpoint in the same region as your deployment.
+F5 ADS doesn't currently support cross-region PrivateLink connections. You can only create an interface VPC endpoint in the same region as your deployment.
 {{< /call-out >}}
 
 1. After your deployment is created, open its Details tab and find the **PrivateLink Endpoint Service Name** under **Cloud Settings** > **Service Frontend**, for example `com.amazonaws.vpce.us-east-1.vpce-svc-0c0d939ca9a7ce020`.
@@ -105,24 +105,24 @@ NGINXaaS doesn't currently support cross-region PrivateLink connections. You can
    - To add an entry to the allow list, go to your deployment's Details tab, select **Edit**, and add the VPC endpoint ID or AWS account ID to the allow list.
 
 {{< call-out class="important" >}}
-The allow list can contain either AWS account IDs or VPC endpoint IDs, but not both. If it uses AWS account IDs, NGINXaaS automatically accepts every PrivateLink connection from those accounts. If it uses VPC endpoint IDs, NGINXaaS accepts each endpoint's PrivateLink connection only after you add its ID to the list.
+The allow list can contain either AWS account IDs or VPC endpoint IDs, but not both. If it uses AWS account IDs, F5 ADS automatically accepts every PrivateLink connection from those accounts. If it uses VPC endpoint IDs, F5 ADS accepts each endpoint's PrivateLink connection only after you add its ID to the list.
 
 Removing an entry disconnects that PrivateLink connection from the deployment.
 {{< /call-out >}}
 
 ### Upstream connectivity
 
-To let your NGINXaaS deployment reach applications in your upstream network, create a VPC peering connection between your upstream VPC and the deployment's VPC:
+To let your F5 ADS deployment reach applications in your upstream network, create a VPC peering connection between your upstream VPC and the deployment's VPC:
 
 {{< call-out class="caution" >}}
-NGINXaaS doesn't currently support cross-region VPC peering connections. A peering connection from any region other than the deployment's region will be rejected.
+F5 ADS doesn't currently support cross-region VPC peering connections. A peering connection from any region other than the deployment's region will be rejected.
 {{< /call-out >}}
 
 1. Open your deployment's Details tab and note its **AWS Account ID** and **VPC ID**.
 1. From your upstream AWS account, create a VPC peering connection request targeting the deployment's AWS Account ID and VPC ID. For step-by-step instructions, see AWS's [Create a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) documentation.
 1. Note the resulting **VPC Peering Connection ID**, for example `pcx-0123456789abcdef0`, shown in the AWS VPC console **Peering Connections** list.
 1. On your deployment's Details tab, select **Edit**, go to **Cloud Details** > **Upstream Network**, select **+ Add Entry**, and add the VPC Peering Connection ID.
-1. Select **Save Changes** to allow NGINXaaS to accept the peering connection request.
+1. Select **Save Changes** to allow F5 ADS to accept the peering connection request.
 1. You must update your upstream VPC's route tables, network ACLs, and security groups to allow traffic to and from the deployment's VPC CIDRs.
    - Open your deployment's Details tab and note its **IPv4 CIDR** and **IPv6 CIDR** (if you plan to use IPv6).
    - See AWS's [Update your route tables for a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) and [Configure security group rules for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-security-group-rules.html) documentation.

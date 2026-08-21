@@ -5,12 +5,12 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/access-management/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
 
 
-F5 NGINXaaS for Google Cloud (NGINXaaS) uses Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, with WIF configured, your NGINXaaS deployment can perform the following integrations:
+F5 Application Delivery Service for Google Cloud (ADS) uses Workload Identity Federation (WIF) to integrate with Google Cloud services. For example, with WIF configured, your F5 ADS deployment can perform the following integrations:
 
  - export logs to Cloud Logging
  - export metrics to Cloud Monitoring
@@ -23,7 +23,7 @@ To learn more, see [Google's Workload Identity Federation documentation](https:/
 - In the project you're configuring WIF in, you need the following roles to create a workload identity pool, provider, and policy bindings:
     - [iam.workloadIdentityPoolAdmin](https://cloud.google.com/iam/docs/roles-permissions/iam#iam.workloadIdentityPoolAdmin)
     - [resourcemanager.projectIamAdmin](https://cloud.google.com/iam/docs/roles-permissions/resourcemanager#resourcemanager.projectIamAdmin)
-- An NGINXaaS deployment. See [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas/google/deploy/create-deployment/" >}}) for a step-by-step guide.
+- An F5 ADS deployment. See [our documentation on creating an F5 ADS deployment]({{< ref "/nginxaas/google/deploy/create-deployment/" >}}) for a step-by-step guide.
 
 ## Configure WIF
 
@@ -34,7 +34,7 @@ To learn more, see [Google's Workload Identity Federation documentation](https:/
     - `Issuer URL` must be `https://accounts.google.com`.
     - `Allowed audiences` must contain the full canonical resource name of the workload identity pool provider, for example, `https://iam.googleapis.com/projects/<project-number>/locations/<location>/workloadIdentityPools/<pool-id>/providers/<provider-id>`. If `Allowed audiences` is empty, the full canonical resource name of the workload identity pool provider will be included by default.
     - Add the following **attribute mapping**: `google.subject=assertion.sub`.
-    - Add the following **attribute condition**: `assertion.sub=='$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID'`, where `$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID` is the unique ID of your NGINXaaS deployment's service account. This ID can be found in the `F5 NGINXaaS Service Account Unique ID` field under the **Cloud Info** section in the **Details** tab of your deployment.
+    - Add the following **attribute condition**: `assertion.sub=='$SERVICE_ACCOUNT_UNIQUE_ID'`, where `$SERVICE_ACCOUNT_UNIQUE_ID` is the unique ID of your F5 Application Delivery Service deployment's service account. This ID can be found in the `F5 ADS Service Account Unique ID` field under the **Cloud Info** section in the **Details** tab of your deployment.
 
 ### Grant access to the WIF principal with your desired roles
 
@@ -47,14 +47,14 @@ To grant access to export logs to a Google project, `$LOG_PROJECT_ID`, in the [G
 1. Go to the `$LOG_PROJECT_ID` project.
 1. Go to the **IAM** page.
 1. Select **Grant Access**.
-1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID`.
+1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$SERVICE_ACCOUNT_UNIQUE_ID`.
 1. Assign the **Logs Writer** role.
 
 Alternatively, to use the Google Cloud CLI, you can run the following `gcloud` command:
 
 ```bash
 gcloud projects add-iam-policy-binding "$LOG_PROJECT_ID" \
-    --member="principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID" \
+    --member="principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$SERVICE_ACCOUNT_UNIQUE_ID" \
     --role='roles/logging.logWriter'
 ```
 
@@ -67,14 +67,14 @@ To grant access to export metrics to a Google project, `$METRIC_PROJECT_ID` in t
 1. Go to the `$METRIC_PROJECT_ID` project.
 1. Go to the **IAM** page.
 1. Select **Grant Access**.
-1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID`.
+1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$SERVICE_ACCOUNT_UNIQUE_ID`.
 1. Assign the **Monitoring Metric Writer** role.
 
 Alternatively, to use the Google Cloud CLI, you can run the following `gcloud` command:
 
 ```bash
 gcloud projects add-iam-policy-binding "$METRIC_PROJECT_ID" \
-    --member="principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID" \
+    --member="principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$SERVICE_ACCOUNT_UNIQUE_ID" \
     --role='roles/monitoring.metricWriter'
 ```
 
@@ -87,14 +87,14 @@ To grant access to fetch a secret, `$SECRET_ID`, in the [Google Cloud Console](h
 1. Go to the secret, `$SECRET_ID`, in Secret Manager.
 1. Select the **Permissions** tab.
 1. Select **Grant Access**.
-1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID`.
+1. Enter your principal, for example, `principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$SERVICE_ACCOUNT_UNIQUE_ID`.
 1. Assign the **Secret Manager Secret Accessor** role.
 
 Alternatively, to use the Google Cloud CLI, you can run the following `gcloud` command:
 
 ```bash
 gcloud secrets add-iam-policy-binding "$SECRET_ID" \
-    --member="principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$NGINXAAS_SERVICE_ACCOUNT_UNIQUE_ID" \
+    --member="principal://iam.googleapis.com/projects/$WIF_PROJECT_NUMBER/locations/global/workloadIdentityPools/$WIF_POOL_ID/subject/$SERVICE_ACCOUNT_UNIQUE_ID" \
     --role='roles/secretmanager.secretAccessor'
 ```
 
@@ -102,9 +102,9 @@ If you would like to fetch more than one secret, you will need to grant access o
 
 {{< /details >}}
 
-### Update your NGINXaaS deployment with the name of your workload identity pool provider
+### Update your F5 ADS deployment with the name of your workload identity pool provider
 
-In the NGINXaaS Console,
+In the F5 ADS Console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.

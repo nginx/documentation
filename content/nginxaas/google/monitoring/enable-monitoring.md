@@ -5,10 +5,10 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/monitoring/enable-monitoring/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
-Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 NGINXaaS for Google Cloud (NGINXaaS) seamlessly integrates with Google Cloud services, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
+Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 Application Delivery Service for Google Cloud (ADS) seamlessly integrates with Google Cloud services, allowing you to collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
 
 ## Prerequisites
 
@@ -21,18 +21,18 @@ Monitoring your application's performance is crucial for maintaining its reliabi
   See [Google's documentation on controlling access to Cloud Monitoring with IAM](https://cloud.google.com/monitoring/access-control) for more information.
 - Configure the [`status_zone`](https://nginx.org/en/docs/http/ngx_http_status_module.html#status_zone) directive in your `server` blocks and the [`zone`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) directive in your `upstream` blocks to collect HTTP request and response statistics, stream connection metrics, upstream statistics, and memory statistics. See the [Metrics Catalog]({{< ref "/nginxaas/google/monitoring/metrics-catalog.md" >}}) for configuration requirements.
 
-## Export NGINXaaS metrics to a Google Cloud Project
+## Export F5 Application Delivery Service for Google Cloud metrics to a Google Cloud Project
 
-To enable sending metrics to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas/google/deploy/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the NGINXaaS console,
+To enable sending metrics to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an F5 ADS deployment]({{< ref "/nginxaas/google/deploy/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the F5 ADS console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
 1. Enter the project you want metrics to be sent to under **Metric Project ID**.
 1. Select **Update**.
 
-## View NGINXaaS metrics in Google Cloud Monitoring
+## View F5 Application Delivery Service for Google Cloud metrics in Google Cloud Monitoring
 
-See the [Metrics Catalog]({{< ref "/nginxaas/google/monitoring/metrics-catalog.md" >}}) for a full list of metrics NGINXaaS provides.
+See the [Metrics Catalog]({{< ref "/nginxaas/google/monitoring/metrics-catalog.md" >}}) for a full list of metrics F5 ADS provides.
 
 ### Google Cloud Console's Metrics Explorer
 
@@ -45,7 +45,7 @@ Refer to the [Google's Metrics Explorer](https://cloud.google.com/monitoring/cha
 
 ### Import a pre-built dashboard
 
-To help you quickly visualize important metrics and logs from your NGINXaaS deployments, you can import a pre-configured dashboard into Google Cloud Monitoring. The dashboard displays key metrics such as request and connection rates, response status codes, upstream health, and access and error logs.
+To help you quickly visualize important metrics and logs from your F5 ADS deployments, you can import a pre-configured dashboard into Google Cloud Monitoring. The dashboard displays key metrics such as request and connection rates, response status codes, upstream health, and access and error logs.
 
 To import the dashboard:
 
@@ -53,12 +53,12 @@ To import the dashboard:
 
 ```json
 {
-  "displayName": "NGINXaaS",
+  "displayName": "F5 Application Delivery Service",
   "dashboardFilters": [
     {
       "filterType": "METRIC_LABEL",
-      "labelKey": "nginxaas_deployment_name",
-      "templateVariable": "nginxaas_deployment_name",
+      "labelKey": "deployment_name",
+      "templateVariable": "deployment_name",
       "valueType": "STRING_ARRAY"
     }
   ],
@@ -98,7 +98,7 @@ To import the dashboard:
                       "groupByFields": [],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.connections\" resource.type=\"generic_node\" metric.label.\"nginx_connections_outcome\"=\"ACCEPTED\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.connections\" resource.type=\"generic_node\" metric.label.\"nginx_connections_outcome\"=\"ACCEPTED\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -121,7 +121,7 @@ To import the dashboard:
                       "groupByFields": [],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.requests\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.requests\" resource.type=\"generic_node\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -165,7 +165,7 @@ To import the dashboard:
                   ],
                   "perSeriesAligner": "ALIGN_MEAN"
                 },
-                "filter": "metric.type=\"workload.googleapis.com/nginx.http.connection.count\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                "filter": "metric.type=\"workload.googleapis.com/nginx.http.connection.count\" resource.type=\"generic_node\" ${deployment_name}"
               },
               "unitOverride": ""
             }
@@ -207,7 +207,7 @@ To import the dashboard:
                       ],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.response.status\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.response.status\" resource.type=\"generic_node\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -246,7 +246,7 @@ To import the dashboard:
                   "groupByFields": [],
                   "perSeriesAligner": "ALIGN_MEAN"
                 },
-                "filter": "metric.type=\"workload.googleapis.com/nginx.http.request.processing.count\" resource.type=\"generic_node\" metric.label.\"nginx_zone_name\"=monitoring.regex.full_match(\"..*\") ${nginxaas_deployment_name}",
+                "filter": "metric.type=\"workload.googleapis.com/nginx.http.request.processing.count\" resource.type=\"generic_node\" metric.label.\"nginx_zone_name\"=monitoring.regex.full_match(\"..*\") ${deployment_name}",
                 "pickTimeSeriesFilter": {
                   "direction": "TOP",
                   "numTimeSeries": 12,
@@ -281,11 +281,11 @@ To import the dashboard:
                   "alignmentPeriod": "60s",
                   "crossSeriesReducer": "REDUCE_SUM",
                   "groupByFields": [
-                    "metric.label.\"nginxaas_deployment_name\""
+                    "metric.label.\"deployment_name\""
                   ],
                   "perSeriesAligner": "ALIGN_DELTA"
                 },
-                "filter": "metric.type=\"workload.googleapis.com/nginx.config.reloads\" resource.type=\"generic_node\" ${nginxaas_deployment_name}",
+                "filter": "metric.type=\"workload.googleapis.com/nginx.config.reloads\" resource.type=\"generic_node\" ${deployment_name}",
                 "pickTimeSeriesFilter": {
                   "direction": "TOP",
                   "numTimeSeries": 12,
@@ -332,7 +332,7 @@ To import the dashboard:
                       ],
                       "perSeriesAligner": "ALIGN_MEAN"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.count\" resource.type=\"generic_node\" ${nginxaas_deployment_name}",
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.count\" resource.type=\"generic_node\" ${deployment_name}",
                     "pickTimeSeriesFilter": {
                       "direction": "TOP",
                       "numTimeSeries": 12,
@@ -386,7 +386,7 @@ To import the dashboard:
                       ],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.responses\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.responses\" resource.type=\"generic_node\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -439,11 +439,11 @@ To import the dashboard:
 7. Replace the default JSON with the dashboard configuration you copied.
 8. Select **Apply Changes**.
 
-{{< call-out class="note" >}}The dashboard includes an **nginxaas_deployment_name** filter. Use this filter to view metrics for a specific NGINXaaS deployment or select multiple deployments to compare their performance.{{< /call-out >}}
+{{< call-out class="note" >}}The dashboard includes an **deployment_name** filter. Use this filter to view metrics for a specific F5 ADS deployment or select multiple deployments to compare their performance.{{< /call-out >}}
 
-## Disable exporting NGINXaaS metrics to a Google Cloud project
+## Disable exporting F5 Application Delivery Service for Google Cloud metrics to a Google Cloud project
 
-To disable sending metrics to your Google Cloud project, update your NGINXaaS deployment to remove the reference to your project ID. To update the deployment, in the NGINXaaS console,
+To disable sending metrics to your Google Cloud project, update your F5 ADS deployment to remove the reference to your project ID. To update the deployment, in the F5 ADS console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
@@ -452,12 +452,12 @@ To disable sending metrics to your Google Cloud project, update your NGINXaaS de
 
 ## Troubleshooting
 
-If Google Cloud Monitoring is not showing any metrics, check for **Failed Metric Export to Google** events from your NGINXaaS deployment.
+If Google Cloud Monitoring is not showing any metrics, check for **Failed Metric Export to Google** events from your F5 ADS deployment.
 
-In the NGINXaaS console:
+In the F5 ADS console:
 
 1. On the navigation menu, select **Events**.
 1. Select **Add Filter**.
-1. Select **Affected Object** and the name of your NGINXaaS deployment.
+1. Select **Affected Object** and the name of your F5 ADS deployment.
 
 Events are deleted after 14 days.
