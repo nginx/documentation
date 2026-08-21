@@ -28,12 +28,19 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
+      - name: Get secrets
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@refs/heads/main
+        with:
+          client-id: ${{secrets.DOCS_OIDC_CLIENT}}
+          tenant-id: ${{secrets.DOCS_OIDC_TENANT}}
+          vault-name: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+          secret-names: "${{matrix.env_api_key}}, ${{matrix.env_sphinx_api_key}}, slack_webhook_url_docs_incident"
+          env-names: "COVEO_API_KEY, COVEO_SPHINX_API_KEY, SLACK_WEBHOOK_URL"
+
       - name: Generating token for ${{matrix.env_name}} ...
         id: generate-token
         continue-on-error: true
         env:
-          COVEO_API_KEY: ${{secrets[matrix.env_api_key]}}
-          COVEO_SPHINX_API_KEY: ${{secrets[matrix.env_sphinx_api_key]}}
           COVEO_SEARCH_HUB: "HUB_ES_Nginx_Docs_And_Org"
         run: |
           RESPONSE=$(curl -w "\nHTTP_CODE: %{http_code}" -s -X POST "https://platform.cloud.coveo.com/rest/search/v2/token?organizationId=${{matrix.env_coveo_org_id}}" \
@@ -128,8 +135,6 @@ jobs:
                   }]
                 }]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_DOCS_INCIDENT }}
           
 
   push-tokens-to-azure:
@@ -143,37 +148,28 @@ jobs:
       - name: View files
         run: ls -R
 
-      - name: Login to Azure
-        uses: azure/login@v2
+      - name: Get secrets
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@refs/heads/main
         with:
-          creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
-
-      - name: Retrieve secrets from Keyvault
-        id: keyvault
-        uses: azure/cli@9f7ce6f37c31b777ec6c6b6d1dfe7db79f497956
-        with:
-          inlineScript: |
-            secrets_get=(productionHostname previewHostname resourceGroupName cdnProfileName cdnName accountName)
-            for secret_get in ${secrets_get[@]}
-            do
-              value=$(az keyvault secret show --name $secret_get --vault-name ${{ secrets.AZURE_KEY_VAULT_DOCS }} --query value --output tsv)
-              echo "::add-mask::$value"
-              echo "$secret_get=$value" >> $GITHUB_OUTPUT
-            done
+          client-id: ${{secrets.DOCS_OIDC_CLIENT}}
+          tenant-id: ${{secrets.DOCS_OIDC_TENANT}}
+          vault-name: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+          secret-names: "resourceGroupName, cdnProfileName, cdnName, accountName"
+          env-names: "resourceGroupName, cdnProfileName, cdnName, accountName"
 
       - name: Push to Azure container storage
         run: |
           az storage blob upload-batch \
             -s ./ \
             -d '$web' \
-            --account-name ${{steps.keyvault.outputs.accountName}} \
+            --account-name ${{env.accountName}} \
             --overwrite \
             --content-cache-control "no-store" \
             --auth-mode login
 
           az afd endpoint purge \
-            --resource-group ${{steps.keyvault.outputs.resourceGroupName}} \
-            --profile-name ${{steps.keyvault.outputs.cdnProfileName}} \
-            --endpoint-name ${{steps.keyvault.outputs.cdnName}} \
+            --resource-group ${{env.resourceGroupName}} \
+            --profile-name ${{env.cdnProfileName}} \
+            --endpoint-name ${{env.cdnName}} \
             --domains docs.nginx.com docs-dev.nginx.com docs-staging.nginx.com \
             --content-paths '/.netlify/functions/*'
