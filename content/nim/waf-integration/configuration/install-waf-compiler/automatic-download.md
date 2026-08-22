@@ -49,4 +49,36 @@ If you see a message like this, the certificate or key is likely invalid or expi
 error when creating the nginx repo retriever - NGINX repo certificates not found
 ```
 
+{{<call-out class="warning" title="Known Issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages in UI: 
+```text
+<instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
+```
+
+<b>AND</b></br>
+
+If you see any of the following error message in nms log </br>
+
+debian/ubuntu based system:
+```text
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+```
+
+<b>OR</b></br>
+
+RHEL based system: 
+```text
+Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+```
+
+<b>Workaround</b>: Execute below command
+   ```shell
+   sudo bash -c '
+   cd /opt/nms-nap-compiler/app_protect-5.690.0/lib && \
+   ln -sfn libre2.so.11.0.0 libre2.so.11 && \
+   ln -sfn libprotobuf.so.3.21.12.0 libprotobuf.so.32 && \
+   ln -sfn libprotobuf.so.32 libprotobuf.so
+   '
+   ```
+{{</call-out>}}
+
 If needed, you can [install the WAF compiler manually]({{< ref "/nim/waf-integration/configuration/install-waf-compiler/install.md" >}}).
