@@ -204,7 +204,7 @@ spec:
 
 Ingress policy support is narrower than `VirtualServer` support.
 
-If you need route-level control for features like JWT, cache, or rate limiting, use `VirtualServer` and `VirtualServerRoute` instead.
+If you need route-level control for features like JWT, OIDC (NJS), cache, or rate limiting, use `VirtualServer` and `VirtualServerRoute` instead.
 
 ### WAF on Ingress must use `nginx.com/policies`
 
@@ -1133,6 +1133,12 @@ spec:
     logoutURI: /logout
     postLogoutRedirectURI: /_logout
 ```
+
+{{< call-out class="note" >}}
+
+The feature is implemented using NGINX [ngx_http_oidc_module](http://nginx.org/en/docs/http/ngx_http_oidc_module.html).
+
+{{< /call-out >}}
 
 #### Prerequisites
 
