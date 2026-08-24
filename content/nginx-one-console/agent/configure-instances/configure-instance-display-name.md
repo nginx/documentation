@@ -56,11 +56,9 @@ After you save your changes, restart NGINX Agent to apply them:
 sudo systemctl restart nginx-agent
 ```
 
-{{< call-out class="note" >}}
+{{< call-out class="important" >}}
 Display names must be 256 characters or fewer. If a value exceeds this limit, the instance registers without a display name.
-{{< /call-out >}}
 
-{{< call-out class="note" >}}
 Display names cannot include Unicode characters like emoji or other multi-byte characters.
 {{< /call-out >}}
 
