@@ -125,6 +125,8 @@ helm upgrade nic nginx-stable/nginx-ingress \
   --namespace nginx-ingress \
   --skip-crds \
   --reuse-values \
+  --set controller.appprotect.enable=true \
+  --set controller.appprotect.v5=true \
   --set controller.image.repository="private-registry.nginx.com/nginx-ic-nap-v5/nginx-plus-ingress" \
   --set controller.image.tag="{{< nic-version >}}" \
   --set controller.appprotect.plmStorage.url="https://plm-f5-waf-seaweed-filer.plm-system.svc.cluster.local:9333" \
