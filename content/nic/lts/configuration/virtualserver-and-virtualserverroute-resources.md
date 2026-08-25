@@ -178,7 +178,7 @@ The providerSpecific field of the externalDNS block allows the specification of 
 
 ### VirtualServer.Policy
 
-The policy field references a [Policy resource]({{< ref "/nic/lts/configuration/policy-resource.md" >}}) by its name and optional namespace. For example:
+The policy field references a [Policy resource]({{< ref "/nic/lts/configuration/policy-resource/before-you-begin.md" >}}) by its name and optional namespace. For example:
 
 ```yaml
 name: access-control
@@ -204,7 +204,7 @@ The route defines rules for matching client requests to actions like passing a r
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``path`` | The path of the route. NGINX will match it against the URI of a request. Possible values are: a prefix ( ``/`` , ``/path`` ), an exact match ( ``=/exact/match`` ), a case insensitive regular expression ( ``~*^/Bar.*\.jpg`` ) or a case sensitive regular expression ( ``~^/foo.*\.jpg`` ). In the case of a prefix (must start with ``/`` ) or an exact match (must start with ``=`` ), the path must not include any whitespace characters, ``{`` , ``}`` or ``;``. In the case of the regex matches, all double quotes ``"`` must be escaped and the match can't end in an unescaped backslash ``\``. The path must be unique among the paths of all routes of the VirtualServer. Check the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive for more information. | ``string`` | Yes |
-|``policies`` | A list of policies. The policies override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/lts/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
+|``policies`` | A list of policies. The policies override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/lts/configuration/policy-resource/using-policy.md#attach-policies-to-a-resource" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
 |``action`` | The default action to perform for a request. | [action](#action) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServer route. | ``string`` | No |
 |``splits`` | The default splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
@@ -375,7 +375,7 @@ action:
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``path`` | The path of the subroute. NGINX will match it against the URI of a request. Possible values are: a prefix ( ``/`` , ``/path`` ), an exact match ( ``=/exact/match`` ), a case insensitive regular expression ( ``~*^/Bar.*\.jpg`` ) or a case sensitive regular expression ( ``~^/foo.*\.jpg`` ). In the case of a prefix, the path must start with the same path as the path of the route of the VirtualServer that references this resource. In the case of an exact or regex match, the path must be the same as the path of the route of the VirtualServer that references this resource. A matching path of the route of the VirtualServer but in different type is not accepted, e.g. a regex path (`~/match`) cannot be used with a prefix path in VirtualServer (`/match`) In the case of a prefix or an exact match, the path must not include any whitespace characters, ``{`` , ``}`` or ``;``.  In the case of the regex matches, all double quotes ``"`` must be escaped and the match can't end in an unescaped backslash ``\``. The path must be unique among the paths of all subroutes of the VirtualServerRoute. | ``string`` | Yes |
-|``policies`` | A list of policies. The policies override *all* policies defined in the route of the VirtualServer that references this resource. The policies also override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/lts/configuration/policy-resource.md#applying-policies" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
+|``policies`` | A list of policies. The policies override *all* policies defined in the route of the VirtualServer that references this resource. The policies also override the policies of the same type defined in the ``spec`` of the VirtualServer. See [Applying Policies]({{< ref "/nic/lts/configuration/policy-resource/using-policy.md#attach-policies-to-a-resource" >}}) for more details. | [[]policy](#virtualserverpolicy) | No |
 |``action`` | The default action to perform for a request. | [action](#action) | No |
 |``dos`` | A reference to a DosProtectedResource, setting this enables DOS protection of the VirtualServerRoute subroute. | ``string`` | No |
 |``splits`` | The default splits configuration for traffic splitting. Must include at least 2 splits. | [[]split](#split) | No |
@@ -474,7 +474,7 @@ See the [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.htm
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``enable`` | Enables HTTPS for requests to upstream servers. The default is ``False`` , meaning that HTTP will be used. Note: by default, NGINX will not verify the upstream server certificate. To enable the verification, configure an [EgressMTLS Policy]({{< ref "/nic/lts/configuration/policy-resource/#egressmtls" >}}). | ``boolean`` | No |
+|``enable`` | Enables HTTPS for requests to upstream servers. The default is ``False`` , meaning that HTTP will be used. Note: by default, NGINX will not verify the upstream server certificate. To enable the verification, configure an [EgressMTLS Policy]({{< ref "/nic/lts/configuration/policy-resource/policy-specification.md#egressmtls" >}}). | ``boolean`` | No |
 
 ### Upstream.Queue
 
