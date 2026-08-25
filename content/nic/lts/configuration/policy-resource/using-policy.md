@@ -29,7 +29,7 @@ For `kubectl get` and similar commands, you can also use the short name `pol` in
 
 ## Attach policies to a resource
 
-You can apply policies to VirtualServer, VirtualServerRoute, and Ingress resources. For example:
+You can attach policies to VirtualServer, VirtualServerRoute, and Ingress resources. For example:
 
 - VirtualServer:
 
