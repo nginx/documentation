@@ -190,7 +190,7 @@ for RHEL-based systems:
 Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
 ```
 
-<b>Workaround</b>: Execute below command
+<b>Workaround</b>: Run the following command:
    ```shell
    sudo bash -c '
    cd /opt/nms-nap-compiler/app_protect-5.690.0/lib && \
