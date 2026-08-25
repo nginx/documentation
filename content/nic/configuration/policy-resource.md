@@ -1269,7 +1269,7 @@ policies:
 - name: oidc-policy-two
 ```
 
-In this example NGINX Ingress Controller will use the configuration from the first policy reference `oidc-policy-one`, and ignores `oidc-policy-two`.
+In this example, NGINX Ingress Controller will use the configuration from the first policy reference `oidc-policy-one`, and ignores `oidc-policy-two`.
 
 Multiple OIDCNative policies can coexist on the same host when applied to different routes (VirtualServer) or different mergeable Ingress minions. Each generates a unique `oidc_provider` block with its own session store.
 
