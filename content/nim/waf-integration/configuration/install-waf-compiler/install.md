@@ -176,7 +176,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 <b>AND</b></br>
 
-If you see any of the following error message in nms log </br>
+If the log contains any of the following error messages:</br>
 
 for Debian or Ubuntu-based systems:
 ```text
