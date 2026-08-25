@@ -49,7 +49,7 @@ If you see a message like this, the certificate or key is likely invalid or expi
 error when creating the nginx repo retriever - NGINX repo certificates not found
 ```
 
-{{<call-out class="warning" title="Known Issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages in UI: 
+{{<call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages in the UI: 
 ```text
 <instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
 ```
