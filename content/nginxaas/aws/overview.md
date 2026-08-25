@@ -14,10 +14,6 @@ f5-summary: >
 f5-audience: any
 ---
 
-{{< call-out class="important" title="Early Access" >}}
-**NGINXaaS for AWS** is currently in **Early Access**. Contact us if you are interested in participating in our Early Access offering by sending an email to <a href="mailto:nginxaas-early-access@f5.com?subject=NGINXaaS%20for%20AWS%20EA%20interest">nginxaas-early-access@f5.com</a>.
-{{< /call-out >}}
-
 ## What is NGINXaaS for AWS?
 
 F5 NGINXaaS for AWS is a SaaS offering that is tightly integrated
