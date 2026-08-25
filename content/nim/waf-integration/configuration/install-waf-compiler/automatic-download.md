@@ -56,7 +56,7 @@ error when creating the nginx repo retriever - NGINX repo certificates not found
 
 <b>AND</b></br>
 
-If you see any of the following error message in nms log </br>
+If the log contains any of the following error messages:</br>
 
 for Debian or Ubuntu-based systems:
 ```text
