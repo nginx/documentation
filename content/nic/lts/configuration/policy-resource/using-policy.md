@@ -202,7 +202,7 @@ Events:
   Normal  AddedOrUpdated  11s   nginx-ingress-controller  Policy default/webapp-policy was added or updated
 ```
 
-The events section includes a Normal event with the AddedOrUpdated reason, which tells you the configuration applied successfully.
+The `events` section includes a `Normal` event with the `AddedOrUpdated` reason, which tells you the configuration applied successfully.
 
 If you create an invalid resource, NGINX Ingress Controller LTS rejects it and emits a Rejected event. For example, if you create a Policy `webapp-policy` with an invalid IP `10.0.0.` in the `allow` field, you get:
 
@@ -216,7 +216,7 @@ Events:
   Warning  Rejected  7s    nginx-ingress-controller  Policy default/webapp-policy is invalid and was rejected: spec.accessControl.allow[0]: Invalid value: "10.0.0.": must be a CIDR or IP
 ```
 
-The events section includes a Warning event with the Rejected reason.
+The events section includes a `Warning` event with the `Rejected` reason.
 
 This information is also available in the `status` field of the Policy resource. Note the Status section of the Policy:
 
