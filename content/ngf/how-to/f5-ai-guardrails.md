@@ -26,6 +26,10 @@ You can set up prompts and responses as described in [Prompts and scans in AI Se
 To connect NGINX Gateway Fabric with your configured F5 AI Guardrails, use the `PayloadProcessor` policy, an [inherited policy]({{< ref "/ngf/overview/custom-policies.md" >}}) that can target an HTTPRoute or a Gateway. The `PayloadProcessor` configures NGINX to offload traffic to F5 AI Guardrails to inspect.
 
 {{< call-out "note" >}}
+The PayloadProcessor CRD is inspired by the proposed resource from the Gateway API AI Gateway Working Group, which is subject to change and may be redefined in future releases. Consider this experimental while it is being defined by the Gateway API WG.
+{{< /call-out >}}
+
+{{< call-out "note" >}}
 When AI Guardrails are enabled on a route, NGINX Gateway Fabric strips the Accept-Encoding header from requests sent to the upstream backend. This ensures responses are returned uncompressed so the F5 AI Guardrails filter can inspect them. Compression between NGINX and the client is unaffected. NGINX can still compress responses to clients via its gzip module.
 {{< /call-out >}}
 
