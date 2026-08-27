@@ -887,24 +887,24 @@ On a VirtualServer, if you apply both an `oidc` policy and an `oidcNative` polic
 
 | Field | Description | Type | Required | Default |
 | --- | --- | --- | --- | --- |
-| `issuer` | The Issuer Identifier URL of the OpenID Provider. Must use the `https` scheme and exactly match the `issuer` claim in the provider's metadata. | `string` | Yes | -- |
+| `issuer` | The Issuer Identifier URL of the OpenID Provider. Must use the `https` scheme and exactly match the value of `issuer` in the OpenID Provider metadata. | `string` | Yes | -- |
 | `clientID` | The client ID provided by your OpenID Connect provider. | `string` | Yes | -- |
-| `clientSecret` | The name of the Kubernetes secret that stores the client secret. Must be of type `nginx.org/oidc` with the secret stored under the key `client-secret`. Not required when PKCE is enabled with a public client. | `string` | No | -- |
-| `configURL` | The URL of the OpenID Provider Configuration Information (discovery endpoint). If not set, defaults to `<issuer>/.well-known/openid-configuration`. | `string` | No | `<issuer>/.well-known/openid-configuration` |
+| `clientSecret` | The name of the Kubernetes secret that stores the client secret. Must be of type `nginx.org/oidc` with the secret stored under the key `client-secret` and must be in the same namespace as the Policy resource. Not required when PKCE is enabled with a public client. | `string` | No | -- |
+| `configURL` | The URL of the OpenID Provider Configuration Information (discovery endpoint). Must include a path and use the `http` or `https` scheme. If not set, defaults to `<issuer>/.well-known/openid-configuration`. | `string` | No | `<issuer>/.well-known/openid-configuration` |
 | `scope` | Space-separated list of OpenID Connect scopes. Must contain `openid`. Example: `"openid profile email"`. | `string` | No | `openid` |
-| `redirectURI` | Overrides the default redirect URI path used for the authorization callback. | `string` | No | `/oidc_callback` |
-| `cookieName` | Sets the name of the session cookie. | `string` | No | `NGX_OIDC_SESSION` |
+| `redirectURI` | Overrides the default redirect URI path used for the authorization callback. | `string` | No | `/oidc_callback_<providerName>` |
+| `cookieName` | Sets the name of the session cookie. Must contain only letters, digits, and underscores. | `string` | No | `NGX_OIDC_<providerName>` |
 | `extraAuthArgs` | Additional query arguments appended to the authorization request URL. Example: `"display=page&prompt=login"`. | `string` | No | -- |
-| `pkce` | Explicitly turns PKCE on or off. By default, NGINX Ingress Controller turns on PKCE automatically based on OpenID Provider metadata. | `string (on/off)` | No | `auto` |
-| `logoutURI` | URI path for initiating session logout. When the user navigates to this path, NGINX Ingress Controller ends the session and redirects the user to the provider's logout endpoint. | `string` | No | `/logout` |
-| `postLogoutRedirectURI` | Path where the user is redirected after logout. Must be a path on the same host. When set, NGINX Ingress Controller automatically generates an unauthenticated location at this path that serves a plain-text confirmation response. | `string` | No | -- |
+| `pkce` | Explicitly turns PKCE on or off. By default, NGINX Ingress Controller turns on PKCE automatically based on OpenID Provider metadata. | `string (on/off)` | No | -- |
+| `logoutURI` | URI path for initiating session logout. Session logout is unavailable until this field is set. Use a path the attached route can serve, for example `/logout` for a policy on the `/` route, or `/tea/logout` for a policy on the `/tea` route. A path outside the attached route isn't matched by that route's location, so logout doesn't trigger. | `string` | No | -- |
+| `postLogoutRedirectURI` | Path the user is returned to after logout completes. Must be a path on the same host, absolute URLs aren't supported. NGINX Ingress Controller generates an unauthenticated location at this path serving a plain-text confirmation, shared if multiple providers use the same path. | `string` | No | -- |
 | `frontChannelLogoutURI` | URI path for OIDC front-channel logout. When set, the identity provider calls this URI in a hidden iframe during global logout, letting NGINX end the local session. | `string` | No | -- |
 | `logoutTokenHint` | Adds the `id_token_hint` argument to the provider's logout endpoint when redirecting the user during logout. Required by some providers. | `bool` | No | `false` |
 | `sessionTimeout` | Duration after which the session expires unless refreshed. Example: `"8h"`, `"30m"`. | `string` | No | `8h` |
 | `userInfoEnable` | Turns on downloading of the UserInfo data and makes UserInfo claims available through `$oidc_claim_<name>` variables. | `bool` | No | `false` |
 | `trustedCertSecret` | The name of the Kubernetes secret that stores the CA certificate for verifying the provider's TLS certificate. Must be of type `nginx.org/ca` with the certificate stored under key `ca.crt`. | `string` | No | -- |
 | `sslVerify` | Turns on verification of the OpenID Provider's TLS certificate. Set to false to skip verification (dev/test only). | `bool` | No | `true` |
-| `sslName` | Overrides the TLS SNI name and Host header used when connecting to the OpenID Provider. Defaults to the hostname from issuer. | `string` | No | -- |
+| `sslName` | Overrides the TLS SNI name and Host header used when connecting to the OpenID Provider. Must be a valid DNS name and can't include a port. When unset, the hostname of the endpoint being called is used, taken from the provider's discovery metadata. | `string` | No | -- |
 | `sslVerifyDepth` | Verification depth in the OpenID Provider TLS certificate chain. | `int` | No | `1` |
 | `proxyBufferSize` | Buffer size used when proxying requests to the OpenID Provider. Applies to proxy_buffer_size and each buffer in proxy_buffers. | `string` | No | `32k` |
 
@@ -981,6 +981,8 @@ policies:
 In this example, NGINX Ingress Controller uses the configuration from the first policy reference, `oidc-policy-one`, and ignores `oidc-policy-two`.
 
 Multiple OIDCNative policies can coexist on the same host when applied to different routes (VirtualServer) or different mergeable Ingress minions. Each generates a unique `oidc_provider` block with its own session store.
+
+If you override those paths and two policies on the same host claim the same one, for example by setting `redirectURI` to the same value, NGINX Ingress Controller rejects the conflicting policy and that route or minion returns a 500 response. `postLogoutRedirectURI` is the exception: providers may share it, and only one location is generated.
 
 ## Cache
 
