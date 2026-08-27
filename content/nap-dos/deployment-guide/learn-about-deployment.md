@@ -590,30 +590,30 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-cache madison nginx-plus
     ```
 
-    Finally, install the App Protect DoS version you want together with a matching `nginx-plus` version. Pin all three packages: `apt` only considers the newest `nginx-plus` available and does not select an older one on its own, so leaving `nginx-plus` unpinned fails with `Unable to correct problems, you have held broken packages` whenever the newest `nginx-plus` belongs to a different release.
+    Finally, install the App Protect DoS version you want together with a matching `nginx-plus` version. Pin all three packages: `apt` considers only the newest `nginx-plus` available and will not select an older one on its own, so if the version you are installing was built for an earlier NGINX Plus release, the install fails with `Unable to correct problems, you have held broken packages` unless `nginx-plus` is pinned as well. The plain `apt-get install app-protect-dos` shown above needs no pin, because there every package resolves to its newest version.
 
     For example for Debian 11:
 
     ```shell
-    sudo apt-get install app-protect-dos=37+4.9.6-1~bullseye nginx-plus-module-appprotectdos=37+4.9.6-1~bullseye nginx-plus=37.0.5-1~bullseye
+    sudo apt-get install app-protect-dos=37+4.9.6-1~bullseye nginx-plus-module-appprotectdos=37+4.9.6-1~bullseye nginx-plus=37.0.4-1~bullseye
     ```
 
     For example, for Debian 12:
 
     ```shell
-    sudo apt-get install app-protect-dos=37+4.9.6-1~bookworm nginx-plus-module-appprotectdos=37+4.9.6-1~bookworm nginx-plus=37.0.5-1~bookworm
+    sudo apt-get install app-protect-dos=37+4.9.6-1~bookworm nginx-plus-module-appprotectdos=37+4.9.6-1~bookworm nginx-plus=37.0.4-1~bookworm
     ```
 
     For example for Ubuntu 22.04:
 
     ```shell
-    sudo apt-get install app-protect-dos=37+4.9.6-1~jammy nginx-plus-module-appprotectdos=37+4.9.6-1~jammy nginx-plus=37.0.5-1~jammy
+    sudo apt-get install app-protect-dos=37+4.9.6-1~jammy nginx-plus-module-appprotectdos=37+4.9.6-1~jammy nginx-plus=37.0.4-1~jammy
     ```
 
     For example for Ubuntu 24.04:
 
     ```shell
-    sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble nginx-plus=37.0.5-1~noble
+    sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble nginx-plus=37.0.4-1~noble
     ```
 
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
