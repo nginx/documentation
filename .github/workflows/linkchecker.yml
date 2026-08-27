@@ -57,7 +57,7 @@ jobs:
           - waf
           - nginx-ingress-controller
           - nginxaas-azure
-          - nginxaas
+          - application-delivery-service
           - nginx-amplify
           - nginx-controller
           - nginx-waf

@@ -1,0 +1,71 @@
+---
+title: Add certificates using the F5 Application Delivery Service Console
+weight: 100
+toc: true
+f5-docs: DOCS-000
+url: /application-delivery-service/overview/ssl-tls-certificates/ssl-tls-certificates-console/
+f5-content-type: how-to
+f5-product: F5 Application Delivery Service
+contentVars:
+  product: F5 Application Delivery Service
+---
+
+You can manage SSL/TLS certificates for F5 ${product} using the F5 Application Delivery Service console.
+
+## Add an SSL/TLS certificate to F5 Application Delivery Service
+
+- Select **Certificates** in the left menu.
+- Select {{< icon "plus">}} **Add Certificate**.
+- In the **Add Certificate** panel, provide the required information:
+    {{< table >}}
+
+   | Field                       | Description                  |
+   |---------------------------- | ---------------------------- |
+   | Name                        | A unique name for the certificate. |
+   | Type                        | Select the type of certificate you are adding: SSL certificate and key, or CA certificate bundle. |
+   | Certificate Import Options  | Choose how you want to import the certificate. Enter the certificate text or upload a file. |
+
+     {{< /table >}}
+
+- Repeat the same steps to add as many certificates as needed.
+
+### Use a certificate in an NGINX configuration
+
+To use a certificate in an NGINX configuration, follow these steps:
+
+- Select **Configurations** in the left menu.
+- Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
+- Select **Continue** to open the configuration editor.
+- In your configuration, select {{< icon "plus">}} **Add File** and either choose to use an existing certificate or add a new one.
+   - If you want to add a new certificate, select **New SSL Certificate or CA Bundle** and follow the steps mentioned in [Add an SSL/TLS certificate to F5 Application Delivery Service](#add-an-ssltls-certificate-to-f5-application-delivery-service).
+   - If you want to use an existing certificate, select **Existing SSL Certificate or CA Bundle** and use the menu to choose a certificate from the list of certificates you have already added.
+- Provide the required path information:
+    {{< table >}}
+
+   | Field                       | Description                  | Note |
+   |---------------------------- | ---------------------------- | ---- |
+   | Certificate File Path       | This path can match one or more ssl_certificate directive file arguments in your NGINX configuration. | The certificate path must be unique within the same deployment. |
+   | Key File Path               | This path can match one or more ssl_certificate_key directive file arguments in your NGINX configuration. | The key path must be unique within the same deployment. See the [NGINX Filesystem Restrictions table]({{< ref "/ads/overview/nginx-configuration/configuration-rules.md#nginx-filesystem-restrictions" >}}) for the allowed directories the file can be written to. |
+
+    {{< /table >}}
+- Update the NGINX configuration to reference the certificate you just added by the path value.
+- Select **Continue** and then **Save** to save your changes.
+
+### Edit an SSL/TLS certificate
+
+{{< include "/ads/update-nginx-config.md" >}}
+
+### Delete an SSL/TLS certificate
+
+- Select **Certificates** in the left menu.
+- On the list of certificates, select the ellipsis (three dots) icon next to the certificate you want to delete.
+- Select **Delete**.
+- Confirm that you want to delete the certificate.
+
+{{< call-out class="warning" >}}Deleting a TLS/SSL certificate currently used by a F5 Application Delivery Service deployment will cause an error.{{< /call-out >}}
+
+## Add certificates via aux files
+
+You can upload certificate and key files as part of your NGINX configuration filesystem by selecting **Add File** > **Upload Auxiliary / Other File** in the [F5 Application Delivery Service Console configuration editor]({{< ref "/ads/overview/nginx-configuration/nginx-configuration-console.md" >}}), then reference them with the `ssl_certificate` and `ssl_certificate_key` directives.
+
+{{< call-out class="warning" title="Warning" >}}Storing certificates, private keys, or any sensitive data in aux files is not recommended for security reasons. Use this method only when the other certificate management approaches are not suitable.{{< /call-out >}}

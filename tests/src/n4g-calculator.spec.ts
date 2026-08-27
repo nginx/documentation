@@ -3,7 +3,7 @@ import { handleConsentPopup, waitFor } from "../util";
 
 test.describe("Testing for N4G calculator page", () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto("/nginxaas/google/billing/usage-and-cost-estimator/");
+		await page.goto("/application-delivery-service/google/billing/usage-and-cost-estimator/");
 		await page.waitForLoadState("load");
 		await waitFor(async () => await handleConsentPopup(page));
 	});

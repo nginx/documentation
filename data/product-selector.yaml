@@ -23,16 +23,16 @@
     - title: "F5 DoS for NGINX"
       url: "nginx-app-protect-dos"
 
-- productGroup: NGINXaaS
+- productGroup: Application Delivery Service
   products:
-    - title: "NGINXaaS for AWS"
-      url: "nginxaas/aws/overview/"
-    - title: "NGINXaaS for Google Cloud"
-      url: "nginxaas/google/overview/"
+    - title: "F5 Application Delivery Service for AWS"
+      url: "application-delivery-service/aws/overview/"
+    - title: "F5 Application Delivery Service for Google Cloud"
+      url: "application-delivery-service/google/overview/"
     - title: "NGINXaaS for Azure"
       url: "nginxaas-azure/"
-    - title: "NGINXaaS"
-      url: "nginxaas"
+    - title: "F5 Application Delivery Service"
+      url: "application-delivery-service"
 
 - productGroup: Glossary
   products:
