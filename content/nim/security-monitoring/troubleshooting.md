@@ -43,6 +43,37 @@ F5 WAF for NGINX supports logging to multiple destinations. You can send logs to
 
 ---
 
+## NGINX Gateway Fabric security events don't appear in the dashboard
+
+### Description
+
+If NGINX Instance Manager doesn't receive security events from a NGINX Gateway Fabric deployment, the Security Monitoring dashboard shows no data for that deployment.
+
+### Resolution
+
+Check the following on NGINX Instance Manager, in order:
+
+1. Confirm the embedded OpenTelemetry collector is turned on. In `nms.conf`, verify `collector_config.enable` is set to `true`:
+
+   ```yaml
+      collector_config:
+         enable: true
+   ```
+
+   If you change this setting, restart the service:
+
+   ```shell
+      sudo systemctl restart nms
+   ```
+
+2. Confirm NGINX Instance Manager is reachable from the Kubernetes cluster on port `4317` (gRPC).
+
+3. Confirm the log profile referenced in the `WAFPolicy` resource exists in NGINX Instance Manager and matches exactly. A mismatched or missing profile name causes events to arrive without expected fields, or not arrive at all.
+
+If these checks pass and events still don't appear, the problem is likely on the NGINX Gateway Fabric side. See [Security events aren't reaching NGINX Instance Manager]({{< ref "/ngf/waf-integration/troubleshooting.md#security-events-arent-reaching-nginx-instance-manager" >}}) <!-- SME REVIEW: anchor forward-references doc 4, not yet added --> and [Export security logs to F5 NGINX Instance Manager]({{< ref "/ngf/waf-integration/policy-sources.md#export-security-logs-to-f5-nginx-instance-manager" >}}). <!-- SME REVIEW: anchor forward-references doc 6, not yet added -->
+
+---
+
 ## How to get support
 
 {{< include "nim/support/how-to-get-support.md" >}}

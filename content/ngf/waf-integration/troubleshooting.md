@@ -105,6 +105,29 @@ To resolve the conflict, choose one of the following approaches:
 
 ---
 
+### Security events aren't reaching NGINX Instance Manager
+
+F5 WAF for NGINX generates security events, but they don't appear in the NGINX Instance Manager Security Monitoring dashboard, even though the `WAFPolicy` resource shows `Programmed`.
+
+**How to identify the problem:**
+
+Check whether the event reached NGINX Agent inside the pod:
+
+```shell
+kubectl exec <GATEWAY_POD> -n <NAMESPACE> -c nginx -- \
+  tail -100 /var/log/nginx-agent/opentelemetry-collector-agent.log
+```
+
+If the event isn't in this log, F5 WAF for NGINX isn't reaching NGINX Agent. If the event is in the log but not in NGINX Instance Manager, the export from NGINX Agent is failing.
+
+**Resolution:**
+
+- **Event missing from the NGINX Agent log:** Confirm the `WAFPolicy` `securityLogs.destination.syslog.server` field is set to exactly `localhost:1514`. Any other value prevents the event from reaching NGINX Agent, which listens on `127.0.0.1:1514` inside the `nginx` container.
+- **Event in the log but export fails:** Check the log for `Unauthenticated` errors. A JWT authentication failure between NGINX Agent and NGINX Instance Manager causes this error. <!-- SME REVIEW: I don't have a customer-facing procedure for rotating or reconfiguring this JWT. The runbook references a headers_setter extension in the agent config but doesn't document customer-facing steps for it. -->
+- **Export succeeds but NGINX Instance Manager shows nothing:** Confirm NGINX Instance Manager's embedded OpenTelemetry collector is running and reachable on port `4317`. See [Troubleshooting]({{< ref "/nim/security-monitoring/troubleshooting.md" >}}) for the NGINX Instance Manager–side checks.
+
+---
+
 ## See also
 
 - [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}})
