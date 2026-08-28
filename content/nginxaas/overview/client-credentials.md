@@ -1,10 +1,10 @@
 ---
 title: "Programmatic authentication with client credentials"
 description: "Learn how to set up OAuth2 client credentials for programmatic access to the NGINXaaS API."
-weight: 100
+weight: 400
 toc: true
-url: /nginxaas/google/quickstart/security-controls/client-credentials/
-f5-product: NGINXaaS for Google Cloud
+url: /nginxaas/overview/client-credentials/
+f5-product: F5 NGINXaaS
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"
 f5-summary: >
@@ -19,6 +19,8 @@ f5-audience: operator
 ## Overview
 
 This guide explains how to create and use client credentials for automating access to NGINXaaS APIs. Client credentials enable automation tools such as CI/CD pipelines to manage certain NGINXaaS resources without requiring user login.
+
+Client credentials work the same way regardless of which cloud your NGINXaaS organization is associated with.
 
 To authenticate, you exchange your client credentials (client ID and secret) for a short-lived access token from the NGINXaaS token endpoint. This access token is then used in the Authorization header of your API requests. Access tokens have limited validity, after which you'll need to request a new one using the same credentials.
 
@@ -44,11 +46,7 @@ Follow these steps to create a new client credential through the NGINXaaS consol
 The client secret appears only once. Save it immediately in a secure location, such as a password manager or secrets vault.
 {{< /call-out >}}
 
-Your client credentials can access the following resources:
-
-- [Certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
-- [Configs]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules.md" >}})
-- [Deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
+Your client credentials can access the Certificates, Configs, and Deployments resources for your NGINXaaS organization.
 
 ### Client limits
 
@@ -199,11 +197,3 @@ Client credentials can only access the Certificates, Configs, and Deployments AP
 | Access token validity | 1 hour |
 | Supported resources | Deployments, Configs, Certificates |
 | Token endpoint | `https://<GEO>.api.nginxaas.net/api/v1/auth/token` |
-
-## What's next
-
-[Manage your NGINXaaS certificates]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}})
-
-[Manage your NGINX configurations]({{< ref "/nginxaas/google/deploy/nginx-configuration/configuration-rules.md" >}})
-
-[Manage your NGINXaaS deployments]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}})
