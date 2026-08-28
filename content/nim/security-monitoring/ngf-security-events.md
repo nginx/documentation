@@ -37,11 +37,17 @@ This integration covers security event visibility only. NGINX Instance Manager c
 
 NGINX Gateway Fabric generates and exports security events. NGINX Instance Manager doesn't pull or request them. Configure the export on the NGINX Gateway Fabric side.
 
+This integration doesn't require changes to Gateway API resources.
+
 See [Export security logs to F5 NGINX Instance Manager]({{< ref "/ngf/waf-integration/policy-sources.md#export-security-logs-to-f5-nginx-instance-manager" >}}).
 
 ## View events in the dashboard
 
-Go to **WAF** > **Security Dashboard** in NGINX Instance Manager.
+Go to **WAF** > **Security Dashboard** in NGINX Instance Manager. The dashboard has four tabs: Main, Bots, Advanced, and Event Logs. These tabs cover aggregate attack statistics, bot activity, signature and threat detail, and individual events.
+
+Use **Event Logs** for individual event details, including source IP, URI, and Support ID.
+
+You can filter events across all four tabs by fields including instance, instance group, IP address, policy, signature, severity, and Support ID.
 
 ## See also
 
