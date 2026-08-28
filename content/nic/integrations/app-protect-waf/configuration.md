@@ -22,6 +22,12 @@ F5 WAF for NGINX can be enabled and configured for custom resources (VirtualServ
 - For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
 - For Ingress resources, apply the [`app-protect` annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) to each desired resource.
 
+{{< call-out class="note" >}}
+
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
+
+{{< /call-out >}}
+
 ## F5 WAF for NGINX Policies {#waf-policies}
 
 F5 WAF for NGINX Policies can be created for VirtualServer, VirtualServerRoute, or Ingress resources by creating an `APPolicy` [custom resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). There are some caveats:
