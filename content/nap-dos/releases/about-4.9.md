@@ -40,4 +40,4 @@ May 13, 2026
 | Debian 13 (Trixie)       | _app-protect-dos_37+4.9.6-1\~trixie_amd64.deb_       |
 | Ubuntu 22.04             | _app-protect-dos_37+4.9.6-1\~jammy_amd64.deb_        |
 | Ubuntu 24.04             | _app-protect-dos_37+4.9.6-1\~noble_amd64.deb_        |
-| NGINX Plus               | _NGINX Plus R37_                                     |
+| NGINX Plus               | _NGINX Plus R37.0_                                   |

@@ -602,49 +602,49 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
 
     The two most recent versions and the NGINX Plus release each one requires:
 
-    | App Protect DoS | NGINX Plus release | `nginx-plus` version |
-    |-----------------|--------------------|----------------------|
-    | 37+4.10.0       | R37.1              | 37.1.0               |
-    | 37+4.9.6        | R37.0              | 37.0.4               |
+    | App Protect DoS | NGINX Plus release | `nginx-plus` version range |
+    |-----------------|--------------------|-----------------------------|
+    | 37+4.10.0       | R37.1              | 37.1.*               |
+    | 37+4.9.6        | R37.0              | 37.0.*               |
 
     For example for Debian 11:
 
     ```shell
     # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~bullseye nginx-plus-module-appprotectdos=37+4.10.0-1~bullseye nginx-plus=37.1.0-1~bullseye
+    sudo apt-get install app-protect-dos=37+4.10.0-1~bullseye nginx-plus-module-appprotectdos=37+4.10.0-1~bullseye nginx-plus=37.1.*-1~bullseye
 
     # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~bullseye nginx-plus-module-appprotectdos=37+4.9.6-1~bullseye nginx-plus=37.0.4-1~bullseye
+    sudo apt-get install app-protect-dos=37+4.9.6-1~bullseye nginx-plus-module-appprotectdos=37+4.9.6-1~bullseye nginx-plus=37.0.*-1~bullseye
     ```
 
     For example, for Debian 12:
 
     ```shell
     # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~bookworm nginx-plus-module-appprotectdos=37+4.10.0-1~bookworm nginx-plus=37.1.0-1~bookworm
+    sudo apt-get install app-protect-dos=37+4.10.0-1~bookworm nginx-plus-module-appprotectdos=37+4.10.0-1~bookworm nginx-plus=37.1.*-1~bookworm
 
     # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~bookworm nginx-plus-module-appprotectdos=37+4.9.6-1~bookworm nginx-plus=37.0.4-1~bookworm
+    sudo apt-get install app-protect-dos=37+4.9.6-1~bookworm nginx-plus-module-appprotectdos=37+4.9.6-1~bookworm nginx-plus=37.0.*-1~bookworm
     ```
 
     For example for Ubuntu 22.04:
 
     ```shell
     # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~jammy nginx-plus-module-appprotectdos=37+4.10.0-1~jammy nginx-plus=37.1.0-1~jammy
+    sudo apt-get install app-protect-dos=37+4.10.0-1~jammy nginx-plus-module-appprotectdos=37+4.10.0-1~jammy nginx-plus=37.1.*-1~jammy
 
     # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~jammy nginx-plus-module-appprotectdos=37+4.9.6-1~jammy nginx-plus=37.0.4-1~jammy
+    sudo apt-get install app-protect-dos=37+4.9.6-1~jammy nginx-plus-module-appprotectdos=37+4.9.6-1~jammy nginx-plus=37.0.*-1~jammy
     ```
 
     For example for Ubuntu 24.04:
 
     ```shell
     # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~noble nginx-plus-module-appprotectdos=37+4.10.0-1~noble nginx-plus=37.1.0-1~noble
+    sudo apt-get install app-protect-dos=37+4.10.0-1~noble nginx-plus-module-appprotectdos=37+4.10.0-1~noble nginx-plus=37.1.*-1~noble
 
     # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble nginx-plus=37.0.4-1~noble
+    sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble nginx-plus=37.0.*-1~noble
     ```
 
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
