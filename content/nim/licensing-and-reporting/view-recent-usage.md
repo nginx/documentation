@@ -28,8 +28,8 @@ This screen doesn't require NGINX Agent. Your instances report usage data direct
 
 The screen has two views:
 
-- **Instances**: Shows records from standalone NGINX Plus instances running on VMs or bare metal.
-- **Clusters**: Shows records from NGINX deployments running in Kubernetes, including NGINX Ingress Controller and NGINX Gateway Fabric.
+- **Instances**: Shows records from standalone NGINX Plus instances that run on VMs or bare metal.
+- **Clusters**: Shows records from NGINX deployments that run in Kubernetes. This covers NGINX Ingress Controller and NGINX Gateway Fabric.
 
 By default, the screen shows the last 7 days of records, sorted by end time with the most recent first. Records are available for the last 120 days by default. You can change this retention window. See [Configure the retention window](#configure-the-retention-window).
 
@@ -41,7 +41,7 @@ Before you view usage records, make sure you have:
 
 - **NGINX Plus R33 or later**: NGINX Plus R33 and later include the `ngx_mgmt_module` module. Earlier versions can't report usage to NGINX Instance Manager.
 - **NGINX Plus configured to report usage**: Each NGINX Plus instance needs the `usage_report` directive set to your NGINX Instance Manager host. See [Configure NGINX Plus to report usage to NGINX Instance Manager]({{< ref "nim/licensing-and-reporting/report-usage-connected-deployment.md#configure-nginx-plus-to-report-usage-to-nginx-instance-manager" >}}).
-- **The NGINX Plus Usage permission**: Your user account needs this RBAC permission to view usage records in the dashboard or through the API.
+- **The NGINX Plus Usage permission**: Your user account needs this role-based access control (RBAC) permission to view usage records in the dashboard or through the API.
 
 ---
 
@@ -52,13 +52,14 @@ Before you view usage records, make sure you have:
 To view raw usage records:
 
 1. Log in to NGINX Instance Manager (`https://<NIM_FQDN>/ui/`).
-2. In the left navigation, select **Usage**, then select **Recent Usage**.
-3. Select the **Instances** or **Clusters** tab.
+2. In the left navigation, select **Usage**.
+3. Select **Recent Usage**.
+4. Select the **Instances** or **Clusters** tab.
 
 By default, the dashboard shows records from the last 7 days, sorted by end time with the most recent first.
 
 {{< call-out class="note" title="Note: Fields not shown in the table" >}}
-The dashboard's summary table does not display every field from a usage record — for example, reporting start time. Select a row to view the full record, including fields not shown as table columns.
+The dashboard's summary table doesn't show every field from a usage record. For example, it doesn't show the reporting start time. Select a row to view the full record and see every field.
 {{< /call-out >}}
 
 ### View record details
@@ -87,16 +88,16 @@ If you don't already have the identifiers used in these filters:
 - **Cluster ID**: Visible in the **K8s Cluster ID** column on the Clusters tab. NGINX Ingress Controller and NGINX Gateway Fabric generate this ID at installation and store it in the deployment's Kubernetes secret.
 - **Subscription token (jti)**: A claim inside your subscription JWT (`license.jwt`). Paste the JWT contents into [jwt.io](https://jwt.io) and look for the `jti` field. You can also find it in the **JWT ID** column.
 
-### Export records as CSV
+### Export usage records to a file
 
-To export usage records for offline auditing or compliance:
+To export usage records for an offline review or compliance check:
 
 1. Apply the filters you need.
 2. Select **Export CSV**.
 
-The CSV file downloads with all records matching your current filters. Field values in the export match the raw stored data exactly, with no rounding or aggregation.
+The exported file downloads in CSV (comma-separated values) format. It includes all records matching your current filters, with no rounding or aggregation.
 
-(Optional) If the export is slow, apply additional filters to narrow the result set before exporting.
+(Optional) If the export is slow, apply additional filters to narrow the result set before you export.
 
 The following table lists which columns appear in each tab's CSV export.
 
@@ -122,7 +123,7 @@ The following table lists which columns appear in each tab's CSV export.
 {{</table>}}
 
 {{< call-out class="note" title="Note: If your export is truncated" >}}
-See [CSV export produces a truncated file](#csv-export-produces-a-truncated-file).
+See [An exported file is truncated](#an-exported-file-is-truncated).
 {{< /call-out >}}
 
 ---
@@ -155,31 +156,85 @@ To change the retention period:
         sudo systemctl restart nms
     ```
 
+A retention change takes effect after this restart. Because the purge job runs immediately on startup, records outside the new window are removed right away, not on the next scheduled 24-hour cycle.
+
 {{< call-out class="important" title="Important: Retention value limits" >}}
-NGINX Instance Manager normalizes retention values on startup. It caps any value above 365 to 365 and ignores negative values, falling back to the default (120 days) instead. A value of 0 blocks local storage: NGINX Instance Manager doesn't write new records and purges existing records on the next run. This doesn't affect usage reporting to F5.
+NGINX Instance Manager normalizes retention values on startup. It caps any value above 365 to 365. It ignores negative values and uses the default (120 days) instead. A value of 0 blocks local storage: NGINX Instance Manager doesn't write new records and purges existing records on the next run. This doesn't affect usage reporting to F5.
 {{< /call-out >}}
 
 If NGINX Instance Manager clamps or rejects your configured value, it logs a `[RAW-USAGE]` warning so you can confirm the value wasn't used as entered.
 
 ### Estimate storage for extended retention
 
-{{< call-out class="important" title="Important: Content pending" >}}
-Blocked on storage-size-per-instance figures from engineering (TECHDOCS-5506 open items, and the companion tech-specs.md ticket). Do not publish this page until this subsection is filled in — the story explicitly calls for covering 4–12 month retention, and customers extending retention need this to plan disk capacity.
+Storage and memory scale with your instance count and configured retention period. Each usage record takes about 0.9 KB on disk. This includes its database index.
+
+The following table shows estimated storage and working memory at two retention periods: the default 120 days, and the maximum 365 days (1 year). These figures assume NGINX Plus's default cadence of one usage report per instance per hour.
+
+{{<table>}}
+| Instances | 120-day storage | 120-day working memory | 1-year storage | 1-year working memory |
+|---|---|---|---|---|
+| 50 | ~0.13 GB | ~2.4 GB | ~0.4 GB | ~2.9 GB |
+| 100 | ~0.26 GB | ~2.6 GB | ~0.8 GB | ~3.5 GB |
+| 500 | ~1.3 GB | ~4.2 GB | ~4.0 GB | ~8.3 GB |
+| 800 | ~2.1 GB | ~5.4 GB | ~6.3 GB | ~11.7 GB |
+| 1,000 | ~2.6 GB | ~6.2 GB | ~7.9 GB | ~14.1 GB |
+{{</table>}}
+
+{{< call-out class="note" title="Note: Tested range" >}}
+NGINX Instance Manager's scale testing for 1-year retention covered up to 800 instances (about 7 million records). The 1,000-instance figures in this table extrapolate beyond that tested point.
 {{< /call-out >}}
 
-Storage usage grows with the number of NGINX instances reporting and the length of your retention window. Each instance generates approximately one record per hour.
+For retention periods between 120 days and 1 year, storage and working memory scale roughly linearly with the number of days you configure. If you halve your retention period, you roughly halve both storage and memory.
 
-<!-- TODO: Add a per-instance-count, per-retention-period storage table once engineering delivers sizing figures. Mirror the format of the "Sizing benchmarks for storage" tables in fundamentals/tech-specs.md. -->
+To size a host:
+
+- **Memory**: Provision enough RAM to cover the working memory estimate for your fleet size and retention period. Size by RAM, not by a specific vendor instance type.
+- **Disk**: Budget headroom beyond the storage estimate for database indexes, snapshots, write-ahead logs, and NGINX Instance Manager's other services. For large fleets at extended retention, budget tens of GB of SSD storage.
+- **Alternative to over-provisioning**: Lower `nginx_raw_usage_retention_days` rather than add more host resources. If you reduce retention, you shrink stored data and memory use proportionally. This doesn't affect usage reporting to F5.
+
+This sizing applies even in Lightweight mode. NGINX Instance Manager stores usage records independently of ClickHouse. As a result, instance count and retention affect your storage needs, even in deployments used only for licensing and usage reporting.
 
 ---
 
-## Validate a record from the CLI
+## Validate a record from the command line
 
-{{< call-out class="important" title="Important: Content pending" >}}
-Blocked on CLI validation commands from engineering (Kamal Chaturvedi or Amardeep Chawla — TECHDOCS-5506 open items). The runbook's REST API list/filter examples are a reasonable starting point, but the ticket specifically calls for validating a record's Cluster ID and nginx_uid for Kubernetes deployments, which needs a worked example we don't have — for example, confirming a cluster's ID from a running NGINX Gateway Fabric deployment and cross-checking it against a record returned by the API.
+Use the REST API to retrieve usage records and confirm the identifiers in a specific record. All endpoints are available at `/api/platform/v1/usage-records`.
+
+### Retrieve records for a specific instance or cluster
+
+Query by `nginxUid` to retrieve every record for a specific NGINX Plus instance:
+
+```shell
+curl -k -u <USERNAME>:<PASSWORD> \
+  "https://<NIM_FQDN>/api/platform/v1/usage-records?deploymentType=vm&nginxUid=<NGINX_INSTANCE_UUID>"
+```
+
+Query by `clusterId` to retrieve every record for a specific Kubernetes cluster:
+
+```shell
+curl -k -u <USERNAME>:<PASSWORD> \
+  "https://<NIM_FQDN>/api/platform/v1/usage-records?deploymentType=cluster&clusterId=<CLUSTER_UUID>"
+```
+
+### What each identifier means
+
+{{<table>}}
+| Field | Description | Where it comes from | Applies to |
+|---|---|---|---|
+| `nginx_uid` | UUID that uniquely identifies the NGINX Plus instance. | Generated by NGINX Plus. | All records |
+| `product_type` | Integration type: `NGINX_PLUS`, `NIC`, `NGF`, or `UNSPECIFIED`. | Reported by the instance. | All records |
+| `jwt_token_id` | The `jti` claim of the F5 subscription token the instance uses for reporting. | Derived from the F5 subscription token. | Records with subscription metadata |
+| `jwt_expiration` | Subscription end date from the F5 subscription token. | Derived from the F5 subscription token. | Records with subscription metadata |
+| `cluster_id` | UUID of the Kubernetes cluster where the instance runs. | Provided by NGINX Ingress Controller or NGINX Gateway Fabric. | Kubernetes records |
+| `installation_id` | UUID identifying an individual NGINX Ingress Controller or NGINX Gateway Fabric installation. | Provided by NGINX Ingress Controller or NGINX Gateway Fabric. | Kubernetes records |
+| `cluster_node_count` | Number of nodes in the Kubernetes cluster. | Provided by NGINX Ingress Controller or NGINX Gateway Fabric. | Kubernetes records |
+{{</table>}}
+
+NGINX Instance Manager stores and displays these values exactly as your instances report them. It doesn't generate or modify them.
+
+{{< call-out class="note" title="Note: To confirm an identifier on a running instance" >}}
+This page shows you how to view identifiers as NGINX Instance Manager received them. To independently confirm a value like Cluster ID directly on a running Kubernetes deployment, see the NGINX Ingress Controller or NGINX Gateway Fabric documentation for that identifier.
 {{< /call-out >}}
-
-<!-- TODO: Draft once engineering confirms CLI/API steps for correlating a specific record (particularly Cluster ID and nginx_uid for Kubernetes deployments) against on-instance state. -->
 
 ---
 
@@ -188,7 +243,7 @@ Blocked on CLI validation commands from engineering (Kamal Chaturvedi or Amardee
 {{<table>}}
 | Field | Description |
 |---|---|
-| NGINX Instance ID | UUID identifying the NGINX instance. |
+| NGINX Instance ID | UUID that identifies the NGINX instance. |
 | Product type | NGINX Plus, NGINX Ingress Controller, NGINX Gateway Fabric, or Unspecified. |
 | NGINX version | The NGINX version string, for example `1.29.8`. |
 | Reporting window | Start and end timestamps of the reporting period. |
@@ -220,7 +275,7 @@ The **Recent Usage** screen is a local, on-demand audit view. It's different fro
 | Where to configure | This page | [Report usage data to F5 (connected)]({{< ref "nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}) or [Report usage data to F5 (disconnected)]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}) |
 {{</table>}}
 
-Viewing or exporting records on this screen doesn't affect usage reporting to F5. The two pipelines operate independently.
+When you view or export records on this screen, usage reporting to F5 doesn't change. The two pipelines operate independently.
 
 This screen works the same way in connected and disconnected deployments. Your instances keep reporting locally, and existing records stay fully browsable, even without internet access.
 
@@ -241,13 +296,13 @@ This screen works the same way in connected and disconnected deployments. Your i
 
 **Fix**: Confirm the `usage_report` directive is set in the `mgmt` block of your NGINX Plus configuration. Confirm your NGINX Plus version is R33 or later. Expand the date range or reset it to the default (last 7 days). Confirm your RBAC role includes the NGINX Plus Usage permission.
 
-### CSV export produces a truncated file
+### An exported file is truncated
 
 **Symptom**: The exported CSV file appears incomplete.
 
 **Cause**: The CSV export streams data directly from the server. A dropped connection during the export leaves the file incomplete.
 
-**Fix**: Re-export the file. Use narrower date filters to reduce the export size if your connection is slow or unreliable.
+**Fix**: Re-export the file. If your connection is slow or unreliable, use narrower date filters to reduce the export size.
 
 ### A record's reporting window spans more than one hour
 
@@ -272,3 +327,4 @@ This screen works the same way in connected and disconnected deployments. Your i
 - [Report usage data to F5 (connected)]({{< ref "nim/licensing-and-reporting/report-usage-connected-deployment.md" >}})
 - [Report usage data to F5 (disconnected)]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}})
 - [Change telemetry settings]({{< ref "nim/licensing-and-reporting/change-telemetry-settings.md" >}})
+- [System requirements for licensing and usage reporting only]({{< ref "nim/fundamentals/tech-specs.md#reporting-sizing" >}})
