@@ -9,7 +9,7 @@ f5-content-type: reference
 f5-product: F5 DOS for NGINX
 f5-summary: >
   Review what changed in F5 DoS for NGINX 4.10 and check whether your platform and NGINX Plus version are supported.
-  Version 4.10 adds support for NGINX Plus R37.1 and includes bug fixes.
+  Version 4.10 adds support for NGINX Plus R37.1.
 ---
 
 F5 DoS for NGINX provides behavioral protection against Denial of Service (DoS) attacks for your web applications.
@@ -41,5 +41,6 @@ August 26, 2026
 
 ### Important notes
 
-- F5 DoS for NGINX 4.10 requires NGINX Plus **R37.1**, whereas 4.9 requires **R37.0**. Each `nginx-plus-module-appprotectdos` package depends on a virtual package named `nginx-plus-r<release>` that only its own NGINX Plus release provides, so App Protect DoS and NGINX Plus must be upgraded together.
-- On Debian and Ubuntu, `apt` considers only the newest `nginx-plus` available and will not select an older one on its own. When installing a specific App Protect DoS version, pin `nginx-plus` as well, or the install fails with `Unable to correct problems, you have held broken packages`. See the [F5 DoS for NGINX Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}) for the exact commands.
+- F5 DoS for NGINX 4.10 requires NGINX Plus **R37.1**, whereas 4.9 requires **R37.0**. Each `nginx-plus-module-appprotectdos` package depends on a virtual package named `nginx-plus-r<release>` that only its own NGINX Plus release provides, so F5 DoS for NGINX and NGINX Plus must be upgraded together.
+- On Debian and Ubuntu, `apt` considers only the newest `nginx-plus` available and will not select an older one on its own. When installing a specific F5 DoS for NGINX version, pin `nginx-plus` as well, or the install fails with `Unable to correct problems, you have held broken packages`. See the [F5 DoS for NGINX Deployment Guide]({{< ref "/nap-dos/deployment-guide/learn-about-deployment.md" >}}) for the exact commands.
+- If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the same version as `app-protect-dos`. Left unpinned, it installs the most recent version, which may not match the rest of your installation.
