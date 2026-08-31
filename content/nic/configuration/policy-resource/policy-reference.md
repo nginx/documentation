@@ -36,7 +36,7 @@ accessControl:
 
 {{< call-out class="note" >}}
 
-This feature uses the NGINX [ngx_http_access_module](http://nginx.org/en/docs/http/ngx_http_access_module.html). The NGINX Ingress Controller access control policy supports either allow rules or deny rules, but not both, unlike the module itself.
+This feature uses the NGINX [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html). The NGINX Ingress Controller access control policy supports either allow rules or deny rules, but not both, unlike the module itself.
 
 {{< /call-out >}}
 
@@ -115,7 +115,7 @@ When you turn on the [zone sync feature]({{< ref "/nic/configuration/global-conf
 
 {{< call-out class="note" >}}
 
-For each policy referenced in a VirtualServer or its VirtualServerRoutes, NGINX Ingress Controller generates a single rate limiting zone defined by the [`limit_req_zone`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive. If two VirtualServer resources reference the same policy, NGINX Ingress Controller generates two different rate limiting zones, one zone per VirtualServer.
+For each policy referenced in a VirtualServer or its VirtualServerRoutes, NGINX Ingress Controller generates a single rate limiting zone defined by the [`limit_req_zone`](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) directive. If two VirtualServer resources reference the same policy, NGINX Ingress Controller generates two different rate limiting zones, one zone per VirtualServer.
 
 {{< /call-out >}}
 
@@ -192,7 +192,7 @@ The rate limit policy applies only to requests that contain a JWT with the speci
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``claim`` | Claim is the JWT claim to be rate limit by. Nested claims should be separated by ".". | ``string`` | Yes |
+|``claim`` | Claim is the JWT claim on which to apply the rate limit. Nested claims should be separated by ".". | ``string`` | Yes |
 |``match`` | the value of the claim to match against. | ``string`` | Yes |
 
 {{% /table %}}
@@ -217,7 +217,7 @@ NGINX Ingress Controller currently supports only one variable at a time.
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``name`` | the name of the NGINX variable to be rate limit by. | ``string`` | Yes |
+|``name`` | the name of the NGINX variable on which to apply the rate limit. | ``string`` | Yes |
 |``match`` | the value of the NGINX variable to match against.  Values prefixed with the `~` character denote the following is a [regular expression](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).  | ``string`` | Yes |
 
 {{% /table %}}
@@ -228,7 +228,7 @@ The API Key auth policy configures NGINX to authorize client requests based on t
 
 {{< call-out class="note" >}}
 
-This feature uses the NGINX [ngx_http_auth_request_module](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
+This feature uses the NGINX [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) and [NGINX JavaScript (NJS)](https://nginx.org/en/docs/njs/).
 
 Subrequests may not function as expected and may cause issues when the `APIKey` policy and a `WAF` policy are applied together on the same route.
 
@@ -438,7 +438,7 @@ jwt:
 
 {{< call-out class="note" >}}
 
-This feature uses the NGINX Plus directive [auth_jwt_key_request](http://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request), part of [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
+This feature uses the NGINX Plus directive [auth_jwt_key_request](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request), part of [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html).
 
 Subrequests may not function as expected and may cause issues when fetching JWKs from a remote URI (`jwksURI`) in a `JWT` policy and a `WAF` policy are applied together on the same route.
 
@@ -861,7 +861,7 @@ spec:
 
 {{< call-out class="note" >}}
 
-This feature uses the NGINX [ngx_http_oidc_module](http://nginx.org/en/docs/http/ngx_http_oidc_module.html).
+This feature uses the NGINX [ngx_http_oidc_module](https://nginx.org/en/docs/http/ngx_http_oidc_module.html).
 
 {{< /call-out >}}
 
@@ -1064,7 +1064,7 @@ This feature uses the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/ht
 
 |Field | Description | Type | Required |
 | --- | ---| ---| --- |
-|``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter,followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
+|``cacheZoneName`` | CacheZoneName defines the name of the cache zone. Must start with a lowercase letter, followed by alphanumeric characters or underscores, and end with an alphanumeric character. Single lowercase letters are also allowed. Examples: "cache", "my_cache", "cache1". | ``string`` | Yes |
 |``cacheZoneSize`` | CacheZoneSize defines the size of the cache zone. Must be a number followed by a size unit: 'k' for kilobytes, 'm' for megabytes, or 'g' for gigabytes. Examples: "10m", "1g", "512k". | ``string`` | Yes |
 |``allowedCodes`` | AllowedCodes defines which HTTP response codes should be cached. Accepts either: - The string "any" to cache all response codes (must be the only element) - A list of HTTP status codes as integers (100-599) Examples: ["any"], [200, 301, 404], [200]. Invalid: ["any", 200] (cannot mix "any" with specific codes). | ``[]IntOrString`` | No |
 |``time`` | The default cache time for responses. Required when allowedCodes is specified. Must be a number followed by a time unit: 's' for seconds, 'm' for minutes, 'h' for hours, 'd' for days. Examples: "30s", "5m", "1h", "2d". | ``string`` | No |
@@ -1255,7 +1255,7 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 
 For example, see the snippets below:
 
-NIM
+for NGINX Instance Manager:
 
 ```yaml
 spec:
@@ -1280,7 +1280,7 @@ spec:
       logDest: "stderr"
 ```
 
-N1C
+for NGINX One Console:
 
 ```yaml
 spec:
@@ -1307,7 +1307,7 @@ spec:
       logDest: "stderr"
 ```
 
-HTTPS
+For HTTPS:
 
 ```yaml
 spec:
