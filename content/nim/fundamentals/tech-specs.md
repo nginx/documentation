@@ -201,7 +201,7 @@ If you're interested only in usage reporting, you don't need NGINX Agent. Usage 
 | /usr/bin               | Stores NGINX Instance Manager binaries    | 500 MB                                                                                        |
 | /var/lib/nms/dqlite    | Stores DQLite database data               | 2 GiB without F5 WAF for NGINX. 5 GiB with F5 WAF for NGINX enabled and large compiled bundles. |
 | /var/lib/nms/streaming | Stores NATS streaming messages            | 500 MiB                                                                                       |
-| /var/lib/nms/secrets   | Stores secrets for LLM license handshakes | 10 MiB                                                                                        |
+| /var/lib/nms/secrets   | Stores secrets for LLM (Local License Manager) license handshakes | 10 MiB                                                                                        |
 | /var/lib/nms/modules   | Stores static content like manager.json   | 100 KiB (12 KiB minimum)                                                                       |
 | /var/lib/clickhouse    | Stores ClickHouse metrics data            | Recommended: 2.5 GB per instance (25 GB for 10 instances, 250 GB for 100 instances). This applies only if you enable ClickHouse metrics. |
 | /var/log/nms           | Stores NGINX Instance Manager logs with rotation enabled | Recommended: 50 MiB per week if you archive logs once a month. |
