@@ -466,7 +466,7 @@ NGINX Ingress Controller turns on content caching by default for each JWT policy
 
 {{< /call-out >}}
 
-### JWT merging behavior
+### JWT using JWKS merging behavior
 
 This behavior is similar to using a local Kubernetes secret. A VirtualServer or VirtualServerRoute can reference multiple JWT policies, but NGINX Ingress Controller applies only the first one. It ignores every subsequent reference. For example, this configuration references two policies:
 
