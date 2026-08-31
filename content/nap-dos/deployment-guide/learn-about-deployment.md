@@ -133,11 +133,18 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
     sudo dnf install app-protect-dos-37+4.10.0
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
     sudo dnf install app-protect-dos-37+4.9.6
+    ```
+
+    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect-dos-ebpf-manager
+    sudo dnf install app-protect-dos-ebpf-manager-37+4.9.6
     ```
 
 10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -351,11 +358,18 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
     sudo dnf install app-protect-dos-37+4.10.0
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
     sudo dnf install app-protect-dos-37+4.9.6
+    ```
+
+    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect-dos-ebpf-manager
+    sudo dnf install app-protect-dos-ebpf-manager-37+4.9.6
     ```
 
 9. In you are upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -591,60 +605,82 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-cache policy app-protect-dos
     ```
 
-    Each `nginx-plus-module-appprotectdos` package is built for one NGINX Plus release and depends on a virtual package named `nginx-plus-r<release>`, which only that release of `nginx-plus` provides. Check which release the version you want requires, and which `nginx-plus` versions provide it:
+    Each `nginx-plus-module-appprotectdos` package is built for one NGINX Plus release and depends on a virtual package named `nginx-plus-r<release>`, which only that release of `nginx-plus` provides.
+
+    To find which NGINX Plus release a version requires, list the dependencies of each available module version:
 
     ```shell
-    sudo apt-cache show nginx-plus-module-appprotectdos | grep -E '^(Version|Depends):'
-    sudo apt-cache madison nginx-plus
+    sudo apt-cache show nginx-plus-module-appprotectdos | grep -E '^Version:|nginx-plus-r'
     ```
 
-    Finally, install the App Protect DoS version you want together with a matching `nginx-plus` version. Pin all three packages: `apt` considers only the newest `nginx-plus` available and will not select an older one on its own, so if the version you are installing was built for an earlier NGINX Plus release, the install fails with `Unable to correct problems, you have held broken packages` unless `nginx-plus` is pinned as well. The plain `apt-get install app-protect-dos` shown above needs no pin, because there every package resolves to its newest version.
+    To find which `nginx-plus` versions provide that release, list its reverse provides. Replace `r37.0` with the release reported by the previous command:
+
+    ```shell
+    sudo apt-cache showpkg nginx-plus-r37.0
+    ```
+
+    Finally, install `app-protect-dos`, `nginx-plus-module-appprotectdos`, and `nginx-plus` in a single command, pinning all three.
+
+    {{< call-out class="note" >}}
+   `apt` considers only the newest `nginx-plus` available and does not select an older one to satisfy another package's dependency. If the version you are installing was built for an earlier NGINX Plus release, the install fails with `Unable to correct problems, you have held broken packages` unless you pin `nginx-plus` as well.
+    {{< /call-out >}}
+
+    The unpinned `apt-get install app-protect-dos` shown earlier needs no pin only while the most recent `app-protect-dos` is built for the most recent NGINX Plus release. If a new NGINX Plus release is published before the F5 DoS for NGINX version that supports it, pin both packages until that version is available.
 
     The two most recent versions and the NGINX Plus release each one requires:
 
-    | App Protect DoS | NGINX Plus release | `nginx-plus` version range |
-    |-----------------|--------------------|-----------------------------|
-    | 37+4.10.0       | R37.1              | 37.1.*               |
-    | 37+4.9.6        | R37.0              | 37.0.*               |
+    | F5 DoS for NGINX package | NGINX Plus release | `nginx-plus` version |
+    |--------------------------|--------------------|----------------------|
+    | 37+4.10.0                | R37.1              | 37.1.*               |
+    | 37+4.9.6                 | R37.0              | 37.0.*               |
+
+    Quote any version that contains a `*` so that the shell does not expand it as a filename pattern.
 
     For example for Debian 11:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~bullseye nginx-plus-module-appprotectdos=37+4.10.0-1~bullseye nginx-plus=37.1.*-1~bullseye
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
+    sudo apt-get install app-protect-dos=37+4.10.0-1~bullseye nginx-plus-module-appprotectdos=37+4.10.0-1~bullseye 'nginx-plus=37.1.*-1~bullseye'
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~bullseye nginx-plus-module-appprotectdos=37+4.9.6-1~bullseye nginx-plus=37.0.*-1~bullseye
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
+    sudo apt-get install app-protect-dos=37+4.9.6-1~bullseye nginx-plus-module-appprotectdos=37+4.9.6-1~bullseye 'nginx-plus=37.0.*-1~bullseye'
     ```
 
     For example, for Debian 12:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~bookworm nginx-plus-module-appprotectdos=37+4.10.0-1~bookworm nginx-plus=37.1.*-1~bookworm
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
+    sudo apt-get install app-protect-dos=37+4.10.0-1~bookworm nginx-plus-module-appprotectdos=37+4.10.0-1~bookworm 'nginx-plus=37.1.*-1~bookworm'
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~bookworm nginx-plus-module-appprotectdos=37+4.9.6-1~bookworm nginx-plus=37.0.*-1~bookworm
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
+    sudo apt-get install app-protect-dos=37+4.9.6-1~bookworm nginx-plus-module-appprotectdos=37+4.9.6-1~bookworm 'nginx-plus=37.0.*-1~bookworm'
     ```
 
     For example for Ubuntu 22.04:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~jammy nginx-plus-module-appprotectdos=37+4.10.0-1~jammy nginx-plus=37.1.*-1~jammy
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
+    sudo apt-get install app-protect-dos=37+4.10.0-1~jammy nginx-plus-module-appprotectdos=37+4.10.0-1~jammy 'nginx-plus=37.1.*-1~jammy'
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~jammy nginx-plus-module-appprotectdos=37+4.9.6-1~jammy nginx-plus=37.0.*-1~jammy
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
+    sudo apt-get install app-protect-dos=37+4.9.6-1~jammy nginx-plus-module-appprotectdos=37+4.9.6-1~jammy 'nginx-plus=37.0.*-1~jammy'
     ```
 
     For example for Ubuntu 24.04:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
-    sudo apt-get install app-protect-dos=37+4.10.0-1~noble nginx-plus-module-appprotectdos=37+4.10.0-1~noble nginx-plus=37.1.*-1~noble
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
+    sudo apt-get install app-protect-dos=37+4.10.0-1~noble nginx-plus-module-appprotectdos=37+4.10.0-1~noble 'nginx-plus=37.1.*-1~noble'
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
-    sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble nginx-plus=37.0.*-1~noble
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
+    sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble 'nginx-plus=37.0.*-1~noble'
+    ```
+
+    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation:
+
+    ```shell
+    sudo apt-cache policy app-protect-dos-ebpf-manager
+    sudo apt-get install app-protect-dos-ebpf-manager=37+4.9.6-1~bookworm
     ```
 
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -758,7 +794,7 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     For L4 accelerated mitigation feature:
 
     ```shell
-    sudo sudo apk add app-protect-dos-ebpf-manager
+    sudo apk add app-protect-dos-ebpf-manager
     ```
 
    {{< call-out class="note" >}}
@@ -776,11 +812,18 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Finally, install a specific version from the output of command above. For example:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
     sudo apk add nginx-plus app-protect-dos=37+4.10.0-r1
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
     sudo apk add nginx-plus app-protect-dos=37+4.9.6-r1
+    ```
+
+    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation:
+
+    ```shell
+    sudo apk info app-protect-dos-ebpf-manager
+    sudo apk add app-protect-dos-ebpf-manager=37+4.9.6-r1
     ```
 
 10. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -893,11 +936,18 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     Then, install a specific version from the output of command above. For example:
 
     ```shell
-    # App Protect DoS 4.10.0, which requires NGINX Plus R37.1
+    # F5 DoS for NGINX 4.10.0, which requires NGINX Plus R37.1
     sudo dnf install app-protect-dos-37+4.10.0
 
-    # App Protect DoS 4.9.6, which requires NGINX Plus R37.0
+    # F5 DoS for NGINX 4.9.6, which requires NGINX Plus R37.0
     sudo dnf install app-protect-dos-37+4.9.6
+    ```
+
+    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation:
+
+    ```shell
+    sudo dnf --showduplicates list app-protect-dos-ebpf-manager
+    sudo dnf install app-protect-dos-ebpf-manager-37+4.9.6
     ```
 
 8. In case of upgrading from previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
@@ -1975,7 +2025,7 @@ spec:
     spec:
     containers:
     - name: ubuntu-bados
-      image: example.com/ubuntu_app_protect_dos_r36:latest
+      image: example.com/ubuntu_app_protect_dos:latest
       imagePullPolicy: Always
       resources:
         requests:
