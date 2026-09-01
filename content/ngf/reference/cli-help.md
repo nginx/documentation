@@ -65,7 +65,6 @@ This command runs the NGINX Gateway Fabric control plane.
 | _nginx-one-telemetry-endpoint-host_ | _string_ | The endpoint host that the NGINX One Console telemetry metrics will be sent to. |
 | _nginx-one-telemetry-endpoint-port_ | _int_    | The endpoint port that the NGINX One Console telemetry metrics will be sent to. |
 | _nginx-one-tls-skip-verify_         | _bool_   | Skip TLS verification for NGINX One Console connections. |
-| _nim-dataplane-key-secret_    | _string_ | Name of the secret which holds the dataplane key that is required to authenticate with NGINX Instance Manager. Secret must exist in the same namespace that the NGINX Gateway Fabric control plane is running in (default namespace: nginx-gateway). |
 | _nim-telemetry-endpoint-host_ | _string_ | The endpoint host that the NGINX Instance Manager telemetry metrics will be sent to. |
 | _nim-telemetry-endpoint-port_ | _int_    | The endpoint port that the NGINX Instance Manager telemetry metrics will be sent to. |
 | _gateway-api-inference-extension_   | _bool_   | Enable Gateway API Inference Extension support. Allows for configuring InferencePools to route traffic to AI workloads. (Default: `false`) |
