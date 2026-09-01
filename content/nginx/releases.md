@@ -22,7 +22,7 @@ Each release version is available in two tracks:
 
 [**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.5.1` LTS](#pls.37.0.5).
 
-[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. Wnen a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.0.1` CR](#pls.37.1.0).
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.0.1` CR](#pls.37.1.0).
 
 ### Release schedule
 
@@ -30,7 +30,7 @@ Each new LTS release version is published annually and supported for three years
 
 LTS patch releases are published as soon as a security mitigation is disclosed. The latest LTS release was published on September 2, 2026.
 
-CR releases are shipped regularly with latest features and security updates, they may also be shipped immediately when critical security mitigations are disclosed. The latest CR release was published on September 2, 2026.
+CR releases are shipped regularly with latest features, enhancements and bug updates. The latest CR release was published on September 2, 2026.
 
 ### Release numbering
 
@@ -81,7 +81,7 @@ To switch from the default [CR track](#cr) to the LTS patch release track, updat
 ### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
 _September 2, 2026_<br/>
 
-NGINX Plus PLS.37.0.5.1 LTS is a security release that addresses several security vulnerabilities identified in NGINX Plus and its associated components. We recommend that all users on the LTS track upgrade to this version to ensure they are protected by the latest security fixes.
+NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to this version to ensure they are running the most stable and secure version of NGINX Plus.
 
 {{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
 
@@ -203,11 +203,7 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
 - The PROXY protocol version 2 support to the [`proxy_protocol`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_protocol) directive in the stream and mail modules.
 
-- The [`max_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers) directive that sets the number of header lines in requests.
-
 - SSL and TLS
-
-  - Compatibility with OpenSSL 4.0.
 
   - The [`proxy_ssl_alpn`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_alpn) directive for stream.
 
@@ -231,8 +227,6 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
   - Configurable socket send and receive buffer directives [`proxy_socket_sndbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_sndbuf) and [`proxy_socket_rcvbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_rcvbuf), also for FastCGI, gRPC, SCGI, uWSGI, and tunnel upstream connections.
 
-  - Fixed processing of HTTP 103 Early Hints responses from proxied backends.
-
   - Fixed transfer of proxied HTTP/0.9, SCGI, and uWSGI responses when the first response line was not fully read.
 
 - Security and hardening
@@ -245,35 +239,33 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
 - Modules fixes and improvements
 
-  - Support for wildcards in the `include` directive inside [`geo`](https://nginx.org/en/docs/http/ngx_http_geo_module.html#geo) block.
-
   - XSLT filter module: the new [`xml_external_entities`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xml_external_entities) directive, loading of external XML entities is now enabled.
-
-  - Fixed availability of the `$request_port` and `$is_request_port` variables in subrequests.
 
   - Fixed an issue where `split_clients` variables could be empty when explicitly configured percentages summed to 100%.
 
+  - Fixed a possible worker process segmentation fault when using the `select` event method.
+
+- Other bug fixes
+
   - Fixed issues in the `ngx_http_perl_module`, `ngx_http_image_filter_module`, `ngx_http_tunnel_module`.
 
-  - Fixed a possible worker process segmentation fault when using the `select` event method.
-- Bug fixes
-{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-1-release-now-available/347466) blog post. {{< /call-out >}}
 
 NGINX Plus PLS.37.1.0.1 CR is supported on:
 
 {{<table>}}
-| Distribution                     | Versions                 | Architecture    |
-|----------------------------------|--------------------------|-----------------|
-| AlmaLinux                        | 8.1+, 9.7+, 10           | x86_64, aarch64 |
-| Alpine Linux                     | 3.21, 3.22, 3.23, 3.24   | x86_64, aarch64 |
-| Amazon Linux                     | 2023                     | x86_64, aarch64 |
-| Debian                           | 11, 12, 13               | x86_64, aarch64 |
-| FreeBSD                          | 14.3+, 15.0+             | amd64           |
-| Oracle Linux                     | 8.1+, 9.7+               | x86_64, aarch64 |
-| RHEL                             | 8.1+, 9.7+, 10.1+        | x86_64, aarch64 |
-| Rocky Linux                      | 8.1+, 9.7+, 10.1+        | x86_64, aarch64 |
-| SUSE Linux Enterprise Server     | 15 SP7+, 16              | x86_64, aarch64 |
-| Ubuntu                           | 22.04 LTS, 24.04 LTS     | x86_64, aarch64 |
+| Distribution                     | Versions                        | Architecture    |
+|----------------------------------|---------------------------------|-----------------|
+| AlmaLinux                        | 8.1+, 9.7+, 10                  | x86_64, aarch64 |
+| Alpine Linux                     | 3.21, 3.22, 3.23, 3.24          | x86_64, aarch64 |
+| Amazon Linux                     | 2023                            | x86_64, aarch64 |
+| Debian                           | 11, 12, 13                      | x86_64, aarch64 |
+| FreeBSD                          | 14.3+, 15.0+                    | amd64           |
+| Oracle Linux                     | 8.1+, 9.7+                      | x86_64, aarch64 |
+| RHEL                             | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| Rocky Linux                      | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| SUSE Linux Enterprise Server     | 15 SP7+, 16                     | x86_64, aarch64 |
+| Ubuntu                           | 22.04, 24.04, 26.04             | x86_64, aarch64 |
 {{</table >}}
 
 **Notes:**
@@ -291,7 +283,7 @@ F5 offers 24 months of technical support for each NGINX Plus release, beginning 
 {{<table>}}
 | NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
 |--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | Sept 3, 2026        | Nov 30, 2027             |
+| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | Sept 2, 2026        | Nov 30, 2027             |
 | [R35](#r35)        | Aug 13, 2025 | Dec 1, 2025                 | May 13, 2026        | Aug 12, 2027             |
 | [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | Dec 1, 2025        |      Mar 31, 2027             |
 | [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | Aug 13 2025             | Nov 18, 2026             |
