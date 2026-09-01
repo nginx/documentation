@@ -31,7 +31,7 @@ The page has two tabs:
 - **Instances**: Shows records from standalone NGINX Plus instances that run on VMs or bare metal.
 - **Clusters**: Shows records from NGINX deployments that run in Kubernetes. This includes records from NGINX Ingress Controller and NGINX Gateway Fabric.
 
-By default, the page shows the last 7 days of records, sorted by end time with the most recent first. NGINX Instance Manager keeps records for the last 120 days by default. You can change this retention period. See [Configure the retention period](#configure-the-retention-period).
+By default, the page shows the last 7 days of records, sorted by end time with the most recent first. NGINX Instance Manager keeps records for the last 120 days by default. You can change this retention period. See [Configure the retention window](#configure-the-retention-window).
 
 ---
 
@@ -127,7 +127,7 @@ See [An exported file is truncated](#an-exported-file-is-truncated).
 
 ---
 
-## Configure the retention period
+## Configure the retention window
 
 NGINX Instance Manager automatically removes usage records older than the configured retention period. A background job runs once at startup and then every 24 hours to purge expired records.
 

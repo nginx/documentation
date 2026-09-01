@@ -99,7 +99,7 @@ F5 tested Lightweight mode with ten managed NGINX instances and configuration pu
 These figures reflect the minimum tested configuration. If you experience performance issues, allocate more system resources.
 
 {{< call-out class="note" title="Note: Raw usage record storage" >}}
-These figures don't include storage or memory for raw usage records. If your NGINX Plus instances report usage data, see [Configure the retention window]({{< ref "nim/licensing-and-reporting/view-recent-nginx-usage.md#configure-the-retention-window" >}}) for sizing guidance based on your instance count and retention period.
+These figures don't include storage or memory for raw usage records. If your NGINX Plus instances report usage data, see [Configure the retention window]({{< ref "nim/licensing-and-reporting/view-recent-usage.md#configure-the-retention-window" >}}) for sizing guidance based on your instance count and retention period.
 {{< /call-out >}}
 
 ### License and usage reporting only {#reporting-sizing}
@@ -126,7 +126,7 @@ Memory and storage depend on your instance count and the retention period you co
 NGINX Instance Manager's scale testing for 1-year retention covered up to 800 instances. The 1,000-instance figures in this table extrapolate beyond that tested point.
 {{< /call-out >}}
 
-For retention periods between 120 days and 1 year, memory and storage scale roughly linearly with the number of days you configure. See [Estimate storage for extended retention]({{< ref "nim/licensing-and-reporting/view-recent-nginx-usage.md#estimate-storage-for-extended-retention" >}}) for host-sizing guidance and the per-record storage model behind these figures.
+For retention periods between 120 days and 1 year, memory and storage scale roughly linearly with the number of days you configure. See [Estimate storage for extended retention]({{< ref "nim/licensing-and-reporting/view-recent-usage.md#estimate-storage-for-extended-retention" >}}) for host-sizing guidance and the per-record storage model behind these figures.
 
 ### Sizing benchmarks for storage
 
