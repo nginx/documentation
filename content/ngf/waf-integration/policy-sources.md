@@ -4,12 +4,12 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
-f5-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
+description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
 ---
 
 F5 NGINX Gateway Fabric supports three policy source types for fetching compiled F5 WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
 
-Before configuring a policy source, make sure F5 WAF is enabled on the NginxProxy, either per Gateway or globally via Helm values. For version requirements, see [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}).
+Before you configure a policy source, make sure F5 WAF is turned on for the NginxProxy — either per Gateway or globally through Helm values. For version requirements, see [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}).
 
 {{< call-out class="tip" title="Tip: Fetch retry behavior" >}} By default, NGINX Gateway Fabric retries transient fetch failures up to 3 times with exponential backoff, and each fetch attempt times out after 30 seconds. You can tune these using the `retryAttempts` and `timeout` fields on `policySource` or `logSource`. {{< /call-out >}}
 
@@ -21,7 +21,7 @@ Use this option when you manage F5 WAF policies through F5 NGINX Instance Manage
 
 **Workflow:**
 
-1. Author and compile a policy in NGINX Instance Manager using the NGINX Instance Manager console or API. Verify that compilation succeeded before proceeding. NGINX Gateway Fabric cannot detect compilation failures in NGINX Instance Manager.
+1. Author and compile a policy in NGINX Instance Manager using the NGINX Instance Manager console or API. Verify that compilation succeeded. NGINX Gateway Fabric can't detect compilation failures in NGINX Instance Manager.
 2. Create a Secret with your NGINX Instance Manager credentials.
 3. Create a `WAFPolicy` referencing the compiled policy by name.
 
@@ -92,9 +92,9 @@ EOF
 
 Replace `https://nim.example.com` with your NGINX Instance Manager base URL, and `ngfBlocking` with your compiled policy name.
 
-{{< call-out class="tip" title="Tip: Testing with self-signed certificates" >}} To skip TLS certificate verification when fetching bundles (for testing only - not recommended for production), uncomment 'insecureSkipVerify: true'. {{< /call-out >}}
+{{< call-out class="tip" title="Tip: Testing with self-signed certificates" >}} To skip TLS certificate verification when fetching bundles, uncomment `insecureSkipVerify: true`. Don't use this in production. {{< /call-out >}}
 
-{{< call-out class="tip" title="Tip: Pin a policy version" >}} To pin a specific policy version, use `policyUID` instead of `policyName`. Find the UID in the NGINX Instance Manager console or API. A pinned UID always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. {{< /call-out >}}
+{{< call-out class="tip" title="Tip: Pin a policy version" >}} To pin a specific policy version, use `policyUID` instead of `policyName`. Find the UID in the NGINX Instance Manager console or API. A pinned UID always resolves to the same compiled bundle. Turn off polling to avoid unnecessary network requests. {{< /call-out >}}
 
 ### Apply a route-level override (optional)
 
@@ -141,8 +141,8 @@ Use this option when you manage F5 WAF policies through F5 NGINX One Console. Fo
 
 **Workflow:**
 
-1. Author and compile a policy in the NGINX One Console console or API.
-2. If no compiled bundle exists yet, NGINX Gateway Fabric triggers compilation through the NGINX One Console API. This happens the first time NGINX Gateway Fabric reconciles the `WAFPolicy` resource. NGINX Gateway Fabric waits for compilation to finish before continuing.
+1. Author and compile a policy in the NGINX One Console or API.
+2. If no compiled bundle exists yet, NGINX Gateway Fabric triggers compilation through the NGINX One Console API the first time it reconciles the `WAFPolicy` resource. NGINX Gateway Fabric waits for compilation to finish.
 3. Create a Secret with your NGINX One Console API token.
 4. Create a `WAFPolicy` referencing the compiled policy.
 
@@ -205,7 +205,7 @@ EOF
 
 Replace `<tenant>` with your NGINX One Console tenant hostname. The `namespace` field refers to the NGINX One Console namespace where the policy resides.
 
-{{< call-out class="tip" title="Tip: Pin a policy version" >}} To pin a specific policy version, set `policyVersionID`. A pinned version always resolves to the same compiled bundle, so polling should be disabled to avoid unnecessary network requests. If you use only `policyName` or `policyObjectID` without a version pin, the latest compiled bundle is fetched on each reconciliation or poll cycle. {{< /call-out >}}
+{{< call-out class="tip" title="Tip: Pin a policy version" >}} To pin a specific policy version, set `policyVersionID`. A pinned version always resolves to the same compiled bundle. Turn off polling to avoid unnecessary network requests. If you use only `policyName` or `policyObjectID` without a version pin, NGINX Gateway Fabric fetches the latest compiled bundle on each reconciliation or poll cycle. {{< /call-out >}}
 
 ---
 
@@ -219,7 +219,7 @@ In production environments, host compiled bundles on an HTTPS server with authen
 
 ---
 
-## Console integration
+## Policy deployment visibility
 
 NGINX Instance Manager and NGINX One Console don't show which F5 WAF policies are deployed to NGINX Gateway Fabric. Neither console shows which compiled bundle version NGINX Gateway Fabric has fetched.
 
@@ -227,15 +227,25 @@ This is intentional. NGINX Gateway Fabric pulls compiled bundles from the manage
 
 F5 plans to add policy association visibility for NGINX Instance Manager and NGINX One Console in a future release. In the meantime, use `kubectl describe wafpolicy <name>` to check deployment status.
 
-### Export security logs to F5 NGINX Instance Manager
+---
 
-F5 NGINX Instance Manager's Security Monitoring dashboard doesn't show which policies you've deployed to NGINX Gateway Fabric data planes. You can still export F5 WAF security events to NGINX Instance Manager. Exporting these events gives your security operations team visibility into blocked attacks, violations, and traffic patterns directly in the dashboard.
+## Security event monitoring
+
+### NGINX Instance Manager
+
+#### Connect NGINX Gateway Fabric to F5 NGINX Instance Manager
+
+Configure NGINX Gateway Fabric to connect to NGINX Instance Manager before continuing. Follow [Connect NGINX Gateway Fabric to NGINX Instance Manager]({{< ref "/nim/connect-kubernetes/connect-ngf.md" >}}).
+
+#### Export security logs to F5 NGINX Instance Manager
+
+The Security Monitoring dashboard in NGINX Instance Manager doesn't show which F5 WAF policies are deployed to NGINX Gateway Fabric data planes. You can still export F5 WAF security events to NGINX Instance Manager. Exporting these events gives your security operations team visibility into blocked attacks, violations, and traffic patterns directly in the dashboard.
 
 {{< call-out class="important" title="Important: Version requirement" >}}
 This integration requires NGINX Instance Manager 2.23 or later.
 {{< /call-out >}}
 
-To export these events, configure a `securityLogs` entry on the `WAFPolicy` resource. This entry sends events to the syslog listener NGINX Agent runs inside the NGINX pod. NGINX Agent's built-in OpenTelemetry collector transforms the events and exports them to NGINX Instance Manager.
+To export these events, configure a `securityLogs` entry on the `WAFPolicy` resource. The entry sends events to the syslog listener that NGINX Agent runs inside the NGINX pod. NGINX Agent's built-in OpenTelemetry collector transforms the events and exports them to NGINX Instance Manager.
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -281,13 +291,15 @@ The `profileName: "secops_dashboard_ngf_otel"` log profile must exist in NGINX I
 To test with self-signed certificates, add `insecureSkipVerify: true` to `policySource` and `logSource`. Don't use this setting in production. See [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for adding CA certificates and credentials.
 {{< /call-out >}}
 
-### Connect NGINX Gateway Fabric to F5 NGINX One Console
+### NGINX One Console
+
+#### Connect NGINX Gateway Fabric to F5 NGINX One Console
 
 Configure NGINX Gateway Fabric to connect to NGINX One Console before continuing. Follow [Connect NGINX Gateway Fabric with Helm]({{< ref "/nginx-one-console/k8s/add-ngf-helm.md" >}}) or [Connect NGINX Gateway Fabric with Manifests]({{< ref "/nginx-one-console/k8s/add-ngf-manifests.md" >}}).
 
-### Export security logs to F5 NGINX One Console
+#### Export security logs to F5 NGINX One Console
 
-NGINX One Console doesn't show which policies are deployed to NGINX Gateway Fabric data planes. You can still export F5 WAF security events to the NGINX One Console security dashboard. This gives your security operations team visibility into blocked attacks, violations, and traffic patterns directly in the console.
+NGINX One Console doesn't show which F5 WAF policies are deployed to NGINX Gateway Fabric data planes. You can still export F5 WAF security events to the NGINX One Console security dashboard. Your security operations team can then view blocked attacks, violations, and traffic patterns directly in the console.
 
 To export these events, configure a `securityLogs` entry that sends events to NGINX Agent's built-in OpenTelemetry collector, which forwards them to NGINX One Console. Use a log profile compiled for the NGINX One Console security dashboard:
 
@@ -329,7 +341,7 @@ EOF
 
 The `localhost:1514` syslog destination points to NGINX Agent's OpenTelemetry collector, which runs as a sidecar in the NGINX pod. NGINX Agent forwards the security events to NGINX One Console, where they appear in the security monitoring dashboard.
 
-{{< call-out class="note" title="Note: Log profile must exist in NGINX One Console" >}} The `profileName: "secops_dashboard"` log profile must exist in your NGINX One Console namespace. This profile is required for events to appear correctly in the NGINX One Console security dashboard. {{< /call-out >}}
+{{< call-out class="note" title="Note: Log profile must exist in NGINX One Console" >}} The `profileName: "secops_dashboard"` log profile must exist in your NGINX One Console namespace. Events don't appear correctly in the NGINX One Console security dashboard without this profile. {{< /call-out >}}
 
 ---
 

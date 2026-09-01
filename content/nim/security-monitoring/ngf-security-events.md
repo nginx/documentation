@@ -30,8 +30,8 @@ This integration covers security event visibility only. NGINX Instance Manager c
 ## Requirements
 
 - NGINX Instance Manager 2.23 or later
-- NGINX Gateway Fabric running F5 WAF for NGINX with NGINX Agent v3
-- Security Monitoring turned on in NGINX Instance Manager <!-- SME REVIEW: still open. This screenshot's left nav shows Security Dashboard nested directly under WAF, with no separate "Security Monitoring" toggle visible anywhere in the nav. That's new evidence this may not be a discrete setting a customer turns on — but it doesn't confirm one way or the other. Don't resolve this from the screenshot alone. -->
+- NGINX Gateway Fabric running F5 WAF for NGINX with NGINX Agent v3, connected to NGINX Instance Manager. See [Connect NGINX Gateway Fabric to NGINX Instance Manager]({{< ref "/nim/connect-kubernetes/connect-ngf.md" >}}).
+- Security Monitoring turned on in NGINX Instance Manager
 
 ## Set up event export from NGINX Gateway Fabric
 
