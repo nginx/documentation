@@ -13,25 +13,25 @@ f5-content-type: how-to
 f5-product: NGINX Instance Manager
 f5-summary: >
   View and export raw, unaggregated NGINX usage telemetry for NGINX Plus, NGINX Ingress Controller, and NGINX Gateway Fabric instances in NGINX Instance Manager.
-  This audit-grade record view lets you independently verify billing data and support compliance reviews, separately from the usage reports NGINX Instance Manager sends to F5.
+  Use this audit-grade record view to independently verify billing data and support compliance reviews, separately from the usage reports NGINX Instance Manager sends to F5.
 ---
 
 ## Overview
 
-The **Recent Usage** screen shows the raw usage telemetry that F5 NGINX Instance Manager collects from your instances. This includes F5 NGINX Plus, F5 NGINX Ingress Controller, and F5 NGINX Gateway Fabric.
+The **Usage Overview** page shows the raw usage telemetry that F5 NGINX Instance Manager collects from your instances. This includes F5 NGINX Plus, F5 NGINX Ingress Controller, and F5 NGINX Gateway Fabric. NGINX Open Source instances don't appear in usage records. They don't include the `ngx_mgmt_module` that NGINX Plus uses to report usage.
 
-Each row is one telemetry record, exactly as your instance reported it. NGINX Instance Manager doesn't aggregate or transform records. Use this screen to independently verify the data behind your F5 billing and to support compliance audits.
+Each row is one telemetry record, exactly as your instance reported it. NGINX Instance Manager doesn't aggregate or transform records. Use this page to independently verify the data behind your F5 billing and to support compliance audits.
 
-This screen doesn't require NGINX Agent. Your instances report usage data directly.
+NGINX Agent isn't required. Your instances send usage data directly to NGINX Instance Manager.
 
-### Instances and Clusters views
+### Instances and Clusters tabs
 
-The screen has two views:
+The page has two tabs:
 
 - **Instances**: Shows records from standalone NGINX Plus instances that run on VMs or bare metal.
-- **Clusters**: Shows records from NGINX deployments that run in Kubernetes. This covers NGINX Ingress Controller and NGINX Gateway Fabric.
+- **Clusters**: Shows records from NGINX deployments that run in Kubernetes. This includes records from NGINX Ingress Controller and NGINX Gateway Fabric.
 
-By default, the screen shows the last 7 days of records, sorted by end time with the most recent first. Records are available for the last 120 days by default. You can change this retention window. See [Configure the retention window](#configure-the-retention-window).
+By default, the page shows the last 7 days of records, sorted by end time with the most recent first. NGINX Instance Manager keeps records for the last 120 days by default. You can change this retention period. See [Configure the retention period](#configure-the-retention-period).
 
 ---
 
@@ -52,9 +52,8 @@ Before you view usage records, make sure you have:
 To view raw usage records:
 
 1. Log in to NGINX Instance Manager (`https://<NIM_FQDN>/ui/`).
-2. In the left navigation, select **Usage**.
-3. Select **Recent Usage**.
-4. Select the **Instances** or **Clusters** tab.
+2. In the left navigation, select **Usage > Usage Overview**.
+3. Select the **Instances** or **Clusters** tab.
 
 By default, the dashboard shows records from the last 7 days, sorted by end time with the most recent first.
 
@@ -64,7 +63,7 @@ The dashboard's summary table doesn't show every field from a usage record. For 
 
 ### View record details
 
-Select a row to open a side panel showing all fields for that record.
+Select a row to open a side panel that shows all fields for that record.
 
 ### Filter records
 
@@ -84,7 +83,7 @@ Select **Add Filter** to narrow your results by:
 
 If you don't already have the identifiers used in these filters:
 
-- **NGINX Instance ID**: NGINX Plus stores this in `/var/lib/nginx/nginx.id` on each instance. You can also find it in the **NGINX UID** column, or by selecting a row to open the detail panel.
+- **NGINX Instance ID**: NGINX Plus stores this in `/var/lib/nginx/nginx.id` on each instance. You can also find it in the **NGINX UID** column or in the detail panel.
 - **Cluster ID**: Visible in the **K8s Cluster ID** column on the Clusters tab. NGINX Ingress Controller and NGINX Gateway Fabric generate this ID at installation and store it in the deployment's Kubernetes secret.
 - **Subscription token (jti)**: A claim inside your subscription JWT (`license.jwt`). Paste the JWT contents into [jwt.io](https://jwt.io) and look for the `jti` field. You can also find it in the **JWT ID** column.
 
@@ -97,7 +96,7 @@ To export usage records for an offline review or compliance check:
 
 The exported file downloads in CSV (comma-separated values) format. It includes all records matching your current filters, with no rounding or aggregation.
 
-(Optional) If the export is slow, apply additional filters to narrow the result set before you export.
+If the export is slow, apply additional filters to narrow the result set before you export.
 
 The following table lists which columns appear in each tab's CSV export.
 
@@ -128,7 +127,7 @@ See [An exported file is truncated](#an-exported-file-is-truncated).
 
 ---
 
-## Configure the retention window
+## Configure the retention period
 
 NGINX Instance Manager automatically removes usage records older than the configured retention period. A background job runs once at startup and then every 24 hours to purge expired records.
 
@@ -145,30 +144,30 @@ To change the retention period:
 1. Open `/etc/nms/nms.conf` on the NGINX Instance Manager server.
 2. Add or update the setting under the `dpm:` block:
 
-    ```yaml
-        dpm:
+  ```yaml
+      dpm:
         nginx_raw_usage_retention_days: 180
-    ```
+  ```
 
 3. Restart NGINX Instance Manager:
 
-    ```shell
-        sudo systemctl restart nms
-    ```
+  ```shell
+      sudo systemctl restart nms
+  ```
 
-A retention change takes effect after this restart. Because the purge job runs immediately on startup, records outside the new window are removed right away, not on the next scheduled 24-hour cycle.
+A retention change takes effect after this restart. Because the purge job runs immediately on startup, it removes records outside the new window right away, not on the next scheduled 24-hour cycle.
 
 {{< call-out class="important" title="Important: Retention value limits" >}}
 NGINX Instance Manager normalizes retention values on startup. It caps any value above 365 to 365. It ignores negative values and uses the default (120 days) instead. A value of 0 blocks local storage: NGINX Instance Manager doesn't write new records and purges existing records on the next run. This doesn't affect usage reporting to F5.
 {{< /call-out >}}
 
-If NGINX Instance Manager clamps or rejects your configured value, it logs a `[RAW-USAGE]` warning so you can confirm the value wasn't used as entered.
+If NGINX Instance Manager clamps or rejects your configured value, it logs a `[RAW-USAGE]` warning so you know the configured value wasn't applied.
 
 ### Estimate storage for extended retention
 
-Storage and memory scale with your instance count and configured retention period. Each usage record takes about 0.9 KB on disk. This includes its database index.
+Storage and memory scale with your instance count and configured retention period. Each usage record takes about 0.9 KB on disk. This estimate includes the database index.
 
-The following table shows estimated storage and working memory at two retention periods: the default 120 days, and the maximum 365 days (1 year). These figures assume NGINX Plus's default cadence of one usage report per instance per hour.
+The following table shows estimated storage and working memory at two retention periods: the default 120 days, and the maximum 365 days (1 year). These figures assume the default NGINX Plus reporting cadence of one report per instance per hour.
 
 {{<table>}}
 | Instances | 120-day storage | 120-day working memory | 1-year storage | 1-year working memory |
@@ -181,7 +180,7 @@ The following table shows estimated storage and working memory at two retention 
 {{</table>}}
 
 {{< call-out class="note" title="Note: Tested range" >}}
-NGINX Instance Manager's scale testing for 1-year retention covered up to 800 instances (about 7 million records). The 1,000-instance figures in this table extrapolate beyond that tested point.
+NGINX Instance Manager's scale testing for 1-year retention covered up to 800 instances. The 1,000-instance figures in this table extrapolate beyond that tested point.
 {{< /call-out >}}
 
 For retention periods between 120 days and 1 year, storage and working memory scale roughly linearly with the number of days you configure. If you halve your retention period, you roughly halve both storage and memory.
@@ -264,10 +263,10 @@ Usage records contain only UUIDs, timestamps, and numeric counters. They don't i
 
 ## How this differs from usage reporting to F5
 
-The **Recent Usage** screen is a local, on-demand audit view. It's different from the usage reports NGINX Instance Manager automatically sends to F5 for billing.
+The **Usage Overview** page is a local, on-demand audit view. It's different from the usage reports NGINX Instance Manager automatically sends to F5 for billing.
 
 {{<table>}}
-| | **Recent Usage** screen | Usage reporting to F5 |
+| | **Usage Overview** page | Usage reporting to F5 |
 |---|---|---|
 | Purpose | Local audit and verification | Billing and entitlement |
 | Data | Raw, per-record, unaggregated | Aggregated for submission |
@@ -275,9 +274,9 @@ The **Recent Usage** screen is a local, on-demand audit view. It's different fro
 | Where to configure | This page | [Report usage data to F5 (connected)]({{< ref "nim/licensing-and-reporting/report-usage-connected-deployment.md" >}}) or [Report usage data to F5 (disconnected)]({{< ref "nim/licensing-and-reporting/report-usage-disconnected-deployment.md" >}}) |
 {{</table>}}
 
-When you view or export records on this screen, usage reporting to F5 doesn't change. The two pipelines operate independently.
+When you view or export records on this page, usage reporting to F5 doesn't change. The two pipelines operate independently.
 
-This screen works the same way in connected and disconnected deployments. Your instances keep reporting locally, and existing records stay fully browsable, even without internet access.
+This page works the same way in connected and disconnected deployments. Your instances keep reporting locally, and existing records stay fully browsable, even without internet access.
 
 ---
 
@@ -294,7 +293,7 @@ This screen works the same way in connected and disconnected deployments. Your i
 - The date range filter is too narrow.
 - Your account doesn't have the NGINX Plus Usage permission.
 
-**Fix**: Confirm the `usage_report` directive is set in the `mgmt` block of your NGINX Plus configuration. Confirm your NGINX Plus version is R33 or later. Expand the date range or reset it to the default (last 7 days). Confirm your RBAC role includes the NGINX Plus Usage permission.
+**Fix**: Make sure the `usage_report` directive is set in the `mgmt` block of your NGINX Plus configuration. Make sure your NGINX Plus version is R33 or later. Expand the date range or reset it to the default (last 7 days). Make sure your RBAC role includes the NGINX Plus Usage permission.
 
 ### An exported file is truncated
 
@@ -308,7 +307,7 @@ This screen works the same way in connected and disconnected deployments. Your i
 
 **Symptom**: A record's reporting window is longer than expected, for example 09:00–11:00 instead of 09:00–10:00.
 
-**Cause**: A previous report failed. NGINX Plus combined the missed window with the next scheduled report. This is expected behavior. It ensures no usage data is lost.
+**Cause**: A previous report failed. NGINX Plus combined the missed window with the next scheduled report. This is expected behavior. No usage data is lost.
 
 **Fix**: No action needed. NGINX Instance Manager retains both the extended record and any partially persisted original record.
 
