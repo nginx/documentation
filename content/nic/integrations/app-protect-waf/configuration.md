@@ -19,8 +19,14 @@ NGINX Ingress Controller has global configuration parameters that match those in
 
 F5 WAF for NGINX can be enabled and configured for custom resources (VirtualServer, VirtualServerRoute) or Ingress resources.
 
-- For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
+- For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
 - For Ingress resources, apply the [`app-protect` annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) to each desired resource.
+
+{{< call-out class="note" >}}
+
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
+
+{{< /call-out >}}
 
 ## F5 WAF for NGINX Policies {#waf-policies}
 
@@ -109,7 +115,7 @@ To add the [log configurations](/nginx-app-protect-waf/v4/logging-overview/secur
 
 1. Create an `APLogConf` Custom Resource manifest.
 1. Add the log configuration to the `spec` field in the `APLogConf` resource.
-1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< ref "/nic/configuration/policy-resource.md#waf" >}}) or the [Ingress resource]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
+1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}) or the [Ingress resource]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
 
 {{< call-out class="note" >}}
 
