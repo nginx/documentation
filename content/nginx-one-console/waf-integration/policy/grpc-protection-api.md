@@ -71,7 +71,7 @@ Each entry in `file_references` requires:
 On update (`PUT`), `file_references` **replaces the full set of files** for the new policy version. If you omit `file_references` on an update, the new version is created with **no** file references at all — even if a previous version had files uploaded. Always re-include every file reference the policy still needs when updating.
 {{< /call-out >}}
 
-## Upload files as a `.tar.gz` archive (`file_references_archive`)
+## Upload files as a .tar.gz archive (file_references_archive)
 
 When creating a policy (`POST /app-protect/policies` only — not supported on update), you can instead send `multipart/form-data` with a `policy` field and a `file_references_archive` field containing a gzip-compressed tarball of the referenced files:
 
