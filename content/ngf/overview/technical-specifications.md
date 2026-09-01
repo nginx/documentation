@@ -32,6 +32,9 @@ The following table lists the software versions NGINX Gateway Fabric supports. O
 | 1.3.0                | 1.1.0       | 1.25+      | 1.27.0    | R32        | ---         | ---              |
 | 1.2.0                | 1.0.0       | 1.23+      | 1.25.4    | R31        | ---         | ---              |
 
+{{< call-out class="note" title="Note: NGINX Instance Manager integration" >}}
+For version requirements to export F5 WAF for NGINX security events to NGINX Instance Manager, see [Export security logs to F5 NGINX Instance Manager]({{< ref "/ngf/waf-integration/policy-sources.md#export-security-logs-to-f5-nginx-instance-manager" >}}).{{< /call-out >}}
+
 ### OpenShift Compatibility
 
 The following table lists the OpenShift versions and Operator versions compatible with NGINX Gateway Fabric.
