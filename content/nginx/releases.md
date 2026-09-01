@@ -28,9 +28,9 @@ Each release version is available in two tracks:
 
 Each new LTS release version is published annually and supported for three years.
 
-LTS patch releases are published as soon as a security mitigation is disclosed. The latest LTS release was published on September 3, 2026.
+LTS patch releases are published as soon as a security mitigation is disclosed. The latest LTS release was published on September 2, 2026.
 
-CR releases are shipped regularly with latest features and security updates, they may also be shipped immediately when critical security mitigations are disclosed. The latest CR release was published on September 3, 2026.
+CR releases are shipped regularly with latest features and security updates, they may also be shipped immediately when critical security mitigations are disclosed. The latest CR release was published on September 2, 2026.
 
 ### Release numbering
 
@@ -79,7 +79,7 @@ LTS patch versions follow the numbering format: `PLS.37.0.<patch>.<package>`: th
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 
 ### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
-_September 3, 2026_<br/>
+_September 2, 2026_<br/>
 
 NGINX Plus PLS.37.0.5.1 LTS is a security release that addresses several security vulnerabilities identified in NGINX Plus and its associated components. We recommend that all users on the LTS track upgrade to this version to ensure they are protected by the latest security fixes.
 
@@ -193,7 +193,7 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
 
 ### NGINX Plus PLS.37.1.0.1 CR {#pls.37.1.0}
-_September 3, 2026_<br/>
+_September 2, 2026_<br/>
 
 NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
@@ -256,7 +256,7 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
   - Fixed issues in the `ngx_http_perl_module`, `ngx_http_image_filter_module`, `ngx_http_tunnel_module`.
 
   - Fixed a possible worker process segmentation fault when using the `select` event method.
-
+- Bug fixes
 {{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-0-release-now-available/346421) blog post. {{< /call-out >}}
 
 NGINX Plus PLS.37.1.0.1 CR is supported on:
