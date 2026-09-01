@@ -281,10 +281,11 @@ spec:
 EOF
 ```
 
-The `localhost:1514` syslog destination points to NGINX Agent's OpenTelemetry collector, which runs as a sidecar in the NGINX pod. NGINX Agent exports the security events to NGINX Instance Manager over gRPC on port `4317`, authenticated with a JWT. <!-- SME REVIEW: I don't have a source for where a customer obtains or configures this JWT. -->
+The `localhost:1514` syslog destination points to NGINX Agent's OpenTelemetry collector, which runs as a sidecar in the NGINX pod. NGINX Agent exports the security events to NGINX Instance Manager over gRPC on port `4317`, authenticated using the same NGINX Plus JWT referenced in the `nim-dp-key` Secret from [Connect NGINX Gateway Fabric to NGINX Instance Manager]({{< ref "/nim/connect-kubernetes/connect-ngf.md" >}}). NGINX Gateway Fabric handles this authentication internally — no separate credential is required for log export.
 
-{{< call-out class="note" title="Note: Log profile must exist in NGINX Instance Manager" >}}
-The `profileName: "secops_dashboard_ngf_otel"` log profile must exist in NGINX Instance Manager and match the `WAFPolicy` exactly. <!-- SME REVIEW: confirm whether this profile ships with NIM 2.23 by default or customers must create it. -->
+{{< call-out class="note" title="Note: Network requirements" >}}
+- Port `1514` (local syslog): NGINX Agent listens on this port inside the NGINX pod. This traffic doesn't leave the pod.
+- Port `4317` (gRPC): NGINX Agent uses this port to export events to NGINX Instance Manager. Make sure this port is reachable from your cluster.
 {{< /call-out >}}
 
 {{< call-out class="tip" title="Tip: Testing with self-signed certificates" >}}
