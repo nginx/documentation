@@ -30,6 +30,16 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 02 Sep 2026
 
+Release 5.6.0 focuses on security and traffic management. It expands how pre-compiled WAF policies can be sourced and managed, adds a native NGINX Plus OpenID Connect option, introduces native HSTS configuration, and closes several gaps that previously required snippets - including additional annotations to smooth migrations from ingress-nginx.
+Highlights:
+
+- Flexible WAF policy sourcing from NGINX One Console (N1C), NGINX Instance Manager (NIM), or a generic HTTP server, supporting both ClickOps and GitOps workflows.
+- WAF policy lifecycle management using cluster-scoped Kubernetes custom resources, with no external management plane required.
+- Native OpenID Connect using the NGINX Plus OIDC module, offered alongside the existing njs-based implementation.
+- Native HSTS policy support for VirtualServer, VirtualServerRoute, and Ingress resources.
+- Additional ingress-nginx annotations and configMap updates - Includes setting the host header, disabling X-Forwarded headers and customer error pages
+- Significant Improvements to Configuration Safety - NGINX Ingress Controller no longer runs `nginx -t` after every configuration file write during initial reconciliation; instead, writes are batched and validated once for the whole batch after the initial queue drains. This significantly reduces startup time on large clusters.
+
 ### {{% icon rocket %}} Features
 
 - [10131](https://github.com/nginx/kubernetes-ingress/pull/10131) Add external waf bundle sources (nginx instance manager, nginx one console, https)
