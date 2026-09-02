@@ -28,7 +28,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ## 5.6.0
 
-02 Sep 2026
+02 Sept 2026
 
 Release 5.6.0 focuses on security and traffic management. It expands how pre-compiled WAF policies can be sourced and managed, adds a native NGINX Plus OpenID Connect option, introduces native HSTS configuration, and closes several gaps that previously required snippets - including additional annotations to smooth migrations from ingress-nginx.
 Highlights:
