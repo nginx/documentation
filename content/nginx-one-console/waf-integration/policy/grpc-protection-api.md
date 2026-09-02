@@ -48,7 +48,6 @@ You can upload file references in either of two ways:
 
 - **Inline as base64 JSON**: good for a small number of files, or when you're already sending the policy as JSON.
 - **As a `.tar.gz` archive**: good for bundling many files (for example, a primary `.proto` plus its imports) without base64 overhead. Available only when *creating* a policy.
-- **As a `.tar.gz` archive** — good for bundling many files (for example, a primary `.proto` plus its imports) without base64 overhead. Available only when *creating* a policy.
 
 ## Upload files as inline JSON (`file_references`)
 
