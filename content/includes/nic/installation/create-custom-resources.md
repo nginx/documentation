@@ -21,7 +21,7 @@ The core custom CRDs are the following:
 
 - [VirtualServer and VirtualServerRoute]({{< ref "/nic/configuration/virtualserver-and-virtualserverroute-resources.md" >}})
 - [TransportServer]({{< ref "/nic/configuration/transportserver-resource.md" >}})
-- [Policy]({{< ref "/nic/configuration/policy-resource.md" >}})
+- [Policy]({{< ref "/nic/configuration/policy-resource/before-you-begin.md" >}})
 - [GlobalConfiguration]({{< ref "/nic/configuration/global-configuration/globalconfiguration-resource.md" >}})
 
 {{<tabs name="install-crds">}}
