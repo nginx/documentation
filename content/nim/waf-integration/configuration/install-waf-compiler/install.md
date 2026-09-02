@@ -50,13 +50,13 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo apt-get install nms-nap-compiler-v5.690.0
+   sudo apt-get install nms-nap-compiler-v5.715.0
    ```
 
 1. To install multiple compiler versions on the same system, append the `--force-overwrite` option after the first installation:
 
    ```shell
-   sudo apt-get install nms-nap-compiler-v5.690.0 -o Dpkg::Options::="--force-overwrite"
+   sudo apt-get install nms-nap-compiler-v5.715.0 -o Dpkg::Options::="--force-overwrite"
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -80,7 +80,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.690.0
+   sudo yum install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -104,7 +104,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.690.0
+   sudo yum install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -128,13 +128,13 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.690.0
+   sudo yum install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
 
 
-{{<call-out class="warning" title="Known issue for nms-nap-compiler-v5.690.0" >}}If the log contains the `Can't locate JSON/XS.pm` error message during policy compilation, install the `perl-JSON-XS` package manually.
+{{<call-out class="warning" title="Known issue for nms-nap-compiler-v5.715.0" >}}If the log contains the `Can't locate JSON/XS.pm` error message during policy compilation, install the `perl-JSON-XS` package manually.
 
    ```shell
    sudo yum install perl-JSON-XS
@@ -160,7 +160,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.690.0
+   sudo yum install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -169,7 +169,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 {{< /tabs >}}
 
-{{<call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see following error messages in the UI: 
+{{<call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.715.0" >}}If you see following error messages in the UI: 
 ```text
 <instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
 ```
@@ -180,20 +180,20 @@ If the log contains any of the following error messages:</br>
 
 for Debian or Ubuntu-based systems:
 ```text
-/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.715.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
 ```
 
 <b>OR</b></br>
 
 for RHEL-based systems: 
 ```text
-Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+Can't load '/opt/nms-nap-compiler/app_protect-5.715.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
 ```
 
 <b>Workaround</b>: Run the following command:
    ```shell
    sudo bash -c '
-   cd /opt/nms-nap-compiler/app_protect-5.690.0/lib && \
+   cd /opt/nms-nap-compiler/app_protect-5.715.0/lib && \
    ln -sfn libre2.so.11.0.0 libre2.so.11 && \
    ln -sfn libprotobuf.so.3.21.12.0 libprotobuf.so.32 && \
    ln -sfn libprotobuf.so.32 libprotobuf.so
