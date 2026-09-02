@@ -676,11 +676,11 @@ When deploying App Protect DoS on NGINX Plus take the following precautions to s
     sudo apt-get install app-protect-dos=37+4.9.6-1~noble nginx-plus-module-appprotectdos=37+4.9.6-1~noble 'nginx-plus=37.0.*-1~noble'
     ```
 
-    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation:
+    If you use the L4 accelerated mitigation feature, pin `app-protect-dos-ebpf-manager` to the matching version. Left unpinned, it installs the most recent version, which may not match the rest of your installation. The `lsb_release` call fills in the suite of the system you are running on:
 
     ```shell
     sudo apt-cache policy app-protect-dos-ebpf-manager
-    sudo apt-get install app-protect-dos-ebpf-manager=37+4.9.6-1~bookworm
+    sudo apt-get install app-protect-dos-ebpf-manager=37+4.9.6-1~`lsb_release -cs`
     ```
 
 10. In the case of upgrading from a previously installed NGINX Plus App Protect DoS package (which includes NGINX Plus):
