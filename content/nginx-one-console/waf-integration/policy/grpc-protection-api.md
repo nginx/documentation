@@ -1,5 +1,6 @@
 ---
 title: "Add gRPC protection to a policy"
+description: "Upload .proto files through the API so a WAF policy's grpc-profiles entry can validate gRPC messages."
 weight: 450
 toc: true
 f5-content-type: how-to
