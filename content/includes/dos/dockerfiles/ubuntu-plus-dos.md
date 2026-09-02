@@ -36,7 +36,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && apt-get update \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y "app-protect-dos${DOS_VERSION}" "nginx-plus-module-appprotectdos${DOS_VERSION}" "nginx-plus${NGINX_PLUS_VERSION}" \
     && cat license.jwt > /etc/nginx/license.jwt \
-    && apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* \
+    && apt-get remove --purge --auto-remove -y apt-transport-https lsb-release gnupg2 wget && rm -rf /var/lib/apt/lists/* \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
