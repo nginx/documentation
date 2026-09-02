@@ -26,6 +26,60 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.6.0
+
+02 Sep 2026
+
+### {{% icon rocket %}} Features
+
+- [10131](https://github.com/nginx/kubernetes-ingress/pull/10131) Add external waf bundle sources (nginx instance manager, nginx one console, https)
+- [10111](https://github.com/nginx/kubernetes-ingress/pull/10111) Add hsts policy to vs
+- [9010](https://github.com/nginx/kubernetes-ingress/pull/9010) Add resources support for app protect waf v5 containers
+- [9676](https://github.com/nginx/kubernetes-ingress/pull/9676) Support endpoint updates for cross-namespace upstream services
+- [10423](https://github.com/nginx/kubernetes-ingress/pull/10423) Custom error annotation
+- [10032](https://github.com/nginx/kubernetes-ingress/pull/10032) Update config safety
+- [10539](https://github.com/nginx/kubernetes-ingress/pull/10539) Add the ability to disable x-forwarded headers via configmap
+- [10373](https://github.com/nginx/kubernetes-ingress/pull/10373) Add resource_namespace attribute to logs
+- [10690](https://github.com/nginx/kubernetes-ingress/pull/10690) Feat:add-waf-plm-support
+- [10557](https://github.com/nginx/kubernetes-ingress/pull/10557) Add new annotation nginx.org/upstream-vhost
+- [10589](https://github.com/nginx/kubernetes-ingress/pull/10589) Add support for native oidc module policy for virtualserver
+
+### {{% icon bug %}} Fixes
+
+- [10160](https://github.com/nginx/kubernetes-ingress/pull/10160) Update oidc njs code
+- [10232](https://github.com/nginx/kubernetes-ingress/pull/10232) Fix oidc with config safety
+- [10159](https://github.com/nginx/kubernetes-ingress/pull/10159) Build oss images from scratch
+- [10251](https://github.com/nginx/kubernetes-ingress/pull/10251) Fix external auth attachment to multiple ingresses
+- [10176](https://github.com/nginx/kubernetes-ingress/pull/10176) Fix illegal keyword path validation rejecting paths containing /var or /root as substring
+- [10456](https://github.com/nginx/kubernetes-ingress/pull/10456) Various validation fixes
+- [10315](https://github.com/nginx/kubernetes-ingress/pull/10315) Fix issues with the release docs workflow
+- [10390](https://github.com/nginx/kubernetes-ingress/pull/10390) Reload nginx for non-tls secret updates regardless of -ssl-dynamic-reload
+- [10544](https://github.com/nginx/kubernetes-ingress/pull/10544) Update oidc.tmpl to prevent body size checks
+- [10543](https://github.com/nginx/kubernetes-ingress/pull/10543) Fix: skip secret lookup when tls[].secretname is empty (fixes spurious warning with wildcard tls)
+- [10594](https://github.com/nginx/kubernetes-ingress/pull/10594) Fix: emit `error_page 401 = "..."` for externalauth authsigninuri
+- [10460](https://github.com/nginx/kubernetes-ingress/pull/10460) Fix plus prometheus server zone labels for empty-host ingress
+- [10714](https://github.com/nginx/kubernetes-ingress/pull/10714) Update network policy template for upgrade case
+- [10747](https://github.com/nginx/kubernetes-ingress/pull/10747) Remove deleted file from list of files to update in release docs workflow
+
+### {{% icon arrow-up %}} Dependencies
+
+- [10629](https://github.com/nginx/kubernetes-ingress/pull/10629), [10206](https://github.com/nginx/kubernetes-ingress/pull/10206), [10133](https://github.com/nginx/kubernetes-ingress/pull/10133), [10722](https://github.com/nginx/kubernetes-ingress/pull/10722), [10177](https://github.com/nginx/kubernetes-ingress/pull/10177), [10652](https://github.com/nginx/kubernetes-ingress/pull/10652), [10399](https://github.com/nginx/kubernetes-ingress/pull/10399), [10300](https://github.com/nginx/kubernetes-ingress/pull/10300), [10312](https://github.com/nginx/kubernetes-ingress/pull/10312), [10288](https://github.com/nginx/kubernetes-ingress/pull/10288), [10056](https://github.com/nginx/kubernetes-ingress/pull/10056), [10374](https://github.com/nginx/kubernetes-ingress/pull/10374), [10400](https://github.com/nginx/kubernetes-ingress/pull/10400), [10377](https://github.com/nginx/kubernetes-ingress/pull/10377), [10649](https://github.com/nginx/kubernetes-ingress/pull/10649), [10510](https://github.com/nginx/kubernetes-ingress/pull/10510), [10361](https://github.com/nginx/kubernetes-ingress/pull/10361), [10610](https://github.com/nginx/kubernetes-ingress/pull/10610), [10616](https://github.com/nginx/kubernetes-ingress/pull/10616), [10614](https://github.com/nginx/kubernetes-ingress/pull/10614), [10678](https://github.com/nginx/kubernetes-ingress/pull/10678), [10693](https://github.com/nginx/kubernetes-ingress/pull/10693), [10615](https://github.com/nginx/kubernetes-ingress/pull/10615) & [10677](https://github.com/nginx/kubernetes-ingress/pull/10677) Bump Go dependencies
+- [10718](https://github.com/nginx/kubernetes-ingress/pull/10718), [10018](https://github.com/nginx/kubernetes-ingress/pull/10018), [10101](https://github.com/nginx/kubernetes-ingress/pull/10101), [10165](https://github.com/nginx/kubernetes-ingress/pull/10165), [10578](https://github.com/nginx/kubernetes-ingress/pull/10578), [10194](https://github.com/nginx/kubernetes-ingress/pull/10194), [10648](https://github.com/nginx/kubernetes-ingress/pull/10648), [10694](https://github.com/nginx/kubernetes-ingress/pull/10694), [10205](https://github.com/nginx/kubernetes-ingress/pull/10205), [10216](https://github.com/nginx/kubernetes-ingress/pull/10216), [10244](https://github.com/nginx/kubernetes-ingress/pull/10244), [10235](https://github.com/nginx/kubernetes-ingress/pull/10235), [10669](https://github.com/nginx/kubernetes-ingress/pull/10669), [10558](https://github.com/nginx/kubernetes-ingress/pull/10558), [10243](https://github.com/nginx/kubernetes-ingress/pull/10243), [10283](https://github.com/nginx/kubernetes-ingress/pull/10283), [10717](https://github.com/nginx/kubernetes-ingress/pull/10717), [10041](https://github.com/nginx/kubernetes-ingress/pull/10041), [10375](https://github.com/nginx/kubernetes-ingress/pull/10375), [10465](https://github.com/nginx/kubernetes-ingress/pull/10465), [10481](https://github.com/nginx/kubernetes-ingress/pull/10481), [10447](https://github.com/nginx/kubernetes-ingress/pull/10447), [10605](https://github.com/nginx/kubernetes-ingress/pull/10605), [10663](https://github.com/nginx/kubernetes-ingress/pull/10663), [10655](https://github.com/nginx/kubernetes-ingress/pull/10655), [10692](https://github.com/nginx/kubernetes-ingress/pull/10692) & [10720](https://github.com/nginx/kubernetes-ingress/pull/10720) Bump Docker dependencies
+- [10360](https://github.com/nginx/kubernetes-ingress/pull/10360) [pre-commit.ci] pre-commit autoupdate
+- [10540](https://github.com/nginx/kubernetes-ingress/pull/10540) Update module mvdan.cc/gofumpt to v0.11.0 (main)
+- [10676](https://github.com/nginx/kubernetes-ingress/pull/10676) Update module github.com/mikefarah/yq/v4 to v4.53.6 (main)
+- [10086](https://github.com/nginx/kubernetes-ingress/pull/10086) Update kindest/node to v1.36.1 (main)
+
+### {{% icon download %}} Upgrade
+
+- For NGINX, use the 5.6.0 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.6.0 images from the F5 Container registry or build your own image from the 5.6.0 source code.
+- For Helm, use version 2.7.0 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.36.
+
 ## 5.5.4
 
 16 Jul 2026
