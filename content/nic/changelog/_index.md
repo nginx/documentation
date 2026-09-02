@@ -39,6 +39,7 @@ Highlights:
 - Native HSTS policy support for VirtualServer, VirtualServerRoute, and Ingress resources.
 - Additional ingress-nginx annotations and configMap updates - Includes setting the host header, disabling X-Forwarded headers and customer error pages
 - Significant Improvements to Configuration Safety - NGINX Ingress Controller no longer runs `nginx -t` after every configuration file write during initial reconciliation; instead, writes are batched and validated once for the whole batch after the initial queue drains. This significantly reduces startup time on large clusters.
+- Removed: Deprecated NGINX Service Mesh integration.
 
 ### {{% icon rocket %}} Features
 
