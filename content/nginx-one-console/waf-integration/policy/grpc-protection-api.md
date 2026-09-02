@@ -84,7 +84,7 @@ When creating a policy (`POST /app-protect/policies` only, not supported on upda
 
 ```bash
 curl -X POST https://api.nginx-one.console.nginx.com/app-protect/policies \
-  -H "Authorization: Bearer <TOKEN>" \
+  -H "Authorization: Bearer <API_KEY>" \
   -F "policy=<BASE64_ENCODED_POLICY_JSON>" \
   -F "file_references_archive=@refs.tar.gz;type=application/gzip"
 ```
