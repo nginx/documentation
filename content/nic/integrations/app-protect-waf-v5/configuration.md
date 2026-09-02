@@ -19,7 +19,7 @@ NGINX Ingress Controller has global configuration parameters that match those in
 
 ## Enable F5 WAF for NGINX v5
 
-F5 WAF for NGINX v5 can be enabled for VirtualServer, VirtualServerRoute, and Ingress resources through a Policy resource that references a WAF bundle or bundle source. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
+F5 WAF for NGINX v5 can be enabled for VirtualServer, VirtualServerRoute, and Ingress resources through a Policy resource that references a WAF bundle or bundle source. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
 
 {{< call-out class="note" >}}
 
