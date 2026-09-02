@@ -19,7 +19,7 @@ NGINX Ingress Controller has global configuration parameters that match those in
 
 F5 WAF for NGINX can be enabled and configured for custom resources (VirtualServer, VirtualServerRoute) or Ingress resources.
 
-- For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
+- For custom resources, you need to create a Policy Custom Resource referencing the `APPolicy` custom resource or bundle, then add it to the VirtualServer definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
 - For Ingress resources, apply the [`app-protect` annotations]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) to each desired resource.
 
 {{< call-out class="note" >}}
@@ -115,7 +115,7 @@ To add the [log configurations](/nginx-app-protect-waf/v4/logging-overview/secur
 
 1. Create an `APLogConf` Custom Resource manifest.
 1. Add the log configuration to the `spec` field in the `APLogConf` resource.
-1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< ref "/nic/configuration/policy-resource.md#waf" >}}) or the [Ingress resource]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
+1. Add a reference to `APLogConf` in the [VirtualServer Policy resource]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}) or the [Ingress resource]({{< ref "/nic/configuration/ingress-resources/advanced-configuration-with-annotations.md#app-protect" >}}) as per the documentation.
 
 {{< call-out class="note" >}}
 
@@ -551,7 +551,7 @@ In this example we deploy NGINX Ingress Controller with NGINX Plus and F5 WAF fo
     IC_HTTP_PORT=<port number>
    ```
 
-### Step 1. Deploy a Web Application
+### Deploy a Web Application
 
 Create the application deployment and service:
 
@@ -559,7 +559,7 @@ Create the application deployment and service:
   kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/webapp.yaml
   ```
 
-### Step 2. Deploy the AP Policy
+### Deploy the AP Policy
 
 1. Create the syslog service and pod for the F5 WAF for NGINX security logs:
 
@@ -575,7 +575,7 @@ Create the application deployment and service:
     kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v{{< nic-version >}}/examples/custom-resources/app-protect-waf/ap-logconf.yaml
     ```
 
-### Step 3 - Deploy the WAF Policy
+### Deploy the WAF Policy
 
 Create the WAF policy
 
@@ -585,7 +585,7 @@ Create the WAF policy
 
   Note the F5 WAF for NGINX configuration settings in the Policy resource. They enable WAF protection by configuring F5 WAF for NGINX with the policy and log configuration created in the previous step.
 
-### Step 4 - Configure Load Balancing
+### Configure Load Balancing
 
 1. Create the VirtualServer Resource:
 
@@ -595,7 +595,7 @@ Create the WAF policy
 
 Note that the VirtualServer references the policy waf-policy created in Step 3.
 
-### Step 5 - Test the Application
+### Test the Application
 
 To access the application, curl the coffee and the tea services. We'll use the --resolve option to set the Host header of a request with `webapp.example.com`
 

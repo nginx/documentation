@@ -19,7 +19,13 @@ NGINX Ingress Controller has global configuration parameters that match those in
 
 ## Enable F5 WAF for NGINX v5
 
-F5 WAF for NGINX v5 can be enabled and configured for custom resources only(VirtualServer, VirtualServerRoute). You need to create a Policy Custom Resource referencing a policy bundle, then add it to the VirtualServer/VirtualServerRoute definition. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource.md#waf" >}}).
+F5 WAF for NGINX v5 can be enabled for VirtualServer, VirtualServerRoute, and Ingress resources through a Policy resource that references a WAF bundle or bundle source. Additional detail can be found in the [Policy Resource documentation]({{< ref "/nic/configuration/policy-resource/policy-reference.md#waf" >}}).
+
+{{< call-out class="note" >}}
+
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
+
+{{< /call-out >}}
 
 {{< call-out class="note" >}}
 
@@ -34,6 +40,8 @@ Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT`
 F5 WAF for NGINX bundles for VirtualServer custom resources are defined by creating policy bundles and putting them on a mounted volume accessible from NGINX Ingress Controller.
 
 Before applying a policy, a WAF policy bundle must be created, then copied to a volume mounted to `/etc/app_protect/bundles`.
+
+{{< call-out class="tip" >}} Instead of manually placing bundles on a mounted volume, you can configure NGINX Ingress Controller to fetch bundles from a remote source automatically. See [Connect F5 WAF for NGINX to bundle sources]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}) for details on NGINX One Console, NGINX Instance Manager, and HTTPS source types. {{< /call-out >}}
 
 {{< call-out class="note" >}} NGINX Ingress Controller supports `securityLogs` for policy bundles. Log bundles must also be copied to a volume mounted to `/etc/app_protect/bundles`. {{< /call-out >}}
 
