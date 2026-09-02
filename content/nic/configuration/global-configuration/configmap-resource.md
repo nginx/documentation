@@ -117,8 +117,8 @@ For more information, view the [VirtualServer and VirtualServerRoute resources](
  `disable-forwarded-headers` removes the hardcoded X-Forwarded-* headers directives allowing users to manually manage forwarded headers using add-header. This setting is available only when `--enable-snippets` is enabled, due to the security implications of manually managing forwarded headers.
 
 Only enable disable-forwarded-headers if:
-You fully trust all upstream proxies in your request path, and
-You have validated that your infrastructure sanitizes or overwrites these headers before they reach NGINX (e.g., via an external load balancer), or you want to explicitly set these values yourself.
+- You fully trust all upstream proxies in your request path, and
+- You have validated that your infrastructure sanitizes or overwrites these headers before they reach NGINX (for example, via an external load balancer), or you want to explicitly set these values yourself.
 {{< /call-out >}}
 
 |ConfigMap Key | Description | Default |
