@@ -13,6 +13,13 @@ FROM registry.access.redhat.com/ubi8
 ARG RHEL_ORG
 ARG RHEL_ACTIVATION_KEY
 
+# Leave empty to install the most recent version. To build a specific version,
+# set the argument, for example:
+#   --build-arg DOS_VERSION="-37+4.9.6"
+# NGINX Plus needs no pin here, because dnf can select an older nginx-plus to
+# satisfy the module's nginx-plus-r<release> dependency.
+ARG DOS_VERSION=""
+
 # Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
@@ -26,7 +33,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf -y install ca-certificates \
     && curl -o /etc/yum.repos.d/plus-8.repo https://cs.nginx.com/static/files/plus-8.repo \
     && curl -o /etc/yum.repos.d/app-protect-dos-8.repo https://cs.nginx.com/static/files/app-protect-dos-8.repo \
-    && dnf -y install app-protect-dos \
+    && dnf -y install "app-protect-dos${DOS_VERSION}" \
     && cat license.jwt > /etc/nginx/license.jwt \
     && rm /etc/yum.repos.d/plus-8.repo \
     && rm /etc/yum.repos.d/app-protect-dos-8.repo \
