@@ -20,17 +20,17 @@ Since May 13, 2026, NGINX Plus follows a new release model: F5 NGINX Commercial 
 
 Each release version is available in two tracks:
 
-[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.4.1` LTS](#pls.37.0.4).
+[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.5.1` LTS](#pls.37.0.5).
 
-[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. Wnen a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.0.1` CR](#pls.37.1.0).
 
 ### Release schedule
 
 Each new LTS release version is published annually and supported for three years.
 
-LTS patch releases are published as soon as a security mitigation is disclosed.
+LTS releases are published regularly to address important bug fixes. The latest LTS release was published on September 2, 2026.
 
-CR releases shipped regularly with latest features and security updates, they may also be shipped immediately when critical security mitigations are disclosed.
+CR releases are shipped regularly with latest features, enhancements and bug updates. The latest CR release was published on September 2, 2026.
 
 ### Release numbering
 
@@ -78,6 +78,13 @@ LTS patch versions follow the numbering format: `PLS.37.0.<patch>.<package>`: th
 
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 
+### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
+_September 2, 2026_<br/>
+
+NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to this version to ensure they are running the most stable and secure version of NGINX Plus.
+
+{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+
 ### NGINX Plus PLS.37.0.4.1 LTS {#pls.37.0.4}
 _July 22, 2026_<br/>
 
@@ -86,8 +93,6 @@ NGINX Plus PLS.37.0.4.1 LTS is a bugfix release:
 - If the `Host` header field value set by [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) evaluates to an empty string, the value of [`$proxy_host`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_host) is used instead. This prevents sending upstream requests without a `Host` (HTTP/1.1) or `:authority` (HTTP/2) header, and also allows [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) to pass in some configurations. The bug appeared in [NGINX Plus PLS.37.0.0.1 LTS](#r37.0).
 
 - Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/). The bug appeared in [NGINX Plus PLS.37.0.3.1 LTS](#pls.37.0.3).
-
-{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
 
 ### NGINX Plus PLS.37.0.3.1 LTS {#pls.37.0.3}
 _July 15, 2026_<br/>
@@ -187,7 +192,81 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 
 Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
 
-Currently, there are no CR releases for the [NGINX Plus PLS.37](#r37.0).
+### NGINX Plus PLS.37.1.0.1 CR {#pls.37.1.0}
+_September 2, 2026_<br/>
+_Based on NGINX Open Source 1.31.3_
+
+NGINX Plus PLS.37.1.0.1 CR is a feature release.
+
+- Deferred license autorenewal: the [`license_pending_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_pending_token) directive which allows adding a license via the API. API v10 now supports adding a license with the `PUT` method.
+
+- [Variable-based rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) allowing rate limits to be configured dynamically based on variables.
+
+- SSL and TLS
+
+  - The [`proxy_ssl_alpn`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_alpn) directive for stream.
+
+  - The [`$ssl_sigalgs`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_sigalgs) variable that returns the signature algorithm for the server certificate for an established SSL connection.
+
+  - Lowered the logging level of some SSL alert and record-layer errors from `crit` to `info`.
+
+- HTTP/2, HTTP/3, QUIC, and gRPC
+
+  - Improved HTTP/2 and HTTP/3 protocol validation, including stricter handling of connection-related headers, pseudo-headers, and invalid response metadata.
+
+  - Fixed multiple HTTP/2 proxying issues related to flow control, backend connection caching, cached responses, and incorrect `Upgrade` headers.
+
+  - The size of headers and trailers in HTTP/2 responses is now limited with [`proxy_buffer_size`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [`grpc_buffer_size`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size) directives.
+
+  - Fixed QUIC IPv6 fragmentation handling on some operating systems.
+
+- Proxying
+
+  - Configurable socket send and receive buffer directives [`proxy_socket_sndbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_sndbuf) and [`proxy_socket_rcvbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_rcvbuf), also for FastCGI, gRPC, SCGI, uWSGI, and tunnel upstream connections.
+
+  - Fixed transfer of proxied HTTP/0.9, SCGI, and uWSGI responses when the first response line was not fully read.
+
+- Security and hardening
+
+  - Improved `secure_link` hash comparison to use constant-time comparison.
+
+  - Updated the `$request_id` variable to use SipHash-2-4.
+
+  - Improved WebDAV validation for `COPY` and `MOVE` requests involving identical or parent-child resources.
+
+- Other fixes and improvements
+
+  - XSLT filter module: the new [`xml_external_entities`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xml_external_entities) directive, loading of external XML entities is now enabled.
+
+  - Fixed an issue where `split_clients` variables could be empty when explicitly configured percentages summed to 100%.
+
+  - Fixed issues in the `ngx_http_tunnel_module` module.
+
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-1-release-now-available/347466) blog post. {{< /call-out >}}
+
+NGINX Plus PLS.37.1.0.1 CR is supported on:
+
+{{<table>}}
+| Distribution                     | Versions                        | Architecture    |
+|----------------------------------|---------------------------------|-----------------|
+| AlmaLinux                        | 8.1+, 9.7+, 10                  | x86_64, aarch64 |
+| Alpine Linux                     | 3.21, 3.22, 3.23, 3.24          | x86_64, aarch64 |
+| Amazon Linux                     | 2023                            | x86_64, aarch64 |
+| Debian                           | 11, 12, 13                      | x86_64, aarch64 |
+| FreeBSD                          | 14.3+, 15.0+                    | amd64           |
+| Oracle Linux                     | 8.1+, 9.7+                      | x86_64, aarch64 |
+| RHEL                             | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| Rocky Linux                      | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| SUSE Linux Enterprise Server     | 15 SP7+, 16                     | x86_64, aarch64 |
+| Ubuntu                           | 22.04, 24.04, 26.04             | x86_64, aarch64 |
+{{</table >}}
+
+**Notes:**
+
+- Alpine Linux 3.24 is added
+- FreeBSD 13 is removed
+- Amazon Linux 2 is removed
+- Debian 11 is deprecated
 
 
 ## Other supported releases
@@ -197,7 +276,7 @@ F5 offers 24 months of technical support for each NGINX Plus release, beginning 
 {{<table>}}
 | NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
 |--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | R37.1 release date        | Nov 30, 2027             |
+| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | Sept 2, 2026        | Nov 30, 2027             |
 | [R35](#r35)        | Aug 13, 2025 | Dec 1, 2025                 | May 13, 2026        | Aug 12, 2027             |
 | [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | Dec 1, 2025        |      Mar 31, 2027             |
 | [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | Aug 13 2025             | Nov 18, 2026             |
