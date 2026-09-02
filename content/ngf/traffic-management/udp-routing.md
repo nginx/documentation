@@ -168,7 +168,7 @@ Create UDPRoute for routing to `coredns` application:
 
 ```yaml
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1alpha2
+apiVersion: gateway.networking.k8s.io/v1
 kind: UDPRoute
 metadata:
   name: coredns

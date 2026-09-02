@@ -11,6 +11,11 @@ FROM registry.access.redhat.com/ubi10
 ARG RHEL_ORG
 ARG RHEL_ACTIVATION_KEY
 
+# Set this to the same version you built the F5 DoS for NGINX image with, for example:
+#   --build-arg DOS_VERSION="-37+4.9.6"
+# Left empty, the most recent version is installed, which may not match that image.
+ARG DOS_VERSION=""
+
 # Install F5 DoS ebpf manager for NGINX and create required nginx user
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
@@ -21,7 +26,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm \
     && dnf -y install ca-certificates \
     && curl -o /etc/yum.repos.d/app-protect-dos-10.repo https://cs.nginx.com/static/files/app-protect-dos-10.repo \
-    && dnf -y install app-protect-dos-ebpf-manager \
+    && dnf -y install "app-protect-dos-ebpf-manager${DOS_VERSION}" \
     && rm /etc/yum.repos.d/app-protect-dos-10.repo \
     && dnf clean all \
     && rm -rf /var/cache/yum

@@ -388,24 +388,6 @@ A Secret with a TLS certificate and key for TLS termination of the Service Insig
 
 Format: `<namespace>/<name>`
 
-<a name="cmdoption-spire-agent-address"></a>
-
-### -spire-agent-address `<string>`
-
-Specifies the address of a running Spire agent. **For use with NGINX Service Mesh only**.
-
-- If the argument is set, but NGINX Ingress Controller is unable to connect to the Spire Agent, NGINX Ingress Controller will fail to start.
-
-<a name="cmdoption-enable-internal-routes"></a>
-
-### -enable-internal-routes
-
-Enable support for internal routes with NGINX Service Mesh. **For use with NGINX Service Mesh only**.
-
-Requires [-spire-agent-address](#cmdoption-spire-agent-address).
-
-- If the argument is set, but `spire-agent-address` is not provided, NGINX Ingress Controller will fail to start.
-
 <a name="cmdoption-enable-latency-metrics"></a>
 
 ### -enable-latency-metrics
@@ -496,6 +478,42 @@ Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect-dos](#cmd
 Enables App Protect IP Intelligence. Defaults to `false`. *Only applies to WAF single-container deployments*.
 
 Requires [-nginx-plus](#cmdoption-nginx-plus) and [-enable-app-protect](#cmdoption-enable-app-protect).
+
+<a name="cmdoption-plm-storage-url"></a>
+
+### -plm-storage-url
+
+SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and logconf bundle. Leave empty to turn off PLM support.
+
+<a name="cmdoption-plm-storage-credentials-secret"></a>
+
+### -plm-storage-credentials-secret
+
+A Secret containing the SeaweedFS admin secret in the `seaweedfs_admin_secret` key.
+
+Format: `<namespace>/<name>`
+
+<a name="cmdoption-plm-storage-ca-secret"></a>
+
+### -plm-storage-ca-secret
+
+An optional Secret containing `ca.crt` for SeaweedFS TLS verification.
+
+Format: `<namespace>/<name>`
+
+<a name="cmdoption-plm-storage-client-ssl-secret"></a>
+
+### -plm-storage-client-ssl-secret
+
+An optional Secret containing `tls.crt` and `tls.key` for SeaweedFS mTLS.
+
+Format: `<namespace>/<name>`
+
+<a name="cmdoption-plm-storage-insecure-skip-verify"></a>
+
+### -plm-storage-insecure-skip-verify
+
+Turns off SeaweedFS TLS verification. For development and testing only.
 
 <a name="cmdoption-ready-status"></a>
 

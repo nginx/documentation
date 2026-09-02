@@ -8,6 +8,11 @@ f5-files:
 # For AmazonLinux 2023:
 FROM amazonlinux:2023
 
+# Set this to the same version you built the F5 DoS for NGINX image with, for example:
+#   --build-arg DOS_VERSION="-37+4.9.6"
+# Left empty, the most recent version is installed, which may not match that image.
+ARG DOS_VERSION=""
+
 # Install F5 DoS ebpf manager for NGINX and create required nginx user
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
@@ -16,7 +21,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
      && groupadd --system --gid 101 nginx \
      && useradd --system --gid nginx --no-create-home --home /nonexistent --comment "nginx user" --shell /bin/false --uid 101 nginx \
      && curl -o  /etc/yum.repos.d/app-protect-dos-amazonlinux2023.repo https://cs.nginx.com/static/files/app-protect-dos-amazonlinux2023.repo \
-     && dnf install -y app-protect-dos-ebpf-manager \
+     && dnf install -y "app-protect-dos-ebpf-manager${DOS_VERSION}" \
      && dnf clean all \
      && rm -rf /var/cache/dnf
 
