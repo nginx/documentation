@@ -420,7 +420,7 @@ The JSON data returned:
 
 ```json
 {
-   "version" : "1.31.4",
+   "version" : "1.31.3",
    "build" : "nginx-plus-r37.1.0"
 }
 ```

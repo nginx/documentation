@@ -28,7 +28,7 @@ Each release version is available in two tracks:
 
 Each new LTS release version is published annually and supported for three years.
 
-LTS patch releases are published as soon as a security mitigation is disclosed. The latest LTS release was published on September 2, 2026.
+LTS releases are published regularly to address important bug fixes. The latest LTS release was published on September 2, 2026.
 
 CR releases are shipped regularly with latest features, enhancements and bug updates. The latest CR release was published on September 2, 2026.
 
@@ -194,14 +194,13 @@ Continuous Releases (CR) track includes the newest features and performance impr
 
 ### NGINX Plus PLS.37.1.0.1 CR {#pls.37.1.0}
 _September 2, 2026_<br/>
+_Based on NGINX Open Source 1.31.3_
 
 NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
 - Deferred license autorenewal: the [`license_pending_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_pending_token) directive which allows adding a license via the API. API v10 now supports adding a license with the `PUT` method.
 
 - [Variable-based rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) allowing rate limits to be configured dynamically based on variables.
-
-- The PROXY protocol version 2 support to the [`proxy_protocol`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_protocol) directive in the stream and mail modules.
 
 - SSL and TLS
 
@@ -221,8 +220,6 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
   - Fixed QUIC IPv6 fragmentation handling on some operating systems.
 
-  - Ensured HTTP/2 and gRPC backend requests are sent with the `:authority` pseudo-header, and HTTP/1.1 backend requests are sent with the `Host` header.
-
 - Proxying
 
   - Configurable socket send and receive buffer directives [`proxy_socket_sndbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_sndbuf) and [`proxy_socket_rcvbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_rcvbuf), also for FastCGI, gRPC, SCGI, uWSGI, and tunnel upstream connections.
@@ -237,17 +234,13 @@ NGINX Plus PLS.37.1.0.1 CR is a feature release.
 
   - Improved WebDAV validation for `COPY` and `MOVE` requests involving identical or parent-child resources.
 
-- Modules fixes and improvements
+- Other fixes and improvements
 
   - XSLT filter module: the new [`xml_external_entities`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xml_external_entities) directive, loading of external XML entities is now enabled.
 
   - Fixed an issue where `split_clients` variables could be empty when explicitly configured percentages summed to 100%.
 
-  - Fixed a possible worker process segmentation fault when using the `select` event method.
-
-- Other bug fixes
-
-  - Fixed issues in the `ngx_http_perl_module`, `ngx_http_image_filter_module`, `ngx_http_tunnel_module`.
+  - Fixed issues in the `ngx_http_tunnel_module` module.
 
 {{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-1-release-now-available/347466) blog post. {{< /call-out >}}
 
