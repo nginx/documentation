@@ -31,7 +31,7 @@ To review supported operating systems, read the [Releases]({{< ref "/nap-dos/rel
 
 In the same folder as your credential files, create a _Dockerfile_ based on your desired operating system image using an example from the following sections.
 
-As written, the examples install the most recent version of F5 DoS for NGINX and NGINX Plus. Each F5 DoS for NGINX version is built for one NGINX Plus release, so to build a specific version, set both `DOS_VERSION` and `NGINX_PLUS_VERSION`. To review which NGINX Plus release each version requires, read the [Releases]({{< ref "/nap-dos/releases" >}}) topic.
+As written, the examples install the most recent version of F5 DoS for NGINX and NGINX Plus. To build a specific version instead, set the `DOS_VERSION` build argument, using the syntax shown in the comment at the top of the Dockerfile for your operating system. On Debian and Ubuntu, also set `NGINX_PLUS_VERSION`, because `apt` considers only the newest `nginx-plus` available and does not select an older one to satisfy the module's dependency. To review which NGINX Plus release each version requires, read the [Releases]({{< ref "/nap-dos/releases" >}}) topic.
 
 ### Alpine Linux
 
