@@ -151,6 +151,8 @@ The `install` script writes an `nginx-agent.conf` file to the `/etc/nginx-agent/
 
 {{<call-out class="note" title="Note: NGINX Agent poll interval" >}} We recommend keeping `dataplane.status.poll_interval` between `30s` and `60s` in the NGINX Agent config (`/etc/nginx-agent/nginx-agent.conf`). If the interval is set above `60s`, NGINX One Console may report incorrect instance statuses.{{</call-out>}}
 
+{{<call-out class="note" title="Note: Instance display names" >}} To assign a display name that's easier to recognize than the hostname, set the `display-name` NGINX Agent label. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}).{{</call-out>}}
+
 <br>
 
 ---
@@ -163,16 +165,16 @@ The NGINX One Console dashboard relies on APIs for NGINX Plus and NGINX Open Sou
 
 {{<tabs name="enable-nginx-metrics" >}}
 
-{{%tab name="without SSL"%}}
+{{<tab name="without SSL">}}
 {{< include "/use-cases/monitoring/enable-nginx-plus-api.md" >}}
 
-{{% /tab %}}
-{{%tab name="with SSL"%}}
+{{< /tab >}}
+{{<tab name="with SSL">}}
 
 {{< include "/use-cases/monitoring/enable-nginx-plus-api-with-ssl.md" >}}
 
-{{% /tab %}}
-{{% /tabs %}}
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Enable NGINX Open Source Metrics
 
