@@ -27,12 +27,6 @@ Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT`
 
 {{< /call-out >}}
 
-{{< call-out class="note" >}}
-
-Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
-
-{{< /call-out >}}
-
 ---
 
 ## F5 WAF for NGINX Bundles
