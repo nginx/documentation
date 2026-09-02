@@ -11,14 +11,6 @@ f5-summary: >
   Docker Compose. F5 builds and maintains this image, so you don't need to build it yourself.
 ---
 
-<!-- SME REVIEW: This doc assumes the official image does not use the startNIM.sh / yq
-runtime-config-injection mechanism documented for the build-your-own image. Reasoning: neither
-NMS-47539 nor the runbook mentions startNIM.sh, and the standard (non-rootless) Docker Compose
-doc's env-var-driven config doesn't reference it either, which suggests that mechanism is specific
-to the customer-built entrypoint, not the F5-published one. This is inference, not confirmation.
-Worth a quick check with Vamshi, but not blocking, and low risk either way since the env var table
-below works the same regardless of which mechanism applies underneath it. -->
-
 ## Overview
 
 This guide shows you how to deploy F5 NGINX Instance Manager using an official rootless Docker image and Docker Compose. F5 builds and maintains this image, so you don't need to build it yourself. All container processes run as a non-root user (`nms`).
@@ -292,15 +284,22 @@ Both services must share the same Docker network.
 
 ### Port binding failure
 
-Symptom: `bind() to 0.0.0.0:443 failed (13: Permission denied)`.
+Symptom: `bind() to 0.0.0.0:443 failed (13: Permission denied)`, or a similar bind error.
 
-Check that the NGINX binary has the required capability:
+<!-- SME REVIEW: Vamshi confirmed (Slack thread, PR #317) this is usually a port conflict, resolved
+by the customer, not an F5 Support case. The fix below reflects his answer. The symptom text above
+is carried over from the build-your-own doc's cap_net_bind_service scenario, a true permission
+error (errno 13). A plain port-in-use conflict normally raises "Address already in use" (errno 98)
+instead, so this entry may be combining two different failure modes under one symptom line. Confirm
+the exact error text customers actually see with the official image before this ships. -->
+
+Check whether another process on your host already uses the port:
 
 ```shell
-docker compose -f docker-compose-rootless.yaml exec nim getcap $(which nginx)
+sudo lsof -i :8443
 ```
 
-The expected output is `/usr/sbin/nginx cap_net_bind_service=ep`. If it's missing, contact F5 Support. You can't fix this at runtime, and you can't rebuild this image yourself.
+If it does, stop that process, or change the port mapping in `docker-compose-rootless.yaml` to an available port. Restart the stack to apply the change.
 
 ### Certificate issues
 
