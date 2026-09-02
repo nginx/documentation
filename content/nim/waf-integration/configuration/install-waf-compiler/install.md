@@ -169,7 +169,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 {{< /tabs >}}
 
-{{<call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.715.0" >}}If you see following error messages in the UI: 
+{{< call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.715.0" >}}If you see the following error message in the UI:
 ```text
 <instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
 ```
