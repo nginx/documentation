@@ -49,8 +49,6 @@ Consider an AuthenticationFilter with `authorization.require: Any` and two rules
 
 Since the top-level require is `Any`, a request is authorized if the token satisfies **either** rule 0 **or** rule 1. A token that only partially matches both rules would be rejected as it does not fully satisfy either rule.
 
----
-
 ## Before you begin
 
 - [Install]({{< ref "/ngf/install/" >}}) NGINX Gateway Fabric with NGINX Plus.
