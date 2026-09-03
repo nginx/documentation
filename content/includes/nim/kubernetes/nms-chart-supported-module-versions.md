@@ -9,6 +9,7 @@ f5-files:
 
 | NGINX Instance Manager chart | Chart                      | Instance Manager |
 |------------------------------|----------------------------|------------------|
+| 2.3.0                        | nginx-stable/nim           | 2.23.0           |
 | 2.2.2                        | nginx-stable/nim           | 2.22.2           |
 | 2.2.1                        | nginx-stable/nim           | 2.22.1           |
 | 2.2.0                        | nginx-stable/nim           | 2.22.0           |

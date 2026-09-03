@@ -38,16 +38,17 @@ F5 recommends the latest version of NGINX Instance Manager. It includes the newe
 
 The following table shows end-of-support (EoS) dates for recent versions.
 
-| NGINX Instance Manager | End of support (EoS) |
-|------------------------|-----------------------|
-| 2.22.x                 | April 27, 2028        |
-| 2.21.x                 | November 07, 2027     |
-| 2.20.x                 | June 16, 2027         |
-| 2.19.x                 | February 06, 2027     |
-| 2.18.x                 | November 08, 2026     |
-| 2.17.x                 | July 10, 2026         |
-| 2.16.x                 | April 18, 2026        |
-| 2.15.x                 | December 12, 2025     |
+| NGINX Instance Manager | End of Support (EoS) |
+|------------------------|----------------------|
+| 2.23.x                 | September 1, 2028    |
+| 2.22.x                 | April 27, 2028       |
+| 2.21.x                 | November 07, 2027    |
+| 2.20.x                 | June 16, 2027        |
+| 2.19.x                 | February 06, 2027    |
+| 2.18.x                 | November 08, 2026    |
+| 2.17.x                 | July 10, 2026        |
+| 2.16.x                 | April 18, 2026       |
+| 2.15.x                 | December 12, 2025    |
 
 ## Supported NGINX versions {#nginx-versions}
 

@@ -140,6 +140,11 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.pod.extraLabels** | The additional extra labels of the NGINX Ingress Controller pod. | {} |
 | **controller.appprotect.enable** | Enables the F5 WAF for NGINX module in the NGINX Ingress Controller. | false |
 | **controller.appprotect.v5** | Enables F5 WAF for NGINX v5. | false |
+| **controller.appprotect.plmStorage.url** | SeaweedFS S3 endpoint from which NGINX Ingress Controller fetches the policy and logconf bundle. Leave empty to turn off PLM support. Requires `controller.appprotect.v5` to be `true`. | "" |
+| **controller.appprotect.plmStorage.credentialsSecret** | Secret containing the SeaweedFS admin secret in the `seaweedfs_admin_secret` key. Format: `<NAMESPACE>/<NAME>`. | "" |
+| **controller.appprotect.plmStorage.caSecret** | Optional Secret containing the SeaweedFS admin secret under `seaweedfs_admin_secret`. Format: `<NAMESPACE>/<NAME>`. | "" |
+| **controller.appprotect.plmStorage.clientSSLSecret** | Optional Secret containing `tls.crt` and `tls.key` for SeaweedFS mTLS. Format: `<NAMESPACE>/<NAME>`. | "" |
+| **controller.appprotect.plmStorage.insecureSkipVerify** | Turns off SeaweedFS TLS verification. For development and testing only. | false |
 | **controller.appprotect.volumes** | Volumes for F5 WAF for NGINX v5. | [{"name": "app-protect-bd-config", "emptyDir": {}},{"name": "app-protect-config", "emptyDir": {}},{"name": "app-protect-bundles", "emptyDir": {}}] |
 | **controller.appprotect.enforcer.host** | Host that the F5 WAF for NGINX v5 Enforcer runs on. | "127.0.0.1" |
 | **controller.appprotect.enforcer.port** | Port that the F5 WAF for NGINX v5 Enforcer runs on. | 50000 |
@@ -199,6 +204,9 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.enableSSLDynamicReload** | Enable lazy loading for SSL Certificates. | true |
 | **controller.telemetryReporting.enable** | Enable telemetry reporting. | true |
 | **controller.enableWeightChangesDynamicReload** | Enable weight changes without reloading the NGINX configuration. May require increasing `map_hash_bucket_size`, `map_hash_max_size`, `variable_hash_bucket_size`, and `variable_hash_max_size` in the [ConfigMap]({{< ref "/nic/configuration/global-configuration/configmap-resource.md" >}}) if there are many two-way splits. Requires `controller.nginxplus` | false |
+| **controller.networkPolicy.enabled** | Create a NetworkPolicy that targets the controller pods.  If `enabled` is set to `true` and both ingress and egress are empty, the resulting NetworkPolicy denies all ingress by default. | false |
+| **controller.networkPolicy.ingress** | Configure ingress rules. When non-empty, the Ingress policy type is added automatically. | [] |
+| **controller.networkPolicy.egress** | Configure egress rules. When non-empty, the Egress policy type is added automatically. | [] |
 |**nginxAgent.enable** | Enable NGINX Agent 3.x to allow [connecting to NGINX One Console]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}) or to integrate NGINX Agent 2.x for [Security Monitoring]({{< ref "/nic/tutorials/security-monitoring.md" >}}) . | false |
 |**nginxAgent.logLevel** | Log level for NGINX Agent. | "error" |
 |**nginxAgent.dataplaneKeySecretName** | Name of the Kubernetes Secret containing the Data Plane key used to authenticate to NGINX One Console. Learn more [here]({{< ref "/nginx-one-console/k8s/add-nic.md" >}}). Required when `nginxAgent.enable` is set to `true`. Requires NGINX Agent 3.x. | "" |
@@ -218,8 +226,6 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 |**nginxAgent.napMonitoring.collectorBufferSize** | Buffer size for collector. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
 |**nginxAgent.napMonitoring.processorBufferSize** | Buffer size for processor. Will contain log lines and parsed log lines. Requires NGINX Agent 2.x. | 50000 |
 |**nginxAgent.customConfigMap** | The name of a custom ConfigMap to use instead of the one provided by default. Requires NGINX Agent 2.x.| "" |
-| **nginxServiceMesh.enable** | Enable integration with NGINX Service Mesh. See the NGINX Service Mesh docs for more details. Requires `controller.nginxplus`. | false |
-| **nginxServiceMesh.enableEgress** | Enable NGINX Service Mesh workloads to route egress traffic through the NGINX Ingress Controller. See the NGINX Service Mesh docs for more details. Requires `nginxServiceMesh.enable`. | false |
 | **prometheus.create** | Expose NGINX or NGINX Plus metrics in the Prometheus format. | true |
 | **prometheus.port** | Configures the port to scrape the metrics. | 9113 |
 | **prometheus.scheme** | Configures the HTTP scheme to use for connections to the Prometheus endpoint. | http |

@@ -272,7 +272,8 @@ To view the full list of supported log levels, see the `NginxProxy spec` in the 
 
 {{< call-out class="note" >}}For `debug` logging to work, NGINX needs to be built with `--with-debug` or "in debug mode". NGINX Gateway Fabric can easily
 be [run with NGINX in debug mode](#run-nginx-gateway-fabric-with-nginx-in-debug-mode) upon startup through the addition
-of a few arguments. {{< /call-out >}}
+of a few arguments. 
+JSON error log format is not supported in debug mode. {{< /call-out >}}
 
 ---
 
@@ -309,6 +310,8 @@ spec:
       disable: true
 EOF
 ```
+
+NGINX Gateway Fabric supports errorLog in JSON format for NGINX Plus users. When  `errorLogFormat` is set to `json` and no custom access log format is defined, the access log also defaults to JSON format.
 
 {{< call-out class="note" >}} File destinations in `logging.accessLog` are not currently supported it is always set to `/dev/stdout`. {{< /call-out >}}
 
@@ -378,6 +381,39 @@ EOF
 ```
 
 {{< call-out class="note" >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /call-out >}}
+
+---
+
+## Route upstream traffic to the Service ClusterIP
+
+By default, NGINX Gateway Fabric resolves each backend Service to its individual Pod IPs and uses those as the upstream servers. This means that every time the backend Pods change (for example, during a scale up, scale down, or rollout), NGINX must reload to pick up the new set of endpoints.
+
+Setting `useClusterIP` to `true` in the `NginxProxy` resource configures NGINX to route to the Service's ClusterIP and port instead of the individual Pod IPs. The upstream then contains a single server (the Service VIP), and NGINX no longer needs to reload when the backend Pods churn. This is also useful for service mesh compatibility and for controllers or operators that require traffic to traverse the Service VIP.
+
+You can set `useClusterIP` globally for all Services through the `NginxProxy` resource, as shown below, or for a specific Service through the `useClusterIP` field of an [`UpstreamSettingsPolicy`]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}). When both are configured for the same Service, the `UpstreamSettingsPolicy` value takes precedence.
+
+{{< call-out "note" >}} Because the upstream contains only the Service VIP as a single server, you lose NGINX's load balancing across the backend Pods. Traffic is instead load balanced by the Kubernetes Service (kube-proxy), so NGINX load balancing settings such as those in an `UpstreamSettingsPolicy` no longer apply to that Service. {{< /call-out >}}
+
+The following command creates an `NginxProxy` resource that enables `useClusterIP`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  useClusterIP: true
+EOF
+```
+
+`useClusterIP` applies only when the target Service has a ClusterIP. The following cases fall back to the default Pod IP resolution:
+- Headless Services (ClusterIP: None).
+- ExternalName Services.
+
+Layer 4 (TCPRoute/UDPRoute) stream upstreams are unaffected by this setting, since it does not apply to L4 traffic.
+
+If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy` fields, it can be set on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details, and the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full list of options.
 
 ---
 

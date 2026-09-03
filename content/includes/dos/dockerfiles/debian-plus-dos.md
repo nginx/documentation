@@ -11,6 +11,14 @@ f5-files:
 # Where can be bullseye/bookworm/trixie
 FROM debian:bullseye
 
+# Leave both arguments empty to install the most recent version of each package.
+# To build a specific version, set both, for example:
+#   --build-arg DOS_VERSION="=37+4.9.6-1~bullseye" --build-arg NGINX_PLUS_VERSION="=37.0.*-1~bullseye"
+# Pin NGINX Plus as well: apt considers only the newest nginx-plus available and
+# does not select an older one to satisfy the module's nginx-plus-r<release> dependency.
+ARG DOS_VERSION=""
+ARG NGINX_PLUS_VERSION=""
+
 # Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
@@ -22,9 +30,10 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/plus/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-plus.list \
     && printf "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] https://pkgs.nginx.com/app-protect-dos/debian $(lsb_release -cs) nginx-plus\n" > /etc/apt/sources.list.d/nginx-app-protect-dos.list \
     && wget -P /etc/apt/apt.conf.d https://cs.nginx.com/static/files/90pkgs-nginx \
-    && DEBIAN_FRONTEND="noninteractive" apt-get install -y app-protect-dos \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y "app-protect-dos${DOS_VERSION}" "nginx-plus-module-appprotectdos${DOS_VERSION}" "nginx-plus${NGINX_PLUS_VERSION}" \
     && cat license.jwt > /etc/nginx/license.jwt \
-    && apt-get remove --purge --auto-remove -y \
+    && apt-get remove --purge --auto-remove -y apt-transport-https lsb-release gnupg2 wget \
     && rm -rf /var/lib/apt/lists/* \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log

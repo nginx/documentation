@@ -97,7 +97,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
     - `tls`
       - `mode`: Supported.
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`.
-      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers`, `nginx.org/ssl-prefer-server-ciphers`, `nginx.org/ssl-session-cache`, `nginx.org/ssl-session-timeout` and `nginx.org/ssl-ecdh-curve` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
   - `addresses`: Valid IPAddresses will be added to the `externalIP` field in the related Services fronting NGINX. Users should ensure that the IP Family of the address matches the IP Family set in the NginxProxy resource (default is dual, meaning both IPv4 and IPv6), otherwise there may be networking issues.
       - `type`: Partially supported. Allowed value: `IPAddress`.
@@ -189,6 +189,7 @@ See the [controller]({{< ref "/ngf/reference/cli-help.md#controller">}}) command
       - `requestMirror`: Supported. Multiple mirrors can be specified. Percent and fraction-based mirroring are supported.
       - `cors`: Supported. If multiple filters are configured, NGINX Gateway Fabric will choose the first and ignore the rest.
       - `extensionRef`: Supported for SnippetsFilters and AuthenticationFilters.
+      - `externalAuth`: Supported. If multiple filters are configured, NGINX Gateway Fabric uses the first and ignores the rest.
     - `backendRefs`: Partially supported. Backend ref `filters` are not supported.
     - `name`: Not supported.
     - `timeouts`: Not supported.
@@ -341,7 +342,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| TCPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| TCPRoute | Supported          | Supported              | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 ### UDPRoute
@@ -350,7 +351,7 @@ Fields:
 
 | Resource | Core Support Level | Extended Support Level | Implementation-Specific Support Level | API Version | API Release Channel |
 |----------|--------------------|------------------------|---------------------------------------|-------------|---------------------|
-| UDPRoute | Supported          | Supported              | Not supported                         | v1alpha2    | Experimental        |
+| UDPRoute | Supported          | Supported              | Not supported                         | v1          | Standard            |
 {{< /table >}}
 
 ### BackendTLSPolicy
@@ -414,7 +415,7 @@ Fields:
     - `tls`
       - `mode`: Supported.
       - `certificateRefs` - The TLS certificate and key must be stored in a Secret resource of type `kubernetes.io/tls`.
-      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers` and `nginx.org/ssl-prefer-server-ciphers` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
+      - `options`: The options `nginx.org/ssl-protocols`, `nginx.org/ssl-ciphers`, `nginx.org/ssl-prefer-server-ciphers`, `nginx.org/ssl-session-cache`, `nginx.org/ssl-session-timeout` and `nginx.org/ssl-ecdh-curve` are supported. See [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html) for more information.
     - `allowedRoutes`: Supported.
 - `status`
   - `conditions`: Supported (Condition/Status/Reason):
