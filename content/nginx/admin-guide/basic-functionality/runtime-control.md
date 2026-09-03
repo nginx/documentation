@@ -65,6 +65,13 @@ By default, the Control API is disabled. To enable it, start NGINX Open Source o
 sudo nginx -l unix:/tmp/nginx.sock
 ```
 
+For NGINX Open Source 1.31.5 and later, make sure NIGNX is built with the `--with-control-api` configuration parameter:
+
+```shell
+nginx -V 2>&1 | grep -- '--with-control-api'
+```
+If the parameter is enabled, the command highlights the `--with-control-api` parameter in the nginx build configuration.
+
 ### Security implications
 
 - Never expose the Control API to the public Internet. Restrict access to the Control API listener with firewalls or ACLs, where possible, place it on a dedicated interface or VLAN.
