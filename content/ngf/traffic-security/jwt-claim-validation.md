@@ -1,5 +1,5 @@
 ---
-description: "Configure JWT claim validation in NGINX Gateway Fabric to enforce authorization rules based on JSON Web Token claims."
+description: "How to configure JSON Web Token (JWT) claim validation in F5 NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD)."
 weight: 650
 toc: true
 f5-content-type: how-to
@@ -12,9 +12,9 @@ f5-summary: >
 f5-audience: any
 ---
 
-This guide describes how to configure JWT claim validation in NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).
+This guide describes how to configure JWT claim validation in F5 NGINX Gateway Fabric using the AuthenticationFilter custom resource definition (CRD).
 
-JWT claim validation adds an authorization layer on top of [JWT authentication]({{< ref "/ngf/traffic-security/jwt-authentication.md" >}}) and [OIDC authentication]({{< ref "/ngf/traffic-security/oidc-authentication.md" >}}). While authentication verifies that a token is valid and properly signed, claim validation goes further by inspecting the claims (fields) inside the token payload. This lets you enforce rules such as requiring a specific issuer, audience, or custom claim value before granting access to your application.
+JWT claim validation adds authorization after [JWT authentication]({{< ref "/ngf/traffic-security/jwt-authentication.md" >}}) and [OIDC authentication]({{< ref "/ngf/traffic-security/oidc-authentication.md" >}}). Authentication checks whether a token is valid and signed correctly. Claim validation checks claims in the token payload. You can require a specific issuer, audience, or custom claim before users access your application.
 
 By following these instructions, you will configure an AuthenticationFilter with claim validation rules and verify that only tokens containing the expected claims are allowed through.
 
@@ -173,11 +173,11 @@ Addresses:
   Value:  192.0.2.1
 ```
 
-Save the public IP address and port of the Gateway into shell variables:
+Set the Gateway IP address and port in shell variables:
 
 ```shell
-GW_IP=XXX.YYY.ZZZ.III
-GW_PORT=<port number>
+GW_IP=<GATEWAY_IP>
+GW_PORT=<GATEWAY_PORT>
 ```
 
 ### Generate a JWKS and create a Secret
@@ -376,19 +376,19 @@ To test claim validation, you need JWTs signed with the private key correspondin
 **Token matching rule 0** (`iss=https://issuer-1.example.com`, `aud=api`):
 
 ```shell
-JWT_RULE0="<your-signed-jwt-rule-0>"
+JWT_RULE0="<SIGNED_JWT_FOR_RULE_0>"
 ```
 
 **Token matching rule 1** (`iss=https://issuer-2.example.com`, `aud=admin`):
 
 ```shell
-JWT_RULE1="<your-signed-jwt-rule-1>"
+JWT_RULE1="<SIGNED_JWT_FOR_RULE_1>"
 ```
 
 **Token matching neither rule** (`iss=https://issuer-1.example.com`, `aud=admin`):
 
 ```shell
-JWT_NEITHER="<your-signed-jwt-matching-neither>"
+JWT_NEITHER="<SIGNED_JWT_FOR_NO_RULE>"
 ```
 
 Access `/coffee` with a token matching rule 0
@@ -398,7 +398,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT
 ```
 
 ```text
-Server address: 10.244.0.7:8080
+Server address: 192.0.2.7:8080
 Server name: coffee-654ddf664b-nhhvr
 Date: 10/Mar/2026:15:20:15 +0000
 URI: /coffee
@@ -414,7 +414,7 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT
 ```
 
 ```text
-Server address: 10.244.0.7:8080
+Server address: 192.0.2.7:8080
 Server name: coffee-654ddf664b-nhhvr
 Date: 02/Sep/2026:15:21:30 +0000
 URI: /coffee
@@ -479,7 +479,7 @@ The `/tea` path has no AuthenticationFilter attached and responds normally.
 
 ### Nested claims
 
-JWT Claims can often be nested at multiple levels. Using the slash (`/`) separator, you can define the level of nesting to access the required claim value.
+JWT claims can be nested at multiple levels. Use the slash (`/`) separator to identify the required claim value.
 In this example, we set up the rule to access the values of the `roles` claim, which is nested under `realm_access`
 
 Example JSON payload
@@ -488,7 +488,7 @@ Example JSON payload
 {
   "realm_access": {
     "roles": ["reader", "admin"]
-  },
+  }
 }
 ```
 
