@@ -480,8 +480,8 @@ The `/tea` path has no AuthenticationFilter attached and responds normally.
 
 ### Nested claims
 
-JWT Claims can often be nested at multiple level. Using the slash (`/`) separator, you can define the level of nesting to access to required claim value.
-In this example, we set up the rule to access the values of the `roles` claim, which is nested under `real_access`
+JWT Claims can often be nested at multiple levels. Using the slash (`/`) separator, you can define the level of nesting to access the required claim value.
+In this example, we set up the rule to access the values of the `roles` claim, which is nested under `realm_access`
 
 Example JSON payload
 
@@ -505,9 +505,9 @@ authorization:
       - "admin"
 ```
 
-### Clam match type
+### Claim match type
 
-By default, clam values are evaluated against their exact value. This can also be set to `Regex` allowing for a more complex and expressive matching configuration.
+By default, claim values are evaluated against their exact value. This can also be set to `Regex` allowing for a more complex and expressive matching configuration.
 This example allows an `email` claim that contains `@example.com`. This would match on `foo@example.com`, `user@example.com` etc...
 
 ```yaml
@@ -525,7 +525,7 @@ authorization:
 ### Header forwarding
 
 By defining the `proxySetHeader` for a specific claim, you can forward the value of a matched claim as a request header to the upstream application.
-This example show defining a header called `X-Aud` on the `aud` claim.
+This example shows defining a header called `X-Aud` on the `aud` claim.
 
 ```yaml
 authorization:
