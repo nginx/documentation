@@ -17,8 +17,6 @@ This guide shows you how to deploy F5 NGINX Instance Manager using an official r
 
 The image includes NGINX Instance Manager, Security Monitoring, and the latest F5 WAF for NGINX compiler.
 
-{{< call-out class="note" title="Note: Building your own image" >}} If you can't pull images from an external registry, or you need to customize the image, see [Build a custom rootless Docker image]({{< ref "nim/deploy/docker/build-nim-rootless-docker-image.md" >}}) instead. {{< /call-out >}}
-
 This deployment has the following key characteristics:
 
 - Rootless by design. All processes run as `nms`. The container needs no elevated privileges at runtime.
@@ -403,5 +401,4 @@ docker exec nim-nim-1 nim-backup
 
 ## See also
 
-- [Build a custom rootless Docker image]({{< ref "nim/deploy/docker/build-nim-rootless-docker-image.md" >}}): Build your own rootless image from source, for air-gapped or custom-image environments.
 - [Deploy using Docker Compose]({{< ref "nim/deploy/docker/deploy-nginx-instance-manager-docker-compose.md" >}}): Standard, non-rootless Docker Compose deployment.
