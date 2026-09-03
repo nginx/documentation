@@ -41,7 +41,7 @@ For more information about advanced signals (for performing live binary upgrades
 
 ## Control NGINX with Control API {#control-api}
 
-In addition to [signal-based controls](#signals), NGINX Plus can be controlled with the Control REST API, available since [NGINX Plus PLS R37.0.0 LTS]({{< ref "nginx/releases.md#r37.0" >}}).
+In addition to [signal-based controls](#signals), NGINX Plus and NGINX Open Source can be controlled with the Control REST API, available since [NGINX Plus PLS R37.0.0 LTS]({{< ref "nginx/releases.md#r37.0" >}}) and NGINX Open Source 1.31.5.
 
 The Control API is implemented in the [NGINX master process](#processes) and provides a REST interface for runtime control and inspection. It allows you to:
 
@@ -59,17 +59,24 @@ See [NGINX Control REST API reference]({{< ref "nginx/admin-guide/basic-function
 
 ### Enable NGINX Control API
 
-By default, the Control API is disabled. To enable it, start NGINX Plus with the [`-l` argument](https://nginx.org/en/docs/switches.html#l), specifying a UNIX-domain socket or TCP port:
+By default, the Control API is disabled. To enable it, start NGINX Open Source or NGINX Plus with the [`-l` argument](https://nginx.org/en/docs/switches.html#l), specifying a UNIX-domain socket or TCP port:
 
 ```shell
 sudo nginx -l unix:/tmp/nginx.sock
 ```
 
+For NGINX Open Source 1.31.5 and later, make sure NIGNX is built with the `--with-control-api` configuration parameter:
+
+```shell
+nginx -V 2>&1 | grep -- '--with-control-api'
+```
+If the parameter is enabled, the command highlights the `--with-control-api` parameter in the nginx build configuration.
+
 ### Security implications
 
 - Never expose the Control API to the public Internet. Restrict access to the Control API listener with firewalls or ACLs, where possible, place it on a dedicated interface or VLAN.
 - Configure the Control API to listen on a UNIX-domain socket. This is currently the most effective way to control access, because authorization can be managed through file permissions, and the created socket file is accessible only to the user running NGINX.
-- Keep NGINX Plus and the operating system up to date.
+- Keep your NGINX binary and the operating system up to date.
 
 ### Control API reference documentation
 

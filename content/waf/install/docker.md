@@ -933,7 +933,7 @@ If you are not using `custom_log_format.json` or the IP intelligence feature, yo
 
 ```dockerfile
 # syntax=docker/dockerfile:1
-# For Alpine 3.22:
+# For Alpine 3.22 or 3.24:
 FROM alpine:3.22
 
 # Download and add the NGINX signing keys:
@@ -1022,9 +1022,9 @@ CMD ["sh", "/root/entrypoint.sh"]
 
 ```dockerfile
 ARG OS_CODENAME
-# Where OS_CODENAME can be: bullseye/bookworm/trixie
+# Where OS_CODENAME can be: bookworm/trixie
 # syntax=docker/dockerfile:1
-# For Debian 11 / 12 / 13:
+# For Debian 12 / 13:
 FROM debian:${OS_CODENAME}
 
 # Install prerequisite packages:

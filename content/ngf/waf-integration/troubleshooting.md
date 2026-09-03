@@ -25,10 +25,11 @@ Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. 
 
 ### ResolvedRefs
 
-| Status  | Reason         | Meaning                                                       |
-|---------|----------------|---------------------------------------------------------------|
-| `True`  | `ResolvedRefs` | All referenced Secrets resolved successfully                  |
-| `False` | `InvalidRef`   | A referenced Secret was not found or is missing expected keys |
+| Status  | Reason             | Meaning                                                                |
+|---------|--------------------|--------------------------------------------------------------------------|
+| `True`  | `ResolvedRefs`     | All referenced Secrets, `APPolicy`, and `APLogConf` resources resolved successfully |
+| `False` | `InvalidRef`       | A referenced Secret was not found or is missing expected keys; or a referenced `APPolicy`/`APLogConf` doesn't exist |
+| `False` | `RefNotPermitted`  | A referenced `APPolicy` or `APLogConf` is in a different namespace and no `ReferenceGrant` permits the reference |
 
 ### Programmed
 

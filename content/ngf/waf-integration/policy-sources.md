@@ -4,10 +4,10 @@ weight: 300
 toc: true
 f5-content-type: how-to
 f5-product: NGINX Gateway Fabric
-description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, or an HTTP server.
+description: Configure WAFPolicy to fetch compiled bundles from F5 NGINX Instance Manager, F5 NGINX One Console, an HTTP server, or Policy Lifecycle Management.
 ---
 
-F5 NGINX Gateway Fabric supports three policy source types for fetching compiled F5 WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, and direct HTTP/HTTPS URLs. For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
+NGINX Gateway Fabric supports four policy source types for fetching compiled WAF bundles: F5 NGINX Instance Manager, F5 NGINX One Console, direct HTTP/HTTPS URLs, and Policy Lifecycle Management (PLM). For a quick start walkthrough using the HTTP source, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}). For a walkthrough using PLM, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
 
 Before you configure a policy source, make sure F5 WAF is turned on for the NginxProxy — either per Gateway or globally through Helm values. For version requirements, see [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}}).
 
@@ -142,7 +142,7 @@ Use this option when you manage F5 WAF policies through F5 NGINX One Console. Fo
 **Workflow:**
 
 1. Author and compile a policy in the NGINX One Console or API.
-2. If no compiled bundle exists yet, NGINX Gateway Fabric triggers compilation through the NGINX One Console API the first time it reconciles the `WAFPolicy` resource. NGINX Gateway Fabric waits for compilation to finish.
+2. If no compiled bundle exists yet, NGINX Gateway Fabric triggers compilation through the NGINX One Console API. This happens the first time NGINX Gateway Fabric reconciles the `WAFPolicy` resource. NGINX Gateway Fabric waits for compilation to finish before continuing.
 3. Create a Secret with your NGINX One Console API token.
 4. Create a `WAFPolicy` referencing the compiled policy.
 
@@ -213,9 +213,17 @@ Replace `<tenant>` with your NGINX One Console tenant hostname. The `namespace` 
 
 Use this option when you compile F5 WAF policies using the F5 WAF compiler CLI or a CI/CD pipeline and host the resulting bundle on an HTTP/HTTPS server. For details on using the compiler, see [Build and use the compiler tool]({{< ref "/waf/configure/compiler.md" >}}).
 
-For a complete walkthrough including policy compilation and a bundle server deployment, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started.md" >}}).
+For a complete walkthrough including policy compilation and a bundle server deployment, see [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}}).
 
 In production environments, host compiled bundles on an HTTPS server with authentication. See [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}}) for details on adding credentials, custom CA certificates, and checksum verification to your `policySource`.
+
+---
+
+## Policy Lifecycle Management (PLM)
+
+Use this option when you manage F5 WAF policies as Kubernetes resources with Policy Lifecycle Management (PLM). With PLM, you define your security posture as `APPolicy` and `APLogConf` custom resources instead of `policySource`/`logSource`. The PLM controller compiles these resources automatically and stores the resulting bundles in in-cluster storage. NGINX Gateway Fabric fetches those bundles and deploys them to the data plane. Because PLM is event-driven, you don't need a per-`WAFPolicy` credentials Secret or polling configuration.
+
+For a comparison of PLM with the other source types, see [PLM]({{< ref "/ngf/waf-integration/overview.md#plm-policy-lifecycle-management" >}}). For a complete walkthrough, including PLM storage setup, defining `APPolicy`/`APLogConf` resources, and applying a `WAFPolicy`, see [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}}).
 
 ---
 
@@ -281,7 +289,7 @@ spec:
 EOF
 ```
 
-The `localhost:1514` syslog destination points to NGINX Agent's OpenTelemetry collector, which runs as a sidecar in the NGINX pod. NGINX Agent exports the security events to NGINX Instance Manager over gRPC on port `4317`, authenticated using the same NGINX Plus JWT referenced in the `nim-dp-key` Secret from [Connect NGINX Gateway Fabric to NGINX Instance Manager]({{< ref "/nim/connect-kubernetes/connect-ngf.md" >}}). NGINX Gateway Fabric handles this authentication internally — no separate credential is required for log export.
+The `localhost:1514` syslog destination points to NGINX Agent's OpenTelemetry collector, which runs as a sidecar in the NGINX pod. NGINX Agent exports the security events to NGINX Instance Manager over gRPC on port `4317`, authenticated using the same NGINX Plus JWT referenced in the NGINX Plus Secret from [Connect NGINX Gateway Fabric to NGINX Instance Manager]({{< ref "/nim/connect-kubernetes/connect-ngf.md" >}}). NGINX Gateway Fabric handles this authentication internally. No separate credential is required for log export.
 
 {{< call-out class="note" title="Note: Network requirements" >}}
 - Port `1514` (local syslog): NGINX Agent listens on this port inside the NGINX pod. This traffic doesn't leave the pod.
@@ -349,6 +357,8 @@ The `localhost:1514` syslog destination points to NGINX Agent's OpenTelemetry co
 ## See also
 
 - [F5 WAF for NGINX overview]({{< ref "/ngf/waf-integration/overview.md" >}})
+- [Get started with F5 WAF for NGINX]({{< ref "/ngf/waf-integration/get-started-http.md" >}})
+- [Get started with F5 WAF for NGINX using PLM]({{< ref "/ngf/waf-integration/get-started-plm.md" >}})
 - [Configure WAF settings]({{< ref "/ngf/waf-integration/configuration.md" >}})
 - [Troubleshoot WAFPolicy status]({{< ref "/ngf/waf-integration/troubleshooting.md" >}})
 - [Technical specifications]({{< ref "/ngf/overview/technical-specifications.md" >}})
