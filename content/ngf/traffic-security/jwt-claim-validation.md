@@ -46,15 +46,7 @@ Consider an AuthenticationFilter with `authorization.require: Any` and two rules
 - Rule 0 requires **all** of: `iss=issuer-1` **and** `aud=api`
 - Rule 1 requires **all** of: `iss=issuer-2` **and** `aud=admin`
 
-Because the top-level require is `Any`, a request is authorized if the token satisfies **either** rule 0 **or** rule 1. A token that only partially matches both rules would be rejected as it does not fully satisfy either rule.
-
-**Additional fields**
-
-Claim validation also supports the following options:
-
-- **`match`**: Controls how claim values are compared. Set to `Exact` (default) for literal string matching, or `Regex` to allow regular expression patterns in claim values.
-- **`proxySetHeader`**: Forwards the value of a matched claim as a request header to the upstream application. For example, setting `proxySetHeader: X-Tenant` on a `tenant` claim sends `X-Tenant: <claim-value>` to the backend.
-- **Nested claims**: Use a slash (`/`) separator to reference claims nested within other claims. For example, `realm_access/roles` refers to the `roles` field inside the `realm_access` object.
+Since the top-level require is `Any`, a request is authorized if the token satisfies **either** rule 0 **or** rule 1. A token that only partially matches both rules would be rejected as it does not fully satisfy either rule.
 
 ---
 
@@ -483,6 +475,69 @@ Request ID: c7eb0509303de1c160cb7e7d2ac1d99f
 ```
 
 The `/tea` path has no AuthenticationFilter attached and responds normally.
+
+## Additional configuration
+
+### Nested claims
+
+JWT Claims can often be nested at multiple level. Using the slash (`/`) separator, you can define the level of nesting to access to required claim value.
+In this example, we set up the rule to access the values of the `roles` claim, which is nested under `real_access`
+
+Example JSON payload
+
+```json
+{
+  "realm_access": {
+    "roles": ["reader", "admin"]
+  },
+}
+```
+
+```yaml
+authorization:
+  require: Any
+  rules:
+  - require: All
+    claims:
+    - name: "realm_access/roles"
+      values:
+      - "reader"
+      - "admin"
+```
+
+### Clam match type
+
+By default, clam values are evaluated against their exact value. This can also be set to `Regex` allowing for a more complex and expressive matching configuration.
+This example allows an `email` claim that contains `@example.com`. This would match on `foo@example.com`, `user@example.com` etc...
+
+```yaml
+authorization:
+  require: Any
+  rules:
+    - require: Any
+      claims:
+        - name: email
+          match: Regex
+          values:
+            - ".*@example\\.com"
+```
+
+### Header forwarding
+
+By defining the `proxySetHeader` for a specific claim, you can forward the value of a matched claim as a request header to the upstream application.
+This example show defining a header called `X-Aud` on the `aud` claim.
+
+```yaml
+authorization:
+  require: Any
+  rules:
+  - require: All
+    claims:
+    - name: "aud"
+      proxySetHeader: X-Aud
+      values:
+      - "api"
+```
 
 ---
 
