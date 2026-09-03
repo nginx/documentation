@@ -55,6 +55,8 @@ Since the top-level require is `Any`, a request is authorized if the token satis
 
 ## Setup
 
+In this part of the document, we will set up several resources in your cluster to demonstrate the authorization field of the AuthenticationFilter CRD.
+
 ### Deploy sample applications
 
 To deploy the `coffee` and `tea` applications, run the following YAML with `kubectl apply`:
