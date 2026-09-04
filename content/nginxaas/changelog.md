@@ -13,6 +13,33 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
 
+## September 4, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+
+  NGINXaaS for Google is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+  | NGINXaaS Geography | Google Cloud Regions                              |
+  | ------------------ | ------------------------------------------------- |
+  | APAC               | asia-northeast1, asia-northeast2, asia-northeast3 |
+  | CA                 | northamerica-northeast1, northamerica-northeast2  |
+  {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+
+- {{% icon-feature %}} **NGINXaaS for AWS is now generally available in more regions**
+
+  NGINXaaS for AWS is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+  | NGINXaaS Geography | AWS Regions                |
+  | ------------------ | -------------------------- |
+  | CA                 | ca-central-1, ca-west-1    |
+  {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas/aws/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for AWS is available.
+
 ## September 1, 2026
 
 - {{% icon-feature %}} **NGINXaaS for AWS now supports F5 WAF for NGINX (Preview)**
