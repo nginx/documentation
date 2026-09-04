@@ -73,14 +73,15 @@ Download the following sample dashboard and Import as a new Dashboard in the Gra
 
 NGINX Gateway Fabric supports creating Prometheus ServiceMonitor resources for scraping metrics. Before enabling this feature, make sure:
 
-- The Prometheus Operator is installed in your cluster.
-- The Service Monitor CRD is installed:
+- The [Prometheus Operator](https://prometheus-operator.dev/docs/getting-started/installation/) is installed in your cluster.
+- The Service Monitor CRD is installed.
+- Your Prometheus instance is configured to select ServiceMonitors created by NGINX Gateway Fabric.
+
+Run the following command to install the ServiceMonitor CRD:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
 ```
-
-- Your Prometheus instance is configured to select ServiceMonitors created by NGINX Gateway Fabric.
 
 NGINX Gateway Fabric creates two kinds of ServiceMonitors:
 - Control Plane - configured through the Helm chart.
@@ -108,7 +109,7 @@ nginx:
       enable: true
 ```
 
-- Or configure it per-Gateway on the `NginxProxy` resource:
+- Configure it per-Gateway on the `NginxProxy` resource:
 
 ```yaml
 serviceMonitor:
