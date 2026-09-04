@@ -48,8 +48,6 @@ Create the admin password file in the same directory as `docker-compose-rootless
 echo "<password>" > admin_password.txt
 ```
 
-Don't commit this file to version control.
-
 Log in to the F5 image registry with your JWT:
 
 ```shell
