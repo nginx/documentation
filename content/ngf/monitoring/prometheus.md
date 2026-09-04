@@ -109,7 +109,7 @@ nginx:
       enable: true
 ```
 
-- Configure it per-Gateway on the `NginxProxy` resource:
+- Configure it on the `NginxProxy` resource:
 
 ```yaml
 serviceMonitor:
