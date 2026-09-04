@@ -17,7 +17,7 @@ For information about NGINX Gateway Fabric and Gateway API version compatibility
 
 ## Terminology
 
-Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/concepts/conformance/#2-support-levels): Core, Extended and Implementation-specific. We use the following terms to describe the support status for each level and resource field:
+Gateway API features has three [support levels](https://gateway-api.sigs.k8s.io/docs/concepts/conformance/#2-support-levels): Core, Extended and Implementation-specific. We use the following terms to describe the support status for each level and resource field:
 
 - _Supported_. The resource or field is fully supported.
 - _Partially supported_. The resource or field is supported partially, with limitations. It will become fully
@@ -34,7 +34,7 @@ indicated. Support for such fields is provided on a best-effort basis.{{< /call-
 
 Each resource below includes the support status of their corresponding fields.
 
-For a description of each field, visit the [Gateway API documentation](https://gateway-api.sigs.k8s.io/references/spec/).
+For a description of each field, visit the [Gateway API documentation](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/).
 
 ### GatewayClass
 
@@ -462,6 +462,6 @@ Fields:
 {{< /table >}}
 
 Custom policies are NGINX Gateway Fabric-specific CRDs (Custom Resource Definitions) that support features such as tracing, and client connection settings. These important data-plane features are not part of the Gateway API specifications.
-While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/references/policy-attachment/).
+While these CRDs are not part of the Gateway API, the mechanism to attach them to Gateway API resources is part of the Gateway API. See the [Policy Attachment documentation](https://gateway-api.sigs.k8s.io/reference/policy-attachment/).
 
 See the [custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}) document for more information.

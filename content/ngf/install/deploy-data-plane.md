@@ -11,7 +11,7 @@ f5-docs: DOCS-1854
 
 This document describes how to use a Gateway to deploy the NGINX data plane, and how to modify it using an NGINX custom resource.
 
-[A Gateway](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
+[A Gateway](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/#gateway) is used to manage all inbound requests, and is a key Gateway API resource.
 
 When a Gateway is attached to a GatewayClass associated with NGINX Gateway Fabric, it creates a Service and an NGINX deployment in the same namespace as the Gateway. This forms the NGINX data plane, handling requests.
 

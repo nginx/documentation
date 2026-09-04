@@ -581,7 +581,7 @@ Request ID: c326f89b0541b6109cf2a9306c45d0cd
 
 ## See also
 
-- [Gateway API TLS configuration](https://gateway-api.sigs.k8s.io/guides/tls/)
+- [Gateway API TLS configuration](https://gateway-api.sigs.k8s.io/guides/user-guides/tls/)
 - [HTTPS termination]({{< ref "/ngf/traffic-management/https-termination.md" >}}): Configure HTTPS termination and HTTP-to-HTTPS redirects.
 - [Secure traffic using Let's Encrypt and cert-manager]({{< ref "/ngf/traffic-security/integrate-cert-manager.md" >}})
 - [Securing backend traffic using mutual TLS]({{< ref "/ngf/traffic-security/secure-backend.md" >}})

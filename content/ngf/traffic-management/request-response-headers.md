@@ -11,7 +11,7 @@ Learn how to modify the request and response headers of your application using N
 
 ## Overview
 
-[HTTP Header Modifiers](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/?h=request#http-header-modifiers) can be used to add, modify or remove headers during the request-response lifecycle. The [RequestHeaderModifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/#http-request-header-modifier) is used to alter headers in a request sent by client and [ResponseHeaderModifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/#http-response-header-modifier) is used to alter headers in a response to the client.
+[HTTP Header Modifiers](https://gateway-api.sigs.k8s.io/guides/user-guides/http-header-modifier/?h=request#http-header-modifiers) can be used to add, modify or remove headers during the request-response lifecycle. The [RequestHeaderModifier](https://gateway-api.sigs.k8s.io/guides/user-guides/http-header-modifier/#http-request-header-modifier) is used to alter headers in a request sent by client and [ResponseHeaderModifier](https://gateway-api.sigs.k8s.io/guides/user-guides/http-header-modifier/#http-response-header-modifier) is used to alter headers in a response to the client.
 
 This guide describes how to configure the headers application to modify the headers in the request. Another version of the headers application is then used to modify response headers when client requests are made. For an introduction to exposing your application, we recommend that you follow the [basic guide]({{< ref "/ngf/traffic-management/basic-routing.md" >}}) first.
 
@@ -25,7 +25,7 @@ The following examples use a shared Gateway for both `RequestHeaderModifier` and
 
 ### Deploy the Gateway API resources for the Header application
 
-The [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/) resource is typically deployed by the [Cluster Operator](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1). This Gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames. To deploy the Gateway:
+The [Gateway](https://gateway-api.sigs.k8s.io/reference/api-types/gateway/) resource is typically deployed by the [Cluster Operator](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/). This Gateway defines a single listener on port 80. Since no hostname is specified, this listener matches on all hostnames. To deploy the Gateway:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -380,6 +380,6 @@ The output confirms the filter was applied. `X-Header-Unmodified` is unchanged b
 
 To learn more about the Gateway API and the resources we created in this guide, check out the following Kubernetes documentation resources:
 
-- [Gateway API Overview](https://gateway-api.sigs.k8s.io/concepts/api-overview/)
-- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/simple-gateway/)
-- [Gateway API HTTP Header Modifier](https://gateway-api.sigs.k8s.io/guides/http-header-modifier/)
+- [Gateway API Overview](https://gateway-api.sigs.k8s.io/docs/concepts/api-overview/)
+- [Deploying a simple Gateway](https://gateway-api.sigs.k8s.io/guides/getting-started/simple-gateway/)
+- [Gateway API HTTP Header Modifier](https://gateway-api.sigs.k8s.io/guides/user-guides/http-header-modifier/)

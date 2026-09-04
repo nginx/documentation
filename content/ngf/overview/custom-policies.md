@@ -122,7 +122,7 @@ If a policy conflicts with a configured policy, NGINX Gateway Fabric will set th
 
 ## Policy Status
 
-NGINX Gateway Fabric sets the [PolicyStatus](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.PolicyStatus) on all policies.
+NGINX Gateway Fabric sets the [PolicyStatus](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#policystatus) on all policies.
 
 `PolicyStatus` fields:
 

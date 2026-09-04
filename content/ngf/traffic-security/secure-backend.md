@@ -15,7 +15,7 @@ Learn how to encrypt HTTP traffic between NGINX Gateway Fabric and your backend 
 
 ## Overview
 
-In this guide, you configure the TLS connection from the Gateway to a secure application using [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/) together with the Gateway’s backend TLS settings. The examples show how to validate the backend’s certificate and present a client certificate, so that traffic between the Gateway and the application is protected with mutual TLS.
+In this guide, you configure the TLS connection from the Gateway to a secure application using [BackendTLSPolicy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/) together with the Gateway’s backend TLS settings. The examples show how to validate the backend’s certificate and present a client certificate, so that traffic between the Gateway and the application is protected with mutual TLS.
 
 The intended use case is when a service or backend owner manages their own HTTPS configuration and certificates, and NGINX Gateway Fabric needs to know how to connect securely to this backend over HTTPS while also proving its own identity with a client certificate. This ensures that all traffic between the Gateway and the application is secured.
 
@@ -470,6 +470,6 @@ kubectl logs "$POD_NAME"
 
 To learn more about configuring backend TLS termination using the Gateway API, see the following resources:
 
-- [Backend TLS Policy](https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/)
+- [Backend TLS Policy](https://gateway-api.sigs.k8s.io/reference/api-types/policy/backendtlspolicy/)
 - [Backend TLS Policy GEP](https://gateway-api.sigs.k8s.io/geps/gep-1897/)
-- [Gateway Backend TLS](https://gateway-api.sigs.k8s.io/reference/spec/#gatewaybackendtls)
+- [Gateway Backend TLS](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#gatewaybackendtls)

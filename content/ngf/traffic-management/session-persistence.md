@@ -576,5 +576,5 @@ Because there is no session persistence configured for `latte`, traffic is distr
 
 ## Further reading
 
-- [Session Persistence](https://gateway-api.sigs.k8s.io/reference/spec/?h=sessionpersistence#sessionpersistence).
+- [Session Persistence](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/?h=sessionpersistence#sessionpersistence).
 - [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.

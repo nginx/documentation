@@ -11,7 +11,7 @@ f5-summary: >
    In terminate mode, the Gateway holds the certificate and terminates TLS, then forwards plain TCP traffic to the backend.
 ---
 
-Learn how to configure TLS routing with [TLSRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tlsroute) using NGINX Gateway Fabric.
+Learn how to configure TLS routing with [TLSRoute](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#tlsroute) using NGINX Gateway Fabric.
 
 ## Overview
 
@@ -241,7 +241,7 @@ spec:
 EOF
 ```
 
-{{< call-out class="note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#referencegrant) to permit the cross-namespace reference. {{< /call-out >}}
+{{< call-out class="note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#referencegrant) to permit the cross-namespace reference. {{< /call-out >}}
 
 ### Send traffic
 
@@ -478,7 +478,7 @@ spec:
 EOF
 ```
 
-{{< call-out "note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/spec/#referencegrant) to permit the cross-namespace reference.{{< /call-out >}}
+{{< call-out "note" >}}To route to a Service in a Namespace different from the TLSRoute Namespace, create a [ReferenceGrant](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#referencegrant) to permit the cross-namespace reference.{{< /call-out >}}
 
 ### Send traffic
 
@@ -506,5 +506,5 @@ The server certificate subject is `app.example.com`, which matches the certifica
 
 To learn more about TLS routing using the Gateway API, see the following resources:
 
-- [Gateway API TLS routing](https://gateway-api.sigs.k8s.io/guides/tls-routing/)
+- [Gateway API TLS routing](https://gateway-api.sigs.k8s.io/guides/user-guides/tls-routing/)
 - [Configure HTTPS termination]({{< ref "/ngf/traffic-management/https-termination.md" >}})

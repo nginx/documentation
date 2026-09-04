@@ -411,4 +411,4 @@ curl --resolve cafe.example.com:$GW_PORT:$GW_IP http://cafe.example.com:$GW_PORT
 ## Further reading
 
 - [NGINX HTTP auth request module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)
-- [Gateway API HTTPExternalAuthFilter specification](https://gateway-api.sigs.k8s.io/reference/spec/#httpexternalauthfilter)
+- [Gateway API HTTPExternalAuthFilter specification](https://gateway-api.sigs.k8s.io/reference/api-spec/main/spec/#httpexternalauthfilter)

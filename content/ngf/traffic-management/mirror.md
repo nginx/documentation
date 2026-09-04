@@ -11,7 +11,7 @@ Learn how to mirror your HTTP or gRPC traffic using NGINX Gateway Fabric.
 
 ## Overview
 
-[HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/) and [GRPCRoute](https://gateway-api.sigs.k8s.io/api-types/grpcroute/) filters can be used to configure request mirroring. Mirroring copies a request to another backend.
+[HTTPRoute](https://gateway-api.sigs.k8s.io/reference/api-types/httproute/) and [GRPCRoute](https://gateway-api.sigs.k8s.io/reference/api-types/grpcroute/) filters can be used to configure request mirroring. Mirroring copies a request to another backend.
 
 In this guide, we will set up two applications, **coffee** and **tea**, and mirror requests between them. All requests
 sent to the **coffee** application will also be sent to the **tea** application automatically.
@@ -238,4 +238,4 @@ This shows that the request to `/coffee` was mirrored to the **tea** application
 
 To learn more about request mirroring using the Gateway API, see the following resource:
 
-- [Gateway API request mirroring](https://gateway-api.sigs.k8s.io/guides/http-request-mirroring/)
+- [Gateway API request mirroring](https://gateway-api.sigs.k8s.io/guides/user-guides/http-request-mirroring/)
