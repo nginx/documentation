@@ -69,6 +69,58 @@ Download the following sample dashboard and Import as a new Dashboard in the Gra
 
 - {{< download "ngf/grafana-dashboard.json" "ngf-grafana-dashboard.json" >}}
 
+### Configuring the ServiceMonitor
+
+NGINX Gateway Fabric supports creating Prometheus ServiceMonitor resources for scraping metrics. Before enabling this feature, make sure:
+
+- The Prometheus Operator is installed in your cluster.
+- The Service Monitor CRD is installed:
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+```
+
+- Your Prometheus instance is configured to select ServiceMonitors created by NGINX Gateway Fabric.
+
+NGINX Gateway Fabric creates two kinds of ServiceMonitors:
+- Control Plane - configured through the Helm chart.
+- Data Plane - provisioned by the control plane whenever a new Gateway resource is created.
+
+#### Control Plane ServiceMonitor
+
+Enable the control plane ServiceMonitor by setting the following in your helm `values.yaml`:
+
+```yaml
+nginxGateway:
+   metrics:
+      serviceMonitor:
+         enable: true
+```
+
+#### Data Plane ServiceMonitor
+
+Enable the data plane ServiceMonitor in one of two ways:
+- Set the following in your Helm `values.yaml` (this is applied to all Gateways):
+
+```yaml
+nginx:
+   serviceMonitor:
+      enable: true
+```
+
+- Or configure it per-Gateway on the `NginxProxy` resource:
+
+```yaml
+serviceMonitor:
+  enable: true
+  endpoints:
+    - port: metrics
+```
+
+{{< call-out class="note" >}} If the ServiceMonitor CRD is installed after installing NGINX Gateway Fabric, you may need to restart the control plane for it to detect the CRD and create the data plane ServiceMonitor. {{< /call-out >}}
+
+Once configured, Prometheus will discover and scrape these ServiceMonitors, and the collected metrics can be visualised in Grafana.
+
 ## Available metrics in NGINX Gateway Fabric
 
 NGINX Gateway Fabric provides a variety of metrics for monitoring and analyzing performance. These metrics are categorized as follows:
