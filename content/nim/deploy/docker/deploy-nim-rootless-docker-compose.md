@@ -20,7 +20,7 @@ The image includes NGINX Instance Manager, Security Monitoring, and the latest F
 This deployment has the following key characteristics:
 
 - Rootless by design. All processes run as `nms`. The container needs no elevated privileges at runtime.
-- Single persistent volume. NGINX Instance Manager stores its database, certificates, and credentials under one `/data` volume.
+- Consolidated storage. `nim-data` holds the database, secrets, and certificates in one `/data` volume. Separate volumes hold WAF compiler artifacts, outbound CA trust, and ClickHouse data.
 - First-boot initialization. On first start, the container seeds certificates and credentials automatically.
 - Maintenance mode. Start the container without NGINX Instance Manager services. This lets you back up, restore, or debug safely.
 - Built-in watchdog. The watchdog monitors critical NGINX Instance Manager processes. If one fails, the watchdog stops the container cleanly.
@@ -87,7 +87,7 @@ NGINX Instance Manager is available at `https://localhost:8443`. Log in with the
 | `NIM_SECURITY_TTL` | No | Security events retention, in days (integer). |
 | `NIM_WATCHDOG_TIMEOUT` | No | Watchdog timeout, in seconds (integer). |
 | `NIM_LICENSE_MODE_OF_OPERATION` | No | `connected` (default) or `disconnected`. |
-| `NIM_MAINTENANCE` | No | Set to `true` to start in maintenance mode. No services launch. |
+| `NIM_MAINTENANCE` | No | Set to `true` to start in maintenance mode. No services launch. Required before running a restore. |
 | `ENABLE_METRICS` | No | `true` or `false`. |
 | `PROXY_ENABLE` | No | `true` or `false`. Turns on a forward proxy. |
 | `PROXY_HOST` | No | Hostname or IP address of the proxy server. |
@@ -109,28 +109,6 @@ The admin password is required. Configure it as a Docker secret:
 secrets:
   nim_admin_password:
     file: admin_password.txt
-```
-
-Two secrets are optional:
-
-Custom `.htpasswd` credentials file:
-
-```yaml
-secrets:
-  nim_credential_file:
-    file: nim_creds.txt
-```
-
-Custom TLS certificates for the ingress proxy:
-
-```yaml
-secrets:
-  nim_proxy_cert_file:
-    file: ./certs/nim_cert.pem
-  nim_proxy_cert_key:
-    file: ./certs/nim_key.pem
-  nim_proxy_ca_cert:
-    file: ./certs/nim_ca.pem
 ```
 
 ---
@@ -202,14 +180,12 @@ sudo ls -l /var/lib/docker/volumes/nim_nim-data/_data/backup
 ## Storage
 
 {{<table>}}
-| Volume | Purpose |
-|---|---|
-| `nim-data` | All NGINX Instance Manager persistent state: database, secrets, streaming state, credentials. |
-| `nim-logs` | NGINX Instance Manager log files. |
-| `nim-certs` | TLS certificates for the ingress proxy. |
-| `proxy-certs` | Custom CA certificates for outbound proxy connections. |
-| `clickhouse-data` | ClickHouse metrics and events database. |
-| `nim-nap-compiler` | F5 WAF for NGINX compiler artifacts, mounted at `/opt/nms-nap-compiler`. |
+| Volume | Mount path | Purpose |
+|---|---|---|
+| `nim-data` | `/data` | All NGINX Instance Manager persistent state: databases, encryption keys and secrets, streaming state, TLS certificates, and admin credentials, symlinked internally to their expected paths. |
+| `nim-nap-compiler` | `/opt/nms-nap-compiler` | F5 WAF for NGINX compiler artifacts. |
+| `proxy-certs` | `/usr/local/share/ca-certificates` | Custom CA certificates for outbound proxy connections. |
+| `clickhouse-data` | `/var/lib/clickhouse` | ClickHouse metrics and events database. |
 {{</table>}}
 
 To use NFS-backed volumes, add `driver_opts` to the volumes section in `docker-compose-rootless.yaml`:
@@ -283,13 +259,6 @@ Both services must share the same Docker network.
 ### Port binding failure
 
 Symptom: `bind() to 0.0.0.0:443 failed (13: Permission denied)`, or a similar bind error.
-
-<!-- SME REVIEW: Vamshi confirmed (Slack thread, PR #317) this is usually a port conflict, resolved
-by the customer, not an F5 Support case. The fix below reflects his answer. The symptom text above
-is carried over from the build-your-own doc's cap_net_bind_service scenario, a true permission
-error (errno 13). A plain port-in-use conflict normally raises "Address already in use" (errno 98)
-instead, so this entry may be combining two different failure modes under one symptom line. Confirm
-the exact error text customers actually see with the official image before this ships. -->
 
 Check whether another process on your host already uses the port:
 
