@@ -32,7 +32,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon bug %}} Fixes
 
-- [10794](https://github.com/nginx/kubernetes-ingress/pull/10794) Fix: path quoting on v1 ingress
+- [10794](https://github.com/nginx/kubernetes-ingress/pull/10794) Fix path quoting on v1 ingress
 
 ### {{% icon download %}} Update
 
