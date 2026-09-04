@@ -1116,7 +1116,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -6023,7 +6023,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -6622,7 +6622,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
@@ -8664,7 +8664,7 @@ Size
 <p>ZoneSize is the size of the shared memory zone used by the upstream. This memory zone is used to share
 the upstream configuration between nginx worker processes. The more servers that an upstream has,
 the larger memory zone is required.
-Default: OSS: 512k, Plus: 1m.
+Default: OSS: 512k, Plus: 2m.
 Directive: <a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone">https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone</a></p>
 </td>
 </tr>
