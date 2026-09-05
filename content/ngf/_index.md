@@ -66,6 +66,6 @@ For more information, see the [Gateway architecture]({{< ref "/ngf/overview/gate
     Create simple rules for directing network traffic with HTTPRoute resources.
   {{</card>}}
   {{<card title="Secure traffic using Let's Encrypt" titleUrl="/nginx-gateway-fabric/traffic-security/integrate-cert-manager">}}
-    Implement HTTPS with Let's Encrypt to secure client-server communication. 
+    Implement HTTPS with Let's Encrypt to secure client-server communication.
   {{</card>}}
 {{</card-section>}}
