@@ -844,6 +844,12 @@ This feature is only available with NGINX Plus and requires the [enable-oidc]({{
 
 {{< /call-out >}}
 
+{{< call-out class="note" >}}
+
+Subrequests may not function as expected and may cause issues when the `OIDCNative` policy and a `WAF` policy are applied together on the same route.
+
+{{< /call-out >}}
+
 The OIDCNative policy configures NGINX Plus as a relying party for OpenID Connect authentication using the built-in `ngx_http_oidc_module`. Unlike the NJS-based [`oidc`](#oidc) policy, the native implementation handles the entire OIDC flow within the NGINX core, including token exchange, session management, and front-channel logout.
 
 For example, the following policy authenticates users against a Keycloak identity provider:
