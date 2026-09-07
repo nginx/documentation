@@ -69,7 +69,7 @@ Download the following sample dashboard and Import as a new Dashboard in the Gra
 
 - {{< download "ngf/grafana-dashboard.json" "ngf-grafana-dashboard.json" >}}
 
-### Configuring the ServiceMonitor
+### Configure the ServiceMonitor
 
 NGINX Gateway Fabric supports creating Prometheus ServiceMonitor resources for scraping metrics. Before enabling this feature, make sure:
 
@@ -84,10 +84,10 @@ kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheu
 ```
 
 NGINX Gateway Fabric creates two kinds of ServiceMonitors:
-- Control Plane - configured through the Helm chart.
-- Data Plane - provisioned by the control plane whenever a new Gateway resource is created.
+- Control plane - configured through the Helm chart.
+- Data plane - provisioned by the control plane whenever a new Gateway resource is created.
 
-#### Control Plane ServiceMonitor
+#### Control plane ServiceMonitor
 
 Enable the control plane ServiceMonitor by setting the following in your helm `values.yaml`:
 
@@ -98,7 +98,7 @@ nginxGateway:
          enable: true
 ```
 
-#### Data Plane ServiceMonitor
+#### Data plane ServiceMonitor
 
 Enable the data plane ServiceMonitor in one of two ways:
 - Set the following in your Helm `values.yaml` (this is applied to all Gateways):
