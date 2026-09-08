@@ -89,3 +89,4 @@ For more information, see:
 - [Author templates]({{< ref "author-templates.md" >}})
 - [Import templates]({{< ref "import-templates.md" >}})
 - [Submit templates]({{< ref "submit-templates.md" >}})
+- [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})

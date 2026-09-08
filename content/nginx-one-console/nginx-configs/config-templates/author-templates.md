@@ -813,10 +813,13 @@ The new template starts at version 1 in `draft` state. All files, the template t
 
 This is useful for creating variations of a production template without modifying the original, or for experimenting with changes before promoting a new version.
 
+The same copy action is also available directly from the Templates list as [**Make a Copy**]({{< ref "submit-and-copy-templates.md#copy-a-template" >}}).
+
 ## See also
 
 - [Import Templates]({{< ref "import-templates.md" >}})
 - [View template details]({{< ref "template-detail-view.md" >}})
 - [View template versions]({{< ref "template-versions.md" >}})
 - [Submit Templates Guide]({{< ref "submit-templates.md" >}})
+- [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})
 
