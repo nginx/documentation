@@ -10,6 +10,10 @@ weight: 200
 
 This guide explains how to submit templates to render and deploy NGINX configurations, and how to manage existing submissions using the Templates API.
 
+{{< call-out "tip" >}}
+You can also submit and copy templates using a guided UI, instead of building API requests by hand. Use the **Submit** and **Make a Copy** row actions on the Templates list. See [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}}).
+{{< /call-out >}}
+
 Before submitting templates, you need to import them into NGINX One Console.
 
 - See the [Import Templates Guide]({{< ref "import-templates.md" >}}) for instructions on creating and importing templates.
@@ -701,4 +705,5 @@ When composing template submissions, arrange your augments array to match the re
 
 - [Template Authoring Guide]({{< ref "author-templates.md" >}})
 - [Add Service-Specific Locations]({{< ref "add-multiple-services.md" >}})
+- [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})
 - [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}})
