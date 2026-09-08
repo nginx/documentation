@@ -1,0 +1,12 @@
+# Rung: Stated, conditional.
+# Source: punctuation/em-dash.md:15 "Avoid em dashes... permitted in brand and
+#   marketing content"; f5-tech-writer-agent.md:130 "confirm with the contributor
+#   whether that exception applies before enforcing this rule in a repo that mixes
+#   content types." That exception makes this a warning.
+extends: existence
+message: "Avoid the em dash; use a comma, period, colon, or parentheses (em-dash)."
+level: warning
+nonword: true
+tokens:
+  - '—'
+  - ' -- '

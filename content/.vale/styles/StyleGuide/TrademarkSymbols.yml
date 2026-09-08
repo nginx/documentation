@@ -1,0 +1,8 @@
+# Rung: Stated, unconditional.
+# Source: terminology/f5-product-names.md:20 "Never use (TM) or (R) in documentation."
+extends: existence
+message: "Don't use trademark symbols in documentation (f5-product-names)."
+level: error
+nonword: true
+tokens:
+  - '[™®℠]'

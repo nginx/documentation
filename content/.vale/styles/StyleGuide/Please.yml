@@ -1,0 +1,10 @@
+# Rung: Stated, conditional.
+# Source: voice-and-tone/please-and-thank-you.md:15,34-40 "Do not use 'please'...
+#   EXCEPT [in an] error [message] caused by F5 software." That exception makes this a
+#   warning; "thank you" (no exception) is a separate error-level rule.
+extends: existence
+message: "Don't use 'please' in technical documentation (please-and-thank-you)."
+level: warning
+ignorecase: true
+tokens:
+  - 'please'

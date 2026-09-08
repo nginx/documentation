@@ -1,0 +1,12 @@
+# Rung: Stated, unconditional.
+# Source: knowledge_base/style/client_style_guide.md:6-24 (loads F5Docs/style-guide);
+#   terminology/click-vs-select.md:15 "Always use 'select'... Never use 'click.'"
+extends: existence
+message: "Use 'select' for UI interactions, not '%s' (click-vs-select)."
+level: error
+ignorecase: true
+tokens:
+  - 'click'
+  - 'clicks'
+  - 'clicked'
+  - 'clicking'

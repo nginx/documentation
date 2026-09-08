@@ -1,0 +1,11 @@
+# Rung: Stated, unconditional.
+# Source: grammar/if-vs-whether.md:15,41 "Never use 'whether or not' -- 'whether' alone
+#   is sufficient." Also word-list.md:57.
+extends: substitution
+message: "Use '%s' instead of '%s' ('or not' is redundant) (if-vs-whether)."
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  'whether or not': whether

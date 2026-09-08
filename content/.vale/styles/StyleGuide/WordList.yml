@@ -1,0 +1,23 @@
+# Rung: Stated, unconditional.
+# Source: terminology/word-list.md:19-57 "Required replacements" (context-free entries
+#   only; entries the table scopes to code/UI or to a specific sense are omitted and
+#   listed in rules.md).
+extends: substitution
+message: "Use '%s' instead of '%s' (word-list)."
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  'in order to': to
+  'utilize': use
+  'utilizes': uses
+  'utilized': used
+  'obtain': get
+  'purchase': buy
+  'reboot': restart
+  'reboots': restarts
+  'initiate': start
+  'launch': start
+  'navigate to': go to
+  'grayed out': unavailable

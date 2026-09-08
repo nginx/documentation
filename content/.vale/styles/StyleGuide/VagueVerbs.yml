@@ -1,0 +1,16 @@
+# Rung: Stated, unconditional.
+# Source: terminology/word-list.md:21,27,34,37,54 -- verbs the table replaces with a
+#   choice of specific verbs rather than a single word, so this flags them for a human
+#   to pick the right replacement. "abort/kill" are permitted in code and API names,
+#   which Vale skips, so this fires only in prose.
+extends: existence
+message: "Replace the vague verb '%s' with a specific one (word-list)."
+level: error
+ignorecase: true
+tokens:
+  - 'terminate'
+  - 'terminates'
+  - 'terminated'
+  - 'abort'
+  - 'aborts'
+  - 'aborted'

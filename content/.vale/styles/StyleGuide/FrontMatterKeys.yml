@@ -1,0 +1,18 @@
+# Rung: Stated, unconditional.
+# Source: knowledge_base/style/client_style_guide.md:44-48 "Write f5-product,
+#   f5-content-type, and how-to, never the unhyphenated f5product and f5content-type or
+#   the howto value." These are hyphenation fixes for front-matter keys.
+# scope: raw — Vale scans front-matter values as text but treats the keys as structure,
+#   so a text-scoped rule never sees these keys. raw scans the whole file, which is
+#   correct here: the strings "f5product"/"f5content-type" appear only as these keys.
+extends: substitution
+scope: raw
+message: "Use the hyphenated form '%s', not '%s' (client_style_guide)."
+level: error
+ignorecase: false
+nonword: true
+action:
+  name: replace
+swap:
+  'f5product': f5-product
+  'f5content-type': f5-content-type

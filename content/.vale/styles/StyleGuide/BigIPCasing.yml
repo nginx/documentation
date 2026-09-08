@@ -1,0 +1,14 @@
+# Rung: Stated, unconditional.
+# Source: terminology/f5-product-names.md:112 "Always write BIG-IP in all caps with a
+#   hyphen. Never Big-IP, Big-ip, or bigip."
+extends: substitution
+message: "Write '%s' as 'BIG-IP' (f5-product-names)."
+level: error
+ignorecase: false
+action:
+  name: replace
+swap:
+  'Big-IP': BIG-IP
+  'Big-ip': BIG-IP
+  'BigIP': BIG-IP
+  'bigip': BIG-IP

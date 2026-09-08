@@ -1,0 +1,9 @@
+# Rung: Stated, unconditional.
+# Source: grammar/and-or.md:15 "Don't use 'and/or'. Decide which meaning you intend."
+extends: existence
+message: "Don't use 'and/or'. Write 'and', 'or', or 'X or Y, or both' (and-or)."
+level: error
+nonword: true
+ignorecase: true
+tokens:
+  - 'and/or'

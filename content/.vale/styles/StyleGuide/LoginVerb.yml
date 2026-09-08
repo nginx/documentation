@@ -1,0 +1,11 @@
+# Rung: Stated, unconditional.
+# Source: login-vs-log-in.md:15,40 "'Log in' is a verb. 'Login' is a noun or adjective."
+#   Flags "login" used as a verb before "to"; the noun/adjective forms don't match.
+extends: substitution
+message: "'Login' is a noun; use the verb '%s' (login-vs-log-in)."
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  'login to': log in to

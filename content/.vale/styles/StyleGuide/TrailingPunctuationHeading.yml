@@ -1,0 +1,11 @@
+# Rung: Stated, conditional.
+# Source: formatting/headings.md:15 "Don't end headings with a period." (markdownlint
+#   MD026 also covers this per style-observations.md:16.) Warning to align with the
+#   heading-case rule; markdownlint already enforces it at build time.
+extends: existence
+message: "Don't end a heading with punctuation (headings)."
+level: warning
+scope: heading
+nonword: true
+tokens:
+  - '[.,;:!]\s*$'

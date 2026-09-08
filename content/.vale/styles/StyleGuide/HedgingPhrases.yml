@@ -1,0 +1,16 @@
+# Rung: Stated, conditional.
+# Source: voice-and-tone/hedging.md:38-46 "Avoid these hedging phrases" table. Warning
+#   because the topic states some hedges have legitimate uses when uncertainty is real
+#   and named. Limited to the fixed multi-word phrases in the table; single-word hedges
+#   ("probably", "likely", "generally") are left to find-ai-tells / human judgment.
+extends: existence
+message: "Hedging: '%s'. State the verified fact directly, or name the uncertainty and the next action (hedging)."
+level: warning
+ignorecase: true
+tokens:
+  - 'it seems'
+  - 'it appears'
+  - 'it could be argued'
+  - 'it is possible that'
+  - 'not unlike'
+  - 'not uncommon'

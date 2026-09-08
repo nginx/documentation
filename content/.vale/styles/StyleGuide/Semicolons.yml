@@ -1,0 +1,11 @@
+# Rung: Stated, conditional.
+# Source: punctuation/semicolons.md:15 "Don't use semicolons. Write two separate
+#   sentences instead." Stated without a prose exception, but set to warning because
+#   the rule allows restructuring (lists with internal commas become vertical lists)
+#   rather than a mechanical fix, and to keep a punctuation-wide check off error.
+extends: existence
+message: "Don't use semicolons; write two sentences instead (semicolons)."
+level: warning
+nonword: true
+tokens:
+  - ';'

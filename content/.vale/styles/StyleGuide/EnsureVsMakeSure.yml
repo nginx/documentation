@@ -1,0 +1,14 @@
+# Rung: Stated, conditional.
+# Source: terminology/ensure-vs-make-sure.md:15,36 "Use 'make sure' instead of
+#   'ensure'... Reserve it only if it appears as a product UI label." That UI-label
+#   exception makes this a warning.
+extends: substitution
+message: "Use '%s' instead of '%s' (ensure-vs-make-sure)."
+level: warning
+ignorecase: true
+action:
+  name: replace
+swap:
+  'ensure': make sure
+  'ensures': makes sure
+  'ensuring': making sure

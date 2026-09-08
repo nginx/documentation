@@ -1,0 +1,9 @@
+# Rung: Stated, unconditional.
+# Source: punctuation/quotation-marks.md:48 "Do not use curly (smart) quotes in source
+#   files. Use straight quotes"; :50 use the standard apostrophe character.
+extends: existence
+message: "Use straight quotes and a standard apostrophe in source, not '%s' (quotation-marks)."
+level: error
+nonword: true
+tokens:
+  - '[“”‘’]'

@@ -1,0 +1,10 @@
+# Rung: Stated, unconditional.
+# Source: voice-and-tone/please-and-thank-you.md:15,42 "'Thank you' has no exception.
+#   Don't use it anywhere in technical content, including error messages."
+extends: existence
+message: "Don't use 'thank you' in technical documentation (please-and-thank-you)."
+level: error
+ignorecase: true
+tokens:
+  - 'thank you'
+  - 'thanks'

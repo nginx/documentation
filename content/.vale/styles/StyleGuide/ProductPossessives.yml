@@ -1,0 +1,9 @@
+# Rung: Stated, unconditional.
+# Source: terminology/f5-product-names.md:22 "Never use possessive constructions with
+#   product names"; punctuation/possessives.md:35-36. Recast with "of" instead.
+extends: existence
+message: "Don't use the possessive form of a product name ('%s'); recast the sentence (possessives)."
+level: error
+tokens:
+  - "NGINX(?: [A-Z][A-Za-z]+)*'s"
+  - "BIG-I[PQ]'s"

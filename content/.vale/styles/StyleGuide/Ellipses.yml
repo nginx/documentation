@@ -1,0 +1,11 @@
+# Rung: Stated, conditional.
+# Source: punctuation/ellipses.md:15 "Don't use ellipses in technical writing." Warning
+#   because the same topic notes the word "ellipsis/ellipses" is fine in explanatory
+#   content and UI labels legitimately carry them.
+extends: existence
+message: "Don't use ellipses in technical writing; write a complete sentence (ellipses)."
+level: warning
+nonword: true
+tokens:
+  - '\.\.\.'
+  - '…'

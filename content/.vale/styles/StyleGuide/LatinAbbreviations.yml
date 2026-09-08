@@ -1,0 +1,15 @@
+# Rung: Stated, conditional.
+# Source: terminology/latin-abbreviations.md:15,35-47 -- avoid Latin abbreviations,
+#   EXCEPT security advisories, vulnerability release notes, and CVE references
+#   (:47). Warning, not error, because of that stated exception.
+# `nonword: true` keeps the trailing-period tokens matching.
+extends: existence
+message: "Spell out '%s': 'for example', 'in other words', 'and so on', or 'versus' (latin-abbreviations)."
+level: warning
+nonword: true
+ignorecase: true
+tokens:
+  - 'e\.g\.'
+  - 'i\.e\.'
+  - 'etc\.'
+  - 'vs\.'

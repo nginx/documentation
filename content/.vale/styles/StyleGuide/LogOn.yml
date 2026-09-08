@@ -1,0 +1,11 @@
+# Rung: Stated, unconditional.
+# Source: login-vs-log-in.md:51 "Never use 'log on,' 'logon,' or 'log onto.' These are
+#   legacy terms."
+extends: existence
+message: "Use 'log in', not '%s' (login-vs-log-in)."
+level: error
+ignorecase: true
+tokens:
+  - 'log on'
+  - 'logon'
+  - 'log onto'

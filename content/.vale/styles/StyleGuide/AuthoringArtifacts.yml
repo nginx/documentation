@@ -1,0 +1,13 @@
+# Rung: Stated, unconditional.
+# Source: knowledge_base/style/client_style_guide.md:44-48 "Do not carry leftover
+#   archetype comments, TODO or SME REVIEW markers, or the DOCS-000 placeholder into new
+#   pages."
+extends: existence
+message: "Remove the authoring artifact '%s' before publishing (client_style_guide)."
+level: error
+nonword: true
+tokens:
+  - 'DOCS-000'
+  - 'SME REVIEW'
+  - 'TODO'
+  - 'FIXME'

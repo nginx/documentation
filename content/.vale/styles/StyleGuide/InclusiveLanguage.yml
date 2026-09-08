@@ -1,0 +1,20 @@
+# Rung: Stated, unconditional.
+# Source: terminology/word-list.md:63-73 "Inclusive language replacements";
+#   voice-and-tone/inclusive-language.md:38-45,62-68.
+# Exception the source carries (product UI/API/CLI output uses the term as shown) is
+# code/label text, which Vale skips.
+extends: substitution
+message: "Use '%s' instead of '%s' (inclusive-language)."
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  'blacklist': denylist
+  'whitelist': allowlist
+  'sanity check': confidence check
+  'manpower': staff
+  'mankind': humanity
+  'chairman': chair
+  'manmade': synthetic
+  'salesman': sales representative

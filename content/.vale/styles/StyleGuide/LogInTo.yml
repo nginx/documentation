@@ -1,0 +1,12 @@
+# Rung: Stated, unconditional.
+# Source: terminology/login-vs-log-in.md:15 "Never use 'log into' -- always 'log in to.'"
+extends: substitution
+message: "Use '%s' instead of '%s' (login-vs-log-in)."
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  'log into': log in to
+  'logs into': logs in to
+  'logged into': logged in to
