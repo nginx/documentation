@@ -6,7 +6,7 @@ toc: true
 f5-content-type: how-to
 f5-product: FABRIC
 f5-audience: operator
-f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, GatewayLink, TLS termination, iRule, health monitor, multi-cluster
+f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, BIG-IP, GatewayLink, TLS termination, iRule, health monitor, multi-cluster
 f5-summary: Use an ExternalLoadBalancer resource to make F5 BIG-IP the external load balancer for NGINX Gateway Fabric Gateways in two clusters. BIG-IP terminates client TLS, re-encrypts toward NGINX, runs health monitors and iRules, and distributes traffic between the clusters.
 ---
 
