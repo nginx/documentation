@@ -1,16 +1,16 @@
 ---
 title: Onboard custom security policies
-description: Upload and prepare your own security policy bundles for use with F5 NGINX Instance Manager.
+description: Add your own custom security policies to F5 NGINX Instance Manager using the JSON editor or REST API.
 toc: true
 weight: 400
 f5-content-type: how-to
 f5-product: NGINX Instance Manager
 f5-summary: >
-  Upload and prepare custom F5 WAF for NGINX security policies for use in F5 NGINX Instance Manager.
+  Add custom F5 WAF for NGINX security policies to F5 NGINX Instance Manager using the JSON editor or REST API.
   Use this option when you need application-specific rules or want to integrate policies created outside NGINX Instance Manager.
 ---
 
-After verifying that F5 WAF for NGINX is active on your instances, you can onboard your own custom security policies. Use this option when you need to apply application-specific rules or integrate policies created in other environments. You’ll upload your JSON policy files, package them into `.tgz` bundles, and publish them through **F5 NGINX Instance Manager**.
+After verifying that F5 WAF for NGINX is active on your instances, you can onboard your own custom security policies. Use this option when you need to apply application-specific rules or integrate policies created in other environments.
 
 ## Before you begin
 
@@ -18,16 +18,21 @@ After verifying that F5 WAF for NGINX is active on your instances, you can onboa
 - Confirm that the NGINX Agent has permission to access the directory where you’ll store your bundles.  
 - Review the [F5 WAF for NGINX configuration guide]({{< ref "/waf/policies/configuration.md" >}}) for examples of policy structure and directive usage.
 
-## Upload and publish a custom policy
+## Add a custom policy
 
 {{<tabs name="custom_policy">}}
 {{%tab name="Web interface"%}}
 
+{{< call-out class="note" title="Version note" >}}The **Upload Policy** option was available in F5 NGINX Instance Manager 2.20.0 and earlier. In 2.22.0 and later, use the following procedure to add a custom policy using the JSON tab.{{< /call-out >}}
+
 1. {{< include "nim/webui-nim-login.md" >}}
-2. In the left menu, select **Security Policies**.
-3. Choose **Upload Policy**, then select your `.json` or `.tgz` policy file.
-4. If you uploaded a `.json` file, **NGINX Instance Manager** automatically compiles it into a `.tgz` bundle.
-5. After upload, select **Publish** to make the policy available to your instances.
+2. In the left menu, go to **WAF > Policies**.
+3. Select **Create**.
+4. Select the **JSON** tab.
+5. In the text area, remove the existing default policy content.
+6. Paste your custom policy JSON.
+7. Correct any policy validation errors shown by the interface.
+8. Select **Add Policy**.
 
 {{%/tab%}}
 
