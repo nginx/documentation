@@ -26,6 +26,14 @@ Since June 4, 2026, NGINX Ingress Controller follows a new release model: Long-T
 
 This changelog lists all of the information for F5 NGINX Ingress Controller LTS.
 
+## 2026-lts-r6
+
+04 Sept 2026
+
+### {{% icon arrow-up %}} Fixes
+
+- [10795](https://github.com/nginx/kubernetes-ingress/pull/10795) Fix path quoting on v1 ingress
+
 ## 2026-lts-r5
 
 02 Sept 2026

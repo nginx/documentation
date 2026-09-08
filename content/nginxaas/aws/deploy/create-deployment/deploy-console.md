@@ -41,6 +41,7 @@ Create a new NGINXaaS deployment using the NGINXaaS Console:
    - Add an optional description for your deployment.
    - Change the [**NCUs**]({{< ref "/nginxaas/aws/overview.md#nginx-capacity-unit-ncu" >}}) if needed.
       - The default value of `20` works for most common scenarios.
+   - Enable **WAF** if you want [F5 WAF for NGINX]({{< ref "/waf" >}}) enabled for your deployment.
    - Select the AWS **Region** where you want the NGINXaaS deployment to be created.
    - Enter an **IPv4 CIDR Block** for the deployment's private network IP space.
       - NGINXaaS only accepts block sizes between `/22` and `/18`.
@@ -78,6 +79,7 @@ In the NGINXaaS Console,
 1. Select **Edit** to modify the deployment.
    - From this form, you can edit the description or reserved [NCUs]({{< ref "/nginxaas/aws/overview.md#nginx-capacity-unit-ncu" >}}).
    - You can apply a different NGINX configuration or configuration version.
+   - Enable or disable WAF.
    - Configure upstream connectivity by adding entries to the **VPC Peering Connections** list as detailed further in [Upstream connectivity](#upstream-connectivity).
    - You can also modify the **Service Frontend** configuration, including frontend type, ACL rules (Managed Public Endpoint) or PrivateLink Connection Allow List entries (Private Endpoint) from here.
       - This is where you can add VPC endpoint IDs to the allow list after you [create an interface VPC endpoint](#private-endpoint-traffic).

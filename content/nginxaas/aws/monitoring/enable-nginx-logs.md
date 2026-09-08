@@ -38,6 +38,10 @@ When you enable log export, NGINXaaS writes NGINX logs to a CloudWatch Logs log 
 
 {{< include "/nginxaas/logging-config-access-logs.md" >}}
 
+## Set up F5 WAF for NGINX security logs
+
+{{< include "/nginxaas/logging-config-security-logs.md" >}}
+
 ## Export NGINX logs to CloudWatch
 
 To enable exporting logs, turn on the **Export Logs to CloudWatch** toggle when creating or updating a deployment. To create a deployment, see [our documentation on creating an NGINXaaS deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/" >}}) for a step-by-step guide. To update an existing deployment, in the NGINXaaS console,

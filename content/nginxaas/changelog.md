@@ -13,6 +13,41 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
 
+## September 4, 2026
+
+- {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
+
+  NGINXaaS for Google is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+  | NGINXaaS Geography | Google Cloud Regions                              |
+  | ------------------ | ------------------------------------------------- |
+  | APAC               | asia-northeast1, asia-northeast2, asia-northeast3 |
+  | CA                 | northamerica-northeast1, northamerica-northeast2  |
+  {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for Google is available.
+
+- {{% icon-feature %}} **NGINXaaS for AWS is now generally available in more regions**
+
+  NGINXaaS for AWS is now available in the following additional regions per geography:
+
+  {{< table "table" >}}
+  | NGINXaaS Geography | AWS Regions                |
+  | ------------------ | -------------------------- |
+  | CA                 | ca-central-1, ca-west-1    |
+  {{< /table >}}
+
+See the [Supported Regions]({{< ref "/nginxaas/aws/overview.md#supported-regions" >}}) documentation for the full list of regions where NGINXaaS for AWS is available.
+
+## September 1, 2026
+
+- {{% icon-feature %}} **NGINXaaS for AWS now supports F5 WAF for NGINX (Preview)**
+
+You can now deploy NGINXaaS with [F5 WAF for NGINX]({{< ref "/waf" >}}); an advanced high-performance web application firewall (WAF) to provide protection from OWASP Top 10 web application security risks.
+
+**Note:** This feature is currently in Preview and free to use during the preview period. Custom security policies and custom logging profiles are not yet supported.
+
 ## July 31, 2026
 
 - {{% icon-feature %}} **NGINXaaS for AWS is now available (Early Access)**

@@ -31,7 +31,7 @@ _All images include NGINX 1.31.4._
 
 |<div style="width:200px">Name</div> | <div style="width:100px">Base image</div> | DockerHub image | Architectures |
 | ---| --- | --- | --- |
-|Alpine-based image | ``nginx:1.31.4-alpine``,<br>based on on ``alpine:3.23`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
+|Alpine-based image | ``nginx:1.31.4-alpine``,<br>based on on ``alpine:3.24`` | ``nginx/nginx-ingress:{{< nic-version >}}-alpine`` | arm64<br>amd64 |
 |Debian-based image | ``nginx:1.31.4``,<br>based on on ``debian:13-slim`` | ``nginx/nginx-ingress:{{< nic-version >}}`` | arm64<br>amd64 |
 |Ubi-based image | ``redhat/ubi10-minimal`` | ``nginx/nginx-ingress:{{< nic-version >}}-ubi`` | arm64<br>amd64 |
 
@@ -47,12 +47,12 @@ NGINX Plus images are available through the F5 Container registry `private-regis
 
 | Name | Base image | <div style="width:200px">Additional modules</div> | F5 Container Registry Image | Architectures |
 | ---| ---| --- | --- | --- |
-|Alpine-based image | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine` | arm64<br>amd64 |
-|Alpine-based image with FIPS inside | ``alpine:3.22`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | arm64<br>amd64 |
-|Alpine-based image with F5 WAF for NGINX & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
-|Alpine-based image with F5 WAF for NGINX & FIPS inside and NGINX Agent 3 | ``alpine:3.22`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips-agent` | amd64 |
-|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside | ``alpine:3.22`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
-|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside and NGINX Agent 3 | ``alpine:3.22`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips-agent` | amd64 |
+|Alpine-based image | ``alpine:3.24`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine` | arm64<br>amd64 |
+|Alpine-based image with FIPS inside | ``alpine:3.24`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | arm64<br>amd64 |
+|Alpine-based image with F5 WAF for NGINX & FIPS inside | ``alpine:3.24`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
+|Alpine-based image with F5 WAF for NGINX & FIPS inside and NGINX Agent 3 | ``alpine:3.24`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-alpine-fips-agent` | amd64 |
+|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside | ``alpine:3.24`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 2 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips` | amd64 |
+|Alpine-based image with F5 WAF for NGINX v5 & FIPS inside and NGINX Agent 3 | ``alpine:3.24`` | F5 WAF for NGINX v5<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>FIPS module and OpenSSL configuration<br>NGINX Agent 3 | `nginx-ic-nap-v5/nginx-plus-ingress:{{< nic-version >}}-alpine-fips-agent` | amd64 |
 |Debian-based image | ``debian:13-slim`` | NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic/nginx-plus-ingress:{{< nic-version >}}` | arm64<br>amd64 |
 |Debian-based image with F5 WAF for NGINX | ``debian:13-slim`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 2 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}` | amd64 |
 |Debian-based image with F5 WAF for NGINX and NGINX Agent 3 | ``debian:13-slim`` | F5 WAF for NGINX<br>NJS (NGINX JavaScript)<br>OpenTelemetry<br>NGINX Agent 3 | `nginx-ic-nap/nginx-plus-ingress:{{< nic-version >}}-agent` | amd64 |

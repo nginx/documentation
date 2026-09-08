@@ -136,6 +136,59 @@ How to re-enable mTLS for NGINX Agent and internal service connections:
 
 ---
 
+### {{% icon-resolved %}} Auto-downloaded WAF compiler v5.690.0 and later fails to compile policies {#47651}
+
+| Issue ID       | Status |
+|----------------|--------|
+| 47651 | Fixed in Instance Manager 2.23.0  |
+
+#### Description
+
+WAF compiler v5.690.0 and later can fail to compile policies on hosts where NGINX Instance Manager auto-downloaded it before you upgraded to NGINX Instance Manager 2.23.0. This release fixes the auto-download process, so new downloads no longer have this problem.
+
+You'll see an error like this in the NGINX Instance Manager web interface:
+
+```text
+<instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
+```
+
+The `nms.log` file also shows one of the following errors, depending on your operating system.
+
+**Debian or Ubuntu:**
+
+```text
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+```
+
+**RHEL:**
+
+```text
+Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+```
+
+#### Workaround
+
+If NGINX Instance Manager auto-downloaded WAF compiler v5.690.0 or later on a host (not through `apt` or `yum`) before you upgraded to NGINX Instance Manager 2.23.0, do the following.
+
+1. Check the library filenames in your compiler's `lib` directory. The filenames in step 2 apply to compiler v5.690.0; later versions may bundle different library versions.
+
+ ```shell
+ ls /opt/nms-nap-compiler/app_protect-<VERSION>/lib/ | grep -E 'libre2|libprotobuf'
+ ```
+
+2. Replace `<VERSION>` with your installed compiler version and run the following command. If step 1 showed different filenames, edit the command to match before running it.
+
+ ```shell
+ sudo bash -c '
+ cd /opt/nms-nap-compiler/app_protect-<VERSION>/lib && \
+ ln -sfn libre2.so.11.0.0 libre2.so.11 && \
+ ln -sfn libprotobuf.so.3.21.12.0 libprotobuf.so.32 && \
+ ln -sfn libprotobuf.so.32 libprotobuf.so
+ '
+ ```
+
+---
+
 ## 2.22.0
 
 April 28, 2026
@@ -144,7 +197,7 @@ April 28, 2026
 
 | Issue ID       | Status |
 |----------------|--------|
-| 47286 | Open  |
+| 47286 | Won't be resolved  |
 
 #### Description
 
@@ -156,7 +209,7 @@ Custom users can't perform any actions on the **Security Log Profiles** tab.
 
 | Issue ID       | Status |
 |----------------|--------|
-| 47287 | Open  |
+| 47287 | Won't be resolved  |
 
 #### Description
 
@@ -293,7 +346,7 @@ July 10, 2024
 
 | Issue ID       | Status |
 |----------------|--------|
-| 45113 | Open  |
+| 45113 | Won't be resolved  |
 
 #### Description
 
@@ -309,7 +362,7 @@ Edit the "/etc/nginx-agent/nginx-agent.conf" file and configure "precompiled_pub
 
 | Issue ID       | Status |
 |----------------|--------|
-| 45131 | Open  |
+| 45131 | Won't be resolved  |
 
 #### Description
 
@@ -426,7 +479,7 @@ August 28, 2023
 
 | Issue ID       | Status |
 |----------------|--------|
-| 43950 | Open  |
+| 43950 | Won't be resolved  |
 
 #### Description
 

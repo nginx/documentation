@@ -1,5 +1,5 @@
 ---
 title: Configuration
 weight: 500
-url: /nginx-ingress-controller/configuration
+url: /nginx-ingress-controller/lts/configuration
 ---
