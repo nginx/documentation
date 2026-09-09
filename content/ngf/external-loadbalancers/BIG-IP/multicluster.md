@@ -18,7 +18,7 @@ In this guide, you configure an `ExternalLoadBalancer` resource that puts BIG-IP
 
 The intended use case is a single hostname and certificate served by backends in more than one cluster, such as an active-active deployment or a migration between clusters. Clients see one address, and traffic moves between clusters without a DNS change.
 
-See [How configuration reaches BIG-IP]({{< ref "/ngf/external-loadbalancers/gateway-link/quickstart.md#how-configuration-reaches-big-ip" >}}).
+See [How configuration reaches BIG-IP]({{< ref "/ngf/external-loadbalancers/BIG-IP/quickstart.md#how-configuration-reaches-big-ip" >}}).
 
 ## Before you begin
 

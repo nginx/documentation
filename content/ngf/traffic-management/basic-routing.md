@@ -200,7 +200,7 @@ The **coffee** service is omitted from the diagram above because the NGINX Pod r
 
 {{< call-out class="note" >}}In the diagrams above, all resources that are the responsibility of the cluster operator are shown in blue. The orange resources are the responsibility of the application developers.
 
-See the [roles and personas](https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/#roles-and-personas_1) Gateway API document for more information on these roles.{{< /call-out >}}
+See the [roles and personas](https://gateway-api.sigs.k8s.io/docs/concepts/roles-and-personas/#roles-and-personas_1) Gateway API document for more information on these roles.{{< /call-out >}}
 
 ---
 

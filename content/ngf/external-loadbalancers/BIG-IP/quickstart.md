@@ -548,7 +548,7 @@ curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/
 
 ## References
 
-- [Distribute traffic across clusters with F5 BIG-IP]({{< ref "/ngf/external-loadbalancers/gateway-link/multicluster.md" >}}): terminate TLS at BIG-IP and spread traffic across two clusters, with health monitors and iRules.
+- [Distribute traffic across clusters with F5 BIG-IP]({{< ref "/ngf/external-loadbalancers/BIG-IP/multicluster.md" >}}): terminate TLS at BIG-IP and spread traffic across two clusters, with health monitors and iRules.
 - [F5 IngressLink documentation](https://clouddocs.f5.com/containers/latest/userguide/ingresslink/): the F5 Container Ingress Services resource that NGINX Gateway Fabric generates.
 - [F5 Application Services 3 Extension reference](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/refguide/schema-reference.html): the declaration format F5 Container Ingress Services posts to BIG-IP.
 - [NGINX Gateway Fabric](https://github.com/nginx/nginx-gateway-fabric): the NGINX Gateway Fabric source, including the `ExternalLoadBalancer` custom resource definitions.
