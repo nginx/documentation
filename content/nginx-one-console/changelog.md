@@ -10,6 +10,12 @@ nollms: true
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## September 8, 2026
+
+### F5 WAF for NGINX: gRPC protection through the API
+
+You can now configure [gRPC protection]({{< ref "/waf/policies/grpc-protection.md" >}}) for F5 WAF for NGINX policies through the NGINX One Console API. Upload the `.proto` IDL files referenced by a policy's `grpc-profiles` configuration alongside the policy, either as inline base64-encoded content or as a `.tar.gz` archive. For more information, see [Add gRPC protection to a policy]({{< ref "/nginx-one-console/waf-integration/policy/grpc-protection-api.md" >}}).
+
 ## August 19, 2026
 
 ### Instances: Custom display names
