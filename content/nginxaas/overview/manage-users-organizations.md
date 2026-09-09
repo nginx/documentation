@@ -20,7 +20,12 @@ Before you start, ensure you understand the following concepts:
    - Note that once a user has gained access to an NGINXaaS Organization through a particular login method, they must continue to use that login method to gain access to that NGINXaaS Organization. If the same human user authenticates through two different login methods, the resulting user identities are distinct from the perspective of NGINXaaS.
 
 - **Authentication settings**: Authentication settings are specific to the enabled login method.
-   - **Login Methods**: NGINXaaS authenticates users through Microsoft social login or Google social login. The NGINXaaS Organization can be configured to allow either or both of these login methods. By default, both login methods are enabled.
+   - **Login Methods**: NGINXaaS authenticates users through the following login methods:
+      - Microsoft social login
+      - Google social login
+      - Email and password
+
+   You can configure the NGINXaaS Organization to allow any or all of these methods. By default, all listed methods are enabled. See [user login]({{< ref "/nginxaas/overview/user-login.md" >}}) for further details.
    - **Google Authorized Domains**: If Google social login is enabled, authorized users can configure the list of domains with which users must be associated.
       - This can be used to restrict access to Google identities within your Google Cloud Organization or Google Workspace, or other known, trusted Workspaces. For example, your Google Cloud Organization may have users created under the `example.com` domain. By setting the Authorized Domains in your NGINXaaS Organization to only allow `example.com`, users attempting to log in with the same email associated with `alternative.net` Google Workspace would not be authenticated.
       - By default, an NGINXaaS Organization has an empty authorized domains list, which accepts matching users from any Google Workspace.
