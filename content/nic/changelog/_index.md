@@ -57,7 +57,7 @@ Highlights:
 - Native HSTS policy support for VirtualServer, VirtualServerRoute, and Ingress resources.
 - Additional ingress-nginx annotations and configMap updates - Includes setting the host header, disabling X-Forwarded headers and customer error pages
 - Significant Improvements to Configuration Safety - NGINX Ingress Controller no longer runs `nginx -t` after every configuration file write during initial reconciliation; instead, writes are batched and validated once for the whole batch after the initial queue drains. This significantly reduces startup time on large clusters.
-- Removed: Deprecated NGINX Service Mesh integration.
+- Removed references to F5 NGINX Service Mesh (NSM). NSM reached End of Life in March 2024 and is no longer supported. This does not affect NGINX Ingress Controller functionality.
 
 ### {{% icon rocket %}} Features
 
@@ -99,7 +99,7 @@ Highlights:
 
 - For NGINX, use the 5.6.0 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.6.0 images from the F5 Container registry or build your own image from the 5.6.0 source code.
-- For Helm, use version 2.7.0 of the chart.
+- For Helm, use version 2.7.0 of the chart. If you configured NGINX Service Mesh in a release prior to 5.6.0 (version 5.5.4 or earlier), remove any related values from the Helm chart before upgrading. These settings only applied to previous NGINX Service Mesh deployments. Users who never deployed service mesh are unaffected.
 
 ### {{% icon life-buoy %}} Supported platforms
 
