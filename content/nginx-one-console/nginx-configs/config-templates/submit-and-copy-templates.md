@@ -35,20 +35,15 @@ Before you begin, make sure you have:
 
 The **Submit** option is available for templates of type `base` that are in the `final` state.
 
-1. Go to **Manage** > **Config Templates**. The **Templates** list opens and shows every imported template with its available row actions.
+1. Go to **Manage** > **Config Templates**. The **Templates** list opens and shows every imported template with its available row actions, as well as F5-provided templates.
 1. Select **Submit** on a base template that's in the `final` state to create a template submission from the Templates list.
-1. Fill in the parameter values for the base template. NGINX One Console generates the form from the template's schema.
-1. (Optional) Add one or more augment templates.
-
-   - Fill in the parameter values for each augment template.
-
-1. Select one or more staged configs as the target. You can't target Config Sync Groups or instances directly yet.
+1. Fill in the parameter values for the base template.
 1. Preview the rendered NGINX configuration.
 1. Select **Save** to create the submission and publish it to your chosen targets.
 
 ## Edit an existing submission
 
-You can also use the **Submit Template** panel to edit an existing submission. Open the submission from the **Submissions** section on the Template Detail page.
+You can also use the **Edit Template Submission** panel to edit an existing submission. Open the submission from the **Submissions** section on the Template Detail page.
 
 ## Copy a template
 
@@ -56,10 +51,9 @@ The **Make a Copy** option is available for any template, regardless of its type
 
 1. Go to **Manage** > **Config Templates**. The **Templates** list opens and shows every imported template with its available row actions.
 1. Select **Make a Copy** on the template you want to copy.
+1. Fill in the name and description for the new template copy.
 
-NGINX One Console creates a new draft template at version 1. It copies the files, template type, and context configuration from the source template. The new template uses the same name and description. You can update them afterward.
-
-This matches the behavior of [Copy a template]({{< ref "author-templates.md#copy-a-template" >}}), the API operation behind this action.
+NGINX One Console creates a new draft template at version 1. It copies the files, template type, and context configuration from the source template.
 
 ## What happens next
 
