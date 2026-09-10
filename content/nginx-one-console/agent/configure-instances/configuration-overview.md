@@ -85,3 +85,13 @@ sudo docker run \
 | NGINX_AGENT_COLLECTOR_EXTENSIONS_TLS_KEY      | --collector-extensions-health-tls-key           | File path for TLS key used when connecting with OTel health server.                                           | N/A                                                    |
 | NGINX_AGENT_COLLECTOR_PROCESSORS_BATCH_SEND_BATCH_TIMEOUT    | --collector-processors-batch-send-batch-timeout                                               | Maximum time duration for sending batch data metrics regardless of size.                                      | 200ms
 {{</table >}}
+
+## Reserved labels
+
+NGINX One Console uses the following label keys for specific purposes:
+
+{{<table>}}
+| **Label**      | **Description**                                                                                                                                            |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| display-name   | Sets a display name for the instance in NGINX One Console. For details, see [Assign a display name to an instance]({{< ref "/nginx-one-console/agent/configure-instances/configure-instance-display-name.md" >}}). |
+{{</table >}}

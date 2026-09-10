@@ -344,7 +344,7 @@ kubectl describe gateways.gateway.networking.k8s.io gateway
 ```text
 Addresses:
   Type:   IPAddress
-  Value:  10.96.20.187
+  Value:  192.0.2.1
 ```
 
 Save the IP and port into shell variables:
@@ -656,7 +656,6 @@ spec:
 
 ## Further reading
 
-- [Example deployment files for OIDC authentication](https://github.com/nginx/nginx-gateway-fabric/tree/main/examples/oidc-authentication)
 - [NGINX OIDC module reference](https://nginx.org/en/docs/http/ngx_http_oidc_module.html)
 - [How OpenID Connect works](https://openid.net/developers/how-connect-works/)
 - [Single Sign-On with OpenID Connect and Identity Providers](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-oidc)

@@ -4,11 +4,9 @@ f5-files:
 - content/waf/install/docker.md
 ---
 
-Download the `waf-enforcer` and `waf-config-mgr` images. 
-
-Replace `5.2.0` with the release version you are deploying.
+Download the `waf-enforcer` and `waf-config-mgr` images.
 
 ```shell
-docker pull private-registry.nginx.com/nap/waf-enforcer:5.2.0
-docker pull private-registry.nginx.com/nap/waf-config-mgr:5.2.0
+docker pull private-registry.nginx.com/nap/waf-enforcer:{{< version-waf-enforcer >}}
+docker pull private-registry.nginx.com/nap/waf-config-mgr:{{< version-waf-config-mgr >}}
 ```

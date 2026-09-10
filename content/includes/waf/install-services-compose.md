@@ -10,7 +10,7 @@ Create a _docker-compose.yml_ file with the following contents in your host envi
 services:
   waf-enforcer:
     container_name: waf-enforcer
-    image: waf-enforcer:5.2.0
+    image: waf-enforcer:{{< version-waf-enforcer >}}
     environment:
       - ENFORCER_PORT=50000
     ports:
@@ -23,7 +23,7 @@ services:
 
   waf-config-mgr:
     container_name: waf-config-mgr
-    image: waf-config-mgr:5.2.0
+    image: waf-config-mgr:{{< version-waf-config-mgr >}}
     volumes:
       - /opt/app_protect/bd_config:/opt/app_protect/bd_config
       - /opt/app_protect/config:/opt/app_protect/config

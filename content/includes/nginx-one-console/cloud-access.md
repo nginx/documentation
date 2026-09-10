@@ -17,7 +17,7 @@ When you have a subscription, you or someone in your organization should have an
 
 That email includes an account name, which is the TENANT_NAME.
 
-To access F5 Distributed Cloud, go to to https://INSERT_YOUR_TENANT_NAME.console.ves.volterra.io/. If you have never logged in, select the **Forgot Password?** option in the log in screen. Alternatively, if someone within your organization has access, ask them to add you as a user within your tenant with access to NGINX One Console.
+To access F5 Distributed Cloud, go to https://INSERT_YOUR_TENANT_NAME.console.ves.volterra.io/. If you have never logged in, select the **Forgot Password?** option in the log in screen. Alternatively, if someone within your organization has access, ask them to add you as a user within your tenant with access to NGINX One Console.
 
 If you do not know your TENANT_NAME, you can:
 

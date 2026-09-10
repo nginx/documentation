@@ -292,7 +292,7 @@ You have two options for deploying NGINX Ingress Controller:
 
 ### Set up role-based access control (RBAC) {#set-up-rbac}
 
-{{< call-out class="important" title="Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}
+{{< call-out class="important" title="Admin access required" >}}To complete these steps you need admin access to your cluster. Refer to your Kubernetes platform's documentation to set up admin access. For Google Kubernetes Engine (GKE), you can refer to their [Role-Based Access Control guide](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).{{</call-out>}}
 
 1. Create a namespace and a service account:
 

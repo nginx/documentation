@@ -15,6 +15,13 @@ ARG OS_VER="3.22"
 # Base image
 FROM alpine:${OS_VER}
 
+# Leave empty to install the most recent version. To build a specific version,
+# set the argument, for example:
+#   --build-arg DOS_VERSION="=37+4.9.6-r1"
+# NGINX Plus needs no pin here, because apk can select an older nginx-plus to
+# satisfy the module's nginx-plus-r<release> dependency.
+ARG DOS_VERSION=""
+
 # Install F5 DoS for NGINX
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/apk/cert.key,mode=0644 \
@@ -23,7 +30,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/apk/cert.pem,mode=0644 \
     && printf "https://pkgs.nginx.com/plus/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
     && printf "https://pkgs.nginx.com/app-protect-dos/alpine/v`egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release`/main\n" | tee -a /etc/apk/repositories \
     && apk update \
-    && apk add app-protect-dos \
+    && apk add "app-protect-dos${DOS_VERSION}" \
     && cat license.jwt > /etc/nginx/license.jwt \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \

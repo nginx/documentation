@@ -10,26 +10,91 @@ f5-product: NGINX Plus
 nollms: true
 ---
 
-{{< call-out class="note" title="Important" >}} Since May 13, 2026, NGINX Plus and NGINX Ingress Controller transitions to a new release model: [Long-Term Support Releases (LTS)](#lts) and [Continuous Releases (CR)](#cr). {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} Since May 13, 2026, NGINX Plus and [NGINX Ingress Controller]({{< ref "/nic/lts" >}}) follow a new unified release model: annual LTS releases, each supported for three years, offered in two tracks: LTS patch release (supported for the full three-year period) and Continuous release (only the latest CR is supported).{{< /call-out >}}
 
 ## New release model {#intro}
 
-Since May 13, 2026, NGINX Plus follows a new release model: [Long-Term Support (LTS)](#lts) and [Continuous Releases (CR)](#cr).
+Since May 13, 2026, NGINX Plus follows a new release model: F5 NGINX Commercial Long-Term Support (LTS) release. Each new LTS release version is published annually and is supported for three years from its General Availability (GA) date.
 
-[**NGINX Plus Long-Term Support (LTS) Releases**](#lts) are published once a year and focus on stability and security. Each LTS version is supported for up to three years and receives only security fixes and CVE mitigations during his time. New features are delivered through [Continuous Releases (CRs)](#cr) within the LTS release period.
+### Release tracks
 
-LTS is identified by a `0` as the second numeric component of the version number, for example, PLS.37.`0`.0.1. An LTS release update increments the third numeric component, for example, PLS.37.0.`1`.1.
+Each release version is available in two tracks:
 
-[**NGINX Plus Continuous Releases (CR)**](#cr) are published multiple times during the life of the latest [LTS](#lts) release and include the newest features and performance improvements. CRs are never patched, security fixes are delivered as the next CR. F5 provides support for the latest CR only - when a new CR is released, the previous CR immediately reaches End of Support.
+[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.5.1` LTS](#pls.37.0.5).
 
-CRs are identified by the second numeric component, for example, PLS.37.`1`.0.0, PLS.37.`2`.0.0.
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.0.1` CR](#pls.37.1.0).
 
+### Release schedule
 
-## Long-term support releases (LTS) {#lts}
+Each new LTS release version is published annually and supported for three years.
 
-{{< call-out class="note" title="Important" >}} To use the LTS release track instead of the CR track, you must update your repository configuration to point to the LTS package URL, replacing the default URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details. {{< /call-out >}}
+LTS releases are published regularly to address important bug fixes. The latest LTS release was published on September 2, 2026.
 
-### NGINX Plus  PLS.37.0.3.1 LTS {#pls.37.0.3}
+CR releases are shipped regularly with latest features, enhancements and bug updates. The latest CR release was published on September 2, 2026.
+
+### Release numbering
+
+Starting with NGINX Plus PLS.37 LTS, release numbering became unified with other F5 products. Versions follow the format `PLS.<major>.<minor>.<patch>.<package> LTS`. Example: `NGINX Plus PLS.37.0.4.1 LTS`.
+
+- **First number** represents the major release, corresponding to a yearly LTS release.
+
+- **Second number** represents the [Continuous Releases track](#cr) and minor release. A value of `1` or higher indicates a CR release (e.g., PLS.37.`1`.0.1, PLS.37.`2`.0.1); the third component remains `0` in this case. A value of `0`, for example PLS.37.`0`.`x`.1 represents the LTS patch release track.
+
+- **Third number** represents the [LTS patch release track](#lts), for example, PLS.37.0.`1`.1. For patch releases, the second number is always `0` and each new LTS patch release increments the third component.
+
+- **Fourth number** represents the packaging version, i.e. changes to the distributable package that are not related to NGINX Plus code itself. Starts at `1`, increments only when something changes at the packaging level.
+
+### Upgrade strategy
+
+When planning your upgrade from NGINX Plus R36, choose the release track that best matches your operational needs and priorities. Typical adoption patterns and considerations include:
+
+- **R36 -> LTS track** - typically chosen for environments that prioritize stability, extended support windows, and minimal change. When a new yearly LTS release becomes available, the upgrade workflow can:  
+
+  - **upgrade to the next LTS** - keeps you on the latest LTS baseline with minimal manual effort.
+
+  - **stay on the current LTS** - fits environments with strict change control, heavy validation requirements, or costly recertification. These environments upgrade only when mandated by business or security needs.
+
+  See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
+
+- **R36 -> CR track** - typically chosen for environments that need the latest features, performance enhancements, or faster iteration. When a new yearly LTS release becomes available, the CR track first moves to that LTS baseline and then continues with subsequent CR releases. See [Installing NGINX Plus]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus.md" >}}) for details.
+
+### Upgrade notes
+
+Before upgrading from NGINX Plus R36 — regardless of which release track you’re moving to — you may need to review your existing configuration and prepare it for upgrade if necessary:
+
+- Ensure you are upgrading from the latest version of NGINX Plus R36 - currently NGINX Plus R36 P8, released on July 22, 2026.
+
+- Increase [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone): the new `response_time_hist` API data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream) adds about 1KB of shared memory per upstream server. If your upstream shared memory zones are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. This may increase the required shared memory zone size by 25–30%.
+
+- Disable [upstream keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) if unsupported: NGINX Plus PLS.37 LTS enables upstream keepalive by default. If your backend does not support connection reuse, explicitly disable it with `keepalive 0;` in your upstream configuration before upgrading. See [K000161464](https://my.f5.com/s/article/K000161464#ai-recommendations-55) for details.
+
+- Change the [HTTP version for upstreams](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) from the new default HTTP/1.1 to HTTP/1.0 when needed: if your upstreams rely on HTTP/1.0 for upstream communication, explicitly set `proxy_http_version 1.0;`. Ensure the `Host` header is configured when using the HTTP 1.1 protocol; without this, upstream health checks may fail.
+
+## NGINX Plus PLS.37 LTS release track {#lts}
+
+The LTS release track builds on the [initial LTS release](#r37.0) and delivers patches releases focused on stability and security. These patch releases contain only security fixes and CVE mitigations and are published as soon as a mitigation becomes disclosed.
+
+LTS patch versions follow the numbering format: `PLS.37.0.<patch>.<package>`: the second component remains `0`, the third component increments for each new patch (e.g., PLS.37.0.`1`.1, PLS.37.0.`2`.1), and the fourth reflects packaging updates when needed.
+
+To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
+
+### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
+_September 2, 2026_<br/>
+
+NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to this version to ensure they are running the most stable and secure version of NGINX Plus.
+
+{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+
+### NGINX Plus PLS.37.0.4.1 LTS {#pls.37.0.4}
+_July 22, 2026_<br/>
+
+NGINX Plus PLS.37.0.4.1 LTS is a bugfix release:
+
+- If the `Host` header field value set by [`proxy_set_header`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) evaluates to an empty string, the value of [`$proxy_host`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#var_proxy_host) is used instead. This prevents sending upstream requests without a `Host` (HTTP/1.1) or `:authority` (HTTP/2) header, and also allows [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) to pass in some configurations. The bug appeared in [NGINX Plus PLS.37.0.0.1 LTS](#r37.0).
+
+- Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/). The bug appeared in [NGINX Plus PLS.37.0.3.1 LTS](#pls.37.0.3).
+
+### NGINX Plus PLS.37.0.3.1 LTS {#pls.37.0.3}
 _July 15, 2026_<br/>
 
 NGINX Plus PLS.37.0.3.1 LTS is a security release.
@@ -43,7 +108,7 @@ NGINX Plus PLS.37.0.3.1 LTS is a security release.
 - Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
 
 
-### NGINX Plus  PLS.37.0.2.1 LTS {#pls.37.0.2}
+### NGINX Plus PLS.37.0.2.1 LTS {#pls.37.0.2}
 _June 17, 2026_<br/>
 
 NGINX Plus PLS.37.0.2.1 LTS is a security release.
@@ -53,7 +118,7 @@ NGINX Plus PLS.37.0.2.1 LTS is a security release.
 - Security fix in the `ngx_http_proxy_v2_module` and [`ngx_http_grpc_module`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) modules: when NGINX Plus is configured to proxy HTTP/2 traffic by using [`proxy_http_version`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) `2` or [`grpc_pass`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), [`ignore_invalid_headers`](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) set to `off`, and [`large_client_header_buffers size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) is larger than `2M`, a remote unauthenticated attacker could send large headers while creating an upstream request. This may cause a heap-based buffer overflow in the NGINX worker process, leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR ([CVE-2026-42055](https://my.f5.com/manage/s/article/K000161584)).
 
 
-### NGINX Plus  PLS.37.0.1.1 LTS {#pls.37.0.1}
+### NGINX Plus PLS.37.0.1.1 LTS {#pls.37.0.1}
 _May 22, 2026_<br/>
 
 NGINX Plus PLS.37.0.1.1 LTS is a security release.
@@ -61,11 +126,11 @@ NGINX Plus PLS.37.0.1.1 LTS is a security release.
 - Security fix in the [`ngx_http_rewrite_module`](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module: when the [rewrite replacement string](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) contained no variables but had overlapping captures, the length of the allocated buffer could be smaller than the escaped replacement string, which could result in a buffer overflow. ([CVE-2026-9256](https://my.f5.com/manage/s/article/K000161377)).
 
 
-### NGINX Plus  PLS.37.0.0.1 LTS {#r37.0}
+### NGINX Plus PLS.37.0.0.1 LTS {#r37.0}
 _May 13, 2026_<br/>
 _Based on NGINX Open Source 1.29.8_
 
-NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
+NGINX Plus PLS.37.0.0.1 LTS is the first LTS release. For more details on the [release tracks](#release-tracks), [release numbering](#release-numbering), [schedule](#release-schedule), and [upgrade strategy](#upgrade-strategy), see the [Introduction](#intro) section.
 
 - [New release model](https://community.f5.com/kb/devcentralnews/announcing-the-first-f5-nginx-commercial-long-term-support-release/346419): Long-Term Support (LTS) Releases and Continuous Releases (CR).
 - [Agentic observability module](https://github.com/nginx/nginx-mcp-js/tree/main): real-time MCP traffic monitoring.
@@ -73,7 +138,7 @@ NGINX Plus PLS.37.0.0.1 LTS is the first LTS release.
 - JSON-formatted error logs: the [`json`](https://nginx.org/en/docs/ngx_core_module.html#error_log_json) parameter of the [`error_log`](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive.
 - Customer error log variables: the [`error_log_tag`](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag) directive.
 - Enhanced upstream latency metrics with latency histograms: the `response_time_hist` data for each [HTTP upstream](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_http_upstream). 
-{{< call-out class="note" title="Important" >}} This change adds about 1k of shared memory for each upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly 1k per upstream server, and round up to keep some extra space. {{< /call-out >}}
+{{< call-out class="note" title="Important" >}} This change adds about 1KB of shared memory for each upstream server. If your [upstream shared memory zones](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are near capacity, increase their sizes by roughly 1KB per upstream server, and round up to keep some extra space. {{< /call-out >}}
 - Basic authentication for [HTTP CONNECT forward proxy](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html).
 - Encrypted Client Hello (ECH) support: the [`ssl_ech_file`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file) directive.
 - Multipath TCP support: the [`multipath`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) parameter of the [`listen`](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
@@ -122,9 +187,87 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 - FreeBSD 15 is added
 - Ubuntu 26.04 is added
 
-## Continuous releases (CR) {#cr}
 
-Currently, there are no CR releases for the NGINX Plus PLS.37.0.0.1 LTS.
+## NGINX Plus PLS.37 Continuous release (CR) track {#cr}
+
+Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
+
+### NGINX Plus PLS.37.1.0.1 CR {#pls.37.1.0}
+_September 2, 2026_<br/>
+_Based on NGINX Open Source 1.31.3_
+
+NGINX Plus PLS.37.1.0.1 CR is a feature release.
+
+- Deferred license autorenewal: the [`license_pending_token`](https://nginx.org/en/docs/ngx_mgmt_module.html#license_pending_token) directive which allows adding a license via the API. API v10 now supports adding a license with the `PUT` method.
+
+- [Variable-based rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone) allowing rate limits to be configured dynamically based on variables.
+
+- SSL and TLS
+
+  - The [`proxy_ssl_alpn`](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_ssl_alpn) directive for stream.
+
+  - The [`$ssl_sigalgs`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_sigalgs) variable that returns the signature algorithm for the server certificate for an established SSL connection.
+
+  - Lowered the logging level of some SSL alert and record-layer errors from `crit` to `info`.
+
+- HTTP/2, HTTP/3, QUIC, and gRPC
+
+  - Improved HTTP/2 and HTTP/3 protocol validation, including stricter handling of connection-related headers, pseudo-headers, and invalid response metadata.
+
+  - Fixed multiple HTTP/2 proxying issues related to flow control, backend connection caching, cached responses, and incorrect `Upgrade` headers.
+
+  - The size of headers and trailers in HTTP/2 responses is now limited with [`proxy_buffer_size`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [`grpc_buffer_size`](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_buffer_size) directives.
+
+  - Fixed QUIC IPv6 fragmentation handling on some operating systems.
+
+- Proxying
+
+  - Configurable socket send and receive buffer directives [`proxy_socket_sndbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_sndbuf) and [`proxy_socket_rcvbuf`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_socket_rcvbuf), also for FastCGI, gRPC, SCGI, uWSGI, and tunnel upstream connections.
+
+  - Fixed transfer of proxied HTTP/0.9, SCGI, and uWSGI responses when the first response line was not fully read.
+
+- Security and hardening
+
+  - Improved `secure_link` hash comparison to use constant-time comparison.
+
+  - Updated the `$request_id` variable to use SipHash-2-4.
+
+  - Improved WebDAV validation for `COPY` and `MOVE` requests involving identical or parent-child resources.
+
+- Other fixes and improvements
+
+  - XSLT filter module: the new [`xml_external_entities`](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xml_external_entities) directive, loading of external XML entities is now enabled.
+
+  - Fixed an issue where `split_clients` variables could be empty when explicitly configured percentages summed to 100%.
+
+  - Fixed issues in the `ngx_http_tunnel_module` module.
+
+{{< call-out class="note" title="More info" >}} [Announcing NGINX Plus PLS.37.1.0.1 CR](https://community.f5.com/kb/technicalarticles/f5-nginx-plus-37-1-release-now-available/347466) blog post. {{< /call-out >}}
+
+NGINX Plus PLS.37.1.0.1 CR is supported on:
+
+{{<table>}}
+| Distribution                     | Versions                        | Architecture    |
+|----------------------------------|---------------------------------|-----------------|
+| AlmaLinux                        | 8.1+, 9.7+, 10                  | x86_64, aarch64 |
+| Alpine Linux                     | 3.21, 3.22, 3.23, 3.24          | x86_64, aarch64 |
+| Amazon Linux                     | 2023                            | x86_64, aarch64 |
+| Debian                           | 11, 12, 13                      | x86_64, aarch64 |
+| FreeBSD                          | 14.3+, 15.0+                    | amd64           |
+| Oracle Linux                     | 8.1+, 9.7+                      | x86_64, aarch64 |
+| RHEL                             | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| Rocky Linux                      | 8.1+, 9.7+, 10.1+               | x86_64, aarch64 |
+| SUSE Linux Enterprise Server     | 15 SP7+, 16                     | x86_64, aarch64 |
+| Ubuntu                           | 22.04, 24.04, 26.04             | x86_64, aarch64 |
+{{</table >}}
+
+**Notes:**
+
+- Alpine Linux 3.24 is added
+- FreeBSD 13 is removed
+- Amazon Linux 2 is removed
+- Debian 11 is deprecated
+
 
 ## Other supported releases
 
@@ -133,7 +276,7 @@ F5 offers 24 months of technical support for each NGINX Plus release, beginning 
 {{<table>}}
 | NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
 |--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | R37.1 release date        | Nov 30, 2027             |
+| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | Sept 2, 2026        | Nov 30, 2027             |
 | [R35](#r35)        | Aug 13, 2025 | Dec 1, 2025                 | May 13, 2026        | Aug 12, 2027             |
 | [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | Dec 1, 2025        |      Mar 31, 2027             |
 | [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | Aug 13 2025             | Nov 18, 2026             |
@@ -291,6 +434,15 @@ This is a security release for NGINX Plus R36.
 - Security fix in the [`ngx_http_slice_module`](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module: when the [`slice`](https://nginx.org/en/docs/http/ngx_http_slice_module.html#slice) directive and unnamed regex captures are configured or when a background cache update happens, unauthenticated attackers can send requests that with conditions beyond the attacker's control cause uninitialized memory access in the NGINX worker process, leading to limited disclosure of memory or a restart ([CVE-2026-60005](https://my.f5.com/manage/s/article/K000162100)).
 
 - Security fix: when NGINX Plus is configured to use the MQTT filter module [(`ngx_stream_mqtt_filter_module`)](https://nginx.org/en/docs/stream/ngx_stream_mqtt_filter_module.html), unauthenticated attackers can send requests with conditions beyond the attacker's control to cause a heap buffer over-read in the NGINX worker process, leading to a restart ([CVE-2026-60065](https://my.f5.com/manage/s/article/K000162101)).
+
+NGINX Plus R36 P8<br/>
+_July 22, 2026_
+
+This is an improvement release for NGINX Plus R36.
+
+- Restored compatibility with some third-party dynamic modules available in our repository, for example, [Set-Misc](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/set-misc/) and [Lua](https://docs.nginx.com/nginx/admin-guide/dynamic-modules/lua/). The bug appeared in NGINX Plus R36 P7.
+
+- The [`keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) directive now accepts the `0` value, making upgrade to NGINX Plus PLS.37 LTS smoother, where HTTP 1.1 and keepalive to upstreams are enabled by default. See [this blog post](https://blog.nginx.org/blog/keep-alive-to-upstreams-is-now-default-in-nginx-1-29-7) for details.
 
 
 ### NGINX Plus Release 35 (R35) {#r35}

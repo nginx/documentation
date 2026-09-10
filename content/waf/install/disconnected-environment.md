@@ -152,12 +152,16 @@ See the section for your operating system below:
    apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances app-protect | grep "^\w" | sort -u)
    ```
 
-#### Oracle Linux / RHEL / Rocky Linux 8
+#### Oracle Linux / RHEL / Rocky Linux
+
+{{< call-out class="note" title="Note" >}}
+The steps are identical for Oracle Linux, RHEL, and Rocky Linux. In the commands below, replace `<version>` with your operating system major version: `8`, `9`, or `10`.
+{{< /call-out >}}
 
 1. Add the F5 WAF for NGINX repository:
 
    ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-8.repo
+   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-<version>.repo
    ```
 
 1. Install the `yum-utils` package if not already installed:
@@ -169,89 +173,13 @@ See the section for your operating system below:
 1. Enable codeready-builder repository through subscription manager:
 
    ```shell
-   subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-   ```
-
-   1. Download the `epel-release` dependency package if not already installed:
-
-   ```shell
-   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-   ```
-
-1. Create a directory for packages and download app-protect:
-
-   ```shell
-   mkdir -p /offline/packages
-
-   sudo yum install --downloadonly --downloaddir=/offline/packages \
-   app-protect \
-   app-protect-attack-signatures \
-   app-protect-bot-signatures \
-   app-protect-threat-campaigns
-   ```
-
-#### RHEL / Rocky Linux 9
-
-1. Add the F5 WAF for NGINX repository:
-
-   ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-9.repo
-   ```
-
-1. Install the `yum-utils` package if not already installed:
-
-   ```shell
-   sudo dnf install yum-utils
-   ```
-
-1. Enable codeready-builder repository through subscription manager:
-
-   ```shell
-   subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+   subscription-manager repos --enable codeready-builder-for-rhel-<version>-x86_64-rpms
    ```
 
 1. Download the `epel-release` dependency package if not already installed:
 
    ```shell
-   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-   ```
-
-1. Create a directory for packages and download app-protect:
-
-   ```shell
-   mkdir -p /offline/packages
-
-   sudo yum install --downloadonly --downloaddir=/offline/packages \
-   app-protect \
-   app-protect-attack-signatures \
-   app-protect-bot-signatures \
-   app-protect-threat-campaigns
-   ```
-
-#### RHEL 10
-
-1. Add the F5 WAF for NGINX repository:
-
-   ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/app-protect-10.repo
-   ```
-
-1. Install the `yum-utils` package if not already installed:
-
-   ```shell
-   sudo dnf install yum-utils
-   ```
-
-1. Enable codeready-builder repository through subscription manager:
-
-   ```shell
-   subscription-manager repos --enable codeready-builder-for-rhel-10-x86_64-rpms
-   ```
-
-1. Download the `epel-release` dependency package if not already installed:
-
-   ```shell
-   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+   rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-<version>.noarch.rpm
    ```
 
 1. Create a directory for packages and download app-protect:
@@ -320,7 +248,7 @@ In the disconnected environment, install the packages:
    apk add --allow-untrusted app-protect*.apk nginx-plus*.apk
    ```
 
-- For Amazon Linux 2023, RHEL 9, Rocky Linux 9
+- For Amazon Linux 2023, RHEL 9, Rocky Linux 9, RHEL 10, Rocky Linux 10
 
    ```shell
    cd /offline

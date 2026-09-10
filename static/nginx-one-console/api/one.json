@@ -5054,7 +5054,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NapPolicy"
+                "$ref": "#/components/schemas/NapPolicyWithFileReferences"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NapPolicyMultipart"
+              },
+              "encoding": {
+                "file_references_archive": {
+                  "contentType": "application/gzip, application/x-gzip"
+                }
               }
             }
           }
@@ -5248,7 +5258,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NapPolicy"
+                "$ref": "#/components/schemas/NapPolicyWithFileReferences"
               }
             }
           }
@@ -5961,6 +5971,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "NGINX config templates",
         "summary": "List Templates",
         "description": "Retrieves a list of templates.\n",
         "operationId": "listTemplates",
@@ -6106,6 +6118,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "NGINX config templates",
         "summary": "Retrieve a Template",
         "description": "Retrieves detailed information about a latest template version by its unique identifier.\n",
         "parameters": [
@@ -6291,6 +6305,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "template submissions",
         "summary": "List Template Submissions for Template",
         "description": "Retrieves a list of template submissions scoped to a specific template (any version).\n",
         "operationId": "listTemplateSubmissionsForTemplate",
@@ -6359,7 +6375,7 @@
           "Templates"
         ],
         "x-nginx-one-action": "update",
-        "x-nginx-one-entity": "NGINX config templates",
+        "x-nginx-one-entity": "template submissions",
         "summary": "Update a single template's values in a submission",
         "description": "Partially updates an existing template submission by replacing the input values\nfor a single template identified by `templateObjectID`. All other templates in\nthe submission retain their existing values, and the full NGINX configuration is\nre-rendered using the merged values.\n\nPayloads and target objects are preserved from the existing submission and cannot\nbe changed through this endpoint.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `false` (default), the API re-renders, persists the updated values,\n    and re-publishes to the submission's existing targets.\n  - When `preview_only` is `true`, the API re-renders the NGINX configuration\n    with the new values for preview **without persisting** the changes.\n",
         "operationId": "updateSingleTemplateSubmission",
@@ -6435,6 +6451,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "NGINX config templates",
         "summary": "List template versions",
         "description": "Lists all versions for a specific template.\n",
         "operationId": "listTemplateVersions",
@@ -6606,6 +6624,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "NGINX config templates",
         "summary": "Get a specific template version",
         "description": "Retrieves a specific version of a template by its version ID.\n",
         "operationId": "getTemplateVersion",
@@ -6645,6 +6665,7 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "generate",
         "x-nginx-one-entity": "NGINX config templates",
         "summary": "Generates an NGINX configuration for an augment template.",
         "parameters": [
@@ -6769,6 +6790,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "template submissions",
         "summary": "List Template Submissions",
         "description": "Retrieves a list of template submissions.\n",
         "operationId": "listTemplateSubmissions",
@@ -6821,6 +6844,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "create",
+        "x-nginx-one-entity": "template submissions",
         "summary": "Submit templates for previewing NGINX configuration.",
         "description": "Submits a set of templates for rendering NGINX configuration.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `true`, the API validates template parameters and renders the full NGINX configuration for preview **without creating a template submission object**. (**Currently, only this mode is supported.**)\n  - When `preview_only` is `false` or omitted, the API is intended to render and create a submission. \n    - If no target object ID is provided, a new staged config will be created.\n",
         "parameters": [
@@ -6943,6 +6968,8 @@
         "tags": [
           "Templates"
         ],
+        "x-nginx-one-action": "query",
+        "x-nginx-one-entity": "template submissions",
         "summary": "Get a Template Submission",
         "description": "Retrieves detailed information about a template submission by its unique identifier.\n",
         "operationId": "getTemplateSubmission",
@@ -6978,7 +7005,7 @@
           "Templates"
         ],
         "x-nginx-one-action": "update",
-        "x-nginx-one-entity": "NGINX config templates",
+        "x-nginx-one-entity": "template submissions",
         "summary": "Update a Template Submission",
         "description": "Performs a full update (replacement) of an existing template submission by\nreplacing all input values and payloads, then re-rendering the NGINX configuration.\n\nThe `preview_only` query parameter controls how the request is processed:\n  - When `preview_only` is `false` (default), the API re-renders, persists the updated values,\n    and re-publishes to the submission's existing targets.\n  - When `preview_only` is `true`, the API re-renders the NGINX configuration\n    with the new values for preview **without persisting** the changes.\n",
         "operationId": "updateTemplateSubmission",
@@ -7039,6 +7066,54 @@
                 }
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErr"
+          }
+        }
+      }
+    },
+    "/templates/submissions/{submissionObjectID}/unlink": {
+      "delete": {
+        "tags": [
+          "Templates"
+        ],
+        "x-nginx-one-action": "delete",
+        "x-nginx-one-entity": "template submissions",
+        "summary": "Unlink Target Associations",
+        "description": "Removes target associations for a template submission.        \n  - When `target_object_ids` is provided, only the associations with those specific targets are removed.\n  - When `target_object_ids` is omitted or empty, all associations for the submission are removed.\n\nThe response includes results for each target, indicating success or failure.\n",
+        "operationId": "unlinkSubmissionAssociations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TemplateSubmissionParamObjectID"
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnlinkSubmissionAssociationsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully processed the unlink request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnlinkResultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerErr"
@@ -9023,11 +9098,13 @@
             "type": "string",
             "enum": [
               "hostname",
-              "status"
+              "status",
+              "display_name"
             ],
             "x-enum-varnames": [
               "sort_name_cve_impacted_instances_hostname",
-              "sort_name_cve_impacted_instances_status"
+              "sort_name_cve_impacted_instances_status",
+              "sort_name_cve_impacted_instances_display_name"
             ]
           }
         }
@@ -9096,12 +9173,14 @@
             "enum": [
               "hostname",
               "status",
-              "last_reported"
+              "last_reported",
+              "display_name"
             ],
             "x-enum-varnames": [
               "sort_name_instance_hostname",
               "sort_name_instance_status",
-              "sort_name_instance_last_reported"
+              "sort_name_instance_last_reported",
+              "sort_name_instance_display_name"
             ]
           }
         }
@@ -11549,6 +11628,10 @@
             "description": "The name of the host system where the NGINX instance is running.",
             "type": "string"
           },
+          "display_name": {
+            "description": "A user-friendly display name for the instance, set via the \"display-name\" agent label.",
+            "type": "string"
+          },
           "system_id": {
             "description": "The unique identifier assigned to the host system by the NGINX Agent.",
             "type": "string"
@@ -11782,17 +11865,15 @@
         ]
       },
       "NapDeploymentStatus": {
-        "description": "The current deployment status of the NGINX App Protect policy or log profile, with the following possible values:\n* `deployed` - The NGINX App Protect policy or log profile has been deployed.\n* `not_deployed` - The NGINX App Protect policy or log profile has not been deployed.\n* `deploying` - The NGINX App Protect policy or log profile is currently being deployed.\n* `failed` - The NGINX App Protect policy or log profile failed deploying.\n",
+        "description": "The current deployment status of the NGINX App Protect policy or log profile, with the following possible values:\n* `deployed` - The NGINX App Protect policy or log profile has been deployed.\n* `deploying` - The NGINX App Protect policy or log profile is currently being deployed.\n* `failed` - The NGINX App Protect policy or log profile failed deploying.\n",
         "type": "string",
         "enum": [
           "deployed",
-          "not_deployed",
           "deploying",
           "failed"
         ],
         "x-enum-varnames": [
           "nap_deployment_status_deployed",
-          "nap_deployment_status_not_deployed",
           "nap_deployment_status_deploying",
           "nap_deployment_status_failed"
         ]
@@ -11805,9 +11886,6 @@
           "policy_object_id",
           "policy_version_object_id",
           "paths",
-          "deployment_status",
-          "publication_object_id",
-          "deployed_on",
           "enforcement_mode"
         ],
         "properties": {
@@ -11891,13 +11969,8 @@
         "description": "Details for a F5 WAF log profile that's associated with an instance or a config sync group.",
         "required": [
           "name",
-          "nap_release",
-          "latest_deployed",
           "log_profile_object_id",
-          "publication_object_id",
-          "paths",
-          "deployment_status",
-          "deployed_on"
+          "paths"
         ],
         "properties": {
           "name": {
@@ -12965,6 +13038,10 @@
             "description": "The name of the host system where the NGINX instance is running.",
             "type": "string"
           },
+          "display_name": {
+            "description": "A user-friendly display name for the instance, set via the \"display-name\" agent label.",
+            "type": "string"
+          },
           "products": {
             "description": "List of NGINX products in the instance",
             "type": "array",
@@ -13089,6 +13166,10 @@
             "type": "string",
             "description": "hostname of the affected instance, if any."
           },
+          "display_name": {
+            "type": "string",
+            "description": "A user-friendly display name for the affected instance, if any."
+          },
           "message": {
             "type": "string",
             "description": "Details regarding the event.",
@@ -13100,6 +13181,8 @@
           "type": "instance_cleanup",
           "object_id": "event_-uvR3F2TQGm18jnl7bpaGw",
           "affected_object_id": "inst_-uvR3F2TQGm18jnl7bpaGw",
+          "hostname": "ip-170.0.1",
+          "display_name": "prod-usw2-edge-03",
           "message": "ip-170.0.1 deleted after age out period of 3 hours, last seen 2023-08-07T09:57:36.088757764Z"
         }
       },
@@ -13139,7 +13222,8 @@
           "config_recommendation",
           "key_object_id",
           "system_id",
-          "object_id"
+          "object_id",
+          "display_name"
         ],
         "x-enum-varnames": [
           "filter_name_instances_hostname",
@@ -13151,7 +13235,8 @@
           "filter_name_instances_config_recommendation",
           "filter_name_instances_key_object_id",
           "filter_name_instances_system_id",
-          "filter_name_instances_object_id"
+          "filter_name_instances_object_id",
+          "filter_name_instances_display_name"
         ]
       },
       "InstanceListResponse": {
@@ -13312,11 +13397,6 @@
           },
           {
             "type": "object",
-            "required": [
-              "threat_campaign_version",
-              "attack_signature_version",
-              "bot_signature_version"
-            ],
             "properties": {
               "threat_campaign_version": {
                 "$ref": "#/components/schemas/NapSignatureVersion"
@@ -14914,8 +14994,95 @@
         "type": "string",
         "maxLength": 150
       },
+      "NapFileReferenceType": {
+        "type": "string",
+        "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nThe type of the referenced file.\n",
+        "enum": [
+          "proto"
+        ],
+        "x-enum-varnames": [
+          "nap_file_reference_type_proto"
+        ]
+      },
+      "NapFileReference": {
+        "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nA file referenced by the WAF policy JSON via a file:// URI.\n",
+        "type": "object",
+        "required": [
+          "type",
+          "file_path",
+          "content"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NapFileReferenceType"
+          },
+          "file_path": {
+            "description": "Absolute path matching the file:// URI in the policy JSON. Must start with `/`.",
+            "type": "string",
+            "pattern": "^/.+",
+            "maxLength": 4096
+          },
+          "content": {
+            "description": "Base64-encoded file content.",
+            "type": "string",
+            "format": "base64",
+            "maxLength": 2796203
+          }
+        }
+      },
+      "NapFileReferenceMetadata": {
+        "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nMetadata for a file referenced by the WAF policy via a file:// URI.\n",
+        "type": "object",
+        "required": [
+          "type",
+          "file_path",
+          "size",
+          "hash"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NapFileReferenceType"
+          },
+          "file_path": {
+            "description": "Absolute path matching the file:// URI in the policy JSON.",
+            "type": "string"
+          },
+          "size": {
+            "description": "Size of the file in bytes.",
+            "type": "integer"
+          },
+          "hash": {
+            "description": "The base64-encoded SHA-256 hash of the file content.",
+            "type": "string"
+          }
+        }
+      },
+      "NapPolicyMultipart": {
+        "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nA WAF policy with file references uploaded as a `.tar.gz` archive. Use this schema with\n`multipart/form-data` to avoid base64-encoding overhead for bulk file uploads.\n",
+        "type": "object",
+        "required": [
+          "policy",
+          "file_references_archive"
+        ],
+        "properties": {
+          "policy": {
+            "type": "string",
+            "format": "base64",
+            "maxLength": 3145728
+          },
+          "version_comment": {
+            "$ref": "#/components/schemas/NapPolicyVersionComment"
+          },
+          "file_references_archive": {
+            "type": "string",
+            "description": "A `.tar.gz` archive containing files referenced by the policy JSON via `file://` URIs.\n\nThe archive's directory structure determines the absolute paths at which files are\nplaced for the WAF compiler. Entry paths must be relative (no leading `/`) and must\nnot contain path traversal sequences (`..`).\n\n**Creating the archive:**\n\nGiven a directory structure:\n```\ngrpc_files/\n├── album.proto\n└── common/\n    └── messages.proto\n```\n\nCreate the archive from the **parent directory** so that paths match your policy's\n`file://` URIs:\n```bash\n# Correct — paths resolve to /grpc_files/album.proto\ntar czf refs.tar.gz grpc_files/\n\n# Incorrect — paths resolve to /album.proto (missing parent directory)\ncd grpc_files && tar czf refs.tar.gz *.proto\n```\n\nIf your policy references `\"$ref\": \"file:///grpc_files/album.proto\"`, the archive\nmust contain `grpc_files/album.proto` at that relative path.\n\n**Limits:**\n- Maximum compressed archive size: 5 MB\n- Maximum individual file size (uncompressed): 2 MB\n- Maximum total uncompressed size: 10 MB\n- Maximum number of files: 100\n\nOnly regular files are extracted; symlinks, hardlinks, and directory-only entries\nare ignored.\n",
+            "format": "binary",
+            "maxLength": 5242880
+          }
+        }
+      },
       "NapPolicy": {
-        "description": "The base64-encoded contents of the NGINX App Protect policy.",
+        "description": "Base schema for a WAF policy. Contains the policy content and an optional version comment.\nExtended by `NapPolicyWithFileReferences` (JSON). `NapPolicyMultipart` (multipart/form-data) mirrors these fields.\n",
         "type": "object",
         "required": [
           "policy"
@@ -14930,6 +15097,26 @@
             "$ref": "#/components/schemas/NapPolicyVersionComment"
           }
         }
+      },
+      "NapPolicyWithFileReferences": {
+        "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nA WAF policy with optional inline file references. Use this schema with `application/json`\nto upload individual files as base64-encoded content alongside the policy.\n",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/NapPolicy"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "file_references": {
+                "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nAn optional array of files referenced by the policy JSON via file:// URIs.\nWhen provided, replaces the full set of references for the policy version.\nWhen omitted, the policy version has no external file references.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapFileReference"
+                }
+              }
+            }
+          }
+        ]
       },
       "NapPolicyObject": {
         "allOf": [
@@ -15415,6 +15602,18 @@
             "$ref": "#/components/schemas/NapPolicy"
           },
           {
+            "type": "object",
+            "properties": {
+              "file_references": {
+                "description": "**⚠️ Experimental API** - This API is in active development and subject to breaking changes.\nMetadata for files referenced by the policy JSON via file:// URIs.\nFile content is not included; use the dedicated endpoint to retrieve individual file contents.\n",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NapFileReferenceMetadata"
+                }
+              }
+            }
+          },
+          {
             "$ref": "#/components/schemas/NapPolicyVersionDeployments"
           },
           {
@@ -15440,6 +15639,14 @@
           "created_at": "2023-12-06T22:37:24.120114Z",
           "version_comment": "Initial policy configuration",
           "policy": "eyJwb2xpY3kiOiB7Im5hbWUiOiAiZGVmYXVsdCJ9fQ==",
+          "file_references": [
+            {
+              "type": "proto",
+              "file_path": "/grpc_files/album.proto",
+              "size": 4096,
+              "hash": "oxiWKPqR/soi4MQCgVnW8KHt8Jk68AqCeQcQ1sed4Dk="
+            }
+          ],
           "deployments": [
             {
               "publication_object_id": "pub_-uvR3F2TQGm18jnl7bpaGw",
@@ -16403,7 +16610,7 @@
       },
       "FilterNameNapPolicyVersion": {
         "type": "string",
-        "description": "Keywords for NGINX App Protect policy version filters.\nWhen filtering on `deployment_status`, only the following `filter_values` are supported:\n  * deployed\n  * not_deployed\n  * deploying\n  * failed\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * transparent\n",
+        "description": "Keywords for NGINX App Protect policy version filters.\nWhen filtering on `deployment_status`, only the following `filter_values` are supported:\n  * deployed\n  * deploying\n  * failed\nWhen filtering on `enforcement_mode`, only the following `filter_values` are supported:\n  * blocking\n  * transparent\n",
         "enum": [
           "deployment_status",
           "enforcement_mode",
@@ -17701,6 +17908,53 @@
           }
         ]
       },
+      "UnlinkSubmissionAssociationsRequest": {
+        "description": "Request to unlink template submission associations.",
+        "type": "object",
+        "properties": {
+          "target_object_ids": {
+            "type": "array",
+            "description": "The target object ID(s) to unlink.\nIf omitted or empty, all associations for the submission are unlinked.\n",
+            "items": {
+              "$ref": "#/components/schemas/ObjectID"
+            }
+          }
+        },
+        "example": {
+          "target_object_ids": [
+            "sc_2CjPVkxoTcubUMOG9jD6yg"
+          ]
+        }
+      },
+      "UnlinkResultResponse": {
+        "description": "Result of unlinking submission target association(s).",
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "target_object_ids": {
+            "type": "array",
+            "description": "The target object IDs successfully processed.\nOmitted when unlinking all associations (no specific targets provided).\n",
+            "items": {
+              "$ref": "#/components/schemas/ObjectID"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "partially_succeeded",
+              "failed"
+            ],
+            "description": "Whether the unlink operation succeeded or failed."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed or was partially successful."
+          }
+        }
+      },
       "FilterNameTemplates": {
         "type": "string",
         "description": "Keywords for config templates filters.\n",
@@ -17710,7 +17964,8 @@
           "object_id",
           "allowed_in_contexts",
           "state",
-          "is_f5_default"
+          "is_f5_default",
+          "directives_to_parse"
         ],
         "x-enum-varnames": [
           "filter_name_templates_name",
@@ -17718,7 +17973,8 @@
           "filter_name_templates_object_id",
           "filter_name_templates_allowed_in_contexts",
           "filter_name_templates_state",
-          "filter_name_templates_is_f5_default"
+          "filter_name_templates_is_f5_default",
+          "filter_name_templates_directives_to_parse"
         ]
       },
       "IsF5Default": {
@@ -18406,6 +18662,10 @@
             "type": "string",
             "maxLength": 2,
             "description": "ISO 3166-1 alpha-2 country code for the IP address.\nOnly present when `group_by` is `ip`.\n"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "A user-friendly display name for the instance,\nset via the \"display-name\" agent label.\nOnly present when `group_by` is `hostname`.\n"
           }
         },
         "example": {
@@ -19185,6 +19445,11 @@
                 "type": "string",
                 "description": "Hostname of the machine running NGINX.",
                 "example": "nginx-host-01"
+              },
+              "host_display_name": {
+                "type": "string",
+                "description": "A user-friendly display name for the host instance, set via the \"display-name\" agent label.",
+                "example": "prod-usw2-edge-03"
               },
               "http": {
                 "$ref": "#/components/schemas/HttpMetadata"

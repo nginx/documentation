@@ -3,9 +3,9 @@ title: "Lab 5: Upgrade NGINX Plus to the latest version"
 weight: 500
 toc: true
 f5-content-type: tutorial
-f5-product: 
-- nginx-one
-- nginx-plus
+f5-product:
+- NGINX One Console
+- NGINX Plus
 ---
 
 ## Introduction

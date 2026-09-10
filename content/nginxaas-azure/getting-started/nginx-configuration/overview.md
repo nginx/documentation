@@ -26,7 +26,7 @@ NGINX configurations stored in GitHub can be applied to existing NGINXaaS for Az
 
 ## NGINX filesystem restrictions
 
-NGINXaaS for Azure places restrictions on the instance’s filesystem; only a specific set of directories are allowed to be read from and written to. Below is a table describing what directories the NGINX worker process can read and write to and what directories files can be written to. These files include certificate files and any files uploaded to the deployment, excluding NGINX configuration files.
+There are limits to where files, including NGINX configuration files, certificate files, and any other files uploaded to the deployment, can be placed on the filesystem. There are also limits on what directories NGINX can access during runtime. These limits help support the separation of roles, enforce the principle of least privilege, and ensure the smooth operation of the system.
 
  {{< table >}}
 
@@ -41,7 +41,9 @@ NGINXaaS for Azure places restrictions on the instance’s filesystem; only a sp
 
 {{< /table >}}
 
-Attempts to access other directories will be denied and result in a `5xx` error.
+For example, `/etc/nginx` is only readable by the NGINX master process, making it a secure location for certificate files that won't be accidentally served due to configuration errors. `/var/www` is a secure location for static content because the NGINX worker process can serve files from it but cannot modify them, ensuring content integrity. `/tmp` is a good choice for storing temporary files with `proxy_temp_path` or `client_body_temp_path` since it is writable by the NGINX worker process.
+
+Accessing files outside of the listed directories is unsupported. Such access may or may not function and is subject to change without notice.
 
 ## Disallowed configuration directives
 Some directives are not supported because of specific limitations. If you include one of these directives in your NGINX configuration, you'll get an error.
@@ -170,6 +172,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [enforce_initial_report](https://nginx.org/en/docs/ngx_mgmt_module.html#enforce_initial_report)\
 [env](https://nginx.org/en/docs/ngx_core_module.html#env)\
 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log)\
+[error_log_tag](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_log_tag)\
 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)\
 [etag](https://nginx.org/en/docs/http/ngx_http_core_module.html#etag)\
 [events](https://nginx.org/en/docs/ngx_core_module.html#events)\
@@ -420,6 +423,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [match (ngx_http_upstream_hc_module)](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match)\
 [match (ngx_stream_upstream_hc_module)](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#match)\
 [max_errors](https://nginx.org/en/docs/mail/ngx_mail_core_module.html#max_errors)\
+[max_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_headers)\
 [max_ranges](https://nginx.org/en/docs/http/ngx_http_core_module.html#max_ranges)\
 [memcached_allow_upstream](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_allow_upstream)\
 [memcached_bind_dynamic](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_bind_dynamic)\
@@ -755,6 +759,7 @@ NGINXaaS for Azure supports a limited set of NGINX directives.
 [ssl_ecdh_curve (ngx_http_ssl_module)](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ecdh_curve)\
 [ssl_ecdh_curve (ngx_mail_ssl_module)](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_ecdh_curve)\
 [ssl_ecdh_curve (ngx_stream_ssl_module)](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_ecdh_curve)\
+[ssl_ech_file](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file)\
 [ssl_handshake_timeout](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_handshake_timeout)\
 [ssl_name](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_name)\
 [ssl_object_cache_inheritable](https://nginx.org/en/docs/ngx_core_module.html#ssl_object_cache_inheritable)\

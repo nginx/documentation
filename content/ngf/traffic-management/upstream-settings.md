@@ -299,7 +299,7 @@ spec:
     kind: Service
     name: tea
   loadBalancingMethod: "hash consistent"
-  hashMethodKey: "$upstream_addr"
+  hashMethodKey: "\$upstream_addr"
 EOF
 ```
 
@@ -341,23 +341,21 @@ You should see the `random two least_time=header` directive on the `coffee` upst
 
 ```text
 upstream default_coffee_80 {
-    random two least_time=header;
+    random two least_conn;
     zone default_coffee_80 1m;
     state /var/lib/nginx/state/default_coffee_80.conf;
-    keepAlive 16;
 }
 
 upstream default_tea_80 {
     hash $upstream_addr consistent;
     zone default_tea_80 1m;
     state /var/lib/nginx/state/default_tea_80.conf;
-    keepAlive 16;
 }
 ```
 
 {{< call-out class="note" >}}
-NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, and `random two least_conn`.
-NGINX Plus supports all of the methods available in NGINX Open Source, and adds the following methods: `random two least_time=header`, `random two least_time=last_byte`, `least_time header`, `least_time last_byte`, `least_time header inflight`, and `least_time last_byte inflight`.
+NGINX Open Source supports the following load-balancing methods: `round_robin`, `least_conn`, `ip_hash`, `hash`, `hash consistent`, `random`, `random two`, `random two least_conn`, and `least_time`.
+NGINX Plus supports all of the methods available in NGINX Open Source, and adds the following methods: `random two least_time=header` and `random two least_time=last_byte`.
 {{< /call-out >}}
 
 ## Configure upstream zone size
@@ -425,7 +423,6 @@ upstream default_coffee_80 {
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
-    keepAlive 16;
 }
 
 upstream default_tea_80 {
@@ -433,15 +430,14 @@ upstream default_tea_80 {
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
-    keepAlive 16;
 }
 ```
 
 ## Enable keepalive connections
 
-By default, the `keepAlive` directive is enabled with a value of 16. You can override this value or disable `keepAlive` entirely by configuring an `UpstreamSettingsPolicy`. To disable keepalive, set the connections field to 0.
+By default, the `keepalive` directive is omitted, which results in the default NGINX `keepalive` value being used. You can override this value or disable `keepAlive` entirely by configuring an UpstreamSettingsPolicy. To disable keepalive, set the connections field to 0.
 
-The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 32:
+The following example creates an `UpstreamSettingsPolicy` that configures keepalive connections for the `coffee` Service with a value of 24:
 
 ```yaml
 kubectl apply -f - <<EOF
@@ -455,11 +451,12 @@ spec:
     kind: Service
     name: coffee
   keepAlive:
-    connections: 32
+    connections: 24
 EOF
 ```
 
-This `UpstreamSettingsPolicy` targets the `coffee` service in the `targetRefs` field. It sets the number of keepalive connections to 32, which activates the cache for connections to the service's pods and sets the maximum number of idle connections to 32.
+This `UpstreamSettingsPolicy` targets the `coffee` service in the `targetRefs` field. It sets the number of keepalive connections to 24, which activates the cache for connections to the service's pods and sets the maximum number of idle connections to 24.
+
 
 Verify that the `UpstreamSettingsPolicy` is Accepted:
 
@@ -494,7 +491,7 @@ Next, verify that the policy has been applied to the `coffee` upstreams, by insp
 kubectl exec -it deployments/gateway-nginx -- nginx -T
 ```
 
-You should see that the `coffee` upstream has the `keepalive` directive set to 32:
+You should see that the `coffee` upstream has the `keepalive` directive set to 24:
 
 ```text
 upstream default_coffee_80 {
@@ -502,18 +499,18 @@ upstream default_coffee_80 {
     zone default_coffee_80 1m;
 
     server 10.244.0.14:8080;
-    keepalive 32;
+    keepalive 24;
 }
 ```
 
-To disable `keepAlive` directive lets create an `UpstreamSettingsPolicy` targeting the `tea` service with value 0:
+To disable the `keepalive` directive, lets create an `UpstreamSettingsPolicy` targeting the `tea` service with value 0:
 
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: gateway.nginx.org/v1alpha1
 kind: UpstreamSettingsPolicy
 metadata:
-  name: upstream-unset-keepAlive
+  name: upstream-unset-keepalive
 spec:
   targetRefs:
   - group: core
@@ -527,7 +524,7 @@ EOF
 Verify that the `UpstreamSettingsPolicy` is Accepted:
 
 ```shell
-kubectl describe upstreamsettingspolicies.gateway.nginx.org upstream-unset-keepAlive
+kubectl describe upstreamsettingspolicies.gateway.nginx.org upstream-unset-keepalive
 ```
 
 You should see the following status:
@@ -562,6 +559,188 @@ upstream default_tea_80 {
     zone default_tea_80 1m;
 
     server 10.244.0.15:8080;
+    keepalive 0;
+}
+```
+
+## Enable routing to Service ClusterIPs
+
+The ability to configure NGINX to route to the Service ClusterIP and port instead of individual Pod IPs can be useful in service mesh scenarios or when working with other Kubernetes controllers/operators that require traffic to flow to the Service IP address.
+
+View the IP address of the `coffee` backend pod and verify it matches the IP address in the `coffee` upstream:
+
+```shell
+kubectl get endpoints coffee
+```
+
+```text
+NAME     ENDPOINTS         AGE
+coffee   10.244.0.8:8080   13m
+```
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+```text
+upstream default_coffee_80 {
+    random two least_conn;
+    zone default_coffee_80 1m;
+
+
+    server 10.244.0.8:8080;
+    keepalive 32;
+}
+```
+
+The following example creates an `UpstreamSettingsPolicy` that configures NGINX to route to the coffee Service ClusterIP instead of the individual backend Pod IPs by using the `useClusterIP` field:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: upstream-clusterip
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: coffee
+  useClusterIP: true
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org upstream-keepalives
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2026-05-28T21:49:20Z
+      Message:               The Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
+{{< call-out "note" >}}This setting applies only when the target Service has a ClusterIP. For headless Services (ClusterIP: None) and ExternalName Services, normal endpoint resolution is used instead. Additionally, this setting is also not applied to L4/stream upstreams.{{< /call-out >}}
+
+View the IP address of the `coffee` Service and verify it matches the IP address in the `coffee` upstream:
+
+```shell
+kubectl get service coffee
+```
+
+```text
+NAME     TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE
+coffee   ClusterIP   10.96.23.26   <none>        80/TCP    16m
+```
+
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+```text
+upstream default_coffee_80 {
+    random two least_conn;
+    zone default_coffee_80 1m;
+
+
+    server 10.96.23.26:80;
+    keepalive 32;
+}
+```
+
+---
+
+## Route upstream traffic to the Service ClusterIP
+
+By default, NGINX Gateway Fabric resolves each backend Service to its individual Pod IPs and uses those as the upstream servers. Setting `useClusterIP` to `true` in an `UpstreamSettingsPolicy` configures NGINX to route to the Service's ClusterIP and port instead, so the upstream contains a single server (the Service VIP). This is useful for service mesh compatibility and for controllers or operators that require traffic to traverse the Service VIP.
+
+You can also enable this globally for all Services through the `useClusterIP` field of the `NginxProxy` resource. When both are configured for the same Service, the `UpstreamSettingsPolicy` value takes precedence. See [Data plane configuration]({{< ref "/ngf/how-to/data-plane-configuration.md" >}}) for the global setting.
+
+{{< call-out "note" >}} Because the upstream contains only the Service VIP as a single server, you lose NGINX's load balancing across the backend Pods. Traffic is instead load balanced by the Kubernetes Service (kube-proxy), so the load balancing and keepalive settings of an `UpstreamSettingsPolicy` no longer apply to that Service. `useClusterIP` applies only when the target Service has a ClusterIP; headless (`ClusterIP: None`) and ExternalName Services fall back to the default Pod IP resolution. {{< /call-out >}}
+
+To route to the ClusterIP of the `coffee` service, create the following `UpstreamSettingsPolicy`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: coffee-cluster-ip
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: coffee
+  useClusterIP: true
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org coffee-cluster-ip
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2025-01-07T20:06:55Z
+      Message:               Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
+Find the ClusterIP of the `coffee` service:
+
+```shell
+kubectl get service coffee
+```
+
+Next, verify that the `coffee` upstream targets that ClusterIP by inspecting the NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+You should see a single `server` in the `coffee` upstream set to the Service ClusterIP and port (`10.244.0.14` is the ClusterIP in this example):
+
+```nginx
+upstream default_coffee_80 {
+    random two least_conn;
+    zone default_coffee_80 512k;
+
+    server 10.244.0.14:80;
+    keepalive 16;
 }
 ```
 

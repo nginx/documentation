@@ -37,7 +37,7 @@ These commands should be run in the same directory as your **license.jwt** file.
 Create a secret for the NGINX Plus license:
 
 ```shell
-kubectl create secret generic nplus-license --from-file license.jwt
+kubectl create secret generic nplus-license --from-file=license.jwt --type=nginx.com/license
 ```
 
 Create a secret for the F5 registry:

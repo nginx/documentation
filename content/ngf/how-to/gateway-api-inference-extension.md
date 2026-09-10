@@ -48,13 +48,12 @@ To enable the Gateway API Inference Extension, [install]({{< ref "/ngf/install/"
 
 See this [example manifest](https://raw.githubusercontent.com/nginx/nginx-gateway-fabric/main/deploy/inference/deploy.yaml) for clarification.
 
-
 ## Deploy a sample model server
 
 The [vLLM simulator](https://github.com/llm-d/llm-d-inference-sim/tree/main) model server does not use GPUs and is ideal for test/development environments. To deploy the vLLM simulator, run the following command:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v1.5.0/config/manifests/vllm/sim-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
 ```
 
 ## Deploy the InferencePool and Endpoint Picker Extension
@@ -63,12 +62,12 @@ The InferencePool is a Gateway API Inference Extension resource that represents 
 
 Install an InferencePool named `vllm-qwen3-32b` that selects from endpoints with label `app: vllm-qwen3-32b` and listening on port 8000. The Helm install command automatically installs the Endpoint Picker Extension and InferencePool.
 
-NGINX will query the Endpoint Picker Extension to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information on the [Endpoint Picker](https://github.com/kubernetes-sigs/gateway-api-inference-extension/blob/main/pkg/epp/README.md).
+NGINX will query the Endpoint Picker Extension to determine the appropriate pod endpoint to route traffic to. These pods are selected from a pool of ready pods designated by the assigned InferencePool's Selector field. For more information on the [Endpoint Picker](https://github.com/llm-d/llm-d-router/blob/main/pkg/epp/README.md).
 
 {{< call-out class="warning" >}} The Endpoint Picker Extension is a third-party application written and provided by the Gateway API Inference Extension project. Communication between NGINX and the Endpoint Picker uses TLS with certificate verification disabled by default. NGINX Gateway Fabric is not responsible for any threats or risks associated with using this third-party Endpoint Picker Extension application. {{< /call-out >}}
 
 ```shell
-export IGW_CHART_VERSION=v1.5.0
+export IGW_CHART_VERSION=v{{< version-inference-extension >}}
 helm install vllm-qwen3-32b \
 --dependency-update \
 --set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
@@ -76,6 +75,22 @@ helm install vllm-qwen3-32b \
 --set inferenceExtension.resources.requests.memory=4Gi \
 oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
 ```
+
+{{< call-out class="tip" title="Test environments only" >}} For test environments, lower the CPU and memory requests and limits to reduce resource use:
+
+```shell
+export IGW_CHART_VERSION=v{{< version-inference-extension >}}
+helm install vllm-qwen3-32b \
+--dependency-update \
+--set inferencePool.modelServers.matchLabels.app=vllm-qwen3-32b \
+--version $IGW_CHART_VERSION \
+--set inferenceExtension.resources.requests.cpu=100m \
+--set inferenceExtension.resources.requests.memory=512Mi \
+--set inferenceExtension.resources.limits.memory=2Gi \
+oci://registry.k8s.io/gateway-api-inference-extension/charts/inferencepool
+```
+
+ {{< /call-out >}}
 
 Confirm that the Endpoint Picker was deployed and is running:
 
@@ -181,10 +196,9 @@ curl -i $GW_IP:$GW_PORT/v1/completions -H 'Content-Type: application/json' -d '{
 
 Uninstall the InferencePool and model server resources:
 
-
 ```shell
 helm uninstall vllm-qwen3-32b
-kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v1.5.0/config/manifests/vllm/sim-deployment.yaml
+kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api-inference-extension/refs/tags/v{{< version-inference-extension >}}/config/manifests/vllm/sim-deployment.yaml
 ```
 
 Uninstall the Gateway API Inference Extension CRDs:
@@ -205,6 +219,7 @@ Uninstall NGINX Gateway Fabric:
 ```shell
 helm uninstall ngf -n nginx-gateway
 ```
+
 If needed, replace ngf with your chosen release name.
 
 Remove namespace and NGINX Gateway Fabric CRDs:
@@ -222,6 +237,5 @@ Remove the Gateway API CRDs:
 
 - [Gateway API Inference Extension Introduction](https://gateway-api-inference-extension.sigs.k8s.io/): for introductory details to the project.
 - [Gateway API Inference Extension API Overview](https://gateway-api-inference-extension.sigs.k8s.io/concepts/api-overview/): for an API overview.
-- [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/): for additional use cases and guides.
+- [Gateway API Inference Extension User Guides](https://gateway-api-inference-extension.sigs.k8s.io/guides/implementers/): for additional use cases and guides.
 - [llm-d](https://github.com/llm-d/llm-d): for information on the llm-d project.
-

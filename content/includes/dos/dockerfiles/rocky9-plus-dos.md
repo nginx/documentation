@@ -12,6 +12,13 @@ f5-files:
 # For Rocky Linux 9
 FROM rockylinux:9
 
+# Leave empty to install the most recent version. To build a specific version,
+# set the argument, for example:
+#   --build-arg DOS_VERSION="-37+4.9.6"
+# NGINX Plus needs no pin here, because dnf can select an older nginx-plus to
+# satisfy the module's nginx-plus-r<release> dependency.
+ARG DOS_VERSION=""
+
 # Install F5 DoS for NGINX:
 RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644 \
     --mount=type=secret,id=nginx-key,dst=/etc/ssl/nginx/nginx-repo.key,mode=0644 \
@@ -20,7 +27,7 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
     && curl -o /etc/yum.repos.d/plus-9.repo https://cs.nginx.com/static/files/plus-9.repo \
     && curl -o /etc/yum.repos.d/app-protect-dos-9.repo https://cs.nginx.com/static/files/app-protect-dos-9.repo \
     && dnf config-manager --set-enabled crb \
-    && dnf install -y app-protect-dos \
+    && dnf install -y "app-protect-dos${DOS_VERSION}" \
     && cat license.jwt > /etc/nginx/license.jwt \
     && dnf clean all \
     && rm -rf /var/cache/dnf \

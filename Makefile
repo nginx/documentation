@@ -1,6 +1,7 @@
 HUGO?=hugo
 HUGO_VERSION?=$(shell hugo version 2>/dev/null | awk '{print $$2}' | cut -d '.' -f 2)
-HUGO_IMG?=hugomods/hugo:std-go-git-0.152.2
+HUGO_IMG?=nginx-documentation-hugo:local
+HUGO_DOCKERFILE?=Dockerfile
 
 THEME_MODULE = github.com/nginxinc/nginx-hugo-theme/v2
 
@@ -8,7 +9,8 @@ ifeq ($(shell [ $(HUGO_VERSION) -gt 146 2>/dev/null ] && echo true || echo false
     $(info Hugo is available and has a version greater than 146. Proceeding with build.)
 else
     $(warning Hugo is not available or using a version less than 151. Attempting to use docker. HUGO_VERSION=$(HUGO_VERSION))
-    HUGO=docker run --rm -it -v ${CURDIR}:/src -p 1313:1313 ${HUGO_IMG} /src/hugo-entrypoint.sh
+    HUGO=docker run --rm -it -v ${CURDIR}:/project --workdir /project -p 1313:1313 --entrypoint hugo ${HUGO_IMG}
+    DOCKER_HUGO_TARGETS=docs watch drafts
     ifeq (, $(shell docker version 2> /dev/null))
         $(error Hugo (>0.151) or Docker are required to build the local previews.)
     endif
@@ -35,7 +37,14 @@ endif
 endif
 
 
-.PHONY: docs docs-draft docs-local clean hugo-get hugo-tidy lint-markdown link-check
+.PHONY: docs docs-draft docs-local clean hugo-get hugo-tidy lint-markdown link-check docker-hugo-image
+
+ifdef DOCKER_HUGO_TARGETS
+$(DOCKER_HUGO_TARGETS): docker-hugo-image
+
+docker-hugo-image:
+	docker build --tag ${HUGO_IMG} --file ${HUGO_DOCKERFILE} .
+endif
 
 docs:
 	${HUGO}

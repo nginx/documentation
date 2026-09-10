@@ -1,6 +1,5 @@
 ---
-f5-product:
-- MISCEL
+f5-product: Miscellaneous
 f5-files:
 - content/includes/use-cases/credential-download-instructions.md
 - content/waf/configure/compiler.md

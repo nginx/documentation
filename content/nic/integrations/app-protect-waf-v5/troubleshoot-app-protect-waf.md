@@ -23,6 +23,9 @@ The table below categorizes some potential problems with NGINX Ingress Controlle
 |Start | The configuration is not applied. | Check if a policy bundle is compiled using version of the compiler running in NGINX Ingress Controller. | Policy bundle is invalid. |
 |Start | The configuration is not applied. | Check if bundle is present in a volume. | Policy bundle is not present in the mounted volume. |
 |APLogConf, Policy or Ingress Resource. | The configuration is not applied. | Check the events of the APLogConf, Policy and Ingress Resource, check the logs, replace the policy bundle. | Policy bundle is invalid. |
+|[Bundle source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}). | Bundle not fetched, Warning event on Policy. | Check Policy events and status. Verify the bundle source URL and credentials are correct. | Invalid URL, authentication failure, or bundle not yet compiled on the management plane. |
+|[Bundle source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}). | VirtualServer or Ingress returns HTTP 500. | Check Policy status for bundle source errors. | Bundle source is unreachable or the bundle is not yet available. |
+|[Bundle source]({{< ref "/nic/integrations/app-protect-waf-v5/bundle-sources.md" >}}). | Policy not updating after bundle recompilation. | Verify ``enablePolling`` is ``true`` and ``pollInterval`` is at least ``1m``. | Polling is not enabled, or the poll interval is below the minimum. |
 
 {{< /table >}}
 
@@ -111,6 +114,10 @@ When you set NGINX Ingress Controller to use debug mode, the setting also applie
 ## Known issues
 
 When using NGINX Ingress Controller with the F5 WAF for NGINX module, the following issues have been reported. The occurrence of these issues is commonly related to a higher number of Ingress Resources with App Protect being enabled in a cluster.
+
+### Subrequests compatibility
+
+Policies that rely on NGINX subrequests (such as `ExternalAuth`, `APIKey`, `JWT` with remote JWKS fetching, `OIDC`, or `Cache` with `cacheBackgroundUpdate`) and F5 WAF for NGINX may not function as expected and may cause issues when applied together on the same route.
 
 When you make a change that requires NGINX to apply a new configuration, NGINX Ingress Controller reloads NGINX automatically. Without the F5 WAF for NGINX module enabled, usual reload times are around 150ms. If F5 WAF for NGINX module is enabled and is being used by any number of Ingress Resources, these reloads might take a few seconds instead.
 
