@@ -20,7 +20,7 @@ Use `kubectl describe wafpolicy <CONDITION_NAME>` to inspect status conditions. 
 | `True`  | `Accepted`         | Policy is valid and targets a known resource                                |
 | `False` | `Invalid`          | Policy spec fails validation (for example, wrong source field for the type) |
 | `False` | `TargetNotFound`   | The targeted Gateway or Route does not exist                                |
-| `False` | `Conflicted`       | Another WAFPolicy already targets this resource at the same level           |
+| `False` | `Conflicted`       | Another `WAFPolicy` already targets this resource at the same level, or two `WAFPolicy` resources that share an upstream bundle use different polling settings |
 | `False` | `NginxProxyNotSet` | WAF is not enabled in the referenced NginxProxy                             |
 
 ### ResolvedRefs
@@ -78,31 +78,59 @@ Verify that the `waf-enforcer` and `waf-config-mgr` container images are accessi
 
 ### Duplicate policy name error
 
-If two `WAFPolicy` resources in the same Gateway reference different compiled bundles that were compiled under the **same policy name**, the WAF engine rejects the configuration with an error like:
+In NGINX Gateway Fabric 2.7.0 and later, bundle names are derived from the upstream source identity — the policy or log-profile source URL and its identifier — not from the `WAFPolicy` namespace and name. `WAFPolicy` resources that reference the same upstream bundle are deduplicated to a single bundle, including `WAFPolicy` resources in different namespaces, each targeting its own route that is itself attached to a shared Gateway. Deduplication is automatic, with nothing to enable. As a result, the `Duplicate policy name found` and `Duplicate logging profile name found` reload failures no longer occur.
+
+Both errors can still occur for genuinely distinct upstream bundles whose compiled definitions embed the same logical policy or log-profile name. When two `WAFPolicy` resources in the same Gateway reference different compiled bundles that were compiled under the **same policy name**, the WAF engine rejects the configuration with an error like:
 
 ```text
 "error_message": "Duplicate policy name found: <PolicyName>"
 ```
 
-This occurs because the WAF engine uses the logical policy name embedded inside the compiled bundle — not the Kubernetes resource name or bundle filename — to identify policies. When the same logical name appears more than once in a single NGINX configuration, the configuration test fails and the update is rolled back.
+The WAF engine identifies policies and logging profiles by the logical name embedded in the compiled bundle — not the Kubernetes resource name or bundle filename. When the same logical name appears more than once in a single NGINX configuration, the configuration test fails and the update is rolled back.
 
 **How to identify the problem:**
 
-Check the NGINX Gateway Fabric controller logs for a configuration error containing `Duplicate policy name found`:
+Check the NGINX Gateway Fabric controller logs for a configuration error containing `Duplicate policy name found` or `Duplicate logging profile name found`:
 
 ```shell
-kubectl logs -n nginx-gateway deploy/nginx-gateway -c nginx-gateway | grep "Duplicate policy name"
+kubectl logs -n nginx-gateway deploy/<NGF_DEPLOYMENT_NAME> -c nginx-gateway | grep -E "Duplicate (policy|logging profile) name"
 ```
+
+This step reads the logs of the NGINX Gateway Fabric controller Deployment, not the `WAFPolicy` resource, so it may require namespace-level log access; a reader without it may need a cluster administrator's help.
+
+The Deployment name depends on your install method. For a Helm install it is `<release-name>-nginx-gateway-fabric`; run `kubectl get deploy -n nginx-gateway` to find it.
 
 **Resolution:**
 
-Each `WAFPolicy` attached to a Gateway must reference a compiled bundle with a unique logical policy name. This is the `name` field set inside the policy definition JSON at compile time, not the `WAFPolicy` resource name or the bundle filename.
+This applies only to distinct bundles that embed the same logical name. The same-logical-name rule applies to the `name` field set inside the compiled policy definition and inside the compiled log profile definition at compile time, not the `WAFPolicy` resource name or the bundle filename. Each such bundle must carry a unique logical name.
 
 To resolve the conflict, choose one of the following approaches:
 
-- **Recompile with a distinct name**: Update the policy definition to use a unique `name` field for each policy, then recompile and republish the bundle.
-- **Pin a single version per Gateway**: If the intent is to apply the same policy everywhere, use a single gateway-level `WAFPolicy` instead of multiple route-level policies referencing different versions of the same named policy.
-- **Check for overlapping WAFPolicies**: Run `kubectl get wafpolicies -A` and confirm that no two policies targeting the same Gateway reference bundles compiled from definitions with the same logical policy name.
+- **Recompile with a distinct name**: Update the policy definition or log profile definition to use a unique `name` field, then recompile and republish the bundle.
+- **Consolidate to a single gateway-level policy**: If the intent is to apply the same policy everywhere, use a single gateway-level `WAFPolicy` instead of multiple route-level policies referencing different versions of the same named policy.
+- **Audit for overlapping `WAFPolicies`**: The logical name lives inside the compiled bundle and is not shown in `kubectl get wafpolicies -A` output, so the list alone does not reveal the collision. List the WAFPolicies with `kubectl get wafpolicies -A`, then cross-check each one's source — the bundle URL, policy name, or object ID it points at, or the compiled definition in your NGINX Instance Manager or NGINX One Console records — for a shared logical policy or log profile name.
+
+After recompiling and republishing with distinct names, confirm the fix by re-checking the controller logs to verify the error no longer appears, or by watching the affected `WAFPolicy`'s `Programmed` condition reach `True` with `kubectl describe wafpolicy <NAME>`.
+
+### `WAFPolicy` marked `Conflicted` for mismatched polling settings
+
+When two or more `WAFPolicy` resources resolve to the same upstream bundle but differ in polling settings — for example, one sets `polling.enabled: true` and another does not — NGINX Gateway Fabric accepts one and sets the `Accepted` condition to `False` on the rest, with reason `Conflicted`, until their polling settings agree.
+
+**How to identify the problem:**
+
+Run `kubectl describe wafpolicy <NAME>` and read the `Accepted` condition message. For a rejected policy, it reads:
+
+```text
+Conflicts with WAFPolicy <ns>/<name>: policy bundles share the same upstream identity but differ in polling configuration
+```
+
+For policies that share a log source, the equivalent message reads `security log bundles` in place of `policy bundles`.
+
+**Resolution:**
+
+Give every `WAFPolicy` that shares an upstream bundle the same [`polling` settings]({{< ref "/ngf/waf-integration/configuration.md#configure-automatic-policy-updates-polling" >}}). Once the settings agree, the conflict clears and the previously rejected policy is accepted.
+
+The `WAFPolicy` that shows `Accepted: True` is the one NGINX Gateway Fabric applies; a policy marked `Conflicted` is not applied until the conflict is resolved. Confirm that the accepted policy is deployed by checking its `Programmed` condition with `kubectl describe wafpolicy <NAME>`.
 
 ---
 

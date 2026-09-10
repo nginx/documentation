@@ -131,7 +131,7 @@ EOF
 
 This policy overrides the gateway-level policy for the `customers` route only. Any other routes attached to the gateway continue to use the gateway-level `ngfBlocking` policy.
 
-If two `WAFPolicy` resources compile to the same logical policy name, NGINX Gateway Fabric rejects the configuration. See [Duplicate policy name error]({{< ref "/ngf/waf-integration/troubleshooting.md#duplicate-policy-name-error" >}}).
+`WAFPolicy` resources that reference the same upstream bundle are deduplicated automatically and are no longer rejected. Rejection now applies only to distinct policy or log-profile bundles that embed the same logical name. See [Duplicate policy name error]({{< ref "/ngf/waf-integration/troubleshooting.md#duplicate-policy-name-error" >}}). Where multiple `WAFPolicy` resources share an upstream bundle — the same source URL with the same `policyName` or `policyUID` for NGINX Instance Manager, or the same `policyObjectID` or `policyVersionID` for NGINX One Console — they must use consistent `polling` settings, or all but one are marked `Conflicted`. See [WAFPolicy marked Conflicted for mismatched polling settings]({{< ref "/ngf/waf-integration/troubleshooting.md#wafpolicy-marked-conflicted-for-mismatched-polling-settings" >}}).
 
 ---
 
