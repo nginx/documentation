@@ -6,7 +6,7 @@ toc: true
 f5-content-type: how-to
 f5-product: FABRIC
 f5-audience: operator
-f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, GatewayLink, IPAM, PROXY protocol, rewriteClientIP, iRule
+f5-keywords: BIG-IP, F5 CIS, Container Ingress Services, IngressLink, AS3, ExternalLoadBalancer, BIG-IP, GatewayLink, IPAM, PROXY protocol, rewriteClientIP, iRule
 f5-summary: Use an ExternalLoadBalancer custom resource to place an F5 BIG-IP virtual server in front of an NGINX Gateway Fabric Gateway in a single cluster. The F5 IPAM Controller allocates the virtual server address, and an iRule adds a PROXY protocol header so NGINX sees the original client address.
 ---
 
@@ -548,7 +548,7 @@ curl -sku "$BIGIP_USERNAME:$BIGIP_PASSWORD" "https://$BIGIP_ADDRESS/mgmt/tm/ltm/
 
 ## References
 
-- [Distribute traffic across clusters with F5 BIG-IP]({{< ref "/ngf/external-loadbalancers/gateway-link/multicluster.md" >}}): terminate TLS at BIG-IP and spread traffic across two clusters, with health monitors and iRules.
+- [Distribute traffic across clusters with F5 BIG-IP]({{< ref "/ngf/external-loadbalancers/BIG-IP/multicluster.md" >}}): terminate TLS at BIG-IP and spread traffic across two clusters, with health monitors and iRules.
 - [F5 IngressLink documentation](https://clouddocs.f5.com/containers/latest/userguide/ingresslink/): the F5 Container Ingress Services resource that NGINX Gateway Fabric generates.
 - [F5 Application Services 3 Extension reference](https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/refguide/schema-reference.html): the declaration format F5 Container Ingress Services posts to BIG-IP.
 - [NGINX Gateway Fabric](https://github.com/nginx/nginx-gateway-fabric): the NGINX Gateway Fabric source, including the `ExternalLoadBalancer` custom resource definitions.
