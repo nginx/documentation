@@ -380,6 +380,8 @@ spec:
 EOF
 ```
 
+{{< call-out class="note" >}} `RewriteClientIP` settings apply only to TLS `Terminate` listeners, not to TLS `Passthrough` listeners. A `Passthrough` listener uses the `ssl_preread` and `pass` directives to forward encrypted traffic, and does not add a PROXY protocol header. A `proxy_protocol` directive on a `Passthrough` listener would cause broken header errors. For more information, see [TLS routing with TLSRoute]({{< ref "/ngf/traffic-management/tlsroute.md#tls-passthrough" >}}). {{< /call-out >}}
+
 {{< call-out class="note" >}} When sending curl requests to a server expecting proxy information, use the flag `--haproxy-protocol` to avoid broken header errors. {{< /call-out >}}
 
 ---
