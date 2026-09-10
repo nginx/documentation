@@ -417,6 +417,43 @@ If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy`
 
 ---
 
+## Configure the global upstream zone size
+
+NGINX stores the configuration and run-time state of each upstream group in a shared memory zone. The `zoneSize` field of the `NginxProxy` resource sets one zone size for all HTTP upstreams. You then don't have to set the zone size on every `UpstreamSettingsPolicy`.
+
+You can set `zoneSize` globally through the `NginxProxy` resource, as shown below, or for a specific Service through the `zoneSize` field of an [`UpstreamSettingsPolicy`]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}). When both are set for the same Service, the `UpstreamSettingsPolicy` value takes precedence. Use the per-service override when one Service's upstream needs a different size from the rest, for example a Service with substantially more backend Pods.
+
+The following command creates an `NginxProxy` resource that sets `zoneSize` to `1m`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  zoneSize: 1m
+EOF
+```
+
+Set the value as a size string of one to four digits with an optional `k`, `m`, or `g` suffix. For example, `512k`, `1m`, or `8k`. A value with no suffix is in bytes.
+
+The zone size an upstream needs scales with the number of servers (backend Pods) in that upstream: the more servers an upstream has, the larger the zone it requires. See the `zoneSize` field in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the rationale.
+
+To confirm the global `zoneSize` took effect, inspect the running NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+For a Service that has no `UpstreamSettingsPolicy` overriding it, the `zone` directive in its HTTP upstream shows the configured size.
+
+{{< call-out class="note" >}} `zoneSize` applies to HTTP upstreams only. Layer 4 (TCPRoute/UDPRoute) stream upstreams are unaffected and use their own defaults. When neither the global `zoneSize` nor an `UpstreamSettingsPolicy` sets it, the default NGINX Open Source or NGINX Plus value applies. See the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the exact default values. {{< /call-out >}}
+
+As with other `NginxProxy` fields, you can set `zoneSize` on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details, and the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) for the full list of options.
+
+---
+
 ## Configure infrastructure-related settings
 
 You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under the `nginx` section in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings.
