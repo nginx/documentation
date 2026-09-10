@@ -63,7 +63,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 {{% /tab %}}
 
-{{% tab name="RHEL 8.1" %}}
+{{% tab name="RHEL 8 or Oracle Linux 8 or Rocky Linux 8" %}}
 
 1. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
 
@@ -73,21 +73,35 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 1. Enable the CodeReady Builder repository:
 
+   <b>If RHEL 8</b>
+
    ```shell
-   sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+   sudo dnf config-manager --set-enabled codeready-builder-for-rhel-8-rhui-rpms
+   ```
+
+   <b>If Oracle Linux 8</b>
+
+   ```shell
+   sudo dnf config-manager --set-enabled ol8_codeready_builder
+   ```
+
+   <b>If Rocky Linux 8</b>
+
+   ```shell
+   sudo dnf config-manager --set-enabled powertools
    ```
 
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.715.0
+   sudo dnf install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
 
 {{% /tab %}}
 
-{{% tab name="RHEL 9" %}}
+{{% tab name="RHEL 9 or Rocky Linux 9" %}}
 
 1. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
 
@@ -97,21 +111,29 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 1. Enable the CodeReady Builder repository:
 
+   <b>If RHEL 9</b>
+
    ```shell
-   sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+   sudo dnf config-manager --set-enabled codeready-builder-for-rhel-9-rhui-rpms
+   ```
+
+   <b>If Rocky Linux 9</b>
+
+   ```shell
+   sudo dnf config-manager --set-enabled crb
    ```
 
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.715.0
+   sudo dnf install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
 
 {{% /tab %}}
 
-{{% tab name="RHEL 10" %}}
+{{% tab name="RHEL 10 or Rocky Linux 10" %}}
 
 1. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
 
@@ -121,20 +143,28 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 1. Enable the CodeReady Builder repository:
 
+   <b>If RHEL 10</b>
+
    ```shell
-   sudo subscription-manager repos --enable codeready-builder-for-rhel-10-x86_64-rpms
+   sudo dnf config-manager --set-enabled codeready-builder-for-rhel-10-rhui-rpms
+   ```
+
+   <b>If Rocky Linux 10</b>
+
+   ```shell
+   sudo dnf config-manager --set-enabled crb
    ```
 
 1. Install the WAF compiler:
 
    ```shell
-   sudo yum install nms-nap-compiler-v5.715.0
+   sudo dnf install nms-nap-compiler-v5.715.0
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
 
 
-{{<call-out class="warning" title="Known issue for nms-nap-compiler-v5.715.0" >}}If the log contains the `Can't locate JSON/XS.pm` error message during policy compilation, install the `perl-JSON-XS` package manually.
+{{<call-out class="warning" title="Known issue for nms-nap-compiler-v5.690.0" >}}If the log contains the `Can't locate JSON/XS.pm` error message during policy compilation, install the `perl-JSON-XS` package manually.
 
    ```shell
    sudo yum install perl-JSON-XS
@@ -143,33 +173,9 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 
 {{% /tab %}}
 
-{{% tab name="Oracle Linux 8.1" %}}
-
-1. Download the `dependencies.repo` file to `/etc/yum.repos.d`:
-
-   ```shell
-   sudo wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/dependencies.repo
-   ```
-
-1. Enable the `ol8_codeready_builder` repository:
-
-   ```shell
-   sudo yum-config-manager --enable ol8_codeready_builder
-   ```
-
-1. Install the WAF compiler:
-
-   ```shell
-   sudo yum install nms-nap-compiler-v5.715.0
-   ```
-
-1. {{< include "nim/waf/restart-nms-integrations.md" >}}
-
-{{% /tab %}}
-
 {{< /tabs >}}
 
-{{< call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.715.0" >}}If you see the following error message in the UI:
+{{< call-out class="warning" title="Known issue for auto-downloaded nms-nap-compiler-v5.690.0" >}}If you see the following error message in the UI:
 ```text
 <instance_name>: failed building config payload: policy compilation failed for deployment <deployment_id> due to integrations service error: compiler controller error: exit status 1
 ```
@@ -180,20 +186,20 @@ If the log contains any of the following error messages:</br>
 
 for Debian or Ubuntu-based systems:
 ```text
-/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.715.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
+/usr/bin/perl: symbol lookup error: /opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so: undefined symbol: _ZN3re23RE2C1ESt17basic_string_viewIcSt11char_traitsIcEERKNS0_7OptionsE
 ```
 
 <b>OR</b></br>
 
 for RHEL-based systems: 
 ```text
-Can't load '/opt/nms-nap-compiler/app_protect-5.715.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
+Can't load '/opt/nms-nap-compiler/app_protect-5.690.0/bin/../lib/perl/auto/F5/PatternMatching/PatternMatching.so' for module F5::PatternMatching: libre2.so.11: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm
 ```
 
 <b>Workaround</b>: Run the following command:
    ```shell
    sudo bash -c '
-   cd /opt/nms-nap-compiler/app_protect-5.715.0/lib && \
+   cd /opt/nms-nap-compiler/app_protect-5.690.0/lib && \
    ln -sfn libre2.so.11.0.0 libre2.so.11 && \
    ln -sfn libprotobuf.so.3.21.12.0 libprotobuf.so.32 && \
    ln -sfn libprotobuf.so.32 libprotobuf.so
