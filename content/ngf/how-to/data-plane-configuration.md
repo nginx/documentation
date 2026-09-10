@@ -313,7 +313,49 @@ EOF
 
 NGINX Gateway Fabric supports errorLog in JSON format for NGINX Plus users. When  `errorLogFormat` is set to `json` and no custom access log format is defined, the access log also defaults to JSON format.
 
-{{< call-out class="note" >}} File destinations in `logging.accessLog` are not currently supported it is always set to `/dev/stdout`. {{< /call-out >}}
+By default, NGINX Gateway Fabric writes access logs to `/dev/stdout`. To send them to a file or a syslog server instead, set `destination` under `spec.logging.accessLog` in the `NginxProxy` resource.
+
+The following command creates an `NginxProxy` that writes access logs to a file, paired with a custom log format:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
+      destination:
+        type: file
+        file:
+          path: /var/log/nginx/access.log
+EOF
+```
+
+The following command creates an `NginxProxy` that sends access logs to a syslog server, paired with a custom log format. Give the server as a `host:port` value:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  logging:
+    accessLog:
+      format: $remote_addr - [$time_local] "$request" $status $body_bytes_sent
+      destination:
+        type: syslog
+        syslog:
+          server: syslog-svc.default.svc.cluster.local:514
+EOF
+```
+
+{{< call-out class="note" >}} A destination takes effect only when an access log format is also defined. Set `accessLog.format` to a custom format, or set `errorLogFormat` to `json` to use the built-in JSON format. {{< /call-out >}}
+
+**For a full list of configuration options that can be set, see the `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}).**
 
 ---
 
