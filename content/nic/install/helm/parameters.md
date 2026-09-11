@@ -158,6 +158,7 @@ The [values.schema.json](https://github.com/nginx/kubernetes-ingress/blob/main/c
 | **controller.appprotect.configManager.image.digest** | The digest of the F5 WAF for NGINX v5 Configuration Manager. Takes precedence over tag if set. | "" |
 | **controller.appprotect.configManager.image.pullPolicy** | The pull policy for the F5 WAF for NGINX v5 Configuration Manager image. | IfNotPresent |
 | **controller.appprotect.configManager.securityContext** | The security context for F5 WAF for NGINX v5 Configuration Manager container. | {"allowPrivilegeEscalation":false,"runAsUser":101,"runAsNonRoot":true,"capabilities":{"drop":["all"]}} |
+| **controller.appprotect.ipIntelligence.resources** | The resources of the F5 WAF for NGINX v5 IP Intelligence container. | {} |
 | **controller.appprotect.logLevel** | Sets the log level for F5 WAF for NGINX | N/A |
 | **controller.appprotectdos.enable** | Enables the App Protect DoS module in the NGINX Ingress Controller. | false |
 | **controller.appprotectdos.debug** | Enable debugging for App Protect DoS. | false |
