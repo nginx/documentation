@@ -22,35 +22,14 @@ This guide explains how to deploy F5 NGINXaaS for Google Cloud (NGINXaaS) using 
 
 Before you can deploy NGINXaaS, follow the steps in the [Prerequisites]({{< ref "/nginxaas/google/deploy/prerequisites/" >}}) topic to subscribe to the NGINXaaS for Google Cloud offering in the Google Cloud Marketplace.
 
-### Create a network attachment
-
-NGINXaaS requires a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to connect your NGINXaaS deployment to your VPC network. The network attachment must be created in a region we support.
-
-{{< call-out class="caution" >}}
-{{< include "/nginxaas/google/supported-regions.md" >}}
-{{< /call-out >}}
-
-1. Access the [Google Cloud Console](https://console.cloud.google.com/).
-1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
-   - The region you select for the network attachment determines the region where your NGINXaaS deployment will be created. You do not manually select a region when creating an NGINXaaS deployment; it will automatically be created in the same region as the network attachment.
-1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide. To ensure secure and controlled access to your network attachments, we strongly recommend configuring the **Connection preference** on the Network Attachment resource to **Accept connections from selected projects**. This option helps maintain security by ensuring only trusted providers can connect to your service by letting you manually approve trusted connections. To start, you can leave the list of accepted projects empty and add the NGINXaaS deployment project after it is created.
-
-   {{< call-out class="caution" >}}
-   For development and testing purposes, or in scenarios where speed and simplicity are prioritized over security, you have the option to configure the **Connection Preference** to **Automatically accept connections for all projects**. Please note that this approach is inherently less secure and may expose your service to unintended or unauthorized access. We encourage you to exercise caution if using the less restrictive option and to avoid using it in production or sensitive environments.
-   {{< /call-out >}}
-
-1. Make a note of the network attachment ID as it will be needed in the next steps to create your NGINXaaS deployment. You can find the network attachment ID in the Google Cloud Console by following the steps below:
-   1. Go to Network Attachments at the following link: https://console.cloud.google.com/net-services/psc/list/networkAttachments?project=my-google-project (replace `my-google-project` in the URL with your project name).
-   1. Open the desired network attachment and copy the value from the `Network Attachment` field. **Example format:** `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
-
 ## Access the NGINXaaS Console
 
-Once you have completed the subscription process and created a network attachment, you can access the NGINXaaS Console.
+Once you have completed the subscription process, you can access the NGINXaaS Console.
 
 {{< include "/nginxaas/access-console.md" >}}
 
 {{< call-out class="caution" >}}
-Select the Geography that supports the region where you created your network attachment.
+Select the Geography that supports the region where you plan to deploy.
 See [NGINXaaS for Google Cloud supported regions]({{< ref "/nginxaas/google/overview.md#supported-regions" >}}).
 {{< /call-out >}}
 
@@ -72,15 +51,56 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Enable **WAF** if you want [F5 WAF for NGINX]({{< ref "/waf" >}}) enabled for your deployment.
    - In the Apply Configuration section, select an NGINX configuration [you created earlier](#create-or-import-an-nginx-configuration) from the **Choose Configuration** list.
    - Select a **Configuration Version** from the list.
-   - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
+   - In the Cloud Details section, select a **Region**.
+      - Make a note of this region — you'll need to create a network attachment in the same region.
+   - Optional: In the Cloud Details section, enter a network attachment ID or select one in the **Network attachment** list. A network attachment connects this deployment to your upstream servers, and is required for most use cases.
       - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
+      - If you haven't created a network attachment yet, you can leave this field empty and [add one after creating your deployment](#create-a-network-attachment).
    - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend.
       - Refer to the [Service Frontend]({{< ref "/nginxaas/google/overview.md#service-frontend" >}}) documentation for more information on these two frontend types.
    - Select **Submit** to begin the deployment process.
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
 
-{{< call-out class="important" >}}If the **Connection preference** on the Network Attachment resource is set to **Accept connections from selected projects**, you will need to add the **NGINXaaS deployment project** to the list of **Accepted projects** for the deployment to provision successfully. The NGINXaaS deployment `Project ID` can be found under the `Cloud Info` section for your deployment. Failing to do so will leave the deployment in a `Pending` state, with details provided on the necessary actions required to proceed.{{< /call-out >}}
+Make a note of the deployment's **Region** and **Project ID**, both visible under the `Cloud Info` section for your deployment. You'll need them in the next section to create and connect a network attachment.
+
+### Create a network attachment
+
+To connect your NGINXaaS deployment to your upstream servers, create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) and add it to your deployment.
+
+{{< call-out class="caution" >}}
+{{< include "/nginxaas/google/supported-regions.md" >}}
+{{< /call-out >}}
+
+1. Access the [Google Cloud Console](https://console.cloud.google.com/).
+1. Create a consumer VPC network and subnetwork. See [Google's documentation on creating a VPC and subnet](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#console_1) for a step-by-step guide.
+
+   {{< call-out class="note" >}}
+   Create the network attachment in the same region as your deployment.
+   {{< /call-out >}}
+
+1. Create a network attachment in your new subnet. See [Google's documentation on creating a network attachment](https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments) for a step-by-step guide. Configure the **Connection preference** on the Network Attachment resource using one of the following options:
+   - **Accept connections from selected projects** (recommended): This option helps maintain security by ensuring only trusted providers can connect to your service by letting you manually approve trusted connections. Add your NGINXaaS deployment's **Project ID** to the accept list to connect it to your upstream servers.
+   - **Automatically accept connections for all projects**: This option lets you skip adding your deployment's Project ID to an accept list.
+
+      {{< call-out class="caution" >}}
+      For development and testing purposes, or in scenarios where speed and simplicity are prioritized over security, you have the option to configure the **Connection Preference** to **Automatically accept connections for all projects**. Please note that this approach is inherently less secure and may expose your service to unintended or unauthorized access. We encourage you to exercise caution if using the less restrictive option and to avoid using it in production or sensitive environments.
+      {{< /call-out >}}
+
+1. Copy the network attachment value. You can find it in the Google Cloud Console by following the steps below:
+   1. Go to Network Attachments at the following link: https://console.cloud.google.com/net-services/psc/list/networkAttachments?project=my-google-project (replace `my-google-project` in the URL with your project name).
+   1. Open the desired network attachment and copy the value from the `Network Attachment` field. **Example format:** `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
+1. Add the network attachment value to your deployment, either while [creating the deployment](#create-a-new-deployment) or by [editing an existing deployment](#configure-your-deployment). This connects your NGINXaaS deployment to your upstream servers.
+
+You can add or remove a network attachment after creating a deployment by [editing the deployment](#configure-your-deployment).
+
+{{< call-out class="warning" >}}
+You cannot switch a deployment directly from one network attachment to another. To change the network attachment, first remove the existing one, wait for the deployment to return to a `Ready` state, then add the new network attachment.
+{{< /call-out >}}
+
+{{< call-out class="note" >}}
+Deployments created before Sept 8, 2026 do not support network attachment changes.
+{{< /call-out >}}
 
 ## Configure your deployment
 
@@ -90,6 +110,7 @@ In the NGINXaaS Console,
    - You can view the details of your deployment, including the status, region, network attachment, NGINX configuration, and more.
 1. Select **Edit** to modify the deployment description, NCU Capacity, and WAF enablement.
    - You can also configure monitoring from here. Detailed instructions can be found in [Enable Monitoring]({{< ref "/nginxaas/google/monitoring/enable-monitoring.md" >}})
+   - You can add or remove a network attachment from the Cloud Details section. See [Create a network attachment](#create-a-network-attachment) for details on switching from one network attachment to another.
 1. Select **Update** to save your changes.
 1. Select the Configuration tab to view the current NGINX configuration associated with the deployment.
 1. Select **Update Configuration** to change the NGINX configuration associated with the deployment.
