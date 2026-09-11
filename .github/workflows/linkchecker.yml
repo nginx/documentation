@@ -76,31 +76,19 @@ jobs:
             echo "isProduction=true" >> $GITHUB_ENV
           fi
 
-      - name: Login to Azure
-        if: env.isProduction != 'true'
-        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
+      - name: Get secrets
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@refs/heads/main
         with:
-          creds: ${{secrets.AZURE_CREDENTIALS_DOCS}}
-
-      - name: Retrieve secrets from Keyvault
-        if: env.isProduction != 'true'
-        id: keyvault
-        uses: azure/cli@9f7ce6f37c31b777ec6c6b6d1dfe7db79f497956
-        with:
-          inlineScript: |
-            secrets_get=(frontdoorUsername frontdoorPassword)
-            for secret_get in ${secrets_get[@]}
-            do
-              value=$(az keyvault secret show --name $secret_get --vault-name ${{ secrets.AZURE_KEY_VAULT_DOCS }} --query value --output tsv)
-              echo "::add-mask::$value"
-              echo "$secret_get=$value" >> $GITHUB_OUTPUT
-            done
+          client-id: ${{secrets.DOCS_OIDC_CLIENT}}
+          tenant-id: ${{secrets.DOCS_OIDC_TENANT}}
+          vault-name: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+          secret-names: "frontdoorPassword,frontdoorUsername"
 
       # Setup linkchecker command with optional password
       - name: Setup LinkChecker Command
         run: |
           if [ "${{env.isProduction}}" != "true" ]; then
-            echo "cmd=echo '${{steps.keyvault.outputs.frontdoorPassword}}' | linkchecker -u '${{steps.keyvault.outputs.frontdoorUsername}}' ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
+            echo "cmd=echo '${{env.FRONTDOORPASSWORD}}' | linkchecker -u '${{env.FRONTDOORUSERNAME}}' ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
           else
             echo "cmd=linkchecker ${{ env.basepath }}/${{ matrix.doc_paths }}/ ${{ env.defaults }} ${{ env.ignore }}" >> $GITHUB_ENV
           fi

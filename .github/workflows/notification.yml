@@ -39,6 +39,14 @@ jobs:
               job_url: check_data.html_url,
               commit_message: message_sanitized,
             }
+      - name: Get secrets
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@refs/heads/main
+        with:
+          client-id: ${{secrets.DOCS_OIDC_CLIENT}}
+          tenant-id: ${{secrets.DOCS_OIDC_TENANT}}
+          vault-name: ${{secrets.AZURE_KEY_VAULT_DOCS}}
+          secret-names: "slack_webhook_url_docs_incident"
+          env-names: "SLACK_WEBHOOK_URL"
 
       - name: Send notification
         uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # v3.19.0
@@ -73,5 +81,3 @@ jobs:
                   }]
                 }]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_DOCS_INCIDENT }}
