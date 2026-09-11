@@ -9,6 +9,8 @@ f5-summary: >
    NGINX Gateway Fabric supports two TLS modes for TLSRoute: passthrough and terminate.
    In passthrough mode, the Gateway forwards encrypted traffic to the backend using SNI-based (Server Name Indication) routing, and the backend terminates TLS with its own certificate.
    In terminate mode, the Gateway holds the certificate and terminates TLS, then forwards plain TCP traffic to the backend.
+aliases:
+  - /nginx-gateway-fabric/traffic-management/tls-passthrough/
 ---
 
 Learn how to configure TLS routing with [TLSRoute](https://gateway-api.sigs.k8s.io/reference/spec/#tlsroute) using NGINX Gateway Fabric.
