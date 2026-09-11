@@ -1,4 +1,5 @@
 ---
+title: Configure JSON Web Token (JWT) claim validation
 description: "How to configure JSON Web Token (JWT) claim validation in F5 NGINX Gateway Fabric using the `AuthenticationFilter` custom resource definition (CRD)."
 weight: 650
 toc: true
