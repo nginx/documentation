@@ -643,8 +643,17 @@ spec:
 ## Troubleshooting
 
 ### AuthenticationFilter is not accepted
+
 - Confirm the filter's `type` is `OIDC` and the `oidc` block is present.
 - Check that the Secrets referenced by `clientSecretRef`, `caCertificateRefs`, and `crlSecretRef` exist in the same namespace as the filter and contain the expected keys (`client-secret`, `ca.crt`, `ca.crl`).
+- Make sure `clientID`, `session.cookieName`, and the `client-secret` value in the referenced Secret contain none of these characters:
+
+  - A dollar sign (`$`)
+  - An unescaped double quote (`"`)
+  - A trailing unescaped backslash (`\`)
+  - A line break (newline or carriage return)
+
+  NGINX Gateway Fabric rejects a value that contains one of them. The filter reports `Accepted=False` with `Reason=Invalid`, and the message names the field, such as `spec.oidc.clientID`. For the `client-secret` value, the message begins with `the referenced Secret value is invalid:`.
 
 ### HTTPRoute is not accepted or reports `ResolvedRefs=False`
 - Verify the `extensionRef` in the HTTPRoute matches the `AuthenticationFilter` name and namespace exactly.
