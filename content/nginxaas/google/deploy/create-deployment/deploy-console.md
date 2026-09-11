@@ -55,14 +55,14 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
       - Make a note of this region — you'll need to create a network attachment in the same region.
    - Optional: In the Cloud Details section, enter a network attachment ID or select one in the **Network attachment** list. A network attachment connects this deployment to your upstream servers, and is required for most use cases.
       - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
-      - If you haven't created a network attachment yet, you can leave this field empty and [add one after creating your deployment](#create-a-network-attachment).
+    - If you haven't created a network attachment yet, you can leave this field empty and [add one after creating your deployment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
    - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend.
       - Refer to the [Service Frontend]({{< ref "/nginxaas/google/overview.md#service-frontend" >}}) documentation for more information on these two frontend types.
    - Select **Submit** to begin the deployment process.
 
 Your new deployment will appear in the list of deployments. The status of the deployment will be "Pending" while the deployment is being created. Once the deployment is complete, the status will change to "Ready".
 
-Make a note of the deployment's **Region** and **Project ID**, both visible under the `Cloud Info` section for your deployment. You'll need them in the next section to create and connect a network attachment.
+If you did not add a network attachment while creating the deployment, make a note of its **Region**, visible under the `Cloud Info` section. If you plan to accept connections only from selected projects, also note the deployment's **Project ID**. You'll need these values in the next section. If you already added a network attachment, skip to [Configure your deployment](#configure-your-deployment).
 
 ### Create a network attachment
 
