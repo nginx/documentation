@@ -36,5 +36,5 @@ The key capabilities of ${product} are:
 
 ${product} is available for use with multiple public cloud providers. See specific documentation for more details:
 
-- [NGINXaaS for AWS]({{< ref "/nginxaas/aws/overview.md" >}})
+- [F5 Application Delivery Service for AWS]({{< ref "/f5ads/aws/overview.md" >}})
 - [NGINXaaS for Google Cloud]({{< ref "/nginxaas/google/overview.md" >}})

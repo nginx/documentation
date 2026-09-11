@@ -92,6 +92,7 @@ the **Product names** list at the end of this file. Do not invent codes or other
 ## Hugo shortcodes and includes
 
 ### Include files
+
 ```markdown
 {{< include "nic/kubernetes-terminology.md" >}}
 {{< include "waf/install-selinux-warning.md" >}}
@@ -103,6 +104,7 @@ the **Product names** list at the end of this file. Do not invent codes or other
 - Keep include files context-agnostic and modular
 
 ### Call-outs
+
 ```markdown
 {{< call-out class="note" title="Note" >}} Text here. {{< /call-out >}}
 {{< call-out class="warning" title="Warning" >}} Text here. {{< /call-out >}}
@@ -112,6 +114,7 @@ the **Product names** list at the end of this file. Do not invent codes or other
 Refer to the admonitions topic in the style guide for when to use each type.
 
 ### Internal links
+
 Always use the ref shortcode with absolute paths and file extensions:
 
 ```markdown
@@ -122,6 +125,7 @@ Always use the ref shortcode with absolute paths and file extensions:
 Never use relative links or bare markdown links for internal content.
 
 ### Version shortcodes
+
 ```markdown
 {{< nic-version >}}     # NGINX Ingress Controller version
 {{< version-ngf >}}     # NGINX Gateway Fabric version
@@ -170,6 +174,7 @@ Relates to issue #1234
 ```
 
 ### Pre-commit hooks (optional)
+
 ```bash
 pip install pre-commit
 pre-commit install  # enables gitlint and markdownlint-cli2
@@ -181,6 +186,7 @@ pre-commit install  # enables gitlint and markdownlint-cli2
 - `.pre-commit-config.yaml` -- Git hooks (gitlint, markdownlint-cli2)
 
 Key markdownlint rules enforced:
+
 - MD022/MD031/MD032: Blank lines around headings, code blocks, lists
 - MD026: No trailing punctuation in headings
 - MD045: All images must have alt text
@@ -222,6 +228,8 @@ Permalinks for products are defined in `config/_default/config.toml`.
 - F5 NGINXaaS
 - F5 NGINXaaS for Azure
 - F5 NGINXaaS for Google Cloud
+- F5 Application Delivery Service
+- F5 Application Delivery Service for AWS
 - F5 NGINX One Console
 - F5 NGINX Plus
 

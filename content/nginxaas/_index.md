@@ -4,10 +4,6 @@ description: Learn how to deliver, manage, and protect your applications using F
 url: /nginxaas/
 f5-landing-page: true
 f5-content-type: landing-page
-cascade:
-  f5-banner:
-    enabled: true
-    md: /_banners/nginxaas-aws-ea.md
 ---
 
 Learn how to deliver, manage, and protect your applications using F5 NGINXaaS.
@@ -26,8 +22,8 @@ and reliable, and bringing advanced traffic services enabled with the commercial
   {{<card title="Create a deployment in Google Cloud" titleUrl="/nginxaas/google/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
     Step-by-step instructions to deploy NGINXaaS in Google Cloud using the NGINXaaS Console
   {{</card>}}
-  {{<card title="Create a deployment in AWS" titleUrl="/nginxaas/aws/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
-    Step-by-step instructions to deploy NGINXaaS in AWS using the NGINXaaS Console
+  {{<card title="Create a deployment in AWS" titleUrl="/f5ads/aws/deploy/create-deployment/deploy-console/" icon="cloud-cog">}}
+    Step-by-step instructions to deploy F5 Application Delivery Service for AWS using the F5 ADS Console
   {{</card>}}
 {{</card-section>}}
 
@@ -36,8 +32,8 @@ and reliable, and bringing advanced traffic services enabled with the commercial
 Access the [NGINXaaS Console](https://console.nginxaas.net/) directly to manage organizations, NGINX configurations, and certificates. To create and manage deployments, subscribe to F5 NGINXaaS using your preferred cloud provider marketplace.
 
 {{<card-section showAsCards="true">}}
-  {{<card title="NGINXaaS for AWS" titleUrl="/nginxaas/aws/deploy/prerequisites/" icon="zap">}}
-    Use NGINXaaS alongside your services running in AWS
+  {{<card title="F5 ADS for AWS" titleUrl="/f5ads/aws/deploy/prerequisites/" icon="zap">}}
+    Use F5 ADS alongside your services running in AWS
   {{</card>}}
   {{<card title="NGINXaaS for Google Cloud" titleUrl="/nginxaas/google/deploy/prerequisites/" icon="power">}}
     Deploy NGINXaaS for use with your Google Cloud services

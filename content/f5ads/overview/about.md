@@ -1,0 +1,40 @@
+---
+title: About
+weight: 100
+toc: true
+f5-docs: DOCS-000
+url: /f5ads/overview/about/
+f5-content-type: concept
+f5-product: F5 Application Delivery Service
+---
+
+## What is F5 Application Delivery Service?
+
+F5 Application Delivery Service (F5 ADS) is a service offering that is tightly integrated into your cloud platform and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
+
+F5 ADS is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. F5 ADS handles the NGINX Plus license management automatically.
+
+## Capabilities
+
+The key capabilities of F5 ADS are:
+
+- Simplifies onboarding by providing a fully managed, ready-to-use NGINX service, eliminating the need for infrastructure setup, manual upgrades, or operational overhead.
+- Lowers operational overhead in running and optimizing NGINX.
+- Simplifies NGINX deployments with fewer moving parts (edge routing is built into the service).
+- Supports migration of existing NGINX configurations to the cloud with minimal effort.
+- Integrates with your cloud provider's ecosystem.
+- F5 ADS keeps your SSL private keys and other secrets secure and easy to manage.
+- Adopts a consumption-based pricing model to align infrastructure costs to actual usage.
+- F5 ADS is used to create, update, and delete NGINX configurations, certificates, and deployments.
+- F5 ADS automatically adapts to application traffic demands through autoscaling.
+- Each F5 ADS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments.
+- Makes collecting and reviewing access logs and NGINX metrics painless and accessible.
+- F5 ADS supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
+- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. F5 ADS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
+
+## Availability
+
+F5 ADS is available for use with multiple public cloud providers. See specific documentation for more details:
+
+- [F5 ADS for AWS]({{< ref "/f5ads/aws/overview.md" >}})
+- [NGINXaaS for Google Cloud]({{< ref "/nginxaas/google/overview.md" >}})

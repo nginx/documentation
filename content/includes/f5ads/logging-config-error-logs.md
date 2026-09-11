@@ -1,7 +1,7 @@
 ---
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 f5-files:
-- content/nginxaas/google/monitoring/enable-nginx-logs.md
+- content/f5ads/aws/monitoring/enable-nginx-logs.md
 ---
 
 NGINX error logs are disabled by default. You can enable error logs by adding **error_log** directives to your NGINX configuration to specify the location of the logs and formats. The log path should always be configured to be inside **/var/log/nginx**.

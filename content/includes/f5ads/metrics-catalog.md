@@ -1,7 +1,7 @@
 ---
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 f5-files:
-- content/nginxaas/google/monitoring/metrics-catalog.md
+- content/f5ads/aws/monitoring/metrics-catalog.md
 ---
 
 ## Metrics
@@ -17,7 +17,7 @@ f5-files:
 
 ### NGINX config statistics
 
-All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
+All F5 ADS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 
@@ -29,7 +29,7 @@ All NGINXaaS deployments collect these metrics automatically. No additional NGIN
 
 ### NGINX connections statistics
 
-All NGINXaaS deployments collect these metrics automatically. No additional NGINX configuration is required.
+All F5 ADS deployments collect these metrics automatically. No additional NGINX configuration is required.
 
 {{< table >}}
 

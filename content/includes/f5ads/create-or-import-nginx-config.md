@@ -1,12 +1,12 @@
 ---
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
 f5-files:
-- content/nginxaas/overview/nginx-configuration/nginx-configuration-console.md
-- content/nginxaas/google/deploy/create-deployment/deploy-console.md
-- content/nginxaas/google/deploy/nginx-configuration/nginx-configuration-console.md
+- content/f5ads/overview/nginx-configuration/nginx-configuration-console.md
+- content/f5ads/aws/deploy/create-deployment/deploy-console.md
+- content/f5ads/aws/deploy/nginx-configuration/nginx-configuration-console.md
 ---
 
-In the NGINXaaS Console,
+In the F5 ADS Console,
 
 1. On the left menu, select **Configurations**.
 1. Select **Add Configuration** to add a new NGINX configuration.
@@ -14,7 +14,7 @@ In the NGINXaaS Console,
 
    - Select **New configuration** to create a new config.
       - Provide a name for your configuration and an optional description.
-      - Select to start with the "F5 NGINXaaS Default" (a basic NGINX setup) or an empty configuration file.
+      - Select to start with the "F5 ADS Default" (a basic NGINX setup) or an empty configuration file.
       - Select **Next**.
    - Select **Copy existing configuration** to use one of the existing configuration files in your account as template.
       - Provide a name for your configuration and an optional description.
