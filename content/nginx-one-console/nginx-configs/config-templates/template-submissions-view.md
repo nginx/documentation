@@ -20,6 +20,8 @@ Use this page to view and manage template submissions in NGINX One Console. The 
 
 Each row is a submission the [Submit Templates]({{< ref "submit-templates.md" >}}) API created. You can inspect which templates and targets are in each submission and delete submissions you no longer need.
 
+You can also create a new submission directly from the Templates list. Select **Submit** on a finalized base template. See [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}}).
+
 ## Before you begin
 
 Before you begin, make sure you have:
@@ -90,4 +92,5 @@ For more information, see:
 
 - [View template details]({{< ref "template-detail-view.md" >}})
 - [Submit templates]({{< ref "submit-templates.md" >}})
+- [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})
 - [View template versions]({{< ref "template-versions.md" >}})
