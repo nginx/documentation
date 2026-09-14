@@ -234,7 +234,7 @@ Major highlights include:
 - [9728](https://github.com/nginx/kubernetes-ingress/pull/9728) Support empty host ingress
 - [9862](https://github.com/nginx/kubernetes-ingress/pull/9862) Add support for proxy_redirect in ingress
 - [9740](https://github.com/nginx/kubernetes-ingress/pull/9740) Add nginx agent 3.x waf support
-- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalisation
+- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalization
 
 ### {{% icon bug %}} Fixes
 
@@ -359,7 +359,7 @@ Release 5.4.0 focuses on making migrations from `ingress-nginx` easier by provid
 - [8656](https://github.com/nginx/kubernetes-ingress/pull/8656) Add nginx.org/ssl-redirect annotation support
 - [8711](https://github.com/nginx/kubernetes-ingress/pull/8711) Add nginx.org/http-redirect-code annotation and configmap support
 - [8720](https://github.com/nginx/kubernetes-ingress/pull/8720) Add `nginx.org/app-root` annotation support
-- [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialise the $service variable early in the server block
+- [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialize the $service variable early in the server block
 - [8168](https://github.com/nginx/kubernetes-ingress/pull/8168) Add custom time format to json and text logging
 - [8936](https://github.com/nginx/kubernetes-ingress/pull/8936) Add routeselector labels to virtualserver and virtualserverroutes
 - [8972](https://github.com/nginx/kubernetes-ingress/pull/8972) Add `proxy-next-upstream` directives to ingress annotations
