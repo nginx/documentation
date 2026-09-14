@@ -992,7 +992,7 @@ helm pull oci://private-registry.nginx.com/nap/nginx-app-protect --version <new-
 ```
    
 {{< call-out class="warning">}}
-Helm charts come with a default `values.yaml` file: this should be ignored in favour of the customized file during set-up.
+Helm charts come with a default `values.yaml` file: this should be ignored in favor of the customized file during set-up.
 {{< /call-out >}}
 
 Then change into the directory and apply the CRDs:
