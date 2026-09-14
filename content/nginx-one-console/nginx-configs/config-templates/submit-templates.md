@@ -31,6 +31,28 @@ Template submission allows you to compose templates that generate a complete NGI
 
 To review the rendered configuration before committing, use [preview mode](#preview-mode-preview_onlytrue) with `preview_only=true`. See [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}}) for the preview-first workflow.
 
+## Permissions and API groups
+
+You can control write permissions for template submissions through API group assignments in custom roles.
+
+The following table lists the API groups available for template submissions.
+
+{{<table>}}
+| API group name | Access level | Permissions |
+|---|---|---|
+| `f5xc-nginx-one-custom-templates-submissions-manage` | Write | View, create, change, and delete template submissions. |
+| `f5xc-nginx-one-custom-templates-submissions-owner` | Write | Create new submissions, and view or change existing submissions. |
+| `f5xc-nginx-one-custom-templates-submissions-contributor` | Write | View or change existing submissions only. Cannot create new submissions. |
+{{</table>}}
+
+Assign `f5xc-nginx-one-custom-templates-submissions-manage` to users who need full permissions to manage, create, and delete submissions.
+
+Assign `f5xc-nginx-one-custom-templates-submissions-owner` to users who need full write permissions to create new submissions and change existing ones.
+
+Assign `f5xc-nginx-one-custom-templates-submissions-contributor` to restrict users so they can only view or change existing submissions.
+
+For more information about creating custom roles, see [Set up custom roles with API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}}).
+
 ## Template discovery
 
 Before creating a submission, find base and augment templates that match your infrastructure needs.
@@ -707,3 +729,4 @@ When composing template submissions, arrange your augments array to match the re
 - [Add Service-Specific Locations]({{< ref "add-multiple-services.md" >}})
 - [Submit and copy templates from the Templates list]({{< ref "submit-and-copy-templates.md" >}})
 - [Save rendered config as staged config]({{< ref "save-as-staged-config.md" >}})
+- [Set up custom roles with API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}})

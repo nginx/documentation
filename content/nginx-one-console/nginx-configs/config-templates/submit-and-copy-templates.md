@@ -27,7 +27,7 @@ Select **Make a Copy** on any template to create a new draft template from its l
 
 Before you begin, make sure you have:
 
-- NGINX One Console access: You need template write permission to use the **Submit** and **Make a Copy** row actions.
+- NGINX One Console access: You need write permissions to submit or copy templates. Creating a new submission requires the `f5xc-nginx-one-custom-templates-submissions-owner` API group. Editing an existing submission is also available to users assigned to `f5xc-nginx-one-custom-templates-submissions-contributor`. See [Set up custom roles with API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}}).
 - An imported template: At least one template must exist in **Manage** > **Config Templates**. If you don't have any templates yet, import one first. See [Import templates]({{< ref "import-templates.md" >}}) for instructions.
 - A finalized base template: To use **Submit**, you need at least one base template in the `final` state.
 
@@ -43,7 +43,7 @@ The **Submit** option is available for templates of type `base` that are in the 
 
 ## Edit an existing submission
 
-You can also use the **Edit Template Submission** panel to edit an existing submission. Open the submission from the **Submissions** section on the Template Detail page.
+You can also use the **Edit Template Submission** panel to edit an existing submission. Open the submission from the **Submissions** section on the Template Detail page. Users assigned to the `f5xc-nginx-one-custom-templates-submissions-contributor` or `f5xc-nginx-one-custom-templates-submissions-owner` API group can edit submissions.
 
 ## Copy a template
 
@@ -73,3 +73,4 @@ The Templates list row actions use the following API operations:
 - [View template details]({{< ref "template-detail-view.md" >}})
 - [View template submissions]({{< ref "template-submissions-view.md" >}})
 - [Import templates]({{< ref "import-templates.md" >}})
+- [Set up custom roles with API groups]({{< ref "/nginx-one-console/rbac/rbac-api.md" >}})
