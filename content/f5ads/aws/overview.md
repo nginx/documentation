@@ -9,20 +9,18 @@ f5-content-type: concept
 f5-product: F5 Application Delivery Service for AWS
 f5-keywords: "F5 ADS for AWS, architecture, service frontend, private endpoint, managed public endpoint, upstream network, NGINX Capacity Unit, NCU, geographical controller"
 f5-summary: >
-  F5 Application Delivery Service for AWS is a fully managed, AWS-native SaaS load balancer and application delivery service powered by commercial NGINX Plus.
+  NGINX Plus powers F5 Application Delivery Service for AWS, a fully managed, AWS-native SaaS load balancer and application delivery service.
   This overview covers its architecture, service frontend types, upstream connectivity, and capacity model, so you understand how it fits into your AWS environment before you deploy.
 f5-audience: any
 ---
 
 ## What is F5 Application Delivery Service for AWS?
 
-F5 ADS for AWS is a SaaS offering that is tightly integrated
-into AWS and its ecosystem of services, making applications fast, efficient,
-and reliable. It brings advanced traffic management capabilities from the commercial version of NGINX, without any of the operational toil.
+F5 Application Delivery Service for AWS (F5 ADS for AWS) is a SaaS offering tightly integrated with AWS and its ecosystem of services. It helps make your applications fast, efficient, and reliable, using advanced traffic management from [NGINX Plus](https://www.nginx.com/products/nginx/) without the operational overhead.
 
-[NGINX Plus](https://www.nginx.com/products/nginx/) powers F5 ADS for AWS, which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution.
+NGINX Plus extends NGINX Open Source with advanced functionality, giving you a complete application delivery solution.
 
-F5 ADS handles the NGINX Plus license management automatically.
+F5 ADS for AWS launches with F5's current product naming. [F5 NGINXaaS for Google Cloud]({{< ref "/nginxaas/google/overview.md" >}}), the other service in this family, will move to this naming over time.
 
 {{<card-section showAsCards="true" isFeaturedSection="false">}}
   {{<card title="Prerequisites" titleUrl="/f5ads/aws/deploy/prerequisites/" icon="power">}}
@@ -48,16 +46,16 @@ The key capabilities of F5 ADS for AWS are:
 - Simplifies NGINX deployments with fewer moving parts (edge routing is built into the service).
 - Supports migration of existing NGINX configurations to the cloud with minimal effort.
 - Integrates with the AWS ecosystem.
-- Adopts a consumption-based pricing to align infrastructure costs to actual usage by billing transactions using AWS.
+- Uses consumption-based pricing, so your infrastructure costs align with actual usage through AWS transaction billing.
 
 ## F5 ADS for AWS architecture
 
 {{< img src="f5ads/aws/nginxaas-aws-cloud-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with AWS. At the top, inside the AWS IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with AWS services such as AWS Secrets Manager, Amazon CloudWatch, and other AWS services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
-- The F5 ADS Console is used to create, update, and delete NGINX configurations, certificates and F5 ADS deployments
-- F5 ADS automatically adapts to application traffic demands through autoscaling
-- Each F5 ADS deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
-- F5 ADS acts as a load balancer, API gateway, and reverse proxy, enabling you to keep your application workloads secure within your AWS account while serving traffic reliably and efficiently
+- Use the F5 ADS Console to create, update, and delete NGINX configurations, certificates, and F5 ADS deployments.
+- F5 ADS automatically adapts to application traffic demands through autoscaling.
+- Each F5 ADS deployment has dedicated network and compute resources, so there's no risk of noisy neighbor problems or data leakage between deployments.
+- F5 ADS acts as a load balancer, API gateway, and reverse proxy. It keeps your application workloads secure within your AWS account and serves traffic reliably and efficiently.
 - F5 ADS for AWS supports the following capabilities:
     - HTTP, HTTP/2, HTTP/3, and gRPC traffic
     - Layer 4 and Layer 7 load balancing with [configurable balancing methods](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#method)
@@ -66,7 +64,7 @@ The key capabilities of F5 ADS for AWS are:
     - Private or public internet client ingress
     - [Request tracing](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus)
     - HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects
-- F5 ADS also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details
+- You can also create custom rules for redirecting traffic. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 
 ### Service frontend
 
@@ -74,17 +72,15 @@ The service frontend of an F5 ADS deployment controls how client ingress traffic
 
 #### Managed public endpoint
 
-A managed public endpoint frontend allows client access over the internet through a public DNS name created by F5 ADS in its network.
+A managed public endpoint frontend gives clients access over the internet through a public DNS name that F5 ADS creates in its network.
 
 **This frontend type is suitable for:**
 
 - Serving public web applications to end users over the internet
 - Proxying traffic from clients outside AWS
-- Testing F5 ADS configurations before you set up a [Private endpoint]({{< ref "/f5ads/aws/overview.md#private-endpoint" >}}) frontend
+- Testing F5 ADS configurations before you set up a [private endpoint](#private-endpoint) frontend
 
-##### Access control
-
-Access control list (ACL) rules control traffic to a managed public endpoint deployment. If you don’t provide ACL rules, no traffic is allowed. An ACL rule includes the following settings:
+Access control for this frontend type uses ACL rules to control traffic to the deployment. If you don't provide ACL rules, F5 ADS blocks all traffic. Each ACL rule includes the following settings:
 
 - **Source prefixes**: A list of CIDR blocks to allow traffic from
     - Use `0.0.0.0/0`, `::0/0` to allow traffic from all source IP addresses
@@ -92,12 +88,19 @@ Access control list (ACL) rules control traffic to a managed public endpoint dep
     - Valid values are **TCP** and **UDP**
     - Required when you specify a port or port range
 - **Port range**: A single port or port range to allow traffic from
-    - If you don’t specify a port range, traffic is allowed from any port
+    - If you don't specify a port range, F5 ADS accepts traffic on any port
     - Required when you specify a protocol
 
 #### Private endpoint
 
-A private endpoint frontend allows client access through your network by using [AWS PrivateLink](https://aws.amazon.com/privatelink/). To set up connectivity, create an [interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) in your own VPC that connects to the VPC endpoint service provisioned for your F5 ADS deployment. This approach enables any applications or clients in your VPC to connect directly to the F5 ADS deployment via private networking. For step-by-step instructions, see [Set up connectivity]({{< ref "/f5ads/aws/deploy/create-deployment/deploy-console.md#set-up-connectivity" >}}).
+A private endpoint frontend gives clients access through your network using [AWS PrivateLink](https://aws.amazon.com/privatelink/). With this approach, any application or client in your VPC can connect directly to your F5 ADS deployment through private networking.
+
+To set up connectivity:
+
+1. Create an [interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html) in your own VPC.
+2. Connect the interface VPC endpoint to the VPC endpoint service provisioned for your F5 ADS deployment.
+
+For step-by-step instructions, see [Set up connectivity]({{< ref "/f5ads/aws/deploy/create-deployment/deploy-console.md#set-up-connectivity" >}}).
 
 **This frontend type is suitable for:**
 
@@ -105,9 +108,11 @@ A private endpoint frontend allows client access through your network by using [
 - Environments where all clients exist within your AWS network
 - Internal services that shouldn't be exposed to the internet
 
-##### Access control
+Access control for this frontend type uses a PrivateLink connection allow list, which restricts which AWS account IDs or VPC endpoint IDs can connect to the deployment:
 
-A PrivateLink connection allow list restricts which AWS account IDs or VPC endpoint IDs can connect to the deployment. If you don't specify any entries in the allow list, no PrivateLink connections will be accepted. The allow list can be modified at any time to add or remove access permission for any AWS accounts or VPC endpoints.
+- **Allow list entries**: AWS account IDs or VPC endpoint IDs that can connect to the deployment
+- **No entries**: F5 ADS doesn't accept any PrivateLink connections
+- **Modifying the list**: You can add or remove entries at any time
 
 ### Upstream network
 
@@ -115,21 +120,20 @@ F5 ADS uses [AWS VPC Peering](https://docs.aws.amazon.com/vpc/latest/peering/wha
 
 A VPC peering connection brings the deployment into your application network and supports secure, private connectivity to your upstream services. By managing your own VPC routing and security group rules, you control traffic flow and can apply your preferred security controls.
 
-To connect F5 ADS to your upstream VPC, you must [create a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) from your AWS account targeting the F5 ADS deployment's AWS Account ID and VPC ID, then add the peering connection ID to your deployment.
+To connect F5 ADS to your upstream VPC, [create a VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) from your AWS account targeting the F5 ADS deployment's AWS Account ID and VPC ID. Then add the peering connection ID to your deployment.
 
 {{< call-out class="caution" title="CIDR overlap" >}}
-Upstream VPC CIDRs must not overlap with the F5 ADS deployment
-VPC CIDRs, or the CIDRs of other peered upstream VPCs. If CIDRs overlap, VPC peering will fail.
+Upstream VPC CIDRs must not overlap with the F5 ADS deployment VPC CIDRs, or the CIDRs of other peered upstream VPCs. If CIDRs overlap, VPC peering fails.
 {{< /call-out >}}
 
 ### NGINX Capacity Unit (NCU)
 
-An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
+An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. With this abstraction, you can specify capacity in NCUs without considering hardware differences between regions.
 You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on traffic demand and makes sure it never drops below the reserved minimum.
 
 ### Geographical controllers
 
-F5 ADS for AWS has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. F5 ADS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
+F5 ADS for AWS operates globally, and regional controllers handle management requests. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary. It addresses data residency and localization requirements. For example, a US geographical controller serves customers in the United States. F5 ADS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
 
 ### Supported regions
 
@@ -137,15 +141,15 @@ F5 ADS for AWS has a global presence, with management requests served by regiona
 
 ## Current limitations
 
-We are committed to enhancing F5 ADS for AWS and welcome your feedback to help shape the future of our service. If there are features you'd like to see prioritized, we encourage you to submit a [support ticket]({{< ref "/f5ads/aws/support.md" >}}) to share your suggestions.
+F5 is committed to enhancing F5 ADS for AWS and welcomes your feedback to help shape its future. If there are features you'd like to see prioritized, submit a [support ticket]({{< ref "/f5ads/aws/support.md" >}}) to share your suggestions.
 
-Here are the current constraints you should be aware of while using F5 ADS for AWS:
+Be aware of the following constraints when using F5 ADS for AWS:
 
-- User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
-- PrivateLink and upstream VPC peering connections must remain within the same AWS region as your deployment. Cross-region connections are not currently supported.
-- F5 ADS deployments on AWS can only support up to 50 unique listen ports.
-- While F5 ADS deployments on AWS can be configured for UDP and QUIC traffic, it requires that the deployment is listening for that traffic on IPv6. Note: this does not require the incoming client traffic, or upstream traffic to be IPv6.
+- User Role-Based Access Control (RBAC) isn't supported yet. F5 plans to add this in a future release to improve access control for multi-user environments.
+- PrivateLink and upstream VPC peering connections must remain within the same AWS region as your deployment. Cross-region connections aren't supported yet.
+- F5 ADS deployments support up to 50 unique listen ports.
+- F5 ADS deployments can support UDP and QUIC traffic, but the deployment must listen for that traffic on IPv6. This doesn't require your incoming client or upstream traffic to be IPv6.
 
 ## What's next
 
-To get started, check the [F5 ADS for AWS prerequisites]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}})
+To get started, check the [F5 ADS for AWS prerequisites]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}}).

@@ -43,7 +43,7 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
   {{</card >}}
 {{</card-section>}}
 
-{{<card-section showAsCards="true" title="F5 NGINXaaS">}}
+{{<card-section showAsCards="true" title="F5 NGINX cloud services">}}
   {{<card title="F5 Application Delivery Service for AWS" titleUrl="/f5ads/aws/overview/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
     Managed NGINX service for your AWS application stack.
   {{</card >}}

@@ -1,5 +1,5 @@
 ---
-title: F5 NGINXaaS Product Documentation
+title: F5 NGINXaaS
 description: Learn how to deliver, manage, and protect your applications using F5 NGINXaaS.
 url: /nginxaas/
 f5-landing-page: true

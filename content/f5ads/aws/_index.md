@@ -1,6 +1,7 @@
 ---
-title: Application Delivery Service for AWS
-f5-subtitle: AWS-native and managed SaaS load balancer and application delivery service powered by commercial grade NGINX
+title: F5 Application Delivery Service for AWS
+linkTitle: F5 ADS for AWS
+f5-subtitle: A fully managed load balancer and application delivery service for AWS, built on F5 NGINX Plus
 url: /f5ads/aws/
 cascade:
   logo: F5-NGINXaaS-icon.svg

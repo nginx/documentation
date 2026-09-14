@@ -1,5 +1,6 @@
 ---
-title: F5 Application Delivery Service Product Documentation
+title: F5 Application Delivery Service
+linkTitle: F5 Application Delivery Service
 description: Learn how to deliver, manage, and protect your applications using F5 Application Delivery Service.
 url: /f5ads/
 f5-landing-page: true
@@ -7,7 +8,7 @@ f5-content-type: landing-page
 cascade:
   logo: F5-NGINXaaS-icon.svg
   f5-banner:
-    enabled: true
+    enabled: false
     md: /_banners/f5ads-aws-ea.md
 ---
 

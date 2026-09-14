@@ -5,11 +5,11 @@ f5-files:
 f5-product: F5 Application Delivery Service for AWS
 ---
 
-F5 ADS for AWS is supported in the following regions per geography:
+F5 ADS for AWS supports the following regions, organized by geography.
 
    {{< table "table" >}}
 
-   |F5 ADS Geography | AWS Regions |
+   | Geography | AWS regions |
    |-----------|---------|
    | US    | us-east-1, us-east-2, us-west-1, us-west-2 |
    | EU    | eu-west-1, eu-west-2, eu-west-3, eu-central-1, eu-north-1 |
