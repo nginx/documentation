@@ -20,17 +20,17 @@ Since May 13, 2026, NGINX Plus follows a new release model: F5 NGINX Commercial 
 
 Each release version is available in two tracks:
 
-[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.5.1` LTS](#pls.37.0.5).
+[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.6.1` LTS](#pls.37.0.6).
 
-[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.0.1` CR](#pls.37.1.0).
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.1.1` CR](#pls.37.1.1).
 
 ### Release schedule
 
 Each new LTS release version is published annually and supported for three years.
 
-LTS releases are published regularly to address important bug fixes. The latest LTS release was published on September 2, 2026.
+LTS Track builds are released as soon as important bug fixes and security patches are available. The latest LTS build was released on September 15, 2026.
 
-CR releases are shipped regularly with latest features, enhancements and bug updates. The latest CR release was published on September 2, 2026.
+CR Track builds are released regularly and include the latest features and enhancements, in addition to bug fixes and security patches. The latest CR build was released on September 15, 2026.
 
 ### Release numbering
 
@@ -38,9 +38,9 @@ Starting with NGINX Plus PLS.37 LTS, release numbering became unified with other
 
 - **First number** represents the major release, corresponding to a yearly LTS release.
 
-- **Second number** represents the [Continuous Releases track](#cr) and minor release. A value of `1` or higher indicates a CR release (e.g., PLS.37.`1`.0.1, PLS.37.`2`.0.1); the third component remains `0` in this case. A value of `0`, for example PLS.37.`0`.`x`.1 represents the LTS patch release track.
+- **Second number** represents the [release track](#release-tracks) and minor release. Values of `1` or higher indicates a [Continuous Release (CR) track](#cr) release, for example, PLS.37.`1`.0.1, PLS.37.`1`.1.1. A value of `0` represents the LTS patch release track, for example PLS.37.`0`.`x`.1.
 
-- **Third number** represents the [LTS patch release track](#lts), for example, PLS.37.0.`1`.1. For patch releases, the second number is always `0` and each new LTS patch release increments the third component.
+- **Third number** represents the patch release. For [LTS track](#lts) patch releases, the second number is always `0` and each new LTS patch release increments the third component, for example, PLS.37.0.`1`.1.
 
 - **Fourth number** represents the packaging version, i.e. changes to the distributable package that are not related to NGINX Plus code itself. Starts at `1`, increments only when something changes at the packaging level.
 
@@ -78,12 +78,20 @@ LTS patch versions follow the numbering format: `PLS.37.0.<patch>.<package>`: th
 
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 
+### NGINX Plus PLS.37.0.6.1 LTS {#pls.37.0.6}
+_September 15, 2026_<br/>
+
+NGINX Plus PLS.37.0.6.1 LTS is a security release.
+
+- Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with OpenSSL versions 3.5.0 and earlier, a limited heap buffer overflow may occur during TLS handshake processing under certain configurations. The condition is non-deterministic and beyond an attacker's control. This may cause a heap buffer overflow in the NGINX worker process, potentially resulting in restart and/or limited data corruption. ([CVE-2026-90439](https://my.f5.com/manage/s/article/K000162604)).
+
+{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+
+
 ### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
 _September 2, 2026_<br/>
 
-NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to this version to ensure they are running the most stable and secure version of NGINX Plus.
-
-{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to the latest LTS release to ensure they are running the most stable and secure version of NGINX Plus.
 
 ### NGINX Plus PLS.37.0.4.1 LTS {#pls.37.0.4}
 _July 22, 2026_<br/>
@@ -192,6 +200,15 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 
 Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
 
+### NGINX Plus PLS.37.1.1.1 CR {#pls.37.1.1}
+_September 15, 2026_<br/>
+
+NGINX Plus PLS.37.1.1.1 CR is a security release.
+
+- Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with OpenSSL versions 3.5.0 and earlier, a limited heap buffer overflow may occur during TLS handshake processing under certain configurations. The condition is non-deterministic and beyond an attacker's control. This may cause a heap buffer overflow in the NGINX worker process, potentially resulting in restart and/or limited data corruption. ([CVE-2026-90439](https://my.f5.com/manage/s/article/K000162604)).
+
+{{< call-out class="note" title="Before you upgrade" >}} Before upgrading from NGINX Plus R36, review the [Upgrade Notes](#upgrade-notes) for breaking changes.{{< /call-out >}}
+
 ### NGINX Plus PLS.37.1.0.1 CR {#pls.37.1.0}
 _September 2, 2026_<br/>
 _Based on NGINX Open Source 1.31.3_
@@ -276,9 +293,9 @@ F5 offers 24 months of technical support for each NGINX Plus release, beginning 
 {{<table>}}
 | NGINX Plus Release | Release Date | End of Software Development | End of Security Updates | End of Technical Support |
 |--------------------|--------------|-----------------------------|-------------------------|--------------------------|
-| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | Sept 2, 2026        | Nov 30, 2027             |
-| [R35](#r35)        | Aug 13, 2025 | Dec 1, 2025                 | May 13, 2026        | Aug 12, 2027             |
-| [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | Dec 1, 2025        |      Mar 31, 2027             |
+| [R36](#r36)        | Dec 1, 2025  | May 13, 2026                | Sept 2, 2026            | Nov 30, 2027             |
+| [R35](#r35)        | Aug 13, 2025 | Dec 1, 2025                 | May 13, 2026            | Aug 12, 2027             |
+| [R34](#r34)        | Apr 1, 2025  | Aug 13 2025                 | Dec 1, 2025             | Mar 31, 2027             |
 | [R33](#r33)        | Nov 19, 2024 | Apr 1, 2025                 | Aug 13 2025             | Nov 18, 2026             |
 {{</table >}}
 
