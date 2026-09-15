@@ -124,6 +124,31 @@ To avoid downtime when upgrading from v2.0.x to v2.1, delete the previous NGINX 
 
 {{< /tabs>}}
 
+#### Upgrade considerations
+
+When upgrading, pods roll one at a time. During this window, the new control plane may push configurations to pods still running the previous image version, causing temporary validation errors.
+
+The Helm chart may not automatically update the data plane image tag if it was previously set or defaulted. This can result in:
+
+- **Control plane** running version `2.7.0`
+- **Data plane pods** still using image tag `2.6.7`
+
+This version mismatch causes configuration conflicts. In 2.7.0, the `worker_processes` directive moved from `/etc/nginx/nginx.conf` to `/etc/nginx/main-includes/main.conf`. When the 2.7.0 control plane pushes config to a 2.6.7 data plane image, you'll see:
+
+```text
+"worker_processes" directive is duplicate in /etc/nginx/nginx.conf:4
+```
+
+To minimize disruption, always explicitly set the image tag and include all your existing configuration flags. For example, if you have a DaemonSet and NodePort set in `NginxProxy`, make sure to specify that in your upgrade command:
+
+```shell
+helm upgrade ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --version 2.7.0 -n nginx-gateway \
+  --set nginx.kind=daemonSet \
+  --set nginx.service.type=NodePort \
+  --set nginx.service.externalTrafficPolicy=Local \
+  --set nginx.image.tag=2.7.0
+```
+
 ## Upgrade from v1.x to v2.x
 
 This section provides step-by-step instructions for upgrading NGINX Gateway Fabric from version 1.x to 2.x, highlighting key architectural changes, expected downtime, and important considerations for CRDs.
