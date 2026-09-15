@@ -26,6 +26,30 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.6.2
+
+15 Sep 2026
+
+### {{% icon bug %}} Fixes
+
+- [10827](https://github.com/nginx/kubernetes-ingress/pull/10827) Reset updateallconfigsonbatch after batch mode ends
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.1.1.1 and OSS to 1.31.5
+- [10787](https://github.com/nginx/kubernetes-ingress/pull/10787), [10808](https://github.com/nginx/kubernetes-ingress/pull/10808), [10820](https://github.com/nginx/kubernetes-ingress/pull/10820), [10762](https://github.com/nginx/kubernetes-ingress/pull/10762), [10845](https://github.com/nginx/kubernetes-ingress/pull/10845), [10835](https://github.com/nginx/kubernetes-ingress/pull/10835) & [10756](https://github.com/nginx/kubernetes-ingress/pull/10756) Bump Go dependencies
+- [10786](https://github.com/nginx/kubernetes-ingress/pull/10786), [10750](https://github.com/nginx/kubernetes-ingress/pull/10750), [10752](https://github.com/nginx/kubernetes-ingress/pull/10752), [10768](https://github.com/nginx/kubernetes-ingress/pull/10768), [10854](https://github.com/nginx/kubernetes-ingress/pull/10854), [10834](https://github.com/nginx/kubernetes-ingress/pull/10834) & [10761](https://github.com/nginx/kubernetes-ingress/pull/10761) Bump Docker dependencies
+
+### {{% icon download %}} Update
+
+- For NGINX, use the 5.6.2 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.6.2 images from the F5 Container registry or build your own image from the 5.6.2 source code.
+- For Helm, use version 2.7.2 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
 ## 5.6.1
 
 04 Sep 2026
