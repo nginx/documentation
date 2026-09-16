@@ -1248,7 +1248,7 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 |``url`` | Tenant URL for ``N1C``/``NIM``, or full ``.tgz`` bundle URL for ``HTTPS``. Must use ``https://``. | ``string`` | Yes |
 |``name`` | Management-plane policy name for ``N1C``/``NIM``. For ``apLogBundleSource``, set this to the log profile name. Ignored for ``HTTPS``. | ``string`` | No |
 |``namespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
-|``enablePolling`` | Must be explicitly set. When ``true``, NIC re-fetches the bundle at ``pollInterval``. When ``false``, NIC fetches the bundle once at policy creation or update. | ``bool`` | Yes |
+|``enablePolling`` | Optional. Defaults to ``false``. When ``false`` or unset, NGINX Ingress Controller fetches the bundle once at policy creation or update. When ``true``, NGINX Ingress Controller re-fetches the bundle at ``pollInterval``. | ``bool`` | No |
 |``pollInterval`` | How often to re-fetch when ``enablePolling`` is ``true``. Minimum ``1m``, default ``5m``. | ``string`` | No |
 |``secret`` | Secret in the same namespace as the Policy. For ``N1C``/``NIM``, use ``nginx.com/waf-bundle`` (token or username/password). For ``HTTPS``, use ``kubernetes.io/tls`` for client mTLS (``tls.crt`` and ``tls.key``). | ``string`` | No |
 |``trustedCertSecret`` | Name of an ``nginx.org/ca`` Secret containing a custom CA certificate (``ca.crt``) for verifying the server TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
