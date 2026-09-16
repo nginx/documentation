@@ -13,6 +13,17 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
 
+## September 9, 2026
+
+- {{% icon-feature %}} **F5 ADS Terraform provider is now available (Alpha)**
+
+You can now manage NGINXaaS for Google Cloud deployments with the first release of the `F5Networks/f5ads` Terraform provider, version `0.1.0-alpha.1`.
+
+- [Provider docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs)
+- [`f5ads_deployment` resource docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/resources/deployment)
+- [`f5ads_deployment` data source docs](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs/data-sources/deployment)
+- [Deploy using the F5 ADS Terraform provider]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-terraform.md" >}})
+
 ## September 4, 2026
 
 - {{% icon-feature %}} **NGINXaaS for Google is now generally available in more regions**
