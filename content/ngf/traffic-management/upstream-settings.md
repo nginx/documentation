@@ -27,6 +27,9 @@ The settings in `UpstreamSettingsPolicy` correspond to the following NGINX direc
 - [`ip_hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash)
 - [`hash`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash)
 - [`variables`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#variables)
+- [`max_fails`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails)
+- [`fail_timeout`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout)
+- [`health_check`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) (NGINX Plus only)
 
 `UpstreamSettingsPolicy` is a [Direct Policy Attachment](https://gateway-api.sigs.k8s.io/reference/policy-attachment/) that can be applied to one or more services in the same namespace as the policy.
 `UpstreamSettingsPolicies` can only be applied to HTTP or gRPC services, in other words, services that are referenced by an HTTPRoute or GRPCRoute.
@@ -563,6 +566,251 @@ upstream default_tea_80 {
 }
 ```
 
+## Configure health checks
+
+Health checks let NGINX detect backend endpoints that are running but can't serve requests, then stop routing traffic to them. NGF supports two kinds through `UpstreamSettingsPolicy.spec.healthCheck`:
+
+- Passive checks (`spec.healthCheck.passive`) work on both NGINX Open Source and NGINX Plus: NGINX monitors the responses to real client requests and marks a server unavailable after repeated failures.
+- Active checks (`spec.healthCheck.active`) work on NGINX Plus only: NGINX sends probe requests to a dedicated health-check location and marks a server unavailable when those probes fail.
+
+When `healthCheck` isn't set, NGF adds no health-check configuration and NGINX uses its default behavior for the upstream.
+
+{{< call-out class="important" >}}Active health checks require NGINX Plus. If you set `spec.healthCheck.active` on NGINX Open Source, NGINX Gateway Fabric rejects the policy: its status shows an `Accepted: False` condition with the reason `Invalid`, and NGINX applies no configuration, with no disruptive effect. If you're unsure which edition your data plane runs, apply the policy and check its status, or ask your cluster operator. See [Advanced features with NGINX Plus]({{< ref "/ngf/overview/nginx-plus.md" >}}). Use passive health checks with NGINX Open Source.{{< /call-out >}}
+
+Health checks apply only to Layer 7 (HTTP, HTTPS, and gRPC) upstreams, that is, Services referenced by an HTTPRoute or GRPCRoute. They don't apply to L4/stream (TCP, UDP, or TLSRoute) upstreams.
+
+### Configure a passive health check
+
+Two fields configure a passive health check:
+
+- `maxFails` (integer, minimum 0): the number of consecutive failed attempts within `failTimeout` that mark a server unavailable. A value of `0` turns off this accounting. Maps to the `max_fails` parameter on the `server` directive.
+- `failTimeout` (duration, for example `5s`): the window in which `maxFails` failures mark a server unavailable, and how long the server then stays unavailable. Maps to the `fail_timeout` parameter on the `server` directive.
+
+The following `UpstreamSettingsPolicy` configures a passive health check for the `coffee` Service:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: example-passive-hc
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: coffee
+  healthCheck:
+    passive:
+      maxFails: 3
+      failTimeout: 5s
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org example-passive-hc
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2026-01-07T20:06:55Z
+      Message:               Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
+Next, verify that the policy has been applied to the `coffee` upstream by inspecting the NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+You should see `max_fails` and `fail_timeout` set on the `server` directive in the `coffee` upstream:
+
+```text
+upstream default_coffee_80 {
+    random two least_conn;
+    zone default_coffee_80 1m;
+
+    server 10.244.0.14:8080 max_fails=3 fail_timeout=5s;
+}
+```
+
+### Configure an active health check (NGINX Plus)
+
+Active health checks probe your backends on a schedule, separate from client traffic. Set the fields under `spec.healthCheck.active`:
+
+- `interval` (duration): the time between checks.
+- `jitter` (duration): a random delay added to each check.
+- `fails` (integer, minimum 1): consecutive failed checks before a server is considered unhealthy.
+- `passes` (integer, minimum 1): consecutive passed checks before a server is considered healthy again.
+- `path` (string): the URI for probe requests. The default is `/`. Mutually exclusive with `grpc`.
+- `port` (integer, 1 through 65535): the port used for the health-check connection.
+- `match.status` (string): the expected response status codes for a check to pass. The default is any 2xx or 3xx code. It accepts an optional leading `!` for negation and space-separated codes or ranges, for example `"200"`, `"! 500"`, `"200 204"`, or `"200-399"`. Mutually exclusive with `grpc`.
+- `mandatory` (boolean): require every newly added server to pass a check before it receives traffic. This requirement warms up new endpoints.
+- `persistent` (boolean): keep a server's pre-reload state across reloads. Requires `mandatory: true`.
+- `keepAliveTime` (duration): how long NGINX reuses a single keepalive connection for health-check requests before opening a new one.
+- `timeout.connect`, `timeout.read`, and `timeout.send` (durations): the timeouts for health-check requests.
+- `headers` (list, maximum 16): request headers to send with each check. NGINX Plus always sets `Host`, `User-Agent`, and `Connection`, which you can't override.
+
+For gRPC upstreams, configure the check through `spec.healthCheck.active.grpc`, using its `service` and `status` fields. This follows the [gRPC health-checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md). The `grpc` field is mutually exclusive with `path` and `match`.
+
+{{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`.{{< /call-out >}}
+
+Active health checks require the upstream to have a shared-memory zone. Set the `zoneSize` field in the same policy, as the active example below shows, or see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}) for details.
+
+The following `UpstreamSettingsPolicy` configures an active health check for the `tea` Service:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: example-active-hc
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: tea
+  zoneSize: 1m
+  healthCheck:
+    active:
+      interval: 10s
+      jitter: 3s
+      fails: 3
+      passes: 2
+      path: /healthz
+      match:
+        status: "! 500"
+      mandatory: true
+      persistent: true
+      keepAliveTime: 60s
+      timeout:
+        connect: 2s
+        read: 2s
+        send: 2s
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org example-active-hc
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2026-01-07T20:06:55Z
+      Message:               Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
+NGINX Plus generates a dedicated internal `location` containing the `health_check` directive. Because the policy sets `match.status`, it also generates a `match` block that the `health_check` directive references through `match=`. The `server` directive in the upstream doesn't change. Inspect the NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+You should see a `location` with the `health_check` directive and its `match` block:
+
+```text
+server {
+    location @hc-default_tea_80 {
+        internal;
+        proxy_connect_timeout 2s;
+        proxy_read_timeout 2s;
+        proxy_send_timeout 2s;
+        proxy_pass http://default_tea_80;
+        health_check interval=10s jitter=3s fails=3 passes=2 uri=/healthz mandatory persistent keepalive_time=60s match=default_tea_80_match;
+    }
+}
+
+match default_tea_80_match {
+    status ! 500;
+}
+```
+
+### Configure an active health check for a gRPC service
+
+For a gRPC upstream, set `spec.healthCheck.active.grpc` instead of `path` and `match`. The check uses the [gRPC health-checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md), and `grpc.service` names the service to query. This example targets a `grpc-backend` Service referenced by a GRPCRoute rather than the HTTP `coffee` and `tea` Services from the setup:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha1
+kind: UpstreamSettingsPolicy
+metadata:
+  name: example-grpc-hc
+spec:
+  targetRefs:
+  - group: core
+    kind: Service
+    name: grpc-backend
+  zoneSize: 1m
+  healthCheck:
+    active:
+      interval: 10s
+      fails: 3
+      passes: 2
+      grpc:
+        service: my.grpc.Service
+EOF
+```
+
+Verify that the `UpstreamSettingsPolicy` is Accepted:
+
+```shell
+kubectl describe upstreamsettingspolicies.gateway.nginx.org example-grpc-hc
+```
+
+You should see the following status:
+
+```text
+Status:
+  Ancestors:
+    Ancestor Ref:
+      Group:      gateway.networking.k8s.io
+      Kind:       Gateway
+      Name:       gateway
+      Namespace:  default
+    Conditions:
+      Last Transition Time:  2026-01-07T20:06:55Z
+      Message:               Policy is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+    Controller Name:         gateway.nginx.org/nginx-gateway-controller
+Events:                      <none>
+```
+
 ## Enable routing to Service ClusterIPs
 
 The ability to configure NGINX to route to the Service ClusterIP and port instead of individual Pod IPs can be useful in service mesh scenarios or when working with other Kubernetes controllers/operators that require traffic to flow to the Service IP address.
@@ -750,3 +998,4 @@ upstream default_coffee_80 {
 
 - [Custom policies]({{< ref "/ngf/overview/custom-policies.md" >}}): learn about how NGINX Gateway Fabric custom policies work.
 - [API reference]({{< ref "/ngf/reference/api.md" >}}): all configuration fields for the `UpstreamSettingsPolicy` API.
+- [NGINX health check module](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html): optional background on the active health check directives available in NGINX Plus.
