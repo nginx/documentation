@@ -20,9 +20,9 @@ Since May 13, 2026, NGINX Plus follows a new release model: F5 NGINX Commercial 
 
 Each release version is available in two tracks:
 
-[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.6.1` LTS](#pls.37.0.6).
+[**Long-Term Support (LTS)**](#lts) patch releases: focus on stability and security. They receive only security fixes and CVE mitigations during their 3-year support period. Patches are applied to the latest LTS patch release. New features are not added to LTS patch releases; they are delivered through Continuous Releases. The current version is [`PLS.37.0.6.2` LTS](#pls.37.0.6).
 
-[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.1.1` CR](#pls.37.1.1).
+[**Continuous Releases (CR)**](#cr) include the newest features and performance improvements, along with security fixes and CVE mitigations. CRs are never patched, instead security fixes are delivered as the next CR. When a new annual LTS version is released, CRs for previous LTS stop and new CRs are published only for the new version. Only the latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support. The current version is [`PLS.37.1.1.2` CR](#pls.37.1.1).
 
 ### Release schedule
 
@@ -78,10 +78,11 @@ LTS patch versions follow the numbering format: `PLS.37.0.<patch>.<package>`: th
 
 To switch from the default [CR track](#cr) to the LTS patch release track, update your repository configuration to point to the LTS package URL. See [Installing NGINX Plus LTS]({{< ref "/nginx/admin-guide/installing-nginx/installing-nginx-plus-lts.md" >}}) for details.
 
-### NGINX Plus PLS.37.0.6.1 LTS {#pls.37.0.6}
+### NGINX Plus PLS.37.0.6.2 LTS {#pls.37.0.6}
 _September 15, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
 
-NGINX Plus PLS.37.0.6.1 LTS is a security release.
+NGINX Plus PLS.37.0.6.2 LTS is a security release.
 
 - Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with OpenSSL versions 3.5.0 and earlier, a limited heap buffer overflow may occur during TLS handshake processing under certain configurations. The condition is non-deterministic and beyond an attacker's control. This may cause a heap buffer overflow in the NGINX worker process, potentially resulting in restart and/or limited data corruption. ([CVE-2026-90439](https://my.f5.com/manage/s/article/K000162604)).
 
@@ -90,11 +91,13 @@ NGINX Plus PLS.37.0.6.1 LTS is a security release.
 
 ### NGINX Plus PLS.37.0.5.1 LTS {#pls.37.0.5}
 _September 2, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.5.1 LTS is a bugfix release. We recommend that all users on the LTS track upgrade to the latest LTS release to ensure they are running the most stable and secure version of NGINX Plus.
 
 ### NGINX Plus PLS.37.0.4.1 LTS {#pls.37.0.4}
 _July 22, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.4.1 LTS is a bugfix release:
 
@@ -104,6 +107,7 @@ NGINX Plus PLS.37.0.4.1 LTS is a bugfix release:
 
 ### NGINX Plus PLS.37.0.3.1 LTS {#pls.37.0.3}
 _July 15, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.3.1 LTS is a security release.
 
@@ -118,6 +122,7 @@ NGINX Plus PLS.37.0.3.1 LTS is a security release.
 
 ### NGINX Plus PLS.37.0.2.1 LTS {#pls.37.0.2}
 _June 17, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.2.1 LTS is a security release.
 
@@ -128,6 +133,7 @@ NGINX Plus PLS.37.0.2.1 LTS is a security release.
 
 ### NGINX Plus PLS.37.0.1.1 LTS {#pls.37.0.1}
 _May 22, 2026_<br/>
+_Based on NGINX Open Source 1.29.8_
 
 NGINX Plus PLS.37.0.1.1 LTS is a security release.
 
@@ -200,10 +206,11 @@ NGINX Plus PLS.37.0.0.1 LTS is supported on:
 
 Continuous Releases (CR) track includes the newest features and performance improvements as well as security fixes and CVE mitigations. CRs are never patched, security fixes are delivered as the next CR. Only latest CR is eligible for support within the release lifecycle: when a new CR is released, the previous CR immediately reaches End of Support.
 
-### NGINX Plus PLS.37.1.1.1 CR {#pls.37.1.1}
+### NGINX Plus PLS.37.1.1.2 CR {#pls.37.1.1}
 _September 15, 2026_<br/>
+_Based on NGINX Open Source 1.31.3_
 
-NGINX Plus PLS.37.1.1.1 CR is a security release.
+NGINX Plus PLS.37.1.1.2 CR is a security release.
 
 - Security fix in the [`ngx_http_v3_module`](https://nginx.org/en/docs/http/ngx_http_v3_module.html) module: when using HTTP/3 with OpenSSL versions 3.5.0 and earlier, a limited heap buffer overflow may occur during TLS handshake processing under certain configurations. The condition is non-deterministic and beyond an attacker's control. This may cause a heap buffer overflow in the NGINX worker process, potentially resulting in restart and/or limited data corruption. ([CVE-2026-90439](https://my.f5.com/manage/s/article/K000162604)).
 
