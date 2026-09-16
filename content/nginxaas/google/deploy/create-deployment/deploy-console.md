@@ -95,11 +95,11 @@ To connect your NGINXaaS deployment to your upstream servers, create a [network 
 You can add or remove a network attachment after creating a deployment by [editing the deployment](#configure-your-deployment).
 
 {{< call-out class="warning" >}}
-You cannot switch a deployment directly from one network attachment to another. To change the network attachment, first remove the existing one, wait for the deployment to return to a `Ready` state, then add the new network attachment. This results in service downtime while the VMs update to use the new attachment.
+You cannot switch a deployment directly from one network attachment to another. To change the network attachment, first remove the existing one, wait for the deployment to return to a `Ready` state, then add the new network attachment. This operation involves service downtime as the network attachment is removed from the deployment.
 {{< /call-out >}}
 
 {{< call-out class="note" >}}
-Deployments created before Sept 8, 2026 do not support network attachment changes.
+Deployments created before Sept 8, 2026 do not support updating the network attachment.
 {{< /call-out >}}
 
 ## Configure your deployment
