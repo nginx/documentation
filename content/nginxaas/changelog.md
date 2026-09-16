@@ -13,6 +13,12 @@ Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
 To see a list of currently active issues, visit the [Known issues]({{< ref "/nginxaas/google/known-issues.md" >}}) page.
 
+## September 15, 2026
+
+- {{% icon-feature %}} **Google Cloud Network Attachment is now optional and modifiable**
+
+You can now create a Google Cloud deployment without a Network Attachment, and you can add, update, or remove the Network Attachment on existing Google Cloud deployments.
+
 ## September 9, 2026
 
 - {{% icon-feature %}} **F5 ADS Terraform provider is now available (Alpha)**
