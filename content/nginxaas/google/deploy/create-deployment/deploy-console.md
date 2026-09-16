@@ -1,11 +1,17 @@
 ---
 title: Deploy using the NGINXaaS Console
+description: "Create, configure, and connect an F5 NGINXaaS for Google Cloud deployment using the NGINXaaS Console."
 weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
 f5-product: NGINXaaS for Google Cloud
+f5-keywords: "NGINXaaS for Google Cloud, create deployment, NGINXaaS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
+f5-summary: >
+  Learn how to create an F5 NGINXaaS for Google Cloud deployment using the NGINXaaS Console.
+  This guide covers configuring the deployment, setting up service frontend connectivity, and testing the deployment once it's ready.
+f5-audience: operator
 ---
 
 ## Overview
@@ -68,7 +74,7 @@ Next, create a new NGINXaaS deployment using the NGINXaaS Console:
    - Select a **Configuration Version** from the list.
    - In the Cloud Details section, enter the network attachment ID that [you created earlier](#create-a-network-attachment) or select it in the  **Network attachment** list.
       - The network attachment ID is formatted like the following example: `projects/my-google-project/regions/us-east1/networkAttachments/my-network-attachment`.
-   - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend. 
+   - Select **Managed Public Endpoint** or **Private Endpoint** under Service Frontend.
       - Refer to the [Service Frontend]({{< ref "/nginxaas/google/overview.md#service-frontend" >}}) documentation for more information on these two frontend types.
    - Select **Submit** to begin the deployment process.
 

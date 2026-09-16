@@ -18,16 +18,16 @@ In addition to F5 WAF for NGINX's pre-defined signatures and signature sets, use
 
 ## Signature sets
 
-User-defined signature sets can be used to organise both pre-defined and user-defined signatures into logical groups based on policy usage.
+User-defined signature sets can be used to organize both pre-defined and user-defined signatures into logical groups based on policy usage.
 
-When organising pre-defined signatures, you can group them into user-defined signature sets two ways:
+When organizing pre-defined signatures, you can group them into user-defined signature sets two ways:
 
 - By adding signatures based on their unique ID
 - By filtering signatures based on their properties, such as risk level, attack type or request/response detail
 
-When organising user-defined signatures, they cannot be grouped with pre-defined signatures in the same set, and their IDs are automatically generated.
+When organizing user-defined signatures, they cannot be grouped with pre-defined signatures in the same set, and their IDs are automatically generated.
 
-This means that they must be organised by filtering by their properties.
+This means that they must be organized by filtering by their properties.
 
 The following example shows a user-defined signature set based on filtered signatures that have "low" accuracy:
 
@@ -137,7 +137,7 @@ Signatures can be uniquely identified with a combination of name and tag.
 
 The _\<tag-name\>_ value is a placeholder for the tag name, which is assigned to all signatures in the file or group. The `revisionDatetime` value specifies the date or version of the signature file.
 
-Tags are useful for organising user-defined signatures in a bundle, such as grouping signatures by author, shared purpose or set of applications they will be used to protect. They also create namespaces that avoid name conflicts with other user-defined signatures. 
+Tags are useful for organizing user-defined signatures in a bundle, such as grouping signatures by author, shared purpose or set of applications they will be used to protect. They also create namespaces that avoid name conflicts with other user-defined signatures. 
 
 As long as each user-defined signature has a unique name and tag across all files, you can create as many user-defined signature files as necessary.
 
