@@ -32,6 +32,7 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 ### {{% icon download %}} Update
 
+- Update NGINX Plus to 37.1.1.2 and OSS to 1.31.6
 - For NGINX, use the 5.6.3 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.6.3 images from the F5 Container registry or build your own image from the 5.6.3 source code.
 - For Helm, use version 2.7.3 of the chart.
