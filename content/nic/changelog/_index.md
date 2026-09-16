@@ -26,6 +26,45 @@ For older releases, check the changelogs for previous years: [2025]({{< ref "/ni
 
 {{< /details >}}
 
+## 5.6.3
+
+16 Sep 2026
+
+### {{% icon download %}} Update
+
+- Update NGINX Plus to 37.1.1.2 and OSS to 1.31.6
+- For NGINX, use the 5.6.3 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.3), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.6.3 images from the F5 Container registry or build your own image from the 5.6.3 source code.
+- For Helm, use version 2.7.3 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
+## 5.6.2
+
+15 Sep 2026
+
+### {{% icon bug %}} Fixes
+
+- [10827](https://github.com/nginx/kubernetes-ingress/pull/10827) Reset updateallconfigsonbatch after batch mode ends
+
+### {{% icon arrow-up %}} Dependencies
+
+- Update NGINX Plus to 37.1.1.1 and OSS to 1.31.5
+- [10787](https://github.com/nginx/kubernetes-ingress/pull/10787), [10808](https://github.com/nginx/kubernetes-ingress/pull/10808), [10820](https://github.com/nginx/kubernetes-ingress/pull/10820), [10762](https://github.com/nginx/kubernetes-ingress/pull/10762), [10845](https://github.com/nginx/kubernetes-ingress/pull/10845), [10835](https://github.com/nginx/kubernetes-ingress/pull/10835) & [10756](https://github.com/nginx/kubernetes-ingress/pull/10756) Bump Go dependencies
+- [10786](https://github.com/nginx/kubernetes-ingress/pull/10786), [10750](https://github.com/nginx/kubernetes-ingress/pull/10750), [10752](https://github.com/nginx/kubernetes-ingress/pull/10752), [10768](https://github.com/nginx/kubernetes-ingress/pull/10768), [10854](https://github.com/nginx/kubernetes-ingress/pull/10854), [10834](https://github.com/nginx/kubernetes-ingress/pull/10834) & [10761](https://github.com/nginx/kubernetes-ingress/pull/10761) Bump Docker dependencies
+
+### {{% icon download %}} Update
+
+- For NGINX, use the 5.6.2 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.2), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
+- For NGINX Plus, use the 5.6.2 images from the F5 Container registry or build your own image from the 5.6.2 source code.
+- For Helm, use version 2.7.2 of the chart.
+
+### {{% icon life-buoy %}} Supported platforms
+
+We provide technical support for NGINX Ingress Controller on any Kubernetes platform that is currently supported by its provider and that passes the Kubernetes conformance tests. This release was fully tested on the following Kubernetes versions: 1.30-1.37.
+
 ## 5.6.1
 
 04 Sep 2026
@@ -57,7 +96,7 @@ Highlights:
 - Native HSTS policy support for VirtualServer, VirtualServerRoute, and Ingress resources.
 - Additional ingress-nginx annotations and configMap updates - Includes setting the host header, disabling X-Forwarded headers and customer error pages
 - Significant Improvements to Configuration Safety - NGINX Ingress Controller no longer runs `nginx -t` after every configuration file write during initial reconciliation; instead, writes are batched and validated once for the whole batch after the initial queue drains. This significantly reduces startup time on large clusters.
-- Removed: Deprecated NGINX Service Mesh integration.
+- Removed references to F5 NGINX Service Mesh (NSM). NSM reached End of Life in March 2024 and is no longer supported. This does not affect NGINX Ingress Controller functionality.
 
 ### {{% icon rocket %}} Features
 
@@ -99,7 +138,7 @@ Highlights:
 
 - For NGINX, use the 5.6.0 images from [DockerHub](https://hub.docker.com/r/nginx/nginx-ingress/tags?page=1&ordering=last_updated&name=5.6.0), [GitHub Container](https://github.com/nginx/kubernetes-ingress/pkgs/container/kubernetes-ingress), [Amazon ECR Public Gallery](https://gallery.ecr.aws/nginx/nginx-ingress) or [Quay.io](https://quay.io/repository/nginx/nginx-ingress).
 - For NGINX Plus, use the 5.6.0 images from the F5 Container registry or build your own image from the 5.6.0 source code.
-- For Helm, use version 2.7.0 of the chart.
+- For Helm, use version 2.7.0 of the chart. If you configured NGINX Service Mesh in a release prior to 5.6.0 (version 5.5.4 or earlier), remove any related values from the Helm chart before upgrading. These settings only applied to previous NGINX Service Mesh deployments. Users who never deployed service mesh are unaffected.
 
 ### {{% icon life-buoy %}} Supported platforms
 
@@ -234,7 +273,7 @@ Major highlights include:
 - [9728](https://github.com/nginx/kubernetes-ingress/pull/9728) Support empty host ingress
 - [9862](https://github.com/nginx/kubernetes-ingress/pull/9862) Add support for proxy_redirect in ingress
 - [9740](https://github.com/nginx/kubernetes-ingress/pull/9740) Add nginx agent 3.x waf support
-- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalisation
+- [9778](https://github.com/nginx/kubernetes-ingress/pull/9778) Add path normalization
 
 ### {{% icon bug %}} Fixes
 
@@ -359,7 +398,7 @@ Release 5.4.0 focuses on making migrations from `ingress-nginx` easier by provid
 - [8656](https://github.com/nginx/kubernetes-ingress/pull/8656) Add nginx.org/ssl-redirect annotation support
 - [8711](https://github.com/nginx/kubernetes-ingress/pull/8711) Add nginx.org/http-redirect-code annotation and configmap support
 - [8720](https://github.com/nginx/kubernetes-ingress/pull/8720) Add `nginx.org/app-root` annotation support
-- [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialise the $service variable early in the server block
+- [8861](https://github.com/nginx/kubernetes-ingress/pull/8861) Initialize the $service variable early in the server block
 - [8168](https://github.com/nginx/kubernetes-ingress/pull/8168) Add custom time format to json and text logging
 - [8936](https://github.com/nginx/kubernetes-ingress/pull/8936) Add routeselector labels to virtualserver and virtualserverroutes
 - [8972](https://github.com/nginx/kubernetes-ingress/pull/8972) Add `proxy-next-upstream` directives to ingress annotations

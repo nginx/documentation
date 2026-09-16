@@ -44,7 +44,7 @@ Create a new NGINXaaS deployment using the NGINXaaS Console:
    - Enable **WAF** if you want [F5 WAF for NGINX]({{< ref "/waf" >}}) enabled for your deployment.
    - Select the AWS **Region** where you want the NGINXaaS deployment to be created.
    - Enter an **IPv4 CIDR Block** for the deployment's private network IP space.
-      - NGINXaaS only accepts block sizes between `/22` and `/18`.
+      - NGINXaaS only accepts block sizes between `/24` and `/18`.
       - For more information on choosing a VPC CIDR block, refer to AWS's [VPC CIDR blocks](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html) documentation.
 
    {{< call-out class="caution" >}}

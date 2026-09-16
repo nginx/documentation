@@ -1,7 +1,7 @@
 ---
 title: Disable F5 WAF for NGINX 
 description: "Disable F5 WAF for NGINX on an NGINXaaS deployment using the NGINXaaS Console."
-weight: 100
+weight: 120
 toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/app-protect/disable-waf/

@@ -10,6 +10,25 @@ nollms: true
 
 Stay up-to-date with what's new and improved in the F5 NGINX One Console.
 
+## September 15, 2026
+
+### Config Templates: Submit and copy templates from the Templates list
+
+You can now submit templates and copy templates directly from the Templates list in NGINX One Console. Use these row actions to work with templates without building API requests by hand. Both actions require template write permission.
+
+Key capabilities:
+
+- **Submit a template**: Select **Submit** on a finalized base template to open the **Submit Template** panel. Fill in parameters, add optional augment templates, choose target objects, and preview the configuration before you save.
+- **Copy a template**: Select **Make a Copy** on any template to create a new draft template from its latest version.
+
+For more information, see [Submit and copy templates from the Templates list]({{< ref "/nginx-one-console/nginx-configs/config-templates/submit-and-copy-templates.md" >}}).
+
+## September 8, 2026
+
+### F5 WAF for NGINX: gRPC protection through the API
+
+You can now configure [gRPC protection]({{< ref "/waf/policies/grpc-protection.md" >}}) for F5 WAF for NGINX policies through the NGINX One Console API. Upload the `.proto` IDL files referenced by a policy's `grpc-profiles` configuration alongside the policy, either as inline base64-encoded content or as a `.tar.gz` archive. For more information, see [Add gRPC protection to a policy]({{< ref "/nginx-one-console/waf-integration/policy/grpc-protection-api.md" >}}).
+
 ## August 19, 2026
 
 ### Instances: Custom display names

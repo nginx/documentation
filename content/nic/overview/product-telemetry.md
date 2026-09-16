@@ -25,7 +25,7 @@ Product telemetry is enabled by default, collected once every 24 hours. It's the
 
 These are the data points collected and reported by NGINX Ingress Controller:
 
-- **Project Name** The name of the software, which will be labelled `NIC`.
+- **Project Name** The name of the software, which will be labeled `NIC`.
 - **Project Version** NGINX Ingress Controller version.
 - **Project Architecture** The architecture of the kubernetes environment. (e.g. amd64, arm64, etc...)
 - **Cluster ID** A unique identifier of the kubernetes cluster that NGINX Ingress Controller is deployed to.
