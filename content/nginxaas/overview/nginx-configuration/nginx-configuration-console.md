@@ -24,6 +24,16 @@ You can apply an NGINX configuration to your F5 ${product} deployment using the 
 
 {{< include "/nginxaas/update-nginx-config.md" >}}
 
+## Get NGINX Configuration version information
+
+In the NGINXaaS Console,
+
+1. On the left menu, select **Configurations**.
+1. Select your desired configuration.
+2. Select **Details**.
+3. Note the NGINX Configuration **Object ID** and **Latest Version ID** for your reference.
+
+
 ## Delete NGINX configuration files
 
 1. On the left menu, select **Configurations**.
