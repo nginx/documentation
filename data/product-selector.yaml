@@ -23,7 +23,7 @@
     - title: "F5 DoS for NGINX"
       url: "nginx-app-protect-dos"
 
-- productGroup: F5 NGINX Cloud services
+- productGroup: F5 NGINX cloud services
   products:
     - title: "F5 Application Delivery Service"
       url: "f5ads"
