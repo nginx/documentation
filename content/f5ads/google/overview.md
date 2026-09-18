@@ -1,5 +1,6 @@
 ---
 title: Overview and architecture
+description: "Overview of F5 Application Delivery Service for Google Cloud architecture, capabilities, and how it integrates with your Google Cloud environment."
 weight: 100
 toc: true
 f5-docs: DOCS-000
@@ -7,27 +8,31 @@ url: /f5ads/google/overview/
 canonical: /f5ads/google/overview/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
+f5-keywords: "F5 ADS for Google Cloud, architecture, service frontend, private endpoint, managed public endpoint, upstream network, NGINX Capacity Unit, NCU, geographical controller"
+f5-summary: >
+  NGINX Plus powers F5 Application Delivery Service for Google Cloud, a fully managed, Google Cloud-native SaaS load balancer and application delivery service.
+  This overview covers its architecture, service frontend types, upstream connectivity, and capacity model, so you understand how it fits into your Google Cloud environment before you deploy.
+f5-audience: any
 ---
 
 ## What is F5 Application Delivery Service for Google Cloud?
 
-F5 ADS for Google Cloud is a SaaS offering that is tightly integrated
-into Google Cloud and its ecosystem of services, making applications fast, efficient,
-and reliable. It brings advanced traffic management capabilities from the commercial version of NGINX, without any of the operational toil.
+F5 Application Delivery Service for Google Cloud (F5 ADS for Google Cloud) is a SaaS offering tightly integrated with Google Cloud and its ecosystem of services. It helps make your applications fast, efficient, and reliable, using advanced traffic management from [NGINX Plus](https://www.nginx.com/products/nginx/) without the operational overhead.
 
-[NGINX Plus](https://www.nginx.com/products/nginx/) powers F5 ADS for Google Cloud, which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution.
+NGINX Plus extends NGINX Open Source with advanced functionality, giving you a complete application delivery solution. F5 ADS handles NGINX Plus license management automatically.
 
-F5 Application Delivery Service handles the NGINX Plus license management automatically.
-
-{{<card-section showAsCards="true" isFeaturedSection="true">}}
+{{<card-section showAsCards="true" isFeaturedSection="false">}}
   {{<card title="Prerequisites" titleUrl="/f5ads/google/deploy/prerequisites/" icon="power">}}
-    Follow these steps to prepare for your F5 Application Delivery Service deployment
+    Follow these steps to prepare for your F5 ADS deployment
   {{</card>}}
   {{<card title="Create a deployment" titleUrl="/f5ads/google/deploy/create-deployment/deploy-console/" icon="cloud-upload">}}
-    Step-by-step instructions to deploy F5 Application Delivery Service using the F5 ADS Console
+    Step-by-step instructions to deploy F5 ADS using the F5 ADS Console
   {{</card>}}
   {{<card title="Add certificates" titleUrl="/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/" icon="lock">}}
-    Instructions to add SSL/TLS certificates to your F5 Application Delivery Service deployment using the F5 ADS Console
+    Instructions to add SSL/TLS certificates to your F5 ADS deployment using the F5 ADS Console
+  {{</card>}}
+  {{<card title="Get help" titleUrl="/f5ads/google/support/" icon="message-circle-question-mark">}}
+    Contact F5 support for assistance with F5 ADS for Google Cloud
   {{</card>}}
 {{</card-section>}}
 
@@ -35,41 +40,39 @@ F5 Application Delivery Service handles the NGINX Plus license management automa
 
 The key capabilities of F5 ADS for Google Cloud are:
 
-- Simplifies onboarding by providing a fully managed, ready-to-use NGINX service, eliminating the need for infrastructure setup, manual upgrades, or operational overhead.
+- Simplifies onboarding and use of NGINX by providing a fully managed, ready-to-use service, eliminating the need for infrastructure setup or manual upgrades.
 - Lowers operational overhead in running and optimizing NGINX.
 - Simplifies NGINX deployments with fewer moving parts (edge routing is built into the service).
 - Supports migration of existing NGINX configurations to the cloud with minimal effort.
 - Integrates with the Google Cloud ecosystem.
-- Adopts a consumption-based pricing to align infrastructure costs to actual usage by billing transactions using Google.
+- Uses consumption-based pricing, so your infrastructure costs align with actual usage through Google Cloud transaction billing.
 
 ## F5 ADS for Google Cloud architecture
 
-{{< img src="nginxaas/google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how F5 Application Delivery Service integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 Application Delivery Service. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
+{{< img src="nginxaas/google/nginxaas-google-cloud-architecture.svg" alt="Architecture diagram showing how F5 ADS integrates with Google Cloud. At the top, inside the Google Cloud IaaS layer, NGINX Plus is managed using UI, API, and Terraform, alongside F5 ADS. Admins connect to this layer. Below, in the Customer VPC, end users connect through Edge Routing to multiple App Servers (labeled App Server 1). NGINX Plus directs traffic to these app servers. The Customer VPC also connects with Google Cloud services such as Secret Manager, Monitoring, and other services. Green arrows show traffic flow from end users through edge routing and NGINX Plus to app servers, while blue arrows show admin access." >}}
 
-- The F5 ADS Console is used to create, update, and delete NGINX configurations, certificates and F5 Application Delivery Service deployments
-- F5 Application Delivery Service automatically adapts to application traffic demands through autoscaling
-- Each F5 Application Delivery Service deployment has dedicated network and compute resources. There is no possibility of noisy neighbor problems or data leakage between deployments
-- F5 Application Delivery Service can route traffic to upstreams even if the upstream servers are located in different geographies. See [Known Issues]({{< ref "/f5ads/google/known-issues.md" >}}) for any networking restrictions.
-- F5 Application Delivery Service supports request tracing. See the [Application Performance Management with NGINX Variables](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus) blog to learn more about tracing.
-- Supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. F5 Application Delivery Service also provides the ability to create new rules for redirecting. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
+- Use the F5 ADS Console to create, update, and delete NGINX configurations, certificates, and F5 ADS deployments.
+- F5 ADS automatically adapts to application traffic demands through autoscaling.
+- Each F5 ADS deployment has dedicated network and compute resources, so there's no risk of noisy neighbor problems or data leakage between deployments.
+- F5 ADS can route traffic to upstream servers in different geographies. See [Known issues]({{< ref "/f5ads/google/known-issues.md" >}}) for networking restrictions.
+- F5 ADS supports [request tracing](https://www.f5.com/company/blog/nginx/application-tracing-nginx-plus).
+- F5 ADS supports HTTP to HTTPS, HTTPS to HTTP, and HTTP to HTTP redirects. You can also create custom rules for redirecting traffic. See [How to Create NGINX Rewrite Rules | NGINX](https://blog.nginx.org/blog/creating-nginx-rewrite-rules) for more details.
 
 ### Service frontend
 
-The service frontend of an F5 Application Delivery Service deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
+The service frontend of an F5 ADS deployment controls how client ingress traffic reaches your deployment. There are two frontend types: managed public endpoint and private endpoint.
 
 #### Managed public endpoint
 
-A managed public endpoint frontend allows client access over the internet through a public DNS name created by F5 Application Delivery Service in its network.
+A managed public endpoint frontend gives clients access over the internet through a public DNS name that F5 ADS creates in its network.
 
 **This frontend type is suitable for:**
 
 - Serving public web applications to end users over the internet
 - Proxying traffic from clients outside Google Cloud
-- Testing F5 Application Delivery Service configurations before you set up a [Private Endpoint]({{< ref "/f5ads/google/overview.md#private-endpoint" >}}) frontend
+- Testing F5 ADS configurations before you set up a [private endpoint](#private-endpoint) frontend
 
-**Access control**
-
-Access control list (ACL) rules control traffic to a managed public endpoint deployment. If you don’t provide ACL rules, no traffic is allowed. An ACL rule includes the following settings:
+Access control for this frontend type uses ACL rules to control traffic to the deployment. If you don't provide ACL rules, F5 ADS blocks all traffic. Each ACL rule includes the following settings:
 
 - **Source prefixes**: A list of CIDR blocks to allow traffic from
     - Use `0.0.0.0/0` to allow traffic from all source IP addresses
@@ -77,39 +80,44 @@ Access control list (ACL) rules control traffic to a managed public endpoint dep
     - Valid values are **TCP** and **UDP**
     - Required when you specify a port range
 - **Port range**: A single port or port range to allow traffic from
-    - If you don’t specify a port range, traffic is allowed from any port
+    - If you don't specify a port range, F5 ADS accepts traffic on any port
     - Required when you specify a protocol
 
 #### Private endpoint
 
-A private endpoint frontend allows client access through your network by using Google’s [Private Service Connect (PSC)](https://cloud.google.com/vpc/docs/private-service-connect). To set up connectivity, create either a [PSC endpoint](https://docs.cloud.google.com/vpc/docs/private-service-connect#endpoints) for internal traffic or a [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) for external traffic. This approach brings the F5 Application Delivery Service deployment into your client network through an F5 ADS-created service attachment, so application clients can connect directly into your network. For step-by-step instructions, see [Set up connectivity]({{< ref "/f5ads/google/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
+A private endpoint frontend gives clients access through your network using Google [Private Service Connect (PSC)](https://cloud.google.com/vpc/docs/private-service-connect). This approach brings the deployment into your client network through an F5 ADS-created service attachment, so application clients can connect directly into your network.
+
+To set up connectivity, create one of the following:
+
+- A [PSC endpoint](https://docs.cloud.google.com/vpc/docs/private-service-connect#endpoints) for internal traffic
+- A [PSC backend](https://cloud.google.com/vpc/docs/private-service-connect#backends) for external traffic
+
+For step-by-step instructions, see [Set up connectivity]({{< ref "/f5ads/google/deploy/create-deployment/deploy-console.md#set-up-connectivity-private-endpoint-only" >}}).
 
 **This frontend type is suitable for:**
 
-- Situations where you need greater control over traffic to the F5 Application Delivery Service deployment
+- Situations where you need greater control over traffic to the F5 ADS deployment
 - Environments where all clients exist within your Google Cloud network
 - Internal services that shouldn't be exposed to the internet
 
-**Access control**
-
-A service attachment accept list restricts which Google project IDs can connect to the deployment. If you don’t specify any project IDs in the accept list, traffic from all projects is allowed.
+Access control for this frontend type uses a service attachment accept list, which restricts which Google project IDs can connect to the deployment. If you don't specify any project IDs, F5 ADS accepts traffic from all projects.
 
 ### Upstream network
 
-F5 Application Delivery Service uses Google [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) (PSC) to connect securely to your applications.
+F5 ADS uses Google [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) (PSC) to connect securely to your applications.
 
 A [PSC interface](https://cloud.google.com/vpc/docs/private-service-connect#interfaces) brings the deployment into your application network and supports secure connectivity to your applications. By using your own networking resources, you control traffic flow and can apply your preferred security controls.
 
-To connect the F5 Application Delivery Service PSC interface to your network, you must create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/f5ads/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
+To connect the F5 ADS PSC interface to your network, create a [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments). For steps, see [Create a network attachment]({{< ref "/f5ads/google/deploy/create-deployment/deploy-console.md#create-a-network-attachment" >}}).
 
 ### NGINX Capacity Unit (NCU)
 
-An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. This abstraction lets you specify capacity in NCUs without considering hardware differences between regions.
+An NGINX Capacity Unit (NCU) quantifies the capacity of an NGINX deployment based on its underlying compute resources. With this abstraction, you can specify capacity in NCUs without considering hardware differences between regions.
 You can reserve a minimum capacity for your deployment. The deployment automatically scales up or down based on traffic demand and makes sure it never drops below the reserved minimum.
 
 ### Geographical controllers
 
-F5 ADS for Google Cloud has a global presence, with management requests served by regional controllers. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary while addressing data residency and localization requirements. For example, a US geographical controller serves customers in the United States. F5 Application Delivery Service currently operates in three geographies: US, EU, and Asia Pacific (APAC).
+F5 ADS for Google Cloud operates globally, and regional controllers handle management requests. A geographical controller (GC) is a control plane that serves users within a defined geographic boundary. It addresses data residency and localization requirements. For example, a US geographical controller serves customers in the United States. F5 ADS currently operates in three geographies: US, EU, and Asia Pacific (APAC).
 
 ### Supported regions
 
@@ -117,15 +125,15 @@ F5 ADS for Google Cloud has a global presence, with management requests served b
 
 ## Current limitations
 
-We are committed to enhancing F5 ADS for Google Cloud and welcome your feedback to help shape the future of our service. If there are features you'd like to see prioritized, we encourage you to submit a [support ticket]({{< ref "/f5ads/google/support.md" >}}) to share your suggestions.
+F5 is committed to enhancing F5 ADS for Google Cloud and welcomes your feedback to help shape its future. If there are features you'd like to see prioritized, submit a [support ticket]({{< ref "/f5ads/google/support.md" >}}) to share your suggestions.
 
-Here are the current constraints you should be aware of while using F5 ADS for Google Cloud:
+Be aware of the following constraints when using F5 ADS for Google Cloud:
 
-- F5 Application Delivery Service is [supported in a limited number of regions]({{< ref "/f5ads/google/overview.md#supported-regions" >}}). We are continually working to expand support across additional regions.
-- User Role-Based Access Control (RBAC) is not yet supported, but this enhancement is on our roadmap as we improve access control for multi-user environments.
-- F5 Application Delivery Service deployments on Google Cloud do not support IPv6 traffic.
-- F5 Application Delivery Service deployments on Google Cloud only support UDP traffic when using **Managed Public Endpoint** frontend service.
+- F5 ADS is supported in a limited number of regions. F5 is continually working to expand support across additional regions. See [Supported regions](#supported-regions).
+- User Role-Based Access Control (RBAC) isn't supported yet. F5 plans to add this in a future release to improve access control for multi-user environments.
+- F5 ADS deployments on Google Cloud don't support IPv6 traffic.
+- F5 ADS deployments on Google Cloud support UDP traffic only when using the **Managed Public Endpoint** frontend service.
 
 ## What's next
 
-To get started, check the [F5 ADS for Google Cloud prerequisites]({{< ref "/f5ads/google/deploy/prerequisites.md" >}})
+To get started, check the [F5 ADS for Google Cloud prerequisites]({{< ref "/f5ads/google/deploy/prerequisites.md" >}}).
