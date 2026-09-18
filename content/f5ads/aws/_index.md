@@ -6,7 +6,7 @@ url: /f5ads/aws/
 cascade:
   logo: F5-NGINXaaS-icon.svg
   contentVars:
-    product: ADS for AWS
+    product: F5 Application Delivery Service for AWS
 f5-product: F5 Application Delivery Service for AWS
 weight: 500
 ---
