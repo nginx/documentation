@@ -296,6 +296,59 @@ spec:
 
 {{%/tab%}}
 
+{{%tab name="Hostless route"%}}
+
+In this example, the VirtualServerRoute `shared-coffee` omits the `host` field (hostless mode). Multiple VirtualServers with different domains can reference the same route configuration.
+
+VirtualServer:
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe
+  namespace: cafe-ns
+spec:
+  host: cafe.example.com
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    route: coffee-ns/shared-coffee
+```
+
+VirtualServerRoute (hostless):
+
+```yaml
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: shared-coffee
+  namespace: coffee-ns
+spec:
+  upstreams:
+  - name: latte
+    service: latte-svc
+    port: 80
+  - name: espresso
+    service: espresso-svc
+    port: 80
+  subroutes:
+  - path: /coffee/latte
+    action:
+      pass: latte
+  - path: /coffee/espresso
+    action:
+      pass: espresso
+```
+
+{{%/tab%}}
+
 {{%tab name="RouteSelector"%}}
 
 In this example, the VirtualServer `cafe` from the namespace `cafe-ns` uses `routeSelector` to dynamically select any VirtualServerRoute with the label `app: coffee`.
@@ -348,59 +401,6 @@ spec:
     action:
       pass: latte
   - path: /decaf/espresso
-    action:
-      pass: espresso
-```
-
-{{%/tab%}}
-
-{{%tab name="Hostless route"%}}
-
-In this example, the VirtualServerRoute `shared-coffee` omits the `host` field (hostless mode). Multiple VirtualServers with different domains can reference the same route configuration.
-
-VirtualServer:
-
-```yaml
-apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe
-  namespace: cafe-ns
-spec:
-  host: cafe.example.com
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    route: coffee-ns/shared-coffee
-```
-
-VirtualServerRoute (hostless):
-
-```yaml
-apiVersion: k8s.nginx.org/v1
-kind: VirtualServerRoute
-metadata:
-  name: shared-coffee
-  namespace: coffee-ns
-spec:
-  upstreams:
-  - name: latte
-    service: latte-svc
-    port: 80
-  - name: espresso
-    service: espresso-svc
-    port: 80
-  subroutes:
-  - path: /coffee/latte
-    action:
-      pass: latte
-  - path: /coffee/espresso
     action:
       pass: espresso
 ```
