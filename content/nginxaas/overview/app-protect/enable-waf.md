@@ -6,7 +6,9 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/app-protect/enable-waf/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /f5ads/overview/app-protect/enable-waf/
 f5-keywords: "F5 WAF, app protect, enable, NGINXaaS Console"
 f5-summary: >
   This page explains how to enable F5 WAF for NGINX on an NGINXaaS deployment through the NGINXaaS Console.
@@ -15,6 +17,8 @@ f5-audience: operator
 contentVars:
   product: NGINXaaS
 ---
+
+{{< renamed-notice >}}
 
 ## Overview
 

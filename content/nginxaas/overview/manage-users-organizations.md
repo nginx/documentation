@@ -5,8 +5,12 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/manage-users-organizations/
 f5-content-type: how-to
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /f5ads/overview/manage-users-organizations/
 ---
+
+{{< renamed-notice >}}
 
 ## Overview
 
@@ -39,7 +43,7 @@ Before you start, ensure you understand the following concepts:
 
 Once logged in, you can create and manage [NGINX configurations]({{< ref "/nginxaas/overview/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
 
-If you want to create an NGINXaaS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/nginxaas/aws/deploy/prerequisites.md#subscribe-to-the-nginxaas-for-aws-offering" >}}) or [Google Cloud]({{< ref "/nginxaas/google/deploy/prerequisites.md#subscribe-to-the-nginxaas-for-google-cloud-offering" >}})).
+If you want to create an NGINXaaS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}}) or [Google Cloud]({{< ref "/nginxaas/google/deploy/prerequisites.md#subscribe-to-the-nginxaas-for-google-cloud-offering" >}})).
 
 ## Create an organization
 

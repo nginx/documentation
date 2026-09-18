@@ -1,7 +1,6 @@
 ---
 f5-product: F5 NGINXaaS
 f5-files:
-- content/nginxaas/aws/monitoring/metrics-catalog.md
 - content/nginxaas/google/monitoring/metrics-catalog.md
 ---
 

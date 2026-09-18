@@ -4,8 +4,12 @@ weight: 300
 toc: true
 url: /nginxaas/google/billing/usage-dashboard/
 f5-content-type: concept
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/billing/usage-dashboard/
 ---
+
+{{< renamed-notice >}}
 
 # Usage dashboard
 

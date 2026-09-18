@@ -4,8 +4,12 @@ weight: 50
 toc: true
 url: /nginxaas/google/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/deploy/ssl-tls-certificates/overview/
 ---
+
+{{< renamed-notice >}}
 
 Use F5 NGINXaaS for Google Cloud (NGINXaaS) to secure traffic by adding SSL/TLS certificates to a deployment.
 

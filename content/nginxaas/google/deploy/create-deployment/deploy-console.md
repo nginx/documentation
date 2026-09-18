@@ -6,13 +6,17 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/create-deployment/deploy-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/deploy/create-deployment/deploy-console/
 f5-keywords: "NGINXaaS for Google Cloud, create deployment, NGINXaaS Console, NCU, service frontend, Network attachment, Service Attachment, PSC"
 f5-summary: >
   Learn how to create an F5 NGINXaaS for Google Cloud deployment using the NGINXaaS Console.
   This guide covers configuring the deployment, setting up service frontend connectivity, and testing the deployment once it's ready.
 f5-audience: operator
 ---
+
+{{< renamed-notice >}}
 
 ## Overview
 
