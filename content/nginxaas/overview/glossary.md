@@ -5,10 +5,14 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/glossary/
 f5-content-type: reference
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /f5ads/overview/f5ads-glossary/
 contentVars:
   product: NGINXaaS
 ---
+
+{{< renamed-notice >}}
 
 This document provides definitions for terms and acronyms commonly used in F5 ${product} documentation.
 

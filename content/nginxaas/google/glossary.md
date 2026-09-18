@@ -5,6 +5,10 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/glossary/
 f5-content-type: reference
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/glossary/
 contentSource: nginxaas/overview/glossary.md
 ---
+
+{{< renamed-notice >}}

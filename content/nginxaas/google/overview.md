@@ -5,8 +5,12 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/overview/
 f5-content-type: concept
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/overview/
 ---
+
+{{< renamed-notice >}}
 
 ## What is NGINXaaS for Google Cloud?
 

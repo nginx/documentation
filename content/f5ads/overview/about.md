@@ -4,6 +4,7 @@ weight: 100
 toc: true
 f5-docs: DOCS-000
 url: /f5ads/overview/about/
+canonical: /f5ads/overview/about/
 f5-content-type: concept
 f5-product: F5 Application Delivery Service
 ---

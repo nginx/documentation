@@ -5,8 +5,12 @@ toc: false
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/prerequisites/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/deploy/prerequisites/
 ---
+
+{{< renamed-notice >}}
 
 Before you can deploy F5 NGINXaaS for Google Cloud (NGINXaaS), you need to complete some prerequisites.
 

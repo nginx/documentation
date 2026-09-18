@@ -5,9 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 f5-content-type: how-to
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console/
 contentSource: nginxaas/overview/ssl-tls-certificates/ssl-tls-certificates-console.md
 ---
+
+{{< renamed-notice >}}
 
 ## What's next
 

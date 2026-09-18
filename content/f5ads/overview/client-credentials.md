@@ -4,6 +4,7 @@ description: "Learn how to set up OAuth2 client credentials for programmatic acc
 weight: 400
 toc: true
 url: /f5ads/overview/client-credentials/
+canonical: /f5ads/overview/client-credentials/
 f5-product: F5 Application Delivery Service
 f5-content-type: how-to
 f5-keywords: "client credentials, OAuth2, programmatic authentication, API"

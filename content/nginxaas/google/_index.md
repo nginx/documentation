@@ -6,7 +6,10 @@ cascade:
   logo: F5-NGINXaaS-icon.svg
   contentVars:
     product: NGINXaaS for Google Cloud
-f5-product: NGINXaaS for Google Cloud
+f5-product: F5 Application Delivery Service for Google Cloud
+f5-product-former: NGINXaaS for Google Cloud
+canonical: /f5ads/google/
 weight: 500
 ---
 
+{{< renamed-notice >}}

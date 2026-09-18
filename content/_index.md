@@ -47,7 +47,7 @@ Learn how to deliver, manage, and protect your applications using F5 NGINX produ
   {{<card title="F5 Application Delivery Service for AWS" titleUrl="/f5ads/aws/overview/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
     Managed NGINX service for your AWS application stack.
   {{</card >}}
-  {{<card title="F5 NGINXaaS for Google Cloud" titleUrl="/nginxaas/google/overview/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
+  {{<card title="F5 Application Delivery Service for Google Cloud" titleUrl="/f5ads/google/overview/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}
     Managed NGINX service for your Google Cloud application stack.
   {{</card >}}
   {{<card title="F5 NGINXaaS for Azure" titleUrl="/nginxaas-azure/" brandIcon="F5-NGINXaaS-icon.svg" isLanding="true">}}

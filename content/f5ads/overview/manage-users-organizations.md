@@ -4,6 +4,7 @@ weight: 300
 toc: true
 f5-docs: DOCS-000
 url: /f5ads/overview/manage-users-organizations/
+canonical: /f5ads/overview/manage-users-organizations/
 f5-content-type: how-to
 f5-product: F5 Application Delivery Service
 ---

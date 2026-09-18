@@ -3,6 +3,7 @@ title: NGINX configuration rules and limits
 weight: 50
 toc: true
 url: /f5ads/overview/nginx-configuration/configuration-rules/
+canonical: /f5ads/overview/nginx-configuration/configuration-rules/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service
 contentVars:

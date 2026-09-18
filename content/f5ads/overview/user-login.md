@@ -4,6 +4,7 @@ weight: 350
 toc: true
 f5-docs: DOCS-000
 url: /f5ads/overview/user-login/
+canonical: /f5ads/overview/user-login/
 f5-product: F5 Application Delivery Service
 f5-content-type: how-to
 f5-keywords: "login,authentication"

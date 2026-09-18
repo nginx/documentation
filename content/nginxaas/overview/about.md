@@ -5,8 +5,12 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/overview/about/
 f5-content-type: concept
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /f5ads/overview/about/
 ---
+
+{{< renamed-notice >}}
 
 ## What is F5 ${product}?
 
