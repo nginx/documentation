@@ -9,11 +9,11 @@ f5-content-type: concept
 f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
-F5 NGINXaaS for Google Cloud is deployed into your Google Cloud subscription, where your deployment resource is visible and integrated with Google Cloud’s ecosystem. The underlying infrastructure, software maintenance, availability, and scaling are fully managed by F5, abstracting operational complexities. Billing occurs hourly and is tracked in the Google Cloud Cost Management Dashboard.
+F5 Application Delivery Service for Google Cloud is deployed into your Google Cloud subscription, where your deployment resource is visible and integrated with Google Cloud’s ecosystem. The underlying infrastructure, software maintenance, availability, and scaling are fully managed by F5, abstracting operational complexities. Billing occurs hourly and is tracked in the Google Cloud Cost Management Dashboard.
 
 ## Pricing plans
 
-F5 NGINXaaS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a 99.95% uptime SLA. The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
+F5 ADS for Google Cloud is offered on an Enterprise plan, delivering enterprise-grade performance, scalability, and security backed by a 99.95% uptime SLA. The pricing model consists of three billing components, ensuring transparent and predictable costs based on resource usage.
 
 ### Pricing components
 
@@ -54,24 +54,24 @@ An NGINX Capacity Unit (NCU) quantifies the capacity for a deployment. Resources
 
 ## Review billing data
 
-Billing data for F5 NGINXaaS for Google Cloud is reported per deployment and can be accessed through the Google Cloud Cost Management Dashboard. Usage metrics and costs are updated hourly, allowing customers to monitor and optimize resource allocation effectively.
+Billing data for F5 ADS for Google Cloud is reported per deployment and can be accessed through the Google Cloud Cost Management Dashboard. Usage metrics and costs are updated hourly, allowing customers to monitor and optimize resource allocation effectively.
 
-## Canceling your NGINXaaS for Google Cloud subscription
+## Canceling your F5 ADS for Google Cloud subscription
 
-You can unsubscribe from NGINXaaS for Google Cloud by visiting the [Google Cloud Marketplace Orders](https://console.cloud.google.com/marketplace/orders) page. Please note the following behavior when you cancel your subscription:
+You can unsubscribe from F5 ADS for Google Cloud by visiting the [Google Cloud Marketplace Orders](https://console.cloud.google.com/marketplace/orders) page. Please note the following behavior when you cancel your subscription:
 
 - Upon cancelation, all active deployments will immediately transition to a suspended state. In the suspended state, deployments will no longer be operational and cannot process traffic.
-- While in this state, you will still have access to your deployments via the NGINXaaS Console, allowing you to view or delete them. However, it will no longer be possible to update existing deployments or create new ones.
+- While in this state, you will still have access to your deployments via the F5 ADS Console, allowing you to view or delete them. However, it will no longer be possible to update existing deployments or create new ones.
 - Despite the suspension of deployments, you will retain the ability to view, edit, create, and delete configurations and SSL certificates through the console.
 
-If you decide to re-subscribe to NGINXaaS for Google Cloud after canceling your subscription, all previously suspended deployments will remain deactivated. You will need to recreate your deployments from scratch.
+If you decide to re-subscribe to F5 ADS for Google Cloud after canceling your subscription, all previously suspended deployments will remain deactivated. You will need to recreate your deployments from scratch.
 
 We recommend carefully reviewing your deployments and configurations before initiating the cancelation process to avoid any unintended data loss.
 
 ## Free trial
 
-You can sign up for a free trial of NGINXaaS for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud).
-The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore NGINXaaS for Google Cloud and its features.
+You can sign up for a free trial of F5 ADS for Google Cloud through the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/f5-7626-networks-public/nginxaas-google-cloud).
+The free trial provides up to USD 100 in credits for a maximum of 30 days, whichever comes first, to help you explore F5 ADS for Google Cloud and its features.
 
 During the trial, you will be billed for solution provider fees and credited for those same fees at the same time, up to USD 100. Additionally, you will still be billed for any applicable infrastructure usage charges during the trial period.
 

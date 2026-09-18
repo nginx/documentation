@@ -9,14 +9,14 @@ f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
-F5 NGINXaaS for Google Cloud (NGINXaaS) can fetch secrets directly from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview) to use as certificates and keys in your NGINX configuration, ensuring your credentials remain securely within Google Cloud.
+F5 Application Delivery Service for Google Cloud can fetch secrets directly from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview) to use as certificates and keys in your NGINX configuration, ensuring your credentials remain securely within Google Cloud.
 
 ## Prerequisites
 
 If you haven't already done so, complete the following prerequisites:
 
 - Enable the [Secret Manager API](https://docs.cloud.google.com/secret-manager/docs/configuring-secret-manager#enable-the-secret-manager-api).
-- [Create an NGINXaaS deployment]({{< ref "/f5ads/google/deploy/create-deployment/deploy-console.md" >}}).
+- [Create an F5 Application Delivery Service deployment]({{< ref "/f5ads/google/deploy/create-deployment/deploy-console.md" >}}).
 - Configure Workload Identity Federation (WIF). See [the documentation on setting up WIF]({{< ref "/f5ads/google/deploy/access-management.md#configure-wif" >}}) for exact steps.
   - [Grant access to the WIF principal]({{< ref "/f5ads/google/deploy/access-management.md#grant-access-to-the-wif-principal-with-your-desired-roles" >}}) with the **Secret Manager Secret Accessor** role.
 
@@ -35,7 +35,7 @@ There are many ways to manage your SSL/TLS certificates and keys. For example, y
 
 ## Use a Secret Manager certificate in an NGINX configuration
 
-To add your Secret Manager certificate and key to an NGINX configuration in the NGINXaaS console,
+To add your Secret Manager certificate and key to an NGINX configuration in the F5 ADS console,
 
 1. Select **Configurations** in the left menu.
 2. Select the ellipsis (three dots) next to the configuration you want to edit, and select **Edit**.
@@ -53,15 +53,15 @@ To add your Secret Manager certificate and key to an NGINX configuration in the 
     {{< /table >}}
 
 {{< call-out "tip" "Enable automatic rotation with latest" >}}
-If you set `$VERSION` to `latest`, NGINXaaS automatically picks up any new secret version you add to Secret Manager without a configuration change. NGINXaaS applies new versions within four hours. See [Rotate a Secret Manager certificate (automatic)](#rotate-a-secret-manager-certificate-automatic) for details.
+If you set `$VERSION` to `latest`, F5 Application Delivery Service automatically picks up any new secret version you add to Secret Manager without a configuration change. F5 Application Delivery Service applies new versions within four hours. See [Rotate a Secret Manager certificate (automatic)](#rotate-a-secret-manager-certificate-automatic) for details.
 {{< /call-out >}}
 
 7. Update the NGINX configuration to reference the certificate you just added by the path value.
 8. Select **Add**, **Next**, and then **Save** to save your changes.
 
-## Update your NGINXaaS deployment's NGINX configuration
+## Update your F5 Application Delivery Service deployment's NGINX configuration
 
-Before updating your NGINXaaS deployment to use your new NGINX configuration, make sure your deployment already has a [workload identity pool provider set up]({{< ref "/f5ads/google/deploy/access-management.md#configure-wif" >}}) with the **Secret Manager Secret Accessor** role granted, so it can fetch certificates. Then, in the NGINXaaS console:
+Before updating your F5 Application Delivery Service deployment to use your new NGINX configuration, make sure your deployment already has a [workload identity pool provider set up]({{< ref "/f5ads/google/deploy/access-management.md#configure-wif" >}}) with the **Secret Manager Secret Accessor** role granted, so it can fetch certificates. Then, in the F5 ADS console:
 
 1. Select **Deployments**.
 1. Select the deployment you want to edit.
@@ -77,9 +77,9 @@ Configurations with Google Secret Manager secrets can only be added to Google de
 
 ## Rotate a Secret Manager certificate (automatic)
 
-If you set the version ID of your secret to `latest`, NGINXaaS fetches the latest secret version. When you [add a new secret version in Secret Manager](https://docs.cloud.google.com/secret-manager/docs/add-secret-version#add-a-secret-version), NGINXaaS automatically picks up that version within four hours.
+If you set the version ID of your secret to `latest`, F5 Application Delivery Service fetches the latest secret version. When you [add a new secret version in Secret Manager](https://docs.cloud.google.com/secret-manager/docs/add-secret-version#add-a-secret-version), F5 Application Delivery Service automatically picks up that version within four hours.
 
-If you set the version ID of your secret to a custom alias, NGINXaaS fetches the secret version the alias points to. When you [update the alias to point to a different version in Secret Manager](https://docs.cloud.google.com/secret-manager/docs/assign-alias-to-secret-version), NGINXaaS automatically picks up that version within four hours.
+If you set the version ID of your secret to a custom alias, F5 Application Delivery Service fetches the secret version the alias points to. When you [update the alias to point to a different version in Secret Manager](https://docs.cloud.google.com/secret-manager/docs/assign-alias-to-secret-version), F5 Application Delivery Service automatically picks up that version within four hours.
 
 No configuration changes are required in either case. To confirm your deployment is using an updated certificate, check the **Certificates** list for the new serial number or inspect the certificate at your deployment's endpoint.
 
@@ -87,19 +87,19 @@ No configuration changes are required in either case. To confirm your deployment
 
 To immediately refetch secrets without editing your NGINX configuration, use **Reapply Configuration**. This is useful in the following scenarios:
 
-- **New secret version**: You've uploaded a new certificate and want NGINXaaS to use it right away.
-- **WIF or permissions fix**: You've updated a WIF provider or granted Secret Manager permissions and want NGINXaaS to retry immediately.
+- **New secret version**: You've uploaded a new certificate and want F5 Application Delivery Service to use it right away.
+- **WIF or permissions fix**: You've updated a WIF provider or granted Secret Manager permissions and want F5 Application Delivery Service to retry immediately.
 
 To reapply your configuration:
 
-1. In the NGINXaaS console, go to your deployment.
+1. In the F5 ADS console, go to your deployment.
 2. Select **Reapply Configuration** in the **Configuration Info** panel.
 
-NGINXaaS reapplies your current configuration version and immediately refetches all referenced secrets.
+F5 Application Delivery Service reapplies your current configuration version and immediately refetches all referenced secrets.
 
 ## Monitor secret fetch events
 
-NGINXaaS generates an event each time it fetches or fails to fetch a secret from Secret Manager. Use these events to track successful rotations and diagnose access failures.
+F5 Application Delivery Service generates an event each time it fetches or fails to fetch a secret from Secret Manager. Use these events to track successful rotations and diagnose access failures.
 
 ### Event types
 
@@ -107,7 +107,7 @@ NGINXaaS generates an event each time it fetches or fails to fetch a secret from
 | Event type | Description |
 |---|---|
 | Successful Secret Fetch from Google | The secret was fetched from Secret Manager and applied to NGINX. |
-| Failed Secret Fetch from Google | NGINXaaS couldn't fetch the secret. The event message includes the error details. |
+| Failed Secret Fetch from Google | F5 Application Delivery Service couldn't fetch the secret. The event message includes the error details. |
 {{< /table >}}
 
 ### View events in the console

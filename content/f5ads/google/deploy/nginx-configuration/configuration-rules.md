@@ -10,11 +10,11 @@ contentSource: nginxaas/overview/nginx-configuration/configuration-rules.md
 ---
 
 This document provides details about using NGINX configuration files with your
-F5 NGINXaaS for Google Cloud deployment, restrictions, and available directives.
+F5 Application Delivery Service for Google Cloud deployment, restrictions, and available directives.
 
 ## NGINX configuration common user workflows
 
-You can upload NGINX configurations to your NGINXaaS for Google Cloud deployment using the Google Cloud console:
+You can upload NGINX configurations to your F5 ADS for Google Cloud deployment using the Google Cloud console:
 
 - [Upload using the console]({{< ref "/f5ads/google/deploy/nginx-configuration/nginx-configuration-console.md" >}})
 
@@ -49,10 +49,10 @@ The following directives are not supported because of specific limitations. If y
 | Disallowed Directive | Reason |
 |------------------ | ----------------- |
 | ssl_engine        | No hardware SSL accelerator is available. |
-| debug_points        | NGINXaaS does not provide access to NGINX processes for debugging. |
+| debug_points        | F5 Application Delivery Service does not provide access to NGINX processes for debugging. |
 | fastcgi_bind <br /> grpc_bind  <br /> memcached_bind  <br /> proxy_bind  <br /> scgi_bind  <br /> uwsgi_bind   | Source IP specification for active-active deployments is not allowed.           |
 | quic_bpf          | QUIC connection migration is not currently supported for active-active deployments.  |
-| ssl_ech_file     | NGINXaaS does not use the [OpenSSL ECH feature branch](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file). |
+| ssl_ech_file     | F5 Application Delivery Service does not use the [OpenSSL ECH feature branch](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ech_file). |
 {{< /table >}}
 
 You may find a few directives are not listed here as either allowed or disallowed. Our team is working on getting these directives supported soon.
@@ -68,8 +68,8 @@ The following directives cannot be overridden by the user provided configuration
 | `worker_processes` | `auto` | Set to `auto` to automatically set `worker_processes` to the number of CPU cores. |
 | `worker_rlimit_nofile` | `524288` | Set for optimal performance of deployments. |
 | `worker_connections` | `150000` | Set for optimal performance of deployments. |
-| `pid` | `/run/nginx/nginx.pid` | Set to this value to allow NGINXaaS to automatically manage the NGINX master process. |
-| `daemon` | `on` | Automatically set to `on` to allow NGINXaaS to manage the NGINX master process. |
+| `pid` | `/run/nginx/nginx.pid` | Set to this value to allow F5 Application Delivery Service to automatically manage the NGINX master process. |
+| `daemon` | `on` | Automatically set to `on` to allow F5 Application Delivery Service to manage the NGINX master process. |
 | `master_process` | `on` | This directive is intended for NGINX developers. |
 | `worker_cpu_affinity` | `auto` | The value `auto` allows binding worker processes automatically to available CPUs based on the current capacity of the deployment. |
 {{< /table >}}
@@ -81,9 +81,9 @@ For connection and request rate limiting, consider using these NGINX modules:
 
 ## Configuration directives list
 
-NGINXaaS supports a limited set of NGINX directives. The directives with the "app_protect" prefix require [F5 WAF for NGINX]({{< ref "/waf" >}}) to be enabled for the deployment.
+F5 Application Delivery Service supports a limited set of NGINX directives. The directives with the "app_protect" prefix require [F5 WAF for NGINX]({{< ref "/waf" >}}) to be enabled for the deployment.
 
-NGINXaaS does not yet support F5 WAF for NGINX custom security policies or logging profiles. Support is limited to the [prebuilt policies]({{< ref "/waf/policies/configuration.md#default-policy" >}}) and the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
+F5 Application Delivery Service does not yet support F5 WAF for NGINX custom security policies or logging profiles. Support is limited to the [prebuilt policies]({{< ref "/waf/policies/configuration.md#default-policy" >}}) and the [default logging profiles]({{< ref "/waf/logging/logs-overview.md#default-logging-profile-bundles" >}}).
 
 {{< details summary="Alphabetical index of directives">}}
 

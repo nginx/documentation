@@ -17,7 +17,7 @@ f5-audience: operator
 
 ## Overview
 
-This guide explains how to create an F5 NGINXaaS for Google Cloud (NGINXaaS) deployment using the [`F5Networks/f5ads` Terraform provider](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs). This guide only covers creating a deployment.
+This guide explains how to create an F5 Application Delivery Service for Google Cloud deployment using the [`F5Networks/f5ads` Terraform provider](https://registry.terraform.io/providers/F5Networks/f5ads/latest/docs). This guide only covers creating a deployment.
 
 ## Prerequisites
 

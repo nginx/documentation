@@ -9,7 +9,7 @@ f5-content-type: how-to
 f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
-F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud services to collect NGINX error and access logs, and F5 WAF for NGINX security logs.
+F5 Application Delivery Service for Google Cloud supports integrating with Google Cloud services to collect NGINX error and access logs, and F5 WAF for NGINX security logs.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ F5 NGINXaaS for Google (NGINXaaS) supports integrating with Google Cloud service
 
 ## Export NGINX logs to a Google Cloud Project
 
-To enable sending logs to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an NGINXaaS deployment]({{< ref "/f5ads/google/deploy/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the NGINXaaS console,
+To enable sending logs to your desired Google Cloud project, you must specify the project ID when creating or updating a deployment. To create a deployment, see [our documentation on creating an F5 Application Delivery Service deployment]({{< ref "/f5ads/google/deploy/create-deployment/" >}}) for a step-by-step guide. To update the deployment, in the F5 ADS console,
 
 1. On the left menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
@@ -58,7 +58,7 @@ NGINX access and error logs sent to Cloud Logging will have the log name `nginx-
 
 ## Disable Exporting NGINX logs to a Google Cloud Project
 
-To disable sending logs to your Google Cloud project, update your NGINXaaS deployment to remove the reference to your project ID. To update the deployment, in the NGINXaaS console,
+To disable sending logs to your Google Cloud project, update your F5 Application Delivery Service deployment to remove the reference to your project ID. To update the deployment, in the F5 ADS console,
 
 1. On the navigation menu, select **Deployments**.
 1. Select the deployment you want to update and select **Edit**.
@@ -67,12 +67,12 @@ To disable sending logs to your Google Cloud project, update your NGINXaaS deplo
 
 ## Troubleshooting
 
-If Google Cloud Logging is not showing any logs, check for **Failed Log Export to Google** events from your NGINXaaS deployment.
+If Google Cloud Logging is not showing any logs, check for **Failed Log Export to Google** events from your F5 Application Delivery Service deployment.
 
-In the NGINXaaS console:
+In the F5 ADS console:
 
 1. On the navigation menu, select **Events**.
 1. Select **Add Filter**.
-1. Select **Affected Object** and the name of your NGINXaaS deployment.
+1. Select **Affected Object** and the name of your F5 Application Delivery Service deployment.
 
 Events are deleted after 14 days.

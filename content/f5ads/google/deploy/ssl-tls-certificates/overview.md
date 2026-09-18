@@ -8,7 +8,7 @@ f5-content-type: reference
 f5-product: F5 Application Delivery Service for Google Cloud
 ---
 
-Use F5 NGINXaaS for Google Cloud (NGINXaaS) to secure traffic by adding SSL/TLS certificates to a deployment.
+Use F5 Application Delivery Service for Google Cloud to secure traffic by adding SSL/TLS certificates to a deployment.
 
 ## Supported certificate types and formats
 
@@ -25,16 +25,16 @@ Encrypt your certificates, keys, and PEM files using one of these standards:
 
 ## Add SSL/TLS certificates
 
-NGINXaaS supports two ways to manage your certificates and keys securely:
+F5 Application Delivery Service supports two ways to manage your certificates and keys securely:
 
-**NGINXaaS console**: Manage certificates alongside the NGINX configurations that reference them. See [Add certificates using the NGINXaaS Console]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
+**F5 ADS console**: Manage certificates alongside the NGINX configurations that reference them. See [Add certificates using the F5 ADS Console]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
 
 **Google Secret Manager**: Fetch secrets directly from [Secret Manager](https://docs.cloud.google.com/secret-manager/docs/overview), keeping credentials within Google Cloud. See [Add certificates from Secret Manager]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}).
 
 ## Certificate rotation
 
-NGINXaaS supports automatic and manual rotation for Secret Manager certificates:
+F5 Application Delivery Service supports automatic and manual rotation for Secret Manager certificates:
 
-**Automatic rotation**: Let NGINXaaS pick up new certificate versions automatically with no configuration changes needed. See [Rotate a Secret Manager certificate (automatic)]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-automatic" >}}).
+**Automatic rotation**: Let F5 Application Delivery Service pick up new certificate versions automatically with no configuration changes needed. See [Rotate a Secret Manager certificate (automatic)]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-automatic" >}}).
 
 **Manual rotation**: When you need to update certificates immediately, use **Reapply Configuration** in the console to refetch secrets right away. See [Rotate a Secret Manager certificate (manual)]({{< ref "/f5ads/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md#rotate-a-secret-manager-certificate-manual" >}}).
