@@ -5,9 +5,13 @@ toc: true
 f5-docs: DOCS-000
 url: /nginxaas/changelog/
 f5-content-type: reference
-f5-product: F5 NGINXaaS
+f5-product: F5 Application Delivery Service
+f5-product-former: F5 NGINXaaS
+canonical: /f5ads/changelog/
 nollms: true
 ---
+
+{{< renamed-notice >}}
 
 Learn about the latest updates, new features, and resolved bugs in F5 NGINXaaS.
 
