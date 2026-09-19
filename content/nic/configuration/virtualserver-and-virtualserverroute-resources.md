@@ -231,6 +231,8 @@ See the [VirtualServerRoute specification](#virtualserverroute-specification) se
 |``matchLabels`` | A map of key-value pairs. Each key-value pair in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. | ``map[string]string`` | Yes |
 |``matchExpressions`` | A list of label selector requirements. The requirements are ANDed. For more information on label selector requirements, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements). | N/A | No |
 
+{{< call-out class="note" >}} If a `routeSelector` matches no VirtualServerRoutes, the VirtualServer reports `State: Warning` and NGINX Ingress Controller emits a `Warning` event. For details, see [Warning events]({{< ref "/nic/troubleshooting/troubleshoot-virtualserver.md#warning-events" >}}). {{< /call-out >}}
+
 ## VirtualServerRoute specification
 
 The VirtualServerRoute resource defines a route for a VirtualServer. It can consist of one or multiple subroutes. The VirtualServerRoute is an alternative to [Mergeable Ingress types]({{< ref "/nic/configuration/ingress-resources/cross-namespace-configuration.md" >}}).
