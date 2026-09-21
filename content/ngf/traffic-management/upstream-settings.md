@@ -665,11 +665,11 @@ Active health checks probe your backends on a schedule, separate from client tra
 - `persistent` (boolean): keep a server's pre-reload state across reloads. Requires `mandatory: true`.
 - `keepAliveTime` (duration): how long NGINX reuses a single keepalive connection for health-check requests before opening a new one.
 - `timeout.connect`, `timeout.read`, and `timeout.send` (durations): the timeouts for health-check requests.
-- `headers` (list, maximum 16): request headers to send with each check. NGINX Plus always sets `Host`, `User-Agent`, and `Connection`, which you can't override.
+- `headers` (list, maximum 16): request headers to send with each check. NGINX Plus always sets `Host`, `User-Agent`, and `Connection`, which you can't override. A header name can contain only alphanumeric characters or `-`. NGINX Gateway Fabric also rejects the names `host`, `connection`, and `upgrade` (case-insensitive), even when they meet that format rule. A value can't contain line breaks, but it can include NGINX variables such as `$remote_addr`.
 
 For gRPC upstreams, configure the check through `spec.healthCheck.active.grpc`, using its `service` and `status` fields. This follows the [gRPC health-checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md). The `grpc` field is mutually exclusive with `path` and `match`.
 
-{{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`.{{< /call-out >}}
+{{< call-out class="important" >}}CRD validation enforces two constraints on these fields. A policy that sets `persistent: true` without `mandatory: true`, or that sets `grpc` together with `path` or `match`, is rejected: its status shows an `Accepted: False` condition with the reason `Invalid`. NGINX Gateway Fabric also validates every header in `headers`: an invalid name or value causes the same rejection.{{< /call-out >}}
 
 Active health checks require the upstream to have a shared-memory zone. Set the `zoneSize` field in the same policy, as the active example below shows, or see [Configure upstream zone size]({{< ref "/ngf/traffic-management/upstream-settings.md#configure-upstream-zone-size" >}}) for details.
 
