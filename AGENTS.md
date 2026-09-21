@@ -249,4 +249,6 @@ Permalinks for products are defined in `config/_default/config.toml`.
 - `documentation/hugo-content.md` -- Hugo content guidance
 - `documentation/git-conventions.md` -- Git conventions
 - `documentation/include-files.md` -- Include file guidance
+- `documentation/product-rename.md` -- Playbook for renaming a product's
+  documentation tree while keeping the old pages live as stubs
 - `CONTRIBUTING.md` -- Contributor guide
