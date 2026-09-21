@@ -131,7 +131,7 @@ In the output, look for the `Negotiated TLS1.3 group` line. A successful hybrid 
 Negotiated TLS1.3 group: X25519MLKEM768
 ```
 
-If you see `X25519` or another classical group instead, check that `ssl_protocols TLSv1.3;` is set and that no `ssl_ecdh_curve` directive is overriding the defaults with classical-only groups.
+If you see `X25519` or another classical group instead, check that `ssl_protocols TLSv1.3;` is set, and that no `ssl_ecdh_curve` directive is overriding the defaults with classical-only groups.
 
 ### Track ML-KEM adoption across real clients
 
@@ -150,7 +150,7 @@ http {
 In the logs, connections that negotiated ML-KEM hybrid key exchange appear with `X25519MLKEM768` in the `$ssl_curve` field. Classical TLS 1.3 connections appear with `X25519` or another classical group name, and TLS 1.2 connections return an empty value.
 
 {{< call-out class="note" title="Log storage" >}}
-NGINX writes logs to the filesystem of your deployment. Make sure the log path is within an [allowed directory]({{< ref "/nginxaas/aws/deploy/nginx-configuration/configuration-rules.md#nginx-filesystem-restrictions" >}}) and that you have a plan for collecting or rotating the logs before they fill available space.
+NGINX writes logs to the filesystem of your deployment. Make sure the log path is within an [allowed directory]({{< ref "/nginxaas/aws/deploy/nginx-configuration/configuration-rules.md#nginx-filesystem-restrictions" >}}), and that you have a plan for collecting or rotating the logs before they fill available space.
 {{< /call-out >}}
 
 ---
