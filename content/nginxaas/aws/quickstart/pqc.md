@@ -39,8 +39,8 @@ Clients that support ML-KEM will negotiate it automatically on TLS 1.3 connectio
 Because hybrid ML-KEM key exchange applies only to TLS 1.3 connections, allowing TLS 1.2 means some clients can still negotiate a purely classical handshake. To prevent downgrade, restrict `ssl_protocols` to `TLSv1.3` only:
 
 1. Select **Configurations** in the left menu.
-2. Select the ellipsis (three dots) next to your configuration and select **Edit**.
-3. Add `ssl_protocols TLSv1.3;` to your `server` block:
+1. Select the ellipsis (three dots) next to your configuration and select **Edit**.
+1. Add `ssl_protocols TLSv1.3;` to your `server` block:
 
     ```nginx
     server {
@@ -52,7 +52,8 @@ Because hybrid ML-KEM key exchange applies only to TLS 1.3 connections, allowing
     }
     ```
 
-4. Select **Next** and then **Save** to apply the change.
+1. Select **Next** and then **Save** to apply the change.
+1. Deploy configuration to relevant deployments.
 
 {{< call-out class="note" title="Client compatibility" >}}
 Restricting to TLSv1.3 drops support for clients that only support TLS 1.2. If you need to support older clients, keep the default `ssl_protocols` value and accept that those connections won't use ML-KEM.
@@ -93,7 +94,7 @@ Choose the method that matches your key format.
 Use this method if your ML-DSA private key is in seed-only format.
 
 1. Follow the steps in [Add certificates using the Console]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}) to upload your ML-DSA certificate and key.
-2. In your NGINX configuration, reference the certificate and key with `ssl_certificate` and `ssl_certificate_key`, and set `ssl_protocols TLSv1.3;`:
+1. In your NGINX configuration, reference the certificate and key with `ssl_certificate` and `ssl_certificate_key`, and set `ssl_protocols TLSv1.3;`:
 
     ```nginx
     server {
@@ -105,15 +106,16 @@ Use this method if your ML-DSA private key is in seed-only format.
     }
     ```
 
-3. Select **Next** and then **Save** to apply the configuration.
+1. Select **Next** and then **Save** to apply the change.
+1. Deploy configuration to relevant deployments.
 
 ### Store an ML-DSA certificate in AWS Secrets Manager
 
 Use this method if your ML-DSA private key is in seed-priv format, or if you want to keep your keys within AWS.
 
 1. Add your ML-DSA certificate and key to AWS Secrets Manager. Follow the steps in [Add an SSL/TLS certificate to AWS Secrets Manager]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md#add-an-ssltls-certificate-to-aws-secrets-manager" >}}).
-2. Reference the secret in your NGINX configuration as described in [Use an AWS Secrets Manager certificate in an NGINX configuration]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md#use-an-aws-secrets-manager-certificate-in-an-nginx-configuration" >}}).
-3. Add `ssl_protocols TLSv1.3;` to your `server` block.
+1. Reference the secret in your NGINX configuration as described in [Use an AWS Secrets Manager certificate in an NGINX configuration]({{< ref "/nginxaas/aws/deploy/ssl-tls-certificates/ssl-tls-certificates-secrets-manager.md#use-an-aws-secrets-manager-certificate-in-an-nginx-configuration" >}}).
+1. Add `ssl_protocols TLSv1.3;` to your `server` block.
 
 ---
 
