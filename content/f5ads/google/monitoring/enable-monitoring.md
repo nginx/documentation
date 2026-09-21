@@ -58,8 +58,8 @@ To import the dashboard:
   "dashboardFilters": [
     {
       "filterType": "METRIC_LABEL",
-      "labelKey": "nginxaas_deployment_name",
-      "templateVariable": "nginxaas_deployment_name",
+      "labelKey": "deployment_name",
+      "templateVariable": "deployment_name",
       "valueType": "STRING_ARRAY"
     }
   ],
@@ -99,7 +99,7 @@ To import the dashboard:
                       "groupByFields": [],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.connections\" resource.type=\"generic_node\" metric.label.\"nginx_connections_outcome\"=\"ACCEPTED\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.connections\" resource.type=\"generic_node\" metric.label.\"nginx_connections_outcome\"=\"ACCEPTED\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -122,7 +122,7 @@ To import the dashboard:
                       "groupByFields": [],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.requests\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.requests\" resource.type=\"generic_node\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -166,7 +166,7 @@ To import the dashboard:
                   ],
                   "perSeriesAligner": "ALIGN_MEAN"
                 },
-                "filter": "metric.type=\"workload.googleapis.com/nginx.http.connection.count\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                "filter": "metric.type=\"workload.googleapis.com/nginx.http.connection.count\" resource.type=\"generic_node\" ${deployment_name}"
               },
               "unitOverride": ""
             }
@@ -208,7 +208,7 @@ To import the dashboard:
                       ],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.response.status\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.response.status\" resource.type=\"generic_node\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -247,7 +247,7 @@ To import the dashboard:
                   "groupByFields": [],
                   "perSeriesAligner": "ALIGN_MEAN"
                 },
-                "filter": "metric.type=\"workload.googleapis.com/nginx.http.request.processing.count\" resource.type=\"generic_node\" metric.label.\"nginx_zone_name\"=monitoring.regex.full_match(\"..*\") ${nginxaas_deployment_name}",
+                "filter": "metric.type=\"workload.googleapis.com/nginx.http.request.processing.count\" resource.type=\"generic_node\" metric.label.\"nginx_zone_name\"=monitoring.regex.full_match(\"..*\") ${deployment_name}",
                 "pickTimeSeriesFilter": {
                   "direction": "TOP",
                   "numTimeSeries": 12,
@@ -282,11 +282,11 @@ To import the dashboard:
                   "alignmentPeriod": "60s",
                   "crossSeriesReducer": "REDUCE_SUM",
                   "groupByFields": [
-                    "metric.label.\"nginxaas_deployment_name\""
+                    "metric.label.\"deployment_name\""
                   ],
                   "perSeriesAligner": "ALIGN_DELTA"
                 },
-                "filter": "metric.type=\"workload.googleapis.com/nginx.config.reloads\" resource.type=\"generic_node\" ${nginxaas_deployment_name}",
+                "filter": "metric.type=\"workload.googleapis.com/nginx.config.reloads\" resource.type=\"generic_node\" ${deployment_name}",
                 "pickTimeSeriesFilter": {
                   "direction": "TOP",
                   "numTimeSeries": 12,
@@ -333,7 +333,7 @@ To import the dashboard:
                       ],
                       "perSeriesAligner": "ALIGN_MEAN"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.count\" resource.type=\"generic_node\" ${nginxaas_deployment_name}",
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.count\" resource.type=\"generic_node\" ${deployment_name}",
                     "pickTimeSeriesFilter": {
                       "direction": "TOP",
                       "numTimeSeries": 12,
@@ -387,7 +387,7 @@ To import the dashboard:
                       ],
                       "perSeriesAligner": "ALIGN_RATE"
                     },
-                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.responses\" resource.type=\"generic_node\" ${nginxaas_deployment_name}"
+                    "filter": "metric.type=\"workload.googleapis.com/nginx.http.upstream.peer.responses\" resource.type=\"generic_node\" ${deployment_name}"
                   },
                   "unitOverride": ""
                 }
@@ -440,7 +440,7 @@ To import the dashboard:
 7. Replace the default JSON with the dashboard configuration you copied.
 8. Select **Apply Changes**.
 
-{{< call-out class="note" >}}The dashboard includes an **nginxaas_deployment_name** filter. Use this filter to view metrics for a specific F5 Application Delivery Service deployment or select multiple deployments to compare their performance.{{< /call-out >}}
+{{< call-out class="note" >}}The dashboard includes a **deployment_name** filter. Use this filter to view metrics for a specific F5 Application Delivery Service deployment or select multiple deployments to compare their performance.{{< /call-out >}}
 
 ## Disable exporting F5 Application Delivery Service metrics to a Google Cloud project
 

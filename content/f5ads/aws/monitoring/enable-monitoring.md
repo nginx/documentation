@@ -18,7 +18,7 @@ f5-audience: operator
 
 Monitoring your application's performance is crucial for maintaining its reliability and efficiency. F5 Application Delivery Service for AWS integrates with Amazon CloudWatch so you can collect, correlate, and analyze metrics for a thorough understanding of your application's health and behavior.
 
-F5 ADS for AWS exports metrics using the [Amazon CloudWatch Embedded Metric Format (EMF)](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html). When you enable metric export, F5 ADS writes EMF records to a CloudWatch Logs log group (the **Metric Group**) in a log stream named `metrics`. CloudWatch automatically extracts these records into metrics under the `NGINXaaS` namespace, where you can chart and query them like any other CloudWatch metric.
+F5 ADS for AWS exports metrics using the [Amazon CloudWatch Embedded Metric Format (EMF)](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Embedded_Metric_Format.html). When you enable metric export, F5 ADS writes EMF records to a CloudWatch Logs log group (the **Metric Group**) in a log stream named `metrics`. CloudWatch automatically extracts these records into metrics under the `F5 Application Delivery Service` namespace, where you can chart and query them like any other CloudWatch metric.
 
 ## Before you begin
 
@@ -42,7 +42,7 @@ To enable exporting metrics, turn on the **Export Metrics to CloudWatch** toggle
 1. In the **Metric Group Name** field, enter the name of the CloudWatch Logs log group you want to receive exported metrics. If you leave this field at its default, F5 ADS uses a log group named after the deployment object ID.
 1. Select **Update**.
 
-Within the metric log group, F5 ADS writes EMF records to a log stream named `metrics`. CloudWatch extracts these records into metrics under the `NGINXaaS` namespace.
+Within the metric log group, F5 ADS writes EMF records to a log stream named `metrics`. CloudWatch extracts these records into metrics under the `F5 Application Delivery Service` namespace.
 
 ## View F5 ADS metrics in Amazon CloudWatch
 
@@ -53,11 +53,11 @@ See the [Metrics Catalog]({{< ref "/f5ads/aws/monitoring/metrics-catalog.md" >}}
 Log in to the [AWS Management Console](https://console.aws.amazon.com/),
 
 1. Go to the **CloudWatch** console.
-1. Select **Classic Metrics** and then select the **F5 ADS** tile in the **Custom Namespaces** section.
+1. Select **Classic Metrics** and then select the **F5 Application Delivery Service** tile in the **Custom Namespaces** section.
 
 Refer to the [AWS's CloudWatch Metrics Explorer](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metrics-Explorer.html) documentation to learn how you can create charts and queries.
 
-{{< call-out class="note" >}}Metrics can take a few minutes to appear after you enable export, because CloudWatch must first ingest the EMF records and extract them into the `NGINXaaS` namespace. To inspect the raw EMF records, open the `metrics` log stream in your metric log group with [CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html).{{< /call-out >}}
+{{< call-out class="note" >}}Metrics can take a few minutes to appear after you enable export, because CloudWatch must first ingest the EMF records and extract them into the `F5 Application Delivery Service` namespace. To inspect the raw EMF records, open the `metrics` log stream in your metric log group with [CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html).{{< /call-out >}}
 
 ## Disable F5 ADS metric export to CloudWatch
 

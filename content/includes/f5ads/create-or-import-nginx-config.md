@@ -14,7 +14,7 @@ In the F5 ADS Console,
 
    - Select **New configuration** to create a new config.
       - Provide a name for your configuration and an optional description.
-      - Select to start with the "F5 ADS Default" (a basic NGINX setup) or an empty configuration file.
+      - Select to start with the "F5 Application Delivery Service Default" (a basic NGINX setup) or an empty configuration file.
       - Select **Next**.
    - Select **Copy existing configuration** to use one of the existing configuration files in your account as template.
       - Provide a name for your configuration and an optional description.
