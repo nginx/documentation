@@ -28,7 +28,7 @@ Encrypt your certificates, keys, and PEM files using one of these standards:
 
 - RSA
 - ECC/ECDSA
-- ML-DSA (post-quantum KEX)
+- ML-DSA (post-quantum)
 
 {{< call-out class="note" title="ML-DSA key format support" >}}
 When you upload an ML-DSA private key using the NGINXaaS Console, only the seed-only key format is supported.
