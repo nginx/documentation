@@ -14,7 +14,7 @@ f5-summary: >
 f5-audience: operator
 ---
 
-Post-quantum cryptography (PQC) protects TLS connections against future quantum computers. A quantum computer powerful enough to break current public-key algorithms (RSA, ECC) could decrypt traffic captured today — the "harvest now, decrypt later" threat. NGINXaaS for Google Cloud addresses this with two modes:
+Post-quantum cryptography (PQC) protects TLS connections against future quantum computers. A quantum computer powerful enough to break current public-key algorithms (RSA, ECC) could decrypt traffic captured today - the "harvest now, decrypt later" threat. NGINXaaS for Google Cloud addresses this with two modes:
 
 - **Hybrid mode**: Combines classical elliptic-curve key exchange (EC) with ML-KEM for data encryption. This protects against quantum attacks while staying compatible with clients that don't yet support PQC.
 - **Full PQC mode**: Uses ML-DSA certificates and keys that you provide. This gives you a fully post-quantum TLS stack when both client and server support it.
@@ -24,7 +24,7 @@ Post-quantum cryptography (PQC) protects TLS connections against future quantum 
 Before you begin, ensure you have:
 
 - **An existing NGINXaaS for Google Cloud deployment**: See [Create a deployment]({{< ref "/nginxaas/google/deploy/create-deployment/deploy-console.md" >}}) if you need to create one.
-- **TLS 1.3 in your NGINX configuration**: NGINX includes TLSv1.3 in its default `ssl_protocols` value alongside TLSv1.2. ML-KEM hybrid key exchange only applies to TLS 1.3 connections. To prevent clients from downgrading to TLS 1.2, restrict `ssl_protocols` to `TLSv1.3` only — this is recommended for maximum security but drops support for older clients.
+- **TLS 1.3 in your NGINX configuration**: NGINX includes TLSv1.3 in its default `ssl_protocols` value alongside TLSv1.2. ML-KEM hybrid key exchange only applies to TLS 1.3 connections. To prevent clients from downgrading to TLS 1.2, restrict `ssl_protocols` to `TLSv1.3` only - this is recommended for maximum security but drops support for older clients.
 
 ---
 
@@ -157,6 +157,6 @@ NGINX writes logs to the filesystem of your deployment. Make sure the log path i
 
 ## What's next
 
-- [SSL/TLS certificate overview]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}}) — supported certificate types, formats, and rotation options.
-- [Add certificates using the Console]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}) — manage certificates alongside your NGINX configuration.
-- [Add certificates from Secret Manager]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}) — fetch secrets directly from Google Secret Manager.
+- [SSL/TLS certificate overview]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/overview.md" >}}) - supported certificate types, formats, and rotation options.
+- [Add certificates using the Console]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}) - manage certificates alongside your NGINX configuration.
+- [Add certificates from Secret Manager]({{< ref "/nginxaas/google/deploy/ssl-tls-certificates/ssl-tls-certificates-secret-manager.md" >}}) - fetch secrets directly from Google Secret Manager.
