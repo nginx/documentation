@@ -145,7 +145,7 @@ http {
 }
 ```
 
-In the logs, connections that negotiated ML-KEM hybrid key exchange appear with `X25519MLKEM768` in the `$ssl_curve` field. Classical TLS 1.3 connections appear with `X25519` or another classical group name, and TLS 1.2 connections return an empty value.
+In the logs, connections that negotiated ML-KEM hybrid key exchange appear with `X25519MLKEM768` in a value of the `$ssl_curve` variable. Classical TLS 1.3 connections appear with `X25519` or another classical group name, and TLS 1.2 connections return an empty value.
 
 {{< call-out class="note" title="Collecting logs" >}}
 To forward logs to AWS CloudWatch, see [Enable NGINX logs]({{< ref "/nginxaas/aws/monitoring/enable-nginx-logs.md" >}}).
