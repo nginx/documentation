@@ -14,19 +14,17 @@ f5-summary: >
 f5-audience: operator
 ---
 
-Post-quantum cryptography (PQC) protects TLS connections against future quantum computers. A quantum computer powerful enough to break current public-key algorithms (RSA, ECC) could decrypt traffic captured today - the "harvest now, decrypt later" threat. F5 NGINXaaS for AWS addresses this with two modes:
+Post-quantum cryptography (PQC) protects TLS connections against future quantum computers. A quantum computer powerful enough to break current public-key algorithms like RSA and Elliptic Curve Cryptography (ECC) could decrypt traffic captured today. Security teams call this threat harvest now, decrypt later. F5 NGINXaaS for AWS addresses this with two modes:
 
-- **Hybrid mode**: Combines classical elliptic-curve key exchange (EC) with ML-KEM for data encryption. This protects against quantum attacks while staying compatible with clients that don't yet support PQC.
-- **Full PQC mode**: Uses ML-DSA certificates and keys that you provide. This gives you a fully post-quantum TLS stack when both client and server support it.
+- **Hybrid mode**: Combines classical elliptic-curve key exchange with the Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM) for data encryption. This protects against quantum attacks while staying compatible with clients that don't yet support PQC.
+- **Full PQC mode**: Uses Module-Lattice-Based Digital Signature Algorithm (ML-DSA) certificates and keys that you provide. This gives you a fully post-quantum TLS stack when both client and server support it.
 
 ## Before you begin
 
 Before you begin, ensure you have:
 
-- **An existing NGINXaaS for AWS deployment**: See [Create a deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md" >}}) if you need to create one.
-- **TLS 1.3 in your NGINX configuration**: NGINX includes TLSv1.3 in its default `ssl_protocols` value alongside TLSv1.2. ML-KEM hybrid key exchange only applies to TLS 1.3 connections. To prevent clients from downgrading to TLS 1.2, restrict `ssl_protocols` to `TLSv1.3` only - this is recommended for maximum security but drops support for older clients.
-
----
+- An existing NGINXaaS for AWS deployment: See [Create a deployment]({{< ref "/nginxaas/aws/deploy/create-deployment/deploy-console.md" >}}) if you need to create one.
+- TLS 1.3 in your NGINX configuration: NGINX includes TLSv1.3 in its default `ssl_protocols` value alongside TLSv1.2. ML-KEM hybrid key exchange only applies to TLS 1.3 connections. To prevent clients from downgrading to TLS 1.2, restrict `ssl_protocols` to `TLSv1.3` only - this is recommended for maximum security but drops support for older clients.
 
 ## Enable hybrid mode (ML-KEM key exchange)
 
@@ -36,7 +34,7 @@ Clients that support ML-KEM will negotiate it automatically on TLS 1.3 connectio
 
 ### Recommended: Restrict to TLS 1.3 only
 
-Because hybrid ML-KEM key exchange applies only to TLS 1.3 connections, allowing TLS 1.2 means some clients can still negotiate a purely classical handshake. To prevent downgrade, restrict `ssl_protocols` to `TLSv1.3` only:
+Because hybrid ML-KEM key exchange applies only to TLS 1.3 connections, allowing TLS 1.2 means some clients can still negotiate a purely classical handshake. To prevent a downgrade, restrict `ssl_protocols` to `TLSv1.3` only:
 
 1. Select **Configurations** in the left menu.
 1. Select the ellipsis (three dots) next to your configuration and select **Edit**.
@@ -78,14 +76,12 @@ server {
 Including `X25519` after `X25519MLKEM768` lets clients that don't support ML-KEM fall back to classical key exchange. Remove `X25519` only if you want to restrict connections to ML-KEM-capable clients.
 {{< /call-out >}}
 
----
-
 ## Enable full PQC mode (ML-DSA certificates)
 
 Full PQC mode requires you to upload an ML-DSA certificate and private key. NGINXaaS for AWS accepts ML-DSA keys in PEM format with the following constraints:
 
-- **NGINXaaS Console**: Seed-only key format only.
-- **AWS Secrets Manager**: Seed-only and seed-priv formats are both supported.
+- NGINXaaS Console: Seed-only key format only.
+- AWS Secrets Manager: Seed-only and seed-priv formats are both supported.
 
 Choose the method that matches your key format.
 
@@ -133,7 +129,7 @@ In the output, look for the `Negotiated TLS1.3 group` line. A successful hybrid 
 Negotiated TLS1.3 group: X25519MLKEM768
 ```
 
-If you see `X25519` or another classical group instead, check that `ssl_protocols TLSv1.3;` is set, and that no `ssl_ecdh_curve` directive is overriding the defaults with classical-only groups.
+If you see `X25519` or another classical group instead, confirm that `ssl_protocols TLSv1.3;` is set, and that no `ssl_ecdh_curve` directive is overriding the defaults with classical-only groups.
 
 ### Track ML-KEM adoption across real clients
 

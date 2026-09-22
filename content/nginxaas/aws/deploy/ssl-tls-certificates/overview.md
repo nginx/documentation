@@ -30,8 +30,8 @@ Encrypt your certificates, keys, and PEM files using one of these algorithms:
 - ML-DSA (post-quantum)
 
 {{< call-out class="note" title="ML-DSA key format support" >}}
-When you upload an ML-DSA private key using the NGINXaaS Console, only the seed-only key format is supported.
-If you store your ML-DSA key in AWS Secrets Manager, both seed-only and seed-priv formats are supported.
+When you upload an ML-DSA private key using the NGINXaaS Console, use the seed-only key format.
+If you store your ML-DSA key in AWS Secrets Manager, you can use either the seed-only or seed-priv format.
 See [Enable post-quantum cryptography]({{< ref "/nginxaas/aws/quickstart/pqc.md" >}}) for configuration guidance.
 {{< /call-out >}}
 
