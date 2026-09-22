@@ -14,6 +14,17 @@ f5-audience: developer, operator
 
 This reference describes the fields and merging behavior for each Policy type.
 
+{{< call-out class="note" >}}
+
+From version `<VERSION>`, NGINX Ingress Controller validates each referenced secret by its data keys, not by its `type`. Wherever a section below shows an `nginx.org/*` or `nginx.com/*` type, you can provide either of these:
+
+- A standard `Opaque` Kubernetes secret that holds the required keys, so you can reuse a secret that your existing credential tooling (for example, cert-manager, External Secrets Operator, or a GitOps pipeline) already produces.
+- A secret of the NGINX-specific type shown for that field.
+
+Existing `nginx.org/*` and `nginx.com/*` secrets remain supported and aren't deprecated. When a required key is absent, or when a certificate or key doesn't parse, NGINX Ingress Controller rejects the secret. Add the missing key, or fix the certificate or key, to clear the rejection. NGINX Ingress Controller never rejects a secret because of the `type`.
+
+{{< /call-out >}}
+
 ## AccessControl
 
 The access control policy configures NGINX to deny or allow requests from clients with the specified IP addresses or subnets.
@@ -257,7 +268,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: api-key-secret
-type: nginx.org/apikey
+type: Opaque
 data:
     client1: cGFzc3dvcmQ= # password
 ```
@@ -269,7 +280,7 @@ data:
 |``suppliedIn`` | `header` or `query`. | | Yes |
 |``suppliedIn.header`` | An array of headers that the API Key may appear in. | ``string[]`` | No |
 |``suppliedIn.query`` | An array of query params that the API Key may appear in. | ``string[]`` | No |
-|``clientSecret`` | The name of the Kubernetes secret that stores the API Key(s). It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/apikey``, and the API Key(s) must be stored in a key: val format where each key is a unique clientID and each value is a unique base64 encoded API Key  | ``string`` | Yes |
+|``clientSecret`` | The name of the Kubernetes secret that stores the API keys. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/apikey` secret. Store each API key as a key-value pair, where each key is a unique clientID and each value is a unique base64-encoded API key. | ``string`` | Yes |
 
 {{% /table %}}
 
@@ -334,7 +345,7 @@ This feature uses the NGINX [ngx_http_auth_basic_module](https://nginx.org/en/do
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``secret`` | The name of the Kubernetes secret that stores the Htpasswd configuration. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/htpasswd``, and the config must be stored in the secret under the key ``htpasswd``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. | ``string`` | Yes |
+|``secret`` | The name of the Kubernetes secret that stores the Htpasswd configuration. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/htpasswd` secret. Store the configuration under the key `htpasswd`. | ``string`` | Yes |
 |``realm`` | The realm for the basic authentication. | ``string`` | No |
 
 {{% /table %}}
@@ -398,7 +409,7 @@ This feature uses the NGINX Plus [ngx_http_auth_jwt_module](https://nginx.org/en
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``secret`` | The name of the Kubernetes secret that stores the JWK. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/jwk``, and the JWK must be stored in the secret under the key ``jwk``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. | ``string`` | Yes |
+|``secret`` | The name of the Kubernetes secret that stores the JWK. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/jwk` secret. Store the JWK under the key `jwk`. | ``string`` | Yes |
 |``realm`` | The realm of the JWT. | ``string`` | Yes |
 |``token`` | The token specifies a variable that contains the JSON Web Token. By default the JWT is passed in the ``Authorization`` header as a Bearer Token. JWT may be also passed as a cookie or a part of a query string, for example: ``$cookie_auth_token``. Accepted variables are ``$http_``, ``$arg_``, ``$cookie_``. | ``string`` | No |
 
@@ -456,7 +467,7 @@ Subrequests may not function as expected and may cause issues when fetching JWKs
 |``sniName`` | The SNI name to use when connecting to the remote server. If not set, NGINX Ingress Controller uses the hostname from the ``jwksURI``. | ``string`` | No | -- |
 |``sslVerify`` | Turns on verification of the JWKS server SSL certificate. | ``bool`` | No | `false` |
 |``sslVerifyDepth`` | Sets the verification depth in the JWKS server certificates chain. | ``int`` | No | `1` |
-|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for JWKS server verification. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored in the secret under the key ``ca.crt``. | ``string`` | No | -- |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for JWKS server verification. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | No | -- |
 
 {{% /table %}}
 
@@ -491,14 +502,14 @@ ingressMTLS:
   verifyDepth: 1
 ```
 
-Below is an example of `ingress-mtls-secret` using the secret type `nginx.org/ca`:
+Below is an example of `ingress-mtls-secret` as a standard `Opaque` secret:
 
 ```yaml
 kind: Secret
 metadata:
   name: ingress-mtls-secret
 apiVersion: v1
-type: nginx.org/ca
+type: Opaque
 data:
   ca.crt: <base64encoded-certificate>
 ```
@@ -547,7 +558,7 @@ You can use only one of these configuration options at a time.
 
 {{< /call-out >}}
 
-1. Add the `ca.crl` field to the `nginx.org/ca` secret type, which accepts a base64 encoded certificate revocation list.
+1. Add the `ca.crl` field to the secret. The field accepts a base64-encoded certificate revocation list.
 
    Example:
 
@@ -556,7 +567,7 @@ You can use only one of these configuration options at a time.
    metadata:
      name: ingress-mtls-secret
    apiVersion: v1
-   type: nginx.org/ca
+   type: Opaque
    data:
      ca.crt: <base64encoded-certificate>
      ca.crl: <base64encoded-crl>
@@ -566,7 +577,7 @@ You can use only one of these configuration options at a time.
 
    {{< call-out class="note" >}}
 
-   Use this configuration option only when your CRL is larger than 1 MiB. Otherwise, use the `nginx.org/ca` secret type to manage your CRL.
+   Use this configuration option only when your CRL is larger than 1 MiB. Otherwise, add the `ca.crl` key to the secret to manage your CRL.
 
    {{< /call-out >}}
 
@@ -600,7 +611,7 @@ See the Kubernetes documentation on [volumes](https://kubernetes.io/docs/concept
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``clientCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored in the secret under the key ``ca.crt``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. | ``string`` | Yes |
+|``clientCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | Yes |
 |``verifyClient`` | Verification for the client. Possible values are ``"on"``, ``"off"``, ``"optional"``, ``"optional_no_ca"``. The default is ``"on"``. | ``string`` | No |
 |``verifyDepth`` | Sets the verification depth in the client certificates chain. The default is ``1``. | ``int`` | No |
 |``crlFileName`` | The file name of the Certificate Revocation List. NGINX Ingress Controller looks for this file in `/etc/nginx/secrets`. | ``string`` | No |
@@ -643,8 +654,8 @@ This feature uses the NGINX [ngx_http_proxy_module](https://nginx.org/en/docs/ht
 
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
-|``tlsSecret`` | The name of the Kubernetes secret that stores the TLS certificate and key. It must be in the same namespace as the Policy resource. The secret must be of the type ``kubernetes.io/tls``, the certificate must be stored in the secret under the key ``tls.crt``, and the key must be stored under the key ``tls.key``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. | ``string`` | No |
-|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored in the secret under the key ``ca.crt``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. | ``string`` | No |
+|``tlsSecret`` | The name of the Kubernetes secret that stores the TLS certificate and key. It must be in the same namespace as the Policy resource. Use a `kubernetes.io/tls` secret, with the certificate under the key `tls.crt` and the key under `tls.key`. If either key is absent, or the certificate and key don't form a valid pair, NGINX Ingress Controller rejects the secret. | ``string`` | No |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``verifyServer`` | Turns on verification of the upstream HTTPS server certificate. | ``bool`` | No |
 |``verifyDepth`` | Sets the verification depth in the proxied HTTPS server certificates chain. The default is ``1``. | ``int`` | No |
 |``sessionReuse`` | Turns on reuse of SSL sessions to the upstreams. The default is ``true``. | ``bool`` | No |
@@ -716,7 +727,7 @@ An example ExternalAuth policy for VirtualServer resources is available in the G
 |``sslEnabled`` | Turns on HTTPS when proxying requests to the external authentication server. The default is ``false``. | ``bool`` | No |
 |``sslVerify`` | Turns on verification of the external authentication server's SSL certificate. The default is ``false``. | ``bool`` | No |
 |``sslVerifyDepth`` | Sets the verification depth in the external authentication server certificates chain. The default is ``1``. | ``int`` | No |
-|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored under the key ``ca.crt``. | ``string`` | No |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate for external authentication server certificate verification. Can include an optional namespace prefix as ``<namespace>/<secret>``. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``sniName`` | The server name used for SNI and certificate verification when connecting to the external authentication server over TLS. If not specified, defaults to ``<service-name>.<namespace>.svc`` derived from ``authServiceName``. | ``string`` | No |
 
 {{% /table %}}
@@ -800,7 +811,7 @@ The OIDC policy defines a few internal locations that you can't customize: `/_jw
 |Field | Description | Type | Required |
 | ---| ---| ---| --- |
 |``clientID`` | The client ID provided by your OpenID Connect provider. | ``string`` | Yes |
-|``clientSecret`` | The name of the Kubernetes secret that stores the client secret provided by your OpenID Connect provider. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/oidc``, and the secret stored under the key ``client-secret``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. If you enable PKCE, don't configure this field. | ``string`` | Yes |
+|``clientSecret`` | The name of the Kubernetes secret that stores the client secret provided by your OpenID Connect provider. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/oidc` secret. Store the client secret under the key `client-secret`. If you turn on PKCE, don't configure this field. | ``string`` | Yes |
 |``authEndpoint`` | URL for the authorization endpoint provided by your OpenID Connect provider. | ``string`` | Yes |
 |``authExtraArgs`` | A list of extra URL arguments to pass to the authorization endpoint provided by your OpenID Connect provider. Arguments must be URL encoded, multiple arguments may be included in the list, for example ``[ arg1=value1, arg2=value2 ]`` | ``string[]`` | No |
 |``tokenEndpoint`` | URL for the token endpoint provided by your OpenID Connect provider. | ``string`` | Yes |
@@ -814,7 +825,7 @@ The OIDC policy defines a few internal locations that you can't customize: `/_jw
 |``pkceEnable`` | Turns on Proof Key for Code Exchange. The OpenID client needs to be in public mode. `clientSecret` is not used in this mode. | ``boolean`` | No |
 |``sslVerify`` | Use this option to turn on TLS verification when calls are made to the IDP endpoints. | ``boolean`` | No |
 |``verifyDepth`` | Sets the verification depth in the proxied HTTPS server certificates chain. The default is ``1``. | ``int`` | No |
-|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret must be of the type ``nginx.org/ca``, and the certificate must be stored in the secret under the key ``ca.crt``. Otherwise, NGINX Ingress Controller rejects the secret as invalid. | ``string`` | No |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores the CA certificate. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 
 {{% /table %}}
 
@@ -911,7 +922,7 @@ On a VirtualServer, if you apply both an `oidc` policy and an `oidcNative` polic
 | --- | --- | --- | --- | --- |
 | `issuer` | The Issuer Identifier URL of the OpenID Provider. Must use the `https` scheme and exactly match the value of `issuer` in the OpenID Provider metadata. | `string` | Yes | -- |
 | `clientID` | The client ID provided by your OpenID Connect provider. | `string` | Yes | -- |
-| `clientSecret` | The name of the Kubernetes secret that stores the client secret. Must be of type `nginx.org/oidc` with the secret stored under the key `client-secret` and must be in the same namespace as the Policy resource. Not required when PKCE is enabled with a public client. | `string` | No | -- |
+| `clientSecret` | The name of the Kubernetes secret that stores the client secret. It must be in the same namespace as the Policy resource. The secret can be a standard `Opaque` secret or an `nginx.org/oidc` secret. Store the client secret under the key `client-secret`. Not required when PKCE is turned on with a public client. | `string` | No | -- |
 | `configURL` | The URL of the OpenID Provider Configuration Information (discovery endpoint). Must include a path and use the `http` or `https` scheme. If not set, defaults to `<issuer>/.well-known/openid-configuration`. | `string` | No | `<issuer>/.well-known/openid-configuration` |
 | `scope` | Space-separated list of OpenID Connect scopes. Must contain `openid`. Example: `"openid profile email"`. | `string` | No | `openid` |
 | `redirectURI` | Overrides the default redirect URI path used for the authorization callback. | `string` | No | `/oidc_callback_<providerName>` |
@@ -924,7 +935,7 @@ On a VirtualServer, if you apply both an `oidc` policy and an `oidcNative` polic
 | `logoutTokenHint` | Adds the `id_token_hint` argument to the provider's logout endpoint when redirecting the user during logout. Required by some providers. | `bool` | No | `false` |
 | `sessionTimeout` | Duration after which the session expires unless refreshed. Example: `"8h"`, `"30m"`. | `string` | No | `8h` |
 | `userInfoEnable` | Turns on downloading of the UserInfo data and makes UserInfo claims available through `$oidc_claim_<name>` variables. | `bool` | No | `false` |
-| `trustedCertSecret` | The name of the Kubernetes secret that stores the CA certificate for verifying the provider's TLS certificate. Must be of type `nginx.org/ca` with the certificate stored under key `ca.crt`. | `string` | No | -- |
+| `trustedCertSecret` | The name of the Kubernetes secret that stores the CA certificate for verifying the provider's TLS certificate. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | `string` | No | -- |
 | `sslVerify` | Turns on verification of the OpenID Provider's TLS certificate. Set to false to skip verification (dev/test only). | `bool` | No | `true` |
 | `sslName` | Overrides the TLS SNI name and Host header used when connecting to the OpenID Provider. Must be a valid DNS name and can't include a port. When unset, the hostname of the endpoint being called is used, taken from the provider's discovery metadata. | `string` | No | -- |
 | `sslVerifyDepth` | Verification depth in the OpenID Provider TLS certificate chain. | `int` | No | `1` |
@@ -1250,8 +1261,8 @@ For details and examples, see [Connect F5 WAF for NGINX to bundle sources]({{< r
 |``namespace`` | Management-plane namespace or tenant. Required for ``N1C``. Not used for ``NIM`` or ``HTTPS``. | ``string`` | No |
 |``enablePolling`` | Must be explicitly set. When ``true``, NIC re-fetches the bundle at ``pollInterval``. When ``false``, NIC fetches the bundle once at policy creation or update. | ``bool`` | Yes |
 |``pollInterval`` | How often to re-fetch when ``enablePolling`` is ``true``. Minimum ``1m``, default ``5m``. | ``string`` | No |
-|``secret`` | Secret in the same namespace as the Policy. For ``N1C``/``NIM``, use ``nginx.com/waf-bundle`` (token or username/password). For ``HTTPS``, use ``kubernetes.io/tls`` for client mTLS (``tls.crt`` and ``tls.key``). | ``string`` | No |
-|``trustedCertSecret`` | Name of an ``nginx.org/ca`` Secret containing a custom CA certificate (``ca.crt``) for verifying the server TLS certificate. Must be in the same namespace as the Policy. | ``string`` | No |
+|``secret`` | Secret in the same namespace as the Policy. For `N1C` and `NIM`, use a standard `Opaque` secret or an `nginx.com/waf-bundle` secret, with the credentials under `token`, or under `username` and `password`. For `HTTPS`, use a `kubernetes.io/tls` secret for client mTLS, with `tls.crt` and `tls.key`. | ``string`` | No |
+|``trustedCertSecret`` | The name of the Kubernetes secret that stores a custom CA certificate for verifying the server TLS certificate. It must be in the same namespace as the Policy. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret. Store the certificate under the key `ca.crt`. | ``string`` | No |
 |``insecureSkipVerify`` | Turns off TLS certificate verification. Not recommended for production. | ``bool`` | No |
 |``verifyChecksum`` | Turns on SHA-256 verification of the downloaded bundle. HTTPS only. | ``bool`` | No |
 |``timeout`` | Time limit for a single bundle fetch request. Default ``60s``. | ``string`` | No |

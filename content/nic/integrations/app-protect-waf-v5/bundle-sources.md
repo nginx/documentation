@@ -43,13 +43,12 @@ Complete end-to-end NGINX Ingress Controller with F5 WAF for NGINX bundle source
 
 ### Create a credentials Secret
 
-Create a Secret of type `nginx.com/waf-bundle` in the same namespace as the Policy. The Secret must contain a `token` key with your NGINX One Console API token:
+Create a secret in the same namespace as the Policy to hold your NGINX One Console API token. From NGINX Ingress Controller `<VERSION>`, the secret can be a standard `Opaque` secret or an `nginx.com/waf-bundle` secret. If the `token` key is absent, NGINX Ingress Controller rejects the secret. Store the token under the key `token`:
 
 To create an API token, see [Authentication]({{< ref "/nginx-one-console/api/authentication.md" >}}).
 
 ```shell
 kubectl create secret generic n1c-credentials \
-  --type=nginx.com/waf-bundle \
   --from-literal=token=<YOUR_API_TOKEN>
 ```
 
@@ -114,7 +113,7 @@ For complete HTTPS setup manifests, see the [bundle server files](https://github
    kubectl describe policy waf-policy
    ```
 
-   Look for a `Normal` event confirming the bundle was fetched. If you see a `Warning` event, check the message for the cause — common issues include an incorrect `policyName`, an invalid token, or a policy that has not been published yet.
+   Look for a `Normal` event confirming the bundle was fetched. If you see a `Warning` event, check the message for the cause — common issues include an incorrect `policyName`, an invalid token, or a policy that has not been published yet. NGINX Ingress Controller also rejects a secret that is missing the required `token` key.
 
 1. Send a legitimate request to confirm traffic flows normally:
 
@@ -199,7 +198,7 @@ kubectl exec -it <SYSLOG_POD> -- cat /var/log/messages
 
 ### Create a credentials Secret
 
-Create a Secret of type `nginx.com/waf-bundle` in the same namespace as the Policy. Use a `token` key for bearer auth, or `username` and `password` keys for basic auth:
+Create a secret in the same namespace as the Policy. The secret can be a standard `Opaque` secret or an `nginx.com/waf-bundle` secret. If neither the `token` key nor the `username` and `password` keys are present, NGINX Ingress Controller rejects the secret. For bearer auth, store the token under the key `token`. For basic auth, store the credentials under the keys `username` and `password`:
 
 If you use bearer auth, get an access token using your configured authentication flow. For supported methods, see [API Overview]({{< ref "/nim/fundamentals/api-overview.md#authentication" >}}).
 
@@ -209,7 +208,6 @@ If you use bearer auth, get an access token using your configured authentication
 
 ```shell
 kubectl create secret generic nim-credentials \
-  --type=nginx.com/waf-bundle \
   --from-literal=token=<YOUR_TOKEN>
 ```
 
@@ -219,7 +217,6 @@ kubectl create secret generic nim-credentials \
 
 ```shell
 kubectl create secret generic nim-credentials \
-  --type=nginx.com/waf-bundle \
   --from-literal=username=<YOUR_USERNAME> \
   --from-literal=password=<YOUR_PASSWORD>
 ```
@@ -286,7 +283,7 @@ For complete end-to-end manifests, see the [waf-management-plane examples](https
    kubectl describe policy waf-policy
    ```
 
-   Look for a `Normal` event confirming the bundle was fetched. If you see a `Warning` event, check the message for the cause — common issues include an incorrect `policyName`, authentication failure, or a bundle that has not been compiled yet.
+   Look for a `Normal` event confirming the bundle was fetched. If you see a `Warning` event, check the message for the cause — common issues include an incorrect `policyName`, authentication failure, or a bundle that has not been compiled yet. NGINX Ingress Controller also rejects a secret with neither the `token` key nor the `username` and `password` keys.
 
 1. Send a legitimate request to confirm traffic flows normally:
 
@@ -405,11 +402,10 @@ After compiling your policy with the [F5 WAF compiler]({{< ref "/waf/configure/c
 
 Skip this step if your HTTPS server uses a publicly trusted certificate.
 
-- **Custom CA certificate** — If your server uses a self-signed or internal CA, create a Secret of type `nginx.org/ca` with a `ca.crt` key, and reference it in `trustedCertSecret`:
+- **Custom CA certificate** — If your server uses a self-signed or internal CA, create a secret with a `ca.crt` key. If the `ca.crt` key is absent, NGINX Ingress Controller rejects the secret. Reference it in `trustedCertSecret`. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret:
 
   ```shell
   kubectl create secret generic bundle-ca-cert \
-    --type=nginx.org/ca \
     --from-file=ca.crt=</path/to/ca.crt>
   ```
 

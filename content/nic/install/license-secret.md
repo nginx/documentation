@@ -29,12 +29,12 @@ The JWT is required for validating your subscription and reporting telemetry dat
 
 The JWT needs to be configured before deploying NGINX Ingress Controller. 
 
-It must be stored in a Kubernetes Secret of type `nginx.com/license` in the same namespace as your NGINX Ingress Controller pod(s).
+From NGINX Ingress Controller `<VERSION>`, store the JWT in a Kubernetes secret. Put it in the same namespace as your NGINX Ingress Controller pods. NGINX Ingress Controller validates the secret by its `license.jwt` key, so the secret can be a standard `Opaque` secret or an `nginx.com/license` secret. If the `license.jwt` key is absent, NGINX Ingress Controller rejects the secret. Add the key to resolve it.
 
 Create the Secret with the following command:
 
 ```shell
-kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> --type=nginx.com/license -n <your-namespace>
+kubectl create secret generic license-token --from-file=license.jwt=<path-to-your-jwt> -n <your-namespace>
 ```
 
 Once created, you can download the `.jwt` file.
@@ -54,7 +54,6 @@ kubectl create secret generic license-token \
 --save-config \
 --dry-run=client \
 --from-file=license.jwt=<new-jwt-file-path> \
---type=nginx.com/license \
 -o yaml | \
 kubectl apply -f -
 ```
@@ -123,13 +122,12 @@ To use Client Auth with NGINX Instance Manager, first create a Secret of type `k
 kubectl create secret tls ssl-certificate --cert=<path-to-your-client.pem> --key=<path-to-your-client.key> -n <Your Namespace>
 ```
 
-To provide a SSL trusted certificate, and an optional Certificate Revocation List, create a Secret of type `nginx.org/ca` in the Namespace that the NIC Pod(s) are in.
+To provide an SSL trusted certificate and an optional certificate revocation list, create a secret. Put it in the same namespace as the NGINX Ingress Controller pods. The secret can be a standard `Opaque` secret or an `nginx.org/ca` secret:
 
 ```shell
 kubectl create secret generic ssl-trusted-certificate \
    --from-file=ca.crt=<path-to-your-ca.crt> \
-   --from-file=ca.crl=<path-to-your-ca.crl> \ # optional
-   --type=nginx.org/ca
+   --from-file=ca.crl=<path-to-your-ca.crl> # optional
 ```
 
 Providing an optional CRL (certificate revocation list) will configure the [`ssl_crl`](https://nginx.org/en/docs/ngx_mgmt_module.html#ssl_crl) directive.
