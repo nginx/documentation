@@ -50,13 +50,13 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo apt-get install nms-nap-compiler-v5.715.0
+   sudo apt-get install nms-nap-compiler-v5.607.1
    ```
 
 1. Append the `--force-overwrite` option after the first installation to install multiple compiler versions on the same system:
 
    ```shell
-   sudo apt-get install nms-nap-compiler-v5.715.0 -o Dpkg::Options::="--force-overwrite"
+   sudo apt-get install nms-nap-compiler-v5.607.1 -o Dpkg::Options::="--force-overwrite"
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -94,7 +94,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo dnf install nms-nap-compiler-v5.715.0
+   sudo dnf install nms-nap-compiler-v5.607.1
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -126,7 +126,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo dnf install nms-nap-compiler-v5.715.0
+   sudo dnf install nms-nap-compiler-v5.607.1
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
@@ -158,7 +158,7 @@ Earlier releases used 4.x.x for VM packages (for example, NAP 4.15.0, NAP 4.16.0
 1. Install the WAF compiler:
 
    ```shell
-   sudo dnf install nms-nap-compiler-v5.715.0
+   sudo dnf install nms-nap-compiler-v5.607.1
    ```
 
 1. {{< include "nim/waf/restart-nms-integrations.md" >}}
