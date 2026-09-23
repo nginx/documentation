@@ -130,6 +130,35 @@ External references are supported for any policy reference.
 
 {{< /call-out >}}
 
+### Actionable rules
+
+Actionable rules let an override rule trigger an action directly, without applying an `override` policy body.
+
+F5 WAF for NGINX currently supports these actionable rule types:
+
+- `violation`, which raises the `VIOL_RULE` violation according to the configured `violation` settings.
+- `client-side-integrity`, which challenges the matching request with Client Side Integrity.
+
+When you use `client-side-integrity`, do not include `override` or `violation` objects in the same rule.
+
+Use conditions that match browser-facing HTML flows. Client Side Integrity qualification is not applied automatically to non-HTML responses.
+
+```json
+{
+  "policy": {
+    "override-rules": [
+      {
+        "name": "login-csi",
+        "condition": "method == 'POST' and uri.contains('/login')",
+        "actionType": "client-side-integrity"
+      }
+    ]
+  }
+}
+```
+
+The name `client-side-integrity-captcha` is reserved for a future actionable rule flow. Add it to your policy only after the related implementation and usage details are documented.
+
 ### First match principle
 
 Policy enforcement operates on the **first match** principle. This principle is applied when multiple conditions match or are similar, indicating that any incoming requests that match the first condition will be processed.
