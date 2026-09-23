@@ -64,7 +64,7 @@ Use these action values in your brute force configuration:
 
 - `alarm` logs the brute force event and allows the request.
 - `alarm-and-client-side-integrity` serves a JavaScript challenge to verify that the client behaves like a browser.
-- `alarm-and-captcha` serves a CAPTCHA challenge to verify that the client is operated by a human user.
+- `alarm-and-captcha` serves a CAPTCHA challenge to verify that the client is operated by a human user. This action requires a generated challenge pool.
 
 ## Configure brute force challenges
 
@@ -157,6 +157,12 @@ This example protects a specific login page with CAPTCHA.
 ```
 
 Use the CAPTCHA example when you want to protect browser-based login flows with a human verification step instead of a JavaScript integrity challenge.
+
+{{< call-out class="important" >}}
+
+CAPTCHA actions have two requirements. A challenge pool must be available when your policy is compiled, otherwise the bundle contains no challenges. On a virtual server that serves plain HTTP, set `secureAttribute` to `never`, otherwise the browser discards the enforcer state cookie and the client can never pass the challenge. For more information, see [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+
+{{< /call-out >}}
 
 ## Device ID examples
 

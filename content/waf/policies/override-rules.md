@@ -141,7 +141,13 @@ F5 WAF for NGINX currently supports these actionable rule types:
 
 When you use `client-side-integrity`, do not include `override` or `violation` objects in the same rule.
 
-Use conditions that match browser-facing HTML flows. Client Side Integrity qualification is not applied automatically to non-HTML responses.
+Use conditions that match browser-facing HTML flows. F5 WAF for NGINX does not automatically qualify non-HTML responses for Client Side Integrity.
+
+{{< call-out class="important" >}}
+
+Client Side Integrity relies on the enforcer state cookie. On a virtual server that serves plain HTTP, set `secureAttribute` to `never`, otherwise the browser discards the cookie and the client is challenged repeatedly without ever passing. For more information, see [Cookie enforcement]({{< ref "/waf/policies/cookie-enforcement.md" >}}).
+
+{{< /call-out >}}
 
 ```json
 {
@@ -156,8 +162,6 @@ Use conditions that match browser-facing HTML flows. Client Side Integrity quali
   }
 }
 ```
-
-The name `client-side-integrity-captcha` is reserved for a future actionable rule flow. Add it to your policy only after the related implementation and usage details are documented.
 
 ### First match principle
 
