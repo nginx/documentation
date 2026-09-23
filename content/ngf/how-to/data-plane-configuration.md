@@ -450,6 +450,32 @@ To view the full list of configuration options, see the `NginxProxy spec` in the
 
 ---
 
+### Configure the load balancer class
+
+When the Service type is `LoadBalancer`, the `loadBalancerClass` field selects which controller manages the Service.
+
+By default, NGINX Gateway Fabric leaves this field unset. Your cloud provider or an external controller, such as an AWS Load Balancer or MetalLB, then manages the Service.
+
+To let the NGINX Gateway Controller manage the load balancer, set `loadBalancerClass` to `gateway.nginx.org/nginx-gateway-controller`:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config-test
+spec:
+  kubernetes:
+    service:
+      type: LoadBalancer
+      loadBalancerClass: gateway.nginx.org/nginx-gateway-controller
+EOF
+```
+
+You can set `loadBalancerClass` only when the Service type is `LoadBalancer`. NGINX Gateway Fabric rejects the field on any other Service type.
+
+---
+
 ### Patch data plane Service, Deployment, and DaemonSet
 
 NGINX Gateway Fabric supports advanced customization of the data plane Service, Deployment, and DaemonSet objects using patches in the `NginxProxy` resource. This allows you to apply Kubernetes-style patches to these resources, enabling custom labels, annotations, or other modifications that are not directly exposed via the NginxProxy spec.
