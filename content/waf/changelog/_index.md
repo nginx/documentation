@@ -21,6 +21,9 @@ Released _September 2nd, 2026_.
 
 - Added support for Alpine 3.24
 - Added support for NGINX Plus R37.1
+- Added support for Device ID.
+- Added support for Client-Side Inspection (JavaScript challenge).
+- Added support for CAPTCHA.
 
 ### Important notes
 
@@ -29,6 +32,7 @@ Released _September 2nd, 2026_.
 ### Resolved issues
 
 - 15220 - Fixed an issue where a redirect action configured with a wildcard was not applied as expected
+- Security hardening across request processing and parsers.
 - Upgraded the Go compiler to 1.26.6
 
 ### Packages
