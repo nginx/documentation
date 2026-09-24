@@ -417,6 +417,60 @@ If not specified, `useClusterIP` defaults to `false`. As with other `NginxProxy`
 
 ---
 
+## Configure automatic upstream zone sizing
+
+NGINX stores the configuration and runtime state of each upstream group in a shared memory zone. NGINX Gateway Fabric sizes this zone for each upstream automatically, based on the number of endpoints (backend Pods) in the upstream. When an upstream grows or shrinks, NGINX Gateway Fabric recalculates the zone size. You don't have to size the zone by hand or risk a `zone ... is too small` error as endpoint counts grow.
+
+Automatic sizing is on by default, and there's no field to turn it off. Without any configuration, NGINX Gateway Fabric sizes every HTTP and stream upstream zone for you.
+
+{{< call-out class="note" >}} In earlier releases, NGINX Gateway Fabric used a single fixed zone size for every upstream. After you upgrade, NGINX Gateway Fabric calculates each zone size instead. To keep a fixed size for an upstream, set an explicit `zoneSize`, as described in the precedence rules below. {{< /call-out >}}
+
+To tune how the size is calculated, set the `upstreamZoneAutoSizing` field of the `NginxProxy` resource. Each field is optional, so set only the values you want to change:
+
+- `bufferMultiplier`: A growth margin applied to the calculated size. The default is `"2.0"`, which doubles the size to leave room for growth. Enter the value as a quoted string of `1.0` or greater, for example `"1.5"`.
+- `minSize`: The smallest zone size to use. The default is `128k`.
+- `maxSize`: The largest zone size to use. The default is `512m`.
+
+The following command creates an `NginxProxy` resource that tunes the automatic sizing:
+
+```yaml
+kubectl apply -f - <<EOF
+apiVersion: gateway.nginx.org/v1alpha2
+kind: NginxProxy
+metadata:
+  name: ngf-proxy-config
+spec:
+  upstreamZoneAutoSizing:
+    bufferMultiplier: "2.0"
+    minSize: "128k"
+    maxSize: "512m"
+EOF
+```
+
+Set `minSize` and `maxSize` as size strings of one to four digits with an optional `k`, `m`, or `g` suffix. For example, `128k`, `1m`, or `512m`. A value with no suffix is in bytes. Quote `bufferMultiplier`, because it's a string value rather than a number.
+
+{{< call-out class="caution" >}} If you set `minSize` below the size NGINX needs for a shared memory zone, NGINX fails its reload with a `zone ... is too small` error. NGINX needs a zone of at least eight times the operating system page size, which is `32k` on a system with a 4 KB page size. {{< /call-out >}}
+
+An explicit zone size always overrides the automatic calculation. NGINX Gateway Fabric chooses the size for an upstream in this order:
+
+1. The `zoneSize` field of an [`UpstreamSettingsPolicy`]({{< ref "/ngf/traffic-management/upstream-settings.md" >}}) that targets the Service. This per-service value takes precedence.
+2. The global `zoneSize` field of the `NginxProxy` resource.
+3. The automatic calculation, which applies when neither explicit value is set.
+
+So a per-service `UpstreamSettingsPolicy` zone size overrides the global `NginxProxy` zone size, and either explicit value turns off automatic sizing for the upstreams it covers. An `UpstreamSettingsPolicy` applies to HTTP and gRPC Services only, so stream (TCPRoute and UDPRoute) upstreams always use the automatic calculation.
+
+To confirm the calculated size, inspect the running NGINX configuration:
+
+```shell
+kubectl exec -it deployments/gateway-nginx -- nginx -T
+```
+
+The `zone` directive in each upstream shows the size NGINX Gateway Fabric calculated for it.
+
+As with other `NginxProxy` fields, you can set `upstreamZoneAutoSizing` on the GatewayClass to apply globally, or on a Gateway to override the GatewayClass value. See the [Merging Semantics](#merging-semantics) section for details. The `NginxProxy spec` in the [API reference]({{< ref "/ngf/reference/api.md" >}}) lists all options and their default values.
+
+---
+
 ## Configure infrastructure-related settings
 
 You can configure deployment and service settings for all data plane instances by editing the `NginxProxy` resource at the Gateway or GatewayClass level. These settings can also be specified under the `nginx` section in the Helm values file. You can edit things such as replicas, pod scheduling options, container resource limits, extra volume mounts, service types and load balancer settings.
