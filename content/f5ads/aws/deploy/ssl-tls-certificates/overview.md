@@ -6,9 +6,9 @@ toc: true
 url: /f5ads/aws/deploy/ssl-tls-certificates/overview/
 f5-content-type: reference
 f5-product: F5 Application Delivery Service for AWS
-f5-keywords: "F5 ADS for AWS, SSL, TLS, certificates, AWS Secrets Manager, certificate rotation, PEM"
+f5-keywords: "F5 ADS for AWS, SSL, TLS, certificates, AWS Secrets Manager, certificate rotation, PEM, ML-DSA, post-quantum, PQC"
 f5-summary: >
-  This reference covers the SSL/TLS certificate types and formats F5 Application Delivery Service for AWS supports, and the two ways to manage them: the F5 ADS Console and AWS Secrets Manager.
+  This reference covers the SSL/TLS certificate types and formats F5 Application Delivery Service for AWS supports, including post-quantum ML-DSA certificates, and the two ways to manage them: the F5 ADS Console and AWS Secrets Manager.
   Use it to choose a certificate management approach and understand automatic and manual rotation options.
 f5-audience: operator
 ---
@@ -27,6 +27,13 @@ Encrypt your certificates, keys, and PEM files using one of these algorithms:
 
 - RSA
 - ECC/ECDSA
+- ML-DSA (post-quantum)
+
+{{< call-out class="note" title="ML-DSA key format support" >}}
+When you upload an ML-DSA private key using the F5 ADS Console, use the seed-only key format.
+If you store your ML-DSA key in AWS Secrets Manager, you can use either the seed-only or seed-priv format.
+See [Enable post-quantum cryptography]({{< ref "/f5ads/aws/quickstart/pqc.md" >}}) for configuration guidance.
+{{< /call-out >}}
 
 ## Add SSL/TLS certificates
 
