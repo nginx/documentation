@@ -38,4 +38,4 @@ The key capabilities of F5 ADS are:
 F5 ADS is available for use with multiple public cloud providers. See specific documentation for more details:
 
 - [F5 ADS for AWS]({{< ref "/f5ads/aws/overview.md" >}})
-- [NGINXaaS for Google Cloud]({{< ref "/nginxaas/google/overview.md" >}})
+- [F5 ADS for Google Cloud]({{< ref "/f5ads/google/overview.md" >}})

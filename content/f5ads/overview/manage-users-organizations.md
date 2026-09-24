@@ -40,7 +40,7 @@ Before you start, ensure you understand the following concepts:
 
 Once logged in, you can create and manage [NGINX configurations]({{< ref "/f5ads/overview/nginx-configuration/nginx-configuration-console.md" >}}) and [SSL/TLS certificates]({{< ref "/f5ads/overview/ssl-tls-certificates/ssl-tls-certificates-console.md" >}}).
 
-If you want to create an F5 ADS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}}) or [Google Cloud]({{< ref "/nginxaas/google/deploy/prerequisites.md#subscribe-to-the-nginxaas-for-google-cloud-offering" >}})).
+If you want to create an F5 ADS deployment, subscribe to your preferred cloud provider(s) (such as [AWS]({{< ref "/f5ads/aws/deploy/prerequisites.md" >}}) or [Google Cloud]({{< ref "/f5ads/google/deploy/prerequisites.md#subscribe-to-the-f5-ads-for-google-cloud-offering" >}})).
 
 ## Create an organization
 
