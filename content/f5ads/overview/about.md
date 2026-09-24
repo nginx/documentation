@@ -13,7 +13,7 @@ f5-product: F5 Application Delivery Service
 
 F5 Application Delivery Service (F5 ADS) is a service offering that is tightly integrated into your cloud platform and its ecosystem, making applications fast, efficient, and reliable with full lifecycle management of advanced NGINX traffic services.
 
-F5 ADS is powered by [NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. F5 ADS handles the NGINX Plus license management automatically.
+F5 ADS is powered by [F5 NGINX Plus](https://www.nginx.com/products/nginx/), which extends NGINX Open Source with advanced functionality and provides customers with a complete application delivery solution. F5 ADS handles the NGINX Plus license management automatically.
 
 ## Capabilities
 
